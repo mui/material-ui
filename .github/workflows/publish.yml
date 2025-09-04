@@ -18,6 +18,8 @@ on:
         type: boolean
         default: true
 
+permissions: {}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
