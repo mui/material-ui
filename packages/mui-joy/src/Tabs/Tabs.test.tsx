@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs, { tabsClasses as classes } from '@mui/joy/Tabs';
 import SizeTabsContext from './SizeTabsContext';
@@ -27,12 +27,12 @@ describe('Joy <Tabs />', () => {
   }));
 
   it('prop: variant', () => {
-    const screen = render(<Tabs variant="outlined" aria-label="Tabs" />);
+    render(<Tabs variant="outlined" aria-label="Tabs" />);
     expect(screen.getByLabelText('Tabs')).to.have.class(classes.variantOutlined);
   });
 
   it('prop: color', () => {
-    const screen = render(<Tabs color="primary" aria-label="Tabs" />);
+    render(<Tabs color="primary" aria-label="Tabs" />);
     expect(screen.getByLabelText('Tabs')).to.have.class(classes.colorPrimary);
   });
 
@@ -41,7 +41,7 @@ describe('Joy <Tabs />', () => {
       const size = React.useContext(SizeTabsContext);
       return <div>{size}</div>;
     }
-    const screen = render(
+    render(
       <Tabs size="sm">
         <Child />
       </Tabs>,
@@ -50,7 +50,7 @@ describe('Joy <Tabs />', () => {
   });
 
   it('prop: orientation', () => {
-    const screen = render(<Tabs aria-label="Tabs" orientation="vertical" />);
+    render(<Tabs aria-label="Tabs" orientation="vertical" />);
     expect(screen.getByLabelText('Tabs')).to.have.class(classes.vertical);
   });
 });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { TabsProps } from '@mui/base/Tabs';
 import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { useTabsList, TabsListProvider as BaseTabsListProvider } from '@mui/base/useTabsList';
@@ -46,7 +46,7 @@ describe('Joy <Tab />', () => {
   }));
 
   it('prop: variant', () => {
-    const screen = render(
+    render(
       <TabsProvider>
         <Tab variant="outlined" />
       </TabsProvider>,
@@ -55,7 +55,7 @@ describe('Joy <Tab />', () => {
   });
 
   it('prop: color', () => {
-    const screen = render(
+    render(
       <TabsProvider>
         <Tab color="primary" />
       </TabsProvider>,
@@ -64,7 +64,7 @@ describe('Joy <Tab />', () => {
   });
 
   it('prop: disabled', () => {
-    const screen = render(
+    render(
       <TabsProvider>
         <Tab disabled />
       </TabsProvider>,

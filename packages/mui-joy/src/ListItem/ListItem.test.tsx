@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList from '@mui/joy/MenuList';
 import List from '@mui/joy/List';
@@ -77,7 +77,7 @@ describe('Joy <ListItem />', () => {
 
   describe('Semantics - Menu', () => {
     it('should have role="none" if the nearest parent List is not implicitly a list', () => {
-      const screen = render(
+      render(
         <MenuList>
           <ListItem>Foo</ListItem>
         </MenuList>,
@@ -87,7 +87,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('should have role presentation for grouped options', () => {
-      const screen = render(
+      render(
         <MenuList>
           <List>
             <ListItem>Foo</ListItem>
@@ -101,7 +101,7 @@ describe('Joy <ListItem />', () => {
 
   describe('Semantics - List', () => {
     it('should render div automatically if parent List component is not `ol`, `ul`, `menu`', () => {
-      const screen = render(
+      render(
         <div>
           <List component="div" role="group">
             <ListItem>item 1</ListItem>
@@ -136,7 +136,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('should have role="none" if the nearest parent List has role="menu|menubar"', () => {
-      const screen = render(
+      render(
         <div>
           <List role="menu">
             <ListItem>Foo</ListItem>
@@ -152,7 +152,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('should have role="presentation" if the nearest parent List has role="group"', () => {
-      const screen = render(
+      render(
         <List role="group">
           <ListItem>Foo</ListItem>
         </List>,
@@ -162,7 +162,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('overridable role', () => {
-      const screen = render(
+      render(
         <List role="menu">
           <ListItem role="menuitem">Foo</ListItem>
         </List>,

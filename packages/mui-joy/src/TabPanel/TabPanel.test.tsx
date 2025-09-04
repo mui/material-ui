@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { TabsProps } from '@mui/base/Tabs';
 import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -35,7 +35,7 @@ describe('Joy <TabPanel />', () => {
 
   describe('size', () => {
     it('uses size from Tabs', () => {
-      const screen = render(
+      render(
         <Tabs defaultValue={0} size="sm">
           <TabPanel value={0} />
         </Tabs>,
@@ -44,7 +44,7 @@ describe('Joy <TabPanel />', () => {
     });
 
     it('uses prop if provided', () => {
-      const screen = render(
+      render(
         <Tabs defaultValue={0} size="sm">
           <TabPanel value={0} size="md" />
         </Tabs>,

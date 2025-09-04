@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { modalClasses } from '@mui/material/Modal';
@@ -214,7 +214,7 @@ describe('<Drawer />', () => {
     });
 
     it('should be closed by default', () => {
-      const screen = render(
+      render(
         <Drawer>
           <div data-testid="child" />
         </Drawer>,
@@ -232,13 +232,13 @@ describe('<Drawer />', () => {
       );
 
       it('should open and close', () => {
-        const screen = render(drawerElement);
+        const { setProps } = render(drawerElement);
 
-        screen.setProps({ open: true });
+        setProps({ open: true });
 
         expect(screen.getByTestId('child')).not.to.equal(null);
 
-        screen.setProps({ open: false });
+        setProps({ open: false });
         clock.tick(transitionDuration);
 
         expect(screen.queryByTestId('child')).to.equal(null);
@@ -327,22 +327,22 @@ describe('<Drawer />', () => {
         );
       });
 
-      const screen = render(
+      const { setProps } = render(
         <Drawer open TransitionComponent={MockedSlide}>
           <div />
         </Drawer>,
       );
 
-      screen.setProps({ anchor: 'left' });
+      setProps({ anchor: 'left' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'right');
 
-      screen.setProps({ anchor: 'right' });
+      setProps({ anchor: 'right' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'left');
 
-      screen.setProps({ anchor: 'top' });
+      setProps({ anchor: 'top' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'down');
 
-      screen.setProps({ anchor: 'bottom' });
+      setProps({ anchor: 'bottom' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'up');
     });
   });
@@ -365,7 +365,7 @@ describe('<Drawer />', () => {
       const theme = createTheme({
         direction: 'rtl',
       });
-      const screen = render(
+      const view = render(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="left" TransitionComponent={MockedSlide}>
             <div />
@@ -375,7 +375,7 @@ describe('<Drawer />', () => {
       // slide direction for left is right, if left is switched to right, we should get left
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'left');
 
-      screen.rerender(
+      view.rerender(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="right" TransitionComponent={MockedSlide}>
             <div />

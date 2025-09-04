@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {
   CssVarsProvider,
@@ -68,7 +68,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider theme={extendTheme({ colorSchemes: { light: true, dark: true } })}>
           <Vars />
         </CssVarsProvider>,
@@ -207,7 +207,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -233,7 +233,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -378,7 +378,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       const { setMode } = useColorScheme();
       return <button onClick={() => setMode('dark')}>Dark</button>;
     }
-    const screen = render(
+    render(
       <ThemeProvider
         theme={createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } })}
       >
@@ -398,7 +398,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       const { setMode } = useColorScheme();
       return <button onClick={() => setMode('dark')}>Dark</button>;
     }
-    const screen = render(
+    render(
       <ThemeProvider
         theme={createTheme({
           cssVariables: { colorSchemeSelector: 'class' },
@@ -438,7 +438,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const screen = render(<App />);
+    render(<App />);
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -471,13 +471,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const screen = render(<App />);
+    const view = render(<App />);
 
-    expect(screen.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(screen.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`2 light`);
   });
 
   it('palette mode should change if not using CSS variables', () => {
@@ -506,13 +506,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const screen = render(<App />);
+    const view = render(<App />);
 
-    expect(screen.container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
+    expect(view.container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(screen.container).to.have.text(
+    expect(view.container).to.have.text(
       `3 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
     );
   });
@@ -543,12 +543,12 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const screen = render(<App />);
+    const view = render(<App />);
 
-    expect(screen.container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(screen.container).to.have.text(`3 dark`);
+    expect(view.container).to.have.text(`3 dark`);
   });
 });

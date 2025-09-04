@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import createTheme from './createTheme';
 import styled from './styled';
 import ThemeProvider from './ThemeProvider';
@@ -102,7 +102,7 @@ describe('styled', () => {
         font-size: ${(props) => props.scale * 8}px;
         padding-left: ${(props) => props.scale * 2}px;
       `;
-      const screen = render(<Div scale={4} data-testid="target" />);
+      render(<Div scale={4} data-testid="target" />);
 
       expect(screen.getByTestId('target')).toHaveComputedStyle({
         fontSize: '32px',
@@ -115,7 +115,7 @@ describe('styled', () => {
         fontSize: `${props.scale * 8}px`,
         paddingLeft: `${props.scale * 2}px`,
       }));
-      const screen = render(<DivObj scale={4} data-testid="target" />);
+      render(<DivObj scale={4} data-testid="target" />);
 
       expect(screen.getByTestId('target')).toHaveComputedStyle({
         fontSize: '32px',

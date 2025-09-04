@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
-import { act, createRenderer, reactMajor } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import Modal, { modalClasses } from '@mui/material/Modal';
 import Paper, { paperClasses } from '@mui/material/Paper';
@@ -100,7 +100,7 @@ describe('<Popover />', () => {
         }
         return <div data-testid="backdrop" data-invisible={invisible} />;
       }
-      const screen = render(
+      render(
         <Popover
           open
           anchorEl={document.createElement('div')}
@@ -120,7 +120,7 @@ describe('<Popover />', () => {
     });
 
     it('should only render its children when open', () => {
-      const screen = render(
+      const { setProps } = render(
         <Popover open={false} anchorEl={document.createElement('div')}>
           <div data-testid="children" />
         </Popover>,
@@ -128,19 +128,19 @@ describe('<Popover />', () => {
 
       expect(screen.queryByTestId('children')).to.equal(null);
 
-      screen.setProps({ open: true });
+      setProps({ open: true });
 
       expect(screen.getByTestId('children')).not.to.equal(null);
     });
 
     it('hide its children immediately when closing but transition them out', () => {
-      const screen = render(
+      const { setProps } = render(
         <Popover open anchorEl={document.createElement('div')} transitionDuration={1974}>
           <div data-testid="children" />
         </Popover>,
       );
 
-      screen.setProps({ open: false });
+      setProps({ open: false });
 
       expect(screen.getByTestId('children')).toBeInaccessible();
 
@@ -331,7 +331,7 @@ describe('<Popover />', () => {
 
   describe('paper', () => {
     it('should have the paper class', () => {
-      const screen = render(
+      render(
         <Popover
           anchorEl={document.createElement('div')}
           open
@@ -345,7 +345,7 @@ describe('<Popover />', () => {
     });
 
     it('should have a elevation prop passed down', () => {
-      const screen = render(
+      const { setProps } = render(
         <Popover
           anchorEl={document.createElement('div')}
           open
@@ -357,7 +357,7 @@ describe('<Popover />', () => {
 
       expect(screen.getByTestId('paper')).to.have.class(paperClasses.elevation8);
 
-      screen.setProps({ slotProps: { paper: { 'data-testid': 'paper', elevation: 16 } } });
+      setProps({ slotProps: { paper: { 'data-testid': 'paper', elevation: 16 } } });
 
       expect(screen.getByTestId('paper')).to.have.class(paperClasses.elevation16);
     });
@@ -384,7 +384,7 @@ describe('<Popover />', () => {
     describe('className', () => {
       it('should add the className to the paper', () => {
         const className = 'MyPaperClassName';
-        const screen = render(
+        render(
           <Popover
             anchorEl={document.createElement('div')}
             open
@@ -478,7 +478,7 @@ describe('<Popover />', () => {
           width: 0,
         }),
       };
-      const screen = render(
+      render(
         <Popover
           open
           anchorEl={virtualElement}
@@ -499,7 +499,7 @@ describe('<Popover />', () => {
     let anchorEl;
 
     function openPopover(anchorOrigin) {
-      const screen = render(
+      render(
         <Popover
           anchorEl={anchorEl}
           anchorOrigin={anchorOrigin}
@@ -511,7 +511,6 @@ describe('<Popover />', () => {
         </Popover>,
       );
       clock.tick(0);
-      return screen;
     }
 
     beforeEach(() => {
@@ -531,7 +530,7 @@ describe('<Popover />', () => {
     });
 
     it('should be positioned over the top left of the anchor', () => {
-      const screen = openPopover({ vertical: 'top', horizontal: 'left' });
+      openPopover({ vertical: 'top', horizontal: 'left' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.top <= 16 ? 16 : anchorRect.top;
@@ -540,7 +539,7 @@ describe('<Popover />', () => {
     });
 
     it('should be positioned over the center left of the anchor', () => {
-      const screen = openPopover({ vertical: 'center', horizontal: 'left' });
+      openPopover({ vertical: 'center', horizontal: 'left' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const anchorTop = anchorRect.top + anchorRect.height / 2;
@@ -550,7 +549,7 @@ describe('<Popover />', () => {
     });
 
     it('should be positioned over the bottom left of the anchor', () => {
-      const screen = openPopover({ vertical: 'bottom', horizontal: 'left' });
+      openPopover({ vertical: 'bottom', horizontal: 'left' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
@@ -559,7 +558,7 @@ describe('<Popover />', () => {
     });
 
     it('should be positioned over the center center of the anchor', () => {
-      const screen = openPopover({ vertical: 'center', horizontal: 'center' });
+      openPopover({ vertical: 'center', horizontal: 'center' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const anchorTop = anchorRect.top + anchorRect.height / 2;
@@ -570,7 +569,7 @@ describe('<Popover />', () => {
     });
 
     it('should be positioned over the top right of the anchor', () => {
-      const screen = openPopover({ vertical: 'top', horizontal: 'right' });
+      openPopover({ vertical: 'top', horizontal: 'right' });
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.top <= 16 ? 16 : anchorRect.top;
       const left = anchorRect.right <= 16 ? 16 : anchorRect.right;
@@ -578,7 +577,7 @@ describe('<Popover />', () => {
     });
 
     it('should be positioned over the bottom right of the anchor', () => {
-      const screen = openPopover({ vertical: 'bottom', horizontal: 'right' });
+      openPopover({ vertical: 'bottom', horizontal: 'right' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
@@ -597,7 +596,7 @@ describe('<Popover />', () => {
 
   it("should use anchorEl's parent body as container if container not provided", () => {
     const anchorEl = document.createElement('div');
-    const screen = render(<Popover anchorEl={anchorEl} data-testid="popover" open />);
+    render(<Popover anchorEl={anchorEl} data-testid="popover" open />);
 
     expect(screen.getByTestId('popover').parentElement).to.equal(anchorEl.ownerDocument.body);
   });
@@ -641,7 +640,7 @@ describe('<Popover />', () => {
     const anchorPosition = { top: 300, left: 500 };
 
     function openPopover(anchorOrigin) {
-      const screen = render(
+      render(
         <Popover
           anchorEl={document.createElement('div')}
           anchorReference="anchorPosition"
@@ -655,11 +654,10 @@ describe('<Popover />', () => {
         </Popover>,
       );
       clock.tick(0);
-      return screen;
     }
 
     it('should be positioned according to the passed coordinates', () => {
-      const screen = openPopover();
+      openPopover();
 
       expect(screen.getByTestId('paper')).toHaveInlineStyle({
         top: `${anchorPosition.top}px`,
@@ -668,7 +666,7 @@ describe('<Popover />', () => {
     });
 
     it('should ignore the anchorOrigin prop when being positioned', () => {
-      const screen = openPopover({ vertical: 'top', horizontal: 'right' });
+      openPopover({ vertical: 'top', horizontal: 'right' });
 
       expect(screen.getByTestId('paper')).toHaveInlineStyle({
         top: `${anchorPosition.top}px`,
@@ -680,7 +678,7 @@ describe('<Popover />', () => {
   describe('prop anchorReference="none"', () => {
     it('should not try to change the position', () => {
       const anchorEl = document.createElement('div');
-      const screen = render(
+      render(
         <Popover
           anchorEl={anchorEl}
           anchorReference="none"
@@ -1007,7 +1005,7 @@ describe('<Popover />', () => {
         <div data-testid="transition" data-timeout={props.timeout} ref={ref} tabIndex={-1} />
       ));
       TransitionComponent.muiSupportAuto = true;
-      const screen = render(
+      render(
         <Popover
           anchorEl={document.createElement('div')}
           open
@@ -1023,7 +1021,7 @@ describe('<Popover />', () => {
       const TransitionComponent = React.forwardRef((props, ref) => (
         <div data-testid="transition" data-timeout={props.timeout} ref={ref} tabIndex={-1} />
       ));
-      const screen = render(
+      render(
         <Popover
           anchorEl={document.createElement('div')}
           open
@@ -1066,7 +1064,7 @@ describe('<Popover />', () => {
         const slotPropsElevation = 12;
         const paperPropsElevation = 14;
 
-        const screen = render(
+        render(
           <Popover
             anchorEl={document.createElement('div')}
             open

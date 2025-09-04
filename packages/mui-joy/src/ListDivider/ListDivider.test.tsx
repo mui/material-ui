@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List from '@mui/joy/List';
 import ListDivider, { listDividerClasses as classes } from '@mui/joy/ListDivider';
@@ -26,7 +26,7 @@ describe('Joy <ListDivider />', () => {
   }));
 
   it('should have role separator', () => {
-    const screen = render(<ListDivider />);
+    render(<ListDivider />);
     expect(screen.getByRole('separator')).to.have.class(classes.root);
   });
 
@@ -38,12 +38,12 @@ describe('Joy <ListDivider />', () => {
   describe('aria-orientation', () => {
     it('should not have aria-orientation by default', () => {
       // The
-      const screen = render(<ListDivider />);
+      render(<ListDivider />);
       expect(screen.getByRole('separator')).not.to.have.attribute('aria-orientation');
     });
 
     it('should have aria-orientation set to vertical', () => {
-      const screen = render(
+      render(
         <List orientation="horizontal">
           <ListDivider />
         </List>,
@@ -52,7 +52,7 @@ describe('Joy <ListDivider />', () => {
     });
 
     it('should not add aria-orientation if role is custom', () => {
-      const screen = render(
+      render(
         <List orientation="horizontal">
           <ListDivider role="presentation" />
         </List>,
@@ -63,13 +63,13 @@ describe('Joy <ListDivider />', () => {
 
   describe('semantics', () => {
     it('should be `li` with role `separator` by default', () => {
-      const screen = render(<ListDivider />);
+      render(<ListDivider />);
 
       expect(screen.getByRole('separator')).to.have.tagName('li');
     });
 
     it('should still be `li` if List is a `ul` with role `menu`', () => {
-      const screen = render(
+      render(
         <List role="menu">
           <ListDivider />
         </List>,
@@ -79,13 +79,13 @@ describe('Joy <ListDivider />', () => {
     });
 
     it('should be `div` if `List` is not one of `ol, ul, menu`', () => {
-      const screen = render(
+      const view = render(
         <List component="div" role="menu">
           <ListDivider />
         </List>,
       );
       expect(screen.queryByRole('separator')).to.equal(null);
-      expect(screen.container.firstChild?.firstChild).to.have.tagName('div');
+      expect(view.container.firstChild?.firstChild).to.have.tagName('div');
     });
   });
 });

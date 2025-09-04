@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
@@ -178,7 +178,7 @@ describe('<ButtonGroup />', () => {
   });
 
   it('classes.grouped should be merged with Button className', () => {
-    const screen = render(
+    render(
       <ButtonGroup>
         <Button className="foo-bar">Hello World</Button>
       </ButtonGroup>,
@@ -210,7 +210,7 @@ describe('<ButtonGroup />', () => {
 
   describe('theme default props on Button', () => {
     it('should override default variant prop', () => {
-      const screen = render(
+      render(
         <ThemeProvider
           theme={createTheme({
             components: {
@@ -238,7 +238,7 @@ describe('<ButtonGroup />', () => {
 
   describe('position classes', () => {
     it('correctly applies position classes to buttons', () => {
-      const screen = render(
+      render(
         <ButtonGroup>
           <Button>Button 1</Button>
           <Button>Button 2</Button>
@@ -264,7 +264,7 @@ describe('<ButtonGroup />', () => {
     });
 
     it('does not apply any position classes to a single button', () => {
-      const screen = render(
+      render(
         <ButtonGroup>
           <Button>Single Button</Button>
         </ButtonGroup>,

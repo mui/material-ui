@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
@@ -72,7 +72,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -317,7 +317,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -372,7 +372,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -400,7 +400,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -424,7 +424,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,

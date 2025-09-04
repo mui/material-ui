@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
@@ -49,7 +49,7 @@ describe('<ToggleButtonGroup />', () => {
   });
 
   it('should disable all ToggleButton if disabled prop is passed', () => {
-    const screen = render(
+    render(
       <ToggleButtonGroup disabled>
         <ToggleButton value="one">1</ToggleButton>
         <ToggleButton value="two">2</ToggleButton>
@@ -237,7 +237,7 @@ describe('<ToggleButtonGroup />', () => {
 
   describe('position classes', () => {
     it('correctly applies position classes to buttons', () => {
-      const screen = render(
+      render(
         <ToggleButtonGroup value="one">
           <Tooltip title="tooltip">
             <ToggleButton value="one">One</ToggleButton>
@@ -277,7 +277,7 @@ describe('<ToggleButtonGroup />', () => {
     });
 
     it('does not apply any position classes to a single button', () => {
-      const screen = render(
+      render(
         <ToggleButtonGroup>
           <ToggleButton value="one">One</ToggleButton>
         </ToggleButtonGroup>,

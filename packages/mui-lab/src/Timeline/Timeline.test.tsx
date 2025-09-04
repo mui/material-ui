@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Timeline, { timelineClasses as classes } from '@mui/lab/Timeline';
 import describeConformance from '../../test/describeConformance';
 
@@ -19,7 +19,7 @@ describe('<Timeline />', () => {
   }));
 
   it('should have correct classname', () => {
-    const screen = render(<Timeline data-testid="timeline-root" position="alternate-reverse" />);
+    render(<Timeline data-testid="timeline-root" position="alternate-reverse" />);
 
     expect(screen.getByTestId('timeline-root')).to.have.class(
       'MuiTimeline-positionAlternateReverse',

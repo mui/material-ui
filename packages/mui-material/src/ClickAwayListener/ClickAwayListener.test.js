@@ -2,7 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, fireDiscreteEvent } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  fireDiscreteEvent,
+  screen,
+} from '@mui/internal-test-utils';
 import Portal from '@mui/material/Portal';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
@@ -171,7 +177,7 @@ describe('<ClickAwayListener />', () => {
             </React.Fragment>
           );
         }
-        const screen = render(<Test />);
+        render(<Test />);
 
         fireDiscreteEvent.click(screen.getByTestId('trigger'));
 
@@ -234,7 +240,7 @@ describe('<ClickAwayListener />', () => {
           </ClickAwayListener>
         );
       }
-      const screen = render(<ClickAwayListenerMouseDownPortal />);
+      render(<ClickAwayListenerMouseDownPortal />);
       const mouseDownTarget = screen.getByTestId('trigger');
 
       fireDiscreteEvent.mouseDown(mouseDownTarget);
@@ -398,7 +404,7 @@ describe('<ClickAwayListener />', () => {
           </React.Fragment>
         );
       }
-      const screen = render(<Test />);
+      render(<Test />);
 
       act(() => {
         screen.getByRole('button').click();
@@ -423,7 +429,7 @@ describe('<ClickAwayListener />', () => {
           </ClickAwayListener>
         );
       }
-      const screen = render(<Test />);
+      render(<Test />);
 
       act(() => {
         screen.getByRole('button').click();

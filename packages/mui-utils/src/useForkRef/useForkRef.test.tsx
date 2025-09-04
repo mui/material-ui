@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, reactMajor, MuiRenderResult } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, MuiRenderResult, screen } from '@mui/internal-test-utils';
 import useForkRef from './useForkRef';
 import getReactElementRef from '../getReactElementRef';
 
@@ -47,7 +47,7 @@ describe('useForkRef', () => {
     });
 
     expect(() => {
-      const screen = render(<Component />);
+      render(<Component />);
       expect(screen.getByTestId('hasRef')).to.have.text('true');
     }).not.toErrorDev();
   });
