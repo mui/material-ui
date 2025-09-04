@@ -1,9 +1,8 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
-  "main": "./src/index.ts",
   "keywords": [
     "react",
     "mui",
@@ -63,6 +62,7 @@
     }
   },
   "exports": {
+    ".": "./src/index.ts",
     "./styles.css": "./src/styles.css",
     "./*": "./src/*/index.ts"
   },

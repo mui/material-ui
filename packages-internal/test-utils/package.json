@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -54,7 +54,7 @@
     "sinon": "^21.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.54.2",
+    "@playwright/test": "^1.55.0",
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",

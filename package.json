@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -48,7 +48,7 @@
     "prettier": "pretty-quick --ignore-path .lintignore --branch master",
     "prettier:all": "prettier --write . --ignore-path .lintignore",
     "size:snapshot": "pnpm -F ./test/bundle-size check",
-    "size:why": "pnpm size:snapshot --analyze --accurateBundles",
+    "size:why": "pnpm size:snapshot --analyze",
     "start": "pnpm install && pnpm docs:dev",
     "test": "node scripts/test.mjs",
     "tc": "nx run nx_test_tc",
@@ -112,8 +112,8 @@
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.7",
-    "@mui/internal-bundle-size-checker": "^1.0.9-canary.33",
-    "@mui/internal-code-infra": "^0.0.2-canary.58",
+    "@mui/internal-bundle-size-checker": "^1.0.9-canary.39",
+    "@mui/internal-code-infra": "^0.0.3-canary.2",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
@@ -123,7 +123,7 @@
     "@next/eslint-plugin-next": "^15.5.0",
     "@octokit/rest": "^22.0.0",
     "@pigment-css/react": "0.0.30",
-    "@playwright/test": "1.54.2",
+    "@playwright/test": "1.55.0",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/fs-extra": "^11.0.4",
@@ -193,9 +193,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.15.0",
   "engines": {
-    "pnpm": "10.14.0"
+    "pnpm": "10.15.0"
   },
   "resolutions": {
     "@babel/core": "^7.28.3",
