@@ -159,7 +159,7 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * This prop is an alias for `slotProps.previousButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.previousButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.previousButton` instead.
    */
   backIconButtonProps: PropTypes.object,
@@ -194,7 +194,7 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
    */
   getItemAriaLabel: PropTypes.func.isRequired,
   /**
-   * This prop is an alias for `slotProps.nextButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.nextButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.nextButton` instead.
    */
   nextIconButtonProps: PropTypes.object,

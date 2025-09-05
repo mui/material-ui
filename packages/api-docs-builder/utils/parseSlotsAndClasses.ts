@@ -155,7 +155,7 @@ function extractClassesFromProps(
 
   const classes: Record<string, ClassInfo> = {};
   classesProp.signatures.forEach((propType) => {
-    const type = typescriptProject.checker.getTypeAtLocation(propType.symbol.declarations?.[0]!);
+    const type = typescriptProject.checker.getTypeAtLocation(propType.symbol.declarations![0]);
     removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {

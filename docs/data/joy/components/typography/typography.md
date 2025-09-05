@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Typography component
 components: Typography
-githubLabel: 'component: Typography'
+githubLabel: 'scope: typography'
 ---
 
 # Typography

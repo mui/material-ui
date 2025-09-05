@@ -21,7 +21,7 @@ MCP solves these problems by:
 
 ## Installation and setup
 
-The sections below detail how to set up the Material UI MCP in popular IDEs.
+The sections below detail how to set up the Material UI MCP in popular agentic coding environments.
 
 ### VS Code, Cursor, Windsurf
 
@@ -83,6 +83,26 @@ Search for `agent: add context server` in the Command Palette and add the follow
 }
 ```
 
+### Claude Code
+
+Claude Code is Anthropic's agentic coding tool that runs in your terminal.
+
+You can add the Material UI MCP server to Claude Code via the command line:
+
+```bash
+claude mcp add mui-mcp -- npx -y @mui/mcp@latest
+```
+
+By default, this installs the MCP server to local-scope of the project you are working on.
+
+If you want the MCP server to always be available to all projects on your machine, you would install it to user-scope:
+
+```bash
+claude mcp add mui-mcp -s user -- npx -y @mui/mcp@latest
+```
+
+To better understand MCP server scope hierarchy and precedence in Claude Code, see their [official documentation](https://docs.anthropic.com/en/docs/claude-code/mcp#understanding-mcp-server-scopes).
+
 ## Common issues
 
 ### I've installed the MCP but there are errors in connection
@@ -95,11 +115,11 @@ To do so, run:
 ```
 
 Wait for the terminal to print "🔍 MCP Inspector is up and running at http://127.0.0.1:6274".
-Navigate to this URL in your browser and set the following paramters:
+Navigate to this URL in your browser and set the following parameters:
 
 - **Transport type: Stdio**
 - **Command:**`npx`
-- **Arguments:** `y @mui/mcp@latest`
+- **Arguments:** `-y @mui/mcp@latest`
 
 Click **Connect** and wait for the connection to be established.
 

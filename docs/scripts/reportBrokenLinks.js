@@ -1,7 +1,7 @@
 // @ts-check
 /* eslint-disable no-console */
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs';
 import { parseDocFolder, getAnchor } from './reportBrokenLinksLib';
 
 /**
@@ -39,7 +39,7 @@ function write(text) {
  */
 function save(lines) {
   const fileContents = [...lines, ''].join('\n');
-  fse.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
+  fs.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
 }
 
 /**

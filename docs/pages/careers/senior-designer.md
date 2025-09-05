@@ -23,8 +23,6 @@ We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
-We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
-
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
 ## The culture
@@ -52,7 +50,7 @@ However, despite Material UI – our biggest library – being [the leading](ht
 More importantly, our challenges go way beyond the ones of design systems.
 
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we've been expanding our offering with Joy UI, Base UI, and Toolpad.
+It's why we've been expanding our offering with Base UI.
 Design is foundational to achieving this goal.
 
 ## The role

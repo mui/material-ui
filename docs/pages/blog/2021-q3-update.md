@@ -31,7 +31,6 @@ Here are the most significant improvements since early July 2021.
   You can read more about it in the [release blog post](/blog/mui-core-v5/).
 - ✨ We also introduced a brand new [product page](/core/) this quarter to better present what the Core is about.
 - 🔎 We've reworked the search experience in the docs:
-
   - The component pages now rank before the API pages.
   - Instead of only displaying up to 5 results, you can scroll for more results.
   - An icon illustrates the nature of the match; either a page, a header, or a paragraph.
@@ -51,7 +50,6 @@ Here are the most significant improvements since early July 2021.
 
 - We introduced a new [package of components without styles](https://www.npmjs.com/package/@mui/base), laying the foundations for supporting multiple design systems with headless components.
   While it was tough to balance the time between working on v5 stable and developing the unstyled components, we still managed to introduce the first few:
-
   - [Autocomplete](/material-ui/react-autocomplete/#useautocomplete)
 
   ```jsx

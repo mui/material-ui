@@ -33,7 +33,7 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<
       React.ElementType<SwitchBaseProps>,
@@ -42,7 +42,7 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the input slot.
-     * By default, the avaible props are based on the input element.
+     * By default, the available props are based on the input element.
      */
     input: SlotProps<'input', RadioInputSlotPropsOverrides, RadioOwnerState>;
   }

@@ -92,10 +92,8 @@ interface Profiler {
 class NoopProfiler implements Profiler {
   id = 'noop';
 
-  // eslint-disable-next-line class-methods-use-this
   onRender() {}
 
-  // eslint-disable-next-line class-methods-use-this
   report() {}
 }
 
@@ -270,7 +268,7 @@ function render(
   );
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
-    user: userEvent.setup(),
+    user: userEvent.setup({ document }),
     forceUpdate() {
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(

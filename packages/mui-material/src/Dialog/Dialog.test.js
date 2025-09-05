@@ -139,7 +139,7 @@ describe('<Dialog />', () => {
       dialog.click();
     });
 
-    // keyDown not targetted at anything specific
+    // keyDown not targeted at anything specific
     // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
     fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
@@ -194,7 +194,7 @@ describe('<Dialog />', () => {
 
     act(() => {
       dialog.click();
-      // keyDown is not targetted at anything specific.
+      // keyDown is not targeted at anything specific.
       // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
       fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     });
