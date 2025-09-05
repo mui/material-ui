@@ -955,7 +955,7 @@ importers:
         specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
       chai:
-        specifier: ^4.5.0 || ^5.0.0
+        specifier: ^4.5.0 || ^5.0.0 || ^6.0.0
         version: 4.5.0
       chai-dom:
         specifier: ^1.12.1
@@ -1232,7 +1232,7 @@ importers:
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
         version: 6.4.1(@emotion/react@11.14.0(@types/react@19.1.11)(react@19.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.1.11)(react@19.1.1))(@types/react@19.1.11)(react@19.1.1))(@types/react@19.1.11)(react@19.1.1)
       chai:
-        specifier: ^4.5.0
+        specifier: ^4.5.0 || ^6.0.0
         version: 4.5.0
       clipboard-copy:
         specifier: ^4.0.1
@@ -11187,6 +11187,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qjobs@1.2.0:
