@@ -116,7 +116,7 @@ describe('<Paper />', () => {
   });
 
   it('should have no boxShadow or background-image on Paper with elevation 0 in dark mode using CSS variables', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

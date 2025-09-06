@@ -65,7 +65,7 @@ describe('<NativeSelect />', () => {
   });
 
   it('slots overrides should work', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

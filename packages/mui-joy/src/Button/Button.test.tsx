@@ -137,7 +137,7 @@ describe('Joy <Button />', () => {
 
   describe('prop:disabled', () => {
     it('should apply disabled styles when button is disabled', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const { getByRole } = render(<Button disabled />);
@@ -149,7 +149,7 @@ describe('Joy <Button />', () => {
     });
 
     it('should apply disabled styles when button is disabled and when component prop is provided', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const { getByRole } = render(<Button disabled component="a" />);
@@ -169,7 +169,7 @@ describe('Joy <Button />', () => {
     });
 
     it('is rendered properly when `loading` and children should not be visible', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const { container, getByRole } = render(

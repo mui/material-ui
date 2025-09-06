@@ -102,7 +102,7 @@ describe('<Popper />', () => {
 
     it('should flip placement when edge is reached', async function test() {
       // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const popperRef = React.createRef();

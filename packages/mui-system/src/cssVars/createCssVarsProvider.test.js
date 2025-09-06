@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createCssVarsTheme from './createCssVarsTheme';
 import createCssVarsProvider, { DISABLE_CSS_TRANSITION } from './createCssVarsProvider';
@@ -105,7 +105,7 @@ describe('createCssVarsProvider', () => {
         const { allColorSchemes } = useColorScheme();
         return <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>;
       }
-      const { rerender } = render(
+      const view = render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -113,7 +113,7 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark');
 
-      rerender(
+      view.rerender(
         <CssVarsProvider
           theme={createCssVarsTheme({
             colorSchemes: { light: {}, dark: {}, comfort: { palette: { color: '#e5e5e5' } } },

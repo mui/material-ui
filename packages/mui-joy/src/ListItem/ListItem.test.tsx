@@ -101,7 +101,7 @@ describe('Joy <ListItem />', () => {
 
   describe('Semantics - List', () => {
     it('should render div automatically if parent List component is not `ol`, `ul`, `menu`', () => {
-      const { getByRole, getAllByRole } = render(
+      render(
         <div>
           <List component="div" role="group">
             <ListItem>item 1</ListItem>
@@ -118,8 +118,8 @@ describe('Joy <ListItem />', () => {
         </div>,
       );
 
-      expect(getByRole('group').firstChild).to.have.tagName('DIV');
-      const lists = getAllByRole('list');
+      expect(screen.getByRole('group').firstChild).to.have.tagName('DIV');
+      const lists = screen.getAllByRole('list');
       lists.forEach((list) => {
         expect(list.firstChild).to.have.tagName('LI');
       });

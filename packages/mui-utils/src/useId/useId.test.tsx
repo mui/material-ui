@@ -94,7 +94,8 @@ describe('useId', () => {
       const id = useId();
       return <span data-testid="target" id={id} />;
     }
-    renderToString(<TestComponent />);
+    const { hydrate } = renderToString(<TestComponent />);
+    hydrate();
 
     expect(screen.getByTestId('target').id).not.to.equal('');
   });

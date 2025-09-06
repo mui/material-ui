@@ -219,20 +219,20 @@ describe('<FocusTrap />', () => {
         </div>
       );
     }
-    const { setProps, getByRole } = render(<Test />, { strict: reactMajor <= 18 });
+    const { setProps } = render(<Test />, { strict: reactMajor <= 18 });
     expect(screen.getByTestId('root')).toHaveFocus();
 
     act(() => {
-      getByRole('textbox').focus();
+      screen.getByRole('textbox').focus();
     });
-    expect(getByRole('textbox')).not.toHaveFocus();
+    expect(screen.getByRole('textbox')).not.toHaveFocus();
 
     setProps({ isEnabled: () => false });
 
     act(() => {
-      getByRole('textbox').focus();
+      screen.getByRole('textbox').focus();
     });
-    expect(getByRole('textbox')).toHaveFocus();
+    expect(screen.getByRole('textbox')).toHaveFocus();
   });
 
   it('restores focus when closed', () => {

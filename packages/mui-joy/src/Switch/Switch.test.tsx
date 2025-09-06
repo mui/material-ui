@@ -35,7 +35,7 @@ describe('<Switch />', () => {
   }));
 
   it('should pass `slotProps` down to slots', () => {
-    const { container } = render(
+    const view = render(
       <Switch
         data-testid="root-switch"
         slotProps={{
@@ -48,10 +48,10 @@ describe('<Switch />', () => {
     );
 
     expect(screen.getByTestId('root-switch')).toBeVisible();
-    expect(container.querySelector('.custom-thumb')).to.have.class(classes.thumb);
-    expect(container.querySelector('.custom-track')).to.have.class(classes.track);
-    expect(container.querySelector('.custom-action')).to.have.class(classes.action);
-    expect(container.querySelector('.custom-input')).to.have.class(classes.input);
+    expect(view.container.querySelector('.custom-thumb')).to.have.class(classes.thumb);
+    expect(view.container.querySelector('.custom-track')).to.have.class(classes.track);
+    expect(view.container.querySelector('.custom-action')).to.have.class(classes.action);
+    expect(view.container.querySelector('.custom-input')).to.have.class(classes.input);
   });
 
   it('should have the classes required for Switch', () => {

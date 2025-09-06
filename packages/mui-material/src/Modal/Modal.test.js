@@ -471,7 +471,7 @@ describe('<Modal />', () => {
       clock.withFakeTimers();
 
       it('does not steal focus from other frames', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           // TODO: Unclear why this fails. Not important
           // since a browser test gives us more confidence anyway
           this.skip();
