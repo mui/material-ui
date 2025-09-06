@@ -1,8 +1,14 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": ["src/**/*", "test/**/*"],
+  "extends": ["../../tsconfig.json", "../../tsconfig.src.json"],
   "compilerOptions": {
     "moduleResolution": "Bundler"
   },
-  "exclude": ["test/typescript/moduleAugmentation", "src/types/OverridableComponentAugmentation.ts"]
+  "include": ["src/**/*"],
+  "exclude": [
+    "src/types/OverridableComponentAugmentation.ts",
+    "test/**/*",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ],
+  "references": [{ "path": "../mui-utils/tsconfig.json" }]
 }
