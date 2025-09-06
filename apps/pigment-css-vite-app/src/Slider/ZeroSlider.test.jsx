@@ -1,5 +1,5 @@
 /* globals expect */
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/react/pure';
 import Slider from './ZeroSlider';
 
 describe('Slider', () => {

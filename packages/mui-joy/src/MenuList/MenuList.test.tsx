@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList, { menuListClasses as classes } from '@mui/joy/MenuList';
 import describeConformance from '../../test/describeConformance';
@@ -37,17 +37,17 @@ describe('Joy <MenuList />', () => {
   });
 
   it('prop: size', () => {
-    render(<MenuList size="sm" />);
+    const screen = render(<MenuList size="sm" />);
     expect(screen.getByRole('menu')).to.have.class(classes.sizeSm);
   });
 
   it('prop: variant', () => {
-    render(<MenuList variant="outlined" />);
+    const screen = render(<MenuList variant="outlined" />);
     expect(screen.getByRole('menu')).to.have.class(classes.variantOutlined);
   });
 
   it('prop: color', () => {
-    render(<MenuList color="primary" />);
+    const screen = render(<MenuList color="primary" />);
     expect(screen.getByRole('menu')).to.have.class(classes.colorPrimary);
   });
 });

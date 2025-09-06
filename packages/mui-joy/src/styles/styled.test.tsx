@@ -10,7 +10,7 @@ describe('[Joy] styled', () => {
   const { render } = createRenderer();
 
   it('use defaultTheme given no ThemeProvider', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const Text = styled('div')(({ theme }) => ({
@@ -28,7 +28,7 @@ describe('[Joy] styled', () => {
   });
 
   it('use theme from ThemeProvider', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const Text = styled('div')(({ theme }) => ({
@@ -50,7 +50,7 @@ describe('[Joy] styled', () => {
   });
 
   it('supports unstable_sx in the theme callback', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const customTheme = extendTheme({

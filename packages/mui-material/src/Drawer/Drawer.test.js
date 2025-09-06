@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { modalClasses } from '@mui/material/Modal';
@@ -91,7 +91,7 @@ describe('<Drawer />', () => {
       };
 
       it('should delay the slide transition to complete using default theme values by default', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           this.skip();
         }
         const theme = createTheme();
@@ -110,7 +110,7 @@ describe('<Drawer />', () => {
       });
 
       it('should delay the slide transition to complete using custom theme values', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           this.skip();
         }
         const theme = createTheme({
@@ -214,7 +214,7 @@ describe('<Drawer />', () => {
     });
 
     it('should be closed by default', () => {
-      render(
+      const screen = render(
         <Drawer>
           <div data-testid="child" />
         </Drawer>,
@@ -232,13 +232,13 @@ describe('<Drawer />', () => {
       );
 
       it('should open and close', () => {
-        const { setProps } = render(drawerElement);
+        const screen = render(drawerElement);
 
-        setProps({ open: true });
+        screen.setProps({ open: true });
 
         expect(screen.getByTestId('child')).not.to.equal(null);
 
-        setProps({ open: false });
+        screen.setProps({ open: false });
         clock.tick(transitionDuration);
 
         expect(screen.queryByTestId('child')).to.equal(null);
@@ -327,22 +327,22 @@ describe('<Drawer />', () => {
         );
       });
 
-      const { setProps } = render(
+      const screen = render(
         <Drawer open TransitionComponent={MockedSlide}>
           <div />
         </Drawer>,
       );
 
-      setProps({ anchor: 'left' });
+      screen.setProps({ anchor: 'left' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'right');
 
-      setProps({ anchor: 'right' });
+      screen.setProps({ anchor: 'right' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'left');
 
-      setProps({ anchor: 'top' });
+      screen.setProps({ anchor: 'top' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'down');
 
-      setProps({ anchor: 'bottom' });
+      screen.setProps({ anchor: 'bottom' });
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'up');
     });
   });
@@ -365,7 +365,7 @@ describe('<Drawer />', () => {
       const theme = createTheme({
         direction: 'rtl',
       });
-      const { rerender } = render(
+      const screen = render(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="left" TransitionComponent={MockedSlide}>
             <div />
@@ -375,7 +375,7 @@ describe('<Drawer />', () => {
       // slide direction for left is right, if left is switched to right, we should get left
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'left');
 
-      rerender(
+      screen.rerender(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="right" TransitionComponent={MockedSlide}>
             <div />

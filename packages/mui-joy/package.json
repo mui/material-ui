@@ -27,7 +27,7 @@
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-joy/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/joy\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },

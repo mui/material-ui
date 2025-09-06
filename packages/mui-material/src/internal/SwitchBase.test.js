@@ -369,7 +369,7 @@ describe('<SwitchBase />', () => {
   });
 
   describe('focus/blur', () => {
-    it('forwards focus/blur events and notifies the FormControl', () => {
+    it('forwards focus/blur events and notifies the FormControl', async () => {
       function FocusMonitor(props) {
         const { focused } = useFormControl();
 
@@ -391,14 +391,14 @@ describe('<SwitchBase />', () => {
       );
       const checkbox = getByRole('checkbox');
 
-      act(() => {
+      await act(async () => {
         checkbox.focus();
       });
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: true');
       expect(handleFocus.callCount).to.equal(1);
 
-      act(() => {
+      await act(async () => {
         checkbox.blur();
       });
 
@@ -409,7 +409,7 @@ describe('<SwitchBase />', () => {
 
   describe('check transitioning between controlled states throws errors', () => {
     it('should error when uncontrolled and changed to controlled', function test() {
-      if (global.didWarnControlledToUncontrolled) {
+      if (globalThis.didWarnControlledToUncontrolled) {
         this.skip();
       }
 
@@ -422,7 +422,7 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: true });
-        global.didWarnControlledToUncontrolled = true;
+        globalThis.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         reactMajor === 16 &&
           'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
@@ -435,7 +435,7 @@ describe('<SwitchBase />', () => {
     });
 
     it('should error when controlled and changed to uncontrolled', function test() {
-      if (global.didWarnControlledToUncontrolled) {
+      if (globalThis.didWarnControlledToUncontrolled) {
         this.skip();
       }
 
@@ -448,7 +448,7 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: undefined });
-        global.didWarnControlledToUncontrolled = true;
+        globalThis.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         reactMajor === 16 &&
           'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',

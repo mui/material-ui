@@ -29,7 +29,7 @@
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
@@ -61,6 +61,7 @@
     "css-mediaquery": "^0.1.2",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.1",
+    "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

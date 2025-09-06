@@ -80,7 +80,7 @@ describe('<Link />', () => {
 
   describe('keyboard focus', () => {
     it('should add the focusVisible class when focused', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }

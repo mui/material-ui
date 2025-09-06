@@ -94,7 +94,7 @@ describe('e2e', () => {
   }
 
   before(async function beforeHook() {
-    this.timeout(20000);
+    this?.timeout?.(20000);
 
     browser = await chromium.launch({
       headless: true,

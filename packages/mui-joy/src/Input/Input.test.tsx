@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, act, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, act, fireEvent } from '@mui/internal-test-utils';
 import Input, { inputClasses as classes } from '@mui/joy/Input';
 import { ThemeProvider, extendTheme } from '@mui/joy/styles';
 import FormControl from '@mui/joy/FormControl';
@@ -44,12 +44,12 @@ describe('Joy <Input />', () => {
   });
 
   it('should have startDecorator', () => {
-    render(<Input startDecorator={<span data-testid="start">start</span>} />);
+    const screen = render(<Input startDecorator={<span data-testid="start">start</span>} />);
     expect(screen.getByTestId('start')).toBeVisible();
   });
 
   it('should have endDecorator', () => {
-    render(<Input endDecorator={<span data-testid="end">end</span>} />);
+    const screen = render(<Input endDecorator={<span data-testid="end">end</span>} />);
     expect(screen.getByTestId('end')).toBeVisible();
   });
 

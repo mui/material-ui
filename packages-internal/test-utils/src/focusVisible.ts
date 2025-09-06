@@ -3,7 +3,9 @@ import { act, fireEvent } from './createRenderer';
 export default function focusVisible(element: HTMLElement) {
   act(() => {
     element.blur();
-    fireEvent.keyDown(document.body, { key: 'Tab' });
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  act(() => {
     element.focus();
   });
 }

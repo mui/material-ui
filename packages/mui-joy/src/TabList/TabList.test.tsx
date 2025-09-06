@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { TabsProps } from '@mui/base/Tabs';
 import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -35,7 +35,7 @@ describe('Joy <TabList />', () => {
 
   describe('size', () => {
     it('uses size from Tabs', () => {
-      render(
+      const screen = render(
         <Tabs defaultValue={0} size="sm">
           <TabList />
         </Tabs>,
@@ -44,7 +44,7 @@ describe('Joy <TabList />', () => {
     });
 
     it('uses prop if provided', () => {
-      render(
+      const screen = render(
         <Tabs defaultValue={0} size="sm">
           <TabList size="md" />
         </Tabs>,
@@ -54,7 +54,7 @@ describe('Joy <TabList />', () => {
   });
 
   it('prop: variant', () => {
-    render(
+    const screen = render(
       <TabsProvider>
         <TabList variant="outlined" />
       </TabsProvider>,
@@ -63,7 +63,7 @@ describe('Joy <TabList />', () => {
   });
 
   it('prop: color', () => {
-    render(
+    const screen = render(
       <TabsProvider>
         <TabList color="primary" />
       </TabsProvider>,
@@ -73,7 +73,7 @@ describe('Joy <TabList />', () => {
 
   it('attach data-first-child to the first element', () => {
     // integration with Tab, this can be removed once flexbox `gap` is used.
-    render(
+    const screen = render(
       <TabsProvider>
         <TabList color="primary">
           <div role="tab" />
@@ -88,7 +88,7 @@ describe('Joy <TabList />', () => {
       const row = React.useContext(RowListContext);
       return <div>{row ? 'horizontal' : 'vertical'}</div>;
     }
-    render(
+    const screen = render(
       <Tabs orientation="vertical">
         <TabList>
           <TabItem />

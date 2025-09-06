@@ -9,16 +9,14 @@ import {
   RenderResult,
   act as rtlAct,
   fireEvent as rtlFireEvent,
-  screen as rtlScreen,
-  Screen,
   render as testingLibraryRender,
   RenderOptions as TestingLibraryRenderOptions,
-  within,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
+import { VitestUtils } from 'vitest';
 import reactMajor from './reactMajor';
 
 interface Interaction {
@@ -348,11 +346,28 @@ function createVitestClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
+  vi: import('vitest').VitestUtils,
 ): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
-      vi.useFakeTimers(options);
+      vi.useFakeTimers({
+        now: config,
+        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+        // Technically we'd want to reset all modules between tests but we don't have that technology.
+        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+        shouldClearNativeTimers: true,
+        toFake: [
+          'setTimeout',
+          'setInterval',
+          'clearTimeout',
+          'clearInterval',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+          'performance',
+          'Date',
+        ],
+        ...options,
+      });
       if (config) {
         vi.setSystemTime(config);
       }
@@ -374,7 +389,27 @@ function createVitestClock(
   return {
     withFakeTimers: () => {
       beforeEach(() => {
-        vi.useFakeTimers(options);
+        vi.useFakeTimers({
+          now: config,
+          // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+          // Technically we'd want to reset all modules between tests but we don't have that technology.
+          // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+          shouldClearNativeTimers: true,
+          toFake: [
+            'setTimeout',
+            'setInterval',
+            'clearTimeout',
+            'clearInterval',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+            'Date',
+          ],
+          ...options,
+        });
+        if (config) {
+          vi.setSystemTime(config);
+        }
       });
       afterEach(() => {
         vi.useRealTimers();
@@ -511,7 +546,7 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
    * @default {}
    */
-  vi?: any;
+  vi?: VitestUtils;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -520,7 +555,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi || {},
+    vi = (globalThis as any).vi as typeof import('vitest').vi | undefined,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
@@ -802,8 +837,5 @@ function act<T>(callback: () => void | T | Promise<T>) {
   return traceSync('act', () => rtlAct(callback));
 }
 
-const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
-
-export * from '@testing-library/react/pure';
 export { act, fireEvent };
-export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
+export { within, waitFor, renderHook } from '@testing-library/react/pure';
