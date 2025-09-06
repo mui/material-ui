@@ -151,6 +151,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
 
   const handleRef = useForkRef(ref, inputRefProp);
+  const [labelText, setLabelText] = React.useState('\u200B');
 
   const handleDisplayRef = React.useCallback((node) => {
     displayRef.current = node;
@@ -209,6 +210,20 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     return undefined;
   }, [labelId]);
+
+  React.useEffect(() => {
+    if (!autoWidth || !labelId || !displayRef.current) {
+      return;
+    }
+    const label = ownerDocument(displayRef.current).getElementById(labelId);
+    if (label && !displayEmpty) {
+      // The label returns it's text with a zero width space, we should remove this as it could effect string
+      const cleanLabelText = label.textContent.replace(/\u200B/g, '');
+      setLabelText(cleanLabelText);
+    } else {
+      setLabelText('\u200B');
+    }
+  }, [autoWidth, labelId, displayEmpty]);
 
   const update = (open, event) => {
     if (open) {
@@ -525,11 +540,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         // The id is required for proper a11y
         id={buttonId}
       >
-        {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
-          // notranslate needed while Google Translate will not fix zero-width space issue
-          <span className="notranslate" aria-hidden>
-            &#8203;
+          // notranslate class Prevents Google Translate issues with zero-width spaces
+          // Enables dynamic sizing with <InputLabel> when autoWidth=true
+          // Maintains alignment with '\u200B' when no label/autoWidth
+          <span className="notranslate" style={{ color: 'transparent' }} aria-hidden>
+            {labelText}
           </span>
         ) : (
           display
@@ -605,7 +621,7 @@ SelectInput.propTypes = {
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
-   * menu, otherwise it will be at least the width of the select input.
+   * menu, otherwise it will be at least the width of the select input or the 'InputLabel' associated with 'labelId'.
    */
   autoWidth: PropTypes.bool,
   /**
