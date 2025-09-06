@@ -29,7 +29,7 @@ In this example, text justification toggle buttons present options for left, cen
 
 ## Multiple selection
 
-Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
+Multiple selection lets you create logically-grouped options, like bold, italic, and underline, with multiple options selected.
 
 {{"demo": "ToggleButtonsMultiple.js"}}
 
