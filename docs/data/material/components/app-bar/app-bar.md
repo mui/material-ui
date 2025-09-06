@@ -126,6 +126,8 @@ A floating action button appears on scroll to make it easy to get back to the to
    - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
    - `options.target` (_Node_ [optional]): Defaults to `window`.
    - `options.threshold` (_number_ [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+   - `options.enableReentrantLock` (_bool_ [optional]): Defaults to `false`. Enable a reentrant lock that prevents rapid state changes during animations. Useful when using with components like `Collapse` in a sticky `AppBar` to prevent feedback loops.
+   - `options.reentrantLockDuration` (_number_ [optional]): Defaults to `300`. Duration in milliseconds for the reentrant lock. This should match your `Collapse` component's transition timing. Only applies when `enableReentrantLock` is `true`.
 
 #### Returns
 
@@ -142,6 +144,31 @@ function HideOnScroll(props) {
     <Slide in={!trigger}>
       <div>Hello</div>
     </Slide>
+  );
+}
+```
+
+##### With Collapse and Sticky AppBar
+
+When using `useScrollTrigger` with a `Collapse` component in a sticky `AppBar`, enabling the reentrant lock prevents feedback loops:
+
+```jsx
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Collapse from '@mui/material/Collapse';
+import AppBar from '@mui/material/AppBar';
+
+function CollapsibleAppBar(props) {
+  const trigger = useScrollTrigger({
+    enableReentrantLock: true,
+  });
+
+  return (
+    <AppBar position="sticky">
+      <Toolbar />
+      <Collapse in={!trigger}>
+        <SecondaryToolbar />
+      </Collapse>
+    </AppBar>
   );
 }
 ```
