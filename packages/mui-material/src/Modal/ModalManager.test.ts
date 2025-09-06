@@ -3,7 +3,7 @@ import getScrollbarSize from '@mui/utils/getScrollbarSize';
 import { ModalManager } from './ModalManager';
 
 interface Modal {
-  mount: Element;
+  mount: Element | null;
   modalRef: Element;
 }
 
@@ -115,7 +115,7 @@ describe('ModalManager', () => {
     let fixedNode: HTMLDivElement;
 
     beforeEach(() => {
-      container1.style.paddingRight = '20px';
+      document.body.style.paddingRight = '20px';
 
       fixedNode = document.createElement('div');
       fixedNode.classList.add('mui-fixed');
@@ -126,56 +126,81 @@ describe('ModalManager', () => {
     afterEach(() => {
       document.body.removeChild(fixedNode);
       window.innerWidth -= 1;
+      document.body.style.paddingRight = '';
+      document.body.style.overflow = '';
     });
 
     it('should handle the scroll', () => {
       fixedNode.style.paddingRight = '14px';
 
       const modal = getDummyModal();
+      const body = document.body;
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-      expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(body.style.overflow).to.equal('hidden');
+      expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
       expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
       modalManager.remove(modal);
-      expect(container1.style.overflow).to.equal('');
-      expect(container1.style.paddingRight).to.equal('20px');
+      expect(body.style.overflow).to.equal('');
+      expect(body.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
-    it('should disable the scroll even when not overflowing', () => {
-      // simulate non-overflowing container
-      const container2 = document.createElement('div');
-      Object.defineProperty(container2, 'scrollHeight', {
-        value: 100,
-        writable: false,
-      });
-      Object.defineProperty(container2, 'clientHeight', {
-        value: 100,
-        writable: false,
-      });
-      document.body.appendChild(container2);
+    it('should handle the scroll when disablePortal is set', () => {
+      fixedNode.style.paddingRight = '14px';
 
-      const modal = getDummyModal();
-      modalManager.add(modal, container2);
+      // Should behave exactly like the test above
+      const dummyModal = document.createElement('div');
+      const dummyMount = document.createElement('div');
+      dummyMount.appendChild(dummyModal);
+      container1.appendChild(dummyMount);
+      const modal = { modalRef: dummyModal, mount: dummyMount };
+      const body = document.body;
+      modalManager.add(modal, modal.mount);
       modalManager.mount(modal, {});
-      expect(container2.style.overflow).to.equal('hidden');
+      expect(body.style.overflow).to.equal('hidden');
+      expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
       modalManager.remove(modal);
-      expect(container2.style.overflow).to.equal('');
+      expect(body.style.overflow).to.equal('');
+      expect(body.style.paddingRight).to.equal('20px');
+      expect(fixedNode.style.paddingRight).to.equal('14px');
+    });
 
-      document.body.removeChild(container2);
+    it('should handle the scroll when container is set', () => {
+      fixedNode.style.paddingRight = '14px';
+
+      // Should apply scroll lock to dummyMount in this case
+      const dummyModal = document.createElement('div');
+      const dummyMount = document.createElement('div');
+      dummyMount.appendChild(dummyModal);
+      container1.appendChild(dummyMount);
+
+      const modal = { modalRef: dummyModal, mount: dummyMount };
+      modalManager.add(modal, modal.mount);
+      modalManager.mount(modal, { container: dummyMount });
+      expect(dummyMount.style.overflow).to.equal('hidden');
+      // There is no need to apply extra padding because fixedNode is not a descendant
+      expect(dummyMount.style.paddingRight).to.equal('');
+      expect(fixedNode.style.paddingRight).to.equal(`14px`);
+      modalManager.remove(modal);
+      expect(dummyMount.style.overflow).to.equal('');
+      expect(dummyMount.style.paddingRight).to.equal('');
+      expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
     it('should restore styles correctly if none existed before', () => {
       const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-      expect(container1.style.overflow).to.equal('hidden');
-      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+
+      const body = document.body;
+      expect(body.style.overflow).to.equal('hidden');
+      expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
       expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(window)}px`);
       modalManager.remove(modal);
-      expect(container1.style.overflow).to.equal('');
-      expect(container1.style.paddingRight).to.equal('20px');
+      expect(body.style.overflow).to.equal('');
+      expect(body.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('');
     });
 
@@ -226,53 +251,37 @@ describe('ModalManager', () => {
       it('should restore styles correctly if overflow existed before', () => {
         const modal = getDummyModal();
 
-        container2.style.overflow = 'scroll';
-
-        Object.defineProperty(container2, 'scrollHeight', {
-          value: 100,
-          writable: false,
-        });
-        Object.defineProperty(container2, 'clientHeight', {
-          value: 90,
-          writable: false,
-        });
+        const body = document.body;
+        body.style.overflow = 'scroll';
 
         document.body.appendChild(container2);
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
 
-        expect(container2.style.overflow).to.equal('hidden');
+        expect(body.style.overflow).to.equal('hidden');
         modalManager.remove(modal);
 
-        expect(container2.style.overflow).to.equal('scroll');
+        expect(body.style.overflow).to.equal('scroll');
         expect(fixedNode.style.paddingRight).to.equal('');
       });
 
       it('should restore styles correctly if overflow-x existed before', () => {
         const modal = getDummyModal();
 
-        container2.style.overflowX = 'hidden';
-
-        Object.defineProperty(container2, 'scrollHeight', {
-          value: 100,
-          writable: false,
-        });
-        Object.defineProperty(container2, 'clientHeight', {
-          value: 90,
-          writable: false,
-        });
+        const body = document.body;
+        body.style.overflowX = 'hidden';
 
         document.body.appendChild(container2);
 
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
 
-        expect(container2.style.overflow).to.equal('hidden');
+        expect(body.style.overflow).to.equal('hidden');
 
         modalManager.remove(modal);
 
-        expect(container2.style.overflow).to.equal('');
-        expect(container2.style.overflowX).to.equal('hidden');
+        expect(body.style.overflow).to.equal('');
+        expect(body.style.overflowX).to.equal('hidden');
       });
     });
   });
@@ -291,7 +300,7 @@ describe('ModalManager', () => {
       container4.appendChild(document.createElement('div'));
     });
 
-    it('should work will multiple containers', () => {
+    it('should work with multiple containers', () => {
       modalManager = new ModalManager();
       const modal1 = getDummyModal();
       const modal2 = getDummyModal();
@@ -317,7 +326,7 @@ describe('ModalManager', () => {
   });
 
   describe('container aria-hidden', () => {
-    let modalRef1;
+    let modalRef1: HTMLDivElement;
     let container2: HTMLDivElement;
 
     beforeEach(() => {
@@ -386,35 +395,59 @@ describe('ModalManager', () => {
     });
 
     it('should add aria-hidden to previous modals', () => {
-      const modal2 = document.createElement('div');
-      const modal3 = document.createElement('div');
+      // Mount can be null on the first render
+      const modal2: Modal = { mount: null, modalRef: document.createElement('div') };
+      // Mount can be the container itself
+      const modal3: Modal = { mount: container2, modalRef: document.createElement('div') };
+      // Mount can be the modalRef itself
+      const modal4Ref = document.createElement('div');
+      const modal4: Modal = { mount: modal4Ref, modalRef: modal4Ref };
 
-      container2.appendChild(modal2);
-      container2.appendChild(modal3);
+      container2.appendChild(modal2.modalRef);
+      container2.appendChild(modal3.modalRef);
+      container2.appendChild(modal4.modalRef);
 
-      modalManager.add({ ...getDummyModal(), modalRef: modal2 }, container2);
+      modalManager.add(modal2, container2);
       // Simulate the main React DOM true.
-      expect(container2.children[0]).toBeInaccessible();
-      expect(container2.children[1]).not.toBeInaccessible();
+      expect(modalRef1).toBeInaccessible();
+      expect(modal2.modalRef).not.toBeInaccessible();
+      expect(modal3.modalRef).toBeInaccessible();
+      expect(modal4.modalRef).toBeInaccessible();
 
-      modalManager.add({ ...getDummyModal(), modalRef: modal3 }, container2);
-      expect(container2.children[0]).toBeInaccessible();
-      expect(container2.children[1]).toBeInaccessible();
-      expect(container2.children[2]).not.toBeInaccessible();
+      modalManager.add(modal3, container2);
+      expect(modalRef1).toBeInaccessible();
+      expect(modal2.modalRef).toBeInaccessible();
+      expect(modal3.modalRef).not.toBeInaccessible();
+      expect(modal4.modalRef).toBeInaccessible();
+
+      modalManager.add(modal4, container2);
+      expect(modalRef1).toBeInaccessible();
+      expect(modal2.modalRef).toBeInaccessible();
+      expect(modal3.modalRef).toBeInaccessible();
+      expect(modal4.modalRef).not.toBeInaccessible();
     });
 
     it('should remove aria-hidden on siblings', () => {
-      const modal = { ...getDummyModal(), modalRef: container2.children[0] };
+      const modal = { mount: container2, modalRef: modalRef1 };
+      const sibling1 = document.createElement('div');
+      const sibling2 = document.createElement('div');
+
+      container2.appendChild(sibling1);
+      container2.appendChild(sibling2);
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(container2.children[0]).not.toBeInaccessible();
+      expect(modalRef1).not.toBeInaccessible();
+      expect(sibling1).toBeInaccessible();
+      expect(sibling2).toBeInaccessible();
       modalManager.remove(modal);
-      expect(container2.children[0]).toBeInaccessible();
+      expect(modalRef1).toBeInaccessible();
+      expect(sibling1).not.toBeInaccessible();
+      expect(sibling2).not.toBeInaccessible();
     });
 
     it('should keep previous aria-hidden siblings hidden', () => {
-      const modal = { ...getDummyModal(), modalRef: container2.children[0] };
+      const modal = { mount: container2, modalRef: modalRef1 };
       const sibling1 = document.createElement('div');
       const sibling2 = document.createElement('div');
 
@@ -425,11 +458,67 @@ describe('ModalManager', () => {
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
-      expect(container2.children[0]).not.toBeInaccessible();
+      expect(sibling1).toBeInaccessible();
+      expect(sibling2).toBeInaccessible();
+      expect(modalRef1).not.toBeInaccessible();
       modalManager.remove(modal);
-      expect(container2.children[0]).toBeInaccessible();
-      expect(container2.children[1]).toBeInaccessible();
-      expect(container2.children[2]).not.toBeInaccessible();
+      expect(sibling1).toBeInaccessible();
+      expect(sibling2).not.toBeInaccessible();
+    });
+
+    it('top modal should always be accessible from sublevels', () => {
+      // simulates modal shown in body
+      const modal1 = { mount: container2, modalRef: modalRef1 };
+      const mainContentSibling = document.createElement('div');
+      container2.appendChild(mainContentSibling);
+
+      // simulates modal shown in main content with disablePortal
+      const modal2 = document.createElement('div');
+      mainContentSibling.appendChild(modal2);
+
+      modalManager.add(modal1, container2);
+
+      expect(modal1.modalRef).not.toBeInaccessible();
+      expect(mainContentSibling).toBeInaccessible();
+
+      modalManager.add({ mount: mainContentSibling, modalRef: modal2 }, mainContentSibling);
+      expect(modal1.modalRef).toBeInaccessible();
+      // main content sibling should not be hidden
+      expect(mainContentSibling).not.toBeInaccessible();
+      expect(modal2).not.toBeInaccessible();
+    });
+
+    it('top modal should always be accessible even if inside other modal', () => {
+      // simulates modal shown in another modal
+      const modal1 = { mount: container2, modalRef: modalRef1 };
+      // top modal
+      const innerModal = { mount: modalRef1, modalRef: document.createElement('div') };
+
+      const innerModalSibling = document.createElement('div');
+      modal1.modalRef.appendChild(innerModalSibling);
+
+      const modal1Sibling = document.createElement('div');
+      container2.appendChild(modal1Sibling);
+
+      modalManager.add(modal1, container2);
+
+      expect(modal1.modalRef).not.toBeInaccessible();
+      expect(innerModalSibling).not.toBeInaccessible();
+      expect(modal1Sibling).toBeInaccessible();
+
+      modal1.modalRef.appendChild(innerModal.modalRef);
+
+      // add inner modal
+      modalManager.add(innerModal, modal1.modalRef);
+
+      // modal1
+      expect(modal1.modalRef).not.toBeInaccessible();
+      // modal1 sibling
+      expect(modal1Sibling).toBeInaccessible();
+      // inner modal sibling
+      expect(innerModalSibling).toBeInaccessible();
+      // inner modal (top modal is accessible)
+      expect(innerModal.modalRef).not.toBeInaccessible();
     });
   });
 });
