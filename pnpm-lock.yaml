@@ -225,7 +225,7 @@ importers:
         version: 0.18.1
       mocha:
         specifier: ^11.7.1
-        version: 11.7.1
+        version: 11.7.2
       nx:
         specifier: ^20.8.2
         version: 20.8.2
@@ -976,8 +976,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       mocha:
-        specifier: ^11.7.1
-        version: 11.7.1
+        specifier: ^11.7.2
+        version: 11.7.2
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -10178,8 +10178,8 @@ packages:
   mlly@1.7.4:
     resolution: {integrity: sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==}
 
-  mocha@11.7.1:
-    resolution: {integrity: sha512-5EK+Cty6KheMS/YLPPMJC64g5V61gIR25KsRItHw6x4hEKT6Njp1n9LOlH4gpevuwMVS66SXaBBpg+RWZkza4A==}
+  mocha@11.7.2:
+    resolution: {integrity: sha512-lkqVJPmqqG/w5jmmFtiRvtA2jkDyNVUcefFJKb2uyX4dekk8Okgqop3cgbFiaIvj8uCRJVTP5x9dfxGyXm2jvQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     hasBin: true
 
@@ -23293,7 +23293,7 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.5.4
 
-  mocha@11.7.1:
+  mocha@11.7.2:
     dependencies:
       browser-stdout: 1.3.1
       chokidar: 4.0.3
