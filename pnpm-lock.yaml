@@ -254,8 +254,8 @@ importers:
         specifier: ^16.23.1
         version: 16.23.1(typescript@5.9.2)
       stylelint-config-standard:
-        specifier: ^38.0.0
-        version: 38.0.0(stylelint@16.23.1(typescript@5.9.2))
+        specifier: ^39.0.0
+        version: 39.0.0(stylelint@16.23.1(typescript@5.9.2))
       terser-webpack-plugin:
         specifier: ^5.3.14
         version: 5.3.14(webpack@5.101.3(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.3)))
@@ -287,8 +287,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.3)
       yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
+        specifier: ^18.0.0
+        version: 18.0.0
 
   apps/bare-next-app:
     dependencies:
@@ -819,8 +819,8 @@ importers:
         specifier: ^4.2.7
         version: 4.2.7
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       cross-fetch:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
@@ -837,8 +837,8 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
+        specifier: ^18.0.0
+        version: 18.0.0
 
   packages-internal/docs-utils:
     dependencies:
@@ -907,8 +907,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1086,8 +1086,8 @@ importers:
         specifier: ^17.0.4
         version: 17.0.4
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -1120,8 +1120,8 @@ importers:
         specifier: ^17.0.4
         version: 17.0.4
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -1165,8 +1165,8 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
 
   packages/mui-codemod:
     dependencies:
@@ -1202,8 +1202,8 @@ importers:
         specifier: 0.12.0
         version: 0.12.0
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
     publishDirectory: build
 
   packages/mui-core-downloads-tracker: {}
@@ -1277,8 +1277,8 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
     publishDirectory: build
 
   packages/mui-envinfo/test:
@@ -1331,8 +1331,8 @@ importers:
         specifier: ^19.1.11
         version: 19.1.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       chalk:
         specifier: ^5.6.0
         version: 5.6.0
@@ -1361,8 +1361,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
+        specifier: ^18.0.0
+        version: 18.0.0
     publishDirectory: build
 
   packages/mui-joy:
@@ -1420,8 +1420,8 @@ importers:
         specifier: ^17.0.4
         version: 17.0.4
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1494,8 +1494,8 @@ importers:
         specifier: ^17.0.4
         version: 17.0.4
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -1580,8 +1580,8 @@ importers:
         specifier: ^17.0.4
         version: 17.0.4
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1673,8 +1673,8 @@ importers:
         specifier: ^19.1.11
         version: 19.1.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -1720,8 +1720,8 @@ importers:
         specifier: ^19.1.11
         version: 19.1.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -1755,8 +1755,8 @@ importers:
         specifier: ^19.1.11
         version: 19.1.11
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -1793,8 +1793,8 @@ importers:
         specifier: 4.2.7
         version: 4.2.7
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -1855,8 +1855,8 @@ importers:
         specifier: ^17.0.4
         version: 17.0.4
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1934,8 +1934,8 @@ importers:
         specifier: ^17.0.4
         version: 17.0.4
       chai:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^6.0.1
+        version: 6.0.1
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -6680,6 +6680,10 @@ packages:
   chai@5.2.0:
     resolution: {integrity: sha512-mCuXncKXk5iCLhfhwTc0izo0gtEmpz5CtG2y8GiOINBlMVS6v8TMRc5TaLWKS6692m9+dVVfzgeVxR5UxWHTYw==}
     engines: {node: '>=12'}
+
+  chai@6.0.1:
+    resolution: {integrity: sha512-/JOoU2//6p5vCXh00FpNgtlw0LjvhGttaWc+y7wpW9yjBm3ys0dI8tSKZxIOgNruz5J0RleccatSIC3uxEZP0g==}
+    engines: {node: '>=18'}
 
   chainsaw@0.1.0:
     resolution: {integrity: sha512-75kWfWt6MEKNC8xYXIdRpDehRYY/tNSgwKaJq+dbbDcxORuVrrQ+SEHoWsniVn9XPYfP4gmdWIeDk/4YNp1rNQ==}
@@ -12168,17 +12172,17 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  stylelint-config-recommended@16.0.0:
-    resolution: {integrity: sha512-4RSmPjQegF34wNcK1e1O3Uz91HN8P1aFdFzio90wNK9mjgAI19u5vsU868cVZboKzCaa5XbpvtTzAAGQAxpcXA==}
+  stylelint-config-recommended@17.0.0:
+    resolution: {integrity: sha512-WaMSdEiPfZTSFVoYmJbxorJfA610O0tlYuU2aEwY33UQhSPgFbClrVJYWvy3jGJx+XW37O+LyNLiZOEXhKhJmA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^16.16.0
+      stylelint: ^16.23.0
 
-  stylelint-config-standard@38.0.0:
-    resolution: {integrity: sha512-uj3JIX+dpFseqd/DJx8Gy3PcRAJhlEZ2IrlFOc4LUxBX/PNMEQ198x7LCOE2Q5oT9Vw8nyc4CIL78xSqPr6iag==}
+  stylelint-config-standard@39.0.0:
+    resolution: {integrity: sha512-JabShWORb8Bmc1A47ZyJstran60P3yUdI1zWMpGYPeFiC6xzHXJMkpKAd8EjIhq3HPUplIWWMDJ/xu0AiPd+kA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^16.18.0
+      stylelint: ^16.23.0
 
   stylelint@16.23.1:
     resolution: {integrity: sha512-dNvDTsKV1U2YtiUDfe9d2gp902veFeo3ecCWdGlmLm2WFrAV0+L5LoOj/qHSBABQwMsZPJwfC4bf39mQm1S5zw==}
@@ -19166,6 +19170,8 @@ snapshots:
       loupe: 3.1.4
       pathval: 2.0.0
 
+  chai@6.0.1: {}
+
   chainsaw@0.1.0:
     dependencies:
       traverse: 0.3.9
@@ -25675,14 +25681,14 @@ snapshots:
       '@babel/core': 7.28.3
       babel-plugin-macros: 3.1.0
 
-  stylelint-config-recommended@16.0.0(stylelint@16.23.1(typescript@5.9.2)):
+  stylelint-config-recommended@17.0.0(stylelint@16.23.1(typescript@5.9.2)):
     dependencies:
       stylelint: 16.23.1(typescript@5.9.2)
 
-  stylelint-config-standard@38.0.0(stylelint@16.23.1(typescript@5.9.2)):
+  stylelint-config-standard@39.0.0(stylelint@16.23.1(typescript@5.9.2)):
     dependencies:
       stylelint: 16.23.1(typescript@5.9.2)
-      stylelint-config-recommended: 16.0.0(stylelint@16.23.1(typescript@5.9.2))
+      stylelint-config-recommended: 17.0.0(stylelint@16.23.1(typescript@5.9.2))
 
   stylelint@16.23.1(typescript@5.9.2):
     dependencies:
