@@ -27,8 +27,8 @@ manualCard: true
 
 [Qdrant](https://qdrant.tech/) is an open-source vector database provider with over 25,000 GitHub stars, and is used by many enterprises to make sense of their unstructured data through advanced search, recommendation, and other AI capabilities.
 
-After a 30M USD Series A round, Qdrant needed to transition from an idea into a scalable, sustainable business. 
-The company's frontend team uses Material UI across all of their products, websites, and dashboards. 
+After a 30M USD Series A round, Qdrant needed to transition from an idea into a scalable, sustainable business.
+The company's frontend team uses Material UI across all of their products, websites, and dashboards.
 After starting with MUI's open-source components, Qdrant recently upgraded to a perpetual Pro license to access advanced components like the Date Range Picker, with further plans to explore Data Grid and Charts components.
 
 <span class="only-light-mode">

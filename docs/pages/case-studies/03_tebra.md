@@ -82,7 +82,7 @@ Here's how Tebra adopted the MUI X Data Grid as the cornerstone of their modern
 
 ## Results
 
-The implementation improved the user experience across Tebra's entire ecosystem. 
+The implementation improved the user experience across Tebra's entire ecosystem.
 Reports evolved from static displays to interactive interfaces that users expect in contemporary applications.
 The unified design system enabled teams to migrate legacy experiences seamlessly, speeding up development cycles.
 The MUI X Data Grid served as a catalyst in this process thanks to its built-in client-side search, with the improved data loading capabilities providing instantaneous search results while maintaining a high level of performance.

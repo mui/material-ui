@@ -9,6 +9,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Divider from '@mui/material/Divider';
 import CustomersSpotlight from 'docs/src/components/customers/CustomersSpotlight';
+import CustomersLogoSlider from 'docs/src/components/customers/CustomersLogoSlider';
 import { getCaseStudies } from 'docs/lib/sourcing';
 import { InferGetStaticPropsType } from 'next';
 import CustomersTestimonials from 'docs/src/components/customers/CustomersTestimonials';
@@ -31,6 +32,7 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
       <Divider />
       <main id="main-content">
         <CustomersHero />
+        <CustomersLogoSlider />
         <Box
           component="ul"
           sx={{

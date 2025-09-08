@@ -23,7 +23,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
         component="ul"
         sx={{
           display: 'grid',
-          mt: 4,
+          mt: variant === 'secondary' ? 4 : 0,
           mb: variant === 'primary' ? -2 : 0,
           p: 0,
           gap: 2,
@@ -148,7 +148,7 @@ interface CustomersSpotlightProps {
 
 export default function CustomersSpotlight({ customers }: CustomersSpotlightProps) {
   const firstPosts = customers.slice(0, 3); // TODO:show 6 with description, then the rest without description in different styling
-  const restPosts = customers.slice(3);
+  const restPosts = customers.slice(3, 8);
 
   return (
     <React.Fragment>
