@@ -88,8 +88,8 @@ describe('<Dialog />', () => {
       </Dialog>,
     );
 
-    expect(document.querySelector(`.${classes.scrollBody} > .${classes.paper}`)).to.not.equal(null);
-    expect(classes.paperScrollBody).to.not.equal(null);
+    expect(document.querySelector(`.${classes.scrollBody} > .${classes.paper}`)).not.to.equal(null);
+    expect(classes.paperScrollBody).not.to.equal(null);
   });
 
   it('should work correctly when using css selectors for scroll="paper"', () => {
@@ -99,10 +99,10 @@ describe('<Dialog />', () => {
       </Dialog>,
     );
 
-    expect(document.querySelector(`.${classes.scrollPaper} > .${classes.paper}`)).to.not.equal(
+    expect(document.querySelector(`.${classes.scrollPaper} > .${classes.paper}`)).not.to.equal(
       null,
     );
-    expect(classes.paperScrollPaper).to.not.equal(null);
+    expect(classes.paperScrollPaper).not.to.equal(null);
   });
 
   it('should render with a TransitionComponent', () => {
