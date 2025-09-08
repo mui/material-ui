@@ -59,7 +59,6 @@
     "chai": "^4.5.0",
     "css-mediaquery": "^0.1.2",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.1",
     "lodash": "^4.17.21",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
