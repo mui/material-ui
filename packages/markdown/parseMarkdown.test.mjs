@@ -7,7 +7,7 @@ import {
   getCodeblock,
   renderMarkdown,
   createRender,
-} from './parseMarkdown';
+} from './parseMarkdown.mjs';
 
 describe('parseMarkdown', () => {
   describe('getTitle', () => {
