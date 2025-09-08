@@ -1,9 +1,8 @@
 {
   "name": "@mui/styled-engine",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -26,7 +25,6 @@
   },
   "scripts": {
     "build": "code-infra build --skipTsc && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.?(c|m)[jt]s?(x)'",
@@ -73,6 +71,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": "./src/index.js",
     "./*": "./src/*/index.js"
   }
 }

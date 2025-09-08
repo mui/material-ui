@@ -212,8 +212,8 @@ describe('createTheme', () => {
         cssVariables: true,
         colorSchemes: { dark: true },
       });
-      expect(theme.colorSchemes.light).to.not.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.light).not.to.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should not have light if default color scheme is set to dark', () => {
@@ -223,7 +223,7 @@ describe('createTheme', () => {
         defaultColorScheme: 'dark',
       });
       expect(theme.colorSchemes.light).to.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should be able to customize tonal offset', () => {
