@@ -20,7 +20,4 @@ module.exports = {
     '**/build/**',
     'docs/.next/**',
   ],
-  // detect-modules doesn't work with @babel/register
-  // https://github.com/babel/babel/issues/6737
-  'node-option': ['no-experimental-detect-module'],
 };
