@@ -11,7 +11,7 @@ manualCard: true
 
 At MUI, a strong community is non-negotiable, just like flexibility and remote work. Our commitment to these values means our MUIers are spread across the globe, and we know that building connections can be a challenge in a fully distributed, async environment.
 [Multiple studies have shown](https://www.researchgate.net/publication/387604757_Providing_support_for_employee_autonomy_relatedness_and_competence_in_a_remote_work_environment) that working remotely can lower the satisfaction of basic psychological needs like autonomy, relatedness, and competence.
-But we don’t see this as an unsolvable problem: We choose to use this data to help us intentionally cultivate a stronger company culture. To that end, we hold Together Weeks every eight months.
+But we don't see this as an unsolvable problem: We choose to use this data to help us intentionally cultivate a stronger company culture. To that end, we hold Together Weeks every eight months.
 
 Our aim for these events is to always:
 
@@ -24,7 +24,7 @@ This might sound like a lot to expect from a five-day trip, but it's during this
 
 ## Destination
 
-We love the process we’ve developed where everyone pitches their wildest ideas for amazing locations we could visit—I’m personally a huge fan of this approach.
+We love the process we've developed where everyone pitches their wildest ideas for amazing locations we could visit—I'm personally a huge fan of this approach.
 For this retreat, however, we had a slightly different flow as we had some time restraints.
 So we followed our shortlist of must-haves like good weather, easy airport connections, and great vibes.
 From there, we shared a list of four locations for the team to vote on: Morocco, Mexico, Cape Verde, and the Dominican Republic.
@@ -47,7 +47,7 @@ We always use our 30/30/30 principle when building our retreat agendas:
 This means 30% for dedicated working sessions, 30% for conscious team-building, and 30% for pure downtime.
 
 And the remaining 10%?
-Ah yes, that’s the intentional buffer that allows us to be human.
+Ah yes, that's the intentional buffer that allows us to be human.
 It gives us room to start a little late or run a little over without feeling rushed, and we embrace it.
 This time it gave some of us enough time to attend cocoa bean workshops at the resort 🤓 while others opted for some well-deserved relaxation by the pool and beach.
 
@@ -58,7 +58,7 @@ This time it gave some of us enough time to attend cocoa bean workshops at the r
 ## Outcomes
 
 Not to brag, but… In our post-retreat experience surveys, all respondents rated the week five stars out of five.
-I’ll go ahead and use this opportunity to also highlight some of the feedback we got to show why we invest in these get-togethers:
+I'll go ahead and use this opportunity to also highlight some of the feedback we got to show why we invest in these get-togethers:
 
 > For me personally, this has been the greatest retreat so far. The boat party activity was great, and we also had plenty of time for bonding.
 
