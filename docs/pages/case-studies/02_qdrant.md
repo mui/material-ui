@@ -25,9 +25,11 @@ manualCard: true
 
 ## Overview
 
-[Qdrant](https://qdrant.tech/) is an open-source vector database provider with 25k+ stars, and is used by many enterprises to make sense of their unstructured data through advanced search, recommendation and other AI capabilities.
+[Qdrant](https://qdrant.tech/) is an open-source vector database provider with over 25,000 GitHub stars, and is used by many enterprises to make sense of their unstructured data through advanced search, recommendation, and other AI capabilities.
 
-After a US$ 30M Series-A round, Qdrant needed to transition from an idea into a scalable, sustainable business. The company's frontend team uses Material-UI across all of their products, website and dashboards. After starting with MUI's open-source components, Qdrant recently upgraded to a perpetual Pro license to access advanced components like the **Date Range Picker** and plans to explore Data Grid and Charts components.
+After a 30M USD Series A round, Qdrant needed to transition from an idea into a scalable, sustainable business. 
+The company's frontend team uses Material UI across all of their products, websites, and dashboards. 
+After starting with MUI's open-source components, Qdrant recently upgraded to a perpetual Pro license to access advanced components like the Date Range Picker, with further plans to explore Data Grid and Charts components.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -53,7 +55,7 @@ After a US$ 30M Series-A round, Qdrant needed to transition from an idea into a 
 
 As a startup in the competitive vector database space, Qdrant faced several critical challenges:
 
-- **Speed-to-market pressure**: The team needed to "move fast and break things" while building their core product. Fast prototyping and rapid development cycles were essential to stay competitive and meet growing customer demands in the vector database space.
+- Speed-to-market pressure – The team needed to "move fast and break things" while building their core product. Fast prototyping and rapid development cycles were essential to stay competitive and meet growing customer demands in the vector database space.
 
 - **Limited date selection functionality**: Their existing date selection interface was restrictive, offering only presets for periods like a month, a week, or a day. This limitation prevented users from performing granular, custom date-based queries on their vector data—a critical requirement for enterprise customers.
 
@@ -63,7 +65,7 @@ As a startup in the competitive vector database space, Qdrant faced several crit
 
 ## Solution
 
-Qdrant adopted Material-UI as their primary frontend component library, leveraging both open-source and Pro components:
+Qdrant adopted Material UI as their primary frontend component library, leveraging both open-source and Pro components:
 
 - **Comprehensive component usage**: The team had prior experience with Material-UI from their previous projects and choosing it again was a no-brainer. They implemented MUI components extensively across their entire product suite, using everything from primitive elements like toolbars and menus to advanced components.
 
@@ -78,7 +80,6 @@ The implementation of the Date Range Picker was quick and elevated their date se
 
 The "plug and play" nature of MUI components greatly accelerated development by removing the pain and complexity of building custom solutions.
 As Joseph noted, implementing date pickers from scratch would have been challenging, but with MUI, it was a matter of straightforward configuration and integration.
-The team now has a scalable foundation for further growth—with plans to incorporate more advanced Pro components such as Data Grid and Charts as their product evolves.
 
 ## Developer experience
 

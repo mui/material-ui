@@ -40,7 +40,7 @@ Olympus empowers organizations to unlock the full potential of their data and dr
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We started using MUI from the day one to provide wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
@@ -49,7 +49,7 @@ Olympus empowers organizations to unlock the full potential of their data and dr
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We started using MUI from the day one to provide wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
@@ -69,7 +69,7 @@ Key benefits of using MUI X included:
 - Higher-level abstractions – Built on top of MUI (Material UI) for seamless integration.
 - Faster iteration cycles – Simplified the development of complex UI components.
 - Component-based architecture – Aligned perfectly with React's ecosystem.
-- Efficient code organization – Improved maintainability over inline styling methods like Tailwind.
+- Efficient code organization – Improved maintainability over inline styling methods like Tailwind CSS.
 
 <img
   id="athena-ui"
@@ -78,7 +78,7 @@ Key benefits of using MUI X included:
   style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
 />
 
-In the above image from Athena's platform, the Tree View in the first column neatly organizes the assets, while the customized and responsive Data Grid in the third column shows query output in a tabular form.
+In the image above from Athena's platform, the Tree View in the first column neatly organizes the assets, while the customized and responsive Data Grid in the third column shows query output in tabular form.
 
 ## Results
 
@@ -93,7 +93,7 @@ The ease of integration and instant improvements in interactivity and UI cohesio
 
 ## Developer experience
 
-Athena found MUI documentation to be highly detailed and structured, making it easy to:
+Athena found the MUI documentation to be highly detailed and structured, making it easy to:
 
 - Implement complex features like cell editing, selection, and customization
 - Quickly onboard developers with clear, step-by-step guides
