@@ -106,9 +106,6 @@ importers:
       '@types/babel__register':
         specifier: ^7.17.3
         version: 7.17.3
-      '@types/fs-extra':
-        specifier: ^11.0.4
-        version: 11.0.4
       '@types/lodash':
         specifier: ^4.17.20
         version: 4.17.20
@@ -178,9 +175,6 @@ importers:
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
       git-url-parse:
         specifier: ^16.1.0
         version: 16.1.0
@@ -966,9 +960,6 @@ importers:
       format-util:
         specifier: ^1.0.5
         version: 1.0.5
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
@@ -1597,9 +1588,6 @@ importers:
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2038,9 +2026,6 @@ importers:
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
       html-webpack-plugin:
         specifier: ^5.6.3
         version: 5.6.3(webpack@5.101.3(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.3)))
@@ -5517,9 +5502,6 @@ packages:
   '@types/format-util@1.0.4':
     resolution: {integrity: sha512-xrCYOdHh5zA3LUrn6CvspYwlzSWxPso11Lx32WnAG6KvLCRecKZ/Rh21PLXUkzUFsQmrGcx/traJAFjR6dVS5Q==}
 
-  '@types/fs-extra@11.0.4':
-    resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
-
   '@types/gtag.js@0.0.20':
     resolution: {integrity: sha512-wwAbk3SA2QeU67unN7zPxjEHmPmlXwZXZvQEpbEUQuMCRGgKyE1m6XDuTUA9b6pCGb/GqJmdfMOY5LuDjJSbbg==}
 
@@ -5548,9 +5530,6 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-
-  '@types/jsonfile@6.1.1':
-    resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
 
   '@types/jsonwebtoken@9.0.7':
     resolution: {integrity: sha512-ugo316mmTYBl2g81zDFnZ7cfxlut3o+/EQdaP7J8QN2kY6lJ22hmQYCK5EHcJHbrW+dkCGSCPgbG8JtYj6qSrg==}
@@ -17720,11 +17699,6 @@ snapshots:
 
   '@types/format-util@1.0.4': {}
 
-  '@types/fs-extra@11.0.4':
-    dependencies:
-      '@types/jsonfile': 6.1.1
-      '@types/node': 20.19.11
-
   '@types/gtag.js@0.0.20': {}
 
   '@types/hoist-non-react-statics@3.3.7(@types/react@19.1.11)':
@@ -17748,10 +17722,6 @@ snapshots:
   '@types/json2mq@0.2.2': {}
 
   '@types/json5@0.0.29': {}
-
-  '@types/jsonfile@6.1.1':
-    dependencies:
-      '@types/node': 20.19.11
 
   '@types/jsonwebtoken@9.0.7':
     dependencies:
