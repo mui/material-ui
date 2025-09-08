@@ -10,7 +10,7 @@ manualCard: true
 ## What is MUI's Together Week?
 
 At MUI, a strong community is non-negotiable, just like flexibility and remote work. Our commitment to these values means our MUIers are spread across the globe, and we know that building connections can be a challenge in a fully distributed, async environment.
-Multiple studies have shown that working remotely can lower the satisfaction of basic psychological needs like autonomy, relatedness, and competence.
+[Multiple studies have shown](https://www.researchgate.net/publication/387604757_Providing_support_for_employee_autonomy_relatedness_and_competence_in_a_remote_work_environment) that working remotely can lower the satisfaction of basic psychological needs like autonomy, relatedness, and competence.
 But we don’t see this as an unsolvable problem: We choose to use this data to help us intentionally cultivate a stronger company culture. To that end, we hold Together Weeks every eight months.
 
 Our aim for these events is to always:
@@ -35,13 +35,13 @@ Alright, maybe we didn't really trade in our computers—good luck getting engin
 
 ## Accommodation
 
-The Zel was our home for the week this time around, and it was the perfect combination of luxury and chill.
+[Zel Punta Cana](https://www.melia.com/en/hotels/dominican-republic/punta-cana/zel-punta-cana) was our home for the week this time around, and it was the perfect combination of luxurious and chill.
 With private pools, beach access via golf carts, and a blend of global cuisines, it was the ideal spot for our team to recharge and relax.
 
 We were intentional with our activities, baking in plenty of time for rest, organic connection, and just hanging out.
 This led to some incredibly spirited (and very amateur) football matches on the beach.
 
-##Agenda
+## Agenda
 
 We always use our 30/30/30 principle when building our retreat agendas:
 This means 30% for dedicated working sessions, 30% for conscious team-building, and 30% for pure downtime.
@@ -60,11 +60,11 @@ This time it gave some of us enough time to attend cocoa bean workshops at the r
 Not to brag, but… In our post-retreat experience surveys, all respondents rated the week five stars out of five.
 I’ll go ahead and use this opportunity to also highlight some of the feedback we got to show why we invest in these get-togethers:
 
-> "For me personally, this has been the greatest retreat so far. The boat party activity was great, and we also had plenty of time for bonding."
+> For me personally, this has been the greatest retreat so far. The boat party activity was great, and we also had plenty of time for bonding.
 
-> "Such an impressive hotel and location. Beautiful and super fun all-team activity."
+> Such an impressive hotel and location. Beautiful and super fun all-team activity.
 
-> "This retreat was perfect, in terms of location, activities, and work schedule. This has been the retreat with the best balance between free and structured time. People managed to get some spontaneous activities like spa, tennis lessons, volleyball, football, and more.”
+> This retreat was perfect, in terms of location, activities, and work schedule. This has been the retreat with the best balance between free and structured time. People managed to get some spontaneous activities like spa, tennis lessons, volleyball, football, and more.
 
 ## Will you join us for the next Together Week?
 
