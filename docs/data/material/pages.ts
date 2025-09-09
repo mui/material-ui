@@ -243,6 +243,7 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/guides',
     title: 'How-to guides',
     children: [
+      { pathname: '/material-ui/guides/white-label-themes' },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/server-rendering' },
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
