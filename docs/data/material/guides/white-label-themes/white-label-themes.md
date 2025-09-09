@@ -15,6 +15,7 @@ This is the source of truth for the brand-specific theme. It represents the bran
 In general, it's recomended to export tokens, components, and the the base theme from a file.
 
 ```js title="baseTheme.ts"
+import { createTheme } from '@mui/material/styles';
 import type { ThemeOptions } from '@mui/material/styles';
 
 export const baseTokens: ThemeOptions = {
@@ -52,10 +53,12 @@ export const baseComponents: ThemeOptions['components'] = {
   },
 };
 
-export default createTheme({
+const baseTheme = createTheme({
   ...baseTokens,
   components: baseComponents,
 });
+
+export default baseTheme;
 ```
 
 For a more optimized approach, the base components can be split into multiple files and let the application level import only the components that are needed.

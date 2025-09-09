@@ -3,7 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-// TODO: move this to a separate file
+/**
+ * Base theme: you might want to export this as a separate file
+ */
 const baseTokens = {
   palette: {
     primary: {
@@ -55,13 +57,17 @@ const baseComponents = {
       disableElevation: true,
     },
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         minWidth: 'unset',
         textTransform: 'capitalize',
+        fontSize: '1rem',
         '&:hover': {
           textDecoration: 'underline',
         },
-      },
+        [theme.breakpoints.up('md')]: {
+          fontSize: '0.875rem',
+        },
+      }),
     },
   },
 };
@@ -74,7 +80,6 @@ const baseTheme = createTheme({
 /**
  * Application theme
  */
-
 const appTheme = createTheme({
   ...baseTokens,
   palette: {
@@ -90,6 +95,7 @@ const appTheme = createTheme({
         root: [
           baseComponents?.MuiButton?.styleOverrides?.root,
           {
+            transition: 'transform 0.2s ease-in-out',
             '&:hover': {
               transform: 'translateY(-2px)',
             },
@@ -126,11 +132,9 @@ const appTheme2 = createTheme({
       styleOverrides: {
         root: [
           baseComponents?.MuiButton?.styleOverrides?.root,
-          {
-            '&:hover': {
-              transform: 'translateY(-2px)',
-            },
-          },
+          ({ theme }) => ({
+            color: theme.palette.primary.dark,
+          }),
         ],
       },
     },
@@ -140,7 +144,7 @@ const appTheme2 = createTheme({
 function App2() {
   return (
     <ThemeProvider theme={appTheme2}>
-      <Button>App Button 2</Button>
+      <Button>App 2 Button</Button>
     </ThemeProvider>
   );
 }

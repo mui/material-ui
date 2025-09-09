@@ -3,7 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { ThemeProvider, ThemeOptions, createTheme } from '@mui/material/styles';
 
-// TODO: move this to a separate file
+/**
+ * Base theme: you might want to export this as a separate file
+ */
 const baseTokens: ThemeOptions = {
   palette: {
     primary: {
@@ -78,7 +80,6 @@ const baseTheme = createTheme({
 /**
  * Application theme
  */
-
 const appTheme = createTheme({
   ...baseTokens,
   palette: {
