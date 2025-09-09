@@ -9,7 +9,6 @@ import ThemeViewer, {
   useItemIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
 import { blue, grey } from '@mui/docs/branding';
-import CircularProgress from '@mui/material/CircularProgress';
 
 const StyledSwitch = styled(Switch)(({ theme }) => [
   {
@@ -69,7 +68,6 @@ const StyledSwitch = styled(Switch)(({ theme }) => [
 function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
-  const deferredExpandPaths = React.useDeferredValue(expandPaths);
   const t = useTranslate();
   const [darkTheme, setDarkTheme] = React.useState(false);
 
@@ -113,16 +111,23 @@ function DefaultTheme() {
 
   const allNodeIds = useItemIdsLazy(data);
   React.useDebugValue(allNodeIds);
-  React.useEffect(() => {
-    if (checked) {
-      // in case during the event handler allNodeIds wasn't computed yet
-      setExpandPaths(allNodeIds);
-    } else {
-      setExpandPaths([]);
-    }
-  }, [checked, allNodeIds]);
 
-  console.log(data, expandPaths);
+  const currentExpandPaths = React.useMemo(() => {
+    if (expandPaths !== null) {
+      return expandPaths;
+    }
+    return checked ? allNodeIds : [];
+  }, [checked, allNodeIds, expandPaths]);
+
+  const collapsedThemeViewer = React.useMemo(
+    () => <ThemeViewer data={data} expandPaths={[]} />,
+    [data],
+  );
+
+  const expandedThemeViewer = React.useMemo(
+    () => <ThemeViewer data={data} expandPaths={allNodeIds} />,
+    [data, allNodeIds],
+  );
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -148,9 +153,6 @@ function DefaultTheme() {
             />
           }
         />
-        {deferredExpandPaths !== expandPaths && (
-          <CircularProgress disableShrink size={24} />
-        )}
         <Divider orientation="vertical" flexItem />
         <FormControlLabel
           label={t('useDarkTheme')}
@@ -174,7 +176,18 @@ function DefaultTheme() {
           }
         />
       </Box>
-      <ThemeViewer data={data} expandPaths={deferredExpandPaths} />
+      {expandPaths !== null ? (
+        <ThemeViewer data={data} expandPaths={currentExpandPaths} />
+      ) : (
+        <React.Fragment>
+          <Box sx={{ display: checked ? 'none' : 'block' }}>
+            {collapsedThemeViewer}
+          </Box>
+          <Box sx={{ display: checked ? 'block' : 'none' }}>
+            {expandedThemeViewer}
+          </Box>
+        </React.Fragment>
+      )}
     </Box>
   );
 }
