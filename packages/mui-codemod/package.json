@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "7.3.0",
+  "version": "7.3.2",
   "author": "MUI Team",
   "description": "Codemod scripts for Material UI.",
   "bin": "./codemod.js",
@@ -41,7 +41,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.20",
     "@types/jscodeshift": "0.12.0",
-    "chai": "^4.5.0"
+    "chai": "^6.0.1"
   },
   "sideEffects": false,
   "publishConfig": {

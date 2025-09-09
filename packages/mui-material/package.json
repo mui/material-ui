@@ -1,9 +1,8 @@
 {
   "name": "@mui/material",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
-  "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
@@ -27,7 +26,6 @@
   },
   "scripts": {
     "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
@@ -58,10 +56,9 @@
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "css-mediaquery": "^0.1.2",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.1",
     "lodash": "^4.17.21",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -99,6 +96,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": "./src/index.js",
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
     "./*": "./src/*/index.ts"
   },

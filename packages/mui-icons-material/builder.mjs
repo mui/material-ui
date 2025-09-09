@@ -8,6 +8,7 @@ import * as svgo from 'svgo';
 import { fileURLToPath } from 'url';
 import intersection from 'lodash/intersection.js';
 import { Queue } from '@mui/internal-waterfall';
+import { hideBin } from 'yargs/helpers';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
@@ -297,7 +298,7 @@ const modulePath = path.resolve(fileURLToPath(import.meta.url));
 const isRunningDirectlyViaCLI = nodePath === modulePath;
 
 if (isRunningDirectlyViaCLI) {
-  yargs(process.argv.slice(2))
+  yargs()
     .command({
       command: '$0>',
       description: "Build JSX components from SVG's.",
@@ -347,5 +348,5 @@ if (isRunningDirectlyViaCLI) {
     .help()
     .strict(true)
     .version(false)
-    .parse();
+    .parse(hideBin(process.argv));
 }

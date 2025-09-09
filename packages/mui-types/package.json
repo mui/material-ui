@@ -1,9 +1,8 @@
 {
   "name": "@mui/types",
-  "version": "7.4.5",
+  "version": "7.4.6",
   "author": "MUI Team",
   "description": "Utility types for Material UI.",
-  "types": "./index.d.ts",
   "keywords": [
     "react",
     "react-component",
@@ -22,7 +21,6 @@
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
     "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
@@ -48,5 +46,8 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }

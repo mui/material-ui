@@ -1,10 +1,9 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "7.0.0-beta.16",
+  "version": "7.0.0-beta.17",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -29,7 +28,6 @@
   },
   "scripts": {
     "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.?(c|m)[jt]s?(x)'",
@@ -51,7 +49,7 @@
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sinon": "^21.0.0"
@@ -88,6 +86,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": "./src/index.js",
     "./*": "./src/*/index.ts"
   }
 }
