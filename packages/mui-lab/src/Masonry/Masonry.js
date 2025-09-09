@@ -284,14 +284,21 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       }
     });
     if (!skip) {
-      Promise.resolve().then(() => {
-        if (masonryRef.current) {
-          ReactDOM.flushSync(() => {
-            setMaxColumnHeight(Math.max(...columnHeights));
-            setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
-          });
-        }
-      });
+      // Check if we're in a lifecycle where flushSync is safe
+      // ResizeObserver and MutationObserver callbacks are safe for flushSync
+      const isInObserverCallback = typeof queueMicrotask !== 'undefined';
+      
+      if (isInObserverCallback && masonryRef.current) {
+        // Use flushSync directly in observer callbacks to prevent flicker
+        ReactDOM.flushSync(() => {
+          setMaxColumnHeight(Math.max(...columnHeights));
+          setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+        });
+      } else {
+        // Fallback for other contexts (initial render, prop updates)
+        setMaxColumnHeight(Math.max(...columnHeights));
+        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      }
     }
   }, [sequential]);
 
@@ -305,7 +312,13 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       return undefined;
     }
 
-    const resizeObserver = new ResizeObserver(handleResize);
+    let resizeTimeout;
+    const debouncedHandleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(handleResize, 16); // ~60fps
+    };
+
+    const resizeObserver = new ResizeObserver(debouncedHandleResize);
     // Observes for child additions or removals to update the layout.
     const mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -336,10 +349,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     handleResize();
 
     return () => {
+      clearTimeout(resizeTimeout);
       resizeObserver.disconnect();
       mutationObserver.disconnect();
     };
-  }, [handleResize]);
+  }, [handleResize, columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
 
