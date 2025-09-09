@@ -519,6 +519,7 @@ function useAutocomplete(props) {
 
     // The popup is empty, reset
     if (filteredOptions.length === 0 || valueItem == null) {
+      console.log("resetting highlighted index")
       changeHighlightedIndex({ diff: 'reset' });
       return;
     }
@@ -615,10 +616,10 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    if (filteredOptionsChanged) {
+    if (filteredOptionsChanged || popupOpen) {
       syncHighlightedIndex();
     }
-  }, [syncHighlightedIndex, filteredOptionsChanged]);
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen]);
 
   const handleOpen = (event) => {
     if (open) {
