@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Tabs component
 components: Tab, TabList, TabPanel, Tabs
-githubLabel: 'component: tabs'
+githubLabel: 'scope: tabs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 ---
 

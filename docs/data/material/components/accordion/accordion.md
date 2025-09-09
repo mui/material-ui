@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel: 'component: accordion'
+githubLabel: 'scope: accordion'
 materialDesign: https://m1.material.io/components/expansion-panels.html
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 githubSource: packages/mui-material/src/Accordion

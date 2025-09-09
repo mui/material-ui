@@ -9,7 +9,6 @@ import {
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
-import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -1688,7 +1687,7 @@ describe('<Autocomplete />', () => {
     });
 
     it('mouseup should not toggle the listbox open state when disabled', async () => {
-      const { container, queryByRole } = render(
+      const { container, queryByRole, user } = render(
         <Autocomplete
           disabled
           options={['one', 'two', 'three']}
@@ -1705,8 +1704,6 @@ describe('<Autocomplete />', () => {
       // userEvent will fail at releasing MouseLeft if we target the
       // <button> since it has "pointer-events: none"
       const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
-
-      const user = userEvent.setup();
 
       await user.pointer([
         // this sequence does not work with fireEvent

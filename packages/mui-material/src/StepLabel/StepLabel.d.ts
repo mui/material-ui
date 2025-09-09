@@ -28,17 +28,17 @@ export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<'span', {}, StepLabelOwnerState>;
     /**
      * Props forwarded to the label slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     label: SlotProps<'span', {}, StepLabelOwnerState>;
     /**
      * Props forwarded to the stepIcon slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     stepIcon: SlotProps<React.ElementType<StepIconProps>, {}, StepLabelOwnerState>;
   }

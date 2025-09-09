@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
@@ -338,6 +336,13 @@ export default function AppLayoutDocsFooter(props) {
 
   const handleSubmitComment = (event) => {
     event.preventDefault();
+    // Block more than one submission.
+    // Technically, setState() is async in React, so a ninja user could still
+    // manage to trigger a double form submission. Still, let's wait and see
+    // before adding the overhead of a React ref to solve this.
+    if (!commentOpen) {
+      return;
+    }
     setCommentOpen(false);
     processFeedback();
   };

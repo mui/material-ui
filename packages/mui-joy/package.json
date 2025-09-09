@@ -3,7 +3,6 @@
   "version": "5.0.0-beta.49",
   "private": true,
   "description": "Joy UI is an open-source React component library that implements MUI's own design principles. It's comprehensive and can be used in production out of the box.",
-  "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
@@ -24,19 +23,16 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "build": "code-infra build && pnpm build:copy-files",
+    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
+    "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-joy/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2",
+    "@babel/runtime": "^7.28.3",
     "@mui/base": "7.0.0-beta.4",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
@@ -50,15 +46,15 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
+    "@types/react": "^19.1.11",
+    "@types/react-dom": "^19.1.7",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
-    "next": "^15.4.4",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "next": "^15.5.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {
@@ -86,5 +82,9 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*/index.ts"
   }
 }

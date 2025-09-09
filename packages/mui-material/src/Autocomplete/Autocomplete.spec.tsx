@@ -137,9 +137,9 @@ function TagComponent({ color, label, ...other }: TagComponentProps) {
 
 function renderTags(value: Tag[], getTagProps: AutocompleteRenderGetTagProps) {
   return value.map((tag: Tag, index) => {
-    const { onDelete, ...tagProps } = getTagProps({ index });
+    const { key, onDelete, ...tagProps } = getTagProps({ index });
 
-    return <TagComponent {...tagProps} {...tag} />;
+    return <TagComponent key={key} {...tagProps} {...tag} />;
   });
 }
 
