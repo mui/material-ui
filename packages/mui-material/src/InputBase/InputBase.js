@@ -186,7 +186,6 @@ export const InputBaseInput = styled('input', {
       // Make the flex item shrink with Firefox
       minWidth: 0,
       width: '100%',
-      flexBasis: 'content',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&::-ms-input-placeholder': placeholder, // Edge
@@ -249,6 +248,12 @@ export const InputBaseInput = styled('input', {
           },
           style: {
             MozAppearance: 'textfield', // Improve type search style.
+          },
+        },
+        {
+          props: ({ ownerState }) => ownerState.startAdornment,
+          style: {
+            flexBasis: 'content',
           },
         },
       ],
