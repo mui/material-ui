@@ -101,9 +101,14 @@ function DefaultTheme() {
   }, []);
 
   const data = React.useMemo(() => {
-    return createTheme({
+    const themeData = createTheme({
       palette: { mode: darkTheme ? 'dark' : 'light' },
     });
+
+    delete themeData.unstable_sxConfig;
+    delete themeData.unstable_sx;
+
+    return themeData;
   }, [darkTheme]);
 
   const allNodeIds = useItemIdsLazy(data);
@@ -112,8 +117,12 @@ function DefaultTheme() {
     if (checked) {
       // in case during the event handler allNodeIds wasn't computed yet
       setExpandPaths(allNodeIds);
+    } else {
+      setExpandPaths([]);
     }
   }, [checked, allNodeIds]);
+
+  console.log(data, expandPaths);
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -135,7 +144,6 @@ function DefaultTheme() {
               checked={checked}
               onChange={(event) => {
                 setChecked(event.target.checked);
-                setExpandPaths(event.target.checked ? allNodeIds : []);
               }}
             />
           }
