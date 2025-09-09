@@ -49,7 +49,7 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/react": "^19.1.11",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "chalk": "^5.6.0",
     "cross-fetch": "^4.1.0",
     "fast-glob": "^3.3.3",
@@ -59,7 +59,7 @@
     "rimraf": "^6.0.1",
     "shx": "^0.4.0",
     "svgo": "^4.0.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "peerDependencies": {
     "@mui/material": "workspace:^",
