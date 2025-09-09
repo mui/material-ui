@@ -126,7 +126,6 @@
     "@playwright/test": "1.55.0",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
-    "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.20",
     "@types/lodash.kebabcase": "^4.1.9",
     "@types/mocha": "^10.0.10",
@@ -151,7 +150,6 @@
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.1",
     "git-url-parse": "^16.1.0",
     "globby": "^14.1.0",
     "jsonc-parser": "^3.3.1",
@@ -180,7 +178,7 @@
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
     "stylelint": "^16.23.1",
-    "stylelint-config-standard": "^38.0.0",
+    "stylelint-config-standard": "^39.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tsx": "^4.20.4",
@@ -191,7 +189,7 @@
     "webpack": "^5.101.3",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "packageManager": "pnpm@10.15.0",
   "engines": {
