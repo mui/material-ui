@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import {
   act,
   createRenderer,
-  strictModeDoubleLoggingSuppressed,
   screen,
+  strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';

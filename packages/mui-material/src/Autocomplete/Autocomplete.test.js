@@ -5,8 +5,8 @@ import {
   act,
   createRenderer,
   fireEvent,
-  strictModeDoubleLoggingSuppressed,
   screen,
+  strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Box from '@mui/system/Box';

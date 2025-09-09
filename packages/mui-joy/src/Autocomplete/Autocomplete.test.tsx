@@ -4,11 +4,11 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   createRenderer,
+  screen,
   act,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   reactMajor,
-  screen,
 } from '@mui/internal-test-utils';
 import Autocomplete, {
   autocompleteClasses as classes,

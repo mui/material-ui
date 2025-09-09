@@ -6,10 +6,10 @@ import {
   act,
   createRenderer,
   fireEvent,
+  screen,
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
-  screen,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import PropTypes from 'prop-types';

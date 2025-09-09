@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, simulateKeyboardDevice, within, screen } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { createRenderer, screen, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';

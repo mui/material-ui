@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   createRenderer,
-  strictModeDoubleLoggingSuppressed,
   screen,
+  strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 import describeConformance from '../../test/describeConformance';

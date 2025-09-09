@@ -5,8 +5,8 @@ import {
   act,
   createRenderer,
   fireEvent,
-  programmaticFocusTriggersFocusVisible,
   screen,
+  programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';

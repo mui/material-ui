@@ -6,8 +6,8 @@ import {
   act,
   createRenderer,
   fireEvent,
-  reactMajor,
   screen,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';

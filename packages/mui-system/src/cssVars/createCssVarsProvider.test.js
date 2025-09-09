@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createCssVarsTheme from './createCssVarsTheme';
 import createCssVarsProvider, { DISABLE_CSS_TRANSITION } from './createCssVarsProvider';

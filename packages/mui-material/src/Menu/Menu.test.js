@@ -3,10 +3,10 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import {
   createRenderer,
+  screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   reactMajor,
-  screen,
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';

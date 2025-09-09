@@ -5,10 +5,10 @@ import {
   act,
   createRenderer,
   fireEvent,
+  screen,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
-  screen,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { camelCase } from 'lodash/string';

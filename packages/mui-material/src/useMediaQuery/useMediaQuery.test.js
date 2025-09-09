@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {
   act,
   createRenderer,
+  screen,
   RenderCounter,
   strictModeDoubleLoggingSuppressed,
-  screen,
 } from '@mui/internal-test-utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';

@@ -6,9 +6,9 @@ import {
   createRenderer,
   fireEvent,
   reactMajor,
+  screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-  screen,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Tab from '@mui/material/Tab';
