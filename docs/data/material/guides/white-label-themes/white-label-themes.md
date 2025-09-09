@@ -4,15 +4,15 @@
 
 ## Introduction
 
-The white-label theme or in short, base theme, serve as the foundation for a brand-specific theme. The base theme is then used to build mutiple applications with or without minor tweaks.
+The white-label theme or in short, base theme, serves as the foundation for a brand-specific theme. The base theme is then used to build multiple applications with or without minor tweaks.
 
-This guide focus on the theming recommendations for building a white-label theme with Material UI.
+This guide focuses on the theming recommendations for building a white-label theme with Material UI.
 
 ## Base theme
 
 This is the source of truth for the brand-specific theme. It represents the brand's visual identity like colors, typography, spacing, shape, etc.
 
-In general, it's recomended to export tokens, components, and the the base theme from a file.
+In general, it's recommended to export tokens, components, and the the base theme from a file.
 
 ```js title="baseTheme.ts"
 import { createTheme } from '@mui/material/styles';
