@@ -37,7 +37,7 @@
     "docs:sync-team": "tsx ./docs/scripts/syncTeamMembers.ts && pnpm prettier",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./docs/scripts/updateIconSynonyms && pnpm prettier",
     "docs:zipRules": "cd docs && rm mui-vale.zip && zip -r mui-vale.zip mui-vale && cd ../ && pnpm vale sync",
-    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --concurrency 1 build:stable",
+    "extract-error-codes": "code-infra extract-error-codes --errorCodesPath docs/public/static/error-codes.json --skip @mui/core-downloads-tracker @mui/envinfo @mui/docs @mui/codemod @mui/icons-material",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "jsonlint": "code-infra jsonlint",
     "eslint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
@@ -98,7 +98,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
-    "@netlify/functions": "^4.2.2",
+    "@netlify/functions": "^4.2.5",
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0"
@@ -110,9 +110,9 @@
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.7",
     "@mui/internal-bundle-size-checker": "^1.0.9-canary.39",
-    "@mui/internal-code-infra": "^0.0.3-canary.2",
+    "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.10",
+    "@mui/internal-code-infra": "^0.0.3-canary.5",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
@@ -125,7 +125,6 @@
     "@playwright/test": "1.55.0",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
-    "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.20",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.11",
@@ -149,7 +148,6 @@
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.1",
     "git-url-parse": "^16.1.0",
     "globby": "^14.1.0",
     "jsonc-parser": "^3.3.1",
@@ -181,9 +179,9 @@
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
-    "vite": "^6.3.5",
+    "vite": "^6.3.6",
     "vitest": "^3.2.4",
-    "vitest-fail-on-console": "^0.9.0",
+    "vitest-fail-on-console": "^0.10.1",
     "webpack": "^5.101.3",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
@@ -191,7 +189,8 @@
   },
   "packageManager": "pnpm@10.15.0",
   "engines": {
-    "pnpm": "10.15.0"
+    "pnpm": "10.15.0",
+    "node": ">=22.18.0"
   },
   "resolutions": {
     "@babel/core": "^7.28.3",

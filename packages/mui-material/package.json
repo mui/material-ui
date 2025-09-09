@@ -26,7 +26,6 @@
   },
   "scripts": {
     "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
@@ -60,7 +59,6 @@
     "chai": "^4.5.0",
     "css-mediaquery": "^0.1.2",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.1",
     "lodash": "^4.17.21",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
