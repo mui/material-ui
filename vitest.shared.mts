@@ -1,5 +1,5 @@
 /// <reference types="@vitest/browser/providers/playwright" />
-import { configDefaults, defineConfig, coverageConfigDefaults } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { fileURLToPath } from 'url';

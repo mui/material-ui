@@ -9,7 +9,8 @@ const NODE_TESTS = ['{docs,packages{-internal,}/*}/vitest.config.mts'];
 function getProjects() {
   if (process.env.TEST_SCOPE === 'browser') {
     return BROWSER_TESTS;
-  } else if (process.env.TEST_SCOPE === 'node') {
+  }
+  if (process.env.TEST_SCOPE === 'node') {
     return NODE_TESTS;
   }
   return [...BROWSER_TESTS, ...NODE_TESTS];
@@ -26,8 +27,7 @@ export default defineProject({
     sequence: {
       hooks: 'list',
     },
-    reporters: ['default', 'junit'],
-    outputFile: 'test-results/junit.xml',
+    reporters: ['default', ['junit', { outputFile: 'test-results/junit.xml' }]],
     coverage: {
       provider: 'v8',
       reporter: process.env.CI ? ['lcovonly'] : ['text'],
