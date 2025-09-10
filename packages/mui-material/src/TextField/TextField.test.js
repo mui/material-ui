@@ -22,9 +22,9 @@ describe('<TextField />', () => {
   }
 
   function TestFormControl(props) {
-    const { children, error, ...rest } = props;
+    const { children, error, ...other } = props;
     return (
-      <FormControl data-testid={'custom'} {...rest}>
+      <FormControl data-testid={'custom'} {...other}>
         {children}
       </FormControl>
     );
