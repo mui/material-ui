@@ -5,60 +5,20 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
-import { VariableSizeList, ListChildComponentProps } from 'react-window';
+import { List, RowComponentProps } from 'react-window';
 import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
-function renderRow(props: ListChildComponentProps) {
-  const { data, index, style } = props;
-  const dataSet = data[index];
-  const inlineStyle = {
-    ...style,
-    top: (style.top as number) + LISTBOX_PADDING,
-  };
-
-  if (dataSet.hasOwnProperty('group')) {
-    return (
-      <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
-        {dataSet.group}
-      </ListSubheader>
-    );
-  }
-
-  const { key, ...optionProps } = dataSet[0];
-
-  return (
-    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
-      {`#${dataSet[2] + 1} - ${dataSet[1]}`}
-    </Typography>
-  );
-}
-
 const OuterElementContext = React.createContext({});
 
-const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
-  const outerProps = React.useContext(OuterElementContext);
-  return <div ref={ref} {...props} {...outerProps} />;
-});
-
-function useResetCache(data: any) {
-  const ref = React.useRef<VariableSizeList>(null);
-  React.useEffect(() => {
-    if (ref.current != null) {
-      ref.current.resetAfterIndex(0, true);
-    }
-  }, [data]);
-  return ref;
-}
-
-// Adapter for react-window
+// Adapter for react-window v2
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLElement>
 >(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData: React.ReactElement<unknown>[] = [];
+  const itemData: React.ReactElement<unknown>[] = React.useMemo(() => [], []);
   (children as React.ReactElement<unknown>[]).forEach(
     (
       item: React.ReactElement<unknown> & {
@@ -81,7 +41,6 @@ const ListboxComponent = React.forwardRef<
     if (child.hasOwnProperty('group')) {
       return 48;
     }
-
     return itemSize;
   };
 
@@ -92,24 +51,54 @@ const ListboxComponent = React.forwardRef<
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
-  const gridRef = useResetCache(itemCount);
+  const RowComponent = React.useCallback(
+    ({ index, style }: RowComponentProps) => {
+      const dataSet = itemData[index];
+      const inlineStyle = {
+        ...style,
+        top: (style.top as number) + LISTBOX_PADDING,
+      };
+
+      if (dataSet.hasOwnProperty('group')) {
+        return (
+          <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
+            {dataSet.group}
+          </ListSubheader>
+        );
+      }
+
+      const { key, ...optionProps } = dataSet[0];
+
+      return (
+        <Typography
+          key={key}
+          component="li"
+          {...optionProps}
+          noWrap
+          style={inlineStyle}
+        >
+          {`#${dataSet[2] + 1} - ${dataSet[1]}`}
+        </Typography>
+      );
+    },
+    [itemData],
+  );
 
   return (
     <div ref={ref}>
       <OuterElementContext.Provider value={other}>
-        <VariableSizeList
-          itemData={itemData}
-          height={getHeight() + 2 * LISTBOX_PADDING}
-          width="100%"
-          ref={gridRef}
-          outerElementType={OuterElementType}
-          innerElementType="ul"
-          itemSize={(index) => getChildSize(itemData[index])}
+        <List
+          rowCount={itemCount}
+          rowHeight={(index) => getChildSize(itemData[index])}
+          rowComponent={RowComponent}
+          rowProps={{}}
+          style={{
+            height: getHeight() + 2 * LISTBOX_PADDING,
+            width: '100%',
+          }}
           overscanCount={5}
-          itemCount={itemCount}
-        >
-          {renderRow}
-        </VariableSizeList>
+          tagName="ul"
+        />
       </OuterElementContext.Provider>
     </div>
   );
