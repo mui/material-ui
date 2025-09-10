@@ -61,6 +61,11 @@ export interface CircularProgressProps
     'determinate' | 'indeterminate',
     CircularProgressPropsVariantOverrides
   >;
+  /**
+   * If `true`, render a background track circle that can be styled.
+   * @default false
+   */
+  enableTrackSlot?: boolean;
 }
 
 /**

@@ -63,6 +63,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`],
     svg: ['svg'],
+    track: ['track'],
     circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
   };
 
@@ -166,6 +167,16 @@ const CircularProgressCircle = styled('circle', {
   })),
 );
 
+const CircularProgressTrack = styled('circle', {
+  name: 'MuiCircularProgress',
+  slot: 'Track',
+})(
+  memoTheme(() => ({
+    stroke: 'currentColor',
+    opacity: 0.3,
+  })),
+);
+
 /**
  * ## ARIA
  *
@@ -184,6 +195,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness = 3.6,
     value = 0,
     variant = 'indeterminate',
+    enableTrackSlot = false,
     ...other
   } = props;
 
@@ -195,6 +207,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness,
     value,
     variant,
+    enableTrackSlot,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -226,6 +239,18 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
         ownerState={ownerState}
         viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
       >
+        {enableTrackSlot ? (
+          <CircularProgressTrack
+            className={classes.track}
+            ownerState={ownerState}
+            cx={SIZE}
+            cy={SIZE}
+            r={(SIZE - thickness) / 2}
+            fill="none"
+            strokeWidth={thickness}
+            aria-hidden="true"
+          />
+        ) : null}
         <CircularProgressCircle
           className={classes.circle}
           style={circleStyle}
@@ -279,6 +304,11 @@ CircularProgress.propTypes /* remove-proptypes */ = {
 
     return null;
   }),
+  /**
+   * If `true`, render a background track circle that can be styled.
+   * @default false
+   */
+  enableTrackSlot: PropTypes.bool,
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
