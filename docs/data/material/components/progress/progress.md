@@ -38,6 +38,10 @@ The animations of the components rely on CSS as much as possible to work even be
 
 {{"demo": "CircularDeterminate.js"}}
 
+### Circular track
+
+{{"demo": "CircularEnableTrack.js"}}
+
 ### Interactive integration
 
 {{"demo": "CircularIntegration.js"}}
