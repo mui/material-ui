@@ -265,6 +265,10 @@ jobs:
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
+    parameters:
+      browserstack-enabled:
+        type: boolean
+        default: false
     docker:
       - image: mcr.microsoft.com/playwright:v1.55.0-noble
     steps:
@@ -274,6 +278,8 @@ jobs:
       - run:
           name: Tests real browsers
           command: pnpm test:karma
+          environment:
+            BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
       - run:
           name: Check coverage generated
           command: |
@@ -617,7 +623,7 @@ workflows:
       - test_browser:
           <<: *default-context
           # only enable on pipeline, the karma.conf.js has logic to disable browserstack on PRs
-          browserstack-force: true
+          browserstack-enabled: true
       - test_regressions:
           <<: *default-context
       - test_e2e:
