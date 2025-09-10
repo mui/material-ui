@@ -68,6 +68,12 @@
       "matchPaths": ["packages/mui-envinfo/test/package.json"],
       "matchPackageNames": ["@mui/*"],
       "enabled": false
+    },
+    {
+      "groupName": "codemode tests",
+      "matchFileNames": ["packages/mui-codemod"],
+      "matchPackageNames": ["@material-ui/core"],
+      "enabled": false
     }
   ]
 }
