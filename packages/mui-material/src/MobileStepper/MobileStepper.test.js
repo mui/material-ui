@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import MobileStepper, { mobileStepperClasses as classes } from '@mui/material/MobileStepper';
@@ -98,7 +98,7 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render two buttons', () => {
-    const screen = render(<MobileStepper {...defaultProps} />);
+    render(<MobileStepper {...defaultProps} />);
     expect(screen.getAllByRole('button')).to.have.lengthOf(2);
   });
 
@@ -144,25 +144,21 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render a <LinearProgress /> when supplied with variant progress', () => {
-    const screen = render(<MobileStepper {...defaultProps} variant="progress" />);
+    render(<MobileStepper {...defaultProps} variant="progress" />);
     expect(screen.queryByRole('progressbar')).not.to.equal(null);
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {
-    const screen = render(<MobileStepper {...defaultProps} variant="progress" steps={3} />);
+    const view = render(<MobileStepper {...defaultProps} variant="progress" steps={3} />);
     expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('0');
-    screen.rerender(
-      <MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={1} />,
-    );
+    view.rerender(<MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={1} />);
     expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('50');
-    screen.rerender(
-      <MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={2} />,
-    );
+    view.rerender(<MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={2} />);
     expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
   });
 
   it('should set value correctly when steps is set to 1', () => {
-    const screen = render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
+    render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
     const progressBar = screen.getByRole('progressbar');
     expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
     fireEvent.click(screen.getByRole('button', { name: 'next' }));
@@ -172,12 +168,12 @@ describe('<MobileStepper />', () => {
   });
 
   it('should set value correctly when steps is updated between 1 & 2', () => {
-    const screen = render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
+    const view = render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
     const progressBar = screen.getByRole('progressbar');
     expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
-    screen.rerender(<MobileStepper {...defaultProps} variant="progress" steps={2} />);
+    view.rerender(<MobileStepper {...defaultProps} variant="progress" steps={2} />);
     expect(progressBar.getAttribute('aria-valuenow')).to.equal('0');
-    screen.rerender(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
+    view.rerender(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
     expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
   });
 });

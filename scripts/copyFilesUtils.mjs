@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import glob from 'fast-glob';
 
 const packagePath = process.cwd();
@@ -17,8 +17,15 @@ const buildPath = path.join(packagePath, './build');
 export async function includeFileInBuild(file, target = path.basename(file)) {
   const sourcePath = path.resolve(packagePath, file);
   const targetPath = path.resolve(buildPath, target);
-  await fse.copy(sourcePath, targetPath);
+  await fs.copyFile(sourcePath, targetPath);
   console.log(`Copied ${sourcePath} to ${targetPath}`);
+}
+
+function pathExists(pathToTest) {
+  return fs
+    .stat(pathToTest)
+    .then(() => true)
+    .catch(() => false);
 }
 
 /**
@@ -39,7 +46,7 @@ export async function createModulePackages({ from, to }) {
   await Promise.all(
     directoryPackages.map(async (directoryPackage) => {
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
-      const topLevelPathImportsAreCommonJSModules = await fse.pathExists(
+      const topLevelPathImportsAreCommonJSModules = await pathExists(
         path.resolve(path.dirname(packageJsonPath), '../esm'),
       );
 
@@ -55,10 +62,10 @@ export async function createModulePackages({ from, to }) {
       };
 
       const [typingsEntryExist, moduleEntryExists, mainEntryExists] = await Promise.all([
-        fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.types)),
-        fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.module)),
-        fse.pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.main)),
-        fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
+        pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.types)),
+        pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.module)),
+        pathExists(path.resolve(path.dirname(packageJsonPath), packageJson.main)),
+        fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
       ]);
 
       const manifestErrorMessages = [];
@@ -81,25 +88,14 @@ export async function createModulePackages({ from, to }) {
   );
 }
 
-export async function typescriptCopy({ from, to }) {
-  if (!(await fse.pathExists(to))) {
-    console.warn(`path ${to} does not exists`);
-    return [];
-  }
-
-  const files = await glob('**/*.d.ts', { cwd: from });
-  const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
-  return Promise.all(cmds);
-}
-
 export async function cjsCopy({ from, to }) {
-  if (!(await fse.pathExists(to))) {
+  if (!(await pathExists(to))) {
     console.warn(`path ${to} does not exists`);
     return [];
   }
 
   const files = await glob('**/*.cjs', { cwd: from });
-  const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
+  const cmds = files.map((file) => fs.copyFile(path.resolve(from, file), path.resolve(to, file)));
   return Promise.all(cmds);
 }
 
@@ -139,7 +135,7 @@ function createExportFor(exportName, conditions) {
 }
 
 export async function createPackageFile() {
-  const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
+  const packageData = await fs.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
@@ -177,7 +173,7 @@ export async function createPackageFile() {
   };
 
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
-  if (await fse.pathExists(typeDefinitionsFilePath)) {
+  if (await pathExists(typeDefinitionsFilePath)) {
     newPackageData.types = './index.d.ts';
   }
 
@@ -187,13 +183,13 @@ export async function createPackageFile() {
 
   const targetPath = path.resolve(buildPath, './package.json');
 
-  await fse.writeFile(targetPath, JSON.stringify(newPackageData, null, 2), 'utf8');
+  await fs.writeFile(targetPath, JSON.stringify(newPackageData, null, 2), 'utf8');
   console.log(`Created package.json in ${targetPath}`);
 
   return newPackageData;
 }
 
 export async function prepend(file, string) {
-  const data = await fse.readFile(file, 'utf8');
-  await fse.writeFile(file, string + data, 'utf8');
+  const data = await fs.readFile(file, 'utf8');
+  await fs.writeFile(file, string + data, 'utf8');
 }

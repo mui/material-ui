@@ -1,5 +1,93 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.2
+
+<!-- generated comparing v7.3.1..master -->
+
+_Sep 1, 2025_
+
+A big thanks to the 16 contributors who made this release possible.
+
+### `@mui/material@7.3.2`
+
+- [Chip] Remove unnecessary optional chaining from key event handlers (#46752) @ZeeshanTamboli
+- [Drawer] Add dialog role and aria-modal for `temporary` variant (#46690) @Yashkanekar
+- [PaginationItem] Add slot descriptions and default components in API documentation (#46677) @sai6855
+- [utils] Remove duplicate isHostComponent function (#46721) @frontman-git
+
+### `@mui/codemod@7.3.2`
+
+- Add codemod to convert top-level to path imports (#46657) @neemski
+
+### Docs
+
+- Remove outdated Next.js lint command (#46847) @oliviertassinari
+- Add `View as Markdown` to component link header (#46835) @siriwatknp
+- Add a link to open `llms.txt` (#46832) @siriwatknp
+- Fix typos in Material UI API docs (#46787) @noritaka1166
+- Fix typo extra "to" word (#46783) @danpeleg4
+- Remove past employees from about page (#46780) @Janpot
+- Fix typos in `docs/pages` folder (#46761) @noritaka1166
+- Add clarification on `react-is` resolution with Material UI v6 and v7 for React 18 and below (#46633) @alisasanib
+- Fix typos in `joy` and `utils` package (#46713) @noritaka1166
+- [autocomplete] Fix console in unstyled demo (#46804) @oliviertassinari
+- [autocomplete] Fix Google Maps brand attribution (#46803) @oliviertassinari
+- [autocomplete] Fix header sentence case (#46805) @oliviertassinari
+- [autocomplete] Fix Google Maps demo (#46793) @oliviertassinari
+- [Select] Fix labeling issues in grouped select demo (#46722) @mj12albert
+- [table] Remove outdated unstyled section (#46786) @mj12albert
+- [TextField] Add note about removal of `sizeMedium` class from InputLabel in v7 upgrade guide (#46693) @checcoux
+
+### Core
+
+- Update `cipher-base` transitive dependency (#46800) @Janpot
+- [charts] Marked Treemap chart as Pro (#46691) @prakhargupta1
+- [code-infra] Remove some csbci references (#46797) @Janpot
+- [code-infra] update build tool (#46801) @Janpot
+- [code-infra] Align pkg.pr.new with other projects (#46467) @Janpot
+- [code-infra] Prepare for incoming `execa` update (#46781) @Janpot
+- [code-infra] Remove `@mui/internal-babel-plugin-resolve-imports` override config (#46754) @ZeeshanTamboli
+- [core] Fix typo in `docs/mui-vale` folder (#46760) @noritaka1166
+- [core] Fix typos in `docs/data/material` folder (#46757) @noritaka1166
+- [core] Fix typos in `netlify` folder (#46756) @noritaka1166
+- [core] Upgrade brace-expansion (#46747) @oliviertassinari
+- [core] Fix typos in Joy UI docs and `test` folder (#46738) @noritaka1166
+- [core] Upgrade KaTeX (#46731) @oliviertassinari
+- [core] Avoid Polynomial regex backtracking (#46732) @oliviertassinari
+- [core] Remove dead @toolpad/core dependency (#46730) @oliviertassinari
+- [core] Fix typos in `markdown` and `system` packages (#46720) @noritaka1166
+- [core] Fix typos in `api-docs-builder` package (#46719) @noritaka1166
+- [core] Fix typos in `codemod` package (#46715) @noritaka1166
+- [core] pnpm prettier:all (#46685) @oliviertassinari
+- [docs-infra] Set origin to generated `llms.txt` (#46833) @siriwatknp
+- [docs-infra] Fix AbortController error (#46408) @oliviertassinari
+- [docs-infra] Block than more feedback submissions (#46824) @oliviertassinari
+- [docs-infra] Fix ESLint references (#46680) @oliviertassinari
+- [infra] Migrate away from airbnb's eslint config (#46794) @brijeshb42
+- [infra] Remove `fs-extra` from docs scripts (#46749) @bernardobelchior
+- [infra] Remove dependency on `react-spring` (but keep `@react-spring/web`) (#46748) @bernardobelchior
+- [infra] Remove `fs-extra` from `mui-icons-material` (#46745) @bernardobelchior
+- [infra] Remove `api-docs-builder` dependency on `fs-extra` (#46742) @bernardobelchior
+- [infra] Migrate build command to code-infra (#46614) @brijeshb42
+- [infra] move testBuiltTypes step (#46735) @Janpot
+- [infra] Remove `fs-extra` from `netlify-plugin-cache-docs` (#46740) @bernardobelchior
+- [infra] Supply `document` to `userEvent.setup()` (#46714) @Janpot
+- [infra] Remove useless test step (#46679) @Janpot
+- [infra] Stagger daily cron jobs to avoid browserstack timeouts (#46676) @Janpot
+- [internal] Improve useControlled() strict mode handling (#46807) @oliviertassinari
+- [internal] Sentence case (55a9d8f) @oliviertassinari
+- [internal] Fix typos in code comments (#46784) @noritaka1166
+- [internal] Fix console regression in dev mode (925f02b) @oliviertassinari
+- [internal] Prettier all if dependencies changes (1f63b03) @oliviertassinari
+- [internal] Fix renovate.json (84be632) @oliviertassinari
+- [internal] Polish renovate schedule (#46727) @oliviertassinari
+- [internal] Update link to GitHub labels (8ab4813) @oliviertassinari
+- [internal] Bump brace-expansion (06de338) @oliviertassinari
+- [internal] Normalize Action description (4a2fbcb) @oliviertassinari
+- [toolpad] Remove it from website and docs (#46595) @prakhargupta1
+
+All contributors of this release in alphabetical order: @alisasanib, @bernardobelchior, @brijeshb42, @checcoux, @danpeleg4, @frontman-git, @Janpot, @mj12albert, @neemski, @noritaka1166, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @Yashkanekar, @ZeeshanTamboli
+
 ## 7.3.1
 
 <!-- generated comparing v7.3.0..master -->

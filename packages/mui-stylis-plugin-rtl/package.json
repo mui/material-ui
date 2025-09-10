@@ -1,9 +1,8 @@
 {
   "name": "@mui/stylis-plugin-rtl",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "author": "MUI Team",
   "description": "A plugin for Material UI that provides RTL (right-to-left) support.",
-  "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
@@ -26,7 +25,6 @@
   },
   "scripts": {
     "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/stylis-plugin-rtl\"",
@@ -44,7 +42,7 @@
     "@types/node": "^20.19.11",
     "@types/sinon": "^17.0.4",
     "@types/stylis": "4.2.7",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "sinon": "^21.0.0",
     "stylis": "4.3.6"
   },
@@ -58,5 +56,8 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }

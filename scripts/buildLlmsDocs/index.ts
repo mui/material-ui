@@ -58,6 +58,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import yargs, { ArgumentsCamelCase } from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import kebabCase from 'lodash/kebabCase';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
 import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
@@ -66,6 +67,24 @@ import { fixPathname } from '@mui-internal/api-docs-builder/buildApiUtils';
 import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
 import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+
+// Determine the host based on environment variables
+let ORIGIN: string | undefined = 'https://mui.com';
+
+if (process.env.CONTEXT === 'deploy-preview') {
+  // ref: https://docs.netlify.com/build/configure-builds/environment-variables/
+  ORIGIN = process.env.DEPLOY_PRIME_URL;
+} else if (
+  process.env.CONTEXT === 'branch-deploy' &&
+  (process.env.HEAD === 'master' || process.env.HEAD === 'next' || process.env.HEAD?.match(/^v\d/))
+) {
+  if (process.env.HEAD === 'master') {
+    ORIGIN = process.env.DEPLOY_PRIME_URL;
+  } else {
+    // https://next.mui.com, https://v6.mui.com, etc.
+    ORIGIN = `https://${process.env.HEAD.replace('.x', '')}.mui.com`;
+  }
+}
 
 interface ComponentDocInfo {
   name: string;
@@ -268,7 +287,7 @@ function processComponent(component: ComponentDocInfo): string | null {
 
       if (fs.existsSync(apiJsonPath)) {
         try {
-          const apiMarkdown = processApiFile(apiJsonPath);
+          const apiMarkdown = processApiFile(apiJsonPath, { origin: ORIGIN });
           processedMarkdown += `\n\n${apiMarkdown}`;
         } catch (error) {
           console.error(`Warning: Could not process API for ${componentName}:`, error);
@@ -280,7 +299,7 @@ function processComponent(component: ComponentDocInfo): string | null {
   } else if (component.apiJsonPath) {
     // Fallback: Add API section for the primary component if no frontmatter components found
     try {
-      const apiMarkdown = processApiFile(component.apiJsonPath);
+      const apiMarkdown = processApiFile(component.apiJsonPath, { origin: ORIGIN });
       processedMarkdown += `\n\n${apiMarkdown}`;
     } catch (error) {
       console.error(`Warning: Could not process API for ${component.name}:`, error);
@@ -307,6 +326,7 @@ function generateLlmsTxt(
   generatedFiles: GeneratedFile[],
   projectName: string,
   baseDir: string,
+  origin?: string,
 ): string {
   // Group files by category
   const groupedByCategory: Record<string, GeneratedFile[]> = {};
@@ -367,7 +387,8 @@ function generateLlmsTxt(
       const relativePath = file.outputPath.startsWith(`${baseDir}/`)
         ? `/${baseDir}/${file.outputPath.substring(baseDir.length + 1)}`
         : `/${file.outputPath}`;
-      content += `- [${file.title}](${relativePath})`;
+      const url = origin ? new URL(relativePath, origin).href : relativePath;
+      content += `- [${file.title}](${url})`;
       if (file.description) {
         content += `: ${file.description}`;
       }
@@ -398,13 +419,6 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
     projectSettings = settingsModule.projectSettings || settingsModule.default || settingsModule;
   } catch (error) {
     throw new Error(`Failed to load project settings from ${argv.projectSettings}: ${error}`);
-  }
-
-  // Building LLMs docs...
-  // Project settings: ${argv.projectSettings}
-  // Output directory: ${outputDir}
-  if (grep) {
-    // Filter pattern: ${grep}
   }
 
   // Find all components
@@ -546,7 +560,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
         projectName = dirName.charAt(0).toUpperCase() + dirName.slice(1);
       }
 
-      const llmsContent = generateLlmsTxt(files, projectName, dirName);
+      const llmsContent = generateLlmsTxt(files, projectName, dirName, ORIGIN);
       const llmsPath = path.join(outputDir, dirName, 'llms.txt');
 
       // Ensure directory exists
@@ -568,7 +582,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
 /**
  * CLI setup
  */
-yargs(process.argv.slice(2))
+yargs()
   .command({
     command: '$0',
     describe: 'Generates LLM-optimized documentation for MUI components.',
@@ -596,4 +610,4 @@ yargs(process.argv.slice(2))
   .help()
   .strict(true)
   .version(false)
-  .parse();
+  .parse(hideBin(process.argv));

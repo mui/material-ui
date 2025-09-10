@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "7.3.0",
+  "version": "7.3.2",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
@@ -24,7 +24,6 @@
   },
   "scripts": {
     "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-nextjs\"",

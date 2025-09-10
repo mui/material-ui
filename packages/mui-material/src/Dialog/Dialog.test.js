@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -88,8 +88,8 @@ describe('<Dialog />', () => {
       </Dialog>,
     );
 
-    expect(document.querySelector(`.${classes.scrollBody} > .${classes.paper}`)).to.not.equal(null);
-    expect(classes.paperScrollBody).to.not.equal(null);
+    expect(document.querySelector(`.${classes.scrollBody} > .${classes.paper}`)).not.to.equal(null);
+    expect(classes.paperScrollBody).not.to.equal(null);
   });
 
   it('should work correctly when using css selectors for scroll="paper"', () => {
@@ -99,10 +99,10 @@ describe('<Dialog />', () => {
       </Dialog>,
     );
 
-    expect(document.querySelector(`.${classes.scrollPaper} > .${classes.paper}`)).to.not.equal(
+    expect(document.querySelector(`.${classes.scrollPaper} > .${classes.paper}`)).not.to.equal(
       null,
     );
-    expect(classes.paperScrollPaper).to.not.equal(null);
+    expect(classes.paperScrollPaper).not.to.equal(null);
   });
 
   it('should render with a TransitionComponent', () => {
@@ -179,7 +179,7 @@ describe('<Dialog />', () => {
       return <Dialog onClose={handleClose} {...other} />;
     }
     const onClose = spy();
-    const screen = render(
+    render(
       <DialogWithBackdropClickDisabled
         open
         disableEscapeKeyDown
@@ -207,14 +207,14 @@ describe('<Dialog />', () => {
 
   describe('backdrop', () => {
     it('does have `role` `presentation`', () => {
-      const screen = render(<Dialog open>foo</Dialog>);
+      render(<Dialog open>foo</Dialog>);
 
       expect(findBackdrop(screen)).to.have.attribute('role', 'presentation');
     });
 
     it('calls onClose when clicked', () => {
       const onClose = spy();
-      const screen = render(
+      render(
         <Dialog onClose={onClose} open>
           foo
         </Dialog>,
@@ -225,7 +225,7 @@ describe('<Dialog />', () => {
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {
-      const screen = render(
+      render(
         <Dialog open>
           <h2>my dialog</h2>
         </Dialog>,
@@ -259,7 +259,7 @@ describe('<Dialog />', () => {
     });
 
     it('should use the right className when maxWidth={false}', () => {
-      const screen = render(
+      render(
         <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
@@ -268,7 +268,7 @@ describe('<Dialog />', () => {
     });
 
     it('should apply the correct max-width styles when maxWidth={false}', () => {
-      const screen = render(
+      render(
         <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,

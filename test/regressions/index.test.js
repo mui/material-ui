@@ -1,6 +1,6 @@
 import * as url from 'url';
 import * as path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
@@ -79,7 +79,7 @@ async function main() {
 
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
-    await fse.ensureDir(path.dirname(screenshotPath));
+    await fs.mkdir(path.dirname(screenshotPath), { recursive: true });
 
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
     const screenshotTarget = explicitScreenshotTarget || testcase;
@@ -92,7 +92,8 @@ async function main() {
   }
 
   // prepare screenshots
-  await fse.emptyDir(screenshotDir);
+  await fs.rm(screenshotDir, { recursive: true, force: true });
+  await fs.mkdir(screenshotDir, { recursive: true });
 
   describe('visual regressions', () => {
     beforeEach(async () => {

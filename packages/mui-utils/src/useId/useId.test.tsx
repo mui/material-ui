@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import useId from '@mui/utils/useId';
 
 interface TestComponentProps {
@@ -16,11 +16,11 @@ describe('useId', () => {
       return <span data-testid="target" id={id} />;
     }
     const { hydrate } = renderToString(<TestComponent id="some-id" />);
-    const screen = hydrate();
+    const { setProps } = hydrate();
 
     expect(screen.getByTestId('target')).to.have.property('id', 'some-id');
 
-    screen.setProps({ id: 'another-id' });
+    setProps({ id: 'another-id' });
 
     expect(screen.getByTestId('target')).to.have.property('id', 'another-id');
   });
@@ -31,11 +31,11 @@ describe('useId', () => {
       return <span data-testid="target" id={id} />;
     }
     const { hydrate } = renderToString(<TestComponent />);
-    const screen = hydrate();
+    const { setProps } = hydrate();
 
     expect(screen.getByTestId('target').id).not.to.equal('');
 
-    screen.setProps({ id: 'another-id' });
+    setProps({ id: 'another-id' });
     expect(screen.getByTestId('target')).to.have.property('id', 'another-id');
   });
 
@@ -53,7 +53,7 @@ describe('useId', () => {
         </React.Fragment>
       );
     }
-    const screen = render(<Widget />);
+    render(<Widget />);
 
     expect(screen.getByTestId('labelable')).to.have.attr(
       'aria-labelledby',
@@ -78,7 +78,7 @@ describe('useId', () => {
         </React.Fragment>
       );
     }
-    const screen = render(<Widget />);
+    render(<Widget />);
 
     expect(screen.getByTestId('labelable')).to.have.attr(
       'aria-labelledby',
@@ -95,7 +95,7 @@ describe('useId', () => {
       return <span data-testid="target" id={id} />;
     }
     const { hydrate } = renderToString(<TestComponent />);
-    const screen = hydrate();
+    hydrate();
 
     expect(screen.getByTestId('target').id).not.to.equal('');
   });

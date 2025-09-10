@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import { act, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
@@ -59,7 +59,7 @@ describe('<TextareaAutosize />', () => {
       );
     }
 
-    const screen = render(<App />);
+    render(<App />);
     const button = screen.getByRole('button');
     fireEvent.click(button);
     await waitFor(() => {
@@ -128,8 +128,8 @@ describe('<TextareaAutosize />', () => {
         </div>
       );
     }
-    const screen = render(<App />);
-    const input = screen.container.querySelector<HTMLTextAreaElement>('textarea')!;
+    const view = render(<App />);
+    const input = view.container.querySelector<HTMLTextAreaElement>('textarea')!;
     const button = screen.getByRole('button');
     expect(parseInt(input.style.height, 10)).to.be.within(30, 32);
     fireEvent.click(button);

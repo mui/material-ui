@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "exports": {
@@ -21,11 +21,11 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "tsc --build tsconfig.json",
+    "build": "tsc -b tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-scripts\"",
-    "typescript": "tsc --build tsconfig.typecheck.json"
+    "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
     "@babel/core": "^7.28.3",
@@ -48,7 +48,7 @@
     "@types/node": "^20.19.11",
     "@types/react": "^19.1.11",
     "@types/uuid": "^10.0.0",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "fast-glob": "^3.3.3",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1"

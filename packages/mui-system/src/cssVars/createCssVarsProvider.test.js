@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createCssVarsTheme from './createCssVarsTheme';
 import createCssVarsProvider, { DISABLE_CSS_TRANSITION } from './createCssVarsProvider';
@@ -59,7 +59,7 @@ describe('createCssVarsProvider', () => {
         const { colorScheme } = useColorScheme();
         return <div data-testid="current-color-scheme">{colorScheme}</div>;
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -80,7 +80,7 @@ describe('createCssVarsProvider', () => {
         const theme = useTheme();
         return <div data-testid={`text`}>{theme.getColorSchemeSelector('light')}</div>;
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Text />
         </CssVarsProvider>,
@@ -105,7 +105,7 @@ describe('createCssVarsProvider', () => {
         const { allColorSchemes } = useColorScheme();
         return <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>;
       }
-      const screen = render(
+      const view = render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -113,7 +113,7 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark');
 
-      screen.rerender(
+      view.rerender(
         <CssVarsProvider
           theme={createCssVarsTheme({
             colorSchemes: { light: {}, dark: {}, comfort: { palette: { color: '#e5e5e5' } } },
@@ -142,7 +142,7 @@ describe('createCssVarsProvider', () => {
           </div>
         );
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -166,7 +166,7 @@ describe('createCssVarsProvider', () => {
         return <button onClick={() => setColorScheme('foo')}>change to dark</button>;
       }
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -235,7 +235,7 @@ describe('createCssVarsProvider', () => {
           </div>
         );
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -271,7 +271,7 @@ describe('createCssVarsProvider', () => {
             </div>
           );
         }
-        const screen = render(
+        render(
           <CssVarsProvider>
             <Consumer />
           </CssVarsProvider>,
@@ -312,7 +312,7 @@ describe('createCssVarsProvider', () => {
             </div>
           );
         }
-        const screen = render(
+        render(
           <CssVarsProvider>
             <Consumer />
           </CssVarsProvider>,
@@ -350,7 +350,7 @@ describe('createCssVarsProvider', () => {
             </div>
           );
         }
-        const screen = render(
+        render(
           <CssVarsProvider>
             <Consumer />
           </CssVarsProvider>,
@@ -383,7 +383,7 @@ describe('createCssVarsProvider', () => {
             </div>
           );
         }
-        const screen = render(
+        render(
           <CssVarsProvider>
             <Consumer />
           </CssVarsProvider>,
@@ -421,7 +421,7 @@ describe('createCssVarsProvider', () => {
           </button>
         );
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Toggle />
         </CssVarsProvider>,
@@ -454,7 +454,7 @@ describe('createCssVarsProvider', () => {
           </button>
         );
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Toggle />
         </CssVarsProvider>,
@@ -490,7 +490,7 @@ describe('createCssVarsProvider', () => {
           </button>
         );
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Toggle />
         </CssVarsProvider>,
@@ -524,7 +524,7 @@ describe('createCssVarsProvider', () => {
           </button>
         );
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Toggle />
         </CssVarsProvider>,
@@ -578,7 +578,7 @@ describe('createCssVarsProvider', () => {
     }
 
     it('should save mode to localStorage', () => {
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -594,7 +594,7 @@ describe('createCssVarsProvider', () => {
     it('should use mode from localStorage if exists', () => {
       storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -607,7 +607,7 @@ describe('createCssVarsProvider', () => {
       const customModeStorageKey = 'foo-mode';
       storage[customModeStorageKey] = 'dark';
 
-      const screen = render(
+      render(
         <CssVarsProvider modeStorageKey={customModeStorageKey}>
           <Consumer />
         </CssVarsProvider>,
@@ -625,7 +625,7 @@ describe('createCssVarsProvider', () => {
         },
         removeEventListener: () => {},
       };
-      const screen = render(
+      render(
         <CssVarsProvider storageWindow={storageWindow}>
           <Consumer />
         </CssVarsProvider>,
@@ -665,7 +665,7 @@ describe('createCssVarsProvider', () => {
     it('use default color scheme if the storage value does not exist', () => {
       storage[DEFAULT_MODE_STORAGE_KEY] = 'unknown';
 
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Color />
         </CssVarsProvider>,
@@ -690,7 +690,7 @@ describe('createCssVarsProvider', () => {
         const theme = useTheme();
         return <div data-testid={`text-${scale}`}>{theme.vars.fontSize[scale]}</div>;
       }
-      const screen = render(
+      render(
         <CssVarsProvider theme={createCssVarsTheme({ fontSize: { sm: '0.75rem' } })}>
           <Text scale="md" />
           <Text scale="sm" />
@@ -723,7 +723,7 @@ describe('createCssVarsProvider', () => {
           </div>
         );
       }
-      const screen = render(
+      render(
         <CssVarsProvider
           theme={createCssVarsTheme({
             colorSchemes: { light: { palette: { color: '#000000', bgcolor: '#ffffff' } } },
@@ -777,7 +777,7 @@ describe('createCssVarsProvider', () => {
         const theme = useTheme();
         return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
       }
-      const screen = render(
+      render(
         <CssVarsProvider
           theme={createCssVarsTheme({
             cssVarPrefix: 'foo-bar',
@@ -806,7 +806,7 @@ describe('createCssVarsProvider', () => {
 
         return <div data-testid={`text`}>{theme.vars.components?.foo}</div>;
       }
-      const screen = render(
+      render(
         <CssVarsProvider>
           <Text />
         </CssVarsProvider>,
