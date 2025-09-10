@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 import describeConformance from '../../test/describeConformance';
@@ -857,7 +857,7 @@ describe('<Slider />', () => {
       }
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
-      const screen = render(
+      const { setProps } = render(
         <Slider
           components={{ ValueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
@@ -867,7 +867,7 @@ describe('<Slider />', () => {
 
       expect(screen.queryByTestId('value-label')).to.have.class('open');
 
-      screen.setProps({
+      setProps({
         valueLabelDisplay: 'off',
       });
 
@@ -1198,7 +1198,7 @@ describe('<Slider />', () => {
 
     it('stops at the max value with custom marks', () => {
       const handleChange = stub();
-      const screen = render(
+      render(
         <Slider
           marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
           step={null}
@@ -1222,7 +1222,7 @@ describe('<Slider />', () => {
 
     it('stops at the min value with custom marks', () => {
       const handleChange = stub();
-      const screen = render(
+      render(
         <Slider
           marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
           step={null}
@@ -1406,7 +1406,7 @@ describe('<Slider />', () => {
       );
     }
 
-    const screen = render(<Test />);
+    render(<Test />);
     const slider = screen.getByTestId('slider');
 
     stub(slider, 'getBoundingClientRect').callsFake(() => ({
@@ -1443,7 +1443,7 @@ describe('<Slider />', () => {
         </div>
       );
     }
-    const screen = render(<Test />);
+    render(<Test />);
     const slider = screen.getByTestId('slider');
 
     stub(slider, 'getBoundingClientRect').callsFake(() => ({
@@ -1522,7 +1522,7 @@ describe('<Slider />', () => {
   });
 
   it('should remove the slider from the tab sequence', () => {
-    const screen = render(<Slider tabIndex={-1} value={30} />);
+    render(<Slider tabIndex={-1} value={30} />);
     expect(screen.getByRole('slider')).to.have.property('tabIndex', -1);
   });
 

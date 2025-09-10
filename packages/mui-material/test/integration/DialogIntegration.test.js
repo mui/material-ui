@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
@@ -8,7 +8,7 @@ describe('<Dialog /> integration', () => {
   const { render } = createRenderer();
 
   it('is automatically labelled by its DialogTitle', () => {
-    const screen = render(
+    render(
       <Dialog open>
         <DialogTitle>Set backup account</DialogTitle>
       </Dialog>,
@@ -18,7 +18,7 @@ describe('<Dialog /> integration', () => {
   });
 
   it('can be manually labelled', () => {
-    const screen = render(
+    render(
       <Dialog open aria-labelledby="dialog-title">
         <DialogTitle id="dialog-title">Set backup account</DialogTitle>
       </Dialog>,

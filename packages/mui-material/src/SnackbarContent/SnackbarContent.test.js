@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import SnackbarContent, { snackbarContentClasses as classes } from '@mui/material/SnackbarContent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -78,13 +78,13 @@ describe('<SnackbarContent />', () => {
 
   describe('prop: square', () => {
     it('should disable the rounded class when square is true', () => {
-      const screen = render(<SnackbarContent data-testid="snackbar" message="test" square />);
+      render(<SnackbarContent data-testid="snackbar" message="test" square />);
 
       expect(screen.getByTestId('snackbar')).not.to.have.class(paperClasses.rounded);
     });
 
     it('should apply the rounded class when square is not passed', () => {
-      const screen = render(<SnackbarContent data-testid="snackbar" message="test" />);
+      render(<SnackbarContent data-testid="snackbar" message="test" />);
 
       expect(screen.getByTestId('snackbar')).to.have.class(paperClasses.rounded);
     });

@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  strictModeDoubleLoggingSuppressed,
+  screen,
+} from '@mui/internal-test-utils';
 import Paper, { paperClasses as classes } from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -124,7 +128,7 @@ describe('<Paper />', () => {
       defaultColorScheme: 'dark',
     });
 
-    const screen = render(
+    render(
       <ThemeProvider theme={theme}>
         <Paper data-testid="parent" elevation={23}>
           elevation=23

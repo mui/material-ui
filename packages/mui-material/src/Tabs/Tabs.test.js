@@ -6,6 +6,7 @@ import {
   createRenderer,
   fireEvent,
   reactMajor,
+  screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
 } from '@mui/internal-test-utils';
@@ -89,13 +90,13 @@ describe('<Tabs />', () => {
   }));
 
   it('can be named via `aria-label`', () => {
-    const screen = render(<Tabs aria-label="string label" />);
+    render(<Tabs aria-label="string label" />);
 
     expect(screen.getByRole('tablist')).toHaveAccessibleName('string label');
   });
 
   it('can be named via `aria-labelledby`', () => {
-    const screen = render(
+    render(
       <React.Fragment>
         <h3 id="label-id">complex name</h3>
         <Tabs aria-labelledby="label-id" />
@@ -881,13 +882,13 @@ describe('<Tabs />', () => {
     });
 
     it('does not add aria-orientation by default', () => {
-      const screen = render(<Tabs value={0} />);
+      render(<Tabs value={0} />);
 
       expect(screen.getByRole('tablist')).not.to.have.attribute('aria-orientation');
     });
 
     it('adds the proper aria-orientation when vertical', () => {
-      const screen = render(<Tabs value={0} orientation="vertical" />);
+      render(<Tabs value={0} orientation="vertical" />);
 
       expect(screen.getByRole('tablist')).to.have.attribute('aria-orientation', 'vertical');
     });
@@ -1508,7 +1509,7 @@ describe('<Tabs />', () => {
 
   describe('scrollButton slot', () => {
     it('should render start and end scroll buttons', () => {
-      const screen = render(
+      render(
         <Tabs
           value={0}
           variant="scrollable"
@@ -1529,7 +1530,7 @@ describe('<Tabs />', () => {
       function CustomButton({ ownerState, slots, slotProps, ...props }) {
         return <button data-testid="scroll-button" {...props} />;
       }
-      const screen = render(
+      render(
         <Tabs
           value={0}
           variant="scrollable"
@@ -1550,7 +1551,7 @@ describe('<Tabs />', () => {
     });
 
     it('should render a start and end scroll button icons', () => {
-      const screen = render(
+      render(
         <Tabs
           value={0}
           variant="scrollable"

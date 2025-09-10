@@ -5,6 +5,7 @@ import {
   act,
   createRenderer,
   fireEvent,
+  screen,
   programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
 import MenuList from '@mui/material/MenuList';
@@ -266,7 +267,7 @@ describe('<MenuList> integration', () => {
 
   describe('keyboard controls and tabIndex manipulation - preselected item, no item autoFocus', () => {
     it('should focus the first item if no item is focused when pressing ArrowDown', () => {
-      const screen = render(
+      render(
         <MenuList autoFocus>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem selected>Menu Item 2</MenuItem>
@@ -284,7 +285,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should focus the third item if no item is focused when pressing ArrowUp', () => {
-      const screen = render(
+      render(
         <MenuList autoFocus>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem selected tabIndex={0}>
@@ -360,7 +361,7 @@ describe('<MenuList> integration', () => {
   });
 
   it('should skip divider and disabled menu item', () => {
-    const screen = render(
+    render(
       <MenuList autoFocus>
         <MenuItem>Menu Item 1</MenuItem>
         <Divider component="li" />
@@ -392,7 +393,7 @@ describe('<MenuList> integration', () => {
   });
 
   it('should stay on a single item if it is the only focusable one', () => {
-    const screen = render(
+    render(
       <MenuList autoFocus>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem>Menu Item 2</MenuItem>
@@ -438,7 +439,7 @@ describe('<MenuList> integration', () => {
   });
 
   it('should allow focus on disabled items when disabledItemsFocusable=true', () => {
-    const screen = render(
+    render(
       <MenuList autoFocus disabledItemsFocusable>
         <MenuItem disabled>Menu Item 1</MenuItem>
         <MenuItem disabled>Menu Item 2</MenuItem>
@@ -601,7 +602,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('matches rapidly typed text', () => {
-      const screen = render(
+      render(
         <MenuList autoFocus>
           <MenuItem>War</MenuItem>
           <MenuItem>Worm</MenuItem>
@@ -619,7 +620,7 @@ describe('<MenuList> integration', () => {
       clock.withFakeTimers();
 
       it('should reset the character buffer after 500ms', () => {
-        const screen = render(
+        render(
           <MenuList autoFocus>
             <MenuItem>Worm</MenuItem>
             <MenuItem>Ordinary</MenuItem>
@@ -639,7 +640,7 @@ describe('<MenuList> integration', () => {
         this.skip();
       }
 
-      const screen = render(
+      render(
         <MenuList autoFocus>
           <MenuItem>
             W<span style={{ display: 'none' }}>Should not block type focus</span>orm

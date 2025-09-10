@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { useSlider } from './useSlider';
 
 describe('useSlider', () => {
@@ -29,7 +29,7 @@ describe('useSlider', () => {
         );
       }
 
-      const screen = render(<Test />);
+      render(<Test />);
 
       const slider = screen.getByTestId('test-slider-root');
       expect(slider).not.to.equal(null);
@@ -71,7 +71,7 @@ describe('useSlider', () => {
 
     it('forwards external props including event handlers', () => {
       const handleClick = spy();
-      const screen = render(
+      render(
         <Test
           slotProps={{
             input: {

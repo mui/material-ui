@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import Collapse from '@mui/material/Collapse';
@@ -299,7 +299,7 @@ describe('<Accordion />', () => {
 
     transitions.forEach((transition) => {
       it(transition.name, () => {
-        const screen = render(
+        render(
           <Accordion
             defaultExpanded
             slots={{
@@ -318,7 +318,7 @@ describe('<Accordion />', () => {
   });
 
   it('should allow custom role for region slot via slotProps', () => {
-    const screen = render(
+    render(
       <Accordion expanded slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
         <AccordionSummary>Summary</AccordionSummary>
         Details
