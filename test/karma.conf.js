@@ -13,6 +13,16 @@ if (process.env.CIRCLECI) {
       : process.env.CIRCLE_BRANCH;
   build = `${buildPrefix}: ${process.env.CIRCLE_BUILD_URL}`;
 }
+// eslint-disable-next-line no-console
+console.log(
+  !process.CI,
+  process.env.BROWSERSTACK_FORCE,
+  process.env.BROWSERSTACK_FORCE === 'true',
+  process.env.BROWSERSTACK_ENABLED,
+  process.env.BROWSERSTACK_ENABLED === 'true',
+  process.env.CIRCLE_BRANCH,
+  process.env.CIRCLE_BRANCH.match(/^(master|next|v\d+\.x)$/),
+);
 
 const browserStack = {
   // |commits in PRs| >> |Merged commits|.
