@@ -1,4 +1,4 @@
-import { defineProject, coverageConfigDefaults } from 'vitest/config';
+import { defineConfig, coverageConfigDefaults } from 'vitest/config';
 import * as path from 'path';
 
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
@@ -20,14 +20,12 @@ function getProjects() {
  * See https://vitest.dev/guide/workspace.html
  * > The root configuration will only influence global options such as reporters and coverage.
  */
-
-export default defineProject({
+export default defineConfig({
   test: {
     projects: getProjects(),
     sequence: {
       hooks: 'list',
     },
-    reporters: ['default', ['junit', { outputFile: 'test-results/junit.xml' }]],
     coverage: {
       provider: 'v8',
       reporter: process.env.CI ? ['lcovonly'] : ['text'],

@@ -1,5 +1,5 @@
 /// <reference types="@vitest/browser/providers/playwright" />
-import { configDefaults, defineConfig } from 'vitest/config';
+import { configDefaults, defineProject } from 'vitest/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -59,7 +59,7 @@ export default async function create(
     .filter((line) => line.startsWith('#'))
     .map((line) => (line.startsWith('/') ? line.slice(1) : line));
 
-  return defineConfig({
+  return defineProject({
     plugins: [react(), forceJsxForJsFiles()],
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
