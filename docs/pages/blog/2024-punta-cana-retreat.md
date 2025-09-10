@@ -9,7 +9,9 @@ manualCard: true
 
 ## What is MUI's Together Week?
 
-At MUI, a strong community is non-negotiable, just like flexibility and remote work. Our commitment to these values means our MUIers are spread across the globe, and we know that building connections can be a challenge in a fully distributed, async environment.
+At MUI, a strong community is non-negotiable, just like flexibility and remote work. 
+Our commitment to these values means our MUIers are spread across the globe, and we know that building connections can be a challenge in a fully distributed, async environment.
+
 [Multiple studies have shown](https://www.researchgate.net/publication/387604757_Providing_support_for_employee_autonomy_relatedness_and_competence_in_a_remote_work_environment) that working remotely can lower the satisfaction of basic psychological needs like autonomy, relatedness, and competence.
 But we don't see this as an unsolvable problem: We choose to use this data to help us intentionally cultivate a stronger company culture. To that end, we hold Together Weeks every eight months.
 
@@ -21,6 +23,8 @@ Our aim for these events is to always:
 - 💡 Spark new ideas
 
 This might sound like a lot to expect from a five-day trip, but it's during this time that we hit pause on the daily grind and get to focus on these goals, all while sharing a whole lot of good vibes.
+
+<img alt="The MUI team poses together in matching dark blue t-shirts on a white sand beach with the ocean in the background." src="/static/blog/2024-punta-cana-retreat/dr-mui-team.jpg" width="2405" height="1603" loading="lazy"  />
 
 ## Destination
 
