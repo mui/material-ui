@@ -616,6 +616,8 @@ workflows:
           <<: *default-context
       - test_browser:
           <<: *default-context
+          # only enable on pipeline, the karma.conf.js has logic to disable browserstack on PRs
+          browserstack-force: true
       - test_regressions:
           <<: *default-context
       - test_e2e:

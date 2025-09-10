@@ -20,8 +20,8 @@ const browserStack = {
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
   enabled:
-    process.env.BROWSERSTACK_FORCE === 'true' ||
-    (process.env.CI && process.env.CIRCLE_BRANCH.match(/^(master|next|v.+\.x)$/)),
+    process.env.BROWSERSTACK_FORCE === 'true' &&
+    (process.env.CI ? process.env.CIRCLE_BRANCH.match(/^(master|next|v\d+\.x)$/) : true),
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
