@@ -999,6 +999,14 @@ workflows:
           name: test_e2e-react@next
 
   typescript-next:
+    when:
+      equal: [typescript-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_types_next:
+          <<: *default-context
+          typescript-version: next
+
+  typescript-next-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -1011,6 +1019,8 @@ workflows:
     jobs:
       - test_types_next:
           <<: *default-context
+          typescript-version: next
+
   benchmark:
     when:
       equal: [benchmark, << pipeline.parameters.workflow >>]
