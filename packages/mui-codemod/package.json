@@ -13,8 +13,7 @@
   ],
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.?(c|m)[jt]s?(x)'",
-    "build:copy-files": "code-infra copy-files codemod.js",
-    "build": "code-infra build --bundle cjs --buildTypes false && pnpm build:copy-files",
+    "build": "code-infra build --bundle cjs --buildTypes false --copy codemod.js",
     "release": "pnpm build && pnpm publish"
   },
   "repository": {
