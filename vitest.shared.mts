@@ -70,6 +70,11 @@ export default async function create(
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
       setupFiles: [
+        // See https://github.com/vitest-dev/vitest/issues/8478 for why we create our own JSDOM env.
+        // We need it to be reused between suites when run with --no-isolate --no-file-parallelism
+        ...(jsdom
+          ? [path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitestJsdom.ts')]
+          : []),
         path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
         ...(jsdom || testEnv === 'browser'
           ? [
@@ -80,15 +85,7 @@ export default async function create(
             ]
           : []),
       ],
-      environment: jsdom ? 'jsdom' : 'node',
-      environmentOptions: jsdom
-        ? {
-            jsdom: {
-              pretendToBeVisual: true,
-              url: 'http://localhost',
-            },
-          }
-        : {},
+      environment: 'node',
 
       fakeTimers: {
         // We use performance.now in the codebase

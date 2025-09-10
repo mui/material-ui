@@ -57,6 +57,7 @@
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
+    "@types/jsdom": "^21.1.7",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",

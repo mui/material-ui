@@ -1006,6 +1006,9 @@ importers:
       '@types/format-util':
         specifier: ^1.0.4
         version: 1.0.4
+      '@types/jsdom':
+        specifier: ^21.1.7
+        version: 21.1.7
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -5612,6 +5615,9 @@ packages:
 
   '@types/jscodeshift@0.12.0':
     resolution: {integrity: sha512-Jr2fQbEoDmjwEa92TreR/mX2t9iAaY/l5P/GKezvK4BodXahex60PDLXaQR0vAgP0KfCzc1CivHusQB9NhzX8w==}
+
+  '@types/jsdom@21.1.7':
+    resolution: {integrity: sha512-yOriVnggzrnQ3a9OKOCxaVuSug3w3/SbOj5i7VwXWZEyUNl3bLF9V3MfxGbZKuwqJOQyRfqXyROBB1CoZLFWzA==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -17922,6 +17928,12 @@ snapshots:
       ast-types: 0.14.2
       recast: 0.20.5
 
+  '@types/jsdom@21.1.7':
+    dependencies:
+      '@types/node': 20.19.11
+      '@types/tough-cookie': 4.0.5
+      parse5: 7.2.1
+
   '@types/json-schema@7.0.15': {}
 
   '@types/json2mq@0.2.2': {}
@@ -18022,8 +18034,7 @@ snapshots:
 
   '@types/stylis@4.2.7': {}
 
-  '@types/tough-cookie@4.0.5':
-    optional: true
+  '@types/tough-cookie@4.0.5': {}
 
   '@types/triple-beam@1.3.5': {}
 

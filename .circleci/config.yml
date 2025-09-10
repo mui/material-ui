@@ -118,9 +118,7 @@ jobs:
       - install_js
       - run:
           name: Tests fake browser
-          # https://github.com/vitest-dev/vitest/issues/8478
-          # command: pnpm test:node --no-isolate --no-file-parallelism --coverage
-          command: pnpm test:node --coverage
+          command: pnpm test:node --no-isolate --no-file-parallelism --coverage
       - run:
           name: Check coverage generated
           command: |
