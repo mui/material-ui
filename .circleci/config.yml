@@ -35,9 +35,13 @@ default-job: &default-job
       description: The base url for running end-to-end test
       type: string
       default: << pipeline.parameters.e2e-base-url >>
+    browserstack-enabled:
+      type: boolean
+      default: false
   environment:
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
+    BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
     REACT_VERSION: << parameters.react-version >>
     TYPESCRIPT_VERSION: << parameters.typescript-version >>
     TEST_GATE: << parameters.test-gate >>
@@ -265,10 +269,6 @@ jobs:
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
-    parameters:
-      browserstack-enabled:
-        type: boolean
-        default: false
     docker:
       - image: mcr.microsoft.com/playwright:v1.55.0-noble
     steps:
@@ -278,8 +278,6 @@ jobs:
       - run:
           name: Tests real browsers
           command: pnpm test:karma
-          environment:
-            BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
       - run:
           name: Check coverage generated
           command: |
