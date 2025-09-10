@@ -42,8 +42,12 @@ Alright, maybe we didn't really trade in our computers—good luck getting engin
 [Zel Punta Cana](https://www.melia.com/en/hotels/dominican-republic/punta-cana/zel-punta-cana) was our home for the week this time around, and it was the perfect combination of luxurious and chill.
 With private pools, beach access via golf carts, and a blend of global cuisines, it was the ideal spot for our team to recharge and relax.
 
+<img alt="TK." src="/static/blog/2024-punta-cana-retreat/dr-zel.jpg" width="2405" height="1603" loading="lazy"  />
+
 We were intentional with our activities, baking in plenty of time for rest, organic connection, and just hanging out.
 This led to some incredibly spirited (and very amateur) football matches on the beach.
+
+<img alt="TK." src="/static/blog/2024-punta-cana-retreat/dr-football.jpg" width="2405" height="1603" loading="lazy"  />
 
 ## Agenda
 
@@ -55,9 +59,15 @@ Ah yes, that's the intentional buffer that allows us to be human.
 It gives us room to start a little late or run a little over without feeling rushed, and we embrace it.
 This time it gave some of us enough time to attend cocoa bean workshops at the resort 🤓 while others opted for some well-deserved relaxation by the pool and beach.
 
+<img alt="TK." src="/static/blog/2024-punta-cana-retreat/dr-cacao.jpg" width="2405" height="1603" loading="lazy"  />
+
 ## Group pics
 
-**subtly adds a bunch of group photos of the team's happy faces living it up in the DR**
+Check out all these photos of the team's happy faces living it up in the DR!
+
+<img alt="TK." src="/static/blog/2024-punta-cana-retreat/dr-dinner-1.jpg" width="2405" height="1603" loading="lazy"  />
+<img alt="TK." src="/static/blog/2024-punta-cana-retreat/dr-dinner-2.jpg" width="2405" height="1603" loading="lazy"  />
+<img alt="TK." src="/static/blog/2024-punta-cana-retreat/dr-hangout.jpg" width="2405" height="1603" loading="lazy"  />
 
 ## Outcomes
 
