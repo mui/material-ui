@@ -39,6 +39,8 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@mui/material-v5": "npm:@mui/material@5.17.1",
     "@types/chai": "^4.3.20",
     "@types/jscodeshift": "0.12.0",
     "chai": "^6.0.1"
