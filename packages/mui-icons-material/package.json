@@ -59,7 +59,7 @@
     "rimraf": "^6.0.1",
     "shx": "^0.4.0",
     "svgo": "^4.0.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "peerDependencies": {
     "@mui/material": "workspace:^",
