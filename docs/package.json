@@ -128,12 +128,12 @@
     "@types/react-transition-group": "^4.4.12",
     "@types/react-window": "^1.8.8",
     "@types/stylis": "^4.2.7",
-    "chai": "^6.0.1",
+    "chai": "^4.5.0",
     "cross-fetch": "^4.1.0",
     "gm": "^1.25.1",
     "marked": "^16.2.0",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.12",
-    "yargs": "^18.0.0"
+    "yargs": "^17.7.2"
   }
 }

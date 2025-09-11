@@ -22,8 +22,7 @@ const {
 const {
   createTypeScriptProjectBuilder,
 } = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
-const { default: yargs } = require('yargs');
-const { hideBin } = require('yargs/helpers');
+const yargs = require('yargs');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui/internal-docs-utils');
 const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
@@ -214,7 +213,7 @@ async function main(argv) {
   console.log('\nWatching for file changes...');
 }
 
-yargs()
+yargs
   .command({
     command: '$0',
     description: 'transpile TypeScript demos',
@@ -241,4 +240,4 @@ yargs()
   .help()
   .strict(true)
   .version(false)
-  .parse(hideBin(process.argv));
+  .parse();

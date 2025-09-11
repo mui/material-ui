@@ -3,7 +3,6 @@ import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
 import * as fs from 'fs/promises';
-import { hideBin } from 'yargs/helpers';
 import { cjsCopy } from './copyFilesUtils.mjs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
@@ -146,7 +145,7 @@ async function run(argv) {
   }
 }
 
-yargs()
+yargs(process.argv.slice(2))
   .command({
     command: '$0 <bundle>',
     description: 'build package',
@@ -187,4 +186,4 @@ yargs()
   .help()
   .strict(true)
   .version(false)
-  .parse(hideBin(process.argv));
+  .parse();

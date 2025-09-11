@@ -4,8 +4,7 @@ import * as fs from 'node:fs/promises';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import * as yargs from 'yargs';
 import { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';
 import {
   fixBabelGeneratorIssues,
@@ -373,7 +372,7 @@ async function run(argv: HandlerArgv) {
   }
 }
 
-yargs()
+yargs
   .command<HandlerArgv>({
     command: '$0',
     describe: 'Generates Component.propTypes from TypeScript declarations',
@@ -389,4 +388,4 @@ yargs()
   .help()
   .strict(true)
   .version(false)
-  .parse(hideBin(process.argv));
+  .parse();

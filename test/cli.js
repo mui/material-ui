@@ -2,8 +2,7 @@ const childProcess = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const glob = require('fast-glob');
-const { default: yargs } = require('yargs');
-const { hideBin } = require('yargs/helpers');
+const yargs = require('yargs');
 
 async function run(argv) {
   const workspaceRoot = path.resolve(__dirname, '../');
@@ -76,7 +75,7 @@ async function run(argv) {
   });
 }
 
-yargs()
+yargs
   .command({
     command: '$0 <testFilePattern>',
     description: 'Test cli for developing',
@@ -123,4 +122,4 @@ yargs()
   .help()
   .strict(true)
   .version(false)
-  .parse(hideBin(process.argv));
+  .parse();

@@ -19,7 +19,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.11",
     "@types/sinon": "^17.0.4",
-    "chai": "^6.0.1",
+    "chai": "^4.5.0",
     "sinon": "^21.0.0",
     "typescript": "^5.9.2"
   }
