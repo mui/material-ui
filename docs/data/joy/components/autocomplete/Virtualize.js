@@ -7,29 +7,9 @@ import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import ListSubheader from '@mui/joy/ListSubheader';
+import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 
 const LISTBOX_PADDING = 6; // px
-
-function applyPropsToNode(outernode, props) {
-  if (!outernode || typeof props !== 'object') {
-    return;
-  }
-
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'className') {
-      outernode.className = value;
-    } else if (key === 'style' && typeof value === 'object') {
-      Object.assign(outernode.style, value);
-    } else if (key.startsWith('aria-') || key === 'role' || key === 'id') {
-      outernode.setAttribute(key, String(value));
-    } else if (key.startsWith('on') && typeof value === 'function') {
-      const eventName = key.toLowerCase();
-      outernode[eventName] = value;
-    } else {
-      outernode.setAttribute(key, String(value));
-    }
-  });
-}
 
 function renderRow(props) {
   const { data, index, style } = props;
@@ -71,26 +51,30 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 
   return (
     <Popper ref={ref} anchorEl={anchorEl} open={open} modifiers={modifiers}>
-      <List
-        rowCount={itemCount}
-        rowHeight={itemSize}
-        rowComponent={renderRow}
-        rowProps={{ data: itemData }}
-        style={{
-          height: itemSize * 8,
-          width: '100%',
-          margin: 0,
+      <AutocompleteListbox
+        {...other}
+        component="div"
+        sx={{
+          '& ul': {
+            padding: 0,
+            margin: 0,
+            flexShrink: 0,
+          },
         }}
-        listRef={(outerNode) => {
-          const domElement = outerNode?.element;
-
-          if (domElement instanceof HTMLElement) {
-            applyPropsToNode(domElement, other);
-          }
-        }}
-        overscanCount={5}
-        tagName="ul"
-      />
+      >
+        <List
+          rowCount={itemCount}
+          rowHeight={itemSize}
+          rowComponent={renderRow}
+          rowProps={{ data: itemData }}
+          style={{
+            height: itemSize * 5,
+            width: '100%',
+          }}
+          overscanCount={5}
+          tagName="ul"
+        />
+      </AutocompleteListbox>
     </Popper>
   );
 });
