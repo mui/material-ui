@@ -280,7 +280,7 @@ jobs:
           command: pnpm test:karma
           environment:
             # temporary, remove before merging
-            BROWSERSTACK_FORCE: true
+            BROWSERSTACK_FORCE: 'true'
       - run:
           name: Check coverage generated
           command: |
