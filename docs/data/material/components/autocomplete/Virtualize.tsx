@@ -113,8 +113,6 @@ const ListboxComponent = React.forwardRef<
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
-  console.log({ itemData, other });
-
   return (
     <div ref={ref}>
       <List
@@ -132,7 +130,7 @@ const ListboxComponent = React.forwardRef<
           const domElement = outerNode?.element;
 
           if (domElement instanceof HTMLElement) {
-            applyPropsToNode(domElement, props);
+            applyPropsToNode(domElement, other);
           }
         }}
         overscanCount={5}
@@ -173,6 +171,7 @@ export default function Virtualize() {
     <Autocomplete
       sx={{ width: 300 }}
       disableListWrap
+      open
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
