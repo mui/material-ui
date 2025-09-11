@@ -10,7 +10,30 @@ import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
-const OuterElementContext = React.createContext({});
+type DOMProps = {
+  [key: string]: any; // Accept arbitrary props
+};
+
+function applyPropsToNode(outernode: HTMLElement | null, props: DOMProps): void {
+  if (!outernode || typeof props !== 'object') {
+    return;
+  }
+
+  Object.entries(props).forEach(([key, value]) => {
+    if (key === 'className') {
+      outernode.className = value;
+    } else if (key === 'style' && typeof value === 'object') {
+      Object.assign(outernode.style, value);
+    } else if (key.startsWith('aria-') || key === 'role' || key === 'id') {
+      outernode.setAttribute(key, String(value));
+    } else if (key.startsWith('on') && typeof value === 'function') {
+      const eventName = key.toLowerCase() as keyof HTMLElementEventMap;
+      (outernode as any)[eventName] = value;
+    } else {
+      outernode.setAttribute(key, String(value));
+    }
+  });
+}
 
 type ItemData = Array<
   | {
@@ -31,7 +54,7 @@ function RowComponent({
   const dataSet = itemData[index];
   const inlineStyle = {
     ...style,
-    top: (style.top as number) + LISTBOX_PADDING,
+    top: ((style.top as number) ?? 0) + LISTBOX_PADDING,
   };
 
   if ('group' in dataSet) {
@@ -90,24 +113,31 @@ const ListboxComponent = React.forwardRef<
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
-  console.log({ itemData });
+  console.log({ itemData, other });
 
   return (
     <div ref={ref}>
-      <OuterElementContext.Provider value={other}>
-        <List
-          rowCount={itemCount}
-          rowHeight={(index) => getChildSize(itemData[index])}
-          rowComponent={RowComponent}
-          rowProps={{ itemData }}
-          style={{
-            height: getHeight() + 2 * LISTBOX_PADDING,
-            width: '100%',
-          }}
-          overscanCount={5}
-          tagName="ul"
-        />
-      </OuterElementContext.Provider>
+      <List
+        key={itemCount}
+        rowCount={itemCount}
+        rowHeight={(index) => getChildSize(itemData[index])}
+        rowComponent={RowComponent}
+        rowProps={{ itemData }}
+        style={{
+          height: getHeight() + 2 * LISTBOX_PADDING,
+          width: '100%',
+          margin: 0,
+        }}
+        listRef={(outerNode) => {
+          const domElement = outerNode?.element;
+
+          if (domElement instanceof HTMLElement) {
+            applyPropsToNode(domElement, props);
+          }
+        }}
+        overscanCount={5}
+        tagName="ul"
+      />
     </div>
   );
 });
