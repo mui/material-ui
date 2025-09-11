@@ -1,15 +1,35 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { FixedSizeList } from 'react-window';
+import { List } from 'react-window';
 import { Popper } from '@mui/base/Popper';
 import Autocomplete from '@mui/joy/Autocomplete';
-import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import ListSubheader from '@mui/joy/ListSubheader';
 
 const LISTBOX_PADDING = 6; // px
+
+function applyPropsToNode(outernode, props) {
+  if (!outernode || typeof props !== 'object') {
+    return;
+  }
+
+  Object.entries(props).forEach(([key, value]) => {
+    if (key === 'className') {
+      outernode.className = value;
+    } else if (key === 'style' && typeof value === 'object') {
+      Object.assign(outernode.style, value);
+    } else if (key.startsWith('aria-') || key === 'role' || key === 'id') {
+      outernode.setAttribute(key, String(value));
+    } else if (key.startsWith('on') && typeof value === 'function') {
+      const eventName = key.toLowerCase();
+      outernode[eventName] = value;
+    } else {
+      outernode.setAttribute(key, String(value));
+    }
+  });
+}
 
 function renderRow(props) {
   const { data, index, style } = props;
@@ -34,29 +54,7 @@ function renderRow(props) {
   );
 }
 
-const OuterElementContext = React.createContext({});
-
-const OuterElementType = React.forwardRef((props, ref) => {
-  const outerProps = React.useContext(OuterElementContext);
-  return (
-    <AutocompleteListbox
-      {...props}
-      {...outerProps}
-      component="div"
-      ref={ref}
-      sx={{
-        '& ul': {
-          padding: 0,
-          margin: 0,
-          flexShrink: 0,
-        },
-      }}
-    />
-  );
-});
-
 // Adapter for react-window
-
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData = [];
@@ -73,20 +71,26 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 
   return (
     <Popper ref={ref} anchorEl={anchorEl} open={open} modifiers={modifiers}>
-      <OuterElementContext.Provider value={other}>
-        <FixedSizeList
-          itemData={itemData}
-          height={itemSize * 8}
-          width="100%"
-          outerElementType={OuterElementType}
-          innerElementType="ul"
-          itemSize={itemSize}
-          overscanCount={5}
-          itemCount={itemCount}
-        >
-          {renderRow}
-        </FixedSizeList>
-      </OuterElementContext.Provider>
+      <List
+        rowCount={itemCount}
+        rowHeight={itemSize}
+        rowComponent={renderRow}
+        rowProps={{ data: itemData }}
+        style={{
+          height: itemSize * 8,
+          width: '100%',
+          margin: 0,
+        }}
+        listRef={(outerNode) => {
+          const domElement = outerNode?.element;
+
+          if (domElement instanceof HTMLElement) {
+            applyPropsToNode(domElement, other);
+          }
+        }}
+        overscanCount={5}
+        tagName="ul"
+      />
     </Popper>
   );
 });
