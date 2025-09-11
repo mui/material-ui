@@ -101,7 +101,8 @@
     "@netlify/functions": "^4.2.5",
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
-    "execa": "^9.6.0"
+    "execa": "^9.6.0",
+    "karma-spec-reporter": "^0.0.36"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
@@ -112,7 +113,7 @@
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-bundle-size-checker": "^1.0.9-canary.40",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.10",
-    "@mui/internal-code-infra": "^0.0.3-canary.7",
+    "@mui/internal-code-infra": "^0.0.3-canary.8",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
@@ -126,6 +127,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/lodash": "^4.17.20",
+    "@types/lodash.kebabcase": "^4.1.9",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.11",
     "@types/react": "^19.1.11",
@@ -161,6 +163,7 @@
     "karma-webpack": "^5.0.0",
     "lerna": "^8.2.3",
     "lodash": "^4.17.21",
+    "lodash.kebabcase": "^4.1.1",
     "markdownlint-cli2": "^0.18.1",
     "mocha": "^11.7.1",
     "nx": "^20.8.2",
@@ -171,6 +174,7 @@
     "pretty-quick": "^4.2.2",
     "process": "^0.11.10",
     "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
     "stylelint": "^16.23.1",

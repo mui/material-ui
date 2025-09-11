@@ -25,8 +25,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:copy-files": "code-infra copy-files",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",

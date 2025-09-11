@@ -13,8 +13,7 @@
   ],
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.?(c|m)[jt]s?(x)'",
-    "build:copy-files": "code-infra copy-files codemod.js",
-    "build": "code-infra build --bundle cjs --buildTypes false && pnpm build:copy-files",
+    "build": "code-infra build --bundle cjs --buildTypes false --copy codemod.js",
     "release": "pnpm build && pnpm publish"
   },
   "repository": {
@@ -39,6 +38,8 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@mui/material-v5": "npm:@mui/material@5.17.1",
     "@types/chai": "^4.3.20",
     "@types/jscodeshift": "0.12.0",
     "chai": "^6.0.1"

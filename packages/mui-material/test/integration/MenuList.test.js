@@ -529,7 +529,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should not get focusVisible class on click', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }

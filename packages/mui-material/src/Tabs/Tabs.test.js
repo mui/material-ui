@@ -10,6 +10,7 @@ import {
   strictModeDoubleLoggingSuppressed,
   waitFor,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
@@ -47,7 +48,7 @@ function hasRightScrollButton(container) {
 
 describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+  const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
   const { clock, render, renderToString } = createRenderer();
 
@@ -382,15 +383,10 @@ describe('<Tabs />', () => {
         ]);
       });
 
-      describe('hidden tab / tabs', () => {
+      describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('hidden tab / tabs', () => {
         let nodeEnv;
 
         before(function test() {
-          if (!/jsdom/.test(window.navigator.userAgent)) {
-            this.skip();
-            return;
-          }
-
           nodeEnv = process.env.NODE_ENV;
           // We can't use a regular assignment, because it causes a syntax error in Karma
           Object.defineProperty(process.env, 'NODE_ENV', {
@@ -948,7 +944,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: previousItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -978,7 +976,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: previousItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1008,7 +1008,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1038,7 +1040,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1067,7 +1071,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
@@ -1097,7 +1103,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: nextItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1127,7 +1135,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: nextItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1157,7 +1167,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1187,7 +1199,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1216,7 +1230,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
@@ -1243,7 +1259,9 @@ describe('<Tabs />', () => {
             lastTab.focus();
           });
 
-          fireEvent.keyDown(lastTab, { key: 'Home' });
+          await act(async () => {
+            fireEvent.keyDown(lastTab, { key: 'Home' });
+          });
 
           expect(firstTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(0);
@@ -1266,7 +1284,9 @@ describe('<Tabs />', () => {
             lastTab.focus();
           });
 
-          fireEvent.keyDown(lastTab, { key: 'Home' });
+          await act(async () => {
+            fireEvent.keyDown(lastTab, { key: 'Home' });
+          });
 
           expect(firstTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(1);
@@ -1289,7 +1309,9 @@ describe('<Tabs />', () => {
             lastTab.focus();
           });
 
-          fireEvent.keyDown(lastTab, { key: 'Home' });
+          await act(async () => {
+            fireEvent.keyDown(lastTab, { key: 'Home' });
+          });
 
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
@@ -1313,7 +1335,9 @@ describe('<Tabs />', () => {
             firstTab.focus();
           });
 
-          fireEvent.keyDown(firstTab, { key: 'End' });
+          await act(async () => {
+            fireEvent.keyDown(firstTab, { key: 'End' });
+          });
 
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(0);
@@ -1336,7 +1360,9 @@ describe('<Tabs />', () => {
             firstTab.focus();
           });
 
-          fireEvent.keyDown(firstTab, { key: 'End' });
+          await act(async () => {
+            fireEvent.keyDown(firstTab, { key: 'End' });
+          });
 
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(1);
@@ -1359,7 +1385,9 @@ describe('<Tabs />', () => {
             firstTab.focus();
           });
 
-          fireEvent.keyDown(firstTab, { key: 'End' });
+          await act(async () => {
+            fireEvent.keyDown(firstTab, { key: 'End' });
+          });
 
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
@@ -1460,20 +1488,20 @@ describe('<Tabs />', () => {
           </React.Fragment>
         );
       }
-      const { container, getByTestId, getAllByRole } = render(<DynamicTabs />);
+      const { container, getByTestId, getAllByRole, user } = render(<DynamicTabs />);
       const addButton = getByTestId('add');
       const deleteButton = getByTestId('delete');
 
-      fireEvent.click(addButton);
+      await user.click(addButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
 
       const tabs = getAllByRole('tab');
       const lastTab = tabs[tabs.length - 1];
-      fireEvent.click(lastTab);
+      await user.click(lastTab);
       await pause(400);
 
-      fireEvent.click(deleteButton);
+      await user.click(deleteButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
     });
