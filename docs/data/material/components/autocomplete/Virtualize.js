@@ -11,27 +11,6 @@ import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
-function applyPropsToNode(outernode, props) {
-  if (!outernode || typeof props !== 'object') {
-    return;
-  }
-
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'className') {
-      outernode.className = value;
-    } else if (key === 'style' && typeof value === 'object') {
-      Object.assign(outernode.style, value);
-    } else if (key.startsWith('aria-') || key === 'role' || key === 'id') {
-      outernode.setAttribute(key, String(value));
-    } else if (key.startsWith('on') && typeof value === 'function') {
-      const eventName = key.toLowerCase();
-      outernode[eventName] = value;
-    } else {
-      outernode.setAttribute(key, String(value));
-    }
-  });
-}
-
 function RowComponent({ index, itemData, style }) {
   const dataSet = itemData[index];
   const inlineStyle = {
@@ -106,7 +85,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   };
 
   return (
-    <div ref={ref}>
+    <div ref={ref} {...other}>
       <List
         key={itemCount}
         rowCount={itemCount}
@@ -117,13 +96,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
           height: getHeight() + 2 * LISTBOX_PADDING,
           width: '100%',
           margin: 0,
-        }}
-        listRef={(outerNode) => {
-          const domElement = outerNode?.element;
-
-          if (domElement instanceof HTMLElement) {
-            applyPropsToNode(domElement, other);
-          }
         }}
         overscanCount={5}
         tagName="ul"

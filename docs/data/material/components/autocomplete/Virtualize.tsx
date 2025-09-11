@@ -10,31 +10,6 @@ import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
-type DOMProps = {
-  [key: string]: any; // Accept arbitrary props
-};
-
-function applyPropsToNode(outernode: HTMLElement | null, props: DOMProps): void {
-  if (!outernode || typeof props !== 'object') {
-    return;
-  }
-
-  Object.entries(props).forEach(([key, value]) => {
-    if (key === 'className') {
-      outernode.className = value;
-    } else if (key === 'style' && typeof value === 'object') {
-      Object.assign(outernode.style, value);
-    } else if (key.startsWith('aria-') || key === 'role' || key === 'id') {
-      outernode.setAttribute(key, String(value));
-    } else if (key.startsWith('on') && typeof value === 'function') {
-      const eventName = key.toLowerCase() as keyof HTMLElementEventMap;
-      (outernode as any)[eventName] = value;
-    } else {
-      outernode.setAttribute(key, String(value));
-    }
-  });
-}
-
 type ItemData = Array<
   | {
       key: number;
@@ -114,7 +89,7 @@ const ListboxComponent = React.forwardRef<
   };
 
   return (
-    <div ref={ref}>
+    <div ref={ref} {...other}>
       <List
         key={itemCount}
         rowCount={itemCount}
@@ -125,13 +100,6 @@ const ListboxComponent = React.forwardRef<
           height: getHeight() + 2 * LISTBOX_PADDING,
           width: '100%',
           margin: 0,
-        }}
-        listRef={(outerNode) => {
-          const domElement = outerNode?.element;
-
-          if (domElement instanceof HTMLElement) {
-            applyPropsToNode(domElement, other);
-          }
         }}
         overscanCount={5}
         tagName="ul"
@@ -171,7 +139,6 @@ export default function Virtualize() {
     <Autocomplete
       sx={{ width: 300 }}
       disableListWrap
-      open
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
