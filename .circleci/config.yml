@@ -278,9 +278,6 @@ jobs:
       - run:
           name: Tests real browsers
           command: pnpm test:karma
-          environment:
-            # temporary, remove before merging
-            BROWSERSTACK_FORCE: 'true'
       - run:
           name: Check coverage generated
           command: |
