@@ -28,7 +28,6 @@ export default function VirtualizedList() {
         style={{
           height: 400,
           width: 360,
-          paddingTop: '0.5px',
         }}
         rowProps={{}}
         overscanCount={5}
