@@ -12,17 +12,56 @@ const LISTBOX_PADDING = 8; // px
 
 const OuterElementContext = React.createContext({});
 
+type ItemData = Array<
+  | {
+      key: number;
+      group: string;
+      childern: React.ReactNode;
+    }
+  | [React.ReactElement, string, number]
+>;
+
+function RowComponent({
+  index,
+  itemData,
+  style,
+}: RowComponentProps & {
+  itemData: ItemData;
+}) {
+  const dataSet = itemData[index];
+  const inlineStyle = {
+    ...style,
+    top: (style.top as number) + LISTBOX_PADDING,
+  };
+
+  if ('group' in dataSet) {
+    return (
+      <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
+        {dataSet.group}
+      </ListSubheader>
+    );
+  }
+
+  const { key, ...optionProps } = dataSet[0];
+
+  return (
+    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
+      {`#${dataSet[2] + 1} - ${dataSet[1]}`}
+    </Typography>
+  );
+}
+
 // Adapter for react-window v2
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLElement>
 >(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData: React.ReactElement<unknown>[] = React.useMemo(() => [], []);
-  (children as React.ReactElement<unknown>[]).forEach(
+  const itemData: ItemData = React.useMemo(() => [], []);
+  (children as ItemData).forEach(
     (
-      item: React.ReactElement<unknown> & {
-        children?: React.ReactElement<unknown>[];
+      item: ItemData[number] & {
+        children?: ItemData[number][];
       },
     ) => {
       itemData.push(item);
@@ -37,7 +76,7 @@ const ListboxComponent = React.forwardRef<
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child: React.ReactElement<unknown>) => {
+  const getChildSize = (child: ItemData[number]) => {
     if (child.hasOwnProperty('group')) {
       return 48;
     }
@@ -51,38 +90,7 @@ const ListboxComponent = React.forwardRef<
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
-  const RowComponent = React.useCallback(
-    ({ index, style }: RowComponentProps) => {
-      const dataSet = itemData[index];
-      const inlineStyle = {
-        ...style,
-        top: (style.top as number) + LISTBOX_PADDING,
-      };
-
-      if (dataSet.hasOwnProperty('group')) {
-        return (
-          <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
-            {dataSet.group}
-          </ListSubheader>
-        );
-      }
-
-      const { key, ...optionProps } = dataSet[0];
-
-      return (
-        <Typography
-          key={key}
-          component="li"
-          {...optionProps}
-          noWrap
-          style={inlineStyle}
-        >
-          {`#${dataSet[2] + 1} - ${dataSet[1]}`}
-        </Typography>
-      );
-    },
-    [itemData],
-  );
+  console.log({ itemData });
 
   return (
     <div ref={ref}>
@@ -91,7 +99,7 @@ const ListboxComponent = React.forwardRef<
           rowCount={itemCount}
           rowHeight={(index) => getChildSize(itemData[index])}
           rowComponent={RowComponent}
-          rowProps={{}}
+          rowProps={{ itemData }}
           style={{
             height: getHeight() + 2 * LISTBOX_PADDING,
             width: '100%',
