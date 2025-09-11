@@ -335,7 +335,10 @@ describe('[Material UI] ThemeProviderWithVars', () => {
   });
 
   it("should use numeric values in system's spacing", function test() {
-    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
+    if (
+      window.navigator.userAgent.includes('jsdom') ||
+      !/WebKit/.test(window.navigator.userAgent)
+    ) {
       this.skip();
     }
 
@@ -468,13 +471,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const view = render(<App />);
 
-    expect(container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`2 light`);
   });
 
   it('palette mode should change if not using CSS variables', () => {
@@ -503,13 +506,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const view = render(<App />);
 
-    expect(container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
+    expect(view.container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(
+    expect(view.container).to.have.text(
       `3 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
     );
   });
@@ -540,12 +543,12 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const view = render(<App />);
 
-    expect(container).to.have.text(`2 light`);
+    expect(view.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(`3 dark`);
+    expect(view.container).to.have.text(`3 dark`);
   });
 });

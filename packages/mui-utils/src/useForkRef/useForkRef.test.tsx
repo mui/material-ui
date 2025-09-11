@@ -48,9 +48,8 @@ describe('useForkRef', () => {
 
     expect(() => {
       render(<Component />);
+      expect(screen.getByTestId('hasRef')).to.have.text('true');
     }).not.toErrorDev();
-
-    expect(screen.getByTestId('hasRef')).to.have.text('true');
   });
 
   it('does nothing if none of the forked branches requires a ref', () => {
