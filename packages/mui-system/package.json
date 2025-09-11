@@ -50,7 +50,7 @@
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.1.11",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
     "react": "^19.1.1",

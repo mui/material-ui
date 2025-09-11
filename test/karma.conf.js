@@ -130,7 +130,7 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
-            exclude: /node_modules/,
+            exclude: /node_modules\/(?!assertion-error)/,
             options: {
               envName: 'stable',
             },
