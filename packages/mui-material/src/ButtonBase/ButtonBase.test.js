@@ -11,6 +11,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
@@ -247,14 +248,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('ripple', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('ripple', () => {
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
         const { getByRole } = render(
@@ -611,14 +605,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('focusRipple', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('focusRipple', () => {
     it('should pulsate the ripple when focusVisible', async () => {
       const { getByRole } = render(
         <ButtonBase
@@ -745,7 +732,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('should reset the focused state', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -818,7 +805,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('has a focus-visible polyfill', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -845,7 +832,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('removes focus-visible if focus is re-targetted', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -895,7 +882,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -923,14 +910,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('event: keydown', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('event: keydown', () => {
     it('ripples on repeated keydowns', async () => {
       const { container, getByText } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -1177,14 +1157,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('prop: action', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: action', () => {
     it('should be able to focus visible the button', async () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions | null>}
@@ -1216,7 +1189,7 @@ describe('<ButtonBase />', () => {
 
     it('warns on invalid `component` prop: ref forward', function test() {
       // Only run the test on node. On the browser the thrown error is not caught
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

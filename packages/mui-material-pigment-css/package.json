@@ -25,16 +25,14 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
-    "build:copy-files": "code-infra copy-files src/styles.css src/styles.css:esm/styles.css",
+    "build": "code-infra build --copy \"src/styles.css\" --copy \"src/styles.css:esm\"",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@mui/system": "workspace:*"
   },
   "devDependencies": {
