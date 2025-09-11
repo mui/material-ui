@@ -656,8 +656,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       flexsearch:
-        specifier: ^0.8.205
-        version: 0.8.205
+        specifier: ^0.8.212
+        version: 0.8.212
       json2mq:
         specifier: ^0.2.0
         version: 0.2.0
@@ -8370,8 +8370,8 @@ packages:
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
 
-  flexsearch@0.8.205:
-    resolution: {integrity: sha512-REFjMqy86DKkCTJ4gIE42c9MVm9t1vUWfEub/8taixYuhvyu4jd4XmFALk5VuKW4GH4VLav8A4BJboTsslHF1w==}
+  flexsearch@0.8.212:
+    resolution: {integrity: sha512-wSyJr1GUWoOOIISRu+X2IXiOcVfg9qqBRyCPRUdLMIGJqPzMo+jMRlvE83t14v1j0dRMEaBbER/adQjp6Du2pw==}
 
   flow-parser@0.268.0:
     resolution: {integrity: sha512-URZmPy/jKDDIJUHUfC+5KNwaPcfONTL3R8xltQWVEoCKLWowVebEBg89nbAnYHNo6ev8KzKWFpOROfHZdaCoxA==}
@@ -21353,7 +21353,7 @@ snapshots:
 
   flatted@3.3.3: {}
 
-  flexsearch@0.8.205: {}
+  flexsearch@0.8.212: {}
 
   flow-parser@0.268.0: {}
 
