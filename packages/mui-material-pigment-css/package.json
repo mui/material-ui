@@ -25,15 +25,14 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:copy-files": "code-infra copy-files src/styles.css src/styles.css:esm/styles.css",
+    "build": "code-infra build --copy \"src/styles.css\" --copy \"src/styles.css:esm\"",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-pigment-css\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@mui/system": "workspace:*"
   },
   "devDependencies": {

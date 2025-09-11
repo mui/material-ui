@@ -23,15 +23,14 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:copy-files": "code-infra copy-files",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-nextjs\"",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3"
+    "@babel/runtime": "^7.28.4"
   },
   "devDependencies": {
     "@emotion/cache": "^11.14.0",
