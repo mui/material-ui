@@ -6,20 +6,40 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
-import { VariableSizeList } from 'react-window';
+import { List } from 'react-window';
 import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
-function renderRow(props) {
-  const { data, index, style } = props;
-  const dataSet = data[index];
+function applyPropsToNode(outernode, props) {
+  if (!outernode || typeof props !== 'object') {
+    return;
+  }
+
+  Object.entries(props).forEach(([key, value]) => {
+    if (key === 'className') {
+      outernode.className = value;
+    } else if (key === 'style' && typeof value === 'object') {
+      Object.assign(outernode.style, value);
+    } else if (key.startsWith('aria-') || key === 'role' || key === 'id') {
+      outernode.setAttribute(key, String(value));
+    } else if (key.startsWith('on') && typeof value === 'function') {
+      const eventName = key.toLowerCase();
+      outernode[eventName] = value;
+    } else {
+      outernode.setAttribute(key, String(value));
+    }
+  });
+}
+
+function RowComponent({ index, itemData, style }) {
+  const dataSet = itemData[index];
   const inlineStyle = {
     ...style,
-    top: style.top + LISTBOX_PADDING,
+    top: (style.top ?? 0) + LISTBOX_PADDING,
   };
 
-  if (dataSet.hasOwnProperty('group')) {
+  if ('group' in dataSet) {
     return (
       <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
         {dataSet.group}
@@ -36,27 +56,29 @@ function renderRow(props) {
   );
 }
 
-const OuterElementContext = React.createContext({});
+// Adapter for react-window v2
 
-const OuterElementType = React.forwardRef((props, ref) => {
-  const outerProps = React.useContext(OuterElementContext);
-  return <div ref={ref} {...props} {...outerProps} />;
-});
+RowComponent.propTypes = {
+  index: PropTypes.number.isRequired,
+  itemData: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string])
+          .isRequired,
+      ),
+      PropTypes.shape({
+        childern: PropTypes.node,
+        group: PropTypes.string.isRequired,
+        key: PropTypes.number.isRequired,
+      }),
+    ]).isRequired,
+  ).isRequired,
+  style: PropTypes.object.isRequired,
+};
 
-function useResetCache(data) {
-  const ref = React.useRef(null);
-  React.useEffect(() => {
-    if (ref.current != null) {
-      ref.current.resetAfterIndex(0, true);
-    }
-  }, [data]);
-  return ref;
-}
-
-// Adapter for react-window
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData = [];
+  const itemData = React.useMemo(() => [], []);
   children.forEach((item) => {
     itemData.push(item);
     itemData.push(...(item.children || []));
@@ -73,7 +95,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
     if (child.hasOwnProperty('group')) {
       return 48;
     }
-
     return itemSize;
   };
 
@@ -84,25 +105,29 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
-  const gridRef = useResetCache(itemCount);
-
   return (
     <div ref={ref}>
-      <OuterElementContext.Provider value={other}>
-        <VariableSizeList
-          itemData={itemData}
-          height={getHeight() + 2 * LISTBOX_PADDING}
-          width="100%"
-          ref={gridRef}
-          outerElementType={OuterElementType}
-          innerElementType="ul"
-          itemSize={(index) => getChildSize(itemData[index])}
-          overscanCount={5}
-          itemCount={itemCount}
-        >
-          {renderRow}
-        </VariableSizeList>
-      </OuterElementContext.Provider>
+      <List
+        key={itemCount}
+        rowCount={itemCount}
+        rowHeight={(index) => getChildSize(itemData[index])}
+        rowComponent={RowComponent}
+        rowProps={{ itemData }}
+        style={{
+          height: getHeight() + 2 * LISTBOX_PADDING,
+          width: '100%',
+          margin: 0,
+        }}
+        listRef={(outerNode) => {
+          const domElement = outerNode?.element;
+
+          if (domElement instanceof HTMLElement) {
+            applyPropsToNode(domElement, other);
+          }
+        }}
+        overscanCount={5}
+        tagName="ul"
+      />
     </div>
   );
 });
@@ -142,6 +167,7 @@ export default function Virtualize() {
     <Autocomplete
       sx={{ width: 300 }}
       disableListWrap
+      open
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
