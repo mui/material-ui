@@ -130,7 +130,8 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
-            exclude: /node_modules/,
+            // assertion-error uses static initialization blocks, which doesn't work in Safari 15 on BrowserStack
+            exclude: /node_modules\/(.*\/)?(?!assertion-error)\//,
             options: {
               envName: 'stable',
             },
