@@ -127,7 +127,7 @@ const appTheme = createTheme({
 :::success
 It's recommended to use array syntax to merge the base styles with the application styles.
 
-The array syntax ensures that the states and pseudo-classes styles from the base theme are preserved.
+The array syntax ensures that the [variants](/material-ui/customization/theme-components/#variants), states, and pseudo-classes styles from the base theme are preserved.
 :::
 
 :::warning
