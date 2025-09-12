@@ -105,7 +105,7 @@ describe('createCssVarsProvider', () => {
         const { allColorSchemes } = useColorScheme();
         return <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>;
       }
-      const { rerender } = render(
+      const view = render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -113,7 +113,7 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark');
 
-      rerender(
+      view.rerender(
         <CssVarsProvider
           theme={createCssVarsTheme({
             colorSchemes: { light: {}, dark: {}, comfort: { palette: { color: '#e5e5e5' } } },

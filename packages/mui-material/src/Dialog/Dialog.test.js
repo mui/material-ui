@@ -179,7 +179,7 @@ describe('<Dialog />', () => {
       return <Dialog onClose={handleClose} {...other} />;
     }
     const onClose = spy();
-    const { getByRole } = render(
+    render(
       <DialogWithBackdropClickDisabled
         open
         disableEscapeKeyDown
@@ -189,7 +189,7 @@ describe('<Dialog />', () => {
         foo
       </DialogWithBackdropClickDisabled>,
     );
-    const dialog = getByRole('dialog');
+    const dialog = screen.getByRole('dialog');
     expect(dialog).not.to.equal(null);
 
     act(() => {
@@ -225,15 +225,15 @@ describe('<Dialog />', () => {
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {
-      const { getByRole } = render(
+      render(
         <Dialog open>
           <h2>my dialog</h2>
         </Dialog>,
       );
 
-      fireEvent.mouseDown(getByRole('heading'));
+      fireEvent.mouseDown(screen.getByRole('heading'));
       findBackdrop(screen).click();
-      expect(getByRole('dialog')).not.to.equal(null);
+      expect(screen.getByRole('dialog')).not.to.equal(null);
     });
   });
 
@@ -320,7 +320,7 @@ describe('<Dialog />', () => {
     });
 
     it('scrolls if overflown on the Y axis', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -394,7 +394,7 @@ describe('<Dialog />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -409,7 +409,7 @@ describe('<Dialog />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -431,7 +431,7 @@ describe('<Dialog />', () => {
     });
 
     it('should render the values provided via prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

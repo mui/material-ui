@@ -1,6 +1,6 @@
 import deepmerge from '@mui/utils/deepmerge';
 
-function merge(acc, item) {
+function merge(acc: object, item: object): object {
   if (!item) {
     return acc;
   }
