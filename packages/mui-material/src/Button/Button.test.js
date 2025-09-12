@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
@@ -584,7 +585,7 @@ describe('<Button />', () => {
   });
 
   it('should have a focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // JSDOM doesn't support :focus-visible
       this.skip();
     }
@@ -603,7 +604,7 @@ describe('<Button />', () => {
   });
 
   it('can disable the focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // JSDOM doesn't support :focus-visible
       this.skip();
     }
@@ -624,14 +625,7 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Button>Hello World</Button>);
       expect(container.firstChild).to.have.text('Hello World');
@@ -827,17 +821,17 @@ describe('<Button />', () => {
     });
 
     it('should have loading position class attached to root when `loading`', () => {
-      const { rerender } = render(<Button loading>Test</Button>);
+      const view = render(<Button loading>Test</Button>);
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionCenter);
 
-      rerender(
+      view.rerender(
         <Button loading loadingPosition="start">
           Test
         </Button>,
       );
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionStart);
 
-      rerender(
+      view.rerender(
         <Button loading loadingPosition="end">
           Test
         </Button>,

@@ -28,11 +28,11 @@
     "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^7.28.3",
+    "@babel/core": "^7.28.4",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.27.1",
     "@babel/plugin-syntax-typescript": "^7.27.1",
-    "@babel/types": "^7.28.2",
+    "@babel/types": "^7.28.4",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
@@ -45,10 +45,10 @@
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.20",
-    "@types/node": "^20.19.11",
-    "@types/react": "^19.1.11",
+    "@types/node": "^20.19.13",
+    "@types/react": "^19.1.12",
     "@types/uuid": "^10.0.0",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "fast-glob": "^3.3.3",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1"

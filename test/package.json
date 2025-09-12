@@ -23,7 +23,7 @@
     "@types/react": "^19.1.9",
     "@types/react-is": "^19.0.0",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "docs": "workspace:^",
     "fast-glob": "^3.3.3",
     "html-webpack-plugin": "^5.6.3",
