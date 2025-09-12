@@ -70,6 +70,7 @@ const ListboxComponent = React.forwardRef<
             margin: 0,
             flexShrink: 0,
           },
+          maxHeight: '100%',
         }}
       >
         <List
@@ -78,7 +79,7 @@ const ListboxComponent = React.forwardRef<
           rowComponent={renderRow}
           rowProps={{ data: itemData }}
           style={{
-            height: itemSize * 5,
+            height: itemSize * 8,
             width: '100%',
           }}
           overscanCount={5}

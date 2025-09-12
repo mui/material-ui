@@ -85,7 +85,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   };
 
   return (
-    <div ref={ref} {...other}>
+    <div ref={ref} {...other} style={{ ...other.style, maxHeight: '100%' }}>
       <List
         key={itemCount}
         rowCount={itemCount}
@@ -106,6 +106,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 
 ListboxComponent.propTypes = {
   children: PropTypes.node,
+  style: PropTypes.object,
 };
 
 function random(length) {

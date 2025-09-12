@@ -89,7 +89,7 @@ const ListboxComponent = React.forwardRef<
   };
 
   return (
-    <div ref={ref} {...other}>
+    <div ref={ref} {...other} style={{ ...other.style, maxHeight: '100%' }}>
       <List
         key={itemCount}
         rowCount={itemCount}
