@@ -615,10 +615,10 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    if (filteredOptionsChanged) {
+    if (filteredOptionsChanged || popupOpen) {
       syncHighlightedIndex();
     }
-  }, [syncHighlightedIndex, filteredOptionsChanged]);
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen]);
 
   const handleOpen = (event) => {
     if (open) {
