@@ -9,9 +9,9 @@ To understand how to do this, it helps to know a bit about how the API design ha
 ## Context
 
 Prior to Material UI v6, it was not possible to override the structure of most components in the library.
-Some components had `*Props` props that allowed you to pass props to a specific slot, but this pattern was not applied consistently.
+Some components had `*Props` props that let you pass props to a specific slot, but this pattern was not applied consistently.
 
-In v6, those props were deprecated in favor of the `slots` and `slotProps` props, which allow for more granular control over the structure of a component and make the API more consistent across the library.
+In v6, those props were deprecated in favor of the `slots` and `slotProps` props, which give you more granular control over the structure of a component and make the API more consistent across the library.
 
 ## The mental model
 

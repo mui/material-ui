@@ -155,7 +155,8 @@ declare module '@mui/material/Button' {
 
 {{"demo": "GlobalThemeVariants.js"}}
 
-The variant `props` can also be defined as a callback, allowing you to apply styles based on conditions. This is useful for styling when a property does not have a specific value.
+The variant `props` can also be defined as a callback, letting you apply styles based on conditions.
+This is useful for styling when a property does not have a specific value.
 
 ```js
 const theme = createTheme({

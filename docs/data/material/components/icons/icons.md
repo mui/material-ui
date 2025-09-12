@@ -286,7 +286,7 @@ const theme = createTheme({
 ## Font vs. SVGs: Which approach to use?
 
 Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
-Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
+Whenever possible, SVG is preferred as it lets you do code splitting, supports more icons, and renders faster and better.
 
 For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/engineering/delivering-octicons-with-svg/).
 

@@ -585,7 +585,7 @@ export default function MyList() {
 }
 ```
 
-This technique allows you to maintain modular styles while responding to dynamic states set by Material UI's global class names.
+This technique lets you maintain modular styles while responding to dynamic states set by Material UI's global class names.
 
 ## Emotion
 
