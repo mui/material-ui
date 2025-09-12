@@ -14,6 +14,8 @@ export interface CircularProgressClasses {
   colorSecondary: string;
   /** Styles applied to the svg element. */
   svg: string;
+  /** Styles applied to the track slot if `enableTrackSlot={true}`. */
+  track: string;
   /** Styles applied to the `circle` svg path. */
   circle: string;
   /** Styles applied to the `circle` svg path if `variant="determinate"`.
@@ -43,6 +45,7 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'colorPrimary',
     'colorSecondary',
     'svg',
+    'track',
     'circle',
     'circleDeterminate',
     'circleIndeterminate',
