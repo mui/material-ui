@@ -608,7 +608,7 @@ describe('<Autocomplete />', () => {
       });
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal(['a']);
+      expect(handleChange.args[0][1]).to.equal('a');
     });
   });
 
