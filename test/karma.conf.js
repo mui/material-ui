@@ -3,9 +3,6 @@ const playwright = require('@playwright/test');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
-// renovate PRs are based off of  upstream branches.
-// Their CI run will be a branch based run not PR run and therefore won't have a CIRCLE_PR_NUMBER
-const isPR = Boolean(process.env.CIRCLE_PULL_REQUEST);
 
 let build = `material-ui local ${new Date().toISOString()}`;
 
@@ -22,7 +19,11 @@ const browserStack = {
   // Since we have limited resources on BrowserStack we often time out on PRs.
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
-  enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
+  enabled:
+    !process.env.CI ||
+    process.env.BROWSERSTACK_FORCE === 'true' ||
+    (process.env.BROWSERSTACK_ENABLED === 'true' &&
+      process.env.CIRCLE_BRANCH.match(/^(master|next|v\d+\.x)$/)),
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
@@ -85,6 +86,7 @@ module.exports = function setKarmaConfig(config) {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-firefox-launcher',
+      'karma-spec-reporter',
     ],
     /**
      * possible values:
@@ -105,7 +107,7 @@ module.exports = function setKarmaConfig(config) {
     },
     // The CI branch fixes double log issue
     // https://github.com/karma-runner/karma/issues/2342
-    reporters: ['dots', ...(CI ? ['coverage-istanbul'] : [])],
+    reporters: CI ? ['dots', 'coverage-istanbul'] : ['spec'],
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
@@ -128,7 +130,8 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
-            exclude: /node_modules/,
+            // assertion-error uses static initialization blocks, which doesn't work in Safari 15 on BrowserStack
+            exclude: /node_modules\/(.*\/)?(?!assertion-error)\//,
             options: {
               envName: 'stable',
             },
@@ -199,7 +202,7 @@ module.exports = function setKarmaConfig(config) {
     customLaunchers: {
       chromeHeadless: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox'],
+        flags: ['--no-sandbox', '--use-mock-keychain'],
       },
     },
     singleRun: CI,

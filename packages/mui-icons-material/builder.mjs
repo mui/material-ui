@@ -10,7 +10,7 @@ import intersection from 'lodash/intersection.js';
 import { Queue } from '@mui/internal-waterfall';
 import { hideBin } from 'yargs/helpers';
 
-const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
+const currentDirectory = path.dirname(fileURLToPath(new URL(import.meta.url)));
 
 export const RENAME_FILTER_DEFAULT = './renameFilters/default.mjs';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons.mjs';

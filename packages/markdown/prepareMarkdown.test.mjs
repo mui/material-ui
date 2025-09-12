@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import prepareMarkdown from './prepareMarkdown';
+import prepareMarkdown from './prepareMarkdown.mjs';
 
 describe('prepareMarkdown', () => {
   const defaultParams = {
