@@ -171,9 +171,9 @@ const CircularProgressTrack = styled('circle', {
   name: 'MuiCircularProgress',
   slot: 'Track',
 })(
-  memoTheme(() => ({
+  memoTheme(({ theme }) => ({
     stroke: 'currentColor',
-    opacity: 0.3,
+    opacity: (theme.vars || theme).palette.divider,
   })),
 );
 
@@ -190,12 +190,12 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className,
     color = 'primary',
     disableShrink = false,
+    enableTrackSlot = false,
     size = 40,
     style,
     thickness = 3.6,
     value = 0,
     variant = 'indeterminate',
-    enableTrackSlot = false,
     ...other
   } = props;
 
@@ -305,7 +305,8 @@ CircularProgress.propTypes /* remove-proptypes */ = {
     return null;
   }),
   /**
-   * If `true`, render a background track circle that can be styled.
+   * If `true`, a track circle slot is mounted to show a subtle background for the progress.
+   * The `size` and `thickness` apply to the track slot to be consistent with the progress circle.
    * @default false
    */
   enableTrackSlot: PropTypes.bool,

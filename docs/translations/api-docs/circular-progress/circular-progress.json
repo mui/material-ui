@@ -9,7 +9,7 @@
       "description": "If <code>true</code>, the shrink animation is disabled. This only works if variant is <code>indeterminate</code>."
     },
     "enableTrackSlot": {
-      "description": "If <code>true</code>, render a background track circle that can be styled."
+      "description": "If <code>true</code>, a track circle slot is mounted to show a subtle background for the progress. The <code>size</code> and <code>thickness</code> apply to the track slot to be consistent with the progress circle."
     },
     "size": {
       "description": "The size of the component. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, for example &#39;3rem&#39;."
@@ -69,6 +69,10 @@
     },
     "root": { "description": "Styles applied to the root element." },
     "svg": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the svg element" },
-    "track": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the track circle" }
+    "track": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the track slot",
+      "conditions": "<code>enableTrackSlot={true}</code>"
+    }
   }
 }

@@ -99,7 +99,7 @@
     {
       "key": "track",
       "className": "MuiCircularProgress-track",
-      "description": "Styles applied to the track circle.",
+      "description": "Styles applied to the track slot if `enableTrackSlot={true}`.",
       "isGlobal": false
     }
   ],
