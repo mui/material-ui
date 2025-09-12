@@ -173,7 +173,7 @@ const CircularProgressTrack = styled('circle', {
 })(
   memoTheme(({ theme }) => ({
     stroke: 'currentColor',
-    opacity: (theme.vars || theme).palette.divider,
+    opacity: (theme.vars || theme).palette.action.activatedOpacity,
   })),
 );
 
