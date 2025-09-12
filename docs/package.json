@@ -51,7 +51,7 @@
     "@mui/x-tree-view": "8.11.1",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^10.0.1",
-    "@tailwindcss/postcss": "^4.1.12",
+    "@tailwindcss/postcss": "^4.1.13",
     "autoprefixer": "^10.4.21",
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-module-resolver": "^5.0.2",
@@ -122,8 +122,8 @@
     "@types/node": "^20.19.13",
     "@types/nprogress": "^0.2.3",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.11",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "@types/react-swipeable-views": "^0.13.6",
     "@types/react-transition-group": "^4.4.12",
     "@types/stylis": "^4.2.7",
@@ -132,7 +132,7 @@
     "gm": "^1.25.1",
     "marked": "^16.2.0",
     "prettier": "^3.6.2",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^4.1.13",
     "yargs": "^18.0.0"
   }
 }
