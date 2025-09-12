@@ -30,7 +30,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@mui/base": "7.0.0-beta.4",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
@@ -44,13 +44,13 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.11",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
     "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
-    "next": "^15.5.0",
+    "next": "^15.5.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sinon": "^21.0.0"

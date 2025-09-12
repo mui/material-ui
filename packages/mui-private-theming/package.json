@@ -30,7 +30,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },
@@ -38,7 +38,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.11",
+    "@types/react": "^19.1.12",
     "chai": "^6.0.1",
     "react": "^19.1.1"
   },

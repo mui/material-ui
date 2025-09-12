@@ -30,14 +30,14 @@
     "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3"
+    "@babel/runtime": "^7.28.4"
   },
   "devDependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^19.1.11",
-    "next": "^15.5.0",
+    "@types/react": "^19.1.12",
+    "next": "^15.5.3",
     "react": "^19.1.1"
   },
   "peerDependencies": {
