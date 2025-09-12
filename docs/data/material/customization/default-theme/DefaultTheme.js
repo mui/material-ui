@@ -103,10 +103,13 @@ function DefaultTheme() {
       palette: { mode: darkTheme ? 'dark' : 'light' },
     });
 
-    delete themeData.unstable_sxConfig;
-    delete themeData.unstable_sx;
+    const {
+      unstable_sxConfig: unstableSxConfig,
+      unstable_sx: unstableSx,
+      ...rest
+    } = themeData;
 
-    return themeData;
+    return rest;
   }, [darkTheme]);
 
   const allNodeIds = useItemIdsLazy(data);
