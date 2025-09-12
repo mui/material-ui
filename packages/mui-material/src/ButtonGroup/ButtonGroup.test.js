@@ -276,5 +276,115 @@ describe('<ButtonGroup />', () => {
       expect(button).not.to.have.class(classes.middleButton);
       expect(button).not.to.have.class(classes.lastButton);
     });
+
+    it('applies first/last to actual Button roots when children are wrapped', () => {
+      function Wrapper({ children }) {
+        return <div data-testid="wrapper">{children}</div>;
+      }
+
+      render(
+        <ButtonGroup>
+          <Wrapper>
+            <Button>A</Button>
+          </Wrapper>
+          <Wrapper>
+            <Button>B</Button>
+          </Wrapper>
+        </ButtonGroup>,
+      );
+
+      const [a, b] = screen.getAllByRole('button');
+      expect(a).to.have.class(classes.firstButton);
+      expect(a).not.to.have.class(classes.middleButton);
+      expect(a).not.to.have.class(classes.lastButton);
+
+      expect(b).to.have.class(classes.lastButton);
+      expect(b).not.to.have.class(classes.middleButton);
+      expect(b).not.to.have.class(classes.firstButton);
+    });
+
+    it('removes position classes when a wrapped sibling becomes hidden (only case)', () => {
+      function Wrapper({ show = true, children }) {
+        return show ? children : null;
+      }
+
+      const { rerender } = render(
+        <ButtonGroup>
+          <Wrapper show>
+            <Button>A</Button>
+          </Wrapper>
+          <Wrapper show>
+            <Button>B</Button>
+          </Wrapper>
+        </ButtonGroup>,
+      );
+
+      // both visible: first/last
+      const [a, b] = screen.getAllByRole('button');
+      expect(a).to.have.class(classes.firstButton);
+      expect(b).to.have.class(classes.lastButton);
+
+      // hide second
+      rerender(
+        <ButtonGroup>
+          <Wrapper show>
+            <Button>A</Button>
+          </Wrapper>
+          <Wrapper show={false}>
+            <Button>B</Button>
+          </Wrapper>
+        </ButtonGroup>,
+      );
+
+      const only = screen.getByRole('button');
+      expect(only).not.to.have.class(classes.firstButton);
+      expect(only).not.to.have.class(classes.middleButton);
+      expect(only).not.to.have.class(classes.lastButton);
+    });
+
+    it('keeps first/last correct when a middle wrapped child is removed', () => {
+      function Wrapper({ show = true, children }) {
+        return show ? children : null;
+      }
+
+      const { rerender } = render(
+        <ButtonGroup>
+          <Wrapper show>
+            <Button>A</Button>
+          </Wrapper>
+          <Wrapper show>
+            <Button>B</Button>
+          </Wrapper>
+          <Wrapper show>
+            <Button>C</Button>
+          </Wrapper>
+        </ButtonGroup>,
+      );
+
+      // eslint-disable-next-line prefer-const
+      let [a, b, c] = screen.getAllByRole('button');
+      expect(a).to.have.class(classes.firstButton);
+      expect(b).to.have.class(classes.middleButton);
+      expect(c).to.have.class(classes.lastButton);
+
+      // hide middle
+      rerender(
+        <ButtonGroup>
+          <Wrapper show>
+            <Button>A</Button>
+          </Wrapper>
+          <Wrapper show={false}>
+            <Button>B</Button>
+          </Wrapper>
+          <Wrapper show>
+            <Button>C</Button>
+          </Wrapper>
+        </ButtonGroup>,
+      );
+
+      [a, c] = screen.getAllByRole('button');
+      expect(a).to.have.class(classes.firstButton);
+      expect(c).to.have.class(classes.lastButton);
+    });
   });
 });
