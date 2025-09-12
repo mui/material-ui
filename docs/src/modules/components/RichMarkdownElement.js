@@ -25,7 +25,12 @@ export default function RichMarkdownElement(props) {
   const t = useTranslate();
 
   if (typeof renderedMarkdownOrDemo === 'string') {
-    return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />;
+    return (
+      <MarkdownElement
+        renderedMarkdown={renderedMarkdownOrDemo}
+        className="MuiDocs-content-block"
+      />
+    );
   }
 
   if (renderedMarkdownOrDemo.component) {
@@ -41,17 +46,23 @@ export default function RichMarkdownElement(props) {
       additionalProps.activeTab = activeTab;
     }
 
-    return <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />;
+    return (
+      <div className="MuiDocs-content-block">
+        <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />
+      </div>
+    );
   }
 
   if (renderedMarkdownOrDemo.type === 'codeblock') {
     return (
-      <HighlightedCodeWithTabs
-        tabs={renderedMarkdownOrDemo.data}
-        storageKey={
-          renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
-        }
-      />
+      <div className="MuiDocs-content-block">
+        <HighlightedCodeWithTabs
+          tabs={renderedMarkdownOrDemo.data}
+          storageKey={
+            renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
+          }
+        />
+      </div>
     );
   }
 
