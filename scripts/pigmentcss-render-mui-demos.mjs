@@ -1,5 +1,5 @@
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import * as prettier from 'prettier';
 
 function pascalCase(string) {
@@ -29,14 +29,14 @@ async function run() {
   });
 
   // Find the demos of the component
-  const docSource = await fse.readFile(
+  const docSource = await fs.readFile(
     path.join(process.cwd(), `docs/pages/material-ui/${args[0]}.js`),
     'utf8',
   );
   const matches = docSource.match(/\/([a-z-]+)\.md\?/);
   const dataFolderName = matches[1];
 
-  const filenames = await fse.readdir(
+  const filenames = await fs.readdir(
     path.join(process.cwd(), `docs/data/material/components/${dataFolderName}`),
   );
   const tsFiles = filenames.filter((filename) => filename.endsWith('.tsx'));
@@ -83,8 +83,8 @@ ${renders.join('\n')}
     ...prettierConfig,
     filepath: nextFilepath,
   });
-  await fse.mkdirp(`apps/pigment-css-next-app/src/app/material-ui/${args[0]}`);
-  await fse.writeFile(nextFilepath, prettiedNextFileContent);
+  await fs.mkdir(`apps/pigment-css-next-app/src/app/material-ui/${args[0]}`, { recursive: true });
+  await fs.writeFile(nextFilepath, prettiedNextFileContent);
 
   /**
    * Zero-Runtime Vite App
@@ -115,8 +115,8 @@ ${renders.join('\n')}
     ...prettierConfig,
     filepath: viteFilepath,
   });
-  await fse.mkdirp(`apps/pigment-css-vite-app/src/pages/material-ui`);
-  await fse.writeFile(viteFilepath, prettiedViteFileContent);
+  await fs.mkdir(`apps/pigment-css-vite-app/src/pages/material-ui`, { recursive: true });
+  await fs.writeFile(viteFilepath, prettiedViteFileContent);
 }
 
 run();

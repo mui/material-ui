@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@pigment-css/nextjs-plugin": "0.0.30",
-    "@types/node": "^20.19.11",
-    "@types/react": "^19.1.11",
-    "@types/react-dom": "^19.1.7",
+    "@types/node": "^20.19.13",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "eslint": "^9.34.0",
     "typescript": "^5.9.2"
   },
