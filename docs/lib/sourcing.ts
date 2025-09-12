@@ -8,6 +8,12 @@ export const getBlogFilePaths = (ext = '.md') => {
   return fs.readdirSync(blogDir).filter((file) => file.endsWith(ext));
 };
 
+const caseStudyDir = path.join(process.cwd(), 'pages/case-studies');
+
+export const getCaseStudyFilePaths = (ext = '.md') => {
+  return fs.readdirSync(caseStudyDir).filter((file) => file.endsWith(ext));
+};
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -21,6 +27,18 @@ export interface BlogPost {
 export function getBlogPost(filePath: string): BlogPost {
   const slug = filePath.replace(/\.md$/, '');
   const content = fs.readFileSync(path.join(blogDir, filePath), 'utf-8');
+
+  const headers = getHeaders(content) as unknown as BlogPost;
+
+  return {
+    ...headers,
+    slug,
+  };
+}
+
+export function getCaseStudyPost(filePath: string): BlogPost {
+  const slug = filePath.replace(/\.md$/, '');
+  const content = fs.readFileSync(path.join(caseStudyDir, filePath), 'utf-8');
 
   const headers = getHeaders(content) as unknown as BlogPost;
 
@@ -78,4 +96,12 @@ export const getAllBlogPosts = () => {
     allBlogPosts, // posts with at least a title
     tagInfo,
   };
+};
+
+export const getCaseStudies = () => {
+  const filePaths = getCaseStudyFilePaths();
+
+  const caseStudies = filePaths.map((name) => getCaseStudyPost(name));
+
+  return caseStudies;
 };
