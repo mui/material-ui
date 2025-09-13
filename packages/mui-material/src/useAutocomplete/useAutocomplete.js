@@ -590,12 +590,15 @@ function useAutocomplete(props) {
     React.useEffect(() => {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
         if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA') {
+          if (window?.suppressAutocompleteTextareaWarning) return;
+
           console.warn(
             [
               `A textarea element was provided to ${componentName} where input was expected.`,
               `This is not a supported scenario but it may work under certain conditions.`,
               `A textarea keyboard navigation may conflict with Autocomplete controls (for example enter and arrow keys).`,
               `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
+              `To disable this warning, set \`window.suppressAutocompleteTextareaWarning\` to true.`,
             ].join('\n'),
           );
         } else {
