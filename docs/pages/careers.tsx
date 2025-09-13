@@ -28,6 +28,12 @@ const openRolesData = [
           'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
         url: '/careers/react-engineer-material-ui-maintainer/',
       },
+      {
+        title: 'Product Engineer — Store',
+        description:
+          'You will lead the technical, product, and operational development of the store.',
+        url: '/careers/product-engineer-store/',
+      },
       // {
       //   title: 'React Engineer — xCharts',
       //   description:
@@ -54,15 +60,15 @@ const openRolesData = [
       {
         title: 'Account Executive',
         description:
-          'You will help establish our sales team by implementing effective sales processes and tools to optimize and expand our sales pipeline.',
+          'You will be a key player in driving revenue growth and building strong customer relationships.',
         url: '/careers/account-executive/',
       },
-      {
-        title: 'Account Manager',
-        description:
-          'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
-        url: '/careers/account-manager/',
-      },
+      // {
+      //   title: 'Account Manager',
+      //   description:
+      //     'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
+      //   url: '/careers/account-manager/',
+      // },
     ],
   },
   {
@@ -89,12 +95,12 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      {
-        title: 'React Community Engineer — X',
-        description:
-          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
-        url: '/careers/react-community-engineer/',
-      },
+      // {
+      //   title: 'React Community Engineer — X',
+      //   description:
+      //     'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+      //   url: '/careers/react-community-engineer/',
+      // },
     ],
   },
   {

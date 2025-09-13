@@ -1,9 +1,8 @@
 {
   "name": "@mui/types",
-  "version": "7.4.5",
+  "version": "7.4.6",
   "author": "MUI Team",
   "description": "Utility types for Material UI.",
-  "types": "./index.d.ts",
   "keywords": [
     "react",
     "react-component",
@@ -21,9 +20,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
-    "build:copy-files": "code-infra copy-files",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
     "typescript": "tsc -p tsconfig.json",
@@ -35,11 +32,11 @@
     "directory": "build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3"
+    "@babel/runtime": "^7.28.4"
   },
   "devDependencies": {
     "@mui/types": "workspace:*",
-    "@types/react": "^19.1.11"
+    "@types/react": "^19.1.12"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0"
@@ -48,5 +45,8 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }

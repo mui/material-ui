@@ -1,6 +1,6 @@
 # Account Executive
 
-<p class="description">You will help establish MUI's sales team by implementing effective sales processes and tools to optimize and expand our sales pipeline.</p>
+<p class="description">You will be a key player in driving revenue growth and building strong customer relationships.</p>
 
 ## Details of the role
 
@@ -55,8 +55,6 @@ Depending on the day, you'll:
   Actively engage in the full sales cycle, from lead generation and qualification to closing deals and managing client relationships. Focus on selling our developer licenses for advanced UI components.
 - **Sales Strategy Development**.
   Collaborate with leadership to define and implement a comprehensive sales strategy, including target market segmentation, pricing strategies, and sales processes.
-- **Team Building & Leadership**.
-  Lead the charge in building our sales team. This includes defining roles, writing job descriptions, conducting interviews, hiring top talent, and providing ongoing coaching and mentorship.
 - **Sales Process Optimization**.
   Continuously evaluate and improve our sales processes, leveraging best practices and data-driven insights to maximize efficiency and effectiveness.
 - **Sales Forecasting & Reporting**.
@@ -66,11 +64,10 @@ Depending on the day, you'll:
 
 ## Who we're looking for
 
-As our Senior Account Executive, you'll be a key player in our growth story. You'll not only be a hands-on sales contributor, closing deals and building relationships with key clients, but you'll also be responsible for building the entire sales function. This includes leading the hiring process for future sales team members, developing and implementing our sales strategy, defining sales roles, and fostering a high-performing sales culture.
+As our Senior Account Executive, you'll be a key player in our growth story. You'll be a hands-on sales contributor, closing deals and building relationships with key clients.
 
 ### Required
 
-- The goal for the Senior Account Executive would be to progress and transition into the Sales team lead for MUI. Therefore, while past sales team management experience is not essential; a desire, ambition, and motivation to progress through MUI's organization is key, with an interest in taking on additional responsibility within MUI.
 - To manage existing customers and qualify incoming leads with a focus on selling additional licenses, upselling/cross-selling, and increasing total contract value – building strong relationships with each customer.
 - The Senior Account Executive will manage key customers with large accounts, and scan existing smaller accounts to upsell into them. Essentially ensuring users are successful by explaining the benefits of the MUI products to them
 - MUI's typical customers are engineers, developers, Heads of Engineering Departments, CTOs, etc. The Senior Account Executive will need to develop an understanding of MUI's products to resonate with MUI's customers and will manage mid-market and enterprise sales cycles with multiple engagement points.
