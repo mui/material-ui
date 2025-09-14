@@ -11,6 +11,6 @@
   "license": "MIT",
   "scripts": {},
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.18.0"
   }
 }
