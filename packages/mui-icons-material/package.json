@@ -77,7 +77,7 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14.21.3"
   },
   "exports": {
     ".": {
