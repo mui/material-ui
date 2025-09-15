@@ -1,10 +1,10 @@
 ---
 title: 'Together Week lands in Punta Cana, Dominican Republic'
-description: 'TK.'
-date: 2025-09-12T00:00:00.000Z
+description: 'Find out how our globally-distributed team connects beyond GitHub and Slack—and how you can join us next time.'
+date: 2025-09-18T00:00:00.000Z
 authors: ['nadjakovacev']
 tags: ['Company']
-manualCard: true
+manualCard: false
 ---
 
 ## What is MUI's Together Week?
