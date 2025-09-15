@@ -25,7 +25,7 @@ The following is a curated list of some of the best third-party resources we've 
 
 ### Free
 
-- **[Material UI v5 Crash Course](https://www.youtube.com/watch?v=o1chMISeTC0)** video by Laith Harb: everything you need to know to start building with the latest version of Material UI.
+- **[Material UI v7 Complete Course](https://www.youtube.com/watch?v=XQVcsGbMBCM)** by Code Genix: this comprehensive course covers everything you need to build with the latest version of Material UI.
 
 - **[React + Material UI - From Zero to Hero](https://www.youtube.com/playlist?list=PLDxCaNaYIuUlG5ZqoQzFE27CUOoQvOqnQ)** video series by The Atypical Developer: build along with this in-depth series, from basic installation through advanced component implementation.
 
