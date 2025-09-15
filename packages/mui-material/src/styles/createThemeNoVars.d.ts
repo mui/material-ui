@@ -11,12 +11,8 @@ import { TypographyVariants, TypographyVariantsOptions } from './createTypograph
 import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
-// OPTIMIZATION: Import Components type lazily to break circular dependency
 import type { Components } from './components';
 import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
-
-// Break circular dependency by using a union type that covers both theme types
-type ThemeForComponentsCompat = BaseTheme | CssVarsTheme;
 
 /**
  * To disable custom properties, use module augmentation
@@ -38,8 +34,7 @@ type CssVarsOptions = CssThemeVariables extends {
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  // OPTIMIZATION: Use union type to support both regular and CSS vars themes
-  components?: Components<ThemeForComponentsCompat>;
+  components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -87,8 +82,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
-  // OPTIMIZATION: Use union type to support both regular and CSS vars themes
-  components?: Components<ThemeForComponentsCompat>;
+  components?: Components<Omit<Theme, 'components'>>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
