@@ -91,7 +91,7 @@ describe('<Drawer />', () => {
       };
 
       it('should delay the slide transition to complete using default theme values by default', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           this.skip();
         }
         const theme = createTheme();
@@ -110,7 +110,7 @@ describe('<Drawer />', () => {
       });
 
       it('should delay the slide transition to complete using custom theme values', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           this.skip();
         }
         const theme = createTheme({
@@ -365,7 +365,7 @@ describe('<Drawer />', () => {
       const theme = createTheme({
         direction: 'rtl',
       });
-      const { rerender } = render(
+      const view = render(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="left" TransitionComponent={MockedSlide}>
             <div />
@@ -375,7 +375,7 @@ describe('<Drawer />', () => {
       // slide direction for left is right, if left is switched to right, we should get left
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'left');
 
-      rerender(
+      view.rerender(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="right" TransitionComponent={MockedSlide}>
             <div />

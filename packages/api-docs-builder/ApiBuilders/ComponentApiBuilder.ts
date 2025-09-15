@@ -701,10 +701,10 @@ const attachTable = (
       };
     })
     .reduce((acc, cssVarDefinition) => {
-      const { name, ...rest } = cssVarDefinition;
+      const { name, ...other } = cssVarDefinition;
       return {
         ...acc,
-        [name]: rest,
+        [name]: other,
       };
     }, {});
 
