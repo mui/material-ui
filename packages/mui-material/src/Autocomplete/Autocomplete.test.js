@@ -588,6 +588,28 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(['a']);
     });
+
+    it('should add new value when autoSelect & freeSolo & autoHighlight on blur', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          autoSelect
+          freeSolo
+          autoHighlight
+          onChange={handleChange}
+          options={[]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      act(() => {
+        document.activeElement.blur();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('a');
+    });
   });
 
   describe('prop: multiple', () => {
