@@ -151,7 +151,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('should not override internal ownerState with the ownerState passed to the icon', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -163,7 +163,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('should have `fill="currentColor"`', function test() {
-    if (!/jsdom/.test(window.navigator.userAgent)) {
+    if (!window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const { container } = render(
@@ -176,7 +176,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('should not add `fill` if svg is a direct child', function test() {
-    if (!/jsdom/.test(window.navigator.userAgent)) {
+    if (!window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const { container } = render(

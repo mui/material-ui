@@ -362,7 +362,7 @@ describe('<Menu />', () => {
 
   describe('theme customization', () => {
     it('should override Menu Paper styles following correct precedence', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -402,7 +402,7 @@ describe('<Menu />', () => {
     });
 
     it('should override Menu Paper styles using styles in MuiPaper slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

@@ -113,7 +113,7 @@ describe('<Radio />', () => {
 
   describe('theme: customization', () => {
     it('should be customizable in the theme using the size prop.', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
