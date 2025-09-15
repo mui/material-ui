@@ -600,7 +600,7 @@ describe('<Slider />', () => {
 
     it('should not respond to drag events after becoming disabled', function test() {
       // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -637,7 +637,7 @@ describe('<Slider />', () => {
 
     it('is not focused (visibly) after becoming disabled', function test() {
       // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1649,7 +1649,7 @@ describe('<Slider />', () => {
   });
 
   it('marked slider should be customizable in the theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -1685,7 +1685,7 @@ describe('<Slider />', () => {
   });
 
   it('active marks should be customizable in theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

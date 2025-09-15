@@ -28,7 +28,7 @@ export default function createColorScheme(options: ColorSystemOptions & { colorS
     opacity,
     overlays,
     colorSpace,
-    ...rest
+    ...other
   } = options;
   // need to cast because `colorSpace` is considered internal at the moment.
   const palette = createPalette({ ...paletteInput, colorSpace } as PaletteOptions);
@@ -36,6 +36,6 @@ export default function createColorScheme(options: ColorSystemOptions & { colorS
     palette,
     opacity: { ...getOpacity(palette.mode), ...opacity },
     overlays: overlays || getOverlays(palette.mode),
-    ...rest,
+    ...other,
   } as unknown as ColorSystemOptions;
 }

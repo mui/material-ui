@@ -685,7 +685,7 @@ describe('<InputBase />', () => {
 
   describe('prop: focused', () => {
     it('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme({
