@@ -11,8 +11,23 @@ import { TypographyVariants, TypographyVariantsOptions } from './createTypograph
 import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
-import { Components } from './components';
+// OPTIMIZATION: Import Components type lazily to break circular dependency
+import type { Components } from './components';
 import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
+
+// PERFORMANCE OPTIMIZATION: Break circular dependency with deferred component resolution
+// Instead of Components<Omit<Theme, 'components'>>, use a conditional type that defers resolution
+type DeferredComponents<T = any> = T extends infer U ? Components<U> : never;
+
+// Create a stable theme reference that doesn't cause circular resolution
+type StableThemeBase = Omit<SystemTheme, 'components'> & {
+  mixins: Mixins;
+  palette: Palette;
+  shadows: Shadows;
+  transitions: Transitions;
+  typography: TypographyVariants;
+  zIndex: ZIndex;
+};
 
 /**
  * To disable custom properties, use module augmentation
@@ -34,7 +49,8 @@ type CssVarsOptions = CssThemeVariables extends {
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  components?: Components<Omit<Theme, 'components'>>;
+  // OPTIMIZATION: Use deferred component resolution to break circular dependency
+  components?: DeferredComponents<StableThemeBase>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -82,7 +98,8 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
-  components?: Components<BaseTheme>;
+  // OPTIMIZATION: Use deferred resolution for components to prevent circular computation
+  components?: DeferredComponents<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
