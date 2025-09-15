@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import extractImports from './extractImports';
+import extractImports from './extractImports.mjs';
 
 describe('extractImports', () => {
   it('finds all imports', () => {

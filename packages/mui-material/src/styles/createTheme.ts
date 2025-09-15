@@ -56,7 +56,7 @@ export default function createTheme(
     cssVariables = false,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
-    ...rest
+    ...other
   } = options;
   const defaultColorSchemeInput = (initialDefaultColorScheme as DefaultColorScheme) || 'light';
   const defaultScheme = initialColorSchemes?.[defaultColorSchemeInput];
@@ -125,7 +125,7 @@ export default function createTheme(
 
   return createThemeWithVars(
     {
-      ...rest,
+      ...other,
       colorSchemes: colorSchemesInput,
       defaultColorScheme: defaultColorSchemeInput,
       ...(typeof cssVariables !== 'boolean' && cssVariables),

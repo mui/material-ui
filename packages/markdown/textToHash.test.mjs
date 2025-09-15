@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { parseInline as renderInlineMarkdown } from 'marked';
-import textToHash from './textToHash';
+import textToHash from './textToHash.mjs';
 
 describe('textToHash', () => {
   it('should hash as expected', () => {
