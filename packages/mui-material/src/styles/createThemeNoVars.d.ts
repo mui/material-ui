@@ -15,36 +15,8 @@ import { ZIndex, ZIndexOptions } from './zIndex';
 import type { Components } from './components';
 import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
 
-// PERFORMANCE OPTIMIZATION: Break circular dependency with forward declaration
-// The circular dependency Components<Theme> -> Theme -> Components causes exponential type computation
-// We use interface merging and forward declaration to break the cycle while preserving type safety
-
-// Forward declare a minimal theme interface to break circular dependency
-// This includes the properties most commonly accessed in component styleOverrides
-// Using a minimal interface reduces TypeScript computation while maintaining functionality
-interface ThemeForComponents {
-  // Core theme properties
-  palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
-  spacing: any;
-  breakpoints: any;
-  transitions: Transitions;
-  typography: TypographyVariants;
-  shape: any;
-  shadows: Shadows;
-  zIndex: ZIndex;
-  mixins: Mixins;
-
-  // CSS-in-JS utilities
-  alpha: (color: string, value: number | string) => string;
-  lighten: (color: string, coefficient: number | string) => string;
-  darken: (color: string, coefficient: number | string) => string;
-  applyStyles: (styles: any) => any;
-
-  // Optional CSS variables properties
-  vars?: any;
-  applyDarkStyles?: any;
-  unstable_strictMode?: boolean;
-}
+// PERFORMANCE OPTIMIZATION: Break circular dependency with BaseTheme reference
+// Instead of Components<Omit<Theme, 'components'>>, use BaseTheme to avoid circular computation
 
 /**
  * To disable custom properties, use module augmentation
@@ -66,8 +38,8 @@ type CssVarsOptions = CssThemeVariables extends {
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  // OPTIMIZATION: Use forward-declared theme type to break circular dependency
-  components?: Components<ThemeForComponents>;
+  // OPTIMIZATION: Use BaseTheme to break circular dependency while preserving type safety
+  components?: Components<BaseTheme>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -115,8 +87,8 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
-  // OPTIMIZATION: Use forward-declared theme type to break circular dependency
-  components?: Components<ThemeForComponents>;
+  // OPTIMIZATION: Use BaseTheme to break circular dependency while preserving type safety
+  components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
