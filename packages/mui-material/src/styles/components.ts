@@ -11,8 +11,12 @@ type CachedVariants<Theme> = ComponentsVariants<Theme>;
 // OPTIMIZATION: Generic component configuration type that reduces type instantiation overhead
 type ComponentConfig<Theme, ComponentName extends keyof ComponentsProps> = {
   defaultProps?: ComponentsProps[ComponentName];
-  styleOverrides?: ComponentName extends keyof CachedOverrides<Theme> ? CachedOverrides<Theme>[ComponentName] : never;
-  variants?: ComponentName extends keyof CachedVariants<Theme> ? CachedVariants<Theme>[ComponentName] : never;
+  styleOverrides?: ComponentName extends keyof CachedOverrides<Theme>
+    ? CachedOverrides<Theme>[ComponentName]
+    : never;
+  variants?: ComponentName extends keyof CachedVariants<Theme>
+    ? CachedVariants<Theme>[ComponentName]
+    : never;
 };
 
 export interface Components<Theme = unknown> {
