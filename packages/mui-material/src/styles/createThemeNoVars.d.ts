@@ -11,7 +11,7 @@ import { TypographyVariants, TypographyVariantsOptions } from './createTypograph
 import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
-import type { Components } from './components';
+import { Components } from './components';
 import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
 
 /**
@@ -82,7 +82,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
-  components?: Components<Omit<Theme, 'components'>>;
+  components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
