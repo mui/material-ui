@@ -9,7 +9,7 @@ manualCard: false
 
 ## What is MUI's Together Week?
 
-At MUI, a strong community is non-negotiable, just like flexibility and remote work. 
+At MUI, a strong community is non-negotiable, just like flexibility and remote work.
 Our commitment to these values means our MUIers are spread across the globe, and we know that building connections can be a challenge in a fully distributed, async environment.
 
 [Multiple studies have shown](https://www.researchgate.net/publication/387604757_Providing_support_for_employee_autonomy_relatedness_and_competence_in_a_remote_work_environment) that working remotely can lower the satisfaction of basic psychological needs like autonomy, relatedness, and competence.
