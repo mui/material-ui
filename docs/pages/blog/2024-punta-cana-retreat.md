@@ -29,7 +29,7 @@ This might sound like a lot to expect from a five-day trip, but it's during this
 ## Destination
 
 We love the process we've developed where everyone pitches their wildest ideas for amazing locations we could visit—I'm personally a huge fan of this approach.
-For this retreat, however, we had a slightly different flow as we had some time restraints.
+For this retreat, however, we had a slightly different flow due to time restraints.
 So we followed our shortlist of must-haves like good weather, easy airport connections, and great vibes.
 From there, we shared a list of four locations for the team to vote on: Morocco, Mexico, Cape Verde, and the Dominican Republic.
 
