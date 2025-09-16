@@ -1,4 +1,4 @@
-import type {Localization} from './utils/LocaleTextApi';
+import type { Localization } from './utils/LocaleTextApi';
 
 // Malay-Melayu
 export const msMS: Localization = {

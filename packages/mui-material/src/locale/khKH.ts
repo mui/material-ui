@@ -1,4 +1,4 @@
-import type {Localization} from './utils/LocaleTextApi';
+import type { Localization } from './utils/LocaleTextApi';
 
 export const khKH: Localization = {
   components: {

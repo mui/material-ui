@@ -1,4 +1,4 @@
-import {Localization} from './utils/LocaleTextApi';
+import { Localization } from './utils/LocaleTextApi';
 
 export const azAZ: Localization = {
   components: {
