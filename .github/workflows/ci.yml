@@ -3,14 +3,10 @@ name: CI
 on:
   push:
     branches:
-      # should sync with ci-check.yml as a workaround to bypass github checks
       - master
       - next
       - v*.x
   pull_request:
-    paths-ignore:
-      # should sync with ci-check.yml as a workaround to bypass github checks
-      - 'docs/**'
 
 permissions: {}
 
@@ -22,7 +18,7 @@ jobs:
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
-    if: ${{ github.actor != 'l10nbot' }}
+    if: ${{ github.actor != 'l10nbot' && !contains(join(github.event.commits.*.modified, ','), 'docs/') }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
