@@ -122,7 +122,7 @@
     "@types/node": "^20.19.15",
     "@types/nprogress": "^0.2.3",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.12",
+    "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@types/react-swipeable-views": "^0.13.6",
     "@types/react-transition-group": "^4.4.12",

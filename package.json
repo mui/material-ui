@@ -130,7 +130,7 @@
     "@types/lodash.kebabcase": "^4.1.9",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.15",
-    "@types/react": "^19.1.12",
+    "@types/react": "^19.1.13",
     "@types/yargs": "^17.0.33",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/browser": "^3.2.4",
