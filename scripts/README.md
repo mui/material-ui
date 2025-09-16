@@ -59,7 +59,7 @@ Force push if necessary.
 
 #### Publish GitHub release
 
-After the documentation deployment is done, review and then publish the release that was created in draft mode during the release step [GitHub releases page](https://github.com/mui/material-ui/releases)
+After the documentation deployment is done, review the draft release that was created, then publish it. At this point the release tag gets created. [GitHub releases page](https://github.com/mui/material-ui/releases)
 
 #### Announce
 
@@ -101,7 +101,7 @@ Checkout the latest minor release tag and create a branch "release/PATCH_VERSION
 
 3. Click "Run workflow"
 4. Refresh the page to see the newly created workflow, and click it.
-5. The next screen will say "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
+5. The next screen shows "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
 
 #### Documentation
 
