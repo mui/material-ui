@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const itIT: Localization = {
+export const itIT: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const itIT: Localization = {
     },
   },
 };
-
-export default itIT;

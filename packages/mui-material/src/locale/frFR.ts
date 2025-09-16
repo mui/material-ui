@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const frFR: Localization = {
+export const frFR: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const frFR: Localization = {
     },
   },
 };
-
-export default frFR;

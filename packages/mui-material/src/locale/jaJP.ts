@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const jaJP: Localization = {
+export const jaJP: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const jaJP: Localization = {
     },
   },
 };
-
-export default jaJP;

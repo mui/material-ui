@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const daDK: Localization = {
+export const daDK: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const daDK: Localization = {
     },
   },
 };
-
-export default daDK;

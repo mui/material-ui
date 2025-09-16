@@ -1,7 +1,7 @@
 import type {Localization} from './utils/LocaleTextApi';
 
 // Macedonian - Македонски
-const mkMK: Localization = {
+export const mkMK: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -74,5 +74,3 @@ const mkMK: Localization = {
     },
   },
 };
-
-export default mkMK;

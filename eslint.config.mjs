@@ -248,7 +248,10 @@ export default defineConfig(
   },
   // Migrated config from packages/api-docs-builder/.eslintrc.js
   {
-    files: ['packages/api-docs-builder/**/*'],
+    files: [
+      'packages/api-docs-builder/**/*',
+      'packages/mui-material/src/locale/*'
+    ],
     rules: {
       'import/prefer-default-export': 'off',
     },

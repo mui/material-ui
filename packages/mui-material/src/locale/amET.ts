@@ -1,6 +1,6 @@
 import type { Localization } from './utils/LocaleTextApi';
 
-const amET: Localization = {
+export const amET: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const amET: Localization = {
     },
   },
 };
-
-export default amET;

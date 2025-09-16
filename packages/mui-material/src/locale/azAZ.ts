@@ -1,6 +1,6 @@
 import {Localization} from './utils/LocaleTextApi';
 
-const azAZ: Localization = {
+export const azAZ: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -79,5 +79,3 @@ const azAZ: Localization = {
     },
   },
 };
-
-export default azAZ;

@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const zhTW: Localization = {
+export const zhTW: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -48,5 +48,3 @@ const zhTW: Localization = {
     },
   },
 };
-
-export default zhTW;

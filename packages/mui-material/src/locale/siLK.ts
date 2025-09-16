@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const siLK: Localization = {
+export const siLK: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const siLK: Localization = {
     },
   },
 };
-
-export default siLK;

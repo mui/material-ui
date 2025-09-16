@@ -1,7 +1,7 @@
 import type {Localization} from './utils/LocaleTextApi';
 
 // Myanmar - မြန်မာ
-const myMY: Localization = {
+export const myMY: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -74,5 +74,3 @@ const myMY: Localization = {
     },
   },
 };
-
-export default myMY;

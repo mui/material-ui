@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const arEG: Localization = {
+export const arEG: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const arEG: Localization = {
     },
   },
 };
-
-export default arEG;

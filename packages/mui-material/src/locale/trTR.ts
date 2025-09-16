@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const trTR: Localization = {
+export const trTR: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const trTR: Localization = {
     },
   },
 };
-
-export default trTR;

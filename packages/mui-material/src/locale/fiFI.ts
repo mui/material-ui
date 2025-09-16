@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const fiFI: Localization = {
+export const fiFI: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const fiFI: Localization = {
     },
   },
 };
-
-export default fiFI;

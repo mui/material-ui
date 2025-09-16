@@ -1,7 +1,7 @@
 import type {Localization} from './utils/LocaleTextApi';
 
 // Tagalog-Tagalog
-const tlTL: Localization = {
+export const tlTL: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -71,5 +71,3 @@ const tlTL: Localization = {
     },
   },
 };
-
-export default tlTL;

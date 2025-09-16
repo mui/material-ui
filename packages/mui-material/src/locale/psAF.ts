@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const psAF: Localization = {
+export const psAF: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const psAF: Localization = {
     },
   },
 };
-
-export default psAF;

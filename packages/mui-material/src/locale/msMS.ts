@@ -1,7 +1,7 @@
 import type {Localization} from './utils/LocaleTextApi';
 
 // Malay-Melayu
-const msMS: Localization = {
+export const msMS: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -74,5 +74,3 @@ const msMS: Localization = {
     },
   },
 };
-
-export default msMS;

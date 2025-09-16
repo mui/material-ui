@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const beBY: Localization = {
+export const beBY: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -84,5 +84,3 @@ const beBY: Localization = {
     },
   },
 };
-
-export default beBY;

@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const viVN: Localization = {
+export const viVN: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const viVN: Localization = {
     },
   },
 };
-
-export default viVN;

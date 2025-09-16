@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const roRO: Localization = {
+export const roRO: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const roRO: Localization = {
     },
   },
 };
-
-export default roRO;

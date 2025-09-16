@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const svSE: Localization = {
+export const svSE: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const svSE: Localization = {
     },
   },
 };
-
-export default svSE;

@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const faIR: Localization = {
+export const faIR: Localization = {
   components: {
     // MuiBreadcrumbs: {
     //   defaultProps: {
@@ -75,5 +75,3 @@ const faIR: Localization = {
     },
   },
 };
-
-export default faIR;

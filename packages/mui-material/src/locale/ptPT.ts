@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const ptPT: Localization = {
+export const ptPT: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const ptPT: Localization = {
     },
   },
 };
-
-export default ptPT;

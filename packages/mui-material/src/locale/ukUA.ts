@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const ukUA: Localization = {
+export const ukUA: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -81,5 +81,3 @@ const ukUA: Localization = {
     },
   },
 };
-
-export default ukUA;

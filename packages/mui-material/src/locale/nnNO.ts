@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const nnNO: Localization = {
+export const nnNO: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const nnNO: Localization = {
     },
   },
 };
-
-export default nnNO;

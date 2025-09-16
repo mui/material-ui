@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const kuLatn: Localization = {
+export const kuLatn: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const kuLatn: Localization = {
     },
   },
 };
-
-export default kuLatn;

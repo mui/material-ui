@@ -1,7 +1,7 @@
 import type {Localization} from './utils/LocaleTextApi';
 
 // Croatian - Hrvatski
-const hrHR: Localization = {
+export const hrHR: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -78,5 +78,3 @@ const hrHR: Localization = {
     },
   },
 };
-
-export default hrHR;

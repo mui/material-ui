@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const elGR: Localization = {
+export const elGR: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -72,5 +72,3 @@ const elGR: Localization = {
     },
   },
 };
-
-export default elGR;

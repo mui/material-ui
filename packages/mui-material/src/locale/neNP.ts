@@ -74,5 +74,3 @@ export const neNP: Localization = {
     },
   },
 };
-
-export default neNP;

@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const deDE: Localization = {
+export const deDE: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const deDE: Localization = {
     },
   },
 };
-
-export default deDE;

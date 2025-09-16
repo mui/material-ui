@@ -70,5 +70,3 @@ export const bgBG: Localization = {
     },
   },
 };
-
-export default bgBG;

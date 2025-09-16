@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const skSK: Localization = {
+export const skSK: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -78,5 +78,3 @@ const skSK: Localization = {
     },
   },
 };
-
-export default skSK;

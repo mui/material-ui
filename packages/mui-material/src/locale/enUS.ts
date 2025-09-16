@@ -1,7 +1,7 @@
 import type {Localization} from './utils/LocaleTextApi';
 
 // default
-const enUS: Localization = {
+export const enUS: Localization = {
   /*
   components: {
     MuiBreadcrumbs: { defaultProps: {
@@ -61,5 +61,3 @@ const enUS: Localization = {
   },
 */
 };
-
-export default enUS;

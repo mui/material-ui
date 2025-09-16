@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const csCZ: Localization = {
+export const csCZ: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -78,5 +78,3 @@ const csCZ: Localization = {
     },
   },
 };
-
-export default csCZ;

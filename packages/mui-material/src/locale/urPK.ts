@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const urPK: Localization = {
+export const urPK: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const urPK: Localization = {
     },
   },
 };
-
-export default urPK;

@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const koKR: Localization = {
+export const koKR: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const koKR: Localization = {
     },
   },
 };
-
-export default koKR;

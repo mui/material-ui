@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const arSD: Localization = {
+export const arSD: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const arSD: Localization = {
     },
   },
 };
-
-export default arSD;

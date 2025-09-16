@@ -1,7 +1,7 @@
 import type {Localization} from './utils/LocaleTextApi';
 
 // Serbian - Srpski
-const srRS: Localization = {
+export const srRS: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -78,5 +78,3 @@ const srRS: Localization = {
     },
   },
 };
-
-export default srRS;

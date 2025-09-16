@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const hyAM: Localization = {
+export const hyAM: Localization = {
   components: {
     // MuiBreadcrumbs: {
     //   defaultProps: {
@@ -70,5 +70,3 @@ const hyAM: Localization = {
     // },
   },
 };
-
-export default hyAM;

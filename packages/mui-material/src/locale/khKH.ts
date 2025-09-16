@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const khKH: Localization = {
+export const khKH: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const khKH: Localization = {
     },
   },
 };
-
-export default khKH;

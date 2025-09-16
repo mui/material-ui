@@ -1,6 +1,6 @@
 import type {Localization} from './utils/LocaleTextApi';
 
-const etEE: Localization = {
+export const etEE: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -70,5 +70,3 @@ const etEE: Localization = {
     },
   },
 };
-
-export default etEE;
