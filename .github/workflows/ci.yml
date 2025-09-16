@@ -3,18 +3,18 @@ name: CI
 on:
   push:
     branches:
+      # should sync with ci-check.yml as a workaround to bypass github checks
       - master
       - next
       - v*.x
   pull_request:
+    paths-ignore:
+      # should sync with ci-check.yml as a workaround to bypass github checks
+      - 'docs/**'
 
 permissions: {}
 
 jobs:
-  continuous-releases:
-    name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@master
-
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.

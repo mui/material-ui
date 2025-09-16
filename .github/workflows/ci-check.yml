@@ -1,0 +1,33 @@
+# This workflow is a workaround for ci.yml to bypass the github checks
+#
+# Ref: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/troubleshooting-required-status-checks#handling-skipped-but-required-checks
+name: CI Check
+
+on:
+  push:
+    branches-ignore:
+      # should sync with ci.yml as a workaround to bypass github checks
+      - master
+      - next
+      - v*.x
+  pull_request:
+    paths:
+      # should sync with ci.yml as a workaround to bypass github checks
+      - 'docs/**'
+
+permissions: {}
+
+jobs:
+  continuous-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No continuous release required"'
+
+  test-dev:
+    if: ${{ github.actor != 'l10nbot' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - run: 'echo "No build required"'

@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches:
+      # should sync with ci-check.yml as a workaround to bypass github checks
+      - master
+      - next
+      - v*.x
+  pull_request:
+
+permissions: {}
+
+jobs:
+  continuous-releases:
+    name: Continuous releases
+    uses: mui/mui-public/.github/workflows/ci-base.yml@master
