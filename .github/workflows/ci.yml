@@ -15,6 +15,10 @@ on:
 permissions: {}
 
 jobs:
+  continuous-releases:
+    name: Continuous releases
+    uses: mui/mui-public/.github/workflows/ci-base.yml@master
+
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
