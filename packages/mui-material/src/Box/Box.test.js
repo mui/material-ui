@@ -25,7 +25,7 @@ describe('<Box />', () => {
   }));
 
   it('respects theme from context', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();

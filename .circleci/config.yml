@@ -35,9 +35,13 @@ default-job: &default-job
       description: The base url for running end-to-end test
       type: string
       default: << pipeline.parameters.e2e-base-url >>
+    browserstack-enabled:
+      type: boolean
+      default: false
   environment:
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
+    BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
     REACT_VERSION: << parameters.react-version >>
     TYPESCRIPT_VERSION: << parameters.typescript-version >>
     TEST_GATE: << parameters.test-gate >>
@@ -46,7 +50,7 @@ default-job: &default-job
     DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:20.19
+    - image: cimg/node:22.18
 
 default-context: &default-context
   context:
@@ -616,6 +620,8 @@ workflows:
           <<: *default-context
       - test_browser:
           <<: *default-context
+          # only enable on pipeline, the karma.conf.js has logic to disable browserstack on PRs
+          browserstack-enabled: true
       - test_regressions:
           <<: *default-context
       - test_e2e:

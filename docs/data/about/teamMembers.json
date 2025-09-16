@@ -10,7 +10,7 @@
   },
   {
     "name": "Matt Brookes",
-    "title": "Co-founder, Head of Sales",
+    "title": "Co-founder, Sales",
     "location": "London, UK",
     "locationCountry": "gb",
     "about": "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️.",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Marija Najdova",
-    "title": "Engineering Manager — Core",
+    "title": "Engineering Manager",
     "location": "Skopje, North Macedonia",
     "locationCountry": "mk",
     "about": "I do karate 🥋 and read 📚. A lot!",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Danail Hadjiatanasov",
-    "title": "Engineering Manager — X",
+    "title": "Engineering Manager",
     "location": "Sofia, Bulgaria",
     "locationCountry": "bg",
     "about": "Boringly normal, geek deep down. I like 🚗 and 🏂.",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Jun Kunaporn",
-    "title": "Software Engineer — Core",
+    "title": "UI Engineer — Core",
     "location": "Bangkok, Thailand",
     "locationCountry": "th",
     "about": "UI Lover and ⛷ skiing newbie.",
@@ -88,7 +88,7 @@
   },
   {
     "name": "José Freitas",
-    "title": "Technical Product Manager — X",
+    "title": "Technical Product Manager",
     "location": "Augsburg, Germany",
     "locationCountry": "de",
     "about": "Art, fiction, and bar philosophy.",
@@ -109,16 +109,7 @@
     "title": "Head of Documentation",
     "location": "Washington state, US",
     "locationCountry": "us",
-    "about": "Musician and edible wild plant enthusiast 🌱.",
-    "github": "mapache-salvaje"
-  },
-  {
-    "name": "Pedro Ferreira",
-    "title": "Software Engineer — Toolpad",
-    "location": "Porto, Portugal",
-    "locationCountry": "pt",
-    "about": "Passionate about videogames and football.",
-    "github": "apedroferreira"
+    "about": "Musician and edible wild plant enthusiast 🌱."
   },
   {
     "name": "Lukas Tyla",
@@ -174,7 +165,7 @@
   },
   {
     "name": "Diego Andai",
-    "title": "Engineering Manager — Core",
+    "title": "UI Engineer — Core",
     "location": "Santiago, Chile",
     "locationCountry": "cl",
     "about": "I love tennis 🎾 and cats 🐈.",
@@ -208,7 +199,7 @@
   },
   {
     "name": "Vadym Raksha",
-    "title": "Product Engineer — Store",
+    "title": "Product Engineer — Services",
     "location": "Prague, Czech Republic",
     "locationCountry": "cz",
     "about": "Product experience geek 🛋, Mediterranean vibes 🍊.",
@@ -226,7 +217,7 @@
   },
   {
     "name": "Colm Tuite",
-    "title": "Product Manager — Core",
+    "title": "Director of Design Engineering",
     "location": "Dublin, Ireland",
     "locationCountry": "ie",
     "about": "Hi :). Designer / developer / entrepreneur.",
@@ -243,7 +234,7 @@
   },
   {
     "name": "James Nelson",
-    "title": "Software Engineer — Base UI",
+    "title": "UI Engineer — Base UI",
     "location": "Gold Coast, Australia",
     "locationCountry": "au",
     "about": "Enjoy creating open source libraries and reading about AI 🤖.",
@@ -330,10 +321,10 @@
   },
   {
     "name": "Luis Vasallo",
-    "title": "Account Executive",
+    "title": "Account Executive — Sales",
     "location": "Edinburgh, UK",
     "locationCountry": "gb",
-    "about": "Loves drums 🥁, food 🍖 and books 📚",
+    "about": "Loves drums 🥁, food 🍖 and books 📚.",
     "github": "LuisHVasallo"
   }
 ]

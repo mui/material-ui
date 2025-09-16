@@ -22,7 +22,7 @@ jobs:
       actions: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
       - name: Run analysis
@@ -40,6 +40,6 @@ jobs:
           publish_results: true
       # Upload the results to GitHub's code scanning dashboard.
       - name: Upload to code-scanning
-        uses: github/codeql-action/upload-sarif@3c3833e0f8c1c83d449a7478aa59c036a9165498 # v3.29.11
+        uses: github/codeql-action/upload-sarif@d3678e237b9c32a6c9bffb3315c335f976f3549f # v3.30.2
         with:
           sarif_file: results.sarif
