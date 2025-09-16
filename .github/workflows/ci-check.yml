@@ -18,11 +18,6 @@ on:
 permissions: {}
 
 jobs:
-  continuous-releases:
-    runs-on: ubuntu-latest
-    steps:
-      - run: 'echo "No continuous release required"'
-
   test-dev:
     if: ${{ github.actor != 'l10nbot' }}
     runs-on: ${{ matrix.os }}

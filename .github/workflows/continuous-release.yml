@@ -1,9 +1,8 @@
-name: CI
+name: Continuous releases
 
 on:
   push:
     branches:
-      # should sync with ci-check.yml as a workaround to bypass github checks
       - master
       - next
       - v*.x
