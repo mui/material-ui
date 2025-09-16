@@ -23,11 +23,11 @@ permissions: {}
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment:
-      name: npm-publish
     permissions:
       contents: write # Required for pushing tags and creating releases
       id-token: write # Required for provenance
+    environment:
+      name: npm-publish
     steps:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
@@ -49,4 +49,4 @@ jobs:
             ARGS="$ARGS --github-release"
           fi
 
-          pnpm code-infra publish --no-git-checks $ARGS
+          pnpm code-infra publish $ARGS
