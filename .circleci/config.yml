@@ -259,6 +259,10 @@ jobs:
           environment:
             NODE_OPTIONS: --max-old-space-size=3072
       - run:
+          name: Prepare files
+          # Enable configuration that is only valid in typescript@next
+          command: sed -i '' 's|// <ts@next uncomment>||g' test/moduleResolution/tsconfig.node.json
+      - run:
           name: Build declaration files
           command: |
             pnpm -r build
