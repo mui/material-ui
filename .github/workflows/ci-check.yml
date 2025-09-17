@@ -19,9 +19,8 @@ permissions: {}
 
 jobs:
   continuous-releases:
-    runs-on: ubuntu-latest
-    steps:
-      - run: 'echo "No continuous release required"'
+    name: Continuous releases
+    uses: mui/mui-public/.github/workflows/ci-base.yml@master
 
   test-dev:
     if: ${{ github.actor != 'l10nbot' }}
