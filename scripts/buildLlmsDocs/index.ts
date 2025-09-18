@@ -153,21 +153,27 @@ async function findComponentsToProcess(
           continue;
         }
 
-        // Get the markdown file path from the first demo
-        const firstDemo = demos[0];
-        const markdownPath = firstDemo ? firstDemo.filePath : undefined;
-
         // Get API JSON path
         const apiJsonPath = path.join(
           componentInfo.apiPagesDirectory,
           `${path.basename(componentInfo.apiPathname)}.json`,
         );
 
+        // Find the primary demo - prefer the one that matches the component's API pathname
+        const primaryDemo = demos.find(demo =>
+          demo.demoPathname.toLowerCase().includes(`/${kebabCase(componentInfo.name)}/`) ||
+          demo.demoPathname.toLowerCase().includes(`/react-${kebabCase(componentInfo.name)}/`)
+        );
+
+        // Use primary demo if found, otherwise fall back to first demo
+        const demoToUse = primaryDemo || demos[0];
+        const markdownPathToUse = demoToUse ? demoToUse.filePath : undefined;
+
         components.push({
           name: componentInfo.name,
           componentInfo,
-          demos,
-          markdownPath,
+          demos: primaryDemo ? [primaryDemo] : demos,  // Only use the primary demo if found
+          markdownPath: markdownPathToUse,
           apiJsonPath: fs.existsSync(apiJsonPath) ? apiJsonPath : undefined,
         });
       } catch (error) {
