@@ -149,7 +149,7 @@ You can use this same text as a rule for any other IDE, but the preferred locati
 ## Troubleshooting
 
 The MCP is available as a separate package that runs locally and communicates via your AI client using the `stdio` transport.
-Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/legacy/tools/inspector):
+Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
 
 ```bash
 npx -y @mui/mcp@latest
