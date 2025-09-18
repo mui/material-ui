@@ -261,7 +261,7 @@ jobs:
       - run:
           name: Prepare files
           # Enable configuration that is only valid in typescript@next
-          command: sed -i '' 's|// <ts@next uncomment>||g' test/moduleResolution/tsconfig.node.json
+          command: sed -i 's|// <ts@next uncomment>||g' test/moduleResolution/tsconfig.node.json
       - run:
           name: Build declaration files
           command: |
