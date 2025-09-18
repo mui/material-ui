@@ -265,7 +265,7 @@ jobs:
       - run:
           name: Build declaration files
           command: |
-            pnpm -r --filter '!./apps/pigment-css-next-app' build
+            pnpm lerna run --scope "@mui/*" build
       - run:
           name: Log defect declaration files
           command: |
