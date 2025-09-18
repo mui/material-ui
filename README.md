@@ -92,9 +92,9 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
  <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Follower24</a>
   &nbsp;
- <a href="https://www.tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">TikTokFame</a>
+ <a href="https://tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">TikTokFame</a>
   &nbsp;
-  <a href="https://www.reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Reputation Manage</a>
+  <a href="https://reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Reputation Manage</a>
   &nbsp;
 </p>
 
