@@ -11,7 +11,7 @@ import { TypographyVariants, TypographyVariantsOptions } from './createTypograph
 import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
-import type { Components } from './components';
+import { Components } from './components';
 import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
 
 /**
@@ -34,8 +34,7 @@ type CssVarsOptions = CssThemeVariables extends {
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  // OPTIMIZATION: Use ComponentThemeBase to break circular dependency while preserving CSS vars
-  components?: Components<ComponentThemeBase>;
+  components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -54,13 +53,6 @@ export interface BaseTheme extends SystemTheme {
   typography: TypographyVariants;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
-}
-
-// PERFORMANCE OPTIMIZATION: Create a minimal theme interface for component types
-// This breaks the circular dependency while preserving CSS variables compatibility
-interface ComponentThemeBase extends BaseTheme {
-  // Add minimal CSS variables support without importing complex CssVarsTheme
-  vars?: any; // CSS variables object when present
 }
 
 // shut off automatic exporting for the `BaseTheme` above
@@ -90,8 +82,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
-  // OPTIMIZATION: Use ComponentThemeBase to break circular dependency while preserving CSS vars
-  components?: Components<ComponentThemeBase>;
+  components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
