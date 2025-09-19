@@ -630,11 +630,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     if (tabMeta[start] < tabsMeta[start]) {
       // left side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]) - tabMeta[size];
       scroll(nextScrollStart, { animation });
     } else if (tabMeta[end] > tabsMeta[end]) {
       // right side of button is out of view
-      const nextScrollStart = tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+      const nextScrollStart =
+        tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]) + tabMeta[size];
       scroll(nextScrollStart, { animation });
     }
   });
