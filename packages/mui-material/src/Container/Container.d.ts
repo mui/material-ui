@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps, Breakpoint } from '@mui/system';
-import { Theme } from '../styles';
+import { Theme } from '../styles/createThemeNoVars';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ContainerClasses } from './containerClasses';
 

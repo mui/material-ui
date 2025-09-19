@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { Theme } from '../styles/createThemeNoVars';
 import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export interface FormHelperTextPropsVariantOverrides {}
