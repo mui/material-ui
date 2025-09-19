@@ -1,10 +1,15 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": ["../../tsconfig.json", "../../tsconfig.src.json"],
   "compilerOptions": {
     "skipLibCheck": true,
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "types": ["react", "node", "csstype", "mocha"]
+    "resolveJsonModule": true
   },
-  "include": ["./types.d.ts", "src/**/*", "test/**/*"]
+  "include": ["./types.d.ts", "src/**/*"],
+  "exclude": ["test/**/*", "**/*.test.*", "**/*.spec.*"],
+  "references": [
+    { "path": "../mui-material/tsconfig.json" },
+    { "path": "../mui-system/tsconfig.json" },
+    { "path": "../mui-icons-material/tsconfig.json" }
+  ]
 }
