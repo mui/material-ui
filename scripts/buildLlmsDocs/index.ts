@@ -232,15 +232,14 @@ function findNonComponentMarkdownFiles(
 
   // Extract all pathname strings using regex
   const pathnameRegex = /pathname:\s*['"`]([^'"`]+)['"`]/g;
-  let match;
+  const matches = Array.from(pagesContent.matchAll(pathnameRegex));
 
   // Get all markdown files using the existing findPagesMarkdown utility
   const allMarkdownFiles = findPagesMarkdown();
 
   const files: Array<{ markdownPath: string; outputPath: string }> = [];
 
-  match = pathnameRegex.exec(pagesContent);
-  while (match !== null) {
+  for (const match of matches) {
     const pathname = match[1];
     const parsedPathname = pathname
       .replace('/material-ui/', '/material/')
@@ -263,7 +262,6 @@ function findNonComponentMarkdownFiles(
         });
       }
     }
-    match = pathnameRegex.exec(pagesContent);
   }
 
   return files;
@@ -499,6 +497,10 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   // Process non-component markdown files
   for (const file of nonComponentFiles) {
     try {
+      if (generatedComponentRecord[file.outputPath]) {
+        // Skip files that have already been generated as component docs
+        continue;
+      }
       // Processing non-component file: ${path.relative(process.cwd(), file.markdownPath)}
 
       // Process the markdown file with demo replacement
@@ -536,16 +538,14 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
         }
       }
 
-      if (!generatedComponentRecord[file.outputPath]) {
-        generatedFiles.push({
-          outputPath: file.outputPath,
-          title,
-          description,
-          originalMarkdownPath: file.markdownPath,
-          category,
-          orderIndex,
-        });
-      }
+      generatedFiles.push({
+        outputPath: file.outputPath,
+        title,
+        description,
+        originalMarkdownPath: file.markdownPath,
+        category,
+        orderIndex,
+      });
     } catch (error) {
       console.error(`✗ Error processing ${file.markdownPath}:`, error);
     }
