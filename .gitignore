@@ -46,3 +46,4 @@ docs/public/static/blog/feed/*
 .nx/workspace-data
 screenshots
 packed
+test-results
