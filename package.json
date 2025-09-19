@@ -42,7 +42,7 @@
     "jsonlint": "code-infra jsonlint",
     "eslint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "eslint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
-    "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.?(c|m)[jt]s?(x)\" --ignore-path .lintignore",
+    "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.?(c|m)[jt]s?(x)\" \"docs/**/*.css\" --ignore-path .lintignore",
     "markdownlint": "markdownlint-cli2 \"**/*.md\"",
     "valelint": "pnpm vale sync && git ls-files | grep -h \".md$\" | xargs pnpm vale --filter='.Level==\"error\"'",
     "prettier": "pretty-quick --ignore-path .lintignore --branch master",
