@@ -93,7 +93,8 @@
   --shadow-elevation-2: 0px 2px 4px 0px hsl(var(--grey-700), 0.2);
   --shadow-elevation-3:
     0px 4px 16px -4px hsl(var(--grey-700), 0.2), 0px 1px 2px -1px hsl(var(--grey-700), 0.1);
-  --shadow-elevation-4: 0px 8px 32px -4px hsl(0deg 0 0 / 0.25), 0px 1px 2px -1px hsl(0deg 0 0 / 0.15);
+  --shadow-elevation-4:
+    0px 8px 32px -4px hsl(0deg 0 0 / 0.25), 0px 1px 2px -1px hsl(0deg 0 0 / 0.15);
   --shadow-interactive-button:
     0 -2px 0.5px 0 hsl(var(--primary-700), 0.4) inset,
     0 2px 0.5px 0 hsl(var(--primary-400), 0.6) inset, 0 1px 0.5px 0 hsl(var(--primary-900), 0.3);
@@ -113,7 +114,6 @@
 @media (prefers-color-scheme: dark) {
   .GalleryContainer,
   .GalleryMenu,
-  .GalleryPopup,
   .GalleryPopup,
   .GallerySelect-listbox {
     --canvas: #0f0f0f;
@@ -144,8 +144,10 @@
     --border-transparent: 1px solid transparent;
     --border-active-switch: 1px solid hsl(var(--primary-400), 0.4);
     --shadow-elevation-1: 0px 2px 4px -0.5px hsl(0deg 0 0 / 0.4);
-    --shadow-elevation-2: 0px 2px 8px 0px hsl(0deg 0 0 / 0.3), 0px 2px 4px -0.5px hsl(0deg 0 0 / 0.4);
-    --shadow-elevation-3: 0px 4px 8px 0px hsl(0deg 0 0 / 0.32), 0px 8px 16px 0px hsl(0deg 0 0 / 0.32);
+    --shadow-elevation-2:
+      0px 2px 8px 0px hsl(0deg 0 0 / 0.3), 0px 2px 4px -0.5px hsl(0deg 0 0 / 0.4);
+    --shadow-elevation-3:
+      0px 4px 8px 0px hsl(0deg 0 0 / 0.32), 0px 8px 16px 0px hsl(0deg 0 0 / 0.32);
     --shadow-elevation-4:
       0px 2px 24px 0px hsl(0deg 0 0 / 0.32), 0px 16px 32px 0px hsl(0deg 0 0 / 0.32);
     --shadow-interactive-button:
@@ -591,7 +593,6 @@
   font: var(--text-body);
   line-height: var(--button-line-height);
   color: var(--font-color-soft);
-  box-sizing: border-box;
   padding: 6px;
   margin: 12px 0;
   border-radius: var(--border-radius-lg);
@@ -876,10 +877,6 @@
 }
 
 /* Table pagination styles */
-
-.GalleryTablePaginationDemo th {
-  background-color: var(--bg-default);
-}
 
 .GalleryTablePaginationDemo table {
   font: var(--text-body);

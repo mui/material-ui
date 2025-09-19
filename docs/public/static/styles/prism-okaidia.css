@@ -6,7 +6,6 @@
 
 code[class*='language-'],
 pre[class*='language-'] {
-
   /* color: #f8f8f2; */
   /* background: none; */
   /* text-shadow: 0 1px rgba(0, 0, 0, 0.3); */
@@ -17,6 +16,7 @@ pre[class*='language-'] {
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
+
   /* line-height: 1.5; */
 
   /* -moz-tab-size: 4; */
