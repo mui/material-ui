@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponentProps } from '../styles';
+import { StyledComponentProps } from '../styles/createThemeNoVars';
 
 export interface CssBaselineProps extends StyledComponentProps<never> {
   /**

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { Theme } from '../styles/createThemeNoVars';
 import { UsePaginationItem } from '../usePagination/usePagination';
 import { PaginationItemClasses } from './paginationItemClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';

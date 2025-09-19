@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { Theme } from '../styles/createThemeNoVars';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TableCellClasses } from './tableCellClasses';
 
