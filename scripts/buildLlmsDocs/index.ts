@@ -63,8 +63,6 @@ import kebabCase from 'lodash/kebabCase';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
 import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
 import { getHeaders } from '@mui/internal-markdown';
-import { fixPathname } from '@mui-internal/api-docs-builder/buildApiUtils';
-import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
 import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
@@ -241,7 +239,8 @@ function findNonComponentMarkdownFiles(
 
   const files: Array<{ markdownPath: string; outputPath: string }> = [];
 
-  while ((match = pathnameRegex.exec(pagesContent)) !== null) {
+  match = pathnameRegex.exec(pagesContent);
+  while (match !== null) {
     const pathname = match[1];
     const parsedPathname = pathname
       .replace('/material-ui/', '/material/')
@@ -264,6 +263,7 @@ function findNonComponentMarkdownFiles(
         });
       }
     }
+    match = pathnameRegex.exec(pagesContent);
   }
 
   return files;
