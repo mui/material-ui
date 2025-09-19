@@ -205,7 +205,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     additionalProps: {
       centerRipple: true,
       focusRipple: !disableFocusRipple,
-      disabled,
       role: undefined,
       tabIndex: null,
     },
