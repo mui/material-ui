@@ -449,7 +449,6 @@
 }
 
 .GalleryNumberInput .input {
-  font-family: inherit;
   font: var(--text-body);
   grid-column: 1/2;
   grid-row: 1/3;
@@ -1004,8 +1003,7 @@
   margin-bottom: 8px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  align-content: space-between;
+  place-content: space-between center;
 }
 
 .GalleryTab {

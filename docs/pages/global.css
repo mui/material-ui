@@ -1,4 +1,5 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
+
 /* stylelint-disable-next-line at-rule-no-unknown */
 @config '../tailwind.config.mjs';
