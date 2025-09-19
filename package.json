@@ -129,8 +129,8 @@
     "@types/lodash": "^4.17.20",
     "@types/lodash.kebabcase": "^4.1.9",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.13",
-    "@types/react": "^19.1.12",
+    "@types/node": "^20.19.15",
+    "@types/react": "^19.1.13",
     "@types/yargs": "^17.0.33",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/browser": "^3.2.4",
@@ -145,7 +145,7 @@
     "cpy-cli": "^6.0.0",
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
-    "eslint": "^9.34.0",
+    "eslint": "^9.35.0",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
@@ -191,9 +191,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.15.1",
+  "packageManager": "pnpm@10.16.1",
   "engines": {
-    "pnpm": "10.15.1",
+    "pnpm": "10.16.1",
     "node": ">=22.18.0"
   },
   "resolutions": {
@@ -206,7 +206,7 @@
     "@definitelytyped/header-parser": "^0.2.20",
     "@definitelytyped/typescript-versions": "^0.1.9",
     "@definitelytyped/utils": "^0.1.8",
-    "@types/node": "^20.19.13",
+    "@types/node": "^20.19.15",
     "cross-fetch": "^4.1.0",
     "@pigment-css/react": "0.0.30",
     "@pigment-css/unplugin": "0.0.30",
