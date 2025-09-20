@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
     "@types/babel__traverse": "^7.28.0",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.2",
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
     "@types/mocha": "^10.0.10",
