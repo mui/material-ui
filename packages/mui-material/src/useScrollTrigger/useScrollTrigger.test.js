@@ -96,8 +96,8 @@ describe('useScrollTrigger', () => {
       customContainer: PropTypes.bool,
     };
 
-    function dispatchScroll(offset, element = window) {
-      act(() => {
+    async function dispatchScroll(offset, element = window) {
+      await act(async () => {
         element.pageYOffset = offset;
         element.dispatchEvent(new window.Event('scroll', {}));
       });
