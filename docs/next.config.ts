@@ -264,14 +264,5 @@ export default withDocsInfra({
             { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
           ];
         },
-        redirects: async () => {
-          return [
-            {
-              source: '/base-ui/',
-              destination: 'https://base-ui.com',
-              permanent: true,
-            },
-          ];
-        },
       }),
 } satisfies NextConfig);
