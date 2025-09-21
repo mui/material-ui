@@ -249,15 +249,6 @@ export default withDocsInfra({
 
     return map;
   },
-  redirects: async () => {
-    return [
-      {
-        source: '/base-ui/',
-        destination: 'https://base-ui.com',
-        permanent: true,
-      },
-    ];
-  },
   // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
@@ -271,6 +262,15 @@ export default withDocsInfra({
             // Make sure to include the trailing slash if `trailingSlash` option is set
             { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
             { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
+          ];
+        },
+        redirects: async () => {
+          return [
+            {
+              source: '/base-ui/',
+              destination: 'https://base-ui.com',
+              permanent: true,
+            },
           ];
         },
       }),
