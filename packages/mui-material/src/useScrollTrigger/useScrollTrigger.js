@@ -24,19 +24,31 @@ const defaultTarget = typeof window !== 'undefined' ? window : null;
 export default function useScrollTrigger(options = {}) {
   const { getTrigger = defaultTrigger, target = defaultTarget, ...other } = options;
   const store = React.useRef();
+  const ticking = React.useRef(false);
   const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
   React.useEffect(() => {
     if (target === null) {
       return setTrigger(false);
     }
+
+    let rafID = null;
     const handleScroll = () => {
-      setTrigger(getTrigger(store, { target, ...other }));
+      if (!ticking.current) {
+        ticking.current = true;
+        rafID = window.requestAnimationFrame(() => {
+          setTrigger(getTrigger(store, { target, ...other }));
+          ticking.current = false;
+        });
+      }
     };
 
-    handleScroll(); // Re-evaluate trigger when dependencies change
+    setTrigger(getTrigger(store, { target, ...other })); // Re-evaluate trigger when dependencies change
     target.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       target.removeEventListener('scroll', handleScroll, { passive: true });
+      if (rafID) {
+        window.cancelAnimationFrame(rafID);
+      }
     };
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
