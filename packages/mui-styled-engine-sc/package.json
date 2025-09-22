@@ -24,15 +24,13 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --skipTsc && pnpm build:copy-files",
-    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
-    "build:copy-files": "code-infra copy-files",
+    "build": "code-infra build --skipTsc",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine-sc/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@types/hoist-non-react-statics": "^3.3.7",
     "csstype": "^3.1.3",
     "hoist-non-react-statics": "^3.3.2",
@@ -41,8 +39,8 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.11",
-    "chai": "^4.5.0",
+    "@types/react": "^19.1.13",
+    "chai": "^6.0.1",
     "react": "^19.1.1",
     "styled-components": "^6.1.19"
   },
