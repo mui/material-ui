@@ -111,7 +111,7 @@
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui/internal-bundle-size-checker": "^1.0.9-canary.40",
+    "@mui/internal-bundle-size-checker": "^1.0.9-canary.41",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.10",
     "@mui/internal-code-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@e50ef17b5a028b5525c57a1847c4dc685e091d09",
     "@mui/internal-docs-utils": "workspace:^",
@@ -129,7 +129,7 @@
     "@types/lodash": "^4.17.20",
     "@types/lodash.kebabcase": "^4.1.9",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.15",
+    "@types/node": "^20.19.17",
     "@types/react": "^19.1.13",
     "@types/yargs": "^17.0.33",
     "@vitejs/plugin-react": "^4.7.0",
@@ -189,9 +189,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.16.1",
+  "packageManager": "pnpm@10.17.0",
   "engines": {
-    "pnpm": "10.16.1",
+    "pnpm": "10.17.0",
     "node": ">=22.18.0"
   },
   "resolutions": {
@@ -204,7 +204,7 @@
     "@definitelytyped/header-parser": "^0.2.20",
     "@definitelytyped/typescript-versions": "^0.1.9",
     "@definitelytyped/utils": "^0.1.8",
-    "@types/node": "^20.19.15",
+    "@types/node": "^20.19.17",
     "cross-fetch": "^4.1.0",
     "@pigment-css/react": "0.0.30",
     "@pigment-css/unplugin": "0.0.30",
