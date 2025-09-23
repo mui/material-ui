@@ -15,12 +15,13 @@ pre[class*='language-'] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  overflow-wrap: normal;
-
+  word-wrap: normal;
   /* line-height: 1.5; */
+
   /* -moz-tab-size: 4; */
   /* -o-tab-size: 4; */
   /* tab-size: 4; */
+
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -125,7 +126,6 @@ pre[class*='language-'] {
 .token.bold {
   font-weight: bold;
 }
-
 .token.italic {
   font-style: italic;
 }
