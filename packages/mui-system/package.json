@@ -48,7 +48,7 @@
     "@mui/system": "workspace:*",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.12",
+    "@types/react": "^19.1.13",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
     "fast-glob": "^3.3.3",
