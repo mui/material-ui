@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
-import * as _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';

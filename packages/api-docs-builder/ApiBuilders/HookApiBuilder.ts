@@ -1,14 +1,14 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as astTypes from 'ast-types';
-import * as _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
-import kebabCase from 'lodash/kebabCase';
-import upperFirst from 'lodash/upperFirst';
+import kebabCase from 'es-toolkit/compat/kebabCase';
+import upperFirst from 'es-toolkit/compat/upperFirst';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import escapeRegExp from 'lodash/escapeRegExp';
+import escapeRegExp from 'es-toolkit/compat/escapeRegExp';
 import { escapeEntities, renderMarkdown } from '../buildApi';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';

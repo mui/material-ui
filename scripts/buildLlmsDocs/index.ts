@@ -59,7 +59,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import kebabCase from 'lodash/kebabCase';
+import kebabCase from 'es-toolkit/compat/kebabCase';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
 import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
 import { getHeaders } from '@mui/internal-markdown';

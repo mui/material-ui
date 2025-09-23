@@ -45,9 +45,9 @@
     "@testing-library/user-event": "^14.6.1",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
+    "es-toolkit": "^1.39.10",
     "format-util": "^1.0.5",
     "jsdom": "^26.1.0",
-    "lodash": "^4.17.21",
     "mocha": "^11.7.2",
     "prop-types": "^15.8.1",
     "sinon": "^21.0.0"

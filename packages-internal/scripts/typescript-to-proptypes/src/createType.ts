@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import {
   PropType,
   ArrayType,

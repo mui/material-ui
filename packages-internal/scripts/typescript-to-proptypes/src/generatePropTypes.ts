@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'es-toolkit/compat';
 import { PropTypeDefinition, PropTypesComponent, PropType, LiteralType } from './models';
 import { createDOMElementType, createBooleanType, uniqueUnionTypes } from './createType';
 
