@@ -1,4 +1,4 @@
-import * as _ from 'es-toolkit/compat';
+import partition from 'es-toolkit/compat/partition';
 import { PropTypeDefinition, PropTypesComponent, PropType, LiteralType } from './models';
 import { createDOMElementType, createBooleanType, uniqueUnionTypes } from './createType';
 
@@ -228,7 +228,7 @@ export function generatePropTypes(
         );
       }
 
-      let [literals, rest] = _.partition(
+      let [literals, rest] = partition(
         isOptional ? nonNullishUniqueTypes : uniqueTypes,
         (type): type is LiteralType => type.type === 'LiteralNode',
       );

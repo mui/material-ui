@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as astTypes from 'ast-types';
-import * as _ from 'es-toolkit/compat';
+import fromPairs from 'es-toolkit/compat/fromPairs';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
@@ -334,7 +334,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
    */
   const pageContent: HookApiContent = {
     // Sorted by required DESC, name ASC
-    parameters: _.fromPairs(
+    parameters: fromPairs(
       Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
@@ -345,7 +345,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
         return 1;
       }),
     ),
-    returnValue: _.fromPairs(
+    returnValue: fromPairs(
       Object.entries(reactApi.returnValueTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
