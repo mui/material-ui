@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This guide describes recommendations for building a brand-specific theme with Material UI that can be easily extended and customized across multiple apps that consume it.
+This guide describes recommendations for building a brand-specific theme with Material UI that can be easily extended and customized across multiple apps that consume it.
 
 ## Branded theme
 
