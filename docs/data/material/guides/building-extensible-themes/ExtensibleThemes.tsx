@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, ThemeOptions, createTheme } from '@mui/material/styles';
 
 /**
  * Base theme: you might want to export this as a separate file
  */
-const baseTokens = {
+const baseTokens: ThemeOptions = {
   palette: {
     primary: {
       main: '#000000',
@@ -51,7 +51,7 @@ const baseTokens = {
   ],
 };
 
-const baseComponents = {
+const baseComponents: ThemeOptions['components'] = {
   MuiButton: {
     defaultProps: {
       disableElevation: true,
@@ -149,7 +149,7 @@ function App2() {
   );
 }
 
-export default function WhiteLabelTheme() {
+export default function ExtensibleThemes() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <ThemeProvider theme={baseTheme}>

@@ -140,4 +140,4 @@ Instead, use the object spread and array syntax to merge the themes as shown abo
 
 ## Full example
 
-{{"demo": "WhiteLabelTheme.js", "defaultCodeOpen": true}}
+{{"demo": "ExtensibleThemes.js", "defaultCodeOpen": true}}
