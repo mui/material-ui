@@ -151,7 +151,7 @@
     "/material-ui/customization/styles": "Styles",
     "/material-ui/customization/css-layers": "Cascade layers",
     "/material-ui/guides": "How-to guides",
-    "/material-ui/guides/white-label-themes": "White label themes",
+    "/material-ui/guides/building-extensible-themes": "Building extensible themes",
     "/material-ui/guides/minimizing-bundle-size": "Minimizing bundle size",
     "/material-ui/guides/server-rendering": "Server rendering",
     "/material-ui/guides/responsive-ui": "Responsive UI",
