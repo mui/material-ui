@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { ThemeProvider, ThemeOptions, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, type ThemeOptions } from '@mui/material/styles';
 
 /**
- * Base theme: you might want to export this as a separate file
+ * Branded theme: you might want to export this as a separate file
  */
-const baseTokens: ThemeOptions = {
+const brandedTokens: ThemeOptions = {
   palette: {
     primary: {
       main: '#000000',
@@ -51,7 +51,7 @@ const baseTokens: ThemeOptions = {
   ],
 };
 
-const baseComponents: ThemeOptions['components'] = {
+const brandedComponents: ThemeOptions['components'] = {
   MuiButton: {
     defaultProps: {
       disableElevation: true,
@@ -72,28 +72,28 @@ const baseComponents: ThemeOptions['components'] = {
   },
 };
 
-const baseTheme = createTheme({
-  ...baseTokens,
-  components: baseComponents,
+const brandedTheme = createTheme({
+  ...brandedTokens,
+  components: brandedComponents,
 });
 
 /**
  * Application theme
  */
 const appTheme = createTheme({
-  ...baseTokens,
+  ...brandedTokens,
   palette: {
-    ...baseTokens.palette,
+    ...brandedTokens.palette,
     primary: {
       main: '#1976d2',
     },
   },
   components: {
-    ...baseComponents,
+    ...brandedComponents,
     MuiButton: {
       styleOverrides: {
         root: [
-          baseComponents?.MuiButton?.styleOverrides?.root,
+          brandedComponents?.MuiButton?.styleOverrides?.root,
           {
             transition: 'transform 0.2s ease-in-out',
             '&:hover': {
@@ -115,23 +115,23 @@ function App1() {
 }
 
 const appTheme2 = createTheme({
-  ...baseTokens,
+  ...brandedTokens,
   palette: {
-    ...baseTokens.palette,
+    ...brandedTokens.palette,
     primary: {
       main: '#ffa726',
     },
   },
   components: {
-    ...baseComponents,
+    ...brandedComponents,
     MuiButton: {
       defaultProps: {
-        ...baseComponents?.MuiButton?.defaultProps,
+        ...brandedComponents?.MuiButton?.defaultProps,
         variant: 'outlined',
       },
       styleOverrides: {
         root: [
-          baseComponents?.MuiButton?.styleOverrides?.root,
+          brandedComponents?.MuiButton?.styleOverrides?.root,
           ({ theme }) => ({
             color: theme.palette.primary.dark,
           }),
@@ -152,8 +152,8 @@ function App2() {
 export default function ExtensibleThemes() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <ThemeProvider theme={baseTheme}>
-        <Button>Base Button</Button>
+      <ThemeProvider theme={brandedTheme}>
+        <Button>Branded Button</Button>
       </ThemeProvider>
       <App1 />
       <App2 />

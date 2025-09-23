@@ -1,5 +1,5 @@
-<ThemeProvider theme={baseTheme}>
-  <Button>Base Button</Button>
+<ThemeProvider theme={brandedTheme}>
+  <Button>Branded Button</Button>
 </ThemeProvider>
 <App1 />
 <App2 />
