@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "module": "esnext",
     // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
     "target": "es2022",
     "lib": ["es2020", "dom", "dom.iterable"],
     "jsx": "preserve",
-    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
