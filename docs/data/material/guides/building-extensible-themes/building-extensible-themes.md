@@ -8,9 +8,10 @@ This guide describes recommendations for building a brand-specific theme with Ma
 
 ## Branded theme
 
-This is the source of truth for the brand-specific theme. It represents the brand's visual identity like colors, typography, spacing, shape, etc.
+This is the source of truth for the brand-specific theme. 
+It represents the brand's visual identity through colors, typography, spacing, and more.
 
-In general, it's recommended to export tokens, components, and the branded theme from a file.
+In general, it's recommended to export tokens, components, and the branded theme from a file, as shown here:
 
 ```js title="brandedTheme.ts"
 import { createTheme } from '@mui/material/styles';
@@ -59,7 +60,8 @@ const brandedTheme = createTheme({
 export default brandedTheme;
 ```
 
-For a more optimized approach, the branded components can be split into multiple files and let the application level import only the components that are needed.
+For a more optimized approach, you can split the branded components into multiple files. 
+This way, consumers of the theme can choose to import only what they need at the application level.
 
 ```js title="brandedButtons.ts"
 import type { ThemeOptions } from "@mui/material/styles";
@@ -88,9 +90,8 @@ export default createTheme({
 
 ## Application theme
 
-The application may use the branded theme directly or extend it with some tweaks.
-
-For example, to customize the hover styles of the button, do the following:
+Consumers of the branded theme may choose to use it directly in their applications, or extend it to better suit their specific use cases.
+Using the branded button as an example, a consumer could customize its hover styles as shown below:
 
 ```js title="appTheme.ts"
 import { createTheme } from '@mui/material/styles';
@@ -125,11 +126,11 @@ const appTheme = createTheme({
 :::success
 It's recommended to use array syntax to merge the branded styles with the application styles.
 
-The array syntax ensures that the [variants](/material-ui/customization/theme-components/#variants), states, and pseudo-classes styles from the branded theme are preserved.
+The array syntax ensures that the [variants](/material-ui/customization/theme-components/#variants), states, and pseudo-class styles from the branded theme are preserved.
 :::
 
 :::warning
-We don't recommend JavaScript functions or any utilities to do deep merge between the branded and the application theme.
+We don't recommend JavaScript functions or any utilities to do a deep merge between the branded and the application theme.
 
 Doing so will introduce performance overhead on the first render of the application. The impact depends on the size of the themes.
 
