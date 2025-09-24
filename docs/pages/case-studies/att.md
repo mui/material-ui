@@ -4,6 +4,7 @@ description: How AT&T streamlined performance dashboards with MUI X.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/atandt-light.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']
+rank: '4'
 manualCard: true
 ---
 
@@ -32,6 +33,8 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 </span>
+
+**Partner Since: 2022**
 
 ## Overview
 

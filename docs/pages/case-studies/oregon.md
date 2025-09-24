@@ -3,7 +3,8 @@ title: Oregon State University
 description: How Oregon State University transformed course planning with the MUI X Data Grid.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/oregon.svg'
 date: 2022-06-08T00:00:00.000Z
-tags: ['MUI X']
+tags: ['MUI X']
+rank: '9'
 manualCard: true
 ---
 
@@ -22,6 +23,8 @@ manualCard: true
     alt=""
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
+
+**Partner Since: 2022**
 
 ## Overview
 

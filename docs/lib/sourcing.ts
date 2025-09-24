@@ -22,6 +22,7 @@ export interface BlogPost {
   tags: Array<string>;
   authors?: Array<string>;
   date?: string;
+  rank?: string;
 }
 
 export function getBlogPost(filePath: string): BlogPost {

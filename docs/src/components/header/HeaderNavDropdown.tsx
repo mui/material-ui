@@ -280,7 +280,7 @@ export default function HeaderNavDropdown() {
               </li>
               <li>
                 <Anchor href={ROUTES.customers} as={Link} noLinkStyle>
-                  Case Studies
+                  Customers
                 </Anchor>
               </li>
             </UList>

@@ -147,8 +147,14 @@ interface CustomersSpotlightProps {
 }
 
 export default function CustomersSpotlight({ customers }: CustomersSpotlightProps) {
-  const firstPosts = customers.slice(0, 3); // TODO:show 6 with description, then the rest without description in different styling
-  const restPosts = customers.slice(3, 8);
+  // Sort customers by rank and split into first 3 and the rest
+  const sortedCustomers = [...customers].sort((a, b) => {
+    const rankA = parseInt(a.rank || '99', 10);
+    const rankB = parseInt(b.rank || '99', 10);
+    return rankA - rankB;
+  });
+  const firstPosts = sortedCustomers.slice(0, 3);
+  const restPosts = sortedCustomers.slice(3);
 
   return (
     <React.Fragment>

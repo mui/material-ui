@@ -4,6 +4,7 @@ description: How Qdrant moved fast and built a scalable, sustainable business wi
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/qdrant.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']
+rank: '2'
 manualCard: true
 ---
 
@@ -22,6 +23,8 @@ manualCard: true
     alt=""
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
+
+**Partner Since: 2022**
 
 ## Overview
 

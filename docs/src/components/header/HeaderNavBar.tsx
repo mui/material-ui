@@ -379,7 +379,7 @@ export default function HeaderNavBar() {
           <Link href={ROUTES.blog}>Blog</Link>
         </li>
         <li>
-          <Link href={ROUTES.customers}>Case Studies</Link>
+          <Link href={ROUTES.customers}>Customers</Link>
         </li>
       </ul>
     </Navigation>
