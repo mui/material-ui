@@ -57,28 +57,28 @@ With nearly six years at the company, Ronen spearheaded the initiative to modern
 
 Tebra faced several critical challenges with their legacy reporting system:
 
-- **Fragmented technology stack**: The platform consisted of multiple technology generations - JSPs, Angular, and different React implementations - all trying to maintain the same look and feel but with vastly different behaviors and codebases.
-- **Static, limited reporting**: Their existing reports were largely static HTML pages or basic grids with minimal functionality. Users couldn't filter, search, sort, or group data effectively, capabilities that had been standard in desktop applications 15 years prior.
-- **Maintenance overhead**: Implementing new features across multiple technology stacks required separate implementations in different places, increasing development costs and introducing more bugs.
-- **Inconsistent user experience**: Users encountered dramatically different experiences depending on which part of the platform they accessed - some screens felt "old and antiquated" while others offered modern functionality.
-- **Performance constraints**: The team had to implement complex throttling and pagination systems to manage large datasets, creating architectural constraints that limited reporting capabilities.
+- Fragmented technology stack - The platform consisted of multiple technology generations - JSPs, Angular, and different React implementations - all trying to maintain the same look and feel but with vastly different behaviors and codebases.
+- Static, limited reporting - Their existing reports were largely static HTML pages or basic grids with minimal functionality. Users couldn't filter, search, sort, or group data effectively, capabilities that had been standard in desktop applications 15 years prior.
+- Maintenance overhead - Implementing new features across multiple technology stacks required separate implementations in different places, increasing development costs and introducing more bugs.
+- Inconsistent user experience - Users encountered dramatically different experiences depending on which part of the platform they accessed - some screens felt "old and antiquated" while others offered modern functionality.
+- Performance constraints - The team had to implement complex throttling and pagination systems to manage large datasets, creating architectural constraints that limited reporting capabilities.
 
 ## Solution
 
-Here's how Tebra adopted the MUI X Data Grid as the cornerstone of their modernization strategy and solved the aforementioned challenges:
+Here's how Tebra adopted the MUI X Data Grid as the cornerstone of their modernization strategy and solved the aforementioned challenges:
 
-- **Unified design system**: They built a comprehensive design system using MUI components, with the Data Grid serving as the foundation for all reporting experiences across the platform.
+- Unified design system - They built a comprehensive design system using MUI components, with the Data Grid serving as the foundation for all reporting experiences across the platform.
 
-- **Advanced grid capabilities**: The team implemented sophisticated features including:
+- Advanced grid capabilities - The team implemented sophisticated features including:
   - Dynamic filtering with custom external filter components
   - Fast client-side search across up to 10,000 rows
   - Grouping and summarization functionality
   - Customizable row density for improved readability
   - Advanced sorting capabilities
 
-- **Architectural optimization**: They moved from database-heavy pagination to client-side data loading, enabling lightning-fast search and filtering while maintaining performance through strategic data limits.
+- Architectural optimization - They moved from database-heavy pagination to client-side data loading, enabling lightning-fast search and filtering while maintaining performance through strategic data limits.
 
-- **Custom enhancements**: Tebra extended the base functionality with:
+- Custom enhancements - Tebra extended the base functionality with:
   - Reusable filter components with business logic
   - Adjustable row height controls for user preference
   - Integration with their existing style sheets and branding
@@ -97,8 +97,8 @@ Tebra is actively exploring additional features like Pivot Tables for their upco
 
 ## Developer Experience
 
-**Exceptional Documentation**: Ronen praised MUI's documentation as "phenomenal," enabling teams to test and demo features without writing custom code, and helping sell the component capabilities to non-technical stakeholders.
+Exceptional Documentation - Ronen praised MUI's documentation as "phenomenal," enabling teams to test and demo features without writing custom code, and helping sell the component capabilities to non-technical stakeholders.
 
-Seamless integration – Since Tebra was already using the open-source MUI libraries, adopting the Data Grid was a natural progression that avoided vendor proliferation.
+Seamless integration - Since Tebra was already using the open-source MUI libraries, adopting the Data Grid was a natural progression that avoided vendor proliferation.
 
-**Community and Support**: The team values the ongoing relationship with MUI and the ability to influence the product roadmap through feedback and potential feature requests.
+The team values the ongoing relationship with MUI and the ability to influence the product roadmap through feedback and potential feature requests.

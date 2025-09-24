@@ -87,9 +87,9 @@ As Joseph noted, implementing date pickers from scratch would have been challeng
 ## Developer experience
 
 Qdrant's development team consistently praised MUI's developer experience.
+The team highlighted MUI's comprehensive documentation, well-documented APIs, and clear migration guides as standout features that accelerated their implementation process. They liked how the components work immediately with minimal configuration.
 
-- The team highlighted MUI's comprehensive documentation, well-documented APIs, and clear migration guides as standout features that accelerated their implementation process. They liked how the components work immediately with minimal configuration.
-- The team also appreciated the official MCP server from MUI and that it had made them move fast. During the interview they were also introducted to MUI Chat, the latest AI product from MUI. Team agreed that customizing components now would be even faster with MUI Chat.
-- The team appreciated having multiple support channels available, including GitHub for technical issues, Zendesk for feature requests, and comprehensive online resources.
+The team also appreciated the official MCP server from MUI and that it had made them move fast. During the interview they were also introducted to MUI Chat, the latest AI product from MUI. Team agreed that customizing components now would be even faster with MUI Chat.
+The team appreciated having multiple support channels available, including GitHub for technical issues, Zendesk for feature requests, and comprehensive online resources.
 
-The success of MUI at Qdrant demonstrates how the right component library can enable startups to focus on their core product innovation while maintaining professional, scalable user interfaces.
+The success of MUI at Qdrant shows how the right component library can enable startups to focus on their core product innovation while maintaining professional, scalable user interfaces.
