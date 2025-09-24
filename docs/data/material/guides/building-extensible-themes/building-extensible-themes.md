@@ -8,7 +8,7 @@ This guide describes recommendations for building a brand-specific theme with Ma
 
 ## Branded theme
 
-This is the source of truth for the brand-specific theme. 
+This is the source of truth for the brand-specific theme.
 It represents the brand's visual identity through colors, typography, spacing, and more.
 
 In general, it's recommended to export tokens, components, and the branded theme from a file, as shown here:
@@ -60,7 +60,7 @@ const brandedTheme = createTheme({
 export default brandedTheme;
 ```
 
-For a more optimized approach, you can split the branded components into multiple files. 
+For a more optimized approach, you can split the branded components into multiple files.
 This way, consumers of the theme can choose to import only what they need at the application level.
 
 ```js title="brandedButtons.ts"
@@ -110,6 +110,7 @@ const appTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: [
+          // Use array syntax to preserve the branded theme styles.
           brandedComponents?.MuiButton?.styleOverrides?.root,
           {
             '&:hover': {
@@ -123,18 +124,16 @@ const appTheme = createTheme({
 });
 ```
 
-:::success
-It's recommended to use array syntax to merge the branded styles with the application styles.
+### Merging branded theme
 
-The array syntax ensures that the [variants](/material-ui/customization/theme-components/#variants), states, and pseudo-class styles from the branded theme are preserved.
-:::
+When merging the branded theme with the application theme, it's recommended to use the object spread syntax for tokens like palette, typography, and shape.
+
+For components, use the array syntax to ensures that the [variants](/material-ui/customization/theme-components/#variants), states, and pseudo-class styles from the branded theme are preserved.
 
 :::warning
 We don't recommend JavaScript functions or any utilities to do a deep merge between the branded and the application theme.
 
 Doing so will introduce performance overhead on the first render of the application. The impact depends on the size of the themes.
-
-Instead, use the object spread and array syntax to merge the themes as shown above.
 :::
 
 ## Full example
