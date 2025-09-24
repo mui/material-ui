@@ -51,9 +51,9 @@ describe('useAutocomplete', () => {
       );
     }
 
-    const { rerender } = render(<Test options={['foo', 'bar']} />);
+    const view = render(<Test options={['foo', 'bar']} />);
     const [fooOptionAsFirst, barOptionAsSecond] = screen.getAllByRole('option');
-    rerender(<Test options={['bar', 'foo']} />);
+    view.rerender(<Test options={['bar', 'foo']} />);
     const [barOptionAsFirst, fooOptionAsSecond] = screen.getAllByRole('option');
 
     // If the DOM nodes are not preserved VO will not read the first option again since it thinks it didn't change.
@@ -242,7 +242,7 @@ describe('useAutocomplete', () => {
 
   it('should warn if the input is not binded', function test() {
     // TODO is this fixed?
-    if (!/jsdom/.test(window.navigator.userAgent)) {
+    if (!window.navigator.userAgent.includes('jsdom')) {
       // can't catch render errors in the browser for unknown reason
       // tried try-catch + error boundary + window onError preventDefault
       this.skip();

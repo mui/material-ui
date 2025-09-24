@@ -237,7 +237,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * The size of the component.
    * @default 'md'

@@ -58,12 +58,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import yargs, { ArgumentsCamelCase } from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import kebabCase from 'lodash/kebabCase';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
 import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
 import { getHeaders } from '@mui/internal-markdown';
-import { fixPathname } from '@mui-internal/api-docs-builder/buildApiUtils';
-import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
 import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
@@ -152,21 +151,26 @@ async function findComponentsToProcess(
           continue;
         }
 
-        // Get the markdown file path from the first demo
-        const firstDemo = demos[0];
-        const markdownPath = firstDemo ? firstDemo.filePath : undefined;
-
         // Get API JSON path
         const apiJsonPath = path.join(
           componentInfo.apiPagesDirectory,
           `${path.basename(componentInfo.apiPathname)}.json`,
         );
 
+        const primaryDemo = demos.find(
+          (demo) =>
+            demo.demoPathname.toLowerCase().includes(`/${kebabCase(componentInfo.name)}/`) ||
+            demo.demoPathname.toLowerCase().includes(`/react-${kebabCase(componentInfo.name)}/`),
+        );
+
+        const demoToUse = primaryDemo || demos[0];
+        const markdownPathToUse = demoToUse ? demoToUse.filePath : undefined;
+
         components.push({
           name: componentInfo.name,
           componentInfo,
-          demos,
-          markdownPath,
+          demos: primaryDemo ? [primaryDemo] : demos,
+          markdownPath: markdownPathToUse,
           apiJsonPath: fs.existsSync(apiJsonPath) ? apiJsonPath : undefined,
         });
       } catch (error) {
@@ -218,38 +222,46 @@ function extractMarkdownInfo(markdownPath: string): { title: string; description
  * Find all non-component markdown files from specified folders
  */
 function findNonComponentMarkdownFiles(
-  folders: string[],
+  projectSettings: ProjectSettings,
   grep: RegExp | null,
 ): Array<{ markdownPath: string; outputPath: string }> {
+  if (!projectSettings.pagesManifestPath) {
+    return [];
+  }
+  const pagesContent = fs.readFileSync(projectSettings.pagesManifestPath, 'utf-8');
+
+  // Extract all pathname strings using regex
+  const pathnameRegex = /pathname:\s*['"`]([^'"`]+)['"`]/g;
+  const matches = Array.from(pagesContent.matchAll(pathnameRegex));
+
   // Get all markdown files using the existing findPagesMarkdown utility
   const allMarkdownFiles = findPagesMarkdown();
 
   const files: Array<{ markdownPath: string; outputPath: string }> = [];
 
-  for (const page of allMarkdownFiles) {
-    // Check if the page belongs to one of the specified folders
-    const belongsToFolder = folders.some((folder) => page.pathname.startsWith(`/${folder}`));
-    if (!belongsToFolder) {
-      continue;
-    }
-
+  for (const match of matches) {
+    const pathname = match[1];
+    const parsedPathname = pathname
+      .replace('/material-ui/', '/material/')
+      .replace('/react-', '/components/');
     // Apply grep filter if specified
     if (grep) {
-      const fileName = path.basename(page.filename);
-      if (!grep.test(fileName) && !grep.test(page.pathname)) {
+      const fileName = path.basename(parsedPathname);
+      if (!grep.test(fileName) && !grep.test(parsedPathname)) {
         continue;
       }
     }
+    // Filter out external links and special patterns
+    if (pathname.startsWith('/material-ui/')) {
+      const page = allMarkdownFiles.find((p) => p.pathname === parsedPathname);
 
-    // Apply fixPathname first, then replaceUrl to get the proper output structure (like components)
-    const afterFixPathname = fixPathname(page.pathname);
-    const fixedPathname = replaceUrl(afterFixPathname, '/material-ui/');
-    const outputPath = `${fixedPathname.replace(/^\//, '').replace(/\/$/, '')}.md`;
-
-    files.push({
-      markdownPath: page.filename,
-      outputPath,
-    });
+      if (page) {
+        files.push({
+          markdownPath: page.filename,
+          outputPath: `${pathname.startsWith('/') ? pathname.slice(1) : pathname}.md`,
+        });
+      }
+    }
   }
 
   return files;
@@ -426,15 +438,12 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   // Found ${components.length} components to process
 
   // Find non-component markdown files if specified in project settings
-  let nonComponentFiles: Array<{ markdownPath: string; outputPath: string }> = [];
   const nonComponentFolders = (projectSettings as any).nonComponentFolders;
-  if (nonComponentFolders && nonComponentFolders.length > 0) {
-    nonComponentFiles = findNonComponentMarkdownFiles(nonComponentFolders, grep);
-    // Found ${nonComponentFiles.length} non-component markdown files to process
-  }
+  const nonComponentFiles = findNonComponentMarkdownFiles(projectSettings, grep);
 
   // Track generated files for llms.txt
   const generatedFiles: GeneratedFile[] = [];
+  const generatedComponentRecord: Record<string, boolean> = {};
 
   // Process each component
   let processedCount = 0;
@@ -477,6 +486,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
             originalMarkdownPath: component.markdownPath,
             category: 'components',
           });
+          generatedComponentRecord[outputFileName] = true;
         }
       }
     } catch (error) {
@@ -487,6 +497,10 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   // Process non-component markdown files
   for (const file of nonComponentFiles) {
     try {
+      if (generatedComponentRecord[file.outputPath]) {
+        // Skip files that have already been generated as component docs
+        continue;
+      }
       // Processing non-component file: ${path.relative(process.cwd(), file.markdownPath)}
 
       // Process the markdown file with demo replacement
@@ -559,7 +573,9 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
         projectName = dirName.charAt(0).toUpperCase() + dirName.slice(1);
       }
 
-      const llmsContent = generateLlmsTxt(files, projectName, dirName, ORIGIN);
+      const llmsContent = generateLlmsTxt(files, projectName, dirName, ORIGIN)
+        .replace(/Ui/g, 'UI')
+        .replace(/Api/g, 'API');
       const llmsPath = path.join(outputDir, dirName, 'llms.txt');
 
       // Ensure directory exists
@@ -581,7 +597,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
 /**
  * CLI setup
  */
-yargs(process.argv.slice(2))
+yargs()
   .command({
     command: '$0',
     describe: 'Generates LLM-optimized documentation for MUI components.',
@@ -609,4 +625,4 @@ yargs(process.argv.slice(2))
   .help()
   .strict(true)
   .version(false)
-  .parse();
+  .parse(hideBin(process.argv));

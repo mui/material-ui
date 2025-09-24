@@ -9,6 +9,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
 import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
@@ -671,14 +672,7 @@ describe('<Chip />', () => {
     });
   });
 
-  describe('event: focus', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('event: focus', () => {
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);

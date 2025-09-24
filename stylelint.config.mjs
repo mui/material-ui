@@ -11,8 +11,23 @@ export default {
   },
   overrides: [
     {
-      files: ['**/*.js', '**/*.cjs', '**/*.mjs', '**/*.ts', '**/*.tsx'],
+      files: ['**/*.js', '**/*.cjs', '**/*.mjs', '**/*.mts', '**/*.ts', '**/*.tsx'],
       customSyntax: 'postcss-styled-syntax',
+    },
+    {
+      files: [
+        'docs/data/material/integrations/interoperability/**/*.js',
+        'docs/data/material/integrations/interoperability/**/*.tsx',
+      ],
+      rules: {
+        'nesting-selector-no-missing-scoping-root': null,
+      },
+    },
+    {
+      files: ['docs/data/joy/**/*.js', 'docs/data/joy/**/*.tsx'],
+      rules: {
+        'property-no-deprecated': null,
+      },
     },
   ],
 };
