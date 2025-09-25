@@ -1,5 +1,5 @@
 ---
-title: An exciting year ahead for Base UI
+title: An exciting year ahead for MUI Base: Base UI
 description: The unstyled component library will get a stable release, lots of new components, and even better DX in 2024.
 date: 2024-02-13T00:00:00.000Z
 authors: ['danilo-leal', 'michaldudak', 'colmtuite', 'oliviertassinari']
@@ -7,16 +7,16 @@ tags: ['Base UI', 'Product']
 manualCard: true
 ---
 
-The [story of Base UI](/blog/introducing-base-ui/) began several years ago—long before headless React component libraries skyrocketed in popularity—when we started to imagine a world in which Material UI could exist without Material Design.
+The [story of MUI Base](/blog/introducing-base-ui/) began several years ago—long before headless React component libraries skyrocketed in popularity—when we started to imagine a world in which Material UI could exist without Material Design.
 
 We're super excited to share that this dream is becoming a reality!
-This year will see a lot of investment in Base UI as we expand the team and focus hard on a stable release (tentatively planned for late 2024), which will come full of new components, features, and improvements.
+This year will see a lot of investment in MUI Base as we expand the team and focus hard on a new version (tentatively planned for late 2024), which will come full of new components, features, and improvements.
 
 Let's walk through some of the things we're cooking up.
 
 ## A larger set of components
 
-Base UI today offers a modest set of components and hooks, including some slightly more complex ones such as [Autocomplete](https://v6.mui.com/base-ui/react-autocomplete/) and [Number Input](https://v6.mui.com/base-ui/react-number-input/).
+MUI Base today offers a modest set of components and hooks, including some slightly more complex ones such as [Autocomplete](https://v6.mui.com/base-ui/react-autocomplete/) and [Number Input](https://v6.mui.com/base-ui/react-number-input/).
 However, we're aware that the package is still missing many primitive components that developers would need in order to adopt it for real-world applications.
 Fear not, because we're working hard to ship more components with the stable release, including:
 
@@ -35,7 +35,7 @@ We'd love for you to chime in and help us prioritize, so keep an eye on [the ope
 
 ## Improved customization API
 
-Currently, Base UI components can be customized to your heart's content using the `slots` and `slotProps` props.
+Currently, MUI Base components can be customized to your heart's content using the `slots` and `slotProps` props.
 (Read more about them in the "[Overriding component structure](https://v6.mui.com/base-ui/guides/overriding-component-structure/)" guide.)
 
 ```tsx
@@ -75,15 +75,17 @@ They're currently available for use with the Popup, Menu, and Select, and the pl
 
 ## Getting many issues out of the way
 
-The core of what Base UI strives to deliver out of the box is first-class accessibility and an intuitive API for extensive customization.
+The core of what MUI Base strives to deliver out of the box is first-class accessibility and an intuitive API for extensive customization.
 We've earmarked several issues we want to tackle before the stable release in areas such as keyboard navigation, better ARIA support, focus styles, and more.
 
-## A more independent product
+## A more independent product: Base UI
 
-So far, all Base UI-related development has happened within the [Material UI GitHub repository](https://github.com/mui/material-ui).
-That made a lot of sense in the beginning because we didn't intend for Base UI to be a standalone product at the time.
+So far, all MUI Base-related development has happened within the [Material UI GitHub repository](https://github.com/mui/material-ui).
+That made a lot of sense in the beginning because we didn't intend for MUI Base to be a standalone product at the time.
 As a result of this early decision, we've seen that some developers are hesitant to try it out because of the apparent association with Material Design.
-Rest assured that Base UI _is_ a standalone library, and it doesn't come packaged with _any_ default styles or themes.
+Rest assured that MUI Base _is_ a standalone library, and it doesn't come packaged with _any_ default styles or themes.
+
+But to make it clear, and to reflect all the breaking changes coming in 2024, the new version of MUI Base will be called **Base UI**.
 
 <img alt="Material UI vs. Base UI: independent but related products." src="/static/blog/base-ui-2024-plans/material-vs-base.png" width="2400" height="900" loading="lazy" />
 
