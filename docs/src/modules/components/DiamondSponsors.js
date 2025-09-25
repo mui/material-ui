@@ -70,6 +70,32 @@ export default function DiamondSponsors() {
           ]}
         />
       </NativeLink>
+      <NativeLink
+        data-ga-event-category="sponsor"
+        data-ga-event-action="docs-premium"
+        data-ga-event-label="kombai.com"
+        href="https://kombai.com/?utm_source=MUI&utm_medium=website&utm_campaign=sponsor&utm_content=docs"
+        rel="noopener sponsored"
+        target="_blank"
+      >
+        <Box
+          component="img"
+          src="/static/sponsors/kombai-light.svg"
+          alt="kombai"
+          title="AI agent for Frontend - turn Figma, text, or images into clean MUI code"
+          loading="lazy"
+          sx={[
+            {
+              height: '29px',
+              width: '70px',
+            },
+            (theme) =>
+              theme.applyDarkStyles({
+                content: `url(/static/sponsors/kombai-dark.svg)`,
+              }),
+          ]}
+        />
+      </NativeLink>
       <Link
         href="/material-ui/discover-more/backers/#diamond-sponsors"
         sx={(theme) => ({
