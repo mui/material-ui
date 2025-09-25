@@ -78,8 +78,8 @@ export default function MarkdownDocs(props) {
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {isBase && (
           <MuiBaseDeprecation
-            newComponentUrl={localizedDoc.headers.newUrl}
-            newComponentName={localizedDoc.headers.newName}
+            newUrl={localizedDoc.headers.newUrl}
+            newName={localizedDoc.headers.newName}
           />
         )}
         {localizedDoc.rendered.map((renderedMarkdownOrDemo, index) => (

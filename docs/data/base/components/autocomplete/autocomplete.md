@@ -4,6 +4,8 @@ title: React Autocomplete hook
 hooks: useAutocomplete
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+newName: Combobox
+newUrl: https://base-ui.com/react/components/autocomplete
 ---
 
 # Autocomplete

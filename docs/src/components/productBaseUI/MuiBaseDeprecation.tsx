@@ -2,18 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
-export default function MuiBaseDeprecation(props: {
-  newComponentName?: string;
-  newComponentUrl?: string;
-}) {
-  if (props.newComponentUrl && props.newComponentName) {
+export default function MuiBaseDeprecation(props: { newName?: string; newUrl?: string }) {
+  if (props.newUrl && props.newName) {
     return (
       <MarkdownElement>
         <Box component="aside" className="MuiCallout-root MuiCallout-error">
           <Icon />
           <Box className="MuiCallout-content">
-            @mui/base has been deprecated and has been replaced by Base UI. We strongly recommend
-            using the Base UI <a href={props.newComponentUrl}>{props.newComponentName} component</a>{' '}
+            MUI Base (@mui/base) has been deprecated. Base UI is its successor. We strongly
+            recommend using the new <a href={props.newUrl}>Base UI {props.newName} component</a>{' '}
             instead.
           </Box>
         </Box>
@@ -25,9 +22,8 @@ export default function MuiBaseDeprecation(props: {
       <Box component="aside" className="MuiCallout-root MuiCallout-error">
         <Icon />
         <Box className="MuiCallout-content">
-          @mui/base has been deprecated and has been replaced by{' '}
-          <a href="https://base-ui.com">Base UI</a>. We strongly recommend using the new package
-          instead.
+          MUI Base (@mui/base) has been deprecated. <a href="https://base-ui.com">Base UI</a> is its
+          successor. We strongly recommend using the new package instead.
         </Box>
       </Box>
     </MarkdownElement>

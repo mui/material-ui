@@ -6,8 +6,8 @@ export default function App() {
       <h1 className="text-3xl font-semibold mb-4">MUI Base + Vite.js + Tailwind CSS</h1>
       <ul>
         <li className="card">
-          <a href="https://mui.com/base-ui/" className="link">
-            Base UI
+          <a href="https://v6.mui.com/base-ui/getting-started/" className="link">
+            MUI Base
           </a>{' '}
           is a library of unstyled React UI components and hooks.
         </li>

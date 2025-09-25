@@ -1,6 +1,6 @@
 # MUI Base - Create React App example in JavaScript
 
-[MUI Base](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
+[MUI Base](https://v6.mui.com/base-ui/getting-started/) is a library of unstyled React UI components and hooks.
 
 [Create React App](https://create-react-app.dev/) is a framework for quickly creating a new React project without the need to configure complex build tools or development environments.
 

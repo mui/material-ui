@@ -4,6 +4,8 @@ title: React Snackbar component and hook
 components: Snackbar
 hooks: useSnackbar
 githubLabel: 'component: snackbar'
+newName: Toast
+newUrl: https://base-ui.com/react/components/toast
 ---
 
 # Snackbar
