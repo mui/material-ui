@@ -31,6 +31,12 @@ export interface CircularProgressProps
    */
   disableShrink?: boolean;
   /**
+   * If `true`, a track circle slot is mounted to show a subtle background for the progress.
+   * The `size` and `thickness` apply to the track slot to be consistent with the progress circle.
+   * @default false
+   */
+  enableTrackSlot?: boolean;
+  /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, for example '3rem'.

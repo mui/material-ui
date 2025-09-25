@@ -2,7 +2,8 @@
   "compilerOptions": {
     "lib": ["es2020", "dom"],
     "noEmit": true,
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "types": ["node", "mocha"],
     "strict": true,
     "esModuleInterop": true,

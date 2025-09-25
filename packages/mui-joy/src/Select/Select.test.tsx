@@ -497,7 +497,7 @@ describe('Joy <Select />', () => {
 
   describe('form submission', () => {
     it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // FormData is not available in JSDOM
         this.skip();
       }
@@ -530,7 +530,7 @@ describe('Joy <Select />', () => {
     });
 
     it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // FormData is not available in JSDOM
         this.skip();
       }
@@ -566,7 +566,7 @@ describe('Joy <Select />', () => {
     });
 
     it('formats the object values as JSON before posting', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // FormData is not available in JSDOM
         this.skip();
       }

@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 
 async function main() {
@@ -74,7 +74,7 @@ async function main() {
 
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
-    await fse.ensureDir(path.dirname(screenshotPath));
+    await fs.mkdir(path.dirname(screenshotPath), { recursive: true });
 
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
     const screenshotTarget = explicitScreenshotTarget || testcase;
@@ -101,7 +101,7 @@ async function main() {
       it(`creates screenshots of ${route}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
-          this.timeout(0);
+          this?.timeout?.(0);
         }
 
         const testcase = await renderFixture(index);
