@@ -1,0 +1,24 @@
+{
+  "name": "@mui/styled-engine-sc-vite-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "@mui/styled-engine-sc": "workspace:*",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "@vitest/ui": "^1.0.0",
+    "vitest": "^1.0.0",
+    "jsdom": "^23.0.0"
+  },
+  "overrides": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+  }
+}
