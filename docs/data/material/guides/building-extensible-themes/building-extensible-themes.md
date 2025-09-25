@@ -128,7 +128,7 @@ const appTheme = createTheme({
 
 When merging the branded theme with the application theme, it's recommended to use the object spread syntax for tokens like palette, typography, and shape.
 
-For components, use the array syntax to ensures that the [variants](/material-ui/customization/theme-components/#variants), states, and pseudo-class styles from the branded theme are preserved.
+For components, use the array syntax to ensure that the [variants](/material-ui/customization/theme-components/#variants), states, and pseudo-class styles from the branded theme are preserved.
 
 :::warning
 We don't recommend JavaScript functions or any utilities to do a deep merge between the branded and the application theme.
