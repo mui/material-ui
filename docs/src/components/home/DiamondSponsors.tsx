@@ -17,6 +17,7 @@ const DIAMONDs = [
   },
   {
     src: '/static/sponsors/kombai-square-light.svg',
+    srcDark: '/static/sponsors/kombai-square-dark.svg',
     name: 'Kombai',
     description: 'AI agent for Frontend - turn Figma, text, or images into clean MUI code.',
     href: 'https://kombai.com/?utm_source=MUI&utm_medium=website&utm_campaign=sponsor&utm_content=homepage',
