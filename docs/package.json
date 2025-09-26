@@ -50,7 +50,7 @@
     "@mui/x-license": "8.11.3",
     "@mui/x-tree-view": "8.11.3",
     "@popperjs/core": "^2.11.8",
-    "@react-spring/web": "^10.0.1",
+    "@react-spring/web": "^10.0.3",
     "@tailwindcss/postcss": "^4.1.13",
     "autoprefixer": "^10.4.21",
     "autosuggest-highlight": "^3.3.4",
