@@ -397,7 +397,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Markdown
               copyButtonHidden
               onClick={handleClick(2)}
-              code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
+              code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}${selectedIcon.importName === 'InfoOutline' ? 'd' : ''}';`}
               language="js"
             />
           </Tooltip>
