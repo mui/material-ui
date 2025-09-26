@@ -3,14 +3,14 @@ import path from 'path';
 import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import * as _ from 'lodash';
-import kebabCase from 'lodash/kebabCase';
+import fromPairs from 'es-toolkit/compat/fromPairs';
+import kebabCase from 'es-toolkit/compat/kebabCase';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import escapeRegExp from 'lodash/escapeRegExp';
+import escapeRegExp from 'es-toolkit/compat/escapeRegExp';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
@@ -321,7 +321,7 @@ const generateApiPage = async (
    */
   const pageContent: ComponentApiContent = {
     // Sorted by required DESC, name ASC
-    props: _.fromPairs(
+    props: fromPairs(
       Object.entries(reactApi.propsTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
@@ -522,7 +522,7 @@ const attachPropsTable = (
 ) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
-  const componentProps: ComponentReactApi['propsTable'] = _.fromPairs(
+  const componentProps: ComponentReactApi['propsTable'] = fromPairs(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {

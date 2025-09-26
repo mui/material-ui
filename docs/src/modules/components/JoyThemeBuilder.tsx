@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TypeScriptIcon from '@mui/docs/svgIcons/TypeScript';
-import startCase from 'lodash/startCase';
+import startCase from 'es-toolkit/compat/startCase';
 import { deepmerge } from '@mui/utils';
 import { decomposeColor, ThemeProvider as SystemThemeProvider } from '@mui/system';
 import * as mdColors from '@mui/material/colors';

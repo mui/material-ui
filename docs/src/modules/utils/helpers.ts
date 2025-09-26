@@ -1,5 +1,5 @@
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
+import upperFirst from 'es-toolkit/compat/upperFirst';
+import camelCase from 'es-toolkit/compat/camelCase';
 import { LANGUAGES } from 'docs/config';
 import { Translate } from '@mui/docs/i18n';
 

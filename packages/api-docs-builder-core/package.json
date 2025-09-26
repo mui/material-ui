@@ -12,7 +12,7 @@
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "docs": "workspace:^",
-    "lodash": "^4.17.21"
+    "es-toolkit": "^1.39.10"
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",

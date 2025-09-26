@@ -51,8 +51,8 @@
     "@types/react": "^19.1.13",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
+    "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
-    "lodash": "^4.17.21",
     "react": "^19.1.1",
     "sinon": "^21.0.0",
     "styled-components": "^6.1.19"
