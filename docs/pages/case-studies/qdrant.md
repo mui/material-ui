@@ -76,6 +76,15 @@ Qdrant adopted Material UI as their primary frontend component library, leveragi
 
 - **Design system integration**: The team utilized MUI's Figma design kit and theme extractor to streamline their design-to-development workflow. This allowed their limited design team to create consistent interfaces using pre-built components.
 
+<img
+  id="qdrant-ui"
+  src="/static/branding/companies/qdrant_ui.png"
+  alt=""
+  style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+/>
+
+In the image above from MUI's Qdrant dashboard, the date range picker is used to select the date-time range for the vector data.
+
 ## Results
 
 Qdrant achieved significant improvements in both development velocity and UX after adopting MUI.
