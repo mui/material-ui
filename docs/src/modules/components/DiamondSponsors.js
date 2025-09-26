@@ -87,7 +87,7 @@ export default function DiamondSponsors() {
           sx={[
             {
               height: '29px',
-              width: '70px',
+              width: '100px',
             },
             (theme) =>
               theme.applyDarkStyles({
