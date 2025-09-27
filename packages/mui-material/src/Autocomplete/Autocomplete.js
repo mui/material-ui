@@ -678,7 +678,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           id,
           disabled,
           fullWidth: true,
-          size: size === 'small' ? 'small' : undefined,
+          size,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
             ref: setAnchorEl,
