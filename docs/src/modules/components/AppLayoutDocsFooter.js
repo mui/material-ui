@@ -80,25 +80,7 @@ function orderedPages(pages, current = []) {
     });
 }
 
-async function postFeedback(data) {
-  const env = process.env.DEPLOY_ENV === 'production' ? 'prod' : 'dev';
-  try {
-    const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
-      method: 'POST',
-      referrerPolicy: 'origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    return response.json();
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
-async function postFeedbackOnSlack(data) {
-  const { rating, comment, commentedSection, productId } = data;
-
+async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
   const sentData = {
     callback_id: 'send_feedback',
     rating,
@@ -170,50 +152,6 @@ async function postFeedbackOnSlack(data) {
      ],
    };
   */
-}
-
-async function getUserFeedback(id) {
-  const env = location.hostname === 'mui.com' ? 'prod' : 'dev';
-  const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
-
-  try {
-    const response = await fetch(URL, {
-      method: 'GET',
-      cache: 'no-store',
-      referrerPolicy: 'origin',
-    });
-    return response.json();
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
-async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
-  const resultSlack = await postFeedbackOnSlack({ rating, comment, commentedSection, productId });
-
-  if (rating !== undefined) {
-    const resultVote = await postFeedback({
-      id: getCookie('feedbackId'),
-      page,
-      rating,
-      comment,
-      version: process.env.LIB_VERSION,
-      language,
-    });
-    if (resultVote) {
-      document.cookie = `feedbackId=${resultVote.id};path=/;max-age=31536000`;
-      setTimeout(async () => {
-        const userFeedback = await getUserFeedback(resultVote.id);
-        if (userFeedback) {
-          document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
-        }
-      });
-    }
-    return resultSlack && resultVote;
-  }
-
-  return resultSlack;
 }
 
 function getCurrentRating(pathname) {
