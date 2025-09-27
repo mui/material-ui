@@ -746,10 +746,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
 
   React.useEffect(() => {
-    if (scrollButtons === 'auto' && (displayEndScroll || displayStartScroll)) {
+    if (scrollable && scrollButtons === 'auto' && (displayEndScroll || displayStartScroll)) {
       scrollSelectedIntoView(true);
     }
-  }, [displayEndScroll, displayStartScroll, scrollButtons, scrollSelectedIntoView]);
+  }, [displayEndScroll, displayStartScroll, scrollable, scrollButtons, scrollSelectedIntoView]);
 
   React.useEffect(() => {
     setMounted(true);
