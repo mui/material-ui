@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/core": "^7.28.4",
     "@babel/runtime": "^7.28.4",
-    "@docsearch/react": "^3.9.0",
+    "@docsearch/react": "^4.1.0",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
