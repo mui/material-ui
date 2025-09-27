@@ -9,6 +9,14 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="kombai.com" href="https://kombai.com/?utm_source=MUI&utm_medium=website&utm_campaign=sponsor&utm_content=docs" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;">
+  <span class="only-light-mode">
+  <img src="/static/sponsors/kombai-square-light.svg" alt="kombai" title="AI agent for Frontend - turn Figma, text, or images into clean MUI code" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
+</span>
+<span class="only-dark-mode">
+  <img src="/static/sponsors/kombai-square-dark.svg" alt="kombai" title="AI agent for Frontend - turn Figma, text, or images into clean MUI code" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
+</span>
+  </a>
 </p>
 
 _2/3 slots available_
