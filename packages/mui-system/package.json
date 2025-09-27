@@ -46,7 +46,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.2",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.1.13",
     "@types/sinon": "^17.0.4",
