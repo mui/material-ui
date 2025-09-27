@@ -73,6 +73,7 @@ const AccordionRoot = styled(Paper, {
         },
       },
       [`&.${accordionClasses.expanded}`]: {
+        overflowAnchor: 'auto', // keep active accordion in the viewport
         '&::before': {
           opacity: 0,
         },
