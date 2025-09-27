@@ -250,6 +250,12 @@ export const InputBaseInput = styled('input', {
             MozAppearance: 'textfield', // Improve type search style.
           },
         },
+        {
+          props: ({ ownerState }) => ownerState.startAdornment,
+          style: {
+            flexBasis: 'content',
+          },
+        },
       ],
     };
   }),
