@@ -80,7 +80,7 @@ Special properties that merged between the two arguments are listed below:
 
 ## Component prop
 
-Material UI allows you to change the root element that will be rendered via a prop called `component`.
+Material UI lets you change the root element that will be rendered via a prop called `component`.
 
 For example, by default a `List` component will render a `<ul>` element.
 This can be changed by passing a [React component](https://react.dev/reference/react/Component) to the `component` prop.
@@ -101,7 +101,7 @@ The following example renders the `List` component with a `<menu>` element as ro
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library.
+This pattern is very powerful and gives you great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library.
 
 ### Passing other React components
 

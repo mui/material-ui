@@ -76,7 +76,7 @@ If you would like to prevent the default onClickAway behavior, you can set the e
   slotProps={{
     clickAwayListener: {
       onClickAway: (event) => {
-        // Prevent's default 'onClickAway' behavior.
+        // Prevents default 'onClickAway' behavior.
         event.defaultMuiPrevented = true;
       },
     },

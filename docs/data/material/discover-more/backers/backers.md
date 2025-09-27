@@ -95,8 +95,8 @@ We encourage organizations to contribute a portion of these savings back, enabli
 
 ### What's the difference between Open Collective and the for-profit?
 
-Funds donated via Open Collective are managed transparently and aimed to sustain the MIT projects.
-The MUI non-profit organzation benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
+Funds donated via Open Collective are managed transparently and aimed to sustain the MIT projects.
+The MUI non-profit organization benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
 
 Funds transferred to the MUI for-profit organization support the company's mission.
 
