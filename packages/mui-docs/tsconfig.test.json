@@ -1,0 +1,8 @@
+{
+  "extends": ["./tsconfig.json", "./tsconfig.test.json"],
+  "compilerOptions": {
+    "types": ["react", "node", "csstype", "mocha"]
+  },
+  "exclude": [],
+  "references": [{ "path": "./tsconfig.json" }]
+}

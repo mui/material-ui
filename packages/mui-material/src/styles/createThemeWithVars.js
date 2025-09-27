@@ -189,6 +189,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     attachColorScheme(colorSpace, colorSchemes, builtInDark, undefined, 'dark');
   }
 
+  /** @type {import('./createThemeNoVars').Theme} */
   let theme = {
     defaultColorScheme,
     ...muiTheme,
