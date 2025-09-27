@@ -294,7 +294,14 @@ export function HighlightedCodeWithTabs(
   } & Record<string, any>,
 ) {
   const { tabs, storageKey } = props;
-  const availableTabs = React.useMemo(() => tabs.map(({ tab }) => tab), [tabs]);
+  const availableTabs = React.useMemo(() => {
+    let result = tabs.map(({ tab }) => tab);
+    if (storageKey === 'package-manager') {
+      const set = new Set(result);
+      result = ['npm', 'pnpm', 'yarn'].filter((tab) => set.has(tab));
+    }
+    return result;
+  }, [storageKey, tabs]);
   const [activeTab, setActiveTab] = useLocalStorageState(storageKey ?? null, availableTabs[0]);
   // During hydration, activeTab is null, default to first value.
   const defaultizedActiveTab = activeTab ?? availableTabs[0];
