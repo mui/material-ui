@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DistributiveOmit } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { Theme } from '../styles/createThemeNoVars';
 import { TypographyOwnProps } from '../Typography';
 import { LinkClasses } from './linkClasses';
 

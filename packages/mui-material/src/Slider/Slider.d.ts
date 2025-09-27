@@ -3,7 +3,7 @@ import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Mark } from './useSlider.types';
 import { SlotComponentProps } from '../utils/types';
-import { Theme } from '../styles';
+import { Theme } from '../styles/createThemeNoVars';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
 import { SliderClasses } from './sliderClasses';
