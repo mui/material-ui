@@ -15,7 +15,7 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-export default function RTLHorizontalTabsAutoSrollable() {
+export default function RTLHorizontalTabsAutoScrollable() {
   return (
     <StyleSheetManager stylisPlugins={[rtlPlugin]}>
       <CacheProvider value={cacheRtl}>
