@@ -31,8 +31,8 @@ importers:
   .:
     dependencies:
       '@netlify/functions':
-        specifier: ^4.2.5
-        version: 4.2.5(encoding@0.1.13)(rollup@4.46.2)
+        specifier: ^4.2.6
+        version: 4.2.6(encoding@0.1.13)(rollup@4.46.2)
       '@slack/bolt':
         specifier: ^4.4.0
         version: 4.4.0(@types/express@5.0.0)
@@ -4497,16 +4497,16 @@ packages:
   '@netlify/binary-info@1.0.0':
     resolution: {integrity: sha512-4wMPu9iN3/HL97QblBsBay3E1etIciR84izI3U+4iALY+JHCrI+a2jO0qbAZ/nxKoegypYEaiiqWXylm+/zfrw==}
 
-  '@netlify/blobs@10.0.10':
-    resolution: {integrity: sha512-900jiduBT3b7GagpOGJKD3FQypkNbskGyx+Mvd9Ajy7pU3K0CNj4JBaji4aJZz7krrMxZZJacr0wCEsqWLQQmA==}
+  '@netlify/blobs@10.0.11':
+    resolution: {integrity: sha512-/pa7eD2gxkhJ6aUIJULrRu3tvAaimy+sA6vHUuGRMvncjOuRpeatXLHxuzdn8DyK1CZCjN3E33oXsdEpoqG7SA==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
-  '@netlify/dev-utils@4.1.3':
-    resolution: {integrity: sha512-Cc8XNyKNVPWmRJAMVD8VICdYvVxZ66uoVdDzSyhrctw0cT7hW3NAlXF/xoLFK7uOV1xejah/Qt+2MPCJn32mqg==}
+  '@netlify/dev-utils@4.2.0':
+    resolution: {integrity: sha512-P/uLJ5IKB4DhUOd6Q4Mpk7N0YKrnijUhAL3C05dEftNi3U3xJB98YekYfsL3G6GkS3L35pKGMx+vKJRwUHpP1Q==}
     engines: {node: ^18.14.0 || >=20}
 
-  '@netlify/functions@4.2.5':
-    resolution: {integrity: sha512-aL9DP/BpXNq86p4zCuWOgqd1a8Nvnbip9iiMuY5EcWzyAuiEPFeGnIUIGuGtBGtMnDE9AedUl+w9vXJZyDa1pQ==}
+  '@netlify/functions@4.2.6':
+    resolution: {integrity: sha512-uKfibdJDGyOG5+XTHqEbtlIWEHJ7mMK4cMZHBJ42FqGIAFbJBTYb/+EmPrQQ3vEJMRETxMxEjaL5C7WNgBxYNQ==}
     engines: {node: '>=18.0.0'}
 
   '@netlify/runtime-utils@2.1.0':
@@ -16549,12 +16549,12 @@ snapshots:
 
   '@netlify/binary-info@1.0.0': {}
 
-  '@netlify/blobs@10.0.10':
+  '@netlify/blobs@10.0.11':
     dependencies:
-      '@netlify/dev-utils': 4.1.3
+      '@netlify/dev-utils': 4.2.0
       '@netlify/runtime-utils': 2.1.0
 
-  '@netlify/dev-utils@4.1.3':
+  '@netlify/dev-utils@4.2.0':
     dependencies:
       '@whatwg-node/server': 0.10.12
       ansis: 4.1.0
@@ -16572,10 +16572,10 @@ snapshots:
       uuid: 11.1.0
       write-file-atomic: 5.0.1
 
-  '@netlify/functions@4.2.5(encoding@0.1.13)(rollup@4.46.2)':
+  '@netlify/functions@4.2.6(encoding@0.1.13)(rollup@4.46.2)':
     dependencies:
-      '@netlify/blobs': 10.0.10
-      '@netlify/dev-utils': 4.1.3
+      '@netlify/blobs': 10.0.11
+      '@netlify/dev-utils': 4.2.0
       '@netlify/types': 2.0.3
       '@netlify/zip-it-and-ship-it': 14.1.4(encoding@0.1.13)(rollup@4.46.2)
       cron-parser: 4.9.0
