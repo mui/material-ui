@@ -3,19 +3,19 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-export default function LTRHorizontalTabs() {
+export default function LTRVerticalTabsAutoScrollable() {
   const [value, setValue] = React.useState(4);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ width: 300, display: 'flex' }}>
+    <Box sx={{ height: 200, display: 'flex' }}>
       <Tabs
         value={value}
         variant="scrollable"
-        scrollButtons
-        orientation="horizontal"
+        scrollButtons="auto"
+        orientation="vertical"
         onChange={handleChange}
         aria-label="scrollable auto tabs example"
       >

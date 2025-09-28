@@ -15,13 +15,13 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
-export default function RTLHorizontalTabs() {
+export default function RTLHorizontalTabsAutoSrollable() {
   return (
     <StyleSheetManager stylisPlugins={[rtlPlugin]}>
       <CacheProvider value={cacheRtl}>
         <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
           <Box dir="rtl" sx={{ width: 300, display: 'flex' }}>
-            <Tabs value={2} variant="scrollable" scrollButtons orientation="horizontal">
+            <Tabs value={2} variant="scrollable" scrollButtons="auto" orientation="horizontal">
               <Tab label="Tab A" />
               <Tab label="Tab B" />
               <Tab label="Tab C" />
