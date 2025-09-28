@@ -56,7 +56,7 @@
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-module-resolver": "^5.0.2",
     "babel-plugin-optimize-clsx": "^2.6.2",
-    "babel-plugin-react-remove-properties": "^0.3.0",
+    "babel-plugin-react-remove-properties": "^0.3.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chance": "^1.1.13",
     "clean-css": "^5.3.3",
