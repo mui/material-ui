@@ -1,4 +1,4 @@
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+// Top 100 films as rated by IMDb users. https://www.imdb.com/chart/top
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },
   { label: 'The Godfather', year: 1972 },
