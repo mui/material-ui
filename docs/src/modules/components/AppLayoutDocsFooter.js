@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
+import CircularProgress from '@mui/material/CircularProgress';
 // Icons
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
@@ -190,6 +191,7 @@ export default function AppLayoutDocsFooter(props) {
   const { activePage, productId } = React.useContext(PageContext);
   const [storedRating, setRating] = useLocalStorageState(`feedback-${activePage?.pathname}`);
   const [comment, setComment] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const inputRef = React.useRef();
@@ -213,24 +215,31 @@ export default function AppLayoutDocsFooter(props) {
   );
 
   async function processFeedback() {
-    if (activePage === null) {
-      setSnackbarMessage(t('feedbackFailed'));
-    }
+    try {
+      setLoading(true);
 
-    const result = await submitFeedback(
-      activePage.pathname,
-      rating,
-      comment,
-      userLanguage,
-      commentedSection,
-      productId,
-    );
-    if (result) {
-      setSnackbarMessage(t('feedbackSubmitted'));
-    } else {
-      setSnackbarMessage(t('feedbackFailed'));
+      if (activePage === null) {
+        setSnackbarMessage(t('feedbackFailed'));
+      }
+
+      const result = await submitFeedback(
+        activePage.pathname,
+        rating,
+        comment,
+        userLanguage,
+        commentedSection,
+        productId,
+      );
+
+      if (result) {
+        setSnackbarMessage(t('feedbackSubmitted'));
+      } else {
+        setSnackbarMessage(t('feedbackFailed'));
+      }
+      setSnackbarOpen(true);
+    } finally {
+      setLoading(false);
     }
-    setSnackbarOpen(true);
   }
 
   const handleClickThumb = (vote) => async () => {
@@ -331,7 +340,11 @@ export default function AppLayoutDocsFooter(props) {
                 aria-pressed={rating === 1}
                 sx={{ fontSize: 15, color: rating === 1 ? 'primary.main' : 'text.secondary' }}
               >
-                <ThumbUpAltRoundedIcon fontSize="inherit" />
+                {rating === 1 && loading ? (
+                  <CircularProgress size={15} />
+                ) : (
+                  <ThumbUpAltRoundedIcon fontSize="inherit" />
+                )}
               </IconButton>
             </Tooltip>
             <Tooltip title={t('feedbackNo')}>
@@ -340,7 +353,11 @@ export default function AppLayoutDocsFooter(props) {
                 aria-pressed={rating === 0}
                 sx={{ fontSize: 15, color: rating === 0 ? 'error.main' : 'text.secondary' }}
               >
-                <ThumbDownAltRoundedIcon fontSize="inherit" />
+                {rating === 0 && loading ? (
+                  <CircularProgress size={15} />
+                ) : (
+                  <ThumbDownAltRoundedIcon fontSize="inherit" />
+                )}
               </IconButton>
             </Tooltip>
           </Stack>
