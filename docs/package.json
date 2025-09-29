@@ -112,7 +112,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.55.1",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/chai": "^4.3.20",
     "@types/chance": "^1.1.7",

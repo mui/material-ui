@@ -123,7 +123,7 @@
     "@next/eslint-plugin-next": "^15.5.4",
     "@octokit/rest": "^22.0.0",
     "@pigment-css/react": "0.0.30",
-    "@playwright/test": "1.55.0",
+    "@playwright/test": "1.55.1",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/mocha": "^10.0.10",
