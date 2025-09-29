@@ -168,8 +168,6 @@ export default async function demoLoader() {
     let relativeModuleFilename = importModuleID;
     if (importModuleID.startsWith('.')) {
       const demoMap = relativeModules.get(demoName);
-      // If the moduleID does not end with an extension, or ends with an unsupported extension (e.g. ".styling") we need to resolve it
-      // Fastest way to get a file extension, see: https://stackoverflow.com/a/12900504/
       const importType = getExtension(importModuleID);
       const supportedTypes = ['js', 'jsx', 'ts', 'tsx', 'css', 'json'];
       if (!importType || !supportedTypes.includes(importType)) {
