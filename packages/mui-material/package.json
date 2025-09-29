@@ -52,7 +52,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.12",
+    "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
@@ -61,7 +61,7 @@
     "lodash": "^4.17.21",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router": "^7.5.1",
+    "react-router": "^7.9.2",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {

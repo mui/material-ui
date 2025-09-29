@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "types": ["node", "mocha"],
     "target": "ES2020",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
     "baseUrl": "./",
     "paths": {
