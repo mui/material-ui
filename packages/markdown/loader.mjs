@@ -5,8 +5,6 @@ import extractImports from './extractImports.mjs';
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
-const variantDependentExtensions = new Set(['js', 'jsx', 'ts', 'tsx']);
-
 /**
  * @param {string} string
  */
@@ -28,17 +26,6 @@ function moduleIDToJSIdentifier(moduleID) {
     .map((part) => (part.length === 0 ? '$' : part))
     .map(upperCaseFirst)
     .join('');
-}
-
-/**
- * @param {string} moduleID
- * @returns {string}
- */
-function getExtension(moduleID) {
-  // If the moduleID does not end with an extension, or ends with an unsupported extension (e.g. ".styling") we need to resolve it
-  // Fastest way to get a file extension, see: https://stackoverflow.com/a/12900504/
-
-  return moduleID.slice((Math.max(0, moduleID.lastIndexOf('.')) || Infinity) + 1);
 }
 
 let componentPackageMapping = null;
@@ -168,7 +155,11 @@ export default async function demoLoader() {
     let relativeModuleFilename = importModuleID;
     if (importModuleID.startsWith('.')) {
       const demoMap = relativeModules.get(demoName);
-      const importType = getExtension(importModuleID);
+      // If the moduleID does not end with an extension, or ends with an unsupported extension (e.g. ".styling") we need to resolve it
+      // Fastest way to get a file extension, see: https://stackoverflow.com/a/12900504/
+      const importType = importModuleID.slice(
+        (Math.max(0, importModuleID.lastIndexOf('.')) || Infinity) + 1,
+      );
       const supportedTypes = ['js', 'jsx', 'ts', 'tsx', 'css', 'json'];
       if (!importType || !supportedTypes.includes(importType)) {
         // If the demo is a JS demo, we can assume that the relative import is either
@@ -469,21 +460,18 @@ export default async function demoLoader() {
           demos[demoName].relativeModules = {};
         }
 
-        const addedModulesRelativeToModulePath = new Set();
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
             for (const variant of variants) {
+              const addedModulesRelativeToModulePath = new Set();
               let raw = '';
               const relativeModuleFilePath = path.join(
                 path.dirname(moduleFilepath),
                 relativeModuleID,
               );
 
-              if (
-                variantDependentExtensions.has(getExtension(relativeModuleFilePath)) &&
-                addedModulesRelativeToModulePath.has(relativeModuleFilePath)
-              ) {
-                // If the file is a variant dependent file, and it has already been processed, then skip it
+              // the file has already been processed
+              if (addedModulesRelativeToModulePath.has(relativeModuleFilePath)) {
                 continue;
               }
 
