@@ -337,6 +337,7 @@ export default function AppLayoutDocsFooter(props) {
             <Tooltip title={t('feedbackYes')}>
               <IconButton
                 onClick={handleClickThumb(1)}
+                disabled={loading}
                 aria-pressed={rating === 1}
                 sx={{ fontSize: 15, color: rating === 1 ? 'primary.main' : 'text.secondary' }}
               >
@@ -350,6 +351,7 @@ export default function AppLayoutDocsFooter(props) {
             <Tooltip title={t('feedbackNo')}>
               <IconButton
                 onClick={handleClickThumb(0)}
+                disabled={loading}
                 aria-pressed={rating === 0}
                 sx={{ fontSize: 15, color: rating === 0 ? 'error.main' : 'text.secondary' }}
               >
