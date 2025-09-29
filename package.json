@@ -98,7 +98,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
-    "@netlify/functions": "^4.2.5",
+    "@netlify/functions": "^4.2.6",
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
@@ -120,10 +120,10 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^15.5.3",
+    "@next/eslint-plugin-next": "^15.5.4",
     "@octokit/rest": "^22.0.0",
     "@pigment-css/react": "0.0.30",
-    "@playwright/test": "1.55.0",
+    "@playwright/test": "1.55.1",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/lodash": "^4.17.20",
@@ -145,7 +145,7 @@
     "cpy-cli": "^6.0.0",
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
-    "eslint": "^9.35.0",
+    "eslint": "^9.36.0",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
@@ -191,9 +191,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@10.17.1",
   "engines": {
-    "pnpm": "10.17.0",
+    "pnpm": "10.17.1",
     "node": ">=22.18.0"
   },
   "resolutions": {
