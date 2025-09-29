@@ -1,4 +1,3 @@
-// @ts-check
 /* eslint-disable no-console */
 import path from 'path';
 import fs from 'node:fs';
@@ -23,21 +22,13 @@ const EXTERNAL_PATHS = [
 
 const docsSpaceRoot = path.join(path.dirname(new URL(import.meta.url).pathname), '../');
 
-/** @type {string[]} */
-const buffer = [];
-/**
- *
- * @param {string} text
- */
-function write(text) {
+const buffer: string[] = [];
+
+function write(text: string) {
   buffer.push(text);
 }
 
-/**
- *
- * @param {string[]} lines
- */
-function save(lines) {
+function save(lines: string[]) {
   const fileContents = [...lines, ''].join('\n');
   fs.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
 }
@@ -47,17 +38,15 @@ function save(lines) {
  * @param {string} link
  * @returns {string}
  */
-function getPageUrlFromLink(link) {
+function getPageUrlFromLink(link: string): string {
   const [rep] = link.split('/#');
   return rep;
 }
 
-/** @type {Record<string, boolean>} */
-const availableLinks = {};
+const availableLinks: Record<string, boolean> = {};
 
 // Per link a list a of files where it is used
-/** @type {Record<string, string[]>} */
-const usedLinks = {};
+const usedLinks: Record<string, string[]> = {};
 
 parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
 
