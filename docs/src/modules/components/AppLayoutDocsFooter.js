@@ -30,7 +30,8 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EditPage from 'docs/src/modules/components/EditPage';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const FooterLink = styled(Link)(({ theme }) => {
   return {
@@ -154,20 +155,6 @@ async function submitFeedback(page, rating, comment, language, commentedSection,
   */
 }
 
-function getCurrentRating(pathname) {
-  let userFeedback;
-  if (typeof window !== 'undefined') {
-    try {
-      userFeedback = getCookie('feedback');
-      userFeedback = userFeedback && JSON.parse(userFeedback);
-    } catch {
-      // For unknown reason the `userFeedback` can be uncomplet, leading the JSON.parse to crash the entire docs
-      return undefined;
-    }
-  }
-  return userFeedback && userFeedback[pathname] && userFeedback[pathname].rating;
-}
-
 /**
  * @returns { { prevPage: OrderedMuiPage | null; nextPage: OrderedMuiPage | null } }
  */
@@ -201,13 +188,15 @@ export default function AppLayoutDocsFooter(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const { activePage, productId } = React.useContext(PageContext);
-  const [rating, setRating] = React.useState();
+  const [storedRating, setRating] = useLocalStorageState(`feedback-${activePage?.pathname}`);
   const [comment, setComment] = React.useState('');
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const inputRef = React.useRef();
   const [commentOpen, setCommentOpen] = React.useState(false);
   const [commentedSection, setCommentedSection] = React.useState(EMPTY_SECTION);
+
+  const rating = storedRating ? Number(storedRating) : null;
 
   const { nextPage, prevPage } = usePageNeighbours();
 
@@ -222,16 +211,6 @@ export default function AppLayoutDocsFooter(props) {
       ]),
     [tableOfContents],
   );
-
-  const setCurrentRatingFromCookie = React.useCallback(() => {
-    if (activePage !== null) {
-      setRating(getCurrentRating(activePage.pathname));
-    }
-  }, [activePage]);
-
-  React.useEffect(() => {
-    setCurrentRatingFromCookie();
-  }, [setCurrentRatingFromCookie]);
 
   async function processFeedback() {
     if (activePage === null) {
@@ -249,7 +228,6 @@ export default function AppLayoutDocsFooter(props) {
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));
     } else {
-      setCurrentRatingFromCookie();
       setSnackbarMessage(t('feedbackFailed'));
     }
     setSnackbarOpen(true);
@@ -297,7 +275,6 @@ export default function AppLayoutDocsFooter(props) {
 
   const handleCancelComment = () => {
     setCommentOpen(false);
-    setCurrentRatingFromCookie();
     setCommentedSection(EMPTY_SECTION);
   };
 
@@ -349,17 +326,21 @@ export default function AppLayoutDocsFooter(props) {
               {t('feedbackMessage')}
             </Typography>
             <Tooltip title={t('feedbackYes')}>
-              <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
-                <ThumbUpAltRoundedIcon
-                  sx={{ fontSize: 15, color: rating === 1 ? 'primary' : 'text.secondary' }}
-                />
+              <IconButton
+                onClick={handleClickThumb(1)}
+                aria-pressed={rating === 1}
+                sx={{ fontSize: 15, color: rating === 1 ? 'primary.main' : 'text.secondary' }}
+              >
+                <ThumbUpAltRoundedIcon fontSize="inherit" />
               </IconButton>
             </Tooltip>
             <Tooltip title={t('feedbackNo')}>
-              <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
-                <ThumbDownAltRoundedIcon
-                  sx={{ fontSize: 15, color: rating === 0 ? 'error' : 'text.secondary' }}
-                />
+              <IconButton
+                onClick={handleClickThumb(0)}
+                aria-pressed={rating === 0}
+                sx={{ fontSize: 15, color: rating === 0 ? 'error.main' : 'text.secondary' }}
+              >
+                <ThumbDownAltRoundedIcon fontSize="inherit" />
               </IconButton>
             </Tooltip>
           </Stack>
