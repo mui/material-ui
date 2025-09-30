@@ -16,7 +16,7 @@
    ```
 4. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
 
-### Releasing a minot version
+### Releasing a minor version
 
 A minor release goes like this:
 
@@ -40,15 +40,26 @@ The following steps must be proposed as a pull request.
 
 #### Release
 
-1. Checkout the last version of the release branch
-2. `pnpm install && pnpm release:build` (make sure you have the latest dependencies installed, and build the packages)
-3. `pnpm release:publish` (release the versions on npm, you need your 2FA device)
-4. `pnpm release:tag` (push the newly created tag)
+1. Go to the [publish action](https://github.com/mui/material-ui/actions/workflows/publish.yml).
+2. Choose "Run workflow" dropdown
+
+> **Branch:** master
+> **Commit SHA to release from:** the commit that contains the merged release on master. This commit is linked to the GitHub release.
+> **Run in dry-run mode:** Used for debugging.
+> **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
+
+3. Click "Run workflow"
+4. Refresh the page to see the newly created workflow, and click it.
+5. The next screen will say "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
 
 #### Documentation
 
 `pnpm docs:deploy` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
 Force push if necessary.
+
+#### Publish GitHub release
+
+After the documentation deployment is done, review the draft release that was created, then publish it. At this point the release tag gets created. [GitHub releases page](https://github.com/mui/material-ui/releases)
 
 #### Announce
 
@@ -80,15 +91,26 @@ Checkout the latest minor release tag and create a branch "release/PATCH_VERSION
 
 #### Release
 
-1. Checkout the last version of the release branch
-2. `pnpm install && pnpm release:build` (make sure you have the latest dependencies installed, and build the packages)
-3. `pnpm release:publish` (release the versions on npm, you need your 2FA device)
-4. `pnpm release:tag` (push the newly created tag)
+1. Go to the [publish action](https://github.com/mui/material-ui/actions/workflows/publish.yml).
+2. Choose "Run workflow" dropdown
+
+> **Branch:** master
+> **Commit SHA to release from:** the commit that contains the merged release on master. This commit is linked to the GitHub release.
+> **Run in dry-run mode:** Used for debugging.
+> **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
+
+3. Click "Run workflow"
+4. Refresh the page to see the newly created workflow, and click it.
+5. The next screen shows "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
 
 #### Documentation
 
 Run `git push -f material-ui-docs HEAD:latest` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
 Force push if necessary.
+
+#### Publish GitHub release
+
+After the documentation deployment is done, review and then publish the release that was created in draft mode during the release step [GitHub releases page](https://github.com/mui/material-ui/releases)
 
 #### Cleanup
 
