@@ -82,7 +82,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   &nbsp;
-  <a href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/static/sponsors/wispr-square-light.svg" srcDark="https://mui.com/static/static/sponsors/wispr-square-dark.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" /></a>
+  <a href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/wispr-square-light.svg" srcDark="https://mui.com/static/sponsors/wispr-square-dark.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" /></a>
   &nbsp;
 </p>
 
