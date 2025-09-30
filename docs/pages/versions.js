@@ -76,5 +76,5 @@ Page.getInitialProps = async () => {
     });
   }
 
-  return { versions: uniqBy(versions, item => item.version) };
+  return { versions: uniqBy(versions, (item) => item.version) };
 };
