@@ -34,6 +34,7 @@ const GOLDs = [
   },
   {
     src: '/static/sponsors/wispr-square-light.svg',
+    srcSet: '/static/sponsors/wispr-square-light.svg 3x',
     srcDark: '/static/sponsors/wispr-square-dark.svg',
     name: 'Wispr Flow',
     description: 'AI Dictation: from speech to clear, polished text.',
