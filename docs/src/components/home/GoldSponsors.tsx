@@ -37,7 +37,7 @@ const GOLDs = [
     srcSet: '/static/sponsors/wispr-square-light.svg 3x',
     srcDark: '/static/sponsors/wispr-square-dark.svg',
     name: 'Wispr Flow',
-    description: 'AI Voice Dictation - turn speech into clear, polished writing in every app.',
+    description: 'AI Dictation: from speech to clear, polished text.',
     href: 'https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];

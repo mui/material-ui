@@ -36,7 +36,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
       <img src="/static/sponsors/wispr-square-light.svg" alt="wisprflow" title="AI Voice Dictation - turn speech into clear, polished writing in every app." loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
     </span>
     <span class="only-dark-mode">
-      <img src="/static/sponsors/wispr-square-dark.svg" alt="wisprflow" title="AI Voice Dictation - turn speech into clear, polished writing in every app." loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
+      <img src="/static/sponsors/wispr-square-dark.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
     </span>
   </a>
 </p>
