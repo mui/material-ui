@@ -7,6 +7,8 @@ import { Tab as TabBase } from '@mui/base/Tab';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 import { HighlightedCode } from '../HighlightedCode';
 
+const PACKAGE_MANAGER_ORDER = ['npm', 'pnpm', 'yarn'];
+
 export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ theme }) => ({
@@ -298,7 +300,7 @@ export function HighlightedCodeWithTabs(
     let result = tabs.map(({ tab }) => tab);
     if (storageKey === 'package-manager') {
       const set = new Set(result);
-      result = ['npm', 'pnpm', 'yarn'].filter((tab) => set.has(tab));
+      result = PACKAGE_MANAGER_ORDER.filter((tab) => set.has(tab));
     }
     return result;
   }, [storageKey, tabs]);
