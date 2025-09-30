@@ -664,9 +664,6 @@ importers:
       jss-rtl:
         specifier: ^0.3.0
         version: 0.3.0(jss@10.10.0)
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       lz-string:
         specifier: ^1.5.0
         version: 1.5.0
