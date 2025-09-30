@@ -6,7 +6,7 @@ import Mustache from 'mustache';
 import globAsync from 'fast-glob';
 import * as svgo from 'svgo';
 import { fileURLToPath } from 'url';
-import intersection from 'es-toolkit/compat/intersection';
+import { intersection } from 'es-toolkit/array';
 import { Queue } from '@mui/internal-waterfall';
 import { hideBin } from 'yargs/helpers';
 

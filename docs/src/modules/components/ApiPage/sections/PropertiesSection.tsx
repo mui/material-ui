@@ -19,7 +19,7 @@ import {
   PropsTableItem,
   PropsTranslations,
 } from '@mui-internal/api-docs-builder';
-import kebabCase from 'es-toolkit/compat/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 
 interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
   componentProps: ComponentApiContent['props'];

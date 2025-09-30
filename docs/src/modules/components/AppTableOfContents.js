@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import throttle from 'es-toolkit/compat/throttle';
+import { throttle } from 'es-toolkit/function';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';

@@ -1,5 +1,5 @@
 import { test as base, expect, Page } from '@playwright/test';
-import kebabCase from 'es-toolkit/compat/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});

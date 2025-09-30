@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import uniqBy from 'es-toolkit/compat/uniqBy';
+import { uniqBy } from 'es-toolkit/array';
 import {
   PropType,
   ArrayType,

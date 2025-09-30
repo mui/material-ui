@@ -3,7 +3,7 @@ import { prettyDOM } from '@testing-library/react/pure';
 import * as chai from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
-import kebabCase from 'es-toolkit/compat/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import './chai.types';
 
 const isKarma = Boolean(process.env.KARMA);

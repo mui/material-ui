@@ -1,5 +1,4 @@
-import upperFirst from 'es-toolkit/compat/upperFirst';
-import camelCase from 'es-toolkit/compat/camelCase';
+import { camelCase, upperFirst } from 'es-toolkit/string';
 import { LANGUAGES } from 'docs/config';
 import { Translate } from '@mui/docs/i18n';
 
