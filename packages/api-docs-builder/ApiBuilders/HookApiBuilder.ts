@@ -332,7 +332,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
    */
   const pageContent: HookApiContent = {
     // Sorted by required DESC, name ASC
-    parameters: fromPairs(
+    parameters: Object.fromEntries(
       Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
