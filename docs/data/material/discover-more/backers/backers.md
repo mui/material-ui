@@ -33,10 +33,10 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="dialmycalls.com" href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png 3x" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="wisprflow.ai" href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;">
     <span class="only-light-mode">
-      <img src="/static/sponsors/wispr-square-light.svg" alt="wisprflow" title="AI Voice Dictation - turn speech into clear, polished writing in every app." loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
+      <img src="https://mui.com/static/static/sponsors/wispr-square-light.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
     </span>
     <span class="only-dark-mode">
-      <img src="/static/sponsors/wispr-square-dark.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
+      <img src="https://mui.com/static/static/sponsors/wispr-square-dark.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
     </span>
   </a>
 </p>

@@ -34,8 +34,8 @@ const GOLDs = [
   },
   {
     src: '/static/sponsors/wispr-square-light.svg',
-    srcSet: '/static/sponsors/wispr-square-light.svg 3x',
-    srcDark: '/static/sponsors/wispr-square-dark.svg',
+    srcSet: 'https://mui.com/static/static/sponsors/wispr-square-light.svg 3x',
+    srcDark: 'https://mui.com/static/static/sponsors/wispr-square-dark.svg',
     name: 'Wispr Flow',
     description: 'AI Dictation: from speech to clear, polished text.',
     href: 'https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
