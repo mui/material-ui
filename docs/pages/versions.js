@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { uniqBy, sortBy } from 'es-toolkit/array';
+import { uniqBy } from 'es-toolkit/array';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';
 import * as pageProps from 'docs/src/pages/versions/versions.md?muiMarkdown';
