@@ -103,7 +103,7 @@ const srcCondition = 'mui-src';
 
 function createExportFor(exportName, conditions) {
   if (typeof conditions === 'object' && conditions) {
-    const { [srcCondition]: src, ...rest } = conditions;
+    const { [srcCondition]: src, ...other } = conditions;
     if (typeof src === 'string') {
       if (!/\.tsx?$/.test(src)) {
         throw new Error(`Invalid src condition for ${exportName}: ${src}`);
@@ -119,7 +119,7 @@ function createExportFor(exportName, conditions) {
             types: `./esm/${baseName}.d.ts`,
             default: `./esm/${baseName}.js`,
           },
-          ...rest,
+          ...other,
         },
       };
     }

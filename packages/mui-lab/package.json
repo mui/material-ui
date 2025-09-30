@@ -27,14 +27,13 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:copy-files": "code-infra copy-files",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -46,8 +45,8 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.11",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
     "react": "^19.1.1",

@@ -107,7 +107,7 @@ describe('Material UI <GridLegacy />', () => {
     });
 
     it('should apply the styles necessary for variable width nested item when set to auto', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Need full CSS resolution
         this.skip();
       }
@@ -1758,7 +1758,7 @@ describe('Material UI <GridLegacy />', () => {
 
   describe('spacing', () => {
     it('should generate the right values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1768,7 +1768,7 @@ describe('Material UI <GridLegacy />', () => {
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 
-      const { rerender } = render(
+      const view = render(
         <div style={{ width: parentWidth }}>
           <ThemeProvider theme={remTheme}>
             <GridLegacy data-testid="grid" container spacing={2}>
@@ -1790,7 +1790,7 @@ describe('Material UI <GridLegacy />', () => {
         paddingLeft: `${0.5 * remValue}px`, // 0.5rem
       });
 
-      rerender(
+      view.rerender(
         <div style={{ width: parentWidth }}>
           <GridLegacy data-testid="grid" container spacing={2}>
             <GridLegacy item data-testid="first-default-theme" />
@@ -1831,16 +1831,16 @@ describe('Material UI <GridLegacy />', () => {
     });
 
     it('should apply nowrap class and style', () => {
-      const { container } = render(<GridLegacy container wrap="nowrap" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-nowrap');
+      const view = render(<GridLegacy container wrap="nowrap" data-testid="wrap" />);
+      expect(view.container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-nowrap');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'nowrap',
       });
     });
 
     it('should apply wrap-reverse class and style', () => {
-      const { container } = render(<GridLegacy container wrap="wrap-reverse" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-wrap-reverse');
+      const view = render(<GridLegacy container wrap="wrap-reverse" data-testid="wrap" />);
+      expect(view.container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-wrap-reverse');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap-reverse',
       });
