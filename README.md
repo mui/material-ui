@@ -86,8 +86,6 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
 </p>
 
-
-
 <p>
   <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Goread.io</a>
   &nbsp;
