@@ -46,7 +46,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [docs-infra] Fix markdown generation script to find correct files (#46954) @siriwatknp
 - [docs-infra] Fix unnecessary redirects (#46951) @Janpot
 - [docs-infra] Remove `dangerouslySetInnerHTML` for ad description (#46936) @Janpot
-- [docs-infra] Display "View as Markdown" only on Material UI  (#46861) @siriwatknp
+- [docs-infra] Display "View as Markdown" only on Material UI  (#46861) @siriwatknp
 - [infra] Fix JSON files not being imported in TS demos (#47000) @bernardobelchior
 - [infra] Turn `literal | (string & {})` to `PropTypes.string` (#46934) @siriwatknp
 - [infra] Bump node.js version and make local usage strict (#46834) @brijeshb42
