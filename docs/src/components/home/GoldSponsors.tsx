@@ -32,6 +32,14 @@ const GOLDs = [
     description: 'Send text messages, calls, and emails.',
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: '/static/sponsors/wispr-square-light.svg',
+    srcSet: '/static/sponsors/wispr-square-light.svg 3x',
+    srcDark: '/static/sponsors/wispr-square-dark.svg',
+    name: 'Wispr Flow',
+    description: 'AI Dictation: from speech to clear, polished text.',
+    href: 'https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 const BACKLINKs = [
