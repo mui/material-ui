@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
   "keywords": [
