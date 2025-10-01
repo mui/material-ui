@@ -64,6 +64,7 @@ const options = [
 
 return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
 ```
+
 :::
 
 ### Playground
