@@ -1,5 +1,66 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.3
+
+<!-- generated comparing v7.3.2..master -->
+
+_Sep 30, 2025_
+
+A big thanks to the 14 contributors who made this release possible.
+
+### `@mui/material@7.3.3`
+
+- [Autocomplete] Sync highlighted index when popup is opened (#46894) @ZeeshanTamboli
+- [CircularProgress] Add track slot via enableTrackSlot (#46907) @monam2
+- [locale] Split locales into separate files (#46933) @christopherschroer
+- [Tabs] Fix not scrolling to correct tab after refresh when auto scrollable (#46869) @Jayesh-11
+
+### Docs
+
+- Add a guide for building extensible themes (#46896) @siriwatknp
+- Add v7 community course to resources page (#46944) @alelthomas
+- Improve performance of Default Theme Viewer (#46841) @sai6855
+- Fix typo in blog component MainContent (#46868) @jonyen
+- [Steppers] Replace TransitionProps with slotProps.transition (#46898) @sai6855
+
+### Core
+
+- [blog] Fix year in Punta Cana retreat post (#46943) @mapache-salvaje
+- [blog] Punta Cana retreat post (#46892) @mapache-salvaje
+- [code-infra] Publish from CI (#46851) @Janpot
+- [code-infra] Convert reportBrokenLink script to ts (#47002) @brijeshb42
+- [code-infra] Update module resolution for typescript@next (#46940) @Janpot
+- [code-infra] Run continuous releases during ci-check (#46948) @Janpot
+- [code-infra] Fix github actions check for continuous release (#46941) @Janpot
+- [code-infra] Address high/critical dependabot reports (#46937) @Janpot
+- [code-infra] Update ci.yml triggers (#46860) @Janpot
+- [code-infra] Exact match for renovate file name (#46916) @Janpot
+- [code-infra] Disable dependency update for `@material-ui/core` in codemod (#46899) @Janpot
+- [code-infra] Transpile `assertion-error` in karma tests (#46909) @Janpot
+- [code-infra] Disable browserstack on circleci cron jobs (#46905) @Janpot
+- [code-infra] Remove `copy-files` command usage from packages (#46902) @brijeshb42
+- [code-infra] Low-hanging ts conversion (#46903) @Janpot
+- [code-infra] Bring batch of changes from vitest PR (#46795) @Janpot
+- [code-infra] Remove dependency on `fs-extra` (#46755) @bernardobelchior
+- [code-infra] Make error code extraction independent of build (#46865) @brijeshb42
+- [docs-infra] Fix markdown generation script to find correct files (#46954) @siriwatknp
+- [docs-infra] Fix unnecessary redirects (#46951) @Janpot
+- [docs-infra] Remove `dangerouslySetInnerHTML` for ad description (#46936) @Janpot
+- [docs-infra] Display "View as Markdown" only on Material UI (#46861) @siriwatknp
+- [infra] Fix JSON files not being imported in TS demos (#47000) @bernardobelchior
+- [infra] Turn `literal | (string & {})` to `PropTypes.string` (#46934) @siriwatknp
+- [infra] Bump node.js version and make local usage strict (#46834) @brijeshb42
+- [infra] Remove "main" fields from publishable packages (#46856) @brijeshb42
+- [internal] Refactor `useForkRef` TS types: tighten `cleanupRef` and simplify ref typing (#46967) @wo-o29
+- [internal] Fix naming to match convention (2099cb0) @oliviertassinari
+- [internal] Fix naming to match convention (29aad62) @oliviertassinari
+- [internal] Use same option as other repositories (eabda77) @oliviertassinari
+- [internal] Normalize <meta name='viewport' (9d1922a) @oliviertassinari
+- [internal] Normalize charset='utf-8' (f1aae00) @oliviertassinari
+- [test] Split infinitive (0237fda) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alelthomas, @bernardobelchior, @brijeshb42, @christopherschroer, @Janpot, @Jayesh-11, @jonyen, @mapache-salvaje, @monam2, @oliviertassinari, @sai6855, @siriwatknp, @wo-o29, @ZeeshanTamboli
+
 ## 7.3.2
 
 <!-- generated comparing v7.3.1..master -->

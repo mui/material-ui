@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
   "keywords": [
