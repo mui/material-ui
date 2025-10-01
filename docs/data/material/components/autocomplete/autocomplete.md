@@ -53,6 +53,19 @@ However, you can use different structures by providing a `getOptionLabel` prop.
 
 If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
 
+:::warning
+If your options have duplicate labels, you must extract a unique key with the `getOptionKey` prop.
+
+```tsx
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'The Godfather', id: 2 },
+];
+
+return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
+```
+:::
+
 ### Playground
 
 Each of the following examples demonstrates one feature of the Autocomplete component.
