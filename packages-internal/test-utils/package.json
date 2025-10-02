@@ -4,6 +4,11 @@
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages-internal/test-utils"
+  },
   "exports": {
     ".": "./build/index.js",
     "./createDescribe": "./build/createDescribe.js",
