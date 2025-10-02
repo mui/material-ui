@@ -10,6 +10,10 @@ npm install -g @typescript/analyze-trace
 
 ## Run Performance Test
 
+```bash
+cd packages/mui-material/perf-test
+```
+
 ### 1. Run Basic Diagnostics
 
 ```bash
@@ -17,6 +21,7 @@ npx tsc --noEmit --diagnostics
 ```
 
 Key metrics to note:
+
 - `Instantiations` (target: < 500,000)
 - `Memory used` (target: < 300MB)
 - `Check time` (lower is better)
@@ -34,6 +39,7 @@ analyze-trace trace-output
 ```
 
 Look for:
+
 - Top instantiated types
 - Hottest files
 - Memory allocation patterns
