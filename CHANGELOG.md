@@ -8,7 +8,7 @@ _Oct 2, 2025_
 
 A big thanks to the 3 contributors who made this release possible. Here are some highlights ✨:
 
-Small update to revert a change that broke the <Tabs> component. Also publishing a beta version of `@mui/lab` which was accidentally published as a stable release.
+Small update to revert a change that broke the `<Tabs>` component. Also publishing a beta version of `@mui/lab` which was accidentally published as a stable release.
 
 ### `@mui/material@7.3.4`
 
