@@ -35,8 +35,8 @@ The following steps must be proposed as a pull request.
 4. Run `pnpm release:version`. Keep in mind:
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
-5. Open PR with changes and wait for review and green CI
-6. Merge PR once CI is green and it has been approved
+5. Open PR with changes and wait for review and green CI.
+6. Merge PR once CI is green and it has been approved.
 
 #### Release
 
@@ -86,8 +86,8 @@ Checkout the latest minor release tag and create a branch "release/PATCH_VERSION
 4. Run `pnpm release:version`. Keep in mind:
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
-5. Open PR with changes and wait for review and green CI
-6. Merge PR once CI is green and it has been approved
+5. Open PR with changes and wait for review and green CI.
+6. Merge PR back into master once CI is green and it has been approved.
 
 #### Release
 
