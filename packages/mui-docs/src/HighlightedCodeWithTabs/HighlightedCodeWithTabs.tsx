@@ -7,7 +7,9 @@ import { Tab as TabBase } from '@mui/base/Tab';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 import { HighlightedCode } from '../HighlightedCode';
 
-const PACKAGE_MANAGER_ORDER = ['npm', 'pnpm', 'yarn'];
+const PACKAGE_MANAGER_ORDER = new Map(
+  ['npm', 'pnpm', 'yarn'].map((manager, index) => [manager, index]),
+);
 
 export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
@@ -297,10 +299,12 @@ export function HighlightedCodeWithTabs(
 ) {
   const { tabs, storageKey } = props;
   const availableTabs = React.useMemo(() => {
-    let result = tabs.map(({ tab }) => tab);
+    const result = tabs.map(({ tab }) => tab);
     if (storageKey === 'package-manager') {
-      const set = new Set(result);
-      result = PACKAGE_MANAGER_ORDER.filter((tab) => set.has(tab));
+      result.sort(
+        (a, b) =>
+          (PACKAGE_MANAGER_ORDER.get(a) ?? Infinity) - (PACKAGE_MANAGER_ORDER.get(b) ?? Infinity),
+      );
     }
     return result;
   }, [storageKey, tabs]);
