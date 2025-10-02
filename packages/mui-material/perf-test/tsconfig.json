@@ -1,0 +1,7 @@
+{
+  "extends": "../../../tsconfig.json",
+  "include": ["test-createTheme.ts"],
+  "compilerOptions": {
+    "moduleResolution": "Bundler"
+  }
+}
