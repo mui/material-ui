@@ -1,6 +1,7 @@
 import {
   ThemeOptions as SystemThemeOptions,
   Theme as SystemTheme,
+  Interpolation,
   SxProps,
   CSSObject,
   SxConfig,
@@ -11,8 +12,12 @@ import { TypographyVariants, TypographyVariantsOptions } from './createTypograph
 import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
-import { Components } from './components';
-import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeFoundation';
+import {
+  CssVarsTheme,
+  CssVarsPalette,
+  ColorSystemOptions,
+  ThemeComponents,
+} from './createThemeFoundation';
 
 /**
  * To disable custom properties, use module augmentation
@@ -34,7 +39,7 @@ type CssVarsOptions = CssThemeVariables extends {
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  components?: Components<Omit<Theme, 'components'>>;
+  components?: ThemeComponents;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -82,13 +87,28 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
-  components?: Components<BaseTheme>;
+  components?: ThemeComponents;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;
   lighten: (color: string, coefficient: number | string) => string;
   darken: (color: string, coefficient: number | string) => string;
 }
+
+export type CreateThemeComponent<Props, OwnerState = Props> = {
+  defaultProps?: Partial<Props>;
+  styleOverrides?: Interpolation<
+    // Record<string, unknown> is for other props that the slot receive internally
+    // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+    Props &
+      Record<string, unknown> & {
+        ownerState: OwnerState & Record<string, unknown>;
+      } & {
+        theme: Theme;
+      } & Record<string, unknown>
+  >;
+  variants?: Array<{ props: Partial<Props>; style: CSSObject }>;
+};
 
 /**
  * Generate a theme base on the options received.

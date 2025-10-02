@@ -33,6 +33,11 @@ export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverr
  */
 export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 
+export interface ThemeComponents {
+  mergeClassNameAndStyles?: boolean;
+  [componentName: string]: any;
+}
+
 export interface Opacity {
   inputPlaceholder: number;
   inputUnderline: number;

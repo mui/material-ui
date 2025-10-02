@@ -6,9 +6,10 @@ export {
   default as unstable_createMuiStrictModeTheme,
   ThemeOptions,
   Theme,
+  ThemeComponents,
   CssThemeVariables,
+  CreateThemeComponent,
 } from './createTheme';
-export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
 export { ZIndex } from './zIndex';
 export {
@@ -80,10 +81,6 @@ export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
 export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
-export { ComponentsProps, ComponentsPropsList } from './props';
-export { ComponentsVariants } from './variants';
-export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
-export { Components } from './components';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
