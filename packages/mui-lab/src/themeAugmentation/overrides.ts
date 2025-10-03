@@ -25,7 +25,7 @@ export interface LabComponentNameToClassKey {
   MuiTimelineSeparator: TimelineSeparatorClassKey;
 }
 
-declare module '@mui/material/deprecatedTypes' {
+declare module '@mui/material/stylesDeprecated' {
   interface ComponentNameToClassKey extends LabComponentNameToClassKey {}
 }
 

@@ -24,7 +24,7 @@ export interface LabComponentsPropsList {
   MuiTimelineSeparator: TimelineSeparatorProps;
 }
 
-declare module '@mui/material/deprecatedTypes' {
+declare module '@mui/material/stylesDeprecated' {
   interface ComponentsPropsList extends LabComponentsPropsList {}
 }
 

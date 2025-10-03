@@ -2,7 +2,7 @@ import {
   ComponentsProps,
   ComponentsOverrides,
   ComponentsVariants,
-} from '@mui/material/deprecatedTypes';
+} from '@mui/material/stylesDeprecated';
 import { Theme as MuiTheme } from '@mui/material/styles';
 
 type Theme = Omit<MuiTheme, 'components'>;
@@ -68,6 +68,6 @@ export interface LabComponents {
   };
 }
 
-declare module '@mui/material/deprecatedTypes' {
+declare module '@mui/material/stylesDeprecated' {
   interface Components extends LabComponents {}
 }
