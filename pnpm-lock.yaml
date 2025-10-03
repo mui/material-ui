@@ -109,12 +109,6 @@ importers:
       '@types/babel__register':
         specifier: ^7.17.3
         version: 7.17.3
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
-      '@types/lodash.kebabcase':
-        specifier: ^4.1.9
-        version: 4.1.9
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -166,6 +160,9 @@ importers:
       danger:
         specifier: ^13.0.4
         version: 13.0.4(encoding@0.1.13)
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       eslint:
         specifier: ^9.36.0
         version: 9.36.0(jiti@2.5.1)
@@ -217,12 +214,6 @@ importers:
       lerna:
         specifier: ^8.2.4
         version: 8.2.4(babel-plugin-macros@3.1.0)(encoding@0.1.13)
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      lodash.kebabcase:
-        specifier: ^4.1.1
-        version: 4.1.1
       markdownlint-cli2:
         specifier: ^0.18.1
         version: 0.18.1
@@ -646,6 +637,9 @@ importers:
       dayjs:
         specifier: ^1.11.18
         version: 1.11.18
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       feed:
         specifier: ^5.1.0
         version: 5.1.0
@@ -670,9 +664,6 @@ importers:
       jss-rtl:
         specifier: ^0.3.0
         version: 0.3.0(jss@10.10.0)
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       lz-string:
         specifier: ^1.5.0
         version: 1.5.0
@@ -884,9 +875,9 @@ importers:
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
@@ -906,9 +897,6 @@ importers:
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
       '@types/node':
         specifier: ^20.19.17
         version: 20.19.17
@@ -969,15 +957,15 @@ importers:
       dom-accessibility-api:
         specifier: ^0.7.0
         version: 0.7.0
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       format-util:
         specifier: ^1.0.5
         version: 1.0.5
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       mocha:
         specifier: ^11.7.2
         version: 11.7.2
@@ -1045,12 +1033,12 @@ importers:
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -1115,9 +1103,9 @@ importers:
       docs:
         specifier: workspace:^
         version: link:../../docs
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
     devDependencies:
       '@types/chai':
         specifier: ^4.3.20
@@ -1163,9 +1151,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.28.4
         version: 7.28.4
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       marked:
         specifier: ^16.3.0
         version: 16.3.0
@@ -1357,12 +1345,12 @@ importers:
       cross-fetch:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       mustache:
         specifier: ^4.2.0
         version: 4.2.0
@@ -1440,12 +1428,12 @@ importers:
       chai:
         specifier: ^6.0.1
         version: 6.0.1
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       next:
         specifier: ^15.5.4
         version: 15.5.4(@babel/core@7.28.4)(@opentelemetry/api@1.8.0)(@playwright/test@1.55.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -1603,12 +1591,12 @@ importers:
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -1875,12 +1863,12 @@ importers:
       chai:
         specifier: ^6.0.1
         version: 6.0.1
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -2041,15 +2029,15 @@ importers:
       docs:
         specifier: workspace:^
         version: link:../docs
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
       html-webpack-plugin:
         specifier: ^5.6.3
         version: 5.6.3(webpack@5.101.3(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.3)))
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -5629,12 +5617,6 @@ packages:
   '@types/katex@0.16.7':
     resolution: {integrity: sha512-HMwFiRujE5PjrgwHQ25+bsLJgowjGjm5Z8FVSf0N6PwgJrwxH0QxzHYDcKsTfV3wva0vzrpqMTJS2jXPr5BMEQ==}
 
-  '@types/lodash.kebabcase@4.1.9':
-    resolution: {integrity: sha512-kPrrmcVOhSsjAVRovN0lRfrbuidfg0wYsrQa5IYuoQO1fpHHGSme66oyiYA/5eQPVl8Z95OA3HG0+d2SvYC85w==}
-
-  '@types/lodash@4.17.20':
-    resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
-
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
@@ -7912,6 +7894,9 @@ packages:
     resolution: {integrity: sha512-w+5mJ3GuFL+NjVtJlvydShqE1eN3h3PbI7/5LAsYJP/2qtuMXjfL2LpHSRqo4b4eSF5K/DH1JXKUAHSB2UW50g==}
     engines: {node: '>= 0.4'}
 
+  es-toolkit@1.39.10:
+    resolution: {integrity: sha512-E0iGnTtbDhkeczB0T+mxmoVlT4YNweEKBLq7oaU4p11mecdsZpNWOglI4895Vh4usbQ+LsJiuLuI2L0Vdmfm2w==}
+
   es6-error@4.1.1:
     resolution: {integrity: sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==}
 
@@ -9842,9 +9827,6 @@ packages:
 
   lodash.isundefined@3.0.1:
     resolution: {integrity: sha512-MXB1is3s899/cD8jheYYE2V9qTHwKvt+npCwpD+1Sxm3Q3cECXCiYHjeHWXNwr6Q0SOBPrYUDxendrO6goVTEA==}
-
-  lodash.kebabcase@4.1.1:
-    resolution: {integrity: sha512-N8XRTIMMqqDgSy4VLKPnJ/+hpGZN+PHQiJnSenYqPaVV/NCqEogTnAdZLQiGKhxX+JCs8waWq2t1XHWKOmlY8g==}
 
   lodash.keys@4.2.0:
     resolution: {integrity: sha512-J79MkJcp7Df5mizHiVNpjoHXLi4HLjh9VLS/M7lQSGoQ+0oQ+lWEigREkqKyizPB1IawvQLLKY8mzEcm1tkyxQ==}
@@ -17950,12 +17932,6 @@ snapshots:
 
   '@types/katex@0.16.7': {}
 
-  '@types/lodash.kebabcase@4.1.9':
-    dependencies:
-      '@types/lodash': 4.17.20
-
-  '@types/lodash@4.17.20': {}
-
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.2
@@ -20680,6 +20656,8 @@ snapshots:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
 
+  es-toolkit@1.39.10: {}
+
   es6-error@4.1.1: {}
 
   es6-promise@4.2.8: {}
@@ -23004,8 +22982,6 @@ snapshots:
   lodash.isstring@4.0.1: {}
 
   lodash.isundefined@3.0.1: {}
-
-  lodash.kebabcase@4.1.1: {}
 
   lodash.keys@4.2.0: {}
 

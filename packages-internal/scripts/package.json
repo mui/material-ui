@@ -35,7 +35,7 @@
     "@babel/types": "^7.28.4",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "lodash": "^4.17.21",
+    "es-toolkit": "^1.39.10",
     "typescript": "^5.9.2",
     "uuid": "^11.1.0"
   },
@@ -44,7 +44,6 @@
     "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
-    "@types/lodash": "^4.17.20",
     "@types/node": "^20.19.17",
     "@types/react": "^19.1.13",
     "@types/uuid": "^10.0.0",

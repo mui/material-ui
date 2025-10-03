@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
-import * as _ from 'lodash';
+import { flatten } from 'es-toolkit/array';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';
@@ -330,7 +330,7 @@ async function run(argv: HandlerArgv) {
     ),
   );
 
-  const files = _.flatten(allFiles)
+  const files = flatten(allFiles)
     .filter((filePath) => {
       // Filter out files where the directory name and filename doesn't match
       // Example: Modal/ModalManager.d.ts
