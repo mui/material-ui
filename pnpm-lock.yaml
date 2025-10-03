@@ -71,8 +71,8 @@ importers:
         specifier: ^1.0.9-canary.46
         version: 1.0.9-canary.46(@types/node@20.19.17)(jiti@2.5.1)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: ^0.0.3-canary.18
-        version: 0.0.3-canary.18(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.36.0(jiti@2.5.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)
+        specifier: ^0.0.3-canary.19
+        version: 0.0.3-canary.19(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.36.0(jiti@2.5.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -3995,8 +3995,8 @@ packages:
     resolution: {integrity: sha512-KyKMYVpN8ScUkhgmo6LwXoaVf5c49c2qNeX39s/xLALrmFycOqd2q+ElN6wXLrYT7VkgJQhMHj77PcKhoBpm4A==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.3-canary.18':
-    resolution: {integrity: sha512-vsFbxE5LAfdxOy6r9um7hdBKGQPV1ehuRTczTeCngUGmcx+wUk4iIdhnVr5KGi5/wmoiNHYZrdWtq2AOVDXiHg==}
+  '@mui/internal-code-infra@0.0.3-canary.19':
+    resolution: {integrity: sha512-LMQAy+0XWTaXTbMtacB2QaQPqFhKwJnfIZ0k0yUBXdHizfKKAobJyifBS+YBErGNrkoW9GOMrJcuLM3h92gPcA==}
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -15974,7 +15974,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.3-canary.18(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.36.0(jiti@2.5.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)':
+  '@mui/internal-code-infra@0.0.3-canary.19(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.36.0(jiti@2.5.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)':
     dependencies:
       '@argos-ci/core': 4.1.5
       '@babel/cli': 7.28.3(@babel/core@7.28.4)
