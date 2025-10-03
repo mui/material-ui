@@ -50,9 +50,7 @@ AppTheme.propTypes = {
    * This is for the docs site. You can ignore it or remove it.
    */
   disableCustomTheme: PropTypes.bool,
-  themeComponents: PropTypes.shape({
-    mergeClassNameAndStyles: PropTypes.bool,
-  }),
+  themeComponents: PropTypes.object,
 };
 
 export default AppTheme;
