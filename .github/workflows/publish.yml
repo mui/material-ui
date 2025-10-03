@@ -18,7 +18,7 @@ on:
         type: boolean
         default: true
       dist-tag:
-        description: 'NPM dist tag to publish to'
+        description: 'npm dist tag to publish to'
         required: false
         type: string
         default: 'latest'
