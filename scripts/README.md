@@ -4,8 +4,9 @@
 
 ### Prerequisites
 
-1. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
+1. Make sure you have added the `material-ui-docs` and `upstream` remotes to deploy the documentation:
    ```bash
+   git remote add upstream https://github.com/mui/material-ui.git
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 2. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
