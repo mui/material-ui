@@ -7,7 +7,7 @@
     "build:clean": "rimraf .next && pnpm build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "next dev",
-    "deploy": "git fetch upstream master && git push -f material-ui-docs upstream/master:latest",
+    "deploy": "git fetch upstream master && git push -f material-ui-docs FETCH_HEAD:latest",
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "serve ./export",
     "create-playground": "cpy --cwd=scripts playground.template.tsx ../../pages/playground --rename=index.tsx",
