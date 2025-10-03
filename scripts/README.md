@@ -4,17 +4,11 @@
 
 ### Prerequisites
 
-1. You must be a member of the `@mui` org in npm to publish the release
-2. Set up your npm authToken by logging into npm (`npm login`) . This will save a token to `~/.npmrc` as a line that looks
-   like this:
-   ```text
-   //registry.npmjs.org/:_authToken=npm_000000000000000000000000000000000000
-   ```
-3. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
+1. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
    ```bash
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
-4. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
+2. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
 
 ### Releasing a minor version
 
