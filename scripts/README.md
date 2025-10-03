@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-1. Make sure you have added the `material-ui-docs` and `upstrean` remotes to deploy the documentation:
+1. Make sure you have added the `material-ui-docs` and `upstream` remotes to deploy the documentation:
    ```bash
    git remote add upstream https://github.com/mui/material-ui.git
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
