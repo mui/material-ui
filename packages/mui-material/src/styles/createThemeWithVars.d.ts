@@ -34,7 +34,6 @@ import {
   ThemeVars,
   ThemeCssVarOverrides,
   ThemeCssVar,
-  ThemeComponents,
 } from './createThemeFoundation';
 
 // Re-export all types from foundation to maintain backward compatibility
@@ -75,7 +74,7 @@ export type {
   CssVarsTheme,
 };
 
-export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
+export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette'> {
   /**
    * The strategy to generate CSS variables
    *
@@ -123,10 +122,6 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * @default 'light'
    */
   defaultColorScheme?: SupportedColorScheme;
-  /**
-   * Theme components
-   */
-  components?: ThemeComponents;
   /**
    * Color schemes configuration
    */

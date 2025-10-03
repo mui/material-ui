@@ -95,19 +95,31 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   darken: (color: string, coefficient: number | string) => string;
 }
 
-export type CreateThemeComponent<Props, OwnerState = Props> = {
+export type CreateThemeComponent<SlotNames extends string, Props, OwnerState = Props> = {
   defaultProps?: Partial<Props>;
-  styleOverrides?: Interpolation<
-    // Record<string, unknown> is for other props that the slot receive internally
-    // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
-    Props &
-      Record<string, unknown> & {
-        ownerState: OwnerState & Record<string, unknown>;
-      } & {
-        theme: Theme;
-      } & Record<string, unknown>
+  styleOverrides?: Record<
+    SlotNames,
+    Interpolation<
+      // Record<string, unknown> is for other props that the slot receive internally
+      // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+      Props &
+        Record<string, unknown> & {
+          ownerState: OwnerState & Record<string, unknown>;
+        } & {
+          theme: Theme;
+        } & Record<string, unknown>
+    >
   >;
-  variants?: Array<{ props: Partial<Props>; style: CSSObject }>;
+  variants?: Array<{
+    props:
+      | Partial<Props>
+      | ((
+          props: Partial<Props> & {
+            ownerState: Partial<OwnerState>;
+          },
+        ) => boolean);
+    style: Interpolation<{ theme: Theme }>;
+  }>;
 };
 
 /**

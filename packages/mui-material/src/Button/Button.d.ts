@@ -4,7 +4,7 @@ import { SxProps } from '@mui/system';
 import { Theme, CreateThemeComponent } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
-import { ButtonClasses } from './buttonClasses';
+import { ButtonClasses, ButtonClassKey } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -147,7 +147,7 @@ export type ButtonProps<
 };
 
 export type ButtonTheme = {
-  MuiButton: CreateThemeComponent<ButtonProps>;
+  MuiButton: CreateThemeComponent<ButtonClassKey, ButtonProps>;
 };
 
 export default Button;
