@@ -1276,8 +1276,8 @@ importers:
   packages/mui-envinfo:
     dependencies:
       envinfo:
-        specifier: ^7.14.0
-        version: 7.14.0
+        specifier: ^7.15.0
+        version: 7.16.0
     devDependencies:
       '@types/chai':
         specifier: ^4.3.20
@@ -7841,8 +7841,8 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  envinfo@7.14.0:
-    resolution: {integrity: sha512-CO40UI41xDQzhLB1hWyqUKgFhs250pNcGbyGKe1l/e4FSaI/+YE4IMG76GDt0In67WLPACIITC+sOi08x4wIvg==}
+  envinfo@7.16.0:
+    resolution: {integrity: sha512-LqGbDxROFEWnYpUm9KiU2xHiYbjlHZS6NZQUpm1Lg1To4p+FJLks5crEhUnw+s/ZLHzI8U0QB+oVG7e8cXckMg==}
     engines: {node: '>=4'}
     hasBin: true
 
@@ -20541,7 +20541,7 @@ snapshots:
 
   envinfo@7.13.0: {}
 
-  envinfo@7.14.0: {}
+  envinfo@7.16.0: {}
 
   environment@1.1.0: {}
 
@@ -26825,7 +26825,7 @@ snapshots:
       colorette: 2.0.20
       commander: 12.1.0
       cross-spawn: 7.0.6
-      envinfo: 7.14.0
+      envinfo: 7.16.0
       fastest-levenshtein: 1.0.16
       import-local: 3.1.0
       interpret: 3.1.1
