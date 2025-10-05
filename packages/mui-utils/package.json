@@ -43,7 +43,7 @@
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.17",
+    "@types/node": "^20.19.19",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@types/react-is": "^19.0.0",
