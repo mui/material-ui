@@ -37,7 +37,7 @@
     "doctrine": "^3.0.0",
     "es-toolkit": "^1.39.10",
     "typescript": "^5.9.3",
-    "uuid": "^11.1.0"
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@babel/register": "^7.28.3",
