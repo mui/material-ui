@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
+import CircularProgress from '@mui/material/CircularProgress';
 // Icons
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
@@ -30,7 +31,8 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EditPage from 'docs/src/modules/components/EditPage';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const FooterLink = styled(Link)(({ theme }) => {
   return {
@@ -80,25 +82,7 @@ function orderedPages(pages, current = []) {
     });
 }
 
-async function postFeedback(data) {
-  const env = process.env.DEPLOY_ENV === 'production' ? 'prod' : 'dev';
-  try {
-    const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
-      method: 'POST',
-      referrerPolicy: 'origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    return response.json();
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
-async function postFeedbackOnSlack(data) {
-  const { rating, comment, commentedSection, productId } = data;
-
+async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
   const sentData = {
     callback_id: 'send_feedback',
     rating,
@@ -172,64 +156,6 @@ async function postFeedbackOnSlack(data) {
   */
 }
 
-async function getUserFeedback(id) {
-  const env = location.hostname === 'mui.com' ? 'prod' : 'dev';
-  const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
-
-  try {
-    const response = await fetch(URL, {
-      method: 'GET',
-      cache: 'no-store',
-      referrerPolicy: 'origin',
-    });
-    return response.json();
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
-async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
-  const resultSlack = await postFeedbackOnSlack({ rating, comment, commentedSection, productId });
-
-  if (rating !== undefined) {
-    const resultVote = await postFeedback({
-      id: getCookie('feedbackId'),
-      page,
-      rating,
-      comment,
-      version: process.env.LIB_VERSION,
-      language,
-    });
-    if (resultVote) {
-      document.cookie = `feedbackId=${resultVote.id};path=/;max-age=31536000`;
-      setTimeout(async () => {
-        const userFeedback = await getUserFeedback(resultVote.id);
-        if (userFeedback) {
-          document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
-        }
-      });
-    }
-    return resultSlack && resultVote;
-  }
-
-  return resultSlack;
-}
-
-function getCurrentRating(pathname) {
-  let userFeedback;
-  if (typeof window !== 'undefined') {
-    try {
-      userFeedback = getCookie('feedback');
-      userFeedback = userFeedback && JSON.parse(userFeedback);
-    } catch {
-      // For unknown reason the `userFeedback` can be uncomplet, leading the JSON.parse to crash the entire docs
-      return undefined;
-    }
-  }
-  return userFeedback && userFeedback[pathname] && userFeedback[pathname].rating;
-}
-
 /**
  * @returns { { prevPage: OrderedMuiPage | null; nextPage: OrderedMuiPage | null } }
  */
@@ -263,13 +189,16 @@ export default function AppLayoutDocsFooter(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const { activePage, productId } = React.useContext(PageContext);
-  const [rating, setRating] = React.useState();
+  const [storedRating, setRating] = useLocalStorageState(`feedback-${activePage?.pathname}`);
   const [comment, setComment] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const inputRef = React.useRef();
   const [commentOpen, setCommentOpen] = React.useState(false);
   const [commentedSection, setCommentedSection] = React.useState(EMPTY_SECTION);
+
+  const rating = storedRating ? Number(storedRating) : null;
 
   const { nextPage, prevPage } = usePageNeighbours();
 
@@ -285,36 +214,32 @@ export default function AppLayoutDocsFooter(props) {
     [tableOfContents],
   );
 
-  const setCurrentRatingFromCookie = React.useCallback(() => {
-    if (activePage !== null) {
-      setRating(getCurrentRating(activePage.pathname));
-    }
-  }, [activePage]);
-
-  React.useEffect(() => {
-    setCurrentRatingFromCookie();
-  }, [setCurrentRatingFromCookie]);
-
   async function processFeedback() {
-    if (activePage === null) {
-      setSnackbarMessage(t('feedbackFailed'));
-    }
+    try {
+      setLoading(true);
 
-    const result = await submitFeedback(
-      activePage.pathname,
-      rating,
-      comment,
-      userLanguage,
-      commentedSection,
-      productId,
-    );
-    if (result) {
-      setSnackbarMessage(t('feedbackSubmitted'));
-    } else {
-      setCurrentRatingFromCookie();
-      setSnackbarMessage(t('feedbackFailed'));
+      if (activePage === null) {
+        setSnackbarMessage(t('feedbackFailed'));
+      }
+
+      const result = await submitFeedback(
+        activePage.pathname,
+        rating,
+        comment,
+        userLanguage,
+        commentedSection,
+        productId,
+      );
+
+      if (result) {
+        setSnackbarMessage(t('feedbackSubmitted'));
+      } else {
+        setSnackbarMessage(t('feedbackFailed'));
+      }
+      setSnackbarOpen(true);
+    } finally {
+      setLoading(false);
     }
-    setSnackbarOpen(true);
   }
 
   const handleClickThumb = (vote) => async () => {
@@ -359,7 +284,6 @@ export default function AppLayoutDocsFooter(props) {
 
   const handleCancelComment = () => {
     setCommentOpen(false);
-    setCurrentRatingFromCookie();
     setCommentedSection(EMPTY_SECTION);
   };
 
@@ -411,17 +335,31 @@ export default function AppLayoutDocsFooter(props) {
               {t('feedbackMessage')}
             </Typography>
             <Tooltip title={t('feedbackYes')}>
-              <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
-                <ThumbUpAltRoundedIcon
-                  sx={{ fontSize: 15, color: rating === 1 ? 'primary' : 'text.secondary' }}
-                />
+              <IconButton
+                onClick={handleClickThumb(1)}
+                disabled={loading}
+                aria-pressed={rating === 1}
+                sx={{ fontSize: 15, color: rating === 1 ? 'primary.main' : 'text.secondary' }}
+              >
+                {rating === 1 && loading ? (
+                  <CircularProgress size={15} />
+                ) : (
+                  <ThumbUpAltRoundedIcon fontSize="inherit" />
+                )}
               </IconButton>
             </Tooltip>
             <Tooltip title={t('feedbackNo')}>
-              <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
-                <ThumbDownAltRoundedIcon
-                  sx={{ fontSize: 15, color: rating === 0 ? 'error' : 'text.secondary' }}
-                />
+              <IconButton
+                onClick={handleClickThumb(0)}
+                disabled={loading}
+                aria-pressed={rating === 0}
+                sx={{ fontSize: 15, color: rating === 0 ? 'error.main' : 'text.secondary' }}
+              >
+                {rating === 0 && loading ? (
+                  <CircularProgress size={15} />
+                ) : (
+                  <ThumbDownAltRoundedIcon fontSize="inherit" />
+                )}
               </IconButton>
             </Tooltip>
           </Stack>
