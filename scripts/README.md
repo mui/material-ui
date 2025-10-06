@@ -65,20 +65,25 @@ After the documentation deployment is done, review the draft release that was cr
 
 After the docs is live, follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
 
-### Releasing a patch version
+### Releasing a hotfix version
 
-A patch release could happen if there is a regression fix that could not wait for the monthly release cycle.
+A hotfix release could happen if there is a regression fix that could not wait for the monthly release cycle and the master branch already contains not yet to be released commits. If you can publish an earlier minor, just prefer that over a hotfix release.
 
 It goes like this:
 
 #### Prepare
 
-Checkout the latest minor release tag and create a branch "release/PATCH_VERSION". Cherry-pick the necessary commit on this branch. The following steps must be proposed as a pull request.
+Checkout the latest minor release tag and create a branch _release/<PATCH_VERSION>_. Cherry-pick the necessary commit on this branch. Force push this branch to upstream:
+
+    ```sh
+    git push -f upstream release/<PATCH_VERSION>
+    ```
+
+The following steps must be proposed as a pull request to _release/<PATCH_VERSION>_.
 
 1. Generate the changelog with `pnpm release:changelog`
    The output must be prepended to the top level `CHANGELOG.md`
    `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
-
 2. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable
@@ -87,15 +92,16 @@ Checkout the latest minor release tag and create a branch "release/PATCH_VERSION
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
 5. Open PR with changes and wait for review and green CI.
-6. Merge PR back into master once CI is green and it has been approved.
+6. Merge PR into _release/<PATCH_VERSION>_ once CI is green and it has been approved.
+7. Open and merge a PR from _release/<PATCH_VERSION>_ to master to correct the package versioning.
 
 #### Release
 
 1. Go to the [publish action](https://github.com/mui/material-ui/actions/workflows/publish.yml).
 2. Choose "Run workflow" dropdown
 
-   > - **Branch:** "release/PATCH_VERSION"
-   > - **Commit SHA to release from:** the commit that contains the merged release on "release/PATCH_VERSION". This commit is linked to the GitHub release.
+   > - **Branch:** _release/<PATCH_VERSION>_
+   > - **Commit SHA to release from:** the commit that contains the merged release on _release/<PATCH_VERSION>_. This commit is linked to the GitHub release.
    > - **Run in dry-run mode:** Used for debugging.
    > - **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
 
