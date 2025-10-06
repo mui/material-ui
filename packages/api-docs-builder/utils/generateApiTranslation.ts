@@ -1,6 +1,6 @@
 import { mkdirSync } from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { writePrettifiedFile } from '../buildApiUtils';
 import { HooksTranslations, PropsTranslations } from '../types/ApiBuilder.types';
 

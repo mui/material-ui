@@ -99,19 +99,38 @@ function DefaultTheme() {
   }, []);
 
   const data = React.useMemo(() => {
-    return createTheme({
+    const themeData = createTheme({
       palette: { mode: darkTheme ? 'dark' : 'light' },
     });
+
+    const {
+      unstable_sxConfig: unstableSxConfig,
+      unstable_sx: unstableSx,
+      ...rest
+    } = themeData;
+
+    return rest;
   }, [darkTheme]);
 
   const allNodeIds = useItemIdsLazy(data);
   React.useDebugValue(allNodeIds);
-  React.useEffect(() => {
-    if (checked) {
-      // in case during the event handler allNodeIds wasn't computed yet
-      setExpandPaths(allNodeIds);
+
+  const currentExpandPaths = React.useMemo(() => {
+    if (expandPaths !== null) {
+      return expandPaths;
     }
-  }, [checked, allNodeIds]);
+    return checked ? allNodeIds : [];
+  }, [checked, allNodeIds, expandPaths]);
+
+  const collapsedThemeViewer = React.useMemo(
+    () => <ThemeViewer data={data} expandPaths={[]} />,
+    [data],
+  );
+
+  const expandedThemeViewer = React.useMemo(
+    () => <ThemeViewer data={data} expandPaths={allNodeIds} />,
+    [data, allNodeIds],
+  );
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -133,7 +152,6 @@ function DefaultTheme() {
               checked={checked}
               onChange={(event) => {
                 setChecked(event.target.checked);
-                setExpandPaths(event.target.checked ? allNodeIds : []);
               }}
             />
           }
@@ -161,7 +179,18 @@ function DefaultTheme() {
           }
         />
       </Box>
-      <ThemeViewer data={data} expandPaths={expandPaths} />
+      {expandPaths !== null ? (
+        <ThemeViewer data={data} expandPaths={currentExpandPaths} />
+      ) : (
+        <React.Fragment>
+          <Box sx={{ display: checked ? 'none' : 'block' }}>
+            {collapsedThemeViewer}
+          </Box>
+          <Box sx={{ display: checked ? 'block' : 'none' }}>
+            {expandedThemeViewer}
+          </Box>
+        </React.Fragment>
+      )}
     </Box>
   );
 }
