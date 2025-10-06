@@ -31,7 +31,7 @@
     "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
     "build:lib": "code-infra build --hasLargeFiles --skipPackageJson --skipBundlePackageJson --skipMainCheck --buildTypes false",
     "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:copy-files": "shx cp package.json README.md ../../CHANGELOG.md ../../LICENSE build",
     "build:typings": "node ./scripts/create-typings.mjs",
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
