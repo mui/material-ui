@@ -48,7 +48,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm validate-declarations
-      - name: pnpm release:tag
-        run: |
-          git remote -v
-          pnpm release:tag --dryRun
