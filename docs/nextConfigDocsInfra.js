@@ -74,7 +74,7 @@ function withDocsInfra(nextConfig) {
     experimental: {
       scrollRestoration: true,
       workerThreads: false,
-      ...(process.env.CI ? { cpus: 3 } : {}),
+      ...(process.env.CI ? { cpus: 2 } : {}),
       ...nextConfig.experimental,
     },
     eslint: {

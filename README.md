@@ -60,6 +60,13 @@ View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
 
 <p>
   <a href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a href="https://kombai.com/?utm_source=MUI&utm_medium=website&utm_campaign=sponsor&utm_content=readme" rel="noopener sponsored" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/sponsors/kombai-square-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/sponsors/kombai-square-light.svg">
+      <img height="128" width="128" src="https://mui.com/static/sponsors/kombai-square-light.svg" alt="kombai" title="AI agent for Frontend - turn Figma, text, or images into clean MUI code" loading="lazy" />
+  </picture>
+  </a>
 </p>
 
 Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
@@ -74,6 +81,14 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   <a href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
+  &nbsp;
+  <a href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">
+   <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/sponsors/wispr-square-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/sponsors/wispr-square-light.svg">
+      <img height="96" width="96" src="https://mui.com/static/sponsors/wispr-square-light.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" />
+  </picture>
+  </a>
   &nbsp;
 </p>
 
