@@ -716,7 +716,7 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react-router:
-        specifier: ^7.9.2
+        specifier: ^7.9.3
         version: 7.9.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react-runner:
         specifier: ^1.0.5
@@ -1604,7 +1604,7 @@ importers:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
       react-router:
-        specifier: ^7.9.2
+        specifier: ^7.9.3
         version: 7.9.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       sinon:
         specifier: ^21.0.0
