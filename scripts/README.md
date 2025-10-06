@@ -75,9 +75,9 @@ It goes like this:
 
 Checkout the latest minor release tag and create a branch _release/<PATCH_VERSION>_. Cherry-pick the necessary commit on this branch. Force push this branch to upstream:
 
-    ```sh
-    git push -f upstream release/<PATCH_VERSION>
-    ```
+```bash
+git push -f upstream release/<PATCH_VERSION>
+```
 
 The following steps must be proposed as a pull request to _release/<PATCH_VERSION>_.
 
