@@ -6,7 +6,7 @@ import glob from 'fast-glob';
 import { flatten } from 'es-toolkit/array';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';
+import type { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
