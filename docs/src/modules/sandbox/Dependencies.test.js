@@ -267,8 +267,7 @@ import * as Utils from '@mui/utils';
         'https://pkg.pr.new/mui/material-ui/@mui/system@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
       '@mui/utils':
         'https://pkg.pr.new/mui/material-ui/@mui/utils@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
-      '@mui/base':
-        'https://pkg.pr.new/mui/material-ui/@mui/base@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      '@mui/base': 'latest',
     });
   });
 
