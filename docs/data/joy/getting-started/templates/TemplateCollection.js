@@ -13,7 +13,8 @@ import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
+import Edit from '@mui/icons-material/Edit';
+import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 
 /**
@@ -269,17 +270,13 @@ export default function TemplateCollection() {
                   variant="outlined"
                   color="neutral"
                   fullWidth
-                  startDecorator={
-                    <SvgIcon viewBox="0 0 1080 1080">
-                      <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                    </SvgIcon>
-                  }
-                  aria-label="CodeSandbox playground"
+                  startDecorator={<Edit />}
+                  aria-label="Open sandbox"
                   data-ga-event-category="joy-template"
                   data-ga-event-label={template.name}
-                  data-ga-event-action="codesandbox"
+                  data-ga-event-action="stackblitz"
                   onClick={() =>
-                    codeSandbox
+                    stackBlitz
                       .createJoyTemplate({
                         ...item,
                         title: `${startCase(template.name)} Template - Joy UI`,
@@ -289,11 +286,11 @@ export default function TemplateCollection() {
                           item.codeVariant === 'TS' ? 'tsx' : 'js'
                         }`,
                       })
-                      .openSandbox()
+                      .openStackBlitz()
                   }
                   sx={{ fontFamily: 'IBM Plex Sans' }}
                 >
-                  CodeSandbox
+                  Open sandbox
                 </Button>
               </Box>
             </CardContent>

@@ -21,7 +21,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
 import PaletteIcon from '@mui/icons-material/PaletteOutlined';
-import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
+import Edit from '@mui/icons-material/Edit';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import { pascalCase } from 'docs/src/modules/utils/helpers';
@@ -272,12 +272,12 @@ export default function TemplateFrame({ children }) {
                     '& > *': { flexShrink: 0 },
                   }}
                 >
-                  <Tooltip title="Edit in StackBlitz">
+                  <Tooltip title="Open sandbox">
                     <IconButton
                       color="primary"
                       size="small"
                       disableTouchRipple
-                      aria-label="StackBlitz playground"
+                      aria-label="Open sandbox"
                       data-ga-event-category="material-ui-template"
                       data-ga-event-label={templateId}
                       data-ga-event-action="stackblitz"
@@ -305,47 +305,7 @@ export default function TemplateFrame({ children }) {
                       }
                       sx={{ alignSelf: 'center', borderRadius: 1 }}
                     >
-                      <SvgIcon viewBox="0 0 19 28">
-                        <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
-                      </SvgIcon>
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title="Edit in CodeSandbox">
-                    <IconButton
-                      color="primary"
-                      size="small"
-                      disableTouchRipple
-                      aria-label="CodeSandbox playground"
-                      data-ga-event-category="material-ui-template"
-                      data-ga-event-label={templateId}
-                      data-ga-event-action="codesandbox"
-                      onClick={() =>
-                        codeSandbox
-                          .createMaterialTemplate({
-                            ...item,
-                            files: { ...item.files, ...materialTemplates.sharedTheme?.files },
-                            title: `${templateName} Template - Material UI`,
-                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                              process.env.LIB_VERSION
-                            }/docs/data/material/templates/${templateId}/${templateName}.${
-                              item.codeVariant === 'TS' ? 'tsx' : 'js'
-                            }`,
-                          })
-                          .replaceContent((content) => {
-                            if (typeof content === 'string') {
-                              return content
-                                .replace(/\.\.\/shared-theme\//g, './theme/')
-                                .replace('./App', `./${templateName}`);
-                            }
-                            return content;
-                          })
-                          .openSandbox(`/${templateName}`)
-                      }
-                      sx={{ alignSelf: 'center', borderRadius: 1 }}
-                    >
-                      <SvgIcon viewBox="0 0 1080 1080">
-                        <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                      </SvgIcon>
+                      <Edit />
                     </IconButton>
                   </Tooltip>
                   <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
