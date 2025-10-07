@@ -65,7 +65,12 @@ const Navigation = styled('nav')(({ theme }) => [
   }),
 ]);
 
-const PRODUCT_IDS = ['product-core', 'product-advanced', 'product-templates', 'product-design'];
+const PRODUCT_IDS = [
+  'product-core',
+  'product-advanced',
+  'product-templates',
+  'product-design',
+] as const;
 
 type ProductSubMenuProps = {
   icon: React.ReactElement<unknown>;
