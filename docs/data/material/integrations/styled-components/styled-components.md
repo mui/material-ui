@@ -44,6 +44,64 @@ If you're using yarn, you can configure it using a package resolution:
  }
 ```
 
+## Configuration with Vite and Vitest
+
+If you are using Vite with Vitest for testing, you may encounter issues with MUI v7+ when using styled-components. This is due to ESM/CJS compatibility issues with styled-components.
+
+To resolve this, add the following configuration to your `vite.config.ts`:
+
+### Option 1: Using fallbackCJS (simpler, but slower)
+```ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    server: {
+      deps: {
+        fallbackCJS: true,
+      },
+    },
+  },
+  plugins: [react()],
+});
+```
+
+### Option 2: Using inline dependencies (faster, recommended)
+```ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    server: {
+      deps: {
+        inline: [
+          '@mui/material',
+          '@mui/system',
+          '@mui/styled-engine',
+          '@mui/icons-material',
+          // Add other MUI packages you're using, such as:
+          // '@mui/x-date-pickers',
+          // '@mui/x-data-grid',
+        ],
+      },
+    },
+  },
+  plugins: [react()],
+});
+```
+
+The `inline` option provides better performance and is the recommended approach for most projects.
+
+:::info
+You must also override `styled-engine` in your `package.json` when working with Vite + Vitest, otherwise Vitest will resolve `@mui/styled-engine` instead of `@mui/styled-engine-sc`. See the [installation instructions](#installation) above for details.
+:::
+
 ### With npm
 
 Because package resolutions aren't available with npm, you must update your bundler's config to add this alias.
