@@ -223,9 +223,6 @@ importers:
       nyc:
         specifier: ^17.1.0
         version: 17.1.0
-      postcss-styled-syntax:
-        specifier: ^0.7.1
-        version: 0.7.1(postcss@8.5.6)
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -250,9 +247,6 @@ importers:
       stylelint:
         specifier: ^16.23.1
         version: 16.23.1(typescript@5.9.3)
-      stylelint-config-standard:
-        specifier: ^39.0.0
-        version: 39.0.0(stylelint@16.23.1(typescript@5.9.3))
       tsconfig-paths-webpack-plugin:
         specifier: ^4.2.0
         version: 4.2.0
