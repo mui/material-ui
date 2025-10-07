@@ -301,7 +301,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[3]}
+                        id={PRODUCT_IDS[2]}
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
@@ -310,7 +310,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
+                        id={PRODUCT_IDS[3]}
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
                         name="Design Kits"
