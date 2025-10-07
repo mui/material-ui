@@ -10,7 +10,6 @@ import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
-import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import Edit from '@mui/icons-material/Edit';
