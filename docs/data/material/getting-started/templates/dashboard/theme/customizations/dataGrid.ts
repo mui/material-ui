@@ -8,6 +8,7 @@ import { listClasses } from '@mui/material/List';
 import { gridClasses } from '@mui/x-data-grid';
 import { tablePaginationClasses } from '@mui/material/TablePagination';
 import type { ComponentsOverrides, ComponentsProps, Theme } from '@mui/material/styles';
+
 import { gray } from '../../../shared-theme/themePrimitives';
 
 interface DataGridComponents<MuiTheme = unknown> {
