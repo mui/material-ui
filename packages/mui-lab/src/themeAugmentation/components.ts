@@ -68,6 +68,9 @@ export interface LabComponents {
   };
 }
 
+declare module '@mui/material/styles' {
+  interface Components extends LabComponents {}
+}
 declare module '@mui/material/stylesDeprecated' {
   interface Components extends LabComponents {}
 }
