@@ -12,9 +12,9 @@ import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import Edit from '@mui/icons-material/Edit';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
+import SandboxIcon from './SandboxIcon';
 
 /**
  * To display a template on the site:
@@ -269,7 +269,7 @@ export default function TemplateCollection() {
                   variant="outlined"
                   color="neutral"
                   fullWidth
-                  startDecorator={<Edit />}
+                  startDecorator={<SandboxIcon />}
                   aria-label="Open sandbox"
                   data-ga-event-category="joy-template"
                   data-ga-event-label={template.name}
