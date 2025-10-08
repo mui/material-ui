@@ -57,7 +57,6 @@ import Remove from '@mui/icons-material/Remove';
 import Close from '@mui/icons-material/Close';
 import Check from '@mui/icons-material/Check';
 import Code from '@mui/icons-material/Code';
-import Edit from '@mui/icons-material/Edit';
 import Search from '@mui/icons-material/Search';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import DarkMode from '@mui/icons-material/DarkMode';
@@ -70,6 +69,7 @@ import extractTemplates from 'docs/src/modules/utils/extractTemplates';
 import generateThemeAugmentation from 'docs/src/modules/joy/generateThemeAugmentation';
 import literalToObject from 'docs/src/modules/joy/literalToObject';
 import getMinimalJoyTemplate from 'docs/src/modules/joy/getMinimalJoyTemplate';
+import SandboxIcon from './SandboxIcon';
 
 const tailwindColors = {
   slate: {
@@ -1532,7 +1532,7 @@ export default function JoyThemeBuilder() {
             <TemplatesDialog data={data}>
               <Tooltip title="Open sandbox">
                 <IconButton variant="solid" color="neutral" size="sm" sx={{ minWidth: '38px' }}>
-                  <Edit />
+                  <SandboxIcon />
                 </IconButton>
               </Tooltip>
             </TemplatesDialog>

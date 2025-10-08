@@ -10,11 +10,11 @@ import Typography from '@mui/material/Typography';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import Edit from '@mui/icons-material/Edit';
 import { useTranslate } from '@mui/docs/i18n';
 import { pascalCase } from 'docs/src/modules/utils/helpers';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
+import SandboxIcon from './SandboxIcon';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
@@ -209,7 +209,7 @@ export default function MaterialFreeTemplatesCollection() {
                           .openStackBlitz(`/${templateName}`)
                       }
                     >
-                      <Edit />
+                      <SandboxIcon />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title="See source code">

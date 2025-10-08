@@ -20,10 +20,10 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
 import PaletteIcon from '@mui/icons-material/PaletteOutlined';
-import Edit from '@mui/icons-material/Edit';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import { pascalCase } from 'docs/src/modules/utils/helpers';
+import SandboxIcon from './SandboxIcon';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   position: 'relative',
@@ -304,7 +304,7 @@ export default function TemplateFrame({ children }) {
                       }
                       sx={{ alignSelf: 'center', borderRadius: 1 }}
                     >
-                      <Edit />
+                      <SandboxIcon />
                     </IconButton>
                   </Tooltip>
                   <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />

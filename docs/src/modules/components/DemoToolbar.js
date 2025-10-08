@@ -16,13 +16,13 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
-import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from 'next/router';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from '@mui/docs/i18n';
 import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
+import SandboxIcon from './SandboxIcon';
 import stackBlitz from '../sandbox/StackBlitz';
 
 const Root = styled('div')(({ theme }) => [
@@ -499,7 +499,7 @@ export default function DemoToolbar(props) {
                 {...getControlProps(4)}
                 sx={{ borderRadius: 1 }}
               >
-                <EditIcon />
+                <SandboxIcon />
               </IconButton>
             </DemoTooltip>
           )}
