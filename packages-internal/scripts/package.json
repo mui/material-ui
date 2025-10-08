@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "exports": {
@@ -35,17 +35,15 @@
     "@babel/types": "^7.28.4",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "lodash": "^4.17.21",
-    "typescript": "^5.9.2",
-    "uuid": "^11.1.0"
+    "es-toolkit": "^1.39.10",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@babel/register": "^7.28.3",
     "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
-    "@types/lodash": "^4.17.20",
-    "@types/node": "^20.19.17",
+    "@types/node": "^20.19.19",
     "@types/react": "^19.1.13",
     "@types/uuid": "^10.0.0",
     "chai": "^6.0.1",

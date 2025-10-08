@@ -65,7 +65,12 @@ const Navigation = styled('nav')(({ theme }) => [
   }),
 ]);
 
-const PRODUCT_IDS = ['product-core', 'product-advanced', 'product-templates', 'product-design'];
+const PRODUCT_IDS = [
+  'product-core',
+  'product-advanced',
+  'product-templates',
+  'product-design',
+] as const;
 
 type ProductSubMenuProps = {
   icon: React.ReactElement<unknown>;
@@ -301,7 +306,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[3]}
+                        id={PRODUCT_IDS[2]}
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
@@ -310,7 +315,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
+                        id={PRODUCT_IDS[3]}
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
                         name="Design Kits"
