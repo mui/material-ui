@@ -40,7 +40,7 @@ manualCard: true
 
 [Qdrant](https://qdrant.tech/) is an open-source vector database provider with over 25k GitHub stars. Many companies have been using Qdrant to make sense of their unstructured data through advanced search, recommendation, and other AI capabilities. After a $30M Series-A funding, Qdrant needed to transition into a sustainable business.
 
-The company's frontend team uses Material UI across all of their products, websites, and dashboards.
+The company's frontend team uses Material UI across all of their products, websites, and dashboards.
 After starting with MUI's open-source components, Qdrant upgraded to a perpetual Pro license for the Date Range Picker, with further plans to explore Data Grid and Charts.
 
 <span class="only-light-mode">
@@ -77,7 +77,7 @@ As a startup in the competitive vector database space, Qdrant faced several crit
 
 ## Solution
 
-Qdrant adopted Material UI as their primary frontend component library, leveraging both open-source and Pro components:
+Qdrant adopted Material UI as their primary frontend component library, leveraging both open-source and Pro components:
 
 - Comprehensive component usage: The team had prior experience with Material-UI from their previous projects and choosing it again was a no-brainer. They implemented MUI components extensively across their entire product suite, using everything from primitive elements like toolbars and menus to advanced components.
 
@@ -92,7 +92,7 @@ Qdrant adopted Material UI as their primary frontend component library, leveragi
   style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
 />
 
-In the image above from MUI's Qdrant dashboard (yes, we're their customer too!), the MUI X date time picker has been used to enable the date-time range selection functionality.
+In the image above from MUI's Qdrant dashboard (yes, we're their customer too!), the MUI X date time picker has been used to enable the date-time range selection functionality.
 
 ## Results
 

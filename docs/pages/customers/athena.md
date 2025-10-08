@@ -71,7 +71,7 @@ Key benefits of using MUI X included:
 - Higher-level abstractions – Built on top of MUI (Material UI) for seamless integration.
 - Faster iteration cycles – Simplified the development of complex UI components.
 - Component-based architecture – Aligned perfectly with React's ecosystem.
-- Efficient code organization – Improved maintainability over inline styling methods like Tailwind CSS.
+- Efficient code organization – Improved maintainability over inline styling methods like Tailwind CSS.
 
 <img
   id="athena-ui"

@@ -65,7 +65,7 @@ Tebra faced several critical challenges with their legacy reporting system:
 
 ## Solution
 
-Here's how Tebra adopted the MUI X Data Grid as the cornerstone of their modernization strategy and solved the aforementioned challenges:
+Here's how Tebra adopted the MUI X Data Grid as the cornerstone of their modernization strategy and solved the aforementioned challenges:
 
 - Unified design system - They built a comprehensive design system using MUI components, with the Data Grid serving as the foundation for all reporting experiences across the platform.
 
@@ -88,7 +88,7 @@ Here's how Tebra adopted the MUI X Data Grid as the cornerstone of their moderni
 The implementation improved the user experience across Tebra's entire ecosystem.
 Reports evolved from static displays to interactive interfaces that users expect in contemporary applications.
 The unified design system enabled teams to migrate legacy experiences seamlessly, speeding up development cycles.
-The MUI X Data Grid served as a catalyst in this process thanks to its built-in client-side search, with the improved data loading capabilities providing instantaneous search results while maintaining a high level of performance.
+The MUI X Data Grid served as a catalyst in this process thanks to its built-in client-side search, with the improved data loading capabilities providing instantaneous search results while maintaining a high level of performance.
 This enabled the team to completely eliminate the complex throttling mechanisms they had previously relied upon.
 
 Beyond immediate technical benefits, the standardized component library created a foundation for accelerated AI-assisted development workflows.

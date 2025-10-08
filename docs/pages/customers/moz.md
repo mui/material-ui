@@ -69,7 +69,7 @@ Key benefits of using MUI X included:
 
 ## Results
 
-By adopting MUI X, Moz could handling large keyword datasets efficiently with MUI X's performance optimizations. It helped them scale their platform. They could neatly display vast amounts of keyword data that the end users found easy to navigate. The highly customisable data grid enabled them to offer advanced filtering and column management features to their end users.
+By adopting MUI X, Moz could handling large keyword datasets efficiently with MUI X's performance optimizations. It helped them scale their platform. They could neatly display vast amounts of keyword data that the end users found easy to navigate. The highly customisable data grid enabled them to offer advanced filtering and column management features to their end users.
 
 ## Developer experience
 

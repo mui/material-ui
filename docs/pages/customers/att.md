@@ -70,7 +70,7 @@ They wanted to have a standard look and feel across their dashbaords and were lo
 To power MyResults and MyCOACH, AT&T integrated the **MUI X Data Grid Premium**, leveraging its robust features and flexible customization options.
 Key benefits of using the Data Grid included:
 
-- The technical team could output more as leveraging MUI X Data Grid Premium enabled them to build applications faster.
+- The technical team could output more as leveraging MUI X Data Grid Premium enabled them to build applications faster.
 - The team could customize the component to meet their use case. For one of their apps, that had lots of columns, the column pinning feature proved to be helpful to deliver a good UX.
 - They team liked how the components work immediately with minimal configuration.
 
