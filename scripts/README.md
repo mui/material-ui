@@ -73,27 +73,32 @@ It goes like this:
 
 #### Prepare
 
-Checkout the latest minor release tag and create a branch _release/<PATCH_VERSION>_. Cherry-pick the necessary commit on this branch. Force push this branch to upstream:
+Hotfix branch creation requires the help of a repository admin. They need to take the following steps:
 
-```bash
-git push -f upstream release/<PATCH_VERSION>
-```
+1. Check out the commit for the latest minor release tag.
+2. Create a branch named _release/<PATCH_VERSION>_ where _<PATCH_VERSION>_ is the next semver patch version from that release tag.
+3. force push the branch to `upstream`:
+
+   ```bash
+   git push -f upstream release/<PATCH_VERSION>
+   ```
 
 The following steps must be proposed as a pull request to _release/<PATCH_VERSION>_.
 
-1. Generate the changelog with `pnpm release:changelog`
+1. check out _release/<PATCH_VERSION>_ and cherry-pick the hotfix commits on top of it.
+2. Generate the changelog with `pnpm release:changelog`
    The output must be prepended to the top level `CHANGELOG.md`
    `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
-2. Clean the generated changelog:
+3. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable
-3. Update the root `/package.json`'s version
-4. Run `pnpm release:version`. Keep in mind:
+4. Update the root `/package.json`'s version
+5. Run `pnpm release:version`. Keep in mind:
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
-5. Open PR with changes and wait for review and green CI.
-6. Merge PR into _release/<PATCH_VERSION>_ once CI is green and it has been approved.
-7. Open and merge a PR from _release/<PATCH_VERSION>_ to master to correct the package versioning.
+6. Open PR with changes and wait for review and green CI.
+7. Merge PR into _release/<PATCH_VERSION>_ once CI is green and it has been approved.
+8. Open and merge a PR from _release/<PATCH_VERSION>_ to master to correct the package versioning and update the changelog.
 
 #### Release
 
