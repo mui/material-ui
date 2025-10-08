@@ -21,7 +21,7 @@ manualCard: true
     id="blog-responsive-image"
     src="/static/branding/companies/john-deere.svg"
     alt=""
-    style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+    style="width: 20%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
 **Partner Since: 2022**

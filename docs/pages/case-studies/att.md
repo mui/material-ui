@@ -22,7 +22,7 @@ manualCard: true
   id="blog-responsive-image-light"
   src="/static/branding/companies/atandt-light.svg"
   alt=""
-  style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+  style="width: 30%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
 />
 </span>
 <span class="only-dark-mode">
@@ -30,11 +30,11 @@ manualCard: true
     id="blog-responsive-image-dark"
     src="/static/branding/companies/atandt-dark.svg"
     alt=""
-    style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+    style="width: 30%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 </span>
 
-**Partner Since: 2022**
+**Partner Since: 2021**
 
 ## Overview
 

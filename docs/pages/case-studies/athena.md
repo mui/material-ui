@@ -34,7 +34,7 @@ manualCard: true
   />
 </span>
 
-**Partner Since: 2022**
+**Partner Since: 2023**
 
 ## Overview
 
