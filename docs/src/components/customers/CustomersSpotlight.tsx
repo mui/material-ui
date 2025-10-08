@@ -154,7 +154,7 @@ export default function CustomersSpotlight({ customers }: CustomersSpotlightProp
     return rankA - rankB;
   });
   const firstPosts = sortedCustomers.slice(0, 3);
-  const restPosts = sortedCustomers.slice(3,8);
+  const restPosts = sortedCustomers.slice(3, 8);
 
   return (
     <React.Fragment>

@@ -95,6 +95,6 @@ The ease of integration and instant improvements in interactivity and UI cohesio
 
 ## Developer experience
 
-Athena found the MUI documentation to be highly detailed, structured and clear. The step-by-step guides helped them  implement complex features like cell editing, selection, and customization easily. Developers additionally liked the seamless React integration as it helped them optimize the development process, accelerating feature rollouts and overall delivery speed.
+Athena found the MUI documentation to be highly detailed, structured and clear. The step-by-step guides helped them implement complex features like cell editing, selection, and customization easily. Developers additionally liked the seamless React integration as it helped them optimize the development process, accelerating feature rollouts and overall delivery speed.
 
 MUI X is now an essential tool in Athena's development stack, enabling rapid, scalable, and high-performance UI solutions.

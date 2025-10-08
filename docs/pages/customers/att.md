@@ -72,7 +72,7 @@ Key benefits of using the Data Grid included:
 
 - The technical team could output more as leveraging MUI X Data Grid Premium enabled them to build applications faster.
 - The team could customize the component to meet their use case. For one of their apps, that had lots of columns, the column pinning feature proved to be helpful to deliver a good UX.
-- They team liked how the components work immediately with minimal configuration. 
+- They team liked how the components work immediately with minimal configuration.
 
 ## Results
 
