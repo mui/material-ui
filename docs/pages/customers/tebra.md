@@ -28,7 +28,7 @@ manualCard: true
 
 ## Overview
 
-[Tebra](https://tebra.com/) is a healthcare technology company that has been serving the industry for over a decade.
+[Tebra](https://tebra.com/) is a healthcare technology company that has been in the market for over a decade.
 As their platform evolved over the years, they accumulated a mix of legacy technologies including JSPs, Angular, and various React implementations, creating inconsistent user experiences across their platform.
 
 <span class="only-light-mode">

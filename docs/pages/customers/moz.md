@@ -52,30 +52,24 @@ To handle large-scale keyword analysis, Moz required a robust UI solution capabl
 
 ## Challenge
 
-Moz needed a UI framework that could handle:
+Moz needed a UI framework that could:
 
-- Performance optimization – Efficient rendering of large keyword datasets.
-- Customization – Flexible UI for filtering, sorting, and managing data.
-- Consistency – A standardized development experience for its engineering team.
-- Usability – A seamless user experience for navigating complex data grids.
+- Efficiently cater to customer requests and offer a robust handling of large keyword datasets.
+- Support customization for filtering, sorting, grouping and showing data in complex data grids in a readable way.
+- Give a consistent and standard experience to the UI across all user facing applications.
 
 ## Solution
 
 To meet these challenges, Moz integrated **MUI X Premium**, leveraging its **Data Grid** and **Date Picker** components to create an optimized, interactive, and performant UI.
 Key benefits of using MUI X included:
 
-- Optimized DX and UX – A developer-friendly and intuitive user experience.
-- Advanced customization – Data Grid API refs allowed them to build a UI for filtering and column management,a game-changer for their keyword analysis platform.
-- Scalability – Handled large keyword datasets efficiently with MUI X's performance optimizations.
-- Faster development – Accelerated UI implementation across the platform.
+- A great DX and UX. A developer-friendly and intuitive user experience.
+- Advanced customization capabilities. Data Grid API refs allowed them to build a UI for filtering and column management,a game-changer for their keyword analysis platform.
+- Faster feature development accelerated product delivery across the platform.
 
 ## Results
 
-By adopting MUI X, Moz achieved:
-
-- Seamless data handling – Efficiently displayed and interacted with vast amounts of keyword data.
-- Enhanced customization – Developed custom filtering and column management features.
-- Improved development experience – Standardized and simplified the UI-building process.
+By adopting MUI X, Moz could handling large keyword datasets efficiently with MUI X's performance optimizations. It helped them scale their platform. They could neatly display vast amounts of keyword data that the end users found easy to navigate. The highly customisable data grid enabled them to offer advanced filtering and column management features to their end users.
 
 ## Developer experience
 

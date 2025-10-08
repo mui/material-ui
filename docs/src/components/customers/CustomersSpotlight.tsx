@@ -38,7 +38,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
           <Paper
             key={index}
             component={Link}
-            href={`/case-studies/${post.slug}`}
+            href={`/customers/${post.slug}`}
             variant="outlined"
             sx={(t) => ({
               p: variant === 'primary' ? 3 : 2,
@@ -154,7 +154,7 @@ export default function CustomersSpotlight({ customers }: CustomersSpotlightProp
     return rankA - rankB;
   });
   const firstPosts = sortedCustomers.slice(0, 3);
-  const restPosts = sortedCustomers.slice(3);
+  const restPosts = sortedCustomers.slice(3,8);
 
   return (
     <React.Fragment>

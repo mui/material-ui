@@ -53,7 +53,7 @@ With a strong emphasis on innovation, their teams build solutions that enhance e
 ## Challenge
 
 With multiple teams working towards different design goals, maintaining consistency for developers was a major challenge.
-John Deere needed a reliable, standardized component library to bridge the gaps in their internal design system.
+Frontend teams at John Deere needed a reliable, standardized component library to bridge the gaps in their internal design system.
 
 ## Solution
 
@@ -62,5 +62,5 @@ By integrating **MUI X Premium Data Grid**, John Deere's teams found a baseline
 ## Results
 
 - Improved consistency – Developers could use MUI X as a standardized foundation across teams.
-- Faster development – Teams saved time by leveraging ready-to-use, high-performance components.
+- Faster development – Teams saved time by leveraging ready-to-use, high-performance, battle-tested components.
 - Enhanced flexibility – MUI X filled in the gaps where the internal design system fell short.

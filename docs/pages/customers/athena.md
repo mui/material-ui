@@ -38,12 +38,11 @@ manualCard: true
 
 ## Overview
 
-[Athena Intelligence](https://www.athenaintel.com/) provides Olympus, the world's first AI-native analytics platform designed for seamless human-machine collaboration.
-Olympus empowers organizations to unlock the full potential of their data and drive intelligent decision-making.
+[Athena Intelligence](https://www.athenaintel.com/) has developed a AI-native analytics platforms designed for enterprises. Athena automates labor-intensive data analysis tasks, allowing human analysts to focus on strategic decision-making.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
@@ -52,7 +51,7 @@ Olympus empowers organizations to unlock the full potential of their data and dr
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
@@ -66,7 +65,7 @@ Athena needed a customizable and performant UI framework to build their schema m
 
 ## Solution
 
-To power their schema management interface, Athena integrated the **MUI X Data Grid Premium** and additional components like the **Tree View**, leveraging MUI X's structured approach to UI development.
+To power their schema management interface, Athena integrated the **Data Grid Premium** and the **Tree View**, leveraging MUI X's structured approach to UI development.
 Key benefits of using MUI X included:
 
 - Higher-level abstractions – Built on top of MUI (Material UI) for seamless integration.
@@ -81,7 +80,7 @@ Key benefits of using MUI X included:
   style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
 />
 
-In the image above from Athena's platform, the Tree View in the first column neatly organizes the assets, while the customized and responsive Data Grid in the third column shows query output in tabular form.
+In the image above from Athena's platform, the Tree View in the first column neatly organizes the assets, while the customized and responsive Data Grid in the third column shows query output in a tabular form.
 
 ## Results
 
@@ -96,11 +95,6 @@ The ease of integration and instant improvements in interactivity and UI cohesio
 
 ## Developer experience
 
-Athena found the MUI documentation to be highly detailed and structured, making it easy to:
+Athena found the MUI documentation to be highly detailed, structured and clear. The step-by-step guides helped them  implement complex features like cell editing, selection, and customization easily. Developers additionally liked the seamless React integration as it helped them optimize the development process, accelerating feature rollouts and overall delivery speed.
 
-- Implement complex features like cell editing, selection, and customization
-- Quickly onboard developers with clear, step-by-step guides
-- Optimize the development process, accelerating feature rollouts
-
-Developers liked the seamless React integration and structured documentation, making it an excellent choice for UI-heavy applications.
 MUI X is now an essential tool in Athena's development stack, enabling rapid, scalable, and high-performance UI solutions.

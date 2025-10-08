@@ -33,7 +33,7 @@ Their Techyon project is dedicated to transforming the energy sector by integrat
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1 rem; font-style: italic;">
-  MUI X helps our developers—who aren't designers—effortlessly create well-designed interfaces. The structured and strict nature of the components ensures a consistent development process, which is crucial for maintaining quality.
+  MUI X helps our developers—who aren't designers, effortlessly create well-designed interfaces. The structured and strict nature of the components ensures a consistent development process, which is crucial for maintaining quality.
   <br>
   <br>
   When we switched to MUI X's Data Grid and fine-tuned it, the performance issues disappeared—it felt like pure magic. MUI X quickly became a go-to tool in Techyon's stack, helping CGI deliver a high-performance, future-ready solution for the energy industry.
@@ -45,7 +45,7 @@ Their Techyon project is dedicated to transforming the energy sector by integrat
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1 rem; font-style: italic;">
-  MUI X helps our developers—who aren't designers—effortlessly create well-designed interfaces. The structured and strict nature of the components ensures a consistent development process, which is crucial for maintaining quality.
+  MUI X helps our developers—who aren't designers, effortlessly create well-designed interfaces. The structured and strict nature of the components ensures a consistent development process, which is crucial for maintaining quality.
   <br>
   When we switched to MUI X's Data Grid and fine-tuned it, the performance issues disappeared—it felt like pure magic. MUI X quickly became a go-to tool in Techyon's stack, helping CGI deliver a high-performance, future-ready solution for the energy industry.
   <br>
@@ -60,10 +60,9 @@ Their Techyon project is dedicated to transforming the energy sector by integrat
 As the energy sector was undergoing rapid transformation, CGI needed a high-performance, scalable GUI to support Techyon's advanced capabilities.
 Their key challenges included:
 
-- Performance bottlenecks – Handling massive datasets (over 10 terawatts of data in Google Cloud) without pagination—leading to slow load times and poor user experience.
-- Usability and consistency – Creating an intuitive, user-friendly interface for energy operators and analysts.
-- Development speed – Ensuring developers could quickly build and iterate on the UI.
-- Developer consistency – Standardizing the design approach across teams.
+- Performance bottlenecks as handling massive data from their Google Cloud without pagination led to slow load times and poor user experience.
+- Creating an intuitive, consistent, and user-friendly interface for energy operators and analysts.
+- Ensuring developers can quickly build and iterate without wasting time about the unnecessary UI issues.
 
 ## Solution
 
@@ -76,11 +75,7 @@ CGI adopted the **MUI X Data Grid Premium** as the foundation for Techyon's GUI
 
 ## Results
 
-After implementing MUI X, the Techyon team experienced:
-
-- Instant data loading – No more sluggish UI, large datasets loaded smoothly, eliminating lag.
-- A streamlined design process – Developers could create polished interfaces without needing a design background.
-- Faster development cycles – MUI X's well-documented components simplified UI implementation.
+After implementing MUI X, the Techyon team experienced no more sluggish UI, instant data loading as large datasets loaded smoothly, eliminating lag. A streamlined design process that enabled their developers to create polished interfaces without needing a design background. MUI X's well-documented components simplified UI implementation and helped them achieve faster development cycles.
 
 ## Developer experience
 

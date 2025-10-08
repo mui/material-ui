@@ -19,7 +19,7 @@ manualCard: true
 
 ## Overview
 
-[Delivery Hero](https://www.deliveryhero.com/) is a leading global local delivery platform, operating in around 70 countries and connecting customers with restaurants, shops, and essential services through fast, technology-driven delivery solutions. Their Partner Portal provides restaurant and vendors with tools to manage operations efficiently, enhance customer experience, and optimize performance.
+[Delivery Hero](https://www.deliveryhero.com/) is a leading local delivery platform, operating in around 70 countries. connecting customers with restaurants, shops, and essential services through fast, technology-driven delivery solutions. Their Partner Portal provides restaurant and vendors with tools to manage operations efficiently, enhance customer experience, and optimize performance.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -42,27 +42,23 @@ manualCard: true
 
 ## Challenge
 
-Before adopting MUI X, the Delivery Hero team faced two major challenges:
+Before adopting MUI X, the Delivery Hero team faced two major challenges:
 
-- Slow development speed – Building and refining UI components took too much time.
-- Usability and consistency – Ensuring a seamless and intuitive experience for end users was difficult.
+- Fixing vendor reported bugs and feature requests took time due to the slow development speed. Building, testing and refining UI components took too much time.
+- Ensuring a consistent, easy-to-use and performant experience for end users was difficult.
 
 ## Solution
 
-To address these challenges, the team integrated the **MUI X Pro Date and Time Pickers** and **Data Grid** into their platform.
+To address these challenges, the team integrated the **MUI X Pro Date and Time Pickers** and **Data Grid** into their platform.
 These components enabled them to:
 
-- Accelerate development – Pre-built, high-quality components reduced time spent on UI implementation.
-- Enhance usability – A modern, sleek UI improved user interactions and consistency.
-- Optimize performance – The solution provided a smooth experience for restaurant and shop managers.
+- Accelerate development by using pre-built, high-quality components. It reduced the time spent on UI implementation.
+- Enhance usability by offering a modern, sleek UI that improved user interactions and consistency.
+- Optimize performance by providing a smooth experience for restaurant and shop managers.
 
 ## Results
 
-After implementing MUI X, the team saw immediate benefits:
-
-- Faster feature development with less effort.
-- Improved UI/UX consistency across the platform.
-- Reduced user clicks when interacting with date and time inputs.
+After implementing MUI X, the team saw immediate benefits. It gave them more time to focus on other business features. UI development became faster and more efficient.
 
 One key success story was the implementation of the Date Time Picker, which significantly reduced the number of clicks required for users to achieve their desired results.
 This simple enhancement greatly improved user efficiency and satisfaction.

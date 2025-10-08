@@ -8,7 +8,7 @@ export const getBlogFilePaths = (ext = '.md') => {
   return fs.readdirSync(blogDir).filter((file) => file.endsWith(ext));
 };
 
-const caseStudyDir = path.join(process.cwd(), 'pages/case-studies');
+const caseStudyDir = path.join(process.cwd(), 'pages/customers');
 
 export const getCaseStudyFilePaths = (ext = '.md') => {
   return fs.readdirSync(caseStudyDir).filter((file) => file.endsWith(ext));
