@@ -13,6 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
+    "baseUrl": ".",
     "paths": {
       "@mui/material": ["./packages/mui-material/src"],
       "@mui/material/package.json": ["./packages/mui-material/package.json"],
