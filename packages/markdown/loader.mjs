@@ -460,10 +460,15 @@ export default async function demoLoader() {
           demos[demoName].relativeModules = {};
         }
 
-        const addedModulesRelativeToModulePath = new Set();
+        const addedModulesRelativeToModulePathPerVariant = {};
+
         await Promise.all(
           Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
             for (const variant of variants) {
+              addedModulesRelativeToModulePathPerVariant[variant] ??= new Set();
+              const addedModulesRelativeToModulePath =
+                addedModulesRelativeToModulePathPerVariant[variant];
+
               let raw = '';
               const relativeModuleFilePath = path.join(
                 path.dirname(moduleFilepath),

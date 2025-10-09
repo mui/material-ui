@@ -11,7 +11,7 @@ import {
   reactMajor,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
-import { camelCase } from 'lodash/string';
+import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
