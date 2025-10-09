@@ -22,9 +22,9 @@ describe('<TextField />', () => {
   }
 
   function TestFormControl(props) {
-    const { children, error, ...rest } = props;
+    const { children, error, ...other } = props;
     return (
-      <FormControl data-testid={'custom'} {...rest}>
+      <FormControl data-testid={'custom'} {...other}>
         {children}
       </FormControl>
     );
@@ -194,7 +194,7 @@ describe('<TextField />', () => {
     });
 
     it('should not set padding for empty, null or undefined label props', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };

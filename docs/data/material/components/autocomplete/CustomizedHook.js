@@ -64,7 +64,7 @@ const InputWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-function Tag(props) {
+function Item(props) {
   const { label, onDelete, ...other } = props;
   return (
     <div {...other}>
@@ -74,12 +74,12 @@ function Tag(props) {
   );
 }
 
-Tag.propTypes = {
+Item.propTypes = {
   label: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
-const StyledTag = styled(Tag)(({ theme }) => ({
+const StyledItem = styled(Item)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   height: '24px',
@@ -163,12 +163,12 @@ const Listbox = styled('ul')(({ theme }) => ({
   },
 }));
 
-export default function CustomizedHook() {
+function CustomAutocomplete(props) {
   const {
     getRootProps,
     getInputLabelProps,
     getInputProps,
-    getTagProps,
+    getItemProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
@@ -176,11 +176,8 @@ export default function CustomizedHook() {
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: 'customized-hook-demo',
-    defaultValue: [top100Films[1]],
     multiple: true,
-    options: top100Films,
-    getOptionLabel: (option) => option.title,
+    ...props,
   });
 
   return (
@@ -189,8 +186,14 @@ export default function CustomizedHook() {
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => {
-            const { key, ...tagProps } = getTagProps({ index });
-            return <StyledTag key={key} {...tagProps} label={option.title} />;
+            const { key, ...itemProps } = getItemProps({ index });
+            return (
+              <StyledItem
+                key={key}
+                {...itemProps}
+                label={props.getOptionLabel(option)}
+              />
+            );
           })}
           <input {...getInputProps()} />
         </InputWrapper>
@@ -201,7 +204,7 @@ export default function CustomizedHook() {
             const { key, ...optionProps } = getOptionProps({ option, index });
             return (
               <li key={key} {...optionProps}>
-                <span>{option.title}</span>
+                <span>{props.getOptionLabel(option)}</span>
                 <CheckIcon fontSize="small" />
               </li>
             );
@@ -209,6 +212,31 @@ export default function CustomizedHook() {
         </Listbox>
       ) : null}
     </Root>
+  );
+}
+
+CustomAutocomplete.propTypes = {
+  /**
+   * Used to determine the string value for a given option.
+   * It's used to fill the input (and the list box options if `renderOption` is not provided).
+   *
+   * If used in free solo mode, it must accept both the type of the options and a string.
+   *
+   * @param {Value} option
+   * @returns {string}
+   * @default (option) => option.label ?? option
+   */
+  getOptionLabel: PropTypes.func,
+};
+
+export default function CustomizedHook() {
+  return (
+    <CustomAutocomplete
+      id="customized-hook-demo"
+      defaultValue={[top100Films[1]]}
+      options={top100Films}
+      getOptionLabel={(option) => option.title}
+    />
   );
 }
 

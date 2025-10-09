@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React List component
 components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
-githubLabel: 'component: list'
+githubLabel: 'scope: list'
 ---
 
 # Lists

@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
-githubLabel: 'component: stepper'
+githubLabel: 'scope: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
 githubSource: packages/mui-material/src/Stepper
 ---
@@ -103,7 +103,7 @@ The content of a step is unmounted when closed.
 If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
 
 ```jsx
-<StepContent TransitionProps={{ unmountOnExit: false }} />
+<StepContent slotProps={{ transition: { unmountOnExit: false } }} />
 ```
 
 ## Mobile stepper

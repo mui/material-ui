@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "7.3.0",
+  "version": "7.3.3",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
@@ -23,26 +23,21 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material-nextjs/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2"
+    "@babel/runtime": "^7.28.4"
   },
   "devDependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^19.1.9",
-    "next": "^15.4.6",
+    "@types/react": "^19.1.13",
+    "next": "^15.5.4",
     "react": "^19.1.1"
   },
   "peerDependencies": {
@@ -73,12 +68,9 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    ".": null,
+    "./v13-pagesRouter": "./src/v13-pagesRouter/index.ts",
     "./*": {
       "mui-src": "./src/*/index.ts"
-    },
-    "./v13-pagesRouter": {
-      "mui-src": "./src/v13-pagesRouter/index.ts"
     }
   }
 }

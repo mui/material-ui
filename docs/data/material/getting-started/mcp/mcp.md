@@ -7,7 +7,7 @@
 The Model Context Protocol (MCP) is an open standard for connecting AI assistants to real, trusted sources of documentation and code.
 For Material UI users, this means you get answers that are accurate, up-to-date, and directly reference the official docs.
 
-To learn more about MCP, see the [official documentation](https://modelcontextprotocol.io/introduction).
+To learn more about MCP, see the [official documentation](https://modelcontextprotocol.io/docs/getting-started/intro).
 
 ## Why use MCP?
 
@@ -101,7 +101,7 @@ If you want the MCP server to always be available to all projects on your machin
 claude mcp add mui-mcp -s user -- npx -y @mui/mcp@latest
 ```
 
-To better understand MCP server scope hierarchy and precedence in Claude Code, see their [official documentation](https://docs.anthropic.com/en/docs/claude-code/mcp#understanding-mcp-server-scopes).
+To better understand MCP server scope hierarchy and precedence in Claude Code, see their [official documentation](https://docs.claude.com/en/docs/claude-code/mcp#mcp-installation-scopes).
 
 ## Common issues
 
@@ -115,7 +115,7 @@ To do so, run:
 ```
 
 Wait for the terminal to print "🔍 MCP Inspector is up and running at http://127.0.0.1:6274".
-Navigate to this URL in your browser and set the following paramters:
+Navigate to this URL in your browser and set the following parameters:
 
 - **Transport type: Stdio**
 - **Command:**`npx`

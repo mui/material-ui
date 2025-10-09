@@ -49,7 +49,7 @@ We need talented people to keep up with the demands of our exigent community!
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 So, by improving the accessibility of our components, you will help millions of end-users who use [the products built with our UI library](https://trends.builtwith.com/framework/Material-UI).
-You will also be responsible to train the developers using MUI's products to a11y. For example, there might be an opportunity to create an eslint plugin aware of Material UI APIs to catch a11y issues before they go to production.
+You will also be responsible to train the developers using MUI's products to a11y. For example, there might be an opportunity to create an ESLint plugin aware of Material UI APIs to catch a11y issues before they go to production.
 
 ## The role
 

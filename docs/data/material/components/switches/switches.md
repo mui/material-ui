@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
-githubLabel: 'component: switch'
+githubLabel: 'scope: switch'
 materialDesign: https://m2.material.io/components/selection-controls#switches
 githubSource: packages/mui-material/src/Switch
 ---

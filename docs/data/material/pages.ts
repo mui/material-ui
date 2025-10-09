@@ -11,6 +11,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/mcp', newFeature: true, title: 'MCP' },
+      { pathname: '/material-ui/llms.txt', newFeature: true, title: 'llms.txt' },
       { pathname: '/material-ui/getting-started/example-projects' },
       { pathname: '/material-ui/getting-started/templates' },
       { pathname: '/material-ui/getting-started/learn' },
@@ -242,6 +243,7 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/guides',
     title: 'How-to guides',
     children: [
+      { pathname: '/material-ui/guides/building-extensible-themes' },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/server-rendering' },
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },

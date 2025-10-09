@@ -4,8 +4,6 @@
     "allowJs": true,
     "isolatedModules": true,
     "moduleResolution": "bundler",
-    /* files are emitted by babel */
-    "baseUrl": "../",
     "noEmit": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
