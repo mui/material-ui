@@ -1,1 +1,1 @@
-export { default } from '@mui/icons-material/Edit';
+export { default } from '@mui/icons-material/Launch';
