@@ -17,6 +17,11 @@ on:
         required: false
         type: boolean
         default: true
+      dist-tag:
+        description: 'npm dist tag to publish to'
+        required: false
+        type: string
+        default: 'latest'
 
 permissions: {}
 
@@ -47,6 +52,9 @@ jobs:
           fi
           if [ "${{ inputs.github-release }}" = "true" ]; then
             ARGS="$ARGS --github-release"
+          fi
+          if [ -n "${{ inputs.dist-tag }}" ]; then
+            ARGS="$ARGS --tag ${{ inputs.dist-tag }}"
           fi
 
           pnpm code-infra publish $ARGS
