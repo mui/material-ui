@@ -20,6 +20,7 @@ declare module '@mui/material' {
 }
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace React {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface HTMLAttributes<T> {

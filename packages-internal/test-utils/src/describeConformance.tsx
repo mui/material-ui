@@ -774,7 +774,7 @@ function testThemeStyleOverrides(
 ) {
   describe('theme style overrides:', () => {
     it("respect theme's styleOverrides custom state", async function test(t = {}) {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         this?.skip?.() ?? t?.skip();
@@ -831,7 +831,7 @@ function testThemeStyleOverrides(
     });
 
     it("respect theme's styleOverrides slots", async function test(t = {}) {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         this?.skip?.() ?? t?.skip();
@@ -944,7 +944,7 @@ function testThemeStyleOverrides(
     });
 
     it('overrideStyles does not replace each other in slots', async function test(t = {}) {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         this?.skip?.() ?? t?.skip();
@@ -1027,7 +1027,7 @@ function testThemeVariants(
 ) {
   describe('theme variants:', () => {
     it("respect theme's variants", async function test(t = {}) {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         this?.skip?.() ?? t?.skip();
@@ -1084,7 +1084,7 @@ function testThemeVariants(
     });
 
     it('supports custom variant', async function test(t = {}) {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         this?.skip?.() ?? t?.skip();
@@ -1140,7 +1140,12 @@ function testThemeCustomPalette(
   describe('theme extended palette:', () => {
     it('should render without errors', function test(t = {}) {
       const { render, ThemeProvider, createTheme } = getOptions();
-      if (!/jsdom/.test(window.navigator.userAgent) || !render || !ThemeProvider || !createTheme) {
+      if (
+        !window.navigator.userAgent.includes('jsdom') ||
+        !render ||
+        !ThemeProvider ||
+        !createTheme
+      ) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         this?.skip?.() ?? t?.skip();

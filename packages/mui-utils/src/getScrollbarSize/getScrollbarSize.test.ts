@@ -16,7 +16,10 @@ describe('getScrollbarSize', () => {
   });
 
   it('should return correct value when using a custom scrollbar', function test() {
-    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
+    if (
+      window.navigator.userAgent.includes('jsdom') ||
+      !/WebKit/.test(window.navigator.userAgent)
+    ) {
       this.skip();
     }
 

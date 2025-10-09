@@ -17,6 +17,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
+import { listClasses } from '@mui/material/List';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
@@ -872,7 +873,7 @@ describe('<Select />', () => {
 
     // https://github.com/mui/material-ui/issues/38700
     it('should merge `slotProps.paper` with the default Paper props', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -886,6 +887,24 @@ describe('<Select />', () => {
       const selectButton = getByRole('combobox', { hidden: true });
 
       expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
+    });
+
+    // https://github.com/mui/material-ui/issues/46273
+    it('should merge `slotProps.list` with default List props', () => {
+      render(
+        <Select
+          MenuProps={{
+            slotProps: { list: { disablePadding: true } },
+          }}
+          open
+          value="10"
+        >
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
+
+      const listbox = screen.getByRole('listbox');
+      expect(listbox).not.to.have.class(listClasses.padding);
     });
 
     // https://github.com/mui/material-ui/issues/38949
@@ -940,7 +959,7 @@ describe('<Select />', () => {
     });
 
     it('should notch the outline to accommodate the label when displayEmpty', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1200,7 +1219,7 @@ describe('<Select />', () => {
     describe('errors', () => {
       it('should throw if non array', function test() {
         // TODO is this fixed?
-        if (!/jsdom/.test(window.navigator.userAgent)) {
+        if (!window.navigator.userAgent.includes('jsdom')) {
           // can't catch render errors in the browser for unknown reason
           // tried try-catch + error boundary + window onError preventDefault
           this.skip();
@@ -1294,7 +1313,7 @@ describe('<Select />', () => {
     });
 
     it('should be able to override `multiple` rule name in `select` slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1464,7 +1483,7 @@ describe('<Select />', () => {
   });
 
   it('should support native form validation', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // see https://github.com/jsdom/jsdom/issues/123
       this.skip();
     }
@@ -1549,7 +1568,7 @@ describe('<Select />', () => {
   });
 
   it('slots overrides should work', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -1607,7 +1626,7 @@ describe('<Select />', () => {
 
   describe('form submission', () => {
     it('includes Select value in formData only if the `name` attribute is provided', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // FormData is not available in JSDOM
         this.skip();
       }
@@ -1643,7 +1662,7 @@ describe('<Select />', () => {
 
   describe('theme styleOverrides:', () => {
     it('should override with error style when `native select` has `error` state', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1675,7 +1694,7 @@ describe('<Select />', () => {
     });
 
     it('should override with error style when `select` has `error` state', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

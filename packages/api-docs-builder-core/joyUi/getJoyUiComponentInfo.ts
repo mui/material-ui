@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
@@ -60,6 +60,7 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
       return allMarkdowns
         .filter((page) => page.pathname.startsWith('/joy') && page.components.includes(name))
         .map((page) => ({
+          filePath: page.filename, // pathname of the markdown file
           demoPageTitle: getTitle(page.markdownContent),
           demoPathname: fixPathname(page.pathname),
         }));

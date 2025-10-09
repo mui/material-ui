@@ -1,9 +1,14 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "2.0.8",
+  "version": "2.0.14",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages-internal/test-utils"
+  },
   "exports": {
     ".": "./build/index.js",
     "./createDescribe": "./build/createDescribe.js",
@@ -36,36 +41,36 @@
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@babel/register": "^7.27.1",
-    "@babel/runtime": "^7.27.1",
-    "@emotion/cache": "^11.13.5",
-    "@emotion/react": "^11.13.5",
-    "@playwright/test": "^1.52.0",
-    "@testing-library/dom": "^10.4.0",
+    "@babel/register": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "chai": "^4.5.0",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
+    "es-toolkit": "^1.39.10",
     "format-util": "^1.0.5",
-    "fs-extra": "^11.3.0",
     "jsdom": "^26.1.0",
-    "lodash": "^4.17.21",
-    "mocha": "^11.3.0",
+    "mocha": "^11.7.4",
     "prop-types": "^15.8.1",
-    "sinon": "^19.0.5"
+    "sinon": "^21.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.1",
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
-    "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
     "@types/sinon": "^17.0.4",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "peerDependencies": {
+    "@playwright/test": "^1.53.1",
+    "chai": "^4.5.0 || ^5.0.0 || ^6.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },

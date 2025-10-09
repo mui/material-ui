@@ -2,9 +2,8 @@
 productId: joy-ui
 title: React Checkbox component
 components: Checkbox
-githubLabel: 'component: checkbox'
+githubLabel: 'scope: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
-unstyled: https://base-ui.com/react/components/checkbox
 ---
 
 # Checkbox

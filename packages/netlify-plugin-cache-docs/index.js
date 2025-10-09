@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const path = require('path');
-const fse = require('fs-extra');
+const fs = require('node:fs');
 
 const CACHE_OUTPUT_FILE = 'cache-output.json';
 
@@ -22,14 +22,14 @@ module.exports = {
     const { constants, utils } = context;
     const { nextjsCacheDir } = generateAbsolutePaths({ constants });
 
-    const cacheDirExists = fse.existsSync(nextjsCacheDir);
+    const cacheDirExists = fs.existsSync(nextjsCacheDir);
     console.log("'%s' exists: %s", nextjsCacheDir, String(cacheDirExists));
 
     const success = await utils.cache.restore(nextjsCacheDir);
 
     console.log("Restored the cached '%s' folder: %s", nextjsCacheDir, String(success));
 
-    const restoredCacheDir = fse.existsSync(nextjsCacheDir);
+    const restoredCacheDir = fs.existsSync(nextjsCacheDir);
     console.log("'%s' exists: %s", nextjsCacheDir, String(restoredCacheDir));
   },
   // On build, cache the `.next/cache` folder
@@ -39,7 +39,7 @@ module.exports = {
     const { constants, utils } = context;
     const { nextjsCacheDir } = generateAbsolutePaths({ constants });
 
-    const cacheExists = fse.existsSync(nextjsCacheDir);
+    const cacheExists = fs.existsSync(nextjsCacheDir);
 
     if (cacheExists) {
       console.log("'%s' exists: %s", nextjsCacheDir, String(cacheExists));
@@ -59,8 +59,8 @@ module.exports = {
     const cacheManifestPath = path.join(PUBLISH_DIR, cacheManifestFileName);
     console.log('Saving cache file manifest for debugging...');
     const files = await utils.cache.list();
-    await fse.mkdirp(PUBLISH_DIR);
-    await fse.writeJSON(cacheManifestPath, files, { spaces: 2 });
+    await fs.promises.mkdir(PUBLISH_DIR, { recursive: true });
+    await fs.promises.writeFile(cacheManifestPath, JSON.stringify(files, null, 2));
     console.log(`Cache file count: ${files.length}`);
     console.log(`Cache manifest saved to ${cacheManifestPath}`);
     console.log(`Please download the build files to inspect ${cacheManifestFileName}.`);

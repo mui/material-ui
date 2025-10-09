@@ -50,22 +50,22 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<'span', SwitchRootSlotPropsOverrides, SwitchOwnerState>;
     /**
      * Props forwarded to the track slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     track: SlotProps<'span', SwitchTrackSlotPropsOverrides, SwitchOwnerState>;
     /**
      * Props forwarded to the thumb slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     thumb: SlotProps<'span', SwitchThumbSlotPropsOverrides, SwitchOwnerState>;
     /**
      * Props forwarded to the switchBase slot.
-     * By default, the avaible props are based on the internal SwitchBase component.
+     * By default, the available props are based on the internal SwitchBase component.
      */
     switchBase: SlotProps<
       React.ElementType<SwitchBaseProps>,
@@ -74,7 +74,7 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the input slot.
-     * By default, the avaible props are based on the input element.
+     * By default, the available props are based on the input element.
      */
     input: SlotProps<'input', SwitchInputSlotPropsOverrides, SwitchOwnerState>;
   }

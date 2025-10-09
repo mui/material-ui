@@ -14,7 +14,7 @@ describe('extendTheme', () => {
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
         setItem: (key, value) => {
@@ -864,5 +864,12 @@ describe('extendTheme', () => {
         '.dark',
       ]);
     });
+  });
+
+  it('should not generate vars for modularCssLayers', () => {
+    const theme = extendTheme({
+      modularCssLayers: '@layer mui,utilities;',
+    });
+    expect(theme.vars.modularCssLayers).to.equal(undefined);
   });
 });

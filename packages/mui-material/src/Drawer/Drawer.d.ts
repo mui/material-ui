@@ -54,12 +54,12 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
+     * By default, the available props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
      */
     root: SlotProps<React.ElementType<ModalProps>, DrawerRootSlotPropsOverrides, DrawerOwnerState>;
     /**
      * Props forwarded to the backdrop slot.
-     * By default, the avaible props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
+     * By default, the available props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
      */
     backdrop: SlotProps<
       React.ElementType<BackdropProps>,
@@ -68,12 +68,12 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the docked slot.
-     * By default, the avaible props are based on a div element.
+     * By default, the available props are based on a div element.
      */
     docked: SlotProps<'div', DrawerDockedSlotPropsOverrides, DrawerOwnerState>;
     /**
      * Props forwarded to the paper slot.
-     * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
+     * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
     paper: SlotProps<
       React.ElementType<PaperProps>,
@@ -82,7 +82,7 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
+     * By default, the available props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
      */
     transition: SlotProps<
       React.ElementType,
@@ -162,7 +162,7 @@ export interface DrawerProps
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
 
-// omit `slots` and `slotProps` to prevent recusion
+// omit `slots` and `slotProps` to prevent recursion
 export interface DrawerOwnerState extends Omit<DrawerProps, 'slots' | 'slotProps'> {}
 
 /**

@@ -36,17 +36,17 @@ export type AvatarSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     root: SlotProps<'div', AvatarRootSlotPropsOverrides, AvatarOwnProps>;
     /**
      * Props forwarded to the img slot.
-     * By default, the avaible props are based on the img element.
+     * By default, the available props are based on the img element.
      */
     img: SlotProps<'img', AvatarImgSlotPropsOverrides, AvatarOwnProps>;
     /**
      * Props forwarded to the fallback slot.
-     * By default, the avaible props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
+     * By default, the available props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
      */
     fallback: SlotProps<
       React.ElementType<SvgIconProps>,

@@ -11,6 +11,7 @@ import Slide from '@mui/material/Slide';
 import Grow from '@mui/material/Grow';
 import Zoom from '@mui/material/Zoom';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import describeConformance from '../../test/describeConformance';
 
 function NoTransition(props) {
@@ -47,6 +48,10 @@ describe('<Accordion />', () => {
       root: {
         expectedClassName: classes.root,
         testWithElement: CustomPaper,
+      },
+      region: {
+        expectedClassName: classes.region,
+        testWithElement: 'div',
       },
     },
     skip: ['componentProp', 'componentsProp'],
@@ -168,13 +173,8 @@ describe('<Accordion />', () => {
   });
 
   describe('prop: children', () => {
-    describe('first child', () => {
-      beforeEach(function beforeEachCallback() {
-        if (reactMajor >= 19) {
-          // React 19 removed prop types support
-          this.skip();
-        }
-
+    describeSkipIf(reactMajor >= 19)('first child', () => {
+      beforeEach(() => {
         PropTypes.resetWarningCache();
       });
 
@@ -315,5 +315,16 @@ describe('<Accordion />', () => {
         expect(screen.getByRole('region')).not.to.have.attribute('ownerstate');
       });
     });
+  });
+
+  it('should allow custom role for region slot via slotProps', () => {
+    render(
+      <Accordion expanded slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
+        <AccordionSummary>Summary</AccordionSummary>
+        Details
+      </Accordion>,
+    );
+
+    expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
   });
 });

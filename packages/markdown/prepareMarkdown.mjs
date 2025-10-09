@@ -1,7 +1,6 @@
-/* eslint-disable no-irregular-whitespace */
 import fs from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase.js';
+import { kebabCase } from 'es-toolkit/string';
 import {
   createRender,
   getContents,
@@ -12,7 +11,7 @@ import {
   getTitle,
 } from './parseMarkdown.mjs';
 
-const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
+const BaseUIReexportedComponents = [];
 
 /**
  * @param {string} productId
@@ -112,15 +111,6 @@ function prepareMarkdown(config) {
       }
 
       const contents = getContents(markdown);
-
-      if (headers.unstyled) {
-        contents.push(`
-## Unstyled
-
-Use the [Base UI ${markdownH1}](${headers.unstyled}) for complete ownership of the component's design, with no Material UI or Joy UI styles to override.
-This unstyled version of the component is the ideal choice for heavy customization with a smaller bundle size.
-        `);
-      }
 
       if (headers.components.length > 0 && headers.productId !== 'base-ui') {
         contents.push(`
