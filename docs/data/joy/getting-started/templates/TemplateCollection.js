@@ -14,7 +14,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
-import SandboxIcon from './SandboxIcon';
+import SandboxIcon from 'docs/src/modules/components/SandboxIcon';
 
 /**
  * To display a template on the site:
