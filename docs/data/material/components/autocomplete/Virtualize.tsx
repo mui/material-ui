@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
-import { List, RowComponentProps } from 'react-window';
+import { List, RowComponentProps, useListRef } from 'react-window';
 import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
@@ -14,7 +14,7 @@ type ItemData = Array<
   | {
       key: number;
       group: string;
-      childern: React.ReactNode;
+      children: React.ReactNode;
     }
   | [React.ReactElement, string, number]
 >;
@@ -52,20 +52,34 @@ function RowComponent({
 // Adapter for react-window v2
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLElement>
+  React.HTMLAttributes<HTMLElement> & {
+    internalListRef?: any;
+    onItemsBuilt?: (optionIndexMap: Map<string, number>) => void;
+  }
 >(function ListboxComponent(props, ref) {
-  const { children, ...other } = props;
-  const itemData: ItemData = React.useMemo(() => [], []);
-  (children as ItemData).forEach(
-    (
-      item: ItemData[number] & {
-        children?: ItemData[number][];
-      },
-    ) => {
-      itemData.push(item);
-      itemData.push(...(item.children || []));
-    },
-  );
+  const { children, internalListRef, onItemsBuilt, ...other } = props;
+  const itemData: ItemData = [];
+  const optionIndexMap = React.useMemo(() => new Map<string, number>(), []);
+
+  (children as ItemData).forEach((item) => {
+    itemData.push(item);
+    if ('children' in item && Array.isArray(item.children)) {
+      itemData.push(...item.children);
+    }
+  });
+
+  // Map option values to their indices in the flattened array
+  itemData.forEach((item, index) => {
+    if (Array.isArray(item) && item[1]) {
+      optionIndexMap.set(item[1], index);
+    }
+  });
+
+  React.useEffect(() => {
+    if (onItemsBuilt) {
+      onItemsBuilt(optionIndexMap);
+    }
+  }, [onItemsBuilt, optionIndexMap]);
 
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
@@ -82,15 +96,24 @@ const ListboxComponent = React.forwardRef<
   };
 
   const getHeight = () => {
-    if (itemCount > 8) {
-      return 8 * itemSize;
+    if (itemCount > 6) {
+      return 6 * itemSize;
     }
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
+  // Separate className for List, other props for wrapper div (ARIA, handlers)
+  const { className, style, ...otherProps } = other;
+
   return (
-    <div ref={ref} {...other} style={{ ...other.style, maxHeight: '100%' }}>
+    <div
+      ref={ref}
+      {...otherProps}
+      style={{ position: 'relative', overflow: 'visible' }}
+    >
       <List
+        className={className}
+        listRef={internalListRef}
         key={itemCount}
         rowCount={itemCount}
         rowHeight={(index) => getChildSize(itemData[index])}
@@ -100,6 +123,7 @@ const ListboxComponent = React.forwardRef<
           height: getHeight() + 2 * LISTBOX_PADDING,
           width: '100%',
           margin: 0,
+          padding: 0,
         }}
         overscanCount={5}
         tagName="ul"
@@ -135,6 +159,30 @@ const OPTIONS = Array.from(new Array(10000))
   .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
 export default function Virtualize() {
+  // Use react-window v2's useListRef hook for imperative API access
+  const internalListRef = useListRef(null);
+  const optionIndexMapRef = React.useRef<Map<string, number>>(new Map());
+
+  const handleItemsBuilt = React.useCallback(
+    (optionIndexMap: Map<string, number>) => {
+      optionIndexMapRef.current = optionIndexMap;
+    },
+    [],
+  );
+
+  // Handle keyboard navigation by scrolling to highlighted option
+  const handleHighlightChange = (
+    event: React.SyntheticEvent,
+    option: string | null,
+  ) => {
+    if (option && internalListRef.current) {
+      const index = optionIndexMapRef.current.get(option);
+      if (index !== undefined) {
+        internalListRef.current.scrollToRow({ index, align: 'auto' });
+      }
+    }
+  };
+
   return (
     <Autocomplete
       sx={{ width: 300 }}
@@ -146,13 +194,16 @@ export default function Virtualize() {
         [props, option, state.index] as React.ReactNode
       }
       renderGroup={(params) => params as any}
+      onHighlightChange={handleHighlightChange}
       slots={{
         popper: StyledPopper,
       }}
       slotProps={{
         listbox: {
           component: ListboxComponent,
-        },
+          internalListRef,
+          onItemsBuilt: handleItemsBuilt,
+        } as any,
       }}
     />
   );
