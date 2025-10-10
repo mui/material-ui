@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { StepButtonClasses } from './stepButtonClasses';
 
 export interface StepButtonOwnProps {

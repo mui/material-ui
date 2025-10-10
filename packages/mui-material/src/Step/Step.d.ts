@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { StepClasses } from './stepClasses';
 
 export interface StepOwnProps {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { TypographyProps } from '../Typography';
 import { AlertTitleClasses } from './alertTitleClasses';
 

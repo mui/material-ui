@@ -7,7 +7,7 @@ import {
   BreakpointOverrides,
 } from '@mui/system';
 import { IfEquals } from '@mui/types';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { GridLegacyClasses } from './gridLegacyClasses';
 

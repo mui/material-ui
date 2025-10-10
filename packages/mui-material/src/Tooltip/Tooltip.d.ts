@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MUIStyledCommonProps, SxProps } from '@mui/system';
 import { PopperProps } from '../Popper';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { TransitionProps } from '../transitions/transition';

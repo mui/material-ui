@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/utils/types';
 import { BackdropProps } from '../Backdrop';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalProps } from '../Modal';

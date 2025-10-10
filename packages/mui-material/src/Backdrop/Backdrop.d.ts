@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { BackdropClasses } from './backdropClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Interpolation } from '@mui/system';
 import { extendSxProp } from '@mui/system/styleFunctionSx';
-import { Theme } from '../styles/createTheme';
+import { Theme } from '../stylesOptimized';
 import useTheme from '../styles/useTheme';
 import GlobalStyles, { GlobalStylesProps } from '../GlobalStyles';
 

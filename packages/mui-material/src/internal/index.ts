@@ -1,5 +1,5 @@
 import { DistributiveOmit } from '@mui/types';
-import { StyledComponentProps } from '../styles';
+import { StyledComponentProps } from '../stylesOptimized';
 
 /**
  * @internal
