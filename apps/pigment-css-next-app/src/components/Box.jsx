@@ -50,7 +50,6 @@ const atomics = generateAtomics(({ theme }) => ({
   },
 }));
 
-// eslint-disable-next-line react/prop-types
 export function Box({ children, as = 'div', className = '', style = undefined, ...other }) {
   const Component = as;
   const atomicsResult = atomics(other);
@@ -60,7 +59,6 @@ export function Box({ children, as = 'div', className = '', style = undefined, .
     ...style,
   };
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <Component className={componentClass} style={finalStyles}>
       {children}
     </Component>
