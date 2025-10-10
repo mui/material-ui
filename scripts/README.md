@@ -75,7 +75,7 @@ It goes like this:
 
 Hotfix branch creation requires the help of a repository admin. They need to take the following steps:
 
-1. Check out the commit for the latest minor release tag.
+1. Check out the commit for the latest release tag.
 2. Create a branch named _release/<PATCH_VERSION>_ where _<PATCH_VERSION>_ is the next semver patch version from that release tag.
 3. force push the branch to `upstream`:
 
