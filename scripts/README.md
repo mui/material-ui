@@ -67,7 +67,7 @@ After the docs is live, follow the instructions in https://mui-org.notion.site/R
 
 ### Releasing a hotfix version
 
-A hotfix release could happen if there is a regression fix that could not wait for the monthly release cycle and the master branch already contains not yet to be released commits. If you can publish an earlier minor, just prefer that over a hotfix release.
+A hotfix release could happen if there is a regression fix that could not wait for the monthly release cycle and the master branch already contains not yet to be released commits. If you can publish an earlier minor or patch, just prefer that over a hotfix release.
 
 It goes like this:
 
