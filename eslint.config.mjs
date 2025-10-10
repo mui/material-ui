@@ -61,6 +61,13 @@ export default defineConfig(
   {
     name: 'Material UI overrides',
     files: [`**/*${EXTENSION_TS}`],
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: ['tsconfig.json'],
+        },
+      },
+    },
     rules: {
       'import/prefer-default-export': 'error',
       'material-ui/straight-quotes': 'error',
