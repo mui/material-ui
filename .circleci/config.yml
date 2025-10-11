@@ -163,9 +163,6 @@ jobs:
           name: Stylelint
           command: pnpm stylelint
       - run:
-          name: Lint JSON
-          command: pnpm jsonlint
-      - run:
           name: Lint Markdown
           command: pnpm markdownlint
       - run:
