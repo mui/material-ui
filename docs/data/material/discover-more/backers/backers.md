@@ -9,6 +9,14 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="kombai.com" href="https://kombai.com/?utm_source=MUI&utm_medium=website&utm_campaign=sponsor&utm_content=docs" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;">
+  <span class="only-light-mode">
+  <img src="/static/sponsors/kombai-square-light.svg" alt="kombai" title="AI agent for Frontend - turn Figma, text, or images into clean MUI code" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
+</span>
+<span class="only-dark-mode">
+  <img src="/static/sponsors/kombai-square-dark.svg" alt="kombai" title="AI agent for Frontend - turn Figma, text, or images into clean MUI code" loading="lazy" width="180" height="49" style="width: 100px; margin-top: 1.2rem; margin-bottom: 2px; display: block;">
+</span>
+  </a>
 </p>
 
 _2/3 slots available_
@@ -23,6 +31,14 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=288 3x" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="text-em-all.com" href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img src="https://avatars.githubusercontent.com/u/1262264?s=96" srcset="https://avatars.githubusercontent.com/u/1262264?s=288 3x" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="dialmycalls.com" href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png 3x" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="wisprflow.ai" href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;">
+    <span class="only-light-mode">
+      <img height="96" width="96" src="/static/sponsors/wispr-square-light.svg" srcset="/static/sponsors/wispr-square-light.svg x3" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy">
+    </span>
+    <span class="only-dark-mode">
+      <img height="96" width="96" src="/static/sponsors/wispr-square-dark.svg" srcset="/static/sponsors/wispr-square-dark.svg x3" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy">
+    </span>
+  </a>
 </p>
 
 <!--

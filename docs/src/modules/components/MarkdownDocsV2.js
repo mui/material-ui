@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { exactProp } from '@mui/utils';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
