@@ -716,8 +716,8 @@ importers:
         specifier: ^4.14.1
         version: 4.14.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react-window:
-        specifier: ^1.8.11
-        version: 1.8.11(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: ^2.0.0
+        version: 2.2.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -797,9 +797,6 @@ importers:
       '@types/react-transition-group':
         specifier: ^4.4.12
         version: 4.4.12(@types/react@19.1.13)
-      '@types/react-window':
-        specifier: ^1.8.8
-        version: 1.8.8
       '@types/stylis':
         specifier: ^4.2.7
         version: 4.2.7
@@ -5504,9 +5501,6 @@ packages:
     resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
     peerDependencies:
       '@types/react': '*'
-
-  '@types/react-window@1.8.8':
-    resolution: {integrity: sha512-8Ls660bHR1AUA2kuRvVG9D/4XpRC6wjAaPT9dil7Ckc76eP9TKWZwwmgfq8Q1LANX3QNDnoU4Zp48A3w+zK69Q==}
 
   '@types/react@19.1.13':
     resolution: {integrity: sha512-hHkbU/eoO3EG5/MZkuFSKmYqPbSVk5byPFa3e7y/8TybHiLMACgI8seVYlicwk7H5K/rI2px9xrQp/C+AUDTiQ==}
@@ -11224,6 +11218,12 @@ packages:
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  react-window@2.2.0:
+    resolution: {integrity: sha512-Y2L7yonHq6K1pQA2P98wT5QdIsEcjBTB7T8o6Mub12hH9eYppXoYu6vgClmcjlh3zfNcW2UrXiJJJqDxUY7GVw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   react@19.1.1:
     resolution: {integrity: sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==}
@@ -17538,10 +17538,6 @@ snapshots:
       '@types/react': 19.1.13
 
   '@types/react-transition-group@4.4.12(@types/react@19.1.13)':
-    dependencies:
-      '@types/react': 19.1.13
-
-  '@types/react-window@1.8.8':
     dependencies:
       '@types/react': 19.1.13
 
@@ -24333,6 +24329,11 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.4
       memoize-one: 5.2.1
+      react: 19.1.1
+      react-dom: 19.1.1(react@19.1.1)
+
+  react-window@2.2.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
+    dependencies:
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
 

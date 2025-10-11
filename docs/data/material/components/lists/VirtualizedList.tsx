@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import { List, RowComponentProps } from 'react-window';
 
-function renderRow(props: ListChildComponentProps) {
+function renderRow(props: RowComponentProps) {
   const { index, style } = props;
 
   return (
@@ -22,15 +22,17 @@ export default function VirtualizedList() {
     <Box
       sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
     >
-      <FixedSizeList
-        height={400}
-        width={360}
-        itemSize={46}
-        itemCount={200}
+      <List
+        rowHeight={46}
+        rowCount={200}
+        style={{
+          height: 400,
+          width: 360,
+        }}
+        rowProps={{}}
         overscanCount={5}
-      >
-        {renderRow}
-      </FixedSizeList>
+        rowComponent={renderRow}
+      />
     </Box>
   );
 }
