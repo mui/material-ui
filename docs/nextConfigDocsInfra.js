@@ -55,7 +55,6 @@ function withDocsInfra(nextConfig) {
       BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
-      FEEDBACK_URL: process.env.FEEDBACK_URL,
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
       // reference ID (also known as "SHA" or "hash") of the commit we're building.
