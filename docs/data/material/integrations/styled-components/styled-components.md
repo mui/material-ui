@@ -95,3 +95,73 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 :::info
 **Versions compatibility**: To ensure compatibility, it's essential to align the major version of `@mui/styled-engine-sc` with that of the `styled-components` package you're using. For instance, if you opt for `styled-components` version 5, it's necessary to use `@mui/styled-engine-sc` version 5. Similarly, if your preference is `styled-components` version 6, you'll need to upgrade `@mui/styled-engine-sc` to its version 6, which is currently in an alpha state.
 :::
+
+## Vite/Vitest configuration
+
+When using Material-UI with styled-components and Vite/Vitest, you may encounter ESM/CJS compatibility issues. Here are the recommended configurations:
+
+### Option 1: Using fallbackCJS (Recommended)
+
+Add the following to your `vite.config.ts`:
+
+```ts title="vite.config.ts"
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    server: {
+      deps: {
+        fallbackCJS: true,
+      },
+    },
+  },
+  plugins: [react()],
+});
+```
+
+### Option 2: Using inline dependencies
+
+Alternatively, you can inline the MUI packages:
+
+```ts title="vite.config.ts"
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    server: {
+      deps: {
+        inline: [
+          '@mui/material',
+          '@mui/system',
+          '@mui/styled-engine',
+          '@mui/icons-material',
+          // Add other MUI packages you're using
+          '@mui/x-date-pickers',
+        ],
+      },
+    },
+  },
+  plugins: [react()],
+});
+```
+
+### Package.json configuration
+
+When using Vite, you must also override the styled-engine in your `package.json`:
+
+```json title="package.json"
+{
+  "dependencies": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+  },
+  "resolutions": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+  }
+}
+```
