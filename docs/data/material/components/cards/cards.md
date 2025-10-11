@@ -12,18 +12,19 @@ githubSource: packages/mui-material/src/Card
 <p class="description">Cards contain content and actions about a single subject.</p>
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
+> For full API and props, see [Card API](/material-ui/api/card/).
 
 ## Introduction
 
 Cards are surfaces that display content and actions on a single topic.
-The Material UI Card component includes several complementary utility components to handle various use cases:
+The MUI Card component includes several complementary utility components to handle various use cases:
 
-- Card: a surface-level container for grouping related components.
-- Card Content: the wrapper for the Card content.
-- Card Header: an optional wrapper for the Card header.
-- Card Media: an optional container for displaying images, videos, etc.
-- Card Actions: an optional wrapper that groups a set of buttons.
-- Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.
+- Card: a container for grouping related content and actions.
+- CardContent: the wrapper for the card’s main content.
+- CardHeader: an optional wrapper for the card’s header area.
+- CardMedia: an optional container for images, videos, and other media.
+- CardActions: an optional wrapper that groups action buttons.
+- CardActionArea: an optional wrapper that makes a defined area of the card interactive.
 
 {{"demo": "BasicCard.js", "bg": true}}
 
@@ -58,15 +59,17 @@ Example of a card using an image to reinforce the content.
 
 By default, we use the combination of a `<div>` element and a _background image_ to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:
 
+> When using `component="img"`, provide an appropriate `alt` text for accessibility.
+
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
 ## Primary action
 
-Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+Often a card allows users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen, or another behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
 
 {{"demo": "ActionAreaCard.js", "bg": true}}
 
-A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
+A card can also offer supplemental actions that should be separate from the main action area to avoid event overlap.
 
 {{"demo": "MultiActionAreaCard.js", "bg": true}}
 
