@@ -228,6 +228,8 @@ DocSearchHit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
+const deprecatedProducts = ['base-ui', 'joy-ui'];
+
 export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
@@ -323,6 +325,18 @@ export default function AppSearch(props) {
     optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
   }
 
+  // Filter out deprecated products unless we're on their subsections
+  let filters = undefined;
+  if (deprecatedProducts.length > 0) {
+    const filtersPredicates = [];
+    for (let i = 0; i < deprecatedProducts.length; i += 1) {
+      if (pageContext.productId !== deprecatedProducts[i]) {
+        filtersPredicates.push(`NOT productId:${deprecatedProducts[i]}`);
+      }
+    }
+    filters = filtersPredicates.join(' AND ');
+  }
+
   return (
     <React.Fragment>
       <SearchButton onRef={searchButtonRef} onClick={onOpen} {...props} />
@@ -335,6 +349,7 @@ export default function AppSearch(props) {
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
+              filters,
               optionalFilters,
               attributesToRetrieve: [
                 // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
