@@ -67,10 +67,12 @@ function ComponentUsingStyles(props) {
   const { classes, cx } = useStyles(props, {
     props: props
   });
-  return <>
-    <div className={classes.test}>Test<InnerComponent/></div>
-    <div className={cx(classes.test, classes.qualifier)}>Qualifier Test</div>
-    </>;
+  return (
+    <>
+      <div className={classes.test}>Test<InnerComponent/></div>
+      <div className={cx(classes.test, classes.qualifier)}>Qualifier Test</div>
+      </>
+  );
 }
 
 // TODO jss-to-tss-react codemod: usages of this hook outside of this file will not be converted.
