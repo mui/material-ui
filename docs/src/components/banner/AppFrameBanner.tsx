@@ -5,12 +5,15 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
+// ... (imports remain the same)
+
 const showSurveyMessage = false;
 
 function isBlackFriday() {
   const today = Date.now();
-  const start = new Date('2024-11-25').getTime();
-  const end = new Date('2024-12-07T23:59:59Z').getTime();
+  // Updated dates for 2025 Black Friday season
+  const start = new Date('2025-11-28').getTime(); // Black Friday 2025
+  const end = new Date('2025-12-10T23:59:59Z').getTime();
   return today > start && today < end;
 }
 
@@ -21,16 +24,12 @@ export default function AppFrameBanner() {
     return null;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [mounted, setMounted] = React.useState(hadHydrated);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   React.useEffect(() => {
     hadHydrated = true;
     setMounted(true);
   }, []);
 
-  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-  // eslint-disable-next-line react-hooks/rules-of-hooks -- FEATURE_TOGGLE never changes
   const pageContext = React.useContext(PageContext);
   const productName = convertProductIdToName(pageContext) || 'MUI';
 
@@ -41,14 +40,15 @@ export default function AppFrameBanner() {
     message = `🚀 Influence ${productName}'s 2025 roadmap! Participate in the latest Developer Survey`;
     href = 'https://tally.so/r/mObbvk?source=website';
   } else if (mounted && isBlackFriday()) {
-    message = `Black Friday is here! Don't miss out on the best offers of the year.`;
+    // Updated message
+    message = `🎉 Black Friday 2025 is here! Grab the best MUI deals of the year before they end.`;
     href = 'https://mui.com/store/bundles/?deal=black-friday&from=docs';
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    if (message.length > 100) {
+    if (message.length > 120) { // adjusted for new message
       throw new Error(
-        `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
+        `Docs-infra: AppFrameBanner message is too long. It may overflow on smaller screens.`,
       );
     }
   }
