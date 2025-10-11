@@ -1,8 +1,7 @@
-import { Theme } from './createTheme';
-import { Components } from './components';
+import { ThemeComponents } from './createThemeFoundation';
 
 export interface ThemeWithProps {
-  components?: Components<Omit<Theme, 'components'>>;
+  components?: ThemeComponents;
 }
 
 export type ThemedProps<Theme, Name extends keyof any> = Theme extends {

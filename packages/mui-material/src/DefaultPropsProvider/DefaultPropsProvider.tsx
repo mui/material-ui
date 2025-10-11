@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SystemDefaultPropsProvider, {
   useDefaultProps as useSystemDefaultProps,
 } from '@mui/system/DefaultPropsProvider';
-import type { ComponentsPropsList } from '../styles/props';
+import type { ComponentsPropsList } from '../stylesDeprecated/props';
 
 function DefaultPropsProvider(
   props: React.PropsWithChildren<{
