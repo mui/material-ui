@@ -63,8 +63,7 @@ Note that when using FormControl with the outlined variant of the Select, you ne
 
 ## Native select
 
-As the user experience can be improved on mobile using the native select of the platform,
-we allow such pattern.
+You can improve the user experience on a mobile device using the platform's native select, as shown below:
 
 {{"demo": "NativeSelectDemo.js"}}
 
