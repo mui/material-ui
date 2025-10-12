@@ -179,9 +179,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.18.2",
   "engines": {
-    "pnpm": "10.17.1",
+    "pnpm": "10.18.2",
     "node": ">=22.18.0"
   },
   "resolutions": {
