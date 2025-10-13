@@ -701,8 +701,8 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-router:
-        specifier: ^7.9.3
-        version: 7.9.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^7.9.4
+        version: 7.9.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-runner:
         specifier: ^1.0.5
         version: 1.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -1569,8 +1569,8 @@ importers:
         specifier: ^19.2.0
         version: 19.2.0(react@19.2.0)
       react-router:
-        specifier: ^7.9.3
-        version: 7.9.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^7.9.4
+        version: 7.9.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -2014,8 +2014,8 @@ importers:
         specifier: ^19.1.1
         version: 19.2.0
       react-router:
-        specifier: ^7.5.1
-        version: 7.9.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^7.9.4
+        version: 7.9.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-window:
         specifier: ^1.8.11
         version: 1.8.11(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -11170,8 +11170,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react-router@7.9.3:
-    resolution: {integrity: sha512-4o2iWCFIwhI/eYAIL43+cjORXYn/aRQPgtFRRZb3VzoyQ5Uej0Bmqj7437L97N9NJW4wnicSwLOLS+yCXfAPgg==}
+  react-router@7.9.4:
+    resolution: {integrity: sha512-SD3G8HKviFHg9xj7dNODUKDFgpG4xqD5nhyd0mYoB5iISepuZAvzSr8ywxgxKJ52yRzf/HWtVHc9AWwoTbljvA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -24274,7 +24274,7 @@ snapshots:
       '@remix-run/router': 1.23.0
       react: 19.2.0
 
-  react-router@7.9.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-router@7.9.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       cookie: 1.0.2
       react: 19.2.0

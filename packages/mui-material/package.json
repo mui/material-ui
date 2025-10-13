@@ -61,7 +61,7 @@
     "fast-glob": "^3.3.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router": "^7.9.3",
+    "react-router": "^7.9.4",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {
