@@ -653,8 +653,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0
       markdown-to-jsx:
-        specifier: ^7.7.13
-        version: 7.7.13(react@19.2.0)
+        specifier: ^7.7.15
+        version: 7.7.15(react@19.2.0)
       material-ui-popup-state:
         specifier: ^5.3.6
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.2.2)(react@19.2.0)
@@ -9696,11 +9696,14 @@ packages:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
 
-  markdown-to-jsx@7.7.13:
-    resolution: {integrity: sha512-DiueEq2bttFcSxUs85GJcQVrOr0+VVsPfj9AEUPqmExJ3f8P/iQNvZHltV4tm1XVhu1kl0vWBZWT3l99izRMaA==}
+  markdown-to-jsx@7.7.15:
+    resolution: {integrity: sha512-U5dw5oRajrPTE2oJQWAbLK8RgbCDJ264AjW3fGABq+/rZjQ0E/WGVCLKAHvpKHQFUwoWoK8ZZWVPNLR/biYMhg==}
     engines: {node: '>= 10'}
     peerDependencies:
       react: '>= 0.14.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   markdownlint-cli2-formatter-default@0.0.5:
     resolution: {integrity: sha512-4XKTwQ5m1+Txo2kuQ3Jgpo/KmnG+X90dWt4acufg6HVGadTUG5hzHF/wssp9b5MBYOMCnZ9RMPaU//uHsszF8Q==}
@@ -22524,8 +22527,8 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 2.1.0
 
-  markdown-to-jsx@7.7.13(react@19.2.0):
-    dependencies:
+  markdown-to-jsx@7.7.15(react@19.2.0):
+    optionalDependencies:
       react: 19.2.0
 
   markdownlint-cli2-formatter-default@0.0.5(markdownlint-cli2@0.18.1):
