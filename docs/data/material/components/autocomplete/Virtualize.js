@@ -121,8 +121,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
         style={{
           height: getHeight() + 2 * LISTBOX_PADDING,
           width: '100%',
-          margin: 0,
-          padding: 0,
         }}
         overscanCount={5}
         tagName="ul"
