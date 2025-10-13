@@ -10,4 +10,4 @@
   PNPM_FLAGS = "--frozen-lockfile"
 
 [[plugins]]
-  package = "./packages/netlify-plugin-cache-docs"
+  package = "@mui/internal-netlify-cache"
