@@ -50,7 +50,7 @@
     "@testing-library/user-event": "^14.6.1",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
-    "es-toolkit": "^1.39.10",
+    "es-toolkit": "^1.40.0",
     "format-util": "^1.0.5",
     "jsdom": "^26.1.0",
     "mocha": "^11.7.4",
