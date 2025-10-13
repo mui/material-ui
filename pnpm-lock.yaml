@@ -76,6 +76,9 @@ importers:
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
+      '@mui/internal-netlify-cache':
+        specifier: ^0.0.2-canary.0
+        version: 0.0.2-canary.0
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:packages-internal/scripts
@@ -1914,8 +1917,6 @@ importers:
         specifier: ^21.0.0
         version: 21.0.0
     publishDirectory: build
-
-  packages/netlify-plugin-cache-docs: {}
 
   packages/react-docgen-types:
     devDependencies:
@@ -3826,6 +3827,9 @@ packages:
       eslint: ^9.0.0
       prettier: ^3.5.3
       typescript: ^5.0.0
+
+  '@mui/internal-netlify-cache@0.0.2-canary.0':
+    resolution: {integrity: sha512-3MtmhEBDf8O1ow95tC2ewbQgzctbWkCR3I4CA23CCfhUx3/9FqJNm+MI1NqReeQV5W7BDMsqKz1L2ps5sKt22A==}
 
   '@mui/joy@5.0.0-beta.22':
     resolution: {integrity: sha512-XFJd/cWXqt9MMlaUh10QQH893YaRw2CORYRhQovXvaJk7mmt/Sc4q3Fb7ANCXf4xMUPdwqdnvawLkAOAKVHuXg==}
@@ -15583,6 +15587,8 @@ snapshots:
       - postcss
       - stylelint
       - supports-color
+
+  '@mui/internal-netlify-cache@0.0.2-canary.0': {}
 
   '@mui/joy@5.0.0-beta.22(@emotion/react@11.14.0(@types/react@19.1.13)(react@19.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.1.13)(react@19.1.1))(@types/react@19.1.13)(react@19.1.1))(@types/react@19.1.13)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:

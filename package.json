@@ -112,6 +112,7 @@
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.10",
     "@mui/internal-code-infra": "^0.0.3-canary.19",
     "@mui/internal-docs-utils": "workspace:^",
+    "@mui/internal-netlify-cache": "^0.0.2-canary.0",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
