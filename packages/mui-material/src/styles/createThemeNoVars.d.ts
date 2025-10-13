@@ -7,19 +7,9 @@ import { TransitionsOptions } from './createTransitions';
 import { ZIndexOptions } from './zIndex';
 import { Components } from './components';
 import { ColorSystemOptions } from './createThemeFoundation';
-import { Theme as ThemeOptimized } from '../stylesOptimized';
+import { Theme as ThemeOptimized, CssThemeVariables } from '../stylesOptimized';
 
-/**
- * To disable custom properties, use module augmentation
- *
- * @example
- * declare module '@mui/material/styles' {
- *   interface CssThemeVariables {
- *     enabled: true;
- *   }
- * }
- */
-export interface CssThemeVariables {}
+export { CssThemeVariables };
 
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
