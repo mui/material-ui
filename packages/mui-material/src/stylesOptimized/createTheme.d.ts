@@ -4,6 +4,7 @@ import {
   CSSObject,
   SxProps,
   SxConfig,
+  Interpolation,
 } from '@mui/system';
 import { Palette, PaletteOptions } from '../styles/createPalette';
 import { Mixins, MixinsOptions } from '../styles/createMixins';
@@ -158,6 +159,32 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   lighten: (color: string, coefficient: number | string) => string;
   darken: (color: string, coefficient: number | string) => string;
 }
+
+export type CreateThemeComponent<SlotNames extends string, Props, OwnerState = Props> = {
+  defaultProps?: Partial<Props>;
+  styleOverrides?: Record<
+    SlotNames,
+    Interpolation<
+      // Record<string, unknown> is for other props that the slot receive internally
+      // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+      Props &
+        Record<string, unknown> & {
+          ownerState: OwnerState & Record<string, unknown>;
+          theme: Theme;
+        }
+    >
+  >;
+  variants?: Array<{
+    props:
+      | Partial<Props>
+      | ((
+          props: Partial<Props> & {
+            ownerState: Partial<OwnerState>;
+          },
+        ) => boolean);
+    style: Interpolation<{ theme: Theme }>;
+  }>;
+};
 
 /**
  * Generate a theme base on the options received.

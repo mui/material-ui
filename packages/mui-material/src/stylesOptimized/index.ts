@@ -1,15 +1,24 @@
+/**
+ * This file must mirror the exports of `@mui/material/styles` for non-breaking changes in v7.
+ * This entry point is an alternative for `@mui/material/styles` for optimizing TypeScript interface instantiation
+ */
+
 import { DistributiveOmit } from '@mui/types';
 
 export { default as THEME_ID } from '../styles/identifier';
-export { default as createTheme } from './createTheme';
 export {
-  BaseTheme,
-  CssThemeVariables,
-  CssVarsThemeOptions,
+  // New types for augmenting the Theme Components
+  CreateThemeComponent,
   ThemeComponents,
+  // =============================================
+  default as createTheme,
   ThemeOptions,
   Theme,
+  CssThemeVariables,
+  CssVarsThemeOptions,
+  BaseTheme,
 } from './createTheme';
+export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { Shadows } from '../styles/shadows';
 export { ZIndex } from '../styles/zIndex';
 export {
@@ -77,6 +86,8 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
+export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
+export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from '../styles/cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 export interface StyledComponentProps<ClassKey extends string = string> {
@@ -102,3 +113,55 @@ export type StandardProps<
     ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     style?: React.CSSProperties;
   };
+
+export namespace PropTypes {
+  // keeping the type structure for backwards compat
+  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
+}
+
+export { default as makeStyles } from '../styles/makeStyles';
+export { default as withStyles } from '../styles/withStyles';
+export { default as withTheme } from '../styles/withTheme';
+
+export type { StorageManager } from '@mui/system/cssVars';
+
+export { default as extendTheme } from './createThemeWithVars';
+
+export type {
+  ColorSchemeOverrides,
+  SupportedColorScheme,
+  ColorSystem,
+  CssVarsPalette,
+  Opacity,
+  Overlays,
+  PaletteAlert,
+  PaletteActionChannel,
+  PaletteAppBar,
+  PaletteAvatar,
+  PaletteChip,
+  PaletteColorChannel,
+  PaletteCommonChannel,
+  PaletteFilledInput,
+  PaletteLinearProgress,
+  PaletteSkeleton,
+  PaletteSlider,
+  PaletteSnackbarContent,
+  PaletteSpeedDialAction,
+  PaletteStepConnector,
+  PaletteStepContent,
+  PaletteSwitch,
+  PaletteTableCell,
+  PaletteTextChannel,
+  PaletteTooltip,
+  CssVarsTheme,
+  ThemeVars,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+  ColorSystemOptions,
+} from '../styles/createThemeFoundation';
+export { default as getOverlayAlpha } from '../styles/getOverlayAlpha';
+export { default as shouldSkipGeneratingVar } from '../styles/shouldSkipGeneratingVar';
+
+// Private methods for creating parts of the theme
+export { default as private_createTypography } from '../styles/createTypography';
+export { default as private_excludeVariablesFromRoot } from '../styles/excludeVariablesFromRoot';
