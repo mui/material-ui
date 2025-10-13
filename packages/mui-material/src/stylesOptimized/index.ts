@@ -116,7 +116,7 @@ export type StandardProps<
 
 export namespace PropTypes {
   // keeping the type structure for backwards compat
-  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
+  export type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
 export { default as makeStyles } from '../styles/makeStyles';

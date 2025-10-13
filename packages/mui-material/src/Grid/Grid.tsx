@@ -4,9 +4,9 @@ import { createGrid } from '@mui/system/Grid';
 import { SxProps, SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
-import { Theme, styled, Breakpoint } from '../styles';
+import { Theme, styled, Breakpoint } from '../stylesOptimized';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import useTheme from '../styles/useTheme';
+import useTheme from '../stylesOptimized/useTheme';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 

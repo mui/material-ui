@@ -1,5 +1,5 @@
 import { unstable_memoTheme } from '@mui/system';
-import { Theme } from '../styles/createTheme';
+import { Theme } from '../stylesOptimized/createTheme';
 
 const memoTheme = unstable_memoTheme<Theme>;
 
