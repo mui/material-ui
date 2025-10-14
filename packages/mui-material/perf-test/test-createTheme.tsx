@@ -1,5 +1,8 @@
+import * as React from 'react';
 import Button from '@mui/material/Button';
-import { createTheme, type Theme } from '../src/stylesOptimized';
+import { createTheme } from '@mui/material/stylesOptimized';
+
+<Button />;
 
 export default createTheme({
   components: {

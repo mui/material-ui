@@ -1,4 +1,8 @@
-import { Theme as ThemeWithProps } from './createTheme';
+import { ThemeComponents } from './createTheme';
+
+export interface ThemeWithProps {
+  components?: ThemeComponents;
+}
 
 export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
   components: Record<Name, { defaultProps: infer Props }>;

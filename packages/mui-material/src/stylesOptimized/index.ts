@@ -6,9 +6,7 @@
 import { DistributiveOmit } from '@mui/types';
 
 export { default as THEME_ID } from '../styles/identifier';
-export {
-  default as createTheme,
-} from './createTheme';
+export { default as createTheme } from './createTheme';
 export type {
   // New types for augmenting the Theme Components
   CreateThemeComponent,
@@ -51,10 +49,7 @@ export type {
   Transitions,
   TransitionsOptions,
 } from '../styles/createTransitions';
-export {
-  duration,
-  easing,
-} from '../styles/createTransitions';
+export { duration, easing } from '../styles/createTransitions';
 export type { Mixins, CSSProperties, MixinsOptions } from '../styles/createMixins';
 export type {
   Direction,
@@ -89,8 +84,7 @@ export {
 } from '@mui/system';
 export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 export { default as useTheme } from './useTheme';
-export { default as useThemeProps } from './useThemeProps';
-export * from './useThemeProps';
+export { default as useThemeProps, type ThemedProps, type ThemeWithProps } from './useThemeProps';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export type { ThemeProviderProps } from './ThemeProvider';
@@ -121,6 +115,7 @@ export type StandardProps<
     style?: React.CSSProperties;
   };
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace PropTypes {
   // keeping the type structure for backwards compat
   export type Color = 'inherit' | 'primary' | 'secondary' | 'default';

@@ -10,4 +10,5 @@ type Result = ReturnType<
 export declare const CssVarsProvider: Result['CssVarsProvider'];
 export declare const useColorScheme: Result['useColorScheme'];
 export declare const getInitColorSchemeScript: Result['getInitColorSchemeScript'];
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export declare function Experimental_CssVarsProvider(props: any): React.JSX.Element;
