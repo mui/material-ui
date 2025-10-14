@@ -226,17 +226,33 @@ describe('<Select />', () => {
     expect(handleClose.callCount).to.equal(1);
   });
 
-  it('should focus select when its label is clicked', () => {
-    const { getByRole, getByTestId } = render(
-      <React.Fragment>
-        <InputLabel id="my$label" data-testid="label" />
-        <Select value="" labelId="my$label" />
-      </React.Fragment>,
-    );
+  describe('when select is used with <InputLabel>', () => {
+    it('should focus select when its label is clicked', () => {
+      const { getByRole, getByTestId } = render(
+        <React.Fragment>
+          <InputLabel id="my$label" data-testid="label" />
+          <Select value="" labelId="my$label" />
+        </React.Fragment>,
+      );
 
-    fireEvent.click(getByTestId('label'));
+      fireEvent.click(getByTestId('label'));
 
-    expect(getByRole('combobox')).toHaveFocus();
+      expect(getByRole('combobox')).toHaveFocus();
+    });
+
+    it('should use a given labelIds text content when autoWidth is true', () => {
+      const labelText = 'Test Label Text';
+      const { getByTestId } = render(
+        <React.Fragment>
+          <InputLabel id="auto-width-label">{labelText}</InputLabel>
+          <Select labelId="auto-width-label" data-testid="select" autoWidth value=""/>
+        </React.Fragment>,
+      );
+
+      const selectElement = getByTestId('select')
+
+      expect(selectElement.textContent).to.equal(`${labelText}\u200B`);
+    });
   });
 
   it('should focus list if no selection', () => {

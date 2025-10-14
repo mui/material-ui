@@ -15,7 +15,7 @@ export interface BaseSelectProps<Value = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange' | 'placeholder'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
-   * menu, otherwise it will be at least the width of the select input.
+   * menu, otherwise it will be at least the width of the select input or the `InputLabel` associated with `labelId`.
    * @default false
    */
   autoWidth?: boolean;

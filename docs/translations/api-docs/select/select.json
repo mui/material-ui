@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "autoWidth": {
-      "description": "If <code>true</code>, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input."
+      "description": "If <code>true</code>, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input or the <code>InputLabel</code> associated with <code>labelId</code>."
     },
     "children": {
       "description": "The option elements to populate the select with. Can be some <code>MenuItem</code> when <code>native</code> is false and <code>option</code> when <code>native</code> is true.<br>⚠️The <code>MenuItem</code> elements <strong>must</strong> be direct descendants when <code>native</code> is false."
