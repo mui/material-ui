@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  strictModeDoubleLoggingSuppressed,
+  screen,
+} from '@mui/internal-test-utils';
 import { typographyClasses } from '@mui/material/Typography';
 import InputAdornment, { inputAdornmentClasses as classes } from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -48,7 +52,7 @@ describe('<InputAdornment />', () => {
 
   describe('prop: variant', () => {
     it("should inherit the TextField's variant", () => {
-      const { getByTestId } = render(
+      render(
         <TextField
           fullWidth
           placeholder="Search"
@@ -63,7 +67,8 @@ describe('<InputAdornment />', () => {
           }}
         />,
       );
-      const adornment = getByTestId('InputAdornment');
+
+      const adornment = screen.getByTestId('InputAdornment');
 
       expect(adornment).to.have.class(classes.root);
       expect(adornment).to.have.class(classes.positionStart);
@@ -71,14 +76,15 @@ describe('<InputAdornment />', () => {
     });
 
     it("should inherit the FormControl's variant", () => {
-      const { getByTestId } = render(
+      render(
         <FormControl variant="filled">
           <InputAdornment data-testid="InputAdornment" position="start">
             foo
           </InputAdornment>
         </FormControl>,
       );
-      const adornment = getByTestId('InputAdornment');
+
+      const adornment = screen.getByTestId('InputAdornment');
 
       expect(adornment).to.have.class(classes.root);
       expect(adornment).to.have.class(classes.positionStart);
@@ -86,7 +92,7 @@ describe('<InputAdornment />', () => {
     });
 
     it('should override the inherited variant', () => {
-      const { getByTestId } = render(
+      render(
         <TextField
           fullWidth
           placeholder="Search"
@@ -101,7 +107,8 @@ describe('<InputAdornment />', () => {
           }}
         />,
       );
-      const adornment = getByTestId('InputAdornment');
+
+      const adornment = screen.getByTestId('InputAdornment');
 
       expect(adornment).to.have.class(classes.root);
       expect(adornment).to.have.class(classes.positionStart);
@@ -192,7 +199,7 @@ describe('<InputAdornment />', () => {
   });
 
   it('applies a size small class inside <FormControl size="small" />', () => {
-    const { getByTestId } = render(
+    render(
       <FormControl size="small">
         <InputAdornment position="start" data-testid="root">
           $
@@ -200,11 +207,11 @@ describe('<InputAdornment />', () => {
       </FormControl>,
     );
 
-    expect(getByTestId('root')).to.have.class(classes.sizeSmall);
+    expect(screen.getByTestId('root')).to.have.class(classes.sizeSmall);
   });
 
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
-    const { getByTestId } = render(
+    render(
       <FormControl hiddenLabel>
         <InputAdornment position="start" data-testid="root">
           $
@@ -212,6 +219,6 @@ describe('<InputAdornment />', () => {
       </FormControl>,
     );
 
-    expect(getByTestId('root')).to.have.class(classes.hiddenLabel);
+    expect(screen.getByTestId('root')).to.have.class(classes.hiddenLabel);
   });
 });

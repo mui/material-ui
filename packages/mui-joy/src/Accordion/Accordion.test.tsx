@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Accordion, { accordionClasses as classes } from '@mui/joy/Accordion';
 import AccordionSummary from '@mui/joy/AccordionSummary';
@@ -45,14 +45,15 @@ describe('<Accordion />', () => {
   });
 
   it('should render the summary and collapse elements', () => {
-    const { getByRole, getByText } = render(
+    render(
       <Accordion>
         <AccordionSummary>Summary</AccordionSummary>
         <div id="panel-content">Hello</div>
       </Accordion>,
     );
-    expect(getByText('Summary')).toBeVisible();
-    expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
+
+    expect(screen.getByText('Summary')).toBeVisible();
+    expect(screen.getByRole('button')).to.have.attribute('aria-expanded', 'false');
   });
 
   it('should be controlled', () => {
@@ -68,46 +69,51 @@ describe('<Accordion />', () => {
   });
 
   it('should be disabled', () => {
-    const { getByRole } = render(
+    render(
       <Accordion disabled>
         <AccordionSummary>Summary</AccordionSummary>
       </Accordion>,
     );
-    expect(getByRole('button')).to.have.class(classes.disabled);
+
+    expect(screen.getByRole('button')).to.have.class(classes.disabled);
   });
 
   it('should call onChange when clicking the summary element', () => {
     const handleChange = spy();
-    const { getByText } = render(
+
+    render(
       <Accordion onChange={handleChange}>
         <AccordionSummary>Header</AccordionSummary>
       </Accordion>,
     );
-    fireEvent.click(getByText('Header'));
+
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
   });
 
   it('when controlled should call the onChange', () => {
     const handleChange = spy();
-    const { getByText } = render(
+
+    render(
       <Accordion onChange={handleChange} expanded>
         <AccordionSummary>Header</AccordionSummary>
       </Accordion>,
     );
-    fireEvent.click(getByText('Header'));
+
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.equal(false);
   });
 
   it('when undefined onChange and controlled should not call the onChange', () => {
     const handleChange = spy();
-    const { setProps, getByText } = render(
+    const { setProps } = render(
       <Accordion onChange={handleChange} expanded>
         <AccordionSummary>Header</AccordionSummary>
       </Accordion>,
     );
     setProps({ onChange: undefined });
-    fireEvent.click(getByText('Header'));
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(0);
   });
 

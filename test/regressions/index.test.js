@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';

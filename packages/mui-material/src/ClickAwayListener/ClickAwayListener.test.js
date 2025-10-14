@@ -82,7 +82,8 @@ describe('<ClickAwayListener />', () => {
 
     it('should not be called when clicking inside a portaled element', () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+
+      render(
         <ClickAwayListener onClickAway={handleClickAway}>
           <div>
             <Portal>
@@ -92,13 +93,14 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Inside a portal'));
+      fireEvent.click(screen.getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
     });
 
     it('should be called when clicking inside a portaled element and `disableReactTree` is `true`', () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+
+      render(
         <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
           <div>
             <Portal>
@@ -108,13 +110,14 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Inside a portal'));
+      fireEvent.click(screen.getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(1);
     });
 
     it('should not be called even if the event propagation is stopped', () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+
+      render(
         <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
           <div>
             <div
@@ -147,13 +150,13 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Outside a portal'));
+      fireEvent.click(screen.getByText('Outside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop all inside a portal'));
+      fireEvent.click(screen.getByText('Stop all inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop inside a portal'));
+      fireEvent.click(screen.getByText('Stop inside a portal'));
       // undesired behavior in React 16
       expect(handleClickAway.callCount).to.equal(React.version.startsWith('16') ? 1 : 0);
     });

@@ -232,7 +232,7 @@ describe('<SwipeableDrawer />', () => {
           }
           const handleClose = spy();
           const handleOpen = spy();
-          const { getByTestId, setProps } = render(
+          const { setProps } = render(
             <SwipeableDrawer
               anchor={params.anchor}
               onOpen={handleOpen}
@@ -269,7 +269,9 @@ describe('<SwipeableDrawer />', () => {
           if (params.anchor === 'bottom') {
             startPosition = windowHeight - DRAG_STARTED_SIGNAL;
           }
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(startPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            startPosition,
+          );
 
           fireEvent.touchMove(swipeArea, {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
@@ -298,7 +300,9 @@ describe('<SwipeableDrawer />', () => {
             endPosition = windowHeight - DRAWER_SIZE;
           }
 
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(endPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            endPosition,
+          );
         });
 
         it('should stay closed when not swiping far enough', () => {

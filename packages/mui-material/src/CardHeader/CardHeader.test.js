@@ -75,11 +75,11 @@ describe('<CardHeader />', () => {
   });
 
   describe('with an avatar', () => {
-    let avatar;
+    const avatar = <span />;
     let cardHeader;
 
     beforeEach(() => {
-      avatar = <span />;
+      // eslint-disable-next-line testing-library/no-render-in-lifecycle
       cardHeader = render(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />)
         .container.firstChild;
     });

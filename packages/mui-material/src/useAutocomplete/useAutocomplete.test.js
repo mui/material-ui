@@ -395,9 +395,9 @@ describe('useAutocomplete', () => {
       );
     }
 
-    const { getByTestId } = render(<Test />);
+    render(<Test />);
 
-    const button = getByTestId('button');
+    const button = screen.getByTestId('button');
 
     expect(() => {
       fireEvent.click(button);

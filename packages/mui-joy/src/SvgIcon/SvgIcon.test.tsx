@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import SvgIcon, {
   svgIconClasses as classes,
@@ -55,9 +55,9 @@ describe('<SvgIcon />', () => {
   );
 
   it('renders children by default', () => {
-    const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
+    const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-    expect(queryByTestId('test-path')).not.to.equal(null);
+    expect(screen.queryByTestId('test-path')).not.to.equal(null);
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
@@ -78,9 +78,9 @@ describe('<SvgIcon />', () => {
 
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
-      const { container, queryByText } = render(<SvgIcon titleAccess="Network">{path}</SvgIcon>);
+      const { container } = render(<SvgIcon titleAccess="Network">{path}</SvgIcon>);
 
-      expect(queryByText('Network')).not.to.equal(null);
+      expect(screen.queryByText('Network')).not.to.equal(null);
       expect(container.firstChild).not.to.have.attribute('aria-hidden');
     });
   });

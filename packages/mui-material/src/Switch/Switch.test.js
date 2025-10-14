@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
 import describeConformance from '../../test/describeConformance';
@@ -75,53 +75,51 @@ describe('<Switch />', () => {
   });
 
   it('renders a `role="switch"` with the Unchecked state by default', () => {
-    const { getByRole } = render(<Switch />);
+    render(<Switch />);
 
-    expect(getByRole('switch')).to.have.property('checked', false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
   it('renders a switch with the Checked state when checked', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+    render(<Switch defaultChecked />);
 
-    expect(getByRole('switch')).to.have.property('checked', true);
+    expect(screen.getByRole('switch')).to.have.property('checked', true);
   });
 
   specify('the switch can be disabled', () => {
-    const { getByRole } = render(<Switch disabled />);
+    render(<Switch disabled />);
 
-    expect(getByRole('switch')).to.have.property('disabled', true);
+    expect(screen.getByRole('switch')).to.have.property('disabled', true);
   });
 
   specify('the switch can be readonly', () => {
-    const { getByRole } = render(<Switch readOnly />);
+    render(<Switch readOnly />);
 
-    expect(getByRole('switch')).to.have.property('readOnly', true);
+    expect(screen.getByRole('switch')).to.have.property('readOnly', true);
   });
 
   specify('renders a custom icon when provided', () => {
-    const { getByTestId } = render(<Switch icon={<span data-testid="icon" />} />);
+    render(<Switch icon={<span data-testid="icon" />} />);
 
-    expect(getByTestId('icon')).toBeVisible();
+    expect(screen.getByTestId('icon')).toBeVisible();
   });
 
   specify('renders a custom checked icon when provided', () => {
-    const { getByTestId } = render(
-      <Switch defaultChecked checkedIcon={<span data-testid="icon" />} />,
-    );
+    render(<Switch defaultChecked checkedIcon={<span data-testid="icon" />} />);
 
-    expect(getByTestId('icon')).toBeVisible();
+    expect(screen.getByTestId('icon')).toBeVisible();
   });
 
   specify('the Checked state changes after change events', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+    render(<Switch defaultChecked />);
 
     // how a user would trigger it
     act(() => {
-      getByRole('switch').click();
-      fireEvent.change(getByRole('switch'), { target: { checked: '' } });
+      screen.getByRole('switch').click();
+      fireEvent.change(screen.getByRole('switch'), { target: { checked: '' } });
     });
 
-    expect(getByRole('switch')).to.have.property('checked', false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
   it('should not show warnings when custom `type` is provided', () => {
@@ -131,45 +129,45 @@ describe('<Switch />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByRole } = render(
+        render(
           <FormControl>
             <Switch />
           </FormControl>,
         );
 
-        expect(getByRole('switch')).not.to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByRole } = render(
+        render(
           <FormControl>
             <Switch disabled />
           </FormControl>,
         );
 
-        expect(getByRole('switch')).to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByRole } = render(
+        render(
           <FormControl disabled>
             <Switch />
           </FormControl>,
         );
 
-        expect(getByRole('switch')).to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByRole } = render(
+        render(
           <FormControl disabled>
             <Switch disabled={false} />
           </FormControl>,
         );
 
-        expect(getByRole('switch')).not.to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).not.to.have.attribute('disabled');
       });
     });
   });

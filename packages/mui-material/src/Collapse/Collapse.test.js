@@ -78,6 +78,7 @@ describe('<Collapse />', () => {
     const handleAddEndListener = spy();
 
     beforeEach(() => {
+      // eslint-disable-next-line testing-library/no-render-in-lifecycle
       const renderProps = render(
         <Collapse
           addEndListener={handleAddEndListener}

@@ -1,7 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
 
@@ -67,49 +67,49 @@ describe('<Typography />', () => {
 
   describe('headline', () => {
     it('should render a span by default', () => {
-      const { getByText } = render(<Typography variant="button">Hello</Typography>);
+      render(<Typography variant="button">Hello</Typography>);
 
-      expect(getByText(/hello/i).tagName).to.equal('SPAN');
+      expect(screen.getByText(/hello/i).tagName).to.equal('SPAN');
     });
 
     it('should render a p with a paragraph', () => {
-      const { getByText } = render(<Typography paragraph>Hello</Typography>);
+      render(<Typography paragraph>Hello</Typography>);
 
-      expect(getByText(/hello/i).tagName).to.equal('P');
+      expect(screen.getByText(/hello/i).tagName).to.equal('P');
     });
 
     it('should render the mapped headline', () => {
-      const { getByText } = render(<Typography variant="h6">Hello</Typography>);
+      render(<Typography variant="h6">Hello</Typography>);
 
-      expect(getByText(/hello/i).tagName).to.equal('H6');
+      expect(screen.getByText(/hello/i).tagName).to.equal('H6');
     });
 
     it('should render a h1', () => {
-      const { getByText } = render(<Typography component="h1">Hello</Typography>);
+      render(<Typography component="h1">Hello</Typography>);
 
-      expect(getByText(/hello/i).tagName).to.equal('H1');
+      expect(screen.getByText(/hello/i).tagName).to.equal('H1');
     });
   });
 
   describe('prop: variantMapping', () => {
     it('should work with a single value', () => {
-      const { getByText } = render(
+      render(
         <Typography variant="h6" variantMapping={{ h6: 'aside' }}>
           Hello
         </Typography>,
       );
 
-      expect(getByText(/hello/i).tagName).to.equal('ASIDE');
+      expect(screen.getByText(/hello/i).tagName).to.equal('ASIDE');
     });
 
     it('should work event without the full mapping', () => {
-      const { getByText } = render(
+      render(
         <Typography variant="h6" variantMapping={{}}>
           Hello
         </Typography>,
       );
 
-      expect(getByText(/hello/i).tagName).to.equal('H6');
+      expect(screen.getByText(/hello/i).tagName).to.equal('H6');
     });
   });
 
