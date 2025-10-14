@@ -142,3 +142,7 @@ export interface SpeedDialOwnerState extends SpeedDialProps {}
  * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
 export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;
+
+export type SpeedDialTheme = {
+  MuiSpeedDial: CreateThemeComponent<SpeedDialClassKey, SpeedDialProps>;
+};

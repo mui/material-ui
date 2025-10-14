@@ -205,3 +205,7 @@ export interface SnackbarProps
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
 
 export interface SnackbarOwnerState extends Omit<SnackbarProps, 'slots' | 'slotProps'> {}
+
+export type SnackbarTheme = {
+  MuiSnackbar: CreateThemeComponent<SnackbarClassKey, SnackbarProps>;
+};

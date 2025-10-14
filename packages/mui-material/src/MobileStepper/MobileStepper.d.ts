@@ -129,3 +129,7 @@ export interface MobileStepperOwnerState extends Omit<MobileStepperProps, 'slots
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function MobileStepper(props: MobileStepperProps): React.JSX.Element;
+
+export type MobileStepperTheme = {
+  MuiMobileStepper: CreateThemeComponent<MobileStepperClassKey, MobileStepperProps>;
+};

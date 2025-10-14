@@ -39,3 +39,7 @@ export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLD
  * - [FormGroup API](https://mui.com/material-ui/api/form-group/)
  */
 export default function FormGroup(props: FormGroupProps): React.JSX.Element;
+
+export type FormGroupTheme = {
+  MuiFormGroup: CreateThemeComponent<FormGroupClassKey, FormGroupProps>;
+};

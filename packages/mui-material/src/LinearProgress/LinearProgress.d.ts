@@ -65,3 +65,7 @@ export interface LinearProgressProps
  * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
  */
 export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;
+
+export type LinearProgressTheme = {
+  MuiLinearProgress: CreateThemeComponent<LinearProgressClassKey, LinearProgressProps>;
+};

@@ -35,3 +35,7 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
  * - [DialogActions API](https://mui.com/material-ui/api/dialog-actions/)
  */
 export default function DialogActions(props: DialogActionsProps): React.JSX.Element;
+
+export type DialogActionsTheme = {
+  MuiDialogActions: CreateThemeComponent<DialogActionsClassKey, DialogActionsProps>;
+};

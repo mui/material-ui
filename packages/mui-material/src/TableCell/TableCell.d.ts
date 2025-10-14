@@ -85,3 +85,7 @@ export type SortDirection = 'asc' | 'desc' | false;
  * - [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 export default function TableCell(props: TableCellProps): React.JSX.Element;
+
+export type TableCellTheme = {
+  MuiTableCell: CreateThemeComponent<TableCellClassKey, TableCellProps>;
+};

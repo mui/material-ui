@@ -122,3 +122,7 @@ export default function ListItemText<
 >(
   props: ListItemTextProps<PrimaryTypographyComponent, SecondaryTypographyComponent>,
 ): React.JSX.Element;
+
+export type ListItemTextTheme = {
+  MuiListItemText: CreateThemeComponent<ListItemTextClassKey, ListItemTextProps>;
+};

@@ -141,3 +141,7 @@ export interface SwitchProps
  * - inherits [IconButton API](https://mui.com/material-ui/api/icon-button/)
  */
 export default function Switch(props: SwitchProps): React.JSX.Element;
+
+export type SwitchTheme = {
+  MuiSwitch: CreateThemeComponent<SwitchClassKey, SwitchProps>;
+};

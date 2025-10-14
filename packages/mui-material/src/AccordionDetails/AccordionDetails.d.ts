@@ -30,3 +30,7 @@ export interface AccordionDetailsProps extends StandardProps<React.HTMLAttribute
  * - [AccordionDetails API](https://mui.com/material-ui/api/accordion-details/)
  */
 export default function AccordionDetails(props: AccordionDetailsProps): React.JSX.Element;
+
+export type AccordionDetailsTheme = {
+  MuiAccordionDetails: CreateThemeComponent<AccordionDetailsClassKey, AccordionDetailsProps>;
+};

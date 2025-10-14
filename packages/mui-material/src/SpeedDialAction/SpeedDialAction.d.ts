@@ -142,3 +142,7 @@ export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.
 
 export interface SpeedDialActionOwnerState
   extends Omit<SpeedDialActionProps, 'slots' | 'slotProps'> {}
+
+export type SpeedDialActionTheme = {
+  MuiSpeedDialAction: CreateThemeComponent<SpeedDialActionClassKey, SpeedDialActionProps>;
+};

@@ -178,3 +178,7 @@ export interface DrawerOwnerState extends Omit<DrawerProps, 'slots' | 'slotProps
  * - [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): React.JSX.Element;
+
+export type DrawerTheme = {
+  MuiDrawer: CreateThemeComponent<DrawerClassKey, DrawerProps>;
+};

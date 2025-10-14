@@ -50,3 +50,7 @@ export interface ImageListItemBarProps
  * - [ImageListItemBar API](https://mui.com/material-ui/api/image-list-item-bar/)
  */
 export default function ImageListItemBar(props: ImageListItemBarProps): React.JSX.Element;
+
+export type ImageListItemBarTheme = {
+  MuiImageListItemBar: CreateThemeComponent<ImageListItemBarClassKey, ImageListItemBarProps>;
+};

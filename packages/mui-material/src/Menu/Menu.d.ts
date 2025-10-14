@@ -182,3 +182,7 @@ export declare const MenuPaper: React.FC<PaperProps>;
  * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
 export default function Menu(props: MenuProps): React.JSX.Element;
+
+export type MenuTheme = {
+  MuiMenu: CreateThemeComponent<MenuClassKey, MenuProps>;
+};

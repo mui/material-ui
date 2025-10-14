@@ -31,3 +31,7 @@ export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classe
  * - [StepConnector API](https://mui.com/material-ui/api/step-connector/)
  */
 export default function StepConnector(props: StepConnectorProps): React.JSX.Element;
+
+export type StepConnectorTheme = {
+  MuiStepConnector: CreateThemeComponent<StepConnectorClassKey, StepConnectorProps>;
+};

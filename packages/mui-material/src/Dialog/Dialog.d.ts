@@ -205,3 +205,7 @@ export interface DialogProps
 export default function Dialog(props: DialogProps): React.JSX.Element;
 
 export interface DialogOwnerState extends Omit<DialogProps, 'slots' | 'slotProps'> {}
+
+export type DialogTheme = {
+  MuiDialog: CreateThemeComponent<DialogClassKey, DialogProps>;
+};

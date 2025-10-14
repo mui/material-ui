@@ -108,3 +108,7 @@ export interface RadioOwnerState extends Omit<RadioProps, 'slots' | 'slotProps'>
  * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 export default function Radio(props: RadioProps): React.JSX.Element;
+
+export type RadioTheme = {
+  MuiRadio: CreateThemeComponent<RadioClassKey, RadioProps>;
+};

@@ -32,3 +32,7 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
  * - [ListItemIcon API](https://mui.com/material-ui/api/list-item-icon/)
  */
 export default function ListItemIcon(props: ListItemIconProps): React.JSX.Element;
+
+export type ListItemIconTheme = {
+  MuiListItemIcon: CreateThemeComponent<ListItemIconClassKey, ListItemIconProps>;
+};

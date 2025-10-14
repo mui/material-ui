@@ -108,3 +108,7 @@ export interface FormControlLabelProps
  * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;
+
+export type FormControlLabelTheme = {
+  MuiFormControlLabel: CreateThemeComponent<FormControlLabelClassKey, FormControlLabelProps>;
+};
