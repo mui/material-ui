@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { IconButtonClasses } from './iconButtonClasses';
+import { IconButtonClasses, IconButtonClassKey } from './iconButtonClasses';
 
 export interface IconButtonPropsColorOverrides {}
 
@@ -100,6 +100,10 @@ export type IconButtonProps<
   AdditionalProps = {},
 > = OverrideProps<IconButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type IconButtonTheme = {
+  MuiIconButton: CreateThemeComponent<IconButtonClassKey, IconButtonProps>;
 };
 
 export default IconButton;

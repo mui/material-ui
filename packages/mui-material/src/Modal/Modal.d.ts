@@ -3,10 +3,10 @@ import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils/types';
 import { PortalProps } from '../Portal';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
-import { ModalClasses } from './modalClasses';
+import { ModalClasses, ModalClassKey } from './modalClasses';
 
 export interface ModalComponentsPropsOverrides {}
 
@@ -228,6 +228,10 @@ export type ModalProps<
   AdditionalProps = {},
 > = OverrideProps<ModalTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ModalTheme = {
+  MuiModal: CreateThemeComponent<ModalClassKey, ModalProps>;
 };
 
 export default Modal;

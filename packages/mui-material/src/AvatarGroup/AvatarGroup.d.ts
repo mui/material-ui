@@ -6,8 +6,8 @@ import {
   PartiallyRequired,
 } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
-import { AvatarGroupClasses } from './avatarGroupClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { AvatarGroupClasses, AvatarGroupClassKey } from './avatarGroupClasses';
 import Avatar from '../Avatar';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -124,5 +124,9 @@ export type AvatarGroupProps<
 
 export interface AvatarGroupOwnerState
   extends PartiallyRequired<AvatarGroupProps, 'max' | 'spacing' | 'component' | 'variant'> {}
+
+export type AvatarGroupTheme = {
+  MuiAvatarGroup: CreateThemeComponent<AvatarGroupClassKey, AvatarGroupProps>;
+};
 
 export default AvatarGroup;

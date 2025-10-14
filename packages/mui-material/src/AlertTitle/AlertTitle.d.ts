@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { TypographyProps } from '../Typography';
-import { AlertTitleClasses } from './alertTitleClasses';
+import { AlertTitleClasses, AlertTitleClassKey } from './alertTitleClasses';
 
 export interface AlertTitleProps extends TypographyProps<'div'> {
   /**
@@ -31,3 +31,7 @@ export interface AlertTitleProps extends TypographyProps<'div'> {
  * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 export default function AlertTitle(props: AlertTitleProps): React.JSX.Element;
+
+export type AlertTitleTheme = {
+  MuiAlertTitle: CreateThemeComponent<AlertTitleClassKey, AlertTitleProps>;
+};

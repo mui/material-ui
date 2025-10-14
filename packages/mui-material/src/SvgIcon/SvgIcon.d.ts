@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { SvgIconClasses } from './svgIconClasses';
+import { SvgIconClasses, SvgIconClassKey } from './svgIconClasses';
 
 export interface SvgIconPropsSizeOverrides {}
 
@@ -108,6 +108,10 @@ export type SvgIconProps<
   AdditionalProps = {},
 > = OverrideProps<SvgIconTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type SvgIconTheme = {
+  MuiSvgIcon: CreateThemeComponent<SvgIconClassKey, SvgIconProps>;
 };
 
 export default SvgIcon;

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { UsePaginationItem } from '../usePagination/usePagination';
-import { PaginationItemClasses } from './paginationItemClasses';
+import { PaginationItemClasses, PaginationItemClassKey } from './paginationItemClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface PaginationItemPropsVariantOverrides {}
@@ -177,6 +177,10 @@ export type PaginationItemProps<
   AdditionalProps = {},
 > = OverrideProps<PaginationItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type PaginationItemTheme = {
+  MuiPaginationItem: CreateThemeComponent<PaginationItemClassKey, PaginationItemProps>;
 };
 
 export default PaginationItem;

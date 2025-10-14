@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { CardActionsClasses } from './cardActionsClasses';
+import { CardActionsClasses, CardActionsClassKey } from './cardActionsClasses';
 
 export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

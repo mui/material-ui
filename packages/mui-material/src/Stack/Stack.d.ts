@@ -65,4 +65,8 @@ export type StackProps<
   component?: React.ElementType;
 };
 
+export type StackTheme = {
+  MuiStack: CreateThemeComponent<StackClassKey, StackProps>;
+};
+
 export default Stack;

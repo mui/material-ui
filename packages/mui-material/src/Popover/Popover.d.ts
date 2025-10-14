@@ -2,12 +2,12 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/utils/types';
 import { BackdropProps } from '../Backdrop';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/transition';
-import { PopoverClasses } from './popoverClasses';
+import { PopoverClasses, PopoverClassKey } from './popoverClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface PopoverSlots {

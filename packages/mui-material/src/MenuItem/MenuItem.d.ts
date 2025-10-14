@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { MenuItemClasses } from './menuItemClasses';
+import { MenuItemClasses, MenuItemClassKey } from './menuItemClasses';
 
 export interface MenuItemOwnProps {
   /**
@@ -74,6 +74,10 @@ export type MenuItemProps<
   AdditionalProps = {},
 > = OverrideProps<MenuItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type MenuItemTheme = {
+  MuiMenuItem: CreateThemeComponent<MenuItemClassKey, MenuItemProps>;
 };
 
 export default MenuItem;

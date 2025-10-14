@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { DialogActionsClasses } from './dialogActionsClasses';
+import { DialogActionsClasses, DialogActionsClassKey } from './dialogActionsClasses';
 
 export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

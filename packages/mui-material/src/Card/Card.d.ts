@@ -2,9 +2,9 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { DistributiveOmit } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { PaperOwnProps } from '../Paper';
-import { CardClasses } from './cardClasses';
+import { CardClasses, CardClassKey } from './cardClasses';
 
 // TODO: v6 remove this interface, it is not used
 export interface CardPropsColorOverrides {}
@@ -52,6 +52,10 @@ export type CardProps<
   AdditionalProps = {},
 > = OverrideProps<CardTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type CardTheme = {
+  MuiCard: CreateThemeComponent<CardClassKey, CardProps>;
 };
 
 export default Card;

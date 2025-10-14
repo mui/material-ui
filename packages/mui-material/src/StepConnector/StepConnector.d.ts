@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { StepConnectorClasses } from './stepConnectorClasses';
+import { StepConnectorClasses, StepConnectorClassKey } from './stepConnectorClasses';
 
 export type StepConnectorIcon = React.ReactElement<unknown> | string | number;
 

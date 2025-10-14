@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
+import { ScopedCssBaselineClasses, ScopedCssBaselineClassKey } from './scopedCssBaselineClasses';
 
 export interface ScopedCssBaselineOwnProps {
   /**
@@ -61,4 +61,9 @@ export type ScopedCssBaselineProps<
  *
  * - [ScopedCssBaseline API](https://mui.com/api/scoped-css-baseline/)
  */
+
+export type ScopedCssBaselineTheme = {
+  MuiScopedCssBaseline: CreateThemeComponent<ScopedCssBaselineClassKey, ScopedCssBaselineProps>;
+};
+
 export default ScopedCssBaseline;

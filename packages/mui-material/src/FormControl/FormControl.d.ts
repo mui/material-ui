@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../stylesOptimized';
-import { FormControlClasses } from './formControlClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { FormControlClasses, FormControlClassKey } from './formControlClasses';
 
 export interface FormControlPropsSizeOverrides {}
 export interface FormControlPropsColorOverrides {}
@@ -129,6 +129,10 @@ export type FormControlProps<
   AdditionalProps = {},
 > = OverrideProps<FormControlTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type FormControlTheme = {
+  MuiFormControl: CreateThemeComponent<FormControlClassKey, FormControlProps>;
 };
 
 export default FormControl;

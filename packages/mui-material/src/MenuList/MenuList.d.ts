@@ -70,4 +70,8 @@ export type MenuListProps<
   component?: React.ElementType;
 };
 
+export type MenuListTheme = {
+  MuiMenuList: CreateThemeComponent<MenuListClassKey, MenuListProps>;
+};
+
 export default MenuList;

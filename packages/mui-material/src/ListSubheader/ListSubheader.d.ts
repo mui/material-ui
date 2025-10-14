@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ListSubheaderClasses } from './listSubheaderClasses';
+import { ListSubheaderClasses, ListSubheaderClassKey } from './listSubheaderClasses';
 
 export interface ListSubheaderOwnProps {
   /**
@@ -64,6 +64,10 @@ export type ListSubheaderProps<
   AdditionalProps = {},
 > = OverrideProps<ListSubheaderTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ListSubheaderTheme = {
+  MuiListSubheader: CreateThemeComponent<ListSubheaderClassKey, ListSubheaderProps>;
 };
 
 export default ListSubheader;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { IconClasses } from './iconClasses';
+import { IconClasses, IconClassKey } from './iconClasses';
 
 export interface IconPropsSizeOverrides {}
 
@@ -81,6 +81,10 @@ export type IconProps<
   AdditionalProps = {},
 > = OverrideProps<IconTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type IconTheme = {
+  MuiIcon: CreateThemeComponent<IconClassKey, IconProps>;
 };
 
 export default Icon;

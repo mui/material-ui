@@ -105,4 +105,11 @@ export interface TablePaginationActionsSlots {
  */
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
 
+export type TablePaginationActionsTheme = {
+  MuiTablePaginationActions: CreateThemeComponent<
+    TablePaginationActionsClassKey,
+    TablePaginationActionsProps
+  >;
+};
+
 export default TablePaginationActions;

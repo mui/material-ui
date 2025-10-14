@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { TouchRippleActions, TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
-import { ButtonBaseClasses } from './buttonBaseClasses';
+import { ButtonBaseClasses, ButtonBaseClassKey } from './buttonBaseClasses';
 
 export { TouchRippleActions, TouchRippleProps };
 
@@ -135,5 +135,9 @@ export type ButtonBaseProps<
 export interface ButtonBaseActions {
   focusVisible(): void;
 }
+
+export type ButtonBaseTheme = {
+  MuiButtonBase: CreateThemeComponent<ButtonBaseClassKey, ButtonBaseProps>;
+};
 
 export default ButtonBase;

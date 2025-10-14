@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { ListItemSecondaryActionClasses } from './listItemSecondaryActionClasses';
+import {
+  ListItemSecondaryActionClasses,
+  ListItemSecondaryActionClassKey,
+} from './listItemSecondaryActionClasses';
 
 export interface ListItemSecondaryActionProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -37,6 +40,13 @@ declare const ListItemSecondaryAction: ((
   props: ListItemSecondaryActionProps,
 ) => React.JSX.Element) & {
   muiName: string;
+};
+
+export type ListItemSecondaryActionTheme = {
+  MuiListItemSecondaryAction: CreateThemeComponent<
+    ListItemSecondaryActionClassKey,
+    ListItemSecondaryActionProps
+  >;
 };
 
 export default ListItemSecondaryAction;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { SkeletonClasses } from './skeletonClasses';
+import { SkeletonClasses, SkeletonClassKey } from './skeletonClasses';
 
 export interface SkeletonPropsVariantOverrides {}
 
@@ -71,6 +71,10 @@ export type SkeletonProps<
   AdditionalProps = {},
 > = OverrideProps<SkeletonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type SkeletonTheme = {
+  MuiSkeleton: CreateThemeComponent<SkeletonClassKey, SkeletonProps>;
 };
 
 export default Skeleton;

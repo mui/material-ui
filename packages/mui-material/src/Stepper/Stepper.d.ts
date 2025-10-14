@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { PaperProps } from '../Paper';
-import { StepperClasses } from './stepperClasses';
+import { StepperClasses, StepperClassKey } from './stepperClasses';
 
 export type Orientation = 'horizontal' | 'vertical';
 
@@ -77,5 +77,9 @@ export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
  * - [Stepper API](https://mui.com/material-ui/api/stepper/)
  */
 declare const Stepper: OverridableComponent<StepperTypeMap>;
+
+export type StepperTheme = {
+  MuiStepper: CreateThemeComponent<StepperClassKey, StepperProps>;
+};
 
 export default Stepper;

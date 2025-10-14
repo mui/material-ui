@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ModalProps } from '../Modal';
@@ -8,7 +8,7 @@ import { BackdropProps } from '../Backdrop';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
-import { DrawerClasses } from './drawerClasses';
+import { DrawerClasses, DrawerClassKey } from './drawerClasses';
 
 export interface DrawerRootSlotPropsOverrides {}
 

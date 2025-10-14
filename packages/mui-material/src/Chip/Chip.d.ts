@@ -2,9 +2,9 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ChipClasses } from './chipClasses';
+import { ChipClasses, ChipClassKey } from './chipClasses';
 
 export interface ChipSlots {
   /**
@@ -150,6 +150,10 @@ export type ChipProps<
   AdditionalProps = {},
 > = OverrideProps<ChipTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ChipTheme = {
+  MuiChip: CreateThemeComponent<ChipClassKey, ChipProps>;
 };
 
 export default Chip;

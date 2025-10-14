@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { TableCellClasses } from './tableCellClasses';
+import { TableCellClasses, TableCellClassKey } from './tableCellClasses';
 
 export interface TableCellPropsSizeOverrides {}
 export interface TableCellPropsVariantOverrides {}

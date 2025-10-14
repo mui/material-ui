@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
-import { PaperClasses } from './paperClasses';
+import { PaperClasses, PaperClassKey } from './paperClasses';
 
 export interface PaperPropsVariantOverrides {}
 
@@ -69,6 +69,10 @@ export type PaperProps<
   AdditionalProps = {},
 > = OverrideProps<PaperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type PaperTheme = {
+  MuiPaper: CreateThemeComponent<PaperClassKey, PaperProps>;
 };
 
 export default Paper;

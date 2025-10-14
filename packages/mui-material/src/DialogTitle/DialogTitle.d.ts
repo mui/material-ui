@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { TypographyTypeMap } from '../Typography';
-import { DialogTitleClasses } from './dialogTitleClasses';
+import { DialogTitleClasses, DialogTitleClassKey } from './dialogTitleClasses';
 
 export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
   /**
@@ -46,6 +46,10 @@ export type DialogTitleProps<
   AdditionalProps = { component?: React.ElementType },
 > = OverrideProps<DialogTitleTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type DialogTitleTheme = {
+  MuiDialogTitle: CreateThemeComponent<DialogTitleClassKey, DialogTitleProps>;
 };
 
 export default DialogTitle;

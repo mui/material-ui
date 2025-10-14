@@ -4,9 +4,10 @@ import { createGrid } from '@mui/system/Grid';
 import { SxProps, SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
-import { Theme, styled, Breakpoint } from '../stylesOptimized';
+import { CreateThemeComponent, Theme, styled, Breakpoint } from '../stylesOptimized';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../stylesOptimized/useTheme';
+import { GridClassKey } from './gridClasses';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -278,5 +279,9 @@ if (process.env.NODE_ENV !== 'production') {
     wrap: requireProp('container'),
   };
 }
+
+export type GridTheme = {
+  MuiGrid: CreateThemeComponent<GridClassKey, GridProps>;
+};
 
 export default Grid;

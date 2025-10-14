@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { Theme } from '../stylesOptimized';
-import { StepButtonClasses } from './stepButtonClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { StepButtonClasses, StepButtonClassKey } from './stepButtonClasses';
 
 export interface StepButtonOwnProps {
   /**
@@ -60,6 +60,10 @@ export type StepButtonProps<
   AdditionalProps = {},
 > = OverrideProps<StepButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type StepButtonTheme = {
+  MuiStepButton: CreateThemeComponent<StepButtonClassKey, StepButtonProps>;
 };
 
 export default StepButton;

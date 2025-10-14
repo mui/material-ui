@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
-import { MobileStepperClasses } from './mobileStepperClasses';
+import { MobileStepperClasses, MobileStepperClassKey } from './mobileStepperClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface MobileStepperSlots {

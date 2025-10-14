@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
-import { RatingClasses } from './ratingClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { RatingClasses, RatingClassKey } from './ratingClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -197,6 +197,10 @@ export type RatingProps<
   AdditionalProps = {},
 > = OverrideProps<RatingTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type RatingTheme = {
+  MuiRating: CreateThemeComponent<RatingClassKey, RatingProps>;
 };
 
 export default Rating;

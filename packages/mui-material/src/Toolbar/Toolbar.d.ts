@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ToolbarClasses } from './toolbarClasses';
+import { ToolbarClasses, ToolbarClassKey } from './toolbarClasses';
 
 export interface ToolbarPropsVariantOverrides {}
 
@@ -57,6 +57,10 @@ export type ToolbarProps<
   AdditionalProps = {},
 > = OverrideProps<ToolbarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ToolbarTheme = {
+  MuiToolbar: CreateThemeComponent<ToolbarClassKey, ToolbarProps>;
 };
 
 export default Toolbar;

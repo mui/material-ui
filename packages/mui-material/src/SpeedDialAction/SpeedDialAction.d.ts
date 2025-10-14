@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { FabProps } from '../Fab';
 import { TooltipProps } from '../Tooltip';
-import { SpeedDialActionClasses } from './speedDialActionClasses';
+import { SpeedDialActionClasses, SpeedDialActionClassKey } from './speedDialActionClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface SpeedDialActionSlots {

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TransitionProps } from '../transitions/transition';
-import { CollapseClasses } from './collapseClasses';
+import { CollapseClasses, CollapseClassKey } from './collapseClasses';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
   /**

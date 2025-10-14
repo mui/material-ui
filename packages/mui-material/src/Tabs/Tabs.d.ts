@@ -2,10 +2,10 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import TabScrollButton, { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TabsClasses } from './tabsClasses';
+import { TabsClasses, TabsClassKey } from './tabsClasses';
 import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
@@ -303,6 +303,10 @@ export type TabsProps<
   AdditionalProps = {},
 > = OverrideProps<TabsTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TabsTheme = {
+  MuiTabs: CreateThemeComponent<TabsClassKey, TabsProps>;
 };
 
 export default Tabs;

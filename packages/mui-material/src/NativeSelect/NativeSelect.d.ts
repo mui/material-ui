@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
-import { NativeSelectClasses } from './nativeSelectClasses';
+import { NativeSelectClasses, NativeSelectClassKey } from './nativeSelectClasses';
 
 export interface NativeSelectProps
   extends StandardProps<InputProps, 'inputProps' | 'value' | 'onChange'> {
@@ -66,5 +66,9 @@ export interface NativeSelectProps
  * - inherits [Input API](https://mui.com/material-ui/api/input/)
  */
 declare const NativeSelect: ((props: NativeSelectProps) => React.JSX.Element) & { muiName: string };
+
+export type NativeSelectTheme = {
+  MuiNativeSelect: CreateThemeComponent<NativeSelectClassKey, NativeSelectProps>;
+};
 
 export default NativeSelect;

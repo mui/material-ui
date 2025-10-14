@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
-import { SelectClasses } from './selectClasses';
+import { SelectClasses, SelectClassKey } from './selectClasses';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { FilledInputProps } from '../FilledInput';
 
@@ -205,6 +205,10 @@ export type SelectProps<Value = unknown> =
  */
 declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX.Element) & {
   muiName: string;
+};
+
+export type SelectTheme = {
+  MuiSelect: CreateThemeComponent<SelectClassKey, SelectProps>;
 };
 
 export default Select;

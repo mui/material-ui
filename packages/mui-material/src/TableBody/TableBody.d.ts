@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TableBodyClasses } from './tableBodyClasses';
+import { TableBodyClasses, TableBodyClassKey } from './tableBodyClasses';
 
 export interface TableBodyOwnProps {
   /**
@@ -43,6 +43,10 @@ export type TableBodyProps<
   AdditionalProps = {},
 > = OverrideProps<TableBodyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TableBodyTheme = {
+  MuiTableBody: CreateThemeComponent<TableBodyClassKey, TableBodyProps>;
 };
 
 export default TableBody;

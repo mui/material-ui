@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
-import { ButtonClasses } from './buttonClasses';
+import { ButtonClasses, ButtonClassKey } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -144,6 +144,10 @@ export type ButtonProps<
   AdditionalProps = {},
 > = OverrideProps<ButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ButtonTheme = {
+  MuiButton: CreateThemeComponent<ButtonClassKey, ButtonProps>;
 };
 
 export default Button;

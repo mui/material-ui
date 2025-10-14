@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
-import { FormLabelClasses } from './formLabelClasses';
+import { FormLabelClasses, FormLabelClassKey } from './formLabelClasses';
 
 export interface FormLabelPropsColorOverrides {}
 
@@ -88,6 +88,10 @@ export type FormLabelProps<
   AdditionalProps = {},
 > = OverrideProps<FormLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type FormLabelTheme = {
+  MuiFormLabel: CreateThemeComponent<FormLabelClassKey, FormLabelProps>;
 };
 
 export default FormLabel;

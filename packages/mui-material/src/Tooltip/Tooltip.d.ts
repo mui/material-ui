@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { MUIStyledCommonProps, SxProps } from '@mui/system';
 import { PopperProps } from '../Popper';
-import { Theme } from '../stylesOptimized';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { TransitionProps } from '../transitions/transition';
-import { TooltipClasses } from './tooltipClasses';
+import { TooltipClasses, TooltipClassKey } from './tooltipClasses';
 
 export interface TooltipComponentsPropsOverrides {}
 
@@ -254,3 +254,7 @@ export interface TooltipOwnerState extends TooltipProps {}
  * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
 export default function Tooltip(props: TooltipProps): React.JSX.Element;
+
+export type TooltipTheme = {
+  MuiTooltip: CreateThemeComponent<TooltipClassKey, TooltipProps>;
+};
