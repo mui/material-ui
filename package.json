@@ -95,7 +95,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^4.2.7",
-    "@slack/bolt": "^4.4.0",
+    "@slack/bolt": "^4.5.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
     "karma-spec-reporter": "^0.0.36"
@@ -111,6 +111,7 @@
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.10",
     "@mui/internal-code-infra": "^0.0.3-canary.26",
     "@mui/internal-docs-utils": "workspace:^",
+    "@mui/internal-netlify-cache": "^0.0.2-canary.0",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
@@ -120,12 +121,12 @@
     "@octokit/rest": "^22.0.0",
     "@pigment-css/react": "0.0.30",
     "@pnpm/find-workspace-dir": "^1000.1.3",
-    "@playwright/test": "1.55.1",
+    "@playwright/test": "1.56.0",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.19",
-    "@types/react": "^19.1.13",
+    "@types/react": "^19.2.2",
     "@types/yargs": "^17.0.33",
     "@vitejs/plugin-react": "^5.0.4",
     "@vitest/browser": "^3.2.4",
@@ -140,7 +141,7 @@
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
     "es-toolkit": "^1.39.10",
-    "eslint": "^9.36.0",
+    "eslint": "^9.37.0",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
@@ -163,8 +164,8 @@
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
     "process": "^0.11.10",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
     "stylelint": "^16.23.1",
@@ -178,9 +179,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.18.2",
   "engines": {
-    "pnpm": "10.17.1",
+    "pnpm": "10.18.2",
     "node": ">=22.18.0"
   },
   "resolutions": {
