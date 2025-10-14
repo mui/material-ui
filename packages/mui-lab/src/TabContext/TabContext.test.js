@@ -75,13 +75,13 @@ describe('<TabContext />', () => {
       );
     }
 
-    const markup = ReactDOMServer.renderToStaticMarkup(
+    const view = ReactDOMServer.renderToStaticMarkup(
       <TabContext value="0">
         <Tabs value="0" />
       </TabContext>,
     );
 
-    expect(markup).to.equal(
+    expect(view).to.equal(
       '<div data-testid="active-value" data-value="0"></div><div role="tab"></div><div role="tabpanel"></div>',
     );
   });

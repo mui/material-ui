@@ -631,9 +631,7 @@ describe('Joy <Select />', () => {
     );
 
     // Fire Click of the avatar
-    act(() => {
-      fireEvent.click(screen.getByTestId('test-element'));
-    });
+    fireEvent.click(screen.getByTestId('test-element'));
 
     expect(screen.getByRole('combobox', { hidden: true })).to.have.attribute(
       'aria-expanded',
@@ -641,9 +639,7 @@ describe('Joy <Select />', () => {
     );
 
     // click again should close
-    act(() => {
-      fireEvent.click(screen.getByTestId('test-element'));
-    });
+    fireEvent.click(screen.getByTestId('test-element'));
     expect(screen.getByRole('combobox', { hidden: true })).to.have.attribute(
       'aria-expanded',
       'false',

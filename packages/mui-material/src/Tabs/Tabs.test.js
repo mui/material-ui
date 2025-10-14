@@ -693,7 +693,9 @@ describe('<Tabs />', () => {
         await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(false);
         });
-        expect(hasRightScrollButton(container)).to.equal(true);
+        await waitFor(() => {
+          expect(hasRightScrollButton(container)).to.equal(true);
+        });
       });
 
       it('should set both left and right scroll button state', async function test() {
@@ -713,7 +715,9 @@ describe('<Tabs />', () => {
         await waitFor(() => {
           expect(hasLeftScrollButton(container)).to.equal(true);
         });
-        expect(hasRightScrollButton(container)).to.equal(true);
+        await waitFor(() => {
+          expect(hasRightScrollButton(container)).to.equal(true);
+        });
       });
     });
   });

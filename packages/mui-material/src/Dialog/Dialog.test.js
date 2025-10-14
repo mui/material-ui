@@ -13,9 +13,9 @@ import describeConformance from '../../test/describeConformance';
  * @param {HTMLElement} element
  */
 function userClick(element) {
+  fireEvent.mouseDown(element);
+  fireEvent.mouseUp(element);
   act(() => {
-    fireEvent.mouseDown(element);
-    fireEvent.mouseUp(element);
     element.click();
   });
 }
@@ -194,10 +194,10 @@ describe('<Dialog />', () => {
 
     act(() => {
       dialog.click();
-      // keyDown is not targeted at anything specific.
-      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     });
+    // keyDown is not targeted at anything specific.
+    // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+    fireEvent.keyDown(document.activeElement, { key: 'Escape' });
 
     expect(onClose.callCount).to.equal(0);
 

@@ -127,13 +127,13 @@ describe('<Accordion />', () => {
   });
 
   it('should warn when switching from controlled to uncontrolled', () => {
-    const wrapper = render(
+    const view = render(
       <Accordion expanded>
         <AccordionSummary>Header</AccordionSummary>
       </Accordion>,
     );
 
-    expect(() => wrapper.setProps({ expanded: undefined })).to.toErrorDev(
+    expect(() => view.setProps({ expanded: undefined })).to.toErrorDev(
       'MUI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
     );
   });

@@ -194,9 +194,7 @@ describe('<Chip />', () => {
       const chip = screen.getByTestId('chip');
 
       simulatePointerDevice();
-      act(() => {
-        fireEvent.keyDown(document.body, { key: 'Tab' });
-      });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
 
       expect(chip).to.have.class(classes.root);
       expect(chip).to.have.property('tabIndex', -1);

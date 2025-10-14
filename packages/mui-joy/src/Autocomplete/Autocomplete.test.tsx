@@ -103,8 +103,8 @@ describe('Joy <Autocomplete />', () => {
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement!, { target: { value: 'a' } });
       });
+      fireEvent.change(document.activeElement!, { target: { value: 'a' } });
 
       expect(input.value).to.equal('a');
 
@@ -346,10 +346,10 @@ describe('Joy <Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
+      fireEvent.change(textbox, { target: { value: 't' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
       act(() => {
-        fireEvent.change(textbox, { target: { value: 't' } });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
         textbox.blur();
       });
 

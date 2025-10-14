@@ -325,7 +325,7 @@ describe('<Menu /> integration', () => {
       trigger.click();
     });
 
-    // react-transition-group uses one commit per state transition so we need to wait a bit
+    // eslint-disable-next-line testing-library/no-unnecessary-act -- react-transition-group uses one commit per state transition so we need to wait a bit
     await act(async () => {
       fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
     });

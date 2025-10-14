@@ -48,7 +48,7 @@ describe('ThemeProvider', () => {
 
   it('theme should be stable between renders if created outside of component', () => {
     const theme = createTheme();
-    const themeContext = renderHook(
+    const { result, rerender } = renderHook(
       () => {
         return useTheme();
       },
@@ -56,9 +56,9 @@ describe('ThemeProvider', () => {
         wrapper: ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>,
       },
     );
-    const firstRender = themeContext.result.current;
-    themeContext.rerender();
-    const secondRender = themeContext.result.current;
+    const firstRender = result.current;
+    rerender();
+    const secondRender = result.current;
     expect(firstRender).to.equal(secondRender);
   });
 

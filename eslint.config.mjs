@@ -117,7 +117,6 @@ export default defineConfig(
     rules: {
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
-      'testing-library/render-result-naming-convention': 'off',
     },
   },
   // Test end

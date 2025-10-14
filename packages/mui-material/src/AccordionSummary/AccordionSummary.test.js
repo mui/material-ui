@@ -80,9 +80,9 @@ describe('<AccordionSummary />', () => {
   it('should fire onBlur when the button blurs', () => {
     const handleBlur = spy();
     render(<AccordionSummary onBlur={handleBlur} />);
+    const button = screen.getByRole('button');
 
     act(() => {
-      const button = screen.getByRole('button');
       button.focus();
       button.blur();
     });

@@ -92,8 +92,8 @@ describe('<Checkbox />', () => {
     // how a user would trigger it
     act(() => {
       screen.getByRole('checkbox').click();
-      fireEvent.change(screen.getByRole('checkbox'), { target: { checked: '' } });
     });
+    fireEvent.change(screen.getByRole('checkbox'), { target: { checked: '' } });
 
     expect(screen.getByRole('checkbox')).to.have.property('checked', false);
   });

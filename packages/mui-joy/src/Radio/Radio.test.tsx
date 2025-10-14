@@ -104,8 +104,8 @@ describe('<Radio />', () => {
     // how a user would trigger it
     act(() => {
       screen.getByRole('radio').click();
-      fireEvent.change(screen.getByRole('radio'), { target: { checked: '' } });
     });
+    fireEvent.change(screen.getByRole('radio'), { target: { checked: '' } });
 
     expect(screen.getByRole('radio')).to.have.property('checked', false);
   });
