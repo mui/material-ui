@@ -7,11 +7,13 @@ import { DistributiveOmit } from '@mui/types';
 
 export { default as THEME_ID } from '../styles/identifier';
 export {
+  default as createTheme,
+} from './createTheme';
+export type {
   // New types for augmenting the Theme Components
   CreateThemeComponent,
   ThemeComponents,
   // =============================================
-  default as createTheme,
   ThemeOptions,
   Theme,
   CssThemeVariables,
@@ -19,9 +21,9 @@ export {
   BaseTheme,
 } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
-export { Shadows } from '../styles/shadows';
-export { ZIndex } from '../styles/zIndex';
-export {
+export type { Shadows } from '../styles/shadows';
+export type { ZIndex } from '../styles/zIndex';
+export type {
   CommonColors,
   Palette,
   PaletteColor,
@@ -36,23 +38,25 @@ export {
 } from '../styles/createPalette';
 export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from '../styles/createStyles';
-export {
+export type {
   TypographyVariants,
   TypographyVariantsOptions,
   TypographyStyle,
   TypographyVariant,
 } from '../styles/createTypography';
 export { default as responsiveFontSizes } from '../styles/responsiveFontSizes';
-export {
+export type {
   Duration,
   Easing,
   Transitions,
   TransitionsOptions,
+} from '../styles/createTransitions';
+export {
   duration,
   easing,
 } from '../styles/createTransitions';
-export { Mixins, CSSProperties, MixinsOptions } from '../styles/createMixins';
-export {
+export type { Mixins, CSSProperties, MixinsOptions } from '../styles/createMixins';
+export type {
   Direction,
   Breakpoint,
   BreakpointOverrides,
@@ -62,6 +66,11 @@ export {
   Interpolation,
   CSSInterpolation,
   CSSObject,
+  ColorFormat,
+  ColorObject,
+  SxProps,
+} from '@mui/system';
+export {
   css,
   keyframes,
   // color manipulators
@@ -76,17 +85,15 @@ export {
   alpha,
   darken,
   lighten,
-  ColorFormat,
-  ColorObject,
   StyledEngineProvider,
-  SxProps,
 } from '@mui/system';
 export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
-export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
+export { default as ThemeProvider } from './ThemeProvider';
+export type { ThemeProviderProps } from './ThemeProvider';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from '../styles/cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
