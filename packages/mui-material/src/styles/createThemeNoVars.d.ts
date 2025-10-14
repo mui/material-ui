@@ -7,7 +7,7 @@ import { TransitionsOptions } from './createTransitions';
 import { ZIndexOptions } from './zIndex';
 import { Components } from './components';
 import { ColorSystemOptions } from './createThemeFoundation';
-import { Theme as ThemeOptimized, CssThemeVariables } from '../stylesOptimized';
+import { Theme, CssThemeVariables } from '../stylesOptimized';
 
 export { CssThemeVariables };
 
@@ -30,9 +30,11 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   modularCssLayers?: boolean | string;
 }
 
-export interface Theme extends ThemeOptimized {
-  components?: Components<Omit<ThemeOptimized, 'components'>>;
+declare module '../stylesOptimized' {
+  interface ThemeComponents extends Components<Omit<Theme, 'components'>> {}
 }
+
+export { Theme };
 
 /**
  * Generate a theme base on the options received.
