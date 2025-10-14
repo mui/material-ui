@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ExtendList, ExtendListTypeMap } from '../List';
 import { OverrideProps } from '../OverridableComponent';
+import { CreateThemeComponent } from '../stylesOptimized';
 
 export interface MenuListOwnProps {
   /**

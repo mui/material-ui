@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { IconButtonProps } from '../IconButton/IconButton';
 import { SvgIconProps } from '../SvgIcon';
+import { CreateThemeComponent } from '../stylesOptimized';
+import { TablePaginationActionsClassKey } from './tablePaginationActionsClasses';
 
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

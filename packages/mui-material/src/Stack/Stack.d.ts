@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
+import { ResponsiveStyleValue, StackClassKey, SxProps, SystemProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
-import { Theme } from '../stylesOptimized/createTheme';
+import { CreateThemeComponent, Theme } from '../stylesOptimized/createTheme';
 
 export interface StackOwnProps extends SystemProps<Theme> {
   /**
