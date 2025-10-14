@@ -110,7 +110,7 @@ export default defineConfig(
   },
   // Test start
   {
-    files: [`**/*${EXTENSION_TEST_FILE}`, 'packages/mui-codemod/testUtils/index.js'],
+    files: [`**/*${EXTENSION_TEST_FILE}`],
     extends: createTestConfig({
       useMocha: true,
     }),

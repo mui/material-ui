@@ -57,14 +57,14 @@ describe('<Accordion />', () => {
   });
 
   it('should be controlled', () => {
-    const { container, setProps } = render(
+    const view = render(
       <Accordion expanded>
         <AccordionSummary>Header</AccordionSummary>
       </Accordion>,
     );
-    const panel = container.firstChild;
+    const panel = view.container.firstChild;
     expect(panel).to.have.class(classes.expanded);
-    setProps({ expanded: false });
+    view.setProps({ expanded: false });
     expect(panel).not.to.have.class(classes.expanded);
   });
 
@@ -107,12 +107,12 @@ describe('<Accordion />', () => {
 
   it('when undefined onChange and controlled should not call the onChange', () => {
     const handleChange = spy();
-    const { setProps } = render(
+    const view = render(
       <Accordion onChange={handleChange} expanded>
         <AccordionSummary>Header</AccordionSummary>
       </Accordion>,
     );
-    setProps({ onChange: undefined });
+    view.setProps({ onChange: undefined });
     fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(0);
   });
@@ -139,13 +139,13 @@ describe('<Accordion />', () => {
   });
 
   it('should warn when switching between uncontrolled to controlled', () => {
-    const { setProps } = render(
+    const view = render(
       <Accordion>
         <AccordionSummary>Header</AccordionSummary>
       </Accordion>,
     );
 
-    expect(() => setProps({ expanded: true })).toErrorDev(
+    expect(() => view.setProps({ expanded: true })).toErrorDev(
       'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
     );
   });
