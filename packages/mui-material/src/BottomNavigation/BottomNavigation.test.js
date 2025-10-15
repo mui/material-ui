@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import BottomNavigation, {
   bottomNavigationClasses as classes,
 } from '@mui/material/BottomNavigation';
@@ -55,14 +55,15 @@ describe('<BottomNavigation />', () => {
   });
 
   it('should overwrite parent showLabel prop adding class iconOnly', () => {
-    const { getByTestId } = render(
+    render(
       <BottomNavigation showLabels>
         <BottomNavigationAction icon={icon} data-testid="withLabel" />
         <BottomNavigationAction icon={icon} showLabel={false} data-testid="withoutLabel" />
       </BottomNavigation>,
     );
-    expect(getByTestId('withLabel')).not.to.have.class(actionClasses.iconOnly);
-    expect(getByTestId('withoutLabel')).to.have.class(actionClasses.iconOnly);
+
+    expect(screen.getByTestId('withLabel')).not.to.have.class(actionClasses.iconOnly);
+    expect(screen.getByTestId('withoutLabel')).to.have.class(actionClasses.iconOnly);
   });
 
   it('should forward the click', () => {

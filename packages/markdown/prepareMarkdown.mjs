@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase.js';
+import { kebabCase } from 'es-toolkit/string';
 import {
   createRender,
   getContents,
