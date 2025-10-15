@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -22,27 +22,27 @@ describe('<TimelineOppositeContent />', () => {
   }));
 
   it('should have positionLeft class when inside of a left-positioned timeline', () => {
-    const { getByText } = render(
+    render(
       <Timeline position="left">
         <TimelineOppositeContent>content</TimelineOppositeContent>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.positionLeft);
+    expect(screen.getByText('content')).to.have.class(classes.positionLeft);
   });
 
   it('should have positionRight class when inside of a right-positioned timeline', () => {
-    const { getByText } = render(
+    render(
       <Timeline position="right">
         <TimelineOppositeContent>content</TimelineOppositeContent>
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.positionRight);
+    expect(screen.getByText('content')).to.have.class(classes.positionRight);
   });
 
   it('should have positionLeft class when inside of a left-positioned timeline and a left-positioned item', () => {
-    const { getByText } = render(
+    render(
       <Timeline position="left">
         <TimelineItem position="left">
           <TimelineOppositeContent>content</TimelineOppositeContent>
@@ -50,11 +50,11 @@ describe('<TimelineOppositeContent />', () => {
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.positionLeft);
+    expect(screen.getByText('content')).to.have.class(classes.positionLeft);
   });
 
   it('should have positionLeft class when inside of a right-positioned timeline and a left-positioned item', () => {
-    const { getByText } = render(
+    render(
       <Timeline position="right">
         <TimelineItem position="left">
           <TimelineOppositeContent>content</TimelineOppositeContent>
@@ -62,11 +62,11 @@ describe('<TimelineOppositeContent />', () => {
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.positionLeft);
+    expect(screen.getByText('content')).to.have.class(classes.positionLeft);
   });
 
   it('should have positionRight class when inside of a left-positioned timeline and a right-positioned item', () => {
-    const { getByText } = render(
+    render(
       <Timeline position="left">
         <TimelineItem position="right">
           <TimelineOppositeContent>content</TimelineOppositeContent>
@@ -74,11 +74,11 @@ describe('<TimelineOppositeContent />', () => {
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.positionRight);
+    expect(screen.getByText('content')).to.have.class(classes.positionRight);
   });
 
   it('should have positionRight class when inside of a right-positioned timeline and a right-positioned item', () => {
-    const { getByText } = render(
+    render(
       <Timeline position="right">
         <TimelineItem position="right">
           <TimelineOppositeContent>content</TimelineOppositeContent>
@@ -86,6 +86,6 @@ describe('<TimelineOppositeContent />', () => {
       </Timeline>,
     );
 
-    expect(getByText('content')).to.have.class(classes.positionRight);
+    expect(screen.getByText('content')).to.have.class(classes.positionRight);
   });
 });

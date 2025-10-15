@@ -4,17 +4,12 @@
 
 ### Prerequisites
 
-1. You must be a member of the `@mui` org in npm to publish the release
-2. Set up your npm authToken by logging into npm (`npm login`) . This will save a token to `~/.npmrc` as a line that looks
-   like this:
-   ```text
-   //registry.npmjs.org/:_authToken=npm_000000000000000000000000000000000000
-   ```
-3. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
+1. Make sure you have added the `material-ui-docs` and `upstream` remotes to deploy the documentation:
    ```bash
+   git remote add upstream https://github.com/mui/material-ui.git
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
-4. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
+2. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
 
 ### Releasing a minor version
 
@@ -48,6 +43,11 @@ The following steps must be proposed as a pull request.
    > - **Run in dry-run mode:** Used for debugging.
    > - **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
 
+   # <<<<<<< HEAD
+
+   > - **npm dist tag to publish to** Use to publish legacy or canary versions.
+   >   > > > > > > upstream/master
+
 3. Click "Run workflow"
 4. Refresh the page to see the newly created workflow, and click it.
 5. The next screen will say "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
@@ -76,16 +76,16 @@ It goes like this:
 Hotfix branch creation requires the help of a repository admin. They need to take the following steps:
 
 1. Check out the commit for the latest release tag.
-2. Create a branch named _release/<PATCH_VERSION>_ where _<PATCH_VERSION>_ is the next semver patch version from that release tag.
+2. Create a branch named `release/<PATCH_VERSION>` where `<PATCH_VERSION>` is the next semver patch version from that release tag.
 3. force push the branch to `upstream`:
 
    ```bash
    git push -f upstream release/<PATCH_VERSION>
    ```
 
-The following steps must be proposed as a pull request to _release/<PATCH_VERSION>_.
+The following steps must be proposed as a pull request to `release/<PATCH_VERSION>`.
 
-1. check out _release/<PATCH_VERSION>_ and cherry-pick the hotfix commits on top of it.
+1. check out `release/<PATCH_VERSION>` and cherry-pick the hotfix commits on top of it.
 2. Generate the changelog with `pnpm release:changelog`
    The output must be prepended to the top level `CHANGELOG.md`
    `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
@@ -97,18 +97,19 @@ The following steps must be proposed as a pull request to _release/<PATCH_VERSIO
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
 6. Open PR with changes and wait for review and green CI.
-7. Merge PR into _release/<PATCH_VERSION>_ once CI is green and it has been approved.
-8. Open and merge a PR from _release/<PATCH_VERSION>_ to master to correct the package versioning and update the changelog.
+7. Merge PR into `release/<PATCH_VERSION>` once CI is green and it has been approved.
+8. Open and merge a PR from `release/<PATCH_VERSION>` to master to correct the package versioning and update the changelog.
 
 #### Release
 
 1. Go to the [publish action](https://github.com/mui/material-ui/actions/workflows/publish.yml).
 2. Choose "Run workflow" dropdown
 
-   > - **Branch:** _release/<PATCH_VERSION>_
-   > - **Commit SHA to release from:** the commit that contains the merged release on _release/<PATCH_VERSION>_. This commit is linked to the GitHub release.
+   > - **Branch:** `release/<PATCH_VERSION>`
+   > - **Commit SHA to release from:** the commit that contains the merged release on `release/<PATCH_VERSION>`. This commit is linked to the GitHub release.
    > - **Run in dry-run mode:** Used for debugging.
    > - **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
+   > - **npm dist tag to publish to** Use to publish legacy or canary versions.
 
 3. Click "Run workflow"
 4. Refresh the page to see the newly created workflow, and click it.

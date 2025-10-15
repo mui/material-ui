@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import AspectRatio, {
@@ -31,20 +31,20 @@ describe('<AspectRatio />', () => {
 
   describe('prop: variant', () => {
     it('plain by default', () => {
-      const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
+      render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
-      expect(getByTestId('root').firstChild).to.have.class(classes.variantSoft);
+      expect(screen.getByTestId('root').firstChild).to.have.class(classes.variantSoft);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByTestId } = render(
+        render(
           <AspectRatio data-testid="root" variant={variant}>
             Hello World
           </AspectRatio>,
         );
 
-        expect(getByTestId('root').firstChild).to.have.class(
+        expect(screen.getByTestId('root').firstChild).to.have.class(
           classes[`variant${capitalize(variant)}` as AspectRatioClassKey],
         );
       });
@@ -53,20 +53,20 @@ describe('<AspectRatio />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
+      render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
-      expect(getByTestId('root').firstChild).to.have.class(classes.colorNeutral);
+      expect(screen.getByTestId('root').firstChild).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByTestId } = render(
+        render(
           <AspectRatio data-testid="root" color={color}>
             Hello World
           </AspectRatio>,
         );
 
-        expect(getByTestId('root').firstChild).to.have.class(
+        expect(screen.getByTestId('root').firstChild).to.have.class(
           classes[`color${capitalize(color)}` as AspectRatioClassKey],
         );
       });
@@ -85,9 +85,8 @@ describe('<AspectRatio />', () => {
   });
 
   it('able to pass the props to content slot', () => {
-    const { getByTestId } = render(
-      <AspectRatio slotProps={{ content: { 'data-testid': 'content' } }} />,
-    );
-    expect(getByTestId('content')).toBeVisible();
+    render(<AspectRatio slotProps={{ content: { 'data-testid': 'content' } }} />);
+
+    expect(screen.getByTestId('content')).toBeVisible();
   });
 });

@@ -3,8 +3,7 @@ import { prettyDOM } from '@testing-library/react/pure';
 import * as chai from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
-// avoid loading whole lodash, it takes ~50ms to initialize
-import kebabCase from 'lodash.kebabcase';
+import { kebabCase } from 'es-toolkit/string';
 import './chai.types';
 
 const isKarma = Boolean(process.env.KARMA);
