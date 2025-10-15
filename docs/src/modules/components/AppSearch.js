@@ -325,7 +325,7 @@ export default function AppSearch(props) {
     optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
   }
 
-  // Filter out deprecated products unless we're on their subsections
+  // Filter out stand-alone products unless we're on their subsections
   let filters = undefined;
   if (standaloneProducts.length > 0) {
     const filtersPredicates = [];
