@@ -47,3 +47,4 @@ docs/public/static/blog/feed/*
 screenshots
 packed
 test-results
+.env
