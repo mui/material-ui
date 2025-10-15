@@ -15,7 +15,7 @@ function RowComponent({ index, itemData, style }) {
   const dataSet = itemData[index];
   const inlineStyle = {
     ...style,
-    top: (style.top ?? 0) + LISTBOX_PADDING,
+    top: style.top + LISTBOX_PADDING,
   };
 
   if ('group' in dataSet) {
@@ -95,8 +95,8 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   };
 
   const getHeight = () => {
-    if (itemCount > 6) {
-      return 6 * itemSize;
+    if (itemCount > 8) {
+      return 8 * itemSize;
     }
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
@@ -105,11 +105,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const { className, style, ...otherProps } = other;
 
   return (
-    <div
-      ref={ref}
-      {...otherProps}
-      style={{ position: 'relative', overflow: 'visible' }}
-    >
+    <div ref={ref} {...otherProps}>
       <List
         className={className}
         listRef={internalListRef}
@@ -132,8 +128,16 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 ListboxComponent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  internalListRef: PropTypes.any,
-  onItemsBuilt: PropTypes.func,
+  internalListRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        element: PropTypes.object,
+        scrollToRow: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  onItemsBuilt: PropTypes.func.isRequired,
   style: PropTypes.object,
 };
 

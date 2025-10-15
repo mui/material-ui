@@ -5,7 +5,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
-import { List, RowComponentProps, useListRef } from 'react-window';
+import {
+  List,
+  RowComponentProps,
+  useListRef,
+  ListImperativeAPI,
+} from 'react-window';
 import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
@@ -29,7 +34,7 @@ function RowComponent({
   const dataSet = itemData[index];
   const inlineStyle = {
     ...style,
-    top: ((style.top as number) ?? 0) + LISTBOX_PADDING,
+    top: (style.top as number) + LISTBOX_PADDING,
   };
 
   if ('group' in dataSet) {
@@ -53,8 +58,8 @@ function RowComponent({
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLElement> & {
-    internalListRef?: any;
-    onItemsBuilt?: (optionIndexMap: Map<string, number>) => void;
+    internalListRef?: React.Ref<ListImperativeAPI>;
+    onItemsBuilt: (optionIndexMap: Map<string, number>) => void;
   }
 >(function ListboxComponent(props, ref) {
   const { children, internalListRef, onItemsBuilt, ...other } = props;
@@ -96,8 +101,8 @@ const ListboxComponent = React.forwardRef<
   };
 
   const getHeight = () => {
-    if (itemCount > 6) {
-      return 6 * itemSize;
+    if (itemCount > 8) {
+      return 8 * itemSize;
     }
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
@@ -106,11 +111,7 @@ const ListboxComponent = React.forwardRef<
   const { className, style, ...otherProps } = other;
 
   return (
-    <div
-      ref={ref}
-      {...otherProps}
-      style={{ position: 'relative', overflow: 'visible' }}
-    >
+    <div ref={ref} {...otherProps}>
       <List
         className={className}
         listRef={internalListRef}
