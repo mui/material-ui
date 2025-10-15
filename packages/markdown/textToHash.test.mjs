@@ -17,6 +17,7 @@ describe('textToHash', () => {
     ];
     table.forEach((entry, index) => {
       const [markdown, expected] = entry;
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const text = renderInlineMarkdown(markdown, { mangle: false, headerIds: false });
       const actual = textToHash(text);
 

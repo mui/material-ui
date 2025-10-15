@@ -28,9 +28,9 @@ describe('<RadioGroup />', () => {
   }));
 
   it('should have `orientation` class', () => {
-    const { getByRole } = render(<RadioGroup value="" orientation="horizontal" />);
+    render(<RadioGroup value="" orientation="horizontal" />);
 
-    expect(getByRole('radiogroup')).to.have.class(classes.horizontal);
+    expect(screen.getByRole('radiogroup')).to.have.class(classes.horizontal);
   });
 
   it('the root component has the radiogroup role', () => {
@@ -50,8 +50,8 @@ describe('<RadioGroup />', () => {
 
   it('should fire the onKeyDown callback', () => {
     const handleKeyDown = spy();
-    const { getByRole } = render(<RadioGroup tabIndex={-1} value="" onKeyDown={handleKeyDown} />);
-    const radiogroup = getByRole('radiogroup');
+    render(<RadioGroup tabIndex={-1} value="" onKeyDown={handleKeyDown} />);
+    const radiogroup = screen.getByRole('radiogroup');
 
     act(() => {
       radiogroup.focus();
@@ -63,13 +63,13 @@ describe('<RadioGroup />', () => {
   });
 
   it('should support uncontrolled mode', () => {
-    const { getByRole } = render(
+    render(
       <RadioGroup name="group">
         <Radio value="one" />
       </RadioGroup>,
     );
 
-    const radio = getByRole('radio') as HTMLInputElement;
+    const radio = screen.getByRole('radio') as HTMLInputElement;
 
     fireEvent.click(radio);
 
@@ -77,14 +77,14 @@ describe('<RadioGroup />', () => {
   });
 
   it('should support default value in uncontrolled mode', () => {
-    const { getAllByRole } = render(
+    render(
       <RadioGroup name="group" defaultValue="zero">
         <Radio value="zero" />
         <Radio value="one" />
       </RadioGroup>,
     );
 
-    const radios = getAllByRole('radio') as Array<HTMLInputElement>;
+    const radios = screen.getAllByRole('radio') as Array<HTMLInputElement>;
 
     expect(radios[0].checked).to.equal(true);
 
@@ -94,14 +94,14 @@ describe('<RadioGroup />', () => {
   });
 
   it('should have a default name', () => {
-    const { getAllByRole } = render(
+    render(
       <RadioGroup>
         <Radio value="zero" />
         <Radio value="one" />
       </RadioGroup>,
     );
 
-    const [arbitraryRadio, ...radios] = getAllByRole('radio') as Array<HTMLInputElement>;
+    const [arbitraryRadio, ...radios] = screen.getAllByRole('radio') as Array<HTMLInputElement>;
     // `name` **property** will always be a string even if the **attribute** is omitted
     expect(arbitraryRadio.name).not.to.equal('');
     // all input[type="radio"] have the same name
@@ -139,14 +139,15 @@ describe('<RadioGroup />', () => {
   describe('prop: onChange', () => {
     it('should fire onChange', () => {
       const handleChange = spy();
-      const { getAllByRole } = render(
+
+      render(
         <RadioGroup value="" onChange={handleChange}>
           <Radio value="woofRadioGroup" />
           <Radio />
         </RadioGroup>,
       );
 
-      const radios = getAllByRole('radio');
+      const radios = screen.getAllByRole('radio');
 
       fireEvent.click(radios[0]);
 
@@ -156,14 +157,15 @@ describe('<RadioGroup />', () => {
     it('should chain the onChange property', () => {
       const handleChange1 = spy();
       const handleChange2 = spy();
-      const { getAllByRole } = render(
+
+      render(
         <RadioGroup value="" onChange={handleChange1}>
           <Radio value="woofRadioGroup" onChange={handleChange2} />
           <Radio />
         </RadioGroup>,
       );
 
-      const radios = getAllByRole('radio');
+      const radios = screen.getAllByRole('radio');
 
       fireEvent.click(radios[0]);
 
@@ -190,11 +192,9 @@ describe('<RadioGroup />', () => {
         const values = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
         const handleChange = spy();
 
-        const { getAllByRole } = render(
-          <Test onChange={handleChange} value={values[1]} values={values} />,
-        );
+        render(<Test onChange={handleChange} value={values[1]} values={values} />);
 
-        const radios = getAllByRole('radio') as Array<HTMLInputElement>;
+        const radios = screen.getAllByRole('radio') as Array<HTMLInputElement>;
 
         expect(radios[0].checked).to.equal(false);
         expect(radios[1].checked).to.equal(true);

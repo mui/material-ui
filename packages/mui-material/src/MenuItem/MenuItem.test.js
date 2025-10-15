@@ -68,6 +68,7 @@ describe('<MenuItem />', () => {
 
         expect(handler.callCount).to.equal(1);
 
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {});
       });
     });

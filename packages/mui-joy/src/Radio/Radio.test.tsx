@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';
 import { ThemeProvider, extendTheme } from '@mui/joy/styles';
 import FormControl from '@mui/joy/FormControl';
@@ -35,49 +35,49 @@ describe('<Radio />', () => {
   });
 
   it('renders a `role="radio"` with the id', () => {
-    const { getByRole } = render(<Radio id="foo" />);
+    render(<Radio id="foo" />);
 
-    expect(getByRole('radio')).to.have.property('id', 'foo');
+    expect(screen.getByRole('radio')).to.have.property('id', 'foo');
   });
 
   it('renders a `role="radio"` with the name', () => {
-    const { getByRole } = render(<Radio name="bar" />);
+    render(<Radio name="bar" />);
 
-    expect(getByRole('radio')).to.have.property('name', 'bar');
+    expect(screen.getByRole('radio')).to.have.property('name', 'bar');
   });
 
   it('renders a `role="radio"` with the required attribute', () => {
-    const { getByRole } = render(<Radio name="bar" required />);
+    render(<Radio name="bar" required />);
 
-    expect(getByRole('radio')).to.have.attribute('required');
+    expect(screen.getByRole('radio')).to.have.attribute('required');
   });
 
   it('renders a `role="radio"` with the readOnly attribute', () => {
-    const { getByRole } = render(<Radio name="bar" readOnly />);
+    render(<Radio name="bar" readOnly />);
 
-    expect(getByRole('radio')).to.have.attribute('readonly');
+    expect(screen.getByRole('radio')).to.have.attribute('readonly');
   });
 
   it('renders a `role="radio"` with the Unchecked state by default', () => {
-    const { getByRole } = render(<Radio />);
+    render(<Radio />);
 
-    expect(getByRole('radio')).to.have.property('checked', false);
+    expect(screen.getByRole('radio')).to.have.property('checked', false);
   });
 
   it('renders a radio with the Checked state when checked', () => {
-    const { getByRole } = render(<Radio defaultChecked />);
+    render(<Radio defaultChecked />);
 
-    expect(getByRole('radio')).to.have.property('checked', true);
+    expect(screen.getByRole('radio')).to.have.property('checked', true);
   });
 
   it('the radio can be disabled', () => {
-    const { getByRole } = render(<Radio disabled />);
+    render(<Radio disabled />);
 
-    expect(getByRole('radio')).to.have.property('disabled', true);
+    expect(screen.getByRole('radio')).to.have.property('disabled', true);
   });
 
   it('disabled prop from FormControl should take precedence over disabled prop from theme', () => {
-    const { getByRole } = render(
+    render(
       <ThemeProvider
         theme={extendTheme({
           components: {
@@ -95,19 +95,19 @@ describe('<Radio />', () => {
       </ThemeProvider>,
     );
 
-    expect(getByRole('radio')).to.have.property('disabled', true);
+    expect(screen.getByRole('radio')).to.have.property('disabled', true);
   });
 
   it('the Checked state changes after change events', () => {
-    const { getByRole } = render(<Radio defaultChecked />);
+    render(<Radio defaultChecked />);
 
     // how a user would trigger it
     act(() => {
-      getByRole('radio').click();
-      fireEvent.change(getByRole('radio'), { target: { checked: '' } });
+      screen.getByRole('radio').click();
     });
+    fireEvent.change(screen.getByRole('radio'), { target: { checked: '' } });
 
-    expect(getByRole('radio')).to.have.property('checked', false);
+    expect(screen.getByRole('radio')).to.have.property('checked', false);
   });
 
   it('should have configurable color', () => {
@@ -138,36 +138,36 @@ describe('<Radio />', () => {
   });
 
   it('should be checked when it is selected in the radio group', () => {
-    const { getByRole } = render(
+    render(
       <RadioGroup defaultValue="1">
         <Radio value="1" />
         <Radio value="2" />
       </RadioGroup>,
     );
 
-    expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
+    expect(screen.getByRole('radio', { checked: true })).to.have.property('value', '1');
   });
 
   it('should be checked when changing the value', () => {
-    const { getByRole } = render(
+    render(
       <RadioGroup defaultValue={1}>
         <Radio name="0" value={0} />
         <Radio name="1" value={1} />
       </RadioGroup>,
     );
 
-    expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
+    expect(screen.getByRole('radio', { checked: true })).to.have.property('value', '1');
 
     act(() => {
-      getByRole('radio', { checked: false }).click();
+      screen.getByRole('radio', { checked: false }).click();
     });
 
-    expect(getByRole('radio', { checked: true })).to.have.property('value', '0');
+    expect(screen.getByRole('radio', { checked: true })).to.have.property('value', '0');
 
     act(() => {
-      getByRole('radio', { checked: false }).click();
+      screen.getByRole('radio', { checked: false }).click();
     });
 
-    expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
+    expect(screen.getByRole('radio', { checked: true })).to.have.property('value', '1');
   });
 });
