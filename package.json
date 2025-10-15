@@ -142,7 +142,7 @@
     "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
     "git-url-parse": "^16.1.0",
-    "globby": "^14.1.0",
+    "globby": "^15.0.0",
     "karma": "^6.4.4",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",

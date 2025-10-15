@@ -185,8 +185,8 @@ importers:
         specifier: ^16.1.0
         version: 16.1.0
       globby:
-        specifier: ^14.1.0
-        version: 14.1.0
+        specifier: ^15.0.0
+        version: 15.0.0
       karma:
         specifier: ^6.4.4
         version: 6.4.4
