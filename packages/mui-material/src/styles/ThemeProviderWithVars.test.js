@@ -342,7 +342,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       this.skip();
     }
 
-    const { getByTestId } = render(
+    render(
       <CssVarsProvider>
         <Box
           data-testid="box-1"
@@ -359,13 +359,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       </CssVarsProvider>,
     );
 
-    expect(getByTestId('box-1')).toHaveComputedStyle({
+    expect(screen.getByTestId('box-1')).toHaveComputedStyle({
       borderTopLeftRadius: '50%',
       borderTopRightRadius: '50%',
       borderBottomLeftRadius: '50%',
       borderBottomRightRadius: '50%',
     });
-    expect(getByTestId('box-2')).toHaveComputedStyle({
+    expect(screen.getByTestId('box-2')).toHaveComputedStyle({
       borderTopLeftRadius: '16px',
       borderTopRightRadius: '16px',
       borderBottomLeftRadius: '16px',

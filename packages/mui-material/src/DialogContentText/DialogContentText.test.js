@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import DialogContentText, {
   dialogContentTextClasses as classes,
@@ -21,9 +21,9 @@ describe('<DialogContentText />', () => {
   describe('prop: children', () => {
     it('should render children', () => {
       const children = <span data-testid="test-children" />;
-      const { getByTestId } = render(<DialogContentText>{children}</DialogContentText>);
+      render(<DialogContentText>{children}</DialogContentText>);
 
-      getByTestId('test-children');
+      screen.getByTestId('test-children');
     });
   });
 });

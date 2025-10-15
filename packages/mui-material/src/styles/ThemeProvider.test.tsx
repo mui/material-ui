@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, renderHook } from '@mui/internal-test-utils';
+import { createRenderer, renderHook, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
@@ -48,7 +48,7 @@ describe('ThemeProvider', () => {
 
   it('theme should be stable between renders if created outside of component', () => {
     const theme = createTheme();
-    const themeContext = renderHook(
+    const { result, rerender } = renderHook(
       () => {
         return useTheme();
       },
@@ -56,9 +56,9 @@ describe('ThemeProvider', () => {
         wrapper: ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>,
       },
     );
-    const firstRender = themeContext.result.current;
-    themeContext.rerender();
-    const secondRender = themeContext.result.current;
+    const firstRender = result.current;
+    rerender();
+    const secondRender = result.current;
     expect(firstRender).to.equal(secondRender);
   });
 
@@ -100,30 +100,31 @@ describe('ThemeProvider', () => {
       const theme = createTheme({
         colorSchemes: { dark: true },
       });
-      const { getByTestId, user } = render(
+      const { user } = render(
         <ThemeProvider theme={theme}>
           <ModeSwitcher />
         </ThemeProvider>,
       );
 
-      expect(getByTestId('mode-switcher')).to.have.property('value', 'system');
+      expect(screen.getByTestId('mode-switcher')).to.have.property('value', 'system');
 
-      await user.selectOptions(getByTestId('mode-switcher'), 'dark');
+      await user.selectOptions(screen.getByTestId('mode-switcher'), 'dark');
 
-      expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
+      expect(screen.getByTestId('mode-switcher')).to.have.property('value', 'dark');
     });
 
     it('allows default mode to be changed', () => {
       const theme = createTheme({
         colorSchemes: { dark: true },
       });
-      const { getByTestId } = render(
+
+      render(
         <ThemeProvider theme={theme} defaultMode="dark">
           <ModeSwitcher />
         </ThemeProvider>,
       );
 
-      expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
+      expect(screen.getByTestId('mode-switcher')).to.have.property('value', 'dark');
     });
   });
 

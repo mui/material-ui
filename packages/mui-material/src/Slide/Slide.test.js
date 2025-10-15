@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer } from '@mui/internal-test-utils';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Slide from '@mui/material/Slide';
@@ -162,13 +162,13 @@ describe('<Slide />', () => {
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
-      const { getByTestId } = render(
+      render(
         <Slide in appear>
           <div data-testid="child">Foo</div>
         </Slide>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({
         transitionDuration: `${enteringScreenDurationInSeconds}s`,
       });
@@ -186,7 +186,7 @@ describe('<Slide />', () => {
         },
       });
 
-      const { getByTestId } = render(
+      render(
         <ThemeProvider theme={theme}>
           <Slide in appear>
             <div data-testid="child">Foo</div>
@@ -194,7 +194,7 @@ describe('<Slide />', () => {
         </ThemeProvider>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });

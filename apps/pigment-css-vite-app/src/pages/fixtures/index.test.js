@@ -72,12 +72,12 @@ async function main() {
     return testcase;
   }
 
-  async function takeScreenshot({ testcase, route }) {
+  async function takeScreenshot({ view, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
     await fs.mkdir(path.dirname(screenshotPath), { recursive: true });
 
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
-    const screenshotTarget = explicitScreenshotTarget || testcase;
+    const screenshotTarget = explicitScreenshotTarget || view;
 
     await screenshotTarget.screenshot({
       path: screenshotPath,
@@ -104,8 +104,8 @@ async function main() {
           this?.timeout?.(0);
         }
 
-        const testcase = await renderFixture(index);
-        await takeScreenshot({ testcase, route });
+        const view = await renderFixture(index);
+        await takeScreenshot({ view, route });
       });
     });
   });

@@ -345,8 +345,8 @@ describe('useAutocomplete', () => {
       render(<Test options={['foo', 'bar']} />);
       const input = screen.getByRole('combobox');
 
+      fireEvent.change(input, { target: { value: 'free' } });
       act(() => {
-        fireEvent.change(input, { target: { value: 'free' } });
         input.blur();
       });
 
@@ -395,9 +395,9 @@ describe('useAutocomplete', () => {
       );
     }
 
-    const { getByTestId } = render(<Test />);
+    render(<Test />);
 
-    const button = getByTestId('button');
+    const button = screen.getByTestId('button');
 
     expect(() => {
       fireEvent.click(button);

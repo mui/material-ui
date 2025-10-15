@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuButton, { menuButtonClasses as classes } from '@mui/joy/MenuButton';
@@ -40,13 +40,13 @@ describe('<MenuButton />', () => {
 
   describe('prop: disabled', () => {
     it('should render a disabled button', () => {
-      const { getByRole } = render(
+      render(
         <DropdownContext.Provider value={testContext}>
           <MenuButton disabled />
         </DropdownContext.Provider>,
       );
 
-      const button = getByRole('button');
+      const button = screen.getByRole('button');
       expect(button).to.have.property('disabled', true);
     });
 
@@ -58,13 +58,13 @@ describe('<MenuButton />', () => {
         dispatch: dispatchSpy,
       };
 
-      const { getByRole } = render(
+      render(
         <DropdownContext.Provider value={context}>
           <MenuButton disabled />
         </DropdownContext.Provider>,
       );
 
-      const button = getByRole('button');
+      const button = screen.getByRole('button');
       button.click();
 
       expect(dispatchSpy.called).to.equal(false);

@@ -110,21 +110,13 @@ export default defineConfig(
   },
   // Test start
   {
-    files: [`**/*${EXTENSION_TEST_FILE}`, `packages/mui-codemod/testUtils/**/*${EXTENSION_TS}`],
+    files: [`**/*${EXTENSION_TEST_FILE}`],
     extends: createTestConfig({
       useMocha: true,
     }),
     rules: {
       // Disabled temporarily. Enable one by one.
-      'testing-library/prefer-screen-queries': 'off',
       'testing-library/no-container': 'off',
-      'testing-library/no-dom-import': 'off',
-      'testing-library/no-node-access': 'off',
-      'testing-library/render-result-naming-convention': 'off',
-      'testing-library/no-await-sync-queries': 'off',
-      'testing-library/no-unnecessary-act': 'off',
-      'testing-library/no-wait-for-multiple-assertions': 'off',
-      'testing-library/no-render-in-lifecycle': 'off',
     },
   },
   // Test end
