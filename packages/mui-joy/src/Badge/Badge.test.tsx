@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { BadgeClassKey, BadgeOrigin, badgeClasses as classes } from '@mui/joy/Badge';
@@ -46,16 +46,14 @@ describe('<Badge />', () => {
   it('renders children and badgeContent', () => {
     const children = <div id="child" data-testid="child" />;
     const badge = <div id="badge" data-testid="badge" />;
-    const { container, getByTestId } = render(<Badge badgeContent={badge}>{children}</Badge>);
-    expect(container.firstChild).to.contain(getByTestId('child'));
-    expect(container.firstChild).to.contain(getByTestId('badge'));
+    const { container } = render(<Badge badgeContent={badge}>{children}</Badge>);
+    expect(container.firstChild).to.contain(screen.getByTestId('child'));
+    expect(container.firstChild).to.contain(screen.getByTestId('badge'));
   });
 
   it('renders children', () => {
-    const { container, getByTestId } = render(
-      <Badge className="testClassName" {...defaultProps} />,
-    );
-    expect(container.firstChild).to.contain(getByTestId('children'));
+    const { container } = render(<Badge className="testClassName" {...defaultProps} />);
+    expect(container.firstChild).to.contain(screen.getByTestId('children'));
   });
 
   describe('prop: invisible', () => {
