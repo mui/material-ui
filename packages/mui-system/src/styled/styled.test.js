@@ -203,7 +203,6 @@ describe('styled', () => {
       const CustomTest = styled('div', {
         name: 'MuiTest',
         slot: 'Rect',
-        overridesResolver: (props, styles) => styles.rect,
       })({
         width: '200px',
         height: '300px',
@@ -296,7 +295,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
       })`
         width: 200px;
         height: 300px;
@@ -345,7 +343,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
         skipVariantsResolver: false,
       })`
         width: 200px;
@@ -457,7 +454,8 @@ describe('styled', () => {
           },
         },
       });
-      const { getByTestId } = render(
+
+      render(
         <ThemeProvider theme={customTheme}>
           <TestObj data-testid="large" size="large">
             Test
@@ -468,11 +466,11 @@ describe('styled', () => {
         </ThemeProvider>,
       );
 
-      expect(getByTestId('large')).toHaveComputedStyle({
+      expect(screen.getByTestId('large')).toHaveComputedStyle({
         width: '400px',
         height: '400px',
       });
-      expect(getByTestId('small')).toHaveComputedStyle({
+      expect(screen.getByTestId('small')).toHaveComputedStyle({
         width: theme.spacing(10),
         height: theme.spacing(10),
       });

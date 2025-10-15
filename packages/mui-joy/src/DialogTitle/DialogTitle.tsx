@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
@@ -87,7 +87,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     ...other
   } = props;
 
-  const color = inProps.color || (variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color || (variant ? (colorProp ?? 'neutral') : colorProp);
 
   const externalForwardedProps = { ...other, component, slots, slotProps };
 

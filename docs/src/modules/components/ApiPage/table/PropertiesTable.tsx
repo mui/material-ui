@@ -1,12 +1,13 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
-import { Properties, getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
+import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
 
@@ -40,6 +41,17 @@ const StyledTable = styled('table')(
       border: '1px solid',
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+    },
+    '& .MuiApi-table-item-signature-type': {
+      textDecoration: 'underline',
+      textDecorationStyle: 'dotted',
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+      fontWeight: theme.typography.fontWeightMedium,
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
+      cursor: 'help',
     },
     '& .MuiApi-table-item-default': {
       ...theme.typography.caption,
@@ -89,6 +101,10 @@ const StyledTable = styled('table')(
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
       },
+      '& .MuiApi-table-item-signature-type': {
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+        textDecorationColor: alpha(darkTheme.palette.primary.main, 0.6),
+      },
       '& .MuiApi-table-item-default': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,
@@ -119,7 +135,7 @@ function PropDescription({ description }: { description: string }) {
 }
 
 interface PropertiesTableProps {
-  properties: Properties[];
+  properties: PropertyDefinition[];
 }
 
 export default function PropertiesTable(props: PropertiesTableProps) {
@@ -133,16 +149,15 @@ export default function PropertiesTable(props: PropertiesTableProps) {
       <StyledTable>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Type</th>
-            {hasDefaultColumn && <th>Default</th>}
-            <th>Description</th>
+            <th>{'Name'}</th>
+            <th>{'Type'}</th>
+            {hasDefaultColumn && <th>{'Default'}</th>}
+            <th>{'Description'}</th>
           </tr>
         </thead>
         <tbody>
           {properties.map((params) => {
             const {
-              componentName,
               propName,
               description,
               seeMoreDescription,
@@ -152,8 +167,6 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               isProPlan,
               isPremiumPlan,
               isDeprecated,
-              hooksParameters,
-              hooksReturnValue,
               deprecationInfo,
               typeName,
               propDefault,
@@ -161,24 +174,22 @@ export default function PropertiesTable(props: PropertiesTableProps) {
               signature,
               signatureArgs,
               signatureReturnDescription,
+              hash,
             } = params;
 
             return (
-              <tr
-                key={propName}
-                id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
-              >
+              <tr key={propName} id={hash}>
                 <td className="MuiApi-table-item-title algolia-lvl3">
                   {propName}
                   {isRequired ? '*' : ''}
                   {isOptional ? '?' : ''}
                   {isProPlan && (
-                    <a href="/x/introduction/licensing/#pro-plan">
+                    <a href="/x/introduction/licensing/#pro-plan" aria-label="Pro plan">
                       <span className="plan-pro" />
                     </a>
                   )}
                   {isPremiumPlan && (
-                    <a href="/x/introduction/licensing/#premium-plan">
+                    <a href="/x/introduction/licensing/#premium-plan" aria-label="Premium plan">
                       <span className="plan-premium" />
                     </a>
                   )}
@@ -210,7 +221,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                       className="prop-table-additional-description"
                     />
                   )}
-                  {additionalInfo.map((key) => (
+                  {additionalInfo?.map((key) => (
                     <p
                       className="prop-table-additional-description"
                       key={key}
@@ -254,15 +265,34 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                       {signatureArgs && (
                         <div>
                           <ul>
-                            {signatureArgs.map(({ argName, argDescription }) => (
-                              <li
-                                className="prop-signature-list"
-                                key={argName}
-                                dangerouslySetInnerHTML={{
-                                  __html: `<code>${argName}</code> ${argDescription}`,
-                                }}
-                              />
-                            ))}
+                            {signatureArgs.map(
+                              ({ argName, argDescription, argType, argTypeDescription }) => (
+                                <li className="prop-signature-list" key={argName}>
+                                  <code>
+                                    {argName}
+                                    {argType && argTypeDescription && (
+                                      <Tooltip
+                                        title={
+                                          <span
+                                            dangerouslySetInnerHTML={{ __html: argTypeDescription }}
+                                          />
+                                        }
+                                      >
+                                        <span>
+                                          :{' '}
+                                          <span className="MuiApi-table-item-signature-type">
+                                            {argType}
+                                          </span>
+                                        </span>
+                                      </Tooltip>
+                                    )}
+                                  </code>{' '}
+                                  {argDescription && (
+                                    <span dangerouslySetInnerHTML={{ __html: argDescription }} />
+                                  )}
+                                </li>
+                              ),
+                            )}
                           </ul>
                         </div>
                       )}

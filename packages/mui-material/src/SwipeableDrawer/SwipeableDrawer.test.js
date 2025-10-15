@@ -17,7 +17,7 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 
   React.useEffect(() => {
     // JSDOM has no layout
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       Object.defineProperty(paperRef.current, 'clientWidth', { value: 250 });
       Object.defineProperty(paperRef.current, 'clientHeight', { value: 250 });
     }
@@ -63,17 +63,11 @@ describe('<SwipeableDrawer />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
+    render,
     classes: {},
     inheritComponent: Drawer,
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
 
   it('should render a Drawer and a SwipeArea', () => {
@@ -93,7 +87,9 @@ describe('<SwipeableDrawer />', () => {
         onOpen={() => {}}
         onClose={() => {}}
         open
-        PaperProps={{ 'data-test': 'foo' }}
+        slotProps={{
+          paper: { 'data-test': 'foo' },
+        }}
       />,
     );
 
@@ -182,7 +178,9 @@ describe('<SwipeableDrawer />', () => {
               onOpen={handleOpen}
               onClose={handleClose}
               open={false}
-              PaperProps={{ component: FakePaper }}
+              slotProps={{
+                paper: { component: FakePaper },
+              }}
             >
               <div data-testid="drawer">SwipeableDrawer</div>
             </SwipeableDrawer>,
@@ -228,20 +226,22 @@ describe('<SwipeableDrawer />', () => {
         });
 
         it('should open at correct position when swiping', function test() {
-          if (/jsdom/.test(window.navigator.userAgent)) {
+          if (window.navigator.userAgent.includes('jsdom')) {
             // Need layout
             this.skip();
           }
           const handleClose = spy();
           const handleOpen = spy();
-          const { getByTestId, setProps } = render(
+          const { setProps } = render(
             <SwipeableDrawer
               anchor={params.anchor}
               onOpen={handleOpen}
               onClose={handleClose}
               open={false}
-              PaperProps={{ component: FakePaper }}
               transitionDuration={0}
+              slotProps={{
+                paper: { component: FakePaper },
+              }}
             >
               <div data-testid="drawer">SwipeableDrawer</div>
             </SwipeableDrawer>,
@@ -269,7 +269,9 @@ describe('<SwipeableDrawer />', () => {
           if (params.anchor === 'bottom') {
             startPosition = windowHeight - DRAG_STARTED_SIGNAL;
           }
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(startPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            startPosition,
+          );
 
           fireEvent.touchMove(swipeArea, {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
@@ -298,7 +300,9 @@ describe('<SwipeableDrawer />', () => {
             endPosition = windowHeight - DRAWER_SIZE;
           }
 
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(endPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            endPosition,
+          );
         });
 
         it('should stay closed when not swiping far enough', () => {
@@ -310,7 +314,9 @@ describe('<SwipeableDrawer />', () => {
               onOpen={handleOpen}
               onClose={() => {}}
               open={false}
-              PaperProps={{ component: FakePaper }}
+              slotProps={{
+                paper: { component: FakePaper },
+              }}
             >
               <div>SwipeableDrawer</div>
             </SwipeableDrawer>,
@@ -341,7 +347,9 @@ describe('<SwipeableDrawer />', () => {
               onOpen={() => {}}
               onClose={handleClose}
               open
-              PaperProps={{ component: FakePaper }}
+              slotProps={{
+                paper: { component: FakePaper },
+              }}
             >
               <div data-testid="drawer">SwipeableDrawer</div>
             </SwipeableDrawer>,
@@ -372,7 +380,9 @@ describe('<SwipeableDrawer />', () => {
               onOpen={handleOpen}
               onClose={handleClose}
               open={false}
-              PaperProps={{ component: FakePaper }}
+              slotProps={{
+                paper: { component: FakePaper },
+              }}
             >
               <div data-testid="drawer">SwipeableDrawer</div>
             </SwipeableDrawer>,
@@ -404,7 +414,9 @@ describe('<SwipeableDrawer />', () => {
               onOpen={handleOpen}
               onClose={handleClose}
               open={false}
-              PaperProps={{ component: FakePaper }}
+              slotProps={{
+                paper: { component: FakePaper },
+              }}
             >
               <div>SwipeableDrawer</div>
             </SwipeableDrawer>,
@@ -433,7 +445,9 @@ describe('<SwipeableDrawer />', () => {
           onOpen={() => {}}
           onClose={handleClose}
           open
-          PaperProps={{ component: FakePaper }}
+          slotProps={{
+            paper: { component: FakePaper },
+          }}
         >
           <div data-testid="drawer">SwipeableDrawer</div>
         </SwipeableDrawer>,
@@ -456,12 +470,14 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('removes event listeners on unmount', () => {
-      const container = render(
+      const { unmount } = render(
         <SwipeableDrawer
           onOpen={() => {}}
           onClose={() => {}}
           open={false}
-          PaperProps={{ component: FakePaper }}
+          slotProps={{
+            paper: { component: FakePaper },
+          }}
         >
           <div>SwipeableDrawer</div>
         </SwipeableDrawer>,
@@ -471,7 +487,7 @@ describe('<SwipeableDrawer />', () => {
       fireEvent.touchStart(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 250, clientY: 0 })],
       });
-      container.unmount();
+      unmount();
       //  trigger setState warning if listeners aren't cleaned.
       fireEvent.touchMove(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 180, clientY: 0 })],
@@ -488,7 +504,9 @@ describe('<SwipeableDrawer />', () => {
           onOpen={() => {}}
           onClose={() => {}}
           open={false}
-          PaperProps={{ component: FakePaper }}
+          slotProps={{
+            paper: { component: FakePaper },
+          }}
         >
           <div>SwipeableDrawer</div>
         </SwipeableDrawer>,
@@ -521,17 +539,19 @@ describe('<SwipeableDrawer />', () => {
             onClose={() => {}}
             open={false}
             swipeAreaWidth={20}
-            SwipeAreaProps={{
-              style: {
-                // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
-                pointerEvents: 'none',
-              },
-            }}
-            PaperProps={{ component: FakePaper }}
             ModalProps={{
               keepMounted: true,
               sx: {
                 transform: `translateY(${handleHeight}px) !important`,
+              },
+            }}
+            slotProps={{
+              paper: { component: FakePaper },
+              swipeArea: {
+                style: {
+                  // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
+                  pointerEvents: 'none',
+                },
               },
             }}
           >
@@ -580,8 +600,8 @@ describe('<SwipeableDrawer />', () => {
         render(
           <SwipeableDrawer
             anchor={'bottom'}
-            allowSwipeInChildren={(e) => {
-              const elem = e.target;
+            allowSwipeInChildren={(event) => {
+              const elem = event.target;
               // ignore touch events from .ignore &^ from swipe area
               return (
                 !elem.classList.contains('ignore') &&
@@ -592,18 +612,21 @@ describe('<SwipeableDrawer />', () => {
             onClose={() => {}}
             open={false}
             swipeAreaWidth={20}
-            SwipeAreaProps={{
-              style: {
-                // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
-                pointerEvents: 'none',
-              },
-            }}
-            PaperProps={{ component: FakePaper }}
             ModalProps={{
               keepMounted: true,
               sx: {
                 '& > *': {
                   pointerEvents: 'auto',
+                },
+              },
+            }}
+            slotProps={{
+              root: {},
+              paper: { component: FakePaper },
+              swipeArea: {
+                style: {
+                  // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
+                  pointerEvents: 'none',
                 },
               },
             }}
@@ -679,7 +702,14 @@ describe('<SwipeableDrawer />', () => {
   it('should be able to attach paper ref passed through PaperProps', () => {
     const ref = React.createRef();
     render(
-      <SwipeableDrawer onOpen={() => {}} onClose={() => {}} PaperProps={{ ref }} open>
+      <SwipeableDrawer
+        onOpen={() => {}}
+        onClose={() => {}}
+        open
+        slotProps={{
+          paper: { ref },
+        }}
+      >
         <div />
       </SwipeableDrawer>,
     );
@@ -695,7 +725,9 @@ describe('<SwipeableDrawer />', () => {
           onOpen={handleOpen}
           onClose={() => {}}
           open={false}
-          PaperProps={{ component: FakePaper }}
+          slotProps={{
+            paper: { component: FakePaper },
+          }}
         >
           <div>SwipeableDrawer</div>
         </SwipeableDrawer>,
@@ -724,7 +756,9 @@ describe('<SwipeableDrawer />', () => {
           onOpen={() => {}}
           onClose={handleClose}
           open
-          PaperProps={{ component: FakePaper, 'data-testid': 'paper' }}
+          slotProps={{
+            paper: { component: FakePaper, 'data-testid': 'paper' },
+          }}
         >
           <div>SwipeableDrawer</div>
         </SwipeableDrawer>,
@@ -756,8 +790,10 @@ describe('<SwipeableDrawer />', () => {
             onOpen={handleOpen}
             onClose={() => {}}
             open={false}
-            PaperProps={{ component: FakePaper }}
-            SwipeAreaProps={{ 'data-testid': 'swipearea' }}
+            slotProps={{
+              paper: { component: FakePaper },
+              swipeArea: { 'data-testid': 'swipearea' },
+            }}
           >
             <div>Drawer1</div>
           </SwipeableDrawer>
@@ -765,8 +801,10 @@ describe('<SwipeableDrawer />', () => {
             onOpen={handleOpen}
             onClose={() => {}}
             open={false}
-            PaperProps={{ component: FakePaper }}
-            SwipeAreaProps={{ 'data-testid': 'swipearea' }}
+            slotProps={{
+              paper: { component: FakePaper },
+              swipeArea: { 'data-testid': 'swipearea' },
+            }}
           >
             <div>Drawer2</div>
           </SwipeableDrawer>
@@ -800,8 +838,10 @@ describe('<SwipeableDrawer />', () => {
         onOpen={() => {}}
         onClose={() => {}}
         open={false}
-        PaperProps={{ component: NullPaper }}
-        SwipeAreaProps={{ 'data-testid': 'swipearea' }}
+        slotProps={{
+          paper: { component: NullPaper },
+          swipeArea: { 'data-testid': 'swipearea' },
+        }}
       >
         <div>SwipeableDrawer</div>
       </SwipeableDrawer>,
@@ -876,7 +916,7 @@ describe('<SwipeableDrawer />', () => {
 
   describe('native scroll', () => {
     it('should not drag is native scroll is available', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Need layout
         this.skip();
       }
@@ -922,7 +962,7 @@ describe('<SwipeableDrawer />', () => {
   });
 
   it('should not prevent scrolling a container', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // Need layouting
       this.skip();
     }
@@ -958,7 +998,7 @@ describe('<SwipeableDrawer />', () => {
   });
 
   it('should not ignore scroll container if parent is overflow hidden', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // Need layouting
       this.skip();
     }
@@ -1000,7 +1040,7 @@ describe('<SwipeableDrawer />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1015,7 +1055,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1040,7 +1080,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('should render the values provided via prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

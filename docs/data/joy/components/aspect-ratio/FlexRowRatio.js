@@ -18,10 +18,10 @@ export default function FlexRowRatio() {
         sx={{ gap: 2, minWidth: 300 }}
       >
         <AspectRatio
-          sx={{
-            flexBasis: flexBasis ? `${flexBasis}px` : undefined,
-            overflow: 'auto',
-          }}
+          sx={[
+            { overflow: 'auto' },
+            flexBasis ? { flexBasis: `${flexBasis}px` } : { flexBasis: null },
+          ]}
         >
           <img
             src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"

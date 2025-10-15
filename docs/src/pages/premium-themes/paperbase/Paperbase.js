@@ -190,7 +190,6 @@ export default function Paperbase() {
               onClose={handleDrawerToggle}
             />
           )}
-
           <Navigator
             PaperProps={{ style: { width: drawerWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { collapseClasses } from '@mui/material/Collapse';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -13,22 +13,6 @@ describe('<StepContent />', () => {
   describeConformance(<StepContent />, () => ({
     classes,
     inheritComponent: 'div',
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <Stepper orientation="vertical">
-          <Step>{node}</Step>
-        </Stepper>,
-      );
-      // `wrapper.find(Step)` tree.
-      // "->" indicates the path we want
-      // "n:" indicates the index
-      // <ForwardRef(Step)>
-      // ->   0: <MuiStepRoot>
-      //        0: <Noop /> // from Emotion
-      // ->     1: <div className="MuiStep-root">
-      // ->       0: <MuiStepContentRoot />
-      return wrapper.find(Step).childAt(0).childAt(1).childAt(0);
-    },
     muiName: 'MuiStepContent',
     refInstanceof: window.HTMLDivElement,
     render: (node) => {
@@ -39,11 +23,17 @@ describe('<StepContent />', () => {
       );
       return { container: container.firstChild.firstChild, ...other };
     },
-    skip: ['componentProp', 'componentsProp', 'themeVariants', 'reactTestRenderer'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    slots: {
+      transition: {
+        expectedClassName: classes.transition,
+        testWithElement: null,
+      },
+    },
   }));
 
   it('renders children inside an Collapse component', () => {
-    const { container, getByText } = render(
+    const { container } = render(
       <Stepper orientation="vertical">
         <Step>
           <StepContent>
@@ -58,7 +48,7 @@ describe('<StepContent />', () => {
 
     expect(collapse).not.to.equal(null);
     expect(innerDiv).not.to.equal(null);
-    getByText('This is my content!');
+    screen.getByText('This is my content!');
   });
 
   describe('prop: transitionDuration', () => {
@@ -82,7 +72,7 @@ describe('<StepContent />', () => {
         return <div data-testid="custom-transition" />;
       }
 
-      const { container, getByTestId } = render(
+      const { container } = render(
         <Stepper orientation="vertical">
           <Step>
             <StepContent TransitionComponent={TransitionComponent}>
@@ -94,7 +84,7 @@ describe('<StepContent />', () => {
 
       const collapse = container.querySelector(`.${collapseClasses.container}`);
       expect(collapse).to.equal(null);
-      getByTestId('custom-transition');
+      screen.getByTestId('custom-transition');
     });
   });
 });

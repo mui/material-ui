@@ -33,8 +33,8 @@ export default function MessageInput(props: MessageInputProps) {
           placeholder="Type something here…"
           aria-label="Message"
           ref={textAreaRef}
-          onChange={(e) => {
-            setTextAreaValue(e.target.value);
+          onChange={(event) => {
+            setTextAreaValue(event.target.value);
           }}
           value={textAreaValue}
           minRows={3}

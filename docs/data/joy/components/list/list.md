@@ -2,12 +2,14 @@
 productId: joy-ui
 title: React List component
 components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
-githubLabel: 'component: list'
+githubLabel: 'scope: list'
 ---
 
 # Lists
 
 <p class="description">Lists are organizational tools that enhance the readability and organization of content.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -101,7 +103,7 @@ Use the `marker` prop with any valid [list-style-type](https://developer.mozilla
 {{"demo": "MarkerList.js"}}
 
 :::success
-For [numbered lists](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol), change the List component to `component="ol"`.
+For [numbered lists](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ol), change the List component to `component="ol"`.
 
 ```js
 <List component="ol" marker="decimal">
@@ -234,7 +236,7 @@ Inspired by Gmail's desktop navigation bar.
 
 ### Collapsible list
 
-Inspired by the [Gatsby documentation](https://www.gatsbyjs.com/docs) navbar.
+Inspired by the [Gatsby documentation](https://www.gatsbyjs.com/docs/) navbar.
 This example uses the `startAction` prop to create a collapsible button.
 
 {{"demo": "ExampleCollapsibleList.js"}}

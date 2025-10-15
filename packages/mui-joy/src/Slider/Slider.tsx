@@ -2,10 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  unstable_composeClasses as composeClasses,
-  unstable_capitalize as capitalize,
-} from '@mui/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import capitalize from '@mui/utils/capitalize';
 import { OverridableComponent } from '@mui/types';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
@@ -568,7 +566,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
 
           let markActive;
           if (track === false) {
-            markActive = values.indexOf(mark.value) !== -1;
+            markActive = values.includes(mark.value);
           } else {
             markActive =
               (track === 'normal' &&

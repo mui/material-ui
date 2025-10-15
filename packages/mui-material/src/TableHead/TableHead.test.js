@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableHead, { tableHeadClasses as classes } from '@mui/material/TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import describeConformance from '../../test/describeConformance';
@@ -14,10 +14,6 @@ describe('<TableHead />', () => {
   describeConformance(<TableHead />, () => ({
     classes,
     inheritComponent: 'thead',
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<table>{node}</table>);
-      return wrapper.find('table').childAt(0);
-    },
     render: (node) => {
       const { container, ...other } = render(<table>{node}</table>);
       return { container: container.firstChild, ...other };
@@ -31,8 +27,8 @@ describe('<TableHead />', () => {
 
   it('should render children', () => {
     const children = <tr data-testid="test" />;
-    const { getByTestId } = renderInTable(<TableHead>{children}</TableHead>);
-    getByTestId('test');
+    renderInTable(<TableHead>{children}</TableHead>);
+    screen.getByTestId('test');
   });
 
   it('should define table.head in the child context', () => {

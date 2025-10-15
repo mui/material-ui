@@ -1,0 +1,28 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": { "description": "The content of the component." },
+    "columns": { "description": "The number of columns." },
+    "columnSpacing": {
+      "description": "Defines the horizontal space between the type <code>item</code> components. It overrides the value of the <code>spacing</code> prop."
+    },
+    "container": {
+      "description": "If <code>true</code>, the component will have the flex <em>container</em> behavior. You should be wrapping <em>items</em> with a <em>container</em>."
+    },
+    "direction": {
+      "description": "Defines the <code>flex-direction</code> style property. It is applied for all screen sizes."
+    },
+    "offset": { "description": "Defines the offset of the grid." },
+    "rowSpacing": {
+      "description": "Defines the vertical space between the type <code>item</code> components. It overrides the value of the <code>spacing</code> prop."
+    },
+    "size": { "description": "Defines the column size of the grid." },
+    "spacing": {
+      "description": "Defines the space between the type <code>item</code> components. It can only be used on a type <code>container</code> component."
+    },
+    "wrap": {
+      "description": "Defines the <code>flex-wrap</code> style property. It&#39;s applied for all screen sizes."
+    }
+  },
+  "classDescriptions": {}
+}

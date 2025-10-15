@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@mui/utils';
+import exactProp from '@mui/utils/exactProp';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
 import nested from './nested';
@@ -52,7 +52,8 @@ function ThemeProvider(props) {
   }
 
   const theme = React.useMemo(() => {
-    const output = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
+    const output =
+      outerTheme === null ? { ...localTheme } : mergeOuterLocalTheme(outerTheme, localTheme);
 
     if (output != null) {
       output[nested] = outerTheme !== null;

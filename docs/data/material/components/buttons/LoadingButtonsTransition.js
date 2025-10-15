@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
+import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -27,25 +27,25 @@ export default function LoadingButtonsTransition() {
         label="Loading"
       />
       <Box sx={{ '& > button': { m: 1 } }}>
-        <LoadingButton
+        <Button
           size="small"
           onClick={handleClick}
           loading={loading}
           variant="outlined"
           disabled
         >
-          <span>disabled</span>
-        </LoadingButton>
-        <LoadingButton
+          Disabled
+        </Button>
+        <Button
           size="small"
           onClick={handleClick}
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
         >
-          <span>Fetch data</span>
-        </LoadingButton>
-        <LoadingButton
+          Fetch data
+        </Button>
+        <Button
           size="small"
           onClick={handleClick}
           endIcon={<SendIcon />}
@@ -53,9 +53,9 @@ export default function LoadingButtonsTransition() {
           loadingPosition="end"
           variant="contained"
         >
-          <span>Send</span>
-        </LoadingButton>
-        <LoadingButton
+          Send
+        </Button>
+        <Button
           size="small"
           color="secondary"
           onClick={handleClick}
@@ -64,36 +64,31 @@ export default function LoadingButtonsTransition() {
           startIcon={<SaveIcon />}
           variant="contained"
         >
-          <span>Save</span>
-        </LoadingButton>
+          Save
+        </Button>
       </Box>
       <Box sx={{ '& > button': { m: 1 } }}>
-        <LoadingButton
-          onClick={handleClick}
-          loading={loading}
-          variant="outlined"
-          disabled
-        >
-          <span>disabled</span>
-        </LoadingButton>
-        <LoadingButton
+        <Button onClick={handleClick} loading={loading} variant="outlined" disabled>
+          Disabled
+        </Button>
+        <Button
           onClick={handleClick}
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
         >
-          <span>Fetch data</span>
-        </LoadingButton>
-        <LoadingButton
+          Fetch data
+        </Button>
+        <Button
           onClick={handleClick}
           endIcon={<SendIcon />}
           loading={loading}
           loadingPosition="end"
           variant="contained"
         >
-          <span>Send</span>
-        </LoadingButton>
-        <LoadingButton
+          Send
+        </Button>
+        <Button
           color="secondary"
           onClick={handleClick}
           loading={loading}
@@ -101,8 +96,8 @@ export default function LoadingButtonsTransition() {
           startIcon={<SaveIcon />}
           variant="contained"
         >
-          <span>Save</span>
-        </LoadingButton>
+          Save
+        </Button>
       </Box>
     </div>
   );

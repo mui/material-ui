@@ -1,35 +1,14 @@
 import * as React from 'react';
 import Script from 'next/script';
 import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
-import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
-import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
+import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from '@mui/docs/branding';
-
-// You can find a benchmark of the available CSS minifiers under
-// https://github.com/GoalSmashers/css-minification-benchmark
-// We have found that clean-css is faster than cssnano but the output is larger.
-// Waiting for https://github.com/cssinjs/jss/issues/279
-// 4% slower but 12% smaller output than doing it in a single step.
-//
-// It's using .browserslistrc
-let prefixer;
-let cleanCSS;
-if (process.env.NODE_ENV === 'production') {
-  /* eslint-disable global-require */
-  const postcss = require('postcss');
-  const autoprefixer = require('autoprefixer');
-  const CleanCSS = require('clean-css');
-  /* eslint-enable global-require */
-
-  prefixer = postcss([autoprefixer]);
-  cleanCSS = new CleanCSS();
-}
 
 const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
@@ -59,7 +38,7 @@ export default class MyDocument extends Document {
             content={getMetaThemeColor('dark')}
             media="(prefers-color-scheme: dark)"
           />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="icon" href="/static/favicon.ico" />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
           {/* SEO */}
@@ -169,7 +148,7 @@ export default class MyDocument extends Document {
               },
               '.plan-pro, .plan-premium': {
                 display: 'inline-block',
-                height: '1em',
+                height: '0.9em',
                 width: '1em',
                 verticalAlign: 'middle',
                 marginLeft: '0.3em',
@@ -188,8 +167,8 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          {getMuiInitColorSchemeScript({ defaultMode: 'system' })}
-          {getJoyInitColorSchemeScript({ defaultMode: 'system' })}
+          <MuiInitColorSchemeScript defaultMode="system" />
+          <JoyInitColorSchemeScript defaultMode="system" />
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
@@ -221,7 +200,6 @@ gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
-  const jssSheets = new JSSServerStyleSheets();
   const styledComponentsSheet = new ServerStyleSheet();
 
   try {
@@ -235,33 +213,6 @@ MyDocument.getInitialProps = async (ctx) => {
             ...initialProps,
             styles: [styledComponentsSheet.getStyleElement(), ...initialProps.styles],
           }),
-        },
-        {
-          // JSS
-          enhanceApp: (App) => (props) => jssSheets.collect(<App {...props} />),
-          resolveProps: async (initialProps) => {
-            let css = jssSheets.toString();
-            // It might be undefined, for example after an error.
-            if (css && process.env.NODE_ENV === 'production') {
-              const result1 = await prefixer.process(css, { from: undefined });
-              css = result1.css;
-              css = cleanCSS.minify(css).styles;
-            }
-
-            return {
-              ...initialProps,
-              styles: [
-                ...initialProps.styles,
-                <style
-                  id="jss-server-side"
-                  key="jss-server-side"
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{ __html: css }}
-                />,
-                <style id="insertion-point-jss" key="insertion-point-jss" />,
-              ],
-            };
-          },
         },
       ],
     });

@@ -5,38 +5,48 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
-const RadioButtonIconRoot = styled('span', { shouldForwardProp: rootShouldForwardProp })({
+const RadioButtonIconRoot = styled('span', {
+  name: 'MuiRadioButtonIcon',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   position: 'relative',
   display: 'flex',
 });
 
-const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon)({
+const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, {
+  name: 'MuiRadioButtonIcon',
+})({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(({ theme }) => ({
-  left: 0,
-  position: 'absolute',
-  transform: 'scale(0)',
-  transition: theme.transitions.create('transform', {
-    easing: theme.transitions.easing.easeIn,
-    duration: theme.transitions.duration.shortest,
-  }),
-  variants: [
-    {
-      props: { checked: true },
-      style: {
-        transform: 'scale(1)',
-        transition: theme.transitions.create('transform', {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.shortest,
-        }),
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon, {
+  name: 'MuiRadioButtonIcon',
+})(
+  memoTheme(({ theme }) => ({
+    left: 0,
+    position: 'absolute',
+    transform: 'scale(0)',
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.shortest,
+    }),
+    variants: [
+      {
+        props: { checked: true },
+        style: {
+          transform: 'scale(1)',
+          transition: theme.transitions.create('transform', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.shortest,
+          }),
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 /**
  * @ignore - internal component.

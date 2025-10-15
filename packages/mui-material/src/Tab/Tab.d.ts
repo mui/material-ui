@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TabClasses } from './tabClasses';
@@ -28,7 +28,7 @@ export interface TabOwnProps {
   /**
    * The icon to display.
    */
-  icon?: string | React.ReactElement<any>;
+  icon?: string | React.ReactElement<unknown>;
   /**
    * The position of the icon relative to the label.
    * @default 'top'

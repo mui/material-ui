@@ -30,7 +30,7 @@ function ColorSchemeToggle() {
   }
   return (
     <IconButton
-      id="toggle-mode"
+      data-screenshot="toggle-mode"
       size="lg"
       variant="soft"
       color="neutral"

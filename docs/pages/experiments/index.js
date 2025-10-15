@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { capitalize } from '@mui/material/utils';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -10,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import { Link } from '@mui/docs/Link';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 
 export default function Experiments({ experiments }) {
   const categories = {};
@@ -31,8 +31,7 @@ export default function Experiments({ experiments }) {
   });
 
   return (
-    <React.Fragment>
-      <CssBaseline />
+    <BrandingCssVarsProvider>
       <Box sx={{ display: 'flex', flexFlow: 'column nowrap', minHeight: '100vh' }}>
         <Container>
           <Box
@@ -53,7 +52,6 @@ export default function Experiments({ experiments }) {
             <Typography component="h1" variant="h2" sx={{ my: 1 }}>
               MUI <GradientText>Experiments</GradientText>
             </Typography>
-
             <Box sx={{ textAlign: 'left' }}>
               <ul>
                 <Typography component="li">
@@ -68,10 +66,13 @@ export default function Experiments({ experiments }) {
           </Box>
         </Container>
         <Box
-          sx={{
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+          sx={(theme) => ({
+            bgcolor: 'grey.50',
             flexGrow: 1,
-          }}
+            ...theme.applyStyles('dark', {
+              bgcolor: 'primaryDark.900',
+            }),
+          })}
         >
           <Container sx={{ py: { xs: 4, md: 8 } }}>
             <Typography
@@ -134,7 +135,7 @@ export default function Experiments({ experiments }) {
           </Container>
         </Box>
       </Box>
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Box, Stack } from '@mui/system';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Retain type safety.

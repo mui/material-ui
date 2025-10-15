@@ -15,26 +15,31 @@ export default function XGridGlobalStyles({
         {
           [selector]: {
             '& .MuiDataGrid-root': {
-              border: 'none',
               fontSize: '0.75rem',
-              borderRadius: '0px',
               '--DataGrid-rowBorderColor': (theme.vars || theme).palette.grey[200],
               // toolbar
               // style GridToolbar
-              '& .MuiDataGrid-toolbarContainer': {
+              '& .MuiDataGrid-toolbar': {
                 flexShrink: 0,
-                padding: theme.spacing(1, 1, 0.5, 1),
-                '& > button': {
-                  flexShrink: 0,
-                  border: '1px solid',
-                  padding: theme.spacing(0, 1),
-                  borderColor: (theme.vars || theme).palette.divider,
-                  '& svg': {
-                    fontSize: '1.125rem',
+                padding: theme.spacing(0.5),
+                gap: theme.spacing(0.75),
+                minHeight: 'auto',
+                borderColor: (theme.vars || theme).palette.divider,
+                '& > .MuiIconButton-root, & > .MuiDataGrid-toolbarQuickFilter > .MuiIconButton-root':
+                  {
+                    flexShrink: 0,
+                    border: '1px solid',
+                    padding: theme.spacing(0.75),
+                    borderColor: (theme.vars || theme).palette.divider,
+                    '& svg': {
+                      fontSize: '1.125rem',
+                    },
                   },
+                '& .MuiDataGrid-toolbarDivider': {
+                  display: 'none',
                 },
-                '& > button:not(:last-of-type)': {
-                  marginRight: theme.spacing(0.5),
+                '& .MuiInputBase-input': {
+                  padding: theme.spacing(0.75, 1),
                 },
               },
               '& .MuiCheckbox-root': {
@@ -46,7 +51,6 @@ export default function XGridGlobalStyles({
               },
               '& .MuiIconButton-root:not(.Mui-disabled)': {
                 color: (theme.vars || theme).palette.primary.main,
-                opacity: 1,
               },
               // table head elements
               '& .MuiDataGrid-menuIcon svg': {
@@ -54,8 +58,8 @@ export default function XGridGlobalStyles({
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.grey[200],
-                '&:hover': {
-                  color: (theme.vars || theme).palette.grey[800],
+                '&.MuiDataGrid-columnSeparator--resizable:hover': {
+                  color: (theme.vars || theme).palette.primary.main,
                 },
                 ...(!pro && { display: 'none' }),
               },
@@ -113,7 +117,7 @@ export default function XGridGlobalStyles({
           [selector]: {
             '& .MuiDataGrid-root': {
               '--DataGrid-rowBorderColor': alpha(theme.palette.primaryDark[500], 0.5),
-              '& .MuiDataGrid-toolbarContainer': {
+              '& .MuiDataGrid-toolbar': {
                 '& > button': {
                   borderColor: (theme.vars || theme).palette.divider,
                 },
@@ -126,9 +130,6 @@ export default function XGridGlobalStyles({
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.primaryDark[400],
-                '&:hover': {
-                  color: (theme.vars || theme).palette.primaryDark[100],
-                },
               },
               // -------------------------------
               // table body elements

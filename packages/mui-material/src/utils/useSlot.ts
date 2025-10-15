@@ -2,7 +2,9 @@
 import * as React from 'react';
 import { ClassValue } from 'clsx';
 import useForkRef from '@mui/utils/useForkRef';
-import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
+import appendOwnerState from '@mui/utils/appendOwnerState';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import mergeSlotProps from '@mui/utils/mergeSlotProps';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -75,27 +77,19 @@ export default function useSlot<
     externalForwardedProps: ExternalForwardedProps;
     getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
     additionalProps?: WithCommonProps<AdditionalProps>;
-
-    // Material UI specifics
-    /**
-     * For overriding the component's ownerState for the slot.
-     * This is required for some components that need styling via `ownerState`.
-     *
-     * It is a function because `slotProps.{slot}` can be a function which has to be resolved first.
-     */
-    getSlotOwnerState?: (
-      mergedProps: AdditionalProps &
-        SlotProps &
-        ExternalSlotProps &
-        ExtractComponentProps<
-          Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
-        >,
-    ) => SlotOwnerState;
     /**
      * props forward to `T` only if the `slotProps.*.component` is not provided.
      * e.g. Autocomplete's listbox uses Popper + StyledComponent
      */
     internalForwardedProps?: any;
+    /**
+     * Set to true if the `elementType` is a styled component of another Material UI component.
+     *
+     * For example, the AlertRoot is a styled component of the Paper component.
+     * This flag is used to forward the `component` and `slotProps.root.component` to the Paper component.
+     * Otherwise, the `component` prop will be converted to `as` prop which replaces the Paper component (the paper styles are gone).
+     */
+    shouldForwardComponentProp?: boolean;
   },
 ) {
   const {
@@ -103,8 +97,8 @@ export default function useSlot<
     elementType: initialElementType,
     ownerState,
     externalForwardedProps,
-    getSlotOwnerState,
     internalForwardedProps,
+    shouldForwardComponentProp = false,
     ...useSlotPropsParams
   } = parameters;
   const {
@@ -132,9 +126,6 @@ export default function useSlot<
 
   const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
-  const slotOwnerState = getSlotOwnerState ? getSlotOwnerState(mergedProps as any) : {};
-  const finalOwnerState = { ...ownerState, ...slotOwnerState } as any;
-
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType
     | undefined;
@@ -145,17 +136,18 @@ export default function useSlot<
       ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
       ...mergedProps,
-      ...(LeafComponent && {
-        as: LeafComponent,
-      }),
+      ...(LeafComponent &&
+        !shouldForwardComponentProp && {
+          as: LeafComponent,
+        }),
+      ...(LeafComponent &&
+        shouldForwardComponentProp && {
+          component: LeafComponent,
+        }),
       ref,
     },
-    finalOwnerState,
+    ownerState,
   );
-
-  Object.keys(slotOwnerState).forEach((propName) => {
-    delete props[propName];
-  });
 
   return [elementType, props] as [
     ElementType,

@@ -96,16 +96,16 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
-You can [find the source](https://github.com/mui/material-ui/blob/next/packages/mui-material/src/locale/index.ts) in the GitHub repository.
+You can [find the source](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
 To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 
 Please do consider contributing new translations back to Material UI by opening a pull request.
-However, Material UI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+However, Material UI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/insights/ethnologue200/), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## RTL Support
 
-Right-to-left languages such as Arabic, Persian, or Hebrew are supported.
+Right-to-left languages such as Arabic, Persian, Hebrew, Kurdish, and others are supported.
 Follow [this guide](/material-ui/customization/right-to-left/) to use them.

@@ -3,12 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import useSlot from '../utils/useSlot';
-
-const useThemeProps = createUseThemeProps('MuiAvatar');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, colorDefault } = ownerState;
@@ -34,54 +34,55 @@ const AvatarRoot = styled('div', {
       ownerState.colorDefault && styles.colorDefault,
     ];
   },
-})(({ theme }) => ({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexShrink: 0,
-  width: 40,
-  height: 40,
-  fontFamily: theme.typography.fontFamily,
-  fontSize: theme.typography.pxToRem(20),
-  lineHeight: 1,
-  borderRadius: '50%',
-  overflow: 'hidden',
-  userSelect: 'none',
-  variants: [
-    {
-      props: { variant: 'rounded' },
-      style: {
-        borderRadius: (theme.vars || theme).shape.borderRadius,
+})(
+  memoTheme(({ theme }) => ({
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: 40,
+    height: 40,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(20),
+    lineHeight: 1,
+    borderRadius: '50%',
+    overflow: 'hidden',
+    userSelect: 'none',
+    variants: [
+      {
+        props: { variant: 'rounded' },
+        style: {
+          borderRadius: (theme.vars || theme).shape.borderRadius,
+        },
       },
-    },
-    {
-      props: { variant: 'square' },
-      style: {
-        borderRadius: 0,
+      {
+        props: { variant: 'square' },
+        style: {
+          borderRadius: 0,
+        },
       },
-    },
-    {
-      props: { colorDefault: true },
-      style: {
-        color: (theme.vars || theme).palette.background.default,
-        ...(theme.vars
-          ? {
-              backgroundColor: theme.vars.palette.Avatar.defaultBg,
-            }
-          : {
-              backgroundColor: theme.palette.grey[400],
-              ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
-            }),
+      {
+        props: { colorDefault: true },
+        style: {
+          color: (theme.vars || theme).palette.background.default,
+          ...(theme.vars
+            ? {
+                backgroundColor: theme.vars.palette.Avatar.defaultBg,
+              }
+            : {
+                backgroundColor: theme.palette.grey[400],
+                ...theme.applyStyles('dark', { backgroundColor: theme.palette.grey[600] }),
+              }),
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const AvatarImg = styled('img', {
   name: 'MuiAvatar',
   slot: 'Img',
-  overridesResolver: (props, styles) => styles.img,
 })({
   width: '100%',
   height: '100%',
@@ -97,7 +98,6 @@ const AvatarImg = styled('img', {
 const AvatarFallback = styled(Person, {
   name: 'MuiAvatar',
   slot: 'Fallback',
-  overridesResolver: (props, styles) => styles.fallback,
 })({
   width: '75%',
   height: '75%',
@@ -143,7 +143,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
 }
 
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAvatar' });
   const {
     alt,
     children: childrenProp,
@@ -161,21 +161,40 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   let children = null;
 
-  // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({ ...imgProps, src, srcSet });
-  const hasImg = src || srcSet;
-  const hasImgNotFailing = hasImg && loaded !== 'error';
-
   const ownerState = {
     ...props,
-    colorDefault: !hasImgNotFailing,
     component,
     variant,
   };
+
+  // Use a hook instead of onError on the img element to support server-side rendering.
+  const loaded = useLoaded({
+    ...imgProps,
+    ...(typeof slotProps.img === 'function' ? slotProps.img(ownerState) : slotProps.img),
+    src,
+    srcSet,
+  });
+  const hasImg = src || srcSet;
+  const hasImgNotFailing = hasImg && loaded !== 'error';
+
+  ownerState.colorDefault = !hasImgNotFailing;
   // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
   delete ownerState.ownerState;
 
   const classes = useUtilityClasses(ownerState);
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AvatarRoot,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+      component,
+      ...other,
+    },
+    ownerState,
+  });
 
   const [ImgSlot, imgSlotProps] = useSlot('img', {
     className: classes.img,
@@ -188,6 +207,17 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     ownerState,
   });
 
+  const [FallbackSlot, fallbackSlotProps] = useSlot('fallback', {
+    className: classes.fallback,
+    elementType: AvatarFallback,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+    },
+    shouldForwardComponentProp: true,
+    ownerState,
+  });
+
   if (hasImgNotFailing) {
     children = <ImgSlot {...imgSlotProps} />;
     // We only render valid children, non valid children are rendered with a fallback
@@ -197,20 +227,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback ownerState={ownerState} className={classes.fallback} />;
+    children = <FallbackSlot {...fallbackSlotProps} />;
   }
 
-  return (
-    <AvatarRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-      ownerState={ownerState}
-    >
-      {children}
-    </AvatarRoot>
-  );
+  return <RootSlot {...rootSlotProps}>{children}</RootSlot>;
 });
 
 Avatar.propTypes /* remove-proptypes */ = {
@@ -242,9 +262,9 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
-   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.img` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   imgProps: PropTypes.object,
   /**
@@ -256,14 +276,18 @@ Avatar.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    fallback: PropTypes.elementType,
     img: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The `src` attribute for the `img` element.

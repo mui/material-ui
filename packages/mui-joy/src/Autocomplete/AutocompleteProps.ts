@@ -191,14 +191,14 @@ type AutocompleteOwnProps<
     /**
      * Override the default text for the *clear* icon button.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Clear'
      */
     clearText?: string;
     /**
      * Override the default text for the *close popup* icon button.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Close'
      */
     closeText?: string;
@@ -249,7 +249,7 @@ type AutocompleteOwnProps<
     /**
      * Text to display when in a loading state.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Loading…'
      */
     loadingText?: React.ReactNode;
@@ -266,14 +266,14 @@ type AutocompleteOwnProps<
     /**
      * Text to display when there are no options.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'No options'
      */
     noOptionsText?: React.ReactNode;
     /**
      * Override the default text for the *open popup* icon button.
      *
-     * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+     * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
      * @default 'Open'
      */
     openText?: string;
@@ -365,7 +365,7 @@ export interface AutocompleteProps<
 > extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children' | 'color'> {
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    */
   type?: string;
   onKeyDown?: (

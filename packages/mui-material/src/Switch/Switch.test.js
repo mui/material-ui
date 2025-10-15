@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Switch />', () => {
   const { render } = createRenderer();
+
+  function CustomSwitchBase({ centerRipple, focusRipple, ownerState, ...props }) {
+    return <div data-testid="custom" {...props} />;
+  }
 
   describeConformance(<Switch />, () => ({
     classes,
@@ -16,8 +20,35 @@ describe('<Switch />', () => {
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
     ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      track: {
+        expectedClassName: classes.track,
+      },
+      thumb: {
+        expectedClassName: classes.thumb,
+      },
+      switchBase: {
+        expectedClassName: classes.switchBase,
+        testWithElement: CustomSwitchBase,
+      },
+      input: {
+        expectedClassName: classes.input,
+      },
+    },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeVariants',
+      // Props are spread to the root's child but className is added to the root
+      // We cannot use the standard mergeClassName test which relies on data-testid on the root
+      // We should fix this when refactoring with Base UI
+      'mergeClassName',
+    ],
   }));
 
   describe('styleSheet', () => {
@@ -43,54 +74,52 @@ describe('<Switch />', () => {
     expect(root.childNodes[1]).to.have.class(classes.track);
   });
 
-  it('renders a `role="checkbox"` with the Unchecked state by default', () => {
-    const { getByRole } = render(<Switch />);
+  it('renders a `role="switch"` with the Unchecked state by default', () => {
+    render(<Switch />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
-  it('renders a checkbox with the Checked state when checked', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+  it('renders a switch with the Checked state when checked', () => {
+    render(<Switch defaultChecked />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(screen.getByRole('switch')).to.have.property('checked', true);
   });
 
   specify('the switch can be disabled', () => {
-    const { getByRole } = render(<Switch disabled />);
+    render(<Switch disabled />);
 
-    expect(getByRole('checkbox')).to.have.property('disabled', true);
+    expect(screen.getByRole('switch')).to.have.property('disabled', true);
   });
 
   specify('the switch can be readonly', () => {
-    const { getByRole } = render(<Switch readOnly />);
+    render(<Switch readOnly />);
 
-    expect(getByRole('checkbox')).to.have.property('readOnly', true);
+    expect(screen.getByRole('switch')).to.have.property('readOnly', true);
   });
 
   specify('renders a custom icon when provided', () => {
-    const { getByTestId } = render(<Switch icon={<span data-testid="icon" />} />);
+    render(<Switch icon={<span data-testid="icon" />} />);
 
-    expect(getByTestId('icon')).toBeVisible();
+    expect(screen.getByTestId('icon')).toBeVisible();
   });
 
   specify('renders a custom checked icon when provided', () => {
-    const { getByTestId } = render(
-      <Switch defaultChecked checkedIcon={<span data-testid="icon" />} />,
-    );
+    render(<Switch defaultChecked checkedIcon={<span data-testid="icon" />} />);
 
-    expect(getByTestId('icon')).toBeVisible();
+    expect(screen.getByTestId('icon')).toBeVisible();
   });
 
   specify('the Checked state changes after change events', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+    render(<Switch defaultChecked />);
 
     // how a user would trigger it
     act(() => {
-      getByRole('checkbox').click();
-      fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+      screen.getByRole('switch').click();
     });
+    fireEvent.change(screen.getByRole('switch'), { target: { checked: '' } });
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
   it('should not show warnings when custom `type` is provided', () => {
@@ -100,46 +129,54 @@ describe('<Switch />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByRole } = render(
+        render(
           <FormControl>
             <Switch />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByRole } = render(
+        render(
           <FormControl>
             <Switch disabled />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByRole } = render(
+        render(
           <FormControl disabled>
             <Switch />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByRole } = render(
+        render(
           <FormControl disabled>
             <Switch disabled={false} />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+        expect(screen.getByRole('switch')).not.to.have.attribute('disabled');
       });
+    });
+  });
+
+  describe('mergeClassName', () => {
+    it('should merge the className', () => {
+      const { container } = render(<Switch className="test-class-name" />);
+
+      expect(container.firstChild).to.have.class('test-class-name');
     });
   });
 });

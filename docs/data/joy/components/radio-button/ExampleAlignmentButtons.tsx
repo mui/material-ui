@@ -19,6 +19,7 @@ export default function ExampleAlignmentButtons() {
       onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
         setAlignment(event.target.value)
       }
+      sx={{ display: 'inline-flex' }}
     >
       {['left', 'center', 'right', 'justify'].map((item) => (
         <Box

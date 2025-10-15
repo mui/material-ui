@@ -1,9 +1,41 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ChipClasses } from './chipClasses';
+
+export interface ChipSlots {
+  /**
+   * The component that renders the root.
+   * @default div
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default span
+   */
+  label: React.ElementType;
+}
+
+export type ChipSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ChipSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the available props are based on the div element.
+     */
+    root: SlotProps<'div', {}, ChipOwnerState>;
+    /**
+     * Props forwarded to the label slot.
+     * By default, the available props are based on the span element.
+     */
+    label: SlotProps<'span', {}, ChipOwnerState>;
+  }
+>;
+
+export interface ChipOwnerState extends Omit<ChipProps, 'slots' | 'slotProps'> {}
 
 export interface ChipPropsVariantOverrides {}
 
@@ -15,7 +47,7 @@ export interface ChipOwnProps {
   /**
    * The Avatar element to display.
    */
-  avatar?: React.ReactElement<any>;
+  avatar?: React.ReactElement<unknown>;
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.
@@ -47,7 +79,7 @@ export interface ChipOwnProps {
   /**
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
-  deleteIcon?: React.ReactElement<any>;
+  deleteIcon?: React.ReactElement<unknown>;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -56,7 +88,7 @@ export interface ChipOwnProps {
   /**
    * Icon element.
    */
-  icon?: React.ReactElement<any>;
+  icon?: React.ReactElement<unknown>;
   /**
    * The content of the component.
    */
@@ -96,7 +128,7 @@ export interface ChipTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & ChipOwnProps;
+  props: AdditionalProps & ChipOwnProps & ChipSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }
 

@@ -2,9 +2,9 @@
 productId: material-ui
 title: React Modal component
 components: Modal
-githubLabel: 'component: modal'
+githubLabel: 'scope: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-unstyled: /base-ui/react-modal/
+githubSource: packages/mui-material/src/Modal
 ---
 
 # Modal

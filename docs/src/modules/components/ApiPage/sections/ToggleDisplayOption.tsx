@@ -42,6 +42,7 @@ export function useApiPageOption(
   const [option, setOption] = React.useState(getOption(storageKey, defaultValue));
 
   useEnhancedEffect(() => {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
     neverHydrated = false;
     const newOption = getOption(storageKey, defaultValue);
     setOption(newOption);
@@ -116,7 +117,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         sx={{ height: '1.875rem', p: '6px 4px 6px 8px', textTransform: 'capitalize' }}
       >
         <Box component="span" sx={{ fontWeight: 'medium', mr: 0.5 }}>
-          View:
+          {'View:'}
         </Box>
         {displayOption}
       </Button>
@@ -135,7 +136,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="table"
         >
-          Table
+          {'Table'}
           <CheckIcon
             sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'table' ? 1 : 0 }}
           />
@@ -148,7 +149,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="expanded"
         >
-          Expanded list
+          {'Expanded list'}
           <CheckIcon
             sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'expanded' ? 1 : 0 }}
           />
@@ -161,7 +162,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="collapsed"
         >
-          Collapsed list
+          {'Collapsed list'}
           <CheckIcon
             sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'collapsed' ? 1 : 0 }}
           />

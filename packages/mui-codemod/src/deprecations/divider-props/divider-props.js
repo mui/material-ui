@@ -1,6 +1,7 @@
 import appendAttribute from '../../util/appendAttribute';
 import assignObject from '../../util/assignObject';
 import findComponentJSX from '../../util/findComponentJSX';
+import findComponentDefaultProps from '../../util/findComponentDefaultProps';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -11,13 +12,18 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  findComponentJSX(j, { root, componentName: 'Divider' }, (elementPath) => {
-    const hasLightProp =
-      elementPath.node.openingElement.attributes.findIndex(
+  findComponentJSX(
+    j,
+    { root, componentName: 'Divider', packageName: options.packageName },
+    (elementPath) => {
+      const lightProp = elementPath.node.openingElement.attributes.find(
         (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'light',
-      ) !== -1;
+      );
 
-    if (hasLightProp) {
+      if (!lightProp) {
+        return;
+      }
+
       elementPath.node.openingElement.attributes =
         elementPath.node.openingElement.attributes.filter((attr) => {
           if (attr.type === 'JSXAttribute' && attr.name.name === 'light') {
@@ -25,6 +31,12 @@ export default function transformer(file, api, options) {
           }
           return true;
         });
+
+      const isLightPropTruthy = lightProp.value?.expression.value !== false;
+
+      if (!isLightPropTruthy) {
+        return;
+      }
 
       const sxIndex = elementPath.node.openingElement.attributes.findIndex(
         (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'sx',
@@ -50,45 +62,40 @@ export default function transformer(file, api, options) {
           });
         }
       }
-    }
+    },
+  );
+
+  const defaultPropsPathCollection = findComponentDefaultProps(j, {
+    root,
+    packageName: options.packageName,
+    componentName: 'Divider',
   });
 
-  root.find(j.ObjectProperty, { key: { name: 'MuiDivider' } }).forEach((path) => {
-    const defaultPropsObject = path.value.value.properties.find(
-      (key) => key.key.name === 'defaultProps',
-    );
+  defaultPropsPathCollection.find(j.ObjectProperty, { key: { name: 'light' } }).forEach((path) => {
+    const { properties: defaultPropsProperties } = path.parent.value;
 
-    const hasLightProp =
-      defaultPropsObject.value.properties.findIndex((prop) => prop.key.name === 'light') !== -1;
-
-    if (hasLightProp) {
-      defaultPropsObject.value.properties = defaultPropsObject.value.properties.filter(
-        (prop) => !['light'].includes(prop?.key?.name),
-      );
-
-      const sxIndex = defaultPropsObject.value.properties.findIndex(
-        (prop) => prop.key.name === 'sx',
-      );
-
-      if (sxIndex === -1) {
-        defaultPropsObject.value.properties.push(
-          j.objectProperty(
-            j.identifier('sx'),
-            j.objectExpression([j.objectProperty(j.identifier('opacity'), j.literal('0.6'))]),
-          ),
-        );
-      } else {
-        const opacityIndex = defaultPropsObject.value.properties[
-          sxIndex
-        ].value.properties.findIndex((key) => key.key.name === 'opacity');
-
-        if (opacityIndex === -1) {
-          defaultPropsObject.value.properties[sxIndex].value.properties.push(
-            j.objectProperty(j.identifier('opacity'), j.literal('0.6')),
-          );
-        }
-      }
+    if (path.value?.value.value === false) {
+      path.prune();
+      return;
     }
+
+    const existingSx = defaultPropsProperties.find((prop) => prop.key.name === 'sx');
+
+    if (!existingSx) {
+      defaultPropsProperties.push(
+        j.property(
+          'init',
+          j.identifier('sx'),
+          j.objectExpression([j.objectProperty(j.identifier('opacity'), j.literal('0.6'))]),
+        ),
+      );
+    } else if (!existingSx.value.properties.find((prop) => prop.key.name === 'opacity')) {
+      existingSx.value.properties.push(
+        j.property('init', j.identifier('opacity'), j.literal('0.6')),
+      );
+    }
+
+    path.prune();
   });
 
   return root.toSource(printOptions);

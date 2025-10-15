@@ -101,10 +101,10 @@ const theme = createTheme({
 The computed font size by the browser follows this mathematical equation:
 
 <div class="only-light-mode">
-  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size.svg" width="436" height="48" />
+  <img alt="font size calculation" style="width: 550px; display: block;" src="/static/images/font-size.svg" width="436" height="48" />
 </div>
 <div class="only-dark-mode">
-  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size-dark.svg" width="436" height="48" />
+  <img alt="font size calculation" style="width: 550px; display: block;" src="/static/images/font-size-dark.svg" width="436" height="48" />
 </div>
 
 <!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
@@ -115,17 +115,21 @@ The `theme.typography.*` [variant](#variants) properties map directly to the gen
 You can use [media queries](/material-ui/customization/breakpoints/#api) inside them:
 
 ```js
-const theme = createTheme();
+const baseTheme = createTheme();
 
-theme.typography.h3 = {
-  fontSize: '1.2rem',
-  '@media (min-width:600px)': {
-    fontSize: '1.5rem',
+const theme = createTheme({
+  typography: {
+    h3: {
+      fontSize: '1.2rem',
+      '@media (min-width:600px)': {
+        fontSize: '1.5rem',
+      },
+      [baseTheme.breakpoints.up('md')]: {
+        fontSize: '2.4rem',
+      },
+    },
   },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '2.4rem',
-  },
-};
+});
 ```
 
 {{"demo": "CustomResponsiveFontSizes.js"}}
@@ -285,7 +289,7 @@ declare module '@mui/material/styles' {
     poster: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
+  // allow configuration using `createTheme()`
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }

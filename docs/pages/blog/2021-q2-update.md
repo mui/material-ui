@@ -15,7 +15,7 @@ It also covers what we aim to achieve in the months ahead.
 - [Product](#product)
   - [Core components](#core-components)
   - [Advanced components](#advanced-components)
-  - [Design kits](#design-kits)
+  - [Design Kits](#design-kits)
 - [Company](#company)
 - [Our roadmap intent for Q3 2021](#our-roadmap-intent-for-q3-2021)
 
@@ -26,7 +26,6 @@ Here are the most significant improvements since March 2021.
 ### Core components
 
 - 🔥 We've made enough progress to ship [v5.0.0-beta.0](https://github.com/mui/material-ui/releases/tag/v5.0.0-beta.0). Here are a few statistics to give an idea of the effort that went into it:
-
   - [12 months](/blog/2020-q2-update/#product) of dedicated focus.
     We stopped work on v4 early on to fully dedicate to v5.
   - 3,475 pull requests.
@@ -49,25 +48,25 @@ Here are the most significant improvements since March 2021.
 
 - ✨ The new style engine has unlocked problems on the `Grid` component that we couldn't solve before with JSS:
 
-  We have added support for [row & column](https://mui.com/material-ui/react-grid/#row-amp-column-spacing) spacing:
+  We have added support for [row & column](https://mui.com/material-ui/react-grid-legacy/#row-amp-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
 ```
 
-We have added support for [responsive values](https://mui.com/material-ui/react-grid/#responsive-values) on all the props:
+We have added support for [responsive values](https://mui.com/material-ui/react-grid-legacy/#responsive-values) on all the props:
 
 ```jsx
 <Grid container spacing={{ xs: 2, md: 3 }} />
 ```
 
-We have added support for a different [number of columns](https://mui.com/material-ui/react-grid/#columns) than 12:
+We have added support for a different [number of columns](https://mui.com/material-ui/react-grid-legacy/#columns) than 12:
 
 ```jsx
 <Grid container columns={16}>
 ```
 
-We have added an alternative implementation that uses [CSS grid](https://mui.com/material-ui/react-grid/#css-grid-layout):
+We have added an alternative implementation that uses [CSS grid](https://mui.com/material-ui/react-grid-legacy/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -111,7 +110,9 @@ The date picker is at the border between the core component and advanced compone
   We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://mui.com/x/react-data-grid/editing/).
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
+  <video autoplay muted loop playsinline width="1684" height="782">
+    <source src="/static/blog/2021-q2-update/cell-edit.mp4" type="video/mp4" />
+  </video>
 
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
@@ -120,7 +121,7 @@ The date picker is at the border between the core component and advanced compone
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
-  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
+  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">CodeSandbox</a></p>
 
   and the **boolean** column type.
 
@@ -134,7 +135,7 @@ The date picker is at the border between the core component and advanced compone
 - ⚡️ We have fixed support for components that use portals, like Select and Autocomplete, in the cell editing mode.
 - 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/x/react-data-grid/localization/#supported-locales) in Q1.
 
-### Design kits
+### Design Kits
 
 #### Figma
 
@@ -216,7 +217,7 @@ We have the following objectives:
   We want to make the upgrade feel painless.
 - ⚛️ Support [React 18](https://legacy.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most demanding users to feel empowered by Material UI, not slowed down by a third-party library.
-- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/base-ui/react-switch/).
+- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://v6.mui.com/base-ui/react-switch/).
   You can follow our progress in the [umbrella issue](https://github.com/mui/base-ui/issues/10).
 - 🌈 Do a proof of concept on supporting a second design system.
   Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!
@@ -229,10 +230,10 @@ We have the following objectives:
 - ✨ Resume work on the [key features](https://github.com/mui/mui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
   It seems that the audience is adopting the data grid as fast as we can build it.
   For instance, we have one issue with over [1,000 upvotes](https://github.com/mui/mui-x/issues/204) 👍.
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/35).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
-### Design kits
+### Design Kits
 
 - Handle designers' pain and bug reports to polish the products.
 - Run a survey on thousands of customers to identify important improvement opportunities. Should we build plugins to more easily switch the token variables between design and code? Should we add more in context examples? Should we focus on inconsistencies? etc.

@@ -6,7 +6,10 @@ import deepmerge from '@mui/utils/deepmerge';
 import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -14,8 +17,6 @@ import {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
-
-const useThemeProps = createUseThemeProps('MuiInput');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline } = ownerState;
@@ -45,86 +46,91 @@ const InputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme }) => {
-  const light = theme.palette.mode === 'light';
-  let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
-  if (theme.vars) {
-    bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
-  }
-  return {
-    position: 'relative',
-    variants: [
-      {
-        props: ({ ownerState }) => ownerState.formControl,
-        style: {
-          'label + &': {
-            marginTop: 16,
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState.disableUnderline,
-        style: {
-          '&::after': {
-            left: 0,
-            bottom: 0,
-            content: '""',
-            position: 'absolute',
-            right: 0,
-            transform: 'scaleX(0)',
-            transition: theme.transitions.create('transform', {
-              duration: theme.transitions.duration.shorter,
-              easing: theme.transitions.easing.easeOut,
-            }),
-            pointerEvents: 'none', // Transparent to the hover style.
-          },
-          [`&.${inputClasses.focused}:after`]: {
-            // translateX(0) is a workaround for Safari transform scale bug
-            // See https://github.com/mui/material-ui/issues/31766
-            transform: 'scaleX(1) translateX(0)',
-          },
-          [`&.${inputClasses.error}`]: {
-            '&::before, &::after': {
-              borderBottomColor: (theme.vars || theme).palette.error.main,
+})(
+  memoTheme(({ theme }) => {
+    const light = theme.palette.mode === 'light';
+    let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+    if (theme.vars) {
+      bottomLineColor = theme.alpha(
+        theme.vars.palette.common.onBackground,
+        theme.vars.opacity.inputUnderline,
+      );
+    }
+    return {
+      position: 'relative',
+      variants: [
+        {
+          props: ({ ownerState }) => ownerState.formControl,
+          style: {
+            'label + &': {
+              marginTop: 16,
             },
           },
-          '&::before': {
-            borderBottom: `1px solid ${bottomLineColor}`,
-            left: 0,
-            bottom: 0,
-            content: '"\\00a0"',
-            position: 'absolute',
-            right: 0,
-            transition: theme.transitions.create('border-bottom-color', {
-              duration: theme.transitions.duration.shorter,
-            }),
-            pointerEvents: 'none', // Transparent to the hover style.
-          },
-          [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
-            borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-              borderBottom: `1px solid ${bottomLineColor}`,
-            },
-          },
-          [`&.${inputClasses.disabled}:before`]: {
-            borderBottomStyle: 'dotted',
-          },
         },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
-        .map(([color]) => ({
-          props: { color, disableUnderline: false },
+        {
+          props: ({ ownerState }) => !ownerState.disableUnderline,
           style: {
             '&::after': {
-              borderBottom: `2px solid ${(theme.vars || theme).palette[color].main}`,
+              left: 0,
+              bottom: 0,
+              content: '""',
+              position: 'absolute',
+              right: 0,
+              transform: 'scaleX(0)',
+              transition: theme.transitions.create('transform', {
+                duration: theme.transitions.duration.shorter,
+                easing: theme.transitions.easing.easeOut,
+              }),
+              pointerEvents: 'none', // Transparent to the hover style.
+            },
+            [`&.${inputClasses.focused}:after`]: {
+              // translateX(0) is a workaround for Safari transform scale bug
+              // See https://github.com/mui/material-ui/issues/31766
+              transform: 'scaleX(1) translateX(0)',
+            },
+            [`&.${inputClasses.error}`]: {
+              '&::before, &::after': {
+                borderBottomColor: (theme.vars || theme).palette.error.main,
+              },
+            },
+            '&::before': {
+              borderBottom: `1px solid ${bottomLineColor}`,
+              left: 0,
+              bottom: 0,
+              content: '"\\00a0"',
+              position: 'absolute',
+              right: 0,
+              transition: theme.transitions.create('border-bottom-color', {
+                duration: theme.transitions.duration.shorter,
+              }),
+              pointerEvents: 'none', // Transparent to the hover style.
+            },
+            [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
+              borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                borderBottom: `1px solid ${bottomLineColor}`,
+              },
+            },
+            [`&.${inputClasses.disabled}:before`]: {
+              borderBottomStyle: 'dotted',
             },
           },
-        })),
-    ],
-  };
-});
+        },
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color, disableUnderline: false },
+            style: {
+              '&::after': {
+                borderBottom: `2px solid ${(theme.vars || theme).palette[color].main}`,
+              },
+            },
+          })),
+      ],
+    };
+  }),
+);
 
 const InputInput = styled(InputBaseInput, {
   name: 'MuiInput',
@@ -133,7 +139,7 @@ const InputInput = styled(InputBaseInput, {
 })({});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline = false,
     components = {},
@@ -153,7 +159,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const inputComponentsProps = { root: { ownerState } };
 
   const componentsProps =
-    slotProps ?? componentsPropsProp
+    (slotProps ?? componentsPropsProp)
       ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
       : inputComponentsProps;
 
@@ -207,7 +213,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -219,7 +225,7 @@ Input.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -266,7 +272,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   inputComponent: PropTypes.elementType,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @default {}
    */
   inputProps: PropTypes.object,
@@ -289,7 +295,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
+   * If `true`, a [TextareaAutosize](https://mui.com/material-ui/react-textarea-autosize/) element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -358,7 +364,7 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    * @default 'text'
    */
   type: PropTypes.string,
@@ -368,8 +374,6 @@ Input.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-if (Input) {
-  Input.muiName = 'Input';
-}
+Input.muiName = 'Input';
 
 export default Input;

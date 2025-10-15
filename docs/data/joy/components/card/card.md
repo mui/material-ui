@@ -2,12 +2,14 @@
 productId: joy-ui
 title: React Card component
 components: Card, CardActions, CardContent, CardCover, CardOverflow
-githubLabel: 'component: card'
+githubLabel: 'scope: card'
 ---
 
 # Card
 
 <p class="description">A card is a generic container for grouping related UI elements and content.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

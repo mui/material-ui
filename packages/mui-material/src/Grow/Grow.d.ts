@@ -11,7 +11,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

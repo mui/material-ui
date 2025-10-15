@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -23,6 +23,7 @@ describe('<MenuList />', () => {
   const { render } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
+    render,
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,
@@ -37,7 +38,7 @@ describe('<MenuList />', () => {
 
   describe('prop: children', () => {
     it('should support null children', () => {
-      const { getAllByRole } = render(
+      render(
         <MenuList>
           <div role="menuitem">one</div>
           <div role="menuitem">two</div>
@@ -45,11 +46,11 @@ describe('<MenuList />', () => {
         </MenuList>,
       );
 
-      expect(getAllByRole('menuitem')).to.have.length(2);
+      expect(screen.getAllByRole('menuitem')).to.have.length(2);
     });
 
     it('should not add tabIndex to presentation elements like Divider when all Menu Items are disabled', () => {
-      const { getByRole } = render(
+      render(
         <MenuList>
           <MenuItem disabled>one</MenuItem>
           <Divider />
@@ -57,12 +58,12 @@ describe('<MenuList />', () => {
         </MenuList>,
       );
 
-      expect(getByRole('separator')).not.to.have.attribute('tabIndex');
+      expect(screen.getByRole('separator')).not.to.have.attribute('tabIndex');
     });
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
-    const expectedPadding = `${getScrollbarSize(document)}px`;
+    const expectedPadding = `${getScrollbarSize(window)}px`;
 
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();

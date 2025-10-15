@@ -1,0 +1,3 @@
+<CircularProgress size="30px" />
+<CircularProgress size={40} />
+<CircularProgress size="3rem" />

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { Link } from '@mui/docs/Link';
 
 export const HEIGHT = 50;
@@ -98,12 +98,13 @@ export default function ComponentPageTabs(props) {
       <Box
         component="nav"
         className="component-tabs"
-        sx={{
+        sx={(theme) => ({
+          width: '100%',
           position: 'sticky',
           top: 57, // to be positioned below the app bar
           mt: 2,
-          mx: { xs: -2, sm: -1 },
-          backgroundColor: 'background.default',
+          backdropFilter: 'blur(8px)',
+          backgroundColor: 'rgba(255,255,255,0.8)',
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
@@ -119,7 +120,10 @@ export default function ComponentPageTabs(props) {
             height: '2px',
             backgroundColor: 'primary.light',
           },
-        }}
+          ...theme.applyDarkStyles({
+            backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),
+          }),
+        })}
       >
         {linkTabData.map((linkTab) => (
           <LinkTab

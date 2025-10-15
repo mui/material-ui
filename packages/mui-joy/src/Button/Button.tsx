@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { Interpolation } from '@mui/system';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useForkRef from '@mui/utils/useForkRef';
 import { styled, Theme, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
@@ -285,7 +286,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   if (toggleButtonGroup?.value) {
     if (Array.isArray(toggleButtonGroup.value)) {
-      ariaPressed = toggleButtonGroup.value.indexOf(props.value as string) !== -1;
+      ariaPressed = toggleButtonGroup.value.includes(props.value as string);
     } else {
       ariaPressed = toggleButtonGroup.value === props.value;
     }

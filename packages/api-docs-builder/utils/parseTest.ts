@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as babel from '@babel/core';
-import { readFile } from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import glob from 'fast-glob';
 
 function getTestFilesNames(filepath: string) {
@@ -16,7 +16,7 @@ function getTestFilesNames(filepath: string) {
 }
 
 async function parseWithConfig(filename: string) {
-  const source = await readFile(filename, { encoding: 'utf8' });
+  const source = await fs.readFile(filename, { encoding: 'utf8' });
   const partialConfig = babel.loadPartialConfig({
     filename,
   });
@@ -136,7 +136,6 @@ export default async function parseTest(componentFilename: string): Promise<Pars
   let descriptor: ReturnType<typeof findConformanceDescriptor> = null;
 
   try {
-    // eslint-disable-next-line no-restricted-syntax
     for await (const testFilename of testFilenames) {
       if (descriptor === null) {
         const babelParseResult = await parseWithConfig(testFilename);

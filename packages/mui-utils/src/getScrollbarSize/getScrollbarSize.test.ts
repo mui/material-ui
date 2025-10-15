@@ -16,7 +16,10 @@ describe('getScrollbarSize', () => {
   });
 
   it('should return correct value when using a custom scrollbar', function test() {
-    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
+    if (
+      window.navigator.userAgent.includes('jsdom') ||
+      !/WebKit/.test(window.navigator.userAgent)
+    ) {
       this.skip();
     }
 
@@ -28,6 +31,6 @@ describe('getScrollbarSize', () => {
     document.head.appendChild(styleElement);
     divElement.style.height = '2000px';
     document.body.appendChild(divElement);
-    expect(getScrollbarSize(document)).to.equal(5);
+    expect(getScrollbarSize(window)).to.equal(5);
   });
 });

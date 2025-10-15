@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Typography, { typographyClasses as classes, TypographyProps } from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
@@ -64,42 +64,42 @@ describe('<Typography />', () => {
 
   describe('headline', () => {
     it('should render the mapped headline', () => {
-      const { getByText } = render(<Typography level="h2">Hello</Typography>);
+      render(<Typography level="h2">Hello</Typography>);
 
-      expect(getByText(/hello/i).tagName).to.equal('H2');
+      expect(screen.getByText(/hello/i).tagName).to.equal('H2');
     });
 
     it('should render a h1', () => {
-      const { getByText } = render(<Typography component="h1">Hello</Typography>);
+      render(<Typography component="h1">Hello</Typography>);
 
-      expect(getByText(/hello/i).tagName).to.equal('H1');
+      expect(screen.getByText(/hello/i).tagName).to.equal('H1');
     });
   });
 
   describe('prop: levelMapping', () => {
     it('should work with a single value', () => {
-      const { getByText } = render(
+      render(
         <Typography level="h2" levelMapping={{ h2: 'aside' }}>
           Hello
         </Typography>,
       );
 
-      expect(getByText(/hello/i).tagName).to.equal('ASIDE');
+      expect(screen.getByText(/hello/i).tagName).to.equal('ASIDE');
     });
 
     it('should work even with an empty mapping', () => {
-      const { getByText } = render(
+      render(
         <Typography level="h2" levelMapping={{}}>
           Hello
         </Typography>,
       );
 
-      expect(getByText(/hello/i).tagName).to.equal('H2');
+      expect(screen.getByText(/hello/i).tagName).to.equal('H2');
     });
   });
 
   it('combines system properties with the sx prop', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
@@ -127,14 +127,15 @@ describe('<Typography />', () => {
     });
 
     it('Typography inside start/end icon should be span', () => {
-      const { getByText } = render(
+      render(
         <Typography
           startDecorator={<Typography>Foo</Typography>}
           endDecorator={<Typography>Bar</Typography>}
         />,
       );
-      expect(getByText('Foo').tagName).to.equal('SPAN');
-      expect(getByText('Bar').tagName).to.equal('SPAN');
+
+      expect(screen.getByText('Foo').tagName).to.equal('SPAN');
+      expect(screen.getByText('Bar').tagName).to.equal('SPAN');
     });
   });
 });

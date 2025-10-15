@@ -2,16 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useControlled as useControlled,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useForkRef as useForkRef,
-  unstable_useIsFocusVisible as useIsFocusVisible,
-  unstable_useId as useId,
-  unstable_useTimeout as useTimeout,
-  unstable_Timeout as Timeout,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useControlled from '@mui/utils/useControlled';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useForkRef from '@mui/utils/useForkRef';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import useId from '@mui/utils/useId';
+import useTimeout, { Timeout } from '@mui/utils/useTimeout';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
@@ -261,9 +259,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const id = useId(idProp);
 
-  const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
+  const prevUserSelect = React.useRef<string>(undefined);
   const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- WebkitUserSelect is required outside the component
       (document.body.style as unknown as { WebkitUserSelect?: string }).WebkitUserSelect =
         prevUserSelect.current;
       prevUserSelect.current = undefined;
@@ -273,7 +272,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
-  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpen = (event: React.SyntheticEvent<HTMLElement>) => {
     hystersisTimer.clear();
     hystersisOpen = true;
 
@@ -302,7 +301,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     });
   });
 
-  const handleMouseOver = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseOver = (event: React.SyntheticEvent<HTMLElement>) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -325,31 +324,24 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseLeave = (event: React.SyntheticEvent<HTMLElement>) => {
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
       handleClose(event);
     });
   };
 
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
   // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
   // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
-  const handleBlur = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
-    handleBlurVisible(event as React.FocusEvent<HTMLElement>);
-    if (isFocusVisibleRef.current === false) {
+  const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
+    if (!isFocusVisible(event.target)) {
       setChildIsFocusVisible(false);
-      handleMouseLeave(event as React.MouseEvent<HTMLElement>);
+      handleMouseLeave(event);
     }
   };
 
-  const handleFocus = (event: React.FocusEvent<HTMLElement> | React.MouseEvent<HTMLElement>) => {
+  const handleFocus = (event: React.FocusEvent<HTMLElement>) => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
@@ -357,10 +349,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    handleFocusVisible(event as React.FocusEvent<HTMLElement>);
-    if (isFocusVisibleRef.current === true) {
+    if (isFocusVisible(event.target)) {
       setChildIsFocusVisible(true);
-      handleMouseOver(event as React.MouseEvent<HTMLElement>);
+      handleMouseOver(event);
     }
   };
 
@@ -422,11 +413,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
-  const handleFocusRef = useForkRef<Element>(focusVisibleRef, handleUseRef);
-  const handleRef = useForkRef(
-    (children as unknown as { ref: React.Ref<HTMLElement> }).ref,
-    handleFocusRef,
-  );
+  const handleRef = useForkRef(getReactElementRef(children), handleUseRef);
 
   // There is no point in displaying an empty tooltip.
   if (typeof title !== 'number' && !title) {

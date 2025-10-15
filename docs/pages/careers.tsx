@@ -23,16 +23,61 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Engineer — X',
+        title: 'React Engineer — Material UI Maintainer',
         description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
+          'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
+        url: '/careers/react-engineer-material-ui-maintainer/',
       },
       {
-        title: 'React Engineer — Docs-infra',
+        title: 'Product Engineer — Store',
         description:
-          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-        url: '/careers/react-engineer-docs-infra/',
+          'You will lead the technical, product, and operational development of the store.',
+        url: '/careers/product-engineer-store/',
+      },
+      // {
+      //   title: 'React Engineer — xCharts',
+      //   description:
+      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x-charts/',
+      // },
+      // {
+      //   title: 'React Engineer — eXplore',
+      //   description:
+      //     'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+      //   url: '/careers/react-engineer-explore/',
+      // },
+      // {
+      //   title: 'React Engineer — X',
+      //   description:
+      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x/',
+      // },
+    ],
+  },
+  {
+    title: 'Sales',
+    roles: [
+      {
+        title: 'Account Executive',
+        description:
+          'You will be a key player in driving revenue growth and building strong customer relationships.',
+        url: '/careers/account-executive/',
+      },
+      // {
+      //   title: 'Account Manager',
+      //   description:
+      //     'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
+      //   url: '/careers/account-manager/',
+      // },
+    ],
+  },
+  {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
+        url: '/careers/technical-recruiter/',
       },
     ],
   },
@@ -42,14 +87,7 @@ const openRolesData = [
   },
   {
     title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate / Content Engineer',
-        description:
-          'You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.',
-        url: '/careers/developer-advocate/',
-      },
-    ],
+    roles: [],
   },
 ];
 
@@ -57,57 +95,21 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      {
-        title: 'Accessibility Engineer',
-        description:
-          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
-        url: '/careers/accessibility-engineer/',
-      },
-      {
-        title: 'Full-stack Engineer — Toolpad',
-        description:
-          'You will join the Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
-        url: '/careers/fullstack-engineer/',
-      },
-      {
-        title: 'React Engineer — xCharts',
-        description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
-      },
-      {
-        title: 'React Tech Lead — Core',
-        description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
-        url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Community Engineer — X',
-        description:
-          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
-        url: '/careers/react-community-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'People',
-    roles: [
-      {
-        title: 'Technical Recruiter',
-        description: 'You will hire the next engineers, among other roles, joining the team.',
-        url: '/careers/technical-recruiter/',
-      },
+      // {
+      //   title: 'React Community Engineer — X',
+      //   description:
+      //     'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+      //   url: '/careers/react-community-engineer/',
+      // },
     ],
   },
   {
     title: 'Sales',
-    roles: [
-      {
-        title: 'Account Executive',
-        description:
-          'You will build client relationships and manage the sales process from start to finish.',
-      },
-    ],
+    roles: [],
+  },
+  {
+    title: 'People',
+    roles: [],
   },
   {
     title: 'Marketing',
@@ -197,6 +199,12 @@ export default function Careers() {
                 }
                 description={
                   <React.Fragment>
+                    {
+                      'We are not actively hiring for these roles but we will likely focus on them next. '
+                    }
+                    {"If you are passively looking, don't hesitate to apply!"}
+                    <br />
+                    <br />
                     If none of the roles below fit with what you are looking for, apply to{' '}
                     <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                       the Dream job role

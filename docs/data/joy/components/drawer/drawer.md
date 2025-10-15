@@ -2,12 +2,14 @@
 productId: joy-ui
 title: React Drawer component
 components: Drawer, ModalClose, DialogContent
-githubLabel: 'component: drawer'
+githubLabel: 'scope: drawer'
 ---
 
 # Drawer
 
 <p class="description">Navigation drawers provide quick access to other areas of an app without taking the user away from their current location.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

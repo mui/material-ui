@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useId from '@mui/utils/useId';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
@@ -280,6 +281,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -294,10 +296,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const radioGroup = React.useContext(RadioGroupContext);
   const activeColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? colorProp ?? 'primary';
+    : (inProps.color ?? formControl?.color ?? colorProp ?? 'primary');
   const inactiveColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? colorProp ?? 'neutral';
+    : (inProps.color ?? formControl?.color ?? colorProp ?? 'neutral');
   const size = inProps.size || formControl?.size || radioGroup?.size || sizeProp;
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;

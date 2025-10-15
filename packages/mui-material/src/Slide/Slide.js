@@ -5,9 +5,10 @@ import { Transition } from 'react-transition-group';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
-import useTheme from '../styles/useTheme';
+import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
@@ -119,7 +120,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   } = props;
 
   const childrenRef = React.useRef(null);
-  const handleRef = useForkRef(children.ref, childrenRef, ref);
+  const handleRef = useForkRef(getReactElementRef(children), childrenRef, ref);
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {
     if (callback) {
@@ -251,7 +252,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           ref: handleRef,
           style: {
@@ -259,7 +261,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
             ...style,
             ...children.props.style,
           },
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>

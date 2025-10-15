@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/joy/styles';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
@@ -18,50 +15,40 @@ function ModeSwitcher() {
     return null;
   }
   return (
-    <Button
+    <Select
       variant="soft"
-      color="neutral"
-      onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+      value={mode}
+      onChange={(event, newMode) => {
+        setMode(newMode);
+      }}
     >
-      {mode === 'dark' ? 'Turn light' : 'Turn dark'}
-    </Button>
+      <Option value="system">System</Option>
+      <Option value="light">Light</Option>
+      <Option value="dark">Dark</Option>
+    </Select>
   );
 }
 
-export default function ModeToggle() {
-  // the `node` is used for attaching CSS variables to this demo,
-  // you might not need it in your application.
-  const [node, setNode] = React.useState<HTMLElement | null>(null);
-  useEnhancedEffect(() => {
-    setNode(document.getElementById('mode-toggle'));
-  }, []);
+const theme = extendTheme({
+  cssVarPrefix: 'mode-toggle',
+  colorSchemeSelector: '.demo_mode-toggle-%s',
+});
 
+export default function ModeToggle() {
   return (
     <CssVarsProvider
       // the props below are specific to this demo,
       // you might not need them in your app.
       //
-      // the element to apply [data-joy-color-scheme] attribute.
-      colorSchemeNode={node || null}
-      //
-      // the selector to apply the CSS theme variables stylesheet.
-      colorSchemeSelector="#mode-toggle"
+      theme={theme}
       //
       // the local storage key to use.
       modeStorageKey="mode-toggle-demo"
+      //
+      // set as root provider
+      disableNestedContext
     >
-      <Box
-        id="mode-toggle"
-        sx={{
-          textAlign: 'center',
-          flexGrow: 1,
-          p: 2,
-          m: -3,
-          borderRadius: [0, 'sm'],
-        }}
-      >
-        <ModeSwitcher />
-      </Box>
+      <ModeSwitcher />
     </CssVarsProvider>
   );
 }

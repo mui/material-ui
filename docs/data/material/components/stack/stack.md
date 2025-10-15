@@ -1,8 +1,9 @@
 ---
 productId: material-ui
 title: React Stack component
-components: Stack
+components: Stack, PigmentStack
 githubLabel: 'component: Stack'
+githubSource: packages/mui-material/src/Stack
 ---
 
 # Stack

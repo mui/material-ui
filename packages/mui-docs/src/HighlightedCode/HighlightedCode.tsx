@@ -10,10 +10,6 @@ const Pre = styled('pre')(({ theme }) => ({
   margin: 0,
   color: 'hsl(60deg 30% 96.08%)', // fallback color until Prism's theme is loaded
   WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
-  maxWidth: 'calc(100vw - 32px)',
-  [theme.breakpoints.up('md')]: {
-    maxWidth: 'calc(100vw - 32px - 16px)',
-  },
   '& code': {
     // Avoid layout jump after hydration (style injected by Prism)
     ...theme.typography.caption,
@@ -36,40 +32,40 @@ export interface HighlightedCodeProps {
   sx?: SxProps;
 }
 
-export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeProps>(
-  function HighlightedCode(props, ref) {
-    const {
-      code,
-      copyButtonHidden = false,
-      copyButtonProps,
-      language,
-      plainStyle,
-      parentComponent: Component = plainStyle ? 'div' : MarkdownElement,
-      preComponent: PreComponent = plainStyle ? Pre : 'pre',
-      ...other
-    } = props;
-    const renderedCode = React.useMemo(() => {
-      return prism(code.trim(), language);
-    }, [code, language]);
-    const handlers = useCodeCopy();
+export function HighlightedCode(props: HighlightedCodeProps) {
+  const {
+    code,
+    copyButtonHidden = false,
+    copyButtonProps,
+    language,
+    plainStyle,
+    parentComponent: Component = plainStyle ? React.Fragment : MarkdownElement,
+    preComponent: PreComponent = plainStyle ? Pre : 'pre',
+    ...other
+  } = props;
+  const renderedCode = React.useMemo(() => {
+    return prism(code.trim(), language);
+  }, [code, language]);
+  const handlers = useCodeCopy();
 
-    return (
-      <Component ref={ref} {...other}>
-        <div className="MuiCode-root" {...handlers}>
-          {copyButtonHidden ? null : (
-            <NoSsr>
-              <CodeCopyButton code={code} {...copyButtonProps} />
-            </NoSsr>
-          )}
-          <PreComponent>
-            <code
-              className={`language-${language}`}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: renderedCode }}
-            />
-          </PreComponent>
-        </div>
-      </Component>
-    );
-  },
-);
+  const componentProps = !plainStyle ? other : undefined;
+
+  return (
+    <Component {...componentProps}>
+      <div className="MuiCode-root" {...handlers} style={{ height: '100%' }}>
+        {copyButtonHidden ? null : (
+          <NoSsr>
+            <CodeCopyButton code={code} {...copyButtonProps} />
+          </NoSsr>
+        )}
+        <PreComponent>
+          <code
+            className={`language-${language}`}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: renderedCode }}
+          />
+        </PreComponent>
+      </div>
+    </Component>
+  );
+}

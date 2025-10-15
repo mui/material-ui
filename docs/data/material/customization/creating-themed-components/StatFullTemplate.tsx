@@ -16,7 +16,7 @@ interface StatOwnerState extends StatProps {
 const StatRoot = styled('div', {
   name: 'MuiStat',
   slot: 'root',
-})<{ ownerState: StatOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: StatOwnerState }>(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(0.5),
@@ -26,9 +26,19 @@ const StatRoot = styled('div', {
   boxShadow: theme.shadows[2],
   letterSpacing: '-0.025em',
   fontWeight: 600,
-  ...(ownerState.variant === 'outlined' && {
-    border: `2px solid ${theme.palette.divider}`,
-    boxShadow: 'none',
+  variants: [
+    {
+      props: {
+        variant: 'outlined',
+      },
+      style: {
+        border: `2px solid ${theme.palette.divider}`,
+        boxShadow: 'none',
+      },
+    },
+  ],
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'inherit',
   }),
 }));
 
@@ -45,6 +55,9 @@ const StatUnit = styled('div', {
 })<{ ownerState: StatOwnerState }>(({ theme }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    color: 'inherit',
+  }),
 }));
 
 const Stat = React.forwardRef<HTMLDivElement, StatProps>(

@@ -1,12 +1,11 @@
 {
   "name": "material-ui-nextjs-pages-router-ts",
-  "version": "5.0.0",
+  "version": "7.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
   "dependencies": {
@@ -14,18 +13,19 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@mui/icons-material": "next",
-    "@mui/material": "next",
-    "@mui/material-nextjs": "next",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
+    "clsx": "latest",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "latest",
-    "@types/react": "latest",
+    "@types/react": "^19.0.0",
     "eslint": "latest",
-    "eslint-config-next": "latest",
+    "eslint-config-next": "^15.0.0",
     "typescript": "latest"
   }
 }

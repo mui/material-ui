@@ -21,34 +21,24 @@ import Typography from '@mui/material/Typography';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
-import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
-
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
 
 import Head from 'docs/src/modules/components/Head';
-import getDashboardTheme from 'docs/data/material/getting-started/templates/dashboard/getDashboardTheme';
+import AppTheme from 'docs/data/material/getting-started/templates/shared-theme/AppTheme';
+import ColorModeIconDropdown from 'docs/data/material/getting-started/templates/shared-theme/ColorModeIconDropdown';
+import {
+  chartsCustomizations,
+  dataGridCustomizations,
+  datePickersCustomizations,
+  treeViewCustomizations,
+} from 'docs/data/material/getting-started/templates/dashboard/theme/customizations';
 import CustomDatePicker from 'docs/data/material/getting-started/templates/dashboard/components/CustomDatePicker';
 
-interface ToggleColorModeProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-}
-
-export function ToggleColorMode({ mode, toggleColorMode }: ToggleColorModeProps) {
-  return (
-    <Box sx={{ maxWidth: '32px' }}>
-      <IconButton onClick={toggleColorMode} size="small" aria-label="button to toggle theme">
-        {mode === 'dark' ? (
-          <WbSunnyRoundedIcon fontSize="small" />
-        ) : (
-          <ModeNightRoundedIcon fontSize="small" />
-        )}
-      </IconButton>
-    </Box>
-  );
-}
+const xThemeComponents = {
+  ...chartsCustomizations,
+  ...dataGridCustomizations,
+  ...datePickersCustomizations,
+  ...treeViewCustomizations,
+};
 
 function CustomTabPanel(props: { [x: string]: any; children: any; value: any; index: any }) {
   const { children, value, index, ...other } = props;
@@ -84,11 +74,6 @@ function a11yProps(index: number) {
 }
 
 export default function DashboardTemplateTheme() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
-  const dashboardTheme = createTheme(getDashboardTheme(mode));
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -103,7 +88,7 @@ export default function DashboardTemplateTheme() {
   };
 
   return (
-    <ThemeProvider theme={dashboardTheme}>
+    <AppTheme themeComponents={xThemeComponents}>
       <CssBaseline />
       <Head title="MUI Branding Theme Test" description="" />
       <Container
@@ -119,7 +104,7 @@ export default function DashboardTemplateTheme() {
           <Typography variant="h4" component="h1">
             Dashboard template theme
           </Typography>
-          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+          <ColorModeIconDropdown />
         </Stack>
         <Divider />
         <Stack direction="column" sx={{ gap: 2 }}>
@@ -275,6 +260,6 @@ export default function DashboardTemplateTheme() {
           </CustomTabPanel>
         </Box>
       </Container>
-    </ThemeProvider>
+    </AppTheme>
   );
 }

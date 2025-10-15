@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
@@ -261,7 +260,6 @@ function RowMenu() {
     </Dropdown>
   );
 }
-
 export default function OrderTable() {
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -412,15 +410,19 @@ export default function OrderTable() {
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
                   endDecorator={<ArrowDropDownIcon />}
-                  sx={{
-                    fontWeight: 'lg',
-
-                    '& svg': {
-                      transition: '0.2s',
-                      transform:
-                        order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                  sx={[
+                    {
+                      fontWeight: 'lg',
+                      '& svg': {
+                        transition: '0.2s',
+                        transform:
+                          order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                      },
                     },
-                  }}
+                    order === 'desc'
+                      ? { '& svg': { transform: 'rotate(0deg)' } }
+                      : { '& svg': { transform: 'rotate(180deg)' } },
+                  ]}
                 >
                   Invoice
                 </Link>
@@ -428,6 +430,7 @@ export default function OrderTable() {
               <th style={{ width: 140, padding: '12px 6px' }}>Date</th>
               <th style={{ width: 140, padding: '12px 6px' }}>Status</th>
               <th style={{ width: 240, padding: '12px 6px' }}>Customer</th>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <th style={{ width: 140, padding: '12px 6px' }}> </th>
             </tr>
           </thead>
@@ -533,7 +536,6 @@ export default function OrderTable() {
           </IconButton>
         ))}
         <Box sx={{ flex: 1 }} />
-
         <Button
           size="sm"
           variant="outlined"

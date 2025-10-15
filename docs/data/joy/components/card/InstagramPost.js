@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
@@ -73,12 +72,16 @@ export default function InstagramPost() {
           {[...Array(5)].map((_, index) => (
             <Box
               key={index}
-              sx={{
-                borderRadius: '50%',
-                width: `max(${6 - index}px, 3px)`,
-                height: `max(${6 - index}px, 3px)`,
-                bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
-              }}
+              sx={[
+                {
+                  borderRadius: '50%',
+                  width: `max(${6 - index}px, 3px)`,
+                  height: `max(${6 - index}px, 3px)`,
+                },
+                index === 0
+                  ? { bgcolor: 'primary.solidBg' }
+                  : { bgcolor: 'background.level3' },
+              ]}
             />
           ))}
         </Box>

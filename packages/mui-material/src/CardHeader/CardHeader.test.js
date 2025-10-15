@@ -2,23 +2,49 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { typographyClasses } from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
 import CardHeader, { cardHeaderClasses as classes } from '@mui/material/CardHeader';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<CardHeader />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<CardHeader />, () => ({
-    classes,
-    inheritComponent: 'div',
-    render,
-    muiName: 'MuiCardHeader',
-    refInstanceof: window.HTMLDivElement,
-    testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
-    testComponentPropWith: 'span',
-    testVariantProps: { variant: 'foo' },
-    skip: ['componentsProp'],
-  }));
+  describeConformance(
+    <CardHeader title="title" subheader="subheader" avatar={<Avatar />} action={<IconButton />} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      muiName: 'MuiCardHeader',
+      refInstanceof: window.HTMLDivElement,
+      testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
+      testComponentPropWith: 'span',
+      testVariantProps: { variant: 'foo' },
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+        avatar: {
+          expectedClassName: classes.avatar,
+        },
+        action: {
+          expectedClassName: classes.action,
+        },
+        content: {
+          expectedClassName: classes.content,
+        },
+        title: {
+          expectedClassName: classes.title,
+        },
+        subheader: {
+          expectedClassName: classes.subheader,
+        },
+      },
+      skip: ['componentsProp'],
+    }),
+  );
 
   describe('without an avatar', () => {
     it('should render the title as headline text', () => {
@@ -49,11 +75,11 @@ describe('<CardHeader />', () => {
   });
 
   describe('with an avatar', () => {
-    let avatar;
+    const avatar = <span />;
     let cardHeader;
 
     beforeEach(() => {
-      avatar = <span />;
+      // eslint-disable-next-line testing-library/no-render-in-lifecycle
       cardHeader = render(<CardHeader avatar={avatar} title="Title" subheader="Subhead" />)
         .container.firstChild;
     });
@@ -80,5 +106,108 @@ describe('<CardHeader />', () => {
       expect(subHeader).to.have.class(typographyClasses.root);
       expect(subHeader).to.have.class(typographyClasses.body2);
     });
+  });
+
+  it('should merge className and style from props and from the theme if mergeClassNameAndStyle is true', () => {
+    const { container } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            mergeClassNameAndStyle: true,
+            MuiCardHeader: {
+              defaultProps: {
+                className: 'theme-class',
+                style: { margin: '10px' },
+                slotProps: {
+                  root: {
+                    className: 'theme-slot-props-root-class',
+                    style: {
+                      fontSize: '10px',
+                    },
+                  },
+                  title: {
+                    className: 'theme-slot-props-title-class',
+                  },
+                },
+              },
+            },
+          },
+        })}
+      >
+        <CardHeader
+          title="Title"
+          subheader="Subheader"
+          className="component-class"
+          style={{ padding: '10px' }}
+          slotProps={{
+            title: {
+              className: 'slot-props-title-class',
+            },
+            root: {
+              className: 'slot-props-root-class',
+              style: {
+                fontWeight: 'bold',
+              },
+            },
+          }}
+        />
+      </ThemeProvider>,
+    );
+    const cardHeader = container.querySelector(`.${classes.root}`);
+    expect(cardHeader).to.have.class('theme-class');
+    expect(cardHeader).to.have.class('component-class');
+    expect(cardHeader).to.have.class('theme-slot-props-root-class');
+    expect(cardHeader).to.have.class('slot-props-root-class');
+    expect(cardHeader.style.margin).to.equal('10px'); // from theme
+    expect(cardHeader.style.padding).to.equal('10px'); // from props
+    expect(cardHeader.style.fontWeight).to.equal('bold'); // from props slotProps
+    expect(cardHeader.style.fontSize).to.equal('10px'); // from theme slotProps
+
+    const title = container.querySelector(`.${classes.title}`);
+    expect(title).to.have.class('theme-slot-props-title-class');
+    expect(title).to.have.class('slot-props-title-class');
+  });
+
+  it('should not merge className and style from props and from the theme if mergeClassNameAndStyle is false', () => {
+    render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiCardHeader: {
+              defaultProps: {
+                className: 'test-class-1',
+                style: { margin: '10px' },
+                slotProps: {
+                  title: {
+                    className: 'title-class-1',
+                  },
+                },
+              },
+            },
+          },
+        })}
+      >
+        <CardHeader
+          title="Title"
+          subheader="Subheader"
+          className="test-class-2"
+          style={{ padding: '10px' }}
+          slotProps={{
+            title: {
+              className: 'title-class-2',
+            },
+          }}
+        />
+      </ThemeProvider>,
+    );
+    const cardHeader = document.querySelector(`.${classes.root}`);
+    expect(cardHeader).to.not.have.class('test-class-1');
+    expect(cardHeader).to.have.class('test-class-2');
+    expect(cardHeader).to.not.have.style('margin', '10px');
+    expect(cardHeader).to.have.style('padding', '10px');
+
+    const title = cardHeader.querySelector(`.${classes.title}`);
+    expect(title).to.not.have.class('title-class-1');
+    expect(title).to.have.class('title-class-2');
   });
 });

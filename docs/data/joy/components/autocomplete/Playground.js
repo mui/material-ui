@@ -61,7 +61,6 @@ export default function Playground() {
             Flags {flags.length ? `(${flags.length})` : ''}
           </Typography>
           {flags.length > 0 && (
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               component="button"
               level="body-sm"

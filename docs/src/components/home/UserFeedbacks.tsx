@@ -3,7 +3,7 @@ import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 
 const TESTIMONIALS = [
@@ -95,7 +95,7 @@ function Feedback({
     avatarSrcSet: string;
     name: string;
     role: string;
-    company?: React.ReactElement<any>;
+    company?: React.ReactElement<unknown>;
   };
 }) {
   return (
@@ -176,7 +176,7 @@ export default function UserFeedbacks() {
     >
       <MuiStatistics />
       {TESTIMONIALS.map((item) => (
-        <Grid key={item.profile.name} xs={12} sm={6}>
+        <Grid key={item.profile.name} size={{ xs: 12, sm: 6 }}>
           <Feedback {...item} />
         </Grid>
       ))}

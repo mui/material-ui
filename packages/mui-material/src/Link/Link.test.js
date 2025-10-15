@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
@@ -29,9 +29,9 @@ describe('<Link />', () => {
   }));
 
   it('should render children', () => {
-    const { queryByText } = render(<Link href="/">Home</Link>);
+    render(<Link href="/">Home</Link>);
 
-    expect(queryByText('Home')).not.to.equal(null);
+    expect(screen.queryByText('Home')).not.to.equal(null);
   });
 
   it('should pass props to the <Typography> component', () => {
@@ -79,7 +79,12 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', () => {
+    it('should add the focusVisible class when focused', function test() {
+      if (window.navigator.userAgent.includes('jsdom')) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 

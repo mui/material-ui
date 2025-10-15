@@ -3,14 +3,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
-
-const useThemeProps = createUseThemeProps('MuiAccordionSummary');
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;
@@ -28,81 +29,95 @@ const useUtilityClasses = (ownerState) => {
 const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
-  const transition = {
-    duration: theme.transitions.duration.shortest,
-  };
+})(
+  memoTheme(({ theme }) => {
+    const transition = {
+      duration: theme.transitions.duration.shortest,
+    };
 
-  return {
+    return {
+      display: 'flex',
+      width: '100%',
+      minHeight: 48,
+      padding: theme.spacing(0, 2),
+      transition: theme.transitions.create(['min-height', 'background-color'], transition),
+      [`&.${accordionSummaryClasses.focusVisible}`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
+      [`&.${accordionSummaryClasses.disabled}`]: {
+        opacity: (theme.vars || theme).palette.action.disabledOpacity,
+      },
+      [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
+        cursor: 'pointer',
+      },
+      variants: [
+        {
+          props: (props) => !props.disableGutters,
+          style: {
+            [`&.${accordionSummaryClasses.expanded}`]: {
+              minHeight: 64,
+            },
+          },
+        },
+      ],
+    };
+  }),
+);
+
+const AccordionSummaryContent = styled('span', {
+  name: 'MuiAccordionSummary',
+  slot: 'Content',
+})(
+  memoTheme(({ theme }) => ({
     display: 'flex',
-    minHeight: 48,
-    padding: theme.spacing(0, 2),
-    transition: theme.transitions.create(['min-height', 'background-color'], transition),
-    [`&.${accordionSummaryClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
-    [`&.${accordionSummaryClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    },
-    [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
-      cursor: 'pointer',
-    },
+    textAlign: 'start',
+    flexGrow: 1,
+    margin: '12px 0',
     variants: [
       {
         props: (props) => !props.disableGutters,
         style: {
+          transition: theme.transitions.create(['margin'], {
+            duration: theme.transitions.duration.shortest,
+          }),
           [`&.${accordionSummaryClasses.expanded}`]: {
-            minHeight: 64,
+            margin: '20px 0',
           },
         },
       },
     ],
-  };
-});
+  })),
+);
 
-const AccordionSummaryContent = styled('div', {
-  name: 'MuiAccordionSummary',
-  slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
-})(({ theme }) => ({
-  display: 'flex',
-  flexGrow: 1,
-  margin: '12px 0',
-  variants: [
-    {
-      props: (props) => !props.disableGutters,
-      style: {
-        transition: theme.transitions.create(['margin'], {
-          duration: theme.transitions.duration.shortest,
-        }),
-        [`&.${accordionSummaryClasses.expanded}`]: {
-          margin: '20px 0',
-        },
-      },
-    },
-  ],
-}));
-
-const AccordionSummaryExpandIconWrapper = styled('div', {
+const AccordionSummaryExpandIconWrapper = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
-  overridesResolver: (props, styles) => styles.expandIconWrapper,
-})(({ theme }) => ({
-  display: 'flex',
-  color: (theme.vars || theme).palette.action.active,
-  transform: 'rotate(0deg)',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  [`&.${accordionSummaryClasses.expanded}`]: {
-    transform: 'rotate(180deg)',
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    color: (theme.vars || theme).palette.action.active,
+    transform: 'rotate(0deg)',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    [`&.${accordionSummaryClasses.expanded}`]: {
+      transform: 'rotate(180deg)',
+    },
+  })),
+);
 
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordionSummary' });
-  const { children, className, expandIcon, focusVisibleClassName, onClick, ...other } = props;
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordionSummary' });
+  const {
+    children,
+    className,
+    expandIcon,
+    focusVisibleClassName,
+    onClick,
+    slots,
+    slotProps,
+    ...other
+  } = props;
 
   const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
@@ -123,32 +138,58 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.root, className),
+    elementType: AccordionSummaryRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      focusRipple: false,
+      disableRipple: true,
+      disabled,
+      'aria-expanded': expanded,
+      focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onClick: (event) => {
+        handlers.onClick?.(event);
+        handleChange(event);
+      },
+    }),
+  });
+
+  const [ContentSlot, contentSlotProps] = useSlot('content', {
+    className: classes.content,
+    elementType: AccordionSummaryContent,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ExpandIconWrapperSlot, expandIconWrapperSlotProps] = useSlot('expandIconWrapper', {
+    className: classes.expandIconWrapper,
+    elementType: AccordionSummaryExpandIconWrapper,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
-    <AccordionSummaryRoot
-      focusRipple={false}
-      disableRipple
-      disabled={disabled}
-      component="div"
-      aria-expanded={expanded}
-      className={clsx(classes.root, className)}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-      onClick={handleChange}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
-      <AccordionSummaryContent className={classes.content} ownerState={ownerState}>
-        {children}
-      </AccordionSummaryContent>
+    <RootSlot {...rootSlotProps}>
+      <ContentSlot {...contentSlotProps}>{children}</ContentSlot>
       {expandIcon && (
-        <AccordionSummaryExpandIconWrapper
-          className={classes.expandIconWrapper}
-          ownerState={ownerState}
-        >
-          {expandIcon}
-        </AccordionSummaryExpandIconWrapper>
+        <ExpandIconWrapperSlot {...expandIconWrapperSlotProps}>{expandIcon}</ExpandIconWrapperSlot>
       )}
-    </AccordionSummaryRoot>
+    </RootSlot>
   );
 });
 
@@ -186,6 +227,24 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    expandIconWrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    content: PropTypes.elementType,
+    expandIconWrapper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

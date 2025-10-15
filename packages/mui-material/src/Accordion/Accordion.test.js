@@ -2,10 +2,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
+import Collapse from '@mui/material/Collapse';
+import Fade from '@mui/material/Fade';
+import Slide from '@mui/material/Slide';
+import Grow from '@mui/material/Grow';
+import Zoom from '@mui/material/Zoom';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import describeConformance from '../../test/describeConformance';
 
 function NoTransition(props) {
@@ -16,6 +22,8 @@ function NoTransition(props) {
   }
   return children;
 }
+
+const CustomPaper = React.forwardRef(({ square, ...props }, ref) => <Paper ref={ref} {...props} />);
 
 describe('<Accordion />', () => {
   const { render } = createRenderer();
@@ -33,6 +41,18 @@ describe('<Accordion />', () => {
       transition: {
         testWithElement: null,
       },
+      heading: {
+        testWithElement: 'h4',
+        expectedClassName: classes.heading,
+      },
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomPaper,
+      },
+      region: {
+        expectedClassName: classes.region,
+        testWithElement: 'div',
+      },
     },
     skip: ['componentProp', 'componentsProp'],
   }));
@@ -48,14 +68,15 @@ describe('<Accordion />', () => {
   });
 
   it('should render the summary and collapse elements', () => {
-    const { getByRole, getByText } = render(
+    render(
       <Accordion>
         <AccordionSummary>Summary</AccordionSummary>
         <div id="panel-content">Hello</div>
       </Accordion>,
     );
-    expect(getByText('Summary')).toBeVisible();
-    expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
+
+    expect(screen.getByText('Summary')).toBeVisible();
+    expect(screen.getByRole('button')).to.have.attribute('aria-expanded', 'false');
   });
 
   it('should be controlled', () => {
@@ -72,36 +93,40 @@ describe('<Accordion />', () => {
 
   it('should call onChange when clicking the summary element', () => {
     const handleChange = spy();
-    const { getByText } = render(
+
+    render(
       <Accordion onChange={handleChange} TransitionComponent={NoTransition}>
         {minimalChildren}
       </Accordion>,
     );
-    fireEvent.click(getByText('Header'));
+
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
   });
 
   it('when controlled should call the onChange', () => {
     const handleChange = spy();
-    const { getByText } = render(
+
+    render(
       <Accordion onChange={handleChange} expanded>
         {minimalChildren}
       </Accordion>,
     );
-    fireEvent.click(getByText('Header'));
+
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.equal(false);
   });
 
   it('when undefined onChange and controlled should not call the onChange', () => {
     const handleChange = spy();
-    const { setProps, getByText } = render(
+    const { setProps } = render(
       <Accordion onChange={handleChange} expanded>
         {minimalChildren}
       </Accordion>,
     );
     setProps({ onChange: undefined });
-    fireEvent.click(getByText('Header'));
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(0);
   });
 
@@ -122,7 +147,7 @@ describe('<Accordion />', () => {
     function CustomContent() {
       return <div>Hello</div>;
     }
-    const { queryByText, getByText, setProps } = render(
+    const { setProps } = render(
       <Accordion expanded TransitionComponent={NoTransitionCollapse}>
         <AccordionSummary />
         <CustomContent />
@@ -130,11 +155,11 @@ describe('<Accordion />', () => {
     );
 
     // Collapse is initially shown
-    expect(getByText('Hello')).toBeVisible();
+    expect(screen.getByText('Hello')).toBeVisible();
 
     // Hide the collapse
     setProps({ expanded: false });
-    expect(queryByText('Hello')).to.equal(null);
+    expect(screen.queryByText('Hello')).to.equal(null);
   });
 
   it('should handle the `square` prop', () => {
@@ -153,7 +178,7 @@ describe('<Accordion />', () => {
   });
 
   describe('prop: children', () => {
-    describe('first child', () => {
+    describeSkipIf(reactMajor >= 19)('first child', () => {
       beforeEach(() => {
         PropTypes.resetWarningCache();
       });
@@ -196,13 +221,13 @@ describe('<Accordion />', () => {
   });
 
   it('should warn when switching from controlled to uncontrolled', () => {
-    const wrapper = render(
+    const { setProps } = render(
       <Accordion expanded TransitionComponent={NoTransition}>
         {minimalChildren}
       </Accordion>,
     );
 
-    expect(() => wrapper.setProps({ expanded: undefined })).to.toErrorDev(
+    expect(() => setProps({ expanded: undefined })).to.toErrorDev(
       'MUI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
     );
   });
@@ -219,37 +244,92 @@ describe('<Accordion />', () => {
 
   describe('prop: TransitionProps', () => {
     it('should apply properties to the Transition component', () => {
-      const { getByTestId } = render(
+      render(
         <Accordion TransitionProps={{ 'data-testid': 'transition-testid' }}>
           {minimalChildren}
         </Accordion>,
       );
 
-      expect(getByTestId('transition-testid')).not.to.equal(null);
+      expect(screen.getByTestId('transition-testid')).not.to.equal(null);
     });
   });
 
   describe('details unmounting behavior', () => {
     it('does not unmount by default', () => {
-      const { queryByTestId } = render(
+      render(
         <Accordion expanded={false}>
           <AccordionSummary>Summary</AccordionSummary>
           <div data-testid="details">Details</div>
         </Accordion>,
       );
 
-      expect(queryByTestId('details')).not.to.equal(null);
+      expect(screen.queryByTestId('details')).not.to.equal(null);
     });
 
     it('unmounts if opted in via slotProps.transition', () => {
-      const { queryByTestId } = render(
+      render(
         <Accordion expanded={false} slotProps={{ transition: { unmountOnExit: true } }}>
           <AccordionSummary>Summary</AccordionSummary>
           <div data-testid="details">Details</div>
         </Accordion>,
       );
 
-      expect(queryByTestId('details')).to.equal(null);
+      expect(screen.queryByTestId('details')).to.equal(null);
     });
+  });
+
+  describe('should not forward ownerState prop to the underlying DOM element when using transition slot', () => {
+    const transitions = [
+      {
+        component: Collapse,
+        name: 'Collapse',
+      },
+      {
+        component: Fade,
+        name: 'Fade',
+      },
+      {
+        component: Grow,
+        name: 'Grow',
+      },
+      {
+        component: Slide,
+        name: 'Slide',
+      },
+      {
+        component: Zoom,
+        name: 'Zoom',
+      },
+    ];
+
+    transitions.forEach((transition) => {
+      it(transition.name, () => {
+        render(
+          <Accordion
+            defaultExpanded
+            slots={{
+              transition: transition.component,
+            }}
+            slotProps={{ transition: { timeout: 400 } }}
+          >
+            <AccordionSummary>Summary</AccordionSummary>
+            Details
+          </Accordion>,
+        );
+
+        expect(screen.getByRole('region')).not.to.have.attribute('ownerstate');
+      });
+    });
+  });
+
+  it('should allow custom role for region slot via slotProps', () => {
+    render(
+      <Accordion expanded slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
+        <AccordionSummary>Summary</AccordionSummary>
+        Details
+      </Accordion>,
+    );
+
+    expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
   });
 });

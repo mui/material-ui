@@ -16,17 +16,20 @@ export default function CheckboxesTags() {
       options={top100Films}
       disableCloseOnSelect
       getOptionLabel={(option) => option.title}
-      renderOption={(props, option, { selected }) => (
-        <li {...props}>
-          <Checkbox
-            icon={icon}
-            checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
-            checked={selected}
-          />
-          {option.title}
-        </li>
-      )}
+      renderOption={(props, option, { selected }) => {
+        const { key, ...optionProps } = props;
+        return (
+          <li key={key} {...optionProps}>
+            <Checkbox
+              icon={icon}
+              checkedIcon={checkedIcon}
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
+            {option.title}
+          </li>
+        );
+      }}
       style={{ width: 500 }}
       renderInput={(params) => (
         <TextField {...params} label="Checkboxes" placeholder="Favorites" />

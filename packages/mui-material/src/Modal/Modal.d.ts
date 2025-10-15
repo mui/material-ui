@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base';
+import { SlotComponentProps } from '../utils/types';
 import { PortalProps } from '../Portal';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
@@ -34,23 +34,20 @@ export interface ModalOwnProps {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })
    */
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
-   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](https://mui.com/material-ui/api/backdrop/) element.
    * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps?: Partial<BackdropProps>;
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any>;
+  children: React.ReactElement<unknown>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -67,7 +64,7 @@ export interface ModalOwnProps {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -79,7 +76,7 @@ export interface ModalOwnProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -150,11 +147,6 @@ export interface ModalOwnProps {
    */
   keepMounted?: boolean;
   /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick?: React.ReactEventHandler<{}>;
-  /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
@@ -211,10 +203,10 @@ export declare const ModalRoot: React.FC<ModalRootProps>;
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * *   [Dialog](https://mui.com/material-ui/api/dialog/)
- * *   [Drawer](https://mui.com/material-ui/api/drawer/)
- * *   [Menu](https://mui.com/material-ui/api/menu/)
- * *   [Popover](https://mui.com/material-ui/api/popover/)
+ * * [Dialog](https://mui.com/material-ui/api/dialog/)
+ * * [Drawer](https://mui.com/material-ui/api/drawer/)
+ * * [Menu](https://mui.com/material-ui/api/menu/)
+ * * [Popover](https://mui.com/material-ui/api/popover/)
  *
  * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/material-ui/api/dialog/) component
  * rather than directly using Modal.

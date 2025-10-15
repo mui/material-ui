@@ -93,19 +93,15 @@ export default function Item({
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
         alignItems: { xs: 'start', sm: 'center' },
-        gap: { xs: 2, sm: 0.5 },
+        gap: { xs: 2, sm: '14px' },
         ...props.sx,
       }}
     >
-      <Box component="span" sx={{ mr: smallerIconDistance ? 1 : 2, lineHeight: 0 }}>
+      <Box component="span" sx={{ lineHeight: 0 }}>
         {icon}
       </Box>
       <Box sx={{ flexWrap: 'wrap' }}>
-        <Typography
-          component="span"
-          variant="body2"
-          sx={{ color: 'text.primary', fontWeight: 'bold', display: 'block' }}
-        >
+        <Typography color="text.primary" variant="body2" fontWeight="semiBold">
           {title}
         </Typography>
         {description && (

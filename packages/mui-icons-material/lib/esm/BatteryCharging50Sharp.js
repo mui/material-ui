@@ -1,7 +1,7 @@
 import * as React from 'react';
-import createSvgIcon from './utils/createSvgIcon';
+import createSvgIcon from "./utils/createSvgIcon.js";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-export default createSvgIcon( /*#__PURE__*/_jsxs(React.Fragment, {
+export default createSvgIcon(/*#__PURE__*/_jsxs(React.Fragment, {
   children: [/*#__PURE__*/_jsx("path", {
     d: "M14.47 13.5L11 20v-5.5H9l.53-1H7V22h10v-8.5h-2.53z"
   }), /*#__PURE__*/_jsx("path", {

@@ -20,13 +20,12 @@ describe('Joy <TabPanel />', () => {
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
-    wrapMount: (mount) => (node) => mount(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
     ThemeProvider,
     muiName: 'JoyTabPanel',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { size: 'sm' },
     testCustomVariant: true,
-    skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,

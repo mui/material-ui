@@ -1,0 +1,34 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "onClickAway": { "type": { "name": "func" }, "required": true },
+    "disableReactTree": { "type": { "name": "bool" }, "default": "false" },
+    "mouseEvent": {
+      "type": {
+        "name": "enum",
+        "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false"
+      },
+      "default": "'onClick'"
+    },
+    "touchEvent": {
+      "type": {
+        "name": "enum",
+        "description": "'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false"
+      },
+      "default": "'onTouchEnd'"
+    }
+  },
+  "name": "ClickAwayListener",
+  "imports": [
+    "import ClickAwayListener from '@mui/material/ClickAwayListener';",
+    "import { ClickAwayListener } from '@mui/material';"
+  ],
+  "classes": [],
+  "spread": false,
+  "themeDefaultProps": null,
+  "muiName": "MuiClickAwayListener",
+  "filename": "/packages/mui-material/src/ClickAwayListener/ClickAwayListener.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-click-away-listener/\">Click-Away Listener</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

@@ -22,8 +22,16 @@
     },
     "icon": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
-    "inputProps": { "type": { "name": "object" } },
-    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "inputProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.input</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "inputRef": {
+      "type": { "name": "custom", "description": "ref" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.input.ref</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
@@ -39,6 +47,20 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, switchBase?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, root?: elementType, switchBase?: elementType, thumb?: elementType, track?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -52,6 +74,38 @@
   "imports": [
     "import Switch from '@mui/material/Switch';",
     "import { Switch } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "'span'",
+      "class": "MuiSwitch-root"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track slot.",
+      "default": "'span'",
+      "class": "MuiSwitch-track"
+    },
+    {
+      "name": "thumb",
+      "description": "The component that renders the thumb slot.",
+      "default": "'span'",
+      "class": "MuiSwitch-thumb"
+    },
+    {
+      "name": "switchBase",
+      "description": "The component that renders the switchBase slot.",
+      "default": "SwitchBase",
+      "class": "MuiSwitch-switchBase"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the switchBase's input slot.",
+      "default": "SwitchBaseInput",
+      "class": "MuiSwitch-input"
+    }
   ],
   "classes": [
     {
@@ -91,18 +145,6 @@
       "isGlobal": false
     },
     {
-      "key": "input",
-      "className": "MuiSwitch-input",
-      "description": "Styles applied to the internal SwitchBase component's input element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiSwitch-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "sizeMedium",
       "className": "MuiSwitch-sizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"`.",
@@ -113,27 +155,9 @@
       "className": "MuiSwitch-sizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"`.",
       "isGlobal": false
-    },
-    {
-      "key": "switchBase",
-      "className": "MuiSwitch-switchBase",
-      "description": "Styles applied to the internal `SwitchBase` component's `root` class.",
-      "isGlobal": false
-    },
-    {
-      "key": "thumb",
-      "className": "MuiSwitch-thumb",
-      "description": "Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.",
-      "isGlobal": false
-    },
-    {
-      "key": "track",
-      "className": "MuiSwitch-track",
-      "description": "Styles applied to the track element.",
-      "isGlobal": false
     }
   ],
-  "spread": false,
+  "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",

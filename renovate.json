@@ -1,42 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "automerge": false,
-  "commitMessageAction": "Bump",
-  "commitMessageExtra": "to {{newValue}}",
-  "commitMessageTopic": "{{depName}}",
-  "dependencyDashboard": true,
-  "rebaseWhen": "conflicted",
-  "ignoreDeps": [],
-  "labels": ["dependencies"],
+  "extends": ["github>mui/mui-public//renovate/default"],
+  "schedule": "* 0-4 * * 7",
   "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": "before 6:00am on the first day of the month"
+    "schedule": "* 0-4 1 * *"
   },
   "packageRules": [
     {
-      "matchDepTypes": ["peerDependencies"],
-      "rangeStrategy": "widen"
-    },
-    {
-      "groupName": "babel",
-      "matchPackagePatterns": ["^@babel/", "^@types/babel"]
-    },
-    {
-      "groupName": "Emotion",
-      "matchPackagePatterns": "@emotion/*"
-    },
-    {
       "groupName": "Pigment CSS",
-      "matchPackagePatterns": ["@pigment-css/*"]
+      "matchPackageNames": ["@pigment-css/*"]
     },
     {
       "groupName": "Font awesome SVG icons",
-      "matchPackagePatterns": "@fortawesome/*"
-    },
-    {
-      "groupName": "core-js",
-      "matchPackageNames": ["core-js"],
-      "allowedVersions": "< 2.0.0"
+      "matchPackageNames": "@fortawesome/*"
     },
     {
       "groupName": "JSS",
@@ -64,30 +40,23 @@
     },
     {
       "groupName": "MUI X",
-      "matchPackagePatterns": ["@mui/x-*"]
-    },
-    {
-      "groupName": "React",
-      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
-    },
-    {
-      "groupName": "typescript-eslint",
-      "matchPackagePatterns": "@typescript-eslint/*"
+      "matchPackageNames": ["@mui/x-*"]
     },
     {
       "groupName": "@types/node",
       "matchPackageNames": ["@types/node"],
-      "allowedVersions": "< 19.0.0"
+      "allowedVersions": "< 21.0.0"
+    },
+    {
+      "groupName": "nx",
+      "description": "FIXME: Seems to cause never-ending windows builds in CI (e.g. https://github.com/mui/material-ui/actions/runs/16268045027/job/45928292854)",
+      "matchPackageNames": ["nx"],
+      "allowedVersions": "<= 20"
     },
     {
       "groupName": "bundling fixtures",
       "matchPaths": ["test/bundling/fixtures/**/package.json"],
-      "schedule": "every 6 months on the first day of the month"
-    },
-    {
-      "groupName": "node",
-      "matchPackageNames": ["node"],
-      "enabled": false
+      "schedule": "* * 1 1,7 *"
     },
     {
       "groupName": "examples",
@@ -95,36 +64,17 @@
       "enabled": false
     },
     {
-      "groupName": "Playwright",
-      "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
-    },
-    {
-      "matchDepTypes": ["action"],
-      "pinDigests": true
-    },
-    {
-      "groupName": "GitHub Actions",
-      "matchManagers": ["github-actions"]
-    },
-    {
-      "groupName": "@definitelytyped tools",
-      "matchPackagePatterns": ["@definitelytyped/*"]
-    },
-    {
-      "groupName": "Testing libraries",
-      "matchPackagePatterns": ["@testing-library/*"]
-    },
-    {
       "groupName": "envinfo tests",
       "matchPaths": ["packages/mui-envinfo/test/package.json"],
-      "matchPackagePatterns": ["@mui/*"],
+      "matchPackageNames": ["@mui/*"],
+      "enabled": false
+    },
+    {
+      "groupName": "codemod tests",
+      "description": "Prevent renovate from renaming @material-ui/core to @mui/material in the codemod tests.",
+      "matchFileNames": ["packages/mui-codemod/package.json"],
+      "matchPackageNames": ["@material-ui/core"],
       "enabled": false
     }
-  ],
-  "postUpdateOptions": ["pnpmDedupe"],
-  "prConcurrentLimit": 30,
-  "prHourlyLimit": 0,
-  "rangeStrategy": "bump",
-  "schedule": "on sunday before 6:00am",
-  "timezone": "UTC"
+  ]
 }

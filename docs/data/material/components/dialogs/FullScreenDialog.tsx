@@ -15,7 +15,7 @@ import { TransitionProps } from '@mui/material/transitions';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children: React.ReactElement<any>;
+    children: React.ReactElement<unknown>;
   },
   ref: React.Ref<unknown>,
 ) {
@@ -42,7 +42,9 @@ export default function FullScreenDialog() {
         fullScreen
         open={open}
         onClose={handleClose}
-        TransitionComponent={Transition}
+        slots={{
+          transition: Transition,
+        }}
       >
         <AppBar sx={{ position: 'relative' }}>
           <Toolbar>

@@ -11,7 +11,7 @@ describe('[Joy] CssVarsProvider', () => {
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key: string) => storage[key],
         setItem: (key: string, value: string) => {
@@ -22,8 +22,11 @@ describe('[Joy] CssVarsProvider', () => {
     });
     window.matchMedia = () =>
       ({
+        // Keep mocking legacy methods because @mui/material v5 still uses them
         addListener: () => {},
+        addEventListener: () => {},
         removeListener: () => {},
+        removeEventListener: () => {},
       }) as unknown as MediaQueryList;
   });
 

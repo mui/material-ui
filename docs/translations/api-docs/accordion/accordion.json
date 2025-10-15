@@ -14,8 +14,14 @@
     "onChange": {
       "description": "Callback fired when the expand/collapse state is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.",
-        "expanded": "The <code>expanded</code> state of the accordion."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event."
+        },
+        "expanded": {
+          "name": "expanded",
+          "description": "The <code>expanded</code> state of the accordion."
+        }
       }
     },
     "slotProps": { "description": "The props used for each slot inside." },
@@ -25,7 +31,7 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+      "description": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "TransitionProps": {
       "description": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
@@ -47,12 +53,6 @@
       "nodeName": "the root element",
       "conditions": "<code>disableGutters={true}</code>"
     },
-    "region": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the region element",
-      "conditions": "the container of the children"
-    },
-    "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
@@ -60,6 +60,9 @@
     }
   },
   "slotDescriptions": {
-    "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+    "heading": "The component that renders the heading.",
+    "region": "The component that renders the region.",
+    "root": "The component that renders the root.",
+    "transition": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

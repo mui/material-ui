@@ -1,11 +1,8 @@
 const path = require('path');
-const playwright = require('playwright');
+const playwright = require('@playwright/test');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
-// renovate PRs are based off of  upstream branches.
-// Their CI run will be a branch based run not PR run and therefore won't have a CIRCLE_PR_NUMBER
-const isPR = Boolean(process.env.CIRCLE_PULL_REQUEST);
 
 let build = `material-ui local ${new Date().toISOString()}`;
 
@@ -22,7 +19,11 @@ const browserStack = {
   // Since we have limited resources on BrowserStack we often time out on PRs.
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
-  enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
+  enabled:
+    !process.env.CI ||
+    process.env.BROWSERSTACK_FORCE === 'true' ||
+    (process.env.BROWSERSTACK_ENABLED === 'true' &&
+      process.env.CIRCLE_BRANCH.match(/^(master|next|v\d+\.x)$/)),
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
@@ -85,6 +86,7 @@ module.exports = function setKarmaConfig(config) {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-firefox-launcher',
+      'karma-spec-reporter',
     ],
     /**
      * possible values:
@@ -105,7 +107,7 @@ module.exports = function setKarmaConfig(config) {
     },
     // The CI branch fixes double log issue
     // https://github.com/karma-runner/karma/issues/2342
-    reporters: ['dots', ...(CI ? ['coverage-istanbul'] : [])],
+    reporters: CI ? ['dots', 'coverage-istanbul'] : ['spec'],
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
@@ -119,7 +121,7 @@ module.exports = function setKarmaConfig(config) {
           'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
         }),
         new webpack.ProvidePlugin({
-          // required by enzyme > cheerio > parse5 > util
+          // required by code accessing `process.env` in the browser
           process: 'process/browser.js',
         }),
       ],
@@ -128,7 +130,8 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
-            exclude: /node_modules/,
+            // assertion-error uses static initialization blocks, which doesn't work in Safari 15 on BrowserStack
+            exclude: /node_modules\/(.*\/)?(?!assertion-error)\//,
             options: {
               envName: 'stable',
             },
@@ -155,11 +158,9 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/icons-material': './packages/mui-icons-material/lib',
                         '@mui/lab': './packages/mui-lab/src',
                         '@mui/styled-engine': './packages/mui-styled-engine/src',
-                        '@mui/styles': './packages/mui-styles/src',
                         '@mui/system': './packages/mui-system/src',
                         '@mui/private-theming': './packages/mui-private-theming/src',
                         '@mui/utils': './packages/mui-utils/src',
-                        '@mui/base': './packages/mui-base/src',
                         '@mui/material-nextjs': './packages/mui-material-nextjs/src',
                         '@mui/joy': './packages/mui-joy/src',
                       },
@@ -189,10 +190,8 @@ module.exports = function setKarmaConfig(config) {
           // needed by sourcemap
           fs: false,
           path: false,
-          // needed by enzyme > cheerio
+          // Exclude polyfill and treat 'stream' as an empty module since it is not required. next -> gzip-size relies on it.
           stream: false,
-          // required by enzyme > cheerio > parse5
-          util: require.resolve('util/'),
           vm: false,
         },
       },
@@ -203,7 +202,7 @@ module.exports = function setKarmaConfig(config) {
     customLaunchers: {
       chromeHeadless: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox'],
+        flags: ['--no-sandbox', '--use-mock-keychain'],
       },
     },
     singleRun: CI,

@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-
 import IconImage from 'docs/src/components/icon/IconImage';
 
 export default function CoreHero() {

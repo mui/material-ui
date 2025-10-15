@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { Box, Stack } from '@mui/system';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const theme = createTheme({
   palette: {

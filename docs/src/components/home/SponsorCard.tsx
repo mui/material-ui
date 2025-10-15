@@ -1,14 +1,13 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import { Link } from '@mui/docs/Link';
 
 export default function SponsorCard(props: {
   item: {
     src: string;
+    srcDark?: string;
     srcSet?: string;
     name: string;
     description: string;
@@ -39,31 +38,31 @@ export default function SponsorCard(props: {
       sx={{
         p: 2,
         display: 'flex',
+        gap: 2,
         height: '100%',
-        '& svg': {
-          transition: '0.2s',
-        },
-        '&:hover': {
-          '& svg': {
-            transform: 'translateY(-2px)',
-          },
-        },
       }}
     >
       <Avatar
         {...(inView && { src: item.src, srcSet: item.srcSet, alt: `${item.name} logo` })}
-        sx={{ borderRadius: '4px', width: logoSize, height: logoSize }}
+        sx={[
+          { borderRadius: '4px', width: logoSize, height: logoSize },
+          (theme) =>
+            item.srcDark
+              ? theme.applyDarkStyles({
+                  content: `url(${item.srcDark})`,
+                })
+              : null,
+        ]}
         slotProps={{ img: { loading: 'lazy' } }}
       />
-      <Box sx={{ ml: 2 }}>
-        <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-          {item.name}{' '}
-          <LaunchRounded color="primary" sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }} />
+      <div>
+        <Typography variant="body2" sx={{ fontWeight: 'semiBold', mb: '2px' }}>
+          {item.name}
         </Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {item.description}
         </Typography>
-      </Box>
+      </div>
     </Paper>
   );
 }

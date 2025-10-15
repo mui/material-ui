@@ -21,6 +21,6 @@ Danail has already landed his first feature in the data grid: [column reordering
 
 He's now actively working on new features for the data grid.
 
-The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/mui/mui-x/projects/1).
+The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/orgs/mui/projects/35).
 
 We couldn't be more excited to have Danail on the team! You can follow him on [X](https://x.com/danail_h).

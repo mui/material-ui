@@ -4,7 +4,7 @@ import { TypeScriptProject } from './createTypeScriptProject';
 export interface ParsedProp {
   /**
    * If `true`, some signatures do not contain this property.
-   * e.g: `id` in `{ id: number, value: string } | { value: string }`
+   * For example: `id` in `{ id: number, value: string } | { value: string }`
    */
   onlyUsedInSomeSignatures: boolean;
   signatures: { symbol: ts.Symbol; componentType: ts.Type }[];
@@ -51,6 +51,7 @@ function isStyledFunction(node: ts.VariableDeclaration): boolean {
   );
 }
 
+// TODO update to reflect https://github.com/DefinitelyTyped/DefinitelyTyped/pull/65135
 function getJSXLikeReturnValueFromFunction(type: ts.Type, project: TypeScriptProject) {
   return type
     .getCallSignatures()

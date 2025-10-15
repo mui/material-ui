@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer } from '@mui/internal-test-utils';
+import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
+
+  function CustomRoot({ checkedIcon, ownerState, disableRipple, slots, slotProps, ...props }) {
+    return <div {...props} />;
+  }
 
   describeConformance(<Checkbox checked />, () => ({
     classes,
@@ -19,6 +24,15 @@ describe('<Checkbox />', () => {
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
     refInstanceof: window.HTMLSpanElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomRoot,
+      },
+      input: {
+        expectedClassName: classes.input,
+      },
+    },
     skip: ['componentProp', 'componentsProp', 'rootClass'],
   }));
 
@@ -29,65 +43,65 @@ describe('<Checkbox />', () => {
   });
 
   it('renders an unchecked `checkbox` by default', () => {
-    const { getByRole } = render(<Checkbox />);
+    render(<Checkbox />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(screen.getByRole('checkbox')).to.have.property('checked', false);
   });
 
   it('renders an checked `checkbox` when `checked={true}`', () => {
-    const { getByRole } = render(<Checkbox checked />);
+    render(<Checkbox checked />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(screen.getByRole('checkbox')).to.have.property('checked', true);
   });
 
   it('flips the checked property when clicked and calls onchange with the checked state', () => {
     const handleChange = spy();
-    const { getByRole } = render(<Checkbox onChange={handleChange} />);
+    render(<Checkbox onChange={handleChange} />);
 
     act(() => {
-      getByRole('checkbox').click();
+      screen.getByRole('checkbox').click();
     });
 
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(screen.getByRole('checkbox')).to.have.property('checked', true);
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.getCall(0).args[0].target).to.have.property('checked', true);
 
     act(() => {
-      getByRole('checkbox').click();
+      screen.getByRole('checkbox').click();
     });
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(screen.getByRole('checkbox')).to.have.property('checked', false);
     expect(handleChange.callCount).to.equal(2);
     expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
-      const { getByTestId } = render(<Checkbox indeterminate />);
-      expect(getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
+      render(<Checkbox indeterminate />);
+      expect(screen.getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
     });
   });
 
   describe('prop: size', () => {
     it('add sizeSmall class to the root element when the size prop equals "small"', () => {
-      const { getByRole } = render(<Checkbox size="small" />);
-      const checkbox = getByRole('checkbox');
+      render(<Checkbox size="small" />);
+      const checkbox = screen.getByRole('checkbox');
       const root = checkbox.parentElement;
 
       expect(root).to.have.class(classes.sizeSmall);
     });
 
     it('add sizeMedium class to the root element when the size prop equals "medium"', () => {
-      const { getByRole } = render(<Checkbox size="medium" />);
-      const checkbox = getByRole('checkbox');
+      render(<Checkbox size="medium" />);
+      const checkbox = screen.getByRole('checkbox');
       const root = checkbox.parentElement;
 
       expect(root).to.have.class(classes.sizeMedium);
     });
 
     it('add sizeMedium class to the root element when the size is not expplicitly provided', () => {
-      const { getByRole } = render(<Checkbox />);
-      const checkbox = getByRole('checkbox');
+      render(<Checkbox />);
+      const checkbox = screen.getByRole('checkbox');
       const root = checkbox.parentElement;
 
       expect(root).to.have.class(classes.sizeMedium);
@@ -96,7 +110,7 @@ describe('<Checkbox />', () => {
 
   describe('theme: customization', () => {
     it('should be customizable in the theme using the size prop.', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -139,45 +153,45 @@ describe('<Checkbox />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByRole } = render(
+        render(
           <FormControl>
             <Checkbox />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+        expect(screen.getByRole('checkbox')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByRole } = render(
+        render(
           <FormControl>
             <Checkbox disabled />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).to.have.attribute('disabled');
+        expect(screen.getByRole('checkbox')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByRole } = render(
+        render(
           <FormControl disabled>
             <Checkbox />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).to.have.attribute('disabled');
+        expect(screen.getByRole('checkbox')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByRole } = render(
+        render(
           <FormControl disabled>
             <Checkbox disabled={false} />
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+        expect(screen.getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
   });
@@ -196,5 +210,20 @@ describe('<Checkbox />', () => {
     render(<Checkbox icon={<MyIcon fontSize="foo" />} />);
 
     expect(fontSizeSpy.args[0][0]).to.equal('foo');
+  });
+
+  it('should have a ripple', async () => {
+    render(<Checkbox TouchRippleProps={{ className: 'touch-ripple' }} />);
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).not.to.equal(null);
+  });
+
+  it('should not have ripple', async () => {
+    render(<Checkbox disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />);
+
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
   });
 });

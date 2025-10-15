@@ -9,7 +9,7 @@ describe('GlobalStyles', () => {
   const { render } = createRenderer();
 
   it('should add global styles', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -26,7 +26,7 @@ describe('GlobalStyles', () => {
   });
 
   it('should add global styles using JS syntax', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -43,7 +43,7 @@ describe('GlobalStyles', () => {
   });
 
   it('should add global styles using function', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -71,7 +71,7 @@ describe('GlobalStyles', () => {
   });
 
   it('should give precedence to styled()', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -92,7 +92,7 @@ describe('GlobalStyles', () => {
   });
 
   it('should give precedence to styled() using JS syntax', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

@@ -10,7 +10,7 @@ manualCard: true
 There's a lot of exciting news in [MUI X v6.0.0-beta.0](https://github.com/mui/mui-x/releases/v6.0.0-beta.0), but there's hardly anything comparable to the revamp we're delivering for the Date and Time Pickers.
 
 This is the result of our ongoing efforts to improve the usability and customizability of these components.
-We kept the best aspects of the previous versions, and we're fleshing out the package with a [new documentation](https://next.mui.com/x/react-date-pickers/getting-started/), major new features and one fundamental change: a new input type to replace the masked text fields.
+We kept the best aspects of the previous versions, and we're fleshing out the package with [new documentation](https://next.mui.com/x/react-date-pickers/), major new features, and one fundamental change: a new input type to replace the masked text fields.
 
 ## The new date and time fields
 
@@ -20,7 +20,7 @@ The previous generation of pickers, whose text input is based on a [mask approac
 
 For example, watch what happens when we edit the month on this masked input:
 
-<video style="width: 608px;" autoplay muted loop playsinline>
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="310">
   <source src="/static/blog/v6-beta-pickers/masked-input-bad-ux.mp4" type="video/mp4" />
 </video>
 
@@ -29,7 +29,7 @@ As you can notice, the day and year leak to the previous sections of the date, p
 In contrast, the new fields are specialized in editing date and time values.
 They recognize the values on the input (day, month, year, etc.) and respond accordingly.
 
-<video style="width: 608px;" autoplay muted loop playsinline>
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="310">
   <source src="/static/blog/v6-beta-pickers/basic-date-field.mp4" type="video/mp4" />
 </video>
 
@@ -55,19 +55,19 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 With the new Fields, the keyboard interaction is a first-class experience.
 Not only can you type the date as text, but you can also use arrow keys to navigate and edit date and time values.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="310">
   <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
 For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
 
-<video style="margin-bottom:24px" autoplay muted loop playsinline >
+<video autoplay muted loop playsinline width="1920" height="1080">
   <source src="/static/blog/v6-beta-pickers/quick-comparison-fields.mp4" type="video/mp4" />
 </video>
 
 Moreover, notice in the following example that as we edit the day, the component automatically navigates only in valid values.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline >
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="274">
   <source src="/static/blog/v6-beta-pickers/smart-field-stable.mp4" type="video/mp4" />
 </video>
 
@@ -111,19 +111,18 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
 - **Default render input**\
   You don't need to provide the usual `TextField` on `renderInput` anymore unless you need it customized.
   In which case you can do it by:
-
   1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/p/sandbox/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
   2. Build a new field component using the Field's headless API (documentation coming soon).
   3. Use an entirely [custom text field](https://next.mui.com/x/react-date-pickers/date-picker/#custom-input-component) to suit your use case.
 
 - **Drag to edit**\
   Editing a date range is even easier now with the new drag-and-drop interface. Change `start` and `end` dates at will.
-  <video style="margin-bottom: 24px; max-height: 398px;" autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline width="1488" height="796">
     <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
   </video>
 - **Range shortcuts** (available from v6.0.0-beta.1)\
   Add quick and customizable shortcuts for your users. Choose to display them on the left, right, bottom or top.
-  <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
+  <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" loading="lazy" alt="Date Range shortcuts." width="2222" height="1402" />
 
 ## Should we retire the masked inputs?
 

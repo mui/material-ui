@@ -1,4 +1,3 @@
-'use client';
 // reexports from system for module augmentation
 export type { BreakpointOverrides } from '@mui/system';
 

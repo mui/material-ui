@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -46,9 +47,29 @@ describe('useScrollTrigger', () => {
       expect(triggerRef.current.textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(2);
     });
+
+    it('should do nothing when ref is null', () => {
+      const getRenderCountRef = React.createRef();
+      const triggerRef = React.createRef();
+      function TestWithNullRef() {
+        const [container, setContainer] = React.useState(null);
+        const trigger = useScrollTrigger({
+          target: container,
+        });
+        return (
+          <RenderCounter ref={getRenderCountRef}>
+            <span ref={triggerRef}>{`${trigger}`}</span>
+            <span ref={setContainer} />
+          </RenderCounter>
+        );
+      }
+      render(<TestWithNullRef />);
+      expect(triggerRef.current.textContent).to.equal('false');
+      expect(getRenderCountRef.current()).to.equal(2);
+    });
   });
 
-  describe('scroll', () => {
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('scroll', () => {
     const triggerRef = React.createRef();
     const containerRef = React.createRef(); // Get the scroll container's parent
     const getContainer = () => containerRef.current.children[0]; // Get the scroll container
@@ -74,13 +95,6 @@ describe('useScrollTrigger', () => {
     Test.propTypes = {
       customContainer: PropTypes.bool,
     };
-
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
 
     function dispatchScroll(offset, element = window) {
       act(() => {

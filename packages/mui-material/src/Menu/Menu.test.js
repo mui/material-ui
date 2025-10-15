@@ -3,20 +3,27 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import {
   createRenderer,
-  createMount,
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
+import { modalClasses } from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { MenuPaper } from './Menu';
 import describeConformance from '../../test/describeConformance';
+import { paperClasses } from '../Paper';
+
+const CustomTransition = React.forwardRef(function CustomTransition(
+  { in: inProp, appear, onEnter, onEntering, onExited, ownerState, ...props },
+  ref,
+) {
+  return <div data-testid="custom" ref={ref} {...props} />;
+});
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
-  const mount = createMount();
 
   describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -31,6 +38,21 @@ describe('<Menu />', () => {
       paper: {
         expectedClassName: classes.paper,
       },
+      list: {
+        expectedClassName: classes.list,
+        testWithElement: null, // already tested with `testWithComponent`
+      },
+      backdrop: {
+        expectedClassName: modalClasses.backdrop,
+        testWithElement: React.forwardRef(({ invisible, ownerState, ...props }, ref) => (
+          <i ref={ref} {...props} />
+        )),
+      },
+      transition: {
+        expectedClassName: null,
+        testWithComponent: CustomTransition,
+        testWithElement: CustomTransition,
+      },
     },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
@@ -39,7 +61,6 @@ describe('<Menu />', () => {
       'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
-      'reactTestRenderer', // react-transition-group issue
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));
@@ -62,7 +83,7 @@ describe('<Menu />', () => {
 
         expect(handleEnter.callCount).to.equal(
           // onEnter is called on mount which is run twice with Strict Effects
-          React.version.startsWith('18') ? 2 : 1,
+          reactMajor >= 18 ? 2 : 1,
         );
         expect(handleEnter.args[0].length).to.equal(2);
         expect(handleEntering.callCount).to.equal(1);
@@ -141,8 +162,9 @@ describe('<Menu />', () => {
   describe('prop: PaperProps', () => {
     it('should be passed to the paper component', () => {
       const customElevation = 12;
-      const customClasses = { rounded: { borderRadius: 12 } };
-      const wrapper = mount(
+      const customClasses = { rounded: 'custom-rounded' };
+
+      render(
         <Menu
           anchorEl={document.createElement('div')}
           open
@@ -154,8 +176,8 @@ describe('<Menu />', () => {
         />,
       );
 
-      expect(wrapper.find(MenuPaper).props().elevation).to.equal(customElevation);
-      expect(wrapper.find(MenuPaper).props().classes).to.contain(customClasses);
+      expect(screen.getByTestId('paper')).to.have.class(paperClasses.elevation12);
+      expect(screen.getByTestId('paper')).to.have.class(customClasses.rounded);
     });
   });
 
@@ -218,31 +240,61 @@ describe('<Menu />', () => {
     expect(screen.getByRole('menu')).not.toHaveFocus();
   });
 
-  it('should call TransitionProps.onEntering', () => {
+  it('should call slotProps.transition.onEntering', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
         anchorEl={document.createElement('div')}
         open
-        TransitionProps={{ onEntering: onEnteringSpy }}
+        slotProps={{ transition: { onEntering: onEnteringSpy } }}
       />,
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
   });
 
-  it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+  it('should call slotProps.transition.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
         anchorEl={document.createElement('div')}
         disableAutoFocusItem
         open
-        TransitionProps={{ onEntering: onEnteringSpy }}
+        slotProps={{ transition: { onEntering: onEnteringSpy } }}
       />,
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
+  });
+
+  // TODO: remove in v7
+  describe('legacy TransitionProps', () => {
+    it('should call TransitionProps.onEntering', () => {
+      const onEnteringSpy = spy();
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          TransitionProps={{ onEntering: onEnteringSpy }}
+        />,
+      );
+
+      expect(onEnteringSpy.callCount).to.equal(1);
+    });
+
+    it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+      const onEnteringSpy = spy();
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          disableAutoFocusItem
+          open
+          TransitionProps={{ onEntering: onEnteringSpy }}
+        />,
+      );
+
+      expect(onEnteringSpy.callCount).to.equal(1);
+    });
   });
 
   it('should call onClose on tab', () => {
@@ -281,6 +333,7 @@ describe('<Menu />', () => {
         {null}
         <span role="menuitem">hello</span>
         {/* testing conditional rendering */}
+        {/* eslint-disable-next-line no-constant-binary-expression */}
         {false && <span role="menuitem">hello</span>}
         {undefined}
         foo
@@ -309,7 +362,7 @@ describe('<Menu />', () => {
 
   describe('theme customization', () => {
     it('should override Menu Paper styles following correct precedence', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -349,7 +402,7 @@ describe('<Menu />', () => {
     });
 
     it('should override Menu Paper styles using styles in MuiPaper slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -381,27 +434,20 @@ describe('<Menu />', () => {
     });
   });
 
-  describe('paper', () => {
-    it('should use MenuPaper component', () => {
-      const wrapper = mount(
-        <Menu anchorEl={document.createElement('div')} open>
-          <div />
-        </Menu>,
-      );
-
-      expect(wrapper.find(MenuPaper)).to.have.length(1);
-    });
-  });
-
   describe('slots', () => {
     it('should merge slots with existing values', () => {
-      const wrapper = mount(
-        <Menu slots={{ root: 'span' }} anchorEl={document.createElement('div')} open>
+      render(
+        <Menu
+          slots={{ root: 'span' }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
+          anchorEl={document.createElement('div')}
+          open
+        >
           <div />
         </Menu>,
       );
 
-      expect(wrapper.find(MenuPaper)).to.have.length(1);
+      expect(screen.getByTestId('paper')).to.have.length(1);
     });
   });
 });

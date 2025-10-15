@@ -1,0 +1,70 @@
+{
+  "name": "@mui/material-pigment-css",
+  "version": "7.3.3",
+  "author": "MUI Team",
+  "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
+  "keywords": [
+    "react",
+    "mui",
+    "material-ui",
+    "css-in-js",
+    "zero-runtime"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-material-pigment-css"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/material-ui/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "build": "code-infra build --copy \"src/styles.css\" --copy \"src/styles.css:esm\"",
+    "release": "pnpm build && pnpm publish",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
+    "typescript": "tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.28.4",
+    "@mui/system": "workspace:*"
+  },
+  "devDependencies": {
+    "react": "^19.2.0"
+  },
+  "peerDependencies": {
+    "@pigment-css/react": "^0.0.30"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "wyw-in-js": {
+    "tags": {
+      "styled": "@pigment-css/react/exports/styled",
+      "sx": "@pigment-css/react/exports/sx",
+      "keyframes": "@pigment-css/react/exports/keyframes",
+      "generateAtomics": "@pigment-css/react/exports/generateAtomics",
+      "css": "@pigment-css/react/exports/css",
+      "createUseThemeProps": "@pigment-css/react/exports/createUseThemeProps",
+      "internal_createExtendSxProp": "@pigment-css/react/exports/internal_createExtendSxProp",
+      "globalCss": "@pigment-css/react/exports/globalCss",
+      "useTheme": "@pigment-css/react/exports/useTheme"
+    }
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./*": "./src/*/index.ts"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

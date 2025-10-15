@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Paper from '@mui/material/Paper';
@@ -68,11 +68,11 @@ const faqData = [
     ),
   },
   {
-    summary: 'Figma or Sketch or Adobe XD?',
+    summary: 'Figma or Sketch?',
     detail: (
       <React.Fragment>
-        We aim to keep feature parity between the Figma, Sketch, and Adobe XD kits where possible.
-        We have a 50% off coupon for past customers who want to switch between them.
+        We aim to keep feature parity between the Figma and Sketch kits where possible. We have a
+        50% off coupon for past customers who want to switch between them.
       </React.Fragment>
     ),
   },
@@ -145,16 +145,16 @@ export default function DesignKitFAQ() {
   }
   return (
     <Section>
-      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }} id="faq">
+      <Typography id="faq" variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderItem(3)}
           {renderItem(4)}
           <Paper

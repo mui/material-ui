@@ -66,6 +66,17 @@ function MyAutocomplete<
   renderInput={() => null}
 />;
 
+// Tests presence of onMouseDown prop in InputProps
+<Autocomplete
+  options={['1', '2', '3']}
+  renderInput={(params) => {
+    expectType<React.MouseEventHandler, typeof params.InputProps.onMouseDown>(
+      params.InputProps.onMouseDown,
+    );
+    return <TextField {...params} />;
+  }}
+/>;
+
 <MyAutocomplete
   options={['1', '2', '3']}
   onChange={(event, value) => {
@@ -126,9 +137,9 @@ function TagComponent({ color, label, ...other }: TagComponentProps) {
 
 function renderTags(value: Tag[], getTagProps: AutocompleteRenderGetTagProps) {
   return value.map((tag: Tag, index) => {
-    const { onDelete, ...tagProps } = getTagProps({ index });
+    const { key, onDelete, ...tagProps } = getTagProps({ index });
 
-    return <TagComponent {...tagProps} {...tag} />;
+    return <TagComponent key={key} {...tagProps} {...tag} />;
   });
 }
 
@@ -162,12 +173,12 @@ function CustomListboxRef() {
 <Autocomplete
   renderInput={(params) => <TextField {...params} />}
   options={['one', 'two', 'three']}
-  onKeyDown={(e) => {
+  onKeyDown={(event) => {
     expectType<
       React.KeyboardEvent<HTMLDivElement> & {
         defaultMuiPrevented?: boolean;
       },
-      typeof e
-    >(e);
+      typeof event
+    >(event);
   }}
 />;

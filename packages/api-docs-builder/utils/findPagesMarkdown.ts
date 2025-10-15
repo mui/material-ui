@@ -24,14 +24,14 @@ export default function findPagesMarkdown(
     }
 
     // Ignore non en-US source markdown.
-    if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
+    if (!/\.mdx?$/.test(item) || /-(zh|pt)\.mdx?/.test(item)) {
       return;
     }
 
     let pathname = filename
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/data/, '')
-      .replace('.md', '');
+      .replace(/\.mdx?/, '');
 
     // Remove the last pathname segment.
     pathname = pathname

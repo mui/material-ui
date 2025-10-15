@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { GridBaseProps } from '@mui/system/Unstable_Grid';
+import { GridBaseProps } from '@mui/system/Grid';
 import { SxProps, SystemProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 

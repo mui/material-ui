@@ -4,14 +4,13 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import useSlotProps from '@mui/utils/useSlotProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
-
-const useThemeProps = createUseThemeProps('MuiBreadcrumbs');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -37,7 +36,6 @@ const BreadcrumbsRoot = styled(Typography, {
 const BreadcrumbsOl = styled('ol', {
   name: 'MuiBreadcrumbs',
   slot: 'Ol',
-  overridesResolver: (props, styles) => styles.ol,
 })({
   display: 'flex',
   flexWrap: 'wrap',
@@ -50,7 +48,6 @@ const BreadcrumbsOl = styled('ol', {
 const BreadcrumbsSeparator = styled('li', {
   name: 'MuiBreadcrumbs',
   slot: 'Separator',
-  overridesResolver: (props, styles) => styles.separator,
 })({
   display: 'flex',
   userSelect: 'none',
@@ -81,7 +78,7 @@ function insertSeparators(items, className, separator, ownerState) {
 }
 
 const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBreadcrumbs' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBreadcrumbs' });
   const {
     children,
     className,
@@ -184,7 +181,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     <BreadcrumbsRoot
       ref={ref}
       component={component}
-      color="text.secondary"
+      color="textSecondary"
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}
@@ -228,7 +225,7 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
   /**
    * Override the default label for the expand button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Show path'
    */
   expandText: PropTypes.string,

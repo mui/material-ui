@@ -61,11 +61,13 @@ export default function DialogVerticalScroll() {
             />
           </FormControl>
           <List
-            sx={{
-              overflow: scroll ? 'scroll' : 'initial',
-              mx: 'calc(-1 * var(--ModalDialog-padding))',
-              px: 'var(--ModalDialog-padding)',
-            }}
+            sx={[
+              {
+                mx: 'calc(-1 * var(--ModalDialog-padding))',
+                px: 'var(--ModalDialog-padding)',
+              },
+              scroll ? { overflow: 'scroll' } : { overflow: 'initial' },
+            ]}
           >
             {[...Array(100)].map((item, index) => (
               <ListItem key={index}>I&apos;m in a scrollable area.</ListItem>

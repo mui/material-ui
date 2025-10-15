@@ -2,8 +2,9 @@
 productId: material-ui
 title: App Bar React component
 components: AppBar, Toolbar, Menu
-githubLabel: 'component: app bar'
+githubLabel: 'scope: app bar'
 materialDesign: https://m2.material.io/components/app-bars-top
+githubSource: packages/mui-material/src/AppBar
 ---
 
 # App Bar
@@ -122,7 +123,6 @@ A floating action button appears on scroll to make it easy to get back to the to
 #### Arguments
 
 1. `options` (_object_ [optional]):
-
    - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
    - `options.target` (_Node_ [optional]): Defaults to `window`.
    - `options.threshold` (_number_ [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).

@@ -49,13 +49,13 @@ describe('prepareCssVars', () => {
 
     const css1 = result.generateStyleSheets();
 
-    delete css1[0]['[data-color-scheme="dark"]'];
+    delete css1[0][':root'];
 
     expect(css1[0]).to.deep.equal({});
 
     const css2 = result.generateStyleSheets();
 
-    expect(css2[0]).to.deep.equal({ '[data-color-scheme="dark"]': { '--color': 'red' } });
+    expect(css2[0]).to.deep.equal({ ':root': { '--color': 'red' } });
   });
 
   it('produce theme vars with defaults', () => {
@@ -131,25 +131,28 @@ describe('prepareCssVars', () => {
   });
 
   it('`generateStyleSheets` should have the right sequence', () => {
-    const result = prepareCssVars({
-      defaultColorScheme: 'dark',
-      colorSchemes: {
-        dark: {
-          color: 'red',
+    const result = prepareCssVars(
+      {
+        defaultColorScheme: 'dark',
+        colorSchemes: {
+          dark: {
+            color: 'red',
+          },
+          light: {
+            color: 'green',
+          },
         },
-        light: {
-          color: 'green',
+        fontSize: {
+          base: '1rem',
         },
       },
-      fontSize: {
-        base: '1rem',
-      },
-    });
+      { colorSchemeSelector: 'data-color-scheme' },
+    );
 
     const stylesheets = result.generateStyleSheets();
     expect(stylesheets).to.deep.equal([
       { ':root': { '--fontSize-base': '1rem' } },
-      { '[data-color-scheme="dark"]': { '--color': 'red' } },
+      { ':root, [data-color-scheme="dark"]': { '--color': 'red' } },
       { '[data-color-scheme="light"]': { '--color': 'green' } },
     ]);
   });

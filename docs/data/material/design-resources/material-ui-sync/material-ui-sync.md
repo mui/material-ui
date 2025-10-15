@@ -1,36 +1,37 @@
-# Material UI Sync plugin
+# Material UI Sync plugin 🧪
 
 <p class="description">Sync is a Figma plugin that generates Material UI themes directly from design to code.</p>
+
+:::warning
+This plugin is experimental.
+:::
 
 ## Introduction
 
 [Material UI Sync](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x).
 
-:::warning
-Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
-Other kits, such as the Joy UI Design Kit, are not supported yet.
-:::
-
 <img src="/static/material-ui/design-resources/sync.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
+
+Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
 
 ## Running the plugin
 
 If you don't have the [complete and latest version](/store/items/figma-react/) of the Material UI for Figma Design Kit installed, you can test the plugin by using the [Community version](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x) instead.
 
-After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) on the Community tab and click on **Open in...** and select the Material UI for Figma Design Kit.
+After installing and opening it in Figma, head over to the [Material UI Sync plugin page](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) on the Community tab and click on **Open in…** and select the Material UI for Figma Design Kit.
 
 <img src="/static/material-ui/design-resources/sync-access.png" style="width: 814px;" alt="Accessing Material UI Sync via the Resources menu in Figma." width="1628" height="400" />
 
 ## Customizing design tokens
 
-Design tokens are defined in the Design Kit's [local variable collections](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) and include color palettes, breakpoints, shapes, and spacing tokens.
+Design tokens are defined in the Design Kit's [local variable collections](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections) and include color palettes, breakpoints, shapes, and spacing tokens.
 Typography and shadow-related tokens are found in the [local styles collection](https://help.figma.com/hc/en-us/articles/360039820134-Manage-and-share-styles#:~:text=Local%20styles%20are%20styles%20that,or%20from%20the%20style%20picker.).
 
 ### Altering existing tokens
 
 The Design Kit comes fully loaded with design tokens that map out to the [default theme of the Material UI React library](/material-ui/customization/default-theme/).
 
-To customize existing tokens, open the [local variable modal](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) by clicking on the filter icon as shown below.
+To customize existing tokens, open the [local variable modal](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections) by clicking on the filter icon as shown below.
 Tweak any of the variables available in the collections (such as palettes, breakpoints, shapes, and spacing) as you see fit.
 
 <img src="/static/material-ui/design-resources/sync-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Local variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />
@@ -56,12 +57,11 @@ After you've added your custom tokens, click on **Regenerate theme** to include 
 
 ## Customizing components
 
-The Sync plugin can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
-
-:::info
-This feature is currently limited to the Button, Switch, and Typography components.
-Support for more components is coming soon.
+:::warning
+This feature is experimental and limited to the **Button**, **Switch**, and **Typography** components.
 :::
+
+The Sync plugin can also generate theme styles for customized components, enabling you to completely change their look and feel and create your custom design system from within Figma.
 
 As an example, here's how to customize the checked state, medium size, and primary color of a Switch component to replicate the iOS look and feel:
 
@@ -132,87 +132,87 @@ From here you can run Sync to generate a new theme—here's what would be genera
     MuiSwitch: {
       styleOverrides: {
         root: {
-          "&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)": {
-            width: "40px",
-            height: "21px",
-            padding: "0",
-            "& .MuiSwitch-switchBase": {
-              padding: "0",
-              "& .MuiSwitch-thumb": {
-                width: "17px",
-                height: "17px",
-                background: "#FAFAFA",
+          '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
+            width: '40px',
+            height: '21px',
+            padding: '0',
+            '& .MuiSwitch-switchBase': {
+              padding: '0',
+              '& .MuiSwitch-thumb': {
+                width: '17px',
+                height: '17px',
+                background: '#FAFAFA',
               },
-              "& + .MuiSwitch-track": {
-                width: "38px",
-                height: "21px",
-                borderRadius: "100px",
-                opacity: "1",
+              '& + .MuiSwitch-track': {
+                width: '38px',
+                height: '21px',
+                borderRadius: '100px',
+                opacity: '1',
               },
             },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "#BDBDBD",
+            '&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: '#BDBDBD',
                 },
               },
             },
-            "&:not(:has(.Mui-checked)):has(.Mui-disabled):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "rgba(229, 229, 229, 0.99)",
+            '&:not(:has(.Mui-checked)):has(.Mui-disabled):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'rgba(229, 229, 229, 0.99)',
                 },
               },
             },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):has(.Mui-focusVisible)": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  border: "1px solid #000",
-                  background: "#BDBDBD",
+            '&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):has(.Mui-focusVisible)': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  border: '1px solid #000',
+                  background: '#BDBDBD',
                 },
               },
             },
-            "&:has(.Mui-checked):has(.Mui-disabled):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "rgba(187, 231, 188, 0.99)",
+            '&:has(.Mui-checked):has(.Mui-disabled):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'rgba(187, 231, 188, 0.99)',
                 },
               },
             },
-            "&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(3px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "#616161",
+            '&:not(:has(.Mui-checked)):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(3px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: '#616161',
                 },
               },
             },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "var(--mui-palette-success-light)",
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'var(--mui-palette-success-light)',
                 },
               },
             },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  background: "var(--mui-palette-success-dark)",
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible)):hover': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  background: 'var(--mui-palette-success-dark)',
                 },
               },
             },
-            "&:has(.Mui-checked):not(:has(.Mui-disabled)):has(.Mui-focusVisible)": {
-              "& .MuiSwitch-switchBase": {
-                transform: "translateX(19px) translateY(2px)",
-                "& + .MuiSwitch-track": {
-                  border: "1px solid #000",
-                  background: "var(--mui-palette-success-light)",
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):has(.Mui-focusVisible)': {
+              '& .MuiSwitch-switchBase': {
+                transform: 'translateX(19px) translateY(2px)',
+                '& + .MuiSwitch-track': {
+                  border: '1px solid #000',
+                  background: 'var(--mui-palette-success-light)',
                 },
               },
             },
@@ -236,62 +236,61 @@ You can also check out the Storybook preview to test the Material UI version of
 
 ## Using the generated theme
 
-:::warning
-Themes generated by Sync must be used with Material UI's [`CssVarsProvider`](/material-ui/migration/migration-css-theme-variables/)—the [`ThemeProvider`](/material-ui/customization/theming/#theme-provider) is not supported.
-:::
-
 Here's an example of how to add a Sync-generated theme to your codebase:
 
 ```tsx title="_app.tsx"
-import { extendTheme, CssVarsProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-export default function MyApp({ Component, pageProps }) {
-  const theme = extendTheme({
-    shape: {
-      borderRadiusRound: 999,
-    },
-    components: {
-      MuiSwitch: {
-        styleOverrides: {
-          root: {
-            '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
-              '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))':
-                {
-                  width: '40px',
-                  height: '21px',
+const theme = createTheme({
+  cssVariables: true,
+  shape: {
+    borderRadiusRound: 999,
+  },
+  components: {
+    MuiSwitch: {
+      styleOverrides: {
+        root: {
+          '&.MuiSwitch-sizeMedium:has(.MuiSwitch-colorPrimary)': {
+            '&:has(.Mui-checked):not(:has(.Mui-disabled)):not(:has(.Mui-focusVisible))':
+              {
+                width: '40px',
+                height: '21px',
+                padding: '0',
+                '& .MuiSwitch-switchBase': {
+                  transform: 'translateX(19px) translateY(2px)',
                   padding: '0',
-                  '& .MuiSwitch-switchBase': {
-                    transform: 'translateX(19px) translateY(2px)',
-                    padding: '0',
-                    '& .MuiSwitch-thumb': {
-                      width: '17px',
-                      height: '17px',
-                      background: '#FAFAFA',
-                    },
-                    '& + .MuiSwitch-track': {
-                      width: '38px',
-                      height: '21px',
-                      background: 'var(--mui-palette-success-light)',
-                      borderRadius: 'var(--mui-shape-borderRadiusRound)',
-                      opacity: '1',
-                    },
+                  '& .MuiSwitch-thumb': {
+                    width: '17px',
+                    height: '17px',
+                    background: '#FAFAFA',
+                  },
+                  '& + .MuiSwitch-track': {
+                    width: '38px',
+                    height: '21px',
+                    background: 'var(--mui-palette-success-light)',
+                    borderRadius: 'var(--mui-shape-borderRadiusRound)',
+                    opacity: '1',
                   },
                 },
-            },
+              },
           },
         },
       },
     },
-  });
+  },
+});
+
+export default function MyApp(props) {
+  const { Component, pageProps } = props;
 
   return (
-    <CssVarsProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Component {...pageProps} />
-    </CssVarsProvider>
+    </ThemeProvider>
   );
 }
 ```
 
 ## Feedback and bug reports
 
-Use [the dedicated Material UI Sync feedback board](https://material-ui-sync.canny.io/) to share feedback, report bugs, or drop feature requests.
+If you've got any feedback, we'd love to [hear from you](https://github.com/mui/mui-design-kits/discussions/84).

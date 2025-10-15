@@ -3,12 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import Typography from '../Typography';
+import Typography, { typographyClasses } from '../Typography';
 import ListContext from '../List/ListContext';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
-
-const useThemeProps = createUseThemeProps('MuiListItemText');
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, inset, primary, secondary, dense } = ownerState;
@@ -42,6 +42,12 @@ const ListItemTextRoot = styled('div', {
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
+  [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary})`]: {
+    display: 'block',
+  },
+  [`.${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]: {
+    display: 'block',
+  },
   variants: [
     {
       props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
@@ -60,7 +66,7 @@ const ListItemTextRoot = styled('div', {
 });
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemText' });
   const {
     children,
     className,
@@ -70,6 +76,8 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     primaryTypographyProps,
     secondary: secondaryProp,
     secondaryTypographyProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { dense } = React.useContext(ListContext);
@@ -88,44 +96,64 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      primary: primaryTypographyProps,
+      secondary: secondaryTypographyProps,
+      ...slotProps,
+    },
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    className: clsx(classes.root, className),
+    elementType: ListItemTextRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+  });
+
+  const [PrimarySlot, primarySlotProps] = useSlot('primary', {
+    className: classes.primary,
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
+  const [SecondarySlot, secondarySlotProps] = useSlot('secondary', {
+    className: classes.secondary,
+    elementType: Typography,
+    externalForwardedProps,
+    ownerState,
+  });
+
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
-      <Typography
+      <PrimarySlot
         variant={dense ? 'body2' : 'body1'}
-        className={classes.primary}
-        component={primaryTypographyProps?.variant ? undefined : 'span'}
-        display="block"
-        {...primaryTypographyProps}
+        component={primarySlotProps?.variant ? undefined : 'span'}
+        {...primarySlotProps}
       >
         {primary}
-      </Typography>
+      </PrimarySlot>
     );
   }
 
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
-      <Typography
-        variant="body2"
-        className={classes.secondary}
-        color="text.secondary"
-        display="block"
-        {...secondaryTypographyProps}
-      >
+      <SecondarySlot variant="body2" color="textSecondary" {...secondarySlotProps}>
         {secondary}
-      </Typography>
+      </SecondarySlot>
     );
   }
 
   return (
-    <ListItemTextRoot
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {primary}
       {secondary}
-    </ListItemTextRoot>
+    </RootSlot>
   );
 });
 
@@ -167,6 +195,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the primary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.primary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   primaryTypographyProps: PropTypes.object,
   /**
@@ -176,8 +205,27 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the secondary typography component
    * (as long as disableTypography is not `true`).
+   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   secondaryTypographyProps: PropTypes.object,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    primary: PropTypes.elementType,
+    root: PropTypes.elementType,
+    secondary: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

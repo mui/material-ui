@@ -2,8 +2,9 @@
 productId: material-ui
 title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
-githubLabel: 'component: card'
+githubLabel: 'scope: card'
 materialDesign: https://m2.material.io/components/cards
+githubSource: packages/mui-material/src/Card
 ---
 
 # Card
@@ -20,7 +21,7 @@ The Material UI Card component includes several complementary utility component
 - Card: a surface-level container for grouping related components.
 - Card Content: the wrapper for the Card content.
 - Card Header: an optional wrapper for the Card header.
-- Card Media: an optional container for displaying background images and gradient layers behind the Card Content.
+- Card Media: an optional container for displaying images, videos, etc.
 - Card Actions: an optional wrapper that groups a set of buttons.
 - Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.
 
@@ -76,5 +77,11 @@ Supplemental actions within the card are explicitly called out using icons, text
 Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
+
+## Active state styles
+
+To customize a Card's styles when it's in an active state, you can attach a `data-active` attribute to the Card Action Area component and apply styles with the `&[data-active]` selector, as shown below:
+
+{{"demo": "SelectActionCard.js", "bg": true}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs).

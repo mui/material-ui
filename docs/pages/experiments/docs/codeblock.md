@@ -13,13 +13,13 @@ npm install @mui/material @emotion/react @emotion/styled
 # `@emotion/react` and `@emotion/styled` are peer dependencies
 ```
 
-```bash yarn
-yarn add @mui/material @emotion/react @emotion/styled
+```bash pnpm
+pnpm add @mui/material @emotion/react @emotion/styled
 # `@emotion/react` and `@emotion/styled` are peer dependencies
 ```
 
-```bash pnpm
-pnpm add @mui/material @emotion/react @emotion/styled
+```bash yarn
+yarn add @mui/material @emotion/react @emotion/styled
 # `@emotion/react` and `@emotion/styled` are peer dependencies
 ```
 
@@ -27,7 +27,7 @@ pnpm add @mui/material @emotion/react @emotion/styled
 
 ### Component version
 
-{{"component": "modules/components/HighlightedCodeWithTabs", "tabs": [{"tab":"JS", "code":"<div>Hello</div>", "language": "jsx"}, {"tab": "TS", "code": "type A = {}"}]}}
+{{"component": "@mui/docs/HighlightedCodeWithTabs", "tabs": [{"tab":"JS", "code":"<div>Hello</div>", "language": "jsx"}, {"tab": "TS", "code": "type A = {}"}]}}
 
 ## With header path
 

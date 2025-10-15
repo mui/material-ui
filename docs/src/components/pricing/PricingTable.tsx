@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -14,39 +14,35 @@ import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
-import LicensingModelSwitch from 'docs/src/components/pricing/LicensingModelSwitch';
-import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
+import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import { PrioritySupportSwitchTable } from 'docs/src/components/pricing/PrioritySupportSwitch';
+import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
+import { PlanName, planInfo } from './PricingCards';
 
-const planInfo = {
-  community: {
-    iconName: 'pricing/x-plan-community',
-    title: 'Community',
-    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
-  },
-  pro: {
-    iconName: 'pricing/x-plan-pro',
-    title: 'Pro',
-    description: 'Best for professional developers building enterprise or data-rich applications.',
-  },
-  premium: {
-    iconName: 'pricing/x-plan-premium',
-    title: 'Premium',
-    description:
-      'The most advanced features for data-rich applications, as well as the highest priority for support.',
-  },
-} as const;
+// TODO: Collapse should expose an API to customize the duration based on the height.
+function transitionTheme(theme: any) {
+  return {
+    ...theme,
+    transitions: {
+      ...theme.transitions,
+      getAutoHeightDuration: (height: number) => {
+        if (!height) {
+          return 0;
+        }
 
-const formatter = new Intl.NumberFormat('en-US');
-
-function formatCurrency(value: number) {
-  return `$${formatter.format(value)}`;
+        const constant = height / 80;
+        return Math.round((4 + 15 * constant ** 0.1 + constant / 6) * 10);
+      },
+    },
+  };
 }
 
-export function PlanName({
+export function PlanNameTable({
   plan,
-  disableDescription = false,
+  disableDescription = true,
 }: {
-  plan: 'community' | 'pro' | 'premium';
+  plan: PlanName;
   disableDescription?: boolean;
 }) {
   const { title, iconName, description } = planInfo[plan];
@@ -84,155 +80,9 @@ export function PlanName({
   );
 }
 
-interface PlanPriceProps {
-  plan: 'community' | 'pro' | 'premium';
-}
-
-export function PlanPrice(props: PlanPriceProps) {
-  const { plan } = props;
-
-  const { licensingModel } = useLicensingModel();
-  const annual = licensingModel === 'annual';
-  const planPriceMinHeight = 64;
-
-  if (plan === 'community') {
-    return (
-      <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'success.600', mt: 4.5 }}
-          >
-            $0
-          </Typography>
-        </Box>
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-          Free forever!
-        </Typography>
-      </React.Fragment>
-    );
-  }
-
-  const monthlyDisplay = annual;
-
-  const priceUnit = monthlyDisplay ? '/ month / dev' : '/ dev';
-  const getPriceExplanation = (displayedValue: number) => {
-    if (!annual) {
-      return `$${displayedValue}/dev billed once.`;
-    }
-    return monthlyDisplay
-      ? `Billed annually at $${displayedValue}/dev.`
-      : `$${displayedValue}/dev/month billed annualy.`;
-  };
-
-  if (plan === 'pro') {
-    const monthlyValue = annual ? 15 : 15 * 3;
-    const annualValue = monthlyValue * 12;
-
-    const mainDisplayValue = monthlyDisplay ? monthlyValue : annualValue;
-    const priceExplanation = getPriceExplanation(monthlyDisplay ? annualValue : monthlyValue);
-
-    return (
-      <React.Fragment>
-        <LicensingModelSwitch />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'primary.main' }}
-          >
-            {formatCurrency(mainDisplayValue)}
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-            {priceUnit}
-          </Typography>
-        </Box>
-        <Box sx={{ minHeight: planPriceMinHeight }}>
-          {(annual || monthlyDisplay) && (
-            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-              {priceExplanation}
-            </Typography>
-          )}
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 3 }}>
-            {'No additional fee beyond 10 devs.'}
-          </Typography>
-        </Box>
-      </React.Fragment>
-    );
-  }
-  // else Premium
-
-  const originalPriceMultiplicator = monthlyDisplay ? 1 : 12;
-  const premiumOriginalValue = annual
-    ? 49 * originalPriceMultiplicator
-    : 49 * 3 * originalPriceMultiplicator;
-  const premiumMonthlyValue = annual ? 37 : 37 * 3;
-  const premiumAnnualValue = premiumMonthlyValue * 12;
-
-  const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
-  const priceExplanation = getPriceExplanation(
-    monthlyDisplay ? premiumAnnualValue : premiumMonthlyValue,
-  );
-
-  return (
-    <React.Fragment>
-      <LicensingModelSwitch />
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-        <Typography
-          variant="caption"
-          sx={[
-            {
-              fontWeight: 'medium',
-            },
-            (theme) => ({
-              borderRadius: 0.5,
-              alignSelf: 'flex-end',
-              textDecoration: 'line-through',
-              py: 0.5,
-              px: 1,
-              mb: 0.5,
-              fontWeight: 'medium',
-              bgcolor: 'error.50',
-              color: 'error.500',
-              border: '1px solid',
-              borderColor: 'error.100',
-              ...theme.applyDarkStyles({
-                color: 'error.300',
-                bgcolor: 'error.900',
-                borderColor: 'error.800',
-              }),
-            }),
-          ]}
-        >
-          {formatCurrency(premiumOriginalValue)}
-        </Typography>
-        <Box sx={{ width: 10 }} />
-        <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-          {formatCurrency(premiumDisplayedValue)}
-        </Typography>
-        <Box sx={{ width: 5 }} />
-        <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-          {priceUnit}
-        </Typography>
-      </Box>
-      <Box sx={{ minHeight: planPriceMinHeight }}>
-        {(annual || monthlyDisplay) && (
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            {priceExplanation}
-          </Typography>
-        )}
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 2 }}>
-          🐦 Early bird special (25% off).
-        </Typography>
-      </Box>
-    </React.Fragment>
-  );
-}
-
 function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { value, metadata } = props;
+
   return (
     <React.Fragment>
       {typeof value === 'string' ? (
@@ -266,9 +116,9 @@ function ColumnHead({
   tooltip,
   href,
 }: {
-  label: React.ReactNode;
+  label: React.ReactNode | string;
   metadata?: string;
-  tooltip?: string;
+  tooltip?: React.ReactNode | string;
   href?: string;
 }) {
   const text = (
@@ -399,14 +249,14 @@ function RowHead({
   children,
   startIcon,
   ...props
-}: BoxProps & { startIcon?: React.ReactElement<any> }) {
+}: BoxProps & { startIcon?: React.ReactElement<unknown> }) {
   return (
     <Box
       {...props}
       sx={[
         {
           justifyContent: 'flex-start',
-          borderRadius: 1,
+          borderRadius: '12px 0 0 12px',
           p: 1,
           transition: 'none',
           typography: 'body2',
@@ -435,7 +285,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'Base UI': (
     <ColumnHead
       label="Base UI"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui-components/react."
     />
   ),
   'MUI System': (
@@ -470,7 +320,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Column autosizing" href="/x/react-data-grid/column-dimensions/#autosizing" />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead label="Column reorder" href="/x/react-data-grid/column-ordering/" />
+    <ColumnHead label="Column ordering" href="/x/react-data-grid/column-ordering/" />
   ),
   'data-grid/column-pinning': (
     <ColumnHead label="Column pinning" href="/x/react-data-grid/column-pinning/" />
@@ -597,8 +447,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/pie': <ColumnHead label="Pie chart" href="/x/react-charts/pie/" />,
   'charts/sparkline': <ColumnHead label="Sparkline" href="/x/react-charts/sparkline/" />,
   'charts/gauge': <ColumnHead label="Gauge" href="/x/react-charts/gauge/" />,
-  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/tree-map/" />,
-  'charts/heatmap': <ColumnHead label="Heatmap" href="/x/react-charts/heat-map/" />,
+  'charts/heatmap': <ColumnHead label="Heatmap" href="/x/react-charts/heatmap/" />,
+  'charts/treemap': <ColumnHead label="Treemap" href="/x/react-charts/treemap/" />,
   'charts/radar': <ColumnHead label="Radar" href="/x/react-charts/radar/" />,
   'charts/funnel': <ColumnHead label="Funnel" href="/x/react-charts/funnel/" />,
   'charts/sankey': <ColumnHead label="Sankey" href="/x/react-charts/sankey/" />,
@@ -609,15 +459,43 @@ const rowHeaders: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
-  'charts/mouse-zoom': <ColumnHead label="Zoom on mouse" />,
-  'charts/export': <ColumnHead label="Export" />,
+  'charts/zoom-and-pan': <ColumnHead label="Zoom & Pan" href="/x/react-charts/zoom-and-pan/" />,
+  'charts/export': <ColumnHead label="Export" href="/x/react-charts/export/" />,
   // charts - datagrid
   'charts/cell-with-charts': (
     <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
   ),
   'charts/filter-interaction': <ColumnHead label="Row filtering" />,
   'charts/selection-interaction': <ColumnHead label="Range selection" />,
-  'tree-view/tree-view': <ColumnHead label="Tree View" href="/x/react-tree-view/" />,
+  // Treeview - components
+  'tree-view/simple-tree-view': (
+    <ColumnHead label="Simple Tree View" href="/x/react-tree-view/simple-tree-view/items/" />
+  ),
+  'tree-view/rich-tree-view': (
+    <ColumnHead label="Rich Tree View" href="/x/react-tree-view/rich-tree-view/items/" />
+  ),
+
+  // Treeview - advanced features
+  'tree-view/selection': (
+    <ColumnHead
+      label="Item Selection"
+      href="/x/react-tree-view/simple-tree-view/selection/#single-selection"
+    />
+  ),
+  'tree-view/multi-selection': (
+    <ColumnHead
+      label="Multi Selection"
+      href="/x/react-tree-view/simple-tree-view/selection/#multi-selection"
+    />
+  ),
+  'tree-view/inline-editing': (
+    <ColumnHead label="Inline label editing" href="/x/react-tree-view/rich-tree-view/editing/" />
+  ),
+  'tree-view/drag-to-reorder': (
+    <ColumnHead label="Drag to reorder" href="/x/react-tree-view/rich-tree-view/ordering/" />
+  ),
+  'tree-view/virtualization': <ColumnHead label="Virtualization" />,
+
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -628,7 +506,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'core-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI Core',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI Core
+          </React.Fragment>
+        ),
         tooltip:
           'Support for MUI Core (for example Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
@@ -637,9 +520,37 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'x-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI X',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI X
+          </React.Fragment>
+        ),
         tooltip:
           'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
+      }}
+    />
+  ),
+  'priority-support': (
+    <ColumnHead
+      {...{
+        label: 'Priority support',
+        tooltip: (
+          <React.Fragment>
+            At $399/year/dev, get the highest level of support with a 24h SLA response time,
+            pre-screening and issue escalation. More details in the{' '}
+            <Link
+              href="https://mui.com/legal/technical-support-sla/#priority-support"
+              target="_blank"
+              color="inherit"
+              underline="always"
+              rel="noopener"
+            >
+              Technical Support SLA
+            </Link>
+            .
+          </React.Fragment>
+        ),
       }}
     />
   ),
@@ -659,7 +570,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'response-time': (
     <ColumnHead
-      {...{ label: 'Guaranteed response time', tooltip: 'Maximum lead time for each response.' }}
+      {...{
+        label: 'Guaranteed response time',
+        tooltip: 'Maximum lead time for each response, only working days are counted.',
+      }}
     />
   ),
   'pre-screening': (
@@ -688,6 +602,14 @@ const rowHeaders: Record<string, React.ReactNode> = {
             custom agreements
           </React.Fragment>
         ),
+      }}
+    />
+  ),
+  'customer-success': (
+    <ColumnHead
+      {...{
+        label: 'Customer Success Manager',
+        tooltip: 'A dedicated person to help you get the most out of MUI products.',
       }}
     />
   ),
@@ -726,7 +648,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': no,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': no,
   'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
@@ -771,9 +693,9 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
-  'charts/treemap': pending,
   'charts/heatmap': no,
-  'charts/radar': pending,
+  'charts/treemap': no,
+  'charts/radar': yes,
   'charts/funnel': no,
   'charts/sankey': no,
   'charts/gantt': no,
@@ -783,14 +705,20 @@ const communityData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': no,
+  'charts/zoom-and-pan': no,
   'charts/export': no,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': no,
   'charts/selection-interaction': no,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': no,
+  'tree-view/virtualization': no,
   // general
   'mui-x-production': yes,
   'mui-x-updates': yes,
@@ -799,6 +727,8 @@ const communityData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value="Community" />,
+  'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
@@ -823,7 +753,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': yes,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': yes,
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
@@ -868,26 +798,33 @@ const proData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
+  'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
-  'charts/radar': pending,
-  'charts/funnel': pending,
+
+  'charts/radar': yes,
+  'charts/funnel': yes,
   'charts/sankey': pending,
-  'charts/gantt': pending,
+  'charts/gantt': no,
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
-  'charts/export': pending,
+  'charts/zoom-and-pan': yes,
+  'charts/export': yes,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': no,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -896,17 +833,14 @@ const proData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Community" />,
+  'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': (
-    <Info
-      value="Available from 10+ devs"
-      metadata={'Not available under the "Capped at 10 licenses" policy'}
-    />
-  ),
+  'security-questionnaire': <Info value="Available from 10+ devs" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
@@ -925,7 +859,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/column-pinning': yes,
   // data grid - rows
   'data-grid/row-height': yes,
-  'data-grid/row-spanning': pending,
+  'data-grid/row-spanning': yes,
   'data-grid/row-reordering': yes,
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
@@ -956,7 +890,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
   'data-grid/aggregation': yes,
-  'data-grid/pivoting': pending,
+  'data-grid/pivoting': yes,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
@@ -970,10 +904,10 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/pie': yes,
   'charts/sparkline': yes,
   'charts/gauge': yes,
+  'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/heatmap': pending,
-  'charts/radar': pending,
-  'charts/funnel': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
   'charts/sankey': pending,
   'charts/gantt': pending,
   'charts/gantt-advanced': toBeDefined,
@@ -982,39 +916,140 @@ const premiumData: Record<string, React.ReactNode> = {
   // charts - features
   'charts/legend': yes,
   'charts/tooltip': yes,
-  'charts/mouse-zoom': pending,
-  'charts/export': pending,
+  'charts/zoom-and-pan': yes,
+  'charts/export': yes,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
   'charts/selection-interaction': pending,
   // Tree View
-  'tree-view/tree-view': yes,
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={pending} metadata="Priority add-on only" />,
+  'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
+  'priority-support': <PrioritySupportSwitchTable />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': (
-    <Info
-      value={pending}
-      metadata={
-        <React.Fragment>
-          Available later on
-          <br />
-          2 business days.
-          <br />1 business day (priority add-on only)
-        </React.Fragment>
-      }
-    />
-  ),
-  'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
-  'issue-escalation': <Info value={pending} metadata="Priority add-on only" />,
+  'response-time': <InfoPrioritySupport value={yes} metadata="1 business day" value2={no} />,
+  'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
+  'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
+  'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'customer-success': no,
+};
+
+const enterpriseData: Record<string, React.ReactNode> = {
+  // Core
+  'Base UI': yes,
+  'MUI System': yes,
+  'Material UI': yes,
+  'Joy UI': yes,
+  // MUI X
+  // data grid - columns
+  'data-grid/column-groups': yes,
+  'data-grid/column-spanning': yes,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
+  'data-grid/column-reorder': yes,
+  'data-grid/column-pinning': yes,
+  // data grid - rows
+  'data-grid/row-height': yes,
+  'data-grid/row-spanning': yes,
+  'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
+  'data-grid/row-selection': yes,
+  'data-grid/row-multiselection': yes,
+  'data-grid/row-cell-selection': yes,
+  // data grid - filter
+  'data-grid/filter-quick': yes,
+  'data-grid/filter-column': yes,
+  'data-grid/header-filters': yes,
+  'data-grid/filter-multicolumn': yes,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': yes,
+  'data-grid/pagination': yes,
+  'data-grid/pagination-large': yes,
+  // data grid - edit
+  'data-grid/edit-row': yes,
+  'data-grid/edit-cell': yes,
+  // data grid - export
+  'data-grid/file-csv': yes,
+  'data-grid/file-print': yes,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': yes,
+  'data-grid/file-excel': yes,
+  'data-grid/customizable-components': yes,
+  'data-grid/virtualize-column': yes,
+  'data-grid/virtualize-row': yes,
+  'data-grid/tree-data': yes,
+  'data-grid/master-detail': yes,
+  'data-grid/grouping': yes,
+  'data-grid/aggregation': yes,
+  'data-grid/pivoting': yes,
+  'data-grid/accessibility': yes,
+  'data-grid/keyboard-nav': yes,
+  'data-grid/localization': yes,
+  'date-picker/simple': yes,
+  'date-picker/range': yes,
+
+  // charts - components
+  'charts/line': yes,
+  'charts/bar': yes,
+  'charts/scatter': yes,
+  'charts/pie': yes,
+  'charts/sparkline': yes,
+  'charts/gauge': yes,
+  'charts/heatmap': yes,
+  'charts/treemap': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
+  'charts/sankey': pending,
+  'charts/gantt': pending,
+  'charts/gantt-advanced': toBeDefined,
+  'charts/candlestick': toBeDefined,
+  'charts/large-dataset': toBeDefined,
+  // charts - features
+  'charts/legend': yes,
+  'charts/tooltip': yes,
+  'charts/zoom-and-pan': yes,
+  'charts/export': yes,
+  // charts - datagrid
+  'charts/cell-with-charts': yes,
+  'charts/filter-interaction': pending,
+  'charts/selection-interaction': pending,
+  // Tree View
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
+  // general
+  'mui-x-production': yes,
+  'mui-x-development': <Info value="1 year" />,
+  'mui-x-development-perpetual': <Info value="Perpetual" />,
+  'mui-x-updates': <Info value="1 year" />,
+  // Support
+  'core-support': yes,
+  'x-support': <Info value={yes} metadata="Priority over Premium" />,
+  'priority-support': <Info value="Included" />,
+  'customer-success': yes,
+  'tech-advisory': pending,
+  'support-duration': <Info value="1 year" />,
+  'response-time': <Info value={yes} metadata="1 business day" />,
+  'pre-screening': <Info value={yes} metadata="4 hours" />,
+  'issue-escalation': <Info value={yes} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
@@ -1050,7 +1085,7 @@ function StickyHead({
   container,
   disableCalculation = false,
 }: {
-  container: React.MutableRefObject<HTMLElement | null>;
+  container: React.RefObject<HTMLElement | null>;
   disableCalculation?: boolean;
 }) {
   const [hidden, setHidden] = React.useState(true);
@@ -1109,15 +1144,15 @@ function StickyHead({
       <Container
         sx={{
           display: 'grid',
-          gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
+          gridTemplateColumns: `minmax(160px, 1fr) repeat(4, minmax(240px, 1fr))`,
         }}
       >
         <Typography variant="body2" sx={{ fontWeight: 'bold', px: 2, py: 1 }}>
           Plans
         </Typography>
-        {(['community', 'pro', 'premium'] as const).map((plan) => (
+        {(['community', 'pro', 'premium', 'enterprise'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName plan={plan} disableDescription />
+            <PlanNameTable plan={plan} disableDescription />
           </Box>
         ))}
       </Container>
@@ -1150,6 +1185,7 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
           {id === 'community' && communityData[key]}
           {id === 'pro' && proData[key]}
           {id === 'premium' && premiumData[key]}
+          {id === 'enterprise' && enterpriseData[key]}
         </Cell>
       ))}
     </Box>
@@ -1158,54 +1194,11 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
 
 function PricingTableDevelopment(props: any) {
   const { renderRow } = props;
-  const { licensingModel } = useLicensingModel();
+  const { licenseModel } = useLicenseModel();
 
-  return licensingModel === 'annual'
+  return licenseModel === 'annual'
     ? renderRow('mui-x-development')
     : renderRow('mui-x-development-perpetual');
-}
-
-function PricingTableBuyPro() {
-  const { licensingModel } = useLicensingModel();
-
-  return (
-    <Button
-      component={Link}
-      noLinkStyle
-      href={
-        licensingModel === 'annual'
-          ? 'https://mui.com/store/items/mui-x-pro/'
-          : 'https://mui.com/store/items/mui-x-pro-perpetual/'
-      }
-      variant="contained"
-      endIcon={<KeyboardArrowRightRounded />}
-      sx={{ py: 1, mt: 'auto' }}
-    >
-      Buy now
-    </Button>
-  );
-}
-
-function PricingTableBuyPremium() {
-  const { licensingModel } = useLicensingModel();
-
-  return (
-    <Button
-      component={Link}
-      noLinkStyle
-      href={
-        licensingModel === 'annual'
-          ? 'https://mui.com/store/items/mui-x-premium/'
-          : 'https://mui.com/store/items/mui-x-premium-perpetual/'
-      }
-      variant="contained"
-      fullWidth
-      endIcon={<KeyboardArrowRightRounded />}
-      sx={{ py: 1, mt: 'auto' }}
-    >
-      Buy now
-    </Button>
-  );
 }
 
 const StyledCollapse = styled(Collapse, {
@@ -1226,29 +1219,38 @@ const StyledCollapse = styled(Collapse, {
 
 export default function PricingTable({
   columnHeaderHidden,
-  plans = ['community', 'pro', 'premium'],
+  plans = ['community', 'pro', 'premium', 'enterprise'],
   ...props
 }: BoxProps & {
   columnHeaderHidden?: boolean;
-  plans?: Array<'community' | 'pro' | 'premium'>;
+  plans?: Array<'community' | 'pro' | 'premium' | 'enterprise'>;
 }) {
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
+  const [treeViewCollapsed, setTreeViewCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
       setDataGridCollapsed(true);
       setChartsCollapsed(true);
+      setTreeViewCollapsed(true);
     }
   }, [router.query]);
 
-  const tableRef = React.useRef<HTMLDivElement | null>(null);
+  const tableRef = React.useRef<HTMLDivElement>(null);
   const gridSx = {
     display: 'grid',
-    gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
-      columnHeaderHidden ? '0px' : '240px'
-    }, 1fr))`,
+    gridTemplateColumns: {
+      xs: `minmax(120px, 0.8fr) repeat(${plans.length}, minmax(160px, 1fr))`,
+      sm: `minmax(140px, 0.8fr) repeat(${plans.length}, minmax(180px, 1fr))`,
+      md: `minmax(140px, 0.7fr) repeat(${plans.length}, minmax(${
+        columnHeaderHidden ? '0px' : '160px'
+      }, 1fr))`,
+      lg: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
+        columnHeaderHidden ? '0px' : '200px'
+      }, 1fr))`,
+    },
   };
   const nestedGridSx = {
     ...gridSx,
@@ -1273,336 +1275,419 @@ export default function PricingTable({
       sx={{ color: 'grey.600', opacity: chartsCollapsed ? 0 : 1 }}
     />
   );
+  const treeViewUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: treeViewCollapsed ? 0 : 1 }}
+    />
+  );
 
   const renderRow = (key: string) => renderMasterRow(key, gridSx, plans);
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 8, ...props.sx }}>
-      <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
-      {!columnHeaderHidden && (
-        <Box sx={gridSx}>
-          <Typography variant="body2" sx={{ fontWeight: 'bold', p: 2 }}>
-            Plans
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-            <PlanName plan="community" />
-            <PlanPrice plan="community" />
-            <Button
-              component={Link}
-              noLinkStyle
-              href="/material-ui/getting-started/usage/"
-              variant="outlined"
-              fullWidth
-              endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto' }}
-            >
-              Get started
-            </Button>
+    <ThemeProvider theme={transitionTheme}>
+      <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', ...props.sx }}>
+        <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
+        {!columnHeaderHidden && (
+          <Box sx={gridSx}>
+            <Typography variant="body2" sx={{ fontWeight: 'bold', p: 2 }}>
+              Plans
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
+              <PlanNameTable plan="community" />
+            </Box>
+            <ColumnHeadHighlight>
+              <PlanNameTable plan="pro" />
+            </ColumnHeadHighlight>
+            <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
+              <PlanNameTable plan="premium" />
+            </Box>
+            <ColumnHeadHighlight>
+              <PlanNameTable plan="enterprise" />
+            </ColumnHeadHighlight>
           </Box>
-          <ColumnHeadHighlight>
-            <div>
-              <PlanName plan="pro" />
-              <PlanPrice plan="pro" />
-            </div>
-            <PricingTableBuyPro />
-          </ColumnHeadHighlight>
-          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-            <PlanName plan="premium" />
-            <PlanPrice plan="premium" />
-            <PricingTableBuyPremium />
-          </Box>
+        )}
+        <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
+          MUI Core (open-source)
+        </RowHead>
+        {renderRow('Base UI')}
+        {divider}
+        {renderRow('Material UI')}
+        {divider}
+        {renderRow('Joy UI')}
+        {divider}
+        {renderRow('MUI System')}
+        <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
+          MUI X (open-core)
+        </RowHead>
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{dataGridUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {dataGridUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {dataGridUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {dataGridUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setDataGridCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{ transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Data Grid
+          </Button>
         </Box>
-      )}
-      <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
-        MUI Core (open-source)
-      </RowHead>
-      {renderRow('Material UI')}
-      {divider}
-      {renderRow('Joy UI')}
-      {divider}
-      {renderRow('Base UI')}
-      {divider}
-      {renderRow('MUI System')}
-      <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
-        MUI X (open-core)
-      </RowHead>
-      <Box
-        sx={{
-          position: 'relative',
-          minHeight: 58,
-          '& svg': { transition: '0.3s' },
-          '&:hover svg': { color: 'primary.main' },
-          ...gridSx,
-        }}
-      >
-        <Cell />
-        <Cell sx={{ minHeight: 60 }}>{dataGridUnfoldMore}</Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {dataGridUnfoldMore}
-        </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {dataGridUnfoldMore}
-        </Cell>
-        <Button
-          fullWidth
-          onClick={() => setDataGridCollapsed((bool) => !bool)}
-          endIcon={
-            <KeyboardArrowRightRounded
-              color="primary"
-              sx={{ transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
-            />
-          }
-          sx={[
-            (theme) => ({
-              px: 1,
-              justifyContent: 'flex-start',
-              fontSize: '0.875rem',
-              fontWeight: 'medium',
-              borderRadius: '0px',
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              width: '100%',
-              height: '100%',
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primary.main, 0.06),
-                '@media (hover: none)': {
-                  bgcolor: 'initial',
-                },
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
+        <StyledCollapse in={dataGridCollapsed}>
+          <RowCategory>Column features</RowCategory>
+          {renderNestedRow('data-grid/column-groups')}
+          {divider}
+          {renderNestedRow('data-grid/column-spanning')}
+          {divider}
+          {renderNestedRow('data-grid/column-resizing')}
+          {divider}
+          {renderNestedRow('data-grid/column-autosizing')}
+          {divider}
+          {renderNestedRow('data-grid/column-reorder')}
+          {divider}
+          {renderNestedRow('data-grid/column-pinning')}
+          {divider}
+          <RowCategory>Row features</RowCategory>
+          {renderNestedRow('data-grid/row-height')}
+          {divider}
+          {renderNestedRow('data-grid/row-spanning')}
+          {divider}
+          {renderNestedRow('data-grid/row-reordering')}
+          {divider}
+          {renderNestedRow('data-grid/row-pinning')}
+          {divider}
+          <RowCategory>Selection features</RowCategory>
+          {renderNestedRow('data-grid/row-selection')}
+          {divider}
+          {renderNestedRow('data-grid/row-multiselection')}
+          {divider}
+          {renderNestedRow('data-grid/row-cell-selection')}
+          {divider}
+          <RowCategory>Filtering features</RowCategory>
+          {renderNestedRow('data-grid/filter-column')}
+          {divider}
+          {renderNestedRow('data-grid/filter-quick')}
+          {divider}
+          {renderNestedRow('data-grid/header-filters')}
+          {divider}
+          {renderNestedRow('data-grid/filter-multicolumn')}
+          {divider}
+          <RowCategory>Sorting</RowCategory>
+          {renderNestedRow('data-grid/column-sorting')}
+          {divider}
+          {renderNestedRow('data-grid/multi-column-sorting')}
+          {divider}
+          <RowCategory>Pagination features</RowCategory>
+          {renderNestedRow('data-grid/pagination')}
+          {divider}
+          {renderNestedRow('data-grid/pagination-large')}
+          {divider}
+          <RowCategory>Editing features</RowCategory>
+          {renderNestedRow('data-grid/edit-row')}
+          {divider}
+          {renderNestedRow('data-grid/edit-cell')}
+          {divider}
+          <RowCategory>Import & export</RowCategory>
+          {renderNestedRow('data-grid/file-csv')}
+          {divider}
+          {renderNestedRow('data-grid/file-print')}
+          {divider}
+          {renderNestedRow('data-grid/file-clipboard-copy')}
+          {divider}
+          {renderNestedRow('data-grid/file-clipboard-paste')}
+          {divider}
+          {renderNestedRow('data-grid/file-excel')}
+          {divider}
+          <RowCategory>Rendering features</RowCategory>
+          {renderNestedRow('data-grid/customizable-components')}
+          {divider}
+          {renderNestedRow('data-grid/virtualize-column')}
+          {divider}
+          {renderNestedRow('data-grid/virtualize-row')}
+          {divider}
+          <RowCategory>Group & pivot</RowCategory>
+          {renderNestedRow('data-grid/tree-data')}
+          {divider}
+          {renderNestedRow('data-grid/master-detail')}
+          {divider}
+          {renderNestedRow('data-grid/grouping')}
+          {divider}
+          {renderNestedRow('data-grid/aggregation')}
+          {divider}
+          {renderNestedRow('data-grid/pivoting')}
+          {divider}
+          <RowCategory>Miscellaneous</RowCategory>
+          {renderNestedRow('data-grid/accessibility')}
+          {divider}
+          {renderNestedRow('data-grid/keyboard-nav')}
+          {divider}
+          {renderNestedRow('data-grid/localization')}
+        </StyledCollapse>
+        {divider}
+        {renderRow('date-picker/simple')}
+        {divider}
+        {renderRow('date-picker/range')}
+        {divider}
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{chartsUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {chartsUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {chartsUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {chartsUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setChartsCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{ transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
                 },
               }),
-          ]}
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Charts
+          </Button>
+        </Box>
+        <StyledCollapse in={chartsCollapsed}>
+          <RowCategory>Components</RowCategory>
+          {renderNestedRow('charts/line')}
+          {divider}
+          {renderNestedRow('charts/bar')}
+          {divider}
+          {renderNestedRow('charts/scatter')}
+          {divider}
+          {renderNestedRow('charts/pie')}
+          {divider}
+          {renderNestedRow('charts/sparkline')}
+          {divider}
+          {renderNestedRow('charts/gauge')}
+          {divider}
+          {renderNestedRow('charts/radar')}
+          {divider}
+          {renderNestedRow('charts/heatmap')}
+          {divider}
+          {renderNestedRow('charts/funnel')}
+          {divider}
+          {renderNestedRow('charts/treemap')}
+          {divider}
+          {renderNestedRow('charts/sankey')}
+          {divider}
+          {renderNestedRow('charts/gantt')}
+          {divider}
+          {renderNestedRow('charts/gantt-advanced')}
+          {divider}
+          {renderNestedRow('charts/candlestick')}
+          {divider}
+          {renderNestedRow('charts/large-dataset')}
+          {divider}
+          <RowCategory>Interactions</RowCategory>
+          {renderNestedRow('charts/legend')}
+          {divider}
+          {renderNestedRow('charts/tooltip')}
+          {divider}
+          {renderNestedRow('charts/zoom-and-pan')}
+          {divider}
+          {renderNestedRow('charts/export')}
+          {divider}
+          <RowCategory>Data Grid Integration</RowCategory>
+          {renderNestedRow('charts/cell-with-charts')}
+          {divider}
+          {renderNestedRow('charts/filter-interaction')}
+          {divider}
+          {renderNestedRow('charts/selection-interaction')}
+        </StyledCollapse>
+        {divider}
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
         >
-          Data Grid
-        </Button>
-      </Box>
-      <StyledCollapse in={dataGridCollapsed} timeout={700}>
-        <RowCategory>Column features</RowCategory>
-        {renderNestedRow('data-grid/column-groups')}
-        {divider}
-        {renderNestedRow('data-grid/column-spanning')}
-        {divider}
-        {renderNestedRow('data-grid/column-resizing')}
-        {divider}
-        {renderNestedRow('data-grid/column-autosizing')}
-        {divider}
-        {renderNestedRow('data-grid/column-reorder')}
-        {divider}
-        {renderNestedRow('data-grid/column-pinning')}
-        {divider}
-        <RowCategory>Row features</RowCategory>
-        {renderNestedRow('data-grid/row-height')}
-        {divider}
-        {renderNestedRow('data-grid/row-spanning')}
-        {divider}
-        {renderNestedRow('data-grid/row-reordering')}
-        {divider}
-        {renderNestedRow('data-grid/row-pinning')}
-        {divider}
-        <RowCategory>Selection features</RowCategory>
-        {renderNestedRow('data-grid/row-selection')}
-        {divider}
-        {renderNestedRow('data-grid/row-multiselection')}
-        {divider}
-        {renderNestedRow('data-grid/row-cell-selection')}
-        {divider}
-        <RowCategory>Filtering features</RowCategory>
-        {renderNestedRow('data-grid/filter-column')}
-        {divider}
-        {renderNestedRow('data-grid/filter-quick')}
-        {divider}
-        {renderNestedRow('data-grid/header-filters')}
-        {divider}
-        {renderNestedRow('data-grid/filter-multicolumn')}
-        {divider}
-        <RowCategory>Sorting</RowCategory>
-        {renderNestedRow('data-grid/column-sorting')}
-        {divider}
-        {renderNestedRow('data-grid/multi-column-sorting')}
-        {divider}
-        <RowCategory>Pagination features</RowCategory>
-        {renderNestedRow('data-grid/pagination')}
-        {divider}
-        {renderNestedRow('data-grid/pagination-large')}
-        {divider}
-        <RowCategory>Editing features</RowCategory>
-        {renderNestedRow('data-grid/edit-row')}
-        {divider}
-        {renderNestedRow('data-grid/edit-cell')}
-        {divider}
-        <RowCategory>Import & export</RowCategory>
-        {renderNestedRow('data-grid/file-csv')}
-        {divider}
-        {renderNestedRow('data-grid/file-print')}
-        {divider}
-        {renderNestedRow('data-grid/file-clipboard-copy')}
-        {divider}
-        {renderNestedRow('data-grid/file-clipboard-paste')}
-        {divider}
-        {renderNestedRow('data-grid/file-excel')}
-        {divider}
-        <RowCategory>Rendering features</RowCategory>
-        {renderNestedRow('data-grid/customizable-components')}
-        {divider}
-        {renderNestedRow('data-grid/virtualize-column')}
-        {divider}
-        {renderNestedRow('data-grid/virtualize-row')}
-        {divider}
-        <RowCategory>Group & pivot</RowCategory>
-        {renderNestedRow('data-grid/tree-data')}
-        {divider}
-        {renderNestedRow('data-grid/master-detail')}
-        {divider}
-        {renderNestedRow('data-grid/grouping')}
-        {divider}
-        {renderNestedRow('data-grid/aggregation')}
-        {divider}
-        {renderNestedRow('data-grid/pivoting')}
-        {divider}
-        <RowCategory>Miscellaneous</RowCategory>
-        {renderNestedRow('data-grid/accessibility')}
-        {divider}
-        {renderNestedRow('data-grid/keyboard-nav')}
-        {divider}
-        {renderNestedRow('data-grid/localization')}
-      </StyledCollapse>
-      {divider}
-      {renderRow('date-picker/simple')}
-      {divider}
-      {renderRow('date-picker/range')}
-      {divider}
-      <Box
-        sx={{
-          position: 'relative',
-          minHeight: 58,
-          '& svg': { transition: '0.3s' },
-          '&:hover svg': { color: 'primary.main' },
-          ...gridSx,
-        }}
-      >
-        <Cell />
-        <Cell sx={{ minHeight: 60 }}>{chartsUnfoldMore}</Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {chartsUnfoldMore}
-        </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{chartsUnfoldMore}</Cell>
-        <Button
-          fullWidth
-          onClick={() => setChartsCollapsed((bool) => !bool)}
-          endIcon={
-            <KeyboardArrowRightRounded
-              color="primary"
-              sx={{ transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
-            />
-          }
-          sx={[
-            (theme) => ({
-              px: 1,
-              justifyContent: 'flex-start',
-              fontSize: '0.875rem',
-              fontWeight: 'medium',
-              borderRadius: '0px',
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              width: '100%',
-              height: '100%',
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primary.main, 0.06),
-                '@media (hover: none)': {
-                  bgcolor: 'initial',
-                },
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setTreeViewCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{ transform: treeViewCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
                 },
               }),
-          ]}
-        >
-          Charts
-        </Button>
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Tree View
+          </Button>
+        </Box>
+        <StyledCollapse in={treeViewCollapsed}>
+          <RowCategory>Components</RowCategory>
+          {renderNestedRow('tree-view/simple-tree-view')}
+          {divider}
+          {renderNestedRow('tree-view/rich-tree-view')}
+          {divider}
+          <RowCategory>Advanced features</RowCategory>
+          {renderNestedRow('tree-view/selection')}
+          {divider}
+          {renderNestedRow('tree-view/multi-selection')}
+          {divider}
+          {renderNestedRow('tree-view/inline-editing')}
+          {divider}
+          {renderNestedRow('tree-view/drag-to-reorder')}
+          {divider}
+          {renderNestedRow('tree-view/virtualization')}
+          {divider}
+        </StyledCollapse>
+        {divider}
+        {renderRow('mui-x-production')}
+        {divider}
+        <PricingTableDevelopment renderRow={renderRow} />
+        {divider}
+        {renderRow('mui-x-updates')}
+        <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
+          Support
+        </RowHead>
+        {renderRow('priority-support')}
+        {divider}
+        {renderRow('customer-success')}
+        {divider}
+        {renderRow('core-support')}
+        {divider}
+        {renderRow('x-support')}
+        {divider}
+        {renderRow('support-duration')}
+        {divider}
+        {renderRow('response-time')}
+        {divider}
+        {renderRow('pre-screening')}
+        {divider}
+        {renderRow('issue-escalation')}
+        {divider}
+        {renderRow('security-questionnaire')}
+        {divider}
       </Box>
-      <StyledCollapse in={chartsCollapsed} timeout={700}>
-        <RowCategory>Components</RowCategory>
-        {renderNestedRow('charts/line')}
-        {divider}
-        {renderNestedRow('charts/bar')}
-        {divider}
-        {renderNestedRow('charts/scatter')}
-        {divider}
-        {renderNestedRow('charts/pie')}
-        {divider}
-        {renderNestedRow('charts/sparkline')}
-        {divider}
-        {renderNestedRow('charts/gauge')}
-        {divider}
-        {renderNestedRow('charts/treemap')}
-        {divider}
-        {renderNestedRow('charts/radar')}
-        {divider}
-        {renderNestedRow('charts/heatmap')}
-        {divider}
-        {renderNestedRow('charts/funnel')}
-        {divider}
-        {renderNestedRow('charts/sankey')}
-        {divider}
-        {renderNestedRow('charts/gantt')}
-        {divider}
-        {renderNestedRow('charts/gantt-advanced')}
-        {divider}
-        {renderNestedRow('charts/candlestick')}
-        {divider}
-        {renderNestedRow('charts/large-dataset')}
-        {divider}
-        <RowCategory>Interactions</RowCategory>
-        {renderNestedRow('charts/legend')}
-        {divider}
-        {renderNestedRow('charts/tooltip')}
-        {divider}
-        {renderNestedRow('charts/mouse-zoom')}
-        {divider}
-        {renderNestedRow('charts/export')}
-        {divider}
-        <RowCategory>Data Grid Integration</RowCategory>
-        {renderNestedRow('charts/cell-with-charts')}
-        {divider}
-        {renderNestedRow('charts/filter-interaction')}
-        {divider}
-        {renderNestedRow('charts/selection-interaction')}
-      </StyledCollapse>
-      {divider}
-      {renderRow('tree-view/tree-view')}
-      {divider}
-      {renderRow('mui-x-production')}
-      {divider}
-      <PricingTableDevelopment renderRow={renderRow} />
-      {divider}
-      {renderRow('mui-x-updates')}
-      <RowHead>Support</RowHead>
-      {renderRow('core-support')}
-      {divider}
-      {renderRow('x-support')}
-      {divider}
-      {renderRow('support-duration')}
-      {divider}
-      {renderRow('response-time')}
-      {divider}
-      {renderRow('pre-screening')}
-      {divider}
-      {renderRow('issue-escalation')}
-      {divider}
-      {renderRow('security-questionnaire')}
-      {divider}
-    </Box>
+    </ThemeProvider>
   );
 }

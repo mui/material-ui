@@ -12,10 +12,10 @@
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "StepIconComponent": {
-      "description": "The component to render in place of the <a href=\"/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
+      "description": "The component to render in place of the <a href=\"https://mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
     },
     "StepIconProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/step-icon/\"><code>StepIcon</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a> element."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -60,7 +60,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the container element which wraps label and <code>optional</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -69,6 +68,7 @@
   },
   "slotDescriptions": {
     "label": "The component that renders the label.",
-    "stepIcon": "The component to render in place of the <a href=\"/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
+    "root": "The component that renders the root.",
+    "stepIcon": "The component to render in place of the <a href=\"https://mui.com/material-ui/api/step-icon/\"><code>StepIcon</code></a>."
   }
 }

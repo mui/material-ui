@@ -20,10 +20,10 @@ Add `dir="rtl"` to the app's root `<html>` tag to set the global text direction:
 <html dir="rtl"></html>
 ```
 
-If your React app doesn't control the root `<html>`, use the JavaScript API before the component tree is rendered, as a workaround:
+If you can't set the `dir` attribute directly on the root `<html>` element, as a workaround, use the JavaScript API before the page is rendered:
 
 ```js
-document.dir = 'rtl';
+document.documentElement.setAttribute('dir', 'rtl');
 ```
 
 #### Locally
@@ -60,33 +60,33 @@ const theme = extendTheme({
 
 ### 3. Configure RTL style plugin
 
-Install the [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) using one of the commands below:
+Install the `@mui/stylis-plugin-rtl` using one of the commands below:
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install stylis stylis-plugin-rtl
-```
-
-```bash yarn
-yarn add stylis stylis-plugin-rtl
+npm install stylis @mui/stylis-plugin-rtl
 ```
 
 ```bash pnpm
-pnpm add stylis stylis-plugin-rtl
+pnpm add stylis @mui/stylis-plugin-rtl
+```
+
+```bash yarn
+yarn add stylis @mui/stylis-plugin-rtl
 ```
 
 </codeblock>
 
 #### With Emotion
 
-If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-provider) to create a new cache instance that uses `rtlPlugin` from `stylis-plugin-rtl` and add that to the top of your application tree:
+If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-provider) to create a new cache instance that uses `rtlPlugin` from `@mui/stylis-plugin-rtl` and add that to the top of your application tree:
 
 ```jsx
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
-import rtlPlugin from 'stylis-plugin-rtl';
+import rtlPlugin from '@mui/stylis-plugin-rtl';
 
 // Create rtl cache
 const cacheRtl = createCache({
@@ -105,7 +105,7 @@ If you're using styled-components, use the [StyleSheetManager](https://styled-co
 
 ```jsx
 import { StyleSheetManager } from 'styled-components';
-import rtlPlugin from 'stylis-plugin-rtl';
+import rtlPlugin from '@mui/stylis-plugin-rtl';
 
 function Rtl(props) {
   return (

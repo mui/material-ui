@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-filename-extension */
-import * as React from 'react';
-import { render } from '@testing-library/react';
+/* globals expect */
+import { render } from '@testing-library/react/pure';
 import Slider from './ZeroSlider';
 
 describe('Slider', () => {

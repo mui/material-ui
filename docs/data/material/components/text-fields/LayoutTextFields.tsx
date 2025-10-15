@@ -7,9 +7,9 @@ function RedBar() {
     <Box
       sx={(theme) => ({
         height: 20,
-        backgroundColor: 'rgb(255 132 132 / 25%)',
-        ...theme.applyStyles('light', {
-          backgroundColor: 'rgba(255, 0, 0, 0.1)',
+        backgroundColor: 'rgba(255, 0, 0, 0.1)',
+        ...theme.applyStyles('dark', {
+          backgroundColor: 'rgb(255 132 132 / 25%)',
         }),
       })}
     />

@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
@@ -19,16 +19,13 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
-/**
- * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/nSwYn51
-
-curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
-  -H 'content-type: application/json' \
-  --data-raw '{}' \
-  --compressed
-*/
+// The teamMembers.json file should be synced with `pnpm docs:sync-team`.
 
 interface Profile {
+  /**
+   * The display name of the person.
+   * This is different from the full name (legal name).
+   */
   name: string;
   /**
    * Role, what are you working on?
@@ -212,28 +209,24 @@ const contributors = [
     src: 'https://avatars.githubusercontent.com/u/287804',
   },
   {
-    name: 'Yan Lee',
-    github: 'AGDholo',
-    title: 'Chinese docs',
-    location: 'China',
-    locationCountry: 'cn',
-    src: 'https://avatars.githubusercontent.com/u/13300332',
+    name: 'Zeeshan Tamboli',
+    github: 'ZeeshanTamboli',
+    location: 'Pune, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/20900032',
+    twitter: 'ZeeshanTamboli',
+    linkedin: 'in/zeeshantamboli',
   },
   {
-    name: 'Jairon Alves Lima',
-    github: 'jaironalves',
-    title: 'Brazilian Portuguese docs',
-    location: 'São Paulo, Brazil',
-    locationCountry: 'br',
-    src: 'https://avatars.githubusercontent.com/u/29267813',
-  },
-  {
-    name: 'Danica Shen',
-    github: 'DDDDDanica',
-    title: 'Chinese docs',
-    location: 'Ireland',
-    locationCountry: 'ie',
-    src: 'https://avatars.githubusercontent.com/u/12678455',
+    name: 'Sai Chand',
+    github: 'sai6855',
+    location: 'Hyderabad, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/60743144',
+    twitter: 'UrsSaichand',
+    linkedin: 'in/sai-chand-yamsani',
   },
 ];
 
@@ -326,6 +319,22 @@ const emeriti = [
     locationCountry: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
   },
+  {
+    name: 'Yan Lee',
+    github: 'AGDholo',
+    title: 'Chinese docs',
+    location: 'China',
+    locationCountry: 'cn',
+    src: 'https://avatars.githubusercontent.com/u/13300332',
+  },
+  {
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    title: 'Chinese docs',
+    location: 'Ireland',
+    locationCountry: 'ie',
+    src: 'https://avatars.githubusercontent.com/u/12678455',
+  },
 ];
 
 export default function Team() {
@@ -363,7 +372,7 @@ export default function Team() {
               ...profileJson,
             };
             return (
-              <Grid key={profile.name} xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} />
               </Grid>
             );
@@ -383,11 +392,11 @@ export default function Team() {
           </Typography>
           <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             Special members of the community deserve a shout-out for their ever-lasting impact on
-            MUI&apos;s products.
+            MUI&apos;s open-source projects.
           </Typography>
           <Grid container spacing={2} mt={2}>
             {contributors.map((profile) => (
-              <Grid key={profile.name} xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}
@@ -406,7 +415,7 @@ export default function Team() {
           </Typography>
           <Grid container spacing={2} mt={2}>
             {emeriti.map((profile) => (
-              <Grid key={profile.name} xs={12} sm={6} md={3}>
+              <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
               </Grid>
             ))}

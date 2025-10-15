@@ -2,9 +2,10 @@
 productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
-githubLabel: 'component: dialog'
+githubLabel: 'scope: dialog'
 materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+githubSource: packages/mui-material/src/Dialog
 ---
 
 # Dialog
@@ -26,7 +27,7 @@ Dialogs are implemented using a collection of related components:
 - Dialog Actions: an optional container for a Dialog's Buttons.
 - Dialog Content: an optional container for displaying the Dialog's content.
 - Dialog Content Text: a wrapper for text inside of `<DialogContent />`.
-- Slide: optional [Transition](https://mui.com/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
+- Slide: optional [Transition](/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
 
 {{"demo": "SimpleDialogDemo.js"}}
 
@@ -112,7 +113,7 @@ function MyComponent() {
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed.
 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Touching "Cancel" in a confirmation dialog, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "ConfirmationDialog.js"}}
 
@@ -152,7 +153,7 @@ Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
-## Complementary projects
+## Supplementary projects
 
 For more advanced use cases you might be able to take advantage of:
 

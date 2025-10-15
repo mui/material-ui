@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import TabContext, { getPanelId, getTabId, useTabContext } from './TabContext';
 
 describe('<TabContext />', () => {
@@ -11,6 +11,7 @@ describe('<TabContext />', () => {
   it('is null by default', () => {
     let value;
     function Tabs() {
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- value is used outside of component
       value = useTabContext();
       return null;
     }
@@ -40,18 +41,18 @@ describe('<TabContext />', () => {
       );
     }
 
-    const { getByRole, getByTestId } = render(
+    render(
       <TabContext value="0">
         <Tabs value="0" />
       </TabContext>,
     );
 
-    const tabId = getByRole('tab').id;
-    const tabpanelId = getByRole('tabpanel').id;
+    const tabId = screen.getByRole('tab').id;
+    const tabpanelId = screen.getByRole('tabpanel').id;
     expect(tabId.length).to.at.least(1);
     expect(tabpanelId.length).to.at.least(1);
     expect(tabId).not.to.equal(tabpanelId);
-    expect(getByTestId('active-value')).to.have.attribute('data-value', '0');
+    expect(screen.getByTestId('active-value')).to.have.attribute('data-value', '0');
   });
 
   it('provides undefined tab and panel prefixes and the active value when ssr', () => {
@@ -74,13 +75,13 @@ describe('<TabContext />', () => {
       );
     }
 
-    const markup = ReactDOMServer.renderToStaticMarkup(
+    const view = ReactDOMServer.renderToStaticMarkup(
       <TabContext value="0">
         <Tabs value="0" />
       </TabContext>,
     );
 
-    expect(markup).to.equal(
+    expect(view).to.equal(
       '<div data-testid="active-value" data-value="0"></div><div role="tab"></div><div role="tabpanel"></div>',
     );
   });
@@ -108,10 +109,10 @@ describe('<TabContext />', () => {
       </TabContext>
     );
     const { hydrate } = renderToString(reactElement);
-    const { getByRole } = hydrate();
+    hydrate();
 
-    const tabId = getByRole('tab').id;
-    const tabpanelId = getByRole('tabpanel').id;
+    const tabId = screen.getByRole('tab').id;
+    const tabpanelId = screen.getByRole('tabpanel').id;
     expect(tabId.length).to.at.least(1);
     expect(tabpanelId.length).to.at.least(1);
     expect(tabId).not.to.equal(tabpanelId);

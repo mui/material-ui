@@ -3,14 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClasses } from './formControlClasses';
-
-const useThemeProps = createUseThemeProps('MuiFormControl');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, margin, fullWidth } = ownerState;
@@ -24,12 +23,14 @@ const useUtilityClasses = (ownerState) => {
 const FormControlRoot = styled('div', {
   name: 'MuiFormControl',
   slot: 'Root',
-  overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...styles[`margin${capitalize(ownerState.margin)}`],
-      ...(ownerState.fullWidth && styles.fullWidth),
-    };
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[`margin${capitalize(ownerState.margin)}`],
+      ownerState.fullWidth && styles.fullWidth,
+    ];
   },
 })({
   display: 'inline-flex',
@@ -90,7 +91,7 @@ const FormControlRoot = styled('div', {
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormControl' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormControl' });
   const {
     children,
     className,
@@ -173,9 +174,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
   let registerEffect;
+  const registeredInput = React.useRef(false);
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const registeredInput = React.useRef(false);
     registerEffect = () => {
       if (registeredInput.current) {
         console.error(
@@ -193,6 +193,14 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     };
   }
 
+  const onFilled = React.useCallback(() => {
+    setFilled(true);
+  }, []);
+
+  const onEmpty = React.useCallback(() => {
+    setFilled(false);
+  }, []);
+
   const childContext = React.useMemo(() => {
     return {
       adornedStart,
@@ -208,15 +216,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       onBlur: () => {
         setFocused(false);
       },
-      onEmpty: () => {
-        setFilled(false);
-      },
-      onFilled: () => {
-        setFilled(true);
-      },
       onFocus: () => {
         setFocused(true);
       },
+      onEmpty,
+      onFilled,
       registerEffect,
       required,
       variant,
@@ -231,6 +235,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     fullWidth,
     hiddenLabel,
     registerEffect,
+    onEmpty,
+    onFilled,
     required,
     size,
     variant,

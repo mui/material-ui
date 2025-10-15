@@ -1,12 +1,12 @@
-import * as path from 'node:path';
-import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import { defineConfig } from 'vite';
 import reactPlugin from '@vitejs/plugin-react';
 import Pages from 'vite-plugin-pages';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { pigment } from '@pigment-css/vite-plugin';
 import { extendTheme } from '@mui/material/styles';
 
 const theme = extendTheme({
-  getSelector: function getSelector(colorScheme, css) {
+  getSelector: function getSelector(colorScheme: string, css: string) {
     if (colorScheme) {
       return {
         [`@media (prefers-color-scheme: ${colorScheme})`]: {
@@ -39,28 +39,31 @@ export default defineConfig({
     }),
     pigment({
       theme,
-      transformLibraries: ['local-ui-lib', '@mui/material'],
+      transformLibraries: ['@mui/material'],
       sourceMap: true,
       displayName: true,
     }),
-    Pages(),
-    splitVendorChunkPlugin(),
+    Pages({
+      exclude: ['**/*.test.*'],
+    }),
+    nodePolyfills(),
   ],
-  resolve: {
-    alias: [
-      {
-        find: /^@mui\/icons-material\/(.*)/,
-        replacement: '@mui/icons-material/esm/$1',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          mui: [
+            '@mui/base',
+            '@mui/icons-material',
+            '@mui/lab',
+            '@mui/material',
+            '@mui/system',
+            '@mui/utils',
+          ],
+          react: ['react', 'react-dom', 'react-error-boundary', 'react-router-dom'],
+          vendor: ['clsx'],
+        },
       },
-      {
-        find: /^@pigment-css\/react$/,
-        // There is a weird issue on the CI where Vite/Rollup isn't able to resolve
-        // the path for pigment-css/react in this monodrep. This is a temporary workaround. It does not
-        // affect local development or end-user projects.
-        replacement: path.resolve(
-          path.join(process.cwd(), 'node_modules/@pigment-css/react/build/index.mjs'),
-        ),
-      },
-    ],
+    },
   },
 });

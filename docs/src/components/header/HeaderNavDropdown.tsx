@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
-import Chip from '@mui/material/Chip';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -67,19 +66,13 @@ const PRODUCTS = [
   },
   {
     name: 'Templates',
-    description: 'Fully built, out-of-the-box, templates for your application.',
+    description: 'Fully built templates for your application.',
     href: ROUTES.productTemplates,
   },
   {
     name: 'Design Kits',
     description: 'Material UI components in your favorite design tool.',
     href: ROUTES.productDesignKits,
-  },
-  {
-    name: 'Toolpad',
-    description: 'Low-code admin builder.',
-    href: ROUTES.productToolpad,
-    chip: 'Beta',
   },
 ];
 
@@ -95,7 +88,7 @@ const DOCS = [
     href: ROUTES.joyDocs,
   },
   {
-    name: 'Base UI',
+    name: 'MUI Base',
     description: 'Unstyled React components and low-level hooks.',
     href: ROUTES.baseDocs,
   },
@@ -108,12 +101,6 @@ const DOCS = [
     name: 'MUI X',
     description: 'Advanced components for complex use cases.',
     href: ROUTES.xIntro,
-  },
-  {
-    name: 'Toolpad',
-    description: 'Low-code admin builder',
-    href: ROUTES.toolpadStudioDocs,
-    chip: 'Beta',
   },
 ];
 
@@ -223,14 +210,6 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             {item.name}
-                            {item.chip ? (
-                              <Chip
-                                size="small"
-                                label={item.chip}
-                                color="primary"
-                                variant="outlined"
-                              />
-                            ) : null}
                           </Box>
                           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
@@ -274,14 +253,6 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             {item.name}
-                            {item.chip ? (
-                              <Chip
-                                size="small"
-                                label={item.chip}
-                                color="primary"
-                                variant="outlined"
-                              />
-                            ) : null}
                           </Box>
                           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}

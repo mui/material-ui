@@ -8,9 +8,12 @@ describe('usePagination', () => {
   const serialize = (items) => items.map((item) => (item.type === 'page' ? item.page : item.type));
 
   const renderHook = (useHook) => {
-    const result = {};
+    const result = React.createRef();
     function TestCase() {
-      result.current = useHook();
+      const hookResult = useHook();
+      React.useEffect(() => {
+        result.current = hookResult;
+      }, [hookResult]);
       return null;
     }
     render(<TestCase />);

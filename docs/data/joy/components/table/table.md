@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Table component
 components: Table
-githubLabel: 'component: table'
+githubLabel: 'scope: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 ---
 
@@ -192,7 +192,7 @@ To display a caption at the bottom of the Table, set the [caption side](https://
 
 ### Footer
 
-Use [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) to add a footer to the Table.
+Use [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/tfoot) to add a footer to the Table.
 
 {{"demo": "TableFooter.js"}}
 

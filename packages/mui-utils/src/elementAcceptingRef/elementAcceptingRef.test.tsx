@@ -1,11 +1,14 @@
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
+import { createRenderer, waitFor, reactMajor } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import elementAcceptingRef from './elementAcceptingRef';
 
 describe('elementAcceptingRef', () => {
+  const { render } = createRenderer();
+
   function checkPropType(element: any, required = false) {
     PropTypes.checkPropTypes(
       { children: required ? elementAcceptingRef.isRequired : elementAcceptingRef },
@@ -19,35 +22,17 @@ describe('elementAcceptingRef', () => {
     PropTypes.resetWarningCache();
   });
 
-  describe('acceptance when not required', () => {
-    let rootNode: HTMLElement;
-
+  describeSkipIf(reactMajor >= 19)('acceptance when not required', () => {
     function assertPass(element: any, { shouldMount = true } = {}) {
       function testAct() {
         checkPropType(element);
         if (shouldMount) {
-          // TODO: replace with React 18 implementation after https://github.com/testing-library/react-testing-library/issues/1216 is closed.
-          // eslint-disable-next-line react/no-deprecated
-          ReactDOM.render(
-            <React.Suspense fallback={<p />}>
-              {React.cloneElement(element, { ref: React.createRef() })}
-            </React.Suspense>,
-            rootNode,
-          );
+          render(React.cloneElement(element, { ref: React.createRef() }));
         }
       }
 
       expect(testAct).not.toErrorDev();
     }
-
-    before(() => {
-      rootNode = document.createElement('div');
-    });
-
-    afterEach(() => {
-      // eslint-disable-next-line react/no-deprecated
-      ReactDOM.unmountComponentAtNode(rootNode);
-    });
 
     it('accepts nully values', () => {
       assertPass(undefined, { shouldMount: false });
@@ -90,14 +75,25 @@ describe('elementAcceptingRef', () => {
       assertPass(<Component />);
     });
 
-    it('accepts lazy', () => {
+    it('accepts lazy', async () => {
       const Component = React.lazy(() =>
         Promise.resolve({
-          default: React.forwardRef((props, ref) => <div {...props} ref={ref} />),
+          default: React.forwardRef<HTMLDivElement>((props, ref) => <div {...props} ref={ref} />),
         }),
       );
 
-      assertPass(<Component />);
+      function testAct() {
+        checkPropType(<Component />);
+        render(
+          <React.Suspense fallback={<p />}>
+            {React.cloneElement(<Component />, { ref: React.createRef() })}
+          </React.Suspense>,
+        );
+      }
+
+      await waitFor(() => {
+        expect(testAct).not.toErrorDev();
+      });
     });
 
     it('technically allows other exotics like strict mode', () => {
@@ -111,7 +107,7 @@ describe('elementAcceptingRef', () => {
     });
   });
 
-  describe('rejections', () => {
+  describeSkipIf(reactMajor >= 19)('rejections', () => {
     function assertFail(Component: any, hint: string) {
       expect(() => {
         checkPropType(Component);

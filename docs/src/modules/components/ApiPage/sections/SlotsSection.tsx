@@ -3,17 +3,32 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
+import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
+import {
+  SlotDefinition,
+  getSlotsApiDefinitions,
+} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
-export type SlotsSectionProps = {
-  componentSlots: { class: string; name: string; default: string }[];
-  slotDescriptions: { [key: string]: string };
-  componentName: string;
+export type SlotsSectionProps = (
+  | {
+      slots: SlotDefinition[];
+      componentSlots?: undefined;
+      slotDescriptions?: undefined;
+      componentName?: undefined;
+    }
+  | {
+      slots: undefined;
+      componentSlots: ComponentApiContent['slots'];
+      slotDescriptions: { [key: string]: string };
+      componentName: string;
+    }
+) & {
   title?: string;
   titleHash?: string;
   level?: 'h2' | 'h3' | 'h4';
@@ -24,6 +39,7 @@ export type SlotsSectionProps = {
 
 export default function SlotsSection(props: SlotsSectionProps) {
   const {
+    slots,
     componentSlots,
     slotDescriptions,
     componentName,
@@ -38,19 +54,16 @@ export default function SlotsSection(props: SlotsSectionProps) {
 
   const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
 
-  if (!componentSlots || componentSlots.length === 0) {
+  const formattedSlots =
+    slots ??
+    getSlotsApiDefinitions({
+      componentSlots,
+      slotDescriptions,
+      componentName,
+    });
+  if (!formattedSlots || formattedSlots.length === 0) {
     return null;
   }
-
-  const formatedSlots = componentSlots?.map(({ class: className, name, default: defaultValue }) => {
-    return {
-      description: slotDescriptions[name],
-      className,
-      name,
-      defaultValue,
-      componentName,
-    };
-  });
 
   return (
     <React.Fragment>
@@ -64,9 +77,9 @@ export default function SlotsSection(props: SlotsSectionProps) {
       </Box>
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
       {displayOption === 'table' ? (
-        <SlotsTable slots={formatedSlots} />
+        <SlotsTable slots={formattedSlots} />
       ) : (
-        <SlotsList slots={formatedSlots} displayOption={displayOption} />
+        <SlotsList slots={formattedSlots} displayOption={displayOption} />
       )}
     </React.Fragment>
   );

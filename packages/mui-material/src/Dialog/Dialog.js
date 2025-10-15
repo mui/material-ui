@@ -11,10 +11,10 @@ import Paper from '../Paper';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
-import useTheme from '../styles/useTheme';
-import { styled, createUseThemeProps } from '../zero-styled';
-
-const useThemeProps = createUseThemeProps('MuiDialog');
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import useSlot from '../utils/useSlot';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -46,7 +46,6 @@ const useUtilityClasses = (ownerState) => {
 const DialogRoot = styled(Modal, {
   name: 'MuiDialog',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   '@media print': {
     // Use !important to override the Modal inline-style.
@@ -114,97 +113,101 @@ const DialogPaper = styled(Paper, {
       ownerState.fullScreen && styles.paperFullScreen,
     ];
   },
-})(({ theme }) => ({
-  margin: 32,
-  position: 'relative',
-  '@media print': {
-    overflowY: 'visible',
-    boxShadow: 'none',
-  },
-  variants: [
-    {
-      props: {
-        scroll: 'paper',
-      },
-      style: {
-        display: 'flex',
-        flexDirection: 'column',
-        maxHeight: 'calc(100% - 64px)',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    margin: 32,
+    position: 'relative',
+    overflowY: 'auto',
+    '@media print': {
+      overflowY: 'visible',
+      boxShadow: 'none',
     },
-    {
-      props: {
-        scroll: 'body',
-      },
-      style: {
-        display: 'inline-block',
-        verticalAlign: 'middle',
-      },
-    },
-    {
-      props: ({ ownerState }) => !ownerState.maxWidth,
-      style: {
-        maxWidth: 'calc(100% - 64px)',
-      },
-    },
-    {
-      props: {
-        maxWidth: 'xs',
-      },
-      style: {
-        maxWidth:
-          theme.breakpoints.unit === 'px'
-            ? Math.max(theme.breakpoints.values.xs, 444)
-            : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
-        [`&.${dialogClasses.paperScrollBody}`]: {
-          [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
-            maxWidth: 'calc(100% - 64px)',
-          },
+    variants: [
+      {
+        props: {
+          scroll: 'paper',
+        },
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: 'calc(100% - 64px)',
         },
       },
-    },
-    ...Object.keys(theme.breakpoints.values)
-      .filter((maxWidth) => maxWidth !== 'xs')
-      .map((maxWidth) => ({
-        props: { maxWidth },
+      {
+        props: {
+          scroll: 'body',
+        },
         style: {
-          maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+          display: 'inline-block',
+          verticalAlign: 'middle',
+          textAlign: 'initial',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.maxWidth,
+        style: {
+          maxWidth: 'calc(100% - 64px)',
+        },
+      },
+      {
+        props: {
+          maxWidth: 'xs',
+        },
+        style: {
+          maxWidth:
+            theme.breakpoints.unit === 'px'
+              ? Math.max(theme.breakpoints.values.xs, 444)
+              : `max(${theme.breakpoints.values.xs}${theme.breakpoints.unit}, 444px)`,
           [`&.${dialogClasses.paperScrollBody}`]: {
-            [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+            [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
               maxWidth: 'calc(100% - 64px)',
             },
           },
         },
-      })),
-    {
-      props: ({ ownerState }) => ownerState.fullWidth,
-      style: {
-        width: 'calc(100% - 64px)',
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.fullScreen,
-      style: {
-        margin: 0,
-        width: '100%',
-        maxWidth: '100%',
-        height: '100%',
-        maxHeight: 'none',
-        borderRadius: 0,
-        [`&.${dialogClasses.paperScrollBody}`]: {
-          margin: 0,
-          maxWidth: '100%',
+      ...Object.keys(theme.breakpoints.values)
+        .filter((maxWidth) => maxWidth !== 'xs')
+        .map((maxWidth) => ({
+          props: { maxWidth },
+          style: {
+            maxWidth: `${theme.breakpoints.values[maxWidth]}${theme.breakpoints.unit}`,
+            [`&.${dialogClasses.paperScrollBody}`]: {
+              [theme.breakpoints.down(theme.breakpoints.values[maxWidth] + 32 * 2)]: {
+                maxWidth: 'calc(100% - 64px)',
+              },
+            },
+          },
+        })),
+      {
+        props: ({ ownerState }) => ownerState.fullWidth,
+        style: {
+          width: 'calc(100% - 64px)',
         },
       },
-    },
-  ],
-}));
+      {
+        props: ({ ownerState }) => ownerState.fullScreen,
+        style: {
+          margin: 0,
+          width: '100%',
+          maxWidth: '100%',
+          height: '100%',
+          maxHeight: 'none',
+          borderRadius: 0,
+          [`&.${dialogClasses.paperScrollBody}`]: {
+            margin: 0,
+            maxWidth: '100%',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 const Dialog = React.forwardRef(function Dialog(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDialog' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
@@ -214,6 +217,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const {
     'aria-describedby': ariaDescribedby,
     'aria-labelledby': ariaLabelledbyProp,
+    'aria-modal': ariaModal = true,
     BackdropComponent,
     BackdropProps,
     children,
@@ -222,13 +226,14 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     fullScreen = false,
     fullWidth = false,
     maxWidth = 'sm',
-    onBackdropClick,
     onClick,
     onClose,
     open,
     PaperComponent = Paper,
     PaperProps = {},
     scroll = 'paper',
+    slots = {},
+    slotProps = {},
     TransitionComponent = Fade,
     transitionDuration = defaultTransitionDuration,
     TransitionProps,
@@ -264,10 +269,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
     backdropClick.current = null;
 
-    if (onBackdropClick) {
-      onBackdropClick(event);
-    }
-
     if (onClose) {
       onClose(event, 'backdropClick');
     }
@@ -278,55 +279,102 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     return { titleId: ariaLabelledby };
   }, [ariaLabelledby]);
 
+  const backwardCompatibleSlots = {
+    transition: TransitionComponent,
+    ...slots,
+  };
+
+  const backwardCompatibleSlotProps = {
+    transition: TransitionProps,
+    paper: PaperProps,
+    backdrop: BackdropProps,
+    ...slotProps,
+  };
+
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    elementType: DialogRoot,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    ownerState,
+    className: clsx(classes.root, className),
+    ref,
+  });
+
+  const [BackdropSlot, backdropSlotProps] = useSlot('backdrop', {
+    elementType: DialogBackdrop,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [PaperSlot, paperSlotProps] = useSlot('paper', {
+    elementType: DialogPaper,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    ownerState,
+    className: clsx(classes.paper, PaperProps.className),
+  });
+
+  const [ContainerSlot, containerSlotProps] = useSlot('container', {
+    elementType: DialogContainer,
+    externalForwardedProps,
+    ownerState,
+    className: classes.container,
+  });
+
+  const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
+    elementType: Fade,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      appear: true,
+      in: open,
+      timeout: transitionDuration,
+      role: 'presentation',
+    },
+  });
+
   return (
-    <DialogRoot
-      className={clsx(classes.root, className)}
+    <RootSlot
       closeAfterTransition
-      components={{ Backdrop: DialogBackdrop }}
-      componentsProps={{
+      slots={{ backdrop: BackdropSlot }}
+      slotProps={{
         backdrop: {
           transitionDuration,
           as: BackdropComponent,
-          ...BackdropProps,
+          ...backdropSlotProps,
         },
       }}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onClose={onClose}
       open={open}
-      ref={ref}
       onClick={handleBackdropClick}
-      ownerState={ownerState}
+      {...rootSlotProps}
       {...other}
     >
-      <TransitionComponent
-        appear
-        in={open}
-        timeout={transitionDuration}
-        role="presentation"
-        {...TransitionProps}
-      >
+      <TransitionSlot {...transitionSlotProps}>
         {/* roles are applied via cloneElement from TransitionComponent */}
         {/* roles needs to be applied on the immediate child of Modal or it'll inject one */}
-        <DialogContainer
-          className={clsx(classes.container)}
-          onMouseDown={handleMouseDown}
-          ownerState={ownerState}
-        >
-          <DialogPaper
+        <ContainerSlot onMouseDown={handleMouseDown} {...containerSlotProps}>
+          <PaperSlot
             as={PaperComponent}
             elevation={24}
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
-            {...PaperProps}
-            className={clsx(classes.paper, PaperProps.className)}
-            ownerState={ownerState}
+            aria-modal={ariaModal}
+            {...paperSlotProps}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
-          </DialogPaper>
-        </DialogContainer>
-      </TransitionComponent>
-    </DialogRoot>
+          </PaperSlot>
+        </ContainerSlot>
+      </TransitionSlot>
+    </RootSlot>
   );
 });
 
@@ -344,15 +392,18 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   'aria-labelledby': PropTypes.string,
   /**
+   * Informs assistive technologies that the element is modal.
+   * It's added on the element with role="dialog".
+   * @default true
+   */
+  'aria-modal': PropTypes.oneOfType([PropTypes.oneOf(['false', 'true']), PropTypes.bool]),
+  /**
    * A backdrop component. This prop enables custom backdrop rendering.
    * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
    * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })
@@ -402,11 +453,6 @@ Dialog.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
-  /**
    * @ignore
    */
   onClick: PropTypes.func,
@@ -427,8 +473,9 @@ Dialog.propTypes /* remove-proptypes */ = {
    */
   PaperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
+   * @deprecated Use `slotProps.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperProps: PropTypes.object,
   /**
@@ -436,6 +483,28 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default 'paper'
    */
   scroll: PropTypes.oneOf(['body', 'paper']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    container: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    container: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -446,8 +515,9 @@ Dialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -469,6 +539,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };

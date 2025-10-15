@@ -2,8 +2,8 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { styled, alpha, lighten } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import ExpandIcon from '@mui/icons-material/ExpandMore';
-import CollapseIcon from '@mui/icons-material/ChevronRight';
+import ChevronDownIcon from '@mui/icons-material/ExpandMoreRounded';
+import ChevronRightIcon from '@mui/icons-material/ChevronRightRounded';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import { blue, blueDark } from '@mui/docs/branding';
@@ -201,8 +201,8 @@ export default function ThemeViewer({
     <SimpleTreeView
       key={key}
       slots={{
-        expandIcon: ExpandIcon,
-        collapseIcon: CollapseIcon,
+        expandIcon: ChevronRightIcon,
+        collapseIcon: ChevronDownIcon,
         endIcon: CustomEndIcon,
       }}
       defaultExpandedItems={defaultExpanded}
@@ -210,7 +210,7 @@ export default function ThemeViewer({
       sx={{
         color: '#FFF',
         p: 1.5,
-        bgcolor: 'hsl(210, 35%, 9%)', // one-off code container color
+        bgcolor: 'hsl(210, 25%, 9%)', // one-off code container color
         borderRadius: 3,
         border: `1px solid ${blueDark[700]}`,
       }}

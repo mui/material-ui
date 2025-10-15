@@ -48,10 +48,10 @@ RFTextField.propTypes = {
   }).isRequired,
   /**
    * Props applied to the Input element.
-   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
-   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
+   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
    * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   InputProps: PropTypes.object,
   meta: PropTypes.shape({
@@ -60,7 +60,7 @@ RFTextField.propTypes = {
     dirty: PropTypes.bool,
     dirtySinceLastSubmit: PropTypes.bool,
     error: PropTypes.any,
-    initial: PropTypes.string,
+    initial: PropTypes.any,
     invalid: PropTypes.bool,
     length: PropTypes.number,
     modified: PropTypes.bool,

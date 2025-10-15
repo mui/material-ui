@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import useSlot from '../utils/useSlot';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
-
-const useThemeProps = createUseThemeProps('MuiAccordion');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, square, expanded, disabled, disableGutters } = ownerState;
@@ -26,6 +26,7 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       !disableGutters && 'gutters',
     ],
+    heading: ['heading'],
     region: ['region'],
   };
 
@@ -46,7 +47,7 @@ const AccordionRoot = styled(Paper, {
     ];
   },
 })(
-  ({ theme }) => {
+  memoTheme(({ theme }) => {
     const transition = {
       duration: theme.transitions.duration.shortest,
     };
@@ -91,8 +92,8 @@ const AccordionRoot = styled(Paper, {
         backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       },
     };
-  },
-  ({ theme }) => ({
+  }),
+  memoTheme(({ theme }) => ({
     variants: [
       {
         props: (props) => !props.square,
@@ -122,11 +123,23 @@ const AccordionRoot = styled(Paper, {
         },
       },
     ],
-  }),
+  })),
 );
 
+const AccordionHeading = styled('h3', {
+  name: 'MuiAccordion',
+  slot: 'Heading',
+})({
+  all: 'unset',
+});
+
+const AccordionRegion = styled('div', {
+  name: 'MuiAccordion',
+  slot: 'Region',
+})({});
+
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordion' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordion' });
   const {
     children: childrenProp,
     className,
@@ -180,35 +193,60 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
   const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
 
-  const [TransitionSlot, transitionProps] = useSlot('transition', {
-    elementType: Collapse,
+  const externalForwardedProps = {
+    slots: backwardCompatibleSlots,
+    slotProps: backwardCompatibleSlotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: AccordionRoot,
     externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
+      ...externalForwardedProps,
+      ...other,
     },
+    className: clsx(classes.root, className),
+    shouldForwardComponentProp: true,
+    ownerState,
+    ref,
+    additionalProps: {
+      square,
+    },
+  });
+
+  const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
+    elementType: AccordionHeading,
+    externalForwardedProps,
+    className: classes.heading,
     ownerState,
   });
 
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Collapse,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [AccordionRegionSlot, accordionRegionProps] = useSlot('region', {
+    elementType: AccordionRegion,
+    externalForwardedProps,
+    ownerState,
+    className: classes.region,
+    additionalProps: {
+      'aria-labelledby': summary.props.id,
+      id: summary.props['aria-controls'],
+      role: 'region',
+    },
+  });
+
   return (
-    <AccordionRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      square={square}
-      {...other}
-    >
-      <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+    <RootSlot {...rootProps}>
+      <AccordionHeadingSlot {...accordionProps}>
+        <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
-        <div
-          aria-labelledby={summary.props.id}
-          id={summary.props['aria-controls']}
-          role="region"
-          className={classes.region}
-        >
-          {children}
-        </div>
+        <AccordionRegionSlot {...accordionRegionProps}>{children}</AccordionRegionSlot>
       </TransitionSlot>
-    </AccordionRoot>
+    </RootSlot>
   );
 });
 
@@ -275,6 +313,9 @@ Accordion.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    region: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -282,6 +323,9 @@ Accordion.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    heading: PropTypes.elementType,
+    region: PropTypes.elementType,
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
@@ -299,14 +343,14 @@ Accordion.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };

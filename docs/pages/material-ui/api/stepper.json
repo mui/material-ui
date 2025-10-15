@@ -38,6 +38,12 @@
       "isGlobal": false
     },
     {
+      "key": "nonLinear",
+      "className": "MuiStepper-nonLinear",
+      "description": "Styles applied to the root element if `nonLinear={true}`.",
+      "isGlobal": false
+    },
+    {
       "key": "root",
       "className": "MuiStepper-root",
       "description": "Styles applied to the root element.",

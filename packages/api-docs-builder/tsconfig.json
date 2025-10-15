@@ -9,12 +9,11 @@
     "esModuleInterop": true,
     "types": ["node", "mocha"],
     "target": "ES2020",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
-    "baseUrl": "./",
     "paths": {
-      "@mui/internal-docs-utils": ["../docs-utils/src"]
+      "@mui/internal-docs-utils": ["../../packages-internal/docs-utils/src"]
     }
   },
   "include": ["./**/*.ts", "./**/*.js"],

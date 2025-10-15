@@ -8,14 +8,17 @@ import DialogContent from '@mui/joy/DialogContent';
 
 export default function FadeModalDialog() {
   const [open, setOpen] = React.useState(false);
+  const nodeRef = React.useRef(null);
+
   return (
     <React.Fragment>
       <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
         Open modal
       </Button>
-      <Transition in={open} timeout={400}>
+      <Transition nodeRef={nodeRef} in={open} timeout={400}>
         {(state) => (
           <Modal
+            ref={nodeRef}
             keepMounted
             open={!['exited', 'exiting'].includes(state)}
             onClose={() => setOpen(false)}
@@ -32,7 +35,11 @@ export default function FadeModalDialog() {
                 },
               },
             }}
-            sx={{ visibility: state === 'exited' ? 'hidden' : 'visible' }}
+            sx={[
+              state === 'exited'
+                ? { visibility: 'hidden' }
+                : { visibility: 'visible' },
+            ]}
           >
             <ModalDialog
               sx={{

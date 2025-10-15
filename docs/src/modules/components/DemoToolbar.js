@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CheckIcon from '@mui/icons-material/Check';
 import Fade from '@mui/material/Fade';
 import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -20,10 +18,10 @@ import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { useRouter } from 'next/router';
-import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useSetCodeStyling, useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useTranslate } from '@mui/docs/i18n';
+import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
@@ -60,7 +58,7 @@ const Root = styled('div')(({ theme }) => [
 function DemoTooltip(props) {
   return (
     <Tooltip
-      componentsProps={{
+      slotProps={{
         popper: {
           sx: {
             zIndex: (theme) => theme.zIndex.appBar - 1,
@@ -292,8 +290,6 @@ export default function DemoToolbar(props) {
   } = props;
 
   const setCodeVariant = useSetCodeVariant();
-  const styleSolution = useCodeStyling();
-  const setCodeStyling = useSetCodeStyling();
   const t = useTranslate();
 
   const hasTSVariant = demo.rawTS;
@@ -374,7 +370,7 @@ export default function DemoToolbar(props) {
 
   const devMenuItems = [];
   if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
-    /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable rules of hooks
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
 
@@ -437,50 +433,17 @@ export default function DemoToolbar(props) {
         demo on&#160;<code>master</code>
       </MenuItem>,
     );
-    /* eslint-enable material-ui/no-hardcoded-labels */
   }
-
-  const [stylingAnchorEl, setStylingAnchorEl] = React.useState(null);
-  const stylingMenuOpen = Boolean(stylingAnchorEl);
-
-  const handleStylingButtonClose = () => {
-    setStylingAnchorEl(null);
-  };
-
-  const handleStylingSolutionChange = (eventStylingSolution) => {
-    if (eventStylingSolution !== null && eventStylingSolution !== styleSolution) {
-      setCodeStyling(eventStylingSolution);
-    }
-    handleStylingButtonClose();
-  };
-
-  const codeStylingLabels = {
-    [CODE_STYLING.SYSTEM]: t('demoStylingSelectSystem'),
-    [CODE_STYLING.TAILWIND]: t('demoStylingSelectTailwind'),
-    [CODE_STYLING.CSS]: t('demoStylingSelectCSS'),
-  };
-
-  const handleStylingButtonClick = (event) => {
-    setStylingAnchorEl(event.currentTarget);
-  };
 
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
-        {hasNonSystemDemos && (
-          <Button
-            id="styling-solution"
-            aria-controls={stylingMenuOpen ? 'demo-styling-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={stylingMenuOpen ? 'true' : undefined}
-            onClick={handleStylingButtonClick}
-            {...getControlProps(0)}
-            sx={{ pr: 0.5 }}
-          >
-            {codeStylingLabels[styleSolution]}
-            <ExpandMoreIcon />
-          </Button>
-        )}
+        <OpenMuiChat
+          data-ga-event-category="mui-chat"
+          data-ga-event-label={demo.gaLabel}
+          data-ga-event-action="open-in-mui-chat"
+          demoData={demoData}
+        />
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (
@@ -499,7 +462,6 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-js"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(1)}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
                 JS
               </ToggleButton>
@@ -511,7 +473,6 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-ts"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(2)}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
                 TS
               </ToggleButton>
@@ -538,7 +499,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
                   onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(5)}
+                  {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
                   <SvgIcon viewBox="0 0 19 28">
@@ -552,7 +513,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
                   onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
-                  {...getControlProps(4)}
+                  {...getControlProps(5)}
                   sx={{ borderRadius: 1 }}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
@@ -612,55 +573,6 @@ export default function DemoToolbar(props) {
         </Box>
       </Root>
       <Menu
-        id="demo-styling-menu"
-        anchorEl={stylingAnchorEl}
-        open={stylingMenuOpen}
-        onClose={handleStylingButtonClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem
-          value={CODE_STYLING.SYSTEM}
-          data-ga-event-category="demo"
-          data-ga-event-action="styling-system"
-          data-ga-event-label={demo.gaLabel}
-          selected={styleSolution === CODE_STYLING.SYSTEM}
-          onClick={() => handleStylingSolutionChange(CODE_STYLING.SYSTEM)}
-        >
-          {codeStylingLabels[CODE_STYLING.SYSTEM]}
-          {styleSolution === CODE_STYLING.SYSTEM && (
-            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
-          )}
-        </MenuItem>
-        <MenuItem
-          value={CODE_STYLING.TAILWIND}
-          data-ga-event-category="demo"
-          data-ga-event-action="styling-tailwind"
-          data-ga-event-label={demo.gaLabel}
-          selected={styleSolution === CODE_STYLING.TAILWIND}
-          onClick={() => handleStylingSolutionChange(CODE_STYLING.TAILWIND)}
-        >
-          {codeStylingLabels[CODE_STYLING.TAILWIND]}
-          {styleSolution === CODE_STYLING.TAILWIND && (
-            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
-          )}
-        </MenuItem>
-        <MenuItem
-          value={CODE_STYLING.CSS}
-          data-ga-event-category="demo"
-          data-ga-event-action="styling-css"
-          data-ga-event-label={demo.gaLabel}
-          selected={styleSolution === CODE_STYLING.CSS}
-          onClick={() => handleStylingSolutionChange(CODE_STYLING.CSS)}
-        >
-          {codeStylingLabels[CODE_STYLING.CSS]}
-          {styleSolution === CODE_STYLING.CSS && (
-            <CheckIcon sx={{ fontSize: '0.85rem', ml: 'auto' }} />
-          )}
-        </MenuItem>
-      </Menu>
-      <Menu
         id="demo-menu-more"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -690,7 +602,7 @@ export default function DemoToolbar(props) {
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action="copy-js-source-link"
-          onClick={createHandleCodeSourceLink(demoName, CODE_VARIANTS.JS, styleSolution)}
+          onClick={createHandleCodeSourceLink(demoName, CODE_VARIANTS.JS)}
         >
           {t('copySourceLinkJS')}
         </MenuItem>
@@ -698,7 +610,7 @@ export default function DemoToolbar(props) {
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action="copy-ts-source-link"
-          onClick={createHandleCodeSourceLink(demoName, CODE_VARIANTS.TS, styleSolution)}
+          onClick={createHandleCodeSourceLink(demoName, CODE_VARIANTS.TS)}
         >
           {t('copySourceLinkTS')}
         </MenuItem>
@@ -717,7 +629,7 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
-  copyButtonOnClick: PropTypes.object.isRequired,
+  copyButtonOnClick: PropTypes.func.isRequired,
   copyIcon: PropTypes.object.isRequired,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,

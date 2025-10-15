@@ -13,7 +13,9 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import { LicensingModelProvider } from 'docs/src/components/pricing/LicensingModelContext';
+import { PrioritySupportProvider } from 'docs/src/components/pricing/PrioritySupportContext';
+import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
+import PricingCards from 'docs/src/components/pricing/PricingCards';
 
 export default function Pricing() {
   return (
@@ -27,17 +29,22 @@ export default function Pricing() {
       <AppHeader />
       <main id="main-content">
         <HeroPricing />
-        <Divider />
-        <LicensingModelProvider>
-          {/* Mobile, Tablet */}
-          <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
-            <PricingList />
-          </Container>
-          {/* Desktop */}
-          <Container sx={{ display: { xs: 'none', md: 'block' } }}>
-            <PricingTable />
-          </Container>
-        </LicensingModelProvider>
+        <LicenseModelProvider>
+          <PrioritySupportProvider>
+            <Container sx={{ display: { xs: 'none', md: 'block' } }}>
+              <PricingCards />
+            </Container>
+            <Divider />
+            {/* Mobile, Tablet */}
+            <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
+              <PricingList />
+            </Container>
+            {/* Desktop */}
+            <Container sx={{ display: { xs: 'none', md: 'block' } }}>
+              <PricingTable />
+            </Container>
+          </PrioritySupportProvider>
+        </LicenseModelProvider>
         <PricingWhatToExpect />
         <Divider />
         <PricingFAQ />

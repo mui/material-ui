@@ -1,7 +1,7 @@
 const childProcess = require('child_process');
 const path = require('path');
 const { promisify } = require('util');
-const { chunk } = require('lodash');
+const { chunk } = require('es-toolkit/array');
 const glob = require('fast-glob');
 
 const exec = promisify(childProcess.exec);
@@ -38,7 +38,6 @@ async function main() {
   // approximate pnpm lerna --concurrency 7
   const tsconfigPathsChunks = chunk(tsconfigPaths, 7);
 
-  // eslint-disable-next-line no-restricted-syntax
   for await (const tsconfigPathsChunk of tsconfigPathsChunks) {
     await Promise.all(
       tsconfigPathsChunk.map(async (tsconfigPath) => {

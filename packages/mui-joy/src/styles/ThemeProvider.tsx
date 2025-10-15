@@ -11,6 +11,7 @@ export const useTheme = (): Theme => {
   const theme = useSystemTheme(defaultTheme);
 
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useDebugValue(theme);
   }

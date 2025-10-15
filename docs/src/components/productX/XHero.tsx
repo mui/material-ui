@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { alpha } from '@mui/material/styles';
 import {
@@ -20,11 +20,12 @@ import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
+import dayjs from 'dayjs';
 
-const startDate = new Date();
-startDate.setDate(10);
-const endDate = new Date();
-endDate.setDate(endDate.getDate() + 28);
+const startDate = dayjs();
+startDate.date(10);
+const endDate = dayjs();
+endDate.date(endDate.date() + 28);
 
 const visibleFields = [
   'commodity',
@@ -78,11 +79,10 @@ export default function XHero() {
     [],
   );
 
-  let rowGroupingCounter = 0;
+  const rowGroupingCounterRef = React.useRef(0);
   const isGroupExpandedByDefault = React.useCallback(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    rowGroupingCounter += 1;
-    return rowGroupingCounter === 3;
+    rowGroupingCounterRef.current += 1;
+    return rowGroupingCounterRef.current === 3;
   }, []);
 
   return (
@@ -169,6 +169,9 @@ export default function XHero() {
                       '& > svg': {
                         fontSize: '1.25rem',
                       },
+                    },
+                    [`& .MuiDataGrid-aggregationColumnHeaderLabel`]: {
+                      fontWeight: 'normal',
                     },
                     [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
                       {
@@ -346,10 +349,10 @@ export default function XHero() {
                   }),
               ]}
             >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={[startDate, endDate]}
+                  defaultValue={[startDate, endDate]}
                 />
               </LocalizationProvider>
             </Paper>

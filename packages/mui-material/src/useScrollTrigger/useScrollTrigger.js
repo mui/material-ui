@@ -25,8 +25,10 @@ export default function useScrollTrigger(options = {}) {
   const { getTrigger = defaultTrigger, target = defaultTarget, ...other } = options;
   const store = React.useRef();
   const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
-
   React.useEffect(() => {
+    if (target === null) {
+      return setTrigger(false);
+    }
     const handleScroll = () => {
       setTrigger(getTrigger(store, { target, ...other }));
     };
@@ -37,6 +39,7 @@ export default function useScrollTrigger(options = {}) {
       target.removeEventListener('scroll', handleScroll, { passive: true });
     };
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target, getTrigger, JSON.stringify(other)]);
 

@@ -70,13 +70,13 @@ cd material-ui
 git remote add upstream https://github.com/mui/material-ui.git
 ```
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
-3. Synchronize your local `next` branch with the upstream one:
+3. Synchronize your local `master` branch with the upstream one:
 
 ```bash
-git checkout next
-git pull upstream next
+git checkout master
+git pull upstream master
 ```
 
 4. Install the dependencies with pnpm (yarn or npm aren't supported):
@@ -140,20 +140,20 @@ The new playground will be accessible at: `http://localhost:3000/playground/<fil
 
 Continuous Integration (CI) automatically runs a series of checks when a PR is opened.
 If you're unsure whether your changes will pass, you can always open a PR, and the GitHub UI will display a summary of the results.
-If any of these checks fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
+If any of these checks fail, refer to [CI checks and how to fix them](#ci-checks-and-how-to-fix-them).
 
 Make sure the following is true:
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
-- The branch is targeted at `next` for ongoing development. All tests are passing. Code that lands in `next` must be compatible with the latest alpha/beta release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `next` at any time.
+- The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, you've explained why this feature needs to be added to the core.
   - If this is a common use case, you've added an example to the documentation.
 - If adding new features or modifying existing ones, you've included tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, you've updated the TypeScript declarations.
 - If submitting a new component, you've added it to the [lab](https://github.com/mui/material-ui/tree/HEAD/packages/mui-lab).
-- The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
+- The branch is not [behind its target branch](https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/keeping-your-pull-request-in-sync-with-the-base-branch).
 
 We will only merge a PR when all tests pass.
 The following statements must be true:
@@ -162,7 +162,7 @@ The following statements must be true:
 - The code is linted. If the code was changed, run `pnpm eslint`.
 - The code is type-safe. If TypeScript sources or declarations were changed, run `pnpm typescript` to confirm that the check passes.
 - The API docs are up to date. If API was changed, run `pnpm proptypes && pnpm docs:api`.
-- The demos are up to date. If demos were changed, run `pnpm docs:typescript:formatted`. See [about writing demos](#3-write-the-content-of-the-demo).
+- The demos are up to date. If demos were changed, run `pnpm docs:typescript:formatted`. See [about writing demos](#2-write-the-demo-code).
 - The pull request title follows the pattern `[product-name][Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 Don't worry if you miss a step—the Continuous Integration will run a thorough set of tests on your commits, and the maintainers of the project can assist you if you run into problems.
@@ -178,10 +178,9 @@ For CircleCI, you need to log in first.
 No further permissions are required to view the build logs.
 The following sections give an overview of what each check is responsible for.
 
-#### ci/codesandbox
+#### Continuous Releases
 
-This task creates multiple sandboxes on CodeSandbox.com that use the version of npm packages that was built from this pull request.
-It should not fail in isolation. Use it to test more complex scenarios.
+This task publishes a preview for the packages to pkg.pr.new. It should not fail in isolation. Use it to test more complex scenarios.
 
 #### ci/circleci: checkout
 
@@ -263,7 +262,7 @@ $ pnpm docs:api
 ### Coding style
 
 Please follow the coding style of the project.
-MUI Core projects use prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
+It uses Prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `pnpm prettier` reformats the code.
 - `pnpm eslint` runs the linting rules.
@@ -299,7 +298,7 @@ docs/src/pages/components/buttons/
 
 #### 2. Write the demo code
 
-We uses TypeScript to document our components.
+We use TypeScript to document our components.
 We prefer demos written in TypeScript (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.
@@ -329,9 +328,9 @@ Check out [this Toggle Button demo PR](https://github.com/mui/material-ui/pull/1
 
 ## How can I use a change that hasn't been released yet?
 
-We use [CodeSandbox CI](https://codesandbox.io/docs/ci) to publish a working version of the packages for each pull request as a "preview."
+We use [pkg.pr.new](https://pkg.pr.new) to publish a working version of the packages for each pull request as a "preview."
 
-You can check the CodeSandbox CI status of a pull request to get the URL needed to install these preview packages:
+You can check the _Continuous Releases_ status of a pull request to get the URL needed to install these preview packages:
 
 ```diff
 diff --git a//package.json b//package.json
@@ -343,11 +342,11 @@ index 791a7da1f4..a5db13b414 100644
      "@babel/runtime": "^7.4.4",
      "@mui/styled-engine": "^5.0.0-alpha.16",
 -    "@mui/material": "^5.0.0-alpha.15",
-+    "@mui/material": "https://pkg.csb.dev/mui/material-ui/commit/371c952b/@mui/material",
++    "@mui/material": "https://pkg.pr.new/mui/material-ui/@mui/material@b0f26aa",
      "@mui/system": "^5.0.0-alpha.16",
 ```
 
-Alternatively, you can open the Netlify preview of the documentation, and open any demo in CodeSandbox.
+Alternatively, you can open the Netlify preview of the documentation, and open any demo in CodeSandbox or StackBlitz.
 The documentation automatically configures the dependencies to use the preview packages.
 
 You can also package and test your changes locally.

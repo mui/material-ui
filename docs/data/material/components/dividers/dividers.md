@@ -2,8 +2,9 @@
 productId: material-ui
 title: React Divider component
 components: Divider
-githubLabel: 'component: divider'
+githubLabel: 'scope: divider'
 materialDesign: https://m2.material.io/components/dividers
+githubSource: packages/mui-material/src/Divider
 ---
 
 # Divider
@@ -32,7 +33,7 @@ The Divider component supports three variants: `fullWidth` (default), `inset`, a
 
 ### Orientation
 
-Use the `orientation` prop to change the Divider from horizontal to vertical.
+Use the `orientation` prop to change the Divider from horizontal to vertical. When using vertical orientation, the Divider renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator).
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
@@ -64,7 +65,7 @@ The demo below shows how to combine the props `variant="middle"` and `orientatio
 
 ## Accessibility
 
-Due to its implicit role of `separator`, the Divider, which is a `<hr>` element, will be announced by screen readers as a "Horziontal Splitter" (or vertical, if you're using the `orientation` prop).
+Due to its implicit role of `separator`, the Divider, which is a `<hr>` element, will be announced by screen readers as a "Horizontal Splitter" (or vertical, if you're using the `orientation` prop).
 
 If you're using it as a purely stylistic element, we recommend setting `aria-hidden="true"` which will make screen readers bypass it.
 
@@ -77,7 +78,7 @@ This ensures that it's not announced by screen readers while still preserving th
 
 ```js
 <Divider component="div" role="presentation">
-  <Typograph>Text element</Typography>
+  <Typography>Text element</Typography>
 </Divider>
 ```
 

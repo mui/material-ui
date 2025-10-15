@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Pagination, { paginationClasses as classes } from '@mui/material/Pagination';
 import { paginationItemClasses } from '@mui/material/PaginationItem';
@@ -29,21 +29,21 @@ describe('<Pagination />', () => {
   });
 
   it('moves aria-current to the specified page', () => {
-    const { container, getAllByRole } = render(<Pagination count={3} page={1} />);
+    const { container } = render(<Pagination count={3} page={1} />);
 
     // previous, page 1
-    const [, page1] = getAllByRole('button');
-    expect(page1).to.have.attribute('aria-current', 'true');
+    const [, page1] = screen.getAllByRole('button');
+    expect(page1).to.have.attribute('aria-current', 'page');
     // verifying no regression from previous bug where `page` wasn't intercepted
     expect(container.querySelector('[page]')).to.equal(null);
   });
 
   it('fires onChange when a different page is clicked', () => {
     const handleChange = spy();
-    const { getAllByRole } = render(<Pagination count={3} onChange={handleChange} page={1} />);
+    render(<Pagination count={3} onChange={handleChange} page={1} />);
 
     // previous, page 1, page 2
-    const [, , page2] = getAllByRole('button');
+    const [, , page2] = screen.getAllByRole('button');
     page2.click();
 
     expect(handleChange.callCount).to.equal(1);
@@ -60,7 +60,7 @@ describe('<Pagination />', () => {
   });
 
   it('renders controls with correct order in rtl theme', () => {
-    const { getAllByRole } = render(
+    render(
       <ThemeProvider
         theme={createTheme({
           direction: 'rtl',
@@ -70,7 +70,7 @@ describe('<Pagination />', () => {
       </ThemeProvider>,
     );
 
-    const buttons = getAllByRole('button');
+    const buttons = screen.getAllByRole('button');
 
     expect(buttons[0].querySelector('svg')).to.have.attribute('data-testid', 'LastPageIcon');
     expect(buttons[1].querySelector('svg')).to.have.attribute('data-testid', 'NavigateNextIcon');
@@ -81,7 +81,7 @@ describe('<Pagination />', () => {
   });
 
   it('renders correct amount of buttons on correct order when boundaryCount is zero', () => {
-    const { getAllByRole } = render(
+    render(
       <ThemeProvider
         theme={createTheme({
           direction: 'rtl',
@@ -91,7 +91,7 @@ describe('<Pagination />', () => {
       </ThemeProvider>,
     );
 
-    const buttons = getAllByRole('button');
+    const buttons = screen.getAllByRole('button');
     expect(buttons[4].querySelector('svg')).to.have.attribute('data-testid', 'NavigateBeforeIcon');
     expect(buttons[1].textContent).to.equal('5');
     expect(buttons[2].textContent).to.equal('6');

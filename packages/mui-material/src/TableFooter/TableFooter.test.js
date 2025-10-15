@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableFooter, { tableFooterClasses as classes } from '@mui/material/TableFooter';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import describeConformance from '../../test/describeConformance';
@@ -19,10 +19,6 @@ describe('<TableFooter />', () => {
       const { container, ...other } = render(<table>{node}</table>);
       return { container: container.firstChild, ...other };
     },
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(<table>{node}</table>);
-      return wrapper.find('table').childAt(0);
-    },
     muiName: 'MuiTableFooter',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,
@@ -32,8 +28,8 @@ describe('<TableFooter />', () => {
 
   it('should render children', () => {
     const children = <tr data-testid="test" />;
-    const { getByTestId } = renderInTable(<TableFooter>{children}</TableFooter>);
-    getByTestId('test');
+    renderInTable(<TableFooter>{children}</TableFooter>);
+    screen.getByTestId('test');
   });
 
   it('should define table.footer in the child context', () => {

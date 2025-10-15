@@ -4,23 +4,27 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
+import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
+import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
 
-const useThemeProps = createUseThemeProps('MuiButton');
-
 const useUtilityClasses = (ownerState) => {
-  const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
+  const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
+    ownerState;
 
   const slots = {
     root: [
       'root',
+      loading && 'loading',
       variant,
       `${variant}${capitalize(color)}`,
       `size${capitalize(size)}`,
@@ -28,10 +32,12 @@ const useUtilityClasses = (ownerState) => {
       `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
+      loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
-    label: ['label'],
     startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
     endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
+    loadingIndicator: ['loadingIndicator'],
+    loadingWrapper: ['loadingWrapper'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -85,220 +91,242 @@ const ButtonRoot = styled(ButtonBase, {
       ownerState.color === 'inherit' && styles.colorInherit,
       ownerState.disableElevation && styles.disableElevation,
       ownerState.fullWidth && styles.fullWidth,
+      ownerState.loading && styles.loading,
     ];
   },
-})(({ theme }) => {
-  const inheritContainedBackgroundColor =
-    theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
+})(
+  memoTheme(({ theme }) => {
+    const inheritContainedBackgroundColor =
+      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
 
-  const inheritContainedHoverBackgroundColor =
-    theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
-  return {
-    ...theme.typography.button,
-    minWidth: 64,
-    padding: '6px 16px',
-    border: 0,
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    transition: theme.transitions.create(
-      ['background-color', 'box-shadow', 'border-color', 'color'],
-      {
-        duration: theme.transitions.duration.short,
+    const inheritContainedHoverBackgroundColor =
+      theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
+    return {
+      ...theme.typography.button,
+      minWidth: 64,
+      padding: '6px 16px',
+      border: 0,
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+      transition: theme.transitions.create(
+        ['background-color', 'box-shadow', 'border-color', 'color'],
+        {
+          duration: theme.transitions.duration.short,
+        },
+      ),
+      '&:hover': {
+        textDecoration: 'none',
       },
-    ),
-    '&:hover': {
-      textDecoration: 'none',
-    },
-    [`&.${buttonClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
-    },
-    variants: [
-      {
-        props: { variant: 'contained' },
-        style: {
-          color: `var(--variant-containedColor)`,
-          backgroundColor: `var(--variant-containedBg)`,
-          boxShadow: (theme.vars || theme).shadows[2],
-          '&:hover': {
-            boxShadow: (theme.vars || theme).shadows[4],
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-              boxShadow: (theme.vars || theme).shadows[2],
+      [`&.${buttonClasses.disabled}`]: {
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+      variants: [
+        {
+          props: { variant: 'contained' },
+          style: {
+            color: `var(--variant-containedColor)`,
+            backgroundColor: `var(--variant-containedBg)`,
+            boxShadow: (theme.vars || theme).shadows[2],
+            '&:hover': {
+              boxShadow: (theme.vars || theme).shadows[4],
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                boxShadow: (theme.vars || theme).shadows[2],
+              },
+            },
+            '&:active': {
+              boxShadow: (theme.vars || theme).shadows[8],
+            },
+            [`&.${buttonClasses.focusVisible}`]: {
+              boxShadow: (theme.vars || theme).shadows[6],
+            },
+            [`&.${buttonClasses.disabled}`]: {
+              color: (theme.vars || theme).palette.action.disabled,
+              boxShadow: (theme.vars || theme).shadows[0],
+              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
             },
           },
-          '&:active': {
-            boxShadow: (theme.vars || theme).shadows[8],
-          },
-          [`&.${buttonClasses.focusVisible}`]: {
-            boxShadow: (theme.vars || theme).shadows[6],
-          },
-          [`&.${buttonClasses.disabled}`]: {
-            color: (theme.vars || theme).palette.action.disabled,
-            boxShadow: (theme.vars || theme).shadows[0],
-            backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
-          },
         },
-      },
-      {
-        props: { variant: 'outlined' },
-        style: {
-          padding: '5px 15px',
-          border: '1px solid currentColor',
-          borderColor: `var(--variant-outlinedBorder, currentColor)`,
-          backgroundColor: `var(--variant-outlinedBg)`,
-          color: `var(--variant-outlinedColor)`,
-          [`&.${buttonClasses.disabled}`]: {
-            border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-          },
-        },
-      },
-      {
-        props: { variant: 'text' },
-        style: {
-          padding: '6px 8px',
-          color: `var(--variant-textColor)`,
-          backgroundColor: `var(--variant-textBg)`,
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main && palette.dark && palette.contrastText)
-        .map(([color]) => ({
-          props: { color },
+        {
+          props: { variant: 'outlined' },
           style: {
-            '--variant-textColor': (theme.vars || theme).palette[color].main,
-            '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
-            '--variant-outlinedBorder': theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-              : alpha(theme.palette[color].main, 0.5),
-            '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
-            '--variant-containedBg': (theme.vars || theme).palette[color].main,
+            padding: '5px 15px',
+            border: '1px solid currentColor',
+            borderColor: `var(--variant-outlinedBorder, currentColor)`,
+            backgroundColor: `var(--variant-outlinedBg)`,
+            color: `var(--variant-outlinedColor)`,
+            [`&.${buttonClasses.disabled}`]: {
+              border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+            },
+          },
+        },
+        {
+          props: { variant: 'text' },
+          style: {
+            padding: '6px 8px',
+            color: `var(--variant-textColor)`,
+            backgroundColor: `var(--variant-textBg)`,
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color },
+            style: {
+              '--variant-textColor': (theme.vars || theme).palette[color].main,
+              '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
+              '--variant-outlinedBorder': theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                0.5,
+              ),
+              '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
+              '--variant-containedBg': (theme.vars || theme).palette[color].main,
+              '@media (hover: hover)': {
+                '&:hover': {
+                  '--variant-containedBg': (theme.vars || theme).palette[color].dark,
+                  '--variant-textBg': theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.hoverOpacity,
+                  ),
+                  '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
+                  '--variant-outlinedBg': theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.hoverOpacity,
+                  ),
+                },
+              },
+            },
+          })),
+        {
+          props: {
+            color: 'inherit',
+          },
+          style: {
+            color: 'inherit',
+            borderColor: 'currentColor',
+            '--variant-containedBg': theme.vars
+              ? theme.vars.palette.Button.inheritContainedBg
+              : inheritContainedBackgroundColor,
             '@media (hover: hover)': {
               '&:hover': {
-                '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                '--variant-textBg': theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-                '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                '--variant-outlinedBg': theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                '--variant-containedBg': theme.vars
+                  ? theme.vars.palette.Button.inheritContainedHoverBg
+                  : inheritContainedHoverBackgroundColor,
+                '--variant-textBg': theme.alpha(
+                  (theme.vars || theme).palette.text.primary,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
+                '--variant-outlinedBg': theme.alpha(
+                  (theme.vars || theme).palette.text.primary,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
               },
             },
           },
-        })),
-      {
-        props: {
-          color: 'inherit',
         },
-        style: {
-          '--variant-containedColor': theme.vars
-            ? // this is safe because grey does not change between default light/dark mode
-              theme.vars.palette.text.primary
-            : theme.palette.getContrastText?.(inheritContainedBackgroundColor),
-          '--variant-containedBg': theme.vars
-            ? theme.vars.palette.Button.inheritContainedBg
-            : inheritContainedBackgroundColor,
-          '@media (hover: hover)': {
+        {
+          props: {
+            size: 'small',
+            variant: 'text',
+          },
+          style: {
+            padding: '4px 5px',
+            fontSize: theme.typography.pxToRem(13),
+          },
+        },
+        {
+          props: {
+            size: 'large',
+            variant: 'text',
+          },
+          style: {
+            padding: '8px 11px',
+            fontSize: theme.typography.pxToRem(15),
+          },
+        },
+        {
+          props: {
+            size: 'small',
+            variant: 'outlined',
+          },
+          style: {
+            padding: '3px 9px',
+            fontSize: theme.typography.pxToRem(13),
+          },
+        },
+        {
+          props: {
+            size: 'large',
+            variant: 'outlined',
+          },
+          style: {
+            padding: '7px 21px',
+            fontSize: theme.typography.pxToRem(15),
+          },
+        },
+        {
+          props: {
+            size: 'small',
+            variant: 'contained',
+          },
+          style: {
+            padding: '4px 10px',
+            fontSize: theme.typography.pxToRem(13),
+          },
+        },
+        {
+          props: {
+            size: 'large',
+            variant: 'contained',
+          },
+          style: {
+            padding: '8px 22px',
+            fontSize: theme.typography.pxToRem(15),
+          },
+        },
+        {
+          props: {
+            disableElevation: true,
+          },
+          style: {
+            boxShadow: 'none',
             '&:hover': {
-              '--variant-containedBg': theme.vars
-                ? theme.vars.palette.Button.inheritContainedHoverBg
-                : inheritContainedHoverBackgroundColor,
-              '--variant-textBg': theme.vars
-                ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-              '--variant-outlinedBg': theme.vars
-                ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+              boxShadow: 'none',
+            },
+            [`&.${buttonClasses.focusVisible}`]: {
+              boxShadow: 'none',
+            },
+            '&:active': {
+              boxShadow: 'none',
+            },
+            [`&.${buttonClasses.disabled}`]: {
+              boxShadow: 'none',
             },
           },
         },
-      },
-      {
-        props: {
-          size: 'small',
-          variant: 'text',
+        {
+          props: { fullWidth: true },
+          style: { width: '100%' },
         },
-        style: {
-          padding: '4px 5px',
-          fontSize: theme.typography.pxToRem(13),
-        },
-      },
-      {
-        props: {
-          size: 'large',
-          variant: 'text',
-        },
-        style: {
-          padding: '8px 11px',
-          fontSize: theme.typography.pxToRem(15),
-        },
-      },
-      {
-        props: {
-          size: 'small',
-          variant: 'outlined',
-        },
-        style: {
-          padding: '3px 9px',
-          fontSize: theme.typography.pxToRem(13),
-        },
-      },
-      {
-        props: {
-          size: 'large',
-          variant: 'outlined',
-        },
-        style: {
-          padding: '7px 21px',
-          fontSize: theme.typography.pxToRem(15),
-        },
-      },
-      {
-        props: {
-          size: 'small',
-          variant: 'contained',
-        },
-        style: {
-          padding: '4px 10px',
-          fontSize: theme.typography.pxToRem(13),
-        },
-      },
-      {
-        props: {
-          size: 'large',
-          variant: 'contained',
-        },
-        style: {
-          padding: '8px 22px',
-          fontSize: theme.typography.pxToRem(15),
-        },
-      },
-      {
-        props: {
-          disableElevation: true,
-        },
-        style: {
-          boxShadow: 'none',
-          '&:hover': {
-            boxShadow: 'none',
+        {
+          props: {
+            loadingPosition: 'center',
           },
-          [`&.${buttonClasses.focusVisible}`]: {
-            boxShadow: 'none',
-          },
-          '&:active': {
-            boxShadow: 'none',
-          },
-          [`&.${buttonClasses.disabled}`]: {
-            boxShadow: 'none',
+          style: {
+            transition: theme.transitions.create(
+              ['background-color', 'box-shadow', 'border-color'],
+              {
+                duration: theme.transitions.duration.short,
+              },
+            ),
+            [`&.${buttonClasses.loading}`]: {
+              color: 'transparent',
+            },
           },
         },
-      },
-      {
-        props: { fullWidth: true },
-        style: { width: '100%' },
-      },
-    ],
-  };
-});
+      ],
+    };
+  }),
+);
 
 const ButtonStartIcon = styled('span', {
   name: 'MuiButton',
@@ -306,9 +334,13 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
+    return [
+      styles.startIcon,
+      ownerState.loading && styles.startIconLoadingStart,
+      styles[`iconSize${capitalize(ownerState.size)}`],
+    ];
   },
-})(() => ({
+})(({ theme }) => ({
   display: 'inherit',
   marginRight: 8,
   marginLeft: -4,
@@ -317,6 +349,21 @@ const ButtonStartIcon = styled('span', {
       props: { size: 'small' },
       style: {
         marginLeft: -2,
+      },
+    },
+    {
+      props: { loadingPosition: 'start', loading: true },
+      style: {
+        transition: theme.transitions.create(['opacity'], {
+          duration: theme.transitions.duration.short,
+        }),
+        opacity: 0,
+      },
+    },
+    {
+      props: { loadingPosition: 'start', loading: true, fullWidth: true },
+      style: {
+        marginRight: -8,
       },
     },
     ...commonIconStyles,
@@ -329,9 +376,13 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
+    return [
+      styles.endIcon,
+      ownerState.loading && styles.endIconLoadingEnd,
+      styles[`iconSize${capitalize(ownerState.size)}`],
+    ];
   },
-})(() => ({
+})(({ theme }) => ({
   display: 'inherit',
   marginRight: -4,
   marginLeft: 8,
@@ -342,16 +393,124 @@ const ButtonEndIcon = styled('span', {
         marginRight: -2,
       },
     },
+    {
+      props: { loadingPosition: 'end', loading: true },
+      style: {
+        transition: theme.transitions.create(['opacity'], {
+          duration: theme.transitions.duration.short,
+        }),
+        opacity: 0,
+      },
+    },
+    {
+      props: { loadingPosition: 'end', loading: true, fullWidth: true },
+      style: {
+        marginLeft: -8,
+      },
+    },
     ...commonIconStyles,
   ],
 }));
+
+const ButtonLoadingIndicator = styled('span', {
+  name: 'MuiButton',
+  slot: 'LoadingIndicator',
+})(({ theme }) => ({
+  display: 'none',
+  position: 'absolute',
+  visibility: 'visible',
+  variants: [
+    { props: { loading: true }, style: { display: 'flex' } },
+    {
+      props: { loadingPosition: 'start' },
+      style: {
+        left: 14,
+      },
+    },
+    {
+      props: {
+        loadingPosition: 'start',
+        size: 'small',
+      },
+      style: {
+        left: 10,
+      },
+    },
+    {
+      props: {
+        variant: 'text',
+        loadingPosition: 'start',
+      },
+      style: {
+        left: 6,
+      },
+    },
+    {
+      props: {
+        loadingPosition: 'center',
+      },
+      style: {
+        left: '50%',
+        transform: 'translate(-50%)',
+        color: (theme.vars || theme).palette.action.disabled,
+      },
+    },
+    {
+      props: { loadingPosition: 'end' },
+      style: {
+        right: 14,
+      },
+    },
+    {
+      props: {
+        loadingPosition: 'end',
+        size: 'small',
+      },
+      style: {
+        right: 10,
+      },
+    },
+    {
+      props: {
+        variant: 'text',
+        loadingPosition: 'end',
+      },
+      style: {
+        right: 6,
+      },
+    },
+    {
+      props: { loadingPosition: 'start', fullWidth: true },
+      style: {
+        position: 'relative',
+        left: -10,
+      },
+    },
+    {
+      props: { loadingPosition: 'end', fullWidth: true },
+      style: {
+        position: 'relative',
+        right: -10,
+      },
+    },
+  ],
+}));
+
+const ButtonLoadingIconPlaceholder = styled('span', {
+  name: 'MuiButton',
+  slot: 'LoadingIconPlaceholder',
+})({
+  display: 'inline-block',
+  width: '1em',
+  height: '1em',
+});
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
   const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
   const resolvedProps = resolveProps(contextProps, inProps);
-  const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
+  const props = useDefaultProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
     color = 'primary',
@@ -363,12 +522,21 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
+    id: idProp,
+    loading = null,
+    loadingIndicator: loadingIndicatorProp,
+    loadingPosition = 'center',
     size = 'medium',
     startIcon: startIconProp,
     type,
     variant = 'text',
     ...other
   } = props;
+
+  const loadingId = useId(idProp);
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
+  );
 
   const ownerState = {
     ...props,
@@ -378,6 +546,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disableElevation,
     disableFocusRipple,
     fullWidth,
+    loading,
+    loadingIndicator,
+    loadingPosition,
     size,
     type,
     variant,
@@ -385,35 +556,60 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const startIcon = startIconProp && (
+  const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
-      {startIconProp}
+      {startIconProp || (
+        <ButtonLoadingIconPlaceholder
+          className={classes.loadingIconPlaceholder}
+          ownerState={ownerState}
+        />
+      )}
     </ButtonStartIcon>
   );
 
-  const endIcon = endIconProp && (
+  const endIcon = (endIconProp || (loading && loadingPosition === 'end')) && (
     <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
-      {endIconProp}
+      {endIconProp || (
+        <ButtonLoadingIconPlaceholder
+          className={classes.loadingIconPlaceholder}
+          ownerState={ownerState}
+        />
+      )}
     </ButtonEndIcon>
   );
 
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
+
+  const loader =
+    typeof loading === 'boolean' ? (
+      // use plain HTML span to minimize the runtime overhead
+      <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+        {loading && (
+          <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+            {loadingIndicator}
+          </ButtonLoadingIndicator>
+        )}
+      </span>
+    ) : null;
 
   return (
     <ButtonRoot
       ownerState={ownerState}
       className={clsx(contextProps.className, classes.root, className, positionClassName)}
       component={component}
-      disabled={disabled}
+      disabled={disabled || loading}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
+      id={loading ? loadingId : idProp}
       {...other}
       classes={classes}
     >
       {startIcon}
+      {loadingPosition !== 'end' && loader}
       {children}
+      {loadingPosition === 'end' && loader}
       {endIcon}
     </ButtonRoot>
   );
@@ -492,6 +688,28 @@ Button.propTypes /* remove-proptypes */ = {
    * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes.string,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * If `true`, the loading indicator is visible and the button is disabled.
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
+   */
+  loading: PropTypes.bool,
+  /**
+   * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default, it renders a `CircularProgress` that is labeled by the button itself.
+   * @default <CircularProgress color="inherit" size={16} />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
+   * The loading indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
+   */
+  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

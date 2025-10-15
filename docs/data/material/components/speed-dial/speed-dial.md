@@ -2,9 +2,10 @@
 productId: material-ui
 title: React Speed Dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
-githubLabel: 'component: speed dial'
+githubLabel: 'scope: speed dial'
 materialDesign: https://m2.material.io/components/buttons-floating-action-button#types-of-transitions
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+githubSource: packages/mui-material/src/SpeedDial
 ---
 
 # Speed Dial
@@ -53,7 +54,7 @@ It is enabled here across all devices for demo purposes, but in production it co
 #### Required
 
 - You should provide an `ariaLabel` for the speed dial component.
-- You should provide a `tooltipTitle` for each speed dial action.
+- You should provide a tooltip title using `slotProps.tooltip.title` for each speed dial action.
 
 #### Provided
 

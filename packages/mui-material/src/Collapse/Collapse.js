@@ -6,14 +6,13 @@ import { Transition } from 'react-transition-group';
 import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
-import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
 import { getCollapseUtilityClass } from './collapseClasses';
-
-const useThemeProps = createUseThemeProps('MuiCollapse');
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, classes } = ownerState;
@@ -45,53 +44,54 @@ const CollapseRoot = styled('div', {
         styles.hidden,
     ];
   },
-})(({ theme }) => ({
-  height: 0,
-  overflow: 'hidden',
-  transition: theme.transitions.create('height'),
-  variants: [
-    {
-      props: {
-        orientation: 'horizontal',
+})(
+  memoTheme(({ theme }) => ({
+    height: 0,
+    overflow: 'hidden',
+    transition: theme.transitions.create('height'),
+    variants: [
+      {
+        props: {
+          orientation: 'horizontal',
+        },
+        style: {
+          height: 'auto',
+          width: 0,
+          transition: theme.transitions.create('width'),
+        },
       },
-      style: {
-        height: 'auto',
-        width: 0,
-        transition: theme.transitions.create('width'),
+      {
+        props: {
+          state: 'entered',
+        },
+        style: {
+          height: 'auto',
+          overflow: 'visible',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
+      {
+        props: {
+          state: 'entered',
+          orientation: 'horizontal',
+        },
+        style: {
+          width: 'auto',
+        },
       },
-      style: {
-        height: 'auto',
-        overflow: 'visible',
+      {
+        props: ({ ownerState }) =>
+          ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
+        style: {
+          visibility: 'hidden',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
-        orientation: 'horizontal',
-      },
-      style: {
-        width: 'auto',
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
-      style: {
-        visibility: 'hidden',
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
-  overridesResolver: (props, styles) => styles.wrapper,
 })({
   // Hack to get children with a negative margin to not falsify the height computation.
   display: 'flex',
@@ -112,7 +112,6 @@ const CollapseWrapper = styled('div', {
 const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',
-  overridesResolver: (props, styles) => styles.wrapperInner,
 })({
   width: '100%',
   variants: [
@@ -134,7 +133,7 @@ const CollapseWrapperInner = styled('div', {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Collapse = React.forwardRef(function Collapse(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCollapse' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCollapse' });
   const {
     addEndListener,
     children,
@@ -307,7 +306,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {(state, childProps) => (
+      {/* Destructure child props to prevent the component's "ownerState" from being overridden by incomingOwnerState. */}
+      {(state, { ownerState: incomingOwnerState, ...restChildProps }) => (
         <CollapseRoot
           as={component}
           className={clsx(
@@ -323,10 +323,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             ...style,
           }}
           ref={handleRef}
-          {...childProps}
-          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
-          // that might have been forwarded from the Transition component.
           ownerState={{ ...ownerState, state }}
+          {...restChildProps}
         >
           <CollapseWrapper
             ownerState={{ ...ownerState, state }}

@@ -4,10 +4,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isMuiElement as isMuiElement,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isMuiElement from '@mui/utils/isMuiElement';
 import { useThemeProps } from '../styles';
 import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
@@ -15,6 +13,7 @@ import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
@@ -166,11 +165,11 @@ const Card = React.forwardRef(function Card(inProps, ref) {
         }
         const extraProps: Record<string, any> = {};
         if (isMuiElement(child, ['Divider'])) {
-          extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+          const childProps = child.props as DividerProps;
+          extraProps.inset = childProps?.inset ?? 'context';
 
           const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-          extraProps.orientation =
-            'orientation' in child.props ? child.props.orientation : dividerOrientation;
+          extraProps.orientation = childProps?.orientation ?? dividerOrientation;
         }
         if (index === 0) {
           extraProps['data-first-child'] = '';

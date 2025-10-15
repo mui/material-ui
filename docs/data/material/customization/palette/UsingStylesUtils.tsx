@@ -6,8 +6,9 @@ import {
   getContrastRatio,
 } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { Box, Stack } from '@mui/system';
-import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 // Augment the palette to include a violet color
 declare module '@mui/material/styles' {

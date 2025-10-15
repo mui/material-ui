@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/joy/LinearProgress';
 import describeConformance from '../../test/describeConformance';
@@ -27,21 +27,21 @@ describe('<LinearProgress />', () => {
 
   describe('prop: determinate', () => {
     it('should render a determinate circular progress', () => {
-      const { getByRole } = render(<LinearProgress determinate />);
+      render(<LinearProgress determinate />);
 
-      expect(getByRole('progressbar')).to.have.class(classes.determinate);
+      expect(screen.getByRole('progressbar')).to.have.class(classes.determinate);
     });
   });
 
   describe('prop: variant', () => {
     it('soft by default', () => {
-      const { getByRole } = render(<LinearProgress />);
-      expect(getByRole('progressbar')).to.have.class(classes.variantSoft);
+      render(<LinearProgress />);
+      expect(screen.getByRole('progressbar')).to.have.class(classes.variantSoft);
     });
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByRole } = render(<LinearProgress variant={variant} />);
-        expect(getByRole('progressbar')).to.have.class(
+        render(<LinearProgress variant={variant} />);
+        expect(screen.getByRole('progressbar')).to.have.class(
           classes[`variant${capitalize(variant)}` as keyof typeof classes],
         );
       });
@@ -50,13 +50,13 @@ describe('<LinearProgress />', () => {
 
   describe('prop: color', () => {
     it('adds a primary class by default', () => {
-      const { getByRole } = render(<LinearProgress />);
-      expect(getByRole('progressbar')).to.have.class(classes.colorPrimary);
+      render(<LinearProgress />);
+      expect(screen.getByRole('progressbar')).to.have.class(classes.colorPrimary);
     });
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByRole } = render(<LinearProgress color={color} />);
-        expect(getByRole('progressbar')).to.have.class(
+        render(<LinearProgress color={color} />);
+        expect(screen.getByRole('progressbar')).to.have.class(
           classes[`color${capitalize(color)}` as keyof typeof classes],
         );
       });
@@ -65,13 +65,13 @@ describe('<LinearProgress />', () => {
 
   describe('prop: size', () => {
     it('md by default', () => {
-      const { getByRole } = render(<LinearProgress />);
-      expect(getByRole('progressbar')).to.have.class(classes.sizeMd);
+      render(<LinearProgress />);
+      expect(screen.getByRole('progressbar')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
-        const { getByRole } = render(<LinearProgress size={size} />);
-        expect(getByRole('progressbar')).to.have.class(
+        render(<LinearProgress size={size} />);
+        expect(screen.getByRole('progressbar')).to.have.class(
           classes[`size${capitalize(size)}` as keyof typeof classes],
         );
       });

@@ -8,6 +8,8 @@ export interface StepperClasses {
   horizontal: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
+  /** Styles applied to the root element if `nonLinear={true}`. */
+  nonLinear: string;
   /** Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: string;
 }
@@ -22,6 +24,7 @@ const stepperClasses: StepperClasses = generateUtilityClasses('MuiStepper', [
   'root',
   'horizontal',
   'vertical',
+  'nonLinear',
   'alternativeLabel',
 ]);
 
