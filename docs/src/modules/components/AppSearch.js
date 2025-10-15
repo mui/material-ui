@@ -228,7 +228,7 @@ DocSearchHit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
-const deprecatedProducts = ['base-ui', 'joy-ui'];
+const standaloneProducts = ['base-ui', 'joy-ui'];
 
 export default function AppSearch(props) {
   useLazyCSS(
@@ -327,11 +327,11 @@ export default function AppSearch(props) {
 
   // Filter out deprecated products unless we're on their subsections
   let filters = undefined;
-  if (deprecatedProducts.length > 0) {
+  if (standaloneProducts.length > 0) {
     const filtersPredicates = [];
-    for (let i = 0; i < deprecatedProducts.length; i += 1) {
-      if (pageContext.productId !== deprecatedProducts[i]) {
-        filtersPredicates.push(`NOT productId:${deprecatedProducts[i]}`);
+    for (let i = 0; i < standaloneProducts.length; i += 1) {
+      if (pageContext.productId !== standaloneProducts[i]) {
+        filtersPredicates.push(`NOT productId:${standaloneProducts[i]}`);
       }
     }
     filters = filtersPredicates.join(' AND ');
