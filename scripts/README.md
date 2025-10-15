@@ -43,7 +43,6 @@ The following steps must be proposed as a pull request.
    > - **Run in dry-run mode:** Used for debugging.
    > - **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
    > - **npm dist tag to publish to** Use to publish legacy or canary versions.
-   >   > > > > > > upstream/master
 
 3. Click "Run workflow"
 4. Refresh the page to see the newly created workflow, and click it.
