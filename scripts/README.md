@@ -42,9 +42,6 @@ The following steps must be proposed as a pull request.
    > - **Commit SHA to release from:** the commit that contains the merged release on master. This commit is linked to the GitHub release.
    > - **Run in dry-run mode:** Used for debugging.
    > - **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
-
-   # <<<<<<< HEAD
-
    > - **npm dist tag to publish to** Use to publish legacy or canary versions.
    >   > > > > > > upstream/master
 
