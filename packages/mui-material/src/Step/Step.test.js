@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { stepClasses as classes } from '@mui/material/Step';
 import Stepper from '@mui/material/Stepper';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
@@ -21,7 +21,7 @@ describe('<Step />', () => {
   }));
 
   it('merges styles and other props into the root node', () => {
-    const { getByTestId } = render(
+    render(
       <Step
         index={1}
         style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
@@ -30,7 +30,7 @@ describe('<Step />', () => {
       />,
     );
 
-    const rootNode = getByTestId('root');
+    const rootNode = screen.getByTestId('root');
     expect(rootNode.style).to.have.property('paddingRight', '200px');
     expect(rootNode.style).to.have.property('color', 'purple');
     expect(rootNode.style).to.have.property('border', '1px solid tomato');
@@ -66,7 +66,7 @@ describe('<Step />', () => {
 
   describe('overriding context props', () => {
     it('overrides "active" context value', () => {
-      const { getByText } = render(
+      render(
         <Stepper activeStep={1}>
           <Step>
             <StepLabel>Step 1</StepLabel>
@@ -80,12 +80,12 @@ describe('<Step />', () => {
         </Stepper>,
       );
 
-      const stepLabel = getByText('Step 3');
+      const stepLabel = screen.getByText('Step 3');
       expect(stepLabel).to.have.class(stepLabelClasses.active);
     });
 
     it('overrides "completed" context value', () => {
-      const { getByText } = render(
+      render(
         <Stepper activeStep={1}>
           <Step>
             <StepLabel>Step 1</StepLabel>
@@ -99,7 +99,7 @@ describe('<Step />', () => {
         </Stepper>,
       );
 
-      const stepLabel = getByText('Step 3');
+      const stepLabel = screen.getByText('Step 3');
       expect(stepLabel).to.have.class(stepLabelClasses.completed);
     });
 
