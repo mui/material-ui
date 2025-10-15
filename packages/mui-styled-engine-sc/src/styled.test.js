@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import styled from '@mui/styled-engine-sc';
 
 describe('styled', () => {
@@ -30,9 +30,10 @@ describe('styled', () => {
       label: 'TestComponent',
     })({ color: 'red' });
 
-    const { container } = render(<StyledComponent color="blue" />);
-    expect(container.firstChild).not.to.have.attribute('color');
-    expect(container.querySelector('[class^=TestComponent]')).not.to.equal(null);
+    render(<StyledComponent data-testid="component" color="blue" />);
+
+    expect(screen.getByTestId('component')).not.to.have.attribute('color');
+    expect(screen.getByTestId('component').className).to.match(/^TestComponent-/);
   });
 
   it("should not allow styled-components's APIs: .attrs", () => {

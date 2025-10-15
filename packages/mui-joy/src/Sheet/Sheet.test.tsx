@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import Sheet, { sheetClasses as classes, SheetClassKey } from '@mui/joy/Sheet';
@@ -29,20 +29,20 @@ describe('<Sheet />', () => {
 
   describe('prop: variant', () => {
     it('plain by default', () => {
-      const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
+      render(<Sheet data-testid="root">Hello World</Sheet>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantPlain);
+      expect(screen.getByTestId('root')).to.have.class(classes.variantPlain);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByTestId } = render(
+        render(
           <Sheet data-testid="root" variant={variant}>
             Hello World
           </Sheet>,
         );
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`variant${capitalize(variant)}` as SheetClassKey],
         );
       });
@@ -51,20 +51,20 @@ describe('<Sheet />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
+      render(<Sheet data-testid="root">Hello World</Sheet>);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(screen.getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByTestId } = render(
+        render(
           <Sheet data-testid="root" color={color}>
             Hello World
           </Sheet>,
         );
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`color${capitalize(color)}` as SheetClassKey],
         );
       });

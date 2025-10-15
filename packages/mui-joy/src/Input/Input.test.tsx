@@ -29,8 +29,8 @@ describe('Joy <Input />', () => {
   }));
 
   it('should have placeholder', () => {
-    const { getByPlaceholderText } = render(<Input placeholder="Placeholder" />);
-    expect(getByPlaceholderText('Placeholder')).toBeVisible();
+    render(<Input placeholder="Placeholder" />);
+    expect(screen.getByPlaceholderText('Placeholder')).toBeVisible();
   });
 
   it('should have error classes', () => {
@@ -55,25 +55,25 @@ describe('Joy <Input />', () => {
 
   describe('prop: required', () => {
     it('should pass to `input` element', () => {
-      const { getByRole } = render(<Input required />);
-      expect(getByRole('textbox')).to.have.attribute('required');
+      render(<Input required />);
+      expect(screen.getByRole('textbox')).to.have.attribute('required');
     });
   });
 
   describe('prop: disabled', () => {
     it('should have disabled classes', () => {
-      const { container, getByRole } = render(<Input disabled />);
-      expect(getByRole('textbox')).to.have.attribute('disabled');
+      const { container } = render(<Input disabled />);
+      expect(screen.getByRole('textbox')).to.have.attribute('disabled');
       expect(container.firstChild).to.have.class(classes.disabled);
     });
 
     it('should reset the focused state if getting disabled', () => {
       const handleBlur = spy();
       const handleFocus = spy();
-      const { getByRole, setProps } = render(<Input onBlur={handleBlur} onFocus={handleFocus} />);
+      const { setProps } = render(<Input onBlur={handleBlur} onFocus={handleFocus} />);
 
       act(() => {
-        getByRole('textbox').focus();
+        screen.getByRole('textbox').focus();
       });
       expect(handleFocus.callCount).to.equal(1);
 
@@ -84,7 +84,7 @@ describe('Joy <Input />', () => {
     });
 
     it('disabled prop from FormControl should take precedence over disabled prop from theme', () => {
-      const { getByRole } = render(
+      render(
         <ThemeProvider
           theme={extendTheme({
             components: {
@@ -102,7 +102,7 @@ describe('Joy <Input />', () => {
         </ThemeProvider>,
       );
 
-      expect(getByRole('textbox')).to.have.attribute('disabled');
+      expect(screen.getByRole('textbox')).to.have.attribute('disabled');
     });
   });
 
@@ -110,15 +110,14 @@ describe('Joy <Input />', () => {
     it('`onKeyDown` and `onKeyUp` should work', () => {
       const handleKeyDown = spy();
       const handleKeyUp = spy();
-      const { getByRole } = render(
-        <Input slotProps={{ input: { onKeyDown: handleKeyDown, onKeyUp: handleKeyUp } }} />,
-      );
+
+      render(<Input slotProps={{ input: { onKeyDown: handleKeyDown, onKeyUp: handleKeyUp } }} />);
 
       act(() => {
-        getByRole('textbox').focus();
+        screen.getByRole('textbox').focus();
       });
-      fireEvent.keyDown(getByRole('textbox'));
-      fireEvent.keyUp(getByRole('textbox'));
+      fireEvent.keyDown(screen.getByRole('textbox'));
+      fireEvent.keyUp(screen.getByRole('textbox'));
 
       expect(handleKeyDown.callCount).to.equal(1);
       expect(handleKeyUp.callCount).to.equal(1);
@@ -127,16 +126,15 @@ describe('Joy <Input />', () => {
     it('should call focus and blur', () => {
       const handleBlur = spy();
       const handleFocus = spy();
-      const { getByRole } = render(
-        <Input slotProps={{ input: { onFocus: handleFocus, onBlur: handleBlur } }} />,
-      );
+
+      render(<Input slotProps={{ input: { onFocus: handleFocus, onBlur: handleBlur } }} />);
 
       act(() => {
-        getByRole('textbox').focus();
+        screen.getByRole('textbox').focus();
       });
       expect(handleFocus.callCount).to.equal(1);
       act(() => {
-        getByRole('textbox').blur();
+        screen.getByRole('textbox').blur();
       });
       expect(handleFocus.callCount).to.equal(1);
     });
@@ -144,12 +142,11 @@ describe('Joy <Input />', () => {
     it('should override outer handlers', () => {
       const handleFocus = spy();
       const handleSlotFocus = spy();
-      const { getByRole } = render(
-        <Input onFocus={handleFocus} slotProps={{ input: { onFocus: handleSlotFocus } }} />,
-      );
+
+      render(<Input onFocus={handleFocus} slotProps={{ input: { onFocus: handleSlotFocus } }} />);
 
       act(() => {
-        getByRole('textbox').focus();
+        screen.getByRole('textbox').focus();
       });
       expect(handleFocus.callCount).to.equal(0);
       expect(handleSlotFocus.callCount).to.equal(1);

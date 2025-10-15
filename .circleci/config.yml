@@ -163,9 +163,6 @@ jobs:
           name: Stylelint
           command: pnpm stylelint
       - run:
-          name: Lint JSON
-          command: pnpm jsonlint
-      - run:
           name: Lint Markdown
           command: pnpm markdownlint
       - run:
@@ -372,9 +369,6 @@ jobs:
       - run:
           name: test exported typescript
           command: pnpm --filter @mui-internal/test-module-resolution typescript:all
-      - run:
-          name: Run visual regression tests using Pigment CSS
-          command: xvfb-run pnpm test:regressions-pigment-css
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos

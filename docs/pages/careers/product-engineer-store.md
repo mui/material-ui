@@ -36,9 +36,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The development and operations of the store are currently almost exclusively run by the executive team of the company (the co-founders).
-This team doesn't have enough bandwidth, the store doesn't receive the care it deserves.
-You will be responsible to step up and carry forward the development of the store on new fronts.
+The development and operations of the store are currently almost exclusively run by the executive team of the company (the co-founders). This team doesn't have enough bandwidth, the store doesn't receive the care it deserves. You will be responsible to step up and carry forward the development of the store on new fronts.
 
 Overall, both our open-source community and our premium products are growing fast.
 We need talented people to keep up with the demands of our exigent community!
@@ -61,19 +59,6 @@ Depending on the day, you'll:
 - Fix root problems raised by store customers on the support channels
 - Take care of operational needs, for example automate payouts, create sales reports
 
-### Here are a few initiatives you might work on
-
-Tasks that you might work on once you join:
-
-- Explore ways to provide a theme builder/sell themes on the platform that deeply integrate with MUI Core and the documentation.
-- Develop the SEA & SEO strategy, create new blog posts, try retargeting, Google Ads, etc.
-- Improve the fulfillment workflow of MUI X Pro & Premium.
-- Develop a Figma plugin & backend to push [MUI for Figma](https://mui.com/store/items/figma-react/) to reduce the collaboration friction between designers and developers.
-- Add a search page to scale the hosting to more items from contributors.
-- Revamp the design of the store to match the new brand of mui.com.
-- Migrate the store from Gatsby to Next.js or Remix. Gatsby was introduced at a point in time when it had more downloads than Next.js. Our CEO has experience with Next.js since 2017 but wanted to ensure that MUI was supporting Gatsby well too.
-  This requirement [is no longer relevant](https://npm-stat.com/charts.html?package=next&package=gatsby), and since the DX of Next.js is significantly better, time to migrate.
-
 ## Who we're looking for
 
 We're looking for someone with strong development skills, and more important than specific technical skills a strong problem solver who loves to learn new things. Details matter to you.
@@ -82,7 +67,7 @@ You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-
 
 ### Required
 
-- **Expertise in modern JavaScript ecosystem.** The store is currently build on WooCommerce so expertise in WordPress/PHP could help. Our backend technology of choice is Node.js.
+- **Expertise in modern Full-Stack ecosystem.** The store is currently build on WooCommerce so expertise in WordPress/PHP could help. Our backend technology of choice is Node.js.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, finding boring solutions, we want you on our team.
 - **Strong written and verbal communication skills**.
   As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
