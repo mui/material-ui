@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 import { snackbarContentClasses } from '@mui/material/SnackbarContent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -21,6 +21,7 @@ describe('<Snackbar />', () => {
    * React bug: https://github.com/facebook/react/issues/20074
    */
   function render(...args) {
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const result = clientRender(...args);
     clock.tick(0);
     return result;
@@ -570,13 +571,14 @@ describe('<Snackbar />', () => {
 
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-      const { getByTestId } = render(
+
+      render(
         <Snackbar open message="Hello, World!">
           <div data-testid="child">Foo</div>
         </Snackbar>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({
         transitionDuration: `${enteringScreenDurationInSeconds}s, 0.15s`,
       });
@@ -595,7 +597,7 @@ describe('<Snackbar />', () => {
         },
       });
 
-      const { getByTestId } = render(
+      render(
         <ThemeProvider theme={theme}>
           <Snackbar open message="Hello, World!">
             <div data-testid="child">Foo</div>
@@ -603,7 +605,7 @@ describe('<Snackbar />', () => {
         </ThemeProvider>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
     });
 
@@ -612,13 +614,13 @@ describe('<Snackbar />', () => {
         this.skip();
       }
 
-      const { getByTestId } = render(
+      render(
         <Snackbar open message="Hello, World!" transitionDuration={1}>
           <div data-testid="child">Foo</div>
         </Snackbar>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
     });
   });

@@ -1,6 +1,6 @@
 import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
-import { v4 as uuid } from 'uuid';
+import { randomUUID } from 'node:crypto';
 import { generatePropTypes, GeneratePropTypesOptions } from './generatePropTypes';
 import { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
 
@@ -200,7 +200,7 @@ function createBabelPlugin({
       needImport = true;
     }
 
-    const placeholder = `const a${uuid().replace(/-/g, '_')} = null;`;
+    const placeholder = `const a${randomUUID().replace(/-/g, '_')} = null;`;
 
     mapOfPropTypes.set(placeholder, source);
 
