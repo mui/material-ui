@@ -199,12 +199,55 @@ function checkType({
   }
 
   if (type.isUnion()) {
+    const hasStringIntersection = type.types.some((t) => {
+      if (t.isIntersection && t.isIntersection()) {
+        const hasString = t.types.some((it) => it.flags & ts.TypeFlags.String);
+        const hasEmptyObject = t.types.some(
+          (it) =>
+            it.flags & ts.TypeFlags.Object &&
+            (!it.symbol || !it.symbol.members || it.symbol.members.size === 0),
+        );
+        return hasString && hasEmptyObject;
+      }
+      return false;
+    });
+
+    if (hasStringIntersection) {
+      const hasLiterals = type.types.some((t) => t.flags & ts.TypeFlags.Literal);
+      if (hasLiterals) {
+        const hasUndefined = type.types.some((t) => t.flags & ts.TypeFlags.Undefined);
+        if (hasUndefined) {
+          return createUnionType({
+            jsDoc,
+            types: [
+              createStringType({ jsDoc: undefined }),
+              createUndefinedType({ jsDoc: undefined }),
+            ],
+          });
+        }
+        return createStringType({ jsDoc });
+      }
+    }
+
     const node = createUnionType({
       jsDoc,
       types: type.types.map((x) => checkType({ type: x, location, typeStack, name, project })),
     });
 
     return node.types.length === 1 ? node.types[0] : node;
+  }
+
+  if (type.isIntersection && type.isIntersection()) {
+    const hasString = type.types.some((t) => t.flags & ts.TypeFlags.String);
+    const hasEmptyObject = type.types.some(
+      (t) =>
+        t.flags & ts.TypeFlags.Object &&
+        (!t.symbol || !t.symbol.members || t.symbol.members.size === 0),
+    );
+
+    if (hasString && hasEmptyObject) {
+      return createStringType({ jsDoc });
+    }
   }
 
   if (type.flags & ts.TypeFlags.TypeParameter) {

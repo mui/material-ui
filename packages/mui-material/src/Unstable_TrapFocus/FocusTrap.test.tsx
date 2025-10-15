@@ -28,7 +28,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('should return focus to the root', () => {
-    const { getByTestId } = render(
+    render(
       <FocusTrap open>
         <div tabIndex={-1} data-testid="root">
           <input autoFocus data-testid="auto-focus" />
@@ -38,16 +38,16 @@ describe('<FocusTrap />', () => {
       { strictEffects: false },
     );
 
-    expect(getByTestId('auto-focus')).toHaveFocus();
+    expect(screen.getByTestId('auto-focus')).toHaveFocus();
 
     act(() => {
       initialFocus!.focus();
     });
-    expect(getByTestId('root')).toHaveFocus();
+    expect(screen.getByTestId('root')).toHaveFocus();
   });
 
   it('should not return focus to the children when disableEnforceFocus is true', () => {
-    const { getByTestId } = render(
+    render(
       <FocusTrap open disableEnforceFocus>
         <div tabIndex={-1}>
           <input autoFocus data-testid="auto-focus" />
@@ -57,7 +57,7 @@ describe('<FocusTrap />', () => {
       { strictEffects: false },
     );
 
-    expect(getByTestId('auto-focus')).toHaveFocus();
+    expect(screen.getByTestId('auto-focus')).toHaveFocus();
 
     act(() => {
       initialFocus!.focus();
@@ -67,7 +67,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('should focus first focusable child in portal', () => {
-    const { getByTestId } = render(
+    render(
       <FocusTrap open>
         <div tabIndex={-1}>
           <Portal>
@@ -77,7 +77,7 @@ describe('<FocusTrap />', () => {
       </FocusTrap>,
     );
 
-    expect(getByTestId('auto-focus')).toHaveFocus();
+    expect(screen.getByTestId('auto-focus')).toHaveFocus();
   });
 
   it('should warn if the root content is not focusable', () => {
@@ -323,7 +323,7 @@ describe('<FocusTrap />', () => {
 
     describe('prop: disableAutoFocus', () => {
       it('should not trap', () => {
-        const { getByRole } = render(
+        render(
           <div>
             <input />
             <FocusTrap open disableAutoFocus>
@@ -336,9 +336,9 @@ describe('<FocusTrap />', () => {
         expect(initialFocus).toHaveFocus();
 
         act(() => {
-          getByRole('textbox').focus();
+          screen.getByRole('textbox').focus();
         });
-        expect(getByRole('textbox')).toHaveFocus();
+        expect(screen.getByRole('textbox')).toHaveFocus();
       });
 
       it('should trap once the focus moves inside', () => {

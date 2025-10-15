@@ -12,7 +12,7 @@ import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
-import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
+import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeFoundation';
 
 /**
  * To disable custom properties, use module augmentation

@@ -305,7 +305,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * The props used for each slot inside.
    * @default {}

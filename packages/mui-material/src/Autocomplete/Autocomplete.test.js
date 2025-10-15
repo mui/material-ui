@@ -163,8 +163,8 @@ describe('<Autocomplete />', () => {
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement, { target: { value: 'a' } });
       });
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
 
       expect(input.value).to.equal('a');
 
@@ -557,9 +557,9 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
 
+      fireEvent.change(textbox, { target: { value: 't' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       act(() => {
-        fireEvent.change(textbox, { target: { value: 't' } });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
         textbox.blur();
       });
 
@@ -587,6 +587,28 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(['a']);
+    });
+
+    it('should add new value when autoSelect & freeSolo & autoHighlight on blur', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          autoSelect
+          freeSolo
+          autoHighlight
+          onChange={handleChange}
+          options={[]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      act(() => {
+        document.activeElement.blur();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('a');
     });
   });
 
@@ -2307,9 +2329,7 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       const tooltip = screen.getByText('tooltip');
 
-      act(() => {
-        fireEvent.click(tooltip);
-      });
+      fireEvent.click(tooltip);
 
       expect(textbox).not.toHaveFocus();
     });
@@ -3516,8 +3536,8 @@ describe('<Autocomplete />', () => {
     expect(listbox).to.have.property('scrollTop', 0);
 
     const options = screen.getAllByRole('option');
+    fireEvent.touchStart(options[1]);
     act(() => {
-      fireEvent.touchStart(options[1]);
       listbox.scrollBy(0, 60);
       view.setProps({ options: getOptions(10) });
     });

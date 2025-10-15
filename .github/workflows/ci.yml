@@ -2,15 +2,15 @@ name: CI
 
 on:
   push:
-    branches-ignore:
-      # Renovate branches are always Pull Requests.
-      # We don't need to run CI twice (push+pull_request)
-      - 'renovate/**'
-      - 'dependabot/**'
+    branches:
+      # should sync with ci-check.yml as a workaround to bypass github checks
+      - master
+      - next
+      - v*.x
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
-      - 'examples/**'
+      - 'docs/**'
 
 permissions: {}
 
@@ -34,7 +34,7 @@ jobs:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
       - name: Use Node.js
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
@@ -48,7 +48,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm validate-declarations
-      - name: pnpm release:tag
-        run: |
-          git remote -v
-          pnpm release:tag --dryRun

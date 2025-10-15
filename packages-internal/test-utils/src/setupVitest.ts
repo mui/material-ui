@@ -7,7 +7,7 @@ import chaiPlugin from './chaiPlugin';
 chai.use(chaiPlugin);
 
 failOnConsole({
-  silenceMessage: (message) => {
+  silenceMessage: (message: string) => {
     if (process.env.NODE_ENV === 'production') {
       // TODO: mock scheduler
       if (message.includes('act(...) is not supported in production builds of React')) {

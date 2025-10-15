@@ -11,7 +11,7 @@ import {
   reactMajor,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
-import { camelCase } from 'lodash/string';
+import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
@@ -946,22 +946,24 @@ describe('<Tooltip />', () => {
 
   describe('prop forwarding', () => {
     it('should forward props to the child element', () => {
-      const { getByText } = render(
+      render(
         <Tooltip title="Hello World" className="foo">
           <h1 className="bar">H1</h1>
         </Tooltip>,
       );
-      expect(getByText('H1')).to.have.class('foo');
-      expect(getByText('H1')).to.have.class('bar');
+
+      expect(screen.getByText('H1')).to.have.class('foo');
+      expect(screen.getByText('H1')).to.have.class('bar');
     });
 
     it('should respect the props priority', () => {
-      const { getByText } = render(
+      render(
         <Tooltip title="Hello World" name="tooltip">
           <h1 name="heading">H1</h1>
         </Tooltip>,
       );
-      expect(getByText('H1')).to.have.attribute('name', 'heading');
+
+      expect(screen.getByText('H1')).to.have.attribute('name', 'heading');
     });
   });
 
