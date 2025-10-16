@@ -11,9 +11,10 @@ export default function ImgMediaCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="140"
+        alt="Green iguana"
         image="/static/images/cards/contemplative-reptile.jpg"
+        sx={{ width: '100%', height: 'auto', aspectRatio: '16 / 9' }}
+        loading="lazy"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
