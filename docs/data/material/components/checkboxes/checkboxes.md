@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Checkbox
 
 # Checkbox
 
-<p class="description">Checkboxes allow the user to select one or more items from a set.</p>
+<p class="description">Checkboxes let the user select one or more items from a set.</p>
 
 Checkboxes can be used to turn an option on or off.
 

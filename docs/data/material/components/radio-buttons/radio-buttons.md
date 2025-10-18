@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/RadioGroup
 
 # Radio Group
 
-<p class="description">The Radio Group allows the user to select one option from a set.</p>
+<p class="description">The Radio Group lets users select one option from a set.</p>
 
 Use radio buttons when the user needs to see all available options.
 If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.

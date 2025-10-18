@@ -9,7 +9,7 @@ githubSource: packages/mui-material/src/Breadcrumbs
 
 # Breadcrumbs
 
-<p class="description">A breadcrumbs is a list of links that help visualize a page's location within a site's hierarchical structure, it allows navigation up to any of the ancestors.</p>
+<p class="description">Breadcrumbs are a list of links that help visualize a page's location within a site's hierarchical structure, letting users navigate up to any of the ancestors.</p>
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
