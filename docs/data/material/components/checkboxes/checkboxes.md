@@ -97,7 +97,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
-  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `slotProps` prop.
+  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `slotProps.input` prop.
 
 ```jsx
 <Checkbox
