@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
+import { stub } from 'sinon';
 import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -9,6 +10,21 @@ import Box from '@mui/material/Box';
 
 describe('useScrollTrigger', () => {
   const { render } = createRenderer();
+  let requestAnimationFrameStub;
+  let cancelAnimationFrameStub;
+
+  beforeEach(() => {
+    requestAnimationFrameStub = stub(window, 'requestAnimationFrame').callsFake((callback) => {
+      callback(0);
+      return 0;
+    });
+    cancelAnimationFrameStub = stub(window, 'cancelAnimationFrame');
+  });
+
+  afterEach(() => {
+    requestAnimationFrameStub.restore();
+    cancelAnimationFrameStub.restore();
+  });
 
   describe('defaultTrigger', () => {
     it('should be false by default', () => {
