@@ -2,6 +2,6 @@
   checked={checked}
   onChange={handleChange}
   slotProps={{
-    input:{ 'aria-label': 'controlled' }
-    }}
+    input: { 'aria-label': 'controlled' },
+  }}
 />
