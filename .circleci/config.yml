@@ -122,7 +122,7 @@ jobs:
       - install_js
       - run:
           name: Tests fake browser
-          command: pnpm test:coverage:ci
+          command: pnpm test:node --no-isolate --no-file-parallelism --coverage
       - run:
           name: Check coverage generated
           command: |
@@ -151,6 +151,8 @@ jobs:
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
             ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
+      - store_test_results:
+          path: test-results
   test_lint:
     <<: *default-job
     steps:
@@ -278,7 +280,7 @@ jobs:
           browsers: true
       - run:
           name: Tests real browsers
-          command: pnpm test:karma
+          command: pnpm test:browser --coverage --no-file-parallelism
       - run:
           name: Check coverage generated
           command: |
@@ -296,6 +298,8 @@ jobs:
           # hardcoded in karma-webpack
           path: /tmp/_karma_webpack_
           destination: artifact-file
+      - store_test_results:
+          path: test-results
   test_e2e:
     <<: *default-job
     docker:
