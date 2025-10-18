@@ -12,7 +12,7 @@ import {
   unstable_generateSizeClassNames as generateSizeClassNames,
   unstable_generateSpacingClassNames as generateSpacingClassNames,
 } from '@mui/system/Grid';
-import { Breakpoint, Theme } from '../styles';
+import { Breakpoint, Theme } from '../stylesOptimized';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 

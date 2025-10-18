@@ -4,7 +4,8 @@ import { SxProps, SystemProps } from '@mui/system';
 import { Theme, TypeText } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { TypographyVariant } from '../styles/createTypography';
-import { TypographyClasses } from './typographyClasses';
+import { TypographyClasses, TypographyClassKey } from './typographyClasses';
+import { CreateThemeComponent } from '../stylesOptimized';
 
 export interface TypographyPropsVariantOverrides {}
 
@@ -122,6 +123,10 @@ export type TypographyProps<
   AdditionalProps = {},
 > = OverrideProps<TypographyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TypographyTheme = {
+  MuiTypography: CreateThemeComponent<TypographyClassKey, TypographyProps>;
 };
 
 export default Typography;
