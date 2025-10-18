@@ -100,7 +100,7 @@
     "react-window": "^1.8.11",
     "rimraf": "^6.0.1",
     "styled-components": "^6.1.19",
-    "stylis": "4.2.0",
+    "stylis": "4.3.6",
     "use-count-up": "^3.0.1",
     "webpack-bundle-analyzer": "^4.10.2"
   },
