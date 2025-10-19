@@ -42,6 +42,6 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@react-spring/web": "^10.0.1"
+    "@react-spring/web": "^10.0.3"
   }
 }
