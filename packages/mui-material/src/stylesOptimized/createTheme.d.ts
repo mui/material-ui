@@ -162,16 +162,18 @@ export interface Theme extends BaseTheme, CssVarsProperties {
 
 export type CreateThemeComponent<SlotNames extends string, Props, OwnerState = Props> = {
   defaultProps?: Partial<Props>;
-  styleOverrides?: Record<
-    SlotNames,
-    Interpolation<
-      // Record<string, unknown> is for other props that the slot receive internally
-      // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
-      Props &
-        Record<string, unknown> & {
-          ownerState: OwnerState & Record<string, unknown>;
-          theme: Theme;
-        }
+  styleOverrides?: Partial<
+    Record<
+      SlotNames,
+      Interpolation<
+        // Record<string, unknown> is for other props that the slot receive internally
+        // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+        Props &
+          Record<string, unknown> & {
+            ownerState: OwnerState & Record<string, unknown>;
+            theme: Theme;
+          }
+      >
     >
   >;
   variants?: Array<{
