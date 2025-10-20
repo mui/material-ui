@@ -56,7 +56,14 @@
       "class": "MuiAvatarGroup-root"
     }
   ],
-  "classes": [],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiAvatarGroup-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAvatarGroup",

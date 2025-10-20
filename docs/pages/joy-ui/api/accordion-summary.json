@@ -69,6 +69,12 @@
   ],
   "classes": [
     {
+      "key": "button",
+      "className": "MuiAccordionSummary-button",
+      "description": "Class name applied to the button element.",
+      "isGlobal": false
+    },
+    {
       "key": "disabled",
       "className": "Mui-disabled",
       "description": "Class name applied when the accordion is disabled.",
@@ -79,6 +85,18 @@
       "className": "Mui-expanded",
       "description": "Class name applied when the accordion is expanded.",
       "isGlobal": true
+    },
+    {
+      "key": "indicator",
+      "className": "MuiAccordionSummary-indicator",
+      "description": "Class name applied to the indicator element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAccordionSummary-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
     }
   ],
   "spread": true,

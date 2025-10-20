@@ -80,6 +80,24 @@
       "isGlobal": false
     },
     {
+      "key": "fallback",
+      "className": "MuiAvatar-fallback",
+      "description": "Styles applied to the fallback icon",
+      "isGlobal": false
+    },
+    {
+      "key": "img",
+      "className": "MuiAvatar-img",
+      "description": "Styles applied to the img element if either `src` or `srcSet` is defined.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAvatar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "rounded",
       "className": "MuiAvatar-rounded",
       "description": "Styles applied to the root element if `variant=\"rounded\"`.",

@@ -313,6 +313,12 @@
       "isDeprecated": true
     },
     {
+      "key": "label",
+      "className": "MuiChip-label",
+      "description": "Styles applied to the label `span` element.",
+      "isGlobal": false
+    },
+    {
       "key": "labelMedium",
       "className": "MuiChip-labelMedium",
       "description": "Styles applied to the label `span` element if `size=\"medium\"`.",
@@ -345,6 +351,12 @@
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"secondary\"`.",
       "isGlobal": false,
       "isDeprecated": true
+    },
+    {
+      "key": "root",
+      "className": "MuiChip-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
     },
     {
       "key": "sizeMedium",

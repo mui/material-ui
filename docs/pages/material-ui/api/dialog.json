@@ -122,6 +122,18 @@
   ],
   "classes": [
     {
+      "key": "container",
+      "className": "MuiDialog-container",
+      "description": "Styles applied to the container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "paper",
+      "className": "MuiDialog-paper",
+      "description": "Styles applied to the Paper component.",
+      "isGlobal": false
+    },
+    {
       "key": "paperFullScreen",
       "className": "MuiDialog-paperFullScreen",
       "description": "Styles applied to the Paper component if `fullScreen={true}`.",
@@ -181,6 +193,12 @@
       "key": "paperWidthXs",
       "className": "MuiDialog-paperWidthXs",
       "description": "Styles applied to the Paper component if `maxWidth=\"xs\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiDialog-root",
+      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

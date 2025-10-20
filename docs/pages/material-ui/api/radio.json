@@ -102,6 +102,12 @@
       "isGlobal": true
     },
     {
+      "key": "root",
+      "className": "MuiRadio-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeSmall",
       "className": "MuiRadio-sizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"`.",

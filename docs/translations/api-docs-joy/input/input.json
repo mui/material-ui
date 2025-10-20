@@ -57,6 +57,7 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
+    "endDecorator": { "description": "Class name applied to the endDecorator element" },
     "error": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -77,6 +78,11 @@
       "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -92,6 +98,7 @@
       "nodeName": "the root element",
       "conditions": "<code>size=\"sm\"</code>"
     },
+    "startDecorator": { "description": "Class name applied to the startDecorator element" },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

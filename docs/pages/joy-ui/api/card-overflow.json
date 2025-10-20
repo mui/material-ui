@@ -86,6 +86,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiCardOverflow-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "variantOutlined",
       "className": "MuiCardOverflow-variantOutlined",
       "description": "Class name applied to the root element if `variant=\"outlined\"`.",

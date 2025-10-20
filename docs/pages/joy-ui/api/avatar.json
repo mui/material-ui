@@ -112,6 +112,24 @@
       "isGlobal": false
     },
     {
+      "key": "fallback",
+      "className": "MuiAvatar-fallback",
+      "description": "Class name applied to the fallback icon.",
+      "isGlobal": false
+    },
+    {
+      "key": "img",
+      "className": "MuiAvatar-img",
+      "description": "Class name applied to the img element if either `src` or `srcSet` is defined.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAvatar-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiAvatar-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

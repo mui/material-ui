@@ -80,6 +80,7 @@
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
+    "root": { "description": "Class name applied to the root element." },
     "selected": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",

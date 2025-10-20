@@ -91,15 +91,33 @@
   ],
   "classes": [
     {
+      "key": "fab",
+      "className": "MuiSpeedDialAction-fab",
+      "description": "Styles applied to the Fab component.",
+      "isGlobal": false
+    },
+    {
       "key": "fabClosed",
       "className": "MuiSpeedDialAction-fabClosed",
       "description": "Styles applied to the Fab component if `open={false}`.",
       "isGlobal": false
     },
     {
+      "key": "staticTooltip",
+      "className": "MuiSpeedDialAction-staticTooltip",
+      "description": "Styles applied to the root element if `tooltipOpen={true}`.",
+      "isGlobal": false
+    },
+    {
       "key": "staticTooltipClosed",
       "className": "MuiSpeedDialAction-staticTooltipClosed",
       "description": "Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "staticTooltipLabel",
+      "className": "MuiSpeedDialAction-staticTooltipLabel",
+      "description": "Styles applied to the static tooltip label if `tooltipOpen={true}`.",
       "isGlobal": false
     },
     {

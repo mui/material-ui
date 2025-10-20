@@ -109,6 +109,18 @@
       "isGlobal": false
     },
     {
+      "key": "content",
+      "className": "MuiAspectRatio-content",
+      "description": "Class name applied to the content element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAspectRatio-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "variantOutlined",
       "className": "MuiAspectRatio-variantOutlined",
       "description": "Class name applied to the content element if `variant=\"outlined\"`.",

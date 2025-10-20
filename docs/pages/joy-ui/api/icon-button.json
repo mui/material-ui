@@ -133,6 +133,18 @@
       "isGlobal": false
     },
     {
+      "key": "loadingIndicator",
+      "className": "MuiIconButton-loadingIndicator",
+      "description": "Class name applied to the loading indicator slot element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiIconButton-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiIconButton-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

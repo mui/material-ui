@@ -123,7 +123,20 @@
       "class": null
     }
   ],
-  "classes": [],
+  "classes": [
+    {
+      "key": "paper",
+      "className": "MuiPopover-paper",
+      "description": "Styles applied to the Paper component.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiPopover-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiPopover",

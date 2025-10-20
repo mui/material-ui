@@ -107,6 +107,12 @@
   ],
   "classes": [
     {
+      "key": "button",
+      "className": "MuiSelect-button",
+      "description": "Class name applied to the button slot.",
+      "isGlobal": false
+    },
+    {
       "key": "colorContext",
       "className": "MuiSelect-colorContext",
       "description": "Class name applied to the root element when color inversion is triggered.",
@@ -149,6 +155,12 @@
       "isGlobal": true
     },
     {
+      "key": "endDecorator",
+      "className": "MuiSelect-endDecorator",
+      "description": "Class name applied to the endDecorator slot.",
+      "isGlobal": false
+    },
+    {
       "key": "expanded",
       "className": "Mui-expanded",
       "description": "State class applied to the root slot if listbox open.",
@@ -161,6 +173,18 @@
       "isGlobal": true
     },
     {
+      "key": "indicator",
+      "className": "MuiSelect-indicator",
+      "description": "Class name applied to the indicator slot.",
+      "isGlobal": false
+    },
+    {
+      "key": "listbox",
+      "className": "MuiSelect-listbox",
+      "description": "Class name applied to the listbox slot.",
+      "isGlobal": false
+    },
+    {
       "key": "multiple",
       "className": "MuiSelect-multiple",
       "description": "Class name applied to the root slot if `multiple=true`",
@@ -170,6 +194,12 @@
       "key": "popper",
       "className": "MuiSelect-popper",
       "description": "Class name applied to the popper slot.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSelect-root",
+      "description": "Class name applied to the root slot.",
       "isGlobal": false
     },
     {
@@ -188,6 +218,12 @@
       "key": "sizeSm",
       "className": "MuiSelect-sizeSm",
       "description": "Class name applied to the root slot if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startDecorator",
+      "className": "MuiSelect-startDecorator",
+      "description": "Class name applied to the startDecorator slot.",
       "isGlobal": false
     },
     {

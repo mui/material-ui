@@ -36,6 +36,7 @@
       "nodeName": "the root element",
       "conditions": "<code>inset=\"startDecorator\"</code>"
     },
+    "root": { "description": "Class name applied to the root element." },
     "vertical": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

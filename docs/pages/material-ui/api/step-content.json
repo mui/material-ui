@@ -61,6 +61,12 @@
       "className": "MuiStepContent-root",
       "description": "Styles applied to the root element.",
       "isGlobal": false
+    },
+    {
+      "key": "transition",
+      "className": "MuiStepContent-transition",
+      "description": "Styles applied to the Transition component.",
+      "isGlobal": false
     }
   ],
   "spread": true,

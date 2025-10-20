@@ -110,6 +110,12 @@
   ],
   "classes": [
     {
+      "key": "action",
+      "className": "MuiRadio-action",
+      "description": "Class name applied to the action element.",
+      "isGlobal": false
+    },
+    {
       "key": "checked",
       "className": "Mui-checked",
       "description": "State class applied to the root, action slots if `checked`.",
@@ -162,6 +168,36 @@
       "className": "Mui-focusVisible",
       "description": "Class name applied to the root element if the switch has visible focus",
       "isGlobal": true
+    },
+    {
+      "key": "icon",
+      "className": "MuiRadio-icon",
+      "description": "Class name applied to the icon element.",
+      "isGlobal": false
+    },
+    {
+      "key": "input",
+      "className": "MuiRadio-input",
+      "description": "Class name applied to the input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "label",
+      "className": "MuiRadio-label",
+      "description": "Class name applied to the label element.",
+      "isGlobal": false
+    },
+    {
+      "key": "radio",
+      "className": "MuiRadio-radio",
+      "description": "Class name applied to the radio element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiRadio-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
     },
     {
       "key": "sizeLg",

@@ -115,6 +115,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiMenu-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiMenu-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

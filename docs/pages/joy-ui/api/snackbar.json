@@ -165,6 +165,18 @@
       "isGlobal": false
     },
     {
+      "key": "endDecorator",
+      "className": "MuiSnackbar-endDecorator",
+      "description": "Class name applied to the endDecorator element if supplied.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSnackbar-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiSnackbar-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",
@@ -180,6 +192,12 @@
       "key": "sizeSm",
       "className": "MuiSnackbar-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startDecorator",
+      "className": "MuiSnackbar-startDecorator",
+      "description": "Class name applied to the startDecorator element if supplied.",
       "isGlobal": false
     },
     {

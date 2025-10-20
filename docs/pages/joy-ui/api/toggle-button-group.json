@@ -120,6 +120,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiToggleButtonGroup-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiToggleButtonGroup-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

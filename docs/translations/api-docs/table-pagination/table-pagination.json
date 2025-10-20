@@ -65,17 +65,46 @@
     }
   },
   "classDescriptions": {
+    "actions": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the internal <code>TablePaginationActions</code> component"
+    },
+    "displayedRows": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the displayed rows Typography element"
+    },
     "input": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component <code>root</code> element"
+    },
+    "menuItem": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the MenuItem component"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "select": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component <code>select</code> class"
     },
     "selectIcon": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component <code>icon</code> class"
     },
+    "selectLabel": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select label Typography element"
+    },
     "selectRoot": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component <code>root</code> element"
+    },
+    "spacer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the spacer element"
+    },
+    "toolbar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Toolbar component"
     }
   },
   "slotDescriptions": {

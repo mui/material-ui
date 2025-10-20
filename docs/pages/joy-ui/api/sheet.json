@@ -84,6 +84,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiSheet-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "variantOutlined",
       "className": "MuiSheet-variantOutlined",
       "description": "Class name applied to the root element if `variant=\"outlined\"`.",

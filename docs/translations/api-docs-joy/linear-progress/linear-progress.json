@@ -62,6 +62,7 @@
       "nodeName": "the root element",
       "conditions": "<code>determinate</code> is true"
     },
+    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

@@ -16,6 +16,13 @@
     }
   },
   "classDescriptions": {
+    "li": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the li element" },
+    "ol": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the ol element" },
+    "root": { "description": "Class name applied to the root element." },
+    "separator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the separator element"
+    },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

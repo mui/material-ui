@@ -60,6 +60,16 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
+    "fallback": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the fallback icon"
+    },
+    "img": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the img element",
+      "conditions": "either <code>src</code> or <code>srcSet</code> is defined"
+    },
+    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

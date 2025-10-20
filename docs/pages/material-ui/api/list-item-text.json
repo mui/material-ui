@@ -81,6 +81,24 @@
       "className": "MuiListItemText-multiline",
       "description": "Styles applied to the Typography component if primary and secondary are set.",
       "isGlobal": false
+    },
+    {
+      "key": "primary",
+      "className": "MuiListItemText-primary",
+      "description": "Styles applied to the primary `Typography` component.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemText-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "secondary",
+      "className": "MuiListItemText-secondary",
+      "description": "Styles applied to the secondary `Typography` component.",
+      "isGlobal": false
     }
   ],
   "spread": true,

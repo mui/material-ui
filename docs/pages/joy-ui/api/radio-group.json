@@ -110,6 +110,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiRadioGroup-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiRadioGroup-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

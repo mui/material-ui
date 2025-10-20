@@ -111,9 +111,21 @@
       "isGlobal": false
     },
     {
+      "key": "label",
+      "className": "MuiStepLabel-label",
+      "description": "Styles applied to the label element that wraps `children`.",
+      "isGlobal": false
+    },
+    {
       "key": "labelContainer",
       "className": "MuiStepLabel-labelContainer",
       "description": "Styles applied to the container element which wraps label and `optional`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepLabel-root",
+      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

@@ -109,6 +109,12 @@
       "isGlobal": true
     },
     {
+      "key": "endDecorator",
+      "className": "MuiInput-endDecorator",
+      "description": "Class name applied to the endDecorator element",
+      "isGlobal": false
+    },
+    {
       "key": "error",
       "className": "Mui-error",
       "description": "State class applied to the root element if `error={true}`.",
@@ -133,6 +139,18 @@
       "isGlobal": false
     },
     {
+      "key": "input",
+      "className": "MuiInput-input",
+      "description": "Class name applied to the input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiInput-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiInput-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",
@@ -148,6 +166,12 @@
       "key": "sizeSm",
       "className": "MuiInput-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startDecorator",
+      "className": "MuiInput-startDecorator",
+      "description": "Class name applied to the startDecorator element",
       "isGlobal": false
     },
     {

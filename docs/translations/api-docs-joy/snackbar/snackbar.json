@@ -108,6 +108,12 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
+    "endDecorator": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the endDecorator element",
+      "conditions": "supplied"
+    },
+    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -122,6 +128,11 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"sm\"</code>"
+    },
+    "startDecorator": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the startDecorator element",
+      "conditions": "supplied"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

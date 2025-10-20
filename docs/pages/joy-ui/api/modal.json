@@ -57,9 +57,21 @@
   ],
   "classes": [
     {
+      "key": "backdrop",
+      "className": "MuiModal-backdrop",
+      "description": "Class name applied to the backdrop element.",
+      "isGlobal": false
+    },
+    {
       "key": "hidden",
       "className": "MuiModal-hidden",
       "description": "Class name applied to the root element when open is false.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiModal-root",
+      "description": "Class name applied to the root element.",
       "isGlobal": false
     }
   ],

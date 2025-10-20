@@ -59,6 +59,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiDivider-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "vertical",
       "className": "MuiDivider-vertical",
       "description": "Class name applied to the root element if `orientation=\"vertical\"`.",

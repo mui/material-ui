@@ -63,6 +63,11 @@
       "nodeName": "the content element",
       "conditions": "<code>color=\"warning\"</code>"
     },
+    "content": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the content element"
+    },
+    "root": { "description": "Class name applied to the root element." },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the content element",

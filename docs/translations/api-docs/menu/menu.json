@@ -44,7 +44,17 @@
       "description": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus."
     }
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "list": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the List component via <code>MenuList</code>"
+    },
+    "paper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Paper component"
+    },
+    "root": { "description": "Styles applied to the root element." }
+  },
   "slotDescriptions": {
     "backdrop": "The component used for the backdrop slot.",
     "list": "The component used for the list.",

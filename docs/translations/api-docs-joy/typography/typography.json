@@ -79,6 +79,7 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
+    "endDecorator": { "description": "Class name applied to the endDecorator element" },
     "gutterBottom": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -109,6 +110,8 @@
       "nodeName": "the root element",
       "conditions": "<code>nowrap={true}</code>"
     },
+    "root": { "description": "Class name applied to the root element." },
+    "startDecorator": { "description": "Class name applied to the startDecorator element" },
     "title-lg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

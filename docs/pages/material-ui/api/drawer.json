@@ -130,9 +130,21 @@
       "isGlobal": false
     },
     {
+      "key": "docked",
+      "className": "MuiDrawer-docked",
+      "description": "Styles applied to the root element if `variant=\"permanent or persistent\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "modal",
       "className": "MuiDrawer-modal",
       "description": "Styles applied to the Modal component.",
+      "isGlobal": false
+    },
+    {
+      "key": "paper",
+      "className": "MuiDrawer-paper",
+      "description": "Styles applied to the Paper component.",
       "isGlobal": false
     },
     {
@@ -190,6 +202,12 @@
       "description": "Styles applied to the Paper component if `anchor=\"top\"`.",
       "isGlobal": false,
       "isDeprecated": true
+    },
+    {
+      "key": "root",
+      "className": "MuiDrawer-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
     }
   ],
   "spread": true,

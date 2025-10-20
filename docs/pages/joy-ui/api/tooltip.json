@@ -109,6 +109,12 @@
   ],
   "classes": [
     {
+      "key": "arrow",
+      "className": "MuiTooltip-arrow",
+      "description": "Class name applied to the arrow element.",
+      "isGlobal": false
+    },
+    {
       "key": "colorContext",
       "className": "MuiTooltip-colorContext",
       "description": "Class name applied to the root element when color inversion is triggered.",
@@ -166,6 +172,12 @@
       "key": "placementTop",
       "className": "MuiTooltip-placementTop",
       "description": "Class name applied to the root element if `placement` contains \"top\".",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTooltip-root",
+      "description": "Class name applied to the root element.",
       "isGlobal": false
     },
     {

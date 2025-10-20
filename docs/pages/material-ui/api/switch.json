@@ -145,6 +145,18 @@
       "isGlobal": false
     },
     {
+      "key": "input",
+      "className": "MuiSwitch-input",
+      "description": "Styles applied to the internal SwitchBase component's input element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSwitch-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeMedium",
       "className": "MuiSwitch-sizeMedium",
       "description": "Styles applied to the root element if `size=\"medium\"`.",
@@ -154,6 +166,24 @@
       "key": "sizeSmall",
       "className": "MuiSwitch-sizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "switchBase",
+      "className": "MuiSwitch-switchBase",
+      "description": "Styles applied to the internal `SwitchBase` component's `root` class.",
+      "isGlobal": false
+    },
+    {
+      "key": "thumb",
+      "className": "MuiSwitch-thumb",
+      "description": "Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.",
+      "isGlobal": false
+    },
+    {
+      "key": "track",
+      "className": "MuiSwitch-track",
+      "description": "Styles applied to the track element.",
       "isGlobal": false
     }
   ],

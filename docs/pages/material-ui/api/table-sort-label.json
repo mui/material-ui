@@ -67,6 +67,12 @@
       "isGlobal": false
     },
     {
+      "key": "icon",
+      "className": "MuiTableSortLabel-icon",
+      "description": "Styles applied to the icon component.",
+      "isGlobal": false
+    },
+    {
       "key": "iconDirectionAsc",
       "className": "MuiTableSortLabel-iconDirectionAsc",
       "description": "Styles applied to the icon component if `direction=\"asc\"`.",
@@ -79,6 +85,12 @@
       "description": "Styles applied to the icon component if `direction=\"desc\"`.",
       "isGlobal": false,
       "isDeprecated": true
+    },
+    {
+      "key": "root",
+      "className": "MuiTableSortLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
     }
   ],
   "spread": true,

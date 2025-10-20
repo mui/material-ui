@@ -109,6 +109,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiList-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "scoped",
       "className": "MuiList-scoped",
       "description": "Class name applied to the root element if `scoped` is true.",

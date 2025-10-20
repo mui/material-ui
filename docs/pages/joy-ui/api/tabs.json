@@ -109,6 +109,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiTabs-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiTabs-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

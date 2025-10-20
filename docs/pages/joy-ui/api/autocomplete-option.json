@@ -97,6 +97,12 @@
       "isGlobal": true
     },
     {
+      "key": "root",
+      "className": "MuiAutocompleteOption-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "variantOutlined",
       "className": "MuiAutocompleteOption-variantOutlined",
       "description": "State class applied to the root element if `variant=\"outlined\"`.",

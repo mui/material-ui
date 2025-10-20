@@ -60,13 +60,9 @@ export default function parseSlotsAndClasses({
   );
   const slots = extractSlots(typescriptProject, componentName, classDefinitions, slotInterfaceName);
 
-  const nonSlotClassDefinitions = classDefinitions.filter(
-    (classDefinition) => !Object.keys(slots).includes(classDefinition.key),
-  );
-
   return {
     slots: Object.values(slots),
-    classes: nonSlotClassDefinitions,
+    classes: classDefinitions,
   };
 }
 

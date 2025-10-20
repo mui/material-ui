@@ -26,15 +26,26 @@
     "tooltipTitle": { "description": "Label to display in the tooltip." }
   },
   "classDescriptions": {
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
     "fabClosed": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Fab component",
       "conditions": "<code>open={false}</code>"
     },
+    "staticTooltip": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>tooltipOpen={true}</code>"
+    },
     "staticTooltipClosed": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>tooltipOpen={true}</code> and <code>open={false}</code>"
+    },
+    "staticTooltipLabel": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the static tooltip label",
+      "conditions": "<code>tooltipOpen={true}</code>"
     },
     "tooltipPlacementLeft": {
       "description": "Styles applied to the root element if <code>tooltipOpen={true}</code> and `tooltipPlacement=&quot;left&quot;``"

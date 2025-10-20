@@ -49,6 +49,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiStepper-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiStepper-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

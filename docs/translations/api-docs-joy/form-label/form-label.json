@@ -12,7 +12,13 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "asterisk": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the asterisk element"
+    },
+    "root": { "description": "Class name applied to the root element." }
+  },
   "slotDescriptions": {
     "asterisk": "The component that renders the asterisk.",
     "root": "The component that renders the root."

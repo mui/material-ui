@@ -56,10 +56,15 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the <code>icon</code> container element"
     },
+    "label": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the label element that wraps <code>children</code>"
+    },
     "labelContainer": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the container element which wraps label and <code>optional</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

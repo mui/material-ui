@@ -105,6 +105,12 @@
       "isGlobal": false
     },
     {
+      "key": "endAction",
+      "className": "MuiListItem-endAction",
+      "description": "Class name applied to the component element if `endAction` element is provided.",
+      "isGlobal": false
+    },
+    {
       "key": "nested",
       "className": "MuiListItem-nested",
       "description": "Class name applied to the root element, if nested={true}.",
@@ -114,6 +120,18 @@
       "key": "nesting",
       "className": "MuiListItem-nesting",
       "description": "Class name applied to the root element, if it is under a nested list item.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItem-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "startAction",
+      "className": "MuiListItem-startAction",
+      "description": "Class name applied to the component element if `startAction` element is provided.",
       "isGlobal": false
     },
     {

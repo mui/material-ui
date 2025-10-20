@@ -142,6 +142,12 @@
       "isGlobal": false
     },
     {
+      "key": "endDecorator",
+      "className": "MuiTypography-endDecorator",
+      "description": "Class name applied to the endDecorator element",
+      "isGlobal": false
+    },
+    {
       "key": "gutterBottom",
       "className": "MuiTypography-gutterBottom",
       "description": "Class name applied to the root element if `gutterBottom={true}`.",
@@ -175,6 +181,18 @@
       "key": "noWrap",
       "className": "MuiTypography-noWrap",
       "description": "Class name applied to the root element if `nowrap={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTypography-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "startDecorator",
+      "className": "MuiTypography-startDecorator",
+      "description": "Class name applied to the startDecorator element",
       "isGlobal": false
     },
     {

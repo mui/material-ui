@@ -112,6 +112,12 @@
       "isGlobal": true
     },
     {
+      "key": "endDecorator",
+      "className": "MuiTextarea-endDecorator",
+      "description": "Class name applied to the endDecorator element if supplied.",
+      "isGlobal": false
+    },
+    {
       "key": "error",
       "className": "Mui-error",
       "description": "State class applied to the root element if `error={true}`.",
@@ -130,6 +136,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiTextarea-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiTextarea-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",
@@ -145,6 +157,18 @@
       "key": "sizeSm",
       "className": "MuiTextarea-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startDecorator",
+      "className": "MuiTextarea-startDecorator",
+      "description": "Class name applied to the startDecorator element if supplied.",
+      "isGlobal": false
+    },
+    {
+      "key": "textarea",
+      "className": "MuiTextarea-textarea",
+      "description": "Class name applied to the textarea element.",
       "isGlobal": false
     },
     {

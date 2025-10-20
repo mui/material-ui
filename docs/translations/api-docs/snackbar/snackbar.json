@@ -84,7 +84,8 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
-    }
+    },
+    "root": { "description": "Styles applied to the root element." }
   },
   "slotDescriptions": {
     "clickAwayListener": "The component that renders the clickAwayListener slot.",

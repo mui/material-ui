@@ -239,6 +239,10 @@
     }
   },
   "classDescriptions": {
+    "clearIndicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the clear indicator"
+    },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
@@ -274,6 +278,10 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
+    "endDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the endDecorator element"
+    },
     "error": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -291,16 +299,45 @@
     },
     "hasClearIcon": { "description": "Class name applied when the clear icon is rendered." },
     "hasPopupIcon": { "description": "Class name applied when the popup icon is rendered." },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "limitTag": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the limitTag element"
+    },
+    "listbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the listbox component"
+    },
+    "loading": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the loading wrapper"
+    },
     "multiple": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the wrapper element",
       "conditions": "<code>multiple={true}</code>"
+    },
+    "noOptions": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the no option wrapper"
+    },
+    "option": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the option component"
+    },
+    "popupIndicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the popup indicator"
     },
     "popupIndicatorOpen": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the popup indicator",
       "conditions": "the popup is open"
     },
+    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -315,6 +352,10 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"sm\"</code>"
+    },
+    "startDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the startDecorator element"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -335,6 +376,10 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"solid\"</code>"
+    },
+    "wrapper": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the wrapper element"
     }
   },
   "slotDescriptions": {

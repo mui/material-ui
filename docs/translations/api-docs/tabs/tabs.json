@@ -82,6 +82,12 @@
       "nodeName": "the tablist element",
       "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
     },
+    "indicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the TabIndicator component"
+    },
+    "list": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the list element" },
+    "root": { "description": "Styles applied to the root element." },
     "scrollableX": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tablist element",
@@ -92,10 +98,18 @@
       "nodeName": "the tablist element",
       "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
     },
+    "scrollButtons": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the ScrollButtonComponent component"
+    },
     "scrollButtonsHideMobile": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ScrollButtonComponent component",
       "conditions": "<code>allowScrollButtonsMobile={true}</code>"
+    },
+    "scroller": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the tablist element"
     },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

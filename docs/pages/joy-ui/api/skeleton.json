@@ -115,6 +115,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiSkeleton-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "title-lg",
       "className": "MuiSkeleton-title-lg",
       "description": "Class name applied to the root element if `level=\"title-lg\"`.",

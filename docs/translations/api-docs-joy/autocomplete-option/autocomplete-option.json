@@ -56,6 +56,7 @@
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
     },
+    "root": { "description": "Class name applied to the root element." },
     "variantOutlined": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

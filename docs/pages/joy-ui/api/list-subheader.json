@@ -85,6 +85,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiListSubheader-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sticky",
       "className": "MuiListSubheader-sticky",
       "description": "Class name applied to the root element, if sticky={true}.",

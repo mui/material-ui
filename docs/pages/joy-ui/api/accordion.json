@@ -71,6 +71,12 @@
       "className": "Mui-expanded",
       "description": "Class name applied to the root element if `expanded` is true.",
       "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiAccordion-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
     }
   ],
   "spread": true,

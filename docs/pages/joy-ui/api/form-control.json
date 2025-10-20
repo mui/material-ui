@@ -104,6 +104,12 @@
       "isGlobal": false
     },
     {
+      "key": "root",
+      "className": "MuiFormControl-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiFormControl-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

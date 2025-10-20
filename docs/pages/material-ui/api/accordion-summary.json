@@ -53,6 +53,12 @@
   ],
   "classes": [
     {
+      "key": "content",
+      "className": "MuiAccordionSummary-content",
+      "description": "Styles applied to the children wrapper element.",
+      "isGlobal": false
+    },
+    {
       "key": "contentGutters",
       "className": "MuiAccordionSummary-contentGutters",
       "description": "Styles applied to the children wrapper element unless `disableGutters={true}`.",
@@ -72,6 +78,12 @@
       "isGlobal": true
     },
     {
+      "key": "expandIconWrapper",
+      "className": "MuiAccordionSummary-expandIconWrapper",
+      "description": "Styles applied to the `expandIcon`'s wrapper element.",
+      "isGlobal": false
+    },
+    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
@@ -81,6 +93,12 @@
       "key": "gutters",
       "className": "MuiAccordionSummary-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAccordionSummary-root",
+      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

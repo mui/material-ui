@@ -56,6 +56,14 @@
     }
   },
   "classDescriptions": {
+    "action": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the action element"
+    },
+    "checkbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the checkbox element"
+    },
     "checked": {
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the input component&#39;s <code>checked</code> class"
@@ -102,6 +110,15 @@
       "nodeName": "the root element",
       "conditions": "<code>indeterminate={true}</code>"
     },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "label": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the label element"
+    },
+    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

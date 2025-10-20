@@ -76,6 +76,12 @@
       "className": "MuiBackdrop-invisible",
       "description": "Styles applied to the root element if `invisible={true}`.",
       "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiBackdrop-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
     }
   ],
   "spread": true,

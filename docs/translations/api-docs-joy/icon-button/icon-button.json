@@ -76,6 +76,11 @@
       "nodeName": "the root element",
       "conditions": "<code>loading={true}</code>"
     },
+    "loadingIndicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the loading indicator slot element"
+    },
+    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

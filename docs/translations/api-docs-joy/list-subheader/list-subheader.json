@@ -51,6 +51,7 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
+    "root": { "description": "Class name applied to the root element." },
     "sticky": {
       "description": "Class name applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the root element",

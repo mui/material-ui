@@ -14,11 +14,15 @@
     }
   },
   "classDescriptions": {
+    "content": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the children wrapper element"
+    },
     "contentGutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the children wrapper element",
       "conditions": "<code>disableGutters={true}</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/accordion-summary/#AccordionSummary-classes-gutters\">.MuiAccordionSummary-gutters</a> and <a href=\"/material-ui/api/accordion-summary/#AccordionSummary-classes-content\">.MuiAccordionSummary-content</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/accordion-summary/#accordion-summary-classes-MuiAccordionSummary-gutters\">.MuiAccordionSummary-gutters</a> and <a href=\"/material-ui/api/accordion-summary/#accordion-summary-classes-MuiAccordionSummary-content\">.MuiAccordionSummary-content</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -30,6 +34,10 @@
       "nodeName": "the root element",
       "conditions": "children wrapper element and <code>IconButton</code> component if <code>expanded={true}</code>"
     },
+    "expandIconWrapper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the <code>expandIcon</code>&#39;s wrapper element"
+    },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ButtonBase root element",
@@ -39,7 +47,8 @@
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disableGutters={true}</code>"
-    }
+    },
+    "root": { "description": "Styles applied to the root element." }
   },
   "slotDescriptions": {
     "content": "The component that renders the content slot.",

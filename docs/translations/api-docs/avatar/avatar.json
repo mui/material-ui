@@ -39,6 +39,13 @@
       "nodeName": "the root element",
       "conditions": "not <code>src</code> or <code>srcSet</code>"
     },
+    "fallback": { "description": "Styles applied to the fallback icon" },
+    "img": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the img element",
+      "conditions": "either <code>src</code> or <code>srcSet</code> is defined"
+    },
+    "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

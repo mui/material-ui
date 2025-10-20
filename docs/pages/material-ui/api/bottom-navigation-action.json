@@ -52,6 +52,18 @@
       "isGlobal": false
     },
     {
+      "key": "label",
+      "className": "MuiBottomNavigationAction-label",
+      "description": "Styles applied to the label's span element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiBottomNavigationAction-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "selected",
       "className": "Mui-selected",
       "description": "State class applied to the root element if selected.",

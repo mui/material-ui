@@ -112,6 +112,18 @@
       "isGlobal": false
     },
     {
+      "key": "endDecorator",
+      "className": "MuiAlert-endDecorator",
+      "description": "Class name applied to the endDecorator element if supplied.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAlert-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "sizeLg",
       "className": "MuiAlert-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",
@@ -127,6 +139,12 @@
       "key": "sizeSm",
       "className": "MuiAlert-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "startDecorator",
+      "className": "MuiAlert-startDecorator",
+      "description": "Class name applied to the startDecorator element if supplied.",
       "isGlobal": false
     },
     {

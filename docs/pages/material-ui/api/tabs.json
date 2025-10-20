@@ -173,6 +173,24 @@
       "isGlobal": false
     },
     {
+      "key": "indicator",
+      "className": "MuiTabs-indicator",
+      "description": "Styles applied to the TabIndicator component.",
+      "isGlobal": false
+    },
+    {
+      "key": "list",
+      "className": "MuiTabs-list",
+      "description": "Styles applied to the list element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTabs-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
       "key": "scrollableX",
       "className": "MuiTabs-scrollableX",
       "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `orientation=\"horizontal\"`.",
@@ -185,9 +203,21 @@
       "isGlobal": false
     },
     {
+      "key": "scrollButtons",
+      "className": "MuiTabs-scrollButtons",
+      "description": "Styles applied to the ScrollButtonComponent component.",
+      "isGlobal": false
+    },
+    {
       "key": "scrollButtonsHideMobile",
       "className": "MuiTabs-scrollButtonsHideMobile",
       "description": "Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scroller",
+      "className": "MuiTabs-scroller",
+      "description": "Styles applied to the tablist element.",
       "isGlobal": false
     },
     {
