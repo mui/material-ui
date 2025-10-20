@@ -1,0 +1,8 @@
+<EnhancedSlider
+  value={value}
+  onChange={handleChange}
+  getAriaValueText={valuetext}
+  min={0}
+  max={100}
+  step={5}
+/>

@@ -145,6 +145,16 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "NonLinearSlider.js"}}
 
+## Enhanced slider
+
+The Enhanced Slider extends the base Slider component with additional features for better user experience:
+
+- **Auto-generated marks**: Automatically displays marks at regular intervals
+- **Enhanced tooltips**: Improved value display with custom formatting
+- **Range selection**: Built-in support for range sliders with descriptive labels
+
+{{"demo": "EnhancedSliderDemo.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
