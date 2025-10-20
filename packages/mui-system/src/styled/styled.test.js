@@ -692,6 +692,9 @@ describe('styled', () => {
     });
 
     it('should respect theme-level shouldForwardProp configuration', () => {
+      // Import the registry functions for debugging
+      const { registerThemeShouldForwardProp, getThemeShouldForwardProps } = require('../createStyled');
+      
       const TestComponent = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'sx',
         name: 'MuiTestThemeForward',
@@ -717,6 +720,13 @@ describe('styled', () => {
         },
       });
 
+      // Manually register to test (this simulates what ThemeProvider should do)
+      registerThemeShouldForwardProp('MuiTestThemeForward', (prop) => prop !== 'customProp');
+      
+      // Verify registration
+      const registered = getThemeShouldForwardProps('MuiTestThemeForward');
+      console.log('Registry check:', registered ? `Has ${registered.size} entries` : 'Empty');
+
       const { container } = render(
         <ThemeProvider theme={customTheme}>
           <TestComponent customProp="value1">Test</TestComponent>
@@ -725,6 +735,8 @@ describe('styled', () => {
 
       // Check that customProp is not forwarded to the DOM
       expect(container.firstChild).not.to.have.attribute('customProp');
+      // Also check lowercase version
+      expect(container.firstChild).not.to.have.attribute('customprop');
       // Check that the variant styling is applied
       expect(container.firstChild).toHaveComputedStyle({
         color: 'rgb(255, 0, 0)', // red

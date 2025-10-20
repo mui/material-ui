@@ -76,9 +76,6 @@ function ThemeProvider(props) {
       Object.keys(resolvedTheme.components).forEach((componentName) => {
         const componentConfig = resolvedTheme.components[componentName];
         if (componentConfig?.shouldForwardProp) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.log(`[ThemeProvider] Registering shouldForwardProp for ${componentName}`);
-          }
           registerThemeShouldForwardProp(componentName, componentConfig.shouldForwardProp);
         }
       });

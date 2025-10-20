@@ -210,24 +210,18 @@ export default function createStyled(input = {}) {
     // Wrap shouldForwardProp to also check theme configuration if component name is provided
     if (componentName && shouldForwardPropOption) {
       const baseShouldForwardProp = shouldForwardPropOption;
+      const componentNameForClosure = componentName; // Capture for closure
       shouldForwardPropOption = (prop) => {
         // First check the base shouldForwardProp
         if (!baseShouldForwardProp(prop)) {
           return false;
         }
         // Check if any theme has a shouldForwardProp configuration for this component
-        const themeShouldForwardProps = getThemeShouldForwardProps(componentName);
-        if (themeShouldForwardProps) {
-          if (process.env.NODE_ENV !== 'production') {
-            // Debug logging
-            console.log(`[shouldForwardProp] Component: ${componentName}, Prop: ${prop}, Registry size: ${themeShouldForwardProps.size}`);
-          }
+        const themeShouldForwardProps = getThemeShouldForwardProps(componentNameForClosure);
+        if (themeShouldForwardProps && themeShouldForwardProps.size > 0) {
           // All registered theme shouldForwardProp functions must allow the prop
           for (const themeShouldForwardProp of themeShouldForwardProps) {
             if (!themeShouldForwardProp(prop)) {
-              if (process.env.NODE_ENV !== 'production') {
-                console.log(`[shouldForwardProp] Blocked prop: ${prop} for ${componentName}`);
-              }
               return false;
             }
           }
