@@ -1101,7 +1101,7 @@ importers:
   packages/mui-envinfo:
     dependencies:
       envinfo:
-        specifier: ^7.17.0
+        specifier: ^7.18.0
         version: 7.18.0
     devDependencies:
       '@types/chai':
