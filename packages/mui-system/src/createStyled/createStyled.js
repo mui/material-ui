@@ -15,6 +15,39 @@ import preprocessStyles from '../preprocessStyles';
 
 export const systemDefaultTheme = createTheme();
 
+// Global registry to track theme shouldForwardProp configurations
+// Maps componentName -> Set of registered shouldForwardProp functions
+const themeShouldForwardPropRegistry = new Map();
+
+/**
+ * Register a theme-level shouldForwardProp function for a component.
+ * This is called when a theme with component configuration is used.
+ * @param {string} componentName - The name of the component (e.g., 'MuiButton')
+ * @param {function} shouldForwardPropFn - The shouldForwardProp function from theme
+ */
+export function registerThemeShouldForwardProp(componentName, shouldForwardPropFn) {
+  if (!themeShouldForwardPropRegistry.has(componentName)) {
+    themeShouldForwardPropRegistry.set(componentName, new Set());
+  }
+  themeShouldForwardPropRegistry.get(componentName).add(shouldForwardPropFn);
+}
+
+/**
+ * Get all registered shouldForwardProp functions for a component
+ * @param {string} componentName - The name of the component
+ * @returns {Set} Set of shouldForwardProp functions
+ */
+export function getThemeShouldForwardProps(componentName) {
+  return themeShouldForwardPropRegistry.get(componentName);
+}
+
+/**
+ * Clear all registered shouldForwardProp functions (mainly for testing)
+ */
+export function clearThemeShouldForwardPropRegistry() {
+  themeShouldForwardPropRegistry.clear();
+}
+
 // Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
@@ -172,6 +205,35 @@ export default function createStyled(input = {}) {
     } else if (isStringTag(tag)) {
       // for string (html) tag, preserve the behavior in emotion & styled-components.
       shouldForwardPropOption = undefined;
+    }
+
+    // Wrap shouldForwardProp to also check theme configuration if component name is provided
+    if (componentName && shouldForwardPropOption) {
+      const baseShouldForwardProp = shouldForwardPropOption;
+      shouldForwardPropOption = (prop) => {
+        // First check the base shouldForwardProp
+        if (!baseShouldForwardProp(prop)) {
+          return false;
+        }
+        // Check if any theme has a shouldForwardProp configuration for this component
+        const themeShouldForwardProps = getThemeShouldForwardProps(componentName);
+        if (themeShouldForwardProps) {
+          if (process.env.NODE_ENV !== 'production') {
+            // Debug logging
+            console.log(`[shouldForwardProp] Component: ${componentName}, Prop: ${prop}, Registry size: ${themeShouldForwardProps.size}`);
+          }
+          // All registered theme shouldForwardProp functions must allow the prop
+          for (const themeShouldForwardProp of themeShouldForwardProps) {
+            if (!themeShouldForwardProp(prop)) {
+              if (process.env.NODE_ENV !== 'production') {
+                console.log(`[shouldForwardProp] Blocked prop: ${prop} for ${componentName}`);
+              }
+              return false;
+            }
+          }
+        }
+        return true;
+      };
     }
 
     const defaultStyledResolver = styledEngineStyled(tag, {

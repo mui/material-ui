@@ -690,5 +690,89 @@ describe('styled', () => {
 
       expect(containsValidClass).to.equal(true);
     });
+
+    it('should respect theme-level shouldForwardProp configuration', () => {
+      const TestComponent = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'sx',
+        name: 'MuiTestThemeForward',
+        slot: 'Root',
+      })`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const customTheme = createTheme({
+        components: {
+          MuiTestThemeForward: {
+            shouldForwardProp: (prop) => prop !== 'customProp',
+            variants: [
+              {
+                props: { customProp: 'value1' },
+                style: {
+                  color: 'red',
+                },
+              },
+            ],
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={customTheme}>
+          <TestComponent customProp="value1">Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      // Check that customProp is not forwarded to the DOM
+      expect(container.firstChild).not.to.have.attribute('customProp');
+      // Check that the variant styling is applied
+      expect(container.firstChild).toHaveComputedStyle({
+        color: 'rgb(255, 0, 0)', // red
+      });
+    });
+
+    it('should work with theme-level shouldForwardProp and multiple custom props', () => {
+      const TestComponent = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'sx',
+        name: 'MuiTestThemeMultiple',
+        slot: 'Root',
+      })`
+        width: 100px;
+      `;
+
+      const customTheme = createTheme({
+        components: {
+          MuiTestThemeMultiple: {
+            shouldForwardProp: (prop) => prop !== 'customProp1' && prop !== 'customProp2',
+            variants: [
+              {
+                props: { customProp1: 'a', customProp2: 'b' },
+                style: {
+                  height: '200px',
+                },
+              },
+            ],
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={customTheme}>
+          <TestComponent customProp1="a" customProp2="b" data-testid="test">
+            Test
+          </TestComponent>
+        </ThemeProvider>,
+      );
+
+      // Check that custom props are not forwarded to the DOM
+      expect(container.firstChild).not.to.have.attribute('customProp1');
+      expect(container.firstChild).not.to.have.attribute('customProp2');
+      // Check that other props still work
+      expect(container.firstChild).to.have.attribute('data-testid', 'test');
+      // Check that the variant styling is applied
+      expect(container.firstChild).toHaveComputedStyle({
+        height: '200px',
+      });
+    });
   });
 });
