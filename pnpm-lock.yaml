@@ -1789,7 +1789,7 @@ importers:
   test:
     dependencies:
       '@react-spring/web':
-        specifier: ^10.0.1
+        specifier: ^10.0.3
         version: 10.0.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
     devDependencies:
       '@babel/runtime':
