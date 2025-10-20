@@ -167,7 +167,7 @@
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
-    "vite": "^7.1.9",
+    "vite": "^7.1.10",
     "vitest": "^3.2.4",
     "vitest-fail-on-console": "^0.10.1",
     "webpack": "^5.101.3",
