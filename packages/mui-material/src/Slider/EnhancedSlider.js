@@ -94,18 +94,35 @@ const EnhancedSlider = React.forwardRef(function EnhancedSlider(props, ref) {
   const valueLabelDisplay = showTooltips ? 'auto' : 'off';
 
   // Enhanced aria labels for accessibility
-  const getAriaValueText = React.useCallback((sliderValue, index) => {
-    return formatValueLabelFn(sliderValue, index, valueLabelFormat || formatValueLabel || null, rangeLabels);
-  }, [valueLabelFormat, formatValueLabel, rangeLabels]);
+  const getAriaValueText = React.useCallback(
+    (sliderValue, index) => {
+      return formatValueLabelFn(
+        sliderValue,
+        index,
+        valueLabelFormat || formatValueLabel || null,
+        rangeLabels,
+      );
+    },
+    [valueLabelFormat, formatValueLabel, rangeLabels],
+  );
 
   // Configure slot props for custom value label formatting
-  const slotProps = React.useMemo(() => ({
-    ...other.slotProps,
-    valueLabel: {
-      ...other.slotProps?.valueLabel,
-      children: (sliderValue, index) => formatValueLabelFn(sliderValue, index, valueLabelFormat || formatValueLabel || null, rangeLabels),
-    },
-  }), [other.slotProps, valueLabelFormat, formatValueLabel, rangeLabels]);
+  const slotProps = React.useMemo(
+    () => ({
+      ...other.slotProps,
+      valueLabel: {
+        ...other.slotProps?.valueLabel,
+        children: (sliderValue, index) =>
+          formatValueLabelFn(
+            sliderValue,
+            index,
+            valueLabelFormat || formatValueLabel || null,
+            rangeLabels,
+          ),
+      },
+    }),
+    [other.slotProps, valueLabelFormat, formatValueLabel, rangeLabels],
+  );
 
   return (
     <Slider

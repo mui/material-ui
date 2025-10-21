@@ -34,6 +34,8 @@ export interface EnhancedSliderProps extends SliderProps {
   valueLabelFormat?: (value: number) => string;
 }
 
-declare const EnhancedSlider: React.ForwardRefExoticComponent<EnhancedSliderProps & React.RefAttributes<HTMLSpanElement>>;
+declare const EnhancedSlider: React.ForwardRefExoticComponent<
+  EnhancedSliderProps & React.RefAttributes<HTMLSpanElement>
+>;
 
 export default EnhancedSlider;

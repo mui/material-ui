@@ -11,13 +11,21 @@ export default function EnhancedSliderDemo() {
   const [singleValue, setSingleValue] = React.useState<number>(30);
   const [rangeValue, setRangeValue] = React.useState<number[]>([20, 80]);
 
-  const handleSingleChange = (event: Event, newValue: number | number[], _activeThumb: number) => {
+  const handleSingleChange = (
+    event: Event,
+    newValue: number | number[],
+    _activeThumb: number,
+  ) => {
     if (typeof newValue === 'number') {
       setSingleValue(newValue);
     }
   };
 
-  const handleRangeChange = (event: Event, newValue: number | number[], _activeThumb: number) => {
+  const handleRangeChange = (
+    event: Event,
+    newValue: number | number[],
+    _activeThumb: number,
+  ) => {
     if (Array.isArray(newValue)) {
       setRangeValue(newValue);
     }
@@ -36,7 +44,9 @@ export default function EnhancedSliderDemo() {
         step={5}
       />
 
-      <Typography gutterBottom sx={{ mt: 4 }}>Enhanced Range Slider</Typography>
+      <Typography gutterBottom sx={{ mt: 4 }}>
+        Enhanced Range Slider
+      </Typography>
       <EnhancedSlider
         value={rangeValue}
         onChange={handleRangeChange}
@@ -47,7 +57,9 @@ export default function EnhancedSliderDemo() {
         step={5}
       />
 
-      <Typography gutterBottom sx={{ mt: 4 }}>Enhanced Slider with Custom Formatting</Typography>
+      <Typography gutterBottom sx={{ mt: 4 }}>
+        Enhanced Slider with Custom Formatting
+      </Typography>
       <EnhancedSlider
         defaultValue={50}
         aria-labelledby="enhanced-custom-slider"

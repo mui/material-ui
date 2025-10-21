@@ -117,7 +117,10 @@
     "step": { "type": { "name": "number" }, "default": "1" },
     "tabIndex": { "type": { "name": "number" } },
     "track": {
-      "type": { "name": "union", "description": "'normal'<br>&#124;&nbsp;'inverted'<br>&#124;&nbsp;false" },
+      "type": {
+        "name": "union",
+        "description": "'normal'<br>&#124;&nbsp;'inverted'<br>&#124;&nbsp;false"
+      },
       "default": "'normal'"
     },
     "value": {

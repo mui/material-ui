@@ -62,31 +62,21 @@ describe('<EnhancedSlider />', () => {
         { value: 50, label: 'Middle' },
         { value: 100, label: 'End' },
       ];
-      render(
-        <EnhancedSlider value={50} customMarks={customMarks} showMarks />
-      );
+      render(<EnhancedSlider value={50} customMarks={customMarks} showMarks />);
       expect(screen.getByText('Start')).not.to.equal(null);
       expect(screen.getByText('Middle')).not.to.equal(null);
       expect(screen.getByText('End')).not.to.equal(null);
     });
 
     it('should support range selection', () => {
-      const { container } = render(
-        <EnhancedSlider value={[20, 80]} range min={0} max={100} />
-      );
+      const { container } = render(<EnhancedSlider value={[20, 80]} range min={0} max={100} />);
       const thumbs = container.querySelectorAll(`.${classes.thumb}`);
       expect(thumbs).to.have.length(2);
     });
 
     it('should support custom value formatting', () => {
       const formatValueLabel = (value) => `${value}%`;
-      render(
-        <EnhancedSlider
-          value={75}
-          formatValueLabel={formatValueLabel}
-          showTooltips
-        />
-      );
+      render(<EnhancedSlider value={75} formatValueLabel={formatValueLabel} showTooltips />);
       // The aria-valuetext should contain the formatted value
       const input = screen.getByRole('slider');
       expect(input).to.have.attribute('aria-valuetext', '75%');
@@ -113,9 +103,7 @@ describe('<EnhancedSlider />', () => {
         expect(typeof activeThumb).to.equal('number');
       };
 
-      const { container } = render(
-        <EnhancedSlider value={50} onChange={handleChange} />
-      );
+      const { container } = render(<EnhancedSlider value={50} onChange={handleChange} />);
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -136,7 +124,7 @@ describe('<EnhancedSlider />', () => {
       };
 
       const { container } = render(
-        <EnhancedSlider value={[20, 80]} range onChange={handleChange} />
+        <EnhancedSlider value={[20, 80]} range onChange={handleChange} />,
       );
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -162,7 +150,7 @@ describe('<EnhancedSlider />', () => {
           disabled
           orientation="vertical"
           color="secondary"
-        />
+        />,
       );
 
       const root = container.firstChild;
@@ -182,7 +170,7 @@ describe('<EnhancedSlider />', () => {
             value={50}
             onChange={handleChange}
             onChangeCommitted={handleChangeCommitted}
-          />
+          />,
         );
       }).not.to.throw();
     });

@@ -49,7 +49,9 @@ function testOnChange() {
 // slotProps and componentsProps as functions
 <EnhancedSlider
   slotProps={{
-    root: ({ color }: any) => ({ className: color === 'primary' ? 'root_primary' : 'root_secondary' }),
+    root: ({ color }: any) => ({
+      className: color === 'primary' ? 'root_primary' : 'root_secondary',
+    }),
     input: ({ size }: any) => ({ disabled: size === 'medium' }),
     mark: ({ marked }: any) => ({ 'data-marked': marked }),
     markLabel: ({ marked }: any) => ({ 'data-marked': marked }),
@@ -59,7 +61,9 @@ function testOnChange() {
     valueLabel: ({ open }: any) => ({ 'data-open': open }),
   }}
   componentsProps={{
-    root: ({ color }: any) => ({ className: color === 'primary' ? 'root_primary' : 'root_secondary' }),
+    root: ({ color }: any) => ({
+      className: color === 'primary' ? 'root_primary' : 'root_secondary',
+    }),
     input: ({ size }: any) => ({ disabled: size === 'medium' }),
     mark: ({ marked }: any) => ({ 'data-marked': marked }),
     markLabel: ({ marked }: any) => ({ 'data-marked': marked }),
