@@ -36,9 +36,7 @@ export default function EnhancedSliderDemo() {
         step={5}
       />
 
-      <Typography gutterBottom sx={{ mt: 4 }}>
-        Enhanced Range Slider
-      </Typography>
+      <Typography gutterBottom sx={{ mt: 4 }}>Enhanced Range Slider</Typography>
       <EnhancedSlider
         value={rangeValue}
         onChange={handleRangeChange}
@@ -49,9 +47,7 @@ export default function EnhancedSliderDemo() {
         step={5}
       />
 
-      <Typography gutterBottom sx={{ mt: 4 }}>
-        Enhanced Slider with Custom Formatting
-      </Typography>
+      <Typography gutterBottom sx={{ mt: 4 }}>Enhanced Slider with Custom Formatting</Typography>
       <EnhancedSlider
         defaultValue={50}
         aria-labelledby="enhanced-custom-slider"
