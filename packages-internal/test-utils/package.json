@@ -64,7 +64,7 @@
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
+    "@types/react-dom": "^19.2.2",
     "@types/sinon": "^17.0.4",
     "typescript": "^5.9.2"
   },

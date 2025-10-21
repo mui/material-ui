@@ -327,7 +327,7 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.2.1
+        specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       eslint:
         specifier: ^9.37.0
@@ -652,7 +652,7 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.2.1
+        specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       '@types/react-swipeable-views':
         specifier: ^0.13.6
@@ -843,7 +843,7 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.2.1
+        specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       '@types/sinon':
         specifier: ^17.0.4
@@ -1130,14 +1130,14 @@ importers:
         specifier: 5.15.4
         version: 5.15.4(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
-        specifier: ^19.1.1
+        specifier: ^19.2.0
         version: 19.2.0
       react-dom:
-        specifier: ^19.1.1
+        specifier: ^19.2.0
         version: 19.2.0(react@19.2.0)
     devDependencies:
       '@types/react':
-        specifier: ^19.1.9
+        specifier: ^19.2.2
         version: 19.2.2
 
   packages/mui-icons-material:
@@ -1245,7 +1245,7 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.2.1
+        specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       '@types/sinon':
         specifier: ^17.0.4
@@ -1319,7 +1319,7 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.2.1
+        specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       '@types/sinon':
         specifier: ^17.0.4
@@ -1405,7 +1405,7 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.2.1
+        specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       '@types/sinon':
         specifier: ^17.0.4
@@ -1756,7 +1756,7 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/react-dom':
-        specifier: ^19.2.1
+        specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       '@types/react-is':
         specifier: ^19.2.0
@@ -1838,10 +1838,10 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/react':
-        specifier: ^19.1.9
+        specifier: ^19.2.2
         version: 19.2.2
       '@types/react-is':
-        specifier: ^19.0.0
+        specifier: ^19.2.0
         version: 19.2.0
       '@types/sinon':
         specifier: ^17.0.4
@@ -1865,13 +1865,13 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react:
-        specifier: ^19.1.1
+        specifier: ^19.2.0
         version: 19.2.0
       react-dom:
-        specifier: ^19.1.1
+        specifier: ^19.2.0
         version: 19.2.0(react@19.2.0)
       react-is:
-        specifier: ^19.1.1
+        specifier: ^19.2.0
         version: 19.2.0
       react-router:
         specifier: ^7.9.4
