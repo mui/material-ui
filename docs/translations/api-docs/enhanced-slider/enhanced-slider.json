@@ -1,121 +1,39 @@
 {
-  "componentDescription": "An enhanced slider component that extends the base Slider with additional features like auto-generated marks, custom tooltips, and range selection support.",
+  "componentDescription": "Enhanced Slider Component\n\nBuilds on Material-UI's Slider with:\n- Custom marks with auto-generation\n- Enhanced tooltips with custom formatting\n- Range selection with descriptive labels\n- Better default UX for common use cases",
   "propDescriptions": {
-    "aria-label": { "description": "The label of the slider." },
-    "aria-labelledby": {
-      "description": "The id of the element containing a label for the slider."
-    },
-    "aria-valuetext": {
-      "description": "A string value that provides a user-friendly name for the current value of the slider."
-    },
-    "classes": { "description": "Override or extend the styles applied to the component." },
-    "color": {
-      "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
-    },
-    "components": { "description": "The components used for each slot inside." },
-    "componentsProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones."
+    "range": {
+      "description": "If <code>true</code>, the slider will support range selection with two thumbs."
     },
     "customMarks": {
-      "description": "Custom marks to display on the slider. When provided, these marks will be used instead of auto-generated marks."
+      "description": "Custom marks to display on the slider. If not provided, marks will be auto-generated."
+    },
+    "showMarks": { "description": "If <code>true</code>, marks will be displayed on the slider." },
+    "showTooltips": {
+      "description": "If <code>true</code>, tooltips will be displayed when hovering over the thumbs."
+    },
+    "min": { "description": "The minimum allowed value of the slider." },
+    "max": { "description": "The maximum allowed value of the slider." },
+    "step": { "description": "The granularity with which the slider can step through values." },
+    "valueLabelFormat": {
+      "description": "A function to format the value displayed in tooltips and aria labels.",
+      "typeDescriptions": {
+        "value": { "name": "value", "description": "The value to format" },
+        "index": { "name": "index", "description": "The index of the thumb (for range sliders)" }
+      }
+    },
+    "formatValueLabel": {
+      "description": "Alias for valueLabelFormat for backward compatibility.",
+      "typeDescriptions": {
+        "value": { "name": "value", "description": "The value to format" },
+        "index": { "name": "index", "description": "The index of the thumb (for range sliders)" }
+      }
+    },
+    "rangeLabels": { "description": "Labels for range slider thumbs." },
+    "value": {
+      "description": "The value of the slider. For range sliders, provide an array with two values."
     },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
-    },
-    "disabled": { "description": "If <code>true</code>, the component is disabled." },
-    "disableSwap": {
-      "description": "If <code>true</code>, the active thumb doesn&#39;t swap when moving pointer over a thumb while dragging another thumb."
-    },
-    "formatValueLabel": {
-      "description": "A function to format the value displayed in tooltips and value labels. Receives the current value and returns a formatted string.",
-      "typeDescriptions": {
-        "value": { "name": "value", "description": "The current slider value to format." }
-      }
-    },
-    "getAriaLabel": {
-      "description": "Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider. This is important for screen reader users.",
-      "typeDescriptions": {
-        "index": { "name": "index", "description": "The thumb label&#39;s index to format." }
-      }
-    },
-    "getAriaValueText": {
-      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider. This is important for screen reader users.",
-      "typeDescriptions": {
-        "value": { "name": "value", "description": "The thumb label&#39;s value to format." },
-        "index": { "name": "index", "description": "The thumb label&#39;s index to format." }
-      }
-    },
-    "marks": {
-      "description": "Marks indicate predetermined values to which the user can move the slider. If <code>true</code> the marks are spaced according the value of the <code>step</code> prop. If an array, it should contain objects with <code>value</code> and an optional <code>label</code> keys."
-    },
-    "max": {
-      "description": "The maximum allowed value of the slider. Should not be equal to min."
-    },
-    "min": {
-      "description": "The minimum allowed value of the slider. Should not be equal to max."
-    },
-    "name": { "description": "Name attribute of the hidden <code>input</code> element." },
-    "onChange": {
-      "description": "Callback function that is fired when the slider&#39;s value changed.",
-      "typeDescriptions": {
-        "event": {
-          "name": "event",
-          "description": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (any). <strong>Warning</strong>: This is a generic event not a change event."
-        },
-        "value": { "name": "value", "description": "The new value." },
-        "activeThumb": {
-          "name": "activeThumb",
-          "description": "Index of the currently moved thumb."
-        }
-      }
-    },
-    "onChangeCommitted": {
-      "description": "Callback function that is fired when the <code>mouseup</code> is triggered.",
-      "typeDescriptions": {
-        "event": {
-          "name": "event",
-          "description": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event."
-        },
-        "value": { "name": "value", "description": "The new value." }
-      }
-    },
-    "orientation": { "description": "The component orientation." },
-    "range": {
-      "description": "If <code>true</code>, the slider will support range selection with two thumbs. When enabled, the value should be an array of two numbers."
-    },
-    "scale": { "description": "A transformation function, to change the scale of the slider." },
-    "shiftStep": {
-      "description": "The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down."
-    },
-    "showMarks": {
-      "description": "If <code>true</code>, marks will be displayed on the slider. When <code>customMarks</code> is provided, those marks will be shown. Otherwise, marks will be auto-generated based on the step value."
-    },
-    "showTooltips": {
-      "description": "If <code>true</code>, tooltips will be displayed showing the current value when hovering over the slider thumb."
-    },
-    "size": { "description": "The size of the slider." },
-    "slotProps": { "description": "The props used for each slot inside the Slider." },
-    "slots": {
-      "description": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component."
-    },
-    "step": {
-      "description": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.) The <code>min</code> prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.<br>When step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop."
-    },
-    "sx": {
-      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
-    },
-    "tabIndex": { "description": "Tab index attribute of the hidden <code>input</code> element." },
-    "track": {
-      "description": "<p>The track presentation:</p>\n<ul>\n<li><code>normal</code> the track will render a bar representing the slider value.</li>\n<li><code>inverted</code> the track will render a bar representing the remaining slider value.</li>\n<li><code>false</code> the track will render without a bar.</li>\n</ul>\n"
-    },
-    "value": {
-      "description": "The value of the slider. For ranged sliders, provide an array with two values."
-    },
-    "valueLabelDisplay": {
-      "description": "<p>Controls when the value label is displayed:</p>\n<ul>\n<li><code>auto</code> the value label will display when the thumb is hovered or focused.</li>\n<li><code>on</code> will display persistently.</li>\n<li><code>off</code> will never display.</li>\n</ul>\n"
-    },
-    "valueLabelFormat": {
-      "description": "The format function the value label&#39;s value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label&#39;s value to format - {number} index The value label&#39;s index to format"
     }
   },
   "classDescriptions": {

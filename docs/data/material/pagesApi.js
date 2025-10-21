@@ -38,6 +38,7 @@ export default [
   { pathname: '/material-ui/api/dialog-title' },
   { pathname: '/material-ui/api/divider' },
   { pathname: '/material-ui/api/drawer' },
+  { pathname: '/material-ui/api/enhanced-slider' },
   { pathname: '/material-ui/api/fab' },
   { pathname: '/material-ui/api/fade' },
   { pathname: '/material-ui/api/filled-input' },

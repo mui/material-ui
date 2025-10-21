@@ -33,7 +33,24 @@ export interface EnhancedSliderProps extends SliderProps {
    */
   valueLabelFormat?: (value: number) => string;
 }
-
+/**
+ * Enhanced Slider Component
+ *
+ * Builds on Material-UI's Slider with:
+ *
+ * * Custom marks with auto-generation
+ * * Enhanced tooltips with custom formatting
+ * * Range selection with descriptive labels
+ * * Better default UX for common use cases
+ *
+ * Demos:
+ *
+ * - [Slider](https://mui.com/material-ui/react-slider/)
+ *
+ * API:
+ *
+ * - [EnhancedSlider API](https://mui.com/material-ui/api/enhanced-slider/)
+ */
 declare const EnhancedSlider: React.ForwardRefExoticComponent<
   EnhancedSliderProps & React.RefAttributes<HTMLSpanElement>
 >;
