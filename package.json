@@ -89,7 +89,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
-    "@netlify/functions": "^4.2.7",
+    "@netlify/functions": "^4.3.0",
     "@slack/bolt": "^4.5.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
@@ -116,7 +116,7 @@
     "@octokit/rest": "^22.0.0",
     "@pigment-css/react": "0.0.30",
     "@pnpm/find-workspace-dir": "^1000.1.3",
-    "@playwright/test": "1.56.0",
+    "@playwright/test": "1.56.1",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/mocha": "^10.0.10",
@@ -174,9 +174,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.18.2",
+  "packageManager": "pnpm@10.18.3",
   "engines": {
-    "pnpm": "10.18.2",
+    "pnpm": "10.18.3",
     "node": ">=22.18.0"
   },
   "resolutions": {
