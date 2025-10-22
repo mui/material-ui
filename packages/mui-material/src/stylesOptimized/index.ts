@@ -125,6 +125,7 @@ export { default as makeStyles } from '../styles/makeStyles';
 export { default as withStyles } from '../styles/withStyles';
 export { default as withTheme } from '../styles/withTheme';
 
+export * from './ThemeProviderWithVars';
 export type { StorageManager } from '@mui/system/cssVars';
 
 export { default as extendTheme } from './createThemeWithVars';

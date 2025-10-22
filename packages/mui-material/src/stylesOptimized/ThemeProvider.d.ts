@@ -76,6 +76,8 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
   disableTransitionOnChange?: boolean;
 }
 
-declare function ThemeProvider(): React.JSX.Element;
+declare function ThemeProvider<Theme = DefaultTheme>(
+  props: ThemeProviderProps<Theme>,
+): React.JSX.Element;
 
 export default ThemeProvider;
