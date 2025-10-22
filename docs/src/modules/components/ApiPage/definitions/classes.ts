@@ -27,9 +27,9 @@ export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfCon
           text: t('api-docs.classes'),
           hash: hash ?? 'classes',
           children: [
-            ...classes.map(({ key, hash: classeHash }) => ({
+            ...classes.map(({ key, hash: classHash }) => ({
               text: key,
-              hash: classeHash,
+              hash: classHash,
               children: [],
             })),
           ],
