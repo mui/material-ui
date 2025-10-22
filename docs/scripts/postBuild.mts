@@ -22,8 +22,6 @@ async function main() {
       '[id^="demo-"] a[href^="/spam"]',
       '[id^="demo-"] a[href^="/drafts"]',
     ],
-    ignoredTargets: new Set(['__next', '__NEXT_DATA__']),
-    concurrency: 4,
   });
 
   process.exit(brokenLinks);

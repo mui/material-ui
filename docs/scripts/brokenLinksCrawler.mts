@@ -4,8 +4,27 @@ import timers from 'timers/promises';
 import { parse, HTMLElement } from 'node-html-parser';
 import fs from 'fs/promises';
 import chalk from 'chalk';
+import { Transform } from 'node:stream';
 
 const DEFAULT_CONCURRENCY = 4;
+
+const prefixLines = (prefix: string) => {
+  let leftover: string = '';
+  return new Transform({
+    transform(chunk, enc, cb) {
+      const lines = (leftover + chunk.toString()).split(/\r?\n/);
+      leftover = lines.pop()!;
+      this.push(lines.map((l) => `${prefix + l}\n`).join(''));
+      cb();
+    },
+    flush(cb) {
+      if (leftover) {
+        this.push(`${prefix + leftover}\n`);
+      }
+      cb();
+    },
+  });
+};
 
 // Maps pageUrl to ids of known targets on that page
 type LinkStructure = Map<string, Set<string>>;
@@ -180,7 +199,7 @@ function resolveOptions(rawOptions: CrawlOptions): Required<CrawlOptions> {
     outPath: rawOptions.outPath ?? null,
     ignoredPaths: rawOptions.ignoredPaths ?? [],
     ignoredContent: rawOptions.ignoredContent ?? [],
-    ignoredTargets: rawOptions.ignoredTargets ?? new Set(),
+    ignoredTargets: rawOptions.ignoredTargets ?? new Set(['__next', '__NEXT_DATA__']),
     knownTargets: rawOptions.knownTargets ?? new Map(),
     knownTargetsDownloadUrl: rawOptions.knownTargetsDownloadUrl ?? [],
     concurrency: rawOptions.concurrency ?? DEFAULT_CONCURRENCY,
@@ -254,25 +273,14 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
     });
 
     // Prefix server logs
-    appProcess.stdout?.on('data', (data) => {
-      const lines = data
-        .toString()
-        .split('\n')
-        .filter((line: string) => line.trim());
-      lines.forEach((line: string) => console.log(chalk.gray('server: ') + line));
-    });
-    appProcess.stderr?.on('data', (data) => {
-      const lines = data
-        .toString()
-        .split('\n')
-        .filter((line: string) => line.trim());
-      lines.forEach((line: string) => console.error(chalk.gray('server: ') + line));
-    });
+    const serverPrefix = chalk.gray('server: ');
+    appProcess.stdout?.pipe(prefixLines(serverPrefix)).pipe(process.stdout);
+    appProcess.stderr?.pipe(prefixLines(serverPrefix)).pipe(process.stderr);
 
     await pollUrl(options.host, 10000);
-  }
 
-  console.log(`Server started on port ${options.host}`);
+    console.log(`Server started on ${chalk.underline(options.host)}`);
+  }
 
   const crawledPages = new Map<string, Promise<PageData>>();
   const crawledLinks = new Set<Link>();
@@ -294,7 +302,7 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
     }
 
     const pagePromise = Promise.resolve().then(async () => {
-      console.log(`Crawling ${pageUrl}`);
+      console.log(`Crawling ${chalk.cyan(pageUrl)}...`);
       const res = await fetch(new URL(pageUrl, options.host));
 
       const urlData = { url: pageUrl, status: res.status };
@@ -367,7 +375,19 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
     await writePagesToFile(results, options.outPath);
   }
 
-  console.log(chalk.bold('\nCrawl results:'));
+  interface BrokenLinkError {
+    link: Link;
+    reason: string;
+  }
+
+  const brokenLinksByPage = new Map<string, BrokenLinkError[]>();
+
+  function recordBrokenLink(link: Link, reason: string): void {
+    const src = link.src ?? '(unknown)';
+    const linksForPage = brokenLinksByPage.get(src) ?? [];
+    brokenLinksByPage.set(src, linksForPage);
+    linksForPage.push({ link, reason });
+  }
 
   let totalLinks = 0;
   let checkedLinks = 0;
@@ -387,9 +407,7 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
     const knownPage = knownTargets.get(pageUrl);
     if (knownPage) {
       if (parsed.hash && !knownPage.has(parsed.hash)) {
-        console.error(
-          `Broken link: ${crawledLink.src}["${crawledLink.text}"] -> ${crawledLink.href} (target not found)`,
-        );
+        recordBrokenLink(crawledLink, 'target not found');
         brokenLinkTargets += 1;
       }
       continue;
@@ -398,36 +416,46 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
     const page = results.get(pageUrl);
 
     if (!page) {
-      console.error(
-        `Broken link: ${crawledLink.src}["${crawledLink.text}"] -> ${crawledLink.href} (not crawled)`,
-      );
+      recordBrokenLink(crawledLink, 'not crawled');
       brokenLinks += 1;
       continue;
     }
     if (page.status >= 400) {
-      console.error(
-        `Broken link: ${crawledLink.src}["${crawledLink.text}"] -> ${crawledLink.href} (returned status ${page.status})`,
-      );
+      recordBrokenLink(crawledLink, `returned status ${page.status}`);
       brokenLinks += 1;
       continue;
     }
     if (parsed.hash) {
       if (!page.targets.has(parsed.hash)) {
-        console.error(
-          `Broken link: ${crawledLink.src}["${crawledLink.text}"] -> ${crawledLink.href} (target not found)`,
-        );
+        recordBrokenLink(crawledLink, 'target not found');
         brokenLinkTargets += 1;
       }
     }
   }
 
+  // Report broken links grouped by source page
+  if (brokenLinksByPage.size > 0) {
+    console.error('\nBroken links found:\n');
+    for (const [pageUrl, errors] of brokenLinksByPage.entries()) {
+      console.error(`Source ${chalk.cyan(pageUrl)}:`);
+      for (const { link, reason } of errors) {
+        console.error(`  [${link.text}](${chalk.cyan(link.href)}) (${reason})`);
+      }
+    }
+  }
+
   const endTime = Date.now();
-  const duration = ((endTime - startTime) / 1000).toFixed(2);
-  console.log(chalk.blue(`Crawl completed in ${duration} seconds`));
-  console.log(`Total links found: ${totalLinks}`);
-  console.log(`Total links checked: ${checkedLinks}`);
-  console.log(`Total broken links: ${brokenLinks}`);
-  console.log(`Total broken link targets: ${brokenLinkTargets}`);
+  const durationSeconds = (endTime - startTime) / 1000;
+  const duration = new Intl.NumberFormat('en-US', {
+    style: 'unit',
+    unit: 'second',
+    maximumFractionDigits: 2,
+  }).format(durationSeconds);
+  console.log(chalk.blue(`\nCrawl completed in ${duration}`));
+  console.log(`  Total links found: ${chalk.cyan(totalLinks)}`);
+  console.log(`  Total links checked: ${chalk.cyan(checkedLinks)}`);
+  console.log(`  Total broken links: ${chalk.cyan(brokenLinks)}`);
+  console.log(`  Total broken link targets: ${chalk.cyan(brokenLinkTargets)}`);
 
   const totalBrokenLinks = brokenLinks + brokenLinkTargets;
   return { brokenLinks: totalBrokenLinks };
