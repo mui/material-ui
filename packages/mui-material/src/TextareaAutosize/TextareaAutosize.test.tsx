@@ -78,8 +78,10 @@ describe('<TextareaAutosize />', () => {
 
       return <TextareaAutosize value={value} onChange={handleChange} />;
     }
-    const { container } = render(<App />);
-    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+    render(<App />);
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
     act(() => {
       input.focus();
     });
@@ -128,8 +130,10 @@ describe('<TextareaAutosize />', () => {
         </div>
       );
     }
-    const view = render(<App />);
-    const input = view.container.querySelector<HTMLTextAreaElement>('textarea')!;
+    render(<App />);
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
     const button = screen.getByRole('button');
     expect(parseInt(input.style.height, 10)).to.be.within(30, 32);
     fireEvent.click(button);
@@ -180,9 +184,13 @@ describe('<TextareaAutosize />', () => {
       clock.withFakeTimers();
 
       it('should handle the resize event', () => {
-        const { container } = render(<TextareaAutosize />);
-        const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-        const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+        render(<TextareaAutosize />);
+        const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+          hidden: false,
+        });
+        const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+          hidden: true,
+        })[1];
 
         expect(input.style).to.have.property('height', '0px');
         expect(input.style).to.have.property('overflow', 'hidden');
@@ -205,9 +213,13 @@ describe('<TextareaAutosize />', () => {
 
     it('should update when uncontrolled', () => {
       const handleChange = spy();
-      const { container } = render(<TextareaAutosize onChange={handleChange} />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      render(<TextareaAutosize onChange={handleChange} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       expect(input.style).to.have.property('height', '0px');
       expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input, shadow, {
@@ -229,9 +241,13 @@ describe('<TextareaAutosize />', () => {
 
     it('should take the border into account with border-box', () => {
       const border = 5;
-      const { container, forceUpdate } = render(<TextareaAutosize />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      const { forceUpdate } = render(<TextareaAutosize />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       expect(input.style).to.have.property('height', '0px');
       expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input, shadow, {
@@ -249,9 +265,13 @@ describe('<TextareaAutosize />', () => {
 
     it('should take the padding into account with content-box', () => {
       const padding = 5;
-      const { container, forceUpdate } = render(<TextareaAutosize />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      const { forceUpdate } = render(<TextareaAutosize />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       setLayout(input, shadow, {
         getComputedStyle: {
           boxSizing: 'border-box',
@@ -268,9 +288,13 @@ describe('<TextareaAutosize />', () => {
     it('should have at least height of "minRows"', () => {
       const minRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize minRows={minRows} />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      const { forceUpdate } = render(<TextareaAutosize minRows={minRows} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       setLayout(input, shadow, {
         getComputedStyle: {
           boxSizing: 'content-box',
@@ -286,9 +310,13 @@ describe('<TextareaAutosize />', () => {
     it('should have at max "maxRows" rows', () => {
       const maxRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      const { forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       setLayout(input, shadow, {
         getComputedStyle: {
           boxSizing: 'content-box',
@@ -304,9 +332,13 @@ describe('<TextareaAutosize />', () => {
     it('should show scrollbar when having more rows than "maxRows"', () => {
       const maxRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      const { forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       setLayout(input, shadow, {
         getComputedStyle: {
           boxSizing: 'border-box',
@@ -341,9 +373,13 @@ describe('<TextareaAutosize />', () => {
 
     it('should update its height when the "maxRows" prop changes', () => {
       const lineHeight = 15;
-      const { container, forceUpdate, setProps } = render(<TextareaAutosize maxRows={3} />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      const { forceUpdate, setProps } = render(<TextareaAutosize maxRows={3} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       setLayout(input, shadow, {
         getComputedStyle: {
           boxSizing: 'content-box',
@@ -361,9 +397,13 @@ describe('<TextareaAutosize />', () => {
 
     it('should not sync height if container width is 0px', () => {
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')!;
+      const { forceUpdate } = render(<TextareaAutosize />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
 
       setLayout(input, shadow, {
         getComputedStyle: {
@@ -393,9 +433,13 @@ describe('<TextareaAutosize />', () => {
 
     it('should compute the correct height if padding-right is greater than 0px', () => {
       const paddingRight = 50;
-      const { container, forceUpdate } = render(<TextareaAutosize style={{ paddingRight }} />);
-      const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
-      const shadow = container.querySelector('textarea[aria-hidden=true]')! as HTMLTextAreaElement;
+      const { forceUpdate } = render(<TextareaAutosize style={{ paddingRight }} />);
+      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+        hidden: false,
+      });
+      const shadow = screen.getAllByRole<HTMLTextAreaElement>('textbox', {
+        hidden: true,
+      })[1];
       const contentWidth = 100;
       const lineHeight = 15;
       const width = contentWidth + paddingRight;
@@ -434,8 +478,10 @@ describe('<TextareaAutosize />', () => {
       this.skip();
     }
 
-    const { container } = render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
-    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+    render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
 
     expect(input).toHaveComputedStyle({
       backgroundColor: 'rgb(255, 255, 0)',
@@ -464,7 +510,7 @@ describe('<TextareaAutosize />', () => {
       );
     }
 
-    await render(<App />);
+    render(<App />);
     await sleep(100);
     // when the component mounts and idles this fires 3 times in browser tests
     // and 2 times in a real browser

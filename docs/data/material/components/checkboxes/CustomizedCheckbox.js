@@ -60,7 +60,7 @@ function BpCheckbox(props) {
       color="default"
       checkedIcon={<BpCheckedIcon />}
       icon={<BpIcon />}
-      inputProps={{ 'aria-label': 'Checkbox demo' }}
+      slotProps={{ input: { 'aria-label': 'Checkbox demo' } }}
       {...props}
     />
   );

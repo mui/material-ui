@@ -74,7 +74,7 @@ export default function DiamondSponsors() {
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
         data-ga-event-label="kombai.com"
-        href="https://kombai.com/?utm_source=MUI&utm_medium=website&utm_campaign=sponsor&utm_content=docs"
+        href="https://kombai.com/integrations/mui/?utm_source=MUI&utm_medium=website&utm_campaign=sponsor&utm_content=docs"
         rel="noopener sponsored"
         target="_blank"
       >
