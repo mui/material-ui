@@ -1932,6 +1932,12 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-material/build
 
+  test/ts-performance:
+    dependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../packages/mui-material/build
+
 packages:
 
   '@aashutoshrathi/word-wrap@1.2.6':
