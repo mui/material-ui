@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { execa } from 'execa';
+import { execaCommand } from 'execa';
 import timers from 'timers/promises';
 import { parse, HTMLElement } from 'node-html-parser';
 import * as path from 'path';
@@ -23,9 +23,23 @@ const IGNORED_CONTENT: string[] = [
   '[id^="demo-"] a[href^="/drafts"]',
 ];
 
-const IGNORED_IDS = new Set(['__next', '__NEXT_DATA__']);
+const IGNORED_TARGETS = new Set(['__next', '__NEXT_DATA__']);
 
-const PORT = 3001;
+const START_COMMAND = 'pnpm start -p 3001';
+
+const HOST = 'http://localhost:3001';
+
+const OUT_PATH = path.resolve(import.meta.dirname, '../public/material-ui/link-structure.json');
+
+// Maps pageUrl to ids of known targets on that page
+type LinkStructure = Map<string, Set<string>>;
+
+type SerializedLinkStructure = { targets: Record<string, string[]> };
+
+const KNOWN_TARGETS: LinkStructure = new Map([
+  ['/x/', new Set()],
+  ['/x/introduction/', new Set()],
+]);
 
 async function pollUrl(url: string, timeout: number): Promise<void> {
   const start = Date.now();
@@ -47,20 +61,20 @@ async function pollUrl(url: string, timeout: number): Promise<void> {
   }
 }
 
-async function writePagesToFile(pages: Map<string, PageData>) {
-  const outPath = path.resolve(import.meta.dirname, '../public/material-ui/link-structure.json');
-  const data = {
-    pages: Object.fromEntries(
-      Array.from(pages.entries(), ([url, pageData]) => [
-        url,
-        {
-          status: pageData.status,
-          targets: Object.fromEntries(pageData.targets),
-        },
-      ]),
-    ),
-  };
-  await fs.writeFile(outPath, JSON.stringify(data, null, 2), 'utf-8');
+function deserializeLinkStructure(data: SerializedLinkStructure): LinkStructure {
+  const linkStructure: LinkStructure = new Map();
+  for (const url of Object.keys(data.targets)) {
+    linkStructure.set(url, new Set(data.targets[url]));
+  }
+  return linkStructure;
+}
+
+async function writePagesToFile(pages: Map<string, PageData>, outPath: string) {
+  const fileContent: SerializedLinkStructure = { targets: {} };
+  for (const [url, pageData] of pages.entries()) {
+    fileContent.targets[url] = Array.from(pageData.targets.keys());
+  }
+  await fs.writeFile(outPath, JSON.stringify(fileContent, null, 2), 'utf-8');
 }
 
 // Polyfill for `node.computedName` available only in chrome v112+
@@ -172,16 +186,16 @@ function getPageUrl(href: string): string | null {
 }
 
 async function main() {
-  console.log(`Starting server on port ${PORT}...`);
+  console.log(`Starting server with "${START_COMMAND}"...`);
   const startTime = Date.now();
 
-  const appProcess = execa('pnpm', ['start', '-p', `${PORT}`], {
+  const appProcess = execaCommand(START_COMMAND, {
     stdio: 'inherit',
   });
 
-  await pollUrl(`http://localhost:${PORT}`, 10000);
+  await pollUrl(HOST, 10000);
 
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port ${HOST}`);
 
   const crawledPages = new Map<string, Promise<PageData>>();
   const crawledLinks = new Set<Link>();
@@ -194,60 +208,66 @@ async function main() {
       return;
     }
 
-    const pagePromise =
-      crawledPages.get(pageUrl) ||
-      Promise.resolve().then(async () => {
-        console.log(`Crawling ${pageUrl}`);
-        const res = await fetch(`http://localhost:${PORT}${pageUrl}`);
+    if (KNOWN_TARGETS.has(pageUrl)) {
+      return;
+    }
 
-        const urlData = { url: pageUrl, status: res.status };
+    if (crawledPages.has(pageUrl)) {
+      return;
+    }
 
-        if (urlData.status < 200 || urlData.status >= 400) {
-          console.warn(`Warning: ${pageUrl} returned status ${urlData.status}`);
+    const pagePromise = Promise.resolve().then(async () => {
+      console.log(`Crawling ${pageUrl}`);
+      const res = await fetch(new URL(pageUrl, HOST));
 
-          return {
-            url: pageUrl,
-            status: res.status,
-            targets: new Map(),
-            links: [],
-          };
-        }
+      const urlData = { url: pageUrl, status: res.status };
 
-        const html = await res.text();
+      if (urlData.status < 200 || urlData.status >= 400) {
+        console.warn(`Warning: ${pageUrl} returned status ${urlData.status}`);
 
-        const dom = parse(html);
-
-        for (const selector of IGNORED_CONTENT) {
-          dom.querySelectorAll(selector).forEach((el) => {
-            el.remove();
-          });
-        }
-
-        const pageLinks: Link[] = dom.querySelectorAll('a[href]').map((a) => ({
-          src: pageUrl,
-          text: getAccessibleName(a, dom),
-          href: a.attributes.href,
-        }));
-
-        const pageTargets = new Map(
-          dom
-            .querySelectorAll('*[id]')
-            .filter((el) => !IGNORED_IDS.has(el.attributes.id))
-            .map((el) => [`#${el.attributes.id}`, {}]),
-        );
-
-        const pageData: PageData = {
+        return {
           url: pageUrl,
           status: res.status,
-          targets: pageTargets,
+          targets: new Map(),
+          links: [],
         };
+      }
 
-        for (const pageLink of pageLinks) {
-          queue.add(pageLink);
-        }
+      const html = await res.text();
 
-        return pageData;
-      });
+      const dom = parse(html);
+
+      for (const selector of IGNORED_CONTENT) {
+        dom.querySelectorAll(selector).forEach((el) => {
+          el.remove();
+        });
+      }
+
+      const pageLinks: Link[] = dom.querySelectorAll('a[href]').map((a) => ({
+        src: pageUrl,
+        text: getAccessibleName(a, dom),
+        href: a.attributes.href,
+      }));
+
+      const pageTargets = new Map(
+        dom
+          .querySelectorAll('*[id]')
+          .filter((el) => !IGNORED_TARGETS.has(el.attributes.id))
+          .map((el) => [`#${el.attributes.id}`, {}]),
+      );
+
+      const pageData: PageData = {
+        url: pageUrl,
+        status: res.status,
+        targets: pageTargets,
+      };
+
+      for (const pageLink of pageLinks) {
+        queue.add(pageLink);
+      }
+
+      return pageData;
+    });
 
     crawledPages.set(pageUrl, pagePromise);
 
@@ -264,7 +284,9 @@ async function main() {
     await Promise.all(Array.from(crawledPages.entries(), async ([a, b]) => [a, await b] as const)),
   );
 
-  await writePagesToFile(results);
+  if (OUT_PATH) {
+    await writePagesToFile(results, OUT_PATH);
+  }
 
   console.log('Crawl results:');
 
@@ -282,7 +304,20 @@ async function main() {
     checkedLinks += 1;
 
     const parsed = new URL(crawledLink.href, 'http://localhost');
+
+    const knownPage = KNOWN_TARGETS.get(pageUrl);
+    if (knownPage) {
+      if (parsed.hash && !knownPage.has(parsed.hash)) {
+        console.error(
+          `Broken link: ${crawledLink.src}["${crawledLink.text}"] -> ${crawledLink.href} (target not found)`,
+        );
+        brokenLinkTargets += 1;
+      }
+      continue;
+    }
+
     const page = results.get(pageUrl);
+
     if (!page) {
       console.error(
         `Broken link: ${crawledLink.src}["${crawledLink.text}"] -> ${crawledLink.href} (not crawled)`,
