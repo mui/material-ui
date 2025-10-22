@@ -12,15 +12,20 @@ type LinkStructure = Map<string, Set<string>>;
 
 type SerializedLinkStructure = { targets: Record<string, string[]> };
 
+async function fetchUrl(url: string | URL): Promise<Response> {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${url}: [${res.status}] ${res.statusText}`);
+  }
+  return res;
+}
+
 async function pollUrl(url: string, timeout: number): Promise<void> {
   const start = Date.now();
   while (true) {
     try {
       // eslint-disable-next-line no-await-in-loop
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error(`Failed to fetch ${url}: [${res.status}] ${res.statusText}`);
-      }
+      await fetchUrl(url);
       return;
     } catch (error: any) {
       if (Date.now() - start > timeout) {
@@ -30,6 +35,14 @@ async function pollUrl(url: string, timeout: number): Promise<void> {
       await timers.setTimeout(1000);
     }
   }
+}
+
+function deserializeLinkStructure(data: SerializedLinkStructure): LinkStructure {
+  const linkStructure: LinkStructure = new Map();
+  for (const url of Object.keys(data.targets)) {
+    linkStructure.set(url, new Set(data.targets[url]));
+  }
+  return linkStructure;
 }
 
 async function writePagesToFile(pages: Map<string, PageData>, outPath: string) {
@@ -156,34 +169,82 @@ export interface CrawlOptions {
   ignoredContent?: string[];
   ignoredTargets?: Set<string>;
   knownTargets?: Map<string, Set<string>>;
+  knownTargetsDownloadUrl?: string[];
   concurrency?: number;
 }
 
-function resolveOptions(options: CrawlOptions): Required<CrawlOptions> {
+function resolveOptions(rawOptions: CrawlOptions): Required<CrawlOptions> {
   return {
-    startCommand: options.startCommand ?? null,
-    host: options.host,
-    outPath: options.outPath ?? null,
-    ignoredPaths: options.ignoredPaths ?? [],
-    ignoredContent: options.ignoredContent ?? [],
-    ignoredTargets: options.ignoredTargets ?? new Set(),
-    knownTargets: options.knownTargets ?? new Map(),
-    concurrency: options.concurrency ?? DEFAULT_CONCURRENCY,
+    startCommand: rawOptions.startCommand ?? null,
+    host: rawOptions.host,
+    outPath: rawOptions.outPath ?? null,
+    ignoredPaths: rawOptions.ignoredPaths ?? [],
+    ignoredContent: rawOptions.ignoredContent ?? [],
+    ignoredTargets: rawOptions.ignoredTargets ?? new Set(),
+    knownTargets: rawOptions.knownTargets ?? new Map(),
+    knownTargetsDownloadUrl: rawOptions.knownTargetsDownloadUrl ?? [],
+    concurrency: rawOptions.concurrency ?? DEFAULT_CONCURRENCY,
   };
+}
+
+async function downloadKnownTargets(urls: string[]): Promise<LinkStructure> {
+  if (urls.length === 0) {
+    return new Map();
+  }
+
+  console.log(chalk.blue(`Downloading known targets from ${urls.length} URL(s)...`));
+
+  const results = await Promise.all(
+    urls.map(async (url) => {
+      console.log(chalk.cyan(`  Fetching ${url}`));
+      const res = await fetchUrl(url);
+      const data: SerializedLinkStructure = await res.json();
+      return deserializeLinkStructure(data);
+    }),
+  );
+
+  // Merge all downloaded link structures
+  const merged = new Map<string, Set<string>>();
+  for (const linkStructure of results) {
+    for (const [url, targets] of linkStructure.entries()) {
+      if (!merged.has(url)) {
+        merged.set(url, new Set());
+      }
+      for (const target of targets) {
+        merged.get(url)!.add(target);
+      }
+    }
+  }
+
+  console.log(chalk.green(`Downloaded known targets for ${merged.size} page(s)`));
+  return merged;
+}
+
+async function resolveKnownTargets(options: Required<CrawlOptions>): Promise<LinkStructure> {
+  const downloaded = await downloadKnownTargets(options.knownTargetsDownloadUrl);
+
+  // Merge downloaded with user-provided, user-provided takes priority
+  const merged = new Map<string, Set<string>>(downloaded);
+  for (const [url, targets] of options.knownTargets.entries()) {
+    merged.set(url, targets);
+  }
+
+  return merged;
 }
 
 export interface CrawlResult {
   brokenLinks: number;
 }
 
-export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
-  const resolved = resolveOptions(options);
+export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
+  const options = resolveOptions(rawOptions);
+  const knownTargets = await resolveKnownTargets(options);
   const startTime = Date.now();
 
   let appProcess;
-  if (resolved.startCommand) {
-    console.log(chalk.blue(`Starting server with "${resolved.startCommand}"...`));
-    appProcess = execaCommand(resolved.startCommand, {
+  if (options.startCommand) {
+    console.log(chalk.blue(`Starting server with "${options.startCommand}"...`));
+    appProcess = execaCommand(options.startCommand, {
       stdout: 'pipe',
       stderr: 'pipe',
       env: {
@@ -208,10 +269,10 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
       lines.forEach((line: string) => console.error(chalk.gray('server: ') + line));
     });
 
-    await pollUrl(resolved.host, 10000);
+    await pollUrl(options.host, 10000);
   }
 
-  console.log(`Server started on port ${resolved.host}`);
+  console.log(`Server started on port ${options.host}`);
 
   const crawledPages = new Map<string, Promise<PageData>>();
   const crawledLinks = new Set<Link>();
@@ -219,12 +280,12 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
   const queue = new Queue<Link>(async (link) => {
     crawledLinks.add(link);
 
-    const pageUrl = getPageUrl(link.href, resolved.ignoredPaths);
+    const pageUrl = getPageUrl(link.href, options.ignoredPaths);
     if (pageUrl === null) {
       return;
     }
 
-    if (resolved.knownTargets.has(pageUrl)) {
+    if (knownTargets.has(pageUrl)) {
       return;
     }
 
@@ -234,7 +295,7 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
 
     const pagePromise = Promise.resolve().then(async () => {
       console.log(`Crawling ${pageUrl}`);
-      const res = await fetch(new URL(pageUrl, resolved.host));
+      const res = await fetch(new URL(pageUrl, options.host));
 
       const urlData = { url: pageUrl, status: res.status };
 
@@ -253,7 +314,7 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
 
       const dom = parse(html);
 
-      for (const selector of resolved.ignoredContent) {
+      for (const selector of options.ignoredContent) {
         dom.querySelectorAll(selector).forEach((el) => {
           el.remove();
         });
@@ -268,7 +329,7 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
       const pageTargets = new Map(
         dom
           .querySelectorAll('*[id]')
-          .filter((el) => !resolved.ignoredTargets.has(el.attributes.id))
+          .filter((el) => !options.ignoredTargets.has(el.attributes.id))
           .map((el) => [`#${el.attributes.id}`, {}]),
       );
 
@@ -288,7 +349,7 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
     crawledPages.set(pageUrl, pagePromise);
 
     await pagePromise;
-  }, resolved.concurrency);
+  }, options.concurrency);
 
   queue.add({ src: null, text: null, href: '/' });
 
@@ -302,8 +363,8 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
     await Promise.all(Array.from(crawledPages.entries(), async ([a, b]) => [a, await b] as const)),
   );
 
-  if (resolved.outPath) {
-    await writePagesToFile(results, resolved.outPath);
+  if (options.outPath) {
+    await writePagesToFile(results, options.outPath);
   }
 
   console.log(chalk.bold('\nCrawl results:'));
@@ -314,7 +375,7 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
   let brokenLinkTargets = 0;
   for (const crawledLink of crawledLinks) {
     totalLinks += 1;
-    const pageUrl = getPageUrl(crawledLink.href, resolved.ignoredPaths);
+    const pageUrl = getPageUrl(crawledLink.href, options.ignoredPaths);
     if (pageUrl === null) {
       // External link
       continue;
@@ -323,7 +384,7 @@ export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
 
     const parsed = new URL(crawledLink.href, 'http://localhost');
 
-    const knownPage = resolved.knownTargets.get(pageUrl);
+    const knownPage = knownTargets.get(pageUrl);
     if (knownPage) {
       if (parsed.hash && !knownPage.has(parsed.hash)) {
         console.error(
