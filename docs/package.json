@@ -14,7 +14,8 @@
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `pnpm docs:typescript:formatted'` instead && exit 1",
     "typescript:transpile:dev": "echo 'Use `pnpm docs:typescript'` instead && exit 1",
-    "link-check": "tsx ./scripts/reportBrokenLinks.ts"
+    "link-check": "tsx ./scripts/reportBrokenLinks.ts",
+    "crawl": "tsx ./scripts/postBuild.mts"
   },
   "dependencies": {
     "@babel/core": "^7.28.4",
@@ -132,6 +133,7 @@
     "cross-fetch": "^4.1.0",
     "gm": "^1.25.1",
     "marked": "^16.2.0",
+    "node-html-parser": "^7.0.1",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.14",
     "yargs": "^18.0.0"
