@@ -45,7 +45,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.22",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
+    "@types/react-dom": "^19.2.2",
     "@types/react-is": "^19.2.0",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
