@@ -1,0 +1,5 @@
+# TypeScript Performance Tests
+
+This suite uses workspace linking to resolve build folders and tests TypeScript compiler performance.
+
+You can only run `pnpm test` after the project has been built with `pnpm release:build`.

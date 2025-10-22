@@ -1,0 +1,11 @@
+{
+  "name": "@mui-internal/test-ts-performance",
+  "private": true,
+  "scripts": {
+    "test": "mocha instantiations.test.js"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@mui/material": "workspace:^"
+  }
+}
