@@ -3,6 +3,7 @@ import { execaCommand } from 'execa';
 import timers from 'timers/promises';
 import { parse, HTMLElement } from 'node-html-parser';
 import fs from 'fs/promises';
+import chalk from 'chalk';
 
 const DEFAULT_CONCURRENCY = 4;
 
@@ -171,16 +172,42 @@ function resolveOptions(options: CrawlOptions): Required<CrawlOptions> {
   };
 }
 
-export async function crawl(options: CrawlOptions): Promise<void> {
+export interface CrawlResult {
+  brokenLinks: number;
+}
+
+export async function crawl(options: CrawlOptions): Promise<CrawlResult> {
   const resolved = resolveOptions(options);
   const startTime = Date.now();
 
   let appProcess;
   if (resolved.startCommand) {
-    console.log(`Starting server with "${resolved.startCommand}"...`);
+    console.log(chalk.blue(`Starting server with "${resolved.startCommand}"...`));
     appProcess = execaCommand(resolved.startCommand, {
-      stdio: 'inherit',
+      stdout: 'pipe',
+      stderr: 'pipe',
+      env: {
+        FORCE_COLOR: '1',
+        ...process.env,
+      },
     });
+
+    // Prefix server logs
+    appProcess.stdout?.on('data', (data) => {
+      const lines = data
+        .toString()
+        .split('\n')
+        .filter((line: string) => line.trim());
+      lines.forEach((line: string) => console.log(chalk.gray('server: ') + line));
+    });
+    appProcess.stderr?.on('data', (data) => {
+      const lines = data
+        .toString()
+        .split('\n')
+        .filter((line: string) => line.trim());
+      lines.forEach((line: string) => console.error(chalk.gray('server: ') + line));
+    });
+
     await pollUrl(resolved.host, 10000);
   }
 
@@ -212,7 +239,7 @@ export async function crawl(options: CrawlOptions): Promise<void> {
       const urlData = { url: pageUrl, status: res.status };
 
       if (urlData.status < 200 || urlData.status >= 400) {
-        console.warn(`Warning: ${pageUrl} returned status ${urlData.status}`);
+        console.warn(chalk.yellow(`Warning: ${pageUrl} returned status ${urlData.status}`));
 
         return {
           url: pageUrl,
@@ -279,7 +306,7 @@ export async function crawl(options: CrawlOptions): Promise<void> {
     await writePagesToFile(results, resolved.outPath);
   }
 
-  console.log('Crawl results:');
+  console.log(chalk.bold('\nCrawl results:'));
 
   let totalLinks = 0;
   let checkedLinks = 0;
@@ -335,13 +362,12 @@ export async function crawl(options: CrawlOptions): Promise<void> {
 
   const endTime = Date.now();
   const duration = ((endTime - startTime) / 1000).toFixed(2);
-  console.log(`Crawl completed in ${duration} seconds`);
+  console.log(chalk.blue(`Crawl completed in ${duration} seconds`));
   console.log(`Total links found: ${totalLinks}`);
   console.log(`Total links checked: ${checkedLinks}`);
   console.log(`Total broken links: ${brokenLinks}`);
   console.log(`Total broken link targets: ${brokenLinkTargets}`);
 
-  if (brokenLinks > 0 || brokenLinkTargets > 0) {
-    process.exit(1);
-  }
+  const totalBrokenLinks = brokenLinks + brokenLinkTargets;
+  return { brokenLinks: totalBrokenLinks };
 }

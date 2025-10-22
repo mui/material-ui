@@ -2,7 +2,7 @@ import * as path from 'path';
 import { crawl } from './brokenLinksCrawler.mjs';
 
 async function main() {
-  await crawl({
+  const { brokenLinks } = await crawl({
     startCommand: 'pnpm start --no-request-logging -p 3001',
     host: 'http://localhost:3001/',
     outPath: path.resolve(import.meta.dirname, '../public/material-ui/link-structure.json'),
@@ -25,6 +25,8 @@ async function main() {
     ignoredTargets: new Set(['__next', '__NEXT_DATA__']),
     concurrency: 4,
   });
+
+  process.exit(brokenLinks);
 }
 
 main();
