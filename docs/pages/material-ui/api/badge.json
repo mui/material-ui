@@ -156,12 +156,6 @@
       "isGlobal": false
     },
     {
-      "key": "badge",
-      "className": "MuiBadge-badge",
-      "description": "Styles applied to the badge `span` element.",
-      "isGlobal": false
-    },
-    {
       "key": "colorError",
       "className": "MuiBadge-colorError",
       "description": "Styles applied to the badge `span` element if `color=\"error\"`.",
@@ -219,12 +213,6 @@
       "key": "overlapRectangular",
       "className": "MuiBadge-overlapRectangular",
       "description": "Styles applied to the badge `span` element if `overlap=\"rectangular\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiBadge-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

@@ -100,12 +100,6 @@
       "isGlobal": true
     },
     {
-      "key": "root",
-      "className": "MuiChipDelete-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "variantOutlined",
       "className": "MuiChipDelete-variantOutlined",
       "description": "Class name applied to the root element if `variant=\"outlined\"`.",

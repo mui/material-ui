@@ -150,12 +150,6 @@
       "isGlobal": true
     },
     {
-      "key": "endDecorator",
-      "className": "MuiLink-endDecorator",
-      "description": "Class name applied to the endDecorator element",
-      "isGlobal": false
-    },
-    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the root element if the link is keyboard focused.",
@@ -183,18 +177,6 @@
       "key": "h4",
       "className": "MuiLink-h4",
       "description": "Class name applied to the root element if `level=\"h4\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiLink-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "startDecorator",
-      "className": "MuiLink-startDecorator",
-      "description": "Class name applied to the startDecorator element",
       "isGlobal": false
     },
     {

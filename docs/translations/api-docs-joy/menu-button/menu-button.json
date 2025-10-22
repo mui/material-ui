@@ -71,11 +71,6 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "endDecorator": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the endDecorator element",
-      "conditions": "supplied"
-    },
     "fullWidth": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -86,11 +81,6 @@
       "nodeName": "the root element",
       "conditions": "<code>loading={true}</code>"
     },
-    "loadingIndicatorCenter": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the loadingIndicatorCenter element"
-    },
-    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -105,11 +95,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"sm\"</code>"
-    },
-    "startDecorator": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the startDecorator element",
-      "conditions": "supplied"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

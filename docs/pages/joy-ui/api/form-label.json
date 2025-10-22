@@ -42,20 +42,7 @@
       "class": "MuiFormLabel-asterisk"
     }
   ],
-  "classes": [
-    {
-      "key": "asterisk",
-      "className": "MuiFormLabel-asterisk",
-      "description": "Class name applied to the asterisk element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiFormLabel-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyFormLabel",

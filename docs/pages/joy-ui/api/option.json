@@ -88,12 +88,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiOption-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "selected",
       "className": "Mui-selected",
       "description": "State class applied to the root element if the option is selected.",

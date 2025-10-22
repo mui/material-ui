@@ -51,11 +51,6 @@
     "value": { "description": "The rating value." }
   },
   "classDescriptions": {
-    "decimal": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the icon wrapping elements",
-      "conditions": "decimals are necessary"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -65,10 +60,6 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
-    },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon wrapping elements"
     },
     "iconActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
@@ -95,7 +86,6 @@
       "nodeName": "the icon wrapping elements",
       "conditions": "hover"
     },
-    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
     "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the label of the &quot;no value&quot; input",
@@ -106,7 +96,6 @@
       "nodeName": "the root element",
       "conditions": "<code>readOnly={true}</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "sizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

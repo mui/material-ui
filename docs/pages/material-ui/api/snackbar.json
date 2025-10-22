@@ -141,12 +141,6 @@
       "className": "MuiSnackbar-anchorOriginTopRight",
       "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.",
       "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiSnackbar-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     }
   ],
   "spread": true,

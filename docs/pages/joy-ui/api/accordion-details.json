@@ -59,22 +59,10 @@
   ],
   "classes": [
     {
-      "key": "content",
-      "className": "MuiAccordionDetails-content",
-      "description": "Class name applied to the content element.",
-      "isGlobal": false
-    },
-    {
       "key": "expanded",
       "className": "Mui-expanded",
       "description": "Class name applied to the root element when expanded.",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "MuiAccordionDetails-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
     }
   ],
   "spread": true,

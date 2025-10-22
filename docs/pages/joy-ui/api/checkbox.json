@@ -108,18 +108,6 @@
   ],
   "classes": [
     {
-      "key": "action",
-      "className": "MuiCheckbox-action",
-      "description": "Class name applied to the action element.",
-      "isGlobal": false
-    },
-    {
-      "key": "checkbox",
-      "className": "MuiCheckbox-checkbox",
-      "description": "Class name applied to the checkbox element.",
-      "isGlobal": false
-    },
-    {
       "key": "checked",
       "className": "Mui-checked",
       "description": "State class applied to the input component's `checked` class.",
@@ -177,24 +165,6 @@
       "key": "indeterminate",
       "className": "MuiCheckbox-indeterminate",
       "description": "State class applied to the root element if `indeterminate={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "input",
-      "className": "MuiCheckbox-input",
-      "description": "Class name applied to the input element.",
-      "isGlobal": false
-    },
-    {
-      "key": "label",
-      "className": "MuiCheckbox-label",
-      "description": "Class name applied to the label element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiCheckbox-root",
-      "description": "Class name applied to the root element.",
       "isGlobal": false
     },
     {

@@ -86,12 +86,6 @@
   ],
   "classes": [
     {
-      "key": "backdrop",
-      "className": "MuiDrawer-backdrop",
-      "description": "Class name applied to the backdrop element.",
-      "isGlobal": false
-    },
-    {
       "key": "colorContext",
       "className": "MuiDrawer-colorContext",
       "description": "Class name applied to the root element when color inversion is triggered.",
@@ -128,21 +122,9 @@
       "isGlobal": false
     },
     {
-      "key": "content",
-      "className": "MuiDrawer-content",
-      "description": "Class name applied to the content element.",
-      "isGlobal": false
-    },
-    {
       "key": "hidden",
       "className": "MuiDrawer-hidden",
       "description": "Class name applied to the root element when open is false.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiDrawer-root",
-      "description": "Class name applied to the root element.",
       "isGlobal": false
     },
     {

@@ -32,14 +32,7 @@
       "class": "MuiListItemDecorator-root"
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiListItemDecorator-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItemDecorator",

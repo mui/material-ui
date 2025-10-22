@@ -93,26 +93,7 @@
       "class": null
     }
   ],
-  "classes": [
-    {
-      "key": "list",
-      "className": "MuiMenu-list",
-      "description": "Styles applied to the List component via `MenuList`.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiMenu-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiMenu-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiMenu",

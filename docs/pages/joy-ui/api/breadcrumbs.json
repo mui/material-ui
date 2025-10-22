@@ -67,30 +67,6 @@
   ],
   "classes": [
     {
-      "key": "li",
-      "className": "MuiBreadcrumbs-li",
-      "description": "Class name applied to the li element.",
-      "isGlobal": false
-    },
-    {
-      "key": "ol",
-      "className": "MuiBreadcrumbs-ol",
-      "description": "Class name applied to the ol element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiBreadcrumbs-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "separator",
-      "className": "MuiBreadcrumbs-separator",
-      "description": "Class name applied to the separator element.",
-      "isGlobal": false
-    },
-    {
       "key": "sizeLg",
       "className": "MuiBreadcrumbs-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

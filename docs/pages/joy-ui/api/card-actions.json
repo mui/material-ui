@@ -40,14 +40,7 @@
       "class": "MuiCardActions-root"
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiCardActions-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyCardActions",

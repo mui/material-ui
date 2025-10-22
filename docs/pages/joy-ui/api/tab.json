@@ -122,12 +122,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiTab-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "selected",
       "className": "Mui-selected",
       "description": "Class name applied to the root element when it is selected.",

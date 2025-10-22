@@ -79,21 +79,9 @@
   ],
   "classes": [
     {
-      "key": "dot",
-      "className": "MuiMobileStepper-dot",
-      "description": "Styles applied to each dot if `variant=\"dots\"`.",
-      "isGlobal": false
-    },
-    {
       "key": "dotActive",
       "className": "MuiMobileStepper-dotActive",
       "description": "Styles applied to a dot if `variant=\"dots\"` and this is the active step.",
-      "isGlobal": false
-    },
-    {
-      "key": "dots",
-      "className": "MuiMobileStepper-dots",
-      "description": "Styles applied to the dots container if `variant=\"dots\"`.",
       "isGlobal": false
     },
     {
@@ -112,18 +100,6 @@
       "key": "positionTop",
       "className": "MuiMobileStepper-positionTop",
       "description": "Styles applied to the root element if `position=\"top\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "progress",
-      "className": "MuiMobileStepper-progress",
-      "description": "Styles applied to the Linear Progress component if `variant=\"progress\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiMobileStepper-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

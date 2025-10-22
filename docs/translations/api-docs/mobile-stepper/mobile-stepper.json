@@ -24,20 +24,10 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "dot": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "each dot",
-      "conditions": "<code>variant=\"dots\"</code>"
-    },
     "dotActive": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "a dot",
       "conditions": "<code>variant=\"dots\"</code> and this is the active step"
-    },
-    "dots": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the dots container",
-      "conditions": "<code>variant=\"dots\"</code>"
     },
     "positionBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -53,13 +43,7 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>position=\"top\"</code>"
-    },
-    "progress": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Linear Progress component",
-      "conditions": "<code>variant=\"progress\"</code>"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
   },
   "slotDescriptions": {
     "dot": "The component that renders the dot slot.",

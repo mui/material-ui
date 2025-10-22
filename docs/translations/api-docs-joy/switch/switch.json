@@ -38,10 +38,6 @@
     }
   },
   "classDescriptions": {
-    "action": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the action element"
-    },
     "checked": {
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the root <code>checked</code> class"
@@ -75,21 +71,12 @@
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the root disabled class"
     },
-    "endDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the endDecorator element"
-    },
     "focusVisible": {
       "description": "State class applied to the root element if the switch has visible focus"
-    },
-    "input": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the input element"
     },
     "readOnly": {
       "description": "Class name applied to the root element if the switch is read-only"
     },
-    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -104,18 +91,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"sm\"</code>"
-    },
-    "startDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the startDecorator element"
-    },
-    "thumb": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
-    "track": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the track element"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

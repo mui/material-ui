@@ -53,16 +53,6 @@
       "nodeName": "the root element",
       "conditions": "<code>disableGutters={true}</code>"
     },
-    "heading": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the heading element"
-    },
-    "region": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the region element",
-      "conditions": "the container of the children"
-    },
-    "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",

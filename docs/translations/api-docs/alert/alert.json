@@ -40,11 +40,6 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "action": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the action wrapper element",
-      "conditions": "<code>action</code> is provided"
-    },
     "colorError": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -92,14 +87,6 @@
       "description": "Styles applied to the root element if <code>variant=&quot;filled&quot;</code> and <code>color=&quot;warning&quot;</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-MuiAlert-filled\">.MuiAlert-filled</a> and <a href=\"/material-ui/api/alert/#alert-classes-MuiAlert-colorWarning\">.MuiAlert-colorWarning</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon wrapper element"
-    },
-    "message": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the message wrapper element"
-    },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -129,7 +116,6 @@
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/alert/#alert-classes-MuiAlert-outlined\">.MuiAlert-outlined</a> and <a href=\"/material-ui/api/alert/#alert-classes-MuiAlert-colorWarning\">.MuiAlert-colorWarning</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
-    "root": { "description": "Styles applied to the root element." },
     "standard": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

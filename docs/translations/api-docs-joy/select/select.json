@@ -63,10 +63,6 @@
     }
   },
   "classDescriptions": {
-    "button": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the button slot"
-    },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
@@ -102,10 +98,6 @@
       "nodeName": "the root slot",
       "conditions": "<code>disabled={true}</code>"
     },
-    "endDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the endDecorator slot"
-    },
     "expanded": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
@@ -116,14 +108,6 @@
       "nodeName": "the SelectBase root slot",
       "conditions": "the button is keyboard focused"
     },
-    "indicator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the indicator slot"
-    },
-    "listbox": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the listbox slot"
-    },
     "multiple": {
       "description": "Class name applied to the root slot if <code>multiple=true</code>"
     },
@@ -131,7 +115,6 @@
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the popper slot"
     },
-    "root": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the root slot" },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
@@ -146,10 +129,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>size=\"sm\"</code>"
-    },
-    "startDecorator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the startDecorator slot"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

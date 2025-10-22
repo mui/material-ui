@@ -139,12 +139,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiDialogTitle-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "title-lg",
       "className": "MuiDialogTitle-title-lg",
       "description": "Class name applied to the root element if `level=\"title-lg\"`.",

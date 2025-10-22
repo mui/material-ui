@@ -100,12 +100,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiTabList-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "sizeLg",
       "className": "MuiTabList-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

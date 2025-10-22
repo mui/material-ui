@@ -131,18 +131,6 @@
   ],
   "classes": [
     {
-      "key": "arrow",
-      "className": "MuiTooltip-arrow",
-      "description": "Styles applied to the arrow element.",
-      "isGlobal": false
-    },
-    {
-      "key": "popper",
-      "className": "MuiTooltip-popper",
-      "description": "Styles applied to the Popper component.",
-      "isGlobal": false
-    },
-    {
       "key": "popperArrow",
       "className": "MuiTooltip-popperArrow",
       "description": "Styles applied to the Popper component if `arrow={true}`.",
@@ -158,12 +146,6 @@
       "key": "popperInteractive",
       "className": "MuiTooltip-popperInteractive",
       "description": "Styles applied to the Popper component unless `disableInteractive={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "tooltip",
-      "className": "MuiTooltip-tooltip",
-      "description": "Styles applied to the tooltip (label wrapper) element.",
       "isGlobal": false
     },
     {

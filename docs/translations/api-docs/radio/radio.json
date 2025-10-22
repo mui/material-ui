@@ -59,7 +59,6 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

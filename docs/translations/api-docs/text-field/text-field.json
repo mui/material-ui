@@ -86,7 +86,7 @@
     },
     "variant": { "description": "The variant to use." }
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } },
+  "classDescriptions": {},
   "slotDescriptions": {
     "formHelperText": "The component that renders the helper text.",
     "htmlInput": "The html input element.",

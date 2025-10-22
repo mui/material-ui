@@ -77,10 +77,6 @@
     }
   },
   "classDescriptions": {
-    "arrow": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the arrow element"
-    },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
@@ -131,7 +127,6 @@
       "nodeName": "the root element",
       "conditions": "<code>placement</code> contains &quot;top&quot;"
     },
-    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

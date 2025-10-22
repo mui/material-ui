@@ -21,14 +21,7 @@
       "class": "MuiModalOverflow-root"
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiModalOverflow-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyModalOverflow",

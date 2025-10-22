@@ -110,12 +110,6 @@
   ],
   "classes": [
     {
-      "key": "action",
-      "className": "MuiSwitch-action",
-      "description": "Class name applied to the action element.",
-      "isGlobal": false
-    },
-    {
       "key": "checked",
       "className": "Mui-checked",
       "description": "State class applied to the root `checked` class.",
@@ -158,34 +152,16 @@
       "isGlobal": true
     },
     {
-      "key": "endDecorator",
-      "className": "MuiSwitch-endDecorator",
-      "description": "Class name applied to the endDecorator element.",
-      "isGlobal": false
-    },
-    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the root element if the switch has visible focus",
       "isGlobal": true
     },
     {
-      "key": "input",
-      "className": "MuiSwitch-input",
-      "description": "Class name applied to the input element.",
-      "isGlobal": false
-    },
-    {
       "key": "readOnly",
       "className": "Mui-readOnly",
       "description": "Class name applied to the root element if the switch is read-only",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "MuiSwitch-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "sizeLg",
@@ -203,24 +179,6 @@
       "key": "sizeSm",
       "className": "MuiSwitch-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "startDecorator",
-      "className": "MuiSwitch-startDecorator",
-      "description": "Class name applied to the startDecorator element.",
-      "isGlobal": false
-    },
-    {
-      "key": "thumb",
-      "className": "MuiSwitch-thumb",
-      "description": "Class name applied to the input element.",
-      "isGlobal": false
-    },
-    {
-      "key": "track",
-      "className": "MuiSwitch-track",
-      "description": "Class name applied to the track element.",
       "isGlobal": false
     },
     {

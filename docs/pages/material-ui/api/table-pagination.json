@@ -135,39 +135,9 @@
   ],
   "classes": [
     {
-      "key": "actions",
-      "className": "MuiTablePagination-actions",
-      "description": "Styles applied to the internal `TablePaginationActions` component.",
-      "isGlobal": false
-    },
-    {
-      "key": "displayedRows",
-      "className": "MuiTablePagination-displayedRows",
-      "description": "Styles applied to the displayed rows Typography element.",
-      "isGlobal": false
-    },
-    {
       "key": "input",
       "className": "MuiTablePagination-input",
       "description": "Styles applied to the Select component `root` element.",
-      "isGlobal": false
-    },
-    {
-      "key": "menuItem",
-      "className": "MuiTablePagination-menuItem",
-      "description": "Styles applied to the MenuItem component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiTablePagination-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "select",
-      "className": "MuiTablePagination-select",
-      "description": "Styles applied to the Select component `select` class.",
       "isGlobal": false
     },
     {
@@ -177,27 +147,9 @@
       "isGlobal": false
     },
     {
-      "key": "selectLabel",
-      "className": "MuiTablePagination-selectLabel",
-      "description": "Styles applied to the select label Typography element.",
-      "isGlobal": false
-    },
-    {
       "key": "selectRoot",
       "className": "MuiTablePagination-selectRoot",
       "description": "Styles applied to the Select component `root` element.",
-      "isGlobal": false
-    },
-    {
-      "key": "spacer",
-      "className": "MuiTablePagination-spacer",
-      "description": "Styles applied to the spacer element.",
-      "isGlobal": false
-    },
-    {
-      "key": "toolbar",
-      "className": "MuiTablePagination-toolbar",
-      "description": "Styles applied to the Toolbar component.",
       "isGlobal": false
     }
   ],

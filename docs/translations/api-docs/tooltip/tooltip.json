@@ -72,11 +72,6 @@
     }
   },
   "classDescriptions": {
-    "arrow": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the arrow element" },
-    "popper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Popper component"
-    },
     "popperArrow": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Popper component",
@@ -91,10 +86,6 @@
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the Popper component",
       "conditions": "<code>disableInteractive={true}</code>"
-    },
-    "tooltip": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the tooltip (label wrapper) element"
     },
     "tooltipArrow": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

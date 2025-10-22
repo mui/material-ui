@@ -31,7 +31,10 @@ import {
   getClassApiDefinitions,
   getClassesToC,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
+import {
+  getSlotsApiDefinitions,
+  getSlotsToC,
+} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
 export interface TableOfContentsParams {
@@ -195,12 +198,37 @@ export default function ApiPage(props: ApiPageProps) {
     };
   }
 
+  /* 
+export type GetSlotsToCParams = {
+  slots: Slot[];
+  t: Translate;
+  hash?: string;
+};
+
+export const getSlotsToC = ({ slots, t, hash }: GetSlotsToCParams): TableOfContentsParams[] =>
+  !slots || slots.length === 0
+    ? []
+    : [
+        {
+          text: t('api-docs.slots'),
+          hash: hash ?? 'slots',
+          children: [
+            ...slots.map(({ key, hash: classeHash }) => ({
+              text: key,
+              hash: classeHash,
+              children: [],
+            })),
+          ],
+        },
+      ];
+ */
+
   const toc: TableOfContentsParams[] = [
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
     getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
-    ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
+    ...getSlotsToC({ slots: slotsDef, t }),
     ...getClassesToC({ classes: classesDef, t }),
     pageContent.filename ? createTocEntry('source-code') : null,
   ].filter((item): item is TableOfContentsParams => Boolean(item));

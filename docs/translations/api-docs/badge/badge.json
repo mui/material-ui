@@ -89,10 +89,6 @@
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"</code>"
     },
-    "badge": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the badge <code>span</code> element"
-    },
     "colorError": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
@@ -143,7 +139,6 @@
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>overlap=\"rectangular\"</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "standard": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",

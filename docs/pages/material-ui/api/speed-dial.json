@@ -130,12 +130,6 @@
       "className": "MuiSpeedDial-fab",
       "description": "Styles applied to the Fab component.",
       "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiSpeedDial-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     }
   ],
   "spread": true,

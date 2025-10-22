@@ -330,12 +330,6 @@
       "isGlobal": false
     },
     {
-      "key": "listbox",
-      "className": "MuiAutocomplete-listbox",
-      "description": "Styles applied to the listbox component.",
-      "isGlobal": false
-    },
-    {
       "key": "loading",
       "className": "MuiAutocomplete-loading",
       "description": "Styles applied to the loading wrapper.",
@@ -351,18 +345,6 @@
       "key": "option",
       "className": "MuiAutocomplete-option",
       "description": "Styles applied to the option elements.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiAutocomplete-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
-    },
-    {
-      "key": "popper",
-      "className": "MuiAutocomplete-popper",
-      "description": "Styles applied to the popper element.",
       "isGlobal": false
     },
     {

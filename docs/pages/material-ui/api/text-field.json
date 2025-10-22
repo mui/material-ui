@@ -143,14 +143,7 @@
       "class": null
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiTextField-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTextField",

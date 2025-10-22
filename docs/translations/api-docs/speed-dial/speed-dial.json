@@ -79,8 +79,7 @@
     "directionUp": {
       "description": "Styles applied to the root element if direction=&quot;up&quot;"
     },
-    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
-    "root": { "description": "Styles applied to the root element." }
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" }
   },
   "slotDescriptions": {
     "root": "The component that renders the root slot.",

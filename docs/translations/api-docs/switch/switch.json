@@ -74,11 +74,6 @@
       "nodeName": "the root element",
       "conditions": "<code>edge=\"start\"</code>"
     },
-    "input": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal SwitchBase component&#39;s input element"
-    },
-    "root": { "description": "Styles applied to the root element." },
     "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -88,15 +83,7 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
-    },
-    "switchBase": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal <code>SwitchBase</code> component&#39;s <code>root</code> class"
-    },
-    "thumb": {
-      "description": "Styles used to create the thumb passed to the internal <code>SwitchBase</code> component <code>icon</code> prop."
-    },
-    "track": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the track element" }
+    }
   },
   "slotDescriptions": {
     "input": "The component that renders the switchBase&#39;s input slot.",

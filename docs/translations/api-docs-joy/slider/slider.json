@@ -123,10 +123,6 @@
       "nodeName": "the thumb element",
       "conditions": "keyboard focused"
     },
-    "mark": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the mark element"
-    },
     "markActive": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the mark element",
@@ -137,27 +133,10 @@
       "nodeName": "the root element",
       "conditions": "<code>marks</code> is provided with at least one label"
     },
-    "markLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the mark label element"
-    },
     "markLabelActive": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the mark label element",
       "conditions": "active (depending on the value)"
-    },
-    "rail": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the rail element"
-    },
-    "root": { "description": "Class name applied to the root element." },
-    "thumb": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb element"
-    },
-    "track": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the track element"
     },
     "trackFalse": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

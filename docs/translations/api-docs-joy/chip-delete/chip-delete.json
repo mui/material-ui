@@ -64,7 +64,6 @@
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
-    "root": { "description": "Class name applied to the root element." },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

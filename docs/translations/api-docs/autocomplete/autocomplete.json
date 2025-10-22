@@ -301,10 +301,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Input element"
     },
-    "listbox": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the listbox component"
-    },
     "loading": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the loading wrapper"
@@ -316,14 +312,6 @@
     "option": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the option elements"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
-    "popper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popper element"
     },
     "popperDisablePortal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

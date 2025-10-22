@@ -33,14 +33,7 @@
       "class": "MuiScopedCssBaseline-root"
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiScopedCssBaseline-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyScopedCssBaseline",

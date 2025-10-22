@@ -58,7 +58,6 @@
       "nodeName": "the root element",
       "conditions": "the option is highlighted"
     },
-    "root": { "description": "Class name applied to the root element." },
     "selected": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

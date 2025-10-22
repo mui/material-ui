@@ -100,12 +100,6 @@
   ],
   "classes": [
     {
-      "key": "decimal",
-      "className": "MuiRating-decimal",
-      "description": "Styles applied to the icon wrapping elements when decimals are necessary.",
-      "isGlobal": false
-    },
-    {
       "key": "disabled",
       "className": "Mui-disabled",
       "description": "State class applied to the root element if `disabled={true}`.",
@@ -116,12 +110,6 @@
       "className": "Mui-focusVisible",
       "description": "State class applied to the root element if keyboard focused.",
       "isGlobal": true
-    },
-    {
-      "key": "icon",
-      "className": "MuiRating-icon",
-      "description": "Styles applied to the icon wrapping elements.",
-      "isGlobal": false
     },
     {
       "key": "iconActive",
@@ -154,12 +142,6 @@
       "isGlobal": false
     },
     {
-      "key": "label",
-      "className": "MuiRating-label",
-      "description": "Styles applied to the label elements.",
-      "isGlobal": false
-    },
-    {
       "key": "labelEmptyValueActive",
       "className": "MuiRating-labelEmptyValueActive",
       "description": "Styles applied to the label of the \"no value\" input when it is active.",
@@ -170,12 +152,6 @@
       "className": "Mui-readOnly",
       "description": "Styles applied to the root element if `readOnly={true}`.",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "MuiRating-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "sizeLarge",

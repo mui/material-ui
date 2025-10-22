@@ -131,22 +131,10 @@
       "isGlobal": true
     },
     {
-      "key": "endDecorator",
-      "className": "MuiChip-endDecorator",
-      "description": "Class name applied to the endDecorator element if supplied.",
-      "isGlobal": false
-    },
-    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the root element if keyboard focused.",
       "isGlobal": true
-    },
-    {
-      "key": "label",
-      "className": "MuiChip-label",
-      "description": "Class name applied to the label `span` element.",
-      "isGlobal": false
     },
     {
       "key": "labelLg",
@@ -167,12 +155,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiChip-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "sizeLg",
       "className": "MuiChip-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",
@@ -188,12 +170,6 @@
       "key": "sizeSm",
       "className": "MuiChip-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "startDecorator",
-      "className": "MuiChip-startDecorator",
-      "description": "Class name applied to the startDecorator element if supplied.",
       "isGlobal": false
     },
     {

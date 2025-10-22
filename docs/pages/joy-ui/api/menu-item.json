@@ -60,12 +60,6 @@
       "isGlobal": true
     },
     {
-      "key": "root",
-      "className": "MuiMenuItem-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "selected",
       "className": "Mui-selected",
       "description": "State class applied to the root element if `selected={true}`.",

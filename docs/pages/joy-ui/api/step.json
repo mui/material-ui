@@ -72,18 +72,6 @@
       "isGlobal": false
     },
     {
-      "key": "indicator",
-      "className": "MuiStep-indicator",
-      "description": "Class name applied to the indicator element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiStep-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "vertical",
       "className": "MuiStep-vertical",
       "description": "Class name applied to the root element if `orientation=\"vertical\"`.",

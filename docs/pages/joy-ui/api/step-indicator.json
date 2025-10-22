@@ -92,12 +92,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiStepIndicator-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "variantOutlined",
       "className": "MuiStepIndicator-variantOutlined",
       "description": "Class name applied to the root element if `variant=\"outlined\"`.",

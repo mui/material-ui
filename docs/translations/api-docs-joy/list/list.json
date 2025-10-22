@@ -66,7 +66,6 @@
       "nodeName": "the root element",
       "conditions": "wrapped with nested context"
     },
-    "root": { "description": "Class name applied to the root element." },
     "scoped": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

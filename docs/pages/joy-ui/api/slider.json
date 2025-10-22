@@ -200,12 +200,6 @@
       "isGlobal": true
     },
     {
-      "key": "mark",
-      "className": "MuiSlider-mark",
-      "description": "Class name applied to the mark element.",
-      "isGlobal": false
-    },
-    {
       "key": "markActive",
       "className": "MuiSlider-markActive",
       "description": "Class name applied to the mark element if active (depending on the value).",
@@ -218,39 +212,9 @@
       "isGlobal": false
     },
     {
-      "key": "markLabel",
-      "className": "MuiSlider-markLabel",
-      "description": "Class name applied to the mark label element.",
-      "isGlobal": false
-    },
-    {
       "key": "markLabelActive",
       "className": "MuiSlider-markLabelActive",
       "description": "Class name applied to the mark label element if active (depending on the value).",
-      "isGlobal": false
-    },
-    {
-      "key": "rail",
-      "className": "MuiSlider-rail",
-      "description": "Class name applied to the rail element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiSlider-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "thumb",
-      "className": "MuiSlider-thumb",
-      "description": "Class name applied to the thumb element.",
-      "isGlobal": false
-    },
-    {
-      "key": "track",
-      "className": "MuiSlider-track",
-      "description": "Class name applied to the track element.",
       "isGlobal": false
     },
     {

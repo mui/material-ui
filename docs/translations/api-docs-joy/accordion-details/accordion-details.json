@@ -20,16 +20,11 @@
     }
   },
   "classDescriptions": {
-    "content": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the content element"
-    },
     "expanded": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "expanded"
-    },
-    "root": { "description": "Class name applied to the root element." }
+    }
   },
   "slotDescriptions": {
     "content": "The component that renders the content.",

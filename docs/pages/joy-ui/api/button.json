@@ -139,12 +139,6 @@
       "isGlobal": true
     },
     {
-      "key": "endDecorator",
-      "className": "MuiButton-endDecorator",
-      "description": "Class name applied to the endDecorator element if supplied.",
-      "isGlobal": false
-    },
-    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
@@ -163,18 +157,6 @@
       "isGlobal": false
     },
     {
-      "key": "loadingIndicatorCenter",
-      "className": "MuiButton-loadingIndicatorCenter",
-      "description": "Class name applied to the loadingIndicatorCenter element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiButton-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "sizeLg",
       "className": "MuiButton-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",
@@ -190,12 +172,6 @@
       "key": "sizeSm",
       "className": "MuiButton-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "startDecorator",
-      "className": "MuiButton-startDecorator",
-      "description": "Class name applied to the startDecorator element if supplied.",
       "isGlobal": false
     },
     {

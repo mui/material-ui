@@ -36,14 +36,7 @@
       "class": "MuiDialogContent-root"
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiDialogContent-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyDialogContent",

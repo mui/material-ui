@@ -69,12 +69,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiListDivider-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "vertical",
       "className": "MuiListDivider-vertical",
       "description": "Class name applied to the root element if `orientation=\"vertical\"`.",

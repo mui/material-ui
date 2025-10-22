@@ -69,7 +69,6 @@
       "nodeName": "the root element",
       "conditions": "<code>level=\"h4\"</code>"
     },
-    "root": { "description": "Class name applied to the root element." },
     "title-lg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

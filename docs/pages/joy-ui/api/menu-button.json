@@ -142,12 +142,6 @@
       "isGlobal": true
     },
     {
-      "key": "endDecorator",
-      "className": "MuiMenuButton-endDecorator",
-      "description": "Class name applied to the endDecorator element if supplied.",
-      "isGlobal": false
-    },
-    {
       "key": "fullWidth",
       "className": "MuiMenuButton-fullWidth",
       "description": "Class name applied to the root element if `fullWidth={true}`.",
@@ -157,18 +151,6 @@
       "key": "loading",
       "className": "MuiMenuButton-loading",
       "description": "Class name applied to the root element if `loading={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "loadingIndicatorCenter",
-      "className": "MuiMenuButton-loadingIndicatorCenter",
-      "description": "Class name applied to the loadingIndicatorCenter element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiMenuButton-root",
-      "description": "Class name applied to the root element.",
       "isGlobal": false
     },
     {
@@ -187,12 +169,6 @@
       "key": "sizeSm",
       "className": "MuiMenuButton-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "startDecorator",
-      "className": "MuiMenuButton-startDecorator",
-      "description": "Class name applied to the startDecorator element if supplied.",
       "isGlobal": false
     },
     {

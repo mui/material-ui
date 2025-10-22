@@ -49,10 +49,6 @@
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
     },
-    "badge": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the badge <code>span</code> element"
-    },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
@@ -98,7 +94,6 @@
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>location=\"outside\"</code>"
     },
-    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",

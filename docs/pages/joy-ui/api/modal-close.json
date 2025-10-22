@@ -93,12 +93,6 @@
       "isGlobal": false
     },
     {
-      "key": "root",
-      "className": "MuiModalClose-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "sizeLg",
       "className": "MuiModalClose-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",

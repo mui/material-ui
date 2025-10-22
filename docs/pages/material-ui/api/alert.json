@@ -118,12 +118,6 @@
   ],
   "classes": [
     {
-      "key": "action",
-      "className": "MuiAlert-action",
-      "description": "Styles applied to the action wrapper element if `action` is provided.",
-      "isGlobal": false
-    },
-    {
       "key": "colorError",
       "className": "MuiAlert-colorError",
       "description": "Styles applied to the root element if `color=\"error\"`.",
@@ -182,18 +176,6 @@
       "isDeprecated": true
     },
     {
-      "key": "icon",
-      "className": "MuiAlert-icon",
-      "description": "Styles applied to the icon wrapper element.",
-      "isGlobal": false
-    },
-    {
-      "key": "message",
-      "className": "MuiAlert-message",
-      "description": "Styles applied to the message wrapper element.",
-      "isGlobal": false
-    },
-    {
       "key": "outlined",
       "className": "MuiAlert-outlined",
       "description": "Styles applied to the root element if `variant=\"outlined\"`.",
@@ -226,12 +208,6 @@
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"warning\"`.",
       "isGlobal": false,
       "isDeprecated": true
-    },
-    {
-      "key": "root",
-      "className": "MuiAlert-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "standard",

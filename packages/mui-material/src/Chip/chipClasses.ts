@@ -103,11 +103,11 @@ export interface ChipClasses {
   /** Styles applied to the label `span` element. */
   label: string;
   /** Styles applied to the label `span` element if `size="small"`.
-   * @deprecated Combine the [.MuiChip-label](/material-ui/api/chip/#chip-classes-MuiChip-label) and [.MuiChip-sizeSmall](/material-ui/api/chip/#chip-classes-MuiChip-sizeSmall) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-label](/material-ui/api/chip/#Chip-css-MuiChip-label) and [.MuiChip-sizeSmall](/material-ui/api/chip/#chip-classes-MuiChip-sizeSmall) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   labelSmall: string;
   /** Styles applied to the label `span` element if `size="medium"`.
-   * @deprecated Combine the [.MuiChip-label](/material-ui/api/chip/#chip-classes-MuiChip-label) and [.MuiChip-sizeMedium](/material-ui/api/chip/#chip-classes-MuiChip-sizeMedium) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiChip-label](/material-ui/api/chip/#Chip-css-MuiChip-label) and [.MuiChip-sizeMedium](/material-ui/api/chip/#chip-classes-MuiChip-sizeMedium) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   labelMedium: string;
   /** Styles applied to the deleteIcon element. */

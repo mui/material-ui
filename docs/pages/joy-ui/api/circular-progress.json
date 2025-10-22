@@ -126,18 +126,6 @@
       "isGlobal": false
     },
     {
-      "key": "progress",
-      "className": "MuiCircularProgress-progress",
-      "description": "Class name applied to the `progress` element.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiCircularProgress-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    },
-    {
       "key": "sizeLg",
       "className": "MuiCircularProgress-sizeLg",
       "description": "Class name applied to the root element if `size=\"lg\"`.",
@@ -153,18 +141,6 @@
       "key": "sizeSm",
       "className": "MuiCircularProgress-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "svg",
-      "className": "MuiCircularProgress-svg",
-      "description": "Class name applied to the svg element.",
-      "isGlobal": false
-    },
-    {
-      "key": "track",
-      "className": "MuiCircularProgress-track",
-      "description": "Class name applied to the `track` element.",
       "isGlobal": false
     },
     {

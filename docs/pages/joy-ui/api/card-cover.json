@@ -32,14 +32,7 @@
       "class": "MuiCardCover-root"
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiCardCover-root",
-      "description": "Class name applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyCardCover",

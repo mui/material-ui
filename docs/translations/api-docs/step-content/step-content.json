@@ -24,11 +24,7 @@
       "nodeName": "the root element",
       "conditions": "<code>last={true}</code> (controlled by <code>Step</code>)"
     },
-    "root": { "description": "Styles applied to the root element." },
-    "transition": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Transition component"
-    }
+    "root": { "description": "Styles applied to the root element." }
   },
   "slotDescriptions": {
     "transition": "The component that renders the transition slot. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."

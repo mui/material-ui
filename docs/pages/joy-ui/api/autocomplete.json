@@ -285,12 +285,6 @@
   ],
   "classes": [
     {
-      "key": "clearIndicator",
-      "className": "MuiAutocomplete-clearIndicator",
-      "description": "Class name applied to the clear indicator.",
-      "isGlobal": false
-    },
-    {
       "key": "colorContext",
       "className": "MuiAutocomplete-colorContext",
       "description": "Class name applied to the root element when color inversion is triggered.",
@@ -333,12 +327,6 @@
       "isGlobal": true
     },
     {
-      "key": "endDecorator",
-      "className": "MuiAutocomplete-endDecorator",
-      "description": "Class name applied to the endDecorator element.",
-      "isGlobal": false
-    },
-    {
       "key": "error",
       "className": "Mui-error",
       "description": "State class applied to the root element if `error={true}`.",
@@ -369,63 +357,15 @@
       "isGlobal": false
     },
     {
-      "key": "input",
-      "className": "MuiAutocomplete-input",
-      "description": "Class name applied to the input element.",
-      "isGlobal": false
-    },
-    {
-      "key": "limitTag",
-      "className": "MuiAutocomplete-limitTag",
-      "description": "Class name applied to the limitTag element.",
-      "isGlobal": false
-    },
-    {
-      "key": "listbox",
-      "className": "MuiAutocomplete-listbox",
-      "description": "Class name applied to the listbox component.",
-      "isGlobal": false
-    },
-    {
-      "key": "loading",
-      "className": "MuiAutocomplete-loading",
-      "description": "Class name applied to the loading wrapper.",
-      "isGlobal": false
-    },
-    {
       "key": "multiple",
       "className": "MuiAutocomplete-multiple",
       "description": "Class name applied to the wrapper element if `multiple={true}`.",
       "isGlobal": false
     },
     {
-      "key": "noOptions",
-      "className": "MuiAutocomplete-noOptions",
-      "description": "Class name applied to the no option wrapper.",
-      "isGlobal": false
-    },
-    {
-      "key": "option",
-      "className": "MuiAutocomplete-option",
-      "description": "Class name applied to the option component.",
-      "isGlobal": false
-    },
-    {
-      "key": "popupIndicator",
-      "className": "MuiAutocomplete-popupIndicator",
-      "description": "Class name applied to the popup indicator.",
-      "isGlobal": false
-    },
-    {
       "key": "popupIndicatorOpen",
       "className": "MuiAutocomplete-popupIndicatorOpen",
       "description": "Class name applied to the popup indicator if the popup is open.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiAutocomplete-root",
-      "description": "Class name applied to the root element.",
       "isGlobal": false
     },
     {
@@ -444,12 +384,6 @@
       "key": "sizeSm",
       "className": "MuiAutocomplete-sizeSm",
       "description": "Class name applied to the root element if `size=\"sm\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "startDecorator",
-      "className": "MuiAutocomplete-startDecorator",
-      "description": "Class name applied to the startDecorator element.",
       "isGlobal": false
     },
     {
@@ -474,12 +408,6 @@
       "key": "variantSolid",
       "className": "MuiAutocomplete-variantSolid",
       "description": "Class name applied to the root element if `variant=\"solid\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "wrapper",
-      "className": "MuiAutocomplete-wrapper",
-      "description": "Class name applied to the wrapper element.",
       "isGlobal": false
     }
   ],

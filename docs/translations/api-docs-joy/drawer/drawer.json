@@ -50,10 +50,6 @@
     }
   },
   "classDescriptions": {
-    "backdrop": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the backdrop element"
-    },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
@@ -84,16 +80,11 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "content": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the content element"
-    },
     "hidden": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "open is false"
     },
-    "root": { "description": "Class name applied to the root element." },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
