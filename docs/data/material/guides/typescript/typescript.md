@@ -69,10 +69,10 @@ const CustomButton = styled(Button)({
 
 ## Performance optimizations
 
-When building a custom theme, Material UI provides automatic autocompletion and type checking for all tokens and components.
+When building a custom theme, Material UI provides automatic autocompletion and type checking for all tokens and components.
 However, this comes at the cost of some performance overhead because TypeScript has to instantiate types for all components and their variants. This can lead to slower compilation times, especially in large codebase with intensive theme customization.
 
-Starting from v7.4.0, Material UI offers an optimized path that significantly reduces the type instantiation overhead.
+Starting from v7.4.0, Material UI offers an optimized path that significantly reduces the type instantiation overhead.
 This path mirrors the exports from `@mui/material/styles` without the automatic inclusion of all component types.
 
 Follow the steps below to enable the optimized path in your project:
