@@ -1,19 +1,24 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-console */
 import { execaCommand } from 'execa';
 import timers from 'timers/promises';
-import { parse, HTMLElement } from 'node-html-parser';
+import { parse } from 'node-html-parser';
 import fs from 'fs/promises';
 import chalk from 'chalk';
 import { Transform } from 'node:stream';
 
 const DEFAULT_CONCURRENCY = 4;
 
-const prefixLines = (prefix: string) => {
-  let leftover: string = '';
+/**
+ * @param {string} prefix
+ * @returns {Transform}
+ */
+const prefixLines = (prefix) => {
+  let leftover = '';
   return new Transform({
     transform(chunk, enc, cb) {
       const lines = (leftover + chunk.toString()).split(/\r?\n/);
-      leftover = lines.pop()!;
+      leftover = lines.pop();
       this.push(lines.map((l) => `${prefix + l}\n`).join(''));
       cb();
     },
@@ -26,12 +31,21 @@ const prefixLines = (prefix: string) => {
   });
 };
 
-// Maps pageUrl to ids of known targets on that page
-type LinkStructure = Map<string, Set<string>>;
+/**
+ * Maps pageUrl to ids of known targets on that page
+ * @typedef {Map<string, Set<string>>} LinkStructure
+ */
 
-type SerializedLinkStructure = { targets: Record<string, string[]> };
+/**
+ * @typedef {Object} SerializedLinkStructure
+ * @property {Record<string, string[]>} targets
+ */
 
-async function fetchUrl(url: string | URL): Promise<Response> {
+/**
+ * @param {string | URL} url
+ * @returns {Promise<Response>}
+ */
+async function fetchUrl(url) {
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`Failed to fetch ${url}: [${res.status}] ${res.statusText}`);
@@ -39,14 +53,19 @@ async function fetchUrl(url: string | URL): Promise<Response> {
   return res;
 }
 
-async function pollUrl(url: string, timeout: number): Promise<void> {
+/**
+ * @param {string} url
+ * @param {number} timeout
+ * @returns {Promise<void>}
+ */
+async function pollUrl(url, timeout) {
   const start = Date.now();
   while (true) {
     try {
       // eslint-disable-next-line no-await-in-loop
       await fetchUrl(url);
       return;
-    } catch (error: any) {
+    } catch (error) {
       if (Date.now() - start > timeout) {
         throw new Error(`Timeout waiting for ${url}: ${error.message}`);
       }
@@ -56,24 +75,49 @@ async function pollUrl(url: string, timeout: number): Promise<void> {
   }
 }
 
-function deserializeLinkStructure(data: SerializedLinkStructure): LinkStructure {
-  const linkStructure: LinkStructure = new Map();
+/**
+ * @param {SerializedLinkStructure} data
+ * @returns {LinkStructure}
+ */
+function deserializeLinkStructure(data) {
+  const linkStructure = new Map();
   for (const url of Object.keys(data.targets)) {
     linkStructure.set(url, new Set(data.targets[url]));
   }
   return linkStructure;
 }
 
-async function writePagesToFile(pages: Map<string, PageData>, outPath: string) {
-  const fileContent: SerializedLinkStructure = { targets: {} };
+/**
+ * @typedef {Object} LinkTarget
+ */
+
+/**
+ * @typedef {Object} PageData
+ * @property {string} url
+ * @property {number} status
+ * @property {Map<string, LinkTarget>} targets
+ */
+
+/**
+ * @param {Map<string, PageData>} pages
+ * @param {string} outPath
+ * @returns {Promise<void>}
+ */
+async function writePagesToFile(pages, outPath) {
+  const fileContent = { targets: {} };
   for (const [url, pageData] of pages.entries()) {
     fileContent.targets[url] = Array.from(pageData.targets.keys());
   }
   await fs.writeFile(outPath, JSON.stringify(fileContent, null, 2), 'utf-8');
 }
 
-// Polyfill for `node.computedName` available only in chrome v112+
-function getAccessibleName(elm: HTMLElement | null, ownerDocument: HTMLElement): string {
+/**
+ * Polyfill for `node.computedName` available only in chrome v112+
+ * @param {import('node-html-parser').HTMLElement | null} elm
+ * @param {import('node-html-parser').HTMLElement} ownerDocument
+ * @returns {string}
+ */
+function getAccessibleName(elm, ownerDocument) {
   if (!elm) {
     return '';
   }
@@ -120,24 +164,36 @@ function getAccessibleName(elm: HTMLElement | null, ownerDocument: HTMLElement):
   return elm.innerText.trim();
 }
 
-class Queue<T> {
-  private tasks: T[] = [];
+/**
+ * @template T
+ */
+class Queue {
+  /** @type {T[]} */
+  tasks = [];
 
-  private pending = new Set<Promise<void>>();
+  /** @type {Set<Promise<void>>} */
+  pending = new Set();
 
-  constructor(
-    private worker: (task: T) => Promise<void>,
-    private concurrency: number,
-  ) {}
+  /**
+   * @param {(task: T) => Promise<void>} worker
+   * @param {number} concurrency
+   */
+  constructor(worker, concurrency) {
+    this.worker = worker;
+    this.concurrency = concurrency;
+  }
 
-  add(task: T) {
+  /**
+   * @param {T} task
+   */
+  add(task) {
     this.tasks.push(task);
     this.run();
   }
 
-  private async run() {
+  async run() {
     while (this.pending.size < this.concurrency && this.tasks.length > 0) {
-      const task = this.tasks.shift()!;
+      const task = this.tasks.shift();
       const p = this.worker(task).finally(() => {
         this.pending.delete(p);
         this.run();
@@ -154,21 +210,19 @@ class Queue<T> {
   }
 }
 
-interface Link {
-  src: string | null;
-  text: string | null;
-  href: string;
-}
+/**
+ * @typedef {Object} Link
+ * @property {string | null} src
+ * @property {string | null} text
+ * @property {string} href
+ */
 
-interface LinkTarget {}
-
-interface PageData {
-  url: string;
-  status: number;
-  targets: Map<string, LinkTarget>;
-}
-
-function getPageUrl(href: string, ignoredPaths: RegExp[] = []): string | null {
+/**
+ * @param {string} href
+ * @param {RegExp[]} ignoredPaths
+ * @returns {string | null}
+ */
+function getPageUrl(href, ignoredPaths = []) {
   if (!href.startsWith('/')) {
     return null;
   }
@@ -180,19 +234,28 @@ function getPageUrl(href: string, ignoredPaths: RegExp[] = []): string | null {
   return link;
 }
 
-export interface CrawlOptions {
-  startCommand?: string | null;
-  host: string;
-  outPath?: string | null;
-  ignoredPaths?: RegExp[];
-  ignoredContent?: string[];
-  ignoredTargets?: Set<string>;
-  knownTargets?: Map<string, Set<string>>;
-  knownTargetsDownloadUrl?: string[];
-  concurrency?: number;
-}
+/**
+ * @typedef {Object} CrawlOptions
+ * @property {string | null} [startCommand]
+ * @property {string} host
+ * @property {string | null} [outPath]
+ * @property {RegExp[]} [ignoredPaths]
+ * @property {string[]} [ignoredContent]
+ * @property {Set<string>} [ignoredTargets]
+ * @property {Map<string, Set<string>>} [knownTargets]
+ * @property {string[]} [knownTargetsDownloadUrl]
+ * @property {number} [concurrency]
+ */
 
-function resolveOptions(rawOptions: CrawlOptions): Required<CrawlOptions> {
+/**
+ * @typedef {Required<CrawlOptions>} ResolvedCrawlOptions
+ */
+
+/**
+ * @param {CrawlOptions} rawOptions
+ * @returns {ResolvedCrawlOptions}
+ */
+function resolveOptions(rawOptions) {
   return {
     startCommand: rawOptions.startCommand ?? null,
     host: rawOptions.host,
@@ -206,7 +269,11 @@ function resolveOptions(rawOptions: CrawlOptions): Required<CrawlOptions> {
   };
 }
 
-async function downloadKnownTargets(urls: string[]): Promise<LinkStructure> {
+/**
+ * @param {string[]} urls
+ * @returns {Promise<LinkStructure>}
+ */
+async function downloadKnownTargets(urls) {
   if (urls.length === 0) {
     return new Map();
   }
@@ -215,22 +282,22 @@ async function downloadKnownTargets(urls: string[]): Promise<LinkStructure> {
 
   const results = await Promise.all(
     urls.map(async (url) => {
-      console.log(chalk.cyan(`  Fetching ${url}`));
+      console.log(`  Fetching ${chalk.underline(url)}`);
       const res = await fetchUrl(url);
-      const data: SerializedLinkStructure = await res.json();
+      const data = await res.json();
       return deserializeLinkStructure(data);
     }),
   );
 
   // Merge all downloaded link structures
-  const merged = new Map<string, Set<string>>();
+  const merged = new Map();
   for (const linkStructure of results) {
     for (const [url, targets] of linkStructure.entries()) {
       if (!merged.has(url)) {
         merged.set(url, new Set());
       }
       for (const target of targets) {
-        merged.get(url)!.add(target);
+        merged.get(url).add(target);
       }
     }
   }
@@ -239,11 +306,15 @@ async function downloadKnownTargets(urls: string[]): Promise<LinkStructure> {
   return merged;
 }
 
-async function resolveKnownTargets(options: Required<CrawlOptions>): Promise<LinkStructure> {
+/**
+ * @param {ResolvedCrawlOptions} options
+ * @returns {Promise<LinkStructure>}
+ */
+async function resolveKnownTargets(options) {
   const downloaded = await downloadKnownTargets(options.knownTargetsDownloadUrl);
 
   // Merge downloaded with user-provided, user-provided takes priority
-  const merged = new Map<string, Set<string>>(downloaded);
+  const merged = new Map(downloaded);
   for (const [url, targets] of options.knownTargets.entries()) {
     merged.set(url, targets);
   }
@@ -251,11 +322,16 @@ async function resolveKnownTargets(options: Required<CrawlOptions>): Promise<Lin
   return merged;
 }
 
-export interface CrawlResult {
-  brokenLinks: number;
-}
+/**
+ * @typedef {Object} CrawlResult
+ * @property {number} brokenLinks
+ */
 
-export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
+/**
+ * @param {CrawlOptions} rawOptions
+ * @returns {Promise<CrawlResult>}
+ */
+export async function crawl(rawOptions) {
   const options = resolveOptions(rawOptions);
   const knownTargets = await resolveKnownTargets(options);
   const startTime = Date.now();
@@ -282,10 +358,10 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
     console.log(`Server started on ${chalk.underline(options.host)}`);
   }
 
-  const crawledPages = new Map<string, Promise<PageData>>();
-  const crawledLinks = new Set<Link>();
+  const crawledPages = new Map();
+  const crawledLinks = new Set();
 
-  const queue = new Queue<Link>(async (link) => {
+  const queue = new Queue(async (link) => {
     crawledLinks.add(link);
 
     const pageUrl = getPageUrl(link.href, options.ignoredPaths);
@@ -328,7 +404,7 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
         });
       }
 
-      const pageLinks: Link[] = dom.querySelectorAll('a[href]').map((a) => ({
+      const pageLinks = dom.querySelectorAll('a[href]').map((a) => ({
         src: pageUrl,
         text: getAccessibleName(a, dom),
         href: a.attributes.href,
@@ -341,7 +417,7 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
           .map((el) => [`#${el.attributes.id}`, {}]),
       );
 
-      const pageData: PageData = {
+      const pageData = {
         url: pageUrl,
         status: res.status,
         targets: pageTargets,
@@ -368,21 +444,27 @@ export async function crawl(rawOptions: CrawlOptions): Promise<CrawlResult> {
   }
 
   const results = new Map(
-    await Promise.all(Array.from(crawledPages.entries(), async ([a, b]) => [a, await b] as const)),
+    await Promise.all(Array.from(crawledPages.entries(), async ([a, b]) => [a, await b])),
   );
 
   if (options.outPath) {
     await writePagesToFile(results, options.outPath);
   }
 
-  interface BrokenLinkError {
-    link: Link;
-    reason: string;
-  }
+  /**
+   * @typedef {Object} BrokenLinkError
+   * @property {Link} link
+   * @property {string} reason
+   */
 
-  const brokenLinksByPage = new Map<string, BrokenLinkError[]>();
+  /** @type {Map<string, BrokenLinkError[]>} */
+  const brokenLinksByPage = new Map();
 
-  function recordBrokenLink(link: Link, reason: string): void {
+  /**
+   * @param {Link} link
+   * @param {string} reason
+   */
+  function recordBrokenLink(link, reason) {
     const src = link.src ?? '(unknown)';
     const linksForPage = brokenLinksByPage.get(src) ?? [];
     brokenLinksByPage.set(src, linksForPage);
