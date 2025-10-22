@@ -198,31 +198,6 @@ export default function ApiPage(props: ApiPageProps) {
     };
   }
 
-  /* 
-export type GetSlotsToCParams = {
-  slots: Slot[];
-  t: Translate;
-  hash?: string;
-};
-
-export const getSlotsToC = ({ slots, t, hash }: GetSlotsToCParams): TableOfContentsParams[] =>
-  !slots || slots.length === 0
-    ? []
-    : [
-        {
-          text: t('api-docs.slots'),
-          hash: hash ?? 'slots',
-          children: [
-            ...slots.map(({ key, hash: classeHash }) => ({
-              text: key,
-              hash: classeHash,
-              children: [],
-            })),
-          ],
-        },
-      ];
- */
-
   const toc: TableOfContentsParams[] = [
     createTocEntry('demos'),
     createTocEntry('import'),
