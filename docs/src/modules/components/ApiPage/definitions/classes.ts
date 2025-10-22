@@ -19,7 +19,7 @@ export type GetCssToCParams = {
   hash?: string;
 };
 
-export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
+export const getClassesToc = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
   !classes || classes.length === 0
     ? []
     : [

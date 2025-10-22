@@ -24,16 +24,16 @@ import {
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {
-  getPropertiesToC,
   getPropsApiDefinitions,
+  getPropertiesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import {
   getClassApiDefinitions,
-  getClassesToC,
+  getClassesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import {
   getSlotsApiDefinitions,
-  getSlotsToC,
+  getSlotsToc,
 } from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
@@ -202,9 +202,9 @@ export default function ApiPage(props: ApiPageProps) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
-    ...getSlotsToC({ slots: slotsDef, t }),
-    ...getClassesToC({ classes: classesDef, t }),
+    getPropertiesToc({ properties: propertiesDef, hash: 'props', t }),
+    ...getSlotsToc({ slots: slotsDef, t }),
+    ...getClassesToc({ classes: classesDef, t }),
     pageContent.filename ? createTocEntry('source-code') : null,
   ].filter((item): item is TableOfContentsParams => Boolean(item));
 

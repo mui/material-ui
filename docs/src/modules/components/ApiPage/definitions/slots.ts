@@ -39,7 +39,7 @@ export type GetCssToCParams = {
   hash?: string;
 };
 
-export const getSlotsToC = ({ slots, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
+export const getSlotsToc = ({ slots, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
   !slots || slots.length === 0
     ? []
     : [
