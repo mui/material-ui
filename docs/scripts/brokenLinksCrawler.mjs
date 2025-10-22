@@ -270,12 +270,28 @@ function resolveOptions(rawOptions) {
 }
 
 /**
+ * Merge multiple maps, similar to `Object.assign`
+ * @template K, V
+ * @param {Map<K, V>} target
+ * @param {...Map<K, V>} sources
+ * @returns {Map<K, V>}
+ */
+function mergeMaps(target, ...sources) {
+  for (const source of sources) {
+    for (const [key, value] of source.entries()) {
+      target.set(key, value);
+    }
+  }
+  return target;
+}
+
+/**
  * @param {string[]} urls
- * @returns {Promise<LinkStructure>}
+ * @returns {Promise<LinkStructure[]>}
  */
 async function downloadKnownTargets(urls) {
   if (urls.length === 0) {
-    return new Map();
+    return [];
   }
 
   console.log(chalk.blue(`Downloading known targets from ${urls.length} URL(s)...`));
@@ -289,21 +305,7 @@ async function downloadKnownTargets(urls) {
     }),
   );
 
-  // Merge all downloaded link structures
-  const merged = new Map();
-  for (const linkStructure of results) {
-    for (const [url, targets] of linkStructure.entries()) {
-      if (!merged.has(url)) {
-        merged.set(url, new Set());
-      }
-      for (const target of targets) {
-        merged.get(url).add(target);
-      }
-    }
-  }
-
-  console.log(chalk.green(`Downloaded known targets for ${merged.size} page(s)`));
-  return merged;
+  return results;
 }
 
 /**
@@ -312,14 +314,8 @@ async function downloadKnownTargets(urls) {
  */
 async function resolveKnownTargets(options) {
   const downloaded = await downloadKnownTargets(options.knownTargetsDownloadUrl);
-
   // Merge downloaded with user-provided, user-provided takes priority
-  const merged = new Map(downloaded);
-  for (const [url, targets] of options.knownTargets.entries()) {
-    merged.set(url, targets);
-  }
-
-  return merged;
+  return mergeMaps(new Map(), ...downloaded, options.knownTargets);
 }
 
 /**
