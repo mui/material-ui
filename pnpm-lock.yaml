@@ -719,7 +719,7 @@ importers:
         specifier: ^4.14.1
         version: 4.14.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-window:
-        specifier: ^2.0.0
+        specifier: ^2.2.1
         version: 2.2.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       rimraf:
         specifier: ^6.0.1
