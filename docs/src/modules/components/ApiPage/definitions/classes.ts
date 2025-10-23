@@ -19,7 +19,7 @@ export type GetCssToCParams = {
   hash?: string;
 };
 
-export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
+export const getClassesToc = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
   !classes || classes.length === 0
     ? []
     : [
@@ -27,9 +27,9 @@ export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfCon
           text: t('api-docs.classes'),
           hash: hash ?? 'classes',
           children: [
-            ...classes.map(({ key, hash: classeHash }) => ({
+            ...classes.map(({ key, hash: classHash }) => ({
               text: key,
-              hash: classeHash,
+              hash: classHash,
               children: [],
             })),
           ],
