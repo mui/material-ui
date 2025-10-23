@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -125,13 +125,14 @@ describe('<Fade />', () => {
 
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-      const { getByTestId } = render(
+
+      render(
         <Fade in appear>
           <div data-testid="child">Foo</div>
         </Fade>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({
         transitionDuration: `${enteringScreenDurationInSeconds}s`,
       });
@@ -149,7 +150,8 @@ describe('<Fade />', () => {
           },
         },
       });
-      const { getByTestId } = render(
+
+      render(
         <ThemeProvider theme={theme}>
           <Fade in appear>
             <div data-testid="child">Foo</div>
@@ -157,7 +159,7 @@ describe('<Fade />', () => {
         </ThemeProvider>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
 
@@ -166,13 +168,13 @@ describe('<Fade />', () => {
         this.skip();
       }
 
-      const { getByTestId } = render(
+      render(
         <Fade in appear timeout={{ enter: 1 }}>
           <div data-testid="child">Foo</div>
         </Fade>,
       );
 
-      const child = getByTestId('child');
+      const child = screen.getByTestId('child');
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
