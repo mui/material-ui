@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build && pnpm build-sw",
+    "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build && pnpm build-sw && pnpm link-check",
     "build:clean": "rimraf .next && pnpm build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "next dev",
@@ -14,8 +14,7 @@
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `pnpm docs:typescript:formatted'` instead && exit 1",
     "typescript:transpile:dev": "echo 'Use `pnpm docs:typescript'` instead && exit 1",
-    "link-check": "tsx ./scripts/reportBrokenLinks.ts",
-    "crawl": "tsx ./scripts/postBuild.mts"
+    "link-check": "tsx ./scripts/reportBrokenLinks.mts"
   },
   "dependencies": {
     "@babel/core": "^7.28.4",

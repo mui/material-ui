@@ -1,8 +1,8 @@
 import * as path from 'path';
-import { crawl } from './brokenLinksCrawler.mjs';
+import { crawl } from '@mui/internal-code-infra/brokenLinksChecker';
 
 async function main() {
-  const { brokenLinks } = await crawl({
+  const { issues } = await crawl({
     startCommand: 'pnpm start --no-request-logging -p 3001',
     host: 'http://localhost:3001/',
     outPath: path.resolve(import.meta.dirname, '../public/material-ui/link-structure.json'),
@@ -24,7 +24,7 @@ async function main() {
     ],
   });
 
-  process.exit(brokenLinks);
+  process.exit(issues.length);
 }
 
 main();
