@@ -80,8 +80,8 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 ## Font size
 
 Material UI uses `rem` units for the font size.
-The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
-so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support.
+The browser `<html>` element default font size is `16px`, but browsers have an option to change this value.
+`rem` units let us accommodate the user's settings, resulting in a better accessibility support.
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
@@ -289,7 +289,7 @@ declare module '@mui/material/styles' {
     poster: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme()`
+  // configure using `createTheme()`
   interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }
