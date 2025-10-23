@@ -254,8 +254,8 @@ function findNonComponentMarkdownFiles(
 
     const ignoredPaths = [
       '/material-ui/experimental-api/',
-      '/material/migration/migrating-to-pigment-css',
-      '/material/about-the-lab',
+      '/material-ui/migration/migrating-to-pigment-css',
+      '/material-ui/about-the-lab',
     ];
 
     // Filter out external links and special patterns
