@@ -58,7 +58,7 @@ function RowComponent({
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLElement> & {
-    internalListRef?: React.Ref<ListImperativeAPI>;
+    internalListRef: React.Ref<ListImperativeAPI>;
     onItemsBuilt: (optionIndexMap: Map<string, number>) => void;
   }
 >(function ListboxComponent(props, ref) {
