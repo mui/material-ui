@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TransitionProps } from '../transitions/transition';
-import { CollapseClasses } from './collapseClasses';
+import { CollapseClasses, CollapseClassKey } from './collapseClasses';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
   /**
@@ -71,3 +71,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
  */
 
 export default function Collapse(props: CollapseProps): React.JSX.Element;
+
+export type CollapseTheme = {
+  MuiCollapse: CreateThemeComponent<CollapseClassKey, CollapseProps>;
+};

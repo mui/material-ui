@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@mui/material/internal';
-import { Theme } from '@mui/material/styles';
+import { CreateThemeComponent, Theme } from '@mui/material/stylesOptimized';
 import { SxProps } from '@mui/system';
-import { TabPanelClasses } from './tabPanelClasses';
+import { TabPanelClasses, TabPanelClassKey } from './tabPanelClasses';
 
 export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -28,6 +28,8 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
    */
   keepMounted?: boolean;
 }
+
+export type TabPanelTheme = CreateThemeComponent<TabPanelClassKey, TabPanelProps>;
 
 /**
  *

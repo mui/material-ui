@@ -1,5 +1,5 @@
 import { GlobalStylesProps as StyledGlobalStylesProps } from '@mui/system';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 
 export interface GlobalStylesProps {
   /**
