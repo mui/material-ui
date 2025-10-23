@@ -251,8 +251,18 @@ function findNonComponentMarkdownFiles(
         continue;
       }
     }
+
+    const ignoredPaths = [
+      '/material-ui/experimental-api/',
+      '/material/migration/migrating-to-pigment-css',
+      '/material/about-the-lab',
+    ];
+
     // Filter out external links and special patterns
-    if (pathname.startsWith('/material-ui/')) {
+    if (
+      pathname.startsWith('/material-ui/') &&
+      !ignoredPaths.some((ignored) => pathname.startsWith(ignored))
+    ) {
       const page = allMarkdownFiles.find((p) => p.pathname === parsedPathname);
 
       if (page) {
