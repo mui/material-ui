@@ -13,9 +13,10 @@ const LISTBOX_PADDING = 8; // px
 
 function RowComponent({ index, itemData, style }) {
   const dataSet = itemData[index];
+
   const inlineStyle = {
     ...style,
-    top: style.top + LISTBOX_PADDING,
+    top: (style.top ?? 0) + LISTBOX_PADDING,
   };
 
   if ('group' in dataSet) {

@@ -34,7 +34,7 @@ function RowComponent({
   const dataSet = itemData[index];
   const inlineStyle = {
     ...style,
-    top: (style.top as number) + LISTBOX_PADDING,
+    top: ((style.top as number) ?? 0) + LISTBOX_PADDING,
   };
 
   if ('group' in dataSet) {
