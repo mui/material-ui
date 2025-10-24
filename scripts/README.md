@@ -30,8 +30,8 @@ The following steps must be proposed as a pull request.
 4. Run `pnpm release:version`. Keep in mind:
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
-5. Open PR with changes and wait for review and green CI
-6. Merge PR once CI is green and it has been approved
+5. Open PR with changes and wait for review and green CI.
+6. Merge PR once CI is green and it has been approved.
 
 #### Release
 
@@ -61,37 +61,48 @@ After the documentation deployment is done, review the draft release that was cr
 
 After the docs is live, follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
 
-### Releasing a patch version
+### Releasing a hotfix version
 
-A patch release could happen if there is a regression fix that could not wait for the monthly release cycle.
+A hotfix release could happen if there is a regression fix that could not wait for the monthly release cycle and the master branch already contains not yet to be released commits. If you can publish an earlier minor or patch, just prefer that over a hotfix release.
 
 It goes like this:
 
 #### Prepare
 
-Checkout the latest minor release tag and create a branch "release/PATCH_VERSION". Cherry-pick the necessary commit on this branch. The following steps must be proposed as a pull request.
+Hotfix branch creation requires the help of a repository admin. They need to take the following steps:
 
-1. Generate the changelog with `pnpm release:changelog`
+1. Check out the commit for the latest release tag.
+2. Create a branch named `release/<PATCH_VERSION>` where `<PATCH_VERSION>` is the next semver patch version from that release tag.
+3. force push the branch to `upstream`:
+
+   ```bash
+   git push -f upstream release/<PATCH_VERSION>
+   ```
+
+The following steps must be proposed as a pull request to `release/<PATCH_VERSION>`.
+
+1. check out `release/<PATCH_VERSION>` and cherry-pick the hotfix commits on top of it.
+2. Generate the changelog with `pnpm release:changelog`
    The output must be prepended to the top level `CHANGELOG.md`
    `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
-
-2. Clean the generated changelog:
+3. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable
-3. Update the root `/package.json`'s version
-4. Run `pnpm release:version`. Keep in mind:
+4. Update the root `/package.json`'s version
+5. Run `pnpm release:version`. Keep in mind:
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
-5. Open PR with changes and wait for review and green CI
-6. Merge PR once CI is green and it has been approved
+6. Open PR with changes and wait for review and green CI.
+7. Merge PR into `release/<PATCH_VERSION>` once CI is green and it has been approved.
+8. Open and merge a PR from `release/<PATCH_VERSION>` to master to correct the package versioning and update the changelog.
 
 #### Release
 
 1. Go to the [publish action](https://github.com/mui/material-ui/actions/workflows/publish.yml).
 2. Choose "Run workflow" dropdown
 
-   > - **Branch:** master
-   > - **Commit SHA to release from:** the commit that contains the merged release on master. This commit is linked to the GitHub release.
+   > - **Branch:** `release/<PATCH_VERSION>`
+   > - **Commit SHA to release from:** the commit that contains the merged release on `release/<PATCH_VERSION>`. This commit is linked to the GitHub release.
    > - **Run in dry-run mode:** Used for debugging.
    > - **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
    > - **npm dist tag to publish to** Use to publish legacy or canary versions.
