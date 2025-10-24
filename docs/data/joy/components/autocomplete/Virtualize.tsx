@@ -1,16 +1,18 @@
 import * as React from 'react';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import { List, RowComponentProps } from 'react-window';
 import { Popper } from '@mui/base/Popper';
 import Autocomplete from '@mui/joy/Autocomplete';
-import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import ListSubheader from '@mui/joy/ListSubheader';
+import AutocompleteListbox, {
+  AutocompleteListboxProps,
+} from '@mui/joy/AutocompleteListbox';
 
 const LISTBOX_PADDING = 6; // px
 
-function renderRow(props: ListChildComponentProps) {
+function renderRow(props: RowComponentProps & { data: any }) {
   const { data, index, style } = props;
   const dataSet = data[index];
   const inlineStyle = {
@@ -33,27 +35,6 @@ function renderRow(props: ListChildComponentProps) {
   );
 }
 
-const OuterElementContext = React.createContext({});
-
-const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
-  const outerProps = React.useContext(OuterElementContext);
-  return (
-    <AutocompleteListbox
-      {...props}
-      {...outerProps}
-      component="div"
-      ref={ref}
-      sx={{
-        '& ul': {
-          padding: 0,
-          margin: 0,
-          flexShrink: 0,
-        },
-      }}
-    />
-  );
-});
-
 // Adapter for react-window
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
@@ -61,7 +42,8 @@ const ListboxComponent = React.forwardRef<
     anchorEl: any;
     open: boolean;
     modifiers: any[];
-  } & React.HTMLAttributes<HTMLElement>
+  } & React.HTMLAttributes<HTMLElement> &
+    AutocompleteListboxProps
 >(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData: Array<any> = [];
@@ -79,20 +61,31 @@ const ListboxComponent = React.forwardRef<
 
   return (
     <Popper ref={ref} anchorEl={anchorEl} open={open} modifiers={modifiers}>
-      <OuterElementContext.Provider value={other}>
-        <FixedSizeList
-          itemData={itemData}
-          height={itemSize * 8}
-          width="100%"
-          outerElementType={OuterElementType}
-          innerElementType="ul"
-          itemSize={itemSize}
+      <AutocompleteListbox
+        {...other}
+        component="div"
+        sx={{
+          '& ul': {
+            padding: 0,
+            margin: 0,
+            flexShrink: 0,
+          },
+          maxHeight: '100%',
+        }}
+      >
+        <List
+          rowCount={itemCount}
+          rowHeight={itemSize}
+          rowComponent={renderRow}
+          rowProps={{ data: itemData }}
+          style={{
+            height: itemSize * 8,
+            width: '100%',
+          }}
           overscanCount={5}
-          itemCount={itemCount}
-        >
-          {renderRow}
-        </FixedSizeList>
-      </OuterElementContext.Provider>
+          tagName="ul"
+        />
+      </AutocompleteListbox>
     </Popper>
   );
 });
