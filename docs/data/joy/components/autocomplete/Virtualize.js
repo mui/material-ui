@@ -16,7 +16,7 @@ function renderRow(props) {
   const dataSet = data[index];
   const inlineStyle = {
     ...style,
-    top: style.top + LISTBOX_PADDING,
+    top: (style.top ?? 0) + LISTBOX_PADDING,
   };
 
   if (dataSet.hasOwnProperty('group')) {
@@ -36,13 +36,24 @@ function renderRow(props) {
 
 // Adapter for react-window
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
-  const { children, anchorEl, open, modifiers, ...other } = props;
+  const { children, anchorEl, open, modifiers, internalListRef, ...other } = props;
   const itemData = [];
+  const optionIndexMap = new Map();
 
-  children[0].forEach((item) => {
-    if (item) {
-      itemData.push(item);
-      itemData.push(...(item.children || []));
+  if (children && Array.isArray(children) && children[0]) {
+    children[0].forEach((item) => {
+      if (item) {
+        itemData.push(item);
+        itemData.push(...(item.children || []));
+      }
+    });
+  }
+
+  // Build the index map after flattening
+  itemData.forEach((item, index) => {
+    if (Array.isArray(item) && item[1]) {
+      // Option item: [props, optionValue]
+      optionIndexMap.set(item[1], index);
     }
   });
 
@@ -64,6 +75,12 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
         }}
       >
         <List
+          listRef={(api) => {
+            // Store both the API and the map in the ref
+            if (internalListRef) {
+              internalListRef.current = { api, optionIndexMap };
+            }
+          }}
           rowCount={itemCount}
           rowHeight={itemSize}
           rowComponent={renderRow}
@@ -83,6 +100,28 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 ListboxComponent.propTypes = {
   anchorEl: PropTypes.any.isRequired,
   children: PropTypes.node,
+  internalListRef: PropTypes.shape({
+    current: PropTypes.shape({
+      api: PropTypes.shape({
+        element: PropTypes.object,
+        scrollToRow: PropTypes.func.isRequired,
+      }),
+      optionIndexMap: PropTypes.shape({
+        '__@iterator@76': PropTypes.func.isRequired,
+        '__@toStringTag@1117': PropTypes.string.isRequired,
+        clear: PropTypes.func.isRequired,
+        delete: PropTypes.func.isRequired,
+        entries: PropTypes.func.isRequired,
+        forEach: PropTypes.func.isRequired,
+        get: PropTypes.func.isRequired,
+        has: PropTypes.func.isRequired,
+        keys: PropTypes.func.isRequired,
+        set: PropTypes.func.isRequired,
+        size: PropTypes.number.isRequired,
+        values: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
   modifiers: PropTypes.array.isRequired,
   open: PropTypes.bool.isRequired,
 };
@@ -104,6 +143,23 @@ const OPTIONS = Array.from(new Array(10000))
   .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
 export default function Virtualize() {
+  // Ref to store both the List API and the option index map
+  const internalListRef = React.useRef({
+    api: null,
+    optionIndexMap: new Map(),
+  });
+
+  // Handle keyboard navigation by scrolling to highlighted option
+  const handleHighlightChange = (event, option) => {
+    if (option && internalListRef.current) {
+      const { api, optionIndexMap } = internalListRef.current;
+      const index = optionIndexMap.get(option);
+      if (index !== undefined && api) {
+        api.scrollToRow({ index, align: 'auto' });
+      }
+    }
+  };
+
   return (
     <FormControl id="virtualize-demo">
       <FormLabel>10,000 options</FormLabel>
@@ -114,11 +170,17 @@ export default function Virtualize() {
         slots={{
           listbox: ListboxComponent,
         }}
+        slotProps={{
+          listbox: {
+            internalListRef,
+          },
+        }}
         options={OPTIONS}
         groupBy={(option) => option[0].toUpperCase()}
         renderOption={(props, option) => [props, option]}
         // TODO: Post React 18 update - validate this conversion, look like a hidden bug
         renderGroup={(params) => params}
+        onHighlightChange={handleHighlightChange}
       />
     </FormControl>
   );

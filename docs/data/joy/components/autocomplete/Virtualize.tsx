@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { List, RowComponentProps } from 'react-window';
+import { List, RowComponentProps, ListImperativeAPI } from 'react-window';
 import { Popper } from '@mui/base/Popper';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
@@ -17,7 +17,7 @@ function renderRow(props: RowComponentProps & { data: any }) {
   const dataSet = data[index];
   const inlineStyle = {
     ...style,
-    top: (style.top as number) + LISTBOX_PADDING,
+    top: ((style.top as number) ?? 0) + LISTBOX_PADDING,
   };
 
   if (dataSet.hasOwnProperty('group')) {
@@ -42,17 +42,33 @@ const ListboxComponent = React.forwardRef<
     anchorEl: any;
     open: boolean;
     modifiers: any[];
+    internalListRef: React.MutableRefObject<{
+      api: ListImperativeAPI | null;
+      optionIndexMap: Map<string, number>;
+    }>;
   } & React.HTMLAttributes<HTMLElement> &
     AutocompleteListboxProps
 >(function ListboxComponent(props, ref) {
-  const { children, anchorEl, open, modifiers, ...other } = props;
+  const { children, anchorEl, open, modifiers, internalListRef, ...other } = props;
   const itemData: Array<any> = [];
-  (
-    children as [Array<{ children: Array<React.ReactElement<any>> | undefined }>]
-  )[0].forEach((item) => {
-    if (item) {
-      itemData.push(item);
-      itemData.push(...(item.children || []));
+  const optionIndexMap = new Map<string, number>();
+
+  if (children && Array.isArray(children) && children[0]) {
+    (
+      children as [Array<{ children: Array<React.ReactElement<any>> | undefined }>]
+    )[0].forEach((item) => {
+      if (item) {
+        itemData.push(item);
+        itemData.push(...(item.children || []));
+      }
+    });
+  }
+
+  // Build the index map after flattening
+  itemData.forEach((item, index) => {
+    if (Array.isArray(item) && item[1]) {
+      // Option item: [props, optionValue]
+      optionIndexMap.set(item[1], index);
     }
   });
 
@@ -74,6 +90,12 @@ const ListboxComponent = React.forwardRef<
         }}
       >
         <List
+          listRef={(api) => {
+            // Store both the API and the map in the ref
+            if (internalListRef) {
+              internalListRef.current = { api, optionIndexMap };
+            }
+          }}
           rowCount={itemCount}
           rowHeight={itemSize}
           rowComponent={renderRow}
@@ -107,6 +129,29 @@ const OPTIONS = Array.from(new Array(10000))
   .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
 export default function Virtualize() {
+  // Ref to store both the List API and the option index map
+  const internalListRef = React.useRef<{
+    api: ListImperativeAPI | null;
+    optionIndexMap: Map<string, number>;
+  }>({
+    api: null,
+    optionIndexMap: new Map(),
+  });
+
+  // Handle keyboard navigation by scrolling to highlighted option
+  const handleHighlightChange = (
+    event: React.SyntheticEvent,
+    option: string | null,
+  ) => {
+    if (option && internalListRef.current) {
+      const { api, optionIndexMap } = internalListRef.current;
+      const index = optionIndexMap.get(option);
+      if (index !== undefined && api) {
+        api.scrollToRow({ index, align: 'auto' });
+      }
+    }
+  };
+
   return (
     <FormControl id="virtualize-demo">
       <FormLabel>10,000 options</FormLabel>
@@ -117,11 +162,17 @@ export default function Virtualize() {
         slots={{
           listbox: ListboxComponent,
         }}
+        slotProps={{
+          listbox: {
+            internalListRef,
+          } as any,
+        }}
         options={OPTIONS}
         groupBy={(option) => option[0].toUpperCase()}
         renderOption={(props, option) => [props, option] as React.ReactNode}
         // TODO: Post React 18 update - validate this conversion, look like a hidden bug
         renderGroup={(params) => params as unknown as React.ReactNode}
+        onHighlightChange={handleHighlightChange}
       />
     </FormControl>
   );
