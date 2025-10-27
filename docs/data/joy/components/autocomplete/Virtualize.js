@@ -100,13 +100,13 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 ListboxComponent.propTypes = {
   anchorEl: PropTypes.any.isRequired,
   children: PropTypes.node,
-  internalListRef: /* @typescript-to-proptypes-ignore */ PropTypes.shape({
+  internalListRef: PropTypes.shape({
     current: PropTypes.shape({
       api: PropTypes.shape({
         element: PropTypes.object,
         scrollToRow: PropTypes.func.isRequired,
       }),
-      optionIndexMap: PropTypes.shape({
+      optionIndexMap: PropTypes /* @typescript-to-proptypes-ignore */.shape({
         '__@iterator@76': PropTypes.func.isRequired,
         '__@toStringTag@1117': PropTypes.string.isRequired,
         clear: PropTypes.func.isRequired,
