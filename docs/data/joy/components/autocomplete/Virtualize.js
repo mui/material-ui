@@ -38,7 +38,7 @@ function renderRow(props) {
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, internalListRef, ...other } = props;
   const itemData = [];
-  const optionIndexMap = new Map();
+  const optionIndexMap = {};
 
   if (children && Array.isArray(children) && children[0]) {
     children[0].forEach((item) => {
@@ -53,7 +53,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   itemData.forEach((item, index) => {
     if (Array.isArray(item) && item[1]) {
       // Option item: [props, optionValue]
-      optionIndexMap.set(item[1], index);
+      optionIndexMap[item[1]] = index;
     }
   });
 
@@ -100,26 +100,13 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 ListboxComponent.propTypes = {
   anchorEl: PropTypes.any.isRequired,
   children: PropTypes.node,
-  internalListRef: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+  internalListRef: PropTypes.shape({
     current: PropTypes.shape({
       api: PropTypes.shape({
         element: PropTypes.object,
         scrollToRow: PropTypes.func.isRequired,
       }),
-      optionIndexMap: PropTypes.shape({
-        '__@iterator@76': PropTypes.func.isRequired,
-        '__@toStringTag@1117': PropTypes.string.isRequired,
-        clear: PropTypes.func.isRequired,
-        delete: PropTypes.func.isRequired,
-        entries: PropTypes.func.isRequired,
-        forEach: PropTypes.func.isRequired,
-        get: PropTypes.func.isRequired,
-        has: PropTypes.func.isRequired,
-        keys: PropTypes.func.isRequired,
-        set: PropTypes.func.isRequired,
-        size: PropTypes.number.isRequired,
-        values: PropTypes.func.isRequired,
-      }).isRequired,
+      optionIndexMap: PropTypes.object.isRequired,
     }).isRequired,
   }).isRequired,
   modifiers: PropTypes.array.isRequired,
@@ -146,14 +133,14 @@ export default function Virtualize() {
   // Ref to store both the List API and the option index map
   const internalListRef = React.useRef({
     api: null,
-    optionIndexMap: new Map(),
+    optionIndexMap: {},
   });
 
   // Handle keyboard navigation by scrolling to highlighted option
   const handleHighlightChange = (event, option) => {
     if (option && internalListRef.current) {
       const { api, optionIndexMap } = internalListRef.current;
-      const index = optionIndexMap.get(option);
+      const index = optionIndexMap[option];
       if (index !== undefined && api) {
         api.scrollToRow({ index, align: 'auto' });
       }

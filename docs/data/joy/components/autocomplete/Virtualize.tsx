@@ -44,14 +44,14 @@ const ListboxComponent = React.forwardRef<
     modifiers: any[];
     internalListRef: React.MutableRefObject<{
       api: ListImperativeAPI | null;
-      optionIndexMap: Map<string, number>;
+      optionIndexMap: Record<string, number>;
     }>;
   } & React.HTMLAttributes<HTMLElement> &
     AutocompleteListboxProps
 >(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, internalListRef, ...other } = props;
   const itemData: Array<any> = [];
-  const optionIndexMap = new Map<string, number>();
+  const optionIndexMap: Record<string, number> = {};
 
   if (children && Array.isArray(children) && children[0]) {
     (
@@ -68,7 +68,7 @@ const ListboxComponent = React.forwardRef<
   itemData.forEach((item, index) => {
     if (Array.isArray(item) && item[1]) {
       // Option item: [props, optionValue]
-      optionIndexMap.set(item[1], index);
+      optionIndexMap[item[1]] = index;
     }
   });
 
@@ -132,10 +132,10 @@ export default function Virtualize() {
   // Ref to store both the List API and the option index map
   const internalListRef = React.useRef<{
     api: ListImperativeAPI | null;
-    optionIndexMap: Map<string, number>;
+    optionIndexMap: Record<string, number>;
   }>({
     api: null,
-    optionIndexMap: new Map(),
+    optionIndexMap: {},
   });
 
   // Handle keyboard navigation by scrolling to highlighted option
@@ -145,7 +145,7 @@ export default function Virtualize() {
   ) => {
     if (option && internalListRef.current) {
       const { api, optionIndexMap } = internalListRef.current;
-      const index = optionIndexMap.get(option);
+      const index = optionIndexMap[option];
       if (index !== undefined && api) {
         api.scrollToRow({ index, align: 'auto' });
       }
