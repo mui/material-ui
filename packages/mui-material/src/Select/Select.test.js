@@ -1866,4 +1866,52 @@ describe('<Select />', () => {
     expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
+
+  describe('window resize', () => {
+    it('should update menu width when window resizes while menu is open', () => {
+      const { container } = render(
+        <div style={{ width: '200px' }}>
+          <Select open value="">
+            <MenuItem value="option1">Option 1</MenuItem>
+            <MenuItem value="option2">Option 2</MenuItem>
+          </Select>
+        </div>,
+      );
+
+  // Get the menu paper element (Menu is rendered in a portal on the document)
+  const menuPaper = document.querySelector('[role="presentation"]');
+      expect(menuPaper).not.to.equal(null);
+      const initialMinWidth = menuPaper.style.minWidth;
+
+      // Simulate window resize
+      const resizeEvent = new Event('resize', { bubbles: true });
+      window.dispatchEvent(resizeEvent);
+
+      // Menu width should be updated (menu paper should have minWidth)
+      expect(menuPaper.style.minWidth).to.equal(initialMinWidth);
+    });
+
+    it('should not update menu width on resize if autoWidth is true', () => {
+      const { container } = render(
+        <div style={{ width: '200px' }}>
+          <Select open value="" autoWidth>
+            <MenuItem value="option1">Option 1</MenuItem>
+            <MenuItem value="option2">Option 2</MenuItem>
+          </Select>
+        </div>,
+      );
+
+  // Menu is rendered in a portal on the document
+  const menuPaper = document.querySelector('[role="presentation"]');
+      expect(menuPaper).not.to.equal(null);
+      const initialMinWidth = menuPaper.style.minWidth;
+
+      // Simulate window resize
+      const resizeEvent = new Event('resize', { bubbles: true });
+      window.dispatchEvent(resizeEvent);
+
+      // Menu width should not have minWidth set when autoWidth is true
+      expect(menuPaper.style.minWidth).to.equal(initialMinWidth);
+    });
+  });
 });

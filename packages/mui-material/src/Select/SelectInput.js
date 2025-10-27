@@ -161,6 +161,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }, []);
 
   const anchorElement = displayNode?.parentNode;
+  const anchorElementRef = React.useRef(anchorElement);
+
+  // Update the ref whenever anchorElement changes
+  React.useEffect(() => {
+    anchorElementRef.current = anchorElement;
+  }, [anchorElement]);
 
   React.useImperativeHandle(
     handleRef,
@@ -209,6 +215,29 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     return undefined;
   }, [labelId]);
+
+  // Update menu width on window resize when menu is open
+  React.useEffect(() => {
+    if (!openState || !displayNode || autoWidth) {
+      return undefined;
+    }
+
+    const handleResize = () => {
+      const currentAnchorElement = anchorElementRef.current;
+      if (currentAnchorElement) {
+        setMenuMinWidthState(currentAnchorElement.clientWidth);
+      }
+    };
+
+    const win = ownerDocument(displayNode).defaultView;
+    if (win) {
+      win.addEventListener('resize', handleResize);
+      return () => {
+        win.removeEventListener('resize', handleResize);
+      };
+    }
+    return undefined;
+  }, [openState, displayNode, autoWidth]);
 
   const update = (open, event) => {
     if (open) {
