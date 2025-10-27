@@ -89,7 +89,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
-    "@netlify/functions": "^5.0.0",
+    "@netlify/functions": "^5.0.1",
     "@slack/bolt": "^4.5.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
@@ -120,7 +120,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.22",
+    "@types/node": "^20.19.23",
     "@types/react": "^19.2.2",
     "@types/yargs": "^17.0.33",
     "@vitejs/plugin-react": "^5.0.4",
@@ -136,7 +136,7 @@
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
     "es-toolkit": "^1.39.10",
-    "eslint": "^9.37.0",
+    "eslint": "^9.38.0",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
@@ -174,9 +174,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.19.0",
   "engines": {
-    "pnpm": "10.18.3",
+    "pnpm": "10.19.0",
     "node": ">=22.18.0"
   },
   "resolutions": {
@@ -189,7 +189,7 @@
     "@definitelytyped/header-parser": "^0.2.20",
     "@definitelytyped/typescript-versions": "^0.1.9",
     "@definitelytyped/utils": "^0.1.8",
-    "@types/node": "^20.19.22",
+    "@types/node": "^20.19.23",
     "cross-fetch": "^4.1.0",
     "@pigment-css/react": "0.0.30",
     "@pigment-css/unplugin": "0.0.30",
