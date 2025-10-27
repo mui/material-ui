@@ -622,8 +622,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/chance':
         specifier: ^1.1.7
         version: 1.1.7
@@ -731,8 +731,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -743,8 +743,8 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2
       '@types/uuid':
-        specifier: ^10.0.0
-        version: 10.0.0
+        specifier: ^11.0.0
+        version: 11.0.0
       chai:
         specifier: ^6.0.1
         version: 6.0.1
@@ -825,8 +825,8 @@ importers:
         specifier: ^1.56.1
         version: 1.56.1
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/chai-dom':
         specifier: ^1.11.3
         version: 1.11.3
@@ -886,7 +886,7 @@ importers:
         version: 5.4.3
       recast:
         specifier: ^0.23.9
-        version: 0.23.9
+        version: 0.23.11
       remark:
         specifier: ^15.0.1
         version: 15.0.1
@@ -904,8 +904,8 @@ importers:
         specifier: ^7.28.0
         version: 7.28.0
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -947,8 +947,8 @@ importers:
         version: 1.40.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -984,8 +984,8 @@ importers:
         version: 1.30.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       chai:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1024,11 +1024,11 @@ importers:
         specifier: npm:@mui/material@5.18.0
         version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)'
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/jscodeshift':
-        specifier: 0.12.0
-        version: 0.12.0
+        specifier: 17.3.0
+        version: 17.3.0
       chai:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1102,8 +1102,8 @@ importers:
         version: 7.19.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       chai:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1153,8 +1153,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
         specifier: ^19.2.2
         version: 19.2.2
@@ -1233,8 +1233,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1307,8 +1307,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1393,8 +1393,8 @@ importers:
         specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1495,8 +1495,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
         specifier: ^19.2.2
         version: 19.2.2
@@ -1542,8 +1542,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
         specifier: ^19.2.2
         version: 19.2.2
@@ -1577,8 +1577,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
         specifier: ^19.2.2
         version: 19.2.2
@@ -1606,8 +1606,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -1671,8 +1671,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1741,8 +1741,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -1832,8 +1832,8 @@ importers:
         specifier: ^10.4.1
         version: 10.4.1
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
         specifier: ^19.2.2
         version: 19.2.2
@@ -5271,11 +5271,8 @@ packages:
   '@types/chai-dom@1.11.3':
     resolution: {integrity: sha512-EUEZI7uID4ewzxnU7DJXtyvykhQuwe+etJ1wwOiJyQRTH/ifMWKX+ghiXkxCUvNJ6IQDodf0JXhuP6zZcy2qXQ==}
 
-  '@types/chai@4.3.20':
-    resolution: {integrity: sha512-/pC9HAB5I/xMlc5FP77qjCnI16ChlJfW0tGa0IUcFn38VJrTV6DeZ60NU5KZBtaOZqjdpwTWohz5HU1RrhiYxQ==}
-
-  '@types/chai@5.2.2':
-    resolution: {integrity: sha512-8kB30R7Hwqf40JPiKhVzodJs2Qc1ZJ5zuT3uzw5Hq/dhNCl3G3l83jfpdI1e20BP348+fV7VIL/+FxaXkqBmWg==}
+  '@types/chai@5.2.3':
+    resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
   '@types/chance@1.1.7':
     resolution: {integrity: sha512-40you9610GTQPJyvjMBgmj9wiDO6qXhbfjizNYod/fmvLSfUUxURAJMTD8tjmbcZSsyYE5iEUox61AAcCjW/wQ==}
@@ -5372,8 +5369,8 @@ packages:
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
 
-  '@types/jscodeshift@0.12.0':
-    resolution: {integrity: sha512-Jr2fQbEoDmjwEa92TreR/mX2t9iAaY/l5P/GKezvK4BodXahex60PDLXaQR0vAgP0KfCzc1CivHusQB9NhzX8w==}
+  '@types/jscodeshift@17.3.0':
+    resolution: {integrity: sha512-ogvGG8VQQqAQQ096uRh+d6tBHrYuZjsumHirKtvBa5qEyTMN3IQJ7apo+sw9lxaB/iKWIhbbLlF3zmAWk9XQIg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -5484,8 +5481,9 @@ packages:
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
 
-  '@types/uuid@10.0.0':
-    resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
+  '@types/uuid@11.0.0':
+    resolution: {integrity: sha512-HVyk8nj2m+jcFRNazzqyVKiZezyhDKrGUA3jlEcg/nZ6Ms+qHwocba1Y/AaVaznJTAM9xpdFSh+ptbNrhOGvZA==}
+    deprecated: This is a stub types definition. uuid provides its own type definitions, so you do not need this installed.
 
   '@types/ws@8.5.13':
     resolution: {integrity: sha512-osM/gWBTPKgHV8XkTunnegTRIsvF6owmf5w+JtAfOw472dptdm0dlGv4xCt6GwQRcC2XVOvvRE/0bAoQcL2QkA==}
@@ -10699,12 +10697,8 @@ packages:
     resolution: {integrity: sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==}
     engines: {node: '>= 0.8.0'}
 
-  recast@0.20.5:
-    resolution: {integrity: sha512-E5qICoPoNL4yU0H0NoBDntNB0Q5oMSNh9usFctYniLBluTthi3RsQVBXIJNbApOlvSwW/RGxIuokPcAc59J5fQ==}
-    engines: {node: '>= 4'}
-
-  recast@0.23.9:
-    resolution: {integrity: sha512-Hx/BGIbwj+Des3+xy5uAtAbdCyqK9y9wbBcDFDYanLS9JnMqf7OeF87HQwUimE87OEc72mr6tkKUKMBBL+hF9Q==}
+  recast@0.23.11:
+    resolution: {integrity: sha512-YTUo+Flmw4ZXiWfQKGcwwc11KnoRAYgzAE2E7mXKCjSviTKShtxBsN6YUUBB2gtaBzKzeKunxhUwNHQuRryhWA==}
     engines: {node: '>= 4'}
 
   rechoir@0.6.2:
@@ -16591,13 +16585,12 @@ snapshots:
 
   '@types/chai-dom@1.11.3':
     dependencies:
-      '@types/chai': 4.3.20
+      '@types/chai': 5.2.3
 
-  '@types/chai@4.3.20': {}
-
-  '@types/chai@5.2.2':
+  '@types/chai@5.2.3':
     dependencies:
       '@types/deep-eql': 4.0.2
+      assertion-error: 2.0.1
 
   '@types/chance@1.1.7': {}
 
@@ -16695,10 +16688,10 @@ snapshots:
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
-  '@types/jscodeshift@0.12.0':
+  '@types/jscodeshift@17.3.0':
     dependencies:
-      ast-types: 0.14.2
-      recast: 0.20.5
+      ast-types: 0.16.1
+      recast: 0.23.11
 
   '@types/json-schema@7.0.15': {}
 
@@ -16797,7 +16790,9 @@ snapshots:
 
   '@types/unist@3.0.2': {}
 
-  '@types/uuid@10.0.0': {}
+  '@types/uuid@11.0.0':
+    dependencies:
+      uuid: 10.0.0
 
   '@types/ws@8.5.13':
     dependencies:
@@ -17015,7 +17010,7 @@ snapshots:
 
   '@vitest/expect@3.2.4':
     dependencies:
-      '@types/chai': 5.2.2
+      '@types/chai': 5.2.3
       '@vitest/spy': 3.2.4
       '@vitest/utils': 3.2.4
       chai: 5.2.0
@@ -20542,7 +20537,7 @@ snapshots:
       micromatch: 4.0.8
       neo-async: 2.6.2
       picocolors: 1.1.1
-      recast: 0.23.9
+      recast: 0.23.11
       tmp: 0.2.5
       write-file-atomic: 5.0.1
     optionalDependencies:
@@ -22915,14 +22910,7 @@ snapshots:
 
   readline-sync@1.4.10: {}
 
-  recast@0.20.5:
-    dependencies:
-      ast-types: 0.14.2
-      esprima: 4.0.1
-      source-map: 0.6.1
-      tslib: 2.8.1
-
-  recast@0.23.9:
+  recast@0.23.11:
     dependencies:
       ast-types: 0.16.1
       esprima: 4.0.1
@@ -24403,7 +24391,7 @@ snapshots:
 
   vitest@3.2.4(@types/debug@4.1.12)(@types/node@20.19.23)(@vitest/browser@3.2.4)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.23)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0):
     dependencies:
-      '@types/chai': 5.2.2
+      '@types/chai': 5.2.3
       '@vitest/expect': 3.2.4
       '@vitest/mocker': 3.2.4(msw@2.7.3(@types/node@20.19.23)(typescript@5.9.3))(vite@7.1.11(@types/node@20.19.23)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))
       '@vitest/pretty-format': 3.2.4
