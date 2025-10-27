@@ -331,7 +331,7 @@ export type SliderProps<
 };
 
 export type SliderTheme = {
-  MuiSlider: CreateThemeComponent<SliderClassKey, SliderProps>;
+  MuiSlider?: CreateThemeComponent<SliderClassKey, SliderProps>;
 };
 
 export default Slider;

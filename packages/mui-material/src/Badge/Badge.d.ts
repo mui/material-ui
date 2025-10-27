@@ -183,7 +183,7 @@ export type BadgeProps<
 };
 
 export type BadgeTheme = {
-  MuiBadge: CreateThemeComponent<BadgeClassKey, BadgeProps>;
+  MuiBadge?: CreateThemeComponent<BadgeClassKey, BadgeProps>;
 };
 
 export default Badge;

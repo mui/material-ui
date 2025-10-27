@@ -43,5 +43,5 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
 export default function SnackbarContent(props: SnackbarContentProps): React.JSX.Element;
 
 export type SnackbarContentTheme = {
-  MuiSnackbarContent: CreateThemeComponent<SnackbarContentClassKey, SnackbarContentProps>;
+  MuiSnackbarContent?: CreateThemeComponent<SnackbarContentClassKey, SnackbarContentProps>;
 };

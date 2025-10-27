@@ -73,5 +73,5 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
 export default function Collapse(props: CollapseProps): React.JSX.Element;
 
 export type CollapseTheme = {
-  MuiCollapse: CreateThemeComponent<CollapseClassKey, CollapseProps>;
+  MuiCollapse?: CreateThemeComponent<CollapseClassKey, CollapseProps>;
 };

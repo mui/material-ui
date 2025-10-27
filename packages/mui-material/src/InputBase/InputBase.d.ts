@@ -264,5 +264,5 @@ export interface InputBaseComponentProps
 export default function InputBase(props: InputBaseProps): React.JSX.Element;
 
 export type InputBaseTheme = {
-  MuiInputBase: CreateThemeComponent<InputBaseClassKey, InputBaseProps>;
+  MuiInputBase?: CreateThemeComponent<InputBaseClassKey, InputBaseProps>;
 };

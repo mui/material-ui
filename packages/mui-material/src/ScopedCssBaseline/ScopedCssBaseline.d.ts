@@ -63,7 +63,7 @@ export type ScopedCssBaselineProps<
  */
 
 export type ScopedCssBaselineTheme = {
-  MuiScopedCssBaseline: CreateThemeComponent<ScopedCssBaselineClassKey, ScopedCssBaselineProps>;
+  MuiScopedCssBaseline?: CreateThemeComponent<ScopedCssBaselineClassKey, ScopedCssBaselineProps>;
 };
 
 export default ScopedCssBaseline;

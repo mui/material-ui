@@ -143,7 +143,7 @@ export type BackdropProps<
 export interface BackdropOwnerState extends BackdropProps {}
 
 export type BackdropTheme = {
-  MuiBackdrop: CreateThemeComponent<BackdropClassKey, BackdropProps>;
+  MuiBackdrop?: CreateThemeComponent<BackdropClassKey, BackdropProps>;
 };
 
 export default Backdrop;

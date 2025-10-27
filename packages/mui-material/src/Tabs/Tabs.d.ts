@@ -306,7 +306,7 @@ export type TabsProps<
 };
 
 export type TabsTheme = {
-  MuiTabs: CreateThemeComponent<TabsClassKey, TabsProps>;
+  MuiTabs?: CreateThemeComponent<TabsClassKey, TabsProps>;
 };
 
 export default Tabs;

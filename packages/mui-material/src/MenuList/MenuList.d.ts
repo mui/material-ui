@@ -72,7 +72,7 @@ export type MenuListProps<
 };
 
 export type MenuListTheme = {
-  MuiMenuList: CreateThemeComponent<MenuListClassKey, MenuListProps>;
+  MuiMenuList?: CreateThemeComponent<MenuListClassKey, MenuListProps>;
 };
 
 export default MenuList;

@@ -96,7 +96,7 @@ export type FabProps<
 };
 
 export type FabTheme = {
-  MuiFab: CreateThemeComponent<FabClassKey, FabProps>;
+  MuiFab?: CreateThemeComponent<FabClassKey, FabProps>;
 };
 
 export default Fab;

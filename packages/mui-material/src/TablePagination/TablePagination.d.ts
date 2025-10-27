@@ -305,7 +305,7 @@ export type TablePaginationProps<
 };
 
 export type TablePaginationTheme = {
-  MuiTablePagination: CreateThemeComponent<TablePaginationClassKey, TablePaginationProps>;
+  MuiTablePagination?: CreateThemeComponent<TablePaginationClassKey, TablePaginationProps>;
 };
 
 export default TablePagination;

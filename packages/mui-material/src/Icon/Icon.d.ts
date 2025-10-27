@@ -84,7 +84,7 @@ export type IconProps<
 };
 
 export type IconTheme = {
-  MuiIcon: CreateThemeComponent<IconClassKey, IconProps>;
+  MuiIcon?: CreateThemeComponent<IconClassKey, IconProps>;
 };
 
 export default Icon;

@@ -232,7 +232,7 @@ export type CardHeaderPropsWithComponent<
 >;
 
 export type CardHeaderTheme = {
-  MuiCardHeader: CreateThemeComponent<CardHeaderClassKey, CardHeaderProps>;
+  MuiCardHeader?: CreateThemeComponent<CardHeaderClassKey, CardHeaderProps>;
 };
 
 export default CardHeader;

@@ -46,7 +46,7 @@ export type CardContentProps<
 };
 
 export type CardContentTheme = {
-  MuiCardContent: CreateThemeComponent<CardContentClassKey, CardContentProps>;
+  MuiCardContent?: CreateThemeComponent<CardContentClassKey, CardContentProps>;
 };
 
 export default CardContent;

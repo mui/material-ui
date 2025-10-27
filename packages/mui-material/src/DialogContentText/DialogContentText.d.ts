@@ -45,7 +45,7 @@ export type DialogContentTextProps<
 };
 
 export type DialogContentTextTheme = {
-  MuiDialogContentText: CreateThemeComponent<DialogContentTextClassKey, DialogContentTextProps>;
+  MuiDialogContentText?: CreateThemeComponent<DialogContentTextClassKey, DialogContentTextProps>;
 };
 
 export default DialogContentText;

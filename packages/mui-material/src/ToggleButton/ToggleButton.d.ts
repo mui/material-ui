@@ -108,7 +108,7 @@ export type ToggleButtonProps<
 };
 
 export type ToggleButtonTheme = {
-  MuiToggleButton: CreateThemeComponent<ToggleButtonClassKey, ToggleButtonProps>;
+  MuiToggleButton?: CreateThemeComponent<ToggleButtonClassKey, ToggleButtonProps>;
 };
 
 export default ToggleButton;

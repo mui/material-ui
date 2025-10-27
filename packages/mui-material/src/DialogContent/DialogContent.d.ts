@@ -37,5 +37,5 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
 export default function DialogContent(props: DialogContentProps): React.JSX.Element;
 
 export type DialogContentTheme = {
-  MuiDialogContent: CreateThemeComponent<DialogContentClassKey, DialogContentProps>;
+  MuiDialogContent?: CreateThemeComponent<DialogContentClassKey, DialogContentProps>;
 };

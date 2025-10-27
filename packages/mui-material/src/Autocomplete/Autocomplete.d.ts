@@ -423,7 +423,7 @@ export default function Autocomplete<
 ): React.JSX.Element;
 
 export type AutocompleteTheme = {
-  MuiAutocomplete: CreateThemeComponent<
+  MuiAutocomplete?: CreateThemeComponent<
     AutocompleteClassKey,
     AutocompleteProps<any, any, any, any>
   >;

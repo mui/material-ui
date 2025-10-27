@@ -87,5 +87,5 @@ export interface CircularProgressProps
 export default function CircularProgress(props: CircularProgressProps): React.JSX.Element;
 
 export type CircularProgressTheme = {
-  MuiCircularProgress: CreateThemeComponent<CircularProgressClassKey, CircularProgressProps>;
+  MuiCircularProgress?: CreateThemeComponent<CircularProgressClassKey, CircularProgressProps>;
 };

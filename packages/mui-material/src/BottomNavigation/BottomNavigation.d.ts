@@ -63,7 +63,7 @@ export type BottomNavigationProps<
 };
 
 export type BottomNavigationTheme = {
-  MuiBottomNavigation: CreateThemeComponent<BottomNavigationClassKey, BottomNavigationProps>;
+  MuiBottomNavigation?: CreateThemeComponent<BottomNavigationClassKey, BottomNavigationProps>;
 };
 
 export default BottomNavigation;

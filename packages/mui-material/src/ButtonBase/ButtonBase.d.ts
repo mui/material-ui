@@ -137,7 +137,7 @@ export interface ButtonBaseActions {
 }
 
 export type ButtonBaseTheme = {
-  MuiButtonBase: CreateThemeComponent<ButtonBaseClassKey, ButtonBaseProps>;
+  MuiButtonBase?: CreateThemeComponent<ButtonBaseClassKey, ButtonBaseProps>;
 };
 
 export default ButtonBase;

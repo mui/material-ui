@@ -113,7 +113,7 @@ export interface BottomNavigationActionOwnerState
   extends Omit<BottomNavigationActionProps, 'slots' | 'slotProps'> {}
 
 export type BottomNavigationActionTheme = {
-  MuiBottomNavigationAction: CreateThemeComponent<
+  MuiBottomNavigationAction?: CreateThemeComponent<
     BottomNavigationActionClassKey,
     BottomNavigationActionProps
   >;

@@ -89,5 +89,5 @@ export interface ToggleButtonGroupProps
 export default function ToggleButtonGroup(props: ToggleButtonGroupProps): React.JSX.Element;
 
 export type ToggleButtonGroupTheme = {
-  MuiToggleButtonGroup: CreateThemeComponent<ToggleButtonGroupClassKey, ToggleButtonGroupProps>;
+  MuiToggleButtonGroup?: CreateThemeComponent<ToggleButtonGroupClassKey, ToggleButtonGroupProps>;
 };

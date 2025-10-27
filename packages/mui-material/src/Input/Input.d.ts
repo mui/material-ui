@@ -34,7 +34,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
 declare const Input: ((props: InputProps) => React.JSX.Element) & { muiName: string };
 
 export type InputTheme = {
-  MuiInput: CreateThemeComponent<InputClassKey, InputProps>;
+  MuiInput?: CreateThemeComponent<InputClassKey, InputProps>;
 };
 
 export default Input;

@@ -31,7 +31,7 @@ export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> 
 declare const TouchRipple: React.ForwardRefRenderFunction<TouchRippleActions, TouchRippleProps>;
 
 export type TouchRippleTheme = {
-  MuiTouchRipple: CreateThemeComponent<TouchRippleClassKey, TouchRippleProps>;
+  MuiTouchRipple?: CreateThemeComponent<TouchRippleClassKey, TouchRippleProps>;
 };
 
 export default TouchRipple;

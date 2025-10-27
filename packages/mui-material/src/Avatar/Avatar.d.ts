@@ -131,7 +131,7 @@ export type AvatarProps<
 };
 
 export type AvatarTheme = {
-  MuiAvatar: CreateThemeComponent<AvatarClassKey, AvatarProps>;
+  MuiAvatar?: CreateThemeComponent<AvatarClassKey, AvatarProps>;
 };
 
 export default Avatar;

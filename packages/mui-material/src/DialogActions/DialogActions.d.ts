@@ -37,5 +37,5 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
 export default function DialogActions(props: DialogActionsProps): React.JSX.Element;
 
 export type DialogActionsTheme = {
-  MuiDialogActions: CreateThemeComponent<DialogActionsClassKey, DialogActionsProps>;
+  MuiDialogActions?: CreateThemeComponent<DialogActionsClassKey, DialogActionsProps>;
 };

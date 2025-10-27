@@ -108,7 +108,7 @@ export type BreadcrumbsProps<
 };
 
 export type BreadcrumbsTheme = {
-  MuiBreadcrumbs: CreateThemeComponent<BreadcrumbsClassKey, BreadcrumbsProps>;
+  MuiBreadcrumbs?: CreateThemeComponent<BreadcrumbsClassKey, BreadcrumbsProps>;
 };
 
 export default Breadcrumbs;

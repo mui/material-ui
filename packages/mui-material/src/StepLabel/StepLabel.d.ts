@@ -115,7 +115,7 @@ declare const StepLabel: ((props: StepLabelProps) => React.JSX.Element) & {
 };
 
 export type StepLabelTheme = {
-  MuiStepLabel: CreateThemeComponent<StepLabelClassKey, StepLabelProps>;
+  MuiStepLabel?: CreateThemeComponent<StepLabelClassKey, StepLabelProps>;
 };
 
 export default StepLabel;

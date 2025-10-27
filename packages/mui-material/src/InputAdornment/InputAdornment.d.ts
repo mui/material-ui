@@ -67,7 +67,7 @@ export type InputAdornmentProps<
 };
 
 export type InputAdornmentTheme = {
-  MuiInputAdornment: CreateThemeComponent<InputAdornmentClassKey, InputAdornmentProps>;
+  MuiInputAdornment?: CreateThemeComponent<InputAdornmentClassKey, InputAdornmentProps>;
 };
 
 export default InputAdornment;

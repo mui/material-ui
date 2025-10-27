@@ -72,7 +72,7 @@ export type LinkProps<
 };
 
 export type LinkTheme = {
-  MuiLink: CreateThemeComponent<LinkClassKey, LinkProps>;
+  MuiLink?: CreateThemeComponent<LinkClassKey, LinkProps>;
 };
 
 export default Link;

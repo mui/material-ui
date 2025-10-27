@@ -72,7 +72,7 @@ export type PaperProps<
 };
 
 export type PaperTheme = {
-  MuiPaper: CreateThemeComponent<PaperClassKey, PaperProps>;
+  MuiPaper?: CreateThemeComponent<PaperClassKey, PaperProps>;
 };
 
 export default Paper;

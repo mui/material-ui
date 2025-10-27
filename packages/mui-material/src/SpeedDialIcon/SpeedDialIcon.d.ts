@@ -44,7 +44,7 @@ declare const SpeedDialIcon: ((props: SpeedDialIconProps) => React.JSX.Element) 
 };
 
 export type SpeedDialIconTheme = {
-  MuiSpeedDialIcon: CreateThemeComponent<SpeedDialIconClassKey, SpeedDialIconProps>;
+  MuiSpeedDialIcon?: CreateThemeComponent<SpeedDialIconClassKey, SpeedDialIconProps>;
 };
 
 export default SpeedDialIcon;

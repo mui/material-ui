@@ -184,5 +184,5 @@ export declare const MenuPaper: React.FC<PaperProps>;
 export default function Menu(props: MenuProps): React.JSX.Element;
 
 export type MenuTheme = {
-  MuiMenu: CreateThemeComponent<MenuClassKey, MenuProps>;
+  MuiMenu?: CreateThemeComponent<MenuClassKey, MenuProps>;
 };

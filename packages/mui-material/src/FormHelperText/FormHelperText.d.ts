@@ -83,7 +83,7 @@ export type FormHelperTextProps<
 };
 
 export type FormHelperTextTheme = {
-  MuiFormHelperText: CreateThemeComponent<FormHelperTextClassKey, FormHelperTextProps>;
+  MuiFormHelperText?: CreateThemeComponent<FormHelperTextClassKey, FormHelperTextProps>;
 };
 
 export default FormHelperText;

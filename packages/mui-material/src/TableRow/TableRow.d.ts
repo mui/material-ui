@@ -58,7 +58,7 @@ export type TableRowProps<
 };
 
 export type TableRowTheme = {
-  MuiTableRow: CreateThemeComponent<TableRowClassKey, TableRowProps>;
+  MuiTableRow?: CreateThemeComponent<TableRowClassKey, TableRowProps>;
 };
 
 export default TableRow;

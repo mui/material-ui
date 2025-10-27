@@ -208,7 +208,7 @@ declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX
 };
 
 export type SelectTheme = {
-  MuiSelect: CreateThemeComponent<SelectClassKey, SelectProps>;
+  MuiSelect?: CreateThemeComponent<SelectClassKey, SelectProps>;
 };
 
 export default Select;

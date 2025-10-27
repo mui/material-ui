@@ -33,5 +33,5 @@ export interface AlertTitleProps extends TypographyProps<'div'> {
 export default function AlertTitle(props: AlertTitleProps): React.JSX.Element;
 
 export type AlertTitleTheme = {
-  MuiAlertTitle: CreateThemeComponent<AlertTitleClassKey, AlertTitleProps>;
+  MuiAlertTitle?: CreateThemeComponent<AlertTitleClassKey, AlertTitleProps>;
 };

@@ -144,5 +144,5 @@ export interface SpeedDialOwnerState extends SpeedDialProps {}
 export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;
 
 export type SpeedDialTheme = {
-  MuiSpeedDial: CreateThemeComponent<SpeedDialClassKey, SpeedDialProps>;
+  MuiSpeedDial?: CreateThemeComponent<SpeedDialClassKey, SpeedDialProps>;
 };

@@ -133,7 +133,7 @@ export type ListItemProps<
 };
 
 export type ListItemTheme = {
-  MuiListItem: CreateThemeComponent<ListItemClassKey, ListItemProps>;
+  MuiListItem?: CreateThemeComponent<ListItemClassKey, ListItemProps>;
 };
 
 export default ListItem;

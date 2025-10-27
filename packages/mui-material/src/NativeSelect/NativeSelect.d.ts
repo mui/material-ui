@@ -68,7 +68,7 @@ export interface NativeSelectProps
 declare const NativeSelect: ((props: NativeSelectProps) => React.JSX.Element) & { muiName: string };
 
 export type NativeSelectTheme = {
-  MuiNativeSelect: CreateThemeComponent<NativeSelectClassKey, NativeSelectProps>;
+  MuiNativeSelect?: CreateThemeComponent<NativeSelectClassKey, NativeSelectProps>;
 };
 
 export default NativeSelect;

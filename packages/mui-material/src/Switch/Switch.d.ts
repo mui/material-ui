@@ -143,5 +143,5 @@ export interface SwitchProps
 export default function Switch(props: SwitchProps): React.JSX.Element;
 
 export type SwitchTheme = {
-  MuiSwitch: CreateThemeComponent<SwitchClassKey, SwitchProps>;
+  MuiSwitch?: CreateThemeComponent<SwitchClassKey, SwitchProps>;
 };

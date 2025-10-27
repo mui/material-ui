@@ -34,5 +34,5 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
 export default function ListItemIcon(props: ListItemIconProps): React.JSX.Element;
 
 export type ListItemIconTheme = {
-  MuiListItemIcon: CreateThemeComponent<ListItemIconClassKey, ListItemIconProps>;
+  MuiListItemIcon?: CreateThemeComponent<ListItemIconClassKey, ListItemIconProps>;
 };

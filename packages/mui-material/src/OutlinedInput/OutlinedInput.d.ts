@@ -64,7 +64,7 @@ declare const OutlinedInput: ((props: OutlinedInputProps) => React.JSX.Element) 
 };
 
 export type OutlinedInputTheme = {
-  MuiOutlinedInput: CreateThemeComponent<OutlinedInputClassKey, OutlinedInputProps>;
+  MuiOutlinedInput?: CreateThemeComponent<OutlinedInputClassKey, OutlinedInputProps>;
 };
 
 export default OutlinedInput;

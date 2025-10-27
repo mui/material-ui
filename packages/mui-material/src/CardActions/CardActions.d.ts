@@ -37,5 +37,5 @@ export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTM
 export default function CardActions(props: CardActionsProps): React.JSX.Element;
 
 export type CardActionsTheme = {
-  MuiCardActions: CreateThemeComponent<CardActionsClassKey, CardActionsProps>;
+  MuiCardActions?: CreateThemeComponent<CardActionsClassKey, CardActionsProps>;
 };

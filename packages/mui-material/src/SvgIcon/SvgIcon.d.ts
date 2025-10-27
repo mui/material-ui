@@ -111,7 +111,7 @@ export type SvgIconProps<
 };
 
 export type SvgIconTheme = {
-  MuiSvgIcon: CreateThemeComponent<SvgIconClassKey, SvgIconProps>;
+  MuiSvgIcon?: CreateThemeComponent<SvgIconClassKey, SvgIconProps>;
 };
 
 export default SvgIcon;

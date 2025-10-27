@@ -88,7 +88,7 @@ export type InputLabelProps<
 };
 
 export type InputLabelTheme = {
-  MuiInputLabel: CreateThemeComponent<InputLabelClassKey, InputLabelProps>;
+  MuiInputLabel?: CreateThemeComponent<InputLabelClassKey, InputLabelProps>;
 };
 
 export default InputLabel;

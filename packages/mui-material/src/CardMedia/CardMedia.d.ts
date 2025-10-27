@@ -56,7 +56,7 @@ export type CardMediaProps<
 };
 
 export type CardMediaTheme = {
-  MuiCardMedia: CreateThemeComponent<CardMediaClassKey, CardMediaProps>;
+  MuiCardMedia?: CreateThemeComponent<CardMediaClassKey, CardMediaProps>;
 };
 
 export default CardMedia;

@@ -180,7 +180,7 @@ export type PaginationItemProps<
 };
 
 export type PaginationItemTheme = {
-  MuiPaginationItem: CreateThemeComponent<PaginationItemClassKey, PaginationItemProps>;
+  MuiPaginationItem?: CreateThemeComponent<PaginationItemClassKey, PaginationItemProps>;
 };
 
 export default PaginationItem;

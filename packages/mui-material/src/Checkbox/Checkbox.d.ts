@@ -155,5 +155,5 @@ export interface CheckboxOwnerState extends Omit<CheckboxProps, 'slots' | 'slotP
 export default function Checkbox(props: CheckboxProps): React.JSX.Element;
 
 export type CheckboxTheme = {
-  MuiCheckbox: CreateThemeComponent<CheckboxClassKey, CheckboxProps>;
+  MuiCheckbox?: CreateThemeComponent<CheckboxClassKey, CheckboxProps>;
 };

@@ -73,7 +73,7 @@ export type ListProps<
 };
 
 export type ListTheme = {
-  MuiList: CreateThemeComponent<ListClassKey, ListProps>;
+  MuiList?: CreateThemeComponent<ListClassKey, ListProps>;
 };
 
 export default List;

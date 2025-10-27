@@ -60,7 +60,7 @@ export type ToolbarProps<
 };
 
 export type ToolbarTheme = {
-  MuiToolbar: CreateThemeComponent<ToolbarClassKey, ToolbarProps>;
+  MuiToolbar?: CreateThemeComponent<ToolbarClassKey, ToolbarProps>;
 };
 
 export default Toolbar;

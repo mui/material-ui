@@ -74,7 +74,7 @@ export type SkeletonProps<
 };
 
 export type SkeletonTheme = {
-  MuiSkeleton: CreateThemeComponent<SkeletonClassKey, SkeletonProps>;
+  MuiSkeleton?: CreateThemeComponent<SkeletonClassKey, SkeletonProps>;
 };
 
 export default Skeleton;

@@ -200,7 +200,7 @@ export type RatingProps<
 };
 
 export type RatingTheme = {
-  MuiRating: CreateThemeComponent<RatingClassKey, RatingProps>;
+  MuiRating?: CreateThemeComponent<RatingClassKey, RatingProps>;
 };
 
 export default Rating;

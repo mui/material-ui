@@ -77,7 +77,7 @@ export type StepClasskey = keyof NonNullable<StepProps['classes']>;
 declare const Step: OverridableComponent<StepTypeMap>;
 
 export type StepTheme = {
-  MuiStep: CreateThemeComponent<StepClassKey, StepProps>;
+  MuiStep?: CreateThemeComponent<StepClassKey, StepProps>;
 };
 
 export default Step;

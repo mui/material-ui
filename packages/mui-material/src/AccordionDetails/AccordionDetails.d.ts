@@ -32,5 +32,5 @@ export interface AccordionDetailsProps extends StandardProps<React.HTMLAttribute
 export default function AccordionDetails(props: AccordionDetailsProps): React.JSX.Element;
 
 export type AccordionDetailsTheme = {
-  MuiAccordionDetails: CreateThemeComponent<AccordionDetailsClassKey, AccordionDetailsProps>;
+  MuiAccordionDetails?: CreateThemeComponent<AccordionDetailsClassKey, AccordionDetailsProps>;
 };

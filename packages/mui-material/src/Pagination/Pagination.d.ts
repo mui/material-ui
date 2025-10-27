@@ -93,5 +93,5 @@ export interface PaginationProps
 export default function Pagination(props: PaginationProps): React.JSX.Element;
 
 export type PaginationTheme = {
-  MuiPagination: CreateThemeComponent<PaginationClassKey, PaginationProps>;
+  MuiPagination?: CreateThemeComponent<PaginationClassKey, PaginationProps>;
 };

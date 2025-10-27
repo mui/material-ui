@@ -109,7 +109,7 @@ export type AccordionSummaryProps<
 };
 
 export type AccordionSummaryTheme = {
-  MuiAccordionSummary: CreateThemeComponent<AccordionSummaryClassKey, AccordionSummaryProps>;
+  MuiAccordionSummary?: CreateThemeComponent<AccordionSummaryClassKey, AccordionSummaryProps>;
 };
 
 export default AccordionSummary;

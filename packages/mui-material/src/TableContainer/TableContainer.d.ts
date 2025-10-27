@@ -46,7 +46,7 @@ export type TableContainerProps<
 };
 
 export type TableContainerTheme = {
-  MuiTableContainer: CreateThemeComponent<TableContainerClassKey, TableContainerProps>;
+  MuiTableContainer?: CreateThemeComponent<TableContainerClassKey, TableContainerProps>;
 };
 
 export default TableContainer;

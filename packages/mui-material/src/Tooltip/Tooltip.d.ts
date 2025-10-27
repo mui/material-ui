@@ -256,5 +256,5 @@ export interface TooltipOwnerState extends TooltipProps {}
 export default function Tooltip(props: TooltipProps): React.JSX.Element;
 
 export type TooltipTheme = {
-  MuiTooltip: CreateThemeComponent<TooltipClassKey, TooltipProps>;
+  MuiTooltip?: CreateThemeComponent<TooltipClassKey, TooltipProps>;
 };

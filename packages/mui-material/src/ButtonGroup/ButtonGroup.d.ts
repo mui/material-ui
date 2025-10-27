@@ -106,7 +106,7 @@ export type ButtonGroupProps<
 };
 
 export type ButtonGroupTheme = {
-  MuiButtonGroup: CreateThemeComponent<ButtonGroupClassKey, ButtonGroupProps>;
+  MuiButtonGroup?: CreateThemeComponent<ButtonGroupClassKey, ButtonGroupProps>;
 };
 
 export default ButtonGroup;

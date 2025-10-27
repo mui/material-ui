@@ -147,7 +147,7 @@ export type ButtonProps<
 };
 
 export type ButtonTheme = {
-  MuiButton: CreateThemeComponent<ButtonClassKey, ButtonProps>;
+  MuiButton?: CreateThemeComponent<ButtonClassKey, ButtonProps>;
 };
 
 export default Button;

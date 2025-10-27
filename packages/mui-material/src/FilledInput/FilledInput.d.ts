@@ -41,7 +41,7 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
 declare const FilledInput: ((props: FilledInputProps) => React.JSX.Element) & { muiName: string };
 
 export type FilledInputTheme = {
-  MuiFilledInput: CreateThemeComponent<FilledInputClassKey, FilledInputProps>;
+  MuiFilledInput?: CreateThemeComponent<FilledInputClassKey, FilledInputProps>;
 };
 
 export default FilledInput;

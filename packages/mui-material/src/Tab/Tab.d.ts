@@ -83,7 +83,7 @@ export type TabProps<
 };
 
 export type TabTheme = {
-  MuiTab: CreateThemeComponent<TabClassKey, TabProps>;
+  MuiTab?: CreateThemeComponent<TabClassKey, TabProps>;
 };
 
 export default Tab;

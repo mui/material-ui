@@ -66,7 +66,7 @@ export type StackProps<
 };
 
 export type StackTheme = {
-  MuiStack: CreateThemeComponent<StackClassKey, StackProps>;
+  MuiStack?: CreateThemeComponent<StackClassKey, StackProps>;
 };
 
 export default Stack;

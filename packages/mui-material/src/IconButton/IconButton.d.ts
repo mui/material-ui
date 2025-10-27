@@ -103,7 +103,7 @@ export type IconButtonProps<
 };
 
 export type IconButtonTheme = {
-  MuiIconButton: CreateThemeComponent<IconButtonClassKey, IconButtonProps>;
+  MuiIconButton?: CreateThemeComponent<IconButtonClassKey, IconButtonProps>;
 };
 
 export default IconButton;

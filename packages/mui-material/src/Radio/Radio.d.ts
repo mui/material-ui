@@ -110,5 +110,5 @@ export interface RadioOwnerState extends Omit<RadioProps, 'slots' | 'slotProps'>
 export default function Radio(props: RadioProps): React.JSX.Element;
 
 export type RadioTheme = {
-  MuiRadio: CreateThemeComponent<RadioClassKey, RadioProps>;
+  MuiRadio?: CreateThemeComponent<RadioClassKey, RadioProps>;
 };

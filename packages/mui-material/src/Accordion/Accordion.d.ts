@@ -158,7 +158,7 @@ export type AccordionProps<
 export interface AccordionOwnerState extends AccordionProps {}
 
 export type AccordionTheme = {
-  MuiAccordion: CreateThemeComponent<AccordionClassKey, AccordionProps>;
+  MuiAccordion?: CreateThemeComponent<AccordionClassKey, AccordionProps>;
 };
 
 export default Accordion;

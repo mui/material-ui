@@ -43,7 +43,7 @@ declare const ListItemSecondaryAction: ((
 };
 
 export type ListItemSecondaryActionTheme = {
-  MuiListItemSecondaryAction: CreateThemeComponent<
+  MuiListItemSecondaryAction?: CreateThemeComponent<
     ListItemSecondaryActionClassKey,
     ListItemSecondaryActionProps
   >;

@@ -77,7 +77,7 @@ export type MenuItemProps<
 };
 
 export type MenuItemTheme = {
-  MuiMenuItem: CreateThemeComponent<MenuItemClassKey, MenuItemProps>;
+  MuiMenuItem?: CreateThemeComponent<MenuItemClassKey, MenuItemProps>;
 };
 
 export default MenuItem;

@@ -114,7 +114,7 @@ export type TableSortLabelProps<
 };
 
 export type TableSortLabelTheme = {
-  MuiTableSortLabel: CreateThemeComponent<TableSortLabelClassKey, TableSortLabelProps>;
+  MuiTableSortLabel?: CreateThemeComponent<TableSortLabelClassKey, TableSortLabelProps>;
 };
 
 export default TableSortLabel;

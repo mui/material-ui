@@ -64,7 +64,7 @@ export type TableProps<
 };
 
 export type TableTheme = {
-  MuiTable: CreateThemeComponent<TableClassKey, TableProps>;
+  MuiTable?: CreateThemeComponent<TableClassKey, TableProps>;
 };
 
 export default Table;

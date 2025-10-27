@@ -87,5 +87,5 @@ export type SortDirection = 'asc' | 'desc' | false;
 export default function TableCell(props: TableCellProps): React.JSX.Element;
 
 export type TableCellTheme = {
-  MuiTableCell: CreateThemeComponent<TableCellClassKey, TableCellProps>;
+  MuiTableCell?: CreateThemeComponent<TableCellClassKey, TableCellProps>;
 };

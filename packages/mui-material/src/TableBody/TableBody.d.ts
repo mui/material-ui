@@ -46,7 +46,7 @@ export type TableBodyProps<
 };
 
 export type TableBodyTheme = {
-  MuiTableBody: CreateThemeComponent<TableBodyClassKey, TableBodyProps>;
+  MuiTableBody?: CreateThemeComponent<TableBodyClassKey, TableBodyProps>;
 };
 
 export default TableBody;

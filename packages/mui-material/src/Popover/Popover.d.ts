@@ -270,5 +270,5 @@ export declare const PopoverPaper: React.FC<PopoverPaperProps>;
 export default function Popover(props: PopoverProps): React.JSX.Element;
 
 export type PopoverTheme = {
-  MuiPopover: CreateThemeComponent<PopoverClassKey, PopoverProps>;
+  MuiPopover?: CreateThemeComponent<PopoverClassKey, PopoverProps>;
 };

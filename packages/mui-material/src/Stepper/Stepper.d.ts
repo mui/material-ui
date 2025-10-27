@@ -79,7 +79,7 @@ export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
 declare const Stepper: OverridableComponent<StepperTypeMap>;
 
 export type StepperTheme = {
-  MuiStepper: CreateThemeComponent<StepperClassKey, StepperProps>;
+  MuiStepper?: CreateThemeComponent<StepperClassKey, StepperProps>;
 };
 
 export default Stepper;

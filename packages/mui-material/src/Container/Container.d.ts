@@ -63,7 +63,7 @@ export type ContainerProps<
 };
 
 export type ContainerTheme = {
-  MuiContainer: CreateThemeComponent<ContainerClassKey, ContainerProps>;
+  MuiContainer?: CreateThemeComponent<ContainerClassKey, ContainerProps>;
 };
 
 export default Container;

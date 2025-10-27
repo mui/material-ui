@@ -93,7 +93,7 @@ export type ListItemButtonProps<
 };
 
 export type ListItemButtonTheme = {
-  MuiListItemButton: CreateThemeComponent<ListItemButtonClassKey, ListItemButtonProps>;
+  MuiListItemButton?: CreateThemeComponent<ListItemButtonClassKey, ListItemButtonProps>;
 };
 
 export default ListItemButton;

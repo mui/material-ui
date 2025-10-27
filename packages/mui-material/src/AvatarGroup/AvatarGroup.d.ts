@@ -126,7 +126,7 @@ export interface AvatarGroupOwnerState
   extends PartiallyRequired<AvatarGroupProps, 'max' | 'spacing' | 'component' | 'variant'> {}
 
 export type AvatarGroupTheme = {
-  MuiAvatarGroup: CreateThemeComponent<AvatarGroupClassKey, AvatarGroupProps>;
+  MuiAvatarGroup?: CreateThemeComponent<AvatarGroupClassKey, AvatarGroupProps>;
 };
 
 export default AvatarGroup;

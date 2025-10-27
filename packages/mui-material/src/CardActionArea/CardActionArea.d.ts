@@ -86,7 +86,7 @@ export type CardActionAreaProps<
 };
 
 export type CardActionAreaTheme = {
-  MuiCardActionArea: CreateThemeComponent<CardActionAreaClassKey, CardActionAreaProps>;
+  MuiCardActionArea?: CreateThemeComponent<CardActionAreaClassKey, CardActionAreaProps>;
 };
 
 export default CardActionArea;

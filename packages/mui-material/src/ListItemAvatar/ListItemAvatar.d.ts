@@ -32,5 +32,5 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
 export default function ListItemAvatar(props: ListItemAvatarProps): React.JSX.Element;
 
 export type ListItemAvatarTheme = {
-  MuiListItemAvatar: CreateThemeComponent<ListItemAvatarClassKey, ListItemAvatarProps>;
+  MuiListItemAvatar?: CreateThemeComponent<ListItemAvatarClassKey, ListItemAvatarProps>;
 };

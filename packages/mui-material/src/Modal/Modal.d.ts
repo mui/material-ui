@@ -231,7 +231,7 @@ export type ModalProps<
 };
 
 export type ModalTheme = {
-  MuiModal: CreateThemeComponent<ModalClassKey, ModalProps>;
+  MuiModal?: CreateThemeComponent<ModalClassKey, ModalProps>;
 };
 
 export default Modal;

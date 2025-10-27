@@ -52,5 +52,5 @@ export interface ImageListItemBarProps
 export default function ImageListItemBar(props: ImageListItemBarProps): React.JSX.Element;
 
 export type ImageListItemBarTheme = {
-  MuiImageListItemBar: CreateThemeComponent<ImageListItemBarClassKey, ImageListItemBarProps>;
+  MuiImageListItemBar?: CreateThemeComponent<ImageListItemBarClassKey, ImageListItemBarProps>;
 };

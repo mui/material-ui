@@ -46,7 +46,7 @@ export type TableFooterProps<
 };
 
 export type TableFooterTheme = {
-  MuiTableFooter: CreateThemeComponent<TableFooterClassKey, TableFooterProps>;
+  MuiTableFooter?: CreateThemeComponent<TableFooterClassKey, TableFooterProps>;
 };
 
 export default TableFooter;

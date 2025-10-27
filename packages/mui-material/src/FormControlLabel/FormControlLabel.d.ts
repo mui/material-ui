@@ -110,5 +110,5 @@ export interface FormControlLabelProps
 export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;
 
 export type FormControlLabelTheme = {
-  MuiFormControlLabel: CreateThemeComponent<FormControlLabelClassKey, FormControlLabelProps>;
+  MuiFormControlLabel?: CreateThemeComponent<FormControlLabelClassKey, FormControlLabelProps>;
 };

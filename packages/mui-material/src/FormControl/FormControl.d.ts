@@ -132,7 +132,7 @@ export type FormControlProps<
 };
 
 export type FormControlTheme = {
-  MuiFormControl: CreateThemeComponent<FormControlClassKey, FormControlProps>;
+  MuiFormControl?: CreateThemeComponent<FormControlClassKey, FormControlProps>;
 };
 
 export default FormControl;

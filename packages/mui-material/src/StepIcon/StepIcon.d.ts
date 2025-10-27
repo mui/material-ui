@@ -54,5 +54,5 @@ export type StepIconClasskey = keyof NonNullable<StepIconProps['classes']>;
 export default function StepIcon(props: StepIconProps): React.JSX.Element;
 
 export type StepIconTheme = {
-  MuiStepIcon: CreateThemeComponent<StepIconClassKey, StepIconProps>;
+  MuiStepIcon?: CreateThemeComponent<StepIconClassKey, StepIconProps>;
 };

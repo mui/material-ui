@@ -281,7 +281,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export type GridTheme = {
-  MuiGrid: CreateThemeComponent<GridClassKey, GridProps>;
+  MuiGrid?: CreateThemeComponent<GridClassKey, GridProps>;
 };
 
 export default Grid;

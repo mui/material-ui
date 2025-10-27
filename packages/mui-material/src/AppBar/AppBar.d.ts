@@ -74,7 +74,7 @@ export type AppBarProps<
 };
 
 export type AppBarTheme = {
-  MuiAppBar: CreateThemeComponent<AppBarClassKey, AppBarProps>;
+  MuiAppBar?: CreateThemeComponent<AppBarClassKey, AppBarProps>;
 };
 
 export default AppBar;

@@ -374,5 +374,5 @@ export default function TextField<Variant extends TextFieldVariants>(
 ): React.JSX.Element;
 
 export type TextFieldTheme = {
-  MuiTextField: CreateThemeComponent<TextFieldClassKey, TextFieldProps>;
+  MuiTextField?: CreateThemeComponent<TextFieldClassKey, TextFieldProps>;
 };

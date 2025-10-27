@@ -153,7 +153,7 @@ export type ChipProps<
 };
 
 export type ChipTheme = {
-  MuiChip: CreateThemeComponent<ChipClassKey, ChipProps>;
+  MuiChip?: CreateThemeComponent<ChipClassKey, ChipProps>;
 };
 
 export default Chip;

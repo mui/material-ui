@@ -205,5 +205,5 @@ export interface AlertOwnerState extends AlertProps {}
 export default function Alert(props: AlertProps): React.JSX.Element;
 
 export type AlertTheme = {
-  MuiAlert: CreateThemeComponent<AlertClassKey, AlertProps>;
+  MuiAlert?: CreateThemeComponent<AlertClassKey, AlertProps>;
 };

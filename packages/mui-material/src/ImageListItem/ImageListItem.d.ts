@@ -56,7 +56,7 @@ export type ImageListItemProps<
 };
 
 export type ImageListItemTheme = {
-  MuiImageListItem: CreateThemeComponent<ImageListItemClassKey, ImageListItemProps>;
+  MuiImageListItem?: CreateThemeComponent<ImageListItemClassKey, ImageListItemProps>;
 };
 
 export default ImageListItem;

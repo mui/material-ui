@@ -72,7 +72,7 @@ export type ImageListProps<
 };
 
 export type ImageListTheme = {
-  MuiImageList: CreateThemeComponent<ImageListClassKey, ImageListProps>;
+  MuiImageList?: CreateThemeComponent<ImageListClassKey, ImageListProps>;
 };
 
 export default ImageList;

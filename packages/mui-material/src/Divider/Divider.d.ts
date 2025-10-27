@@ -83,7 +83,7 @@ export type DividerProps<
 };
 
 export type DividerTheme = {
-  MuiDivider: CreateThemeComponent<DividerClassKey, DividerProps>;
+  MuiDivider?: CreateThemeComponent<DividerClassKey, DividerProps>;
 };
 
 export default Divider;

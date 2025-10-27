@@ -144,5 +144,5 @@ export interface SpeedDialActionOwnerState
   extends Omit<SpeedDialActionProps, 'slots' | 'slotProps'> {}
 
 export type SpeedDialActionTheme = {
-  MuiSpeedDialAction: CreateThemeComponent<SpeedDialActionClassKey, SpeedDialActionProps>;
+  MuiSpeedDialAction?: CreateThemeComponent<SpeedDialActionClassKey, SpeedDialActionProps>;
 };

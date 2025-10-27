@@ -185,7 +185,7 @@ export type GridLegacyProps<
 };
 
 export type GridLegacyTheme = {
-  MuiGridLegacy: CreateThemeComponent<GridLegacyClassKey, GridLegacyProps>;
+  MuiGridLegacy?: CreateThemeComponent<GridLegacyClassKey, GridLegacyProps>;
 };
 
 export default GridLegacy;

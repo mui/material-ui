@@ -49,7 +49,7 @@ export type DialogTitleProps<
 };
 
 export type DialogTitleTheme = {
-  MuiDialogTitle: CreateThemeComponent<DialogTitleClassKey, DialogTitleProps>;
+  MuiDialogTitle?: CreateThemeComponent<DialogTitleClassKey, DialogTitleProps>;
 };
 
 export default DialogTitle;

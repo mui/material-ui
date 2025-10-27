@@ -37,5 +37,5 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
 export default function AccordionActions(props: AccordionActionsProps): React.JSX.Element;
 
 export type AccordionActionsTheme = {
-  MuiAccordionActions: CreateThemeComponent<AccordionActionsClassKey, AccordionActionsProps>;
+  MuiAccordionActions?: CreateThemeComponent<AccordionActionsClassKey, AccordionActionsProps>;
 };

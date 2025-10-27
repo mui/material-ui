@@ -46,7 +46,7 @@ export type TableHeadProps<
 };
 
 export type TableHeadTheme = {
-  MuiTableHead: CreateThemeComponent<TableHeadClassKey, TableHeadProps>;
+  MuiTableHead?: CreateThemeComponent<TableHeadClassKey, TableHeadProps>;
 };
 
 export default TableHead;

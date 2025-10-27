@@ -28,7 +28,7 @@ export interface ThemeComponents {
 
 interface ThemeNoVarsOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  components?: ThemeComponents;
+  components?: Partial<ThemeComponents>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;

@@ -124,5 +124,5 @@ export default function ListItemText<
 ): React.JSX.Element;
 
 export type ListItemTextTheme = {
-  MuiListItemText: CreateThemeComponent<ListItemTextClassKey, ListItemTextProps>;
+  MuiListItemText?: CreateThemeComponent<ListItemTextClassKey, ListItemTextProps>;
 };

@@ -67,7 +67,7 @@ export type ListSubheaderProps<
 };
 
 export type ListSubheaderTheme = {
-  MuiListSubheader: CreateThemeComponent<ListSubheaderClassKey, ListSubheaderProps>;
+  MuiListSubheader?: CreateThemeComponent<ListSubheaderClassKey, ListSubheaderProps>;
 };
 
 export default ListSubheader;

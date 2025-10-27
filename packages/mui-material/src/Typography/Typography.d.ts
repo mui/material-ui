@@ -126,7 +126,7 @@ export type TypographyProps<
 };
 
 export type TypographyTheme = {
-  MuiTypography: CreateThemeComponent<TypographyClassKey, TypographyProps>;
+  MuiTypography?: CreateThemeComponent<TypographyClassKey, TypographyProps>;
 };
 
 export default Typography;

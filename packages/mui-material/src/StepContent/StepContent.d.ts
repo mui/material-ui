@@ -86,5 +86,5 @@ export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>
 export default function StepContent(props: StepContentProps): React.JSX.Element;
 
 export type StepContentTheme = {
-  MuiStepContent: CreateThemeComponent<StepContentClassKey, StepContentProps>;
+  MuiStepContent?: CreateThemeComponent<StepContentClassKey, StepContentProps>;
 };

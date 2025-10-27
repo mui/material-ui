@@ -67,5 +67,5 @@ export interface LinearProgressProps
 export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;
 
 export type LinearProgressTheme = {
-  MuiLinearProgress: CreateThemeComponent<LinearProgressClassKey, LinearProgressProps>;
+  MuiLinearProgress?: CreateThemeComponent<LinearProgressClassKey, LinearProgressProps>;
 };

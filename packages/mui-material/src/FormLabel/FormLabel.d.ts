@@ -91,7 +91,7 @@ export type FormLabelProps<
 };
 
 export type FormLabelTheme = {
-  MuiFormLabel: CreateThemeComponent<FormLabelClassKey, FormLabelProps>;
+  MuiFormLabel?: CreateThemeComponent<FormLabelClassKey, FormLabelProps>;
 };
 
 export default FormLabel;

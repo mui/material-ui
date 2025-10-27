@@ -33,5 +33,5 @@ export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classe
 export default function StepConnector(props: StepConnectorProps): React.JSX.Element;
 
 export type StepConnectorTheme = {
-  MuiStepConnector: CreateThemeComponent<StepConnectorClassKey, StepConnectorProps>;
+  MuiStepConnector?: CreateThemeComponent<StepConnectorClassKey, StepConnectorProps>;
 };

@@ -63,7 +63,7 @@ export type StepButtonProps<
 };
 
 export type StepButtonTheme = {
-  MuiStepButton: CreateThemeComponent<StepButtonClassKey, StepButtonProps>;
+  MuiStepButton?: CreateThemeComponent<StepButtonClassKey, StepButtonProps>;
 };
 
 export default StepButton;
