@@ -100,7 +100,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 ListboxComponent.propTypes = {
   anchorEl: PropTypes.any.isRequired,
   children: PropTypes.node,
-  internalListRef: PropTypes.shape({
+  internalListRef: /* @typescript-to-proptypes-ignore */ PropTypes.shape({
     current: PropTypes.shape({
       api: PropTypes.shape({
         element: PropTypes.object,
