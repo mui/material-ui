@@ -33,25 +33,24 @@ We’re happy to share the newest MUI X features shipped over the past months. A
 
 - [Charts](#charts)
   - [Brush selection](#brush-selection)
-  - [Zoom and pan that feel right](#zoom-and-pan-that-feel-right)
-  - [Zoom slider with preview](#zoom-slider-with-preview)
-  - [Keyboard navigation and a11y improvements](#keyboard-navigation--a11y-improvements)
-  - [New and upgraded charts](#new-and-upgraded-charts)
+  - [Zoom and pan that feel right](#zoom-and-pan-that-feel-right)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Zoom slider with preview](#zoom-slider-with-preview)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Keyboard navigation and a11y improvements](#keyboard-navigation-and-a11y-improvements)
+  - [Sankey and upgraded charts](#sankey-and-upgraded-charts)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Clearer axes for dense categories](#clearer-axes-for-dense-categories)
-  - [Performance and export](#performance--export)
+  - [Performance and export](#performance-and-export)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Data Grid](#data-grid)
-  - [Server-side pivoting (Premium)](#server-side-pivoting-premium)
-  - [Row grouping that adapts as you explore](#row-grouping-that-adapts-as-you-explore)
-  - [Charts integration (Premium)](#charts-integration-premium)
-  - [Smoother reordering with clear affordances](#smoother-reordering-with-clear-affordances)
-  - [Pinned areas and scrolling polish](#pinned-areas--scrolling-polish)
-  - [Export resilience (Premium)](#export-resilience-premium)
+  - [Server-side pivoting](#server-side-pivoting)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+  - [Row grouping that adapts as you explore](#row-grouping-that-adapts-as-you-explore)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+  - [Charts integration](#charts-integration)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+  - [Smoother reordering with clear affordances](#smoother-reordering-with-clear-affordances)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Pinned areas and scrolling polish](#pinned-areas-and-scrolling-polish)
+  - [Export resilience](#export-resilience)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Date and Time Pickers](#date-and-time-pickers)
-  - [Better range defaults](#better-range-defaults)
+  - [Better range defaults](#better-range-defaults)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Polished inputs across devices](#polished-inputs-across-devices)
 - [Tree View](#tree-view)
-  - [Easier to navigate large hierarchies](#easier-to-navigate-large-hierarchies)
-- [Localization](#localization)
+  - [Drag and drop support and other improvements](#drag-and-drop-support-and-other-improvements)
 - [What’s next](#whats-next)
 - [Feedback](#feedback)
 
@@ -68,7 +67,7 @@ Drag a **brush** across any cartesian chart to focus the conversation: zoom a bu
 
 [Explore brush and selection](/x/react-charts/brush/)
 
-### Zoom and pan that feel right (Pro)
+### Zoom and pan that feel right [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Zooming and panning now match how people expect to interact: wheel or pinch to zoom, **press-and-drag** to pan, and on touch you can **tap-and-drag** to zoom without fiddly gestures. If needed, tune the interaction config (for example, require Ctrl to zoom and Shift to pan) so charts play nicely with your page shortcuts.
 
@@ -79,7 +78,7 @@ Zooming and panning now match how people expect to interact: wheel or pinch to z
 
 [Zoom and pan guide](/x/react-charts/zoom-and-pan/)
 
-### Zoom slider with preview (Pro)
+### Zoom slider with preview [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 A compact **slider** under the axis makes long ranges effortless to navigate, and the optional **preview** shows exactly what’s in view — the dashboard equivalent of a map’s mini-overview.
 
@@ -101,7 +100,7 @@ Charts are comfortable to explore from the keyboard: focus highlights stay in sy
 
 [Accessibility and keyboard](/x/react-charts/accessibility/)
 
-### Sankey and upgraded charts (Pro)
+### Sankey and upgraded charts [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 A **Sankey** diagram joins the lineup for flow visualization, while **Funnel** charts gain polished presets (including pyramid/step-pyramid) so conversion stories read at a glance.
 
@@ -123,7 +122,7 @@ Multi-level **label groups** on band/point axes tidy up long category lists and 
 
 [Axes and labeling](/x/react-charts/axes/)
 
-### Performance and export (Pro)
+### Performance and export [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Heavy dashboards feel lighter thanks to faster string measurement, tuned bar rendering, and an **SVG batch renderer** for large scatter plots. When it’s time to share, capture the exact view with **image export** or **print/PDF**.
 
@@ -136,7 +135,7 @@ Heavy dashboards feel lighter thanks to faster string measurement, tuned bar ren
 
 ## Data Grid
 
-### Server-side pivoting (Premium)
+### Server-side pivoting [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 Pivot at scale without locking the browser. The Grid coordinates with your backend to compute pivots and aggregates, so the UI stays snappy while you slice by Region Segment Product (or any model you dream up).
 
@@ -147,7 +146,7 @@ Pivot at scale without locking the browser. The Grid coordinates with your backe
 
 [Start with pivoting now](/x/react-data-grid/pivoting/).
 
-### Row grouping that adapts as you explore (Premium)
+### Row grouping that adapts as you explore [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 Reorder grouping levels on the fly and keep your place: **expanded groups stay open** even as data updates, so you don’t lose context during refreshes.
 
@@ -158,7 +157,7 @@ Reorder grouping levels on the fly and keep your place: **expanded groups stay o
 
 [Row grouping guide](/x/react-data-grid/row-grouping/)
 
-### Data Grid ↔ Charts integration (Premium)
+### Charts integration [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 Turn selections into visuals in seconds. An integrated panel renders the right chart for the current view and stays in sync with Grid interactions — ideal for quick investigations and stakeholder snapshots.
 
@@ -169,7 +168,7 @@ Turn selections into visuals in seconds. An integrated panel renders the right c
 
 [Charts integration docs](/x/react-data-grid/charts-integration/)
 
-### Smoother reordering with clear affordances (Pro)
+### Smoother reordering with clear affordances [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Drag-and-drop **row reordering** now shows a precise **drop indicator**, so teams can reprioritize with confidence — perfect for backlogs and ranked lists.
 
@@ -191,7 +190,7 @@ Pinned rows and aggregates cooperate with the **scrollbar** and **scroll shadows
 
 [Pinning guide](/x/react-data-grid/column-pinning/) • [Scrolling guide](/x/react-data-grid/scrolling/)
 
-### Export resilience (Premium)
+### Export resilience [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 Excel export now relies on a **vetted internal fork** to avoid transitive vulnerabilities and keep exports reliable at scale.
 
@@ -204,7 +203,7 @@ Excel export now relies on a **vetted internal fork** to avoid transitive vulner
 
 ## Date and Time Pickers
 
-### Better range defaults (Pro)
+### Better range defaults [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Range components can use **different reference dates** for start and end, so pickers open where users expect — say, next Monday through Friday for travel, or “this month” for reporting.
 
