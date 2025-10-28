@@ -104,7 +104,7 @@
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-bundle-size-checker": "^1.0.9-canary.53",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.10",
-    "@mui/internal-code-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@e81c9fe",
+    "@mui/internal-code-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@bdf7a33",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "^0.0.2-canary.1",
     "@mui/internal-scripts": "workspace:^",

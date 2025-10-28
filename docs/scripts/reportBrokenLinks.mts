@@ -1,10 +1,21 @@
 import * as path from 'path';
 import { crawl } from '@mui/internal-code-infra/brokenLinksChecker';
+import { globby } from 'globby';
 
 async function main() {
+  // The /blog/ page has pagination that's not persisted in the url.
+  const blogPages = await globby('blog/**/*.js', {
+    cwd: path.resolve(import.meta.dirname, '../pages'),
+  });
+  const blogSeedUrls = blogPages.map((page) => {
+    const pathname = page.replace(/(?:\/index)?\.js$/, '');
+    return `/${pathname}/`;
+  });
+
   const { issues } = await crawl({
     startCommand: 'pnpm start --no-request-logging -p 3001',
     host: 'http://localhost:3001/',
+    seedUrls: ['/', ...blogSeedUrls],
     outPath: path.resolve(import.meta.dirname, '../export/material-ui/link-structure.json'),
     // Target paths to ignore during link checking
     ignoredPaths: [
