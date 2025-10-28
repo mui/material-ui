@@ -339,13 +339,9 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-// @ts-expect-error we're trying to access process.env in both node and browser envs
-const env = (process ?? import.meta).env;
-const isVitest =
-  // VITEST is present on the environment when not in browser mode.
-  env.VITEST === 'true' ||
-  // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
-  typeof env.VITEST_BROWSER_DEBUG !== 'undefined';
+function isVitest(vi: any) {
+  return vi != null;
+}
 
 function createVitestClock(
   defaultMode: 'fake' | 'real',
@@ -419,7 +415,7 @@ function createClock(
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
   vi: any,
 ): Clock {
-  if (isVitest) {
+  if (isVitest(vi)) {
     return createVitestClock(defaultMode, config, options, vi);
   }
 
@@ -582,7 +578,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
     let id: string | null = null;
 
-    if (isVitest) {
+    if (isVitest(vi)) {
       // @ts-expect-error
       id = expect.getState().currentTestName;
     } else {
