@@ -519,7 +519,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi || {},
+    vi = (globalThis as any).vi,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
