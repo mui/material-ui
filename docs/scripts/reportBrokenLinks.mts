@@ -9,7 +9,7 @@ async function main() {
   });
   const blogSeedUrls = blogPages.map((page) => {
     const pathname = page.replace(/(?:\/index)?\.js$/, '');
-    return `/${pathname}/`;
+    return `/${pathname}`;
   });
 
   const { issues } = await crawl({
