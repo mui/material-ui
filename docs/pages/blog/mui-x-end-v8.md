@@ -58,7 +58,7 @@ We’re happy to share the newest MUI X features shipped over the past months. A
 
 ### Brush selection
 
-Drag a **brush** across any cartesian chart to focus the conversation: zoom a busy week on a time series, isolate a cluster in scatter, or feed the selected window to your own logic. The brush overlay gives a crisp visual cue while you work.
+Drag a brush across any cartesian chart to focus the conversation: zoom a busy week on a time series, isolate a cluster in scatter, or feed the selected window to your own logic. The brush overlay gives a crisp visual cue while you work.
 
 <figure style="margin:16px 0;">
   <video src="/static/blog/mui-x-end-v8/charts-brush.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -69,7 +69,7 @@ Drag a **brush** across any cartesian chart to focus the conversation: zoom a bu
 
 ### Zoom and pan that feel right [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Zooming and panning now match how people expect to interact: wheel or pinch to zoom, **press-and-drag** to pan, and on touch you can **tap-and-drag** to zoom without fiddly gestures. If needed, tune the interaction config (for example, require Ctrl to zoom and Shift to pan) so charts play nicely with your page shortcuts.
+Zooming and panning now match how people expect to interact: wheel or pinch to zoom, press-and-drag to pan, and on touch you can tap-and-drag to zoom without fiddly gestures. If needed, tune the interaction config (for example, require Ctrl to zoom and Shift to pan) so charts play nicely with your page shortcuts.
 
 <figure style="margin:16px 0;">
   <video src="/static/blog/mui-x-end-v8/charts-zoom-gestures.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -80,7 +80,7 @@ Zooming and panning now match how people expect to interact: wheel or pinch to z
 
 ### Zoom slider with preview [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-A compact **slider** under the axis makes long ranges effortless to navigate, and the optional **preview** shows exactly what’s in view — the dashboard equivalent of a map’s mini-overview.
+A compact slider under the axis makes long ranges effortless to navigate, and the optional preview shows exactly what’s in view — the dashboard equivalent of a map’s mini-overview.
 
 <figure style="margin:16px 0;">
   <img src="/static/blog/mui-x-end-v8/charts-zoom-preview.png" alt="Zoom slider and preview" style="width:100%;max-width:960px;border-radius:12px;">
@@ -113,7 +113,7 @@ A **Sankey** diagram joins the lineup for flow visualization, while **Funnel** c
 
 ### Clearer axes for dense categories
 
-Multi-level **label groups** on band/point axes tidy up long category lists and comparisons — perfect for “Region Country City” break-downs.
+Multi-level label groups on band/point axes tidy up long category lists and comparisons — perfect for “Region Country City” break-downs.
 
 <figure style="margin:16px 0;">
   <img src="/static/blog/mui-x-end-v8/charts-axis-groups.png" alt="Grouped axis labels" style="width:100%;max-width:960px;border-radius:12px;">
@@ -124,7 +124,7 @@ Multi-level **label groups** on band/point axes tidy up long category lists and 
 
 ### Performance and export [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Heavy dashboards feel lighter thanks to faster string measurement, tuned bar rendering, and an **SVG batch renderer** for large scatter plots. When it’s time to share, capture the exact view with **image export** or **print/PDF**.
+Heavy dashboards feel lighter thanks to faster string measurement, tuned bar rendering, and an SVG batch renderer for large scatter plots. When it’s time to share, capture the exact view with **image export** or **print/PDF**.
 
 <figure style="margin:16px 0;">
   <img src="/static/blog/mui-x-end-v8/charts-perf-export.png" alt="Charts performance and export" style="width:100%;max-width:960px;border-radius:12px;">
@@ -148,7 +148,7 @@ Pivot at scale without locking the browser. The Grid coordinates with your backe
 
 ### Row grouping that adapts as you explore [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Reorder grouping levels on the fly and keep your place: **expanded groups stay open** even as data updates, so you don’t lose context during refreshes.
+Reorder grouping levels on the fly and keep your place: expanded groups stay open even as data updates, so you don’t lose context during refreshes.
 
 <figure style="margin:16px 0;">
   <video src="/static/blog/mui-x-end-v8/grid-grouping-reorder.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -170,7 +170,7 @@ Turn selections into visuals in seconds. An integrated panel renders the right c
 
 ### Smoother reordering with clear affordances [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Drag-and-drop **row reordering** now shows a precise **drop indicator**, so teams can reprioritize with confidence — perfect for backlogs and ranked lists.
+Drag-and-drop row reordering now shows a precise drop indicator, so teams can reprioritize with confidence — perfect for backlogs and ranked lists.
 
 <figure style="margin:16px 0;">
   <video src="/static/blog/mui-x-end-v8/grid-row-reorder.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -181,7 +181,7 @@ Drag-and-drop **row reordering** now shows a precise **drop indicator**, so team
 
 ### Pinned areas and scrolling polish
 
-Pinned rows and aggregates cooperate with the **scrollbar** and **scroll shadows**, making wide, tall tables easier to parse at a glance.
+Pinned rows and aggregates cooperate with the scrollbar and scroll shadows, making wide, tall tables easier to parse at a glance.
 
 <figure style="margin:16px 0;">
   <img src="/static/blog/mui-x-end-v8/grid-pinning-shadows.png" alt="Pinned rows and scroll shadows" style="width:100%;max-width:960px;border-radius:12px;">
@@ -205,7 +205,7 @@ Excel export now relies on a **vetted internal fork** to avoid transitive vulner
 
 ### Better range defaults [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Range components can use **different reference dates** for start and end, so pickers open where users expect — say, next Monday through Friday for travel, or “this month” for reporting.
+Range components can use different reference dates for start and end, so pickers open where users expect — say, next Monday through Friday for travel, or “this month” for reporting.
 
 <figure style="margin:16px 0;">
   <img src="/static/blog/mui-x-end-v8/pickers-range-reference.png" alt="Range picker with different reference dates" style="width:100%;max-width:720px;border-radius:12px;">
@@ -240,7 +240,7 @@ Between refined editing, ordering, and selection behaviors, trees hold up better
 
 ## What’s next
 
-We’re targeting **v9 by the end of March**. Right after that, we’ll invest heavily in **customization**: progressively **rewriting components over Base UI** to fully embrace **composition**, cleaner **slots/slotProps**, and a more modern **DevEx**. The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
+We’re targeting v9 stable release by the end of March. Right after that, we’ll invest heavily in **customization** and rewrite the components over Base UI to fully embrace composition, cleaner slots API, and a more modern **DevEx**. The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
 
 If you rely on deep customization today, now is the perfect time to tell us what hurts — your input will shape the plan.
 
