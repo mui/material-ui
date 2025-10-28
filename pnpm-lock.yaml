@@ -68,7 +68,7 @@ importers:
         specifier: ^2.0.8-canary.10
         version: 2.0.8-canary.10(@babel/core@7.28.4)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.52
+        specifier: ^1.0.9-canary.53
         version: 1.0.9-canary.53(@types/node@20.19.23)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
         specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@9667233
