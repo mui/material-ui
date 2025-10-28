@@ -1,18 +1,11 @@
 import * as path from 'path';
 import { crawl } from '@mui/internal-code-infra/brokenLinksChecker';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const currentDir = dirname(fileURLToPath(import.meta.url));
-
-// eslint-disable-next-line no-console
-console.log(currentDir, import.meta.dirname);
 
 async function main() {
   const { issues } = await crawl({
     startCommand: 'pnpm start --no-request-logging -p 3001',
     host: 'http://localhost:3001/',
-    outPath: path.resolve(currentDir, '../public/material-ui/link-structure.json'),
+    outPath: path.resolve(import.meta.dirname, '../public/material-ui/link-structure.json'),
     // Target paths to ignore during link checking
     ignoredPaths: [
       // Internal links not on this server
