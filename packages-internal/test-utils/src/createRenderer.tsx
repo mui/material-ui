@@ -339,7 +339,8 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-const env = process ?? import.meta;
+// @ts-expect-error we're trying to access process.env in both node and browser envs
+const env = (process ?? import.meta).env;
 const isVitest =
   // VITEST is present on the environment when not in browser mode.
   env.VITEST === 'true' ||
