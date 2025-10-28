@@ -1869,7 +1869,7 @@ describe('<Select />', () => {
 
   describe('window resize', () => {
     it('should update menu width when window resizes while menu is open', () => {
-      const { container } = render(
+      render(
         <div style={{ width: '200px' }}>
           <Select open value="">
             <MenuItem value="option1">Option 1</MenuItem>
@@ -1892,7 +1892,7 @@ describe('<Select />', () => {
     });
 
     it('should not update menu width on resize if autoWidth is true', () => {
-      const { container } = render(
+      render(
         <div style={{ width: '200px' }}>
           <Select open value="" autoWidth>
             <MenuItem value="option1">Option 1</MenuItem>
