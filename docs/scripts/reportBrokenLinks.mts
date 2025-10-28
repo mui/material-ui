@@ -5,7 +5,7 @@ async function main() {
   const { issues } = await crawl({
     startCommand: 'pnpm start --no-request-logging -p 3001',
     host: 'http://localhost:3001/',
-    outPath: path.resolve(import.meta.dirname, '../public/static/material-ui/link-structure.json'),
+    outPath: path.resolve(import.meta.dirname, '../export/material-ui/link-structure.json'),
     // Target paths to ignore during link checking
     ignoredPaths: [
       // Internal links not on this server
