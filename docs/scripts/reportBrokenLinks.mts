@@ -4,6 +4,7 @@ import { crawl } from '@mui/internal-code-infra/brokenLinksChecker';
 async function main() {
   const { issues } = await crawl({
     startCommand: 'pnpm start --no-request-logging -p 3001',
+    concurrency: 1,
     host: 'http://localhost:3001/',
     outPath: path.resolve(import.meta.dirname, '../public/material-ui/link-structure.json'),
     // Target paths to ignore during link checking
