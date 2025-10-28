@@ -339,8 +339,12 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-// @ts-expect-error
-const isVitest = 'vi' in globalThis && globalThis.vi != null;
+const env = process ?? import.meta;
+const isVitest =
+  // VITEST is present on the environment when not in browser mode.
+  env.VITEST === 'true' ||
+  // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
+  typeof env.VITEST_BROWSER_DEBUG !== 'undefined';
 
 function createVitestClock(
   defaultMode: 'fake' | 'real',
