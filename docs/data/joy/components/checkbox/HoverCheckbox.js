@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Checkbox from '@mui/joy/Checkbox';
 import Done from '@mui/icons-material/Done';
 

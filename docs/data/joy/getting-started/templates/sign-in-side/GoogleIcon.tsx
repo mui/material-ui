@@ -1,4 +1,3 @@
-import * as React from 'react';
 import SvgIcon from '@mui/joy/SvgIcon';
 
 export default function GoogleIcon() {

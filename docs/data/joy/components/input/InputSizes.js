@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
 

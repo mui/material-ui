@@ -1,4 +1,3 @@
-import * as React from 'react';
 import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
