@@ -131,7 +131,6 @@
     "cross-fetch": "^4.1.0",
     "gm": "^1.25.1",
     "marked": "^16.2.0",
-    "node-html-parser": "^7.0.1",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.16",
     "yargs": "^18.0.0"
