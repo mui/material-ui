@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expectType } from '@mui/types';
 import Alert, { AlertOwnerState } from '@mui/joy/Alert';
 

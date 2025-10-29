@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import IconButton, { iconButtonClasses as classes } from '@mui/joy/IconButton';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Badge from '@mui/joy/Badge';
 import Typography from '@mui/joy/Typography';
 

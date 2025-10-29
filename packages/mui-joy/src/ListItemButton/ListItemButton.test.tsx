@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';

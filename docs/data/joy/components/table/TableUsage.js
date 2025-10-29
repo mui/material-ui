@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
