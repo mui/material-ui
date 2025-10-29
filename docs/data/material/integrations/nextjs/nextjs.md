@@ -145,7 +145,7 @@ To learn more about it, see [the MDN CSS layer documentation](https://developer.
 
 ### Next.js v16 Client Component restriction
 
-If you encounter `Functions cannot be passed directly to Client Components` error from passing Next.js Link to Material UI `component` prop, you need to create a wrapper component with `use client` directive like the following:
+If you encounter `Functions cannot be passed directly to Client Components` error from passing Next.js Link to Material UI `component` prop, you need to create a wrapper component with `use client` directive like the following:
 
 ```tsx title="src/components/Link.tsx"
 'use client';
