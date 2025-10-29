@@ -25,7 +25,7 @@
       "description": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node."
     },
     "loading": {
-      "description": "If <code>true</code>, the loading indicator is visible and the button is disabled. If <code>true \\| false</code>, the loading wrapper is always rendered before the children to prevent <a href=\"https://github.com/mui/material-ui/issues/27853\">Google Translation Crash</a>."
+      "description": "If <code>true</code>, the loading indicator is visible and the button is disabled. If <code>true | false</code>, the loading wrapper is always rendered before the children to prevent <a href=\"https://github.com/mui/material-ui/issues/27853\">Google Translation Crash</a>."
     },
     "loadingIndicator": {
       "description": "Element placed before the children if the button is in loading state. The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default, it renders a <code>CircularProgress</code> that is labeled by the button itself."
