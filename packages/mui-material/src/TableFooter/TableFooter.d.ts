@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TableFooterClasses } from './tableFooterClasses';
+import { TableFooterClasses, TableFooterClassKey } from './tableFooterClasses';
 
 export interface TableFooterOwnProps {
   /**
@@ -43,6 +43,10 @@ export type TableFooterProps<
   AdditionalProps = {},
 > = OverrideProps<TableFooterTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TableFooterTheme = {
+  MuiTableFooter?: CreateThemeComponent<TableFooterClassKey, TableFooterProps>;
 };
 
 export default TableFooter;

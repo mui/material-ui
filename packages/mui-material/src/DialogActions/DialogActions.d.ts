@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { DialogActionsClasses } from './dialogActionsClasses';
+import { DialogActionsClasses, DialogActionsClassKey } from './dialogActionsClasses';
 
 export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -35,3 +35,7 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
  * - [DialogActions API](https://mui.com/material-ui/api/dialog-actions/)
  */
 export default function DialogActions(props: DialogActionsProps): React.JSX.Element;
+
+export type DialogActionsTheme = {
+  MuiDialogActions?: CreateThemeComponent<DialogActionsClassKey, DialogActionsProps>;
+};

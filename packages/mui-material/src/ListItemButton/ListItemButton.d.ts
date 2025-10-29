@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { ListItemButtonClasses } from './listItemButtonClasses';
+import { ListItemButtonClasses, ListItemButtonClassKey } from './listItemButtonClasses';
 
 /**
  * This interface is kept for backward compatibility. To extend `LitItemButton`
@@ -90,6 +90,10 @@ export type ListItemButtonProps<
   AdditionalProps = {},
 > = OverrideProps<ListItemButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ListItemButtonTheme = {
+  MuiListItemButton?: CreateThemeComponent<ListItemButtonClassKey, ListItemButtonProps>;
 };
 
 export default ListItemButton;

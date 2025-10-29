@@ -1,7 +1,7 @@
 import { ResponsiveStyleValue, SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
-import { Theme } from '@mui/material/styles';
-import { MasonryClasses } from './masonryClasses';
+import { Theme, CreateThemeComponent } from '@mui/material/stylesOptimized';
+import { MasonryClasses, MasonryClassKey } from './masonryClasses';
 
 export interface MasonryOwnProps {
   /**
@@ -68,5 +68,7 @@ export type MasonryProps<
   RootComponent extends React.ElementType = MasonryTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<MasonryTypeMap<AdditionalProps, RootComponent>, RootComponent>;
+
+export type MasonryTheme = CreateThemeComponent<MasonryClassKey, MasonryProps>;
 
 export default Masonry;

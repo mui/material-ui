@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { DividerClasses } from './dividerClasses';
+import { DividerClasses, DividerClassKey } from './dividerClasses';
 
 export interface DividerPropsVariantOverrides {}
 
@@ -80,6 +80,10 @@ export type DividerProps<
   AdditionalProps = {},
 > = OverrideProps<DividerTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type DividerTheme = {
+  MuiDivider?: CreateThemeComponent<DividerClassKey, DividerProps>;
 };
 
 export default Divider;

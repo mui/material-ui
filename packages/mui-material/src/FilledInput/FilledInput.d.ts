@@ -1,8 +1,8 @@
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseProps } from '../InputBase';
-import { FilledInputClasses } from './filledInputClasses';
+import { FilledInputClasses, FilledInputClassKey } from './filledInputClasses';
 
 export interface FilledInputProps extends StandardProps<InputBaseProps> {
   /**
@@ -39,5 +39,9 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
  * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 declare const FilledInput: ((props: FilledInputProps) => React.JSX.Element) & { muiName: string };
+
+export type FilledInputTheme = {
+  MuiFilledInput?: CreateThemeComponent<FilledInputClassKey, FilledInputProps>;
+};
 
 export default FilledInput;

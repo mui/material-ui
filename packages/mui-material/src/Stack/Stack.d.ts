@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
+import { ResponsiveStyleValue, StackClassKey, SxProps, SystemProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
-import { Theme } from '../styles/createTheme';
+import { CreateThemeComponent, Theme } from '../stylesOptimized/createTheme';
 
 export interface StackOwnProps extends SystemProps<Theme> {
   /**
@@ -63,6 +63,10 @@ export type StackProps<
   AdditionalProps = {},
 > = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type StackTheme = {
+  MuiStack?: CreateThemeComponent<StackClassKey, StackProps>;
 };
 
 export default Stack;

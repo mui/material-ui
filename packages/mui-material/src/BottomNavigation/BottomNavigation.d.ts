@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { BottomNavigationClasses } from './bottomNavigationClasses';
+import { BottomNavigationClasses, BottomNavigationClassKey } from './bottomNavigationClasses';
 
 export interface BottomNavigationOwnProps {
   /**
@@ -60,6 +60,10 @@ export type BottomNavigationProps<
   AdditionalProps = {},
 > = OverrideProps<BottomNavigationTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type BottomNavigationTheme = {
+  MuiBottomNavigation?: CreateThemeComponent<BottomNavigationClassKey, BottomNavigationProps>;
 };
 
 export default BottomNavigation;

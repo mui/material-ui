@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '../utils/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { BreadcrumbsClasses } from './breadcrumbsClasses';
+import { BreadcrumbsClasses, BreadcrumbsClassKey } from './breadcrumbsClasses';
 import SvgIcon from '../SvgIcon';
 
 export interface BreadcrumbsCollapsedIconSlotPropsOverrides {}
@@ -105,6 +105,10 @@ export type BreadcrumbsProps<
   AdditionalProps = {},
 > = OverrideProps<BreadcrumbsTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type BreadcrumbsTheme = {
+  MuiBreadcrumbs?: CreateThemeComponent<BreadcrumbsClassKey, BreadcrumbsProps>;
 };
 
 export default Breadcrumbs;

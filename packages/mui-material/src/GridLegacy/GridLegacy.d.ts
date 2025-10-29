@@ -7,9 +7,9 @@ import {
   BreakpointOverrides,
 } from '@mui/system';
 import { IfEquals } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { GridLegacyClasses } from './gridLegacyClasses';
+import { GridLegacyClasses, GridLegacyClassKey } from './gridLegacyClasses';
 
 export type GridLegacyDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
@@ -182,6 +182,10 @@ export type GridLegacyProps<
   AdditionalProps = {},
 > = OverrideProps<GridLegacyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type GridLegacyTheme = {
+  MuiGridLegacy?: CreateThemeComponent<GridLegacyClassKey, GridLegacyProps>;
 };
 
 export default GridLegacy;

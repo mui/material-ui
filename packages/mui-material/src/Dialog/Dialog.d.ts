@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SxProps, Breakpoint } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { BackdropProps } from '../Backdrop';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/transition';
-import { DialogClasses } from './dialogClasses';
+import { DialogClasses, DialogClassKey } from './dialogClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface DialogSlots {
@@ -205,3 +205,7 @@ export interface DialogProps
 export default function Dialog(props: DialogProps): React.JSX.Element;
 
 export interface DialogOwnerState extends Omit<DialogProps, 'slots' | 'slotProps'> {}
+
+export type DialogTheme = {
+  MuiDialog?: CreateThemeComponent<DialogClassKey, DialogProps>;
+};

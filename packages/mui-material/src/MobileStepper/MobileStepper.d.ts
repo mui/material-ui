@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
-import { MobileStepperClasses } from './mobileStepperClasses';
+import { MobileStepperClasses, MobileStepperClassKey } from './mobileStepperClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface MobileStepperSlots {
@@ -129,3 +129,7 @@ export interface MobileStepperOwnerState extends Omit<MobileStepperProps, 'slots
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function MobileStepper(props: MobileStepperProps): React.JSX.Element;
+
+export type MobileStepperTheme = {
+  MuiMobileStepper?: CreateThemeComponent<MobileStepperClassKey, MobileStepperProps>;
+};

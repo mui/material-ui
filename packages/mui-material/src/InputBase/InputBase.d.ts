@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { InputBaseClasses } from './inputBaseClasses';
+import { InputBaseClasses, InputBaseClassKey } from './inputBaseClasses';
 
 export interface InputBasePropsSizeOverrides {}
 
@@ -262,3 +262,7 @@ export interface InputBaseComponentProps
  * - [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): React.JSX.Element;
+
+export type InputBaseTheme = {
+  MuiInputBase?: CreateThemeComponent<InputBaseClassKey, InputBaseProps>;
+};

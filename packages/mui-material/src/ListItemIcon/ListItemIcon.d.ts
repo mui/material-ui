@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { ListItemIconClasses } from './listItemIconClasses';
+import { ListItemIconClasses, ListItemIconClassKey } from './listItemIconClasses';
 
 export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -32,3 +32,7 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
  * - [ListItemIcon API](https://mui.com/material-ui/api/list-item-icon/)
  */
 export default function ListItemIcon(props: ListItemIconProps): React.JSX.Element;
+
+export type ListItemIconTheme = {
+  MuiListItemIcon?: CreateThemeComponent<ListItemIconClassKey, ListItemIconProps>;
+};

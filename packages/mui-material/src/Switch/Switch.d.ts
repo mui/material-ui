@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
-import { SwitchClasses } from './switchClasses';
+import { SwitchClasses, SwitchClassKey } from './switchClasses';
 
 export interface SwitchPropsSizeOverrides {}
 
@@ -141,3 +141,7 @@ export interface SwitchProps
  * - inherits [IconButton API](https://mui.com/material-ui/api/icon-button/)
  */
 export default function Switch(props: SwitchProps): React.JSX.Element;
+
+export type SwitchTheme = {
+  MuiSwitch?: CreateThemeComponent<SwitchClassKey, SwitchProps>;
+};

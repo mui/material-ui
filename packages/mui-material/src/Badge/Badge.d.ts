@@ -2,9 +2,9 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, Simplify } from '@mui/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { BadgeClasses } from './badgeClasses';
+import { BadgeClasses, BadgeClassKey } from './badgeClasses';
 
 export interface BadgePropsVariantOverrides {}
 export interface BadgePropsColorOverrides {}
@@ -180,6 +180,10 @@ export type BadgeProps<
   AdditionalProps = {},
 > = OverrideProps<BadgeTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type BadgeTheme = {
+  MuiBadge?: CreateThemeComponent<BadgeClassKey, BadgeProps>;
 };
 
 export default Badge;

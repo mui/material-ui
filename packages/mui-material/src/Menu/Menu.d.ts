@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
@@ -8,7 +8,7 @@ import { MenuListProps } from '../MenuList';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
 import { TransitionProps } from '../transitions/transition';
-import { MenuClasses } from './menuClasses';
+import { MenuClasses, MenuClassKey } from './menuClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface MenuRootSlotPropsOverrides {}
@@ -182,3 +182,7 @@ export declare const MenuPaper: React.FC<PaperProps>;
  * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
 export default function Menu(props: MenuProps): React.JSX.Element;
+
+export type MenuTheme = {
+  MuiMenu?: CreateThemeComponent<MenuClassKey, MenuProps>;
+};

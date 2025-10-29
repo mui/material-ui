@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { FabProps } from '../Fab';
 import { TooltipProps } from '../Tooltip';
-import { SpeedDialActionClasses } from './speedDialActionClasses';
+import { SpeedDialActionClasses, SpeedDialActionClassKey } from './speedDialActionClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface SpeedDialActionSlots {
@@ -142,3 +142,7 @@ export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.
 
 export interface SpeedDialActionOwnerState
   extends Omit<SpeedDialActionProps, 'slots' | 'slotProps'> {}
+
+export type SpeedDialActionTheme = {
+  MuiSpeedDialAction?: CreateThemeComponent<SpeedDialActionClassKey, SpeedDialActionProps>;
+};

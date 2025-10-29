@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TypographyProps } from '../Typography';
-import { ListItemTextClasses } from './listItemTextClasses';
+import { ListItemTextClasses, ListItemTextClassKey } from './listItemTextClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface ListItemTextSlots {
@@ -122,3 +122,7 @@ export default function ListItemText<
 >(
   props: ListItemTextProps<PrimaryTypographyComponent, SecondaryTypographyComponent>,
 ): React.JSX.Element;
+
+export type ListItemTextTheme = {
+  MuiListItemText?: CreateThemeComponent<ListItemTextClassKey, ListItemTextProps>;
+};

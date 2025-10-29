@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
-import { SpeedDialClasses } from './speedDialClasses';
+import { SpeedDialClasses, SpeedDialClassKey } from './speedDialClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
@@ -142,3 +142,7 @@ export interface SpeedDialOwnerState extends SpeedDialProps {}
  * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
 export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;
+
+export type SpeedDialTheme = {
+  MuiSpeedDial?: CreateThemeComponent<SpeedDialClassKey, SpeedDialProps>;
+};

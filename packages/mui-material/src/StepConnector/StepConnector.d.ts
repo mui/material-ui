@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { StepConnectorClasses } from './stepConnectorClasses';
+import { StepConnectorClasses, StepConnectorClassKey } from './stepConnectorClasses';
 
 export type StepConnectorIcon = React.ReactElement<unknown> | string | number;
 
@@ -31,3 +31,7 @@ export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classe
  * - [StepConnector API](https://mui.com/material-ui/api/step-connector/)
  */
 export default function StepConnector(props: StepConnectorProps): React.JSX.Element;
+
+export type StepConnectorTheme = {
+  MuiStepConnector?: CreateThemeComponent<StepConnectorClassKey, StepConnectorProps>;
+};

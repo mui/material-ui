@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
-import { InputAdornmentClasses } from './inputAdornmentClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { InputAdornmentClasses, InputAdornmentClassKey } from './inputAdornmentClasses';
 
 export interface InputAdornmentOwnProps {
   /**
@@ -64,6 +64,10 @@ export type InputAdornmentProps<
   AdditionalProps = {},
 > = OverrideProps<InputAdornmentTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type InputAdornmentTheme = {
+  MuiInputAdornment?: CreateThemeComponent<InputAdornmentClassKey, InputAdornmentProps>;
 };
 
 export default InputAdornment;

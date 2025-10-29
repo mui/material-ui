@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { CircularProgressClasses } from './circularProgressClasses';
+import { CircularProgressClasses, CircularProgressClassKey } from './circularProgressClasses';
 
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsVariantOverrides {}
@@ -85,3 +85,7 @@ export interface CircularProgressProps
  * - [CircularProgress API](https://mui.com/material-ui/api/circular-progress/)
  */
 export default function CircularProgress(props: CircularProgressProps): React.JSX.Element;
+
+export type CircularProgressTheme = {
+  MuiCircularProgress?: CreateThemeComponent<CircularProgressClassKey, CircularProgressProps>;
+};

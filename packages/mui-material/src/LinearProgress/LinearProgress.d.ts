@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { LinearProgressClasses } from './linearProgressClasses';
+import { LinearProgressClasses, LinearProgressClassKey } from './linearProgressClasses';
 
 export interface LinearProgressPropsColorOverrides {}
 export interface LinearProgressPropsVariantOverrides {}
@@ -65,3 +65,7 @@ export interface LinearProgressProps
  * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
  */
 export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;
+
+export type LinearProgressTheme = {
+  MuiLinearProgress?: CreateThemeComponent<LinearProgressClassKey, LinearProgressProps>;
+};

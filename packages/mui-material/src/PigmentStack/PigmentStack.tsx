@@ -7,7 +7,7 @@ import Stack from '@mui/material-pigment-css/Stack';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { SxProps } from '@mui/system';
-import { Breakpoint, Theme } from '../styles';
+import { Breakpoint, Theme } from '../stylesOptimized';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 

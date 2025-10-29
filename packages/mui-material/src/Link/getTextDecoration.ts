@@ -1,6 +1,6 @@
 import { getPath } from '@mui/system/style';
 import { alpha } from '@mui/system/colorManipulator';
-import type { Theme } from '../styles';
+import type { Theme } from '../stylesOptimized';
 
 const getTextDecoration = <T extends Theme>({
   theme,

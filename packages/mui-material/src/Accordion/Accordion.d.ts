@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { TransitionProps } from '../transitions/transition';
-import { AccordionClasses } from './accordionClasses';
+import { AccordionClasses, AccordionClassKey } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendPaperTypeMap, PaperProps } from '../Paper/Paper';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
@@ -156,5 +156,9 @@ export type AccordionProps<
 };
 
 export interface AccordionOwnerState extends AccordionProps {}
+
+export type AccordionTheme = {
+  MuiAccordion?: CreateThemeComponent<AccordionClassKey, AccordionProps>;
+};
 
 export default Accordion;
