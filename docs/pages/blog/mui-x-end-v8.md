@@ -175,7 +175,7 @@ Turn selections into visuals in seconds. An integrated panel renders the right c
 Drag-and-drop row reordering now shows a precise drop indicator, so teams can reprioritize with confidence—perfect for backlogs and ranked lists:
 
 <figure style="margin:16px 0;">
-  <video src="/static/blog/mui-x-end-v8/grid-row-reorder.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/7b6d7de3-70e9-4754-93c8-d7963d4b464a" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">A clear target as you drag rows.</figcaption>
 </figure>
 
