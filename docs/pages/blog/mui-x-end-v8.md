@@ -1,6 +1,6 @@
 ---
 title: MUI X v8 — Highlights before the next major
-description: New chart interactions, server-side pivoting, Grid ↔ Charts integration, range picker ergonomics, Tree View polish, and more — grouped by component.
+description: New Chart interactions, server-side Data Grid pivoting, Grid ↔ Charts integration, Range Picker ergonomics, Tree View polish, and more—grouped by component.
 date: 2025-11-11T08:00:00.000Z
 authors: ['josefreitas', 'alelthomas']
 tags: ['MUI X', 'Product']
@@ -27,7 +27,7 @@ manualCard: false
   />
 </a>
 
-We’re happy to share the newest MUI X features shipped over the past months. As we gear up for the next major, here’s a tour of everything new.
+We're happy to share the newest MUI X features shipped over the past months. As we gear up for the next major, here's a tour of everything new.
 
 ## Table of contents
 
@@ -50,7 +50,7 @@ We’re happy to share the newest MUI X features shipped over the past months. A
   - [Better range defaults](#better-range-defaults)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Polished inputs across devices](#polished-inputs-across-devices)
 - [Tree View](#tree-view)
-  - [Drag and drop support and other improvements](#drag-and-drop-support-and-other-improvements)
+  - [Drag-and-drop support and other improvements](#drag-and-drop-support-and-other-improvements)
 - [What’s next](#whats-next)
 - [Feedback](#feedback)
 
@@ -67,7 +67,7 @@ Drag a brush across any cartesian chart to focus the conversation: zoom a busy w
 
 [Explore brush and selection](/x/react-charts/brush/)
 
-### Zoom and pan that feel right [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+### Intuitive zooming and panning[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Zooming and panning now match how people expect to interact: wheel or pinch to zoom, press-and-drag to pan, and on touch you can tap-and-drag to zoom without fiddly gestures. If needed, tune the interaction config (for example, require Ctrl to zoom and Shift to pan) so charts play nicely with your page shortcuts.
 
@@ -91,7 +91,7 @@ A compact slider under the axis makes long ranges effortless to navigate, and th
 
 ### Keyboard navigation and a11y improvements
 
-Charts are comfortable to explore from the keyboard: focus highlights stay in sync as you move, and tooltips/axes cooperate so you can read values without a mouse.
+Charts are comfortable to explore from the keyboard: focus highlights stay in sync as you move, and tooltips and axes cooperate so you can read values without a mouse.
 
 <figure style="margin:16px 0;">
   <img src="/static/blog/mui-x-end-v8/charts-a11y.png" alt="Keyboard navigation in charts" style="width:100%;max-width:960px;border-radius:12px;">
@@ -137,7 +137,7 @@ Heavy dashboards feel lighter thanks to faster string measurement, tuned bar ren
 
 ### Server-side pivoting [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Pivot at scale without locking the browser. The Grid coordinates with your backend to compute pivots and aggregates, so the UI stays snappy while you slice by Region Segment Product (or any model you dream up).
+Pivot at scale without locking the browser. The Grid coordinates with your back end to compute pivots and aggregates, so the UI stays snappy while you slice by any model you can dream up.
 
 <figure style="margin:16px 0;">
   <video src="/static/blog/mui-x-end-v8/grid-pivot.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -227,7 +227,7 @@ Edits feel steadier: compact one-column time layouts keep the intended format, v
 
 ## Tree View
 
-### Drag and drop support and other improvements
+### Drag-and-drop support and other improvements
 
 Between refined editing, ordering, and selection behaviors, trees hold up better as they grow. Reorder with drag-and-drop, wire up inline renaming, and keep identifiers flexible so you can mirror your domain model precisely.
 
@@ -246,6 +246,6 @@ If you rely on deep customization today, now is the perfect time to tell us what
 
 ## Feedback
 
-We’re excited to hear from you about improving MUI X! Please share requests, pain points, and use cases through this short form: https://tally.so/forms/w8X8Po
+We're excited to hear from you about how we can keep improving MUI X! Please share requests, pain points, and use cases through [this short form](https://tally.so/forms/w8X8Po).
 
 Cheers!
