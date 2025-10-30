@@ -3,7 +3,7 @@ title: Athena Intelligence
 description: How Athena Intelligence accelerated UI development with MUI X.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/athena-light.png'
 date: 2022-06-08T00:00:00.000Z
-rank: '1'
+rank: '9'
 tags: ['MUI X']
 manualCard: true
 ---

@@ -1,10 +1,10 @@
 ---
 title: Tebra
-description: How Tebra modernized their reporting capabilities with the MUI X Data Grid.
+description: Modernizing legacy reporting systems in healthcare.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/tebra.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']
-rank: '3'
+rank: '2'
 manualCard: true
 ---
 
