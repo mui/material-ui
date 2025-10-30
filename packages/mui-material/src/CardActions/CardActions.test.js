@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import CardActions, { cardActionsClasses as classes } from '@mui/material/CardActions';
 import Button from '@mui/material/Button';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import DefaultPropsProvider from '@mui/material/DefaultPropsProvider';
 
 function CustomComponent() {

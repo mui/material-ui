@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box, ThemeProvider } from '@mui/joy';
 
 export default function BoxSx() {

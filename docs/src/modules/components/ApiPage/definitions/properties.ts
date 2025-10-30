@@ -47,7 +47,7 @@ export type GetCssToCParams = {
   hash: string;
 };
 
-export const getPropertiesToC = ({
+export const getPropertiesToc = ({
   properties,
   inheritance,
   themeDefaultProps,

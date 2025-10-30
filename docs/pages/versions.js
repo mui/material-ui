@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { uniqBy } from 'es-toolkit/array';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
@@ -880,7 +879,8 @@ describe('createCssVarsProvider', () => {
           </button>
         );
       }
-      const { getByTestId } = render(
+
+      render(
         <CssVarsProvider>
           <Toggle data-testid="outer" />
           <CssVarsProvider disableNestedContext>
@@ -888,13 +888,14 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>
         </CssVarsProvider>,
       );
-      fireEvent.click(getByTestId('inner'));
+
+      fireEvent.click(screen.getByTestId('inner'));
 
       // state changes in nested provider should not affect the upper context
       // if `disableNestedContext` is true.
-      expect(getByTestId('outer')).to.have.text('system');
+      expect(screen.getByTestId('outer')).to.have.text('system');
 
-      expect(getByTestId('inner')).to.have.text('dark');
+      expect(screen.getByTestId('inner')).to.have.text('dark');
     });
 
     it('themeId should not exist in the theme if not provided as a prop', () => {

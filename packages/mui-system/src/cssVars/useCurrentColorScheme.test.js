@@ -421,20 +421,20 @@ describe('useCurrentColorScheme', () => {
           </div>
         );
       }
-      const { getByText, getByTestId } = render(<Data />);
+      render(<Data />);
 
-      fireEvent.click(getByText('first'));
+      fireEvent.click(screen.getByText('first'));
 
-      expect(JSON.parse(getByTestId('data').textContent)).to.deep.equal({
+      expect(JSON.parse(screen.getByTestId('data').textContent)).to.deep.equal({
         mode: 'light',
         lightColorScheme: 'paper',
         darkColorScheme: 'dark',
         colorScheme: 'paper',
       });
 
-      fireEvent.click(getByText('second'));
+      fireEvent.click(screen.getByText('second'));
 
-      expect(JSON.parse(getByTestId('data').textContent)).to.deep.equal({
+      expect(JSON.parse(screen.getByTestId('data').textContent)).to.deep.equal({
         mode: 'light',
         lightColorScheme: 'paper',
         darkColorScheme: 'dim',

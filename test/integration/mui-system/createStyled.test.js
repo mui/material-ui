@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import createStyled from '@mui/system/createStyled';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
@@ -78,14 +78,14 @@ describe('createStyled', () => {
       const Child = styled('div')({});
       const Parent = styled(Child)({});
 
-      const { container } = render(
+      render(
         <React.Fragment>
-          <Parent sx={{ color: 'rgb(0, 0, 255)' }} />
-          <Child sx={{ color: 'rgb(255, 0, 0)' }} />
+          <Parent data-testid="parent" sx={{ color: 'rgb(0, 0, 255)' }} />
+          <Child data-testid="child" sx={{ color: 'rgb(255, 0, 0)' }} />
         </React.Fragment>,
       );
-      expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
-      expect(container.lastChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
+      expect(screen.getByRole('parent')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+      expect(screen.getByRole('child')).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
     });
   });
 
@@ -98,7 +98,7 @@ describe('createStyled', () => {
       display: 'flex',
     });
 
-    const { container } = render(
+    render(
       <ThemeProvider
         theme={createTheme({
           components: {
@@ -113,13 +113,13 @@ describe('createStyled', () => {
           },
         })}
       >
-        <Button color="primary" variant="contained" className="Mui-disabled">
+        <Button data-testid="button" color="primary" variant="contained" className="Mui-disabled">
           Hello
         </Button>
       </ThemeProvider>,
     );
 
-    expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+    expect(screen.getByTestId('button')).toHaveComputedStyle({
       width: '300px',
       height: '200px',
     });
@@ -161,15 +161,15 @@ describe('createStyled', () => {
         display: 'flex',
       });
 
-      const { container } = render(
+      render(
         <ThemeProvider theme={theme}>
-          <Button color="primary" variant="contained" className="Mui-disabled">
+          <Button data-testid="button" color="primary" variant="contained" className="Mui-disabled">
             Hello
           </Button>
         </ThemeProvider>,
       );
 
-      expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+      expect(screen.getByTestId('button')).toHaveComputedStyle({
         width: '300px',
         height: '200px',
       });
@@ -194,7 +194,7 @@ describe('createStyled', () => {
     function Button({ children, startIcon, endIcon, color = 'primary', ...props }) {
       const ownerState = { startIcon, endIcon, color, ...props };
       return (
-        <ButtonRoot ownerState={ownerState}>
+        <ButtonRoot data-testid="button" ownerState={ownerState}>
           {startIcon && <ButtonIcon ownerState={ownerState}>{startIcon}</ButtonIcon>}
           {children}
           {endIcon && <ButtonIcon ownerState={ownerState}>{endIcon}</ButtonIcon>}
@@ -216,7 +216,7 @@ describe('createStyled', () => {
           },
         },
       });
-      const { container } = render(
+      render(
         <ThemeProvider theme={finalTheme}>
           <Button>
             <div className="MuiButton-avatar" data-testid="button-avatar" />
@@ -224,7 +224,7 @@ describe('createStyled', () => {
           </Button>
         </ThemeProvider>,
       );
-      expect(container.firstChild.firstChild).toHaveComputedStyle({
+      expect(screen.getByTestId('button-avatar')).toHaveComputedStyle({
         width: '100px',
       });
     });
@@ -268,7 +268,7 @@ describe('createStyled', () => {
           </Button>
         </ThemeProvider>,
       );
-      expect(container.firstChild).toHaveComputedStyle({
+      expect(screen.getByRole('button')).toHaveComputedStyle({
         width: '120px',
         height: '48px',
         fontSize: '20px',
@@ -361,16 +361,20 @@ describe('createStyled', () => {
     const styled = createStyled({});
     const Button = styled('button')({});
 
-    const { container } = render(<Button sx={{ bgcolor: 'red' }}>Link</Button>);
-    expect(container.firstChild).not.to.have.attribute('sx');
+    render(
+      <Button data-testid="button" sx={{ bgcolor: 'red' }}>
+        Link
+      </Button>,
+    );
+    expect(screen.getByTestId('button')).not.to.have.attribute('sx');
   });
 
   it('does not forward `ownerState` prop to DOM', () => {
     const styled = createStyled({});
     const Button = styled('button')({});
 
-    const { container } = render(<Button ownerState={{}} />);
-    expect(container.firstChild).not.to.have.attribute('ownerState');
+    render(<Button data-testid="button" ownerState={{}} />);
+    expect(screen.getByTestId('button')).not.to.have.attribute('ownerState');
   });
 
   describe('default behaviors', () => {
@@ -379,24 +383,25 @@ describe('createStyled', () => {
       const styled = createStyled({});
       const Button = styled('button')({});
 
-      const { container } = render(
-        <Button color="red" shouldBeRemoved data-foo="bar">
+      render(
+        <Button data-testid="button" color="red" shouldBeRemoved data-foo="bar">
           Link
         </Button>,
       );
-      expect(container.firstChild.getAttribute('data-foo')).to.equal('bar');
-      expect(container.firstChild.getAttribute('color')).to.equal('red'); // color is for Safari mask-icon link
-      expect(container.firstChild.getAttribute('shouldBeRemoved')).not.to.equal('true');
+      const button = screen.getByTestId('button');
+      expect(button.getAttribute('data-foo')).to.equal('bar');
+      expect(button.getAttribute('color')).to.equal('red'); // color is for Safari mask-icon link
+      expect(button.getAttribute('shouldBeRemoved')).not.to.equal('true');
     });
 
     it('can use `as` prop', () => {
       const styled = createStyled({});
       const Button = styled('button')({});
 
-      const { container } = render(<Button as="a" href="/" />);
+      render(<Button data-testid="button" as="a" href="/" />);
 
-      expect(container.firstChild).to.have.tagName('a');
-      expect(container.firstChild).to.have.attribute('href', '/');
+      expect(screen.getByTestId('button')).to.have.tagName('a');
+      expect(screen.getByTestId('button')).to.have.attribute('href', '/');
     });
 
     it('able to pass props to `as` styled component', () => {
@@ -433,7 +438,7 @@ describe('createStyled', () => {
         ],
       });
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="filled" color="blue" variant="filled">
             Filled
@@ -443,8 +448,11 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+
+      expect(screen.getByTestId('filled')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      expect(screen.getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
 
     it('should accept variants in function style arg', () => {
@@ -467,7 +475,7 @@ describe('createStyled', () => {
         ],
       }));
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="filled" color="blue" variant="filled">
             Filled
@@ -477,8 +485,11 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+
+      expect(screen.getByTestId('filled')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      expect(screen.getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
 
     it('should accept variants in function style arg with props usage', () => {
@@ -499,7 +510,7 @@ describe('createStyled', () => {
         ],
       }));
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="red" color="red">
             Filled
@@ -509,8 +520,11 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('green')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 255, 0)' });
-      expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+
+      expect(screen.getByTestId('green')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 255, 0)',
+      });
+      expect(screen.getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
     });
 
     it('should merge props and ownerState in props callback', () => {
@@ -531,7 +545,7 @@ describe('createStyled', () => {
         ],
       }));
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="red" ownerState={{ color: 'red' }}>
             Red
@@ -541,8 +555,11 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('green')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 255, 0)' });
-      expect(getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
+
+      expect(screen.getByTestId('green')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 255, 0)',
+      });
+      expect(screen.getByTestId('red')).toHaveComputedStyle({ backgroundColor: 'rgb(255, 0, 0)' });
     });
 
     it('should accept variants in arrays', () => {
@@ -584,7 +601,7 @@ describe('createStyled', () => {
         },
       );
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="filled" color="blue" variant="filled">
             Filled
@@ -597,9 +614,14 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
-      expect(getByTestId('outlined')).toHaveComputedStyle({ borderTopColor: 'rgb(0, 0, 255)' });
+
+      expect(screen.getByTestId('filled')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      expect(screen.getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
+      expect(screen.getByTestId('outlined')).toHaveComputedStyle({
+        borderTopColor: 'rgb(0, 0, 255)',
+      });
     });
 
     it('theme variants should override styled variants', () => {
@@ -623,7 +645,7 @@ describe('createStyled', () => {
         ],
       });
 
-      const { getByTestId } = render(
+      render(
         <ThemeProvider
           theme={{
             components: {
@@ -648,8 +670,11 @@ describe('createStyled', () => {
           </Test>
         </ThemeProvider>,
       );
-      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
+
+      expect(screen.getByTestId('filled')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      expect(screen.getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 220)' });
     });
 
     it('should accept variants in function props arg', () => {
@@ -672,7 +697,7 @@ describe('createStyled', () => {
         ],
       }));
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="filled" color="blue" variant="filled">
             Filled
@@ -682,8 +707,11 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+
+      expect(screen.getByTestId('filled')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      expect(screen.getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
 
     it('should accept variants with both object and function props arg', () => {
@@ -712,7 +740,7 @@ describe('createStyled', () => {
         ],
       }));
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="filled" color="blue" variant="filled">
             Filled
@@ -725,9 +753,14 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('filled')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('outlined')).toHaveComputedStyle({ borderTopColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+
+      expect(screen.getByTestId('filled')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      expect(screen.getByTestId('outlined')).toHaveComputedStyle({
+        borderTopColor: 'rgb(0, 0, 255)',
+      });
+      expect(screen.getByTestId('text')).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
     });
 
     it('should not consume values from nested ownerState', () => {
@@ -746,7 +779,7 @@ describe('createStyled', () => {
 
       const ownerState = { color: 'blue' };
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Test data-testid="blue" ownerState={ownerState}>
             Blue
@@ -756,8 +789,9 @@ describe('createStyled', () => {
           </Test>
         </React.Fragment>,
       );
-      expect(getByTestId('blue')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
-      expect(getByTestId('nested')).not.toHaveComputedStyle({
+
+      expect(screen.getByTestId('blue')).toHaveComputedStyle({ backgroundColor: 'rgb(0, 0, 255)' });
+      expect(screen.getByTestId('nested')).not.toHaveComputedStyle({
         backgroundColor: 'rgb(0, 0, 255)',
       });
     });

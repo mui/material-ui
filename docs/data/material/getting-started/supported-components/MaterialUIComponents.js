@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -22,7 +21,7 @@ const components = [
   },
   {
     name: 'App Bar: bottom',
-    materialUI: '/material-ui/react-app-bar#bottom-app-bar/',
+    materialUI: '/material-ui/react-app-bar#bottom-app-bar',
     materialDesign: 'https://m2.material.io/components/app-bars-bottom',
   },
   { name: 'Autocomplete', materialUI: '/material-ui/react-autocomplete' },

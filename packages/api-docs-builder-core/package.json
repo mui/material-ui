@@ -17,12 +17,12 @@
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "docs": "workspace:^",
-    "es-toolkit": "^1.39.10"
+    "es-toolkit": "^1.40.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.19",
+    "@types/node": "^20.19.23",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
     "sinon": "^21.0.0",

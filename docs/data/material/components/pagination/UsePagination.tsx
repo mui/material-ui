@@ -1,4 +1,3 @@
-import * as React from 'react';
 import usePagination from '@mui/material/usePagination';
 import { styled } from '@mui/material/styles';
 

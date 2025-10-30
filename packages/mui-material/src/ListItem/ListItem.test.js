@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -31,13 +30,13 @@ describe('<ListItem />', () => {
   }));
 
   it('should render with gutters classes', () => {
-    const { getByRole } = render(<ListItem />);
-    expect(getByRole('listitem')).to.have.class(classes.gutters);
+    render(<ListItem />);
+    expect(screen.getByRole('listitem')).to.have.class(classes.gutters);
   });
 
   it('should disable the gutters', () => {
-    const { getByRole } = render(<ListItem disableGutters />);
-    expect(getByRole('listitem')).not.to.have.class(classes.gutters);
+    render(<ListItem disableGutters />);
+    expect(screen.getByRole('listitem')).not.to.have.class(classes.gutters);
   });
 
   describe('context: dense', () => {
@@ -60,47 +59,50 @@ describe('<ListItem />', () => {
 
   describe('action', () => {
     it('should show action if provided', () => {
-      const { getByText } = render(<ListItem secondaryAction="foo" />);
-      expect(getByText('foo')).toBeVisible();
+      render(<ListItem secondaryAction="foo" />);
+      expect(screen.getByText('foo')).toBeVisible();
     });
   });
 
   // TODO remove in v6 in favor of ListItemButton
   describe('secondary action', () => {
     it('should wrap with a container', () => {
-      const { getByRole } = render(
+      render(
         <ListItem>
           <ListItemText primary="primary" />
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = getByRole('listitem');
+
+      const listItem = screen.getByRole('listitem');
 
       expect(listItem).to.have.class(classes.container);
       expect(listItem.querySelector(`div.${classes.root}`)).not.to.equal(null);
     });
 
     it('should accept a component property', () => {
-      const { getByRole } = render(
+      render(
         <ListItem component="span">
           <ListItemText primary="primary" />
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = getByRole('listitem');
+
+      const listItem = screen.getByRole('listitem');
 
       expect(listItem).to.have.class(classes.container);
       expect(listItem.querySelector(`span.${classes.root}`)).not.to.equal(null);
     });
 
     it('should accept a ContainerComponent property', () => {
-      const { getByRole } = render(
+      render(
         <ListItem ContainerComponent="div" ContainerProps={{ role: 'listitem' }}>
           <ListItemText primary="primary" />
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = getByRole('listitem');
+
+      const listItem = screen.getByRole('listitem');
 
       expect(listItem).to.have.property('nodeName', 'DIV');
       expect(listItem).to.have.class(classes.container);
@@ -108,13 +110,14 @@ describe('<ListItem />', () => {
     });
 
     it('should allow customization of the wrapper', () => {
-      const { getByRole } = render(
+      render(
         <ListItem ContainerProps={{ className: 'bubu', role: 'listitem' }}>
           <ListItemText primary="primary" />
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = getByRole('listitem');
+
+      const listItem = screen.getByRole('listitem');
 
       expect(listItem).to.have.class(classes.container);
       expect(listItem).to.have.class('bubu');
