@@ -1,11 +1,14 @@
-const { execSync } = require('child_process');
-const path = require('path');
+import { execSync } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 describe('TypeScript Performance', () => {
   it('should have Instantiations < 200', function testInstantiations() {
     this.timeout(60000);
 
-    const testDir = path.join(__dirname);
+    const testDir = path.join(dirname);
 
     try {
       const output = execSync('pnpm tsc --noEmit --diagnostics', {
