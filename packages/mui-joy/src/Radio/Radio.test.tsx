@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/joy/Radio';

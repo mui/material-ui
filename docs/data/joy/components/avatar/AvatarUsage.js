@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Avatar from '@mui/joy/Avatar';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';

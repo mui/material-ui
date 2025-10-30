@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled, alpha } from '@mui/material/styles';
