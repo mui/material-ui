@@ -164,7 +164,7 @@ Reorder grouping levels on the fly and stay in place. Expanded groups stay open 
 Turn selections into visuals in seconds. An integrated panel renders the right chart for the current view and stays in sync with Grid interactions—ideal for quick investigations and stakeholder snapshots:
 
 <figure style="margin:16px 0;">
-   <video src="https://github.com/user-attachments/assets/cdc2e0c8-5793-4a40-b68d-70457f3230c6" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
+   <video src="https://github.com/user-attachments/assets/1dde7294-5b7d-4862-b250-6299aaa29c4c" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">One click from table to chart.</figcaption>
 </figure>
 
