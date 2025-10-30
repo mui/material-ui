@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import Autocomplete from '@mui/joy/Autocomplete';
 

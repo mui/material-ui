@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
 

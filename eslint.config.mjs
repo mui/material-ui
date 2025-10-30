@@ -77,6 +77,7 @@ export default defineConfig(
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
+      'react/react-in-jsx-scope': 'off',
       'react/sort-prop-types': 'off', // 228
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
@@ -115,6 +116,7 @@ export default defineConfig(
       useMocha: true,
     }),
     rules: {
+      'material-ui/no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
     },
@@ -299,6 +301,14 @@ export default defineConfig(
       'import/extensions': 'off',
       'import/no-unresolved': 'off',
       'no-console': 'off',
+    },
+  },
+  {
+    files: ['docs/src/pages/premium-themes/onepirate/modules/form/RFTextField.js'],
+    rules: {
+      // Otherwise, running docs:typescript:formatted rearranges the imports and also removes the eslint-disable comment
+      // if added.
+      'import/order': 'off',
     },
   },
 );
