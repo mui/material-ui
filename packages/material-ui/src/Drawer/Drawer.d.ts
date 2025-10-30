@@ -32,6 +32,7 @@ export interface DrawerProps
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose?: ModalProps['onClose'];
   /**
