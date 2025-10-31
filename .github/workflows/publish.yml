@@ -57,4 +57,4 @@ jobs:
             ARGS="$ARGS --tag ${{ inputs.dist-tag }}"
           fi
 
-          pnpm code-infra publish $ARGS
+          pnpm code-infra publish --ci $ARGS
