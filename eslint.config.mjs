@@ -82,6 +82,15 @@ export default defineConfig(
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
+
+      // TODO enable:
+      'react-hooks/refs': 'off',
+      'react-hooks/globals': 'off',
+      'react-hooks/immutability': 'off',
+      'react-hooks/preserve-manual-memoization': 'off',
+      'react-hooks/incompatible-library': 'off',
+      'react-hooks/static-components': 'off',
+      'react-hooks/purity': 'off',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
