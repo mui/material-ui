@@ -2,7 +2,6 @@ import { uniqBy } from 'es-toolkit/array';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';
 import * as pageProps from 'docs/src/pages/versions/versions.md?muiMarkdown';
-import { withTranslations } from 'docs/src/modules/utils/withTranslations';
 
 export default function Page(props) {
   const { versions } = props;
@@ -36,7 +35,7 @@ async function getBranches() {
   return JSON.parse(text);
 }
 
-export async function getStaticProps() {
+Page.getInitialProps = async () => {
   const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
 
   const branches = await getBranches();
@@ -76,9 +75,5 @@ export async function getStaticProps() {
     });
   }
 
-  return {
-    props: withTranslations({
-      versions: uniqBy(versions, (item) => item.version),
-    }),
-  };
-}
+  return { versions: uniqBy(versions, (item) => item.version) };
+};

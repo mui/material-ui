@@ -2,7 +2,6 @@ import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import jsonPageContent from './tab-list.json';
-import { withTranslations } from 'docs/src/modules/utils/withTranslations';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
@@ -14,9 +13,9 @@ export async function getStaticProps() {
   const descriptions = mapApiPageTranslations(req);
 
   return {
-    props: withTranslations({
+    props: {
       descriptions,
       pageContent: jsonPageContent,
-    }),
+    },
   };
 }

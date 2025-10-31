@@ -25,6 +25,7 @@ import findActivePage from 'docs/src/modules/utils/findActivePage';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { DocsProvider } from '@mui/docs/DocsProvider';
+import { mapTranslations } from '@mui/docs/i18n';
 import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
@@ -357,6 +358,25 @@ MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
+};
+
+MyApp.getInitialProps = async ({ ctx, Component }) => {
+  let pageProps = {};
+
+  const req = require.context('docs/translations', false, /\.\/translations.*\.json$/);
+  const translations = mapTranslations(req);
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+
+  return {
+    pageProps: {
+      userLanguage: ctx.query.userLanguage || 'en',
+      translations,
+      ...pageProps,
+    },
+  };
 };
 
 // Track fraction of actual events to prevent exceeding event quota.

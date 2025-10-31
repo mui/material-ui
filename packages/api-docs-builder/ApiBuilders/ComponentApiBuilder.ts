@@ -379,8 +379,7 @@ const generateApiPage = async (
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
-  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-  import { withTranslations } from 'docs/src/modules/utils/withTranslations';${
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';${
     layoutConfigPath === ''
       ? ''
       : `
@@ -402,10 +401,10 @@ const generateApiPage = async (
     const descriptions = mapApiPageTranslations(req);
 
     return {
-      props: withTranslations({
+      props: {
         descriptions,
         pageContent: jsonPageContent,
-      }),
+      },
     };
   }
   `.replace(/\r?\n/g, reactApi.EOL),

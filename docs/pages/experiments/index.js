@@ -9,7 +9,6 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import GradientText from 'docs/src/components/typography/GradientText';
 import { Link } from '@mui/docs/Link';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import { withTranslations } from 'docs/src/modules/utils/withTranslations';
 
 export default function Experiments({ experiments }) {
   const categories = {};
@@ -148,8 +147,8 @@ export async function getStaticProps() {
   });
 
   return {
-    props: withTranslations({
+    props: {
       experiments,
-    }),
+    },
   };
 }
