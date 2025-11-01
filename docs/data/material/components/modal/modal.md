@@ -58,7 +58,7 @@ This component should respect the following conditions:
 - Have an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed.
-  These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+  These two callbacks let the modal unmount the child content when closed and fully transitioned.
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 

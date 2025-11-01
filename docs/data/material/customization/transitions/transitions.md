@@ -1,6 +1,6 @@
 # Transitions
 
-<p class="description">These theme helpers allow you to create custom CSS transitions, you can customize the durations, easings and more.</p>
+<p class="description">These theme helpers let you create custom CSS transitions as well as customize the durations, easings, and more.</p>
 
 ## API
 

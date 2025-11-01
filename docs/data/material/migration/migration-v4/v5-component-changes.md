@@ -1,6 +1,6 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrate from v4. This part covers changes to components.</p>
 
 ## Material UI v5 migration
 
@@ -548,7 +548,7 @@ Remove the `withMobileDialog` higher-order component.
 This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required.
 :::
 
-The hook API allows a simpler and more flexible solution:
+The hook API lets you create a simpler and more flexible solution:
 
 ```diff
 -import withMobileDialog from '@mui/material/withMobileDialog';
