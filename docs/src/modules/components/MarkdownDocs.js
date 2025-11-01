@@ -13,6 +13,7 @@ export default function MarkdownDocs(props) {
     docs,
     demoComponents,
     srcComponents,
+    sx,
   } = props;
 
   const userLanguage = useUserLanguage();
@@ -30,6 +31,7 @@ export default function MarkdownDocs(props) {
       location={localizedDoc.location}
       title={localizedDoc.title}
       toc={localizedDoc.toc}
+      sx={sx}
     >
       {disableAd ? null : (
         <AdGuest>
@@ -58,6 +60,7 @@ MarkdownDocs.propTypes = {
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
   srcComponents: PropTypes.object,
+  sx: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {
