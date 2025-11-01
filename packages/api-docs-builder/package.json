@@ -24,7 +24,7 @@
     "fast-glob": "^3.3.3",
     "prettier": "^3.6.2",
     "react-docgen": "^5.4.3",
-    "recast": "^0.23.9",
+    "recast": "^0.23.11",
     "remark": "^15.0.1",
     "typescript": "^5.9.3",
     "unist-util-visit": "^5.0.0"
