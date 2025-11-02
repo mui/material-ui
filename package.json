@@ -124,7 +124,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.23",
     "@types/react": "^19.2.2",
-    "@types/yargs": "^17.0.33",
+    "@types/yargs": "^17.0.34",
     "@vitejs/plugin-react": "^5.1.0",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
