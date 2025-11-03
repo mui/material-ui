@@ -39,7 +39,9 @@ export type CollapseSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>, CollapseSlotsAndSlotProps {
+export interface CollapseProps
+  extends StandardProps<TransitionProps, 'timeout'>,
+    CollapseSlotsAndSlotProps {
   /**
    * The content node to be collapsed.
    */
