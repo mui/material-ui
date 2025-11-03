@@ -4,8 +4,42 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TransitionProps } from '../transitions/transition';
 import { CollapseClasses } from './collapseClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
+export interface CollapseSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the wrapper.
+   * @default 'div'
+   */
+  wrapper?: React.ElementType;
+  /**
+   * The component that renders the inner wrapper.
+   * @default 'div'
+   */
+  wrapperInner?: React.ElementType;
+}
+
+export interface CollapseRootSlotPropsOverrides {}
+
+export interface CollapseWrapperSlotPropsOverrides {}
+
+export interface CollapseWrapperInnerSlotPropsOverrides {}
+
+export type CollapseSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  CollapseSlots,
+  {
+    root: SlotProps<'div', CollapseRootSlotPropsOverrides, CollapseProps>;
+    wrapper: SlotProps<'div', CollapseWrapperSlotPropsOverrides, CollapseProps>;
+    wrapperInner: SlotProps<'div', CollapseWrapperInnerSlotPropsOverrides, CollapseProps>;
+  }
+>;
+
+export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>, CollapseSlotsAndSlotProps {
   /**
    * The content node to be collapsed.
    */

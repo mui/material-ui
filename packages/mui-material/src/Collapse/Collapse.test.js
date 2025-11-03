@@ -22,6 +22,11 @@ describe('<Collapse />', () => {
     muiName: 'MuiCollapse',
     testVariantProps: { orientation: 'horizontal' },
     testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    slots: {
+      root: { expectedClassName: classes.root },
+      wrapper: { expectedClassName: classes.wrapper },
+      wrapperInner: { expectedClassName: classes.wrapperInner },
+    },
     skip: ['componentsProp'],
   }));
 

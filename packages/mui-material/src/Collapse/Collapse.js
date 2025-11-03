@@ -12,6 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
 import { useForkRef } from '../utils';
+import useSlot from '../utils/useSlot';
 import { getCollapseUtilityClass } from './collapseClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -149,6 +150,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     onExited,
     onExiting,
     orientation = 'vertical',
+    slots = {},
+    slotProps = {},
     style,
     timeout = duration.standard,
     // eslint-disable-next-line react/prop-types
@@ -292,6 +295,43 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   };
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref: handleRef,
+    className: clsx(classes.root, className),
+    elementType: CollapseRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      component,
+    },
+    ownerState,
+    additionalProps: {
+      style: {
+        [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
+        ...style,
+      },
+    },
+  });
+
+  const [WrapperSlot, wrapperSlotProps] = useSlot('wrapper', {
+    ref: wrapperRef,
+    className: classes.wrapper,
+    elementType: CollapseWrapper,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [WrapperInnerSlot, wrapperInnerSlotProps] = useSlot('wrapperInner', {
+    className: classes.wrapperInner,
+    elementType: CollapseWrapperInner,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <TransitionComponent
       in={inProp}
@@ -307,39 +347,26 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       {...other}
     >
       {/* Destructure child props to prevent the component's "ownerState" from being overridden by incomingOwnerState. */}
-      {(state, { ownerState: incomingOwnerState, ...restChildProps }) => (
-        <CollapseRoot
-          as={component}
-          className={clsx(
-            classes.root,
-            {
+      {(state, { ownerState: incomingOwnerState, ...restChildProps }) => {
+        const stateOwnerState = { ...ownerState, state };
+        return (
+          <RootSlot
+            {...rootSlotProps}
+            className={clsx(rootSlotProps.className, {
               [classes.entered]: state === 'entered',
               [classes.hidden]: state === 'exited' && !inProp && collapsedSize === '0px',
-            },
-            className,
-          )}
-          style={{
-            [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
-            ...style,
-          }}
-          ref={handleRef}
-          ownerState={{ ...ownerState, state }}
-          {...restChildProps}
-        >
-          <CollapseWrapper
-            ownerState={{ ...ownerState, state }}
-            className={classes.wrapper}
-            ref={wrapperRef}
+            })}
+            ownerState={stateOwnerState}
+            {...restChildProps}
           >
-            <CollapseWrapperInner
-              ownerState={{ ...ownerState, state }}
-              className={classes.wrapperInner}
-            >
-              {children}
-            </CollapseWrapperInner>
-          </CollapseWrapper>
-        </CollapseRoot>
-      )}
+            <WrapperSlot {...wrapperSlotProps} ownerState={stateOwnerState}>
+              <WrapperInnerSlot {...wrapperInnerSlotProps} ownerState={stateOwnerState}>
+                {children}
+              </WrapperInnerSlot>
+            </WrapperSlot>
+          </RootSlot>
+        );
+      }}
     </TransitionComponent>
   );
 });
@@ -421,6 +448,24 @@ Collapse.propTypes /* remove-proptypes */ = {
    * @default 'vertical'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    wrapperInner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+    wrapper: PropTypes.elementType,
+    wrapperInner: PropTypes.elementType,
+  }),
   /**
    * @ignore
    */
