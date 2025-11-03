@@ -51,7 +51,7 @@ We're happy to share the newest MUI X features shipped over the past months. As 
   - [Polished inputs across devices](#polished-inputs-across-devices)
 - [Tree View](#tree-view)
   - [Drag-and-drop support and other improvements](#drag-and-drop-support-and-other-improvements)
-- [What’s next](#whats-next)
+- [What's next](#whats-next)
 - [Feedback](#feedback)
 
 ## Charts
@@ -82,7 +82,7 @@ Tune the interaction config (for example, require CTRL to zoom and SHIFT to pan)
 
 ### Zoom slider with preview [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-A compact slider under the axis makes long ranges effortless to navigate, and the optional preview shows exactly what’s in view—the dashboard equivalent of a map’s mini-overview:
+A compact slider under the axis makes long ranges effortless to navigate, and the optional preview shows exactly what's in view—the dashboard equivalent of a map's mini-overview:
 
 <figure style="margin:16px 0;">
   <video src="https://github.com/user-attachments/assets/5c9c4dd3-451e-4281-8e25-c1e8a6283a7c" autoplay muted loop playsinline  alt="Zoom slider and preview" style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -126,7 +126,7 @@ Multi-level label groups on band/point axes tidy up long category lists and comp
 
 ### Performance and export [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Heavy dashboards feel lighter thanks to faster string measurement, tuned bar rendering, and an SVG batch renderer for large scatter plots. When it’s time to share, capture the exact view with **image export** or **print/PDF**.
+Heavy dashboards feel lighter thanks to faster string measurement, tuned bar rendering, and an SVG batch renderer for large scatter plots. When it's time to share, capture the exact view with **image export** or **print/PDF**.
 
 <figure style="margin:16px 0;">
   <img src="/static/blog/mui-x-end-v8/charts-perf-export.png" alt="Charts performance and export" style="width:100%;max-width:960px;border-radius:12px;">
@@ -150,7 +150,7 @@ Pivot at scale without locking the browser. The Grid coordinates with your back-
 
 ### Row grouping that adapts as you explore [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Reorder grouping levels on the fly and stay in place. Expanded groups stay open even as data updates, so you don’t lose context during refreshes:
+Reorder grouping levels on the fly and stay in place. Expanded groups stay open even as data updates, so you don't lose context during refreshes:
 
 <figure style="margin:16px 0;">
   <video src="/static/blog/mui-x-end-v8/grid-grouping-reorder.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -240,9 +240,9 @@ Between refined editing, ordering, and selection behaviors, trees hold up better
 
 [Rich Tree View guides](/x/react-tree-view/)
 
-## What’s next
+## What's next
 
-We’re targeting a v9 stable release by the end of March. After that, we’ll invest heavily in **customization** and rewrite our components over Base UI to fully embrace composition, cleaner slots API, and a more modern **DevEx**. The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
+We're targeting a v9 stable release by the end of March. After that, we'll invest heavily in **customization** and rewrite our components over Base UI to fully embrace composition, cleaner slots API, and a more modern **DevEx**. The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
 
 If you rely on deep customization today, now is the perfect time to tell us what hurts—[your input](https://tally.so/forms/w8X8Po) will shape the plan.
 
