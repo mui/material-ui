@@ -2,12 +2,18 @@ import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Shape {
-    borderRadius: number;
-    borderRadiusSecondary: number; // custom prop
+    borderRadiusSecondary: number;
+  }
+
+  interface ShapeOptions {
+    borderRadiusSecondary: number;
   }
 }
 
 createTheme({
+  shape: {
+    borderRadiusSecondary: 12,
+  },
   components: {
     MuiButton: {
       styleOverrides: {

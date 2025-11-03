@@ -6,6 +6,7 @@ import {
   ApplyStyles,
   Theme as SystemTheme,
   Shape as SystemShape,
+  ShapeOptions as SystemShapeOptions,
 } from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { Palette, PaletteOptions } from './createPalette';
@@ -213,6 +214,8 @@ export interface PaletteTooltip {
 }
 
 export interface Shape extends SystemShape {}
+
+export interface ShapeOptions extends SystemShapeOptions {}
 
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
