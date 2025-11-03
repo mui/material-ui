@@ -167,6 +167,7 @@
     "/material-ui/integrations/styled-components": "Usage with styled-components",
     "/material-ui/integrations/interoperability": "Style library interoperability",
     "/material-ui/integrations/theme-scoping": "Theme scoping",
+    "/material-ui/integrations/base-ui": "Base UI",
     "/material-ui/experimental-api": "Experimental APIs",
     "/material-ui/experimental-api/classname-generator": "ClassName generator",
     "/material-ui/experimental-api/pigment-css": "Pigment CSS",
