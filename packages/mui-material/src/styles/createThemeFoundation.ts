@@ -1,5 +1,12 @@
 import { OverridableStringUnion } from '@mui/types';
-import { SxConfig, SxProps, CSSObject, ApplyStyles, Theme as SystemTheme } from '@mui/system';
+import {
+  SxConfig,
+  SxProps,
+  CSSObject,
+  ApplyStyles,
+  Theme as SystemTheme,
+  Shape as SystemShape,
+} from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
@@ -205,6 +212,8 @@ export interface PaletteTooltip {
   bg: string;
 }
 
+export interface Shape extends SystemShape {}
+
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
   palette?: PaletteOptions & {
@@ -290,7 +299,7 @@ export interface ThemeVars {
   opacity: Opacity;
   overlays: Overlays;
   shadows: Shadows;
-  shape: SystemTheme['shape'];
+  shape: Shape;
   spacing: string;
   zIndex: ZIndex;
 }
@@ -397,7 +406,7 @@ export interface CssVarsTheme extends ColorSystem {
   // Default theme tokens
   spacing: SystemTheme['spacing'];
   breakpoints: SystemTheme['breakpoints'];
-  shape: SystemTheme['shape'];
+  shape: Shape;
   typography: TypographyVariants;
   transitions: Transitions;
   shadows: Shadows;

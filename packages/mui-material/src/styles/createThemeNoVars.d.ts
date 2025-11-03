@@ -12,7 +12,7 @@ import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
-import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeFoundation';
+import { CssVarsTheme, CssVarsPalette, ColorSystemOptions, Shape } from './createThemeFoundation';
 
 /**
  * To disable custom properties, use module augmentation
@@ -49,6 +49,7 @@ export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
+  shape: Shape;
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;

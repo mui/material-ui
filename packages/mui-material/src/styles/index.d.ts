@@ -158,6 +158,7 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
   ColorSystemOptions,
+  Shape,
 } from './createThemeWithVars';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
