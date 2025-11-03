@@ -7,7 +7,7 @@ Several components use this value to set consistent border radii across the libr
 
 ## Custom shape
 
-To add a custom shape or the border radius, create a theme with the `shape` key:
+To add custom shapes, create a theme with the `shape` key:
 
 ```js
 import { createTheme } from '@mui/material/styles';
