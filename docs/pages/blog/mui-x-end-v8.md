@@ -61,7 +61,7 @@ We're happy to share the newest MUI X features shipped over the past months. As 
 Drag a brush across any cartesian chart to focus the conversation. Zoom a busy week on a time series, isolate a cluster in scatter, or feed the selected window to your own logic. The brush overlay gives a crisp visual cue while you work:
 
 <figure style="margin:16px 0;">
-  <video src="https://github.com/user-attachments/assets/876418a0-60f2-4d34-afbb-724fbb45979c" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/876418a0-60f2-4d34-afbb-724fbb45979c" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Brush a range to zoom or select data.</figcaption>
 </figure>
 
@@ -74,7 +74,7 @@ Zooming and panning now match expected interactions. Wheel or pinch to zoom, pre
 Tune the interaction config (for example, require CTRL to zoom and SHIFT to pan) so charts play nicely with your page shortcuts.
 
 <figure style="margin:16px 0;">
-  <video src="https://github.com/user-attachments/assets/6a001b61-64f8-4e7b-bf6e-0caa50b1969e" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/6a001b61-64f8-4e7b-bf6e-0caa50b1969e" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Natural zoom and pan on desktop and touch.</figcaption>
 </figure>
 
@@ -85,7 +85,7 @@ Tune the interaction config (for example, require CTRL to zoom and SHIFT to pan)
 A compact slider under the axis makes long ranges effortless to navigate, and the optional preview shows exactly what’s in view—the dashboard equivalent of a map’s mini-overview:
 
 <figure style="margin:16px 0;">
-  <img src="https://github.com/user-attachments/assets/5c9c4dd3-451e-4281-8e25-c1e8a6283a7c" alt="Zoom slider and preview" style="width:100%;max-width:960px;border-radius:12px;">
+  <video src="https://github.com/user-attachments/assets/5c9c4dd3-451e-4281-8e25-c1e8a6283a7c" autoplay muted loop playsinline  alt="Zoom slider and preview" style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Stay oriented while zoomed in.</figcaption>
 </figure>
 
@@ -96,7 +96,7 @@ A compact slider under the axis makes long ranges effortless to navigate, and th
 Charts are more comfortable to explore from the keyboard. Focus highlights stay in sync as you move and tooltips and axes cooperate so you can read values without a mouse:
 
 <figure style="margin:16px 0;">
-  <img src="https://github.com/user-attachments/assets/b7564569-19df-40c7-8053-91107f52f4a2" alt="Keyboard navigation in charts" style="width:100%;max-width:960px;border-radius:12px;">
+  <video src="https://github.com/user-attachments/assets/b7564569-19df-40c7-8053-91107f52f4a2" autoplay muted loop playsinline alt="Keyboard navigation in charts" style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Keyboard-first exploration of series and points.</figcaption>
 </figure>
 
