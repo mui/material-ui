@@ -282,6 +282,12 @@ const pages: MuiPage[] = [
         title: 'Style library interoperability',
       },
       { pathname: '/material-ui/integrations/theme-scoping' },
+      {
+        title: 'Base UI',
+        subheader: '/material-ui/customization/theme',
+        pathname: '/material-ui/integrations/base-ui',
+        children: [{ pathname: '/material-ui/integrations/base-ui/number-field' }],
+      },
     ],
   },
   {
