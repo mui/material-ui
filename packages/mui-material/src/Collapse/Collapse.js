@@ -304,10 +304,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     ref: handleRef,
     className: clsx(classes.root, className),
     elementType: CollapseRoot,
-    externalForwardedProps: {
-      ...externalForwardedProps,
-      component,
-    },
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       style: {
@@ -358,6 +355,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             })}
             ownerState={stateOwnerState}
             {...restChildProps}
+            as={component}
           >
             <WrapperSlot {...wrapperSlotProps} ownerState={stateOwnerState}>
               <WrapperInnerSlot {...wrapperInnerSlotProps} ownerState={stateOwnerState}>
