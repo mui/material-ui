@@ -5,3 +5,7 @@
 ## Number Field
 
 {{"demo": "NumberField.js"}}
+
+## Number Spin
+
+{{"demo": "NumberSpin.js"}}
