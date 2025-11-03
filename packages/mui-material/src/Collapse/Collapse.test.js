@@ -10,6 +10,12 @@ import describeConformance from '../../test/describeConformance';
 const CustomCollapse = React.forwardRef(({ ownerState, ...props }, ref) => (
   <div ref={ref} {...props} />
 ));
+const CustomWrapper = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
+const CustomWrapperInner = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
 
 describe('<Collapse />', () => {
   const { clock, render } = createRenderer();
@@ -29,8 +35,11 @@ describe('<Collapse />', () => {
     testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
     slots: {
       root: { expectedClassName: classes.root, testWithElement: CustomCollapse },
-      wrapper: { expectedClassName: classes.wrapper },
-      wrapperInner: { expectedClassName: classes.wrapperInner },
+      wrapper: { expectedClassName: classes.wrapper, testWithElement: CustomWrapper },
+      wrapperInner: {
+        expectedClassName: classes.wrapperInner,
+        testWithElement: CustomWrapperInner,
+      },
     },
     skip: ['componentsProp'],
   }));
