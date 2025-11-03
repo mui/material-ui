@@ -107,7 +107,7 @@ Charts are more comfortable to explore from the keyboard. Focus highlights stay 
 A **Sankey** diagram joins the lineup for flow visualization, while **Funnel** charts gain polished presets (including pyramid/step-pyramid) so conversion stories read at a glance:
 
 <figure style="margin:16px 0;">
-  <img src="/static/blog/mui-x-end-v8/charts-sankey-funnel.png" alt="Sankey and Funnel charts" style="width:100%;max-width:960px;border-radius:12px;">
+  <img src="https://github.com/user-attachments/assets/ea2c6dc9-1f91-4d8d-8d05-fbce905421d1" alt="Sankey Chart" style="width:100%;max-width:960px;border-radius:12px;">
   <figcaption style="text-align:center;margin-top:8px;">Tell flow and conversion stories clearly.</figcaption>
 </figure>
 
