@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { act, createRenderer } from '@mui/internal-test-utils';
@@ -5,6 +6,10 @@ import { Transition } from 'react-transition-group';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 import describeConformance from '../../test/describeConformance';
+
+const CustomCollapse = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
 
 describe('<Collapse />', () => {
   const { clock, render } = createRenderer();
@@ -23,7 +28,7 @@ describe('<Collapse />', () => {
     testVariantProps: { orientation: 'horizontal' },
     testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
     slots: {
-      root: { expectedClassName: classes.root },
+      root: { expectedClassName: classes.root, testWithElement: CustomCollapse },
       wrapper: { expectedClassName: classes.wrapper },
       wrapperInner: { expectedClassName: classes.wrapperInner },
     },
