@@ -65,7 +65,7 @@ Drag a brush across any cartesian chart to focus the conversation. Zoom a busy w
   <figcaption style="text-align:center;margin-top:8px;">Brush a range to zoom or select data.</figcaption>
 </figure>
 
-[Explore brush and selection](/x/react-charts/brush/)
+[Brush and selection](/x/react-charts/brush/)
 
 ### Intuitive zooming and panning[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
@@ -89,7 +89,7 @@ A compact slider under the axis makes long ranges effortless to navigate, and th
   <figcaption style="text-align:center;margin-top:8px;">Stay oriented while zoomed in.</figcaption>
 </figure>
 
-[Play with the zoom slider](/x/react-charts/zoom-and-pan/#zoom-slider)
+[Zoom slider](/x/react-charts/zoom-and-pan/#zoom-slider)
 
 ### Keyboard navigation and a11y improvements
 
@@ -100,7 +100,7 @@ Charts are more comfortable to explore from the keyboard. Focus highlights stay 
   <figcaption style="text-align:center;margin-top:8px;">Keyboard-first exploration of series and points.</figcaption>
 </figure>
 
-[Accessibility and keyboard](/x/react-charts/accessibility/)
+[Accessibility and keyboard navigation](/x/react-charts/accessibility/)
 
 ### Sankey and upgraded charts [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
@@ -146,7 +146,7 @@ Pivot at scale without locking the browser. The Grid coordinates with your back-
   <figcaption style="text-align:center;margin-top:8px;">Large pivots, computed on the server.</figcaption>
 </figure>
 
-[Start with pivoting now](/x/react-data-grid/pivoting/).
+[Pivoting docs](/x/react-data-grid/pivoting/)
 
 ### Row grouping that adapts as you explore [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
@@ -179,7 +179,7 @@ Drag-and-drop row reordering now shows a precise drop indicator, so teams can re
   <figcaption style="text-align:center;margin-top:8px;">A clear target as you drag rows.</figcaption>
 </figure>
 
-[Row reordering docs](/x/react-data-grid/row-ordering/).
+[Row reordering docs](/x/react-data-grid/row-ordering/)
 
 ### Pinned areas and scrolling polish
 
@@ -214,7 +214,7 @@ Range components can use different reference dates for start and for end, so pic
   <figcaption style="text-align:center;margin-top:8px;">Open ranges where users naturally start.</figcaption>
 </figure>
 
-[Reference dates in ranges](/x/react-date-pickers/base-concepts/#reference-date).
+[Reference dates in ranges](/x/react-date-pickers/base-concepts/#reference-date)
 
 ### Polished inputs across devices
 
@@ -225,7 +225,7 @@ Edits feel steadier. Compact one-column time layouts keep the intended format, v
   <figcaption style="text-align:center;margin-top:8px;">Consistent typing, formats, and labels.</figcaption>
 </figure>
 
-[Date Pickers quickstart](/x/react-date-pickers/).
+[Date Pickers quickstart](/x/react-date-pickers/)
 
 ## Tree View
 
@@ -238,7 +238,7 @@ Between refined editing, ordering, and selection behaviors, trees hold up better
   <figcaption style="text-align:center;margin-top:8px;">Scale up without losing your place.</figcaption>
 </figure>
 
-[Check out the Rich Tree View guides](/x/react-tree-view/).
+[Rich Tree View guides](/x/react-tree-view/)
 
 ## What’s next
 
