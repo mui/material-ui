@@ -1455,6 +1455,124 @@ describe('<Tabs />', () => {
     });
   });
 
+  describe('keyboard navigation in shadow DOM', () => {
+    it('should navigate between tabs using arrow keys when rendered in shadow DOM', async () => {
+      const { container } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      // Create a shadow root and move the tabs into it
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+      const tabsElement = container.firstChild;
+      shadowRoot.appendChild(tabsElement);
+
+      const tabs = shadowRoot.querySelectorAll('[role="tab"]');
+      const [firstTab, secondTab, thirdTab] = Array.from(tabs);
+
+      await act(async () => {
+        firstTab.focus();
+      });
+
+      // Verify first tab has focus
+      expect(shadowRoot.activeElement).to.equal(firstTab);
+
+      // Navigate to second tab using ArrowRight
+      fireEvent.keyDown(firstTab, { key: 'ArrowRight' });
+      expect(shadowRoot.activeElement).to.equal(secondTab);
+
+      // Navigate to third tab using ArrowRight
+      fireEvent.keyDown(secondTab, { key: 'ArrowRight' });
+      expect(shadowRoot.activeElement).to.equal(thirdTab);
+
+      // Navigate back to second tab using ArrowLeft
+      fireEvent.keyDown(thirdTab, { key: 'ArrowLeft' });
+      expect(shadowRoot.activeElement).to.equal(secondTab);
+
+      // Cleanup
+      document.body.removeChild(shadowHost);
+    });
+
+    it('should navigate using Home and End keys in shadow DOM', async () => {
+      const { container } = render(
+        <Tabs value={1}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      // Create a shadow root and move the tabs into it
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+      const tabsElement = container.firstChild;
+      shadowRoot.appendChild(tabsElement);
+
+      const tabs = shadowRoot.querySelectorAll('[role="tab"]');
+      const [firstTab, secondTab, thirdTab] = Array.from(tabs);
+
+      await act(async () => {
+        secondTab.focus();
+      });
+
+      // Navigate to first tab using Home
+      fireEvent.keyDown(secondTab, { key: 'Home' });
+      expect(shadowRoot.activeElement).to.equal(firstTab);
+
+      // Navigate to last tab using End
+      fireEvent.keyDown(firstTab, { key: 'End' });
+      expect(shadowRoot.activeElement).to.equal(thirdTab);
+
+      // Cleanup
+      document.body.removeChild(shadowHost);
+    });
+
+    it('should handle nested shadow roots', async () => {
+      const { container } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      // Create outer shadow root
+      const outerHost = document.createElement('div');
+      document.body.appendChild(outerHost);
+      const outerShadowRoot = outerHost.attachShadow({ mode: 'open' });
+
+      // Create inner shadow root
+      const innerHost = document.createElement('div');
+      outerShadowRoot.appendChild(innerHost);
+      const innerShadowRoot = innerHost.attachShadow({ mode: 'open' });
+
+      // Move tabs into inner shadow root
+      const tabsElement = container.firstChild;
+      innerShadowRoot.appendChild(tabsElement);
+
+      const tabs = innerShadowRoot.querySelectorAll('[role="tab"]');
+      const [firstTab, secondTab] = Array.from(tabs);
+
+      await act(async () => {
+        firstTab.focus();
+      });
+
+      // document.activeElement should point to outer host
+      expect(document.activeElement).to.equal(outerHost);
+      // But keyboard navigation should still work
+      fireEvent.keyDown(firstTab, { key: 'ArrowRight' });
+      expect(innerShadowRoot.activeElement).to.equal(secondTab);
+
+      // Cleanup
+      document.body.removeChild(outerHost);
+    });
+  });
+
   describe('dynamic tabs', () => {
     const pause = (timeout) =>
       new Promise((resolve) => {
