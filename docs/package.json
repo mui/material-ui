@@ -17,7 +17,7 @@
     "link-check": "tsx ./scripts/reportBrokenLinks.ts"
   },
   "dependencies": {
-    "@babel/core": "^7.28.4",
+    "@babel/core": "^7.28.5",
     "@babel/runtime": "^7.28.4",
     "@docsearch/react": "^3.9.0",
     "@emotion/cache": "^11.14.0",
@@ -91,7 +91,7 @@
     "react-intersection-observer": "^9.16.0",
     "react-is": "^19.2.0",
     "react-number-format": "^5.4.4",
-    "react-router": "^7.9.4",
+    "react-router": "^7.9.5",
     "react-runner": "^1.0.5",
     "react-simple-code-editor": "^0.14.1",
     "react-swipeable-views": "^0.14.1",
@@ -106,7 +106,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
-    "@babel/preset-typescript": "^7.27.1",
+    "@babel/preset-typescript": "^7.28.5",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
