@@ -165,7 +165,7 @@ importers:
         version: 13.0.4(encoding@0.1.13)
       es-toolkit:
         specifier: ^1.39.10
-        version: 1.40.0
+        version: 1.41.0
       eslint:
         specifier: ^9.38.0
         version: 9.38.0(jiti@2.6.1)
@@ -483,8 +483,8 @@ importers:
         specifier: ^1.11.18
         version: 1.11.18
       es-toolkit:
-        specifier: ^1.40.0
-        version: 1.40.0
+        specifier: ^1.41.0
+        version: 1.41.0
       feed:
         specifier: ^5.1.0
         version: 5.1.0
@@ -718,8 +718,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       es-toolkit:
-        specifier: ^1.40.0
-        version: 1.40.0
+        specifier: ^1.41.0
+        version: 1.41.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -797,8 +797,8 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0
       es-toolkit:
-        specifier: ^1.40.0
-        version: 1.40.0
+        specifier: ^1.41.0
+        version: 1.41.0
       format-util:
         specifier: ^1.0.5
         version: 1.0.5
@@ -873,8 +873,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       es-toolkit:
-        specifier: ^1.40.0
-        version: 1.40.0
+        specifier: ^1.41.0
+        version: 1.41.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -943,8 +943,8 @@ importers:
         specifier: workspace:^
         version: link:../../docs
       es-toolkit:
-        specifier: ^1.40.0
-        version: 1.40.0
+        specifier: ^1.41.0
+        version: 1.41.0
     devDependencies:
       '@types/chai':
         specifier: ^4.3.20
@@ -974,8 +974,8 @@ importers:
         specifier: ^7.28.4
         version: 7.28.4
       es-toolkit:
-        specifier: ^1.40.0
-        version: 1.40.0
+        specifier: ^1.41.0
+        version: 1.41.0
       marked:
         specifier: ^16.4.1
         version: 16.4.1
@@ -1169,7 +1169,7 @@ importers:
         version: 4.1.0(encoding@0.1.13)
       es-toolkit:
         specifier: ^1.39.10
-        version: 1.40.0
+        version: 1.41.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1252,7 +1252,7 @@ importers:
         version: 6.0.1
       es-toolkit:
         specifier: ^1.39.10
-        version: 1.40.0
+        version: 1.41.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1415,7 +1415,7 @@ importers:
         version: 0.1.2
       es-toolkit:
         specifier: ^1.39.10
-        version: 1.40.0
+        version: 1.41.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1687,7 +1687,7 @@ importers:
         version: 6.0.1
       es-toolkit:
         specifier: ^1.39.10
-        version: 1.40.0
+        version: 1.41.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1851,7 +1851,7 @@ importers:
         version: link:../docs
       es-toolkit:
         specifier: ^1.39.10
-        version: 1.40.0
+        version: 1.41.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -7563,8 +7563,8 @@ packages:
     resolution: {integrity: sha512-w+5mJ3GuFL+NjVtJlvydShqE1eN3h3PbI7/5LAsYJP/2qtuMXjfL2LpHSRqo4b4eSF5K/DH1JXKUAHSB2UW50g==}
     engines: {node: '>= 0.4'}
 
-  es-toolkit@1.40.0:
-    resolution: {integrity: sha512-8o6w0KFmU0CiIl0/Q/BCEOabF2IJaELM1T2PWj6e8KqzHv1gdx+7JtFnDwOx1kJH/isJ5NwlDG1nCr1HrRF94Q==}
+  es-toolkit@1.41.0:
+    resolution: {integrity: sha512-bDd3oRmbVgqZCJS6WmeQieOrzpl3URcWBUVDXxOELlUW2FuW+0glPOz1n0KnRie+PdyvUZcXz2sOn00c6pPRIA==}
 
   es6-error@4.1.1:
     resolution: {integrity: sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==}
@@ -19450,7 +19450,7 @@ snapshots:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
 
-  es-toolkit@1.40.0: {}
+  es-toolkit@1.41.0: {}
 
   es6-error@4.1.1: {}
 

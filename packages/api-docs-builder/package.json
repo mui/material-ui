@@ -20,7 +20,7 @@
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.40.0",
+    "es-toolkit": "^1.41.0",
     "fast-glob": "^3.3.3",
     "prettier": "^3.6.2",
     "react-docgen": "^5.4.3",
