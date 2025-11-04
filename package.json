@@ -140,7 +140,6 @@
     "eslint": "^9.38.0",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
-    "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
     "git-url-parse": "^16.1.0",
     "globby": "^15.0.0",

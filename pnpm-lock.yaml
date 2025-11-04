@@ -175,9 +175,6 @@ importers:
       eslint-plugin-consistent-default-export-name:
         specifier: ^0.0.15
         version: 0.0.15
-      eslint-plugin-react:
-        specifier: ^7.37.5
-        version: 7.37.5(eslint@9.38.0(jiti@2.6.1))
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
