@@ -1456,6 +1456,9 @@ describe('<Tabs />', () => {
   });
 
   describe('keyboard navigation in shadow DOM', () => {
+    if (isJSDOM) {
+      this.skip();
+    }
     it('should navigate between tabs using arrow keys when rendered in shadow DOM', async () => {
       // Create a shadow root
       const shadowHost = document.createElement('div');
@@ -1466,7 +1469,7 @@ describe('<Tabs />', () => {
       const shadowContainer = document.createElement('div');
       shadowRoot.appendChild(shadowContainer);
 
-      const { unmount } = render(
+      const { unmount, user } = render(
         <Tabs value={0}>
           <Tab />
           <Tab />
@@ -1486,15 +1489,15 @@ describe('<Tabs />', () => {
       expect(shadowRoot.activeElement).to.equal(firstTab);
 
       // Navigate to second tab using ArrowRight
-      fireEvent.keyDown(firstTab, { key: 'ArrowRight' });
+      user.keyboard('{ArrowRight}');
       expect(shadowRoot.activeElement).to.equal(secondTab);
 
       // Navigate to third tab using ArrowRight
-      fireEvent.keyDown(secondTab, { key: 'ArrowRight' });
+      user.keyboard('{ArrowRight}');
       expect(shadowRoot.activeElement).to.equal(thirdTab);
 
       // Navigate back to second tab using ArrowLeft
-      fireEvent.keyDown(thirdTab, { key: 'ArrowLeft' });
+      user.keyboard('{ArrowLeft}');
       expect(shadowRoot.activeElement).to.equal(secondTab);
 
       // Cleanup
