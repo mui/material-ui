@@ -285,23 +285,13 @@ export default defineConfig(
       'import/prefer-default-export': 'off',
     },
   },
-  // Migrated config from apps/bare-next-app/.eslintrc.js
   {
-    files: [`apps/**/*${EXTENSION_TS}`, `examples/**/*${EXTENSION_TS}`],
+    files: [`examples/**/*${EXTENSION_TS}`],
     rules: {
       'import/no-relative-packages': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'import/prefer-default-export': 'off',
-    },
-  },
-  {
-    files: [`apps/bare-next-app/**/*${EXTENSION_TS}`],
-    extends: [eslintPluginReact.configs.flat['jsx-runtime']],
-    rules: {
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
-      'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     },
   },
   {
