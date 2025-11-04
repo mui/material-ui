@@ -70,17 +70,17 @@ describe('getActiveElement', () => {
     document.body.removeChild(outerHost);
   });
 
-  it('should return the shadow host when element inside has no shadow root', () => {
+  it('should return the element inside shadow root when it has focus', () => {
     const host = document.createElement('div');
     document.body.appendChild(host);
     const shadowRoot = host.attachShadow({ mode: 'open' });
 
-    const span = document.createElement('span');
-    shadowRoot.appendChild(span);
-    span.focus();
+    const button = document.createElement('button');
+    shadowRoot.appendChild(button);
+    button.focus();
 
     const activeElement = getActiveElement(document);
-    expect(activeElement).to.equal(span);
+    expect(activeElement).to.equal(button);
 
     document.body.removeChild(host);
   });

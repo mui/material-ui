@@ -1457,20 +1457,23 @@ describe('<Tabs />', () => {
 
   describe('keyboard navigation in shadow DOM', () => {
     it('should navigate between tabs using arrow keys when rendered in shadow DOM', async () => {
-      const { container } = render(
+      // Create a shadow root
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+
+      // Render directly into shadow root
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      const { unmount } = render(
         <Tabs value={0}>
           <Tab />
           <Tab />
           <Tab />
         </Tabs>,
+        { container: shadowContainer },
       );
-
-      // Create a shadow root and move the tabs into it
-      const shadowHost = document.createElement('div');
-      document.body.appendChild(shadowHost);
-      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
-      const tabsElement = container.firstChild;
-      shadowRoot.appendChild(tabsElement);
 
       const tabs = shadowRoot.querySelectorAll('[role="tab"]');
       const [firstTab, secondTab, thirdTab] = Array.from(tabs);
@@ -1495,24 +1498,30 @@ describe('<Tabs />', () => {
       expect(shadowRoot.activeElement).to.equal(secondTab);
 
       // Cleanup
-      document.body.removeChild(shadowHost);
+      unmount();
+      if (shadowHost.parentNode) {
+        document.body.removeChild(shadowHost);
+      }
     });
 
     it('should navigate using Home and End keys in shadow DOM', async () => {
-      const { container } = render(
+      // Create a shadow root
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+
+      // Render directly into shadow root
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      const { unmount } = render(
         <Tabs value={1}>
           <Tab />
           <Tab />
           <Tab />
         </Tabs>,
+        { container: shadowContainer },
       );
-
-      // Create a shadow root and move the tabs into it
-      const shadowHost = document.createElement('div');
-      document.body.appendChild(shadowHost);
-      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
-      const tabsElement = container.firstChild;
-      shadowRoot.appendChild(tabsElement);
 
       const tabs = shadowRoot.querySelectorAll('[role="tab"]');
       const [firstTab, secondTab, thirdTab] = Array.from(tabs);
@@ -1530,17 +1539,13 @@ describe('<Tabs />', () => {
       expect(shadowRoot.activeElement).to.equal(thirdTab);
 
       // Cleanup
-      document.body.removeChild(shadowHost);
+      unmount();
+      if (shadowHost.parentNode) {
+        document.body.removeChild(shadowHost);
+      }
     });
 
     it('should handle nested shadow roots', async () => {
-      const { container } = render(
-        <Tabs value={0}>
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-
       // Create outer shadow root
       const outerHost = document.createElement('div');
       document.body.appendChild(outerHost);
@@ -1551,9 +1556,17 @@ describe('<Tabs />', () => {
       outerShadowRoot.appendChild(innerHost);
       const innerShadowRoot = innerHost.attachShadow({ mode: 'open' });
 
-      // Move tabs into inner shadow root
-      const tabsElement = container.firstChild;
-      innerShadowRoot.appendChild(tabsElement);
+      // Render directly into inner shadow root
+      const innerContainer = document.createElement('div');
+      innerShadowRoot.appendChild(innerContainer);
+
+      const { unmount } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+        { container: innerContainer },
+      );
 
       const tabs = innerShadowRoot.querySelectorAll('[role="tab"]');
       const [firstTab, secondTab] = Array.from(tabs);
@@ -1564,12 +1577,16 @@ describe('<Tabs />', () => {
 
       // document.activeElement should point to outer host
       expect(document.activeElement).to.equal(outerHost);
+
       // But keyboard navigation should still work
       fireEvent.keyDown(firstTab, { key: 'ArrowRight' });
       expect(innerShadowRoot.activeElement).to.equal(secondTab);
 
       // Cleanup
-      document.body.removeChild(outerHost);
+      unmount();
+      if (outerHost.parentNode) {
+        document.body.removeChild(outerHost);
+      }
     });
   });
 
