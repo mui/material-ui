@@ -28,11 +28,11 @@
     "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^7.28.4",
+    "@babel/core": "^7.28.5",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.27.1",
     "@babel/plugin-syntax-typescript": "^7.27.1",
-    "@babel/types": "^7.28.4",
+    "@babel/types": "^7.28.5",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "es-toolkit": "^1.40.0",
