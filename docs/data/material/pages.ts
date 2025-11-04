@@ -195,6 +195,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/palette' },
           { pathname: '/material-ui/customization/typography' },
           { pathname: '/material-ui/customization/spacing' },
+          { pathname: '/material-ui/customization/shape' },
           { pathname: '/material-ui/customization/breakpoints' },
           {
             pathname: '/material-ui/customization/container-queries',
