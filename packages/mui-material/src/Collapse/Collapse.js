@@ -298,6 +298,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   const externalForwardedProps = {
     slots,
     slotProps,
+    component,
   };
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
@@ -355,7 +356,6 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             })}
             ownerState={stateOwnerState}
             {...restChildProps}
-            as={component}
           >
             <WrapperSlot {...wrapperSlotProps} ownerState={stateOwnerState}>
               <WrapperInnerSlot {...wrapperInnerSlotProps} ownerState={stateOwnerState}>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { TransitionStatus } from 'react-transition-group';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TransitionProps } from '../transitions/transition';
@@ -33,9 +34,9 @@ export interface CollapseWrapperInnerSlotPropsOverrides {}
 export type CollapseSlotsAndSlotProps = CreateSlotsAndSlotProps<
   CollapseSlots,
   {
-    root: SlotProps<'div', CollapseRootSlotPropsOverrides, CollapseProps>;
-    wrapper: SlotProps<'div', CollapseWrapperSlotPropsOverrides, CollapseProps>;
-    wrapperInner: SlotProps<'div', CollapseWrapperInnerSlotPropsOverrides, CollapseProps>;
+    root: SlotProps<'div', CollapseRootSlotPropsOverrides, CollapseOwnerState>;
+    wrapper: SlotProps<'div', CollapseWrapperSlotPropsOverrides, CollapseOwnerState>;
+    wrapperInner: SlotProps<'div', CollapseWrapperInnerSlotPropsOverrides, CollapseOwnerState>;
   }
 >;
 
@@ -87,6 +88,10 @@ export interface CollapseProps
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+}
+
+export interface CollapseOwnerState extends CollapseProps {
+  state: TransitionStatus;
 }
 
 /**
