@@ -1456,10 +1456,11 @@ describe('<Tabs />', () => {
   });
 
   describe('keyboard navigation in shadow DOM', () => {
-    if (isJSDOM) {
-      this.skip();
-    }
-    it('should navigate between tabs using arrow keys when rendered in shadow DOM', async () => {
+    it('should navigate between tabs using arrow keys when rendered in shadow DOM', async function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
       // Create a shadow root
       const shadowHost = document.createElement('div');
       document.body.appendChild(shadowHost);
