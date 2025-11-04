@@ -12,7 +12,7 @@ const sortBreakpointsValues = (values) => {
 };
 
 // Keep in mind that @media is inclusive by the CSS specification.
-export default function createBreakpoints(breakpoints) {
+export default function createBreakpoints(breakpoints): any {
   const {
     // The breakpoint **start** at this value.
     // For instance with the first breakpoint xs: [xs, sm).
@@ -31,17 +31,17 @@ export default function createBreakpoints(breakpoints) {
   const sortedValues = sortBreakpointsValues(values);
   const keys = Object.keys(sortedValues);
 
-  function up(key) {
+  function up(key): any {
     const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (min-width:${value}${unit})`;
   }
 
-  function down(key) {
+  function down(key): any {
     const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 
-  function between(start, end) {
+  function between(start, end): any {
     const endIndex = keys.indexOf(end);
 
     return (
@@ -57,7 +57,7 @@ export default function createBreakpoints(breakpoints) {
     );
   }
 
-  function only(key) {
+  function only(key): any {
     if (keys.indexOf(key) + 1 < keys.length) {
       return between(key, keys[keys.indexOf(key) + 1]);
     }
@@ -65,7 +65,7 @@ export default function createBreakpoints(breakpoints) {
     return up(key);
   }
 
-  function not(key) {
+  function not(key): any {
     // handle first and last key separately, for better readability
     const keyIndex = keys.indexOf(key);
     if (keyIndex === 0) {

@@ -7,7 +7,7 @@ import styleFunctionSx from '../styleFunctionSx/styleFunctionSx';
 import defaultSxConfig from '../styleFunctionSx/defaultSxConfig';
 import applyStyles from './applyStyles';
 
-function createTheme(options = {}, ...args) {
+function createTheme(options = {}, ...args): any {
   const {
     breakpoints: breakpointsInput = {},
     palette: paletteInput = {},
@@ -40,7 +40,7 @@ function createTheme(options = {}, ...args) {
     ...defaultSxConfig,
     ...other?.unstable_sxConfig,
   };
-  muiTheme.unstable_sx = function sx(props) {
+  muiTheme.unstable_sx = function sx(props): any {
     return styleFunctionSx({
       sx: props,
       theme: this,

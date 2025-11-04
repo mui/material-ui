@@ -5,13 +5,13 @@ import styled from '@mui/styled-engine';
 import styleFunctionSx, { extendSxProp } from '../styleFunctionSx';
 import useTheme from '../useTheme';
 
-export default function createBox(options = {}) {
+export default function createBox(options: any = {}) {
   const { themeId, defaultTheme, defaultClassName = 'MuiBox-root', generateClassName } = options;
   const BoxRoot = styled('div', {
     shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
   })(styleFunctionSx);
 
-  const Box = React.forwardRef(function Box(inProps, ref) {
+  const Box = React.forwardRef(function Box(inProps: any, ref: any) {
     const theme = useTheme(defaultTheme);
     const { className, component = 'div', ...other } = extendSxProp(inProps);
 

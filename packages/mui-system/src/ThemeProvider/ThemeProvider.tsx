@@ -14,7 +14,7 @@ import useLayerOrder from './useLayerOrder';
 
 const EMPTY_THEME = {};
 
-function useThemeScoping(themeId, upperTheme, localTheme, isPrivate = false) {
+function useThemeScoping(themeId, upperTheme, localTheme, isPrivate = false): any {
   return React.useMemo(() => {
     const resolvedTheme = themeId ? upperTheme[themeId] || upperTheme : upperTheme;
 
@@ -39,7 +39,7 @@ function useThemeScoping(themeId, upperTheme, localTheme, isPrivate = false) {
  * <ThemeProvider theme={theme}> // existing use case
  * <ThemeProvider theme={{ id: theme }}> // theme scoping
  */
-function ThemeProvider(props) {
+function ThemeProvider(props): any {
   const { children, theme: localTheme, themeId } = props;
   const upperTheme = useThemeWithoutDefault(EMPTY_THEME);
   const upperPrivateTheme = usePrivateTheme() || EMPTY_THEME;

@@ -14,7 +14,7 @@ import useCurrentColorScheme from './useCurrentColorScheme';
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
 
-export default function createCssVarsProvider(options) {
+export default function createCssVarsProvider(options): any {
   const {
     themeId,
     /**
@@ -53,7 +53,7 @@ export default function createCssVarsProvider(options) {
   const defaultColorSchemes = {};
   const defaultComponents = {};
 
-  function CssVarsProvider(props) {
+  function CssVarsProvider(props): any {
     const {
       children,
       theme: themeProp,
@@ -277,7 +277,7 @@ export default function createCssVarsProvider(options) {
                 if (memoTheme.colorSchemeSelector === 'media') {
                   console.error(
                     [
-                      'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).',
+                      'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value): any.',
                       'To toggle the mode manually, please configure `colorSchemeSelector` to use a class or data attribute.',
                       'To learn more, visit https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
                     ].join('\n'),

@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import clamp from '@mui/utils/clamp';
 
+export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'color';
+export interface ColorObject {
+  type: ColorFormat;
+  values: [number, number, number] | [number, number, number, number];
+  colorSpace?: 'srgb' | 'display-p3' | 'a98-rgb' | 'prophoto-rgb' | 'rec-2020';
+}
+
 /**
  * Returns a number whose value is limited to the given range.
  * @param {number} value The value to be clamped
@@ -8,7 +15,7 @@ import clamp from '@mui/utils/clamp';
  * @param {number} max The upper boundary of the output range
  * @returns {number} A number in the range [min, max]
  */
-function clampWrapper(value, min = 0, max = 1) {
+function clampWrapper(value: number, min = 0, max = 1): number {
   if (process.env.NODE_ENV !== 'production') {
     if (value < min || value > max) {
       console.error(`MUI: The value provided ${value} is out of range [${min}, ${max}].`);
@@ -23,7 +30,7 @@ function clampWrapper(value, min = 0, max = 1) {
  * @param {string} color - Hex color, i.e. #nnn or #nnnnnn
  * @returns {string} A CSS rgb color string
  */
-export function hexToRgb(color) {
+export function hexToRgb(color: string): string {
   color = color.slice(1);
 
   const re = new RegExp(`.{1,${color.length >= 6 ? 2 : 1}}`, 'g');
@@ -50,7 +57,7 @@ export function hexToRgb(color) {
     : '';
 }
 
-function intToHex(int) {
+function intToHex(int: number): string {
   const hex = int.toString(16);
   return hex.length === 1 ? `0${hex}` : hex;
 }
@@ -62,18 +69,18 @@ function intToHex(int) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {object} - A MUI color object: {type: string, values: number[]}
  */
-export function decomposeColor(color) {
+export function decomposeColor(color: ColorObject | string): ColorObject {
   // Idempotent
-  if (color.type) {
-    return color;
+  if ((color as ColorObject).type) {
+    return color as ColorObject;
   }
 
-  if (color.charAt(0) === '#') {
-    return decomposeColor(hexToRgb(color));
+  if ((color as string).charAt(0) === '#') {
+    return decomposeColor(hexToRgb(color as string));
   }
 
-  const marker = color.indexOf('(');
-  const type = color.substring(0, marker);
+  const marker = (color as string).indexOf('(');
+  const type = (color as string).substring(0, marker) as ColorFormat;
 
   if (!['rgb', 'rgba', 'hsl', 'hsla', 'color'].includes(type)) {
     throw /* minify-error */ new Error(
@@ -82,7 +89,7 @@ export function decomposeColor(color) {
     );
   }
 
-  let values = color.substring(marker + 1, color.length - 1);
+  let values: string | string[] = (color as string).substring(marker + 1, (color as string).length - 1);
   let colorSpace;
 
   if (type === 'color') {
@@ -91,7 +98,7 @@ export function decomposeColor(color) {
     if (values.length === 4 && values[3].charAt(0) === '/') {
       values[3] = values[3].slice(1);
     }
-    if (!['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].includes(colorSpace)) {
+    if (!['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].includes(colorSpace!)) {
       throw /* minify-error */ new Error(
         `MUI: unsupported \`${colorSpace}\` color space.\n` +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
@@ -100,9 +107,9 @@ export function decomposeColor(color) {
   } else {
     values = values.split(',');
   }
-  values = values.map((value) => parseFloat(value));
+  const parsedValues = values.map((value) => parseFloat(value)) as any;
 
-  return { type, values, colorSpace };
+  return { type, values: parsedValues, colorSpace } as ColorObject;
 }
 
 /**
@@ -111,14 +118,14 @@ export function decomposeColor(color) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {string} - The channel for the color, that can be used in rgba or hsla colors
  */
-export const colorChannel = (color) => {
+export const colorChannel = (color: string): string => {
   const decomposedColor = decomposeColor(color);
   return decomposedColor.values
     .slice(0, 3)
     .map((val, idx) => (decomposedColor.type.includes('hsl') && idx !== 0 ? `${val}%` : val))
     .join(' ');
 };
-export const private_safeColorChannel = (color, warning) => {
+export const private_safeColorChannel = (color: string, warning?: string): string => {
   try {
     return colorChannel(color);
   } catch (error) {
@@ -136,7 +143,7 @@ export const private_safeColorChannel = (color, warning) => {
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
  */
-export function recomposeColor(color) {
+export function recomposeColor(color: ColorObject): string {
   const { type, colorSpace } = color;
   let { values } = color;
 
@@ -161,7 +168,7 @@ export function recomposeColor(color) {
  * @param {string} color - RGB color, i.e. rgb(n, n, n)
  * @returns {string} A CSS rgb color string, i.e. #nnnnnn
  */
-export function rgbToHex(color) {
+export function rgbToHex(color: string): string {
   // Idempotent
   if (color.startsWith('#')) {
     return color;
@@ -176,7 +183,7 @@ export function rgbToHex(color) {
  * @param {string} color - HSL color values
  * @returns {string} rgb color values
  */
-export function hslToRgb(color) {
+export function hslToRgb(color: string): string {
   color = decomposeColor(color);
   const { values } = color;
   const h = values[0];
@@ -203,7 +210,7 @@ export function hslToRgb(color) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
-export function getLuminance(color) {
+export function getLuminance(color: string): number {
   color = decomposeColor(color);
 
   let rgb =
@@ -229,7 +236,7 @@ export function getLuminance(color) {
  * @param {string} background - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @returns {number} A contrast ratio value in the range 0 - 21.
  */
-export function getContrastRatio(foreground, background) {
+export function getContrastRatio(foreground: string, background: string): number {
   const lumA = getLuminance(foreground);
   const lumB = getLuminance(background);
   return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
@@ -242,7 +249,7 @@ export function getContrastRatio(foreground, background) {
  * @param {number} value - value to set the alpha channel to in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function alpha(color, value) {
+export function alpha(color: string, value: number): string {
   color = decomposeColor(color);
   value = clampWrapper(value);
 
@@ -274,7 +281,7 @@ export function private_safeAlpha(color, value, warning) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function darken(color, coefficient) {
+export function darken(color: string, coefficient: number): string {
   color = decomposeColor(color);
   coefficient = clampWrapper(coefficient);
 
@@ -304,7 +311,7 @@ export function private_safeDarken(color, coefficient, warning) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function lighten(color, coefficient) {
+export function lighten(color: string, coefficient: number): string {
   color = decomposeColor(color);
   coefficient = clampWrapper(coefficient);
 
@@ -340,7 +347,7 @@ export function private_safeLighten(color, coefficient, warning) {
  * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function emphasize(color, coefficient = 0.15) {
+export function emphasize(color: string, coefficient = 0.15): string {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
 export function private_safeEmphasize(color, coefficient, warning) {
@@ -362,7 +369,7 @@ export function private_safeEmphasize(color, coefficient, warning) {
  * @param {number} opacity - Opacity multiplier in the range 0 - 1
  * @param {number} [gamma=1.0] - Gamma correction factor. For gamma-correct blending, 2.2 is usual.
  */
-export function blend(background, overlay, opacity, gamma = 1.0) {
+export function blend(background: string, overlay: string, opacity: number, gamma = 1.0): string {
   const blendChannel = (b, o) =>
     Math.round((b ** (1 / gamma) * (1 - opacity) + o ** (1 / gamma) * opacity) ** gamma);
 

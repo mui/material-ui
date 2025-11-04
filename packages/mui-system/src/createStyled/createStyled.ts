@@ -16,11 +16,11 @@ import preprocessStyles from '../preprocessStyles';
 export const systemDefaultTheme = createTheme();
 
 // Update /system/styled/#api in case if this changes
-export function shouldForwardProp(prop) {
+export function shouldForwardProp(prop): any {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-function shallowLayer(serialized, layerName) {
+function shallowLayer(serialized, layerName): any {
   if (
     layerName &&
     serialized &&
@@ -33,18 +33,18 @@ function shallowLayer(serialized, layerName) {
   return serialized;
 }
 
-function defaultOverridesResolver(slot) {
+function defaultOverridesResolver(slot): any {
   if (!slot) {
     return null;
   }
   return (_props, styles) => styles[slot];
 }
 
-function attachTheme(props, themeId, defaultTheme) {
+function attachTheme(props, themeId, defaultTheme): any {
   props.theme = isObjectEmpty(props.theme) ? defaultTheme : props.theme[themeId] || props.theme;
 }
 
-function processStyle(props, style, layerName) {
+function processStyle(props, style, layerName): any {
   /*
    * Style types:
    *  - null/undefined
@@ -81,7 +81,7 @@ function processStyle(props, style, layerName) {
   return layerName ? shallowLayer(serializeStyles(resolvedStyle), layerName) : resolvedStyle;
 }
 
-function processStyleVariants(props, variants, results = [], layerName = undefined) {
+function processStyleVariants(props, variants, results = [], layerName = undefined): any {
   let mergedState; // We might not need it, initialized lazily
 
   variantLoop: for (let i = 0; i < variants.length; i += 1) {
@@ -117,7 +117,7 @@ function processStyleVariants(props, variants, results = [], layerName = undefin
   return results;
 }
 
-export default function createStyled(input = {}) {
+export default function createStyled(input = {}): any {
   const {
     themeId,
     defaultTheme = systemDefaultTheme,
@@ -125,7 +125,7 @@ export default function createStyled(input = {}) {
     slotShouldForwardProp = shouldForwardProp,
   } = input;
 
-  function styleAttachTheme(props) {
+  function styleAttachTheme(props): any {
     attachTheme(props, themeId, defaultTheme);
   }
 
@@ -190,13 +190,13 @@ export default function createStyled(input = {}) {
         return style;
       }
       if (typeof style === 'function') {
-        return function styleFunctionProcessor(props) {
+        return function styleFunctionProcessor(props): any {
           return processStyle(props, style, props.theme.modularCssLayers ? layerName : undefined);
         };
       }
       if (isPlainObject(style)) {
         const serialized = preprocessStyles(style);
-        return function styleObjectProcessor(props) {
+        return function styleObjectProcessor(props): any {
           if (!serialized.variants) {
             return props.theme.modularCssLayers
               ? shallowLayer(serialized.style, layerName)
@@ -222,7 +222,7 @@ export default function createStyled(input = {}) {
       expressionsHead.push(styleAttachTheme);
 
       if (componentName && overridesResolver) {
-        expressionsTail.push(function styleThemeOverrides(props) {
+        expressionsTail.push(function styleThemeOverrides(props): any {
           const theme = props.theme;
           const styleOverrides = theme.components?.[componentName]?.styleOverrides;
           if (!styleOverrides) {
@@ -246,7 +246,7 @@ export default function createStyled(input = {}) {
       }
 
       if (componentName && !skipVariantsResolver) {
-        expressionsTail.push(function styleThemeVariants(props) {
+        expressionsTail.push(function styleThemeVariants(props): any {
           const theme = props.theme;
           const themeVariants = theme?.components?.[componentName]?.variants;
           if (!themeVariants) {
@@ -309,14 +309,14 @@ export default function createStyled(input = {}) {
   return styled;
 }
 
-function generateDisplayName(componentName, componentSlot, tag) {
+function generateDisplayName(componentName, componentSlot, tag): any {
   if (componentName) {
     return `${componentName}${capitalize(componentSlot || '')}`;
   }
   return `Styled(${getDisplayName(tag)})`;
 }
 
-function generateStyledLabel(componentName, componentSlot) {
+function generateStyledLabel(componentName, componentSlot): any {
   let label;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -330,7 +330,7 @@ function generateStyledLabel(componentName, componentSlot) {
   return label;
 }
 
-function isObjectEmpty(object) {
+function isObjectEmpty(object): any {
   // eslint-disable-next-line
   for (const _ in object) {
     return false;
@@ -339,7 +339,7 @@ function isObjectEmpty(object) {
 }
 
 // https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
-function isStringTag(tag) {
+function isStringTag(tag): any {
   return (
     typeof tag === 'string' &&
     // 96 is one less than the char code
@@ -349,7 +349,7 @@ function isStringTag(tag) {
   );
 }
 
-function lowercaseFirstLetter(string) {
+function lowercaseFirstLetter(string): any {
   if (!string) {
     return string;
   }

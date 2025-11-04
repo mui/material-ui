@@ -9,19 +9,19 @@ import {
 import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
 
-function objectsHaveSameKeys(...objects) {
-  const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
+function objectsHaveSameKeys(...objects: any[]): boolean {
+  const allKeys = objects.reduce((keys: any, object: any) => keys.concat(Object.keys(object)), []);
   const union = new Set(allKeys);
   return objects.every((object) => union.size === Object.keys(object).length);
 }
 
-function callIfFn(maybeFn, arg) {
+function callIfFn(maybeFn: any, arg: any): any {
   return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function unstable_createStyleFunctionSx() {
-  function getThemeValue(prop, val, theme, config) {
+export function unstable_createStyleFunctionSx(): any {
+  function getThemeValue(prop: string, val: any, theme: any, config: any): any {
     const props = {
       [prop]: val,
       theme,
@@ -50,7 +50,7 @@ export function unstable_createStyleFunctionSx() {
       return style(props);
     }
 
-    const styleFromPropValue = (propValueFinal) => {
+    const styleFromPropValue = (propValueFinal: any) => {
       let value = getValue(themeMapping, transform, propValueFinal);
 
       if (propValueFinal === value && typeof propValueFinal === 'string') {
@@ -75,7 +75,7 @@ export function unstable_createStyleFunctionSx() {
     return handleBreakpoints(props, val, styleFromPropValue);
   }
 
-  function styleFunctionSx(props) {
+  function styleFunctionSx(props: any): any {
     const { sx, theme = {}, nested } = props || {};
 
     if (!sx) {
@@ -89,7 +89,7 @@ export function unstable_createStyleFunctionSx() {
      * and then recursively check keys & values to create media query object styles.
      * (the result will be used in `styled`)
      */
-    function traverse(sxInput) {
+    function traverse(sxInput: any): any {
       let sxObject = sxInput;
       if (typeof sxInput === 'function') {
         sxObject = sxInput(theme);
@@ -105,7 +105,7 @@ export function unstable_createStyleFunctionSx() {
 
       let css = emptyBreakpoints;
 
-      Object.keys(sxObject).forEach((styleKey) => {
+      Object.keys(sxObject).forEach((styleKey: any) => {
         const value = callIfFn(sxObject[styleKey], theme);
         if (value !== null && value !== undefined) {
           if (typeof value === 'object') {

@@ -206,7 +206,7 @@ const defaultSxConfig = {
   // display
   displayPrint: {
     cssProperty: false,
-    transform: (value) => ({
+    transform: (value: any) => ({
       '@media print': {
         display: value,
       },
