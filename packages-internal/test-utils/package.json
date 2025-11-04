@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.27.1",
-    "@babel/preset-typescript": "^7.27.1",
+    "@babel/preset-typescript": "^7.28.5",
     "@babel/register": "^7.28.3",
     "@babel/runtime": "^7.28.4",
     "@emotion/cache": "^11.14.0",
