@@ -9,7 +9,6 @@ import {
 } from '@mui/internal-code-infra/eslint';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
-import eslintPluginReact from 'eslint-plugin-react';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 
