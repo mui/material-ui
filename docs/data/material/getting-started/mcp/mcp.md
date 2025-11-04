@@ -28,13 +28,13 @@ The sections below detail how to set up the Material UI MCP in popular agentic 
 Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add the following:
 
 ```json
-  "mcpServers": {
+"mcpServers": {
     "mui-mcp": {
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "@mui/mcp@latest"]
     }
-  }
+}
 ```
 
 VS Code users must also enable Agent mode (for Copilot Chat) and add the following to `settings.json`:
