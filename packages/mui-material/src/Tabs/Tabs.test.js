@@ -1489,15 +1489,15 @@ describe('<Tabs />', () => {
       expect(shadowRoot.activeElement).to.equal(firstTab);
 
       // Navigate to second tab using ArrowRight
-      user.keyboard('{ArrowRight}');
+      await user.keyboard('{ArrowRight}');
       expect(shadowRoot.activeElement).to.equal(secondTab);
 
       // Navigate to third tab using ArrowRight
-      user.keyboard('{ArrowRight}');
+      await user.keyboard('{ArrowRight}');
       expect(shadowRoot.activeElement).to.equal(thirdTab);
 
       // Navigate back to second tab using ArrowLeft
-      user.keyboard('{ArrowLeft}');
+      await user.keyboard('{ArrowLeft}');
       expect(shadowRoot.activeElement).to.equal(secondTab);
 
       // Cleanup

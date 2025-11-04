@@ -17,9 +17,7 @@
  * // Starting from a specific document
  * const activeElement = getActiveElement(ownerDocument(element));
  */
-export default function getActiveElement(
-  root: Document | ShadowRoot = document,
-): Element | null {
+export default function getActiveElement(root: Document | ShadowRoot = document): Element | null {
   const activeEl = root.activeElement;
 
   if (!activeEl) {
