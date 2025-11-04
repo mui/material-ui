@@ -35,15 +35,19 @@ export const styleFunctionMapping = {
   typography,
 };
 
-export const propToStyleFunction = Object.keys(filterPropsMapping).reduce((acc, styleFnName) => {
-  filterPropsMapping[styleFnName].forEach((propName) => {
-    acc[propName] = styleFunctionMapping[styleFnName];
-  });
+export const propToStyleFunction: Record<string, any> = Object.keys(filterPropsMapping).reduce<Record<string, any>>(
+  (acc, styleFnName) => {
+    const filterProps = filterPropsMapping[styleFnName as keyof typeof filterPropsMapping];
+    filterProps.forEach((propName: string) => {
+      acc[propName] = styleFunctionMapping[styleFnName as keyof typeof styleFunctionMapping];
+    });
 
-  return acc;
-}, {});
+    return acc;
+  },
+  {},
+);
 
-function getThemeValue(prop, value, theme) {
+function getThemeValue(prop: string, value: any, theme: object): any {
   const inputProps = {
     [prop]: value,
     theme,

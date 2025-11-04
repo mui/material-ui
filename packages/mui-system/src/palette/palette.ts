@@ -1,7 +1,7 @@
 import style from '../style';
 import compose from '../compose';
 
-export function paletteTransform(value, userValue) {
+export function paletteTransform(value: any, userValue: string): any {
   if (userValue === 'grey') {
     return userValue;
   }

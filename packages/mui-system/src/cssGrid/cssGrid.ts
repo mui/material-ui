@@ -6,10 +6,10 @@ import responsivePropType from '../responsivePropType';
 
 // false positive
 // eslint-disable-next-line react/function-component-definition
-export const gap = (props) => {
+export const gap = (props: any) => {
   if (props.gap !== undefined && props.gap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
-    const styleFromPropValue = (propValue) => ({
+    const styleFromPropValue = (propValue: any) => ({
       gap: getValue(transformer, propValue),
     });
     return handleBreakpoints(props, props.gap, styleFromPropValue);
@@ -24,10 +24,10 @@ gap.filterProps = ['gap'];
 
 // false positive
 // eslint-disable-next-line react/function-component-definition
-export const columnGap = (props) => {
+export const columnGap = (props: any) => {
   if (props.columnGap !== undefined && props.columnGap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'columnGap');
-    const styleFromPropValue = (propValue) => ({
+    const styleFromPropValue = (propValue: any) => ({
       columnGap: getValue(transformer, propValue),
     });
     return handleBreakpoints(props, props.columnGap, styleFromPropValue);
@@ -43,10 +43,10 @@ columnGap.filterProps = ['columnGap'];
 
 // false positive
 // eslint-disable-next-line react/function-component-definition
-export const rowGap = (props) => {
+export const rowGap = (props: any) => {
   if (props.rowGap !== undefined && props.rowGap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');
-    const styleFromPropValue = (propValue) => ({
+    const styleFromPropValue = (propValue: any) => ({
       rowGap: getValue(transformer, propValue),
     });
     return handleBreakpoints(props, props.rowGap, styleFromPropValue);

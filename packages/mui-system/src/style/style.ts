@@ -1,8 +1,33 @@
+import { CSSObject } from '@mui/styled-engine';
 import capitalize from '@mui/utils/capitalize';
 import responsivePropType from '../responsivePropType';
 import { handleBreakpoints } from '../breakpoints';
 
-export function getPath(obj, path, checkVars = true) {
+export type PropsFor<SomeStyleFunction> =
+  SomeStyleFunction extends StyleFunction<infer Props> ? Props : never;
+
+export type StyleFunction<Props> = (props: Props) => any;
+
+export type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<
+  Partial<Record<PropKey, any>>
+> & { filterProps: string[] };
+
+export type TransformFunction = (
+  cssValue: unknown,
+  userValue: unknown,
+) => number | string | React.CSSProperties | CSSObject;
+
+export interface StyleOptions<PropKey> {
+  cssProperty?: PropKey | keyof React.CSSProperties | false;
+  prop: PropKey;
+  /**
+   * dot access in `Theme`
+   */
+  themeKey?: string;
+  transform?: TransformFunction;
+}
+
+export function getPath(obj: any, path: string | undefined, checkVars = true): any {
   if (!path || typeof path !== 'string') {
     return null;
   }
@@ -24,7 +49,7 @@ export function getPath(obj, path, checkVars = true) {
   }, obj);
 }
 
-export function getStyleValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
+export function getStyleValue(themeMapping: any, transform: any, propValueFinal: any, userValue = propValueFinal): any {
   let value;
 
   if (typeof themeMapping === 'function') {
@@ -42,12 +67,12 @@ export function getStyleValue(themeMapping, transform, propValueFinal, userValue
   return value;
 }
 
-function style(options) {
+function style(options: any): any {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
   // false positive
   // eslint-disable-next-line react/function-component-definition
-  const fn = (props) => {
+  const fn = (props: any) => {
     if (props[prop] == null) {
       return null;
     }
@@ -55,7 +80,7 @@ function style(options) {
     const propValue = props[prop];
     const theme = props.theme;
     const themeMapping = getPath(theme, themeKey) || {};
-    const styleFromPropValue = (propValueFinal) => {
+    const styleFromPropValue = (propValueFinal: any) => {
       let value = getStyleValue(themeMapping, transform, propValueFinal);
 
       if (propValueFinal === value && typeof propValueFinal === 'string') {

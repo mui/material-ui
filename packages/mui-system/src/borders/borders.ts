@@ -4,7 +4,7 @@ import compose from '../compose';
 import { createUnaryUnit, getValue } from '../spacing';
 import { handleBreakpoints } from '../breakpoints';
 
-export function borderTransform(value) {
+export function borderTransform(value: any): any {
   if (typeof value !== 'number') {
     return value;
   }
@@ -12,7 +12,7 @@ export function borderTransform(value) {
   return `${value}px solid`;
 }
 
-function createBorderStyle(prop, transform) {
+function createBorderStyle(prop: string, transform?: (value: any) => any) {
   return style({
     prop,
     themeKey: 'borders',
@@ -46,10 +46,10 @@ export const outlineColor = createBorderStyle('outlineColor');
 
 // false positive
 // eslint-disable-next-line react/function-component-definition
-export const borderRadius = (props) => {
+export const borderRadius = (props: any) => {
   if (props.borderRadius !== undefined && props.borderRadius !== null) {
     const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
-    const styleFromPropValue = (propValue) => ({
+    const styleFromPropValue = (propValue: any) => ({
       borderRadius: getValue(transformer, propValue),
     });
     return handleBreakpoints(props, props.borderRadius, styleFromPropValue);

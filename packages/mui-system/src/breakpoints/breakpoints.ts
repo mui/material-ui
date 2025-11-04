@@ -17,13 +17,13 @@ const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for propTypes.
   keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-  up: (key) => `@media (min-width:${values[key]}px)`,
+  up: (key: string) => `@media (min-width:${values[key as keyof typeof values]}px)`,
 };
 
 const defaultContainerQueries = {
-  containerQueries: (containerName) => ({
-    up: (key) => {
-      let result = typeof key === 'number' ? key : values[key] || key;
+  containerQueries: (containerName: string) => ({
+    up: (key: string | number) => {
+      let result: string | number = typeof key === 'number' ? key : values[key as keyof typeof values] || key;
       if (typeof result === 'number') {
         result = `${result}px`;
       }
@@ -34,7 +34,7 @@ const defaultContainerQueries = {
   }),
 };
 
-export function handleBreakpoints(props, propValue, styleFromPropValue) {
+export function handleBreakpoints(props: any, propValue: any, styleFromPropValue: (value: any, breakpoint?: any) => any): any {
   const theme = props.theme || {};
 
   if (Array.isArray(propValue)) {
@@ -42,7 +42,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
     return propValue.reduce((acc, item, index) => {
       acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
       return acc;
-    }, {});
+    }, {} as any);
   }
 
   if (typeof propValue === 'object') {
@@ -66,7 +66,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
         acc[cssKey] = propValue[cssKey];
       }
       return acc;
-    }, {});
+    }, {} as any);
   }
 
   const output = styleFromPropValue(propValue);
@@ -74,15 +74,15 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   return output;
 }
 
-function breakpoints(styleFunction) {
+function breakpoints(styleFunction: any): any {
   // false positive
   // eslint-disable-next-line react/function-component-definition
-  const newStyleFunction = (props) => {
+  const newStyleFunction = (props: any) => {
     const theme = props.theme || {};
     const base = styleFunction(props);
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
 
-    const extended = themeBreakpoints.keys.reduce((acc, key) => {
+    const extended = themeBreakpoints.keys.reduce((acc: any, key: string) => {
       if (props[key]) {
         acc = acc || {};
         acc[themeBreakpoints.up(key)] = styleFunction({ theme, ...props[key] });
@@ -110,8 +110,8 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-export function createEmptyBreakpointObject(breakpointsInput = {}) {
-  const breakpointsInOrder = breakpointsInput.keys?.reduce((acc, key) => {
+export function createEmptyBreakpointObject(breakpointsInput: any = {}): any {
+  const breakpointsInOrder = breakpointsInput.keys?.reduce((acc: any, key: string) => {
     const breakpointStyleKey = breakpointsInput.up(key);
     acc[breakpointStyleKey] = {};
     return acc;
@@ -119,7 +119,7 @@ export function createEmptyBreakpointObject(breakpointsInput = {}) {
   return breakpointsInOrder || {};
 }
 
-export function removeUnusedBreakpoints(breakpointKeys, style) {
+export function removeUnusedBreakpoints(breakpointKeys: string[], style: any): any {
   return breakpointKeys.reduce((acc, key) => {
     const breakpointOutput = acc[key];
     const isBreakpointUnused = !breakpointOutput || Object.keys(breakpointOutput).length === 0;
@@ -130,7 +130,7 @@ export function removeUnusedBreakpoints(breakpointKeys, style) {
   }, style);
 }
 
-export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
+export function mergeBreakpointsInOrder(breakpointsInput: any, ...styles: any[]): any {
   const emptyBreakpoints = createEmptyBreakpointObject(breakpointsInput);
   const mergedOutput = [emptyBreakpoints, ...styles].reduce(
     (prev, next) => deepmerge(prev, next),
@@ -142,12 +142,12 @@ export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
 // compute base for responsive values; e.g.,
 // [1,2,3] => {xs: true, sm: true, md: true}
 // {xs: 1, sm: 2, md: 3} => {xs: true, sm: true, md: true}
-export function computeBreakpointsBase(breakpointValues, themeBreakpoints) {
+export function computeBreakpointsBase(breakpointValues: any, themeBreakpoints: any): any {
   // fixed value
   if (typeof breakpointValues !== 'object') {
     return {};
   }
-  const base = {};
+  const base: any = {};
   const breakpointsKeys = Object.keys(themeBreakpoints);
   if (Array.isArray(breakpointValues)) {
     breakpointsKeys.forEach((breakpoint, i) => {
@@ -169,7 +169,7 @@ export function resolveBreakpointValues({
   values: breakpointValues,
   breakpoints: themeBreakpoints,
   base: customBase,
-}) {
+}: any): any {
   const base = customBase || computeBreakpointsBase(breakpointValues, themeBreakpoints);
   const keys = Object.keys(base);
 
@@ -177,9 +177,9 @@ export function resolveBreakpointValues({
     return breakpointValues;
   }
 
-  let previous;
+  let previous: any;
 
-  return keys.reduce((acc, breakpoint, i) => {
+  return keys.reduce((acc: any, breakpoint: string, i: number) => {
     if (Array.isArray(breakpointValues)) {
       acc[breakpoint] =
         breakpointValues[i] != null ? breakpointValues[i] : breakpointValues[previous];

@@ -18,7 +18,7 @@ const directions = {
   y: ['Top', 'Bottom'],
 };
 
-const aliases = {
+const aliases: Record<string, string> = {
   marginX: 'mx',
   marginY: 'my',
   paddingX: 'px',
@@ -28,7 +28,7 @@ const aliases = {
 // memoize() impact:
 // From 300,000 ops/sec
 // To 350,000 ops/sec
-const getCssProperties = memoize((prop) => {
+const getCssProperties = memoize((prop: string): string[] => {
   // It's not a shorthand notation.
   if (prop.length > 2) {
     if (aliases[prop]) {
@@ -39,8 +39,8 @@ const getCssProperties = memoize((prop) => {
   }
 
   const [a, b] = prop.split('');
-  const property = properties[a];
-  const direction = directions[b] || '';
+  const property = properties[a as keyof typeof properties];
+  const direction = directions[b as keyof typeof directions] || '';
   return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
 });
 
@@ -92,11 +92,11 @@ export const paddingKeys = [
 
 const spacingKeys = [...marginKeys, ...paddingKeys];
 
-export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
+export function createUnaryUnit(theme: any, themeKey: string, defaultValue: any, propName: string): any {
   const themeSpacing = getPath(theme, themeKey, true) ?? defaultValue;
 
   if (typeof themeSpacing === 'number' || typeof themeSpacing === 'string') {
-    return (val) => {
+    return (val: any) => {
       if (typeof val === 'string') {
         return val;
       }
@@ -123,7 +123,7 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   }
 
   if (Array.isArray(themeSpacing)) {
-    return (val) => {
+    return (val: any) => {
       if (typeof val === 'string') {
         return val;
       }
@@ -182,11 +182,11 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   return () => undefined;
 }
 
-export function createUnarySpacing(theme) {
+export function createUnarySpacing(theme: any): any {
   return createUnaryUnit(theme, 'spacing', 8, 'spacing');
 }
 
-export function getValue(transformer, propValue) {
+export function getValue(transformer: any, propValue: any): any {
   if (typeof propValue === 'string' || propValue == null) {
     return propValue;
   }
@@ -194,15 +194,15 @@ export function getValue(transformer, propValue) {
   return transformer(propValue);
 }
 
-export function getStyleFromPropValue(cssProperties, transformer) {
-  return (propValue) =>
-    cssProperties.reduce((acc, cssProperty) => {
+export function getStyleFromPropValue(cssProperties: string[], transformer: any): (propValue: any) => any {
+  return (propValue: any) =>
+    cssProperties.reduce((acc: any, cssProperty: string) => {
       acc[cssProperty] = getValue(transformer, propValue);
       return acc;
     }, {});
 }
 
-function resolveCssProperty(props, keys, prop, transformer) {
+function resolveCssProperty(props: any, keys: string[], prop: string, transformer: any): any {
   // Using a hash computation over an array iteration could be faster, but with only 28 items,
   // it's doesn't worth the bundle size.
   if (!keys.includes(prop)) {
@@ -216,7 +216,7 @@ function resolveCssProperty(props, keys, prop, transformer) {
   return handleBreakpoints(props, propValue, styleFromPropValue);
 }
 
-function style(props, keys) {
+function style(props: any, keys: string[]): any {
   const transformer = createUnarySpacing(props.theme);
 
   return Object.keys(props)
@@ -224,13 +224,13 @@ function style(props, keys) {
     .reduce(merge, {});
 }
 
-export function margin(props) {
+export function margin(props: any): any {
   return style(props, marginKeys);
 }
 
 margin.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? marginKeys.reduce((obj, key) => {
+    ? marginKeys.reduce((obj: any, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
@@ -238,13 +238,13 @@ margin.propTypes =
 
 margin.filterProps = marginKeys;
 
-export function padding(props) {
+export function padding(props: any): any {
   return style(props, paddingKeys);
 }
 
 padding.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? paddingKeys.reduce((obj, key) => {
+    ? paddingKeys.reduce((obj: any, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
@@ -252,13 +252,13 @@ padding.propTypes =
 
 padding.filterProps = paddingKeys;
 
-function spacing(props) {
+function spacing(props: any): any {
   return style(props, spacingKeys);
 }
 
 spacing.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? spacingKeys.reduce((obj, key) => {
+    ? spacingKeys.reduce((obj: any, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})

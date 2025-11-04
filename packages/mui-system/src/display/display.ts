@@ -4,7 +4,7 @@ import compose from '../compose';
 export const displayPrint = style({
   prop: 'displayPrint',
   cssProperty: false,
-  transform: (value) => ({
+  transform: (value: any) => ({
     '@media print': {
       display: value,
     },

@@ -2,7 +2,7 @@ import style from '../style';
 import compose from '../compose';
 import { handleBreakpoints, values as breakpointsValues } from '../breakpoints';
 
-export function sizingTransform(value) {
+export function sizingTransform(value: any): string | number {
   return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 
@@ -11,11 +11,11 @@ export const width = style({
   transform: sizingTransform,
 });
 
-export const maxWidth = (props) => {
+export const maxWidth = (props: any) => {
   if (props.maxWidth !== undefined && props.maxWidth !== null) {
-    const styleFromPropValue = (propValue) => {
+    const styleFromPropValue = (propValue: any) => {
       const breakpoint =
-        props.theme?.breakpoints?.values?.[propValue] || breakpointsValues[propValue];
+        props.theme?.breakpoints?.values?.[propValue] || (breakpointsValues as any)[propValue];
 
       if (!breakpoint) {
         return {

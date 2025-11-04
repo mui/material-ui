@@ -1,6 +1,6 @@
 import capitalize from '@mui/utils/capitalize';
 
-function isEmpty(string) {
+function isEmpty(string: string): boolean {
   return string.length === 0;
 }
 
@@ -9,7 +9,7 @@ function isEmpty(string) {
  * variant if defined, and then it appends all other properties in alphabetical order.
  * @param {object} props - the properties for which the classKey should be created.
  */
-export default function propsToClassKey(props) {
+export default function propsToClassKey(props: any): string {
   const { variant, ...other } = props;
 
   let classKey = variant || '';
