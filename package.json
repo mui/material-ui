@@ -92,7 +92,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^5.0.1",
-    "@slack/bolt": "^4.5.0",
+    "@slack/bolt": "^4.6.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
     "karma-spec-reporter": "^0.0.36"
