@@ -29,11 +29,11 @@ Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add t
 
 ```json
 "mcpServers": {
-    "mui-mcp": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@mui/mcp@latest"]
-    }
+  "mui-mcp": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@mui/mcp@latest"]
+  }
 }
 ```
 
