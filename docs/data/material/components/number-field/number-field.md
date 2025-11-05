@@ -8,9 +8,11 @@ components: Button, FormControl, FormLabel, FormHelperText
 
 <p class="description">A Number Field is designed to receive numeric input from the user.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
-The Number Field component
+The Number Field component combines the powerful functionality of [Base UI — Number Field](https://base-ui.com/react/components/number-field) with building blocks from Material UI for visual representation.
 
 <!-- #npm-tag-reference -->
 
@@ -29,10 +31,26 @@ yarn add @base-ui-components/react
 ```
 
 </codeblock>
-## Number Field
 
-{{"demo": "NumberField.js"}}
+This approach gives the flexibility to achieve various designs while keeping the same foundation for behavior and accessibility.
 
-## Number Spin
+## Usage
 
-{{"demo": "NumberSpin.js"}}
+1. Pick a demo from below that fits your visual design needs.
+2. Click "Expand code" from the toolbar
+3. Select the file that starts with `./components/`
+4. Click the copy icon from the toolbar and paste it into your codebase.
+
+:::info
+The Number Field component is **NOT** included in `@mui/material`.
+
+You must install [Base UI](https://base-ui.com/react/overview/quick-start#install-the-library) and copy the code from one of the demos below to use it.
+:::
+
+## Outlined
+
+{{"demo": "FieldDemo.js"}}
+
+## Spinner
+
+{{"demo": "SpinnerDemo.js"}}
