@@ -487,7 +487,7 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * Supports React 19 declarative actions.
+   * Supports React 19 declarative actions (formAction).
    */
   formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 } as any;
