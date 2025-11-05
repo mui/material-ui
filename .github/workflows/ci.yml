@@ -49,10 +49,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
-      - run: pnpm build:ci
+      - run: pnpm release:build
+      - run: pnpm docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=6144
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: pnpm validate-declarations
