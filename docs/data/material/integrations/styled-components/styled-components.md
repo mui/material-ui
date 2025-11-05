@@ -46,11 +46,12 @@ If you're using yarn, you can configure it using a package resolution:
 
 ## Configuration with Vite and Vitest
 
-If you are using Vite with Vitest for testing, you may encounter issues with MUI v7+ when using styled-components. This is due to ESM/CJS compatibility issues with styled-components.
+If you are using Vite with Vitest for testing, you may encounter issues with Material UI v7+ when using styled-components. This is due to ESM/CJS compatibility issues with styled-components.
 
 To resolve this, add the following configuration to your `vite.config.ts`:
 
 ### Option 1: Using fallbackCJS (simpler, but slower)
+
 ```ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -70,6 +71,7 @@ export default defineConfig({
 ```
 
 ### Option 2: Using inline dependencies (faster, recommended)
+
 ```ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
