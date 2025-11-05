@@ -181,8 +181,8 @@ Drag-and-drop row reordering now shows a precise drop indicator, so teams can re
 Pinned rows and aggregates cooperate with the scrollbar and scroll shadows making wide, tall tables easier to parse at a glance:
 
 <figure style="margin:16px 0;">
-  <img src="/static/blog/mui-x-end-v8/grid-pinning-shadows.png" alt="Pinned rows and scroll shadows" style="width:100%;max-width:960px;border-radius:12px;">
-  <figcaption style="text-align:center;margin-top:8px;">Pinned context that reads at a glance.</figcaption>
+  <video src="https://github.com/user-attachments/assets/6aa59911-d247-48c5-b576-e3fb15092e7a" autoplay muted loop playsinline alt="Pinned rows and scroll shadows" style="width:100%;max-width:960px;border-radius:12px;">
+  <figcaption style="text-align:center;margin-top:8px;">Pinned context that reads at a glance.</figcaption></video>
 </figure>
 
 [Pinning guide](/x/react-data-grid/column-pinning/) • [Scrolling guide](/x/react-data-grid/scrolling/)
