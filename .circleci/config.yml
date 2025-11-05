@@ -361,7 +361,7 @@ jobs:
           name: Build packages for fixtures
           command: pnpm release:build
       - run:
-          name: Build packages for fixtures
+          name: Validate type declarations
           command: pnpm pnpm validate-declarations
       - run:
           name: Analyze exported typescript
