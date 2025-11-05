@@ -5,21 +5,16 @@ import jsonPageContent from './input-adornment.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  return <ApiPage descriptions={descriptions} pageContent={jsonPageContent} />;
 }
 
 export async function getStaticProps() {
   const req = require.context(
     'docs/translations/api-docs/input-adornment',
     false,
-    /\.\/input-adornment.*.json$/,
+    /\.\/input-adornment.*\.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 
-  return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
-  };
+  return { props: { descriptions } };
 }

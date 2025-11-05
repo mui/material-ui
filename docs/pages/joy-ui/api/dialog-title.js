@@ -5,21 +5,16 @@ import jsonPageContent from './dialog-title.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  return <ApiPage descriptions={descriptions} pageContent={jsonPageContent} />;
 }
 
 export async function getStaticProps() {
   const req = require.context(
     'docs/translations/api-docs-joy/dialog-title',
     false,
-    /\.\/dialog-title.*.json$/,
+    /\.\/dialog-title.*\.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 
-  return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
-  };
+  return { props: { descriptions } };
 }

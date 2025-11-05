@@ -5,21 +5,16 @@ import jsonPageContent from './swipeable-drawer.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  return <ApiPage descriptions={descriptions} pageContent={jsonPageContent} />;
 }
 
 export async function getStaticProps() {
   const req = require.context(
     'docs/translations/api-docs/swipeable-drawer',
     false,
-    /\.\/swipeable-drawer.*.json$/,
+    /\.\/swipeable-drawer.*\.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 
-  return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
-  };
+  return { props: { descriptions } };
 }

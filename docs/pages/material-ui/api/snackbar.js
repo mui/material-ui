@@ -5,17 +5,16 @@ import jsonPageContent from './snackbar.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  return <ApiPage descriptions={descriptions} pageContent={jsonPageContent} />;
 }
 
 export async function getStaticProps() {
-  const req = require.context('docs/translations/api-docs/snackbar', false, /\.\/snackbar.*.json$/);
+  const req = require.context(
+    'docs/translations/api-docs/snackbar',
+    false,
+    /\.\/snackbar.*\.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
-  return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
-  };
+  return { props: { descriptions } };
 }
