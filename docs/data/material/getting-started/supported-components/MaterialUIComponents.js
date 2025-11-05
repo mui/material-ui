@@ -256,7 +256,7 @@ export default function MaterialUIComponents() {
                     data-no-markdown-link="true"
                     href={component.baseUI}
                   >
-                    Composed with Base UI
+                    Composed with Base UI
                   </Link>
                 ) : null}
                 {component.materialUI && component.materialUI.startsWith('/x') ? (

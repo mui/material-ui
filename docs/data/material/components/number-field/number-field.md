@@ -14,8 +14,8 @@ components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperTe
 
 The Number Field combines the best of both worlds:
 
-- Base UI [NumberField](https://base-ui.com/react/components/number-field) provides unstyled, robust, and fully accessible components.
-- Material UI building blocks provide the visual representation and styling.
+- Base UI [NumberField](https://base-ui.com/react/components/number-field) provides unstyled, robust, and fully accessible components.
+- Material UI building blocks provide the visual representation and styling.
 
 It gives developers the flexibility to create various designs while keeping the same foundation for behavior and accessibility.
 
@@ -47,7 +47,7 @@ yarn add @base-ui-components/react
 :::info
 The Number Field component is **NOT** included in `@mui/material`.
 
-You must install [Base UI](https://base-ui.com/react/overview/quick-start#install-the-library) and copy the code from one of the demos below to use it.
+You must install [Base UI](https://base-ui.com/react/overview/quick-start#install-the-library) and copy the code from one of the demos below to use it.
 :::
 
 ## Outlined
