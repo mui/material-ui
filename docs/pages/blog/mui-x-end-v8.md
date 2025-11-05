@@ -118,11 +118,11 @@ A **Sankey** diagram joins the lineup for flow visualization, while **Funnel** c
 Multi-level label groups on band/point axes tidy up long category lists and comparisons—perfect for “Region Country City” break-downs:
 
 <figure style="margin:16px 0;">
-  <img src="/static/blog/mui-x-end-v8/charts-axis-groups.png" alt="Grouped axis labels" style="width:100%;max-width:960px;border-radius:12px;">
+  <img src="https://github.com/user-attachments/assets/19710212-4eef-48c1-acc6-46a4e75cffc2" alt="Grouped axes labels" style="width:100%;max-width:960px;border-radius:12px;">
   <figcaption style="text-align:center;margin-top:8px;">Multi-level category labels.</figcaption>
 </figure>
 
-[Axes and labeling](/x/react-charts/axes/)
+[Axes and labeling](/x/react-charts/axis/)
 
 ### Performance and export [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
