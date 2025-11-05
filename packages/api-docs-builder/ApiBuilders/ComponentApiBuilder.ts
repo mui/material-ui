@@ -388,7 +388,7 @@ const generateApiPage = async (
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
   export default function Page(props) {
-    const { descriptions, pageContent } = props;
+    const { descriptions } = props;
     return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={jsonPageContent} />;
   }
 

@@ -4,7 +4,7 @@ import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslation
 import jsonPageContent from './form-control.json';
 
 export default function Page(props) {
-  const { descriptions, pageContent } = props;
+  const { descriptions } = props;
   return <ApiPage descriptions={descriptions} pageContent={jsonPageContent} />;
 }
 
