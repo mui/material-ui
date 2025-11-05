@@ -389,23 +389,18 @@ const generateApiPage = async (
 
   export default function Page(props) {
     const { descriptions, pageContent } = props;
-    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
+    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={jsonPageContent} />;
   }
 
   export async function getStaticProps() {
     const req = require.context(
       '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
       false,
-      /\\.\\/${kebabCase(reactApi.name)}.*.json$/,
+      /\\.\\/${kebabCase(reactApi.name)}.*\\.json$/,
     );
     const descriptions = mapApiPageTranslations(req);
 
-    return {
-      props: {
-        descriptions,
-        pageContent: jsonPageContent,
-      },
-    };
+    return { props: { descriptions } };
   }
   `.replace(/\r?\n/g, reactApi.EOL),
     );
