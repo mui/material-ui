@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "7.3.4",
+  "version": "7.3.5",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "keywords": [
@@ -38,7 +38,7 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.19.23",
+    "@types/node": "^20.19.24",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.2",
     "next": "^15.5.6",

@@ -35,6 +35,8 @@ import {
   ThemeCssVarOverrides,
   ThemeCssVar,
   CssVarsTheme,
+  Shape,
+  ShapeOptions,
 } from './createThemeFoundation';
 
 // Re-export all types from foundation to maintain backward compatibility
@@ -73,6 +75,8 @@ export type {
   ThemeCssVarOverrides,
   ThemeCssVar,
   CssVarsTheme,
+  Shape,
+  ShapeOptions,
 };
 
 export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
