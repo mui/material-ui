@@ -853,5 +853,15 @@ describe('<Button />', () => {
       );
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionEnd);
     });
+    it('forwards formAction to the DOM button', () => {
+      const handleAction = jest.fn();
+      render(<Button formAction={handleAction}>Submit</Button>);
+
+      const button = screen.getByRole('button', { name: 'Submit' });
+      expect(button).toHaveAttribute('formaction');
+
+      fireEvent.click(button);
+      expect(handleAction).toHaveBeenCalledWith(expect.any(FormData));
+    });
   });
 });

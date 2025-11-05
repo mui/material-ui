@@ -97,6 +97,7 @@ export interface ButtonOwnProps {
    * @default 'text'
    */
   variant?: OverridableStringUnion<'text' | 'outlined' | 'contained', ButtonPropsVariantOverrides>;
+  formAction?: ((formData: FormData) => void) | string;
 }
 
 export type ButtonTypeMap<

@@ -530,6 +530,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     startIcon: startIconProp,
     type,
     variant = 'text',
+    formAction,
     ...other
   } = props;
 
@@ -605,6 +606,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       id={loading ? loadingId : idProp}
       {...other}
       classes={classes}
+      formAction={formAction}
     >
       {startIcon}
       {loadingPosition !== 'end' && loader}
@@ -743,6 +745,10 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['contained', 'outlined', 'text']),
     PropTypes.string,
   ]),
+  /**
+   * Supports React 19's declarative form actions.
+   */
+  formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
 export default Button;
