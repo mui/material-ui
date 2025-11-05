@@ -129,7 +129,7 @@ Multi-level label groups on band/point axes tidy up long category lists and comp
 Heavy dashboards feel lighter thanks to faster string measurement, tuned bar rendering, and an SVG batch renderer for large scatter plots. When it's time to share, capture the exact view with **image export** or **print/PDF**.
 
 <figure style="margin:16px 0;">
-  <img src="/static/blog/mui-x-end-v8/charts-perf-export.png" alt="Charts performance and export" style="width:100%;max-width:960px;border-radius:12px;">
+  <video src="https://github.com/user-attachments/assets/32aec824-0c17-4350-adb5-bd72cf434c77" autoplay muted loop playsinline alt="Charts performance and export" style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Faster charts; one-click export.</figcaption>
 </figure>
 
