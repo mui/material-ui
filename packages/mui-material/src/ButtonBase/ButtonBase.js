@@ -257,7 +257,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const buttonProps = {};
   if (ComponentProp === 'button') {
-    buttonProps.type = type === undefined ? 'button' : type;
+    // Don't default to 'button' if form attributes are present, to allow form submission
+    const hasFormAttributes = !!other.formAction;
+    buttonProps.type = type === undefined && !hasFormAttributes ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
     if (!other.href && !other.to) {
