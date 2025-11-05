@@ -12,7 +12,12 @@ components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperTe
 
 ## Introduction
 
-The Number Field component combines the powerful functionality of [Base UI — Number Field](https://base-ui.com/react/components/number-field) with building blocks from Material UI for visual representation.
+The Number Field combines the best of both worlds:
+
+- Base UI [NumberField](https://base-ui.com/react/components/number-field) provides unstyled, robust, and fully accessible components.
+- Material UI building blocks provide the visual representation and styling.
+
+It gives developers the flexibility to create various designs while keeping the same foundation for behavior and accessibility.
 
 <!-- #npm-tag-reference -->
 
@@ -32,8 +37,6 @@ yarn add @base-ui-components/react
 
 </codeblock>
 
-This approach gives the flexibility to achieve various designs while keeping the same foundation for behavior and accessibility.
-
 ## Usage
 
 1. Pick a demo from below that fits your visual design needs.
@@ -49,12 +52,12 @@ You must install [Base UI](https://base-ui.com/react/overview/quick-start#instal
 
 ## Outlined
 
-Uses [text field composition](/material-ui/react-text-field/#components) with the end adornments for the increment and decrement buttons.
+Uses [text field composition](/material-ui/react-text-field/#components) with end adornments for the increment and decrement buttons.
 
 {{"demo": "FieldDemo.js"}}
 
 ## Spinner
 
-The increment and decrement buttons are placed next to the outlined input. Best for touch devices and narrow range of values.
+The increment and decrement buttons are placed next to the outlined input. Best for touch devices and narrow ranges of values.
 
 {{"demo": "SpinnerDemo.js"}}
