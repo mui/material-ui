@@ -71,8 +71,8 @@ importers:
         specifier: ^1.0.9-canary.54
         version: 1.0.9-canary.54(@types/node@20.19.24)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: ^0.0.3-canary.46
-        version: 0.0.3-canary.46(@next/eslint-plugin-next@15.5.6)(@types/node@20.19.24)(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.38.0(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)
+        specifier: ^0.0.3-canary.47
+        version: 0.0.3-canary.47(@next/eslint-plugin-next@15.5.6)(@types/node@20.19.24)(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.38.0(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -3135,8 +3135,8 @@ packages:
     resolution: {integrity: sha512-CCZCDJuduB9OUkFkY2IgppNZMi2lBQgD2qzwXkEia16cge2pijY/aXi96CJMquDMn3nJdlPV1A5KrJEXwfLNzQ==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
-  '@eslint/compat@1.4.0':
-    resolution: {integrity: sha512-DEzm5dKeDBPm3r08Ixli/0cmxr8LkRdwxMRUIJBlSCpAwSrvFEJpVBzV+66JhDxiaqKxnRzCXhtiMiczF7Hglg==}
+  '@eslint/compat@1.4.1':
+    resolution: {integrity: sha512-cfO82V9zxxGBxcQDr1lfaYB7wykTa0b00mGa36FrJl7iTFd0Z2cHfEYuxcBRP/iNijCsWsEkA+jzT8hGYmv33w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.40 || 9
@@ -3166,6 +3166,10 @@ packages:
 
   '@eslint/js@9.38.0':
     resolution: {integrity: sha512-UZ1VpFvXf9J06YG9xQBdnzU+kthors6KjhMAl6f4gH4usHyh31rUf2DLGInT8RFYIReYXNSydgPY0V2LuWgl7A==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.39.1':
+    resolution: {integrity: sha512-S26Stp4zCy88tH94QbBv3XCuzRQiZ9yXofEILmglYTh/Ug/a9/umqvgFtYBAo3Lp0nsI/5/qH1CCrbdK3AP1Tw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/json@0.14.0':
@@ -3723,8 +3727,8 @@ packages:
     resolution: {integrity: sha512-27VE2jPkbnae3Z3sOjijggYohhyMdeMOCQaByO2Sa0CuQPeFSKAc669Tm67LHn3LC4JvDoklzvIz34/ulWqadw==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.3-canary.46':
-    resolution: {integrity: sha512-cNYHxpc3LmUs435qcHLQZJZnoLfsfaKVVUVFpZFoHoZS+yfDci/9WU2gDpozXC0QPelCDDZATYSnPkwlY4vflQ==}
+  '@mui/internal-code-infra@0.0.3-canary.47':
+    resolution: {integrity: sha512-nJtAnS2n5yu/EagK+Dwfv39585pxKhhH6D40TvhGsNMZ1RLGulDIgmPb23QqrvR0KgYnBXYBUPmuu2Ox4ahFAA==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -14269,9 +14273,9 @@ snapshots:
 
   '@eslint-community/regexpp@4.12.1': {}
 
-  '@eslint/compat@1.4.0(eslint@9.38.0(jiti@2.6.1))':
+  '@eslint/compat@1.4.1(eslint@9.38.0(jiti@2.6.1))':
     dependencies:
-      '@eslint/core': 0.16.0
+      '@eslint/core': 0.17.0
     optionalDependencies:
       eslint: 9.38.0(jiti@2.6.1)
 
@@ -14310,6 +14314,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@9.38.0': {}
+
+  '@eslint/js@9.39.1': {}
 
   '@eslint/json@0.14.0':
     dependencies:
@@ -14965,7 +14971,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.3-canary.46(@next/eslint-plugin-next@15.5.6)(@types/node@20.19.24)(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.38.0(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)':
+  '@mui/internal-code-infra@0.0.3-canary.47(@next/eslint-plugin-next@15.5.6)(@types/node@20.19.24)(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.38.0(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:
       '@argos-ci/core': 4.5.0
       '@babel/cli': 7.28.3(@babel/core@7.28.5)
@@ -14976,8 +14982,8 @@ snapshots:
       '@babel/preset-env': 7.28.5(@babel/core@7.28.5)
       '@babel/preset-react': 7.28.5(@babel/core@7.28.5)
       '@babel/preset-typescript': 7.28.5(@babel/core@7.28.5)
-      '@eslint/compat': 1.4.0(eslint@9.38.0(jiti@2.6.1))
-      '@eslint/js': 9.38.0
+      '@eslint/compat': 1.4.1(eslint@9.38.0(jiti@2.6.1))
+      '@eslint/js': 9.39.1
       '@eslint/json': 0.14.0
       '@inquirer/confirm': 5.1.19(@types/node@20.19.24)
       '@inquirer/select': 4.4.0(@types/node@20.19.24)
