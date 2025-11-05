@@ -1,8 +1,6 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
-import { fireEvent } from '@testing-library/dom';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import StepButton, { stepButtonClasses as classes } from '@mui/material/StepButton';
 import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
@@ -23,7 +21,7 @@ describe('<StepButton />', () => {
     }));
 
     it('passes active, completed, disabled to StepLabel', () => {
-      const { container, getByText } = render(
+      const { container } = render(
         <Step active completed disabled>
           <StepButton>Step One</StepButton>
         </Step>,
@@ -35,11 +33,11 @@ describe('<StepButton />', () => {
       expect(stepLabelRoot).to.have.class(stepLabelClasses.disabled);
       expect(stepLabel).to.have.class(stepLabelClasses.active);
       expect(stepLabel).to.have.class(stepLabelClasses.completed);
-      getByText('Step One');
+      screen.getByText('Step One');
     });
 
     it('should pass props to a provided StepLabel', () => {
-      const { container, getByText } = render(
+      const { container } = render(
         <Step active completed disabled>
           <StepButton label="Step One">
             <StepLabel>Step One</StepLabel>
@@ -53,34 +51,34 @@ describe('<StepButton />', () => {
       expect(stepLabelRoot).to.have.class(stepLabelClasses.disabled);
       expect(stepLabel).to.have.class(stepLabelClasses.active);
       expect(stepLabel).to.have.class(stepLabelClasses.completed);
-      getByText('Step One');
+      screen.getByText('Step One');
     });
   });
 
   it('should disable the button', () => {
-    const { getByRole } = render(<StepButton disabled>Step One</StepButton>);
+    render(<StepButton disabled>Step One</StepButton>);
 
-    expect(getByRole('button')).to.have.property('disabled', true);
+    expect(screen.getByRole('button')).to.have.property('disabled', true);
   });
 
   it('should have `aria-current=step` when active', () => {
-    const { getByRole } = render(
+    render(
       <Step active>
         <StepButton>Step One</StepButton>
       </Step>,
     );
 
-    expect(getByRole('button')).to.have.attribute('aria-current', 'step');
+    expect(screen.getByRole('button')).to.have.attribute('aria-current', 'step');
   });
 
   it('should not have `aria-current` when non-active', () => {
-    const { getByRole } = render(
+    render(
       <Step active={false}>
         <StepButton>Step One</StepButton>
       </Step>,
     );
 
-    expect(getByRole('button')).not.to.have.attribute('aria-current', 'step');
+    expect(screen.getByRole('button')).not.to.have.attribute('aria-current', 'step');
   });
 
   describe('event handlers', () => {
@@ -93,7 +91,8 @@ describe('<StepButton />', () => {
       const handleMouseEnter = spy();
       const handleMouseLeave = spy();
       const handleTouchStart = spy();
-      const { getByRole } = render(
+
+      render(
         <StepButton
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -102,7 +101,8 @@ describe('<StepButton />', () => {
           Step One
         </StepButton>,
       );
-      const button = getByRole('button');
+
+      const button = screen.getByRole('button');
 
       fireEvent.mouseOver(button);
 
@@ -135,15 +135,12 @@ describe('<StepButton />', () => {
   });
 
   it('can be used as a child of `Step`', () => {
-    // a simple smoke test to check that these two
-    // integrate without any errors/warnings
-    // TODO: move into integration test for Stepper component
-    const { getByRole } = render(
+    render(
       <Step>
         <StepButton>Next</StepButton>
       </Step>,
     );
 
-    expect(getByRole('button')).not.to.equal(null);
+    expect(screen.getByRole('button')).not.to.equal(null);
   });
 });

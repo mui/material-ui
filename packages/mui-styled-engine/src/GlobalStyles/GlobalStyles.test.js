@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import styled from '..';
 import GlobalStyles from './GlobalStyles';
@@ -13,14 +12,14 @@ describe('GlobalStyles', () => {
       this.skip();
     }
 
-    const { container } = render(
+    render(
       <div>
         <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
-        <span>Blue text</span>
+        <span data-testid="text">Blue text</span>
       </div>,
     );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
       color: 'rgb(0, 0, 255)',
     });
   });
@@ -30,14 +29,14 @@ describe('GlobalStyles', () => {
       this.skip();
     }
 
-    const { container } = render(
+    render(
       <div>
         <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
-        <span>Blue text</span>
+        <span data-testid="text">Blue text</span>
       </div>,
     );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
       color: 'rgb(0, 0, 255)',
     });
   });
@@ -47,14 +46,14 @@ describe('GlobalStyles', () => {
       this.skip();
     }
 
-    const { container } = render(
+    render(
       <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
         <GlobalStyles styles={(theme) => ({ span: { color: theme.color } })} />
-        <span>Blue text</span>
+        <span data-testid="text">Blue text</span>
       </ThemeProvider>,
     );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
       color: 'rgb(0, 0, 255)',
     });
   });
@@ -79,14 +78,14 @@ describe('GlobalStyles', () => {
       color: rgb(255, 0, 0);
     `;
 
-    const { container } = render(
+    render(
       <div>
         <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
-        <Span>Red text</Span>
+        <Span data-testid="text">Red text</Span>
       </div>,
     );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
       color: 'rgb(255, 0, 0)',
     });
   });
@@ -100,14 +99,14 @@ describe('GlobalStyles', () => {
       color: 'rgb(255, 0, 0)',
     });
 
-    const { container } = render(
+    render(
       <div>
         <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
-        <Span>Red text</Span>
+        <Span data-testid="text">Red text</Span>
       </div>,
     );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+    expect(screen.getByTestId('text')).toHaveComputedStyle({
       color: 'rgb(255, 0, 0)',
     });
   });

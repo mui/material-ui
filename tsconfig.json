@@ -3,7 +3,7 @@
     // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
     "target": "es2022",
     "lib": ["es2020", "dom", "dom.iterable"],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
@@ -13,6 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
+    "baseUrl": ".",
     "paths": {
       "@mui/material": ["./packages/mui-material/src"],
       "@mui/material/package.json": ["./packages/mui-material/package.json"],

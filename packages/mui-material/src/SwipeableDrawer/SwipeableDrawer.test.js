@@ -232,7 +232,7 @@ describe('<SwipeableDrawer />', () => {
           }
           const handleClose = spy();
           const handleOpen = spy();
-          const { getByTestId, setProps } = render(
+          const { setProps } = render(
             <SwipeableDrawer
               anchor={params.anchor}
               onOpen={handleOpen}
@@ -269,7 +269,9 @@ describe('<SwipeableDrawer />', () => {
           if (params.anchor === 'bottom') {
             startPosition = windowHeight - DRAG_STARTED_SIGNAL;
           }
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(startPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            startPosition,
+          );
 
           fireEvent.touchMove(swipeArea, {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
@@ -298,7 +300,9 @@ describe('<SwipeableDrawer />', () => {
             endPosition = windowHeight - DRAWER_SIZE;
           }
 
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(endPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            endPosition,
+          );
         });
 
         it('should stay closed when not swiping far enough', () => {
@@ -466,7 +470,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('removes event listeners on unmount', () => {
-      const container = render(
+      const { unmount } = render(
         <SwipeableDrawer
           onOpen={() => {}}
           onClose={() => {}}
@@ -483,7 +487,7 @@ describe('<SwipeableDrawer />', () => {
       fireEvent.touchStart(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 250, clientY: 0 })],
       });
-      container.unmount();
+      unmount();
       //  trigger setState warning if listeners aren't cleaned.
       fireEvent.touchMove(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 180, clientY: 0 })],

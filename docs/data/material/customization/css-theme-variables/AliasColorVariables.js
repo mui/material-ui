@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';

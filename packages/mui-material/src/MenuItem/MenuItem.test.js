@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
@@ -68,6 +67,7 @@ describe('<MenuItem />', () => {
 
         expect(handler.callCount).to.equal(1);
 
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {});
       });
     });

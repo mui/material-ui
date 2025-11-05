@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import AccordionActions, {
   accordionActionsClasses as classes,

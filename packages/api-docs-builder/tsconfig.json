@@ -12,7 +12,6 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "strict": true,
-    "baseUrl": "./",
     "paths": {
       "@mui/internal-docs-utils": ["../../packages-internal/docs-utils/src"]
     }

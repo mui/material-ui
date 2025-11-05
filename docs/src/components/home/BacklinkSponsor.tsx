@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Link } from '@mui/docs/Link';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 

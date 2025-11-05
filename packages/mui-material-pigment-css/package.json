@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "7.3.3",
+  "version": "7.3.5",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
   "keywords": [
@@ -36,7 +36,7 @@
     "@mui/system": "workspace:*"
   },
   "devDependencies": {
-    "react": "^19.1.1"
+    "react": "^19.2.0"
   },
   "peerDependencies": {
     "@pigment-css/react": "^0.0.30"
