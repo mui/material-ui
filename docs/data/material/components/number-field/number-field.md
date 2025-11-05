@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: Number field React component
-components: Button, FormControl, FormLabel, FormHelperText
+components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperText, OutlinedInput
 ---
 
 # Number Field
@@ -49,8 +49,12 @@ You must install [Base UI](https://base-ui.com/react/overview/quick-start#instal
 
 ## Outlined
 
+Uses [text field composition](/material-ui/react-text-field/#components) with the end adornments for the increment and decrement buttons.
+
 {{"demo": "FieldDemo.js"}}
 
 ## Spinner
+
+The increment and decrement buttons are placed next to the outlined input. Best for touch devices and narrow range of values.
 
 {{"demo": "SpinnerDemo.js"}}
