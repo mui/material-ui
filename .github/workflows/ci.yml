@@ -41,36 +41,19 @@ jobs:
           node-version: '22.18.0'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
-      - name: Start process monitoring (macOS only)
-        if: runner.os == 'macOS'
-        run: |
-          # Start background process monitoring for diagnostics
-          (
-            echo "=== Process monitoring started at $(date) ==="
-            while true; do
-              echo "--- Process tree at $(date) ---"
-              ps -ef | grep -E "(node|tsc|lerna)" | grep -v grep || echo "No matching processes"
-              echo ""
-              sleep 30
-            done
-          ) > /tmp/process-monitor.log 2>&1 &
-          echo $! > /tmp/monitor-pid.txt
-          echo "Process monitor started with PID $(cat /tmp/monitor-pid.txt)"
+      - name: Cache Next.js build
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: |
+            docs/.next/cache
+            apps/*/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.{js,jsx,ts,tsx,md,mdx}', 'apps/**/*.{js,jsx,ts,tsx}') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-
       - run: pnpm build:ci
         env:
           NODE_OPTIONS: --max_old_space_size=6144
-      - name: Stop process monitoring and upload logs (macOS only)
-        if: always() && runner.os == 'macOS'
-        run: |
-          if [ -f /tmp/monitor-pid.txt ]; then
-            MONITOR_PID=$(cat /tmp/monitor-pid.txt)
-            kill $MONITOR_PID 2>/dev/null || true
-            echo "Process monitor stopped"
-            if [ -f /tmp/process-monitor.log ]; then
-              echo "=== Last 100 lines of process monitor log ==="
-              tail -100 /tmp/process-monitor.log
-            fi
-          fi
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
