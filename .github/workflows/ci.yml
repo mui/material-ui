@@ -50,7 +50,13 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
-      - run: pnpm docs:build
+      - name: Build docs
+        run: |
+          # Increase file descriptor limit on macOS to prevent EMFILE errors
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            ulimit -n 10240
+          fi
+          pnpm docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=6144
       - run: pnpm release:changelog
