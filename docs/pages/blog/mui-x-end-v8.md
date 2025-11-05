@@ -192,7 +192,7 @@ Pinned rows and aggregates cooperate with the scrollbar and scroll shadows makin
 Excel export now relies on our own internally vetted and private `ExcelJS` fork to avoid transitive vulnerabilities and keep exports reliable at scale:
 
 <figure style="margin:16px 0;">
-  <img src="/static/blog/mui-x-end-v8/grid-export-excel.png" alt="Export to Excel from the Data Grid" style="width:100%;max-width:960px;border-radius:12px;">
+  <img src="https://github.com/user-attachments/assets/81ad75a6-5769-4a74-88f3-da45e2d2c598" alt="Export to Excel from the Data Grid" style="width:100%;max-width:960px;border-radius:12px;">
   <figcaption style="text-align:center;margin-top:8px;">Safer, sturdier exports for compliance workflows.</figcaption>
 </figure>
 
