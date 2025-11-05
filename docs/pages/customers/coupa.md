@@ -75,18 +75,14 @@ After researching various options, Coupa implemented MUI with a focus on:
 After integrating MUI X, Coupa managed to meet an aggressive one-year product delivery deadline resulting in a 50% faster time to market.
 They significantly enhanced user experience with a unified, modern interface.
 They also increased the platform production quality with reduced P0, P1 bugs.
-Recently, they also integrated MUI X Charts for a new AI chatbot feature.
+Recently, they also integrated MUI X Charts for a new AI chatbot feature:
 
-<span class="only-light-mode">
-<blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-I think our biggest advantage with using MUI is the maturity of the product. Beyond a dedicated team that offers enterprise level support, there's a big community around it. It's easy to find resources. While some of the newer libraries might do some shiny new things, their reliability and the future is always questionable. - Ali
-</blockquote>
-</span>
-<span class="only-dark-mode">
-<blockquote style="margin: 32px 0; padding: 24px 32px; background: #0D161F; border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-I think our biggest advantage with using MUI is the maturity of the product. Beyond a dedicated team that offers enterprise level support, there's a big community around it. It's easy to find resources. While some of the newer libraries might do some shiny new things, their reliability and the future is always questionable. - Ali
-</blockquote>
-</span>
+<img
+  id="coupa-ui"
+  src="/static/branding/companies/coupa-ui.png"
+  alt=""
+  style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+/>
 
 ## Developer experience
 
@@ -96,11 +92,11 @@ It also reduced friction between design and development teams.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-From the engineer's perspective, it's a unified experience to use the components because all of your components' props and signatures are similar. So it makes it easy for even teams that we do support internally to be able to utilize the components. - Ali.
+I think our biggest advantage with using MUI is the maturity of the product. Beyond a dedicated team that offers enterprise level support, there's a big community around it. It's easy to find resources. While some of the newer libraries might do some shiny new things, their reliability and the future is always questionable. - Ali
 </blockquote>
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #0D161F; border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-From the engineer's perspective, it's a unified experience to use the components because all of your components' props and signatures are similar. So it makes it easy for even teams that we do support internally to be able to utilize the components. - Ali.
+I think our biggest advantage with using MUI is the maturity of the product. Beyond a dedicated team that offers enterprise level support, there's a big community around it. It's easy to find resources. While some of the newer libraries might do some shiny new things, their reliability and the future is always questionable. - Ali
 </blockquote>
 </span>
