@@ -1298,7 +1298,11 @@ describe('<ButtonBase />', () => {
   describe('form attributes', () => {
     it('should not set default type when formAction is present', async () => {
       const formActionSpy = spy();
-      const { user } = render(<ButtonBase formAction={formActionSpy}>Submit</ButtonBase>);
+      const { user } = render(
+        <form>
+          <ButtonBase formAction={formActionSpy}>Submit</ButtonBase>
+        </form>,
+      );
       const button = screen.getByRole('button');
 
       // Should not have type="button" when formAction is present
