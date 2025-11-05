@@ -6,7 +6,7 @@ components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperTe
 
 # Number Field
 
-<p class="description">A Number Field is designed to receive numeric input from the user.</p>
+<p class="description">A React component for capturing numeric input from users.</p>
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
