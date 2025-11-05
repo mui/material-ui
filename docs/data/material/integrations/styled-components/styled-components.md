@@ -46,7 +46,7 @@ If you're using yarn, you can configure it using a package resolution:
 
 ## Configuration with Vite and Vitest
 
-If you are using Vite with Vitest for testing, you may encounter issues with Material UI v7+ when using styled-components. This is due to ESM/CJS compatibility issues with styled-components.
+If you are using Vite with Vitest for testing, you may encounter issues with Material UI v7+ when using styled-components. This is due to ESM/CJS compatibility issues with styled-components.
 
 To resolve this, add the following configuration to your `vite.config.ts`:
 
