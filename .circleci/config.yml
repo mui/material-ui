@@ -155,10 +155,18 @@ jobs:
     <<: *default-job
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - eslint-cache-{{ checksum "pnpm-lock.yaml" }}
+            - eslint-cache-
       - install_js
       - run:
           name: ESLint
           command: pnpm eslint:ci
+      - save_cache:
+          key: eslint-cache-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - .eslintcache
       - run:
           name: Stylelint
           command: pnpm stylelint
