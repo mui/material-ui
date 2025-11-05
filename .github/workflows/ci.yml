@@ -51,9 +51,10 @@ jobs:
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
       - name: Build docs
+        shell: bash
         run: |
           # Increase file descriptor limit on macOS to prevent EMFILE errors
-          if [ "$RUNNER_OS" = "macOS" ]; then
+          if [ "$(uname)" = "Darwin" ]; then
             ulimit -n 10240
           fi
           pnpm docs:build
