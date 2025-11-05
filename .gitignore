@@ -8,7 +8,6 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 *.log
-*.tsbuildinfo
 /.eslintcache
 /.nyc_output
 /coverage
@@ -46,3 +45,7 @@ docs/public/static/blog/feed/*
 .nx/workspace-data
 screenshots
 packed
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

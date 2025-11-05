@@ -9,7 +9,6 @@ import {
 } from '@mui/internal-code-infra/eslint';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
-import eslintPluginReact from 'eslint-plugin-react';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 
@@ -82,6 +81,15 @@ export default defineConfig(
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
+
+      // TODO enable:
+      'react-hooks/refs': 'off',
+      'react-hooks/globals': 'off',
+      'react-hooks/immutability': 'off',
+      'react-hooks/preserve-manual-memoization': 'off',
+      'react-hooks/incompatible-library': 'off',
+      'react-hooks/static-components': 'off',
+      'react-hooks/purity': 'off',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
@@ -276,23 +284,13 @@ export default defineConfig(
       'import/prefer-default-export': 'off',
     },
   },
-  // Migrated config from apps/bare-next-app/.eslintrc.js
   {
-    files: [`apps/**/*${EXTENSION_TS}`, `examples/**/*${EXTENSION_TS}`],
+    files: [`examples/**/*${EXTENSION_TS}`],
     rules: {
       'import/no-relative-packages': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'import/prefer-default-export': 'off',
-    },
-  },
-  {
-    files: [`apps/bare-next-app/**/*${EXTENSION_TS}`],
-    extends: [eslintPluginReact.configs.flat['jsx-runtime']],
-    rules: {
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
-      'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     },
   },
   {
