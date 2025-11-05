@@ -362,7 +362,7 @@ jobs:
           command: pnpm release:build
       - run:
           name: Validate type declarations
-          command: pnpm pnpm validate-declarations
+          command: pnpm validate-declarations
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
