@@ -216,7 +216,7 @@ Range components can use different reference dates for start and for end, so pic
 Edits feel steadier. Compact one-column time layouts keep the intended format, view switching behaves predictably, and browser quirks are smoothed out so the field stays readable and consistent:
 
 <figure style="margin:16px 0;">
-  <img src="/static/blog/mui-x-end-v8/pickers-ux.png" alt="Date and time picker input polish" style="width:100%;max-width:720px;border-radius:12px;">
+  <img src="https://github.com/user-attachments/assets/595c0f74-f3b7-498b-9b0b-255f291026b1" alt="Date and time picker input polish" style="width:100%;max-width:720px;border-radius:12px;">
   <figcaption style="text-align:center;margin-top:8px;">Consistent typing, formats, and labels.</figcaption>
 </figure>
 
@@ -229,7 +229,7 @@ Edits feel steadier. Compact one-column time layouts keep the intended format, v
 Between refined editing, ordering, and selection behaviors, trees hold up better as they grow. Reorder with drag-and-drop, wire up inline renaming, and keep identifiers flexible so you can mirror your domain model precisely:
 
 <figure style="margin:16px 0;">
-  <video src="/static/blog/mui-x-end-v8/tree-editing-ordering.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/a91aa903-611d-43be-a361-9f933d518f55" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Scale up without losing your place.</figcaption>
 </figure>
 
