@@ -141,11 +141,6 @@ Heavy dashboards feel lighter thanks to faster string measurement, tuned bar ren
 
 Pivot at scale without locking the browser. The Grid coordinates with your back-end to compute pivots and aggregates, so the UI stays snappy while you slice by any model you can dream up:
 
-<figure style="margin:16px 0;">
-  <video src="/static/blog/mui-x-end-v8/grid-pivot.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
-  <figcaption style="text-align:center;margin-top:8px;">Large pivots, computed on the server.</figcaption>
-</figure>
-
 [Pivoting docs](/x/react-data-grid/pivoting/)
 
 ### Row grouping that adapts as you explore [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
@@ -153,7 +148,7 @@ Pivot at scale without locking the browser. The Grid coordinates with your back-
 Reorder grouping levels on the fly and stay in place. Expanded groups stay open even as data updates, so you don't lose context during refreshes:
 
 <figure style="margin:16px 0;">
-  <video src="/static/blog/mui-x-end-v8/grid-grouping-reorder.mp4" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/98da078f-0747-4a02-b304-6a66c936c995" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Drag to reorder groups; expansion persists.</figcaption>
 </figure>
 
