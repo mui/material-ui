@@ -486,6 +486,10 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
+  /**
+   * Supports React 19 declarative actions.
+   */
+  formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 } as any;
 
 // @ts-ignore internal logic for ToggleButtonGroup
