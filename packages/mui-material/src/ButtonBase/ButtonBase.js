@@ -400,6 +400,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  /**
+   * @ignore
+   */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * The component used to render a link when the `href` prop is provided.
