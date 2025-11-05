@@ -1296,7 +1296,11 @@ describe('<ButtonBase />', () => {
   });
 
   describe('form attributes', () => {
-    it('should not set default type when formAction is present', async () => {
+    it('should not set default type when formAction is present', async function test() {
+      if (window.navigator.userAgent.includes('jsdom')) {
+        this.skip();
+      }
+
       const formActionSpy = spy();
       const { user } = render(
         <form>
