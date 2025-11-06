@@ -261,8 +261,31 @@ jobs:
       - save_cache:
           key: typescript-cache-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            - packages/**/*.tsbuildinfo
-            - packages-internal/**/*.tsbuildinfo
+            - docs/scripts/tsconfig.tsbuildinfo
+            - docs/tsconfig.tsbuildinfo
+            - packages-internal/docs-utils/build/.tsbuildinfo
+            - packages-internal/docs-utils/tsconfig.tsbuildinfo
+            - packages-internal/scripts/build/generate-llms-txt/.tsbuildinfo
+            - packages-internal/scripts/build/typescript-to-proptypes/.tsbuildinfo
+            - packages-internal/scripts/tsconfig.typecheck.tsbuildinfo
+            - packages-internal/test-utils/build/.tsbuildinfo
+            - packages-internal/test-utils/tsconfig.tsbuildinfo
+            - packages/api-docs-builder-core/tsconfig.tsbuildinfo
+            - packages/api-docs-builder/tsconfig.tsbuildinfo
+            - packages/mui-docs/tsconfig.tsbuildinfo
+            - packages/mui-icons-material/tsconfig.tsbuildinfo
+            - packages/mui-joy/tsconfig.tsbuildinfo
+            - packages/mui-lab/tsconfig.tsbuildinfo
+            - packages/mui-material-nextjs/tsconfig.tsbuildinfo
+            - packages/mui-material-pigment-css/tsconfig.tsbuildinfo
+            - packages/mui-material/tsconfig.tsbuildinfo
+            - packages/mui-private-theming/tsconfig.tsbuildinfo
+            - packages/mui-styled-engine-sc/tsconfig.tsbuildinfo
+            - packages/mui-styled-engine/tsconfig.tsbuildinfo
+            - packages/mui-stylis-plugin-rtl/tsconfig.tsbuildinfo
+            - packages/mui-system/tsconfig.tsbuildinfo
+            - packages/mui-types/tsconfig.tsbuildinfo
+            - packages/mui-utils/tsconfig.tsbuildinfo
       - run:
           name: Test module augmentation
           command: |
