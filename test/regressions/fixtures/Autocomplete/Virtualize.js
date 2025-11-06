@@ -186,7 +186,7 @@ export default function Virtualize() {
         disableListWrap
         options={OPTIONS}
         groupBy={(option) => option[0].toUpperCase()}
-        renderInput={(params) => <TextField {...params} label="10,000 options" />}
+        renderInput={(params) => <TextField {...params} label="100 options" />}
         renderOption={(props, option, state) => [props, option, state.index]}
         renderGroup={(params) => params}
         onHighlightChange={handleHighlightChange}
