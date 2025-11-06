@@ -1,7 +1,7 @@
 ---
 title: Delivery Hero
 description: How Delivery Hero's Partner Portal streamlined development with MUI X.
-image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/delivery-hero.svg'
+image: '/static/branding/companies/deliveryhero_spotlight.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']
 rank: '7'

@@ -1,7 +1,7 @@
 ---
 title: AT&T
 description: Streamlining development workflows for internal tools.
-image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/atandt-light.svg'
+image: '/static/branding/companies/atnt_spotlight.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']
 rank: '4'

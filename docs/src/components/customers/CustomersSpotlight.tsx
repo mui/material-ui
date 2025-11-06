@@ -23,7 +23,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
         component="ul"
         sx={{
           display: 'grid',
-          mt: variant === 'secondary' ? 4 : 0,
+          mt: variant === 'secondary' ? 2 : 0,
           mb: variant === 'primary' ? -2 : 0,
           p: 0,
           gap: 2,
@@ -59,7 +59,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             })}
           >
             {post.image && (
-              <Box // TODO: standardize the logo sizes and colors
+              <Box
                 component="img"
                 alt="Company Logo"
                 src={mode === 'dark' ? post.image.replace('light', 'dark') : post.image}
@@ -74,11 +74,6 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   maxHeight: variant === 'primary' ? '50px' : '40px',
                   width: 'auto',
                   zIndex: 1,
-                  opacity: 0.9,
-                  ...(mode === 'dark' && {
-                    filter:
-                      'brightness(0) saturate(100%) invert(97%) sepia(5%) saturate(112%) hue-rotate(177deg) brightness(95%) contrast(98%)',
-                  }),
                 }}
               />
             )}
