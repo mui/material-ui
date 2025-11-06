@@ -35,18 +35,6 @@ if (
 
 process.env.DEPLOY_ENV = DEPLOY_ENV;
 
-console.log(
-  process.env.CI,
-  process.env.NEXT_PARALLELISM,
-  process.env.CI
-    ? {
-        cpus: process.env.NEXT_PARALLELISM
-          ? parseInt(process.env.NEXT_PARALLELISM, 10)
-          : os.availableParallelism(),
-      }
-    : {},
-);
-
 /**
  * @typedef {import('next').NextConfig} NextConfig
  * @typedef {NextConfig['env']} NextConfigEnv
