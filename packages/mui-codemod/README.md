@@ -2156,6 +2156,19 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `styles-optimized`
+
+```bash
+npx @mui/codemod@latest v7.0.0/styles-optimized <path>
+```
+
+Replace the import of `@mui/material/styles` with `@mui/material/stylesOptimized` to optimize the TypeScript instantiation for theme components.
+
+```diff
+- import { createTheme } from '@mui/material/styles';
++ import { createTheme } from '@mui/material/stylesOptimized';
+```
+
 #### `theme-color-functions`
 
 ```bash
