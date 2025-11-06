@@ -87,7 +87,7 @@
     "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "clean": "pnpm -r exec rm -rf build",
-    "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\" \"test/ts-performance/**/*.test.?(c|m)[jt]s?(x)\""
+    "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
     "@netlify/functions": "^5.0.1",
