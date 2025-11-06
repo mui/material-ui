@@ -1,5 +1,4 @@
 {
-  "name": "@mui-internal/test-ts-performance",
   "private": true,
   "scripts": {
     "release:test": "mocha instantiations.test.js"
