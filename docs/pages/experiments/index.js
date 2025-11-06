@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { capitalize } from '@mui/material/utils';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -139,7 +138,7 @@ export default function Experiments({ experiments }) {
   );
 }
 
-Experiments.getInitialProps = () => {
+export async function getStaticProps() {
   const experiments = [];
   const req = require.context('./', true, /^\.\/.*(?<!index)\.(js|tsx)$/);
 
@@ -148,6 +147,8 @@ Experiments.getInitialProps = () => {
   });
 
   return {
-    experiments,
+    props: {
+      experiments,
+    },
   };
-};
+}

@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
@@ -23,8 +22,8 @@ describe('<Fab />', () => {
   }));
 
   it('should render with the root class but no others', () => {
-    const { getByRole } = render(<Fab>Fab</Fab>);
-    const button = getByRole('button');
+    render(<Fab>Fab</Fab>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.primary);
@@ -39,16 +38,16 @@ describe('<Fab />', () => {
   });
 
   it('should render an extended floating action button', () => {
-    const { getByRole } = render(<Fab variant="extended">Fab</Fab>);
-    const button = getByRole('button');
+    render(<Fab variant="extended">Fab</Fab>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.extended);
   });
 
   it('should render a primary floating action button', () => {
-    const { getByRole } = render(<Fab color="primary">Fab</Fab>);
-    const button = getByRole('button');
+    render(<Fab color="primary">Fab</Fab>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.primary);
@@ -56,8 +55,8 @@ describe('<Fab />', () => {
   });
 
   it('should render a secondary floating action button', () => {
-    const { getByRole } = render(<Fab color="secondary">Fab</Fab>);
-    const button = getByRole('button');
+    render(<Fab color="secondary">Fab</Fab>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.primary);
@@ -65,8 +64,8 @@ describe('<Fab />', () => {
   });
   ['info', 'error', 'warning', 'success'].forEach((color) => {
     it(`should render a ${color} floating action button`, () => {
-      const { getByRole } = render(<Fab color={color}>Fab</Fab>);
-      const button = getByRole('button');
+      render(<Fab color={color}>Fab</Fab>);
+      const button = screen.getByRole('button');
 
       expect(button).to.have.class(classes.root);
       expect(button).not.to.have.class(classes.primary);
@@ -75,8 +74,8 @@ describe('<Fab />', () => {
   });
 
   it('should render a small floating action button', () => {
-    const { getByRole } = render(<Fab size="small">Fab</Fab>);
-    const button = getByRole('button');
+    render(<Fab size="small">Fab</Fab>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.sizeSmall);
@@ -84,8 +83,8 @@ describe('<Fab />', () => {
   });
 
   it('should render a medium floating action button', () => {
-    const { getByRole } = render(<Fab size="medium">Fab</Fab>);
-    const button = getByRole('button');
+    render(<Fab size="medium">Fab</Fab>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.sizeSmall);
@@ -93,14 +92,14 @@ describe('<Fab />', () => {
   });
 
   it('should have a ripple', async () => {
-    const { container, getByRole } = render(<Fab>Fab</Fab>);
-    await ripple.startTouch(getByRole('button'));
+    const { container } = render(<Fab>Fab</Fab>);
+    await ripple.startTouch(screen.getByRole('button'));
     expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
 
   it('should pass disableRipple to ButtonBase', async () => {
-    const { container, getByRole } = render(<Fab disableRipple>Fab</Fab>);
-    await ripple.startTouch(getByRole('button'));
+    const { container } = render(<Fab disableRipple>Fab</Fab>);
+    await ripple.startTouch(screen.getByRole('button'));
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
@@ -110,7 +109,7 @@ describe('<Fab />', () => {
       this.skip();
     }
 
-    const { getByRole } = render(
+    render(
       <Fab
         TouchRippleProps={{
           classes: { ripplePulsate: 'pulsate-focus-visible' },
@@ -119,7 +118,8 @@ describe('<Fab />', () => {
         Fab
       </Fab>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     await ripple.startFocus(button);
 
@@ -127,7 +127,7 @@ describe('<Fab />', () => {
   });
 
   it('should pass disableFocusRipple to ButtonBase', async () => {
-    const { getByRole } = render(
+    render(
       <Fab
         TouchRippleProps={{
           classes: { ripplePulsate: 'pulsate-focus-visible' },
@@ -137,7 +137,8 @@ describe('<Fab />', () => {
         Fab
       </Fab>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     await ripple.startFocus(button);
 
@@ -154,8 +155,8 @@ describe('<Fab />', () => {
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon data-testid="icon" className={childClassName} />;
-    const { getByTestId } = render(<Fab>{iconChild}</Fab>);
-    const renderedIconChild = getByTestId('icon');
+    render(<Fab>{iconChild}</Fab>);
+    const renderedIconChild = screen.getByTestId('icon');
 
     expect(renderedIconChild).not.to.equal(null);
     expect(renderedIconChild).to.have.class(childClassName);

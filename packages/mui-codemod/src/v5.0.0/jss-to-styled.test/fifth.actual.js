@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Container from 'modules/components/Container';

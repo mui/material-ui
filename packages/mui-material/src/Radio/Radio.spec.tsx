@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Radio from '@mui/material/Radio';
 import { expectType } from '@mui/types';
 

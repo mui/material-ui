@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
@@ -68,84 +67,80 @@ describe('<Switch />', () => {
   });
 
   it('renders a `role="switch"` with the Off state by default', () => {
-    const { getByRole } = render(<Switch />);
+    render(<Switch />);
 
-    expect(getByRole('switch')).to.have.property('checked', false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
   it('renders a switch with the Checked state when On', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+    render(<Switch defaultChecked />);
 
-    expect(getByRole('switch')).to.have.property('checked', true);
+    expect(screen.getByRole('switch')).to.have.property('checked', true);
   });
 
   it('the switch can be disabled', () => {
-    const { getByRole } = render(<Switch disabled />);
+    render(<Switch disabled />);
 
-    expect(getByRole('switch')).to.have.property('disabled', true);
+    expect(screen.getByRole('switch')).to.have.property('disabled', true);
   });
 
   it('the switch can be readonly', () => {
-    const { getByRole } = render(<Switch readOnly />);
+    render(<Switch readOnly />);
 
-    expect(getByRole('switch')).to.have.property('readOnly', true);
+    expect(screen.getByRole('switch')).to.have.property('readOnly', true);
   });
 
   it('the Checked state changes after change events', () => {
-    const { getByRole } = render(<Switch defaultChecked />);
+    render(<Switch defaultChecked />);
 
     // how a user would trigger it
     act(() => {
-      getByRole('switch').click();
-      fireEvent.change(getByRole('switch'), { target: { checked: '' } });
+      screen.getByRole('switch').click();
     });
+    fireEvent.change(screen.getByRole('switch'), { target: { checked: '' } });
 
-    expect(getByRole('switch')).to.have.property('checked', false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
   describe('decorator', () => {
     it('can receive startDecorator as string', () => {
-      const { getByText } = render(<Switch startDecorator="foo" />);
+      render(<Switch startDecorator="foo" />);
 
-      expect(getByText('foo')).toBeVisible();
+      expect(screen.getByText('foo')).toBeVisible();
     });
 
     it('can receive endDecorator as string', () => {
-      const { getByText } = render(<Switch endDecorator="bar" />);
+      render(<Switch endDecorator="bar" />);
 
-      expect(getByText('bar')).toBeVisible();
+      expect(screen.getByText('bar')).toBeVisible();
     });
 
     it('can receive startDecorator as function', () => {
-      const { getByText, getByRole } = render(
-        <Switch startDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
-      );
+      render(<Switch startDecorator={({ checked }) => (checked ? 'On' : 'Off')} />);
 
-      expect(getByText('Off')).toBeVisible();
+      expect(screen.getByText('Off')).toBeVisible();
 
       // how a user would trigger it
       act(() => {
-        getByRole('switch').click();
-        fireEvent.change(getByRole('switch'), { target: { checked: '' } });
+        screen.getByRole('switch').click();
       });
+      fireEvent.change(screen.getByRole('switch'), { target: { checked: '' } });
 
-      expect(getByText('On')).toBeVisible();
+      expect(screen.getByText('On')).toBeVisible();
     });
 
     it('can receive endDecorator as function', () => {
-      const { getByText, getByRole } = render(
-        <Switch endDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
-      );
+      render(<Switch endDecorator={({ checked }) => (checked ? 'On' : 'Off')} />);
 
-      expect(getByText('Off')).toBeVisible();
+      expect(screen.getByText('Off')).toBeVisible();
 
       // how a user would trigger it
       act(() => {
-        getByRole('switch').click();
-        fireEvent.change(getByRole('switch'), { target: { checked: '' } });
+        screen.getByRole('switch').click();
       });
+      fireEvent.change(screen.getByRole('switch'), { target: { checked: '' } });
 
-      expect(getByText('On')).toBeVisible();
+      expect(screen.getByText('On')).toBeVisible();
     });
   });
 });

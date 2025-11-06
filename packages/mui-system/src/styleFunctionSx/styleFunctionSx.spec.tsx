@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SxProps } from '@mui/system';
 
 interface Theme {

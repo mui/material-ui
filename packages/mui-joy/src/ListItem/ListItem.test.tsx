@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -44,34 +43,36 @@ describe('Joy <ListItem />', () => {
   });
 
   it('should show startAction if provided', () => {
-    const { getByText } = render(<ListItem startAction="foo" />);
-    expect(getByText('foo')).toBeVisible();
-    expect(getByText('foo')).to.have.class(classes.startAction);
+    render(<ListItem startAction="foo" />);
+    expect(screen.getByText('foo')).toBeVisible();
+    expect(screen.getByText('foo')).to.have.class(classes.startAction);
   });
 
   it('should show endAction if provided', () => {
-    const { getByText } = render(<ListItem endAction="foo" />);
-    expect(getByText('foo')).toBeVisible();
-    expect(getByText('foo')).to.have.class(classes.endAction);
+    render(<ListItem endAction="foo" />);
+    expect(screen.getByText('foo')).toBeVisible();
+    expect(screen.getByText('foo')).to.have.class(classes.endAction);
   });
 
   describe('Consecutive ListItem', () => {
     it('should not be li', () => {
-      const { getByRole } = render(
+      render(
         <ListItem>
           <ListItem>test</ListItem>
         </ListItem>,
       );
-      expect(getByRole('listitem').firstChild).to.have.tagName('DIV');
+
+      expect(screen.getByRole('listitem').firstChild).to.have.tagName('DIV');
     });
 
     it('should use component prop', () => {
-      const { getByRole } = render(
+      render(
         <ListItem>
           <ListItem component="span">test</ListItem>
         </ListItem>,
       );
-      expect(getByRole('listitem').firstChild).to.have.tagName('SPAN');
+
+      expect(screen.getByRole('listitem').firstChild).to.have.tagName('SPAN');
     });
   });
 
@@ -126,13 +127,13 @@ describe('Joy <ListItem />', () => {
     });
 
     it('should use component prop', () => {
-      const { getByRole } = render(
+      render(
         <List component="div" role="group">
           <ListItem component="span">item 1</ListItem>
         </List>,
       );
 
-      expect(getByRole('group').firstChild).to.have.tagName('SPAN');
+      expect(screen.getByRole('group').firstChild).to.have.tagName('SPAN');
     });
 
     it('should have role="none" if the nearest parent List has role="menu|menubar"', () => {
@@ -174,37 +175,37 @@ describe('Joy <ListItem />', () => {
 
   describe('NestedList', () => {
     it('the nested list should be labelledby the subheader', () => {
-      const { getByRole, getByTestId } = render(
+      render(
         <ListItem nested>
           <ListSubheader data-testid="subheader">Subheader</ListSubheader>
           <List />
         </ListItem>,
       );
 
-      const subheader = getByTestId('subheader');
+      const subheader = screen.getByTestId('subheader');
 
-      expect(getByRole('list')).to.have.attribute('aria-labelledby', subheader.id);
+      expect(screen.getByRole('list')).to.have.attribute('aria-labelledby', subheader.id);
     });
 
     it('the aria-labelledby can be overridden', () => {
-      const { getByRole } = render(
+      render(
         <ListItem nested>
           <ListSubheader data-testid="subheader">Subheader</ListSubheader>
           <List aria-labelledby={undefined} />
         </ListItem>,
       );
 
-      expect(getByRole('list')).not.to.have.attribute('aria-labelledby');
+      expect(screen.getByRole('list')).not.to.have.attribute('aria-labelledby');
     });
 
     it('the nested list should not be labelled without the subheader', () => {
-      const { getByRole } = render(
+      render(
         <ListItem nested>
           <List />
         </ListItem>,
       );
 
-      expect(getByRole('list')).not.to.have.attribute('aria-labelledby');
+      expect(screen.getByRole('list')).not.to.have.attribute('aria-labelledby');
     });
   });
 });

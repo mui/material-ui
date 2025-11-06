@@ -195,6 +195,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/palette' },
           { pathname: '/material-ui/customization/typography' },
           { pathname: '/material-ui/customization/spacing' },
+          { pathname: '/material-ui/customization/shape' },
           { pathname: '/material-ui/customization/breakpoints' },
           {
             pathname: '/material-ui/customization/container-queries',
@@ -243,6 +244,7 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/guides',
     title: 'How-to guides',
     children: [
+      { pathname: '/material-ui/guides/building-extensible-themes' },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/server-rendering' },
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },

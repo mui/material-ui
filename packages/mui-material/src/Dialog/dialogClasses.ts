@@ -13,11 +13,11 @@ export interface DialogClasses {
   /** Styles applied to the Paper component. */
   paper: string;
   /** Styles applied to the Paper component if `scroll="paper"`.
-   * @deprecated Combine the [.MuiDialog-paper](/material-ui/api/dialog/#dialog-classes-paper) and [.MuiDialog-scrollPaper](/material-ui/api/dialog/#dialog-classes-scrollPaper) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiDialog-paper](/material-ui/api/dialog/#Dialog-css-MuiDialog-paper) and [.MuiDialog-scrollPaper](/material-ui/api/dialog/#dialog-classes-MuiDialog-scrollPaper) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paperScrollPaper: string;
   /** Styles applied to the Paper component if `scroll="body"`.
-   * @deprecated Combine the [.MuiDialog-paper](/material-ui/api/dialog/#dialog-classes-paper) and [.MuiDialog-scrollBody](/material-ui/api/dialog/#dialog-classes-scrollBody) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiDialog-paper](/material-ui/api/dialog/#Dialog-css-MuiDialog-paper) and [.MuiDialog-scrollBody](/material-ui/api/dialog/#dialog-classes-MuiDialog-scrollBody) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paperScrollBody: string;
   /** Styles applied to the Paper component if `maxWidth=false`. */
