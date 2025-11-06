@@ -50,16 +50,14 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
+      # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
+      # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion
+      # For other runners, we rely on the default parallelism set in next.config.js
+      - name: Set Next.js parallelism for macOS
+        if: runner.os == 'macOS'
+        run: echo "NEXT_PARALLELISM=2" >> $GITHUB_ENV
       - name: Build docs
-        shell: bash
-        run: |
-          # Increase file descriptor limit on macOS to prevent EMFILE errors
-          echo "uname: $(uname)"
-          if [ "$(uname)" = "Darwin" ]; then
-            echo "Running on macOS, setting ulimit to 10240"
-            ulimit -n 10240
-          fi
-          pnpm docs:build
+        run: pnpm docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=6144
       - run: pnpm release:changelog
