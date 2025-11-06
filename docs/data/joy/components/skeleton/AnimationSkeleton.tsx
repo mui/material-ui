@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Stack from '@mui/joy/Stack';
 import Button from '@mui/joy/Button';

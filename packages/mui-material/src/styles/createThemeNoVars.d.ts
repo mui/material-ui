@@ -7,7 +7,7 @@ import { TransitionsOptions } from './createTransitions';
 import { ZIndexOptions } from './zIndex';
 import { Components } from './components';
 import { ColorSystemOptions } from './createThemeFoundation';
-import { Theme, CssThemeVariables } from '../stylesOptimized';
+import { Theme, CssThemeVariables, ShapeOptions } from '../stylesOptimized';
 
 export { CssThemeVariables };
 
@@ -22,6 +22,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
+  shape?: ShapeOptions;
   transitions?: TransitionsOptions;
   typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
   zIndex?: ZIndexOptions;

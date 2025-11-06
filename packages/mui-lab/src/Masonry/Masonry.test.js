@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer, reactMajor, act, screen } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';

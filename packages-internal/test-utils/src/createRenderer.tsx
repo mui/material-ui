@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+/* eslint-disable compat/compat -- Test environment */
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
@@ -338,11 +339,9 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-const isVitest =
-  // VITEST is present on the environment when not in browser mode.
-  process.env.VITEST === 'true' ||
-  // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
-  typeof process.env.VITEST_BROWSER_DEBUG !== 'undefined';
+function isVitest(vi: any) {
+  return vi != null;
+}
 
 function createVitestClock(
   defaultMode: 'fake' | 'real',
@@ -416,7 +415,7 @@ function createClock(
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
   vi: any,
 ): Clock {
-  if (isVitest) {
+  if (isVitest(vi)) {
     return createVitestClock(defaultMode, config, options, vi);
   }
 
@@ -520,7 +519,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi || {},
+    vi = (globalThis as any).vi,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
@@ -579,7 +578,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
     let id: string | null = null;
 
-    if (isVitest) {
+    if (isVitest(vi)) {
       // @ts-expect-error
       id = expect.getState().currentTestName;
     } else {

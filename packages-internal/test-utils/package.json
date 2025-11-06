@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.27.1",
-    "@babel/preset-typescript": "^7.27.1",
+    "@babel/preset-typescript": "^7.28.5",
     "@babel/register": "^7.28.3",
     "@babel/runtime": "^7.28.4",
     "@emotion/cache": "^11.14.0",
@@ -50,7 +50,7 @@
     "@testing-library/user-event": "^14.6.1",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
-    "es-toolkit": "^1.40.0",
+    "es-toolkit": "^1.41.0",
     "format-util": "^1.0.5",
     "jsdom": "^26.1.0",
     "mocha": "^11.7.4",
@@ -64,7 +64,7 @@
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
+    "@types/react-dom": "^19.2.2",
     "@types/sinon": "^17.0.4",
     "typescript": "^5.9.2"
   },

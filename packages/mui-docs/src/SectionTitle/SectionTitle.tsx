@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export interface SectionTitleProps<Hash extends string = string> {
   title: string;
   hash: Hash;

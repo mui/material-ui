@@ -36,15 +36,30 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
       - name: Use Node.js
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
           node-version: '22.18.0'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
-      - run: pnpm build:ci
+      - name: Cache Next.js build
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: docs/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.js', 'docs/**/*.ts', 'docs/**/*.tsx', 'docs/**/*.jsx', 'docs/**/*.json', 'docs/**/*.md', 'docs/**/*.mdx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-
+      - run: pnpm release:build
+      - name: Build docs
+        shell: bash
+        run: |
+          # Increase file descriptor limit on macOS to prevent EMFILE errors
+          if [ "$(uname)" = "Darwin" ]; then
+            ulimit -n 10240
+          fi
+          pnpm docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=6144
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: pnpm validate-declarations

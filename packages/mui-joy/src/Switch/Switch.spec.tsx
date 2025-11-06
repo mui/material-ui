@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expectType } from '@mui/types';
 import Switch, { SwitchOwnerState } from '@mui/joy/Switch';
 

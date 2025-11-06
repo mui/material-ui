@@ -57,6 +57,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { pathToFileURL } from 'node:url';
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { kebabCase } from 'es-toolkit/string';
@@ -251,8 +252,18 @@ function findNonComponentMarkdownFiles(
         continue;
       }
     }
+
+    const ignoredPaths = [
+      '/material-ui/experimental-api/',
+      '/material-ui/migration/migrating-to-pigment-css',
+      '/material-ui/about-the-lab',
+    ];
+
     // Filter out external links and special patterns
-    if (pathname.startsWith('/material-ui/')) {
+    if (
+      pathname.startsWith('/material-ui/') &&
+      !ignoredPaths.some((ignored) => pathname.startsWith(ignored))
+    ) {
       const page = allMarkdownFiles.find((p) => p.pathname === parsedPathname);
 
       if (page) {
@@ -426,7 +437,8 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   let projectSettings: ProjectSettings;
   try {
     const settingsPath = path.resolve(argv.projectSettings);
-    const settingsModule = await import(settingsPath);
+    const settingsUrl = pathToFileURL(settingsPath).href;
+    const settingsModule = await import(settingsUrl);
     projectSettings = settingsModule.projectSettings || settingsModule.default || settingsModule;
   } catch (error) {
     throw new Error(`Failed to load project settings from ${argv.projectSettings}: ${error}`);

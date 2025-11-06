@@ -1,11 +1,48 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { TransitionStatus } from 'react-transition-group';
+import { Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TransitionProps } from '../transitions/transition';
-import { CollapseClasses, CollapseClassKey } from './collapseClasses';
+import { CollapseClasses } from './collapseClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
+export interface CollapseSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the wrapper.
+   * @default 'div'
+   */
+  wrapper?: React.ElementType;
+  /**
+   * The component that renders the inner wrapper.
+   * @default 'div'
+   */
+  wrapperInner?: React.ElementType;
+}
+
+export interface CollapseRootSlotPropsOverrides {}
+
+export interface CollapseWrapperSlotPropsOverrides {}
+
+export interface CollapseWrapperInnerSlotPropsOverrides {}
+
+export type CollapseSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  CollapseSlots,
+  {
+    root: SlotProps<'div', CollapseRootSlotPropsOverrides, CollapseOwnerState>;
+    wrapper: SlotProps<'div', CollapseWrapperSlotPropsOverrides, CollapseOwnerState>;
+    wrapperInner: SlotProps<'div', CollapseWrapperInnerSlotPropsOverrides, CollapseOwnerState>;
+  }
+>;
+
+export interface CollapseProps
+  extends StandardProps<TransitionProps, 'timeout'>,
+    CollapseSlotsAndSlotProps {
   /**
    * The content node to be collapsed.
    */
@@ -51,6 +88,10 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+}
+
+export interface CollapseOwnerState extends CollapseProps {
+  state: TransitionStatus;
 }
 
 /**

@@ -19,6 +19,7 @@ import {
   ColorSystemOptions,
   CssVarsTheme,
   CssVarsPalette,
+  Shape,
 } from '../styles/createThemeFoundation';
 
 export interface ThemeComponents {
@@ -122,6 +123,7 @@ export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
+  shape: Shape;
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;

@@ -9,7 +9,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "incremental": true
+    "incremental": true,
+    "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "next.config.ts", "types", "src", "pages", "data"],
   "exclude": ["docs/.next", "docs/export", "node_modules"]

@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "7.0.1-beta.18",
+  "version": "7.0.1-beta.19",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "keywords": [
@@ -46,7 +46,7 @@
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
+    "@types/react-dom": "^19.2.2",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
     "react": "^19.2.0",

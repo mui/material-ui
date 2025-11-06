@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "exports": {
@@ -28,14 +28,14 @@
     "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^7.28.4",
+    "@babel/core": "^7.28.5",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.27.1",
     "@babel/plugin-syntax-typescript": "^7.27.1",
-    "@babel/types": "^7.28.4",
+    "@babel/types": "^7.28.5",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.40.0",
+    "es-toolkit": "^1.41.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
-    "@types/node": "^20.19.22",
+    "@types/node": "^20.19.24",
     "@types/react": "^19.2.2",
     "@types/uuid": "^10.0.0",
     "chai": "^6.0.1",
