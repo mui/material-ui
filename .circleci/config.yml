@@ -244,8 +244,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - typescript-cache-{{ checksum "pnpm-lock.yaml" }}
-            - typescript-cache-
+            - typescript-cache-v2-{{ checksum "pnpm-lock.yaml" }}
+            - typescript-cache-v2-
       - install_js
       - run:
           name: Transpile TypeScript demos
@@ -259,7 +259,7 @@ jobs:
           environment:
             NODE_OPTIONS: --max-old-space-size=3072
       - save_cache:
-          key: typescript-cache-{{ checksum "pnpm-lock.yaml" }}
+          key: typescript-cache-v2-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - docs/scripts/tsconfig.tsbuildinfo
             - docs/tsconfig.tsbuildinfo
