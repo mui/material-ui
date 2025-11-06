@@ -15,71 +15,71 @@ interface CustomersLogoSliderProps {
 
 const scroll = keyframes`
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-100%); }
 `;
 
 const defaultCustomerLogos: CustomerLogo[] = [
   {
     name: 'Spotify',
-    lightLogo: '/static/branding/companies/spotify-light.svg',
+    lightLogo: '/static/branding/companies/slider/spotify.png',
     darkLogo: '/static/branding/companies/spotify-dark.svg',
   },
   {
     name: 'Amazon',
-    lightLogo: '/static/branding/companies/amazon-light.svg',
-    darkLogo: '/static/branding/companies/amazon-dark.svg',
+    lightLogo: '/static/branding/companies/slider/amazon.png',
+    darkLogo: '/static/branding/companies/slider/amazon_dark.png',
   },
   {
     name: 'NASA',
-    lightLogo: '/static/branding/companies/nasa.svg',
+    lightLogo: '/static/branding/companies/slider/nasa.png',
   },
   {
     name: 'Netflix',
-    lightLogo: '/static/branding/companies/netflix.svg',
+    lightLogo: '/static/branding/companies/slider/netflix.png',
   },
   {
     name: 'Unity',
-    lightLogo: '/static/branding/companies/unity-light.svg',
-    darkLogo: '/static/branding/companies/unity-dark.svg',
+    lightLogo: '/static/branding/companies/slider/unity.png',
+    darkLogo: '/static/branding/companies/slider/unity_dark.png',
   },
   {
     name: 'AT&T',
-    lightLogo: '/static/branding/companies/atandt-light.svg',
-    darkLogo: '/static/branding/companies/atandt-dark.svg',
+    lightLogo: '/static/branding/companies/slider/atnt.png',
+    darkLogo: '/static/branding/companies/slider/atnt_dark.png',
   },
   {
     name: 'Apple',
-    lightLogo: '/static/branding/companies/apple-light.svg',
-    darkLogo: '/static/branding/companies/apple-dark.svg',
+    lightLogo: '/static/branding/companies/slider/apple.png',
+    darkLogo: '/static/branding/companies/slider/apple_dark.png',
   },
   {
     name: 'Tesla',
-    lightLogo: '/static/branding/companies/tesla-light.svg',
-    darkLogo: '/static/branding/companies/tesla-dark.svg',
+    lightLogo: '/static/branding/companies/slider/tesla.png',
+    darkLogo: '/static/branding/companies/slider/tesla_dark.png',
   },
   {
     name: 'Samsung',
-    lightLogo: '/static/branding/companies/samsung.svg',
+    lightLogo: '/static/branding/companies/slider/samsung.png',
   },
   {
     name: 'Verizon',
-    lightLogo: '/static/branding/companies/verizon-light.svg',
-    darkLogo: '/static/branding/companies/verizon-dark.svg',
+    lightLogo: '/static/branding/companies/slider/verizon.png',
+    darkLogo: '/static/branding/companies/slider/verizon.png',
   },
   {
     name: 'Shutterstock',
-    lightLogo: '/static/branding/companies/shutterstock-light.svg',
-    darkLogo: '/static/branding/companies/shutterstock-dark.svg',
+    lightLogo: '/static/branding/companies/slider/shutterstock.png',
+    darkLogo: '/static/branding/companies/slider/shutterstock_dark.png',
   },
   {
     name: 'Volvo',
-    lightLogo: '/static/branding/companies/volvo-light.svg',
-    darkLogo: '/static/branding/companies/volvo-dark.svg',
+    lightLogo: '/static/branding/companies/slider/volvo.png',
+    darkLogo: '/static/branding/companies/slider/volvo.png',
   },
   {
     name: 'Deloitte',
-    lightLogo: '/static/branding/companies/deloitte-light.svg',
-    darkLogo: '/static/branding/companies/deloitte-dark.svg',
+    lightLogo: '/static/branding/companies/slider/deloitte.png',
+    darkLogo: '/static/branding/companies/slider/deloitte_dark.png',
   },
 ];
 
@@ -88,12 +88,14 @@ export default function CustomersLogoSlider({
 }: CustomersLogoSliderProps) {
   const { mode } = useColorScheme();
 
-  const duplicatedLogos = [...logos, ...logos];
+  const logoWidth = 180;
+  const totalWidth = logos.length * logoWidth;
 
   return (
     <Container
       sx={{
-        py: { xs: 4, sm: 6, md: 8 },
+        p: 0,
+        mb: 2,
       }}
     >
       <Box
@@ -102,41 +104,90 @@ export default function CustomersLogoSlider({
           maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage:
             'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+          '&:hover .marquee-content': {
+            animationPlayState: 'paused',
+          },
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'center',
-            gap: { xs: 4, sm: 6, md: 8 },
-            animation: `${scroll} 20s linear infinite`,
-            width: '100%',
+            width: `${totalWidth * 2}px`,
+            height: '130px',
           }}
         >
-          {duplicatedLogos.map((logo, index) => (
-            <Box
-              key={`${logo.name}-${index}`}
-              component="img"
-              alt={`${logo.name} logo`}
-              src={mode === 'dark' && logo.darkLogo ? logo.darkLogo : logo.lightLogo}
-              sx={{
-                height: { xs: 42, sm: 50, md: 70 },
-                width: 'auto',
-                maxWidth: { xs: 120, sm: 140, md: 160 },
-                objectFit: 'contain',
-                opacity: 0.7,
-                transition: 'opacity 0.3s ease-in-out',
-                '&:hover': {
-                  opacity: 1,
-                },
-              }}
-              onError={(err) => {
-                if (mode === 'dark' && logo.darkLogo) {
-                  (err.target as HTMLImageElement).src = logo.lightLogo;
-                }
-              }}
-            />
-          ))}
+          <Box
+            className="marquee-content"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: { xs: 4, sm: 6, md: 4 },
+              animation: `${scroll} 50s linear infinite`,
+              width: `${totalWidth}px`,
+              flexShrink: 0,
+            }}
+          >
+            {logos.map((logo, index) => (
+              <Box
+                key={`first-${logo.name}-${index}`}
+                component="img"
+                alt={`${logo.name} logo`}
+                src={mode === 'dark' && logo.darkLogo ? logo.darkLogo : logo.lightLogo}
+                sx={{
+                  height: { xs: 42, sm: 50, md: 70 },
+                  width: '150px',
+                  objectFit: 'contain',
+                  opacity: 0.7,
+                  transition: 'opacity 0.3s ease-in-out',
+                  flexShrink: 0,
+                  '&:hover': {
+                    opacity: 1,
+                  },
+                }}
+                onError={(err) => {
+                  if (mode === 'dark' && logo.darkLogo) {
+                    (err.target as HTMLImageElement).src = logo.lightLogo;
+                  }
+                }}
+              />
+            ))}
+          </Box>
+          <Box
+            className="marquee-content"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: { xs: 4, sm: 6, md: 4 },
+              animation: `${scroll} 50s linear infinite`,
+              width: `${totalWidth}px`,
+              flexShrink: 0,
+            }}
+          >
+            {logos.map((logo, index) => (
+              <Box
+                key={`second-${logo.name}-${index}`}
+                component="img"
+                alt={`${logo.name} logo`}
+                src={mode === 'dark' && logo.darkLogo ? logo.darkLogo : logo.lightLogo}
+                sx={{
+                  height: { xs: 42, sm: 50, md: 70 },
+                  width: '150px',
+                  objectFit: 'contain',
+                  opacity: 0.7,
+                  transition: 'opacity 0.3s ease-in-out',
+                  flexShrink: 0,
+                  '&:hover': {
+                    opacity: 1,
+                  },
+                }}
+                onError={(err) => {
+                  if (mode === 'dark' && logo.darkLogo) {
+                    (err.target as HTMLImageElement).src = logo.lightLogo;
+                  }
+                }}
+              />
+            ))}
+          </Box>
         </Box>
       </Box>
     </Container>
