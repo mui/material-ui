@@ -167,9 +167,17 @@ jobs:
           key: eslint-cache-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - .eslintcache
+      - restore_cache:
+          keys:
+            - stylelint-cache-{{ checksum "pnpm-lock.yaml" }}
+            - stylelint-cache-
       - run:
           name: Stylelint
-          command: pnpm stylelint
+          command: pnpm stylelint:ci
+      - save_cache:
+          key: stylelint-cache-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - .stylelintcache
       - run:
           name: Lint Markdown
           command: pnpm markdownlint
