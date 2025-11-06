@@ -56,7 +56,10 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=6144
           # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
           # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
-          NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '3' || '' }}
+          NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
+        if: failure()
+        run: cat ./docs/.next/export-detail.json || true
