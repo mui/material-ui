@@ -54,7 +54,9 @@ jobs:
         shell: bash
         run: |
           # Increase file descriptor limit on macOS to prevent EMFILE errors
+          echo "uname: $(uname)"
           if [ "$(uname)" = "Darwin" ]; then
+            echo "Running on macOS, setting ulimit to 10240"
             ulimit -n 10240
           fi
           pnpm docs:build
