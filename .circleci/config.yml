@@ -244,8 +244,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - typescript-cache-v3-{{ checksum "pnpm-lock.yaml" }}
-            - typescript-cache-v3-
+            - typescript-cache-v4-{{ checksum "pnpm-lock.yaml" }}
+            - typescript-cache-v4-
+      - run:
+          name: Extract TypeScript build cache
+          command: tar -xzf tsbuildinfo-archive.tgz 2>/dev/null || true
       - install_js
       - run:
           name: Transpile TypeScript demos
@@ -258,30 +261,13 @@ jobs:
           command: pnpm typescript:ci
           environment:
             NODE_OPTIONS: --max-old-space-size=3072
+      - run:
+          name: Archive TypeScript build cache
+          command: tar -czf tsbuildinfo-archive.tgz **/*.tsbuildinfo
       - save_cache:
-          key: typescript-cache-v3-{{ checksum "pnpm-lock.yaml" }}
+          key: typescript-cache-v4-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            - docs/scripts/tsconfig.tsbuildinfo
-            - docs/tsconfig.tsbuildinfo
-            - packages-internal/docs-utils/tsconfig.tsbuildinfo
-            - packages-internal/scripts/tsconfig.typecheck.tsbuildinfo
-            - packages-internal/test-utils/tsconfig.tsbuildinfo
-            - packages/api-docs-builder-core/tsconfig.tsbuildinfo
-            - packages/api-docs-builder/tsconfig.tsbuildinfo
-            - packages/mui-docs/tsconfig.tsbuildinfo
-            - packages/mui-icons-material/tsconfig.tsbuildinfo
-            - packages/mui-joy/tsconfig.tsbuildinfo
-            - packages/mui-lab/tsconfig.tsbuildinfo
-            - packages/mui-material-nextjs/tsconfig.tsbuildinfo
-            - packages/mui-material-pigment-css/tsconfig.tsbuildinfo
-            - packages/mui-material/tsconfig.tsbuildinfo
-            - packages/mui-private-theming/tsconfig.tsbuildinfo
-            - packages/mui-styled-engine-sc/tsconfig.tsbuildinfo
-            - packages/mui-styled-engine/tsconfig.tsbuildinfo
-            - packages/mui-stylis-plugin-rtl/tsconfig.tsbuildinfo
-            - packages/mui-system/tsconfig.tsbuildinfo
-            - packages/mui-types/tsconfig.tsbuildinfo
-            - packages/mui-utils/tsconfig.tsbuildinfo
+            - tsbuildinfo-archive.tgz
       - run:
           name: Test module augmentation
           command: |
