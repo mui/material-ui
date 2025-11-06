@@ -1,6 +1,6 @@
 ---
 title: Tebra
-description: Modernizing legacy reporting systems in healthcare
+description: Modernizing legacy reporting systems in healthcare.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/tebra.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']

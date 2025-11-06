@@ -1,6 +1,6 @@
 ---
 title: Coupa
-description: Delivering features 50% faster with MUI Components
+description: Delivering features 50% faster with MUI Components.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/coupa.svg'
 date: 2022-06-08T00:00:00.000Z
 rank: '3'
