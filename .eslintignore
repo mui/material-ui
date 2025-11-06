@@ -11,6 +11,7 @@
 /examples/material-ui-nextjs/src
 /packages/mui-codemod/lib
 /packages/mui-codemod/src/*/*.test/*
+/packages/mui-codemod/src/**/test-cases/*
 /packages/mui-icons-material/fixtures
 /packages/mui-icons-material/legacy
 /packages/mui-icons-material/lib
@@ -18,13 +19,14 @@
 /packages/mui-icons-material/src/*.js
 /packages/mui-icons-material/templateSvgIcon.js
 /packages/mui-utils/macros/__fixtures__/
-/packages/zero-runtime/utils/
-/packages/zero-runtime/processors/
-/packages/zero-runtime/exports/
-/packages/zero-runtime/theme/
-/packages/zero-next-plugin/loader.js
+/packages/pigment-css-react/utils/
+/packages/pigment-css-react/processors/
+/packages/pigment-css-react/exports/
+/packages/pigment-css-react/theme/
+/packages/pigment-css-react/tests/**/fixtures
+/packages/pigment-css-nextjs-plugin/loader.js
 # Ignore fixtures
-/packages/typescript-to-proptypes/test/*/*
+/packages-internal/scripts/typescript-to-proptypes/test/*/*
 /test/bundling/fixtures/**/*.fixture.js
 # just an import that reports eslint errors depending on whether the fixture (which is not checked in) exists
 /test/bundling/fixtures/create-react-app/src/index.js

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   act,
-  describeConformance,
   createRenderer,
   screen,
   strictModeDoubleLoggingSuppressed,
@@ -10,6 +9,7 @@ import {
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Breadcrumbs />', () => {
   const { render } = createRenderer();

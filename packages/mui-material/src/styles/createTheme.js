@@ -1,10 +1,9 @@
-import { deepmerge } from '@mui/utils';
-import {
-  createTheme as systemCreateTheme,
+import deepmerge from '@mui/utils/deepmerge';
+import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
-  unstable_styleFunctionSx as styleFunctionSx,
-} from '@mui/system';
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+} from '@mui/system/styleFunctionSx';
+import systemCreateTheme from '@mui/system/createTheme';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
@@ -25,7 +24,12 @@ function createTheme(options = {}, ...args) {
     ...other
   } = options;
 
-  if (options.vars) {
+  if (
+    options.vars &&
+    // The error should throw only for the root theme creation because user is not allowed to use a custom node `vars`.
+    // `generateCssVars` is the closest identifier for checking that the `options` is a result of `extendTheme` with CSS variables so that user can create new theme for nested ThemeProvider.
+    options.generateCssVars === undefined
+  ) {
     throw new MuiError(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
         'Please use another name.',

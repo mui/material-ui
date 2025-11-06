@@ -7,7 +7,7 @@ import {
 import clsx from 'clsx';
 
 export default function NumberInputBasic() {
-  const [value, setValue] = React.useState<number | undefined>();
+  const [value, setValue] = React.useState<number | null>(null);
   return (
     <NumberInput
       aria-label="Demo number input"

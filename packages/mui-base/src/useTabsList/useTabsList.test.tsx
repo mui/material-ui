@@ -7,6 +7,7 @@ import { useTabsList } from './useTabsList';
 
 describe('useTabsList', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('returns props for root slot', () => {
       function TestTabsList() {

@@ -22,13 +22,21 @@ import { TypographySystem } from '../styles/types';
  */
 export const TypographyNestedContext = React.createContext(false);
 
+if (process.env.NODE_ENV !== 'production') {
+  TypographyNestedContext.displayName = 'TypographyNestedContext';
+}
+
 /**
  * @internal
  * Typography's level will be inherit within this context unless an explicit `level` prop is provided.
  *
- * This is used in components, e.g. Table, to inherit the parent's size by default.
+ * This is used in components, for example Table, to inherit the parent's size by default.
  */
 export const TypographyInheritContext = React.createContext(false);
+
+if (process.env.NODE_ENV !== 'production') {
+  TypographyInheritContext.displayName = 'TypographyInheritContext';
+}
 
 const useUtilityClasses = (ownerState: TypographyOwnerState) => {
   const { gutterBottom, noWrap, level, color, variant } = ownerState;
@@ -242,8 +250,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         )}
 
         {hasSkeleton
-          ? React.cloneElement(children as React.ReactElement, {
-              variant: (children as React.ReactElement).props.variant || 'inline',
+          ? React.cloneElement(children as React.ReactElement<any>, {
+              variant: (children as React.ReactElement<any>).props.variant || 'inline',
             })
           : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}

@@ -1,4 +1,4 @@
-# Material UI - CRA example with Tailwind CSS in TypeScript
+# Material UI - CRA example with Tailwind CSS in TypeScript
 
 ## How to use
 
@@ -7,7 +7,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra-tailwind-ts
+curl https://codeload.github.com/mui/material-ui/tar.gz/v5.x | tar -xz --strip=2 material-ui-5.x/examples/material-ui-cra-tailwind-ts
 cd material-ui-cra-tailwind-ts
 ```
 
@@ -28,12 +28,12 @@ or:
 
 <!-- #default-branch-switch -->
 
-This example demonstrates how you can use [Tailwind CSS](https://tailwindcss.com/) and [Create React App](https://github.com/facebookincubator/create-react-app) together with Material UI.
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
+This example demonstrates how you can use [Tailwind CSS](https://tailwindcss.com/) and [Create React App](https://github.com/facebookincubator/create-react-app) together with Material UI.
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
 
 ## What's next?
 
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://v5.mui.com/material-ui/getting-started/templates/) section.

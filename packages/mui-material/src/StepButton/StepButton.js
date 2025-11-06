@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
@@ -51,7 +51,7 @@ const StepButtonRoot = styled(ButtonBase, {
 }));
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
   const { children, className, icon, optional, ...other } = props;
 
   const { disabled, active } = React.useContext(StepContext);

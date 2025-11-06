@@ -2,11 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
-import { chainPropTypes, elementTypeAcceptingRef } from '@mui/utils';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import { alpha } from '@mui/system/colorManipulator';
+import isHostComponent from '@mui/utils/isHostComponent';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -171,7 +173,7 @@ const ListItemContainer = styled('li', {
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItem' });
   const {
     alignItems = 'center',
     autoFocus = false,

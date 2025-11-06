@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { integerPropType } from '@mui/utils';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
@@ -52,7 +52,7 @@ function defaultGetAriaLabel(type, page, selected) {
 }
 
 const Pagination = React.forwardRef(function Pagination(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPagination' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPagination' });
   const {
     boundaryCount = 1,
     className,
@@ -198,7 +198,7 @@ Pagination.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * The current page.
+   * The current page. Unlike `TablePagination`, which starts numbering from `0`, this pagination starts from `1`.
    */
   page: integerPropType,
   /**

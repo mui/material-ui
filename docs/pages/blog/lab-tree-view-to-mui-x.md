@@ -1,13 +1,13 @@
 ---
-title: The Tree View is moving to MUI X
-description: Migrate to the new package to start building with our powerful Tree View, now part of MUI X. Previously released MIT components will stay MIT.
+title: The Tree View is moving to MUI X
+description: Migrate to the new package to start building with our powerful Tree View, now part of MUI X. Previously released MIT components will stay MIT.
 date: 2023-08-21T00:00:00.000Z
 authors: ['flaviendelangle']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
-After more than 4 years in the lab, the [Tree View](https://mui.com/x/react-tree-view/) components have found a new home as part of MUI X.
+After more than 4 years in the lab, the [Tree View](https://mui.com/x/react-tree-view/) components have found a new home as part of MUI X.
 This means we'll be dedicating even more time and effort to these complex components, to better meet the needs of both you and your users.
 
 ## TL;DR
@@ -28,23 +28,23 @@ The component allows to select one or multiple nodes.
   <source src="/static/blog/lab-tree-view-to-mui-x/treeview.mov" type="video/mp4">
 </video>
 
-## What is MUI X?
+## What is MUI X?
 
-[MUI X](/x/) is a collection of advanced components built for complex use cases.
+[MUI X](/x/) is a collection of advanced components built for complex use cases.
 
-As opposed to the MUI Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
+As opposed to the MUI Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
 
-MUI X components are available under three licenses:
+MUI X components are available under three licenses:
 
 - **MIT license**, which is free to use and includes all the current (and more to come) Tree View features.
-- **MUI X Pro**, a commercial license that offers features for handling large datasets and will include the most advanced features for Tree View, like virtualization.
-- **MUI X Premium**, which is also commercial and includes, in addition to the Pro features, tooling for data analysis.
+- **MUI X Pro**, a commercial license that offers features for handling large datasets and will include the most advanced features for Tree View, like virtualization.
+- **MUI X Premium**, which is also commercial and includes, in addition to the Pro features, tooling for data analysis.
 
-## Why did the Tree View move to MUI X?
+## Why did the Tree View move to MUI X?
 
-Once a component is ready to leave the lab, it can either go to MUI X or MUI Core libraries.
+Once a component is ready to leave the lab, it can either go to MUI X or MUI Core libraries.
 
-Given the complex nature of the Tree View, it was a clear choice to group it with the other advanced components in MUI X.
+Given the complex nature of the Tree View, it was a clear choice to group it with the other advanced components in MUI X.
 
 Moreover, new advanced features such as virtualization and drag and drop are already on the roadmap.
 
@@ -76,7 +76,7 @@ npx @mui/codemod@latest v5.0.0/tree-view-moved-to-x <path>
 
 ## Where is the Tree View documentation?
 
-You can find the documentation for the Tree View component in the [MUI X docs](/x/react-tree-view/).
+You can find the documentation for the Tree View component in the [MUI X docs](/x/react-tree-view/).
 
 ## What's next for the Tree View?
 

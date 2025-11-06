@@ -1,4 +1,4 @@
-# Product Engineer - Store
+# Product Engineer — Store
 
 <p class="description">You will lead the technical, product, and operational development of the store.</p>
 
@@ -11,17 +11,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -61,16 +61,16 @@ Depending on the day, you'll:
 - Define the product direction
 - Review new items submitted by the contributors to be hosted on the marketplace
 - Fix root problems raised by store customers on the support channels
-- Take care of operational needs, e.g. automate payouts, create sales reports
+- Take care of operational needs, for example automate payouts, create sales reports
 
 ### Here are a few initiatives you might work on
 
 Tasks that you might work on once you join:
 
-- Explore ways to provide a theme builder/sell themes on the platform that deeply integrate with MUI Core and the documentation.
+- Explore ways to provide a theme builder/sell themes on the platform that deeply integrate with MUI Core and the documentation.
 - Develop the SEA & SEO strategy, create new blog posts, try retargeting, Google Ads, etc.
-- Improve the fulfillment workflow of MUI X Pro & Premium.
-- Develop a Figma plugin & backend to push [MUI for Figma](https://mui.com/store/items/figma-react/) to reduce the collaboration friction between designers and developers.
+- Improve the fulfillment workflow of MUI X Pro & Premium.
+- Develop a Figma plugin & backend to push [MUI for Figma](https://mui.com/store/items/figma-react/) to reduce the collaboration friction between designers and developers.
 - Add a search page to scale the hosting to more items from contributors.
 - Revamp the design of the store to match the new brand of mui.com.
 - Migrate the store from Gatsby to Next.js or Remix. Gatsby was introduced at a point in time when it had more downloads than Next.js. Our CEO has experience with Next.js since 2017 but wanted to ensure that MUI was supporting Gatsby well too.
@@ -102,7 +102,7 @@ You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

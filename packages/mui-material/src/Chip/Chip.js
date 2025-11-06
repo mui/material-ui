@@ -2,14 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
@@ -332,7 +332,7 @@ function isDeleteKeyboardEvent(keyboardEvent) {
  * Chips represent complex entities in small blocks, such as a contact.
  */
 const Chip = React.forwardRef(function Chip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiChip' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiChip' });
   const {
     avatar: avatarProp,
     className,

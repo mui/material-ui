@@ -1,7 +1,7 @@
-# Contributing to MUI
+# Contributing to Material UI, MUI System, Joy UI
 
 If you're reading this, you're awesome!
-Thank you for being a part of the MUI community and helping us make these projects great.
+Thank you for being a part of the community and helping us make these projects great.
 Here are a few guidelines that will help you along the way.
 
 ## Summary
@@ -25,12 +25,12 @@ Here are a few guidelines that will help you along the way.
 
 ## Code of conduct
 
-MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
+We has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our code of conduct, and we expect project participants to adhere to it.
 Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) to understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
 
-There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, and writing code is only one part of the story—[documentation improvements](#contributing-to-the-documentation) can be just as important as code changes.
+There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to the library, and writing code is only one part of the story—[documentation improvements](#contributing-to-the-documentation) can be just as important as code changes.
 If you have an idea for an improvement to the code or the docs, we encourage you to open an issue as a first step, to discuss your proposed changes with the maintainers before proceeding.
 
 ## Your first pull request
@@ -40,10 +40,10 @@ Working on your first pull request? You can learn how in this free video series:
 Get started with [good first issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+first+issue"), which have a limited scope and a working solution that's already been discussed.
 This makes them ideal for newer developers, or those who are new to these libraries and want to see how the contribution process works.
 
-We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"), which are issues that have already been at least partially resolved in discussion, to the point that it's clear what to do next.
+We also have a list of [ready to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"ready+to+take"), which are issues that have already been at least partially resolved in discussion, to the point that it's clear what to do next.
 These issues are great for developers who want to reduce their chances of falling down a rabbit hole in search of a solution.
 
-Of course, you can work on any other issue you like—the "good first" and "good to take" issues are simply those where the scope and timeline may be better defined.
+Of course, you can work on any other issue you like—the "good first" and "ready to take" issues are simply those where the scope and timeline may be better defined.
 Pull requests for other issues, or completely novel problems, may take a bit longer to review if they don't fit into our current development cycle.
 
 If you decide to fix an issue, please make sure to check the comment thread in case somebody is already working on a fix.
@@ -54,7 +54,7 @@ If there has been no activity on the issue for 7 to 14 days, then it's safe to a
 
 ## Sending a pull request
 
-MUI Core projects are community-driven, so pull requests are always welcome, but before working on a large change, it's best to open an issue first to discuss it with the maintainers.
+MUI Core projects are community-driven, so pull requests are always welcome, but before working on a large change, it's best to open an issue first to discuss it with the maintainers.
 
 When in doubt, keep your pull requests small.
 For the best chances of being accepted, don't bundle more than one feature or bug fix per PR.
@@ -79,7 +79,7 @@ git checkout master
 git pull upstream master
 ```
 
-4. Install the dependencies with pnpm (yarn or npm aren't supported):
+4. Install the dependencies with [pnpm](https://pnpm.io/installation) (yarn or npm aren't supported):
 
 ```bash
 pnpm install
@@ -104,7 +104,7 @@ We will review your PR and either merge it, request changes to it, or close it w
 
 ### Trying changes on the documentation site
 
-The documentation site is built with Material UI and contains examples of all of the components.
+The documentation site is built with Material UI and contains examples of all of the components.
 This is the best place to experiment with your changes—it's the local development environment used by the maintainers.
 
 To get started, run:
@@ -180,9 +180,8 @@ The following sections give an overview of what each check is responsible for.
 
 #### ci/codesandbox
 
-This task creates multiple sandboxes on CodeSandbox.com that use the version of MUI that was built from this pull request.
-It should not fail in isolation.
-Use it to test more complex scenarios.
+This task creates multiple sandboxes on CodeSandbox.com that use the version of npm packages that was built from this pull request.
+It should not fail in isolation. Use it to test more complex scenarios.
 
 #### ci/circleci: checkout
 
@@ -239,7 +238,7 @@ Clicking on **Details** will show you the differences.
 #### deploy/netlify
 
 This renders a preview of the docs with your changes if it succeeds.
-Otherwise `pnpm docs:build` or `pnpm docs:export` usually fail locally as well.
+Otherwise `pnpm docs:build` usually fails locally as well.
 
 #### codecov/project
 
@@ -254,7 +253,7 @@ Click on **Details** to find out more about them.
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
-Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
+Be sure to update the documentation in the corresponding `.d.ts` files (for example `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```bash
 $ pnpm proptypes
@@ -264,7 +263,7 @@ $ pnpm docs:api
 ### Coding style
 
 Please follow the coding style of the project.
-MUI Core projects use prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
+MUI Core projects use prettier and ESLint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `pnpm prettier` reformats the code.
 - `pnpm eslint` runs the linting rules.
@@ -301,11 +300,11 @@ docs/src/pages/components/buttons/
 #### 2. Write the demo code
 
 We uses TypeScript to document our components.
-We prefer demos written in TS (using the `.tsx` file format).
+We prefer demos written in TypeScript (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.
 
-If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TS.
+If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TypeScript.
 
 #### 3. Edit the page's Markdown file
 
@@ -352,7 +351,7 @@ Alternatively, you can open the Netlify preview of the documentation, and open a
 The documentation automatically configures the dependencies to use the preview packages.
 
 You can also package and test your changes locally.
-The following example shows how to package `@mui/material`, but you can package any MUI module with this process:
+The following example shows how to package `@mui/material`, but you can package any npm package with this process:
 
 ```bash
 $> cd packages/mui-material # or path to any other mui package
@@ -375,7 +374,9 @@ $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 
 ## Roadmap
 
-Learn more about the future of MUI and its products by visiting our [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
+Learn more about the future by visiting our different projects' roadmaps:
+
+- [Material UI roadmap](https://mui.com/material-ui/discover-more/roadmap/).
 
 ## License
 

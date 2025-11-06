@@ -35,12 +35,12 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": "MuiSnackbar-root"
+      "class": "base-Snackbar-root"
     }
   ],
   "classes": [],
   "spread": true,
-  "muiName": "MuiSnackbar",
+  "muiName": "Snackbar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Snackbar/Snackbar.tsx",
   "inheritance": null,

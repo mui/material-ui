@@ -84,5 +84,11 @@ function classesTest() {
         fill: 'currentColor',
       },
     },
+    select: {
+      size: 'small',
+      variant: 'filled',
+      hiddenLabel: true,
+      disableUnderline: true,
+    },
   }}
 />;

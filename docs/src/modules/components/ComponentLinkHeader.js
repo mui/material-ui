@@ -10,7 +10,7 @@ import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 
 const Root = styled('ul')({
   margin: 0,
@@ -19,8 +19,15 @@ const Root = styled('ul')({
   display: 'flex',
   flexWrap: 'wrap',
   gap: 8,
-  '& .MuiChip-root .MuiChip-iconSmall': {
-    marginLeft: 4,
+  '& .MuiChip-root': {
+    height: 26,
+    padding: '0 8px',
+    gap: 6,
+    '& .MuiChip-label': { padding: 0 },
+    '& .MuiChip-iconSmall': {
+      margin: 0,
+      fontSize: 14,
+    },
   },
 });
 

@@ -109,7 +109,7 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Transitions

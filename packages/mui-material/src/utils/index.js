@@ -1,5 +1,5 @@
 'use client';
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/base/ClassNameGenerator';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/utils';
 
 export { default as capitalize } from './capitalize';
 export { default as createChainedFunction } from './createChainedFunction';

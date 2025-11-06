@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Accordion, { AccordionProps } from '@mui/material/Accordion';
+import Accordion, { AccordionSlots } from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
@@ -18,8 +18,8 @@ export default function AccordionTransition() {
       <Accordion
         expanded={expanded}
         onChange={handleExpansion}
-        TransitionComponent={Fade as AccordionProps['TransitionComponent']}
-        TransitionProps={{ timeout: 200 }}
+        slots={{ transition: Fade as AccordionSlots['transition'] }}
+        slotProps={{ transition: { timeout: 400 } }}
         sx={{
           '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
           '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },

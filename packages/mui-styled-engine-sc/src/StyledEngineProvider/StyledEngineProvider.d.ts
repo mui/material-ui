@@ -5,4 +5,4 @@ export interface StyledEngineProviderProps {
   injectFirst?: boolean;
 }
 
-export default function StyledEngineProvider(props: StyledEngineProviderProps): JSX.Element;
+export default function StyledEngineProvider(props: StyledEngineProviderProps): React.JSX.Element;

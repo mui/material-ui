@@ -11,11 +11,12 @@ const DemoToolbarRoot = styled('div', {
   {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
-      border: `1px solid ${(theme.vars || theme).palette.divider}`,
-      marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
       top: 0,
+      display: 'block',
+      marginTop: demoOptions.bg === 'inline' ? theme.spacing(1) : -1,
       padding: theme.spacing(0.5, 1),
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      borderTopWidth: demoOptions.bg === 'inline' ? 1 : 0,
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
       borderRadius: openDemoSource ? 0 : '0 0 12px 12px',
       transition: theme.transitions.create('border-radius'),

@@ -2,6 +2,9 @@
   "componentDescription": "An unstyled menu item to be used within a Menu.",
   "propDescriptions": {
     "disabled": { "description": "If <code>true</code>, the menu item will be disabled." },
+    "disableFocusOnHover": {
+      "description": "If <code>true</code>, the menu item won&#39;t receive focus when the mouse moves over it."
+    },
     "label": {
       "description": "A text representation of the menu item&#39;s content. Used for keyboard text navigation matching."
     },

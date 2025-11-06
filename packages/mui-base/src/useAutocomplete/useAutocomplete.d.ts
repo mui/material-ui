@@ -30,8 +30,8 @@ export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ?
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
-  ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
-  : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
+    ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+    : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
 export interface UseAutocompleteProps<
   Value,
@@ -49,7 +49,7 @@ export interface UseAutocompleteProps<
    * Temporary for Joy UI because the parent listbox is the document object
    * TODO v6: Normalize the logic and remove this param.
    */
-  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
+  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement | null>) => boolean;
   /**
    * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -411,7 +411,7 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionProps: (
     renderedOption: UseAutocompleteRenderedOption<Value>,
-  ) => React.HTMLAttributes<HTMLLIElement>;
+  ) => React.HTMLAttributes<HTMLLIElement> & { key: any };
   /**
    * Id for the Autocomplete.
    */

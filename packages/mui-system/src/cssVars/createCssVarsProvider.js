@@ -1,15 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
-import { deepmerge } from '@mui/utils';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
+import deepmerge from '@mui/utils/deepmerge';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import ThemeProvider from '../ThemeProvider';
-import systemGetInitColorSchemeScript, {
+import InitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
-} from './getInitColorSchemeScript';
+} from '../InitColorSchemeScript/InitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
 
 export const DISABLE_CSS_TRANSITION =
@@ -48,6 +48,10 @@ export default function createCssVarsProvider(options) {
   }
   const ColorSchemeContext = React.createContext(undefined);
 
+  if (process.env.NODE_ENV !== 'production') {
+    ColorSchemeContext.displayName = 'ColorSchemeContext';
+  }
+
   const useColorScheme = () => {
     const value = React.useContext(ColorSchemeContext);
     if (!value) {
@@ -56,22 +60,23 @@ export default function createCssVarsProvider(options) {
     return value;
   };
 
-  function CssVarsProvider({
-    children,
-    theme: themeProp = defaultTheme,
-    modeStorageKey = defaultModeStorageKey,
-    colorSchemeStorageKey = defaultColorSchemeStorageKey,
-    attribute = defaultAttribute,
-    defaultMode = designSystemMode,
-    defaultColorScheme = designSystemColorScheme,
-    disableTransitionOnChange = designSystemTransitionOnChange,
-    storageWindow = typeof window === 'undefined' ? undefined : window,
-    documentNode = typeof document === 'undefined' ? undefined : document,
-    colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-    colorSchemeSelector = ':root',
-    disableNestedContext = false,
-    disableStyleSheetGeneration = false,
-  }) {
+  function CssVarsProvider(props) {
+    const {
+      children,
+      theme: themeProp = defaultTheme,
+      modeStorageKey = defaultModeStorageKey,
+      colorSchemeStorageKey = defaultColorSchemeStorageKey,
+      attribute = defaultAttribute,
+      defaultMode = designSystemMode,
+      defaultColorScheme = designSystemColorScheme,
+      disableTransitionOnChange = designSystemTransitionOnChange,
+      storageWindow = typeof window === 'undefined' ? undefined : window,
+      documentNode = typeof document === 'undefined' ? undefined : document,
+      colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
+      colorSchemeSelector = ':root',
+      disableNestedContext = false,
+      disableStyleSheetGeneration = false,
+    } = props;
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
@@ -244,14 +249,14 @@ export default function createCssVarsProvider(options) {
 
     const contextValue = React.useMemo(
       () => ({
-        mode,
-        systemMode,
-        setMode,
-        lightColorScheme,
-        darkColorScheme,
-        colorScheme,
-        setColorScheme,
         allColorSchemes,
+        colorScheme,
+        darkColorScheme,
+        lightColorScheme,
+        mode,
+        setColorScheme,
+        setMode,
+        systemMode,
       }),
       [
         allColorSchemes,
@@ -369,7 +374,7 @@ export default function createCssVarsProvider(options) {
       : designSystemColorScheme.dark;
 
   const getInitColorSchemeScript = (params) =>
-    systemGetInitColorSchemeScript({
+    InitColorSchemeScript({
       attribute: defaultAttribute,
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
       defaultMode: designSystemMode,

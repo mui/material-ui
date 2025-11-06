@@ -12,11 +12,9 @@
     "color": {
       "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
-    "components": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
-    },
+    "components": { "description": "The components used for each slot inside." },
     "componentsProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future."
+      "description": "The extra props for the slot components. You can override the existing props or add new ones."
     },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
@@ -63,6 +61,9 @@
     },
     "orientation": { "description": "The component orientation." },
     "scale": { "description": "A transformation function, to change the scale of the slider." },
+    "shiftStep": {
+      "description": "The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down."
+    },
     "size": { "description": "The size of the slider." },
     "slotProps": { "description": "The props used for each slot inside the Slider." },
     "slots": {

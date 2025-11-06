@@ -4,7 +4,7 @@ description: The MUI team spent five days in the French Alps team-building, prob
 date: 2023-03-16T00:00:00.000Z
 authors: ['mikailaread']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 ## Why the Chamonix gathering?

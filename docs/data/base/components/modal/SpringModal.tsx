@@ -37,7 +37,7 @@ export default function SpringModal() {
 
 const Backdrop = React.forwardRef<
   HTMLDivElement,
-  { children: React.ReactElement; open: boolean }
+  { children: React.ReactElement<any>; open: boolean }
 >((props, ref) => {
   const { open, ...other } = props;
   return <Fade ref={ref} in={open} {...other} />;
@@ -61,7 +61,7 @@ const StyledBackdrop = styled(Backdrop)`
 `;
 
 interface FadeProps {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   in?: boolean;
   onClick?: any;
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
@@ -86,6 +86,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
   });
 
   return (
+    // @ts-expect-error https://github.com/pmndrs/react-spring/issues/2341
     <animated.div ref={ref} style={style} {...other}>
       {children}
     </animated.div>

@@ -1,5 +1,5 @@
 'use client';
-import MuiError from '@mui-internal/babel-macros/MuiError.macro';
+import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 export { default as THEME_ID } from './identifier';
 export { default as adaptV4Theme } from './adaptV4Theme';

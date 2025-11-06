@@ -1,13 +1,13 @@
 ---
-title: Date and Time Pickers are moving to MUI X
-description: Migrate to the new package to start building with our powerful Date and Time Pickers, now part of MUI X. Previously released MIT components will stay MIT.
+title: Date and Time Pickers are moving to MUI X
+description: Migrate to the new package to start building with our powerful Date and Time Pickers, now part of MUI X. Previously released MIT components will stay MIT.
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
-tags: ['MUI X', 'News']
-card: true
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
-After more than 18 months in the lab, the Date and Time Picker components have found a new home as part of MUI X.
+After more than 18 months in the lab, the Date and Time Picker components have found a new home as part of MUI X.
 This means we'll be dedicating even more time and effort to these complex components, to better meet the needs of both you and your users.
 
 ## TL;DR
@@ -22,28 +22,28 @@ Date and Time Pickers are interface controls that enable the user to select a da
 
 <img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" style="width: 796px; margin-top: 16px;" alt="Date and Time Picker component" />
 
-<p class="blog-description">Date and Time Pickers using the default Material UI design</p>
+<p class="blog-description">Date and Time Pickers using the default Material UI design</p>
 
 Common design patterns include text inputs, dropdown lists, calendars, timelines, and scrolling pickers on mobile devices.
 
 The user may need to select an individual date/time, or a range.
 
-## What is MUI X?
+## What is MUI X?
 
-[MUI X](/x/) is a collection of advanced components built for complex use cases.
+[MUI X](/x/) is a collection of advanced components built for complex use cases.
 
-As opposed to the MUI Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
+As opposed to the MUI Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
 
-MUI X components are available under two licenses:
+MUI X components are available under two licenses:
 
-- MUI X is MIT licensed, so free to use.
-- MUI X Pro includes the most advanced features, and is commercially licensed.
+- MUI X is MIT licensed, so free to use.
+- MUI X Pro includes the most advanced features, and is commercially licensed.
 
-## Why have the Date and Time Pickers been moved to MUI X?
+## Why have the Date and Time Pickers been moved to MUI X?
 
 Date and Time Picker UI elements appear simple enough on the surface, but they are surprisingly complicated to engineer.
 
-When the Date and Time Picker components were ready to leave the lab, we had a choice to make: would they live in the MUI Core library, or should they become a part of MUI X?
+When the Date and Time Picker components were ready to leave the lab, we had a choice to make: would they live in the MUI Core library, or should they become a part of MUI X?
 
 Given the complex nature of these components, we decided that they would benefit most from the dedicated attention that they would receive from the X team.
 
@@ -62,7 +62,7 @@ All other Date and Time Picker components are available in `mui/x-date-pickers` 
 
 ## How do I purchase a commercial license?
 
-Visit [the MUI Store](https://mui.com/store/items/mui-x-pro/) to purchase a commercial license.
+Visit [the MUI Store](https://mui.com/store/items/mui-x-pro/) to purchase a commercial license.
 
 ## How do I migrate?
 
@@ -89,7 +89,7 @@ npx @mui/codemod@latest v5.0.0/date-pickers-moved-to-x <path>
 
 ## Where is the Date and Time Picker documentation?
 
-You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/getting-started/).
+You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/getting-started/).
 
 ## What's next for the Date and Time Pickers?
 

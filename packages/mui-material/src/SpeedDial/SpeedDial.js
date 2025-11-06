@@ -3,9 +3,11 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
+import useTimeout from '@mui/utils/useTimeout';
+import clamp from '@mui/utils/clamp';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
@@ -35,16 +37,6 @@ function getOrientation(direction) {
     return 'horizontal';
   }
   return undefined;
-}
-
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
 }
 
 const dialRadius = 32;
@@ -123,7 +115,7 @@ const SpeedDialActions = styled('div', {
 }));
 
 const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDial' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDial' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
@@ -163,13 +155,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const ownerState = { ...props, open, direction };
   const classes = useUtilityClasses(ownerState);
 
-  const eventTimer = React.useRef();
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(eventTimer.current);
-    };
-  }, []);
+  const eventTimer = useTimeout();
 
   /**
    * an index in actions.current
@@ -265,9 +251,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       onBlur(event);
     }
 
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
     if (event.type === 'blur') {
-      eventTimer.current = setTimeout(() => {
+      eventTimer.start(0, () => {
         setOpenState(false);
         if (onClose) {
           onClose(event, 'blur');
@@ -286,7 +272,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       FabProps.onClick(event);
     }
 
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
 
     if (open) {
       setOpenState(false);
@@ -313,11 +299,11 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     // When moving the focus between two items,
     // a chain if blur and focus event is triggered.
     // We only handle the last event.
-    clearTimeout(eventTimer.current);
+    eventTimer.clear();
 
     if (!open) {
       // Wait for a future focus or click event
-      eventTimer.current = setTimeout(() => {
+      eventTimer.start(0, () => {
         setOpenState(true);
         if (onOpen) {
           const eventMap = {
@@ -535,7 +521,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

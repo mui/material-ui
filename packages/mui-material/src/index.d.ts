@@ -476,12 +476,14 @@ export * from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+export * from './version';
+
 /**
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
  */
 export { StyledEngineProvider } from './styles';
 
-export { unstable_composeClasses } from '@mui/base/composeClasses';
+export { unstable_composeClasses } from '@mui/utils';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';

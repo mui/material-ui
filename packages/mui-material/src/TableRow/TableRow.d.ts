@@ -6,7 +6,7 @@ import { TableRowClasses } from './tableRowClasses';
 
 export interface TableRowOwnProps {
   /**
-   * Should be valid <tr> children such as `TableCell`.
+   * Should be valid `<tr>` children such as `TableCell`.
    */
   children?: React.ReactNode;
   /**

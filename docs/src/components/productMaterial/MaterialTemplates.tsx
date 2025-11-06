@@ -16,7 +16,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import More from 'docs/src/components/action/More';
 
 export const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
@@ -140,7 +140,7 @@ export default function MaterialTemplates() {
         }
         description="A carefully curated collection of gorgeous, fully functional templates, all powered by Material UI."
       />
-      <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
+      <Group rowLayout desktopColumns={2} sx={{ p: 2 }}>
         {DEMOS.map((name) => (
           <Highlighter
             key={name}
@@ -153,6 +153,7 @@ export default function MaterialTemplates() {
             <Item
               icon={React.cloneElement(icons[name], name === demo ? { color: 'primary' } : {})}
               title={name}
+              smallerIconDistance
             />
           </Highlighter>
         ))}

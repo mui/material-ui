@@ -304,7 +304,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
 
   const radioChecked =
-    typeof checkedProp === 'undefined' && !!value
+    typeof checkedProp === 'undefined' && value != null
       ? areEqualValues(radioGroup?.value, value)
       : checkedProp;
   const useRadioProps = {
@@ -369,6 +369,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     additionalProps: {
       type: 'radio',
+      role: undefined,
       id,
       name,
       readOnly,

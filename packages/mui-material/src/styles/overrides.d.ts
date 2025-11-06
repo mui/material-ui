@@ -1,5 +1,5 @@
-import { CSSObject, CSSInterpolation } from '@mui/system';
-import { PopperClassKey } from '@mui/base/Popper';
+import { CSSObject, CSSInterpolation, Interpolation } from '@mui/system';
+import { PopperClassKey } from '../Popper';
 import { ComponentsPropsList } from './props';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
@@ -77,6 +77,7 @@ import { PaginationItemClassKey } from '../PaginationItem';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
+import { RadioGroupClassKey } from '../RadioGroup';
 import { RatingClassKey } from '../Rating';
 import { ScopedCssBaselineClassKey } from '../ScopedCssBaseline';
 import { SelectClassKey } from '../Select';
@@ -122,14 +123,18 @@ export type OverridesStyleRules<
   Theme = unknown,
 > = Record<
   ClassKey,
-  | CSSInterpolation
-  | ((
-      // Record<string, unknown> is for other props that the slot receive internally
-      // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
-      props: (ComponentName extends keyof ComponentsPropsList
-        ? { ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown> }
-        : {}) & { theme: Theme } & Record<string, unknown>,
-    ) => CSSInterpolation)
+  Interpolation<
+    // Record<string, unknown> is for other props that the slot receive internally
+    // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+    (ComponentName extends keyof ComponentsPropsList
+      ? ComponentsPropsList[ComponentName] &
+          Record<string, unknown> & {
+            ownerState: ComponentsPropsList[ComponentName] & Record<string, unknown>;
+          }
+      : {}) & {
+      theme: Theme;
+    } & Record<string, unknown>
+  >
 >;
 
 export type ComponentsOverrides<Theme = unknown> = {
@@ -218,6 +223,7 @@ export interface ComponentNameToClassKey {
   MuiPopover: PopoverClassKey;
   MuiPopper: PopperClassKey;
   MuiRadio: RadioClassKey;
+  MuiRadioGroup: RadioGroupClassKey;
   MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;
   MuiSelect: SelectClassKey;

@@ -2,15 +2,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
-import { useSlotProps } from '@mui/base';
-import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
+import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -69,7 +70,7 @@ const ModalBackdrop = styled(Backdrop, {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiModal', props: inProps });
+  const props = useDefaultProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,

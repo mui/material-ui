@@ -12,7 +12,10 @@ export interface AccordionSummaryClasses {
   disabled: string;
   /** Styles applied to the root element unless `disableGutters={true}`. */
   gutters: string;
-  /** Styles applied to the children wrapper element unless `disableGutters={true}`. */
+  /**
+   * Styles applied to the children wrapper element unless `disableGutters={true}`.
+   * @deprecated Combine the [.MuiAccordionSummary-gutters](/material-ui/api/accordion-summary/#AccordionSummary-classes-gutters) and [.MuiAccordionSummary-content](/material-ui/api/accordion-summary/#AccordionSummary-classes-content) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   */
   contentGutters: string;
   /** Styles applied to the children wrapper element. */
   content: string;

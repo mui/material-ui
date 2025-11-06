@@ -12,23 +12,23 @@ export default function ThemeChip() {
           [`& .${chipClasses.root}`]: {
             border: '1px solid',
             [`&.${chipClasses.filled}`]: {
-              borderColor: 'grey.200',
+              borderColor: 'grey.300',
               color: 'grey.800',
               bgcolor: 'grey.50',
               [`&.${chipClasses.colorPrimary}`]: {
                 borderColor: 'primary.200',
                 bgcolor: 'primary.50',
-                color: 'primary.600',
+                color: 'primary.700',
               },
               [`&.${chipClasses.colorSuccess}`]: {
                 borderColor: 'success.200',
                 bgcolor: 'success.50',
-                color: 'success.800',
+                color: 'success.900',
               },
               [`&.${chipClasses.colorWarning}`]: {
                 borderColor: 'warning.300',
                 bgcolor: 'warning.50',
-                color: 'warning.700',
+                color: 'warning.800',
               },
               [`&.${chipClasses.colorError}`]: {
                 borderColor: 'error.200',

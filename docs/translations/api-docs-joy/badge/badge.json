@@ -131,7 +131,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "badge": "The component that renders the badge."
+    "badge": "The component that renders the badge.",
+    "root": "The component that renders the root."
   }
 }

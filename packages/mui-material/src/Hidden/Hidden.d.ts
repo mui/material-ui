@@ -90,6 +90,8 @@ export interface HiddenProps {
  * API:
  *
  * - [Hidden API](https://mui.com/material-ui/api/hidden/)
+ *
+ * @deprecated The Hidden component was deprecated in Material UI v5. To learn more, see [the Hidden section](/material-ui/migration/v5-component-changes/#hidden) of the migration docs.
  */
 declare const Hidden: React.JSXElementConstructor<HiddenProps>;
 

@@ -9,18 +9,18 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@mui-internal/api-docs-builder": "^1.0.0",
-    "@mui/markdown": "^5.0.0",
-    "docs": "^5.0.0",
+    "@mui-internal/api-docs-builder": "workspace:^",
+    "@mui/internal-markdown": "workspace:^",
+    "docs": "workspace:^",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.11",
+    "@types/chai": "^4.3.12",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.4",
+    "@types/node": "^18.19.48",
     "@types/sinon": "^10.0.20",
-    "chai": "^4.4.0",
+    "chai": "^4.4.1",
     "sinon": "^15.2.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.6.3"
   }
 }

@@ -10,7 +10,7 @@ import Option from '@mui/joy/Option';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 
 export default function ListThemes() {
   const [preset, setPreset] = React.useState('');

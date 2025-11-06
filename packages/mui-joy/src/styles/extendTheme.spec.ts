@@ -701,6 +701,10 @@ extendTheme({
           expectType<IconButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
+        loadingIndicator: ({ ownerState }) => {
+          expectType<IconButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
       },
     },
     JoyInput: {

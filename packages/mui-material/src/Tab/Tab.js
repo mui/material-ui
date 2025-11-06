@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
@@ -41,6 +41,9 @@ const TabRoot = styled(ButtonBase, {
       styles[`textColor${capitalize(ownerState.textColor)}`],
       ownerState.fullWidth && styles.fullWidth,
       ownerState.wrapped && styles.wrapped,
+      {
+        [`& .${tabClasses.iconWrapper}`]: styles.iconWrapper,
+      },
     ];
   },
 })(({ theme, ownerState }) => ({
@@ -119,7 +122,7 @@ const TabRoot = styled(ButtonBase, {
 }));
 
 const Tab = React.forwardRef(function Tab(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTab' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTab' });
   const {
     className,
     disabled = false,

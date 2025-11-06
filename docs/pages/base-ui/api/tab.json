@@ -26,25 +26,25 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": "MuiTab-root"
+      "class": "base-Tab-root"
     }
   ],
   "classes": [
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root `button` element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "selected",
-      "className": "Mui-selected",
+      "className": "base--selected",
       "description": "State class applied to the root `button` element if `selected={true}`.",
       "isGlobal": true
     }
   ],
   "spread": true,
-  "muiName": "MuiTab",
+  "muiName": "Tab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/Tab/Tab.tsx",
   "inheritance": null,

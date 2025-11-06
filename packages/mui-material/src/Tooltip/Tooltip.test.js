@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -10,13 +9,16 @@ import {
   simulatePointerDevice,
   focusVisible,
   programmaticFocusTriggersFocusVisible,
+  reactMajor,
 } from '@mui-internal/test-utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
+
   beforeEach(() => {
     testReset();
   });
@@ -57,8 +59,6 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
         'slotPropsCallback', // not supported yet
       ],
     }),
@@ -962,6 +962,45 @@ describe('<Tooltip />', () => {
       expect(handleFocus.callCount).to.equal(1);
       expect(handleFocus.returned(input)).to.equal(true);
     });
+
+    // https://github.com/mui/mui-x/issues/12248
+    it('should support event handlers with extra parameters', () => {
+      const handleFocus = spy((event, extra) => extra);
+      const handleBlur = spy((event, ...params) => params);
+
+      const TextField = React.forwardRef(function TextField(props, ref) {
+        const { onFocus, onBlur, ...other } = props;
+        return (
+          <div ref={ref} {...other}>
+            <input
+              type="text"
+              onFocus={(event) => onFocus(event, 'focus')}
+              onBlur={(event) => onBlur(event, 'blur', 1)}
+            />
+          </div>
+        );
+      });
+      render(
+        <Tooltip open title="test">
+          <TextField onFocus={handleFocus} onBlur={handleBlur} variant="standard" />
+        </Tooltip>,
+      );
+      const input = screen.getByRole('textbox');
+
+      act(() => {
+        input.focus();
+      });
+
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocus.returnValues[0]).to.equal('focus');
+
+      act(() => {
+        input.blur();
+      });
+
+      expect(handleBlur.callCount).to.equal(1);
+      expect(handleBlur.returnValues[0]).to.deep.equal(['blur', 1]);
+    });
   });
 
   describe('warnings', () => {
@@ -995,7 +1034,12 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should warn when children is a string', () => {
+    it('should warn when children is a string', function test() {
+      if (reactMajor >= 19) {
+        // React 19 removed prop types support
+        this.skip();
+      }
+
       expect(() => {
         render(<Tooltip title="Hello World">Hello World</Tooltip>);
       }).toErrorDev('Invalid prop `children` of type `string` supplied');
@@ -1181,6 +1225,7 @@ describe('<Tooltip />', () => {
 
   describe('user-select state', () => {
     let prevWebkitUserSelect;
+
     beforeEach(() => {
       prevWebkitUserSelect = document.body.style.WebkitUserSelect;
     });

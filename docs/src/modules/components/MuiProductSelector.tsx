@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
 interface ProductSubMenuProp extends BoxProps {
@@ -186,7 +186,7 @@ export default function MuiProductSelector() {
       </Box>
       <li role="none">
         <Link
-          href={ROUTES.toolpadDocs}
+          href={ROUTES.toolpadStudioDocs}
           sx={(theme) => ({
             p: 2,
             pr: 3,
@@ -204,7 +204,7 @@ export default function MuiProductSelector() {
           <ProductSubMenu
             role="menuitem"
             icon={<IconImage name="product-toolpad" />}
-            name="MUI Toolpad"
+            name="Toolpad"
             description="Low-code admin builder."
             chip={<Chip size="small" label="Beta" color="primary" variant="outlined" />}
           />

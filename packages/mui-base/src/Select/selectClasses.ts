@@ -1,13 +1,15 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'Select';
+
 export interface SelectClasses {
   /** Class name applied to the root element. */
   root: string;
   /** Class name applied to the listbox element. */
   listbox: string;
   /** Class name applied to the popper element. */
-  popper: string;
+  popup: string;
   /** State class applied to the root `button` element if `active={true}`. */
   active: string;
   /** State class applied to the root `button` element if `expanded={true}`. */
@@ -21,14 +23,14 @@ export interface SelectClasses {
 export type SelectClassKey = keyof SelectClasses;
 
 export function getSelectUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSelect', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
+export const selectClasses: SelectClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'button',
   'listbox',
-  'popper',
+  'popup',
   'active',
   'expanded',
   'disabled',

@@ -1,6 +1,6 @@
-# Engineering Manager - Toolpad
+# Engineering Manager — Toolpad
 
-<p class="description">You will grow the small engineering team currently working on MUI Toolpad.</p>
+<p class="description">You will grow the small engineering team currently working on Toolpad.</p>
 
 ## Details of the role
 
@@ -11,17 +11,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -42,7 +42,7 @@ Our mission is to empower as many people as possible to build great UIs, faster.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
 We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
 
-A few months back we started to work on [MUI Toolpad](https://github.com/mui/mui-toolpad), an ambitious project to deliver on this objective.
+A few months back we started to work on [Toolpad](https://github.com/mui/mui-toolpad), an ambitious project to deliver on this objective.
 We have found the beginning of a market fit in this low-code segment.
 We need help to structure & grow the engineering team.
 
@@ -68,11 +68,11 @@ Depending on the day, you'll:
 - Act as a servant leader for the engineers that report to you. You will support the career growth of individuals on your team.
 - Develop a great work environment.
 - Work directly with users and the engineering team to improve the product.
-- Improve our processes, e.g. the lifecycle of feature development from design through testing and release.
+- Improve our processes, for example the lifecycle of feature development from design through testing and release.
 
 For the right candidate:
 
-- Working with the Leadership to construct and execute a hiring plan to grow the engineering team on toolpad from one to multiple
+- Working with the Leadership to construct and execute a hiring plan to grow the engineering team on Toolpad from one to multiple
 
 ## Who we're looking for
 
@@ -91,7 +91,7 @@ For the right candidate:
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

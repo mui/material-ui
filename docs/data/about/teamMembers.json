@@ -54,15 +54,6 @@
     "github": "siriwatknp"
   },
   {
-    "name": "Danilo Leal",
-    "title": "Lead Designer",
-    "location": "São Paulo, Brazil",
-    "locationCountry": "br",
-    "about": "Music production, hiking, and traveling!",
-    "github": "danilo-leal",
-    "twitter": "danilobleal"
-  },
-  {
     "name": "Flavien Delangle",
     "title": "Tech Lead - X",
     "location": "Lille, France",
@@ -225,14 +216,6 @@
     "github": "brijeshb42"
   },
   {
-    "name": "David Cnoops",
-    "title": "Design Engineer - Core",
-    "location": "Leuven, Belgium",
-    "locationCountry": "be",
-    "about": "Volleyball, Cycling, Parenting, Movies",
-    "github": "DavidCnoops"
-  },
-  {
     "name": "Raffaella Luzi",
     "title": "Head of Operations",
     "location": "Rome, Italy",
@@ -265,5 +248,79 @@
     "about": "Product experience geek \uD83D\uDECB, Mediterranean vibes \uD83C\uDF4A",
     "twitter": "vadym_raksha",
     "github": "hasdfa"
+  },
+  {
+    "name": "Nadja Kovacev",
+    "title": "Talent & Culture Partner",
+    "location": "Novi Sad, Serbia",
+    "locationCountry": "rs",
+    "about": "🧠 Psychology geek, 🏂 amateur snowboarder, and 𐃡 pottery enthusiast."
+  },
+  {
+    "name": "James Nelson",
+    "title": "Software Engineer - Base UI",
+    "location": "Gold Coast, Australia",
+    "locationCountry": "au",
+    "about": "Enjoy creating open source libraries and reading about AI 🤖",
+    "twitter": "atomiksdev",
+    "github": "atomiks"
+  },
+  {
+    "name": "Aarón García",
+    "title": "Design Engineer - Core",
+    "location": "Alicante, Spain",
+    "locationCountry": "es",
+    "about": "Minimalism, web development, user experience, football, cycling",
+    "twitter": "aarongarciah",
+    "github": "aarongarciah"
+  },
+  {
+    "name": "Jose Quintas",
+    "title": "React Engineer - X",
+    "location": "Amsterdam, Netherlands",
+    "locationCountry": "nl",
+    "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
+    "github": "JCQuintas"
+  },
+  {
+    "name": "Arthur Balduini",
+    "title": "React Engineer - X",
+    "location": "Paris, France",
+    "locationCountry": "fr",
+    "about": "Cooking 🍳, plant caring 🪴 and literature 📖",
+    "github": "arthurbalduini"
+  },
+  {
+    "name": "Kenan Yusuf",
+    "title": "Design Engineer - X",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "about": "Amateur cook, DIYer, and film photographer",
+    "github": "KenanYusuf",
+    "twitter": "KebabYusuf"
+  },
+  {
+    "name": "Nikita Ossei",
+    "title": "Customer Support",
+    "location": "London, United Kingdom",
+    "locationCountry": "gb",
+    "about": "Astrology ♊️, learning 📚 and designing stuff 🎨",
+    "github": "nikitaa24"
+  },
+  {
+    "name": "Armin Mehinovic",
+    "title": "React Engineer - X",
+    "location": "Amsterdam, Netherlands",
+    "locationCountry": "nl",
+    "about": "♟️ Chess, 🛠️ Small DIY projects and learning about space 🌌",
+    "github": "arminmeh"
+  },
+  {
+    "name": "Alejandra Thomas",
+    "title": "Content Engineer",
+    "location": "New York, US",
+    "locationCountry": "us",
+    "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛",
+    "github": "alelthomas"
   }
 ]

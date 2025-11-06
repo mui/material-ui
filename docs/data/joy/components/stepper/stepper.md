@@ -14,7 +14,7 @@ materialDesign: https://m1.material.io/components/steppers.html
 
 Stepper displays progress through a sequence of logical and numbered steps. It support horizontal and vertical orientation for desktop and mobile viewports.
 
-Joy UI Steppers are implemented using a collection of related components:
+Joy UI Steppers are implemented using a collection of related components:
 
 - [Stepper](#basics) - a required container for steps. Renders as a `<ol>` by default.
 - [Step](#basics) - a step. Renders as a `<li>` by default.
@@ -37,7 +37,7 @@ import Step from '@mui/joy/Step';
 
 Pass StepIndicator as an element to Step's `indicator` prop to create number or icon indicators.
 
-The StepIndicator supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
+The StepIndicator supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
 
 {{"demo": "IndicatorStepper.js"}}
 

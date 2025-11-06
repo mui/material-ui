@@ -59,6 +59,7 @@ const grey = {
 
 const Root = styled('span')(
   ({ theme }) => `
+  box-sizing: border-box;
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -73,6 +74,7 @@ const Root = styled('span')(
   }
 
   & .${switchClasses.track} {
+    box-sizing: border-box;
     background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 24px;
@@ -98,6 +100,7 @@ const Root = styled('span')(
   }
 
   & .${switchClasses.thumb} {
+    box-sizing: border-box;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     display: block;
     width: 16px;

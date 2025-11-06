@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import AddIcon from '../internal/svg-icons/Add';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
 
@@ -66,7 +66,7 @@ const SpeedDialIconRoot = styled('span', {
 }));
 
 const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialIcon' });
   const { className, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
   const ownerState = props;

@@ -61,7 +61,7 @@ export default function TypographyTitleBody() {
           </Typography>
         </Typography>
         <Typography level="body-sm">
-          Metadata, e.g. a date.{' '}
+          Metadata, for example a date.{' '}
           <Typography
             level="body-sm"
             textColor="var(--joy-palette-success-plainColor)"
@@ -97,7 +97,7 @@ export default function TypographyTitleBody() {
           </Typography>
         </Typography>
         <Typography level="body-xs">
-          Metadata, e.g. a date.{' '}
+          Metadata, for example a date.{' '}
           <Typography
             level="body-xs"
             textColor="var(--joy-palette-success-plainColor)"

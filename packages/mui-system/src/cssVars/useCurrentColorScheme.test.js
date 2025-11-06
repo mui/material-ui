@@ -5,7 +5,7 @@ import { createRenderer, fireEvent, act, screen } from '@mui-internal/test-utils
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-} from './getInitColorSchemeScript';
+} from '../InitColorSchemeScript/InitColorSchemeScript';
 import useCurrentColorScheme, { getColorScheme } from './useCurrentColorScheme';
 
 describe('useCurrentColorScheme', () => {
@@ -23,12 +23,14 @@ describe('useCurrentColorScheme', () => {
     },
     removeListener: () => {},
   });
+
   before(() => {
     originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
       storageHandler[key] = handler;
     };
   });
+
   after(() => {
     window.addEventListener = originalAddEventListener;
   });
@@ -51,6 +53,7 @@ describe('useCurrentColorScheme', () => {
     storageHandler = {};
     window.matchMedia = createMatchMedia(false);
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });

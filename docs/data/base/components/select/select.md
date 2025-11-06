@@ -19,7 +19,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 
 A select is a UI element that gives users a list of options to choose from.
 
-Base UI's Select component replaces the native HTML `<select>` tag.
+Base UI's Select component replaces the native HTML `<select>` tag.
 It also includes the Option component for creating the options in the list, and Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
@@ -60,7 +60,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
   return <Select {...props} ref={ref} />;
 }) as <TValue>(
   props: SelectProps<TValue> & React.RefAttributes<HTMLUListElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 ```
 
 For the sake of brevity, the rest of the demos throughout this doc will not use `forwardRef`.
@@ -93,9 +93,9 @@ The uncontrolled component accepts the `defaultValue` that can be used to set th
 To deselect all values, pass `null` to the respective prop.
 
 :::warning
-This pattern is where Base UI's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
-The Material UI Select takes an empty string to deselect all values.
-In Base UI, you must use `null` to achieve this.
+This pattern is where Base UI's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
+The Material UI Select takes an empty string to deselect all values.
+In Base UI, you must use `null` to achieve this.
 :::
 
 ### Object values
@@ -124,15 +124,15 @@ The following demo shows how to group Options with the Option Group component:
 
 ### Anatomy
 
-The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a [Popper](/base-ui/react-popper/).
+The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a [Popup](/base-ui/react-popup/).
 Option renders as an `<li>`, and Option Group renders a `<ul>` with an `<li>` that represents its label.
 
 ```html
-<button class="MuiSelect-root" type="button">Open</button>
-<div class="MuiSelect-popper">
-  <ul class="MuiSelect-listbox">
-    <li class="MuiOption-root">Option one</li>
-    <li class="MuiOption-root">Option two</li>
+<button class="base-Select-root" type="button">Open</button>
+<div class="base-Select-popup">
+  <ul class="base-Select-listbox">
+    <li class="base-Option-root">Option one</li>
+    <li class="base-Option-root">Option two</li>
   </ul>
 </div>
 ```
@@ -159,12 +159,19 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 ### Portals
 
-By default, the Select's popup is rendered in a [Portal](https://mui.com/base-ui/react-portal/) and appended to the bottom of the DOM.
-To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popper, as shown below:
+By default, the Select's popup is rendered in a [Portal](/base-ui/react-portal/) and appended to the bottom of the DOM.
+To instead render the popup where the component is defined, override the `disablePortal` prop of the underlying Popup, as shown below:
 
 ```jsx
-<Select slotProps={{ popper: { disablePortal: true } }} />
+<Select slotProps={{ popup: { disablePortal: true } }} />
 ```
+
+### Transitions
+
+The Select component supports the [Transitions API](/base-ui/react-transitions/), so it's possible to animate the appearing and disappearing Listbox.
+To do this, override the Listbox slot of the Select and wrap it with a transition component ([CssTransition](/base-ui/react-transitions/#css-transition), [CssAnimation](/base-ui/react-transitions/#css-animation), or a custom-built one).
+
+{{"demo": "UnstyledSelectTransitions.js", "defaultCodeOpen": false}}
 
 ### Usage with TypeScript
 
@@ -235,7 +242,7 @@ The `useOptionContextStabilizer` hook ensures that the context value changes onl
 
 :::info
 The following features can be used with both components and hooks.
-For the sake of simplicity, demos and code snippets primarily feature components.
+For the sake of simplicity, demos, and code snippets primarily feature components.
 :::
 
 ### Selected value appearance

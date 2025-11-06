@@ -100,7 +100,7 @@ const StoreTemplateLink = React.forwardRef<
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
-  { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
+  { brand: TemplateBrand } & Omit<React.JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
   return (
     <Image

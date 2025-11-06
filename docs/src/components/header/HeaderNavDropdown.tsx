@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
@@ -56,12 +56,12 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'MUI Core',
+    name: 'MUI Core',
     description: 'Ready-to-use foundational React components, free forever.',
     href: ROUTES.productCore,
   },
   {
-    name: 'MUI X',
+    name: 'MUI X',
     description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.productAdvanced,
   },
@@ -71,12 +71,12 @@ const PRODUCTS = [
     href: ROUTES.productTemplates,
   },
   {
-    name: 'Design kits',
-    description: 'Our components available in your favorite design tool.',
+    name: 'Design Kits',
+    description: 'Material UI components in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
   {
-    name: 'MUI Toolpad',
+    name: 'Toolpad',
     description: 'Low-code admin builder.',
     href: ROUTES.productToolpad,
     chip: 'Beta',
@@ -85,34 +85,34 @@ const PRODUCTS = [
 
 const DOCS = [
   {
-    name: 'Material UI',
+    name: 'Material UI',
     description: "Component library that implements Google's Material Design.",
     href: ROUTES.materialDocs,
   },
   {
-    name: 'Joy UI',
+    name: 'Joy UI',
     description: "Component library that implements MUI's own in-house design principles.",
     href: ROUTES.joyDocs,
   },
   {
-    name: 'Base UI',
+    name: 'Base UI',
     description: 'Unstyled React components and low-level hooks.',
     href: ROUTES.baseDocs,
   },
   {
-    name: 'MUI System',
+    name: 'MUI System',
     description: 'CSS utilities for rapidly laying out custom designs.',
     href: ROUTES.systemDocs,
   },
   {
-    name: 'MUI X',
+    name: 'MUI X',
     description: 'Advanced components for complex use cases.',
     href: ROUTES.xIntro,
   },
   {
-    name: 'MUI Toolpad',
-    description: 'Low-code admin builder.',
-    href: ROUTES.toolpadDocs,
+    name: 'Toolpad',
+    description: 'Low-code admin builder',
+    href: ROUTES.toolpadStudioDocs,
     chip: 'Beta',
   },
 ];
@@ -162,16 +162,16 @@ export default function HeaderNavDropdown() {
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+            boxShadow: `0px 16px 20px rgba(170, 180, 190, 0.3)`,
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.8)',
+              boxShadow: '0px 16px 20px rgba(0, 0, 0, 0.8)',
             }),
           })}
         >
           <Box
             sx={{
               p: 2,
-              bgcolor: 'background.paper',
+              bgcolor: 'background.default',
               maxHeight: 'calc(100vh - 56px)',
               overflow: 'auto',
             }}

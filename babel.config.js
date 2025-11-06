@@ -22,7 +22,7 @@ module.exports = function getBabelConfig(api) {
       `./packages/mui-icons-material/lib${useESModules ? '/esm' : ''}`,
     ),
     '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
-    '@mui/markdown': resolveAliasPath('./packages/markdown'),
+    '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
     '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
@@ -30,9 +30,9 @@ module.exports = function getBabelConfig(api) {
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
-    '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
-    '@mui/zero-runtime': resolveAliasPath('./packages/zero-runtime/src'),
+    '@pigment-css/react': resolveAliasPath('./packages/pigment-css-react/src'),
+    '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
   };
@@ -88,6 +88,19 @@ module.exports = function getBabelConfig(api) {
         mode: 'unsafe-wrap',
       },
     ],
+    [
+      'transform-inline-environment-variables',
+      {
+        include: [
+          'MUI_VERSION',
+          'MUI_MAJOR_VERSION',
+          'MUI_MINOR_VERSION',
+          'MUI_PATCH_VERSION',
+          'MUI_PRERELEASE_LABEL',
+          'MUI_PRERELEASE_NUMBER',
+        ],
+      },
+    ],
   ];
 
   if (process.env.NODE_ENV === 'production') {
@@ -137,7 +150,6 @@ module.exports = function getBabelConfig(api) {
               alias: {
                 ...defaultAlias,
                 modules: './modules',
-                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
               root: ['./'],
             },

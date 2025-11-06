@@ -10,7 +10,7 @@ export default function TransitionComponentSnackbar() {
   const [exited, setExited] = React.useState(true);
   const nodeRef = React.useRef(null);
 
-  const handleClose = (_: any, reason: SnackbarCloseReason) => {
+  const handleClose = (_: any, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }

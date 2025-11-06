@@ -8,7 +8,7 @@ export interface UseSliderParameters {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: number | number[];
+  defaultValue?: number | ReadonlyArray<number>;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -30,7 +30,7 @@ export interface UseSliderParameters {
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
-  marks?: boolean | Mark[];
+  marks?: boolean | ReadonlyArray<Mark>;
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
@@ -83,6 +83,11 @@ export interface UseSliderParameters {
    */
   scale?: (value: number) => number;
   /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep?: number;
+  /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
    * We recommend (max - min) to be evenly divisible by the step.
@@ -99,7 +104,7 @@ export interface UseSliderParameters {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value?: number | ReadonlyArray<number>;
 }
 
 export interface Mark {
@@ -109,7 +114,7 @@ export interface Mark {
 
 export type UseSliderRootSlotOwnProps = {
   onMouseDown: React.MouseEventHandler;
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
 };
 
 export type UseSliderRootSlotProps<ExternalProps = {}> = Omit<
@@ -159,17 +164,17 @@ export interface AxisProps<T extends Axis> {
   ) => T extends 'horizontal'
     ? { left: string }
     : T extends 'vertical'
-    ? { bottom: string }
-    : T extends 'horizontal-reverse'
-    ? { right: string }
-    : never;
+      ? { bottom: string }
+      : T extends 'horizontal-reverse'
+        ? { right: string }
+        : never;
   leap: (
     percent: number,
   ) => T extends 'horizontal' | 'horizontal-reverse'
     ? { width: string }
     : T extends 'vertical'
-    ? { height: string }
-    : never;
+      ? { height: string }
+      : never;
 }
 
 export interface UseSliderReturnValue {

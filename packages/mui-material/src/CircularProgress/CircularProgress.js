@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
 import { keyframes, css } from '@mui/system';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
@@ -130,7 +130,7 @@ const CircularProgressCircle = styled('circle', {
  * attribute to `true` on that region until it has finished loading.
  */
 const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCircularProgress' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCircularProgress' });
   const {
     className,
     color = 'primary',
@@ -238,7 +238,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
-   * If using a string, you need to provide the CSS unit, e.g. '3rem'.
+   * If using a string, you need to provide the CSS unit, for example '3rem'.
    * @default 40
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

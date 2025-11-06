@@ -11,7 +11,7 @@ npm install @mui/docs
 ```
 
 The docs has a peer dependency on the core components.
-If you are not already using MUI in your project, you can add it with:
+If you are not already using Material UI in your project, you can add it with:
 
 ```bash
 npm install @mui/material

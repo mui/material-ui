@@ -23,8 +23,8 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 
@@ -54,21 +54,20 @@ const SearchButton = styled('button')(({ theme }) => [
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
-    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.grey[100]}, 0 1px 0.5px ${alpha(
-      theme.palette.grey[100],
-      0.6,
-    )}`,
+    boxShadow: `hsl(200, 0%, 100%) 0 2px 0 inset, ${alpha(theme.palette.grey[100], 0.5)} 0 -1.5px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
+    },
+    '&:focus-visible': {
+      outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+      outlineOffset: '2px',
     },
   },
   theme.applyDarkStyles({
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
     borderColor: (theme.vars || theme).palette.primaryDark[700],
-    boxShadow: `inset 0 1px 1px ${(theme.vars || theme).palette.primaryDark[900]}, 0 1px 0.5px ${
-      (theme.vars || theme).palette.common.black
-    }`,
+    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -2px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
     '&:hover': {
       background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
@@ -76,12 +75,10 @@ const SearchButton = styled('button')(({ theme }) => [
   }),
 ]);
 
-const SearchLabel = styled('span')(({ theme }) => {
-  return {
-    marginLeft: theme.spacing(1),
-    marginRight: 'auto',
-  };
-});
+const SearchLabel = styled('span')(({ theme }) => ({
+  marginLeft: theme.spacing(1),
+  marginRight: 'auto',
+}));
 
 const Shortcut = styled('div')(({ theme }) => {
   return {
@@ -104,7 +101,7 @@ function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
-        name: 'Material UI',
+        name: 'Material UI',
       },
       items: [
         {
@@ -131,7 +128,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'Base UI',
+        name: 'Base UI',
       },
       items: [
         {
@@ -158,7 +155,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI X',
+        name: 'MUI X',
       },
       items: [
         {
@@ -202,29 +199,29 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI Toolpad',
+        name: 'MUI Toolpad',
       },
       items: [
         {
           name: 'Overview',
-          href: '/toolpad/getting-started/',
+          href: '/toolpad/studio/getting-started/',
           icon: <StickyNote2RoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Why Toolpad?',
-          href: '/toolpad/getting-started/why-toolpad/',
+          href: '/toolpad/studio/getting-started/why-toolpad/',
           icon: <ChecklistRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
         {
           name: 'Example applications',
-          href: '/toolpad/examples/',
+          href: '/toolpad/studio/examples/',
           icon: <LibraryBooksRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
     {
       category: {
-        name: 'MUI System',
+        name: 'MUI System',
       },
       items: [
         {
@@ -264,36 +261,41 @@ function NewStartScreen() {
   );
 }
 
-const displayTagProductId = {
-  'material-ui': 'Material UI',
-  'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
-  x: 'MUI X',
-  system: 'MUI System',
+const productNameProductId = {
+  'material-ui': 'Material UI',
+  'joy-ui': 'Joy UI',
+  'base-ui': 'Base UI',
+  x: 'MUI X',
+  system: 'MUI System',
   toolpad: 'Toolpad',
+  'toolpad-studio': 'Toolpad Studio',
+  'toolpad-core': 'Toolpad Core',
 };
+
+export function convertProductIdToName(productInfo) {
+  return (
+    productNameProductId[productInfo.productId] ||
+    productNameProductId[productInfo.productCategoryId]
+  );
+}
 
 function getDisplayTag(hit) {
   if (hit.productId === undefined || hit.productCategoryId === undefined) {
     return null;
   }
 
-  const productInfo = {
+  const productName = convertProductIdToName({
     productId: hit.productId,
     productCategoryId: hit.productCategoryId,
-  };
+  });
 
-  const displayTag =
-    displayTagProductId[productInfo.productId] ||
-    displayTagProductId[productInfo.productCategoryId];
-
-  if (!displayTag) {
+  if (!productName) {
     console.error(
-      `getDisplayTag missing mapping for productId: ${productInfo.productId}, pathname: ${hit.pathname}.`,
+      `getDisplayTag missing mapping for productId: ${hit.productId}, pathname: ${hit.pathname}.`,
     );
   }
 
-  return <Chip label={displayTag} size="small" variant="outlined" sx={{ mr: 1 }} />;
+  return <Chip label={productName} size="small" variant="outlined" sx={{ mr: 1 }} />;
 }
 
 function DocSearchHit(props) {
@@ -541,14 +543,23 @@ export default function AppSearch(props) {
               fontSize: theme.typography.pxToRem(11),
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
               fontSize: theme.typography.pxToRem(18),
               color: (theme.vars || theme).palette.primary[500],
               marginRight: theme.spacing(1.5),
               opacity: 0.6,
+              // Redefine SvgIcon-root style as ReactDOMServer.renderToStaticMarkup doesn't
+              // Generate the CSS.
+              // TODO v6: This hack should no longer be needed with static CSS rendering.
+              userSelect: 'none',
+              width: '1em',
+              height: '1em',
+              display: 'inline-block',
+              flexShrink: 0,
+              fill: 'currentColor',
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
@@ -602,6 +613,10 @@ export default function AppSearch(props) {
                 width: '18px',
                 height: '18px',
               },
+              '& .DocSearch-VisuallyHiddenForAccessibility': {
+                width: 0,
+                visibility: 'hidden',
+              },
             },
             '& .DocSearch-Cancel': {
               display: 'block',
@@ -652,8 +667,8 @@ export default function AppSearch(props) {
               fontWeight: theme.typography.fontWeightBold,
               textTransform: 'uppercase',
               lineHeight: 1,
-              letterSpacing: '.08rem',
-              color: theme.palette.grey[600],
+              letterSpacing: '.1rem',
+              color: (theme.vars || theme).palette.text.tertiary,
             },
             '& .DocSearch-Hit': {
               paddingBottom: 8,

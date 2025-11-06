@@ -1,4 +1,4 @@
-# React Engineer - Core (future role)
+# React Engineer — Core (future role)
 
 <p class="description">You will strengthen the core components team by collaborating with the community to land contributions.</p>
 
@@ -11,17 +11,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -38,8 +38,8 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The core components team (MUI Core) needs help.
-They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System) with a tiny team.
+The core components team (MUI Core) needs help.
+They are working on 4 products (Material UI, Base UI, Joy UI, and MUI System) with a tiny team.
 
 We also need help to continue to improve the health of the open-source product: make the core components easier to use, increase the contributions by engaging and collaborating with the community, polish all the details, make the components more accessible, guide developers to answers, and just generally be a positive presence in the open-source community.
 
@@ -149,7 +149,7 @@ Details matter to you.
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

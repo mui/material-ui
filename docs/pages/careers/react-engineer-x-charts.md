@@ -1,4 +1,4 @@
-# React Engineer - xCharts
+# React Engineer — xCharts (future role)
 
 <p class="description">You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
@@ -11,17 +11,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -38,19 +38,19 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-The charts team (part of MUI X) needs your help.
+The charts team (part of MUI X) needs your help.
 The component is off to [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-charts&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
 
 To be more specific in what we are aiming to achieve in the short to mid-term:
 
-- A tighter integration with the rest of the MUI libraries including Material UI and MUI X Data Grid
+- A tighter integration with the rest of the MUI libraries including Material UI and MUI X Data Grid
 - Faster iteration cycles compared to popular open-source alternatives such as chart.js and Recharts
 
 This should allow us to reach 30% of the downloads of alternative React charting libraries, considering benchmark data in the short term. Developers value having a single touch point, but also one they trust, and one that integrates well into the rest of their application.
 
-In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library.
+In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library.
 We believe we can achieve this with an open-core model.
-We will at least match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts.
+We will at least match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts.
 We will then provide extra paid features so developers can use a single charting library, without the need to juggle with paid alternatives as they do today.
 
 In the long term, we envision using the pro-code charting API as a distribution channel for building more abstract charting primitives, using low-code and AI.
@@ -144,7 +144,7 @@ We're looking for someone with strong front-end skills. More important than spec
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

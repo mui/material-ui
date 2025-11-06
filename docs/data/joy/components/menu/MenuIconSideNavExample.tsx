@@ -15,7 +15,7 @@ import MenuButton from '@mui/joy/MenuButton';
 // https://popper.js.org/docs/v2/modifiers/offset/
 interface MenuButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  menu: React.ReactElement;
+  menu: React.ReactElement<any>;
   open: boolean;
   onOpen: (
     event?:

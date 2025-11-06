@@ -50,19 +50,15 @@ function CssAnimation(props: CssAnimationProps) {
     ...other
   } = props;
 
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
-    useTransitionStateManager();
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   const hasExited = React.useRef(true);
 
   React.useEffect(() => {
     if (requestedEnter && hasExited.current) {
-      onEntering();
       hasExited.current = false;
-    } else if (!requestedEnter && !hasExited.current) {
-      onExiting();
     }
-  }, [onEntering, onExiting, requestedEnter]);
+  }, [requestedEnter]);
 
   const handleAnimationEnd = React.useCallback(
     (event: React.AnimationEvent) => {
@@ -70,11 +66,10 @@ function CssAnimation(props: CssAnimationProps) {
         onExited();
         hasExited.current = true;
       } else if (event.animationName === enterAnimationName) {
-        onEntered();
         hasExited.current = false;
       }
     },
-    [onExited, onEntered, exitAnimationName, enterAnimationName],
+    [onExited, exitAnimationName, enterAnimationName],
   );
 
   return (

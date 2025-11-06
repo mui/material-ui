@@ -10,7 +10,9 @@ export interface DividerClasses {
   inset: string;
   /** Styles applied to the root element if `variant="fullWidth"`. */
   fullWidth: string;
-  /** Styles applied to the root element if `light={true}`. */
+  /** Styles applied to the root element if `light={true}`.
+   * @deprecated
+   */
   light: string;
   /** Styles applied to the root element if `variant="middle"`. */
   middle: string;
@@ -20,7 +22,9 @@ export interface DividerClasses {
   flexItem: string;
   /** Styles applied to the root element if divider have text. */
   withChildren: string;
-  /** Styles applied to the root element if divider have text and `orientation="vertical"`. */
+  /** Styles applied to the root element if divider have text and `orientation="vertical"`.
+   * @deprecated Combine the [.MuiDivider-withChildren](/material-ui/api/divider/#divider-classes-withChildren) and [.MuiDivider-vertical](/material-ui/api/divider/#divider-classes-vertical) classes instead.
+   */
   withChildrenVertical: string;
   /** Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
   textAlignRight: string;

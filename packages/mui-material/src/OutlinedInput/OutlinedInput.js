@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import NotchedOutline from './NotchedOutline';
 import useFormControl from '../FormControl/useFormControl';
 import formControlState from '../FormControl/formControlState';
@@ -14,7 +14,7 @@ import InputBase, {
   InputBaseRoot,
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -135,7 +135,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
 }));
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
     components = {},
     fullWidth = false,

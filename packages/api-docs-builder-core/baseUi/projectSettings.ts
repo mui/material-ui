@@ -2,6 +2,10 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
+import {
+  unstable_generateUtilityClass as generateUtilityClass,
+  unstable_isGlobalState as isGlobalState,
+} from '@mui/base';
 import { getBaseUiComponentInfo } from './getBaseUiComponentInfo';
 import { getBaseUiHookInfo } from './getBaseUiHookInfo';
 import { generateBaseUIApiPages } from './generateBaseUiApiPages';
@@ -23,8 +27,11 @@ export const projectSettings: ProjectSettings = {
   getHookInfo: getBaseUiHookInfo,
   translationLanguages: LANGUAGES,
   skipComponent: () => false,
-  onCompleted: () => {
-    generateBaseUIApiPages();
+  skipHook: (filename) => {
+    return filename.match(/(useSlotProps)/) !== null;
+  },
+  onCompleted: async () => {
+    await generateBaseUIApiPages();
   },
   onWritingManifestFile(builds, source) {
     const apiLinks = generateApiLinks(builds);
@@ -37,4 +44,6 @@ export const projectSettings: ProjectSettings = {
   skipAnnotatingComponentDefinition: true,
   generateJsonFileOnly: true,
   translationPagesDirectory: 'docs/translations/api-docs-base',
+  generateClassName: generateUtilityClass,
+  isGlobalClassName: isGlobalState,
 };

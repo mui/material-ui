@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useControlled from '../utils/useControlled';
@@ -22,7 +22,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
+const SwitchBaseRoot = styled(ButtonBase, {
+  name: 'MuiSwitchBase',
+})(({ ownerState }) => ({
   padding: 9,
   borderRadius: '50%',
   ...(ownerState.edge === 'start' && {
@@ -33,7 +35,10 @@ const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
   }),
 }));
 
-const SwitchBaseInput = styled('input', { shouldForwardProp: rootShouldForwardProp })({
+const SwitchBaseInput = styled('input', {
+  name: 'MuiSwitchBase',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,
@@ -194,7 +199,6 @@ SwitchBase.propTypes = {
   checkedIcon: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

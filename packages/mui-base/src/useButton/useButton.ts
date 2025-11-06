@@ -10,6 +10,7 @@ import {
   UseButtonRootSlotProps,
 } from './useButton.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
+import { useRootElementName } from '../utils/useRootElementName';
 import { EventHandlers } from '../utils/types';
 import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
@@ -31,8 +32,9 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     tabIndex,
     to,
     type,
+    rootElementName: rootElementNameProp,
   } = parameters;
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
 
   const [active, setActive] = React.useState<boolean>(false);
 
@@ -52,7 +54,10 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const [hostElementName, setHostElementName] = React.useState<string>('');
+  const [rootElementName, updateRootElementName] = useRootElementName({
+    rootElementName: rootElementNameProp ?? (href || to ? 'a' : undefined),
+    componentName: 'Button',
+  });
 
   const createHandleMouseLeave = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
     if (focusVisible) {
@@ -92,10 +97,10 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     const button = buttonRef.current;
 
     return (
-      hostElementName === 'BUTTON' ||
-      (hostElementName === 'INPUT' &&
+      rootElementName === 'BUTTON' ||
+      (rootElementName === 'INPUT' &&
         ['button', 'submit', 'reset'].includes((button as HTMLInputElement)?.type)) ||
-      (hostElementName === 'A' && (button as HTMLAnchorElement)?.href)
+      (rootElementName === 'A' && (button as HTMLAnchorElement)?.href)
     );
   };
 
@@ -171,11 +176,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
       }
     };
 
-  const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
-    setHostElementName(instance?.tagName ?? '');
-  }, []);
-
-  const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(updateRootElementName, externalRef, focusVisibleRef, buttonRef);
 
   interface AdditionalButtonProps {
     type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
@@ -191,14 +192,22 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     buttonProps.tabIndex = tabIndex;
   }
 
-  if (hostElementName === 'BUTTON') {
+  if (rootElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
     if (focusableWhenDisabled) {
       buttonProps['aria-disabled'] = disabled;
     } else {
       buttonProps.disabled = disabled;
     }
-  } else if (hostElementName !== '') {
+  } else if (rootElementName === 'INPUT') {
+    if (type && ['button', 'submit', 'reset'].includes(type)) {
+      if (focusableWhenDisabled) {
+        buttonProps['aria-disabled'] = disabled;
+      } else {
+        buttonProps.disabled = disabled;
+      }
+    }
+  } else if (rootElementName !== '') {
     if (!href && !to) {
       buttonProps.role = 'button';
       buttonProps.tabIndex = tabIndex ?? 0;

@@ -141,7 +141,7 @@ export default function XHero() {
               ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.700',
                 backgroundColor: 'primaryDark.900',
-                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
               }),
             })}
           >
@@ -163,15 +163,12 @@ export default function XHero() {
                   '& .MuiDataGrid-root': {
                     border: 0,
                     color: 'text.secondary',
+                    '--DataGrid-rowBorderColor': (theme) => theme.palette.grey[200],
                     '& .MuiCheckbox-root': {
                       p: 0.5,
                       '& > svg': {
                         fontSize: '1.25rem',
                       },
-                    },
-                    '& .MuiDataGrid-columnHeaders': {
-                      borderBottom: '1px solid',
-                      borderColor: 'grey.200',
                     },
                     [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
                       {
@@ -187,22 +184,6 @@ export default function XHero() {
                     },
                     '& button, & button > svg': {
                       fontSize: 16,
-                    },
-                    '& .MuiDataGrid-cell': {
-                      fontSize: '0.875rem',
-                      color: 'text.secondary',
-                      borderBottom: '1px solid',
-                      borderColor: 'grey.200',
-                    },
-                    '& .MuiDataGrid-viewport': {
-                      '& .MuiDataGrid-cell': {
-                        fontSize: '0.875rem',
-                        color: 'text.secondary',
-                      },
-                      '& .MuiInputBase-input': {
-                        fontSize: '0.875rem',
-                        px: 0.5,
-                      },
                     },
                     '& .MuiChip-root.Rejected': {
                       color: red[800],
@@ -232,12 +213,7 @@ export default function XHero() {
                 (theme) =>
                   theme.applyDarkStyles({
                     '& .MuiDataGrid-root': {
-                      '& .MuiDataGrid-columnHeaders': {
-                        borderColor: 'primaryDark.600',
-                      },
-                      '& .MuiDataGrid-cell': {
-                        borderColor: alpha(theme.palette.primaryDark[600], 0.5),
-                      },
+                      '--DataGrid-rowBorderColor': alpha(theme.palette.primaryDark[600], 0.5),
                       '& .MuiChip-root.Rejected': {
                         color: red[200],
                         backgroundColor: alpha(red[900], 0.2),
@@ -257,6 +233,14 @@ export default function XHero() {
                         color: yellow[200],
                         backgroundColor: alpha(yellow[900], 0.2),
                         borderColor: alpha(yellow[700], 0.2),
+                      },
+                      '& .MuiDataGrid-pinnedRows': {
+                        backgroundColor: alpha(theme.palette.primaryDark[800], 1),
+                        backgroundImage: 'none',
+                        boxShadow: '0px -6px 12px rgba(0 0 0 /  0.5)',
+                        '& .MuiDataGrid-footerCell': {
+                          color: 'primary.light',
+                        },
                       },
                     },
                   }),
@@ -297,7 +281,7 @@ export default function XHero() {
                 ...theme.applyDarkStyles({
                   borderColor: 'primaryDark.700',
                   backgroundColor: 'primaryDark.900',
-                  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 }),
               })}
             >
@@ -354,7 +338,7 @@ export default function XHero() {
                 (theme) =>
                   theme.applyDarkStyles({
                     borderColor: 'primaryDark.700',
-                    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                     backgroundColor: 'primaryDark.900',
                     '& .MuiDateRangePickerDay-day.Mui-selected': {
                       color: '#FFF',

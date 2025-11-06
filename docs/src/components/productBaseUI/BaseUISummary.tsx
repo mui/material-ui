@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {
@@ -47,16 +47,16 @@ export default function BaseUISummary() {
         }
         description="Base UI abstracts away the more frustrating aspects of UI development—like accessibility, cross-browser compatibility, and event handling—so you can skip ahead to design implementation."
       />
-      <Box sx={{ mt: 8 }}>
+      <Box sx={{ mt: 6 }}>
         <Grid container spacing={3}>
           {content.map(({ icon, title, description, link }) => (
-            <Grid key={title} item xs={12} md={4}>
+            <Grid key={title} xs={12} md={4}>
               <InfoCard link={link} title={title} icon={icon} description={description} />
             </Grid>
           ))}
         </Grid>
       </Box>
-      <Typography fontWeight={500} textAlign="center" mt={8} mb={2} fontSize="0.875rem">
+      <Typography fontWeight="medium" textAlign="center" mt={6} mb={2} fontSize="0.875rem">
         Alternative to libraries such as:
       </Typography>
       <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>

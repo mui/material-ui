@@ -1,6 +1,5 @@
 import * as React from 'react';
-// @ts-ignore
-import { TypeScript as TypeScriptIcon } from '@mui/docs';
+import TypeScriptIcon from '@mui/docs/svgIcons/TypeScript';
 import startCase from 'lodash/startCase';
 import { deepmerge } from '@mui/utils';
 import { decomposeColor } from '@mui/system';
@@ -61,7 +60,7 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
@@ -984,7 +983,11 @@ function filterGlobalVariantTokens(palette: Partial<PaletteVariant>, variant: Va
   return tokens;
 }
 
-type StateReducer<T> = (state: T, action: Partial<T>) => T;
+type ReducerState = {
+  hover: boolean;
+  active: boolean;
+  disabled: boolean;
+};
 
 function GlobalVariantForm({
   color,
@@ -1002,13 +1005,14 @@ function GlobalVariantForm({
   onRemove: (token: string) => void;
 }) {
   const [selectedVariant, setSelectedVariant] = React.useState<VariantProp>('solid');
-  const [states, setStates] = React.useReducer<
-    StateReducer<{ hover: boolean; active: boolean; disabled: boolean }>
-  >((prevState, action) => ({ ...prevState, ...action }), {
-    hover: false,
-    active: false,
-    disabled: false,
-  });
+  const [states, setStates] = React.useReducer(
+    (prevState: ReducerState, action: Partial<ReducerState>) => ({ ...prevState, ...action }),
+    {
+      hover: false,
+      active: false,
+      disabled: false,
+    },
+  );
   const themeDefaultValue = filterGlobalVariantTokens(themeDefaultValueProp, selectedVariant);
   const value = filterGlobalVariantTokens(valueProp, selectedVariant);
   const mergedValue = { ...themeDefaultValue, ...value };
@@ -1038,7 +1042,6 @@ function GlobalVariantForm({
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
-
       <Sheet
         variant="outlined"
         sx={{
@@ -1274,7 +1277,7 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
+function TemplatesDialog({ children, data }: { children: React.ReactElement<any>; data: any }) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
   const renderItem = (name: string, item: TemplateData) => {

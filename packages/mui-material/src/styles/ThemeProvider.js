@@ -6,11 +6,19 @@ import THEME_ID from './identifier';
 
 export default function ThemeProvider({ theme: themeInput, ...props }) {
   const scopedTheme = themeInput[THEME_ID];
+  let finalTheme = scopedTheme || themeInput;
+  if (typeof themeInput !== 'function') {
+    if (scopedTheme && !scopedTheme.vars) {
+      finalTheme = { ...scopedTheme, vars: null };
+    } else if (themeInput && !themeInput.vars) {
+      finalTheme = { ...themeInput, vars: null };
+    }
+  }
   return (
     <SystemThemeProvider
       {...props}
       themeId={scopedTheme ? THEME_ID : undefined}
-      theme={scopedTheme || themeInput}
+      theme={finalTheme}
     />
   );
 }

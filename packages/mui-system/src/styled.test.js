@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui-internal/test-utils';
-import { styled, createTheme, ThemeProvider } from '@mui/system';
+import { styled, ThemeProvider } from '@mui/system';
+
+import createTheme from '@mui/system/createTheme';
 
 describe('styled', () => {
   const { render } = createRenderer();
@@ -446,10 +448,10 @@ describe('styled', () => {
               },
               {
                 props: ({ size }) => size === 'small',
-                style: {
-                  width: '200px',
-                  height: '200px',
-                },
+                style: ({ theme: t }) => ({
+                  width: t.spacing(10),
+                  height: t.spacing(10),
+                }),
               },
             ],
           },
@@ -471,8 +473,8 @@ describe('styled', () => {
         height: '400px',
       });
       expect(getByTestId('small')).toHaveComputedStyle({
-        width: '200px',
-        height: '200px',
+        width: theme.spacing(10),
+        height: theme.spacing(10),
       });
     });
 

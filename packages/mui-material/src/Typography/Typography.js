@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_extendSxProp as extendSxProp } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { extendSxProp } from '@mui/system/styleFunctionSx';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
 
@@ -92,7 +92,7 @@ const transformDeprecatedColors = (color) => {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  const themeProps = useDefaultProps({ props: inProps, name: 'MuiTypography' });
   const color = transformDeprecatedColors(themeProps.color);
   const props = extendSxProp({ ...themeProps, color });
 

@@ -3,7 +3,7 @@ import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { MenuInternalState } from './useMenu.types';
 
 export type MenuActionContext = ListActionContext<string> & {
-  listboxRef: React.RefObject<HTMLElement>;
+  listboxRef: React.RefObject<HTMLElement | null>;
 };
 
 export function menuReducer(
@@ -11,7 +11,10 @@ export function menuReducer(
   action: ActionWithContext<ListAction<string>, MenuActionContext>,
 ) {
   if (action.type === ListActionTypes.itemHover) {
-    return state;
+    return {
+      ...state,
+      highlightedValue: action.item,
+    };
   }
 
   const newState = listReducer(state, action);

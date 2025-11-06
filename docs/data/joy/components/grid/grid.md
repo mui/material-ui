@@ -14,7 +14,7 @@ githubLabel: 'component: Grid'
 The Grid component, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
 :::warning
-The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [`DataGrid`](/x/react-data-grid/) component.
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [MUI X Data Grid`](/x/react-data-grid/) component.
 :::
 
 ## Basics
@@ -69,7 +69,7 @@ Responsive values is supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- all the [other props](#system-props) of MUI System
 
 :::warning
 When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
@@ -104,7 +104,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ### System props
 
-As a CSS utility component, Grid supports all [MUI System properties](/system/properties/).
+As a CSS utility component, Grid supports all [MUI System properties](/system/properties/).
 You can use them as props directly on the component.
 For instance, a margin-top:
 
@@ -134,7 +134,7 @@ If used, these props may have undesirable effects on the height of the `Grid` it
 ## CSS Grid Layout
 
 The `Grid` component is using CSS flexbox internally.
-But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "CSSGrid.js", "bg": true}}
 

@@ -16,7 +16,7 @@ import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
 import { alpha } from '@mui/material/styles';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -41,7 +41,7 @@ function RoadmapStatusDot({ color }: RoadmapStatusDotProps) {
 }
 
 export default function XRoadmap() {
-  function renderList(content: React.ReactElement, nested?: boolean) {
+  function renderList(content: React.ReactElement<unknown>, nested?: boolean) {
     return (
       <Box
         sx={{
@@ -96,8 +96,8 @@ export default function XRoadmap() {
         background: (theme) =>
           `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[900]} 50%, 
         ${alpha(theme.palette.primary[800], 0.2)} 100%), ${
-            (theme.vars || theme).palette.primaryDark[900]
-          }`,
+          (theme.vars || theme).palette.primaryDark[900]
+        }`,
       }}
     >
       <Grid container spacing={2} alignItems="center" justifyContent="space-between">
@@ -115,7 +115,6 @@ export default function XRoadmap() {
             component={Link}
             href={ROUTES.xRoadmap}
             noLinkStyle
-            size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
             sx={{ width: { xs: '100%', sm: 'auto' } }}

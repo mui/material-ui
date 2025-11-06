@@ -56,6 +56,13 @@ It is important to note that the value provided to the `spacing` prop is multipl
 
 {{"demo": "ResponsiveSpacing.js", "bg": true}}
 
+## Sequential
+
+This example demonstrates the use of the `sequential` to configure the sequential order.
+With `sequential` enabled, items are added in order from left to right rather than adding to the shortest column.
+
+{{"demo": "Sequential.js", "bg": true}}
+
 ## Server-side rendering
 
 This example demonstrates the use of the `defaultHeight`, `defaultColumns` and `defaultSpacing`, which are used to

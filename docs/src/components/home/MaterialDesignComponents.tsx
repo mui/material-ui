@@ -33,8 +33,8 @@ import MailRounded from '@mui/icons-material/MailRounded';
 import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { Link } from '@mui/docs/Link';
+import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 
 const Grid = styled('div')(({ theme }) => [
   {
@@ -125,7 +125,7 @@ function Demo({
 }: {
   name: string;
   theme: Theme | undefined;
-  children: React.ReactElement;
+  children: React.ReactElement<unknown>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(
@@ -190,24 +190,20 @@ function Demo({
 const StyledChip = styled(Chip)(({ theme }) => [
   {
     fontWeight: 700,
-    transition: 'none',
     '&.MuiChip-outlined': {
-      border: 'none',
       color: (theme.vars || theme).palette.text.secondary,
     },
-    '&.MuiChip-clickable:active': {
-      boxShadow: 'none',
-    },
     '&.MuiChip-filled': {
-      border: '1px solid',
       borderColor: (theme.vars || theme).palette.primary[300],
-      backgroundColor: (theme.vars || theme).palette.primary[500],
-      color: '#fff',
+      backgroundColor: alpha(theme.palette.primary[100], 0.5),
+      color: (theme.vars || theme).palette.primary[600],
     },
   },
   theme.applyDarkStyles({
     '&.MuiChip-filled': {
-      backgroundColor: (theme.vars || theme).palette.primary[700],
+      borderColor: (theme.vars || theme).palette.primary[500],
+      backgroundColor: (theme.vars || theme).palette.primary[800],
+      color: (theme.vars || theme).palette.primary[100],
     },
   }),
 ]);
@@ -252,8 +248,12 @@ export function buildTheme(): ThemeOptions {
           contained: ({ theme }) => ({
             color: (theme.vars || theme).palette.primaryDark[50],
             backgroundColor: (theme.vars || theme).palette.primary[600],
+            boxShadow: '0 2px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.1) inset',
+            border: '1px solid',
+            borderColor: (theme.vars || theme).palette.primary[600],
             ...theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primary[600],
+              borderColor: (theme.vars || theme).palette.primary[800],
             }),
           }),
           outlined: ({ theme }) => ({
@@ -419,7 +419,8 @@ export function buildTheme(): ThemeOptions {
                 borderColor: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiOutlinedInput-input': {
-                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+                borderRadius: 'inherit',
+                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
               },
               '& .MuiFilledInput-root': {
                 borderColor: (theme.vars || theme).palette.primaryDark[700],
@@ -452,11 +453,11 @@ export function buildTheme(): ThemeOptions {
       MuiTableHead: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 10,
+            padding: 8,
             backgroundColor: alpha(theme.palette.grey[50], 0.5),
             borderColor: (theme.vars || theme).palette.divider,
             ...theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.primaryDark[600], 0.5),
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
             }),
           }),
         },
@@ -464,7 +465,7 @@ export function buildTheme(): ThemeOptions {
       MuiTableCell: {
         styleOverrides: {
           root: ({ theme }) => ({
-            padding: 10,
+            padding: 8,
             borderColor: (theme.vars || theme).palette.divider,
           }),
         },
@@ -474,31 +475,36 @@ export function buildTheme(): ThemeOptions {
           paper: ({ theme }) => ({
             boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
             ...theme.applyDarkStyles({
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
             }),
           }),
         },
       },
       MuiMenu: {
         styleOverrides: {
-          list: ({ theme }) => ({
-            padding: theme.spacing(1, 0),
-          }),
+          list: {
+            padding: 0,
+          },
         },
       },
       MuiMenuItem: {
         styleOverrides: {
           root: ({ theme }) => [
             {
-              padding: theme.spacing(1, 2),
+              margin: theme.spacing(1),
+              padding: '4px 8px',
+              borderRadius: '8px',
+              '& .MuiListItemIcon-root': {
+                minWidth: '24px',
+              },
               '& svg': {
-                fontSize: '1.125rem',
-                color: (theme.vars || theme).palette.primaryDark[400],
+                fontSize: '1rem',
+                color: (theme.vars || theme).palette.grey[500],
               },
             },
             theme.applyDarkStyles({
               '& svg': {
-                color: (theme.vars || theme).palette.primary[300],
+                color: (theme.vars || theme).palette.grey[400],
               },
             }),
           ],
@@ -532,26 +538,26 @@ export default function MaterialDesignComponents() {
     <div>
       <Box
         sx={{
-          mt: { xs: 2, md: 4 },
-          mb: 2,
+          mt: { xs: 2, md: 2 },
+          mb: 4,
           display: 'flex',
-          justifyContent: { sm: 'flex-start', md: 'flex-end' },
+          justifyContent: 'center',
         }}
       >
         <StyledChip
-          color="primary"
-          label="Material Design"
           size="small"
-          variant={!customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(false)}
+          label="Custom theme"
+          variant={customized ? 'filled' : 'outlined'}
+          color={customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(true)}
+          sx={{ mr: 1 }}
         />
         <StyledChip
-          color="primary"
-          label="Custom theme"
           size="small"
-          variant={customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(true)}
-          sx={{ ml: 1 }}
+          label="Material Design"
+          variant={!customized ? 'filled' : 'outlined'}
+          color={!customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(false)}
         />
       </Box>
       <Grid>

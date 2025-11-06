@@ -1,20 +1,20 @@
 ---
-title: Material-UI, the organization, is now MUI!
+title: Material-UI is now Material UI!
 description: Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
-tags: ['Company']
-card: true
+tags: ['Material UI']
+manualCard: true
 ---
 
-<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new MUI logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
+<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new Material UI logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
 - Material-UI: the organization is now called **[MUI](https://github.com/mui)**.
 - Material-UI: the Material Design components developed by MUI is now called **[Material UI](https://mui.com/material-ui/getting-started/)**, we ditched the hyphen!
-- Material-UI: the set of foundational MIT React components is now called **[MUI Core](https://github.com/mui/material-ui)**.
 - Material-UI X: the set of advanced React components is now called **[MUI X](https://github.com/mui/mui-x)**.
+- Material-UI: the set of foundational MIT React components is now called **[MUI Core](https://github.com/mui/material-ui)**.
 
 Our previous name was no longer serving our areas of focus.
 We have grown our product offering.
@@ -22,7 +22,7 @@ We needed a new identity to match our increased scope.
 
 ## The origin
 
-Material UI [started](https://www.text-em-all.com/blog/material-ui-the-internet-found-our-ui-project) as a React implementation of the Material Design guidelines in 2014.
+Material UI [started](https://www.text-em-all.com/blog/material-ui-the-internet-found-our-ui-project) as a React implementation of the Material Design guidelines in 2014.
 The goal was simple, to empower React developers to use Material Design.
 The community [loved it](https://news.ycombinator.com/item?id=8582439) and was craving for more, so we kept building.
 
@@ -50,12 +50,12 @@ Our ultimate goal is to become the most effective and efficient tool to build UI
 ### A new name
 
 We are breaking the strong association with Material Design
-as we have seen too many people confusing Material UI with Google, or as a synonym of Material Design.
+as we have seen too many people confusing Material UI with Google or as a synonym of Material Design.
 
 We are now called **MUI**. It stands for **M**aterial to build **UI**s
 and is pronounced [/ɛm juː aɪ/](http://ipa-reader.xyz/?text=%C9%9Bmju%CB%90a%C9%AA).
 
-It's shorter, it distinguishes us, and it's familiar – many people already used it for abbreviating Material UI.
+It's shorter, it distinguishes us, and it's familiar – many people already used it for abbreviating Material UI.
 More importantly, it allows for the release of products not directly coupled to Material Design, such as an unstyled/headless version of the components, a brand new second design system as an alternative to MD, and more ambitious initiatives.
 
 ### A new domain name
@@ -75,10 +75,10 @@ however, we're reducing the emphasis on the 3D perspective, stepping away from t
 
 To better identify, market, and promote each product, we're introducing logos for each one of them.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
-- **MUI Core** contains ready-to-use foundational components, free forever.
-- **MUI X** includes advanced and powerful components for complex use-cases.
+- **MUI Core** contains ready-to-use foundational components, free forever.
+- **MUI X** includes advanced and powerful components for complex use-cases.
 - **Templates** is a collection of fully built, out-of-the-box, React templates for your application. They are developed by the community curated by us for quality.
 
 ### New package names
@@ -94,7 +94,9 @@ all done using the flexible theming features of v5. [Head to the new website](/)
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/website-homepage.png" alt="Screenshot of the new website homepage" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
-> 💡 Note that these changes in the website and documentation do **not** impact the design of the components released under the `@mui/*` npm packages.
+:::info
+Note that these changes in the website and documentation do **not** impact the design of the components released under the `@mui/*` npm packages.
+:::
 
 ## The path ahead
 

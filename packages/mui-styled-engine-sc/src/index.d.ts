@@ -23,7 +23,7 @@ type Defaultize<P, D> = P extends any
         Partial<PickU<D, Exclude<keyof D, keyof P>>>
   : never;
 
-export type IntrinsicElementsKeys = keyof JSX.IntrinsicElements;
+export type IntrinsicElementsKeys = keyof React.JSX.IntrinsicElements;
 type ReactDefaultizedProps<C, P> = C extends { defaultProps: infer D } ? Defaultize<P, D> : P;
 
 type MakeAttrsOptional<
@@ -81,6 +81,9 @@ export function internal_processStyles(
   processor: (styles: any) => any,
 ): void;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
+
 // These are the same as the ones in @mui/styled-engine
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:
 // '@font-face'?: Fontface | Fontface[]
@@ -108,7 +111,10 @@ export interface CSSObject
     Omit<CSSOthersObject, 'variants'> {}
 
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{ props: Props; style: CSSObject }>;
+  variants: Array<{
+    props: Props | ((props: Props) => boolean);
+    style: CSSObject;
+  }>;
 }
 
 export type FalseyValue = undefined | null | false;
@@ -153,7 +159,7 @@ type StyledComponentPropsWithAs<
 };
 
 export type StyledComponent<
-  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  C extends keyof React.JSX.IntrinsicElements | React.ComponentType<any>,
   T extends object = {},
   O extends object = {},
   A extends keyof any = never,
@@ -170,31 +176,21 @@ export type AnyStyledComponent =
   | React.FunctionComponent<any>
   | React.ComponentType<any>;
 
-export type StyledComponentInnerComponent<C extends AnyStyledComponent> = C extends StyledComponent<
-  infer I,
-  any,
-  any,
-  any
->
-  ? I
-  : C extends StyledComponent<infer I, any, any>
-  ? I
-  : C;
+export type StyledComponentInnerComponent<C extends AnyStyledComponent> =
+  C extends StyledComponent<infer I, any, any, any>
+    ? I
+    : C extends StyledComponent<infer I, any, any>
+      ? I
+      : C;
 
 export type StyledComponentInnerOtherProps<C extends AnyStyledComponent> =
   C extends StyledComponent<any, any, infer O, any>
     ? O
     : C extends StyledComponent<any, any, infer O>
-    ? O
-    : never;
-export type StyledComponentInnerAttrs<C extends AnyStyledComponent> = C extends StyledComponent<
-  any,
-  any,
-  any,
-  infer A
->
-  ? A
-  : never;
+      ? O
+      : never;
+export type StyledComponentInnerAttrs<C extends AnyStyledComponent> =
+  C extends StyledComponent<any, any, any, infer A> ? A : never;
 
 export interface StyledComponentBase<
   C extends string | React.ComponentType<any>,
@@ -224,7 +220,7 @@ export interface StyledComponentBase<
     O & StyledComponentInnerOtherProps<WithC>,
     A | StyledComponentInnerAttrs<WithC>
   >;
-  withComponent<WithC extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(
+  withComponent<WithC extends keyof React.JSX.IntrinsicElements | React.ComponentType<any>>(
     component: WithC,
   ): StyledComponent<WithC, T, O, A>;
 }
@@ -239,18 +235,18 @@ type StyledComponentInterpolation =
 type AnyIfEmpty<T extends object> = keyof T extends never ? any : T;
 
 type ThemedStyledComponentFactories<T extends object> = {
-  [TTag in keyof JSX.IntrinsicElements]: ThemedStyledFunctionBase<TTag, T>;
+  [TTag in keyof React.JSX.IntrinsicElements]: ThemedStyledFunctionBase<TTag, T>;
 };
 
 export type StyledComponentPropsWithRef<
-  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  C extends keyof React.JSX.IntrinsicElements | React.ComponentType<any>,
 > = C extends AnyStyledComponent
   ? React.ComponentPropsWithRef<StyledComponentInnerComponent<C>>
   : React.ComponentPropsWithRef<C>;
 
 // Same as in styled-components, but copied here so that it would use the Interpolation & CSS typings from above
 export interface ThemedStyledFunctionBase<
-  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  C extends keyof React.JSX.IntrinsicElements | React.ComponentType<any>,
   T extends object,
   O extends object = {},
   A extends keyof any = never,
@@ -274,7 +270,7 @@ export interface ThemedStyledFunctionBase<
 
 // same as ThemedStyledFunction in styled-components, but without attrs, and withConfig
 export interface ThemedStyledFunction<
-  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  C extends keyof React.JSX.IntrinsicElements | React.ComponentType<any>,
   T extends object,
   O extends object = {},
   A extends keyof any = never,
@@ -355,22 +351,24 @@ export interface ThemedBaseStyledInterface<
   ): CreateStyledComponent<PropsOf<C> & MUIStyledCommonProps, {}, {}, Theme>;
 
   <
-    Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
+    Tag extends keyof React.JSX.IntrinsicElements,
+    ForwardedProps extends
+      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &
+      MuiStyledOptions,
   ): CreateStyledComponent<
     MUIStyledCommonProps,
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
+    Pick<React.JSX.IntrinsicElements[Tag], ForwardedProps>,
     {},
     Theme
   >;
 
-  <Tag extends keyof JSX.IntrinsicElements>(
+  <Tag extends keyof React.JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledConfig<MUIStyledCommonProps> & MuiStyledOptions,
-  ): CreateStyledComponent<MUIStyledCommonProps, JSX.IntrinsicElements[Tag], {}, Theme>;
+  ): CreateStyledComponent<MUIStyledCommonProps, React.JSX.IntrinsicElements[Tag], {}, Theme>;
 }
 
 export type CreateMUIStyled<
@@ -379,8 +377,9 @@ export type CreateMUIStyled<
   T extends object = {},
 > = ThemedBaseStyledInterface<MUIStyledCommonProps, MuiStyledOptions, AnyIfEmpty<T>>;
 
-export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>> =
-  JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
+export type PropsOf<
+  C extends keyof React.JSX.IntrinsicElements | React.JSXElementConstructor<any>,
+> = React.JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
 
 export interface MUIStyledComponent<
   ComponentProps extends {},
@@ -393,7 +392,7 @@ export interface MUIStyledComponent<
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
   ): MUIStyledComponent<ComponentProps & PropsOf<C>>;
-  withComponent<Tag extends keyof JSX.IntrinsicElements>(
+  withComponent<Tag extends keyof React.JSX.IntrinsicElements>(
     tag: Tag,
-  ): MUIStyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>;
+  ): MUIStyledComponent<ComponentProps, React.JSX.IntrinsicElements[Tag]>;
 }

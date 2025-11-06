@@ -2,14 +2,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getDrawerUtilityClass } from './drawerClasses';
 
@@ -137,8 +138,8 @@ export function isHorizontal(anchor) {
   return ['left', 'right'].indexOf(anchor) !== -1;
 }
 
-export function getAnchor(theme, anchor) {
-  return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+export function getAnchor({ direction }, anchor) {
+  return direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
 /**
@@ -146,8 +147,9 @@ export function getAnchor(theme, anchor) {
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDrawer' });
   const theme = useTheme();
+  const isRtl = useRtl();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
     exit: theme.transitions.duration.leavingScreen,
@@ -180,7 +182,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     mounted.current = true;
   }, []);
 
-  const anchorInvariant = getAnchor(theme, anchorProp);
+  const anchorInvariant = getAnchor({ direction: isRtl ? 'rtl' : 'ltr' }, anchorProp);
   const anchor = anchorProp;
 
   const ownerState = {

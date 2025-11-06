@@ -45,7 +45,11 @@ export default function SplitButton() {
 
   return (
     <React.Fragment>
-      <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
+      <ButtonGroup
+        variant="contained"
+        ref={anchorRef}
+        aria-label="Button group with a nested menu"
+      >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <Button
           size="small"

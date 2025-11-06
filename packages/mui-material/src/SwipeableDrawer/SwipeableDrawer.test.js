@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { fireEvent, createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
+import { fireEvent, createRenderer, screen } from '@mui-internal/test-utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 import { backdropClasses } from '@mui/material/Backdrop';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import useForkRef from '../utils/useForkRef';
+import describeConformance from '../../test/describeConformance';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const { style, ...other } = props;
@@ -62,17 +63,11 @@ describe('<SwipeableDrawer />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
+    render,
     classes: {},
     inheritComponent: Drawer,
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
 
   it('should render a Drawer and a SwipeArea', () => {

@@ -7,6 +7,7 @@ import { useMenuItem } from './useMenuItem';
 
 describe('useMenuItem', () => {
   const { render } = createRenderer();
+
   describe('getRootProps', () => {
     it('returns props for root slot', () => {
       function TestMenuItem() {

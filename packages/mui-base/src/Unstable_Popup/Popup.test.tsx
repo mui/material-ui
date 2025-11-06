@@ -1,28 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  act,
-  createRenderer,
-  createMount,
-  describeConformanceUnstyled,
-  screen,
-  fireEvent,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, screen, fireEvent } from '@mui-internal/test-utils';
 import { Unstable_Popup as Popup, popupClasses, PopupProps } from '@mui/base/Unstable_Popup';
 import { PopupContext } from './PopupContext';
 import { useTransitionStateManager } from '../useTransition';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 const TRANSITION_DURATION = 100;
 
 function FakeTransition(props: React.PropsWithChildren<{}>) {
   const { children: transitionChildren } = props;
-  const { requestedEnter, onExited, onEntering } = useTransitionStateManager();
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   React.useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
-    if (requestedEnter) {
-      onEntering();
-    } else {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    if (!requestedEnter) {
       timeoutId = setTimeout(() => {
         act(() => onExited());
       }, TRANSITION_DURATION);
@@ -35,14 +27,13 @@ function FakeTransition(props: React.PropsWithChildren<{}>) {
         timeoutId = null;
       }
     };
-  }, [requestedEnter, onExited, onEntering]);
+  }, [requestedEnter, onExited]);
 
   return <div>{transitionChildren}</div>;
 }
 
 describe('<Popup />', () => {
   const { clock, render } = createRenderer();
-  const mount = createMount();
 
   // https://floating-ui.com/docs/react#testing
   async function waitForPosition() {
@@ -66,13 +57,8 @@ describe('<Popup />', () => {
 
       return result;
     },
-    mount,
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-      'componentProp',
-    ],
+    skip: ['componentProp'],
     slots: {
       root: {
         expectedClassName: popupClasses.root,
@@ -295,12 +281,12 @@ describe('<Popup />', () => {
     });
   });
 
-  describe('prop: withTransition', () => {
+  describe('transitions', () => {
     clock.withFakeTimers();
 
     it('should work', async () => {
       const { queryByRole, getByRole, setProps } = render(
-        <Popup {...defaultProps} withTransition>
+        <Popup {...defaultProps}>
           <FakeTransition>
             <span>Hello World</span>
           </FakeTransition>
@@ -336,7 +322,7 @@ describe('<Popup />', () => {
               <button type="button" onClick={this.handleClick}>
                 Toggle Tooltip
               </button>
-              <Popup {...defaultProps} open={this.state.open} withTransition>
+              <Popup {...defaultProps} open={this.state.open}>
                 <FakeTransition>
                   <p>Hello World</p>
                 </FakeTransition>
@@ -387,12 +373,12 @@ describe('<Popup />', () => {
     });
   });
 
-  describe('display', () => {
+  describe('visibility', () => {
     clock.withFakeTimers();
 
-    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', async () => {
+    it('should keep visibility:hidden when not toggled and transition/keepMounted/disablePortal props are set', async () => {
       const { getByRole, setProps } = render(
-        <Popup {...defaultProps} open={false} keepMounted withTransition disablePortal>
+        <Popup {...defaultProps} open={false} keepMounted disablePortal>
           <FakeTransition>
             <span>Hello World</span>
           </FakeTransition>

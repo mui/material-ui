@@ -4,7 +4,7 @@ description: An update on our mission for Q2 2020.
 date: 2020-07-17T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
@@ -21,7 +21,7 @@ Here are the most significant improvements since March 2020:
 
   <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
-- 🎨 [Figma assets](https://mui.com/store/items/figma-react/) for MUI extend the support for design tools beyond Sketch.
+- 🎨 [Figma assets](https://mui.com/store/items/figma-react/) for Material UI extend the support for design tools beyond Sketch.
 
   <a href="https://mui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
 
@@ -39,7 +39,7 @@ Here are the most significant improvements since March 2020:
 
   <img src="/static/blog/2020-q2-update/timeline.png" alt="timeline" style="width: 244px; margin-bottom: 24px;" />
 
-- 📣 We have analyzed and published the results of the "MUI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
+- 📣 We have analyzed and published the results of the "Material UI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
 - 🇨🇳🇧🇷 The non-API documentation has been fully translated to Chinese and Brazilian, thanks to the collaboration of [Danica Shen](https://github.com/DDDDDanica), [Yan Lee](https://github.com/AGDholo), and [Jairon Alves Lima](https://github.com/jaironalves), native speakers from the community 🙏.
 
   <img src="/static/blog/2020-q2-update/chinese.png" alt="chinese" style="width: 146px; padding-right: 3px; box-sizing: content-box;" />

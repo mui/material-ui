@@ -12,4 +12,8 @@ export interface DropdownContextValue {
 
 const DropdownContext = React.createContext<DropdownContextValue | null>(null);
 
+if (process.env.NODE_ENV !== 'production') {
+  DropdownContext.displayName = 'DropdownContext';
+}
+
 export { DropdownContext };

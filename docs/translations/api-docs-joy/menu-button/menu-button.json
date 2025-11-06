@@ -118,9 +118,9 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "startDecorator": "The component that renders the start decorator.",
     "endDecorator": "The component that renders the end decorator.",
-    "loadingIndicatorCenter": "The component that renders the loading indicator center."
+    "loadingIndicatorCenter": "The component that renders the loading indicator center.",
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator."
   }
 }

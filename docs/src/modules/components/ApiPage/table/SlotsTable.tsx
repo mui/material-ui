@@ -1,11 +1,11 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 import { SlotsFormatedParams, getHash } from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
 

@@ -3,9 +3,9 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/material": "latest",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^5.0.0",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
@@ -17,9 +17,9 @@
     "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest",
+    "react-scripts": "^5.0.0",
+    "tailwindcss": "^3.0.0",
+    "typescript": "~5.5.0",
     "web-vitals": "latest"
   },
   "scripts": {

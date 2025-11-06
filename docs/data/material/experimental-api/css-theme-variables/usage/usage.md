@@ -4,10 +4,10 @@
 
 ## Getting started
 
-The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
+The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
 In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
 
-Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet.
+Once the `App` renders on the screen, you will see the CSS theme variables in the HTML `:root` stylesheet.
 The variables are flattened and prefixed with `--mui` by default:
 
 ```css
@@ -40,7 +40,7 @@ import {
 } from '@mui/material/styles';
 
 // ModeSwitcher is an example interface for toggling between modes.
-// Material UI does not provide the toggle interface—you have to build it yourself.
+// Material UI does not provide the toggle interface—you have to build it yourself.
 const ModeSwitcher = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -101,7 +101,7 @@ The structure of this object is nearly identical to the theme structure, the onl
   Make sure that the components accessing `theme.vars.*` are rendered under the new provider, otherwise you will get a `TypeError`.
   :::
 
-- **Native CSS**: if you can't access the theme object, e.g. in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
+- **Native CSS**: if you can't access the theme object, for example in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
 
   ```css
   /* external-scope.css */
@@ -116,15 +116,34 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 ## Server-side rendering
 
-Place `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
+Place `<InitColorSchemeScript />` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
+
+### Next.js App Router
+
+Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#root-layout-required) file:
+
+```jsx title="app/layout.js"
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+
+export default function RootLayout(props) {
+  return (
+    <html lang="en">
+      <body>
+        <InitColorSchemeScript /> {/* must come before the <main> element */}
+        <main>{props.children}</main>
+      </body>
+    </html>
+  );
+}
+```
 
 ### Next.js Pages Router
 
 Add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document) file:
 
-```jsx
+```jsx title="pages/_document.js"
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { getInitColorSchemeScript } from '@mui/material/styles';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export default class MyDocument extends Document {
   render() {
@@ -132,7 +151,7 @@ export default class MyDocument extends Document {
       <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
-          {getInitColorSchemeScript()}
+          <InitColorSchemeScript /> {/* must come before the <Main> element */}
           <Main />
           <NextScript />
         </body>
@@ -159,7 +178,7 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 ## API
 
-### `<CssVarsProvider>` props
+### `<CssVarsProvider>` &nbsp;props
 
 - `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
 - `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
@@ -172,10 +191,9 @@ const StyledComponent = styled('button')(({ theme }) => ({
 - `mode: string` - The user's selected mode
 - `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
 
-### `getInitColorSchemeScript: (options) => React.ReactElement`
-
-**options**
+### `<InitColorSchemeScript>` &nbsp;props
 
 - `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
+- `nonce?: string` - Optional nonce passed to the injected script tag, used to allow-list the next-themes script in your CSP

@@ -3,16 +3,15 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@mui/material": "latest",
-    "@mui/lab": "latest",
+    "@mui/material": "^5.0.0",
     "@mui/styled-engine-sc": "^6.0.0",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest",
-    "styled-components": "latest"
+    "react-scripts": "^5.0.0",
+    "styled-components": "^6.0.0"
   },
   "scripts": {
     "start": "craco start",

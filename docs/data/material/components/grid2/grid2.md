@@ -18,12 +18,12 @@ The columns can be configured with multiple breakpoints to specify the column sp
 
 We built the `Grid` component from scratch in order to:
 
-- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
+- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
 - Simplify the logic with CSS variables, removing the unnecessary `item` prop and reducing CSS specificity.
 - Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
 - Set negative margins of equal size on all sides of the grid container by default.
 
-Since the new implementation is considered a breaking change, we introduced it as `Unstable_Grid2` to gather feedbacks from the community before making it stable in the next major release of Material UI.
+Since the new implementation is considered a breaking change, we introduced it as `Unstable_Grid2` to gather feedbacks from the community before making it stable in the next major release of Material UI.
 
 We encourage everyone to try the new version of the `Grid` by visiting the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
 
@@ -47,12 +47,12 @@ The grid system is implemented with the `Grid` component:
 - There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
 - You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 - It uses negative margins and padding to create gaps between children, which behave similarly to [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
-- It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) if you need this functionality.
+- It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) if you need this functionality.
 - It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
 :::warning
 The `Grid` component is a _layout_ grid, not a _data_ grid.
-If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
+If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
 :::
 
 ## Fluid grids
@@ -112,7 +112,7 @@ Responsive values are supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all other [MUI System props](#system-props)
+- all other [MUI System props](#system-props)
 
 ## Auto-layout
 

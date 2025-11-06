@@ -16,19 +16,19 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 Alerts give users brief and potentially time-sensitive information in an unobtrusive manner.
 
-The Material UI Alert component includes several props for quickly customizing its styles to provide immediate visual cues about its contents.
+The Material UI Alert component includes several props for quickly customizing its styles to provide immediate visual cues about its contents.
 
 {{"demo": "SimpleAlert.js"}}
 
 :::info
-This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ### Usage
 
 A key trait of the alert pattern is that [it should not interrupt the user's experience](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) of the app.
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
-Use the Material UI [Dialog](https://mui.com/material-ui/react-dialog/) component if you need this behavior.
+Use the Material UI [Dialog](/material-ui/react-dialog/) component if you need this behavior.
 
 ## Basics
 
@@ -76,7 +76,7 @@ Use the `color` prop to override the default color for the specified [`severity`
 ### Actions
 
 Add an action to your Alert with the `action` prop.
-This lets you insert any element—an HTML tag, an SVG icon, or a React component such as a Material UI Button—after the Alert's message, justified to the right.
+This lets you insert any element—an HTML tag, an SVG icon, or a React component such as a Material UI Button—after the Alert's message, justified to the right.
 
 If you provide an `onClose` callback to the Alert without setting the `action` prop, the component will display a close icon (&#x2715;) by default.
 

@@ -3,10 +3,11 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import useTimeout from '@mui/utils/useTimeout';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
@@ -98,7 +99,7 @@ const CollapseWrapperInner = styled('div', {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Collapse = React.forwardRef(function Collapse(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCollapse' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCollapse' });
   const {
     addEndListener,
     children,
@@ -130,19 +131,13 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const theme = useTheme();
-  const timer = React.useRef();
+  const timer = useTimeout();
   const wrapperRef = React.useRef(null);
   const autoTransitionDuration = React.useRef();
   const collapsedSize =
     typeof collapsedSizeProp === 'number' ? `${collapsedSizeProp}px` : collapsedSizeProp;
   const isHorizontal = orientation === 'horizontal';
   const size = isHorizontal ? 'width' : 'height';
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
 
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(ref, nodeRef);
@@ -255,7 +250,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
 
   const handleAddEndListener = (next) => {
     if (timeout === 'auto') {
-      timer.current = setTimeout(next, autoTransitionDuration.current || 0);
+      timer.start(autoTransitionDuration.current || 0, next);
     }
     if (addEndListener) {
       // Old call signature before `react-transition-group` implemented `nodeRef`
@@ -292,9 +287,11 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
             ...style,
           }}
-          ownerState={{ ...ownerState, state }}
           ref={handleRef}
           {...childProps}
+          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
+          // that might have been forwarded from the Transition component.
+          ownerState={{ ...ownerState, state }}
         >
           <CollapseWrapper
             ownerState={{ ...ownerState, state }}

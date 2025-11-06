@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import TableSortLabel, { tableSortLabelClasses as classes } from '@mui/material/TableSortLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import { createSvgIcon } from '@mui/material/utils';
+import describeConformance from '../../test/describeConformance';
 
 const SortIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'Sort');
 

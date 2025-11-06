@@ -115,13 +115,12 @@ function PopupWithTrigger(props: PopupProps) {
   );
 }
 
-function MaterialUITransitionAdapter(props: { children: React.ReactElement }) {
-  const { requestedEnter, onEntering, onExited } = useTransitionStateManager();
+function MaterialUITransitionAdapter(props: { children: React.ReactElement<any> }) {
+  const { requestedEnter, onExited } = useTransitionStateManager();
   const { children } = props;
 
   return React.cloneElement(children, {
     in: requestedEnter,
     onExited,
-    onEnter: onEntering,
   });
 }

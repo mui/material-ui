@@ -13,7 +13,7 @@
   ],
   "classes": [],
   "spread": false,
-  "muiName": "MuiTextareaAutosize",
+  "muiName": "TextareaAutosize",
   "forwardsRefTo": "HTMLTextAreaElement",
   "filename": "/packages/mui-base/src/TextareaAutosize/TextareaAutosize.tsx",
   "inheritance": null,

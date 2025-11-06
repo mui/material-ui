@@ -1,15 +1,15 @@
 # Using icon libraries
 
-<p class="description">Learn how to use your favorite icon library with Joy UI.</p>
+<p class="description">Learn how to use your favorite icon library with Joy UI.</p>
 
-## Material UI Icons
+## Material UI Icons
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
 includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [SVG Icon](/material-ui/api/svg-icon/) components.
 
 ### Installation
 
-This section assumes that you've already installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions.
+This section assumes that you've already installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions.
 
 #### yarn
 
@@ -79,12 +79,12 @@ If you use TypeScript, you will need to update the TSConfig.
 :::
 
 :::error
-`<CssVarsProvider />` is _required_ when working with Material UI's icons inside an app using Joy UI, so that the components can correctly adjust the icons based on the usage.
+`<CssVarsProvider />` is _required_ when working with Material UI's icons inside an app using Joy UI, so that the components can correctly adjust the icons based on the usage.
 :::
 
 ### Usage
 
-By default, Joy UI components are able to control an icon's color, font size, and margins when its size or variant changes.
+By default, Joy UI components are able to control an icon's color, font size, and margins when its size or variant changes.
 
 {{"demo": "JoyMaterialIcon.js"}}
 
@@ -96,7 +96,7 @@ To control the size of the icon, use `fontSize` prop. The value can be one of th
 
 ## Third-party icons
 
-To use other icon libraries, web font icons, or plain SVG icons with Joy UI, apply the styles with specific CSS variables as shown in the example below:
+To use other icon libraries, web font icons, or plain SVG icons with Joy UI, apply the styles with specific CSS variables as shown in the example below:
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -123,11 +123,11 @@ function App() {
 }
 ```
 
-Joy UI components can control those variables based on their size and variant to make the icons fit perfectly.
+Joy UI components can control those variables based on their size and variant to make the icons fit perfectly.
 
 ---
 
-Here is a collection of well-known icon libraries that you can use with Joy UI.
+Here is a collection of well-known icon libraries that you can use with Joy UI.
 
 ### react-icons
 
@@ -179,7 +179,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 ### Font Awesome Icons
 
 - [Browse icons](https://fontawesome.com/icons)
-- [Installation](https://fontawesome.com/docs/web/use-with/react/)
+- [Installation](https://docs.fontawesome.com/web/use-with/react)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fontawesome-kjbnqj?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
      style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"

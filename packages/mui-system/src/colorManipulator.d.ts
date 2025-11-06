@@ -27,3 +27,4 @@ export function darken(color: string, coefficient: number): string;
 export function private_safeDarken(color: string, coefficient: number, warning?: string): string;
 export function lighten(color: string, coefficient: number): string;
 export function private_safeLighten(color: string, coefficient: number, warning?: string): string;
+export function blend(background: string, overlay: string, opacity: number, gamma?: number): string;

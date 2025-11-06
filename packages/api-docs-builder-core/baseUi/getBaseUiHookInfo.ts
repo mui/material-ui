@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { getHeaders, getTitle } from '@mui/markdown';
+import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
   HookInfo,

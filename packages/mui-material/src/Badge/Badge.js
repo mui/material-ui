@@ -2,12 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePreviousProps } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { useBadge } from '@mui/base/useBadge';
-import { useSlotProps } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import usePreviousProps from '@mui/utils/usePreviousProps';
+import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
+import useBadge from './useBadge';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 
@@ -243,7 +243,7 @@ const BadgeBadge = styled('span', {
 }));
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
     anchorOrigin: anchorOriginProp = {
       vertical: 'top',

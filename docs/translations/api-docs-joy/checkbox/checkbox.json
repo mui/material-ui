@@ -131,10 +131,10 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "checkbox": "The component that renders the checkbox.",
     "action": "The component that renders the action.",
+    "checkbox": "The component that renders the checkbox.",
     "input": "The component that renders the input.",
-    "label": "The component that renders the label."
+    "label": "The component that renders the label.",
+    "root": "The component that renders the root."
   }
 }

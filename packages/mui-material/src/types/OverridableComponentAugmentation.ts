@@ -16,8 +16,8 @@ declare module '@mui/material/OverridableComponent' {
          */
         component: DefaultComponent;
       } & OverridePropsVer2<TypeMap, DefaultComponent>,
-    ): JSX.Element;
-    (props: DefaultComponentPropsVer2<TypeMap>): JSX.Element;
+    ): React.JSX.Element;
+    (props: DefaultComponentPropsVer2<TypeMap>): React.JSX.Element;
   }
 
   /**

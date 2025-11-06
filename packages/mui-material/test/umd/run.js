@@ -50,7 +50,7 @@ async function createApp() {
     'utf8',
   );
   index = index.replace(
-    'https://unpkg.com/@mui/material@latest/umd/material-ui.development.js',
+    'https://unpkg.com/@mui/material@5/umd/material-ui.development.js',
     umdPath,
   );
   index = index.replace(

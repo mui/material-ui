@@ -1,4 +1,4 @@
-# Joy UI - Create React App example in TypeScript
+# Joy UI - Create React App example in TypeScript
 
 `@mui/joy` is still in early development and is not recommended for use in production.
 
@@ -9,7 +9,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/joy-ui-cra-ts
+curl https://codeload.github.com/mui/material-ui/tar.gz/v5.x | tar -xz --strip=2 material-ui-5.x/examples/joy-ui-cra-ts
 cd joy-ui-cra-ts
 ```
 
@@ -33,4 +33,4 @@ or:
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/joy-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://v5.mui.com/joy-ui/getting-started/templates/) section.

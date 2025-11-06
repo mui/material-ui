@@ -8,14 +8,14 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/material": "latest",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^5.0.0",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest"
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "v5.0.0"
   }
 }

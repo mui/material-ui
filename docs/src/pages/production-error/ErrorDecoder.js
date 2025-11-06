@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { renderMarkdown } from '@mui/markdown';
+import { renderMarkdown } from '@mui/internal-markdown';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const ErrorMessageSection = styled('div')({

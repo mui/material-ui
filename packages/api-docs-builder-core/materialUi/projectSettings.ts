@@ -2,6 +2,10 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
+import {
+  unstable_generateUtilityClass as generateUtilityClass,
+  unstable_isGlobalState as isGlobalState,
+} from '@mui/utils';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
 export const projectSettings: ProjectSettings = {
@@ -24,7 +28,13 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|Grid2)/) !== null;
+    return (
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|InitColorSchemeScript|DefaultPropsProvider|Grid2)/,
+      ) !== null
+    );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
+  generateClassName: generateUtilityClass,
+  isGlobalClassName: isGlobalState,
 };

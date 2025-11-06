@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
@@ -60,7 +60,7 @@ const CardActionAreaFocusHighlight = styled('span', {
 }));
 
 const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCardActionArea' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCardActionArea' });
   const { children, className, focusVisibleClassName, ...other } = props;
 
   const ownerState = props;

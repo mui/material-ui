@@ -26,11 +26,11 @@ import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 const authors = {
   MUI: {
     name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+    link: 'https://x.com/MUI_hq',
   },
   SteveEberger: {
     name: 'Steve Ernstberger',
-    link: 'https://twitter.com/SteveEberger',
+    link: 'https://x.com/SteveEberger',
   },
 };
 
@@ -40,7 +40,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
     },
   },
   {
@@ -48,7 +48,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
     },
   },
   {
@@ -56,7 +56,7 @@ const templates = [
     author: authors.SteveEberger,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
     },
   },
   {
@@ -68,7 +68,7 @@ const templates = [
     author: authors.SteveEberger,
     design: {
       name: 'Untitled UI',
-      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system',
+      link: 'https://www.figma.com/community/file/1020079203222518115/untitled-ui-free-figma-ui-kit-and-design-system-v2-0',
     },
   },
   {
@@ -88,7 +88,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Frames X',
-      link: 'https://framesxdesign.com/',
+      link: 'https://framesxdesign.com/product',
     },
   },
 ];

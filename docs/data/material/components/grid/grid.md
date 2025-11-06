@@ -82,7 +82,7 @@ Responsive values is supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- all the [other props](#system-props) of MUI System
 
 :::warning
 When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
@@ -185,7 +185,7 @@ If used, these props may have undesirable effects on the height of the `Grid` it
 ## CSS Grid Layout
 
 The `Grid` component is using CSS flexbox internally.
-But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "CSSGrid.js", "bg": true}}
 

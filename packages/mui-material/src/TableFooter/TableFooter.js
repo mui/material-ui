@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getTableFooterUtilityClass } from './tableFooterClasses';
 
@@ -33,7 +33,7 @@ const tablelvl2 = {
 const defaultComponent = 'tfoot';
 
 const TableFooter = React.forwardRef(function TableFooter(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableFooter' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableFooter' });
   const { className, component = defaultComponent, ...other } = props;
 
   const ownerState = {

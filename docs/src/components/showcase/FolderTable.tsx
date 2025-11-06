@@ -91,6 +91,7 @@ export default function BasicTable() {
       sx={[
         {
           maxWidth: 260,
+          borderColor: 'grey.200',
           boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
           [`& .${tableCellClasses.root}`]: {
             borderColor: 'grey.200',
@@ -103,7 +104,7 @@ export default function BasicTable() {
           theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
             borderColor: 'primaryDark.700',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
             [`& .${tableCellClasses.root}`]: {
               borderColor: 'primaryDark.700',
             },
@@ -150,10 +151,10 @@ export default function BasicTable() {
               <TableCell align="right">
                 <Typography
                   fontSize={13}
-                  fontWeight={600}
+                  fontWeight="bold"
                   sx={(theme: Theme) => ({
                     mr: 1,
-                    color: 'success.700',
+                    color: 'success.800',
                     ...theme.applyDarkStyles({
                       color: 'success.500',
                     }),

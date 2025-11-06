@@ -2,15 +2,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
@@ -85,7 +85,7 @@ const defaultIcon = <CheckBoxOutlineBlankIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
     color = 'primary',

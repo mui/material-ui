@@ -18,13 +18,6 @@ export interface CssTransitionProps {
    */
   exitClassName?: string;
   /**
-   * The name of the CSS property that is transitioned the longest (has the largest `transition-duration`) on enter.
-   * This is used to determine when the transition has ended.
-   * If not specified, the transition will be considered finished end when the first property is transitioned.
-   * If all properties have the same `transition-duration` (or there is just one transitioned property), this can be omitted.
-   */
-  lastTransitionedPropertyOnEnter?: string;
-  /**
    * The name of the CSS property that is transitioned the longest (has the largest `transition-duration`) on exit.
    * This is used to determine when the transition has ended.
    * If not specified, the transition will be considered finished end when the first property is transitioned.
@@ -45,21 +38,22 @@ export interface CssTransitionProps {
  *
  * - [CssTransition API](https://mui.com/base-ui/react-transitions/components-api/#css-transition)
  */
-function CssTransition(props: CssTransitionProps) {
+const CssTransition = React.forwardRef(function CssTransition(
+  props: CssTransitionProps,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
+) {
   const {
     children,
     className,
-    lastTransitionedPropertyOnEnter,
     lastTransitionedPropertyOnExit,
     enterClassName,
     exitClassName,
     ...other
   } = props;
 
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
-    useTransitionStateManager();
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
-  const [isEntering, setIsEntering] = React.useState(!requestedEnter);
+  const [isEntering, setIsEntering] = React.useState(false);
 
   // The `isEntering` state (which is used to determine the right CSS class to apply)
   // is updated slightly (one animation frame) after the `requestedEnter` state is updated.
@@ -71,43 +65,21 @@ function CssTransition(props: CssTransitionProps) {
         setIsEntering(true);
       });
     } else {
-      requestAnimationFrame(() => {
-        setIsEntering(false);
-      });
+      setIsEntering(false);
     }
-  });
-
-  React.useEffect(() => {
-    if (requestedEnter) {
-      onEntering();
-    } else {
-      onExiting();
-    }
-  }, [requestedEnter, onEntering, onExiting]);
+  }, [requestedEnter]);
 
   const handleTransitionEnd = React.useCallback(
     (event: React.TransitionEvent) => {
-      if (requestedEnter) {
-        if (
-          lastTransitionedPropertyOnEnter == null ||
-          event.propertyName === lastTransitionedPropertyOnEnter
-        ) {
-          onEntered();
-        }
-      } else if (
-        lastTransitionedPropertyOnExit == null ||
-        event.propertyName === lastTransitionedPropertyOnExit
+      if (
+        !requestedEnter &&
+        (lastTransitionedPropertyOnExit == null ||
+          event.propertyName === lastTransitionedPropertyOnExit)
       ) {
         onExited();
       }
     },
-    [
-      onExited,
-      onEntered,
-      requestedEnter,
-      lastTransitionedPropertyOnEnter,
-      lastTransitionedPropertyOnExit,
-    ],
+    [onExited, requestedEnter, lastTransitionedPropertyOnExit],
   );
 
   return (
@@ -115,11 +87,12 @@ function CssTransition(props: CssTransitionProps) {
       onTransitionEnd={handleTransitionEnd}
       className={clsx(className, isEntering ? enterClassName : exitClassName)}
       {...other}
+      ref={forwardedRef}
     >
       {children}
     </div>
   );
-}
+});
 
 CssTransition.propTypes = {
   children: PropTypes.node,

@@ -10,7 +10,6 @@ import {
   OptionGroup as BaseOptionGroup,
   OptionGroupProps,
 } from '@mui/base/OptionGroup';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -35,7 +34,7 @@ function Select(props: SelectProps<string, false>) {
   const slots: SelectProps<string, false>['slots'] = {
     root: Button,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -222,6 +221,6 @@ const GroupOptions = styled('ul')`
   }
 `;
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;

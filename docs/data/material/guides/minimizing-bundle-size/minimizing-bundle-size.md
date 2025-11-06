@@ -4,23 +4,24 @@
 
 ## Bundle size matters
 
-Material UI's maintainers take bundle size very seriously. Size snapshots are taken
-on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)).
+Material UI's maintainers take bundle size very seriously. Size snapshots are taken
+on every commit for every package and critical parts of those packages.
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 
-Tree-shaking Material UI works out of the box in modern frameworks.
-Material UI exposes its full API on the top-level `@mui` imports.
+Tree-shaking Material UI works out of the box in modern frameworks.
+Material UI exposes its full API on the top-level `@mui` imports.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@mui/material';
 ```
 
-⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler
-that doesn't support tree-shaking.
+:::warning
+The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler that doesn't support tree-shaking.
+:::
 
 ## Development environment
 
@@ -238,6 +239,7 @@ You are strongly discouraged to:
   ```
 
   You have no guarantee that these imports will continue to work from one version to the next.
+
   :::
 
 A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):

@@ -1,6 +1,6 @@
 # CSS theme variables
 
-<p class="description">An overview of adopting CSS theme variables in Material UI or Joy UI.</p>
+<p class="description">An overview of adopting CSS theme variables in Material UI or Joy UI.</p>
 
 [CSS variables](https://www.w3.org/TR/css-variables-1/) are a modern cross-browser feature that let you declare variables in CSS and reuse them in other properties.
 
@@ -10,9 +10,9 @@ If this is your first time encountering CSS variables, you should check out [the
 
 ## Introduction
 
-CSS theme variable support is a new feature in MUI System added in [`v5.0.5`](https://github.com/mui/material-ui/releases/tag/v5.0.5) as an experimental export. It tells the underlying Material UI, Joy UI or even custom UI library components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
+CSS theme variable support is a new feature in MUI System added in [`v5.0.5`](https://github.com/mui/material-ui/releases/tag/v5.0.5) as an experimental export. It tells the underlying Material UI, Joy UI or even custom UI library components to use the generated CSS theme variables instead of raw values. This provides significant improvements in developer experience related to theming and customization.
 With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
-You can checkout the [advantages](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/#advantages) and [trade-offs](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/#trade-offs) of using CSS theme variables before using them.
+You can checkout the [advantages](/material-ui/experimental-api/css-theme-variables/overview/#advantages) and [trade-offs](/material-ui/experimental-api/css-theme-variables/overview/#trade-offs) of using CSS theme variables before using them.
 
 ### Advantages
 
@@ -39,7 +39,7 @@ The comparison described in the table above may not be applicable to large and c
 
 ## Usage
 
-The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utilities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts. If you are already using [Material UI](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) or [Joy UI](https://mui.com/joy-ui/customization/using-css-variables/), they already expose their own `CssVarsProvider` component that you can use directly without needing to configure your theme. Now that's out of the way, we can continue with how this util can be used.
+The CSS variables API usage is exposed as a higher order function called `unstable_createCssVarsProvider` which can be called to create a theme provider and other utilities to share the theme config throughout your app. This is a very low-level function and has a lot of moving parts. If you are already using [Material UI](/material-ui/experimental-api/css-theme-variables/overview/) or [Joy UI](/joy-ui/customization/using-css-variables/), they already expose their own `CssVarsProvider` component that you can use directly without needing to configure your theme. Now that's out of the way, we can continue with how this util can be used.
 
 We'll first define a minimal theme palette for light and dark modes.
 
@@ -185,9 +185,9 @@ Now, the Button's `backgroundColor`, `borderColor` and text `color` values will 
 
 {{"demo": "CreateCssVarsProvider.js"}}
 
-For framework or language specific setup, see [this](https://mui.com/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering)
+For framework or language specific setup, see [this](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering)
 
-See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/CssVarsProvider.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
+See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/CssVarsProvider.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
 
 ## API
 

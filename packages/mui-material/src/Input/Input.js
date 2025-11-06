@@ -1,11 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { refType, deepmerge } from '@mui/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import deepmerge from '@mui/utils/deepmerge';
+import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -115,7 +116,7 @@ const InputInput = styled(InputBaseInput, {
 })({});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline,
     components = {},

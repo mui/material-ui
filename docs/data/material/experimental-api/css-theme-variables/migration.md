@@ -2,7 +2,7 @@
 
 <p class="description">A step-by-step migration guide to start using CSS theme variables in your project.</p>
 
-This is a guide that shows how to migrate an existing Material UI project to CSS theme variables.
+This is a guide that shows how to migrate an existing Material UI project to CSS theme variables.
 This migration offers a solution to a longstanding issue in which a user who prefers dark mode will see a flash of light mode when the page first loads.
 
 ## 1. Add the new provider
@@ -19,7 +19,7 @@ function App() {
 }
 ```
 
-You should see the generated CSS theme variables in the stylesheet. Material UI components that render inside the new provider will automatically consume the variables.
+You should see the generated CSS theme variables in the stylesheet. Material UI components that render inside the new provider will automatically consume the variables.
 
 ### Custom theme
 
@@ -39,7 +39,7 @@ Other properties can be copied and pasted.
 -   },
 -   ...
 - },
-- // ...other properties, e.g. breakpoints, spacing, shape, typography, components
+- // ...other properties, for example breakpoints, spacing, shape, typography, components
 -});
 
 -const darkTheme = createTheme({
@@ -93,10 +93,10 @@ Save the file and start the development server.
 Your application should be able to run without crashing.
 
 :::info
-If you encounter any errors, please [open an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) to share it with us. We'd love to help.
+If you encounter any errors, please [open an issue](https://github.com/mui/material-ui/issues/new/choose) to share it with us. We'd love to help.
 :::
 
-If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
+If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
 
 ## 2. Remove the toggle mode logic
 
@@ -180,15 +180,15 @@ The `mode` is stored inside `CssVarsProvider` which handles local storage synchr
 
 ## 3. Prevent dark-mode flickering in server-side applications
 
-The `getInitColorSchemeScript()` API prevents dark-mode flickering by returning a script that must be run before React.
+The `InitColorSchemeScript` component prevents dark-mode flickering by returning a script that must be run before React.
 
 ### Next.js Pages Router
 
-Place the script before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document):
+Place the component before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/pages/building-your-application/routing/custom-document):
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { getInitColorSchemeScript } from '@mui/material/styles';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export default class MyDocument extends Document {
   render() {
@@ -196,7 +196,7 @@ export default class MyDocument extends Document {
       <Html data-color-scheme="light">
         <Head>...</Head>
         <body>
-          {getInitColorSchemeScript()}
+          <InitColorSchemeScript />
           <Main />
           <NextScript />
         </body>
@@ -212,10 +212,10 @@ Place the script in your [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/referen
 
 ```jsx
 import * as React from 'react';
-import { getInitColorSchemeScript } from '@mui/material/styles';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
+  setPreBodyComponents([<InitColorSchemeScript />]);
 }
 ```
 

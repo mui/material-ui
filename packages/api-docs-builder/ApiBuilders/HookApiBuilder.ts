@@ -8,7 +8,8 @@ import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
-import { renderMarkdown } from '@mui/markdown';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
+import { renderMarkdown } from '@mui/internal-markdown';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
 import {
@@ -30,12 +31,15 @@ interface ParsedProperty {
   typeStr: string;
 }
 
-const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
+const parseProperty = async (
+  propertySymbol: ts.Symbol,
+  project: TypeScriptProject,
+): Promise<ParsedProperty> => ({
   name: propertySymbol.name,
   description: getSymbolDescription(propertySymbol, project),
   tags: getSymbolJSDocTags(propertySymbol),
   required: !propertySymbol.declarations?.find(ts.isPropertySignature)?.questionToken,
-  typeStr: stringifySymbol(propertySymbol, project),
+  typeStr: await stringifySymbol(propertySymbol, project),
 });
 
 export interface ReactApi extends ReactDocgenApi {
@@ -105,7 +109,7 @@ export interface ReactApi extends ReactDocgenApi {
  * *
  * * - [useButton API](https://mui.com/base-ui/api/use-button/)
  */
-async function annotateHookDefinition(api: ReactApi) {
+async function annotateHookDefinition(api: ReactApi, hookJsdoc: Annotation) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
@@ -282,6 +286,14 @@ async function annotateHookDefinition(api: ReactApi) {
     })`,
   );
 
+  if (hookJsdoc.tags.length > 0) {
+    markdownLines.push('');
+  }
+
+  hookJsdoc.tags.forEach((tag) => {
+    markdownLines.push(`@${tag.title}${tag.name ? ` ${tag.name} -` : ''} ${tag.description}`);
+  });
+
   const jsdoc = `/**\n${markdownLines
     .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
     .join('\n')}\n */`;
@@ -394,7 +406,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = async (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -430,13 +442,16 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
       .join('\n')}</ul>`,
   };
 
-  writePrettifiedFile(
+  await writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 };
 
-const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
+const extractInfoFromType = async (
+  typeName: string,
+  project: TypeScriptProject,
+): Promise<ParsedProperty[]> => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
@@ -454,9 +469,11 @@ const extractInfoFromType = (typeName: string, project: TypeScriptProject): Pars
     const propertiesOnProject = type.getProperties();
 
     // @ts-ignore
-    propertiesOnProject.forEach((propertySymbol) => {
-      properties[propertySymbol.name] = parseProperty(propertySymbol, project);
-    });
+    await Promise.all(
+      propertiesOnProject.map(async (propertySymbol) => {
+        properties[propertySymbol.name] = await parseProperty(propertySymbol, project);
+      }),
+    );
 
     result = Object.values(properties)
       .filter((property) => !property.tags.ignore)
@@ -536,8 +553,13 @@ export default async function generateHookApi(
     { filename },
   );
 
-  const parameters = extractInfoFromType(`${upperFirst(name)}Parameters`, project);
-  const returnValue = extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
+  const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
+  const hookJsdoc = parseDoctrine(reactApi.description);
+
+  // We override `reactApi.description` with `hookJsdoc.description` because
+  // the former can include JSDoc tags that we don't want to render in the docs.
+  reactApi.description = hookJsdoc.description;
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
@@ -572,15 +594,15 @@ export default async function generateHookApi(
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(
+    await generateApiTranslations(
       path.join(process.cwd(), 'docs/translations/api-docs'),
       reactApi,
       projectSettings.translationLanguages,
     );
-    generateApiJson(apiPagesDirectory, reactApi);
+    await generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
-    await annotateHookDefinition(reactApi);
+    await annotateHookDefinition(reactApi, hookJsdoc);
   }
 
   return reactApi;

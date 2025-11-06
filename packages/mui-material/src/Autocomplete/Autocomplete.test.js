@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
+  reactMajor,
 } from '@mui-internal/test-utils';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
@@ -23,6 +23,7 @@ import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -70,7 +71,6 @@ describe('<Autocomplete />', () => {
         'componentProp',
         'componentsProp',
         'slotsProp',
-        'reactTestRenderer',
         'slotPropsCallback', // not supported yet
       ],
     }),
@@ -144,6 +144,23 @@ describe('<Autocomplete />', () => {
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+
+    it('should show supplied options to the "options" prop even when loading', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.paper}`).textContent).not.to.equal('Loading…');
+
+      const listbox = screen.getByRole('listbox');
+      const htmlOptions = listbox.querySelectorAll('li');
+      expect(htmlOptions[0].innerHTML).to.equal('one');
     });
   });
 
@@ -587,6 +604,7 @@ describe('<Autocomplete />', () => {
       expect(handleClose.callCount).to.equal(0);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
+
     it('should close listbox on pressing left or right keys when inputValue is empty', () => {
       const handleClose = spy();
       const options = ['one', 'two', 'three'];
@@ -620,7 +638,10 @@ describe('<Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => <Chip label={option.title} {...getTagProps({ index })} />)
+              .map((option, index) => {
+                const { key, ...tagProps } = getTagProps({ index });
+                return <Chip key={key} label={option.title} {...tagProps} />;
+              })
           }
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} autoFocus />}
@@ -1671,6 +1692,16 @@ describe('<Autocomplete />', () => {
       const value = 'not a good value';
       const options = ['first option', 'second option'];
 
+      const errorMessage = 'None of the options match with `"not a good value"`';
+
+      let expectedOccurrences = 4;
+
+      if (reactMajor === 18) {
+        expectedOccurrences = 6;
+      } else if (reactMajor === 17) {
+        expectedOccurrences = 2;
+      }
+
       expect(() => {
         render(
           <Autocomplete
@@ -1679,17 +1710,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} />}
           />,
         );
-      }).toWarnDev([
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
-        // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
-        React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSuppressed &&
-          'None of the options match with `"not a good value"`',
-      ]);
+      }).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
     });
 
     it('warn if groups options are not sorted', () => {
@@ -1835,9 +1856,15 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, restore the highlight
-      setProps({ options: [{ label: 'one' }, { label: 'two' }, { label: 'three' }] });
+      // zero and three options are added and autocomplete re-renders, restore the highlight
+      setProps({
+        options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
+      });
       checkHighlightIs(listbox, 'two');
+
+      // check that the highlighted option is still in sync with the internal highlighted index
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'three'
+      checkHighlightIs(listbox, 'three');
     });
 
     it('should reset the highlight when the input changed', () => {
@@ -2706,10 +2733,10 @@ describe('<Autocomplete />', () => {
     );
     expect(handleHighlightChange.callCount).to.equal(
       // FIXME: highlighted index implementation should be implemented using React not the DOM.
-      React.version.startsWith('18') ? 2 : 1,
+      reactMajor >= 18 ? 2 : 1,
     );
     expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-    if (React.version.startsWith('18')) {
+    if (reactMajor >= 18) {
       expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
     }
   });
@@ -2729,10 +2756,10 @@ describe('<Autocomplete />', () => {
       );
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 2 : 1,
+        reactMajor >= 18 ? 2 : 1,
       );
       expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
       }
     });
@@ -2754,9 +2781,9 @@ describe('<Autocomplete />', () => {
 
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactMajor >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -2768,7 +2795,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 5 : 4,
+        reactMajor >= 18 ? 5 : 4,
       );
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
@@ -2790,9 +2817,9 @@ describe('<Autocomplete />', () => {
       fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 4 : 3,
+        reactMajor >= 18 ? 4 : 3,
       );
-      if (React.version.startsWith('18')) {
+      if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -2841,7 +2868,11 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ options: ['four', 'five'] });
       checkHighlightIs(getByRole('listbox'), 'four');
-      expect(handleHighlightChange).to.deep.equal([null, 'one', 'four']);
+
+      const expectedCallHistory =
+        reactMajor >= 19 ? [null, 'one', 'one', 'four'] : [null, 'one', 'four'];
+
+      expect(handleHighlightChange).to.deep.equal(expectedCallHistory);
     });
   });
 

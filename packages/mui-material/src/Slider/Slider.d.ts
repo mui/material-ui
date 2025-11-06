@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SlotComponentProps } from '@mui/base';
-import { Mark } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
+import { Mark } from './useSlider.types';
+import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
@@ -46,8 +46,7 @@ export interface SliderOwnProps {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -65,8 +64,7 @@ export interface SliderOwnProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    *
    * @default {}
    */
@@ -176,6 +174,11 @@ export interface SliderOwnProps {
    */
   scale?: (value: number) => number;
   /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep?: number;
+  /**
    * The size of the slider.
    * @default 'medium'
    */
@@ -278,7 +281,7 @@ export interface SliderTypeMap<
 }
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   index: number;
   open: boolean;
   value: number;

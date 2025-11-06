@@ -1,12 +1,16 @@
 'use client';
-import { Popper as BasePopper, PopperProps as BasePopperProps } from '@mui/base/Popper';
-import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
-import { HTMLElementType, refType } from '@mui/utils';
+import { Direction, SxProps } from '@mui/system';
+import useTheme from '@mui/system/useThemeWithoutDefault';
+import refType from '@mui/utils/refType';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, Theme, useThemeProps } from '../styles';
+import BasePopper from './BasePopper';
+import { PopperProps as BasePopperProps } from './BasePopper.types';
+import { styled, Theme } from '../styles';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
-export type PopperProps = Omit<BasePopperProps, 'direction'> & {
+export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -29,7 +33,7 @@ export type PopperProps = Omit<BasePopperProps, 'direction'> & {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-};
+}
 
 const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',
@@ -54,7 +58,7 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const theme = useTheme<{ direction?: Direction }>();
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiPopper',
   });

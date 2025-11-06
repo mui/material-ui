@@ -1,7 +1,6 @@
 <Slider
   aria-label="Restricted values"
   defaultValue={20}
-  valueLabelFormat={valueLabelFormat}
   getAriaValueText={valuetext}
   step={null}
   valueLabelDisplay="auto"

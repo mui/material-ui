@@ -38,8 +38,8 @@
     },
     "iconWrapper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the wrapper element of <code>icon</code>",
-      "conditions": "<code>icon</code> is provided"
+      "nodeName": "the <code>icon</code> HTML element",
+      "conditions": "both <code>icon</code> and <code>label</code> are provided"
     },
     "labelIcon": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

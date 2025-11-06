@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { useSnackbar } from '@mui/base/useSnackbar';
-import styled from '../styles/styled';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
+import useSnackbar from './useSnackbar';
+import ClickAwayListener from '../ClickAwayListener';
+import { styled, useTheme } from '../styles';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
@@ -74,7 +74,7 @@ const SnackbarRoot = styled('div', {
 });
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
   const theme = useTheme();
   const defaultTransitionDuration = {
     enter: theme.transitions.duration.enteringScreen,
@@ -303,7 +303,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps: PropTypes.object,

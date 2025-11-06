@@ -28,6 +28,7 @@ export default function FixedTags() {
             <Chip
               variant="soft"
               color="neutral"
+              sx={{ minWidth: 0 }}
               {...getTagProps({ index })}
               disabled={fixedOptions.indexOf(option) !== -1}
             >

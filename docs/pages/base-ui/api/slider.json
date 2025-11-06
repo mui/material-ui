@@ -53,6 +53,7 @@
       "default": "function Identity(x) {\n  return x;\n}",
       "signature": { "type": "function(x: any) => any", "describedArgs": [] }
     },
+    "shiftStep": { "type": { "name": "number" }, "default": "10" },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -92,37 +93,37 @@
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": "MuiSlider-root"
+      "class": "base-Slider-root"
     },
     {
       "name": "track",
       "description": "The component that renders the track.",
       "default": "'span'",
-      "class": "MuiSlider-track"
+      "class": "base-Slider-track"
     },
     {
       "name": "rail",
       "description": "The component that renders the rail.",
       "default": "'span'",
-      "class": "MuiSlider-rail"
+      "class": "base-Slider-rail"
     },
     {
       "name": "thumb",
       "description": "The component that renders the thumb.",
       "default": "'span'",
-      "class": "MuiSlider-thumb"
+      "class": "base-Slider-thumb"
     },
     {
       "name": "mark",
       "description": "The component that renders the mark.",
       "default": "'span'",
-      "class": "MuiSlider-mark"
+      "class": "base-Slider-mark"
     },
     {
       "name": "markLabel",
       "description": "The component that renders the mark label.",
       "default": "'span'",
-      "class": "MuiSlider-markLabel"
+      "class": "base-Slider-markLabel"
     },
     {
       "name": "valueLabel",
@@ -139,67 +140,67 @@
   "classes": [
     {
       "key": "active",
-      "className": "Mui-active",
+      "className": "base--active",
       "description": "State class applied to the thumb element if it's active.",
       "isGlobal": true
     },
     {
       "key": "disabled",
-      "className": "Mui-disabled",
+      "className": "base--disabled",
       "description": "State class applied to the root and thumb element if `disabled={true}`.",
       "isGlobal": true
     },
     {
       "key": "dragging",
-      "className": "MuiSlider-dragging",
+      "className": "base-Slider-dragging",
       "description": "State class applied to the root if a thumb is being dragged.",
       "isGlobal": false
     },
     {
       "key": "focusVisible",
-      "className": "Mui-focusVisible",
+      "className": "base--focusVisible",
       "description": "State class applied to the thumb element if keyboard focused.",
       "isGlobal": true
     },
     {
       "key": "markActive",
-      "className": "MuiSlider-markActive",
+      "className": "base-Slider-markActive",
       "description": "Class name applied to the mark element if active (depending on the value).",
       "isGlobal": false
     },
     {
       "key": "marked",
-      "className": "MuiSlider-marked",
+      "className": "base-Slider-marked",
       "description": "Class name applied to the root element if `marks` is provided with at least one label.",
       "isGlobal": false
     },
     {
       "key": "markLabelActive",
-      "className": "MuiSlider-markLabelActive",
+      "className": "base-Slider-markLabelActive",
       "description": "Class name applied to the mark label element if active (depending on the value).",
       "isGlobal": false
     },
     {
       "key": "trackFalse",
-      "className": "MuiSlider-trackFalse",
+      "className": "base-Slider-trackFalse",
       "description": "Class name applied to the root element if `track={false}`.",
       "isGlobal": false
     },
     {
       "key": "trackInverted",
-      "className": "MuiSlider-trackInverted",
+      "className": "base-Slider-trackInverted",
       "description": "Class name applied to the root element if `track=\"inverted\"`.",
       "isGlobal": false
     },
     {
       "key": "vertical",
-      "className": "MuiSlider-vertical",
+      "className": "base-Slider-vertical",
       "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
       "isGlobal": false
     }
   ],
   "spread": true,
-  "muiName": "MuiSlider",
+  "muiName": "Slider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/Slider/Slider.tsx",
   "inheritance": null,

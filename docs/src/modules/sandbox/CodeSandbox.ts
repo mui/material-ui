@@ -33,7 +33,7 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   document.body.removeChild(form);
 }
 
-const createReactApp = (demoData: DemoData) => {
+function createReactApp(demoData: DemoData) {
   const ext = getFileExtension(demoData.codeVariant);
   const { title, githubLocation: description } = demoData;
 
@@ -63,11 +63,14 @@ const createReactApp = (demoData: DemoData) => {
       description,
       dependencies,
       devDependencies,
+      scripts: {
+        start: 'react-scripts start',
+        build: 'react-scripts build',
+        test: 'react-scripts test',
+        eject: 'react-scripts eject',
+      },
       ...(demoData.codeVariant === 'TS' && {
         main: 'index.tsx',
-        scripts: {
-          start: 'react-scripts start',
-        },
       }),
     },
   };
@@ -80,21 +83,21 @@ const createReactApp = (demoData: DemoData) => {
     devDependencies,
     /**
      * @param {string} initialFile
-     * @description should start with `/`, e.g. `/Demo.tsx`. If the extension is not provided,
+     * @description should start with `/`, for example `/Demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
     openSandbox: (initialFile: string = `/src/Demo.${ext}`) =>
       openSandbox({ files, codeVariant: demoData.codeVariant, initialFile }),
   };
-};
+}
 
-const createJoyTemplate = (templateData: {
+function createJoyTemplate(templateData: {
   title: string;
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
   codeStyling?: CodeStyling;
-}) => {
+}) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
 
@@ -155,11 +158,14 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       description,
       dependencies,
       devDependencies,
+      scripts: {
+        start: 'react-scripts start',
+        build: 'react-scripts build',
+        test: 'react-scripts test',
+        eject: 'react-scripts eject',
+      },
       ...(templateData.codeVariant === 'TS' && {
         main: 'index.tsx',
-        scripts: {
-          start: 'react-scripts start',
-        },
       }),
     },
   };
@@ -172,7 +178,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     openSandbox: (initialFile: string = '/App') =>
       openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
   };
-};
+}
 
 export default {
   createReactApp,

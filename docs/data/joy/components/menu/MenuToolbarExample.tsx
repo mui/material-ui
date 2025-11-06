@@ -13,7 +13,7 @@ import { Theme } from '@mui/joy';
 type MenuBarButtonProps = Pick<DropdownProps, 'children' | 'open'> & {
   onOpen: DropdownProps['onOpenChange'];
   onKeyDown: React.KeyboardEventHandler;
-  menu: JSX.Element;
+  menu: React.JSX.Element;
   onMouseEnter: React.MouseEventHandler;
 };
 

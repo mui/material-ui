@@ -2,12 +2,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
-import { alpha } from '@mui/system';
-import styled from '../styles/styled';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
+import useTimeout, { Timeout } from '@mui/utils/useTimeout';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
+import appendOwnerState from '@mui/utils/appendOwnerState';
+import getReactElementRef from '@mui/utils/getReactElementRef';
+import { styled, useTheme } from '../styles';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
@@ -54,7 +57,7 @@ const TooltipPopper = styled(Popper, {
   },
 })(({ theme, ownerState, open }) => ({
   zIndex: (theme.vars || theme).zIndex.tooltip,
-  pointerEvents: 'none', // disable jss-rtl plugin
+  pointerEvents: 'none',
   ...(!ownerState.disableInteractive && {
     pointerEvents: 'auto',
   }),
@@ -212,26 +215,26 @@ const TooltipArrow = styled('span', {
 }));
 
 let hystersisOpen = false;
-let hystersisTimer = null;
+const hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
-  clearTimeout(hystersisTimer);
+  hystersisTimer.clear();
 }
 
 function composeEventHandler(handler, eventHandler) {
-  return (event) => {
+  return (event, ...params) => {
     if (eventHandler) {
-      eventHandler(event);
+      eventHandler(event, ...params);
     }
-    handler(event);
+    handler(event, ...params);
   };
 }
 
 // TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children: childrenProp,
@@ -268,7 +271,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const isRtl = useRtl();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -276,10 +279,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
-  const closeTimer = React.useRef();
-  const enterTimer = React.useRef();
-  const leaveTimer = React.useRef();
-  const touchTimer = React.useRef();
+  const closeTimer = useTimeout();
+  const enterTimer = useTimeout();
+  const leaveTimer = useTimeout();
+  const touchTimer = useTimeout();
 
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
@@ -319,25 +322,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const id = useId(idProp);
 
   const prevUserSelect = React.useRef();
-  const stopTouchInteraction = React.useCallback(() => {
+  const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current !== undefined) {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
-    clearTimeout(touchTimer.current);
-  }, []);
+    touchTimer.clear();
+  });
 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(closeTimer.current);
-      clearTimeout(enterTimer.current);
-      clearTimeout(leaveTimer.current);
-      stopTouchInteraction();
-    };
-  }, [stopTouchInteraction]);
+  React.useEffect(() => stopTouchInteraction, [stopTouchInteraction]);
 
   const handleOpen = (event) => {
-    clearTimeout(hystersisTimer);
+    hystersisTimer.clear();
     hystersisOpen = true;
 
     // The mouseover event will trigger for every nested element in the tooltip.
@@ -355,24 +351,22 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
      * @param {React.SyntheticEvent | Event} event
      */
     (event) => {
-      clearTimeout(hystersisTimer);
-      hystersisTimer = setTimeout(() => {
+      hystersisTimer.start(800 + leaveDelay, () => {
         hystersisOpen = false;
-      }, 800 + leaveDelay);
+      });
       setOpenState(false);
 
       if (onClose && open) {
         onClose(event);
       }
 
-      clearTimeout(closeTimer.current);
-      closeTimer.current = setTimeout(() => {
+      closeTimer.start(theme.transitions.duration.shortest, () => {
         ignoreNonTouchEvents.current = false;
-      }, theme.transitions.duration.shortest);
+      });
     },
   );
 
-  const handleEnter = (event) => {
+  const handleMouseOver = (event) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -384,26 +378,22 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childNode.removeAttribute('title');
     }
 
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
+    enterTimer.clear();
+    leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      enterTimer.current = setTimeout(
-        () => {
-          handleOpen(event);
-        },
-        hystersisOpen ? enterNextDelay : enterDelay,
-      );
+      enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
+        handleOpen(event);
+      });
     } else {
       handleOpen(event);
     }
   };
 
-  const handleLeave = (event) => {
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+  const handleMouseLeave = (event) => {
+    enterTimer.clear();
+    leaveTimer.start(leaveDelay, () => {
       handleClose(event);
-    }, leaveDelay);
+    });
   };
 
   const {
@@ -419,7 +409,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
-      handleLeave(event);
+      handleMouseLeave(event);
     }
   };
 
@@ -434,7 +424,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter(event);
+      handleMouseOver(event);
     }
   };
 
@@ -447,23 +437,20 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  const handleMouseOver = handleEnter;
-  const handleMouseLeave = handleLeave;
-
   const handleTouchStart = (event) => {
     detectTouchStart(event);
-    clearTimeout(leaveTimer.current);
-    clearTimeout(closeTimer.current);
+    leaveTimer.clear();
+    closeTimer.clear();
     stopTouchInteraction();
 
     prevUserSelect.current = document.body.style.WebkitUserSelect;
     // Prevent iOS text selection on long-tap.
     document.body.style.WebkitUserSelect = 'none';
 
-    touchTimer.current = setTimeout(() => {
+    touchTimer.start(enterTouchDelay, () => {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
-      handleEnter(event);
-    }, enterTouchDelay);
+      handleMouseOver(event);
+    });
   };
 
   const handleTouchEnd = (event) => {
@@ -472,10 +459,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     stopTouchInteraction();
-    clearTimeout(leaveTimer.current);
-    leaveTimer.current = setTimeout(() => {
+    leaveTimer.start(leaveTouchDelay, () => {
       handleClose(event);
-    }, leaveTouchDelay);
+    });
   };
 
   React.useEffect(() => {
@@ -500,9 +486,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
+  const handleRef = useForkRef(getReactElementRef(children), focusVisibleRef, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
+  // So we exclude all falsy values, except 0, which is valid.
   if (!title && title !== 0) {
     open = false;
   }
@@ -925,7 +912,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

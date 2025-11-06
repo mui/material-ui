@@ -5,11 +5,11 @@ import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
-import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
+import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
-import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
+import { getMetaThemeColor } from '@mui/docs/branding';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -173,8 +173,8 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          {getMuiInitColorSchemeScript({ defaultMode: 'system' })}
-          {getJoyInitColorSchemeScript({ defaultMode: 'system' })}
+          <MuiInitColorSchemeScript defaultMode="system" />
+          <JoyInitColorSchemeScript defaultMode="system" />
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
@@ -226,7 +226,7 @@ MyDocument.getInitialProps = async (ctx) => {
           enhanceApp: (App) => (props) => jssSheets.collect(<App {...props} />),
           resolveProps: async (initialProps) => {
             let css = jssSheets.toString();
-            // It might be undefined, e.g. after an error.
+            // It might be undefined, for example after an error.
             if (css && process.env.NODE_ENV === 'production') {
               const result1 = await prefixer.process(css, { from: undefined });
               css = result1.css;

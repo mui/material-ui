@@ -16,6 +16,7 @@ import {
   RenderResult,
 } from '@testing-library/react/pure';
 import { useFakeTimers } from 'sinon';
+import reactMajor from './reactMajor';
 
 interface Interaction {
   id: number;
@@ -280,8 +281,12 @@ export interface MuiRenderToStringResult {
   hydrate(): MuiRenderResult;
 }
 
+interface DataAttributes {
+  [key: `data-${string}`]: string;
+}
+
 function render(
-  element: React.ReactElement,
+  element: React.ReactElement<DataAttributes>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
   const { container, hydrate, wrapper } = configuration;
@@ -316,7 +321,7 @@ function render(
 }
 
 function renderToString(
-  element: React.ReactElement,
+  element: React.ReactElement<DataAttributes>,
   configuration: ServerRenderConfiguration,
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
@@ -438,8 +443,11 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
 
 interface Renderer {
   clock: Clock;
-  render(element: React.ReactElement, options?: RenderOptions): MuiRenderResult;
-  renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
+  render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
+  renderToString(
+    element: React.ReactElement<DataAttributes>,
+    options?: RenderOptions,
+  ): MuiRenderToStringResult;
 }
 
 export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 'strictEffects'> {
@@ -533,7 +541,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Only use `clock` from `createRenderer`.\n' +
-          '  2. Call `createRenderer` in a suite and not any test hook (e.g. `beforeEach`) or test itself (e.g. `it`).',
+          '  2. Call `createRenderer` in a suite and not any test hook (for example `beforeEach`) or test itself (for example `it`).',
       );
       // Use saved stack otherwise the stack trace will not include the test location.
       error.stack = createClientRenderStack;
@@ -560,7 +568,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       wrapper: InnerWrapper = React.Fragment,
     } = options;
 
-    const usesLegacyRoot = !React.version.startsWith('18');
+    const usesLegacyRoot = reactMajor < 18;
     const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
@@ -577,7 +585,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   return {
     clock,
-    render(element: React.ReactElement, options: RenderOptions = {}) {
+    render(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
@@ -592,7 +600,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         wrapper: createWrapper(options),
       });
     },
-    renderToString(element: React.ReactElement, options: RenderOptions = {}) {
+    renderToString(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +

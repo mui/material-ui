@@ -13,11 +13,11 @@ export interface NumberInputState {
   /**
    * The clamped `value` of the `input` element.
    */
-  value?: number | '';
+  value: number | null;
   /**
    * The dirty `value` of the `input` element when it is in focus.
    */
-  inputValue?: string;
+  inputValue: string;
 }
 
 /**
@@ -34,9 +34,9 @@ export type NumberInputActionContext = {
   getInputValueAsString: (val: string) => string;
 };
 
-export type NumberInputReducerAction<CustomActionContext = {}> = ActionWithContext<
+export type NumberInputReducerAction = ActionWithContext<
   NumberInputAction,
-  NumberInputActionContext & CustomActionContext
+  NumberInputActionContext
 >;
 
 export interface UseNumberInputParameters {
@@ -60,7 +60,7 @@ export interface UseNumberInputParameters {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: unknown;
+  defaultValue?: number | null;
   /**
    * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -92,7 +92,7 @@ export interface UseNumberInputParameters {
    */
   onChange?: (
     event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
-    value: number | undefined,
+    value: number | null,
   ) => void;
   /**
    * The `id` attribute of the input element.
@@ -115,8 +115,15 @@ export interface UseNumberInputParameters {
   readOnly?: boolean;
   /**
    * The current value. Use when the component is controlled.
+   * @default null
    */
-  value?: number;
+  value?: number | null;
+  /**
+   * The name of the component using useNumberInput.
+   * For debugging purposes.
+   * @default 'useNumberInput'
+   */
+  componentName?: string;
 }
 
 export interface UseNumberInputRootSlotOwnProps {
@@ -240,11 +247,11 @@ export interface UseNumberInputReturnValue {
   /**
    * The clamped `value` of the `input` element.
    */
-  value: unknown;
+  value: number | null;
   /**
    * The dirty `value` of the `input` element when it is in focus.
    */
-  inputValue: string | undefined;
+  inputValue: string;
   /**
    * If `true`, the increment button will be disabled.
    * e.g. when the `value` is already at `max`

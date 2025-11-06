@@ -99,9 +99,9 @@
     }
   },
   "slotDescriptions": {
+    "progress": "The component that renders the progress.",
     "root": "The component that renders the root.",
     "svg": "The component that renders the svg.",
-    "track": "The component that renders the track.",
-    "progress": "The component that renders the progress."
+    "track": "The component that renders the track."
   }
 }

@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { alpha } from '@mui/system';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import { useRtl } from '@mui/system/RtlProvider';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
-import useTheme from '../styles/useTheme';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
@@ -41,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       variant,
       shape,
+      color !== 'standard' && `color${capitalize(color)}`,
       color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
@@ -259,7 +260,7 @@ const PaginationItemPageIcon = styled('div', {
 }));
 
 const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPaginationItem' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPaginationItem' });
   const {
     className,
     color = 'standard',
@@ -287,23 +288,22 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     variant,
   };
 
-  const theme = useTheme();
+  const isRtl = useRtl();
   const classes = useUtilityClasses(ownerState);
 
-  const normalizedIcons =
-    theme.direction === 'rtl'
-      ? {
-          previous: slots.next || components.next || NavigateNextIcon,
-          next: slots.previous || components.previous || NavigateBeforeIcon,
-          last: slots.first || components.first || FirstPageIcon,
-          first: slots.last || components.last || LastPageIcon,
-        }
-      : {
-          previous: slots.previous || components.previous || NavigateBeforeIcon,
-          next: slots.next || components.next || NavigateNextIcon,
-          first: slots.first || components.first || FirstPageIcon,
-          last: slots.last || components.last || LastPageIcon,
-        };
+  const normalizedIcons = isRtl
+    ? {
+        previous: slots.next || components.next || NavigateNextIcon,
+        next: slots.previous || components.previous || NavigateBeforeIcon,
+        last: slots.first || components.first || FirstPageIcon,
+        first: slots.last || components.last || LastPageIcon,
+      }
+    : {
+        previous: slots.previous || components.previous || NavigateBeforeIcon,
+        next: slots.next || components.next || NavigateNextIcon,
+        first: slots.first || components.first || FirstPageIcon,
+        last: slots.last || components.last || LastPageIcon,
+      };
 
   const Icon = normalizedIcons[type];
 

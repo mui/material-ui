@@ -1,18 +1,33 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer } from '@mui-internal/test-utils';
+import {
+  act,
+  createRenderer,
+  flushMicrotasks,
+  MuiRenderResult,
+  RenderOptions,
+} from '@mui-internal/test-utils';
 import { Dropdown } from '@mui/base/Dropdown';
 import { DropdownContext } from '@mui/base/useDropdown';
 import { MenuButton } from '@mui/base/MenuButton';
 import { MenuItem } from '@mui/base/MenuItem';
 import { Menu } from '@mui/base/Menu';
 import { MenuProvider, useMenu } from '@mui/base/useMenu';
-import { Popper } from '@mui/base/Popper';
+import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 
 describe('<Dropdown />', () => {
-  const { render } = createRenderer();
+  const { render: internalRender } = createRenderer();
 
-  it('registers a popup id correctly', () => {
+  async function render(
+    element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
+    options?: RenderOptions,
+  ): Promise<MuiRenderResult> {
+    const rendered = internalRender(element, options);
+    await flushMicrotasks();
+    return rendered;
+  }
+
+  it('registers a popup id correctly', async () => {
     function TestComponent() {
       const { registerPopup, popupId } = React.useContext(DropdownContext)!;
       expect(context).not.to.equal(null);
@@ -24,7 +39,7 @@ describe('<Dropdown />', () => {
       return <p>{popupId}</p>;
     }
 
-    const { container } = render(
+    const { container } = await render(
       <Dropdown>
         <TestComponent />
       </Dropdown>,
@@ -33,7 +48,7 @@ describe('<Dropdown />', () => {
     expect(container.innerHTML).to.equal('<p>test-popup</p>');
   });
 
-  it('registers a trigger element correctly', () => {
+  it('registers a trigger element correctly', async () => {
     const trigger = document.createElement('button');
     trigger.setAttribute('data-testid', 'test-button');
 
@@ -48,7 +63,7 @@ describe('<Dropdown />', () => {
       return <p>{triggerElement?.getAttribute('data-testid')}</p>;
     }
 
-    const { container } = render(
+    const { container } = await render(
       <Dropdown>
         <TestComponent />
       </Dropdown>,
@@ -57,8 +72,8 @@ describe('<Dropdown />', () => {
     expect(container.innerHTML).to.equal('<p>test-button</p>');
   });
 
-  it('focuses the first item after the menu is opened', () => {
-    const { getByRole, getAllByRole } = render(
+  it('focuses the first item after the menu is opened', async () => {
+    const { getByRole, getAllByRole } = await render(
       <div>
         <Dropdown>
           <MenuButton>Toggle</MenuButton>
@@ -78,10 +93,12 @@ describe('<Dropdown />', () => {
 
     const menuItems = getAllByRole('menuitem');
 
+    await flushMicrotasks();
+
     expect(menuItems[0]).toHaveFocus();
   });
 
-  it('should focus on second item when 1st item is disabled and disabledItemsFocusable set to false', () => {
+  it('should focus on second item when 1st item is disabled and disabledItemsFocusable set to false', async () => {
     const CustomMenu = React.forwardRef(function CustomMenu(
       props: React.ComponentPropsWithoutRef<'ul'>,
       ref: React.Ref<HTMLUListElement>,
@@ -94,15 +111,15 @@ describe('<Dropdown />', () => {
       });
 
       return (
-        <Popper open={open} anchorEl={triggerElement}>
+        <Popup open={open} anchor={triggerElement}>
           <ul className="menu-root" {...other} {...getListboxProps()}>
             <MenuProvider value={contextValue}>{children}</MenuProvider>
           </ul>
-        </Popper>
+        </Popup>
       );
     });
 
-    const { getByRole, getAllByRole } = render(
+    const { getByRole, getAllByRole } = await render(
       <div>
         <Dropdown>
           <MenuButton>Toggle</MenuButton>
@@ -122,11 +139,13 @@ describe('<Dropdown />', () => {
 
     const menuItems = getAllByRole('menuitem');
 
+    await flushMicrotasks();
+
     expect(menuItems[1]).toHaveFocus();
   });
 
-  it('focuses the trigger after the menu is closed', () => {
-    const { getByRole } = render(
+  it('focuses the trigger after the menu is closed', async () => {
+    const { getByRole } = await render(
       <div>
         <input type="text" />
         <Dropdown>
@@ -145,6 +164,9 @@ describe('<Dropdown />', () => {
     });
 
     const menuItem = getByRole('menuitem');
+
+    await flushMicrotasks();
+
     act(() => {
       menuItem.click();
     });

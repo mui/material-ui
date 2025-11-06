@@ -66,7 +66,7 @@ const Button = styled(BaseButton)(
     outline: none;
   }
 
-  &.Mui-disabled {
+  &.base--disabled {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
     border: 0;

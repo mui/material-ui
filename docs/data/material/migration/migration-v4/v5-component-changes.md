@@ -1,8 +1,8 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to components.</p>
 
-## Material UI v5 migration
+## Material UI v5 migration
 
 1. [Getting started](/material-ui/migration/migration-v4/)
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
@@ -12,7 +12,7 @@
 
 ## Breaking changes, part two
 
-Material UI v5 introduces a number of breaking changes from v4.
+Material UI v5 introduces a number of breaking changes from v4.
 Many of these changes can be resolved automatically using [the codemods](/material-ui/migration/migration-v4/#run-codemods) described in the [main migration guide](/material-ui/migration/migration-v4/).
 
 The following document lists all breaking changes related to components in v5 and how to address them.
@@ -31,6 +31,34 @@ As the core components use Emotion as their style engine, the props used by Emot
 
 ```jsx
 <MuiComponent component={SomeOtherComponent} as="button" />
+```
+
+## AccordionSummary
+
+### Rename `expandIcon` to `expandIconWrapper`
+
+This change was made to make it clearer that the element is a wrapper around the icon, not the icon itself.
+
+Update the CSS class name and the theme overrides accordingly.
+
+```diff
+-'.MuiAccordionSummary-expandIcon': {
++'.MuiAccordionSummary-expandIconWrapper': {
+```
+
+```diff
+ createTheme({
+   components: {
+     MuiAccordionSummary: {
+       styleOverrides: {
+-        expandIcon: {
++        expandIconWrapper: {
+          // ...
+         },
+       },
+     },
+   },
+ });
 ```
 
 ## AppBar
@@ -75,7 +103,7 @@ Move the component from the lab to the core. The component is now stable.
 
 ### Remove debug prop
 
-Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools prop setter.
 
 ### Update `renderOption`
 
@@ -251,7 +279,7 @@ Use a string to provide an explicit px value.
 
 The Box system props have an optional alternative API in v5, using the `sx` prop.
 
-Check out the System docs to learn more about [the tradeoffs of this API](/system/getting-started/usage/#api-tradeoff).
+Check out MUI System docs to learn more about [the tradeoffs of this API](/system/getting-started/usage/#api-tradeoff).
 
 ```jsx
 <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -281,7 +309,7 @@ The system grid function was not documented in v4.
 
 ### Remove clone prop
 
-The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
+The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }} clone>
@@ -292,7 +320,7 @@ The `clone` prop was removed because its behavior can be obtained by applying th
 
 ### Replace render prop with `sx`
 
-The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
+The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -301,7 +329,7 @@ The ability to pass a render prop was removed because its behavior can be obtain
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
-For non-Material UI components, use the `component` prop.
+For non-Material UI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -742,7 +770,7 @@ The props `alignItems`, `alignContent`, and `justifyContent`—along with their 
 
 "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly".
 
-These props are now considered part of the System, not the `Grid` component itself.
+These props are now considered part of MUI System, not the `Grid` component itself.
 
 If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
 
@@ -778,7 +806,7 @@ If you need negative margins on all sides, we recommend using the new Grid v2 in
 To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/#whats-changed) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
 
 :::info
-Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
+Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
 :::
 
 ## GridList
@@ -991,7 +1019,7 @@ prop `listItemClasses` is removed, use `classes` instead.
 +<MenuItem classes={{...}}>
 ```
 
-Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#css).
+Read more about the [MenuItem CSS API](/material-ui/api/menu-item/#classes).
 
 ## Modal
 
@@ -1034,7 +1062,7 @@ Use `onClose` with `reason === "escapeKeyDown"` instead.
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback) on the child element, or an effect hook in the child component.
 
 ## NativeSelect
 
@@ -1177,7 +1205,7 @@ Read the [Popper.js migration guide](https://popper.js.org/docs/v2/migration-gui
 
 Remove the `onRendered` prop.
 
-Depending on your use case, you can either use a [callback ref](https://legacy.reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element, or an effect hook in the child component.
+Depending on your use case, you can either use a [callback ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback) on the child element, or an effect hook in the child component.
 
 ## Radio
 
@@ -1860,7 +1888,7 @@ The following classes and style overrides keys were removed:
 
 "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline", and "displayBlock".
 
-These props are now considered part of the System rather than the `Typography` component itself.
+These props are now considered part of MUISystem rather than the `Typography` component itself.
 
 If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
 
@@ -2008,7 +2036,7 @@ This change removes the confusion with the built-in `Omit` helper introduced in 
 
 The built-in `Omit`, while similar, is non-distributive.
 This leads to differences when applied to union types.
-[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
+[See this Stack Overflow answer for further details](https://stackoverflow.com/questions/57103834/typescript-omit-a-property-from-all-interfaces-in-a-union-but-keep-the-union-s/57103940#57103940).
 
 ```diff
 -import { Omit } from '@mui/types';

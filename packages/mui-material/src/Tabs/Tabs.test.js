@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
+  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
@@ -16,6 +16,7 @@ import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
+import describeConformance from '../../test/describeConformance';
 
 const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
 const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
@@ -46,7 +47,7 @@ function hasRightScrollButton(container) {
 
 describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = navigator.userAgent === 'node.js';
+  const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
   const { clock, render, renderToString } = createRenderer();
 
@@ -358,10 +359,10 @@ describe('<Tabs />', () => {
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
+          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
+          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
         ]);

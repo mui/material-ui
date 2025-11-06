@@ -6,15 +6,24 @@
 import { expect } from 'chai';
 import * as MaterialUI from './index';
 
+const versionExports = [
+  'version',
+  'major',
+  'minor',
+  'patch',
+  'preReleaseLabel',
+  'preReleaseNumber',
+];
+
 describe('material-ui', () => {
   it('should have exports', () => {
     expect(typeof MaterialUI).to.equal('object');
   });
 
   it('should not have undefined exports', () => {
-    Object.keys(MaterialUI).forEach((exportKey) =>
-      expect(Boolean(MaterialUI[exportKey])).to.equal(true),
-    );
+    Object.keys(MaterialUI)
+      .filter((exportKey) => !versionExports.includes(exportKey))
+      .forEach((exportKey) => expect(Boolean(MaterialUI[exportKey])).to.equal(true));
   });
 
   it('should reexport certain members from @mui/base', () => {

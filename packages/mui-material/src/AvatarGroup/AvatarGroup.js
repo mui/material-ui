@@ -3,10 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
@@ -33,34 +33,28 @@ const AvatarGroupRoot = styled('div', {
     [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
     ...styles.root,
   }),
-})(({ theme }) => ({
-  [`& .${avatarClasses.root}`]: {
-    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
-    boxSizing: 'content-box',
-    marginLeft: -8,
-    '&:last-child': {
-      marginLeft: 0,
-    },
-  },
-  display: 'flex',
-  flexDirection: 'row-reverse',
-}));
+})(({ theme, ownerState }) => {
+  const marginValue =
+    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
+      ? SPACINGS[ownerState.spacing]
+      : -ownerState.spacing;
 
-const AvatarGroupAvatar = styled(Avatar, {
-  name: 'MuiAvatarGroup',
-  slot: 'Avatar',
-  overridesResolver: (props, styles) => styles.avatar,
-})(({ theme }) => ({
-  border: `2px solid ${(theme.vars || theme).palette.background.default}`,
-  boxSizing: 'content-box',
-  marginLeft: -8,
-  '&:last-child': {
-    marginLeft: 0,
-  },
-}));
+  return {
+    [`& .${avatarClasses.root}`]: {
+      border: `2px solid ${(theme.vars || theme).palette.background.default}`,
+      boxSizing: 'content-box',
+      marginLeft: marginValue ?? -8,
+      '&:last-child': {
+        marginLeft: 0,
+      },
+    },
+    display: 'flex',
+    flexDirection: 'row-reverse',
+  };
+});
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiAvatarGroup',
   });
@@ -117,8 +111,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
-
   const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
 
   return (
@@ -130,28 +122,20 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       {...other}
     >
       {extraAvatars ? (
-        <AvatarGroupAvatar
-          ownerState={ownerState}
+        <Avatar
           variant={variant}
           {...additionalAvatarSlotProps}
           className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
-          style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
         >
           {extraAvatarsElement}
-        </AvatarGroupAvatar>
+        </Avatar>
       ) : null}
       {children
         .slice(0, maxAvatars)
         .reverse()
-        .map((child, index) => {
+        .map((child) => {
           return React.cloneElement(child, {
             className: clsx(child.props.className, classes.avatar),
-            style: {
-              // Consistent with "&:last-child" styling for the default spacing,
-              // we do not apply custom marginLeft spacing on the last child
-              marginLeft: index === maxAvatars - 1 ? undefined : marginLeft,
-              ...child.props.style,
-            },
             variant: child.props.variant || variant,
           });
         })}

@@ -58,6 +58,7 @@ describe('cssVarsParser', () => {
       });
     });
   });
+
   describe('walkObjectDeep', () => {
     it('run callback at each key', () => {
       const result: Record<string, boolean> = {};

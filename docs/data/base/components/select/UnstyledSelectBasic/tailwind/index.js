@@ -123,9 +123,9 @@ const Select = React.forwardRef(function CustomSelect(props, ref) {
             ),
           };
         },
-        popper: (ownerState) => {
+        popup: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
-            props.slotProps?.popper,
+            props.slotProps?.popup,
             ownerState,
           );
           return {
@@ -149,7 +149,7 @@ Select.propTypes = {
    */
   slotProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
 };

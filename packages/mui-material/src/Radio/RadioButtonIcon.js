@@ -5,17 +5,24 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
-const RadioButtonIconRoot = styled('span', { shouldForwardProp: rootShouldForwardProp })({
+const RadioButtonIconRoot = styled('span', {
+  name: 'MuiRadioButtonIcon',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   position: 'relative',
   display: 'flex',
 });
 
-const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon)({
+const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, {
+  name: 'MuiRadioButtonIcon',
+})({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(({ theme, ownerState }) => ({
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon, {
+  name: 'MuiRadioButtonIcon',
+})(({ theme, ownerState }) => ({
   left: 0,
   position: 'absolute',
   transform: 'scale(0)',
@@ -59,7 +66,6 @@ RadioButtonIcon.propTypes = {
   checked: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

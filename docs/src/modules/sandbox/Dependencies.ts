@@ -1,6 +1,34 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
+const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
+
+/**
+ * WARNING: Always uses `latest` typings.
+ *
+ * Adds dependencies to @types packages only for packages that are not listed
+ * in packagesWithBundledTypes
+ *
+ * @param deps - list of dependency as `name => version`
+ */
+function addTypeDeps(deps: Record<string, string>): void {
+  const packagesWithDTPackage = Object.keys(deps)
+    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    // All the MUI packages come with bundled types
+    .filter((name) => name.indexOf('@mui/') !== 0);
+
+  packagesWithDTPackage.forEach((name) => {
+    let resolvedName = name;
+    // scoped package?
+    if (name.startsWith('@')) {
+      // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
+      resolvedName = name.slice(1).replace('/', '__');
+    }
+
+    deps[`@types/${resolvedName}`] = 'latest';
+  });
+}
+
 export default function SandboxDependencies(
   demo: {
     raw: string;
@@ -10,33 +38,6 @@ export default function SandboxDependencies(
   options?: { commitRef?: string },
 ) {
   const { commitRef } = options || {};
-
-  /**
-   * WARNING: Always uses `latest` typings.
-   *
-   * Adds dependencies to @types packages only for packages that are not listed
-   * in packagesWithBundledTypes
-   *
-   * @param deps - list of dependency as `name => version`
-   */
-  function addTypeDeps(deps: Record<string, string>): void {
-    const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
-    const packagesWithDTPackage = Object.keys(deps)
-      .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-      // All the MUI packages come with bundled types
-      .filter((name) => name.indexOf('@mui/') !== 0);
-
-    packagesWithDTPackage.forEach((name) => {
-      let resolvedName = name;
-      // scoped package?
-      if (name.startsWith('@')) {
-        // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
-        resolvedName = name.slice(1).replace('/', '__');
-      }
-
-      deps[`@types/${resolvedName}`] = 'latest';
-    });
-  }
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -102,15 +103,13 @@ export default function SandboxDependencies(
       '@mui/private-classnames': getMuiPackageVersion('classnames'),
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
-      '@mui/material-next': getMuiPackageVersion('material-next'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
     if (muiDocConfig) {
-      const muiCommitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
-      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef: commitRef });
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;

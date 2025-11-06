@@ -12,7 +12,7 @@ describe('getBaseUiComponentInfo', () => {
     sinon.assert.match(componentInfo, {
       name: 'Button',
       apiPathname: '/base-ui/react-button/components-api/#button',
-      muiName: 'MuiButton',
+      muiName: 'Button',
       apiPagesDirectory: sinon.match((value) =>
         value.endsWith(path.join('docs', 'pages', 'base-ui', 'api')),
       ),

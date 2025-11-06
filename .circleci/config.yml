@@ -21,7 +21,7 @@ parameters:
     type: string
     default: ''
 
-defaults: &defaults
+default-job: &default-job
   parameters:
     react-version:
       description: The version of react to be used
@@ -47,6 +47,10 @@ defaults: &defaults
   docker:
     - image: cimg/node:18.19
 
+default-context: &default-context
+  context:
+    - org-global
+
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
@@ -62,7 +66,7 @@ commands:
       browsers:
         type: boolean
         default: false
-        description: 'Set to true if you intend to any browser (e.g. with playwright).'
+        description: 'Set to true if you intend to any browser (for example with playwright).'
 
     steps:
       - run:
@@ -71,10 +75,7 @@ commands:
             node scripts/useReactVersion.mjs
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-      - restore_cache:
-          name: Restore pnpm package cache
-          keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -93,6 +94,13 @@ commands:
                 name: Restore playwright cache
                 keys:
                   - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+      - when:
+          condition:
+            not: << parameters.browsers >>
+          steps:
+            # See https://stackoverflow.com/a/73411601
+            - run: corepack enable --install-directory ~/bin
+
       - run:
           name: View install environment
           command: |
@@ -107,16 +115,6 @@ commands:
             - run:
                 name: Install playwright browsers
                 command: pnpm playwright install --with-deps
-                environment:
-                  PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
-      - save_cache:
-          name: Save pnpm package cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-          paths:
-            - node_modules
-      - when:
-          condition: << parameters.browsers >>
-          steps:
             - save_cache:
                 name: Save playwright cache
                 key: v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
@@ -127,7 +125,7 @@ commands:
 
 jobs:
   checkout:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -149,7 +147,7 @@ jobs:
                       pnpm dedupe --check
                   fi
   test_unit:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -180,17 +178,17 @@ jobs:
               echo "no changes"
             fi
       - run:
-          name: typescript-to-proptypes
+          name: internal-scripts
           command: |
             # latest commit
             LATEST_COMMIT=$(git rev-parse HEAD)
 
-            # latest commit where packages/typescript-to-proptypes was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/typescript-to-proptypes)
+            # latest commit where internal-scripts was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages-internal/scripts)
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              pnpm --filter typescript-to-proptypes test
+              pnpm --filter @mui/internal-scripts test
             else
               echo "no changes"
             fi
@@ -201,7 +199,7 @@ jobs:
             chmod +x codecov
             ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
   test_lint:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -217,8 +215,45 @@ jobs:
       - run:
           name: Lint Markdown
           command: pnpm markdownlint
+      - run:
+          # See https://circleci.com/developer/orbs/orb/circleci/vale as reference
+          name: Install Vale
+          command: |
+            #!/bin/bash
+            VALE_STR_CLI_VERSION=3.3.0
+
+            mkdir /tmp/vale-extract
+            cd /tmp/vale-extract
+            GZIPPED_OUTPUT="vale.tar.gz"
+            BINARY_URL=https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_Linux_64-bit.tar.gz
+            curl -sSL "$BINARY_URL" -o "${GZIPPED_OUTPUT}"
+
+            if [ ! -s "${GZIPPED_OUTPUT}" ]; then
+              echo "Downloaded file is empty"
+              rm "${GZIPPED_OUTPUT}"
+              exit 1
+            fi
+
+            tar -xzf "${GZIPPED_OUTPUT}"
+            $SUDO mv vale /usr/local/bin
+            rm "${GZIPPED_OUTPUT}"
+
+            # validate installation
+            if [[ -z "$(command -v vale)" ]]; then
+              echo "vale installation failed"
+              exit 1
+            else
+              echo "vale installation successful"
+              vale --version
+              exit 0
+            fi
+      - run:
+          name: Lint writing style
+          command: |
+            vale sync
+            pnpm valelint
   test_static:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -260,7 +295,7 @@ jobs:
             pnpm docs:link-check
             git add -A && git diff --exit-code --staged
   test_types:
-    <<: *defaults
+    <<: *default-job
     resource_class: 'medium+'
     steps:
       - checkout
@@ -274,6 +309,8 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
+          environment:
+            NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Test module augmentation
           command: |
@@ -300,16 +337,14 @@ jobs:
             - packages/mui-lab/build
             - packages/mui-utils/build
   test_types_next:
-    <<: *defaults
+    <<: *default-job
     resource_class: 'medium+'
     steps:
       - checkout
       - run:
           name: Resolve typescript version
-          environment:
-            TYPESCRIPT_DIST_TAG: next
           command: |
-            node scripts/useTypescriptDistTag.mjs
+            pnpm add typescript@next -d -w
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - install_js
@@ -349,10 +384,10 @@ jobs:
             node scripts/testBuiltTypes.mjs
             exit 0
   test_browser:
-    <<: *defaults
+    <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -380,9 +415,9 @@ jobs:
           path: /tmp/_karma_webpack_
           destination: artifact-file
   test_e2e:
-    <<: *defaults
+    <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -399,9 +434,10 @@ jobs:
           name: Test umd release
           command: pnpm test:umd
   test_e2e_website:
-    <<: *defaults
+    # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
+    <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -414,9 +450,9 @@ jobs:
           environment:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_profile:
-    <<: *defaults
+    <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -441,9 +477,9 @@ jobs:
           path: tmp/react-profiler-report/karma
           destination: react-profiler-report/karma
   test_regressions:
-    <<: *defaults
+    <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -457,7 +493,7 @@ jobs:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
   test_bundling_prepare:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -470,7 +506,7 @@ jobs:
             - '*/build'
 
   test_bundling_node-esm:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/node-esm/
     steps:
       - checkout:
@@ -494,10 +530,10 @@ jobs:
             pnpm start
             exit 0
   test_bundling_next-webpack4:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -518,10 +554,10 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_next-webpack5:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -542,10 +578,10 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_create-react-app:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -566,10 +602,10 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_snowpack:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -590,10 +626,10 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_vite:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -614,10 +650,10 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundling_esbuild:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -642,10 +678,10 @@ jobs:
             pnpm start
             exit 0
   test_bundling_gatsby:
-    <<: *defaults
+    <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -665,7 +701,7 @@ jobs:
           name: Test fixture
           command: pnpm start
   test_bundle_size_monitor:
-    <<: *defaults
+    <<: *default-job
     steps:
       - checkout
       - install_js
@@ -676,7 +712,7 @@ jobs:
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
           name: build @mui packages
-          command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+          command: BROWSERSLIST_IGNORE_OLD_DATA=true pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
       - run:
           name: create @mui/material canary distributable
           command: |
@@ -744,9 +780,9 @@ jobs:
           environment:
             DANGER_COMMAND: 'reportBundleSize'
   test_benchmark:
-    <<: *defaults
+    <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.1-focal
+      - image: mcr.microsoft.com/playwright:v1.42.1-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -764,37 +800,48 @@ workflows:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout
+      - checkout:
+          <<: *default-context
       - test_unit:
+          <<: *default-context
           requires:
             - checkout
       - test_lint:
+          <<: *default-context
           requires:
             - checkout
       - test_static:
+          <<: *default-context
           requires:
             - checkout
       - test_types:
+          <<: *default-context
           requires:
             - checkout
       - test_browser:
+          <<: *default-context
           requires:
             - checkout
       - test_regressions:
+          <<: *default-context
           requires:
             - checkout
       - test_e2e:
+          <<: *default-context
           requires:
             - checkout
       - test_bundle_size_monitor:
+          <<: *default-context
           requires:
             - checkout
   e2e-website:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout
+      - checkout:
+          <<: *default-context
       - test_e2e_website:
+          <<: *default-context
           requires:
             - checkout
 
@@ -802,37 +849,71 @@ workflows:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
     jobs:
-      - test_bundling_prepare
+      - test_bundling_prepare:
+          <<: *default-context
       - test_bundling_node-esm:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_next-webpack4:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_next-webpack5:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_create-react-app:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_snowpack:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_vite:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_esbuild:
+          <<: *default-context
           requires:
             - test_bundling_prepare
       - test_bundling_gatsby:
+          <<: *default-context
           requires:
             - test_bundling_prepare
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
     jobs:
-      - test_profile
+      - test_profile:
+          <<: *default-context
+
+  # This workflow can be triggered manually on the PR
   react-17:
+    when:
+      equal: [react-17, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_unit-react@17
+      - test_browser:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_browser-react@17
+      - test_regressions:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_regressions-react@17
+      - test_e2e:
+          <<: *default-context
+          react-version: ^17.0.0
+          name: test_e2e-react@17
+
+  # This workflow is identical to react-17, but scheduled
+  react-17-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -840,16 +921,48 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_unit:
+          <<: *default-context
           react-version: ^17.0.0
+          name: test_unit-react@17
       - test_browser:
+          <<: *default-context
           react-version: ^17.0.0
+          name: test_browser-react@17
       - test_regressions:
+          <<: *default-context
           react-version: ^17.0.0
+          name: test_regressions-react@17
       - test_e2e:
+          <<: *default-context
           react-version: ^17.0.0
+          name: test_e2e-react@17
+
+  # This workflow can be triggered manually on the PR
   react-next:
+    when:
+      equal: [react-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: next
+          name: test_unit-react@next
+      - test_browser:
+          <<: *default-context
+          react-version: next
+          name: test_browser-react@next
+      - test_regressions:
+          <<: *default-context
+          react-version: next
+          name: test_regressions-react@next
+      - test_e2e:
+          <<: *default-context
+          react-version: next
+          name: test_e2e-react@next
+  # This workflow is identical to react-next, but scheduled
+  react-next-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -857,15 +970,25 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
       - test_unit:
+          <<: *default-context
           react-version: next
+          name: test_unit-react@next
       - test_browser:
+          <<: *default-context
           react-version: next
+          name: test_browser-react@next
       - test_regressions:
+          <<: *default-context
           react-version: next
+          name: test_regressions-react@next
       - test_e2e:
+          <<: *default-context
           react-version: next
+          name: test_e2e-react@next
+
   typescript-next:
     triggers:
       - schedule:
@@ -874,10 +997,13 @@ workflows:
             branches:
               only:
                 - master
+                - next
     jobs:
-      - test_types_next
+      - test_types_next:
+          <<: *default-context
   benchmark:
     when:
       equal: [benchmark, << pipeline.parameters.workflow >>]
     jobs:
-      - test_benchmark
+      - test_benchmark:
+          <<: *default-context

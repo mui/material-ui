@@ -6,7 +6,7 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 

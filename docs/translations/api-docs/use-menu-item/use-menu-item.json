@@ -1,6 +1,10 @@
 {
   "hookDescription": "",
-  "parametersDescriptions": {},
+  "parametersDescriptions": {
+    "disableFocusOnHover": {
+      "description": "If <code>true</code>, the menu item won&#39;t receive focus when the mouse moves over it."
+    }
+  },
   "returnValueDescriptions": {
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "focusVisible": {

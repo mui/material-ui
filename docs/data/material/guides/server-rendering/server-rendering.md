@@ -5,9 +5,9 @@
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
-## Material UI on the server
+## Material UI on the server
 
-Material UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
+Material UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
 It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC).
 To inject the style down to the client, we need to:
 
@@ -26,9 +26,7 @@ In the following recipe, we are going to look at how to set up server-side rende
 
 Create a theme that will be shared between the client and the server:
 
-`theme.js`
-
-```js
+```js title="theme.js"
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
@@ -56,9 +54,7 @@ The following is the outline for what the server-side is going to look like.
 We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server.
 If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
 
-`server.js`
-
-```js
+```js title="server.js"
 import express from 'express';
 
 // We are going to fill these out in the sections to follow.
@@ -88,13 +84,11 @@ inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemePr
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://react.dev/reference/react-dom/server/renderToString).
 
-Material UI uses Emotion as its default styled engine.
+Material UI uses Emotion as its default styled engine.
 We need to extract the styles from the Emotion instance.
 For this, we need to share the same cache configuration for both the client and server:
 
-`createEmotionCache.js`
-
-```js
+```js title="createEmotionCache.js"
 import createCache from '@emotion/cache';
 
 export default function createEmotionCache() {
@@ -102,7 +96,7 @@ export default function createEmotionCache() {
 }
 ```
 
-With this we are creating a new Emotion cache instance and using this to extract the critical styles for the html as well.
+With this we are creating a new Emotion cache instance and using this to extract the critical styles for the HTML as well.
 
 We will see how this is passed along in the `renderFullPage` function.
 
@@ -172,7 +166,7 @@ function renderFullPage(html, css) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
         />
       </head>
       <body>
@@ -189,9 +183,7 @@ The client-side is straightforward.
 All we need to do is use the same cache configuration as the server-side.
 Let's take a look at the client file:
 
-`client.js`
-
-```jsx
+```jsx title="client.js"
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import CssBaseline from '@mui/material/CssBaseline';

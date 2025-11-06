@@ -25,7 +25,7 @@ module.exports = {
     // Avoid bundling the whole @mui/icons-material package. x2 the bundling speed.
     new webpack.IgnorePlugin({ resourceRegExp: /material-icons\/SearchIcons\.js/ }),
     new webpack.ProvidePlugin({
-      // required by enzyme > cheerio > parse5 > util
+      // required by code accessing `process.env` in the browser
       process: 'process/browser.js',
     }),
   ],
@@ -33,7 +33,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
-        // prism.js blocks @mui/markdown/prism from being interpreted as ESM in this build.
+        // prism.js blocks @mui/internal-markdown/prism from being interpreted as ESM in this build.
         exclude: /node_modules|prism\.js/,
         loader: 'babel-loader',
         options: {
@@ -57,10 +57,8 @@ module.exports = {
     fallback: {
       // Exclude polyfill and treat 'fs' as an empty module since it is not required. next -> gzip-size relies on it.
       fs: false,
-      // needed by enzyme > cheerio
+      // Exclude polyfill and treat 'stream' as an empty module since it is not required. next -> gzip-size relies on it.
       stream: false,
-      // required by enzyme > cheerio > parse5
-      util: require.resolve('util/'),
       // Exclude polyfill and treat 'zlib' as an empty module since it is not required. next -> gzip-size relies on it.
       zlib: false,
     },

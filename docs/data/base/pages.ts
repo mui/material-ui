@@ -11,6 +11,8 @@ const pages: readonly MuiPage[] = [
       { pathname: '/base-ui/getting-started/usage', title: 'Usage' },
       { pathname: '/base-ui/getting-started/customization', title: 'Customization' },
       { pathname: '/base-ui/getting-started/accessibility', title: 'Accessibility' },
+      { pathname: '/base-ui/getting-started/roadmap', title: 'Roadmap' },
+      { pathname: '/base-ui/getting-started/support' },
     ],
   },
   {
@@ -27,7 +29,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/base-ui/react-checkbox', title: 'Checkbox', planned: true },
           { pathname: '/base-ui/react-input', title: 'Input' },
           { pathname: '/base-ui/react-number-input', title: 'Number Input', unstable: true },
-          { pathname: '/base-ui/react-radio-button', title: 'Radio Button', planned: true },
+          { pathname: '/base-ui/react-radio-group', title: 'Radio Group', planned: true },
           { pathname: '/base-ui/react-rating', title: 'Rating', planned: true },
           { pathname: '/base-ui/react-select', title: 'Select' },
           { pathname: '/base-ui/react-slider', title: 'Slider' },
@@ -108,7 +110,7 @@ const pages: readonly MuiPage[] = [
     children: [
       {
         pathname: '/base-ui/guides/working-with-tailwind-css',
-        title: 'Working with Tailwind CSS',
+        title: 'Working with Tailwind CSS',
       },
       {
         pathname: '/base-ui/guides/overriding-component-structure',

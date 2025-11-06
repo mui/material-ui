@@ -4,17 +4,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -31,21 +31,21 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-Material UI started as an open-source project.
+Material UI started as an open-source project.
 Over time, the audience and usage grew considerably, and some of the library's early contributors became full-time maintainers.
-A company was incorporated to support this growth, and more recently [was rebranded from Material UI to MUI](https://mui.com/blog/material-ui-is-now-mui/).
+A company was incorporated to support this growth, and more recently [was rebranded from Material UI to MUI](https://mui.com/blog/material-ui-is-now-mui/).
 The new brand was fundamental to set the stage for MUI to become larger than Material Design, which was something we were already doing.
 Currently, we have five main projects that are not at all related to MD:
 
-- [MUI Core](https://mui.com/core/):
-  - [Base UI](https://mui.com/base-ui/getting-started/): the unstyled version of the components.
-  - [MUI System](https://mui.com/system/getting-started/): our most recent take on styling for React components.
+- [MUI Core](https://mui.com/core/):
+  - [Base UI](https://mui.com/base-ui/getting-started/): the unstyled version of the components.
+  - [MUI System](https://mui.com/system/getting-started/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
-- [MUI X](https://mui.com/x/): as mentioned, a growing set of advanced components.
-  Today, the flagship is the [Data Grid](https://mui.com/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
-- MUI Toolpad: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
+- [MUI X](https://mui.com/x/): as mentioned, a growing set of advanced components.
+  Today, the flagship is the [Data Grid](https://mui.com/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
+- Toolpad: a very recent endeavor aimed at exploring how our users can visually create apps 10x faster with the power of low-code and the flexibility of pro-code.
 
-We also know, especially due to [our annual developer survey](https://mui.com/blog/2021-developer-survey-results/), that design quality plays a huge part when developers are considering component library options.
+We also know, especially due to [our annual Developer Survey](https://mui.com/blog/2021-developer-survey-results/), that design quality plays a huge part when developers are considering component library options.
 Therefore, we need to grow the design team to help us push these initiatives further.
 
 ## The role
@@ -57,16 +57,16 @@ Some criteria for applying to this role:
 - **Level**: [3 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
 
 We need someone experienced enough to help two different teams with hard problems.
-You'll be responsible for ensuring that the MUI Toolpad and MUI X teams have spot-on design and product work.
+You'll be responsible for ensuring that the Toolpad and MUI X teams have spot-on design and product work.
 Given that each product is at a different stage, at this moment we believe that one person is enough to oversee the design function for both teams.
 You'll have the freedom, trust, and help you need to balance and tackle all the work.
 You'll also be the second designer of a growing design team, so we'll also need your help to shape this growth.
 
 ### Here are a few initiatives you might work on
 
-- Help design the first version of MUI Toolpad, from early strategy to its look and feel.
+- Help design the first version of Toolpad, from early strategy to its look and feel.
 - Evolve and refine the Data Grid UX for features such as filtering, column pinning, row editing, and more.
-- Help set the bar higher for MUI X documentation, from visual design to copywriting.
+- Help set the bar higher for MUI X documentation, from visual design to copywriting.
 - Support the design team growth by promoting design/product culture, and hiring new members.
 
 ### You might fit for this role if you
@@ -86,7 +86,7 @@ Previous experience with design systems would be great but is not required.
 
 We offer competitive compensation, aligned with your profile and location.
 We're ready to pay top market rates for a designer that can significantly push the mission forward.
-Other perks are described on [the careers page](https://mui.com/careers/#perks-and-benefits/).
+Other perks are described on [the careers page](https://mui.com/careers/#perks-and-benefits).
 
 ## How to apply
 

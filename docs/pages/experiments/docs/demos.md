@@ -1,18 +1,29 @@
 # Demos
 
-<p class="description">Demos</p>
+<p class="description">The different variants of demo containers we have in the docs.</p>
 
 ## Standard demo
 
+"Standard" refers to when no background is explicitly defined.
+So, it renders the "outlined" background variant.
+
 {{"demo": "DemoInDocs.js"}}
 
-## "bg": "inline" demo
+## "bg": "outlined"
+
+{{"demo": "DemoInDocs.js", "bg": "outlined"}}
+
+## "bg": "inline"
 
 {{"demo": "DemoInDocs.js", "bg": "inline"}}
 
 ## "bg": true
 
 {{"demo": "DemoInDocs.js", "bg": true}}
+
+## "bg": gradient
+
+{{"demo": "DemoInDocs.js", "bg": "gradient"}}
 
 ## "hideToolbar": true
 

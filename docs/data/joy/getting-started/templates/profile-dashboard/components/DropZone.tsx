@@ -7,7 +7,9 @@ import AspectRatio from '@mui/joy/AspectRatio';
 
 import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
 
-export default function DropZone(props: CardProps & { icon?: React.ReactElement }) {
+export default function DropZone(
+  props: CardProps & { icon?: React.ReactElement<any> },
+) {
   const { icon, sx, ...other } = props;
   return (
     <Card

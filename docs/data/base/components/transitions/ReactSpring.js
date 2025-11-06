@@ -119,8 +119,7 @@ PopupWithTrigger.propTypes = {
 };
 
 function ReactSpringTransition({ children }) {
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
-    useTransitionStateManager();
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   const api = useSpringRef();
   const springs = useSpring({
@@ -134,21 +133,21 @@ function ReactSpringTransition({ children }) {
         opacity: 1,
         transform: 'translateY(0) scale(1)',
         config: { tension: 250, friction: 10 },
-        onStart: onEntering,
-        onRest: onEntered,
       });
     } else {
       api.start({
         opacity: 0,
         transform: 'translateY(-8px) scale(0.95)',
         config: { tension: 170, friction: 26 },
-        onStart: onExiting,
         onRest: onExited,
       });
     }
-  }, [requestedEnter, api, onEntering, onEntered, onExiting, onExited]);
+  }, [requestedEnter, api, onExited]);
 
-  return <animated.div style={springs}>{children}</animated.div>;
+  return (
+    // @ts-expect-error https://github.com/pmndrs/react-spring/issues/2341
+    <animated.div style={springs}>{children}</animated.div>
+  );
 }
 
 ReactSpringTransition.propTypes = {

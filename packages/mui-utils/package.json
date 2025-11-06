@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.15.3",
+  "version": "5.17.1",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -39,30 +39,32 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7",
-    "@types/prop-types": "^15.7.11",
+    "@babel/runtime": "^7.23.9",
+    "@mui/types": "workspace:~",
+    "@types/prop-types": "^15.7.12",
+    "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^18.2.0"
+    "react-is": "^19.0.0"
   },
   "devDependencies": {
-    "@mui-internal/babel-macros": "workspace:^",
     "@mui-internal/test-utils": "workspace:^",
-    "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.11",
+    "@mui/internal-babel-macros": "workspace:^",
+    "@mui/types": "workspace:~",
+    "@types/chai": "^4.3.12",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^18.19.4",
-    "@types/react": "^18.2.46",
-    "@types/react-dom": "^18.2.18",
-    "@types/react-is": "^18.2.4",
+    "@types/node": "^18.19.48",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/react-is": "^19.0.0",
     "@types/sinon": "^10.0.20",
-    "chai": "^4.4.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "chai": "^4.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "sinon": "^15.2.0"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

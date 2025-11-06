@@ -1,30 +1,45 @@
 # Installation
 
-<p class="description">Install Material UI, the world's most popular React UI framework.</p>
+<p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
 ## Default installation
 
-Run one of the following commands to add Material UI to your project:
+Run one of the following commands to add Material UI to your project:
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material@^5.0.0 @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/material @emotion/react @emotion/styled
+yarn add @mui/material@^5.0.0 @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/material @emotion/react @emotion/styled
+pnpm add @mui/material@^5.0.0 @emotion/react @emotion/styled
 ```
 
 </codeblock>
 
+If you wish to use the latest version, remove the `@^5.0.0` suffix.
+
+### Peer dependencies
+
+<!-- #react-peer-version -->
+
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Material UI.
+
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+},
+```
+
 ## With styled-components
 
-Material UI uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
+Material UI uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
 <codeblock storageKey="package-manager">
@@ -43,32 +58,19 @@ pnpm add @mui/material @mui/styled-engine-sc styled-components
 
 </codeblock>
 
-Next, follow the [styled-components how-to guide](/material-ui/guides/styled-components/) to properly configure your bundler to support `@mui/styled-engine-sc`.
+Next, follow the [styled-components how-to guide](/material-ui/integrations/styled-components/) to properly configure your bundler to support `@mui/styled-engine-sc`.
 
 :::error
-As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
+As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.
 This is because `babel-plugin-styled-components` isn't able to work with the `styled()` utility inside `@mui` packages.
 See [this GitHub issue](https://github.com/mui/material-ui/issues/29742) for more details.
 
 We **strongly recommend** using Emotion for SSR projects.
 :::
 
-## Peer dependencies
-
-<!-- #react-peer-version -->
-
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
-
-```json
-"peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0",
-  "react-dom": "^17.0.0 || ^18.0.0"
-},
-```
-
 ## Roboto font
 
-Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
+Material UI uses the [Roboto](https://fonts.google.com/specimen/Roboto) font by default.
 Add it to your project via Fontsource, or with the Google Fonts CDN.
 
 <codeblock storageKey="package-manager">
@@ -97,19 +99,19 @@ import '@fontsource/roboto/700.css';
 ```
 
 :::info
-Fontsource can be configured to load specific subsets, weights and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
+Fontsource can be configured to load specific subsets, weights and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
 :::
 
 ### Google Web Fonts
 
-To install Roboto through the Google Web Fonts CDN, add the following code inside your project's <head /> tag:
+To install Roboto through the Google Web Fonts CDN, add the following code inside your project's `<head />` tag:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 />
 ```
 
@@ -152,7 +154,7 @@ For instance, via Google Web Fonts:
 
 ## CDN
 
-You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
+You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
 Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn) to get started.
 
 :::error

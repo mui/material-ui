@@ -121,13 +121,12 @@ PopupWithTrigger.propTypes = {
 };
 
 function MaterialUITransitionAdapter(props) {
-  const { requestedEnter, onEntering, onExited } = useTransitionStateManager();
+  const { requestedEnter, onExited } = useTransitionStateManager();
   const { children } = props;
 
   return React.cloneElement(children, {
     in: requestedEnter,
     onExited,
-    onEnter: onEntering,
   });
 }
 

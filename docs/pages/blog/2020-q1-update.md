@@ -4,7 +4,7 @@ description: An update on our mission for Q1 2020.
 date: 2020-04-14T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
-card: true
+manualCard: true
 ---
 
 Welcome to the new format of our mission update. We are moving from monthly to quarterly updates.
@@ -85,7 +85,7 @@ We are thrilled to welcome two new full-time developers on MUI:
 
 We'll do our best, no guarantee!
 
-- 📣 We will analyze and publish the results of the "MUI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
+- 📣 We will analyze and publish the results of the "Material UI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
 - 🎨 We will release Figma assets for MUI.
 
   <img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="max-width: 160px; margin-bottom: 24px;" />

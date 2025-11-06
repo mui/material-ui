@@ -1,6 +1,6 @@
 # CSS theme variables - Customization
 
-<p class="description">A guide for customizing CSS theme variables in Material UI.</p>
+<p class="description">A guide for customizing CSS theme variables in Material UI.</p>
 
 ## Theming
 
@@ -26,6 +26,7 @@ Do not use them interchangeably.
 
 - `createTheme()` returns a theme for `ThemeProvider`.
 - `extendTheme()` returns a theme for `CssVarsProvider`.
+
   :::
 
 ### Color schemes
@@ -84,7 +85,7 @@ const theme = extendTheme({
 
 ### Channel tokens
 
-A channel token is a variable that consists of [color space channels](https://www.w3.org/TR/css-color-4/#color-syntax) but without the alpha component. The value of a channel token is separated by a space, e.g. `12 223 31`, which can be combined with the [color functions](https://www.w3.org/TR/css-color-4/#color-functions) to create a translucent color.
+A channel token is a variable that consists of [color space channels](https://www.w3.org/TR/css-color-4/#color-syntax) but without the alpha component. The value of a channel token is separated by a space, for example `12 223 31`, which can be combined with the [color functions](https://www.w3.org/TR/css-color-4/#color-functions) to create a translucent color.
 
 The `extendTheme()` automatically generates channel tokens that are likely to be used frequently from the theme palette. Those colors are suffixed with `Channel`, for example:
 
@@ -165,7 +166,7 @@ Then, you can access those variables from the `theme.vars` object:
 const Divider = styled('hr')(({ theme }) => ({
   height: 1,
   border: '1px solid',
-  borderColor: theme.vars.palette.border.subtile,
+  borderColor: theme.vars.palette.border.subtle,
   backgroundColor: theme.vars.palette.gradient,
 }));
 ```
@@ -288,12 +289,10 @@ function App() {
 }
 ```
 
-For a server-side application, provide the same value to [`getInitColorSchemeScript()`](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering):
+For a server-side application, provide the same value to [`InitColorSchemeScript`](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering):
 
 ```js
-getInitColorSchemeScript({
-  defaultMode: 'dark',
-});
+<InitColorSchemeScript defaultMode="dark" />
 ```
 
 :::warning

@@ -2,12 +2,12 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformance,
   ErrorBoundary,
   act,
   createRenderer,
   fireEvent,
   screen,
+  reactMajor,
 } from '@mui-internal/test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
@@ -19,6 +19,7 @@ import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -376,6 +377,15 @@ describe('<Select />', () => {
 
     describe('warnings', () => {
       it('warns when the value is not present in any option', () => {
+        const errorMessage =
+          'MUI: You have provided an out-of-range value `20` for the select component.';
+
+        let expectedOccurrences = 2;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 3;
+        }
+
         expect(() =>
           render(
             <Select value={20}>
@@ -383,13 +393,7 @@ describe('<Select />', () => {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>,
           ),
-        ).toWarnDev([
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: You have provided an out-of-range value `20` for the select component.',
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-        ]);
+        ).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
       });
     });
   });
@@ -911,6 +915,24 @@ describe('<Select />', () => {
 
       expect(getByRole('combobox')).to.have.text('Ten');
     });
+
+    it('should notch the outline to accommodate the label when displayEmpty', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { container } = render(
+        <Select value="" label="Age" displayEmpty>
+          <MenuItem value="">None</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector('legend')).toHaveComputedStyle({
+        maxWidth: '100%',
+      });
+    });
   });
 
   describe('prop: renderValue', () => {
@@ -1175,8 +1197,8 @@ describe('<Select />', () => {
         }).toErrorDev([
           'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'MUI: The `value` prop must be an array',
-          'The above error occurred in the <ForwardRef(SelectInput)> component',
+          reactMajor === 18 && 'MUI: The `value` prop must be an array',
+          reactMajor < 19 && 'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
@@ -1398,7 +1420,7 @@ describe('<Select />', () => {
   });
 
   // https://github.com/testing-library/react-testing-library/issues/322
-  // https://twitter.com/devongovett/status/1248306411508916224
+  // https://x.com/devongovett/status/1248306411508916224
   it('should handle the browser autofill event and simple testing-library API', () => {
     const onChangeHandler = spy();
     const { container, getByRole } = render(

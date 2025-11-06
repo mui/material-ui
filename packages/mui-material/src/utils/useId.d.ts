@@ -1,3 +1,3 @@
-import { unstable_useId as useId } from '@mui/utils';
+import useId from '@mui/utils/useId';
 
 export default useId;

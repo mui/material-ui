@@ -7,7 +7,7 @@ import { Divider, IconButton, SxProps } from '@mui/material';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
+} from '@mui/docs/branding';
 
 type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 
@@ -56,8 +56,8 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       p: { marginBottom: theme.spacing(1.5) },
     },
     '& .MuiApi-item-note': {
-      fontSize: 11,
-      marginLeft: 6,
+      fontSize: 12,
+      marginLeft: 2,
       letterSpacing: '1px',
       textTransform: 'uppercase',
       color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
@@ -91,21 +91,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
             transform: 'rotate(90deg) translateX(-0.5px) translateY(0.1px)',
           },
         },
-      },
-    },
-    '& .MuiAlert-standardWarning': {
-      padding: '6px 12px',
-      fontWeight: theme.typography.fontWeightMedium,
-      border: '1px solid',
-      borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
-      borderRadius: 12,
-      backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
-      color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-      marginBottom: 16,
-      '.MuiAlert-icon': {
-        display: 'flex',
-        alignItems: 'center',
-        fill: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       },
     },
     '& code.Api-code': {
@@ -152,14 +137,6 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
           color: `var(--muidocs-palette-success-400, ${darkTheme.palette.success[400]})`,
         },
       },
-      '& .MuiAlert-standardWarning': {
-        borderColor: alpha(darkTheme.palette.warning[800], 0.3),
-        backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
-        color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
-        '.MuiAlert-icon svg': {
-          fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
-        },
-      },
       '& code.Api-code': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
@@ -178,7 +155,7 @@ type ExpandableApiItemProps = {
   isExtendable?: boolean;
   note?: string;
   sx?: SxProps;
-  title: string;
+  title: string | React.ReactNode;
   type?: DescriptionType;
 };
 

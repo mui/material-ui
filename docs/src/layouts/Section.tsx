@@ -6,9 +6,10 @@ import { alpha } from '@mui/material/styles';
 interface SelectionProps extends BoxProps {
   bg?: 'white' | 'comfort' | 'dim' | 'gradient' | 'transparent';
   /**
-   * More spacing
+   * Less vertical spacing
    */
   cozy?: boolean;
+  noPaddingBottom?: boolean;
 }
 
 const map = {
@@ -31,7 +32,7 @@ const map = {
 };
 
 const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Section(props, ref) {
-  const { bg = 'white', children, sx, cozy = false, ...other } = props;
+  const { bg = 'white', children, sx, cozy = false, noPaddingBottom = false, ...other } = props;
 
   return (
     <Box
@@ -41,13 +42,13 @@ const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Sectio
         (theme) => ({
           ...(bg === 'gradient'
             ? {
-                background: `linear-gradient(180deg, #FFF 0%, ${
+                background: `linear-gradient(#FFF 0%, ${
                   (theme.vars || theme).palette.primary[50]
                 } 100%)`,
                 ...theme.applyDarkStyles({
-                  background: `linear-gradient(180deg, ${
+                  background: `linear-gradient(${
                     (theme.vars || theme).palette.primaryDark[900]
-                  } 0%, ${alpha(theme.palette.primary[900], 0.16)} 100%)`,
+                  } 0%, ${alpha(theme.palette.primary[900], 0.2)} 100%)`,
                 }),
               }
             : {
@@ -57,6 +58,7 @@ const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Sectio
                 }),
               }),
           py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 14 },
+          pb: noPaddingBottom ? '0 !important' : undefined,
           overflow: 'hidden',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

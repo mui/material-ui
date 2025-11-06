@@ -87,4 +87,4 @@ const theme = createTheme({
 
 ## References
 
-Check out the [Transitions](/material-ui/transitions/) page to explore the transition components that are included with Material UI.
+Check out the [Transitions](/material-ui/transitions/) page to explore the transition components that are included with Material UI.

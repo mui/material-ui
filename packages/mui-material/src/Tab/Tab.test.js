@@ -1,9 +1,11 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createRenderer, describeConformance, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Tab />', () => {
   const { render } = createRenderer();
@@ -164,6 +166,34 @@ describe('<Tab />', () => {
       expect(style).to.have.property('width', '80%');
       expect(style).to.have.property('color', 'red');
       expect(style).to.have.property('alignText', 'center');
+    });
+  });
+
+  it('should apply iconWrapper styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiTab: {
+          styleOverrides: {
+            iconWrapper: {
+              backgroundColor: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+    });
+
+    const { getByRole } = render(
+      <ThemeProvider theme={theme}>
+        <Tab icon={<div>hello</div>} label="icon" />
+      </ThemeProvider>,
+    );
+    const icon = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
+    expect(icon).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 255)',
     });
   });
 });

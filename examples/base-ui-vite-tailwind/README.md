@@ -1,17 +1,17 @@
-# Base UI - Vite.js example with Tailwind CSS
+# Base UI - Vite.js example with Tailwind CSS
 
-[Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
+[Base UI](https://v5.mui.com/base-ui/) is a library of unstyled React UI components and hooks.
 
 [Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command
 
-[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework that provides low-level CSS classes that can be composed to build custom UI designs.
+[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework that provides low-level CSS classes that can be composed to build custom UI designs.
 
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-ui-vite-tailwind
+curl https://codeload.github.com/mui/material-ui/tar.gz/v5.x | tar -xz --strip=2 material-ui-5.x/examples/base-ui-vite-tailwind
 cd base-ui-vite-tailwind
 ```
 

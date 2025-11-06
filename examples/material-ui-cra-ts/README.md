@@ -1,4 +1,4 @@
-# Material UI - Create React App example in TypeScript
+# Material UI - Create React App example in TypeScript
 
 ## How to use
 
@@ -7,7 +7,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra-ts
+curl https://codeload.github.com/mui/material-ui/tar.gz/v5.x | tar -xz --strip=2 material-ui-5.x/examples/material-ui-cra-ts
 cd material-ui-cra-ts
 ```
 
@@ -28,13 +28,13 @@ or:
 
 ## The idea behind the example
 
-This example demonstrates how you can use Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) in [TypeScript](https://github.com/Microsoft/TypeScript).
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
-If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
+This example demonstrates how you can use Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) in [TypeScript](https://github.com/Microsoft/TypeScript).
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
+If you prefer, you can [use styled-components instead](https://v5.mui.com/material-ui/integrations/interoperability/#styled-components).
 
 ## What's next?
 
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://v5.mui.com/material-ui/getting-started/templates/) section.

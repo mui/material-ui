@@ -3,6 +3,10 @@ import { ColorPaletteProp, VariantProp } from '@mui/joy/styles/types';
 
 const VariantColorContext = React.createContext<string | undefined>(undefined);
 
+if (process.env.NODE_ENV !== 'production') {
+  VariantColorContext.displayName = 'VariantColorContext';
+}
+
 /**
  * @internal For internal usage only.
  *

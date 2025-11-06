@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.15.3",
+  "version": "5.18.0",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/material-ui/material-icons/",
+  "homepage": "https://5.mui.com/material-ui/material-icons/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
@@ -46,22 +46,22 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7"
+    "@babel/runtime": "^7.23.9"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/internal-waterfall": "workspace:^",
     "@mui/material": "workspace:^",
-    "@types/chai": "^4.3.11",
-    "@types/react": "^18.2.46",
-    "chai": "^4.4.0",
+    "@types/chai": "^4.3.12",
+    "@types/react": "^19.0.0",
+    "chai": "^4.4.1",
     "chalk": "^5.3.0",
     "cross-fetch": "^4.0.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
-    "react": "^18.2.0",
+    "react": "^19.0.0",
     "rimraf": "^5.0.5",
     "shx": "^0.3.4",
     "svgo": "^3.2.0",
@@ -69,8 +69,8 @@
   },
   "peerDependencies": {
     "@mui/material": "^5.0.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

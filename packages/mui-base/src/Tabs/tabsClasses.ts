@@ -1,6 +1,8 @@
 import { generateUtilityClass } from '../generateUtilityClass';
 import { generateUtilityClasses } from '../generateUtilityClasses';
 
+const COMPONENT_NAME = 'Tabs';
+
 export interface TabsClasses {
   /** Class name applied to the root element. */
   root: string;
@@ -13,10 +15,10 @@ export interface TabsClasses {
 export type TabsClassKey = keyof TabsClasses;
 
 export function getTabsUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiTabs', slot);
+  return generateUtilityClass(COMPONENT_NAME, slot);
 }
 
-export const tabsClasses: TabsClasses = generateUtilityClasses('MuiTabs', [
+export const tabsClasses: TabsClasses = generateUtilityClasses(COMPONENT_NAME, [
   'root',
   'horizontal',
   'vertical',

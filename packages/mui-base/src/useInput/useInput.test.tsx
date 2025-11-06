@@ -7,6 +7,7 @@ import { UseInputParameters } from './useInput.types';
 
 describe('useInput', () => {
   const { render } = createRenderer();
+
   describe('params: inputRef', () => {
     it('should be able to attach input ref passed through params', () => {
       const inputRef = React.createRef<HTMLInputElement>();

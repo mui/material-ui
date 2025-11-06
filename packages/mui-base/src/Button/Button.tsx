@@ -42,14 +42,24 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
     onFocusVisible,
     slotProps = {},
     slots = {},
+    rootElementName: rootElementNameProp = 'button',
     ...other
   } = props;
 
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
+
+  let rootElementName = rootElementNameProp;
+
+  if (typeof slots.root === 'string') {
+    rootElementName = slots.root as keyof HTMLElementTagNameMap;
+  } else if (other.href || other.to) {
+    rootElementName = 'a';
+  }
 
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     focusableWhenDisabled,
+    rootElementName,
   });
 
   React.useImperativeHandle(
@@ -131,6 +141,11 @@ Button.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocusVisible: PropTypes.func,
+  /**
+   * The HTML element that is ultimately rendered, for example 'button' or 'a'
+   * @default 'button'
+   */
+  rootElementName: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The props used for each slot inside the Button.
    * @default {}

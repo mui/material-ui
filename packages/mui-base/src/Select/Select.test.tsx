@@ -2,29 +2,39 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   createRenderer,
-  describeConformanceUnstyled,
   fireEvent,
   act,
   screen,
+  MuiRenderResult,
+  RenderOptions,
+  flushMicrotasks,
 } from '@mui-internal/test-utils';
 import userEvent from '@testing-library/user-event';
 import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
 import { SelectOption } from '@mui/base/useOption';
 import { Option, OptionProps, OptionRootSlotProps, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file
 // currently the setup() method uses the ClipboardEvent constructor which is incompatible with our lowest supported version of iOS Safari (12.2) https://github.com/mui/material-ui/blob/master/.browserslistrc#L44
 // userEvent.setup() requires Safari 14 or up to work
 
 describe('<Select />', () => {
-  const mount = createMount();
-  const { render } = createRenderer();
+  const { render: internalRender } = createRenderer();
+
+  async function render(
+    element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
+    options?: RenderOptions,
+  ): Promise<MuiRenderResult> {
+    const rendered = internalRender(element, options);
+    await flushMicrotasks();
+    return rendered;
+  }
 
   const componentToTest = (
-    <Select defaultListboxOpen defaultValue={1} slotProps={{ popper: { disablePortal: true } }}>
+    <Select defaultListboxOpen defaultValue={1}>
       <OptionGroup label="Group">
         <Option value={1}>1</Option>
       </OptionGroup>
@@ -34,10 +44,8 @@ describe('<Select />', () => {
   describeConformanceUnstyled(componentToTest, () => ({
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiSelect',
     slots: {
       root: {
         expectedClassName: selectClasses.root,
@@ -46,33 +54,81 @@ describe('<Select />', () => {
         expectedClassName: selectClasses.listbox,
         testWithElement: 'ul',
       },
-      popper: {
-        expectedClassName: selectClasses.popper,
-        testWithElement: null,
+      popup: {
+        expectedClassName: selectClasses.popup,
+        testWithElement: 'span',
       },
     },
     skip: ['componentProp'],
   }));
 
+  describe('selected option rendering', () => {
+    it('renders the selected option when it is specified as an only child', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1">One</Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+
+    it('renders the selected option when it is specified among many children', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1">
+            <img src="one.png" alt="One" /> One
+          </Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+
+    it('renders the selected option when it is specified in the label prop', async () => {
+      const markup = (
+        <Select defaultValue="1">
+          <Option value="1" label="One">
+            <img src="one.png" alt="One" />
+          </Option>
+        </Select>
+      );
+
+      const { getByRole } = await render(markup);
+      const select = getByRole('combobox');
+
+      expect(select).to.have.text('One');
+    });
+  });
+
   describe('keyboard navigation', () => {
-    ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
-      it(`opens the dropdown when the "${key}" key is down on the button`, async () => {
-        const { getByRole } = render(<Select />);
-        const select = getByRole('combobox');
-        act(() => {
-          select.focus();
+    [<Select />, <Select slots={{ root: 'span' }} />].forEach((selectComponent) => {
+      const triggerType = selectComponent.props.slots?.root ? 'non-native' : 'native';
+      ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
+        it(`opens the dropdown when the "${key}" key is pressed on a ${triggerType} button trigger`, async () => {
+          const { getByRole } = await render(selectComponent);
+          const select = getByRole('combobox');
+          act(() => {
+            select.focus();
+          });
+
+          await userEvent.keyboard(`{${key}}`);
+
+          expect(select).to.have.attribute('aria-expanded', 'true');
+          expect(getByRole('listbox')).not.to.equal(null);
         });
-
-        await userEvent.keyboard(`{${key}}`);
-
-        expect(select).to.have.attribute('aria-expanded', 'true');
-        expect(getByRole('listbox')).not.to.equal(null);
       });
     });
 
     ['Enter', ' ', 'Escape'].forEach((key) => {
       it(`closes the dropdown when the "${key}" key is pressed`, async () => {
-        const { getByRole } = render(
+        const { getByRole } = await render(
           <Select>
             <Option value={1}>1</Option>
           </Select>,
@@ -86,13 +142,13 @@ describe('<Select />', () => {
         await userEvent.keyboard(`{${key}}`);
 
         expect(select).to.have.attribute('aria-expanded', 'false');
-        expect(listbox).not.toBeVisible();
+        expect(listbox).toBeHidden();
       });
     });
 
     ['Enter', ' '].forEach((key) => {
       it(`does not close the multiselect dropdown when the "${key}" key is pressed`, async () => {
-        const { getByRole, queryByRole } = render(
+        const { getByRole, queryByRole } = await render(
           <Select multiple>
             <Option value={1}>1</Option>
           </Select>,
@@ -112,7 +168,7 @@ describe('<Select />', () => {
     describe('item selection', () => {
       ['Enter', ' '].forEach((key) =>
         it(`selects a highlighted item using the "${key}" key in single mode`, async () => {
-          const { getByRole } = render(
+          const { getByRole } = await render(
             <Select>
               <Option value={1}>1</Option>
               <Option value={2}>2</Option>
@@ -131,7 +187,7 @@ describe('<Select />', () => {
 
       ['Enter', ' '].forEach((key) =>
         it(`selects a highlighted item using the "${key}" key in multiple mode`, async () => {
-          const { getByRole } = render(
+          const { getByRole } = await render(
             <Select multiple>
               <Option value={1}>1</Option>
               <Option value={2}>2</Option>
@@ -152,7 +208,7 @@ describe('<Select />', () => {
 
     describe('text navigation', () => {
       it('navigate to matched key', async () => {
-        const { getByRole, getByText } = render(
+        const { getByRole, getByText } = await render(
           <Select>
             <Option value={1}>Apple</Option>
             <Option value={2}>Banana</Option>
@@ -177,7 +233,7 @@ describe('<Select />', () => {
       });
 
       it('navigate to next element with same starting character on repeated keys', async () => {
-        const { getByRole, getByText } = render(
+        const { getByRole, getByText } = await render(
           <Select>
             <Option value={1}>Apple</Option>
             <Option value={2}>Banana</Option>
@@ -216,7 +272,7 @@ describe('<Select />', () => {
           );
         }
 
-        const { getByRole, getByTestId } = render(
+        const { getByRole, getByTestId } = await render(
           <Select>
             <RichOption data-testid="1" value={1} label="Apple" />
             <RichOption data-testid="2" value={2} label="Banana" />
@@ -241,7 +297,7 @@ describe('<Select />', () => {
       });
 
       it('skips the non-stringifiable options', async () => {
-        const { getByRole, getByText } = render(
+        const { getByRole, getByText } = await render(
           <Select>
             <Option value={{ key: 'Apple' }}>Apple</Option>
             <Option value={{ key: 'Banana' }}>Banana</Option>
@@ -269,7 +325,7 @@ describe('<Select />', () => {
       });
 
       it('navigate to options with diacritic characters', async () => {
-        const { getByRole, getByText } = render(
+        const { getByRole, getByText } = await render(
           <Select>
             <Option value={{ key: 'Aa' }}>Aa</Option>
             <Option value={{ key: 'Ba' }}>Ba</Option>
@@ -292,7 +348,7 @@ describe('<Select />', () => {
       });
 
       it('navigate to next options with beginning diacritic characters', async () => {
-        const { getByRole, getByText } = render(
+        const { getByRole, getByText } = await render(
           <Select>
             <Option value={{ key: 'Aa' }}>Aa</Option>
             <Option value={{ key: 'ąa' }}>ąa</Option>
@@ -318,7 +374,7 @@ describe('<Select />', () => {
     });
 
     it('closes the listbox without selecting an option when "Escape" is pressed', async () => {
-      const { getByRole, queryByRole } = render(
+      const { getByRole, queryByRole } = await render(
         <Select defaultValue={1}>
           <Option value={1}>1</Option>
           <Option value={2}>2</Option>
@@ -336,11 +392,11 @@ describe('<Select />', () => {
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
-      expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
+      expect(queryByRole('listbox', { hidden: true })).toBeHidden();
     });
 
     it('closes the listbox after selecting with keyboard', async () => {
-      const { getByRole, queryByRole } = render(
+      const { getByRole, queryByRole } = await render(
         <Select defaultValue={1}>
           <Option value={1}>1</Option>
           <Option value={2}>2</Option>
@@ -355,7 +411,7 @@ describe('<Select />', () => {
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('2');
-      expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
+      expect(queryByRole('listbox', { hidden: true })).toBeHidden();
     });
 
     it('scrolls to highlighted option so it is visible', async function test() {
@@ -379,7 +435,7 @@ describe('<Select />', () => {
         return <Option {...props} ref={ref} slotProps={{ root: { style: { height: '50px' } } }} />;
       });
 
-      const { getByRole } = render(
+      const { getByRole } = await render(
         <Select slots={{ listbox: SelectListbox }}>
           <CustomOption value="1">1</CustomOption>
           <CustomOption value="2">2</CustomOption>
@@ -419,7 +475,7 @@ describe('<Select />', () => {
 
   describe('form submission', () => {
     describe('using single-select mode', () => {
-      it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+      it('includes the Select value in the submitted form data when the `name` attribute is provided', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // FormData is not available in JSDOM
           this.skip();
@@ -434,7 +490,7 @@ describe('<Select />', () => {
           isEventHandled = true;
         };
 
-        const { getByText } = render(
+        const { getByText } = await render(
           <form onSubmit={handleSubmit}>
             <Select defaultValue={2} name="test-select">
               <Option value={1}>1</Option>
@@ -452,7 +508,7 @@ describe('<Select />', () => {
         expect(isEventHandled).to.equal(true);
       });
 
-      it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+      it('transforms the selected value before posting using the getSerializedValue prop, if provided', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // FormData is not available in JSDOM
           this.skip();
@@ -470,7 +526,7 @@ describe('<Select />', () => {
         const customFormValueProvider = (option: SelectOption<number> | null) =>
           option != null ? `option ${option.value}` : '';
 
-        const { getByText } = render(
+        const { getByText } = await render(
           <form onSubmit={handleSubmit}>
             <Select
               defaultValue={2}
@@ -493,7 +549,7 @@ describe('<Select />', () => {
         expect(isEventHandled).to.equal(true);
       });
 
-      it('formats the object values as JSON before posting', function test() {
+      it('formats the object values as JSON before posting', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // FormData is not available in JSDOM
           this.skip();
@@ -513,7 +569,7 @@ describe('<Select />', () => {
           { value: { firstName: 'Olivia' }, label: 'Olivia' },
         ];
 
-        const { getByText } = render(
+        const { getByText } = await render(
           <form onSubmit={handleSubmit}>
             <Select defaultValue={options[1].value} name="test-select">
               {options.map((o) => (
@@ -536,7 +592,7 @@ describe('<Select />', () => {
     });
 
     describe('using multi-select mode', () => {
-      it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+      it('includes the Select value in the submitted form data when the `name` attribute is provided', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // FormData is not available in JSDOM
           this.skip();
@@ -548,7 +604,7 @@ describe('<Select />', () => {
           expect(formData.get('test-select')).to.equal('[2,3]');
         };
 
-        const { getByText } = render(
+        const { getByText } = await render(
           <form onSubmit={handleSubmit}>
             <Select multiple defaultValue={[2, 3]} name="test-select">
               <Option value={1}>1</Option>
@@ -565,7 +621,7 @@ describe('<Select />', () => {
         });
       });
 
-      it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+      it('transforms the selected value before posting using the getSerializedValue prop, if provided', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // FormData is not available in JSDOM
           this.skip();
@@ -580,7 +636,7 @@ describe('<Select />', () => {
         const customFormValueProvider = (options: SelectOption<number>[]) =>
           options.map((o) => o.value).join('; ');
 
-        const { getByText } = render(
+        const { getByText } = await render(
           <form onSubmit={handleSubmit}>
             <Select
               multiple
@@ -602,7 +658,7 @@ describe('<Select />', () => {
         });
       });
 
-      it('formats the object values as JSON before posting', function test() {
+      it('formats the object values as JSON before posting', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // FormData is not available in JSDOM
           this.skip();
@@ -619,7 +675,7 @@ describe('<Select />', () => {
           { value: { firstName: 'Olivia' }, label: 'Olivia' },
         ];
 
-        const { getByText } = render(
+        const { getByText } = await render(
           <form onSubmit={handleSubmit}>
             <Select multiple defaultValue={[options[1].value]} name="test-select">
               {options.map((o) => (
@@ -641,10 +697,10 @@ describe('<Select />', () => {
   });
 
   describe('prop: onChange', () => {
-    it('is called when the Select value changes', () => {
+    it('is called when the Select value changes', async () => {
       const handleChange = spy();
 
-      const { getByRole, getByText } = render(
+      const { getByRole, getByText } = await render(
         <Select defaultValue={1} onChange={handleChange}>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
@@ -661,13 +717,15 @@ describe('<Select />', () => {
         optionTwo.click();
       });
 
+      await flushMicrotasks();
+
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][0]).to.haveOwnProperty('type', 'click');
       expect(handleChange.args[0][0]).to.haveOwnProperty('target', optionTwo);
       expect(handleChange.args[0][1]).to.equal(2);
     });
 
-    it('is not called if `value` is modified externally', () => {
+    it('is not called if `value` is modified externally', async () => {
       function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
         const [value, setValue] = React.useState([1]);
         const handleChange = (ev: React.SyntheticEvent | null, newValue: number[]) => {
@@ -687,7 +745,7 @@ describe('<Select />', () => {
       }
 
       const onChange = spy();
-      const { getByText } = render(<TestComponent onChange={onChange} />);
+      const { getByText } = await render(<TestComponent onChange={onChange} />);
 
       const button = getByText('Update value');
       act(() => button.click());
@@ -824,8 +882,8 @@ describe('<Select />', () => {
   });
 
   describe('prop: placeholder', () => {
-    it('renders when no value is selected ', () => {
-      const { getByRole } = render(
+    it('renders when no value is selected ', async () => {
+      const { getByRole } = await render(
         <Select placeholder="Placeholder text">
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
@@ -837,8 +895,8 @@ describe('<Select />', () => {
   });
 
   describe('prop: renderValue', () => {
-    it('renders the selected value using the renderValue prop', () => {
-      const { getByRole } = render(
+    it('renders the selected value using the renderValue prop', async () => {
+      const { getByRole } = await render(
         <Select defaultValue={1} renderValue={(value) => `${value?.label} (${value?.value})`}>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
@@ -848,8 +906,8 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).to.have.text('One (1)');
     });
 
-    it('renders the selected value as a label if renderValue is not provided', () => {
-      const { getByRole } = render(
+    it('renders the selected value as a label if renderValue is not provided', async () => {
+      const { getByRole } = await render(
         <Select defaultValue={1}>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
@@ -859,8 +917,8 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).to.have.text('One');
     });
 
-    it('renders a zero-width space when there is no selected value nor placeholder and renderValue is not provided', () => {
-      const { getByRole } = render(
+    it('renders a zero-width space when there is no selected value nor placeholder and renderValue is not provided', async () => {
+      const { getByRole } = await render(
         <Select>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
@@ -873,8 +931,8 @@ describe('<Select />', () => {
       expect(zws).not.to.equal(null);
     });
 
-    it('renders the selected values (multiple) using the renderValue prop', () => {
-      const { getByRole } = render(
+    it('renders the selected values (multiple) using the renderValue prop', async () => {
+      const { getByRole } = await render(
         <Select
           multiple
           defaultValue={[1, 2]}
@@ -888,8 +946,8 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
     });
 
-    it('renders the selected values (multiple) as comma-separated list of labels if renderValue is not provided', () => {
-      const { getByRole } = render(
+    it('renders the selected values (multiple) as comma-separated list of labels if renderValue is not provided', async () => {
+      const { getByRole } = await render(
         <Select multiple defaultValue={[1, 2]}>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
@@ -901,13 +959,13 @@ describe('<Select />', () => {
   });
 
   describe('prop: areOptionsEqual', () => {
-    it('should use the `areOptionsEqual` prop to determine if an option is selected', () => {
+    it('should use the `areOptionsEqual` prop to determine if an option is selected', async () => {
       interface TestValue {
         id: string;
       }
 
       const areOptionsEqual = (a: TestValue, b: TestValue) => a.id === b.id;
-      const { getByRole } = render(
+      const { getByRole } = await render(
         <Select defaultValue={{ id: '1' }} areOptionsEqual={areOptionsEqual}>
           <Option value={{ id: '1' }}>One</Option>
           <Option value={{ id: '2' }}>Two</Option>
@@ -995,8 +1053,8 @@ describe('<Select />', () => {
   });
 
   describe('open/close behavior', () => {
-    it('opens the listbox when the select is clicked', () => {
-      const { getByRole } = render(
+    it('opens the listbox when the select is clicked', async () => {
+      const { getByRole } = await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1007,11 +1065,13 @@ describe('<Select />', () => {
         select.click();
       });
 
+      await flushMicrotasks();
+
       expect(select).to.have.attribute('aria-expanded', 'true');
     });
 
     it('closes the listbox when the select is clicked again', async () => {
-      const { getByRole } = render(
+      const { getByRole } = await render(
         <Select>
           <Option value={1}>One</Option>
         </Select>,
@@ -1029,7 +1089,7 @@ describe('<Select />', () => {
     });
 
     it('closes the listbox without selecting an option when focus is lost', async () => {
-      const { getByRole, getByTestId } = render(
+      const { getByRole, getByTestId } = await render(
         <div>
           <Select defaultValue={1}>
             <Option value={1}>1</Option>
@@ -1057,11 +1117,11 @@ describe('<Select />', () => {
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
-      expect(listbox).not.toBeVisible();
+      expect(listbox).toBeHidden();
     });
 
-    it('closes the listbox when already selected option is selected again with a click', () => {
-      const { getByRole, getByTestId } = render(
+    it('closes the listbox when already selected option is selected again with a click', async () => {
+      const { getByRole, getByTestId } = await render(
         <Select defaultValue={1}>
           <Option data-testid="selected-option" value={1}>
             1
@@ -1082,12 +1142,14 @@ describe('<Select />', () => {
         selectedOption.click();
       });
 
+      await flushMicrotasks();
+
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
     });
 
-    it('does not steal focus from other elements on page when it is open on mount', () => {
-      const { getAllByRole } = render(
+    it('does not steal focus from other elements on page when it is open on mount', async () => {
+      const { getAllByRole } = await render(
         <div>
           <input autoFocus />
           <Select defaultListboxOpen>
@@ -1101,7 +1163,7 @@ describe('<Select />', () => {
       expect(document.activeElement).to.equal(input);
     });
 
-    it('scrolls to initially highlighted option after opening', function test() {
+    it('scrolls to initially highlighted option after opening', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -1122,7 +1184,7 @@ describe('<Select />', () => {
         return <Option {...props} ref={ref} slotProps={{ root: { style: { height: '50px' } } }} />;
       });
 
-      const { getByRole } = render(
+      const { getByRole } = await render(
         <Select slots={{ listbox: SelectListbox }} defaultValue={'4'}>
           <CustomOption value="1">1</CustomOption>
           <CustomOption value="2">2</CustomOption>
@@ -1145,8 +1207,8 @@ describe('<Select />', () => {
   });
 
   describe('prop: autoFocus', () => {
-    it('should focus the select after mounting', () => {
-      const { getByRole } = render(
+    it('should focus the select after mounting', async () => {
+      const { getByRole } = await render(
         <div>
           <input />
           <Select autoFocus>
@@ -1161,7 +1223,7 @@ describe('<Select />', () => {
     });
   });
 
-  it('sets a value correctly when interacted by a user and external code', () => {
+  it('sets a value correctly when interacted by a user and external code', async () => {
     function TestComponent() {
       const [value, setValue] = React.useState<number[]>([]);
 
@@ -1187,12 +1249,11 @@ describe('<Select />', () => {
       );
     }
 
-    const { getByTestId, getByText } = render(<TestComponent />);
+    const { getByTestId, getByText } = await render(<TestComponent />);
     const updateButton = getByTestId('update-externally');
     const selectButton = getByTestId('select');
 
     act(() => updateButton.click());
-    act(() => selectButton.click());
 
     const option2 = getByText('2');
     act(() => option2.click());
@@ -1216,7 +1277,7 @@ describe('<Select />', () => {
       return <li {...other} ref={ref} />;
     });
 
-    const { getByRole } = render(
+    const { getByRole } = await render(
       <Select>
         <Option
           slots={{ root: LoggingRoot }}
@@ -1277,9 +1338,9 @@ describe('<Select />', () => {
   });
 
   describe('browser autofill', () => {
-    it('sets value and calls external onChange when browser autofills', () => {
+    it('sets value and calls external onChange when browser autofills', async () => {
       const onChangeHandler = spy();
-      const { container } = render(
+      const { container } = await render(
         <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
           <Option value="france">France</Option>
           <Option value="germany">Germany</Option>
@@ -1303,9 +1364,9 @@ describe('<Select />', () => {
       expect(hiddenInput).to.have.value('france');
     });
 
-    it('does not set value when browser autofills invalid value', () => {
+    it('does not set value when browser autofills invalid value', async () => {
       const onChangeHandler = spy();
-      const { container } = render(
+      const { container } = await render(
         <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
           <Option value="france">France</Option>
           <Option value="germany">Germany</Option>
@@ -1328,9 +1389,9 @@ describe('<Select />', () => {
       expect(hiddenInput).to.have.value('germany');
     });
 
-    it('clears value and calls external onChange when browser clears autofill', () => {
+    it('clears value and calls external onChange when browser clears autofill', async () => {
       const onChangeHandler = spy();
-      const { container } = render(
+      const { container } = await render(
         <Select onChange={onChangeHandler} defaultValue="germany" autoComplete="country">
           <Option value="france">France</Option>
           <Option value="germany">Germany</Option>
@@ -1356,8 +1417,8 @@ describe('<Select />', () => {
   });
 
   describe('warnings', () => {
-    it('should warn when switching from controlled to uncontrolled', () => {
-      const { setProps } = render(
+    it('should warn when switching from controlled to uncontrolled', async () => {
+      const { setProps } = await render(
         <Select value={1}>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
@@ -1371,8 +1432,8 @@ describe('<Select />', () => {
       );
     });
 
-    it('should warn when switching between uncontrolled to controlled', () => {
-      const { setProps } = render(
+    it('should warn when switching between uncontrolled to controlled', async () => {
+      const { setProps } = await render(
         <Select>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>

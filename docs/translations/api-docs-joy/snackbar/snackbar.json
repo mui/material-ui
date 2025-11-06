@@ -142,9 +142,9 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "startDecorator": "The component that renders the start decorator.",
+    "clickAway": "The component that renders the click away.",
     "endDecorator": "The component that renders the end decorator.",
-    "clickAway": "The component that renders the click away."
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator."
   }
 }

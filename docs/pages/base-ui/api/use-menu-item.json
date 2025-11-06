@@ -5,6 +5,10 @@
       "required": true
     },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "disableFocusOnHover": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
     "id": { "type": { "name": "string", "description": "string" } },
     "label": { "type": { "name": "string", "description": "string" } },
     "onClick": {

@@ -102,9 +102,9 @@
     }
   },
   "slotDescriptions": {
+    "endDecorator": "The component that renders the end decorator.",
     "root": "The component that renders the root.",
-    "textarea": "The component that renders the textarea.",
     "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "textarea": "The component that renders the textarea."
   }
 }

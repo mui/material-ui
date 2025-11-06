@@ -6,7 +6,6 @@ import {
   SelectRootSlotProps,
 } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -41,14 +40,14 @@ const Select = React.forwardRef(function CustomSelect<
   const slots: SelectProps<TValue, Multiple>['slots'] = {
     root: Button,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
   return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 
 const blue = {
   100: '#DAECFF',
@@ -194,7 +193,7 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;
 

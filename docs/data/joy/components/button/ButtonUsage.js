@@ -32,6 +32,11 @@ export default function ButtonUsage() {
           knob: 'switch',
           defaultValue: false,
         },
+        {
+          propName: 'loading',
+          knob: 'switch',
+          defaultValue: false,
+        },
         { propName: 'onClick', defaultValue: () => {} },
       ]}
       renderDemo={(props) => (

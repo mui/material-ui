@@ -263,4 +263,4 @@ export interface InputBaseComponentProps
  *
  * - [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
-export default function InputBase(props: InputBaseProps): JSX.Element;
+export default function InputBase(props: InputBaseProps): React.JSX.Element;

@@ -1,8 +1,8 @@
 type ItemComparer<Item> = (a: Item, b: Item) => boolean;
 
 export function areArraysEqual<Item>(
-  array1: Item[],
-  array2: Item[],
+  array1: ReadonlyArray<Item>,
+  array2: ReadonlyArray<Item>,
   itemComparer: ItemComparer<Item> = (a, b) => a === b,
 ) {
   return (

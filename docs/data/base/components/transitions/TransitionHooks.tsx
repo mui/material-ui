@@ -120,25 +120,14 @@ const SlideDownInnerWrapper = styled('div')`
 
 function SlideDown(props: React.PropsWithChildren<{}>) {
   const { children } = props;
-  const { requestedEnter, onEntering, onEntered, onExiting, onExited } =
-    useTransitionStateManager();
-
-  React.useEffect(() => {
-    if (requestedEnter) {
-      onEntering();
-    } else {
-      onExiting();
-    }
-  }, [requestedEnter, onEntering, onExiting]);
+  const { requestedEnter, onExited } = useTransitionStateManager();
 
   return (
     <SlideDownOuterWrapper
       className={requestedEnter ? 'expanded' : ''}
       onTransitionEnd={(event) => {
         if (event.propertyName === 'grid-template-rows') {
-          if (requestedEnter) {
-            onEntered();
-          } else {
+          if (!requestedEnter) {
             onExited();
           }
         }

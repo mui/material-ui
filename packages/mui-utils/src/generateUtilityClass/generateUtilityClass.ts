@@ -1,22 +1,8 @@
 import ClassNameGenerator from '../ClassNameGenerator';
 
-// If GlobalStateSlot is changed, GLOBAL_STATE_CLASSES in
-// \packages\api-docs-builder\utils\parseSlotsAndClasses.ts must be updated accordingly.
-export type GlobalStateSlot =
-  | 'active'
-  | 'checked'
-  | 'completed'
-  | 'disabled'
-  | 'error'
-  | 'expanded'
-  | 'focused'
-  | 'focusVisible'
-  | 'open'
-  | 'readOnly'
-  | 'required'
-  | 'selected';
+export type GlobalStateSlot = keyof typeof globalStateClasses;
 
-const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
+export const globalStateClasses = {
   active: 'active',
   checked: 'checked',
   completed: 'completed',
@@ -36,8 +22,12 @@ export default function generateUtilityClass(
   slot: string,
   globalStatePrefix = 'Mui',
 ): string {
-  const globalStateClass = globalStateClassesMapping[slot as GlobalStateSlot];
+  const globalStateClass = globalStateClasses[slot as GlobalStateSlot];
   return globalStateClass
     ? `${globalStatePrefix}-${globalStateClass}`
     : `${ClassNameGenerator.generate(componentName)}-${slot}`;
+}
+
+export function isGlobalState(slot: string) {
+  return globalStateClasses[slot as GlobalStateSlot] !== undefined;
 }

@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 
@@ -46,7 +46,7 @@ const DialogContentRoot = styled('div', {
 }));
 
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiDialogContent',
   });

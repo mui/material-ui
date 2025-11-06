@@ -13,14 +13,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  unstable_extendSxProp as extendSxProp,
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import { extendSxProp } from '@mui/system/styleFunctionSx';
+import composeClasses from '@mui/utils/composeClasses';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import useTheme from '../styles/useTheme';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
@@ -402,7 +402,7 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const Grid = React.forwardRef(function Grid(inProps, ref) {
-  const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
+  const themeProps = useDefaultProps({ props: inProps, name: 'MuiGrid' });
   const { breakpoints } = useTheme();
 
   const props = extendSxProp(themeProps);

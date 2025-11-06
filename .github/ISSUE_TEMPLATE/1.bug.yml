@@ -1,18 +1,16 @@
 name: Bug report 🐛
-description: Create a bug report for MUI Core.
+description: Create a bug report for Material UI, Base UI, MUI System, or Joy UI.
 labels: ['status: waiting for maintainer']
 body:
   - type: markdown
     attributes:
-      value: |
-        Please provide a searchable summary of the issue in the title above ⬆️.
-
-        Thanks for contributing by creating an issue! ❤️
+      value: Thanks for contributing by creating an issue! ❤️ Please provide a searchable summary of the issue in the title above ⬆️.
   - type: input
     attributes:
       label: Search keywords
-      description: Your issue may have already been reported! List the keywords you've used to search the [existing issues](https://github.com/mui/material-ui/issues). This will also make your issue searchable for others.
-      placeholder: e.g. tooltip color
+      description: |
+        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
+        If your issue isn't a duplicate, great! Please list the keywords you used so people in the future can find this one more easily:
     validations:
       required: true
   - type: checkboxes
@@ -28,7 +26,7 @@ body:
       description: |
         **⚠️ Issues that we can't reproduce can't be fixed.**
 
-        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. As a starting point, we recommend you browse our [documentation](https://mui.com/material-ui/getting-started/installation/), and [select](https://mui.com/static/docs/forking-an-example.png) the closest example to your use case. Or you can use the [official template](https://mui.com/r/issue-template) to build a reproduction case.
+        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug. See our [documentation](https://mui.com/material-ui/getting-started/support/#bug-reproductions) on how to build a reproduction case.
       value: |
         Link to live example: (required)
 
@@ -47,7 +45,7 @@ body:
   - type: textarea
     attributes:
       label: Context
-      description: What are you trying to accomplish? How has this issue affected you? Providing context helps us come up with a solution that is more useful in the real world.
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
   - type: textarea
     attributes:
       label: Your environment

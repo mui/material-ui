@@ -1,3 +1,3 @@
-import { unstable_ownerDocument as ownerDocument } from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
 
 export default ownerDocument;

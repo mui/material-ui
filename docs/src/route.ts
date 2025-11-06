@@ -35,7 +35,7 @@ const ROUTES = {
   systemDocs: '/system/getting-started/',
   // X general pages
   xIntro: '/x/introduction/',
-  xRoadmap: 'https://github.com/mui/mui-x/projects/1',
+  xRoadmap: 'https://github.com/orgs/mui/projects/35',
   xLicensing: '/x/introduction/licensing/',
   // Data Grid doc pages
   dataGridOverview: '/x/react-data-grid/',
@@ -49,7 +49,8 @@ const ROUTES = {
   // Tree View doc pages
   treeViewOverview: '/x/react-tree-view/',
   // Toolpad pages
-  toolpadDocs: '/toolpad/getting-started/',
+  toolpadDocs: '/toolpad/studio/getting-started/',
+  toolpadStudioDocs: '/toolpad/studio/getting-started',
   // External pages
   rssFeed: '/feed/blog/rss.xml',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',

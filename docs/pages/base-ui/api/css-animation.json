@@ -13,7 +13,7 @@
   "classes": [],
   "spread": true,
   "themeDefaultProps": null,
-  "muiName": "MuiCssAnimation",
+  "muiName": "CssAnimation",
   "filename": "/packages/mui-base/src/Transitions/CssAnimation.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-transitions/\">Transitions</a></li></ul>",

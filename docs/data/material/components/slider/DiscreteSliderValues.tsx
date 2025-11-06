@@ -25,17 +25,12 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-function valueLabelFormat(value: number) {
-  return marks.findIndex((mark) => mark.value === value) + 1;
-}
-
 export default function DiscreteSliderValues() {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
         aria-label="Restricted values"
         defaultValue={20}
-        valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
         step={null}
         valueLabelDisplay="auto"

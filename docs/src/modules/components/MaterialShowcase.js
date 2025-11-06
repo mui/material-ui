@@ -8,9 +8,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { Link } from '@mui/docs/Link';
+import { useTranslate } from '@mui/docs/i18n';
 
 /**
  * The app structure:
@@ -134,17 +135,6 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'VMware CloudHealth',
-    description:
-      'The most trusted cloud management platform that enables users to analyze and manage cloud ' +
-      'cost, usage and performance in one place. ' +
-      '(Used for the business application, but not the marketing website.)',
-    image: 'cloudhealth.jpg',
-    link: 'https://cloudhealth.vmware.com/',
-    similarWebVisits: 132,
-    dateAdded: '2018-01-27',
-  },
-  {
     title: 'CityAds',
     description:
       'CityAds Media: global technology platform for online performance marketing ' +
@@ -184,15 +174,6 @@ const appList = [
     link: 'https://www.forex.no/',
     similarWebVisits: 95,
     dateAdded: '2018-01-24',
-  },
-  {
-    title: 'LocalMonero',
-    description:
-      'A safe and easy-to-use person-to-person platform to allow anyone ' +
-      'to trade their local currency for Monero, anywhere.',
-    image: 'localmonero.jpg',
-    link: 'https://localmonero.co/?rc=ogps',
-    dateAdded: '2018-01-04',
   },
   {
     title: 'LessWrong',
@@ -479,22 +460,23 @@ export default function Showcase() {
 
   return (
     <React.Fragment>
-      <ToggleButtonGroup
-        size="small"
-        color="primary"
-        value={sortFunctionName}
-        onChange={handleChangeSort}
-        exclusive
-        sx={{ mb: 3, display: 'flex', alignItems: 'center' }}
-      >
-        <Typography variant="body2" color="text.secondary" fontWeight={600} sx={{ mr: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
+        <Typography variant="body2" color="text.secondary" fontWeight="semiBold">
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Sort by:'}
         </Typography>
-        <ToggleButton value="similarWebVisits">{t('traffic')}</ToggleButton>
-        <ToggleButton value="dateAdded">{t('newest')}</ToggleButton>
-        <ToggleButton value="stars">{t('stars')}</ToggleButton>
-      </ToggleButtonGroup>
+        <ToggleButtonGroup
+          size="small"
+          color="primary"
+          value={sortFunctionName}
+          onChange={handleChangeSort}
+          exclusive
+        >
+          <ToggleButton value="similarWebVisits">{t('traffic')}</ToggleButton>
+          <ToggleButton value="dateAdded">{t('newest')}</ToggleButton>
+          <ToggleButton value="stars">{t('stars')}</ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
       <Grid container spacing={3}>
         {stableSort(
           appList.filter((item) => item[sortFunctionName] !== undefined),
@@ -511,10 +493,10 @@ export default function Showcase() {
                   p: 2,
                   gap: 2,
                   borderRadius: 1,
-                  backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
+                  backgroundColor: `${alpha(theme.palette.grey[50], 0.3)}`,
                   borderColor: 'divider',
                   ...theme.applyDarkStyles({
-                    backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
+                    backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.2)}`,
                     borderColor: 'divider',
                   }),
                 })}
@@ -529,23 +511,22 @@ export default function Showcase() {
                     title={app.title}
                     sx={(theme) => ({
                       height: 'auto',
-                      borderRadius: 0.5,
+                      borderRadius: '6px',
                       bgcolor: 'currentColor',
                       border: '1px solid',
-                      borderColor: 'grey.100',
+                      borderColor: 'divider',
                       color: 'grey.100',
                       ...theme.applyDarkStyles({
-                        borderColor: 'grey.700',
                         color: 'primaryDark.900',
                       }),
                     })}
                   />
                 </a>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                   <Typography
                     component="h2"
-                    variant="h6"
-                    fontWeight={600}
+                    variant="body1"
+                    fontWeight="semiBold"
                     sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
                   >
                     <span>{app.title}</span>
@@ -559,10 +540,17 @@ export default function Showcase() {
                       </IconButton>
                     ) : null}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" flexGrow={1}>
                     {app.description}
                   </Typography>
-                  <Typography variant="caption" display="block" color="text.secondary">
+                  <Typography
+                    variant="caption"
+                    fontWeight="semiBold"
+                    color="text.secondary"
+                    mt={1}
+                    sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                  >
+                    <CalendarMonthRoundedIcon sx={{ fontSize: 17, opacity: 0.8 }} />
                     {app.dateAdded}
                   </Typography>
                 </Box>

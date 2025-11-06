@@ -2,20 +2,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  unstable_composeClasses as composeClasses,
-  useSlotProps,
-  isHostComponent,
-} from '@mui/base';
-import {
-  chainPropTypes,
-  integerPropType,
-  elementTypeAcceptingRef,
-  refType,
-  HTMLElementType,
-} from '@mui/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import refType from '@mui/utils/refType';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import useSlotProps from '@mui/utils/useSlotProps';
+import isHostComponent from '@mui/utils/isHostComponent';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
@@ -99,7 +95,7 @@ export const PopoverPaper = styled(PaperBase, {
 });
 
 const Popover = React.forwardRef(function Popover(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPopover' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPopover' });
   const {
     action,
     anchorEl,
@@ -644,7 +640,7 @@ Popover.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps: PropTypes.object,

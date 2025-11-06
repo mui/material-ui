@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -9,10 +9,10 @@ import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
-import { GlowingIconContainer } from 'docs/src/components/action/InfoCard';
+import { GlowingIconContainer } from '@mui/docs/InfoCard';
 
 function Widget({
   children,
@@ -21,7 +21,7 @@ function Widget({
 }: {
   children: React.ReactNode;
   title: string;
-  icon: React.ReactElement;
+  icon: React.ReactElement<unknown>;
 }) {
   return (
     <Paper
@@ -72,7 +72,7 @@ export default function HowToSupport() {
         description=""
       />
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid xs={12} sm={6} md={4}>
           <Widget
             icon={<ForumRoundedIcon fontSize="small" color="primary" />}
             title="Give feedback"
@@ -96,7 +96,7 @@ export default function HowToSupport() {
             </Button>
           </Widget>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid xs={12} sm={6} md={4}>
           <Widget
             icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
             title="Join the community"
@@ -139,7 +139,7 @@ export default function HowToSupport() {
               <li>
                 Answer questions on{' '}
                 <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                  Stack Overflow
+                  Stack&nbsp;Overflow
                 </Link>
                 .
               </li>
@@ -157,7 +157,7 @@ export default function HowToSupport() {
             </Button>
           </Widget>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid xs={12} sm={6} md={4}>
           <Widget
             icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
             title="Support us financially"

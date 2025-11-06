@@ -42,7 +42,7 @@
       "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {

@@ -10,7 +10,7 @@ export interface ModalOwnProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false

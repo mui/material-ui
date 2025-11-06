@@ -73,7 +73,7 @@ const Switch = React.forwardRef((props, ref) => {
           return {
             ...resolvedSlotProps,
             className: clsx(
-              `absolute block w-full h-full transition rounded-full border border-solid outline-none border-slate-300 dark:border-gray-700 group-[.Mui-focusVisible]:shadow-outline-switch
+              `absolute block w-full h-full transition rounded-full border border-solid outline-none border-slate-300 dark:border-gray-700 group-[.base--focusVisible]:shadow-outline-switch
               ${
                 ownerState.checked
                   ? 'bg-purple-500'

@@ -2,12 +2,16 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import kebabCase from 'lodash/kebabCase';
-import { ComponentClassDefinition } from '@mui-internal/docs-utilities';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { useTranslate } from '@mui/docs/i18n';
 import ExpandableApiItem, {
   ApiItemContaier,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import { brandingDarkTheme as darkTheme } from 'docs/src/modules/brandingTheme';
+import {
+  brandingLightTheme as lightTheme,
+  brandingDarkTheme as darkTheme,
+} from '@mui/docs/branding';
+import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -25,11 +29,25 @@ const StyledApiItem = styled(ExpandableApiItem)(
     '& .prop-list-class': {
       margin: 0,
     },
+    '&.classes-list-deprecated-item': {
+      '& .MuiApi-item-note': {
+        color: `var(--muidocs-palette-warning-700, ${lightTheme.palette.warning[700]})`,
+      },
+    },
+    '& .classes-list-alert': {
+      marginTop: 12,
+      marginBottom: 16,
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .prop-list-title': {
         color: `var(--muidocs-palette-grey-50, ${darkTheme.palette.grey[50]})`,
+      },
+      '&.classes-list-deprecated-item': {
+        '& .MuiApi-item-note': {
+          color: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
+        },
       },
     },
   }),
@@ -55,19 +73,42 @@ export default function ClassesList(props: ClassesListProps) {
   return (
     <ApiItemContaier>
       {classes.map((classDefinition) => {
-        const { className, key, description, isGlobal } = classDefinition;
+        const { className, key, description, isGlobal, isDeprecated, deprecationInfo } =
+          classDefinition;
+
+        let note = isGlobal ? t('api-docs.state') : '';
+
+        if (isDeprecated) {
+          note = [note, t('api-docs.deprecated')].filter(Boolean).join(' - ');
+        }
 
         return (
           <StyledApiItem
             id={getHash({ componentName, className: key })}
             key={key}
-            note={isGlobal ? t('api-docs.state') : ''}
+            note={note}
             title={`.${className}`}
             type="classes"
             displayOption={displayOption}
             isExtendable={!!description}
+            className={isDeprecated ? 'classes-list-deprecated-item' : ''}
           >
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
+            {isDeprecated && (
+              <ApiWarning className="MuiApi-collapsible classes-list-alert">
+                {t('api-docs.deprecated')}
+                {deprecationInfo && (
+                  <React.Fragment>
+                    {' - '}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: deprecationInfo,
+                      }}
+                    />
+                  </React.Fragment>
+                )}
+              </ApiWarning>
+            )}
             {displayClassKeys && !isGlobal && (
               <p className="prop-list-class">
                 <span className="prop-list-title">{'Rule name'}:</span>
