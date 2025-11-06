@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { RadioClasses } from './radioClasses';
@@ -32,7 +33,7 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<
       React.ElementType<SwitchBaseProps>,
@@ -41,7 +42,7 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the input slot.
-     * By default, the avaible props are based on the input element.
+     * By default, the available props are based on the input element.
      */
     input: SlotProps<'input', RadioInputSlotPropsOverrides, RadioOwnerState>;
   }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { extendTheme, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Tooltip from '@mui/joy/Tooltip';

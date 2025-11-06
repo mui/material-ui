@@ -51,13 +51,13 @@ describe('Joy <MenuItem />', () => {
   }));
 
   it('should render with the variant class', () => {
-    const { getByRole } = render(<MenuItem variant="outlined" />);
-    expect(getByRole('menuitem')).to.have.class(classes.variantOutlined);
+    render(<MenuItem variant="outlined" />);
+    expect(screen.getByRole('menuitem')).to.have.class(classes.variantOutlined);
   });
 
   it('should render with primary color class', () => {
-    const { getByRole } = render(<MenuItem color="primary" />);
-    expect(getByRole('menuitem')).to.have.class(classes.colorPrimary);
+    render(<MenuItem color="primary" />);
+    expect(screen.getByRole('menuitem')).to.have.class(classes.colorPrimary);
   });
 
   it('should render a focusable menuitem', () => {

@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "module": "esnext",
     // aligning with Node18 recommendation: https://www.npmjs.com/package/@tsconfig/node18
     "target": "es2022",
     "lib": ["es2020", "dom", "dom.iterable"],
-    "jsx": "preserve",
-    "moduleResolution": "node",
+    "jsx": "react-jsx",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
+    "baseUrl": ".",
     "paths": {
       "@mui/material": ["./packages/mui-material/src"],
       "@mui/material/package.json": ["./packages/mui-material/package.json"],
@@ -46,8 +47,13 @@
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
       ],
+      "@mui/internal-scripts/generate-llms-txt": [
+        "./packages-internal/scripts/generate-llms-txt/src"
+      ],
       "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
       "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"],
+      "@mui/stylis-plugin-rtl": ["./packages/mui-stylis-plugin-rtl/src"],
+      "@mui/stylis-plugin-rtl/*": ["./packages/mui-stylis-plugin-rtl/src/*"],
       "docs/*": ["./docs/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.

@@ -195,4 +195,73 @@ describe('createPalette()', () => {
       }).toErrorDev('falls below the WCAG recommended absolute minimum contrast ratio of 3:1');
     });
   });
+
+  describe('color space', () => {
+    it('should not throw an error when using color space', () => {
+      expect(() => {
+        createPalette({
+          colorSpace: 'oklch',
+          primary: {
+            main: 'oklch(0.5 0.5 0)',
+          },
+        });
+      }).not.toErrorDev();
+    });
+
+    it('should use color-mix when using color space', () => {
+      const palette = createPalette({
+        colorSpace: 'oklch',
+        primary: {
+          main: 'oklch(0.5 0.5 0)',
+        },
+      });
+      expect(palette.primary.main).to.equal('oklch(0.5 0.5 0)');
+      expect(palette.primary.light).to.equal('color-mix(in oklch, oklch(0.5 0.5 0), #fff 20%)');
+      expect(palette.primary.dark).to.equal('color-mix(in oklch, oklch(0.5 0.5 0), #000 30%)');
+    });
+
+    it('should use oklch relative color for contrast text', () => {
+      const palette = createPalette({
+        colorSpace: 'oklch',
+        primary: {
+          main: 'color(display-p3 0.5 0.5 0)',
+        },
+      });
+      expect(palette.primary.contrastText).to.equal(
+        'oklch(from color(display-p3 0.5 0.5 0) var(--__l) 0 h / var(--__a))',
+      );
+      expect(palette.getContrastText('color(display-p3 0.8 0.8 0)')).to.equal(
+        'oklch(from color(display-p3 0.8 0.8 0) var(--__l) 0 h / var(--__a))',
+      );
+    });
+
+    it('should use color-mix with tonal when using color space', () => {
+      const palette = createPalette({
+        colorSpace: 'oklch',
+        tonalOffset: 0.5,
+        primary: {
+          main: 'oklch(0.5 0.5 0)',
+        },
+      });
+      expect(palette.primary.main).to.equal('oklch(0.5 0.5 0)');
+      expect(palette.primary.light).to.equal('color-mix(in oklch, oklch(0.5 0.5 0), #fff 50%)');
+      expect(palette.primary.dark).to.equal('color-mix(in oklch, oklch(0.5 0.5 0), #000 75%)');
+    });
+
+    it('should use color-mix when using color space variable', () => {
+      const palette = createPalette({
+        colorSpace: 'var(--mui-colorSpace)',
+        primary: {
+          main: 'oklch(0.5 0.5 0)',
+        },
+      });
+      expect(palette.primary.main).to.equal('oklch(0.5 0.5 0)');
+      expect(palette.primary.light).to.equal(
+        'color-mix(in var(--mui-colorSpace), oklch(0.5 0.5 0), #fff 20%)',
+      );
+      expect(palette.primary.dark).to.equal(
+        'color-mix(in var(--mui-colorSpace), oklch(0.5 0.5 0), #000 30%)',
+      );
+    });
+  });
 });

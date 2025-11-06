@@ -1,7 +1,6 @@
-/* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { Box, ThemeProvider, boxClasses as classes } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import describeConformance from '../../test/describeConformance';
@@ -48,25 +47,28 @@ describe('<Box />', () => {
   });
 
   it('renders children and box content', () => {
-    const { container, getByTestId } = render(
-      <Box component="span" sx={{ m: 1 }}>
+    render(
+      <Box data-testid="box" component="span" sx={{ m: 1 }}>
         {testChildren}
       </Box>,
     );
-    expect(container.firstChild).contain(getByTestId('child'));
-    expect(container.querySelectorAll('span').length).to.equal(1);
+    const box = screen.getByTestId('box');
+    expect(box).contain(screen.getByTestId('child'));
+    expect(box.tagName).to.equal('SPAN');
   });
 
   it('respect properties order when generating the CSS', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();
     }
 
-    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
+    const { container: testCaseBorderColorWins } = render(
+      <Box border={1} borderColor="rgb(0, 0, 255)" />,
+    );
 
-    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderColorWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '1px',
       borderBottomWidth: '1px',
@@ -81,9 +83,11 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(<Box borderColor={'rgb(0, 0, 255)'} border={1} />);
+    const { container: testCaseBorderWins } = render(
+      <Box borderColor={'rgb(0, 0, 255)'} border={1} />,
+    );
 
-    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '1px',
       borderBottomWidth: '1px',
@@ -100,13 +104,13 @@ describe('<Box />', () => {
   });
 
   it('respect border-*-color properties order when generating the CSS', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();
     }
 
-    const testCaseBorderPositionColorWins = render(
+    const { container: testCaseBorderPositionColorWins } = render(
       <Box
         borderTop={1}
         borderTopColor="rgb(0, 0, 25)"
@@ -119,7 +123,7 @@ describe('<Box />', () => {
       />,
     );
 
-    expect(testCaseBorderPositionColorWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderPositionColorWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '2px',
       borderBottomWidth: '3px',
@@ -134,7 +138,7 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 100)',
     });
 
-    const testCaseBorderPositionWins = render(
+    const { container: testCaseBorderPositionWins } = render(
       <Box
         borderTopColor="rgb(0, 0, 25)"
         borderTop={1}
@@ -147,7 +151,7 @@ describe('<Box />', () => {
       />,
     );
 
-    expect(testCaseBorderPositionWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderPositionWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '2px',
       borderBottomWidth: '3px',
@@ -164,17 +168,17 @@ describe('<Box />', () => {
   });
 
   it('respect properties order when generating the CSS from the sx prop', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();
     }
 
-    const testCaseBorderColorWins = render(
+    const { container: testCaseBorderColorWins } = render(
       <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
     );
 
-    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderColorWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '1px',
       borderBottomWidth: '1px',
@@ -189,9 +193,11 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
+    const { container: testCaseBorderWins } = render(
+      <Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />,
+    );
 
-    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '1px',
       borderBottomWidth: '1px',
@@ -206,7 +212,7 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 0)',
     });
 
-    const testCaseBorderPositionColorWins = render(
+    const { container: testCaseBorderPositionColorWins } = render(
       <Box
         sx={{
           borderTop: 1,
@@ -221,7 +227,7 @@ describe('<Box />', () => {
       />,
     );
 
-    expect(testCaseBorderPositionColorWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderPositionColorWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '2px',
       borderBottomWidth: '3px',
@@ -236,7 +242,7 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 100)',
     });
 
-    const testCaseBorderPositionWins = render(
+    const { container: testCaseBorderPositionWins } = render(
       <Box
         sx={{
           borderTopColor: 'rgb(0, 0, 25)',
@@ -251,7 +257,7 @@ describe('<Box />', () => {
       />,
     );
 
-    expect(testCaseBorderPositionWins.container.firstChild).toHaveComputedStyle({
+    expect(testCaseBorderPositionWins.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
       borderRightWidth: '2px',
       borderBottomWidth: '3px',
@@ -278,14 +284,14 @@ describe('<Box />', () => {
   });
 
   it('adds the utility mui class', () => {
-    const { getByTestId } = render(<Box data-testid="regular-box" />);
+    render(<Box data-testid="regular-box" />);
 
-    expect(getByTestId('regular-box')).to.have.class('MuiBox-root');
+    expect(screen.getByTestId('regular-box')).to.have.class('MuiBox-root');
   });
 
   describe('prop: maxWidth', () => {
     it('should resolve breakpoints with custom units', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();

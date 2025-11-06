@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { styled, ThemeProvider } from '@mui/system';
@@ -454,7 +453,8 @@ describe('styled', () => {
           },
         },
       });
-      const { getByTestId } = render(
+
+      render(
         <ThemeProvider theme={customTheme}>
           <TestObj data-testid="large" size="large">
             Test
@@ -465,11 +465,11 @@ describe('styled', () => {
         </ThemeProvider>,
       );
 
-      expect(getByTestId('large')).toHaveComputedStyle({
+      expect(screen.getByTestId('large')).toHaveComputedStyle({
         width: '400px',
         height: '400px',
       });
-      expect(getByTestId('small')).toHaveComputedStyle({
+      expect(screen.getByTestId('small')).toHaveComputedStyle({
         width: theme.spacing(10),
         height: theme.spacing(10),
       });

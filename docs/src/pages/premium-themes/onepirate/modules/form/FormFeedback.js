@@ -27,10 +27,10 @@ const Root = styled('div', {
 }));
 
 function FormFeedback(props) {
-  const { className, children, error, success, ...others } = props;
+  const { className, children, error, success, ...other } = props;
 
   return (
-    <Root error={error} success={success} className={className} {...others}>
+    <Root error={error} success={success} className={className} {...other}>
       <Typography color="inherit">{children}</Typography>
     </Root>
   );

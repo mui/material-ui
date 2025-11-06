@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -36,16 +35,6 @@ export default function FormPropsTextFields() {
           slotProps={{
             input: {
               readOnly: true,
-            },
-          }}
-        />
-        <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          slotProps={{
-            inputLabel: {
-              shrink: true,
             },
           }}
         />
@@ -87,17 +76,6 @@ export default function FormPropsTextFields() {
           slotProps={{
             input: {
               readOnly: true,
-            },
-          }}
-        />
-        <TextField
-          id="filled-number"
-          label="Number"
-          type="number"
-          variant="filled"
-          slotProps={{
-            inputLabel: {
-              shrink: true,
             },
           }}
         />
@@ -145,17 +123,6 @@ export default function FormPropsTextFields() {
           slotProps={{
             input: {
               readOnly: true,
-            },
-          }}
-        />
-        <TextField
-          id="standard-number"
-          label="Number"
-          type="number"
-          variant="standard"
-          slotProps={{
-            inputLabel: {
-              shrink: true,
             },
           }}
         />

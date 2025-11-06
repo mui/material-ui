@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
@@ -24,18 +24,24 @@ export interface AccordionSlots {
    * @default Collapse
    */
   transition: React.ElementType;
+  /**
+   * The component that renders the region.
+   * @default 'div'
+   */
+  region: React.ElementType;
 }
 
 export interface AccordionRootSlotPropsOverrides {}
 export interface AccordionHeadingSlotPropsOverrides {}
 export interface AccordionTransitionSlotPropsOverrides {}
+export interface AccordionRegionSlotPropsOverrides {}
 
 export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the Paper element.
+     * By default, the available props are based on the Paper element.
      */
     root: SlotProps<
       React.ElementType<PaperProps>,
@@ -44,18 +50,23 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the heading slot.
-     * By default, the avaible props are based on the h3 element.
+     * By default, the available props are based on the h3 element.
      */
     heading: SlotProps<'h3', AccordionHeadingSlotPropsOverrides, AccordionOwnerState>;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
+     * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
      */
     transition: SlotComponentProps<
       React.ElementType,
       TransitionProps & AccordionTransitionSlotPropsOverrides,
       AccordionOwnerState
     >;
+    /**
+     * Props forwarded to the region slot.
+     * By default, the available props are based on the div element.
+     */
+    region: SlotProps<'div', AccordionRegionSlotPropsOverrides, AccordionOwnerState>;
   }
 >;
 

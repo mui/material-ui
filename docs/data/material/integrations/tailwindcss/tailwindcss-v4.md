@@ -105,7 +105,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 ## Tailwind CSS IntelliSense for VS Code
 
 The official [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension requires extra configuration to work properly when customizing the interior slots of Material UI components.
-After installing the extension, add the following line to your [VS Code `settings.json`](https://code.visualstudio.com/docs/editor/settings#_settings-json-file) file:
+After installing the extension, add the following line to your [VS Code `settings.json`](https://code.visualstudio.com/docs/configure/settings#_settings-json-file) file:
 
 ```json
 {
@@ -417,18 +417,18 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
 
 /* Material UI typography utilities */
 @utility typography-* {
-  font: --value(--font- *);
+  font: --value(--font-*);
 }
 
 /* Material UI overlay utilities */
 @utility overlay-* {
-  background-image: --value(--overlay- *);
+  background-image: --value(--overlay-*);
 }
 
 /* Material UI elevation utilities */
 @utility elevation-* {
-  background-image: --value(--overlay- *);
-  box-shadow: --value(--shadow- *);
+  background-image: --value(--overlay-*);
+  box-shadow: --value(--shadow-*);
 }
 ```
 

@@ -1,9 +1,18 @@
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
-import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
 import { CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
+
+function getFileExtension(codeVariant: 'TS' | 'JS') {
+  if (codeVariant === 'TS') {
+    return 'tsx';
+  }
+  if (codeVariant === 'JS') {
+    return 'jsx';
+  }
+  throw new Error(`Unsupported codeVariant: ${codeVariant}`);
+}
 
 function ensureExtension(file: string, extension: string): string {
   return file.endsWith(`.${extension}`) ? file : `${file}.${extension}`;

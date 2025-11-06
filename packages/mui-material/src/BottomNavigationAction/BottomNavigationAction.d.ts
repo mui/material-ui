@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { CreateSlotsAndSlotProps, SlotProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import {
   ButtonBaseProps,
   ButtonBaseTypeMap,
@@ -28,12 +29,12 @@ export type BottomNavigationActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the ButtonBase element.
+     * By default, the available props are based on the ButtonBase element.
      */
     root: SlotProps<React.ElementType<ButtonBaseProps>, {}, BottomNavigationActionOwnerState>;
     /**
      * Props forwarded to the label slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     label: SlotProps<'span', {}, BottomNavigationActionOwnerState>;
   }

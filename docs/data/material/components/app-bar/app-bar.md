@@ -2,7 +2,7 @@
 productId: material-ui
 title: App Bar React component
 components: AppBar, Toolbar, Menu
-githubLabel: 'component: app bar'
+githubLabel: 'scope: app bar'
 materialDesign: https://m2.material.io/components/app-bars-top
 githubSource: packages/mui-material/src/AppBar
 ---
@@ -123,7 +123,6 @@ A floating action button appears on scroll to make it easy to get back to the to
 #### Arguments
 
 1. `options` (_object_ [optional]):
-
    - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
    - `options.target` (_Node_ [optional]): Defaults to `window`.
    - `options.threshold` (_number_ [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
@@ -153,11 +152,3 @@ Following the [Material Design guidelines](https://m2.material.io/design/color/d
 You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}
-
-## Experimental APIs - Toolpad
-
-### Dashboard Layout
-
-The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:
-
-{{"demo": "DashboardLayoutBasic.js", "height": 400, "iframe": true, "defaultExpanded": false}}

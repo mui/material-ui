@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 import describeConformance from '../../test/describeConformance';
@@ -36,38 +35,38 @@ describe('<Drawer />', () => {
   );
 
   it('renders children', () => {
-    const { getByText } = render(
+    render(
       <Drawer open>
         <span>test</span>
       </Drawer>,
     );
 
-    expect(getByText('test')).toBeVisible();
+    expect(screen.getByText('test')).toBeVisible();
   });
 
   describe('slots: content', () => {
     it('has tabIndex={-1} by default', () => {
-      const { getByTestId } = render(
+      render(
         <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
           <span>test</span>
         </Drawer>,
       );
 
-      expect(getByTestId('content').getAttribute('tabIndex')).to.equal('-1');
+      expect(screen.getByTestId('content').getAttribute('tabIndex')).to.equal('-1');
     });
 
     it('can override tabIndex', () => {
-      const { getByTestId } = render(
+      render(
         <Drawer open slotProps={{ content: { 'data-testid': 'content', tabIndex: 0 } }}>
           <span>test</span>
         </Drawer>,
       );
 
-      expect(getByTestId('content').getAttribute('tabIndex')).to.equal('0');
+      expect(screen.getByTestId('content').getAttribute('tabIndex')).to.equal('0');
     });
 
     it('should apply content theme styles for content slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -83,7 +82,7 @@ describe('<Drawer />', () => {
         },
       });
 
-      const { getByTestId } = render(
+      render(
         <CssVarsProvider theme={theme}>
           <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
             <span>test</span>
@@ -91,7 +90,7 @@ describe('<Drawer />', () => {
         </CssVarsProvider>,
       );
 
-      expect(getByTestId('content')).toHaveComputedStyle({
+      expect(screen.getByTestId('content')).toHaveComputedStyle({
         backgroundColor: 'rgb(11, 107, 203)',
       });
     });

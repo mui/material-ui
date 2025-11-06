@@ -1,11 +1,20 @@
 'use client';
-/* eslint-disable no-constant-condition */
+
 import * as React from 'react';
 import setRef from '@mui/utils/setRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
+
+function areArraysSame({ array1, array2, parser = (value) => value }) {
+  return (
+    array1 &&
+    array2 &&
+    array1.length === array2.length &&
+    array1.every((prevOption, index) => parser(prevOption) === parser(array2[index]))
+  );
+}
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 function stripDiacritics(string) {
@@ -456,6 +465,12 @@ function useAutocomplete(props) {
     }
   });
 
+  const filteredOptionsChanged = !areArraysSame({
+    array1: previousProps.filteredOptions,
+    array2: filteredOptions,
+    parser: getOptionLabel,
+  });
+
   const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
       const label1 = value1 ? getOptionLabel(value1) : '';
@@ -465,8 +480,11 @@ function useAutocomplete(props) {
 
     if (
       highlightedIndexRef.current !== -1 &&
-      previousProps.filteredOptions &&
-      previousProps.filteredOptions.length !== filteredOptions.length &&
+      !areArraysSame({
+        array1: previousProps.filteredOptions,
+        array2: filteredOptions,
+        parser: getOptionLabel,
+      }) &&
       previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
@@ -597,8 +615,10 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    syncHighlightedIndex();
-  }, [syncHighlightedIndex]);
+    if (filteredOptionsChanged || popupOpen) {
+      syncHighlightedIndex();
+    }
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen]);
 
   const handleOpen = (event) => {
     if (open) {

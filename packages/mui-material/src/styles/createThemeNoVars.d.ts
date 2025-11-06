@@ -12,7 +12,13 @@ import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
-import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
+import {
+  CssVarsTheme,
+  CssVarsPalette,
+  ColorSystemOptions,
+  Shape,
+  ShapeOptions,
+} from './createThemeFoundation';
 
 /**
  * To disable custom properties, use module augmentation
@@ -37,17 +43,20 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
+  shape?: ShapeOptions;
   transitions?: TransitionsOptions;
   typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
   unstable_sxConfig?: SxConfig;
+  modularCssLayers?: boolean | string;
 }
 
 export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
+  shape: Shape;
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
@@ -84,6 +93,9 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
+  alpha: (color: string, value: number | string) => string;
+  lighten: (color: string, coefficient: number | string) => string;
+  darken: (color: string, coefficient: number | string) => string;
 }
 
 /**

@@ -149,6 +149,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
+
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -484,7 +485,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const paperProps = {
     ...MenuProps.PaperProps,
-    ...MenuProps.slotProps?.paper,
+    ...(typeof MenuProps.slotProps?.paper === 'function'
+      ? MenuProps.slotProps.paper(ownerState)
+      : MenuProps.slotProps?.paper),
+  };
+
+  const listProps = {
+    ...MenuProps.MenuListProps,
+    ...(typeof MenuProps.slotProps?.list === 'function'
+      ? MenuProps.slotProps.list(ownerState)
+      : MenuProps.slotProps?.list),
   };
 
   const listboxId = useId();
@@ -563,7 +573,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             'aria-multiselectable': multiple ? 'true' : undefined,
             disableListWrap: true,
             id: listboxId,
-            ...MenuProps.MenuListProps,
+            ...listProps,
           },
           paper: {
             ...paperProps,

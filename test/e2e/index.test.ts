@@ -1,5 +1,7 @@
+/* eslint-disable testing-library/no-await-sync-queries */
 import { expect } from 'chai';
 import { Page, Browser, chromium, ElementHandle } from '@playwright/test';
+// eslint-disable-next-line testing-library/no-dom-import
 import type {
   ByRoleMatcher,
   ByRoleOptions,
@@ -94,7 +96,7 @@ describe('e2e', () => {
   }
 
   before(async function beforeHook() {
-    this.timeout(20000);
+    this?.timeout?.(20000);
 
     browser = await chromium.launch({
       headless: true,
@@ -309,6 +311,7 @@ describe('e2e', () => {
       await renderFixture('TextField/OutlinedTextFieldOnClick');
 
       // execute the click on the focused label position
+      // eslint-disable-next-line testing-library/prefer-screen-queries
       await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
       const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
       await errorSelector.waitFor();

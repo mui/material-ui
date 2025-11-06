@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AvatarGroup from '@mui/joy/AvatarGroup';
 import Avatar from '@mui/joy/Avatar';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';

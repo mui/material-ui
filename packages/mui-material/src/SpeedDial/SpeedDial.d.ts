@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
@@ -29,12 +29,12 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on div element.
+     * By default, the available props are based on div element.
      */
     root: SlotComponentProps<'div', React.HTMLAttributes<HTMLDivElement>, SpeedDialOwnerState>;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
+     * By default, the available props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
      */
     transition: SlotComponentProps<React.ElementType, TransitionProps, SpeedDialOwnerState>;
   }

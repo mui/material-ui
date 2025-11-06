@@ -5,7 +5,6 @@ any comments that they get combined with.
 /*
 Comments that should not be lost when the clsx import comments are preserved.
  */
-import * as React from "react";
 import { makeStyles } from 'tss-react/mui';
 
 // TODO jss-to-tss-react codemod: Unable to handle style definition reliably. ArrowFunctionExpression in CSS prop.

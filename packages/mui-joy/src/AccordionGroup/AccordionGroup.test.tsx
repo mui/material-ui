@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AccordionGroup, { accordionGroupClasses as classes } from '@mui/joy/AccordionGroup';
 import describeConformance from '../../test/describeConformance';
@@ -33,11 +32,9 @@ describe('<AccordionGroup />', () => {
       ] as const
     ).forEach((sizeConfig) => {
       it(`should have ${sizeConfig.class} class for ${sizeConfig.size} size `, () => {
-        const { getByTestId } = render(
-          <AccordionGroup data-testid="root" size={sizeConfig.size} />,
-        );
+        render(<AccordionGroup data-testid="root" size={sizeConfig.size} />);
 
-        expect(getByTestId('root')).to.have.class(sizeConfig.class);
+        expect(screen.getByTestId('root')).to.have.class(sizeConfig.class);
       });
     });
 
@@ -50,11 +47,9 @@ describe('<AccordionGroup />', () => {
       ] as const
     ).forEach((variantConfig) => {
       it(`should have ${variantConfig.class} class for ${variantConfig.variant} variant `, () => {
-        const { getByTestId } = render(
-          <AccordionGroup data-testid="root" variant={variantConfig.variant} />,
-        );
+        render(<AccordionGroup data-testid="root" variant={variantConfig.variant} />);
 
-        expect(getByTestId('root')).to.have.class(variantConfig.class);
+        expect(screen.getByTestId('root')).to.have.class(variantConfig.class);
       });
     });
 
@@ -67,18 +62,16 @@ describe('<AccordionGroup />', () => {
       ] as const
     ).forEach((colorConfig) => {
       it(`should have ${colorConfig.class} class for ${colorConfig.color} color `, () => {
-        const { getByTestId } = render(
-          <AccordionGroup data-testid="root" color={colorConfig.color} />,
-        );
+        render(<AccordionGroup data-testid="root" color={colorConfig.color} />);
 
-        expect(getByTestId('root')).to.have.class(colorConfig.class);
+        expect(screen.getByTestId('root')).to.have.class(colorConfig.class);
       });
     });
   });
 
   it('should not warn when using custom color, variant, size', () => {
     expect(() => {
-      // @ts-expect-error as `custom` color, varaint, size is not part of the type system
+      // @ts-expect-error as `custom` color, variant, size is not part of the type system
       render(<AccordionGroup color="custom" variant="custom" size="custom" />);
     }).not.toErrorDev();
   });
