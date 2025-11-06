@@ -242,6 +242,10 @@ jobs:
     resource_class: 'medium+'
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - typescript-cache-{{ checksum "pnpm-lock.yaml" }}
+            - typescript-cache-
       - install_js
       - run:
           name: Transpile TypeScript demos
@@ -254,6 +258,11 @@ jobs:
           command: pnpm typescript:ci
           environment:
             NODE_OPTIONS: --max-old-space-size=3072
+      - save_cache:
+          key: typescript-cache-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - packages/**/*.tsbuildinfo
+            - packages-internal/**/*.tsbuildinfo
       - run:
           name: Test module augmentation
           command: |
