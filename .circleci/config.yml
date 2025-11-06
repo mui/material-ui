@@ -234,13 +234,6 @@ jobs:
     resource_class: 'medium+'
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - typescript-cache-v4-{{ checksum "pnpm-lock.yaml" }}
-            - typescript-cache-v4-
-      - run:
-          name: Extract TypeScript build cache
-          command: tar -xzvf tsbuildinfo-archive.tgz || true
       - install_js
       - run:
           name: Transpile TypeScript demos
@@ -248,6 +241,13 @@ jobs:
       - run:
           name: '`pnpm docs:typescript:formatted` changes committed?'
           command: git add -A && git diff --exit-code --staged
+      - restore_cache:
+          keys:
+            - typescript-cache-v4-{{ checksum "pnpm-lock.yaml" }}
+            - typescript-cache-v4-
+      - run:
+          name: Extract TypeScript build cache
+          command: tar -xzvf .tsbuildinfo-archive.tgz || true
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
@@ -255,11 +255,11 @@ jobs:
             NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Archive TypeScript build cache
-          command: tar -czvf tsbuildinfo-archive.tgz **/*.tsbuildinfo
+          command: tar -czvf .tsbuildinfo-archive.tgz **/*.tsbuildinfo
       - save_cache:
           key: typescript-cache-v4-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            - tsbuildinfo-archive.tgz
+            - .tsbuildinfo-archive.tgz
       - run:
           name: Test module augmentation
           command: |

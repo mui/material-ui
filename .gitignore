@@ -45,6 +45,7 @@ docs/public/static/blog/feed/*
 .nx/workspace-data
 screenshots
 packed
+.tsbuildinfo-archive.tgz
 
 # typescript
 *.tsbuildinfo
