@@ -57,6 +57,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { pathToFileURL } from 'node:url';
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { kebabCase } from 'es-toolkit/string';
@@ -436,7 +437,8 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   let projectSettings: ProjectSettings;
   try {
     const settingsPath = path.resolve(argv.projectSettings);
-    const settingsModule = await import(settingsPath);
+    const settingsUrl = pathToFileURL(settingsPath).href;
+    const settingsModule = await import(settingsUrl);
     projectSettings = settingsModule.projectSettings || settingsModule.default || settingsModule;
   } catch (error) {
     throw new Error(`Failed to load project settings from ${argv.projectSettings}: ${error}`);

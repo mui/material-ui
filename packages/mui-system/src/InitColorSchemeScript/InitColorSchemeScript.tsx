@@ -79,7 +79,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
     }
     setter += `
       ${colorSchemeNode}.setAttribute('${attr}'.replace('%s', colorScheme), ${value ? `${value}.replace('%s', colorScheme)` : '""'});`;
-  } else {
+  } else if (attribute !== '.%s') {
     setter += `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
   }
 

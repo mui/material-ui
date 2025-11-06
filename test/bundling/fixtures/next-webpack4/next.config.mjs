@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   webpack5: false,
   eslint: {
     ignoreDuringBuilds: true,
