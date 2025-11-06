@@ -243,8 +243,8 @@ jobs:
           command: git add -A && git diff --exit-code --staged
       - restore_cache:
           keys:
-            - typescript-cache-v4-{{ checksum "pnpm-lock.yaml" }}
-            - typescript-cache-v4-
+            - typescript-cache-v5-{{ checksum "pnpm-lock.yaml" }}
+            - typescript-cache-v5-
       - run:
           name: Extract TypeScript build cache
           command: tar -xzvf .tsbuildinfo-archive.tgz || true
@@ -255,9 +255,9 @@ jobs:
             NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Archive TypeScript build cache
-          command: tar -czvf .tsbuildinfo-archive.tgz **/*.tsbuildinfo
+          command: find . \( -name node_modules -o -path '*/.*' \) -prune -o -name "*.tsbuildinfo" -print | tar -czvf .tsbuildinfo-archive.tgz -T -
       - save_cache:
-          key: typescript-cache-v4-{{ checksum "pnpm-lock.yaml" }}
+          key: typescript-cache-v5-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - .tsbuildinfo-archive.tgz
       - run:
