@@ -1,31 +1,6 @@
 <svg width="600" height="300" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g filter="url(#filter0_n_12545_5787)">
 <rect y="81" width="559.35" height="158" fill="url(#pattern0_12545_5787)"/>
-</g>
 <defs>
-<filter id="filter0_n_12545_5787" x="0" y="81" width="559.35" height="158" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feTurbulence type="fractalNoise" baseFrequency="2 2" stitchTiles="stitch" numOctaves="3" result="noise" seed="5118" />
-<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
-<feComponentTransfer in="alphaNoise" result="coloredNoise1">
-<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
-</feComponentTransfer>
-<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-<feComponentTransfer in="alphaNoise" result="coloredNoise2">
-<feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 "/>
-</feComponentTransfer>
-<feComposite operator="in" in2="shape" in="coloredNoise2" result="noise2Clipped" />
-<feFlood flood-color="#99CCFF" result="color1Flood" />
-<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
-<feFlood flood-color="#99CCFF" result="color2Flood" />
-<feComposite operator="in" in2="noise2Clipped" in="color2Flood" result="color2" />
-<feMerge result="effect1_noise_12545_5787">
-<feMergeNode in="shape" />
-<feMergeNode in="color1" />
-<feMergeNode in="color2" />
-</feMerge>
-</filter>
 <pattern id="pattern0_12545_5787" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_12545_5787" transform="scale(0.000244141 0.000864304)"/>
 </pattern>

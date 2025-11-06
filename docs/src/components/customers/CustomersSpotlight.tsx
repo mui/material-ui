@@ -71,9 +71,10 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   mt: variant === 'secondary' ? 5 : 0,
                   mb: variant === 'secondary' ? 'auto' : 0,
                   maxWidth: '100%',
-                  maxHeight: variant === 'primary' ? '50px' : '40px',
+                  maxHeight: '50px',
                   width: 'auto',
                   zIndex: 1,
+                  filter: mode === 'light' ? 'brightness(0) saturate(100%)' : 'none',
                 }}
               />
             )}
@@ -106,9 +107,10 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                     ml: -1,
                     mt: 1,
                     pointerEvents: 'none',
-                    color: 'primary.light',
+                    color: 'primary.main',
                     alignSelf: 'flex-start',
                     textAlign: 'left',
+                    fontWeight: 'bold',
                   }}
                 >
                   Read story
@@ -123,8 +125,9 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   ml: -1,
                   mb: 1,
                   pointerEvents: 'none',
-                  color: 'primary.light',
+                  color: 'primary.main',
                   alignSelf: 'center',
+                  fontWeight: 'bold',
                 }}
               >
                 Read story
