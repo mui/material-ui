@@ -155,10 +155,18 @@ jobs:
     <<: *default-job
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - eslint-cache-{{ checksum "pnpm-lock.yaml" }}
+            - eslint-cache-
       - install_js
       - run:
           name: ESLint
           command: pnpm eslint:ci
+      - save_cache:
+          key: eslint-cache-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - .eslintcache
       - run:
           name: Stylelint
           command: pnpm stylelint
@@ -240,10 +248,7 @@ jobs:
             NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Test module augmentation
-          command: |
-            pnpm --filter @mui/material typescript:module-augmentation
-            pnpm --filter @mui/joy typescript:module-augmentation
-            pnpm --filter @mui/system typescript:module-augmentation
+          command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
     resource_class: 'medium+'
@@ -360,6 +365,9 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm release:build
+      - run:
+          name: Validate type declarations
+          command: pnpm validate-declarations
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
