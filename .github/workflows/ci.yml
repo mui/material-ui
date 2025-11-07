@@ -28,7 +28,7 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
-      - run: echo "${{ github.actor }}"
+      - run: echo '${{ github.actor }}'
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           # fetch all tags which are required for `pnpm release:changelog`
@@ -41,10 +41,25 @@ jobs:
           node-version: '22.18.0'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
-      - run: pnpm build:ci
+      - name: Cache Next.js build
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: docs/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.js', 'docs/**/*.ts', 'docs/**/*.tsx', 'docs/**/*.jsx', 'docs/**/*.json', 'docs/**/*.md', 'docs/**/*.mdx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-
+      - run: pnpm release:build
+      - name: Build docs
+        run: pnpm docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=6144
+          # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
+          # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
+          NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: pnpm validate-declarations
+      - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
+        if: failure()
+        run: cat ./docs/.next/export-detail.json || true
