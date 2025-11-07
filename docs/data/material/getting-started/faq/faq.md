@@ -358,7 +358,7 @@ There are several common reasons for this to happen:
 If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this.
 You can use `npm ls @mui/styles`, `yarn list @mui/styles` or `find -L ./node_modules | grep /@mui/styles/package.json` commands in your application folder.
 
-If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @mui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @mui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack/webpack-bundle-analyzer).
 
 If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
 
