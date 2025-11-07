@@ -248,10 +248,7 @@ jobs:
             NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Test module augmentation
-          command: |
-            pnpm --filter @mui/material typescript:module-augmentation
-            pnpm --filter @mui/joy typescript:module-augmentation
-            pnpm --filter @mui/system typescript:module-augmentation
+          command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
     resource_class: 'medium+'
