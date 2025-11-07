@@ -7,35 +7,39 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/api-docs-builder"
+  },
   "dependencies": {
-    "@babel/core": "^7.27.4",
-    "@babel/preset-typescript": "^7.27.1",
-    "@babel/traverse": "^7.27.4",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
+    "@babel/traverse": "^7.28.5",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",
+    "es-toolkit": "^1.41.0",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.0",
-    "lodash": "^4.17.21",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "react-docgen": "^5.4.3",
     "recast": "^0.23.9",
     "remark": "^15.0.1",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.3",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.5",
-    "@types/babel__traverse": "^7.20.7",
+    "@types/babel__traverse": "^7.28.0",
     "@types/chai": "^4.3.20",
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.1",
+    "@types/node": "^20.19.24",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
-    "sinon": "^19.0.5"
+    "chai": "^6.0.1",
+    "sinon": "^21.0.0"
   }
 }

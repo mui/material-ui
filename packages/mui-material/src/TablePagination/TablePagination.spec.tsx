@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TablePagination, { TablePaginationOwnerState } from '@mui/material/TablePagination';
 import SvgIcon from '@mui/material/SvgIcon';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';

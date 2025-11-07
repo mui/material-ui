@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import AccordionActions, {
   accordionActionsClasses as classes,
@@ -21,7 +20,7 @@ describe('<AccordionActions />', () => {
   }));
 
   it('should apply margin to all children but the first one', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Typography from '@material-ui/core/Typography';
+import { styled } from '@mui/material/styles';
 import Container from 'modules/components/Container';
 import Button from 'modules/components/Button';
 import Link from 'modules/components/Link';

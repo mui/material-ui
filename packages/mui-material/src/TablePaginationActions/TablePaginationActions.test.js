@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import TablePaginationActions, {
   tablePaginationActionsClasses as classes,
@@ -22,6 +21,12 @@ describe('<TablePaginationActions />', () => {
         }
         return 'previous';
       }}
+      count={100}
+      onPageChange={() => {}}
+      page={1}
+      rowsPerPage={10}
+      showFirstButton
+      showLastButton
     />,
     () => ({
       inheritComponent: 'div',

@@ -1,0 +1,60 @@
+name: Publish packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: 'Commit SHA to release from'
+        required: true
+        type: string
+      dry-run:
+        description: 'Run in dry-run mode without actually publishing packages'
+        required: false
+        type: boolean
+        default: false
+      github-release:
+        description: 'Create a GitHub release after publishing'
+        required: false
+        type: boolean
+        default: true
+      dist-tag:
+        description: 'npm dist tag to publish to'
+        required: false
+        type: string
+        default: 'latest'
+
+permissions: {}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for pushing tags and creating releases
+      id-token: write # Required for provenance
+    environment:
+      name: npm-publish
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        with:
+          ref: ${{ inputs.sha }}
+          fetch-depth: 0 # Fetch full history for proper git operations
+      - name: Prepare for publishing
+        uses: mui/mui-public/.github/actions/publish-prepare@master
+      - name: Publish packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Build common flags
+          ARGS=""
+          if [ "${{ inputs.dry-run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          if [ "${{ inputs.github-release }}" = "true" ]; then
+            ARGS="$ARGS --github-release"
+          fi
+          if [ -n "${{ inputs.dist-tag }}" ]; then
+            ARGS="$ARGS --tag ${{ inputs.dist-tag }}"
+          fi
+
+          pnpm code-infra publish --ci $ARGS

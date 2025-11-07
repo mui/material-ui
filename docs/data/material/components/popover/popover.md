@@ -56,7 +56,7 @@ Highlight part of the text to see the popover:
 For more information on the virtual element's properties, see the following resources:
 
 - [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
-- [DOMRect](https://drafts.fxtf.org/geometry-1/#domrectreadonly)
+- [DOMRect](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect)
 - [Node types](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
 
 :::warning

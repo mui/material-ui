@@ -2156,6 +2156,27 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `theme-color-functions`
+
+```bash
+npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
+```
+
+Replace the usage of the `alpha()`, `lighten()`, and `darken()` functions from `@mui/system/colorManipulator` to use the `theme` object instead.
+
+```diff
+- import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+
+- alpha(theme.palette.primary.main, 0.8)
++ theme.alpha((theme.vars || theme).palette.primary.main, 0.8)
+
+- lighten(theme.palette.primary.main, 0.1)
++ theme.lighten(theme.palette.primary.main, 0.1)
+
+- darken(theme.palette.primary.main, 0.3)
++ theme.darken(theme.palette.primary.main, 0.3)
+```
+
 #### `grid-props`
 
 <!-- #npm-tag-reference -->
@@ -3445,6 +3466,26 @@ npx @mui/codemod@latest v5.0.0/pagination-round-circular <path>
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#pagination).
 
+#### `path-imports`
+
+Converts all `@mui/material` & `@mui/icons-material` top-level imports to path imports (essentially the reverse of `top-level-imports`, with the addition of `@mui/icons-material`):
+
+```diff
+-import { List, Grid } from '@mui/material';
++import List from '@mui/material/List';
++import Grid from '@mui/material/Grid';
+
+-import { Delete, People as PeopleIcon } from '@mui/icons-material';
++import Delete from '@mui/icons-material/Delete';
++import PeopleIcon from '@mui/icons-material/People';
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/path-imports <path>
+```
+
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
+
 #### `optimal-imports`
 
 Fix private import paths.
@@ -3698,7 +3739,7 @@ Converts all `@mui/material` submodule imports to the root module:
 npx @mui/codemod@latest v5.0.0/top-level-imports <path>
 ```
 
-Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
 
 #### `transitions`
 

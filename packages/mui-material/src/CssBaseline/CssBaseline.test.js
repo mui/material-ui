@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,7 +19,7 @@ describe('<CssBaseline />', () => {
   });
 
   it('supports theme overrides as string', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -42,7 +41,7 @@ describe('<CssBaseline />', () => {
   });
 
   it('supports theme overrides as object', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -64,7 +63,7 @@ describe('<CssBaseline />', () => {
   });
 
   it('supports theme overrides as callback', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

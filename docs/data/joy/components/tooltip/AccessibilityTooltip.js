@@ -1,4 +1,3 @@
-import * as React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';

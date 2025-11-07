@@ -1,4 +1,3 @@
-import * as React from 'react';
 import NoSsr from '@mui/material/NoSsr';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';

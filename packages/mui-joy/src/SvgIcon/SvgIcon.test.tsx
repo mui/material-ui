@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import SvgIcon, {
   svgIconClasses as classes,
@@ -55,9 +54,9 @@ describe('<SvgIcon />', () => {
   );
 
   it('renders children by default', () => {
-    const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
+    const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-    expect(queryByTestId('test-path')).not.to.equal(null);
+    expect(screen.queryByTestId('test-path')).not.to.equal(null);
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
@@ -78,9 +77,9 @@ describe('<SvgIcon />', () => {
 
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
-      const { container, queryByText } = render(<SvgIcon titleAccess="Network">{path}</SvgIcon>);
+      const { container } = render(<SvgIcon titleAccess="Network">{path}</SvgIcon>);
 
-      expect(queryByText('Network')).not.to.equal(null);
+      expect(screen.queryByText('Network')).not.to.equal(null);
       expect(container.firstChild).not.to.have.attribute('aria-hidden');
     });
   });
@@ -151,7 +150,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('should not override internal ownerState with the ownerState passed to the icon', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -163,7 +162,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('should have `fill="currentColor"`', function test() {
-    if (!/jsdom/.test(window.navigator.userAgent)) {
+    if (!window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const { container } = render(
@@ -176,7 +175,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('should not add `fill` if svg is a direct child', function test() {
-    if (!/jsdom/.test(window.navigator.userAgent)) {
+    if (!window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const { container } = render(

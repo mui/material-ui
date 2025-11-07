@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -194,11 +194,11 @@ describe('<Rating />', () => {
   });
 
   it('has a customization point for the label of the empty value when it is active', () => {
-    const { container } = render(
+    const view = render(
       <Rating classes={{ labelEmptyValueActive: 'customized' }} name="" value={null} />,
     );
 
-    expect(container.querySelector('.customized')).to.equal(null);
+    expect(view.container.querySelector('.customized')).to.equal(null);
 
     act(() => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
@@ -208,11 +208,11 @@ describe('<Rating />', () => {
       noValueRadio.focus();
     });
 
-    expect(container.querySelector('.customized')).to.have.tagName('label');
+    expect(view.container.querySelector('.customized')).to.have.tagName('label');
   });
 
   it('should apply labelEmptyValueActive styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -227,7 +227,7 @@ describe('<Rating />', () => {
         },
       },
     });
-    const { container } = render(
+    const view = render(
       <ThemeProvider theme={theme}>
         <Rating value={null} />
       </ThemeProvider>,
@@ -241,7 +241,7 @@ describe('<Rating />', () => {
       noValueRadio.focus();
     });
 
-    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
+    expect(view.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
       height: '120px',
     });
   });
@@ -304,15 +304,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describe('<form> integration', () => {
-    before(function beforeHook() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM has issues with form validation for certain elements.
-        // We could address them individually but that doesn't add much value if we already have a working environment.
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },

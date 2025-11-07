@@ -1,8 +1,3 @@
-/**
- * Split this component for RSC import
- */
-import * as React from 'react';
-
 export const DEFAULT_MODE_STORAGE_KEY = 'mode';
 export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
 export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
@@ -75,7 +70,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
     setter += `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
       ${colorSchemeNode}.classList.add('${selector}'.replace('%s', colorScheme));`;
   }
-  const matches = attribute.match(/\[([^\]]+)\]/); // case [data-color-scheme='%s'] or [data-color-scheme]
+  const matches = attribute.match(/\[([^[\]]+)\]/); // case [data-color-scheme='%s'] or [data-color-scheme]
   if (matches) {
     const [attr, value] = matches[1].split('=');
     if (!value) {
@@ -84,7 +79,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
     }
     setter += `
       ${colorSchemeNode}.setAttribute('${attr}'.replace('%s', colorScheme), ${value ? `${value}.replace('%s', colorScheme)` : '""'});`;
-  } else {
+  } else if (attribute !== '.%s') {
     setter += `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
   }
 

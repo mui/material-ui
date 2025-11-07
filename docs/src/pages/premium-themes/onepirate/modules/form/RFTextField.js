@@ -1,7 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-
 import TextField from '../components/TextField';
+import PropTypes from 'prop-types';
 
 function RFTextField(props) {
   const {
@@ -60,7 +58,7 @@ RFTextField.propTypes = {
     dirty: PropTypes.bool,
     dirtySinceLastSubmit: PropTypes.bool,
     error: PropTypes.any,
-    initial: PropTypes.string,
+    initial: PropTypes.any,
     invalid: PropTypes.bool,
     length: PropTypes.number,
     modified: PropTypes.bool,

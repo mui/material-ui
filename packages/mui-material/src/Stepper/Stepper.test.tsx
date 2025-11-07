@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
@@ -116,14 +115,14 @@ describe('<Stepper />', () => {
         return <div data-index={index} data-testid="step" />;
       }
 
-      const { getAllByTestId } = render(
+      render(
         <Stepper nonLinear>
           <CustomStep />
           {[<CustomStep key={1} />, <CustomStep key={2} />]}
         </Stepper>,
       );
 
-      const steps = getAllByTestId('step');
+      const steps = screen.getAllByTestId('step');
 
       expect(steps[0]).to.have.attribute('data-index', '0');
       expect(steps[1]).to.have.attribute('data-index', '1');

@@ -1,16 +1,15 @@
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
-import type chaiType from 'chai';
-import { AssertionError } from 'chai';
+import * as chai from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
-import _ from 'lodash';
+import { kebabCase } from 'es-toolkit/string';
 import './chai.types';
 
 const isKarma = Boolean(process.env.KARMA);
 
 function isInJSDOM() {
-  return /jsdom/.test(window.navigator.userAgent);
+  return window.navigator.userAgent.includes('jsdom');
 }
 
 // chai#utils.elToString that looks like stringified elements in testing-library
@@ -21,7 +20,7 @@ function elementToString(element: Element | null | undefined) {
   return String(element);
 }
 
-const chaiPlugin: Parameters<(typeof chaiType)['use']>[0] = (chaiAPI, utils) => {
+const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
   const blockElements = new Set([
     'html',
     'address',
@@ -202,7 +201,7 @@ const chaiPlugin: Parameters<(typeof chaiType)['use']>[0] = (chaiAPI, utils) => 
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
     Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
-      const hyphenCasedPropertyName = _.kebabCase(cssProperty);
+      const hyphenCasedPropertyName = kebabCase(cssProperty);
       const isVendorPrefixed = /^(moz|ms|o|webkit)-/.test(hyphenCasedPropertyName);
       const propertyName = isVendorPrefixed
         ? `-${hyphenCasedPropertyName}`
@@ -279,7 +278,7 @@ const chaiPlugin: Parameters<(typeof chaiType)['use']>[0] = (chaiAPI, utils) => 
 
     const jsdomHint =
       'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
-      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (window.navigator.userAgent.includes("jsdom")) this.skip();`';
     const shorthandHint =
       'Browsers can compute shorthand properties differently. Prefer longhand properties e.g. `borderTopColor`, `borderRightColor` etc. instead of `border` or `border-color`.';
     const messageHint = `${jsdomHint}\n${shorthandHint}`;
@@ -316,7 +315,7 @@ const chaiPlugin: Parameters<(typeof chaiType)['use']>[0] = (chaiAPI, utils) => 
       const element = utils.flag(this, 'object') as HTMLElement;
       if (element?.nodeType !== 1) {
         // Same pre-condition for negated and unnegated assertion
-        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+        throw new chai.AssertionError(`Expected an Element but got ${String(element)}`);
       }
 
       assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
@@ -331,7 +330,7 @@ const chaiPlugin: Parameters<(typeof chaiType)['use']>[0] = (chaiAPI, utils) => 
       const element = utils.flag(this, 'object') as HTMLElement;
       if (element?.nodeType !== 1) {
         // Same pre-condition for negated and unnegated  assertion
-        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+        throw new chai.AssertionError(`Expected an Element but got ${String(element)}`);
       }
       const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
 

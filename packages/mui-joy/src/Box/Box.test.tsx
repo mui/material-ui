@@ -1,5 +1,3 @@
-/* eslint-disable material-ui/no-empty-box */
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme, PalettePrimary } from '@mui/joy/styles';
@@ -28,7 +26,7 @@ describe('Joy <Box />', () => {
   }));
 
   it('respects theme from context', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();
@@ -93,7 +91,7 @@ describe('Joy <Box />', () => {
     });
 
     it('color', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
@@ -111,7 +109,7 @@ describe('Joy <Box />', () => {
     });
 
     it('bgcolor', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
@@ -129,7 +127,7 @@ describe('Joy <Box />', () => {
     });
 
     it('backgroundColor', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
@@ -147,7 +145,7 @@ describe('Joy <Box />', () => {
     });
 
     it('borderRadius', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
@@ -168,7 +166,7 @@ describe('Joy <Box />', () => {
     });
 
     it('boxShadow', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
@@ -186,7 +184,7 @@ describe('Joy <Box />', () => {
     });
 
     it('fontSize', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
@@ -204,7 +202,7 @@ describe('Joy <Box />', () => {
     });
 
     it('fontWeight', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
@@ -222,7 +220,7 @@ describe('Joy <Box />', () => {
     });
 
     it('lineHeight', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();

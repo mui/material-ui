@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent } from '@mui/internal-test-utils';
@@ -73,7 +72,7 @@ describe('<NativeSelectInput />', () => {
 
   describe('prop: multiple', () => {
     it('should be able to override `multiple` rule name in `select` slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -116,7 +115,7 @@ describe('<NativeSelectInput />', () => {
 
   describe('theme styleOverrides:', () => {
     it('should override with error style when `select` has `error` state', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

@@ -24,8 +24,11 @@
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+        }
       }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
@@ -64,13 +67,13 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>scroll=\"body\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#dialog-classes-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-scrollBody\">.MuiDialog-scrollBody</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#Dialog-css-MuiDialog-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-MuiDialog-scrollBody\">.MuiDialog-scrollBody</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "paperScrollPaper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>scroll=\"paper\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#dialog-classes-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-scrollPaper\">.MuiDialog-scrollPaper</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#Dialog-css-MuiDialog-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-MuiDialog-scrollPaper\">.MuiDialog-scrollPaper</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "paperWidthFalse": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
