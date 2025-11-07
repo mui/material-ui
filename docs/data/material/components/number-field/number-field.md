@@ -60,6 +60,8 @@ The increment and decrement buttons are placed next to the outlined input. Best 
 
 {{"demo": "SpinnerDemo.js"}}
 
-## Base UI API
+## Base UI API
 
-Check out the [Number Field API](https://base-ui.com/react/number-field/api/number-field) page for full details on the components and props.
+See the documentation below for a complete reference to all of the props.
+
+- [`<NumberField />`](https://base-ui.com/react/components/number-field#api-reference)
