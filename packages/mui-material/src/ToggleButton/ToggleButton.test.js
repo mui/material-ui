@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
@@ -22,58 +22,58 @@ describe('<ToggleButton />', () => {
   }));
 
   it('adds the `selected` class to the root element if selected={true}', () => {
-    const { getByTestId } = render(
+    render(
       <ToggleButton data-testid="root" selected value="hello">
         Hello World
       </ToggleButton>,
     );
 
-    expect(getByTestId('root')).to.have.class(classes.selected);
+    expect(screen.getByTestId('root')).to.have.class(classes.selected);
   });
 
   describe('prop: color', () => {
     it('adds the class if color="primary"', () => {
-      const { getByTestId } = render(
+      render(
         <ToggleButton data-testid="root" color="primary" value="hello">
           Hello World
         </ToggleButton>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.primary);
+      expect(screen.getByTestId('root')).to.have.class(classes.primary);
     });
   });
 
   it('should render a disabled button if `disabled={true}`', () => {
-    const { getByRole } = render(
+    render(
       <ToggleButton disabled value="hello">
         Hello World
       </ToggleButton>,
     );
 
-    expect(getByRole('button')).to.have.property('disabled', true);
+    expect(screen.getByRole('button')).to.have.property('disabled', true);
   });
 
   it('can render a small button', () => {
-    const { getByTestId } = render(
+    render(
       <ToggleButton data-testid="root" size="small" value="hello">
         Hello World
       </ToggleButton>,
     );
 
-    const root = getByTestId('root');
+    const root = screen.getByTestId('root');
     expect(root).to.have.class(classes.root);
     expect(root).to.have.class(classes.sizeSmall);
     expect(root).not.to.have.class(classes.sizeLarge);
   });
 
   it('should render a large button', () => {
-    const { getByTestId } = render(
+    render(
       <ToggleButton data-testid="root" size="large" value="hello">
         Hello World
       </ToggleButton>,
     );
 
-    const root = getByTestId('root');
+    const root = screen.getByTestId('root');
     expect(root).to.have.class(classes.root);
     expect(root).not.to.have.class(classes.sizeSmall);
     expect(root).to.have.class(classes.sizeLarge);
@@ -82,26 +82,28 @@ describe('<ToggleButton />', () => {
   describe('prop: onChange', () => {
     it('should be called when clicked', () => {
       const handleChange = spy();
-      const { getByRole } = render(
+
+      render(
         <ToggleButton value="1" onChange={handleChange}>
           Hello
         </ToggleButton>,
       );
 
-      getByRole('button').click();
+      screen.getByRole('button').click();
 
       expect(handleChange.callCount).to.equal(1);
     });
 
     it('should be called with the button value', () => {
       const handleChange = spy();
-      const { getByRole } = render(
+
+      render(
         <ToggleButton value="1" onChange={handleChange}>
           Hello
         </ToggleButton>,
       );
 
-      getByRole('button').click();
+      screen.getByRole('button').click();
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('1');
@@ -109,7 +111,8 @@ describe('<ToggleButton />', () => {
 
     it('should not be called if the click is prevented', () => {
       const handleChange = spy();
-      const { getByRole } = render(
+
+      render(
         <ToggleButton
           value="one"
           onChange={handleChange}
@@ -119,20 +122,13 @@ describe('<ToggleButton />', () => {
         </ToggleButton>,
       );
 
-      getByRole('button').click();
+      screen.getByRole('button').click();
 
       expect(handleChange.callCount).to.equal(0);
     });
   });
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<ToggleButton value="hello">Hello World</ToggleButton>);
       expect(container.firstChild).to.have.text('Hello World');

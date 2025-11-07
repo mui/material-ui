@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "7.3.2",
+  "version": "7.3.5",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
   "keywords": [
@@ -25,19 +25,18 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:copy-files": "code-infra copy-files src/styles.css src/styles.css:esm/styles.css",
+    "build": "code-infra build --copy \"src/styles.css\" --copy \"src/styles.css:esm\"",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@mui/system": "workspace:*"
   },
   "devDependencies": {
-    "react": "^19.1.1"
+    "react": "^19.2.0"
   },
   "peerDependencies": {
     "@pigment-css/react": "^0.0.30"

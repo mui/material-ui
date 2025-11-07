@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import DiamondSponsors from 'docs/src/components/home/DiamondSponsors';

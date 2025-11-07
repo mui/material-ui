@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { styled, ThemeProvider } from '@mui/system';
@@ -58,7 +57,7 @@ describe('createTheme', () => {
 
   describe('system', () => {
     it('resolves system when used inside styled()', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -96,7 +95,7 @@ describe('createTheme', () => {
     });
 
     it('resolves system when used inside variants', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

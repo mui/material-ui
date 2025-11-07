@@ -1,5 +1,3 @@
-/* eslint-disable material-ui/no-empty-box */
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -25,7 +23,7 @@ describe('<Box />', () => {
   }));
 
   it('respects theme from context', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();

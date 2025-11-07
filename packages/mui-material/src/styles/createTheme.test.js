@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import {
@@ -476,7 +475,7 @@ describe('createTheme', () => {
   });
 
   it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();

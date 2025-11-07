@@ -84,6 +84,7 @@ describeSkipIf(process.env.VITEST)('mochaHooks', () => {
         // not wrapped in act()
         unsafeSetState(1);
         // make sure effects are flushed
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         act(() => {});
       });
 

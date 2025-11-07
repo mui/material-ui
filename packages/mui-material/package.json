@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "7.3.2",
+  "version": "7.3.5",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
   "keywords": [
@@ -25,8 +25,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:copy-files": "code-infra copy-files",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
@@ -34,7 +33,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -44,7 +43,7 @@
     "clsx": "^2.1.1",
     "csstype": "^3.1.3",
     "prop-types": "^15.8.1",
-    "react-is": "^19.1.1",
+    "react-is": "^19.2.0",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
@@ -53,16 +52,16 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.11",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
+    "chai": "^6.0.1",
     "css-mediaquery": "^0.1.2",
+    "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
-    "lodash": "^4.17.21",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router": "^7.5.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router": "^7.9.5",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {

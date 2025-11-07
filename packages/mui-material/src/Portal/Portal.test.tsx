@@ -2,19 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Portal, { PortalProps } from '@mui/material/Portal';
 
 describe('<Portal />', () => {
   const { render, renderToString } = createRenderer();
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('render nothing on the server', () => {
       const { container } = renderToString(
         <Portal>

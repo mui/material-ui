@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/render-result-naming-convention, testing-library/prefer-screen-queries */
 import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';
@@ -110,7 +111,7 @@ async function main() {
       it(`creates screenshots of ${route}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
-          this.timeout(0);
+          this?.timeout?.(0);
         }
 
         const testcase = await renderFixture(route);

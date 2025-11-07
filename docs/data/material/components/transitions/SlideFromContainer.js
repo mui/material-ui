@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const icon = (
   <Paper sx={{ m: 1, width: 100, height: 100 }} elevation={4}>
-    <svg>
+    <svg width="100" height="100">
       <Box
         component="polygon"
         points="0,100 50,00, 100,100"

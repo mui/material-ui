@@ -2,7 +2,6 @@ import CheckIcon from '@mui/icons-material/Check';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
-import * as React from 'react';
 
 export default function ClickableChip() {
   return (

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
@@ -66,7 +65,7 @@ describe('<AppBar />', () => {
   });
 
   it('should inherit Paper background color with ThemeProvider', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -85,7 +84,7 @@ describe('<AppBar />', () => {
   });
 
   it('should inherit Paper background color with CssVarsProvider', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

@@ -17,7 +17,7 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 
   React.useEffect(() => {
     // JSDOM has no layout
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       Object.defineProperty(paperRef.current, 'clientWidth', { value: 250 });
       Object.defineProperty(paperRef.current, 'clientHeight', { value: 250 });
     }
@@ -226,13 +226,13 @@ describe('<SwipeableDrawer />', () => {
         });
 
         it('should open at correct position when swiping', function test() {
-          if (/jsdom/.test(window.navigator.userAgent)) {
+          if (window.navigator.userAgent.includes('jsdom')) {
             // Need layout
             this.skip();
           }
           const handleClose = spy();
           const handleOpen = spy();
-          const { getByTestId, setProps } = render(
+          const { setProps } = render(
             <SwipeableDrawer
               anchor={params.anchor}
               onOpen={handleOpen}
@@ -269,7 +269,9 @@ describe('<SwipeableDrawer />', () => {
           if (params.anchor === 'bottom') {
             startPosition = windowHeight - DRAG_STARTED_SIGNAL;
           }
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(startPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            startPosition,
+          );
 
           fireEvent.touchMove(swipeArea, {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
@@ -298,7 +300,9 @@ describe('<SwipeableDrawer />', () => {
             endPosition = windowHeight - DRAWER_SIZE;
           }
 
-          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(endPosition);
+          expect(screen.getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(
+            endPosition,
+          );
         });
 
         it('should stay closed when not swiping far enough', () => {
@@ -466,7 +470,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('removes event listeners on unmount', () => {
-      const container = render(
+      const { unmount } = render(
         <SwipeableDrawer
           onOpen={() => {}}
           onClose={() => {}}
@@ -483,7 +487,7 @@ describe('<SwipeableDrawer />', () => {
       fireEvent.touchStart(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 250, clientY: 0 })],
       });
-      container.unmount();
+      unmount();
       //  trigger setState warning if listeners aren't cleaned.
       fireEvent.touchMove(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 180, clientY: 0 })],
@@ -912,7 +916,7 @@ describe('<SwipeableDrawer />', () => {
 
   describe('native scroll', () => {
     it('should not drag is native scroll is available', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Need layout
         this.skip();
       }
@@ -958,7 +962,7 @@ describe('<SwipeableDrawer />', () => {
   });
 
   it('should not prevent scrolling a container', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // Need layouting
       this.skip();
     }
@@ -994,7 +998,7 @@ describe('<SwipeableDrawer />', () => {
   });
 
   it('should not ignore scroll container if parent is overflow hidden', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // Need layouting
       this.skip();
     }
@@ -1036,7 +1040,7 @@ describe('<SwipeableDrawer />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1051,7 +1055,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1076,7 +1080,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('should render the values provided via prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

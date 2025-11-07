@@ -68,6 +68,13 @@
       "matchPaths": ["packages/mui-envinfo/test/package.json"],
       "matchPackageNames": ["@mui/*"],
       "enabled": false
+    },
+    {
+      "groupName": "codemod tests",
+      "description": "Prevent renovate from renaming @material-ui/core to @mui/material in the codemod tests.",
+      "matchFileNames": ["packages/mui-codemod/package.json"],
+      "matchPackageNames": ["@material-ui/core"],
+      "enabled": false
     }
   ]
 }

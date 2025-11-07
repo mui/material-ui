@@ -13,25 +13,22 @@ import describeConformance from '../../test/describeConformance';
  * @param {HTMLElement} element
  */
 function userClick(element) {
+  fireEvent.mouseDown(element);
+  fireEvent.mouseUp(element);
   act(() => {
-    fireEvent.mouseDown(element);
-    fireEvent.mouseUp(element);
     element.click();
   });
 }
 
 /**
- * @param {typeof import('@mui/internal-test-utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen}
  */
-function findBackdrop(view) {
-  return view.getByRole('dialog').parentElement;
+function findBackdrop() {
+  return screen.getByRole('dialog').parentElement;
 }
 
-/**
- * @param {typeof import('@mui/internal-test-utils').screen} view
- */
-function clickBackdrop(view) {
-  userClick(findBackdrop(view));
+function clickBackdrop() {
+  userClick(findBackdrop());
 }
 
 const CustomFade = React.forwardRef(function CustomFade(props, ref) {
@@ -107,13 +104,14 @@ describe('<Dialog />', () => {
 
   it('should render with a TransitionComponent', () => {
     const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);
-    const { getAllByTestId } = render(
+
+    render(
       <Dialog open TransitionComponent={Transition}>
         foo
       </Dialog>,
     );
 
-    expect(getAllByTestId('Transition')).to.have.lengthOf(1);
+    expect(screen.getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
   it('calls onClose when pressing Esc and removes the content after the specified duration', () => {
@@ -131,8 +129,8 @@ describe('<Dialog />', () => {
         </Dialog>
       );
     }
-    const { getByRole, queryByRole } = render(<TestCase />);
-    const dialog = getByRole('dialog');
+    render(<TestCase />);
+    const dialog = screen.getByRole('dialog');
     expect(dialog).not.to.equal(null);
 
     act(() => {
@@ -146,17 +144,19 @@ describe('<Dialog />', () => {
 
     clock.tick(100);
 
-    expect(queryByRole('dialog')).to.equal(null);
+    expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
   it('should not close until the IME is cancelled', () => {
     const onClose = spy();
-    const { getByRole } = render(
+
+    render(
       <Dialog open transitionDuration={0} onClose={onClose}>
         <input type="text" autoFocus />
       </Dialog>,
     );
-    const textbox = getByRole('textbox');
+
+    const textbox = screen.getByRole('textbox');
 
     // Actual Behavior when "あ" (Japanese) is entered and press the Esc for IME cancellation.
     fireEvent.change(textbox, { target: { value: 'あ' } });
@@ -179,7 +179,7 @@ describe('<Dialog />', () => {
       return <Dialog onClose={handleClose} {...other} />;
     }
     const onClose = spy();
-    const { getByRole } = render(
+    render(
       <DialogWithBackdropClickDisabled
         open
         disableEscapeKeyDown
@@ -189,19 +189,19 @@ describe('<Dialog />', () => {
         foo
       </DialogWithBackdropClickDisabled>,
     );
-    const dialog = getByRole('dialog');
+    const dialog = screen.getByRole('dialog');
     expect(dialog).not.to.equal(null);
 
     act(() => {
       dialog.click();
-      // keyDown is not targeted at anything specific.
-      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     });
+    // keyDown is not targeted at anything specific.
+    // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+    fireEvent.keyDown(document.activeElement, { key: 'Escape' });
 
     expect(onClose.callCount).to.equal(0);
 
-    clickBackdrop(screen);
+    clickBackdrop();
     expect(onClose.callCount).to.equal(0);
   });
 
@@ -209,7 +209,7 @@ describe('<Dialog />', () => {
     it('does have `role` `presentation`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop(screen)).to.have.attribute('role', 'presentation');
+      expect(findBackdrop()).to.have.attribute('role', 'presentation');
     });
 
     it('calls onClose when clicked', () => {
@@ -220,42 +220,44 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
 
-      clickBackdrop(screen);
+      clickBackdrop();
       expect(onClose.callCount).to.equal(1);
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {
-      const { getByRole } = render(
+      render(
         <Dialog open>
           <h2>my dialog</h2>
         </Dialog>,
       );
 
-      fireEvent.mouseDown(getByRole('heading'));
-      findBackdrop(screen).click();
-      expect(getByRole('dialog')).not.to.equal(null);
+      fireEvent.mouseDown(screen.getByRole('heading'));
+      clickBackdrop();
+      expect(screen.getByRole('dialog')).not.to.equal(null);
     });
   });
 
   describe('prop: classes', () => {
     it('should add the class on the Paper element', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open classes={{ paper: 'my-paperclass' }} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      expect(getByTestId('paper')).to.have.class('my-paperclass');
+
+      expect(screen.getByTestId('paper')).to.have.class('my-paperclass');
     });
   });
 
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open maxWidth="xs" PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      expect(getByTestId('paper')).to.have.class(classes.paperWidthXs);
+
+      expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthXs);
     });
 
     it('should use the right className when maxWidth={false}', () => {
@@ -282,52 +284,56 @@ describe('<Dialog />', () => {
 
   describe('prop: fullWidth', () => {
     it('should set `fullWidth` class if specified', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open fullWidth PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      expect(getByTestId('paper')).to.have.class(classes.paperFullWidth);
+
+      expect(screen.getByTestId('paper')).to.have.class(classes.paperFullWidth);
     });
 
     it('should not set `fullWidth` class if not specified', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      expect(getByTestId('paper')).not.to.have.class(classes.paperFullWidth);
+
+      expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullWidth);
     });
   });
 
   describe('prop: fullScreen', () => {
     it('can render fullScreen if true', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open fullScreen PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      expect(getByTestId('paper')).to.have.class(classes.paperFullScreen);
+
+      expect(screen.getByTestId('paper')).to.have.class(classes.paperFullScreen);
     });
 
     it('does not render fullScreen by default', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      expect(getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
+
+      expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
 
     it('scrolls if overflown on the Y axis', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
       const ITEM_HEIGHT = 100;
       const ITEM_COUNT = 10;
 
-      const { getByTestId } = render(
+      render(
         <Dialog
           open
           fullScreen
@@ -340,7 +346,8 @@ describe('<Dialog />', () => {
           ))}
         </Dialog>,
       );
-      const paperElement = getByTestId('paper');
+
+      const paperElement = screen.getByTestId('paper');
       expect(paperElement.scrollTop).to.equal(0);
       expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
       expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
@@ -351,50 +358,50 @@ describe('<Dialog />', () => {
 
   describe('prop: PaperProps.className', () => {
     it('should merge the className', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open PaperProps={{ className: 'custom-paper-class', 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
 
-      expect(getByTestId('paper')).to.have.class(classes.paper);
-      expect(getByTestId('paper')).to.have.class('custom-paper-class');
+      expect(screen.getByTestId('paper')).to.have.class(classes.paper);
+      expect(screen.getByTestId('paper')).to.have.class('custom-paper-class');
     });
   });
 
   describe('a11y', () => {
     it('can be labelled by another element', () => {
-      const { getByRole } = render(
+      render(
         <Dialog open aria-labelledby="dialog-title">
           <h1 id="dialog-title">Choose either one</h1>
           <div>Actually you cant</div>
         </Dialog>,
       );
 
-      const dialog = getByRole('dialog');
+      const dialog = screen.getByRole('dialog');
       expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
       const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
       expect(label).to.have.text('Choose either one');
     });
 
     it('should add the aria-modal="true" by default', function test() {
-      const { getByRole } = render(<Dialog open />);
+      render(<Dialog open />);
 
-      const dialog = getByRole('dialog');
+      const dialog = screen.getByRole('dialog');
       expect(dialog).to.have.attr('aria-modal', 'true');
     });
 
     it('should render the custom aria-modal prop if provided', function test() {
-      const { getByRole } = render(<Dialog aria-modal="false" open />);
+      render(<Dialog aria-modal="false" open />);
 
-      const dialog = getByRole('dialog');
+      const dialog = screen.getByRole('dialog');
       expect(dialog).to.have.attr('aria-modal', 'false');
     });
   });
 
   describe('prop: transitionDuration', () => {
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -409,7 +416,7 @@ describe('<Dialog />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -431,7 +438,7 @@ describe('<Dialog />', () => {
     });
 
     it('should render the values provided via prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

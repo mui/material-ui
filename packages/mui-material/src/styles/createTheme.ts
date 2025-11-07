@@ -1,12 +1,36 @@
-import createPalette from './createPalette';
+import createPalette, { PaletteOptions } from './createPalette';
+import { ColorSystemOptions } from './createThemeFoundation';
 import createThemeWithVars, {
   CssVarsThemeOptions,
   ColorSystem,
   DefaultColorScheme,
 } from './createThemeWithVars';
-import createThemeNoVars, { Theme, ThemeOptions } from './createThemeNoVars';
+import createThemeNoVars, {
+  Theme,
+  CssThemeVariables,
+  ThemeOptions as ThemeNoVarsOptions,
+} from './createThemeNoVars';
 
-export type { ThemeOptions, Theme, CssThemeVariables } from './createThemeNoVars';
+export type { Theme, CssThemeVariables } from './createThemeNoVars';
+
+type CssVarsOptions = CssThemeVariables extends {
+  enabled: true;
+}
+  ? ColorSystemOptions
+  : {};
+
+type CssVarsConfigList =
+  | 'colorSchemeSelector'
+  | 'rootSelector'
+  | 'disableCssColorScheme'
+  | 'cssVarPrefix'
+  | 'shouldSkipGeneratingVar'
+  | 'nativeColor';
+
+export interface ThemeOptions extends CssVarsOptions, Omit<CssVarsThemeOptions, CssVarsConfigList> {
+  cssVariables?: boolean | Pick<CssVarsThemeOptions, CssVarsConfigList>;
+  palette?: PaletteOptions;
+}
 
 // eslint-disable-next-line consistent-return
 function attachColorScheme(
@@ -35,20 +59,7 @@ function attachColorScheme(
  * @returns A complete, ready-to-use theme object.
  */
 export default function createTheme(
-  options: Omit<ThemeOptions, 'components'> &
-    Pick<CssVarsThemeOptions, 'defaultColorScheme' | 'colorSchemes' | 'components'> & {
-      cssVariables?:
-        | boolean
-        | Pick<
-            CssVarsThemeOptions,
-            | 'colorSchemeSelector'
-            | 'rootSelector'
-            | 'disableCssColorScheme'
-            | 'cssVarPrefix'
-            | 'shouldSkipGeneratingVar'
-            | 'nativeColor'
-          >;
-    } = {} as any, // cast type to skip module augmentation test
+  options: ThemeOptions = {} as any, // cast type to skip module augmentation test
   ...args: object[]
 ): Theme {
   const {
@@ -56,7 +67,7 @@ export default function createTheme(
     cssVariables = false,
     colorSchemes: initialColorSchemes = !palette ? { light: true } : undefined,
     defaultColorScheme: initialDefaultColorScheme = palette?.mode,
-    ...rest
+    ...other
   } = options;
   const defaultColorSchemeInput = (initialDefaultColorScheme as DefaultColorScheme) || 'light';
   const defaultScheme = initialColorSchemes?.[defaultColorSchemeInput];
@@ -75,7 +86,7 @@ export default function createTheme(
   if (cssVariables === false) {
     if (!('colorSchemes' in options)) {
       // Behaves exactly as v5
-      return createThemeNoVars(options as ThemeOptions, ...args);
+      return createThemeNoVars(options as ThemeNoVarsOptions, ...args);
     }
 
     let paletteOptions = palette;
@@ -91,7 +102,7 @@ export default function createTheme(
     }
 
     const theme = createThemeNoVars(
-      { ...options, palette: paletteOptions } as ThemeOptions,
+      { ...options, palette: paletteOptions } as ThemeNoVarsOptions,
       ...args,
     ) as unknown as Theme & {
       defaultColorScheme?: 'light' | 'dark';
@@ -125,7 +136,7 @@ export default function createTheme(
 
   return createThemeWithVars(
     {
-      ...rest,
+      ...other,
       colorSchemes: colorSchemesInput,
       defaultColorScheme: defaultColorSchemeInput,
       ...(typeof cssVariables !== 'boolean' && cssVariables),

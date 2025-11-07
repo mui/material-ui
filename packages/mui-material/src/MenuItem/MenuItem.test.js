@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
@@ -64,9 +63,12 @@ describe('<MenuItem />', () => {
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
 
-        await act(async () => fireEvent[eventName](screen.getByRole('menuitem')));
+        fireEvent[eventName](screen.getByRole('menuitem'));
 
         expect(handler.callCount).to.equal(1);
+
+        // eslint-disable-next-line testing-library/no-unnecessary-act
+        await act(async () => {});
       });
     });
 
@@ -136,12 +138,12 @@ describe('<MenuItem />', () => {
   });
 
   it('prop: disableGutters', () => {
-    const { rerender } = render(<MenuItem />);
+    const view = render(<MenuItem />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.gutters);
 
-    rerender(<MenuItem disableGutters />);
+    view.rerender(<MenuItem disableGutters />);
 
     expect(menuitem).not.to.have.class(classes.gutters);
   });

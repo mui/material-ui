@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -56,7 +55,7 @@ describe('<NotchedOutline />', () => {
   });
 
   it('should not set padding (notch) for empty, null or undefined label props', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
