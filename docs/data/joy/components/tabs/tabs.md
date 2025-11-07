@@ -97,7 +97,7 @@ Use the `tabFlex` prop on the Tab List component to make the Tab elements fill t
 {{"demo": "TabsFlex.js"}}
 
 :::info
-The value of the `tabFlex` prop can be any [valid CSS flex value](https://developer.mozilla.org/en-US/docs/Web/CSS/flex).
+The value of the `tabFlex` prop can be any [valid CSS flex value](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex).
 :::
 
 ### Icon
