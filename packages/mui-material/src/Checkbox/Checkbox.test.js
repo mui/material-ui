@@ -108,6 +108,42 @@ describe('<Checkbox />', () => {
     });
   });
 
+  describe('prop: error', () => {
+    it('adds the error class to the root element when `error` is true', () => {
+      render(<Checkbox error />);
+      const checkbox = screen.getByRole('checkbox');
+      const root = checkbox.parentElement;
+
+      expect(root).to.have.class('Mui-error');
+    });
+
+    it('adds the error class when provided by FormControl context', () => {
+      render(
+        <FormControl error>
+          <Checkbox />
+        </FormControl>,
+      );
+
+      const checkbox = screen.getByRole('checkbox');
+      const root = checkbox.parentElement;
+
+      expect(root).to.have.class('Mui-error');
+    });
+
+    it('allows the `error` prop to override FormControl context', () => {
+      render(
+        <FormControl error>
+          <Checkbox error={false} />
+        </FormControl>,
+      );
+
+      const checkbox = screen.getByRole('checkbox');
+      const root = checkbox.parentElement;
+
+      expect(root).not.to.have.class('Mui-error');
+    });
+  });
+
   describe('theme: customization', () => {
     it('should be customizable in the theme using the size prop.', function test() {
       if (window.navigator.userAgent.includes('jsdom')) {

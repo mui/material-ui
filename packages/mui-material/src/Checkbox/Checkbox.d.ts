@@ -83,6 +83,11 @@ export interface CheckboxProps
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
+   * If `true`, the component is displayed in an error state.
+   * @default false
+   */
+  error?: boolean;
+  /**
    * If `true`, the ripple effect is disabled.
    * @default false
    */

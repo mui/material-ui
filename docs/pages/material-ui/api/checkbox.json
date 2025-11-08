@@ -78,6 +78,12 @@
   ],
   "classes": [
     {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
       "key": "checked",
       "className": "Mui-checked",
       "description": "State class applied to the root element if `checked={true}`.",

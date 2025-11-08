@@ -30,3 +30,5 @@ import { expectType } from '@mui/types';
     },
   }}
 />;
+
+<Checkbox error />;

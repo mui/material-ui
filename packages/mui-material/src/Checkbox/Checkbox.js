@@ -16,9 +16,11 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { mergeSlotProps } from '../utils';
 import useSlot from '../utils/useSlot';
+import formControlState from '../FormControl/formControlState';
+import useFormControl from '../FormControl/useFormControl';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, indeterminate, color, size } = ownerState;
+  const { classes, indeterminate, color, size, error } = ownerState;
 
   const slots = {
     root: [
@@ -34,6 +36,7 @@ const useUtilityClasses = (ownerState) => {
   return {
     ...classes, // forward the disabled and checked classes to the SwitchBase
     ...composedClasses,
+    root: clsx(composedClasses.root, error && 'Mui-error'),
   };
 };
 
@@ -93,6 +96,18 @@ const CheckboxRoot = styled(SwitchBase, {
           },
         })),
       {
+        props: { error: true },
+        style: {
+          color: (theme.vars || theme).palette.error.main,
+          [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
+            color: (theme.vars || theme).palette.error.main,
+          },
+          [`&.${checkboxClasses.disabled}`]: {
+            color: (theme.vars || theme).palette.action.disabled,
+          },
+        },
+      },
+      {
         // Should be last to override other colors
         props: { disableRipple: false },
         style: {
@@ -126,11 +141,20 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     className,
     slots = {},
     slotProps = {},
+    error: errorProp,
     ...other
   } = props;
 
   const icon = indeterminate ? indeterminateIconProp : iconProp;
   const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
+
+  const muiFormControl = useFormControl();
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['error'],
+  });
+  const error = fcs.error ?? errorProp ?? false;
 
   const ownerState = {
     ...props,
@@ -138,6 +162,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     color,
     indeterminate,
     size,
+    error,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -172,6 +197,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
             : externalInputProps,
           {
             'data-indeterminate': indeterminate,
+            'aria-invalid': error || undefined,
           },
         ),
       },
@@ -222,6 +248,11 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the component is displayed in an error state.
+   * @default false
+   */
+  error: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
    * @default false
