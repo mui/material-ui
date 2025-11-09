@@ -3683,6 +3683,49 @@ describe('<Autocomplete />', () => {
 
       expect(view.container.querySelector(`.${chipClasses.root}`)).to.have.text('0');
     });
+
+    it('should not throw error on pressing ArrowLeft key with no value in single value rendering', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderValue={(value, getItemProps) => {
+            return value ? <Chip label={value} {...getItemProps()} /> : null;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      }).not.to.throw();
+
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should not throw error on pressing ArrowLeft key with input text but no value in single value rendering', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderValue={(value, getItemProps) => {
+            return value ? <Chip label={value} {...getItemProps()} /> : null;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.change(textbox, { target: { value: 'on' } });
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      }).not.to.throw();
+
+      expect(textbox).to.have.property('value', 'on');
+      expect(textbox).toHaveFocus();
+    });
   });
 
   it('should not shrink the input label when value is an empty array in multiple mode using renderValue', () => {
@@ -3708,48 +3751,5 @@ describe('<Autocomplete />', () => {
     );
 
     expect(screen.getByTestId('label')).to.have.attribute('data-shrink', 'false');
-  });
-
-  it('should not throw error on pressing left key with no value in single value rendering', () => {
-    render(
-      <Autocomplete
-        options={['one', 'two', 'three']}
-        renderValue={(value, getItemProps) => {
-          return value ? <Chip label={value} {...getItemProps()} /> : null;
-        }}
-        renderInput={(params) => <TextField {...params} autoFocus />}
-      />,
-    );
-
-    const textbox = screen.getByRole('combobox');
-
-    expect(() => {
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
-    }).not.to.throw();
-
-    expect(textbox).toHaveFocus();
-  });
-
-  it('should not throw error on pressing left key with input text but no value in single value rendering', () => {
-    render(
-      <Autocomplete
-        options={['one', 'two', 'three']}
-        renderValue={(value, getItemProps) => {
-          return value ? <Chip label={value} {...getItemProps()} /> : null;
-        }}
-        renderInput={(params) => <TextField {...params} autoFocus />}
-      />,
-    );
-
-    const textbox = screen.getByRole('combobox');
-
-    fireEvent.change(textbox, { target: { value: 'on' } });
-
-    expect(() => {
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
-    }).not.to.throw();
-
-    expect(textbox).to.have.property('value', 'on');
-    expect(textbox).toHaveFocus();
   });
 });
