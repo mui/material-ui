@@ -257,8 +257,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const buttonProps = {};
   if (ComponentProp === 'button') {
-    // Don't default to 'button' if form attributes are present, to allow form submission
     const hasFormAttributes = !!other.formAction;
+    // ButtonBase was defaulting to type="button" when no type prop was provided, which prevented form submission and broke formAction functionality.
+    // The fix checks for form-related attributes and skips the default type to allow the browser's natural submit behavior (type="submit").
     buttonProps.type = type === undefined && !hasFormAttributes ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
