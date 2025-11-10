@@ -268,9 +268,9 @@ function findNonComponentMarkdownFiles(
       // exist in the same directory (e.g., upgrade-to-v7.md and upgrade-to-native-color.md)
       const lastSegment = pathname.split('/').filter(Boolean).pop();
       const page = allMarkdownFiles.find((p) => {
-        const fileBasename = path.basename(p.filename, '.md');
+        const fileBasename = path.basename(p.filename).replace(/\.mdx?$/, '');
         const parentPath = parsedPathname.replace(/\/[^/]+$/, '');
-        return fileBasename === lastSegment && p.filename.includes(parentPath);
+        return fileBasename === lastSegment && path.dirname(p.filename) === parentPath;
       });
 
       if (page) {
