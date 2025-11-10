@@ -853,7 +853,7 @@ function useAutocomplete(props) {
           handleOpen(event);
           break;
         case 'ArrowLeft':
-          if (!multiple && renderValue && value) {
+          if (!multiple && renderValue && value != null) {
             focusItem(0);
           } else {
             handleFocusItem(event, 'previous');
