@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import * as React from 'react';
 import chainPropTypes from '../chainPropTypes';
 
 function isClassComponent(elementType: Function) {
@@ -42,6 +43,10 @@ function elementTypeAcceptingRef(
    */
   if (typeof propValue === 'function' && !isClassComponent(propValue)) {
     warningHint = 'Did you accidentally provide a plain function component instead?';
+  }
+
+  if (propValue === React.Fragment) {
+    warningHint = 'Did you accidentally provide React.Fragment instead?';
   }
 
   if (warningHint !== undefined) {
