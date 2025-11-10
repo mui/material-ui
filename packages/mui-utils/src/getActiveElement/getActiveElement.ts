@@ -5,7 +5,7 @@
  * the shadow host element. This function recursively traverses shadow roots to find
  * the actual focused element.
  *
- * @param root - The document to query for the active element.
+ * @param root - The document or shadow root to start the search from.
  * @returns The actual focused element, or null if no element has focus.
  *
  * @example
@@ -17,7 +17,7 @@
  * // Starting from a specific document
  * const activeElement = getActiveElement(ownerDocument(element));
  */
-export default function activeElement(doc: Document): Element | null {
+export default function activeElement(doc: Document | ShadowRoot): Element | null {
   let element = doc.activeElement;
 
   while (element?.shadowRoot?.activeElement != null) {
