@@ -136,7 +136,7 @@
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
     "es-toolkit": "^1.39.10",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.1",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "fast-glob": "^3.3.3",
