@@ -91,7 +91,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
-    "@netlify/functions": "^5.0.1",
+    "@netlify/functions": "^5.1.0",
     "@slack/bolt": "^4.6.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
@@ -104,9 +104,9 @@
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui/internal-bundle-size-checker": "^1.0.9-canary.54",
+    "@mui/internal-bundle-size-checker": "^1.0.9-canary.55",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.11",
-    "@mui/internal-code-infra": "^0.0.3-canary.47",
+    "@mui/internal-code-infra": "^0.0.3-canary.48",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "^0.0.2-canary.1",
     "@mui/internal-scripts": "workspace:^",
@@ -115,7 +115,7 @@
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "^15.5.6",
-    "@octokit/rest": "^22.0.0",
+    "@octokit/rest": "^22.0.1",
     "@pigment-css/react": "0.0.30",
     "@pnpm/find-workspace-dir": "^1000.1.3",
     "@playwright/test": "1.56.1",
@@ -136,7 +136,7 @@
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
     "es-toolkit": "^1.39.10",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.1",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "fast-glob": "^3.3.3",
@@ -173,9 +173,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "engines": {
-    "pnpm": "10.19.0",
+    "pnpm": "10.20.0",
     "node": ">=22.18.0"
   },
   "resolutions": {
