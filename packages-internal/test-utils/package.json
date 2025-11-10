@@ -53,7 +53,7 @@
     "es-toolkit": "^1.41.0",
     "format-util": "^1.0.5",
     "jsdom": "^26.1.0",
-    "mocha": "^11.7.4",
+    "mocha": "^11.7.5",
     "prop-types": "^15.8.1",
     "sinon": "^21.0.0"
   },
