@@ -28,7 +28,7 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
-      - run: echo "${{ github.actor }}"
+      - run: echo '${{ github.actor }}'
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           # fetch all tags which are required for `pnpm release:changelog`
@@ -51,15 +51,15 @@ jobs:
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
       - name: Build docs
-        shell: bash
-        run: |
-          # Increase file descriptor limit on macOS to prevent EMFILE errors
-          if [ "$(uname)" = "Darwin" ]; then
-            ulimit -n 10240
-          fi
-          pnpm docs:build
+        run: pnpm docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=6144
+          # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
+          # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
+          NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
+        if: failure()
+        run: cat ./docs/.next/export-detail.json || true

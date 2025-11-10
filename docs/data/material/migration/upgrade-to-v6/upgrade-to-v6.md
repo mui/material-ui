@@ -384,7 +384,7 @@ This eliminates the need for the `disableEqualOverflow` prop:
 #### Grid item spacing change
 
 In v5, Grid items included spacing in their boxes.
-In v6, Grid items no longer include spacing in their boxes by using the [CSS gap property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
+In v6, Grid items no longer include spacing in their boxes by using the [CSS gap property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap).
 
 Note that the item position doesn't change.
 

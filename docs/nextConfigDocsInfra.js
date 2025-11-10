@@ -76,7 +76,13 @@ function withDocsInfra(nextConfig) {
     experimental: {
       scrollRestoration: true,
       workerThreads: false,
-      ...(process.env.CI ? { cpus: os.availableParallelism() } : {}),
+      ...(process.env.CI
+        ? {
+            cpus: process.env.NEXT_PARALLELISM
+              ? parseInt(process.env.NEXT_PARALLELISM, 10)
+              : os.availableParallelism(),
+          }
+        : {}),
       ...nextConfig.experimental,
     },
     eslint: {

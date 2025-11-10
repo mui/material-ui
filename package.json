@@ -73,6 +73,7 @@
     "test:argos": "code-infra argos-push --folder test/regressions/screenshots/chrome",
     "typescript": "lerna run --no-bail typescript",
     "typescript:ci": "lerna run --concurrency 1 --no-bail typescript",
+    "typescript:module-augmentation": "lerna run --concurrency 2 --no-bail typescript:module-augmentation",
     "use-react-version": "node ./scripts/useReactVersion.mjs",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
