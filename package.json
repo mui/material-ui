@@ -167,7 +167,7 @@
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
     "vite": "^7.1.12",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.8",
     "vitest-fail-on-console": "^0.10.1",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
