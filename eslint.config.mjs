@@ -37,6 +37,17 @@ const NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES = [
     name: '@mui/lab',
     message: OneLevelImportMessage,
   },
+<<<<<<< HEAD
+=======
+  {
+    name: '@mui/icons-material',
+    message: [
+      'Prefer path-based imports for icons to avoid loading all 20,000+ icon files in development.',
+      'Use: import Delete from "@mui/icons-material/Delete" instead of: import { Delete } from "@mui/icons-material"',
+      'See: https://mui.com/material-ui/guides/minimizing-bundle-size/#avoid-barrel-imports',
+    ].join('\n'),
+  },
+>>>>>>> e1f6824e81 (Add bundle size optimization guide and ESLint rules for icons-material)
 ];
 
 const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [

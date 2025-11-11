@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "regex": "^@mui/[^/]+$",
+            "message": "Use path-based imports to avoid loading entire packages. Example: import Button from '@mui/material/Button' instead of import { Button } from '@mui/material'"
+          }
+        ]
+      }
+    ]
+  }
+}
+
