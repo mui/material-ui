@@ -38,7 +38,9 @@ yarn add @base-ui-components/react
 </codeblock>
 
 :::info
-The Number Field component is **NOT** a built-in component of `@mui/material`, you must install [Base UI](https://base-ui.com/react/overview/quick-start#install-the-library).
+The Number Field component is **NOT** a built-in component of `@mui/material`, you must install our headless library — [Base UI](https://base-ui.com/react/overview/quick-start#install-the-library).
+
+Base UI is tree-shakeable, so the final bundle will only include the components used in your project.
 :::
 
 ## Usage

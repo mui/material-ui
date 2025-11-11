@@ -8,6 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 function NumberSpinner({ id: idProp, label, error, size = 'medium', ...other }) {
   let id = React.useId();
@@ -40,18 +41,32 @@ function NumberSpinner({ id: idProp, label, error, size = 'medium', ...other }) 
         </FormControl>
       )}
     >
-      <FormLabel
-        htmlFor={id}
-        sx={{
-          fontSize: '0.875rem',
-          color: 'text.primary',
-          fontWeight: 500,
-          lineHeight: 1.5,
-          mb: 0.5,
-        }}
+      <BaseNumberField.ScrubArea
+        render={
+          <Box component="span" sx={{ userSelect: 'none', width: 'max-content' }} />
+        }
       >
-        {label}
-      </FormLabel>
+        <FormLabel
+          htmlFor={id}
+          sx={{
+            display: 'inline-block',
+            cursor: 'ew-resize',
+            fontSize: '0.875rem',
+            color: 'text.primary',
+            fontWeight: 500,
+            lineHeight: 1.5,
+            mb: 0.5,
+          }}
+        >
+          {label}
+        </FormLabel>
+        <BaseNumberField.ScrubAreaCursor>
+          <OpenInFullIcon
+            fontSize="small"
+            sx={{ transform: 'translateY(12.5%) rotate(45deg)' }}
+          />
+        </BaseNumberField.ScrubAreaCursor>
+      </BaseNumberField.ScrubArea>
       <Box sx={{ display: 'flex' }}>
         <BaseNumberField.Decrement
           render={
