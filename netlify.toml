@@ -8,6 +8,7 @@
 [build.environment]
   NODE_VERSION = "22.18"
   PNPM_FLAGS = "--frozen-lockfile"
+  NEXT_PARALLELISM = "2"
 
 [[plugins]]
   package = "@mui/internal-netlify-cache"
