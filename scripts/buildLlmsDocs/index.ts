@@ -269,8 +269,8 @@ function findNonComponentMarkdownFiles(
       const lastSegment = pathname.split('/').filter(Boolean).pop();
       const page = allMarkdownFiles.find((p) => {
         const fileBasename = path.basename(p.filename).replace(/\.mdx?$/, '');
-        const parentPath = parsedPathname.replace(/\/[^/]+$/, '');
-        return fileBasename === lastSegment && path.dirname(p.filename) === parentPath;
+        // p.pathname already has the parent path (from findPagesMarkdown which strips the filename)
+        return fileBasename === lastSegment && p.pathname === parsedPathname;
       });
 
       if (page) {
