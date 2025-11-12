@@ -17,7 +17,7 @@
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:pack": "tsx scripts/releasePack.mts",
     "docs:api": "rimraf --glob ./docs/pages/**/api-docs ./docs/pages/**/api && pnpm docs:api:build",
-    "docs:api:build": "tsx ./scripts/buidApiDocs/index.ts",
+    "docs:api:build": "tsx ./scripts/buildApiDocs/index.ts",
     "docs:llms:build": "rimraf --glob ./docs/public/material-ui/ && tsx ./scripts/buildLlmsDocs/index.ts --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts",
     "docs:build": "pnpm docs:llms:build && pnpm --filter docs build",
     "docs:build-sw": "pnpm --filter docs build-sw",
