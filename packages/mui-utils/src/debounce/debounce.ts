@@ -8,7 +8,7 @@ export default function debounce<T extends (...args: any[]) => any>(func: T, wai
   let timeout: ReturnType<typeof setTimeout>;
   function debounced(...args: Parameters<T>) {
     const later = () => {
-      // @ts-ignore
+      // @ts-expect-error - 'this' context is intentionally not preserved in arrow function
       func.apply(this, args);
     };
     clearTimeout(timeout);

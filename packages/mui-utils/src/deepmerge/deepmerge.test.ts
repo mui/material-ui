@@ -117,7 +117,7 @@ describe('deepmerge', () => {
 
     expect(result).to.deep.equal({ foo: { baz: 'test' } });
 
-    // @ts-ignore
+    // @ts-expect-error - testing that result is mutable (not readonly)
     result.foo.baz = 'new test';
 
     expect(result).to.deep.equal({ foo: { baz: 'new test' } });
