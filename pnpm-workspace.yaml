@@ -6,10 +6,18 @@ packages:
   - test
   - test/*
 
-patchedDependencies:
-  styled-components: patches/styled-components.patch
+engineStrict: true
 
 onlyBuiltDependencies:
+  - '@mui/x-telemetry'
   - '@vvago/vale'
+  - core-js
+  - core-js-pure
+  - esbuild
+  - msw
+  - nx
+  - sharp
+  - unrs-resolver
 
-engineStrict: true
+patchedDependencies:
+  styled-components: patches/styled-components.patch

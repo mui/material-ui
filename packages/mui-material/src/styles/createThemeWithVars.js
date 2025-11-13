@@ -433,12 +433,12 @@ export default function createThemeWithVars(options = {}, ...args) {
         'warningFilledColor',
         silent(() => palette.getContrastText(palette.warning.dark)),
       );
-      setColor(palette.Alert, 'errorStandardBg', colorMix(safeDarken, palette.error.light, 0.9));
-      setColor(palette.Alert, 'infoStandardBg', colorMix(safeDarken, palette.info.light, 0.9));
+      setColor(palette.Alert, 'errorStandardBg', colorMix(safeLighten, palette.error.main, 0.25));
+      setColor(palette.Alert, 'infoStandardBg', colorMix(safeLighten, palette.info.main, 0.25));
       setColor(
         palette.Alert,
         'successStandardBg',
-        colorMix(safeDarken, palette.success.light, 0.9),
+        colorMix(safeLighten, palette.success.main, 0.25),
       );
       setColor(
         palette.Alert,
