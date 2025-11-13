@@ -1,0 +1,70 @@
+import * as React from 'react';
+import { Stack, Button, IconButton, Tooltip } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
+export const meta = {
+  title: 'Components / Buttons / Examples',
+  description: 'Small, copy-pasteable Button examples including icon-only and accessibility tips.',
+};
+
+# Button — Code examples
+
+These short examples are ready to copy/paste into a component or playground.
+
+<Stack spacing={2}>
+  <Button variant="contained" color="primary">
+    Contained
+  </Button>
+
+  <Button variant="outlined" color="primary">
+    Outlined
+  </Button>
+
+  <Button variant="text" color="primary">
+    Text
+  </Button>
+
+  <Button variant="contained" startIcon={<SaveIcon />} aria-label="save changes">
+    Save
+  </Button>
+
+  <Tooltip title="Like">
+    <IconButton aria-label="like" color="secondary">
+      <FavoriteIcon />
+    </IconButton>
+  </Tooltip>
+
+  <Button variant="contained" disabled>
+    Disabled
+  </Button>
+</Stack>
+
+---
+
+Accessibility tips
+- Icon-only buttons must have an accessible name (aria-label or visible text).
+- Prefer wrapping icon-only buttons in a Tooltip for extra clarity.
+- Verify keyboard focus order and visible focus styles.
+
+Copy-paste example (JSX)
+```jsx
+import { Button, IconButton, Tooltip } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+
+function Example() {
+  return (
+    <div>
+      <Button variant="contained" startIcon={<SaveIcon />} aria-label="save changes">
+        Save
+      </Button>
+
+      <Tooltip title="Like">
+        <IconButton aria-label="like">
+          <FavoriteIcon />
+        </IconButton>
+      </Tooltip>
+    </div>
+  );
+}
+```
