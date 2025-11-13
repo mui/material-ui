@@ -4,7 +4,7 @@ import {
   SxProps,
   CSSObject,
   SxConfig,
-  ApplyStyles, //Added this to import from @mui/system
+  ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
@@ -19,7 +19,7 @@ import {
   ColorSystemOptions,
   Shape,
   ShapeOptions,
-  SupportedColorScheme, //Added this to imports ./createThemeFoundation
+  SupportedColorScheme,
 } from './createThemeFoundation';
 
 /**
@@ -63,7 +63,7 @@ export interface BaseTheme extends SystemTheme {
   typography: TypographyVariants;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
-  applyStyles: ApplyStyles<SupportedColorScheme>; //added this to the BaseTheme interface
+  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
