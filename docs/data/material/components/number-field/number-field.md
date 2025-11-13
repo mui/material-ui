@@ -10,7 +10,6 @@ components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperTe
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
-
 Number Field is _not_ a built-in `@mui/material` component—it's composed of a [Base UI Number Field](https://base-ui.com/react/components/number-field) and styled to align with Material UI specs.
 
 As such, you must install Base UI before proceeding.
@@ -50,7 +49,7 @@ The outlined field component uses [text-field composition](/material-ui/react-te
 
 ## Spinner field
 
-For the spinner field component, the increment and decrement buttons are placed next to the outlined input. 
+For the spinner field component, the increment and decrement buttons are placed next to the outlined input.
 This is ideal for touch devices and narrow ranges of values.
 
 {{"demo": "SpinnerDemo.js"}}
