@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+.next
+.nx
+dist
+build
+.DS_Store
+test-results
+.cache
+.eslintcache
+.yarn/cache
+pnpm-store
+coverage
+docs/build

@@ -1,0 +1,35 @@
+FROM node:18-alpine as builder
+
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy package files
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Copy the entire project
+COPY . .
+
+# Build documentation
+RUN pnpm docs:build
+
+# Production stage
+FROM node:18-alpine
+
+WORKDIR /app
+
+RUN npm install -g pnpm serve
+
+# Copy built docs from builder
+COPY --from=builder /app/docs/build ./docs/build
+COPY --from=builder /app/docs/public ./docs/public
+
+# Expose port
+EXPOSE 3000
+
+# Serve the docs
+CMD ["serve", "-s", "docs/build", "-l", "3000"]

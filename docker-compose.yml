@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Development environment with hot reload
+  mui-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: material-ui-dev
+    ports:
+      - "3000:3000"
+      - "6006:6006"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+    command: pnpm docs:dev
+    networks:
+      - mui-network
+
+  # Build and test service
+  mui-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.build
+    container_name: material-ui-build
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+    command: pnpm build
+    networks:
+      - mui-network
+
+  # Documentation preview (production build)
+  mui-docs:
+    build:
+      context: .
+      dockerfile: Dockerfile.docs
+    container_name: material-ui-docs
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - mui-network
+
+networks:
+  mui-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  next_cache:
