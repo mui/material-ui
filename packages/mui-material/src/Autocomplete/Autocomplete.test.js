@@ -3752,4 +3752,40 @@ describe('<Autocomplete />', () => {
 
     expect(screen.getByTestId('label')).to.have.attribute('data-shrink', 'false');
   });
+
+  // https://github.com/mui/material-ui/issues/47203
+  it('should not scroll the listbox to the top when listbox is scrolled down and one of the end option is clicked', function test() {
+    if (window.navigator.userAgent.includes('jsdom')) {
+      this.skip();
+    }
+
+    render(
+      <Autocomplete
+        multiple
+        disableCloseOnSelect
+        options={['one', 'two', 'three', 'four', 'five']}
+        renderInput={(params) => <TextField {...params} />}
+        slotProps={{ listbox: { style: { padding: 0, maxHeight: '100px' } } }}
+      />,
+    );
+    const textbox = screen.getByRole('combobox');
+
+    // open listbox
+    fireEvent.mouseDown(textbox);
+
+    // close listbox
+    fireEvent.mouseDown(textbox);
+
+    // re-open listbox
+    fireEvent.mouseDown(textbox);
+
+    const listbox = screen.getByRole('listbox');
+    const options = screen.getAllByRole('option');
+
+    listbox.scrollBy(0, 180);
+
+    fireEvent.click(options[4]);
+
+    expect(listbox).not.to.have.property('scrollTop', 0);
+  });
 });
