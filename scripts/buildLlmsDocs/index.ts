@@ -264,7 +264,14 @@ function findNonComponentMarkdownFiles(
       pathname.startsWith('/material-ui/') &&
       !ignoredPaths.some((ignored) => pathname.startsWith(ignored))
     ) {
-      const page = allMarkdownFiles.find((p) => p.pathname === parsedPathname);
+      // Match by filename basename to avoid pathname collisions when multiple files
+      // exist in the same directory (e.g., upgrade-to-v7.md and upgrade-to-native-color.md)
+      const lastSegment = pathname.split('/').filter(Boolean).pop();
+      const page = allMarkdownFiles.find((p) => {
+        const fileBasename = path.basename(p.filename).replace(/\.mdx?$/, '');
+        // p.pathname already has the parent path (from findPagesMarkdown which strips the filename)
+        return fileBasename === lastSegment && p.pathname === parsedPathname;
+      });
 
       if (page) {
         files.push({
