@@ -14,7 +14,7 @@ Number Field is _not_ a built-in `@mui/material` component—it's composed of a 
 
 As such, you must install Base UI before proceeding.
 The examples that follow can then be copied and pasted directly into your app.
-Note that Base UI is tree-shakeable, so the final bundle will only include the components used in your project.
+Note that Base UI is tree-shakeable, so the final bundle will only include the components used in your project.
 
 <!-- #npm-tag-reference -->
 
