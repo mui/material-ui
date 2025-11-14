@@ -24,6 +24,12 @@ export interface AppBarOwnProps {
     AppBarPropsColorOverrides
   >;
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 4
+   */
+  elevation?: number;
+  /**
    * If true, the `color` prop is applied in dark mode.
    * @default false
    */
@@ -35,6 +41,11 @@ export interface AppBarOwnProps {
    * @default 'fixed'
    */
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
+  /**
+   * If `true`, rounded corners are disabled.
+   * @default true
+   */
+  square?: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -49,7 +60,7 @@ export type AppBarTypeMap<
     props: AdditionalProps & AppBarOwnProps;
     defaultComponent: RootComponent;
   },
-  'position' | 'color' | 'classes'
+  'position' | 'color' | 'classes' | 'elevation' | 'square'
 >;
 
 /**
