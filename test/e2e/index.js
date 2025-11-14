@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import * as ReactDOMClient from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router';
 import * as DomTestingLibrary from '@testing-library/dom';
@@ -104,13 +103,9 @@ function App() {
 
 const container = document.getElementById('react-root');
 const children = <App />;
-if (typeof ReactDOM.unstable_createRoot === 'function') {
-  const root = ReactDOM.unstable_createRoot(container);
-  root.render(children);
-} else {
-  const root = ReactDOMClient.createRoot(container);
-  root.render(children);
-}
+// Use ReactDOMClient.createRoot directly - it's the standard API in React 18+
+const root = ReactDOMClient.createRoot(container);
+root.render(children);
 
 window.DomTestingLibrary = DomTestingLibrary;
 window.elementToString = function elementToString(element) {
