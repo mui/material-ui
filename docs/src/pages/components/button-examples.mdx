@@ -17,23 +17,23 @@ These short examples are ready to copy/paste into a component or playground.
     Contained
   </Button>
 
-  <Button variant="outlined" color="primary">
-    Outlined
-  </Button>
+<Button variant="outlined" color="primary">
+  Outlined
+</Button>
 
-  <Button variant="text" color="primary">
-    Text
-  </Button>
+<Button variant="text" color="primary">
+  Text
+</Button>
 
-  <Button variant="contained" startIcon={<SaveIcon />} aria-label="save changes">
-    Save
-  </Button>
+<Button variant="contained" startIcon={<SaveIcon />} aria-label="save changes">
+  Save
+</Button>
 
-  <Tooltip title="Like">
-    <IconButton aria-label="like" color="secondary">
-      <FavoriteIcon />
-    </IconButton>
-  </Tooltip>
+<Tooltip title="Like">
+  <IconButton aria-label="like" color="secondary">
+    <FavoriteIcon />
+  </IconButton>
+</Tooltip>
 
   <Button variant="contained" disabled>
     Disabled
@@ -43,11 +43,13 @@ These short examples are ready to copy/paste into a component or playground.
 ---
 
 Accessibility tips
+
 - Icon-only buttons must have an accessible name (aria-label or visible text).
 - Prefer wrapping icon-only buttons in a Tooltip for extra clarity.
 - Verify keyboard focus order and visible focus styles.
 
 Copy-paste example (JSX)
+
 ```jsx
 import { Button, IconButton, Tooltip } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
