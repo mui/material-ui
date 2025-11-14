@@ -84,4 +84,10 @@ To customize a Card's styles when it's in an active state, you can attach a `dat
 
 {{"demo": "SelectActionCard.js", "bg": true}}
 
+## Dark mode
+
+Cards automatically adapt to both light and dark color schemes. The following demo shows how cards look in both themes:
+
+{{"demo": "CardDarkMode.js"}}
+
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs).

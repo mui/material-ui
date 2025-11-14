@@ -56,6 +56,12 @@ Here is a [more detailed guide](/material-ui/integrations/routing/#link).
 
 {{"demo": "ButtonLink.js"}}
 
+### Practical accessibility examples
+
+Here are practical examples of accessible link patterns for screen readers and keyboard navigation:
+
+{{"demo": "LinksAccessible.js"}}
+
 ### Keyboard accessibility
 
 - Interactive elements should receive focus in a coherent order when the user presses the <kbd class="key">Tab</kbd> key.

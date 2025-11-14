@@ -60,8 +60,14 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 Be sure to add a `aria-label` description on the `Breadcrumbs` component.
 
+## Here's a practical example implementing accessibility best practices:
+
+{{"demo": "AccessibilityExample.js"}}
+
 The accessibility of this component relies on:
 
 - The set of links is structured using an ordered list (`<ol>` element).
 - To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
 - A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+- Each link should have descriptive `aria-label` text explaining the destination.
+- The current page is marked with `aria-current="page"` to indicate the active location.

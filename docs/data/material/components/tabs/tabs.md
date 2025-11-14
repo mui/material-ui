@@ -169,7 +169,13 @@ The components implement keyboard navigation using the "manual activation" behav
 If you want to switch to the "selection automatically follows focus" behavior you have to pass `selectionFollowsFocus` to the `Tabs` component.
 The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-4-deciding-when-to-make-selection-automatically-follow-focus).
 
-#### Demo
+#### Demo with keyboard instructions
+
+The following demo shows keyboard navigation with helpful tips for users:
+
+{{"demo": "KeyboardNavigationDemo.js"}}
+
+#### Selection behavior comparison
 
 The following two demos only differ in their keyboard navigation behavior.
 Focus a tab and navigate with arrow keys to notice the difference, for example <kbd class="key">Arrow Left</kbd>.
