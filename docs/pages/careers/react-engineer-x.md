@@ -132,7 +132,7 @@ A strong application includes:
 - **Cover letter** addressing:
   - Your experience with front-end infrastructure (design systems, complex React components, or similar work)
   - A specific example of a complex problem you've solved and your approach
-  - Why you're interested in working on MUI X and open-source software
+  - Why you're interested in working on MUI\u00a0X and open-source software
 - **Sample projects** (optional but encouraged):
   - Links to production applications you've built
   - Contributions to open-source projects
