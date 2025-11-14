@@ -1294,4 +1294,26 @@ describe('<ButtonBase />', () => {
       expect(ref.current).not.to.equal(null);
     });
   });
+
+  describe('form attributes', () => {
+    it('should not set default type when formAction is present', async function test() {
+      if (window.navigator.userAgent.includes('jsdom')) {
+        this.skip();
+      }
+
+      const formActionSpy = spy();
+      const { user } = render(
+        <form>
+          <ButtonBase formAction={formActionSpy}>Submit</ButtonBase>
+        </form>,
+      );
+      const button = screen.getByRole('button');
+
+      // Should not have type="button" when formAction is present
+      expect(button).not.to.have.attribute('type', 'button');
+      expect(button).to.have.attribute('formaction');
+      await user.click(button);
+      expect(formActionSpy.callCount).to.equal(1);
+    });
+  });
 });

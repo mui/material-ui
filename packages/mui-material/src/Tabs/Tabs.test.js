@@ -1455,6 +1455,60 @@ describe('<Tabs />', () => {
     });
   });
 
+  describe('keyboard navigation in shadow DOM', () => {
+    it('should navigate between tabs using arrow keys when rendered in shadow DOM', async function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
+      // Create a shadow root
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+
+      // Render directly into shadow root
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      const { unmount, user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+        { container: shadowContainer },
+      );
+
+      const tabs = shadowRoot.querySelectorAll('[role="tab"]');
+      const [firstTab, secondTab, thirdTab] = Array.from(tabs);
+
+      await act(async () => {
+        firstTab.focus();
+      });
+
+      // Verify first tab has focus
+      expect(shadowRoot.activeElement).to.equal(firstTab);
+
+      // Navigate to second tab using ArrowRight
+      await user.keyboard('{ArrowRight}');
+      expect(shadowRoot.activeElement).to.equal(secondTab);
+
+      // Navigate to third tab using ArrowRight
+      await user.keyboard('{ArrowRight}');
+      expect(shadowRoot.activeElement).to.equal(thirdTab);
+
+      // Navigate back to second tab using ArrowLeft
+      await user.keyboard('{ArrowLeft}');
+      expect(shadowRoot.activeElement).to.equal(secondTab);
+
+      // Cleanup
+      unmount();
+      if (shadowHost.parentNode) {
+        document.body.removeChild(shadowHost);
+      }
+    });
+  });
+
   describe('dynamic tabs', () => {
     const pause = (timeout) =>
       new Promise((resolve) => {

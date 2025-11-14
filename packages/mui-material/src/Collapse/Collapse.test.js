@@ -7,6 +7,16 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 import describeConformance from '../../test/describeConformance';
 
+const CustomCollapse = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
+const CustomWrapper = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
+const CustomWrapperInner = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
+
 describe('<Collapse />', () => {
   const { clock, render } = createRenderer();
 
@@ -23,6 +33,14 @@ describe('<Collapse />', () => {
     muiName: 'MuiCollapse',
     testVariantProps: { orientation: 'horizontal' },
     testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    slots: {
+      root: { expectedClassName: classes.root, testWithElement: CustomCollapse },
+      wrapper: { expectedClassName: classes.wrapper, testWithElement: CustomWrapper },
+      wrapperInner: {
+        expectedClassName: classes.wrapperInner,
+        testWithElement: CustomWrapperInner,
+      },
+    },
     skip: ['componentsProp'],
   }));
 

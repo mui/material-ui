@@ -392,7 +392,7 @@ const generateApiPage = async (
     return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
   }
 
-  Page.getInitialProps = () => {
+  export async function getStaticProps() {
     const req = require.context(
       '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
       false,
@@ -401,10 +401,12 @@ const generateApiPage = async (
     const descriptions = mapApiPageTranslations(req);
 
     return {
-      descriptions,
-      pageContent: jsonPageContent,
+      props: {
+        descriptions,
+        pageContent: jsonPageContent,
+      },
     };
-  };
+  }
   `.replace(/\r?\n/g, reactApi.EOL),
     );
   }

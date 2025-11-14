@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import ComponentShowcaseCard from 'docs/src/components/action/ComponentShowcaseCard';
 

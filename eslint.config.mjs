@@ -9,7 +9,6 @@ import {
 } from '@mui/internal-code-infra/eslint';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
-import eslintPluginReact from 'eslint-plugin-react';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 
@@ -77,6 +76,7 @@ export default defineConfig(
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
+      'react/react-in-jsx-scope': 'off',
       'react/sort-prop-types': 'off', // 228
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
@@ -124,6 +124,7 @@ export default defineConfig(
       useMocha: true,
     }),
     rules: {
+      'material-ui/no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
     },
@@ -283,9 +284,8 @@ export default defineConfig(
       'import/prefer-default-export': 'off',
     },
   },
-  // Migrated config from apps/bare-next-app/.eslintrc.js
   {
-    files: [`apps/**/*${EXTENSION_TS}`, `examples/**/*${EXTENSION_TS}`],
+    files: [`examples/**/*${EXTENSION_TS}`],
     rules: {
       'import/no-relative-packages': 'off',
       'react/react-in-jsx-scope': 'off',
@@ -294,20 +294,19 @@ export default defineConfig(
     },
   },
   {
-    files: [`apps/bare-next-app/**/*${EXTENSION_TS}`],
-    extends: [eslintPluginReact.configs.flat['jsx-runtime']],
-    rules: {
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
-      'react/no-unknown-property': ['error', { ignore: ['sx'] }],
-    },
-  },
-  {
     files: [`examples/**/*${EXTENSION_TS}`],
     rules: {
       'import/extensions': 'off',
       'import/no-unresolved': 'off',
       'no-console': 'off',
+    },
+  },
+  {
+    files: ['docs/src/pages/premium-themes/onepirate/modules/form/RFTextField.js'],
+    rules: {
+      // Otherwise, running docs:typescript:formatted rearranges the imports and also removes the eslint-disable comment
+      // if added.
+      'import/order': 'off',
     },
   },
 );

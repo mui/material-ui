@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Avatar from '@mui/joy/Avatar';

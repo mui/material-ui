@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/joy/Checkbox';

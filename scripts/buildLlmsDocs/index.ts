@@ -57,6 +57,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { pathToFileURL } from 'node:url';
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { kebabCase } from 'es-toolkit/string';
@@ -251,9 +252,26 @@ function findNonComponentMarkdownFiles(
         continue;
       }
     }
+
+    const ignoredPaths = [
+      '/material-ui/experimental-api/',
+      '/material-ui/migration/migrating-to-pigment-css',
+      '/material-ui/about-the-lab',
+    ];
+
     // Filter out external links and special patterns
-    if (pathname.startsWith('/material-ui/')) {
-      const page = allMarkdownFiles.find((p) => p.pathname === parsedPathname);
+    if (
+      pathname.startsWith('/material-ui/') &&
+      !ignoredPaths.some((ignored) => pathname.startsWith(ignored))
+    ) {
+      // Match by filename basename to avoid pathname collisions when multiple files
+      // exist in the same directory (e.g., upgrade-to-v7.md and upgrade-to-native-color.md)
+      const lastSegment = pathname.split('/').filter(Boolean).pop();
+      const page = allMarkdownFiles.find((p) => {
+        const fileBasename = path.basename(p.filename).replace(/\.mdx?$/, '');
+        // p.pathname already has the parent path (from findPagesMarkdown which strips the filename)
+        return fileBasename === lastSegment && p.pathname === parsedPathname;
+      });
 
       if (page) {
         files.push({
@@ -426,7 +444,8 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   let projectSettings: ProjectSettings;
   try {
     const settingsPath = path.resolve(argv.projectSettings);
-    const settingsModule = await import(settingsPath);
+    const settingsUrl = pathToFileURL(settingsPath).href;
+    const settingsModule = await import(settingsUrl);
     projectSettings = settingsModule.projectSettings || settingsModule.default || settingsModule;
   } catch (error) {
     throw new Error(`Failed to load project settings from ${argv.projectSettings}: ${error}`);
