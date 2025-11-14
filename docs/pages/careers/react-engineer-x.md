@@ -121,12 +121,87 @@ We're looking for someone with strong front-end skills. More important than spec
 
 We offer competitive compensation commensurate with your experience level and location and are prepared to pay top market rates for someone who can clearly exceed the role's expectations. You can find the other perks and benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
+## Application process
+
+### What we're looking for in your application
+
+A strong application includes:
+
+- **Resume/CV** highlighting your relevant experience with React, TypeScript, and front-end development
+- **GitHub profile or portfolio** showcasing your code quality and contributions (particularly open-source work if available)
+- **Cover letter** addressing:
+  - Your experience with front-end infrastructure (design systems, complex React components, or similar work)
+  - A specific example of a complex problem you've solved and your approach
+  - Why you're interested in working on MUI X and open-source software
+- **Sample projects** (optional but encouraged):
+  - Links to production applications you've built
+  - Contributions to open-source projects
+  - Personal projects demonstrating advanced React patterns
+
+### Interview process timeline
+
+Our hiring process typically takes 3-4 weeks and includes:
+
+1. **Application review** (1 week)
+   - Our team reviews all applications
+   - We'll reach out if we'd like to move forward
+
+2. **Initial screening call** (30 minutes)
+   - Video call with our hiring team
+   - Discussion about your background, experience, and interest in the role
+   - Overview of MUI, the team, and what we're building
+
+3. **Technical assessment** (1 week to complete)
+   - Take-home coding assignment related to React components and UI development
+   - You'll have flexibility to complete this on your own schedule
+   - Expected time commitment: 3-4 hours
+   - Focus on code quality, architecture decisions, and problem-solving approach
+
+4. **Technical interview** (60-90 minutes)
+   - Deep dive into your technical assessment solution
+   - Discussion of architectural decisions and trade-offs
+   - Pair programming session on a real-world problem
+   - Questions about React, TypeScript, and front-end best practices
+
+5. **Team fit conversation** (45-60 minutes)
+   - Meet with team members you'd be working with
+   - Discussion about remote collaboration, communication style, and working async
+   - Your questions about day-to-day work, culture, and team dynamics
+
+6. **Final conversation** (30-45 minutes)
+   - Chat with leadership team
+   - Alignment on role expectations, compensation, and logistics
+   - Your final questions
+
+7. **Offer and decision** (within 1 week of final interview)
+
+**Total timeline: 3-4 weeks from application to offer**
+
+We know your time is valuable and will keep you informed at every step. If you need to adjust the timeline due to your current commitments, please let us know—we're happy to accommodate reasonable requests.
+
 ## How to apply
+
+Ready to join us? Here's how to apply:
+
+### Submit your application
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/77584e4c-9379-45f3-a294-6e50bf250383/application?utm_source=ZNRrPGBkqO)
 
-Don't meet every requirement?
-Apply anyway!
-Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
-If this role excites you, we want to hear from you.
-We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
+**Application checklist:**
+
+- ✅ Resume/CV
+- ✅ GitHub profile or portfolio link
+- ✅ Cover letter addressing your front-end infrastructure experience
+- ✅ (Optional) Links to relevant projects or contributions
+
+### Don't meet every requirement?
+
+Apply anyway! Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.
+
+### Questions about the role?
+
+If you have questions before applying, feel free to reach out to us through the application portal or check our [careers FAQ](https://mui.com/careers/).
+
+We review applications on a rolling basis, so we encourage you to apply early. We're excited to meet you!
