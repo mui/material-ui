@@ -126,6 +126,11 @@ const components = [
     name: 'Navigation Rail',
     materialDesign: 'https://m2.material.io/components/navigation-rail',
   },
+  {
+    name: 'Number Field',
+    materialUI: '/material-ui/react-number-field/',
+    baseUI: 'https://base-ui.com/react/components/number-field',
+  },
   { name: 'Pagination', materialUI: '/material-ui/react-pagination/' },
   {
     name: 'Paper',
@@ -235,13 +240,23 @@ export default function MaterialUIComponents() {
               </TableCell>
               <TableCell>
                 {component.materialUI &&
-                component.materialUI.startsWith('/material-ui') ? (
+                component.materialUI.startsWith('/material-ui') &&
+                !component.baseUI ? (
                   <Link
                     variant="body2"
                     data-no-markdown-link="true"
                     href={component.materialUI}
                   >
                     Native support
+                  </Link>
+                ) : null}
+                {component.baseUI ? (
+                  <Link
+                    variant="body2"
+                    data-no-markdown-link="true"
+                    href={component.baseUI}
+                  >
+                    Composed with Base UI
                   </Link>
                 ) : null}
                 {component.materialUI && component.materialUI.startsWith('/x') ? (
