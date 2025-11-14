@@ -103,7 +103,6 @@ function App() {
 
 const container = document.getElementById('react-root');
 const children = <App />;
-// Use ReactDOMClient.createRoot directly - it's the standard API in React 18+
 const root = ReactDOMClient.createRoot(container);
 root.render(children);
 
