@@ -959,9 +959,7 @@ function useAutocomplete(props) {
 
     // When focusing the input, ensure any previously focused item (chip)
     // is cleared so the input receives the visible caret and the
-    // input-focused styling is applied. This addresses the case where
-    // a user navigates to chips with the keyboard, blurs the component,
-    // then clicks back into the component: the caret should be visible.
+    // input-focused styling is applied.
     if (focusedItem !== -1) {
       setFocusedItem(-1);
       // Ensure DOM focus lands on the input
