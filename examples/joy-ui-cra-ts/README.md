@@ -20,7 +20,15 @@ npm install
 npm start
 ```
 
-or:
+You can also use pnpm (preferred in this monorepo) or yarn:
+
+```bash
+pnpm install
+pnpm start
+# or
+yarn install
+yarn start
+```
 
 <!-- #target-branch-reference -->
 

@@ -20,9 +20,18 @@ npm install
 npm run dev
 ```
 
+You can also use pnpm (preferred in this monorepo) or yarn:
+
+```bash
+pnpm install
+pnpm run dev
+# or
+yarn install
+yarn dev
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-or:
 
 <!-- #target-branch-reference -->
 

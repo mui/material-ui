@@ -18,6 +18,16 @@ npm install
 npm run start
 ```
 
+You can also use pnpm (preferred in this monorepo) or yarn:
+
+```bash
+pnpm install
+pnpm run start
+# or
+yarn install
+yarn start
+```
+
 ## The idea behind the example
 
 The project uses Material UI with [Preact](https://github.com/developit/preact), which is a lightweight (3 kB) alternative to React with the same modern API.

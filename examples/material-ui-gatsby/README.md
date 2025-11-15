@@ -18,6 +18,16 @@ npm install
 npm run develop
 ```
 
+You can also use pnpm (preferred in this monorepo) or yarn:
+
+```bash
+pnpm install
+pnpm run develop
+# or
+yarn install
+yarn develop
+```
+
 ## The idea behind the example
 
 <!-- #host-reference -->

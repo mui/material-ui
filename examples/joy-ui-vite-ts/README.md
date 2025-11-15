@@ -22,7 +22,15 @@ npm install
 npm run dev
 ```
 
-or:
+You can also use pnpm (preferred in this monorepo) or yarn:
+
+```bash
+pnpm install
+pnpm run dev
+# or
+yarn install
+yarn dev
+```
 
 <!-- #target-branch-reference -->
 
