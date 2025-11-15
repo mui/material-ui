@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Button
 
 # Button
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Buttons allow users to take actions and make choices with a single tap.</p>
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
@@ -206,3 +206,6 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
+### Loading Buttons
+
+{{"demo": "LoadingButtons.js"}}
