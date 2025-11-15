@@ -42,7 +42,7 @@ export interface AppBarOwnProps {
    */
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
   /**
-   * If `true`, rounded corners are disabled.
+   * If `false`, rounded corners are enabled.
    * @default true
    */
   square?: boolean;

@@ -259,7 +259,7 @@ AppBar.propTypes /* remove-proptypes */ = {
    */
   position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
   /**
-   * If `true`, rounded corners are disabled.
+   * If `false`, rounded corners are enabled.
    * @default true
    */
   square: PropTypes.bool,

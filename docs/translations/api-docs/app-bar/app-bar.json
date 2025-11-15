@@ -15,7 +15,7 @@
     "position": {
       "description": "The positioning type. The behavior of the different options is described <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position\">in the MDN web docs</a>. Note: <code>sticky</code> is not universally supported and will fall back to <code>static</code> when unavailable."
     },
-    "square": { "description": "If <code>true</code>, rounded corners are disabled." },
+    "square": { "description": "If <code>false</code>, rounded corners are enabled." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
