@@ -74,7 +74,7 @@ You can use the `color` prop to define a color from theme palette.
 
 ## Sizes chip
 
-You can use the `size` prop to define a small Chip.
+You can use the `size` prop to choose between `medium` (default) and `small`.
 
 {{"demo": "SizesChips.js"}}
 
