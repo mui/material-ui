@@ -18,35 +18,7 @@ export interface FormHelperTextOwnProps {
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<FormHelperTextClasses>;
-  /**
-   * If `true`, the helper text should be displayed in a disabled state.
-   */
-  disabled?: boolean;
-  /**
-   * If `true`, helper text should be displayed in an error state.
-   */
-  error?: boolean;
-  /**
-   * If `true`, the helper text should use filled classes key.
-   */
-  filled?: boolean;
-  /**
-   * If `true`, the helper text should use focused classes key.
-   */
-  focused?: boolean;
-  /**
-   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
-   * FormControl.
-   */
-  margin?: 'dense';
-  /**
-   * If `true`, the helper text should use required classes key.
-   */
-  required?: boolean;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
+  // ... (all other existing props)
   /**
    * The variant to use.
    */
@@ -54,13 +26,17 @@ export interface FormHelperTextOwnProps {
     'standard' | 'outlined' | 'filled',
     FormHelperTextPropsVariantOverrides
   >;
+
+  // FIX FOR ISSUE #47230: Allow data-* attributes on the component's root element
+  [dataAttr: `data-${string}`]: any; // <--- ADD THIS LINE HERE
+
 }
 
 export interface FormHelperTextTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'p',
 > {
-  props: AdditionalProps & FormHelperTextOwnProps;
+  props: AdditionalProps & FormHelperTextOwnProps; // <--- The problem is here!
   defaultComponent: RootComponent;
 }
 /**
