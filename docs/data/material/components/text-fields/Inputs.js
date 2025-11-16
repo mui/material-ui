@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 
-const ariaLabel = { 'aria-label': 'description' };
+const ariaLabel = { 'aria-label': 'Example input' };
 
 export default function Inputs() {
   return (
