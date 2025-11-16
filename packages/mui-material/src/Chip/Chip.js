@@ -395,7 +395,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const handleDeleteIconClick = (event) => {
     // Stop the event from bubbling up to the `Chip`
-    event.stopPropagation();
+    // Allow event to bubble so ClickAwayListener and other handlers work correctly.
     if (onDelete) {
       onDelete(event);
     }
