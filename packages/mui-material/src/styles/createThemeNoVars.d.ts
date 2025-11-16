@@ -4,6 +4,7 @@ import {
   SxProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
@@ -16,6 +17,7 @@ import {
   CssVarsTheme,
   CssVarsPalette,
   ColorSystemOptions,
+  SupportedColorScheme,
   Shape,
   ShapeOptions,
 } from './createThemeFoundation';
@@ -69,7 +71,6 @@ export {};
 type CssVarsProperties = CssThemeVariables extends { enabled: true }
   ? Pick<
       CssVarsTheme,
-      | 'applyStyles'
       | 'colorSchemes'
       | 'colorSchemeSelector'
       | 'rootSelector'
@@ -93,6 +94,7 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
+  applyStyles: ApplyStyles<SupportedColorScheme>;
   alpha: (color: string, value: number | string) => string;
   lighten: (color: string, coefficient: number | string) => string;
   darken: (color: string, coefficient: number | string) => string;
