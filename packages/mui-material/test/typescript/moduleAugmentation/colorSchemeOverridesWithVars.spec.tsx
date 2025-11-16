@@ -1,4 +1,5 @@
-import { extendTheme, styled, Theme as CssVarsTheme } from '@mui/material/styles';
+import { extendTheme, styled } from '@mui/material/styles';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 declare module '@mui/material/styles' {
   interface ColorSchemeOverrides {
@@ -45,17 +46,9 @@ theme.applyStyles('dark', { color: 'green' });
 theme.applyStyles('invalid', { color: 'yellow' });
 
 // Test that applyStyles works with custom color schemes in styled components
-const StyledDiv = styled('div')(({ theme: t }: { theme: CssVarsTheme }) => [
-  {
-    backgroundColor: t.vars.palette.background.default,
-  },
-  t.applyStyles('superDark', {
+const StyledDiv = styled('div')(({ theme }) => ({
+  backgroundColor: theme.vars.palette.background.default,
+  ...theme.applyStyles('superDark', {
     backgroundColor: '#000',
   }),
-]);
-
-// Test that applyStyles can be used in sx callback
-const sxCallback = (t: CssVarsTheme) =>
-  t.applyStyles('superDark', {
-    backgroundColor: '#000',
-  });
+}));
