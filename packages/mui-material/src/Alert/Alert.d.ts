@@ -65,7 +65,11 @@ export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
-    root: SlotProps<React.ElementType<PaperProps>, AlertRootSlotPropsOverrides, AlertOwnerState>;
+    root: SlotProps<
+      React.ElementType<PaperProps>,
+      AlertRootSlotPropsOverrides,
+      AlertOwnerState
+    >;
     /**
      * Props forwarded to the icon slot.
      * By default, the available props are based on a div element.
