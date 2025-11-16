@@ -69,9 +69,18 @@ export default function CustomizedDialogs() {
             ullamcorper nulla non metus auctor fringilla.
           </Typography>
         </DialogContent>
+
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <Button
+            autoFocus
+            onClick={handleClose}
+            variant="contained"
+            color="primary"
+          >
             Save changes
+          </Button>
+          <Button onClick={handleClose} color="secondary" sx={{ ml: 1 }}>
+            Cancel
           </Button>
         </DialogActions>
       </BootstrapDialog>
