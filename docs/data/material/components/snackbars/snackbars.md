@@ -35,6 +35,39 @@ Snackbars also differ from [Dialogs](/material-ui/react-dialog/) in that Snackba
 import Snackbar from '@mui/material/Snackbar';
 ```
 
+### Quick example
+
+A tiny, copy-pastable example to get you started without opening the demo.
+
+```jsx
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+
+export default function QuickSnackbarExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        Show snackbar
+      </Button>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={() => setOpen(false)}
+        message="Note archived"
+        action={
+          <Button color="inherit" size="small" onClick={() => setOpen(false)}>
+            UNDO
+          </Button>
+        }
+      />
+    </div>
+  );
+}
+```
+
 ### Position
 
 Use the `anchorOrigin` prop to control the Snackbar's position on the screen.
