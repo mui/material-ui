@@ -30,10 +30,10 @@ export interface MobileStepperSlots {
   dot: React.ElementType;
 }
 
-export interface MobileStepperRootSlotPropsOverrides {}
-export interface MobileStepperProgressSlotPropsOverrides {}
-export interface MobileStepperDotsSlotPropsOverrides {}
-export interface MobileStepperDotSlotPropsOverrides {}
+export interface MobileStepperRootSlotPropsOverrides { }
+export interface MobileStepperProgressSlotPropsOverrides { }
+export interface MobileStepperDotsSlotPropsOverrides { }
+export interface MobileStepperDotSlotPropsOverrides { }
 
 export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
   MobileStepperSlots,
@@ -71,13 +71,19 @@ export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface MobileStepperProps
   extends StandardProps<PaperProps, 'children' | 'variant'>,
-    MobileStepperSlotsAndSlotProps {
+  MobileStepperSlotsAndSlotProps {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.
    * @default 0
    */
   activeStep?: number;
+  /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 0
+   */
+  elevation?: number;
   /**
    * A back button element. For instance, it can be a `Button` or an `IconButton`.
    */
@@ -109,13 +115,18 @@ export interface MobileStepperProps
    */
   sx?: SxProps<Theme>;
   /**
+   * If `false`, rounded corners are disabled.
+   * @default true
+   */
+  square?: boolean;
+  /**
    * The variant to use.
    * @default 'dots'
    */
   variant?: 'text' | 'dots' | 'progress';
 }
 
-export interface MobileStepperOwnerState extends Omit<MobileStepperProps, 'slots' | 'slotProps'> {}
+export interface MobileStepperOwnerState extends Omit<MobileStepperProps, 'slots' | 'slotProps'> { }
 
 /**
  *

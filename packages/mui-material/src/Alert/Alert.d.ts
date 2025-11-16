@@ -11,19 +11,19 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
-export interface AlertPropsVariantOverrides {}
-export interface AlertPropsColorOverrides {}
+export interface AlertPropsVariantOverrides { }
+export interface AlertPropsColorOverrides { }
 
-export interface AlertRootSlotPropsOverrides {}
+export interface AlertRootSlotPropsOverrides { }
 
-export interface AlertIconSlotPropsOverrides {}
+export interface AlertIconSlotPropsOverrides { }
 
-export interface AlertMessageSlotPropsOverrides {}
+export interface AlertMessageSlotPropsOverrides { }
 
-export interface AlertActionSlotPropsOverrides {}
+export interface AlertActionSlotPropsOverrides { }
 
-export interface AlertCloseButtonSlotPropsOverrides {}
-export interface AlertCloseIconSlotPropsOverrides {}
+export interface AlertCloseButtonSlotPropsOverrides { }
+export interface AlertCloseIconSlotPropsOverrides { }
 
 export interface AlertSlots {
   /**
@@ -125,6 +125,12 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    */
   color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 0
+   */
+  elevation?: number;
+  /**
    * The components used for each slot inside.
    *
    * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
@@ -189,7 +195,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
   sx?: SxProps<Theme>;
 }
 
-export interface AlertOwnerState extends AlertProps {}
+export interface AlertOwnerState extends AlertProps { }
 
 /**
  *

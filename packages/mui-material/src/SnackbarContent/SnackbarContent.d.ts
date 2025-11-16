@@ -15,6 +15,12 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
    */
   classes?: Partial<SnackbarContentClasses>;
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 6
+   */
+  elevation?: number;
+  /**
    * The message to display.
    */
   message?: React.ReactNode;
