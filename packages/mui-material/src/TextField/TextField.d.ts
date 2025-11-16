@@ -17,6 +17,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 export interface TextFieldPropsColorOverrides {}
 export interface TextFieldPropsSizeOverrides {}
 
+
 export interface TextFieldSlots {
   /**
    * The component that renders the root.
@@ -77,7 +78,7 @@ export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps
      * Props forwarded to the form helper text slot.
      * By default, the available props are based on the [FormHelperText](https://mui.com/material-ui/api/form-helper-text/#props) component.
      */
-    formHelperText: SlotProps<React.ElementType<FormHelperTextProps>, {}, TextFieldOwnerState>;
+    formHelperText: SlotProps<React.ElementType<FormHelperTextProps>, TextFieldFormHelperTextSlotPropsOverrides, TextFieldOwnerState>;
     /**
      * Props forwarded to the select slot.
      * By default, the available props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
