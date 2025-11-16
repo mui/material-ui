@@ -30,10 +30,10 @@ export interface MobileStepperSlots {
   dot: React.ElementType;
 }
 
-export interface MobileStepperRootSlotPropsOverrides { }
-export interface MobileStepperProgressSlotPropsOverrides { }
-export interface MobileStepperDotsSlotPropsOverrides { }
-export interface MobileStepperDotSlotPropsOverrides { }
+export interface MobileStepperRootSlotPropsOverrides {}
+export interface MobileStepperProgressSlotPropsOverrides {}
+export interface MobileStepperDotsSlotPropsOverrides {}
+export interface MobileStepperDotSlotPropsOverrides {}
 
 export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
   MobileStepperSlots,
@@ -71,7 +71,7 @@ export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface MobileStepperProps
   extends StandardProps<PaperProps, 'children' | 'variant'>,
-  MobileStepperSlotsAndSlotProps {
+    MobileStepperSlotsAndSlotProps {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.
@@ -126,7 +126,7 @@ export interface MobileStepperProps
   variant?: 'text' | 'dots' | 'progress';
 }
 
-export interface MobileStepperOwnerState extends Omit<MobileStepperProps, 'slots' | 'slotProps'> { }
+export interface MobileStepperOwnerState extends Omit<MobileStepperProps, 'slots' | 'slotProps'> {}
 
 /**
  *

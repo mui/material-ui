@@ -11,19 +11,19 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
-export interface AlertPropsVariantOverrides { }
-export interface AlertPropsColorOverrides { }
+export interface AlertPropsVariantOverrides {}
+export interface AlertPropsColorOverrides {}
 
-export interface AlertRootSlotPropsOverrides { }
+export interface AlertRootSlotPropsOverrides {}
 
-export interface AlertIconSlotPropsOverrides { }
+export interface AlertIconSlotPropsOverrides {}
 
-export interface AlertMessageSlotPropsOverrides { }
+export interface AlertMessageSlotPropsOverrides {}
 
-export interface AlertActionSlotPropsOverrides { }
+export interface AlertActionSlotPropsOverrides {}
 
-export interface AlertCloseButtonSlotPropsOverrides { }
-export interface AlertCloseIconSlotPropsOverrides { }
+export interface AlertCloseButtonSlotPropsOverrides {}
+export interface AlertCloseIconSlotPropsOverrides {}
 
 export interface AlertSlots {
   /**
@@ -65,11 +65,7 @@ export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
-    root: SlotProps<
-      React.ElementType<PaperProps>,
-      AlertRootSlotPropsOverrides,
-      AlertOwnerState
-    >;
+    root: SlotProps<React.ElementType<PaperProps>, AlertRootSlotPropsOverrides, AlertOwnerState>;
     /**
      * Props forwarded to the icon slot.
      * By default, the available props are based on a div element.
@@ -199,7 +195,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
   sx?: SxProps<Theme>;
 }
 
-export interface AlertOwnerState extends AlertProps { }
+export interface AlertOwnerState extends AlertProps {}
 
 /**
  *
