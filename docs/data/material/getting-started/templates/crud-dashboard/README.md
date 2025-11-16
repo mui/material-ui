@@ -8,6 +8,7 @@ Before using the template, ensure your project has the following installed:
 
 ```bash
 npm install @mui/material @mui/icons-material @mui/lab @emotion/react @emotion/styled react-router-dom
+```
 
 > You may also need `@types/react` and `@types/react-dom` if your project uses TypeScript.
 
