@@ -393,6 +393,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
 
+  const deleteIconRef = React.useRef(null);
+
   const handleDeleteIconClick = (event) => {
     // Stop the event from bubbling up to the `Chip`
     // Allow event to bubble so ClickAwayListener and other handlers work correctly.
@@ -400,6 +402,15 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onDelete(event);
     }
   };
+
+  // This ref helps us detect if the click target is inside the delete icon.
+
+  const deleteIconProps = {};
+  deleteIconProps.ref = deleteIconRef; 
+  deleteIconProps.onClick = handleDeleteIconClick;
+
+
+
 
   const handleKeyDown = (event) => {
     // Ignore events from children of `Chip`.
@@ -454,18 +465,21 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
         }
       : {};
 
-  let deleteIcon = null;
-  if (onDelete) {
-    deleteIcon =
-      deleteIconProp && React.isValidElement(deleteIconProp) ? (
-        React.cloneElement(deleteIconProp, {
-          className: clsx(deleteIconProp.props.className, classes.deleteIcon),
-          onClick: handleDeleteIconClick,
+// Prepare the delete icon by merging className, ref, and onClick handlers.
+// Supports both custom deleteIcon elements and the default <CancelIcon />.
+
+let deleteIcon = null;
+
+if (onDelete) {
+  deleteIcon =
+    deleteIconProp && React.isValidElement(deleteIconProp)
+      ? React.cloneElement(deleteIconProp, {
+          ...deleteIconProps,
+          className: clsx(deleteIconProp.props.className, deleteIconProps.className),
         })
-      ) : (
-        <CancelIcon className={classes.deleteIcon} onClick={handleDeleteIconClick} />
-      );
-  }
+      : <CancelIcon {...deleteIconProps} />;
+}
+
 
   let avatar = null;
   if (avatarProp && React.isValidElement(avatarProp)) {
