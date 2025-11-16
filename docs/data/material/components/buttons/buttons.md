@@ -27,6 +27,12 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 {{"demo": "BasicButtons.js"}}
 
+## Disable focus ripple
+
+The `disableFocusRipple` prop removes the ripple effect that appears when the button is focused using the keyboard.
+
+<Demo file="buttons/DisableFocusRippleDemo.js" />
+
 ### Text button
 
 [Text buttons](https://m2.material.io/components/buttons#text-button)
