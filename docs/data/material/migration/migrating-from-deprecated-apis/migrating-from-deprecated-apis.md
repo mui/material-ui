@@ -51,104 +51,7 @@ npx @mui/codemod@latest v6.0.0/system-props <path/to/folder>
 
 You can also manually update your components as shown in the snippet below:
 
-```diff
--<Button mr={2}>
-+<Button sx={{ mr: 2 }}>
-```
 
-The `sx` prop supports all features of system props: callbacks with access to the theme, responsive values, direct access to theme values, shorthands, etc.
-
-### Theme component variants
-
-Custom component variants defined in the theme are now merged with the theme style overrides, defined within the `root` slot of the component.
-
-Use this codemod to update your project's theme file:
-
-```bash
-npx @mui/codemod@latest v6.0.0/theme-v6 <path/to/theme>
-```
-
-You can also manually update your theme as shown in the snippet below:
-
-```diff
- createTheme({
-   components: {
-     MuiButton: {
--      variants: [ ... ],
-+      styleOverrides: {
-+        root: {
-+          variants: [ ... ],
-+        },
-+      },
-     },
-   },
- });
-```
-
-This reduces the API surface and lets you define variants in other slots of the component.
-
-## Accordion
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/accordion-props <path>
-```
-
-### TransitionComponent
-
-The Accordion's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
-
-```diff
- <Accordion
--  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
- />
-```
-
-### TransitionProps
-
-The Accordion's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
-
-```diff
- <Accordion
--  TransitionProps={{ unmountOnExit: true }}
-+  slotProps={{ transition: { unmountOnExit: true } }}
- />
-```
-
-## AccordionSummary
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
-```
-
-### .MuiAccordionSummary-contentGutters
-
-The AccordionSummary's `.MuiAccordionSummary-contentGutters` class was deprecated in favor of the `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes.
-Bear in mind that the `.MuiAccordionSummary-gutters` class is applied to the component's root, whereas the `.MuiAccordionSummary-contentGutters` and `.MuiAccordionSummary-content` classes are applied to the content element.
-
-```diff
--.MuiAccordionSummary-root .MuiAccordionSummary-contentGutters
-+.MuiAccordionSummary-root.MuiAccordionSummary-gutters .MuiAccordionSummary-content
-```
-
-```diff
- import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
-
- MuiAccordionSummary: {
-   styleOverrides: {
-     root: {
--      [`& .${accordionSummaryClasses.contentGutters}`]: {
-+      [`&.${accordionSummaryClasses.gutters} .${accordionSummaryClasses.content}`]: {
-         color: 'red',
-       },
-     },
-   },
- },
-```
 
 ## Alert
 
@@ -2658,6 +2561,7 @@ The SpeedDial's `TransitionComponent` prop was deprecated in favor of `slots.tra
  <SpeedDial
 -  TransitionComponent={CustomTransition}
 +  slots={{ transition: CustomTransition }}
+ />
 ```
 
 ### TransitionProps
@@ -2669,6 +2573,32 @@ The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.tra
 -  TransitionProps={{ unmountOnExit: true }}
 +  slotProps={{ transition: { unmountOnExit: true } }}
  />
+```
+
+### Composed CSS classes
+
+The SpeedDial's composed CSS class `.MuiSpeedDial-actionsClosed` was deprecated in favor of combining the actions class with a state class.
+
+Here's how to migrate:
+
+```diff
+-.MuiSpeedDial-actionsClosed
++.MuiSpeedDial-actions.MuiSpeedDial-closed
+```
+
+```diff
+ import { speedDialClasses } from '@mui/material/SpeedDial';
+
+ MuiSpeedDial: {
+   styleOverrides: {
+     root: {
+-      [`& .${speedDialClasses.actionsClosed}`]: {
++      [`&.${speedDialClasses.actions}.${speedDialClasses.closed}`]: {
+         color: 'red',
+       },
+     },
+  },
+ },
 ```
 
 ## SpeedDialAction
@@ -2714,21 +2644,3 @@ The SpeedDialAction's `tooltipPlacement` prop was deprecated in favor of `slotPr
 ### tooltipTitle
 
 The SpeedDialAction's `tooltipTitle` prop was deprecated in favor of `slotProps.tooltip.title`:
-
-```diff
- <SpeedDialAction
--  tooltipTitle="foo"
-+  slotProps={{ tooltip: { title: 'foo' } }}
- />
-```
-
-### tooltipOpen
-
-The SpeedDialAction's `tooltipOpen` prop was deprecated in favor of `slotProps.tooltip.open`:
-
-```diff
- <SpeedDialAction
--  tooltipOpen
-+  slotProps={{ tooltip: { open: true } }}
- />
-```

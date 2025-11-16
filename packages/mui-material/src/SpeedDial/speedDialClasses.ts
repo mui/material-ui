@@ -17,6 +17,11 @@ export interface SpeedDialClasses {
   /** Styles applied to the actions (`children` wrapper) element. */
   actions: string;
   /** Styles applied to the actions (`children` wrapper) element if `open={false}`. */
+  /*
+   * @deprecated Combine the [.MuiSpeedDial-actions](/material-ui/api/speed-dial/#speed-dial-classes-MuiSpeedDial-actions)
+   * and a dedicated closed/state class instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/)
+   * for more details.
+   */
   actionsClosed: string;
 }
 

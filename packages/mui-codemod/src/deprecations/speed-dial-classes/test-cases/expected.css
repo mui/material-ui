@@ -1,0 +1,5 @@
+.MuiSpeedDial-actions.MuiSpeedDial-closed { color: red; }
+.MuiSpeedDialAction-fab.MuiSpeedDialAction-closed { color: red; }
+.MuiSpeedDialAction-staticTooltip.MuiSpeedDialAction-closed { color: red; }
+.MuiSpeedDialIcon-iconWithOpenIcon.MuiSpeedDialIcon-open { color: red; }
+.MuiSpeedDialIcon-openIcon.MuiSpeedDialIcon-open { color: red; }
