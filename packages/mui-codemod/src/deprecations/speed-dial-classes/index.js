@@ -15,7 +15,9 @@ export default function transformer(file, api, options) {
       .find(j.ImportDeclaration)
       .filter((path) =>
         path.node.source.value.match(
-          new RegExp(`^${options.packageName || '@mui/material'}(/(SpeedDial|SpeedDialAction|SpeedDialIcon))?$`),
+          new RegExp(
+            `^${options.packageName || '@mui/material'}(/(SpeedDial|SpeedDialAction|SpeedDialIcon))?$`,
+          ),
         ),
       )
       .forEach((path) => {
@@ -46,7 +48,9 @@ export default function transformer(file, api, options) {
                     const precedingTemplateElement = parent.quasis[memberExpressionIndex];
 
                     if (
-                      precedingTemplateElement.value.raw.endsWith(`${replacementSelectorPrefix} .`) ||
+                      precedingTemplateElement.value.raw.endsWith(
+                        `${replacementSelectorPrefix} .`,
+                      ) ||
                       precedingTemplateElement.value.raw.endsWith(`${replacementSelectorPrefix}.`)
                     ) {
                       // insert the replacement selector as a literal (the plugin will handle the final replacement)
@@ -55,13 +59,13 @@ export default function transformer(file, api, options) {
                       const atomicExpressions = atomicParts.map((atomic) =>
                         j.memberExpression(memberExpression.value.object, j.identifier(atomic)),
                       );
-                      const atomicClassesArgs = [
-                        memberExpressionIndex,
-                        1,
-                        ...atomicExpressions,
-                      ];
+                      const atomicClassesArgs = [memberExpressionIndex, 1, ...atomicExpressions];
                       // normalize the preceding template element so it ends with '&.' (no space)
-                      precedingTemplateElement.value.raw = precedingTemplateElement.value.raw.replace(/&\s*\.?$/, `${replacementSelectorPrefix}.`);
+                      precedingTemplateElement.value.raw =
+                        precedingTemplateElement.value.raw.replace(
+                          /&\s*\.?$/,
+                          `${replacementSelectorPrefix}.`,
+                        );
                       precedingTemplateElement.value.cooked = precedingTemplateElement.value.raw;
 
                       parent.expressions.splice(...atomicClassesArgs);

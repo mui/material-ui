@@ -51,8 +51,6 @@ npx @mui/codemod@latest v6.0.0/system-props <path/to/folder>
 
 You can also manually update your components as shown in the snippet below:
 
-
-
 ## Alert
 
 Use the [alert-props](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) and [alert-classes](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-classes) codemods below to migrate the code as described in the following sections:
