@@ -113,6 +113,12 @@ SnackbarContent.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 6
+   */
+  elevation: PropTypes.number,
+  /**
    * The message to display.
    */
   message: PropTypes.node,

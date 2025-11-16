@@ -270,6 +270,12 @@ MobileStepper.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 0
+   */
+  elevation: PropTypes.number,
+  /**
    * Props applied to the `LinearProgress` element.
    * @deprecated Use `slotProps.progress` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
@@ -303,6 +309,11 @@ MobileStepper.propTypes /* remove-proptypes */ = {
     progress: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
+  /**
+   * If `false`, rounded corners are disabled.
+   * @default true
+   */
+  square: PropTypes.bool,
   /**
    * The total steps.
    */

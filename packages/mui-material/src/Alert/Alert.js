@@ -335,6 +335,12 @@ Alert.propTypes /* remove-proptypes */ = {
     closeIcon: PropTypes.object,
   }),
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 0
+   */
+  elevation: PropTypes.number,
+  /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
    * Set to `false` to remove the `icon`.
