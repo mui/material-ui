@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Button
 
 # Button
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Buttons allow users to take actions and make choices with a single tap.</p>
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
@@ -103,7 +103,10 @@ deselected, such as adding or removing a star to an item.
 ### Sizes
 
 For larger or smaller icon buttons, use the `size` prop.
-
+karthi@karthi-IdeaPad-Slim-3-15IRH10:~/material-ui/material-ui$ git status
+On branch fix/button-doc-grammar
+nothing to commit, working tree clean
+karthi@karthi-IdeaPad-Slim-3-15IRH10:~/material-ui/material-ui$ 
 {{"demo": "IconButtonSizes.js"}}
 
 ### Colors
