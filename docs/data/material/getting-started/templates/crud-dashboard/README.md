@@ -1,15 +1,10 @@
-# CRUD dashboard template
+# CRUD Dashboard Template
 
-## Usage
+This template provides a ready-made CRUD (Create, Read, Update, Delete) dashboard built using Material UI v7 components, layout primitives, and theming.
 
-<!-- #target-branch-reference -->
+## 📦 Required Dependencies
 
-1. Copy the folder (`crud-dashboard`) into your project, or one of the [example projects](https://github.com/mui/material-ui/tree/master/examples).
-2. Make sure your project has the required dependencies: @mui/material, @mui/icons-material, @emotion/styled, @emotion/react, react-router.
-3. Import and use the `CrudDashboard` component.
+Before using the template, ensure your project has the following installed:
 
-## Demo
-
-<!-- #host-reference -->
-
-View the demo at https://mui.com/material-ui/getting-started/templates/crud-dashboard/.
+```bash
+npm install @mui/material @mui/icons-material @mui/lab @emotion/react @emotion/styled react-router-dom
