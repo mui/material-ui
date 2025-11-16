@@ -25,6 +25,7 @@
       "deprecated": true,
       "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
+    "elevation": { "type": { "name": "number" }, "default": "0" },
     "icon": { "type": { "name": "node" } },
     "iconMapping": {
       "type": {

@@ -2,6 +2,7 @@
   "props": {
     "action": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "elevation": { "type": { "name": "number" }, "default": "6" },
     "message": { "type": { "name": "node" } },
     "role": { "type": { "name": "string" }, "default": "'alert'" },
     "sx": {

@@ -16,6 +16,9 @@
     "componentsProps": {
       "description": "The extra props for the slot components. You can override the existing props or add new ones."
     },
+    "elevation": {
+      "description": "Shadow depth, corresponds to <code>dp</code> in the spec. It accepts values between 0 and 24 inclusive."
+    },
     "icon": {
       "description": "Override the icon displayed before the children. Unless provided, the icon is mapped to the value of the <code>severity</code> prop. Set to <code>false</code> to remove the <code>icon</code>."
     },

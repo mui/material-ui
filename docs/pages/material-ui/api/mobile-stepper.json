@@ -4,6 +4,7 @@
     "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
     "backButton": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "elevation": { "type": { "name": "number" }, "default": "0" },
     "LinearProgressProps": {
       "type": { "name": "object" },
       "deprecated": true,
@@ -31,6 +32,7 @@
       },
       "default": "{}"
     },
+    "square": { "type": { "name": "bool" }, "default": "true" },
     "sx": {
       "type": {
         "name": "union",
