@@ -52,7 +52,7 @@
     "@mui/x-tree-view": "8.17.0",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^10.0.3",
-    "@tailwindcss/postcss": "^4.1.16",
+    "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-module-resolver": "^5.0.2",
@@ -133,7 +133,7 @@
     "gm": "^1.25.1",
     "marked": "^16.2.0",
     "prettier": "^3.6.2",
-    "tailwindcss": "^4.1.16",
+    "tailwindcss": "^4.1.17",
     "yargs": "^18.0.0"
   }
 }
