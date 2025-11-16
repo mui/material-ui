@@ -488,8 +488,8 @@ importers:
         specifier: ^7.6.1
         version: 7.6.1(react@19.2.0)
       react-intersection-observer:
-        specifier: ^9.16.0
-        version: 9.16.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-is:
         specifier: ^19.2.0
         version: 19.2.0
@@ -10562,8 +10562,8 @@ packages:
     peerDependencies:
       react: '>=0.14.0'
 
-  react-intersection-observer@9.16.0:
-    resolution: {integrity: sha512-w9nJSEp+DrW9KmQmeWHQyfaP6b03v+TdXynaoA964Wxt7mdR3An11z4NNCQgL4gKSK7y1ver2Fq+JKH6CWEzUA==}
+  react-intersection-observer@10.0.0:
+    resolution: {integrity: sha512-JJRgcnFQoVXmbE5+GXr1OS1NDD1gHk0HyfpLcRf0575IbJz+io8yzs4mWVlfaqOQq1FiVjLvuYAdEEcrrCfveg==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -22910,7 +22910,7 @@ snapshots:
       prop-types: 15.8.1
       react: 19.2.0
 
-  react-intersection-observer@9.16.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-intersection-observer@10.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       react: 19.2.0
     optionalDependencies:
