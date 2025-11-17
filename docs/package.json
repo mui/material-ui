@@ -60,7 +60,6 @@
     "babel-plugin-react-remove-properties": "^0.3.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chance": "^1.1.13",
-    "clean-css": "^5.3.3",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
     "cross-env": "^10.1.0",
