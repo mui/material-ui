@@ -68,7 +68,7 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 ## Multiline
 
-The `multiline` prop transforms the Text Field into a [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/) element.
+The `multiline` prop transforms the Text Field into a [Textarea Autosize](/material-ui/react-textarea-autosize/) element.
 Unless the `rows` prop is set, the height of the text field dynamically matches its content.
 You can use the `minRows` and `maxRows` props to bound it.
 
@@ -299,7 +299,7 @@ We do not recommend using `type="number"` with a Text Field due to potential usa
 
   :::
 
-If you need a text field with number validation, you can use  [Number Field](https://mui.com/material-ui/react-number-field/) instead.
+If you need a text field with number validation, you can use  [Number Field](/material-ui/react-number-field/) instead.
 
 ### Helper text
 
