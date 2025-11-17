@@ -10,10 +10,22 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from '@mui/docs/branding';
 
-const PRODUCTION_GA =
-  process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
+const isProd =
+  process.env.DEPLOY_ENV === 'production' ||
+  process.env.DEPLOY_ENV === 'staging';
 
-const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
+const GA_ID = isProd ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
+
+// Reusable helper: prevents duplicate inline blocks
+const fontFace = (family, weight, file) => `
+  @font-face {
+    font-family: '${family}';
+    src: url('/static/fonts/${file}.woff2') format('woff2');
+    font-weight: ${weight};
+    font-style: normal;
+    font-display: swap;
+  }
+`;
 
 export default class MyDocument extends Document {
   render() {
@@ -22,130 +34,85 @@ export default class MyDocument extends Document {
     return (
       <Html lang={userLanguage} data-mui-color-scheme="light" data-joy-color-scheme="light">
         <Head>
-          {/*
-            manifest.json provides metadata used when your web app is added to the
-            homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-          */}
+
+          {/* Manifest + Icons */}
           <link rel="manifest" href="/static/manifest.json" />
-          {/* PWA primary color */}
-          <meta
-            name="theme-color"
-            content={getMetaThemeColor('light')}
-            media="(prefers-color-scheme: light)"
-          />
-          <meta
-            name="theme-color"
-            content={getMetaThemeColor('dark')}
-            media="(prefers-color-scheme: dark)"
-          />
           <link rel="icon" href="/static/favicon.ico" />
-          {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
+
+          {/* Theme colors */}
+          <meta name="theme-color" content={getMetaThemeColor('light')} media="(prefers-color-scheme: light)" />
+          <meta name="theme-color" content={getMetaThemeColor('dark')} media="(prefers-color-scheme: dark)" />
+
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://mui.com${
-              userLanguage === 'en' ? '' : `/${userLanguage}`
-            }${canonicalAsServer}`}
+            href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAsServer}`}
           />
           <link rel="alternate" href={`https://mui.com${canonicalAsServer}`} hrefLang="x-default" />
-          {/*
-            Preconnect allows the browser to setup early connections before an HTTP request
-            is actually sent to the server.
-            This includes DNS lookups, TLS negotiations, TCP handshakes.
-          */}
-          <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
+
+          {/* Preconnect + Fonts */}
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
             rel="stylesheet"
           />
-          {/* ========== Font preload (prevent font flash) ============= */}
+
+          {/* Preload key fonts */}
           <link
             rel="preload"
-            // optimized for english characters (40kb -> 6kb)
             href="/static/fonts/GeneralSans-Semibold-subset.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
-          <style
-            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'General Sans';font-style:normal;font-weight:600;font-display:swap;src:url('/static/fonts/GeneralSans-Semibold-subset.woff2') format('woff2');}`,
-            }}
-          />
           <link
             rel="preload"
-            // optimized for english characters (40kb -> 6kb)
             href="/static/fonts/IBMPlexSans-Regular-subset.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
+
+          {/* Inline font-face fixes for mobile */}
           <style
-            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400;font-display:swap;src:url('/static/fonts/IBMPlexSans-Regular-subset.woff2') format('woff2');}`,
-            }}
-          />
-          {/* =========================================================== */}
-          <style
-            // Loads General Sans: Regular (400), Medium (500), SemiBold (600), Bold (700)
-            // Typeface documentation: https://www.fontshare.com/fonts/general-sans
-            // use https://cssminifier.com/ to minify
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-              @font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-Regular.woff2) format('woff2'),url(/static/fonts/GeneralSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap;}
-
-              @font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-Medium.woff2) format('woff2'),url(/static/fonts/GeneralSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap;}
-
-              @font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-SemiBold.woff2) format('woff2'),url(/static/fonts/GeneralSans-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap;}
-
-              @font-face{font-family:'General Sans';src:url(/static/fonts/GeneralSans-Bold.woff2) format('woff2'),url(/static/fonts/GeneralSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap;}`,
+                ${fontFace('General Sans', 600, 'GeneralSans-Semibold-subset')}
+                ${fontFace('IBM Plex Sans', 400, 'IBMPlexSans-Regular-subset')}
+              `,
             }}
           />
+
+          {/* Full font families */}
           <style
-            // Loads IBM Plex Sans: 400,500,700 & IBM Plex Mono: 400, 600
-            // use https://cssminifier.com/ to minify
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-              @font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Regular.woff) format('woff'),url(/static/fonts/IBMPlexSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}
+                ${fontFace('General Sans', 400, 'GeneralSans-Regular')}
+                ${fontFace('General Sans', 500, 'GeneralSans-Medium')}
+                ${fontFace('General Sans', 600, 'GeneralSans-SemiBold')}
+                ${fontFace('General Sans', 700, 'GeneralSans-Bold')}
 
-              @font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Medium.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Medium.woff) format('woff'),url(/static/fonts/IBMPlexSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap}
-
-              @font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-SemiBold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-SemiBold.woff) format('woff'),url(/static/fonts/IBMPlexSans-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap}
-
-              @font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Bold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Bold.woff) format('woff'),url(/static/fonts/IBMPlexSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}`,
+                ${fontFace('IBM Plex Sans', 400, 'IBMPlexSans-Regular')}
+                ${fontFace('IBM Plex Sans', 500, 'IBMPlexSans-Medium')}
+                ${fontFace('IBM Plex Sans', 600, 'IBMPlexSans-SemiBold')}
+                ${fontFace('IBM Plex Sans', 700, 'IBMPlexSans-Bold')}
+              `,
             }}
           />
+
+          {/* Global UI fixes */}
           <GlobalStyles
             styles={{
-              // First SSR paint
-              '.only-light-mode': {
-                display: 'block',
-              },
-              '.only-dark-mode': {
-                display: 'none',
-              },
-              // Post SSR Hydration
-              '.mode-dark .only-light-mode': {
-                display: 'none',
-              },
-              '.mode-dark .only-dark-mode': {
-                display: 'block',
-              },
-              // TODO migrate to .only-dark-mode to .only-dark-mode-v2
-              '[data-mui-color-scheme="light"] .only-dark-mode-v2': {
-                display: 'none',
-              },
-              '[data-mui-color-scheme="dark"] .only-light-mode-v2': {
-                display: 'none',
-              },
+              '.only-light-mode': { display: 'block' },
+              '.only-dark-mode': { display: 'none' },
+              '.mode-dark .only-light-mode': { display: 'none' },
+              '.mode-dark .only-dark-mode': { display: 'block' },
+
+              '[data-mui-color-scheme="light"] .only-dark-mode-v2': { display: 'none' },
+              '[data-mui-color-scheme="dark"] .only-light-mode-v2': { display: 'none' },
+
               '.plan-pro, .plan-premium': {
                 display: 'inline-block',
                 height: '0.9em',
@@ -157,41 +124,36 @@ export default class MyDocument extends Document {
                 backgroundRepeat: 'no-repeat',
                 flexShrink: 0,
               },
-              '.plan-pro': {
-                backgroundImage: 'url(/static/x/pro.svg)',
-              },
-              '.plan-premium': {
-                backgroundImage: 'url(/static/x/premium.svg)',
-              },
+              '.plan-pro': { backgroundImage: 'url(/static/x/pro.svg)' },
+              '.plan-premium': { backgroundImage: 'url(/static/x/premium.svg)' },
             }}
           />
         </Head>
+
         <body>
           <MuiInitColorSchemeScript defaultMode="system" />
           <JoyInitColorSchemeScript defaultMode="system" />
+
           <Main />
+
+          {/* Google Analytics */}
           <script
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;
-gtag('js', new Date());
-gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
-  send_page_view: false,
-});
-`,
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', { send_page_view: false });
+              `,
             }}
           />
-          {/**
-           * A better alternative to <script async>, to delay its execution
-           * https://developer.chrome.com/blog/script-component/
-           */}
+
           <Script
             strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID_V4}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           />
+
           <NextScript />
         </body>
       </Html>
@@ -200,44 +162,39 @@ gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
-  const styledComponentsSheet = new ServerStyleSheet();
+  const styledSheet = new ServerStyleSheet();
 
   try {
-    const finalProps = await documentGetInitialProps(ctx, {
+    const final = await documentGetInitialProps(ctx, {
       emotionCache: createEmotionCache(),
       plugins: [
         {
-          // styled-components
-          enhanceApp: (App) => (props) => styledComponentsSheet.collectStyles(<App {...props} />),
-          resolveProps: async (initialProps) => ({
+          enhanceApp: (App) => (props) => styledSheet.collectStyles(<App {...props} />),
+          resolveProps: (initialProps) => ({
             ...initialProps,
-            styles: [styledComponentsSheet.getStyleElement(), ...initialProps.styles],
+            styles: [styledSheet.getStyleElement(), ...initialProps.styles],
           }),
         },
       ],
     });
 
-    // All the URLs should have a leading /.
-    // This is missing in the Next.js static export.
     let url = ctx.req.url;
-    if (url[url.length - 1] !== '/') {
-      url += '/';
-    }
+    if (!url.endsWith('/')) url += '/';
 
     return {
-      ...finalProps,
+      ...final,
       canonicalAsServer: pathnameToLanguage(url).canonicalAsServer,
       userLanguage: ctx.query.userLanguage || 'en',
       styles: [
         <style id="material-icon-font" key="material-icon-font" />,
         <style id="font-awesome-css" key="font-awesome-css" />,
-        ...finalProps.emotionStyleTags,
+        ...final.emotionStyleTags,
         <style id="app-search" key="app-search" />,
         <style id="prismjs" key="prismjs" />,
-        ...React.Children.toArray(finalProps.styles),
+        ...React.Children.toArray(final.styles),
       ],
     };
   } finally {
-    styledComponentsSheet.seal();
+    styledSheet.seal();
   }
 };
