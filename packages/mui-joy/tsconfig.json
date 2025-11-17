@@ -1,4 +1,34 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": ["src/**/*", "test/integration/**/*"]
-}
+  //1.Extend the root configuration for shared settings
+  "extends":"./tsconfig.json",
+  "compilerOptions":{
+    //2,REQUIRED for project references and incremental builds
+    "composite":true,
+    //3.Output Declaration(.d.ts)files
+    "declaration":true,
+    //4.Do NOT emit JavaScript(.js)files (Babel handles this)
+    "noEmit":false,
+    //5.Only generate declaration files,nothing else
+    "emitDeclarationOnly":true, 
+    //6.Specify where the compiled .d.ts files go
+    "outDir":"./build/esm",
+    //7.Root directory of source code
+    "rootDir":"./src"
+  },
+  //8.Explicitly INCLUDE only the source files that should be part of the build
+  "include":["./src/**/*.ts"],
+
+
+    //9.Explicitly EXCLUDE only the source files that should NOT be part of the build
+
+  "exclude":[ 
+    "node_modules",//Standard exclusion
+    "**/test",//Exclude the entire 'test' folder
+    "src/**/*.spec.ts",//Exclude files ending with .spec.ts
+    "src/**/*.test.ts",//Exclude files ending with .test.ts
+],
+  //10.List dependent projects for monorepo functionality
+  "references":[
+    {"path":"../../mui-system/tsconfig.build.json"}
+  ]
+ }
