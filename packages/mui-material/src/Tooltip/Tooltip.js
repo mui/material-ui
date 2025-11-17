@@ -578,11 +578,21 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const nameOrDescProps = {};
   const titleIsString = typeof title === 'string';
+  // FIX: Detect if the child already has an accessible name (aria-label, aria-labelledby, alt, title)
+
+  const childHasAccessibleName =
+    children.props['aria-label'] ||
+    children.props['aria-labelledby'] ||
+    children.props.title ||
+    children.props.alt;
   if (describeChild) {
     nameOrDescProps.title = !open && titleIsString && !disableHoverListener ? title : null;
     nameOrDescProps['aria-describedby'] = open ? id : null;
   } else {
-    nameOrDescProps['aria-label'] = titleIsString ? title : null;
+    // Fix: prevent aria-label from overwriting the child's accessible name
+      if (!childHasAccessibleName) {
+        nameOrDescProps['aria-label'] = titleIsString ? title : null;
+      }
     nameOrDescProps['aria-labelledby'] = open && !titleIsString ? id : null;
   }
 
