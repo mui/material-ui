@@ -610,7 +610,7 @@ importers:
         version: 4.2.7
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       cross-fetch:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
@@ -692,7 +692,7 @@ importers:
         version: 10.0.0
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -734,10 +734,10 @@ importers:
         version: 14.6.1(@testing-library/dom@10.4.1)
       chai:
         specifier: ^4.5.0 || ^5.0.0 || ^6.0.0
-        version: 6.2.0
+        version: 6.2.1
       chai-dom:
         specifier: ^1.12.1
-        version: 1.12.1(chai@6.2.0)
+        version: 1.12.1(chai@6.2.1)
       dom-accessibility-api:
         specifier: ^0.7.0
         version: 0.7.0
@@ -874,7 +874,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -908,7 +908,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -936,7 +936,7 @@ importers:
         version: 4.3.20
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
 
   packages/mui-codemod:
     dependencies:
@@ -979,7 +979,7 @@ importers:
         version: 0.12.0
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
     publishDirectory: build
 
   packages/mui-core-downloads-tracker: {}
@@ -1000,7 +1000,7 @@ importers:
         version: 6.4.1(@emotion/react@11.14.0(@types/react@19.2.5)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.5)(react@19.2.0))(@types/react@19.2.5)(react@19.2.0))(@types/react@19.2.5)(react@19.2.0)
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       clipboard-copy:
         specifier: ^4.0.1
         version: 4.0.1
@@ -1054,7 +1054,7 @@ importers:
         version: 4.3.20
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
     publishDirectory: build
 
   packages/mui-envinfo/test:
@@ -1108,7 +1108,7 @@ importers:
         version: 19.2.5
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       chalk:
         specifier: ^5.6.0
         version: 5.6.2
@@ -1197,7 +1197,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       es-toolkit:
         specifier: ^1.39.10
         version: 1.41.0
@@ -1271,7 +1271,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -1357,7 +1357,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1453,7 +1453,7 @@ importers:
         version: 19.2.5
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -1500,7 +1500,7 @@ importers:
         version: 19.2.5
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -1535,7 +1535,7 @@ importers:
         version: 19.2.5
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -1573,7 +1573,7 @@ importers:
         version: 4.2.7
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -1635,7 +1635,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       es-toolkit:
         specifier: ^1.39.10
         version: 1.41.0
@@ -1714,7 +1714,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -1796,7 +1796,7 @@ importers:
         version: 17.0.4
       chai:
         specifier: ^6.0.1
-        version: 6.2.0
+        version: 6.2.1
       docs:
         specifier: workspace:^
         version: link:../docs
@@ -6589,10 +6589,6 @@ packages:
     engines: {node: '>= 0.12.0'}
     peerDependencies:
       chai: '>= 3'
-
-  chai@6.2.0:
-    resolution: {integrity: sha512-aUTnJc/JipRzJrNADXVvpVqi6CO0dn3nx4EVPxijri+fj3LUUDyZQOgVeW54Ob3Y1Xh9Iz8f+CgaCl8v0mn9bA==}
-    engines: {node: '>=18'}
 
   chai@6.2.1:
     resolution: {integrity: sha512-p4Z49OGG5W/WBCPSS/dH3jQ73kD6tiMmUM+bckNK6Jr5JHMG3k9bg/BvKR8lKmtVBKmOiuVaV2ws8s9oSbwysg==}
@@ -18727,11 +18723,9 @@ snapshots:
 
   caniuse-lite@1.0.30001755: {}
 
-  chai-dom@1.12.1(chai@6.2.0):
+  chai-dom@1.12.1(chai@6.2.1):
     dependencies:
-      chai: 6.2.0
-
-  chai@6.2.0: {}
+      chai: 6.2.1
 
   chai@6.2.1: {}
 
