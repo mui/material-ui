@@ -9,7 +9,7 @@ githubLabel: 'scope: transfer list'
 
 <p class="description">A Transfer List (or "shuttle") enables the user to move one or more list items between lists.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/docs/ComponentLinkHeader", "markdownAlternate": false}}
 
 ## Basic transfer list
 
