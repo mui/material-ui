@@ -244,7 +244,47 @@ describe('<Rating />', () => {
     expect(view.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
       height: '120px',
     });
-  });
+  });// Inside the component's render logic, where the inputs are mapped:
+
+// 1. Calculate the index that should receive focus (tabIndex=0).
+// Assume 'focusIndex' is calculated based on current 'value' or 'hover' state.
+// If no value, the first element (index 0) should be tabbable.
+const isFocusIndex = (index, value) => {
+  // Logic to determine which element gets tabIndex=0
+  // Example: If value is 3, the 3rd element gets focusIndex. If value is null, element 0 gets it.
+  const isDefaultFocus = (index === 0 && !value);
+  const isCurrentFocus = (index === Math.ceil(value) - 1);
+  return isDefaultFocus || isCurrentFocus;
+};
+
+// ... inside the map loop where you render the input/star ...
+<RadioGroup
+  // ... other props ...
+>
+  {/* Map through the stars/inputs */}
+  {new Array(max).fill(0).map((_, index) => {
+    const itemValue = index + 1;
+    
+    // Check if the current input should be tabbable
+    const tabbable = isFocusIndex(index, value); 
+
+    return (
+      <span
+        key={index}
+        // Ensure the input element receives the correct tabIndex
+        // If tabbable is true, tabIndex is 0 (can be reached by Tab key).
+        // Otherwise, tabIndex is -1 (can only be reached programmatically or via Arrow keys).
+        tabIndex={tabbable ? 0 : -1} 
+        
+        // ... rest of the props and styling ...
+      >
+        <input 
+          // ... input element code ...
+        />
+      </span>
+    );
+  })}
+</RadioGroup>
 
   // Internal test that only applies if Rating is implemented using `input[type"radio"]`
   // It ensures that keyboard navigation for Arrow and TAB keys is handled by the browser
@@ -316,7 +356,7 @@ describe('<Rating />', () => {
       },
       {
         ratingProps: { name: 'rating', defaultValue: 2, readOnly: true },
-        // native <input type="radio" /> and our Radio/Checkbox don't implement readOnly as well
+        // native <input type="radio" /> and our Radio/Checkbox don't implement readOnly as well.
         formData: [],
       },
       {
