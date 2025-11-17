@@ -70,8 +70,6 @@ cd material-ui
 git remote add upstream https://github.com/mui/material-ui.git
 ```
 
-<!-- #target-branch-reference -->
-
 3. Synchronize your local `master` branch with the upstream one:
 
 ```bash
@@ -255,8 +253,8 @@ The component API in the component `propTypes` and under `docs/pages/api-docs` i
 Be sure to update the documentation in the corresponding `.d.ts` files (for example `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```bash
-$ pnpm proptypes
-$ pnpm docs:api
+pnpm proptypes
+pnpm docs:api
 ```
 
 ### Coding style
@@ -317,7 +315,8 @@ Add a header and a brief description of the demo and its use case, along with th
 +
 +To create a super button for a specific use case, add the `super` prop:
 +
-+{{"demo": "pages/components/buttons/SuperButtons.js"}}
++{{"demo": "docs/src/pages/components/buttons/SuperButtons.js"}}
+
 ```
 
 #### 4. Submit your PR
@@ -333,7 +332,7 @@ We use [pkg.pr.new](https://pkg.pr.new) to publish a working version of the pack
 You can check the _Continuous Releases_ status of a pull request to get the URL needed to install these preview packages:
 
 ```diff
-diff --git a//package.json b//package.json
+diff --git a/package.json b/package.json
 index 791a7da1f4..a5db13b414 100644
 --- a/package.json
 +++ b/package.json
@@ -353,17 +352,17 @@ You can also package and test your changes locally.
 The following example shows how to package `@mui/material`, but you can package any npm package with this process:
 
 ```bash
-$> cd packages/mui-material # or path to any other mui package
-$packages\mui-material> pnpm build
-$packages\mui-material> cd ./build
-$packages\mui-material> pnpm pack
+cd packages/mui-material # or path to any other mui package
+pnpm build
+cd ./build
+pnpm pack
 ```
 
 Navigate to the build folder of your respective package and locate a file with the format `mui-material-x.x.x.tar.gz`.
 Copy this file and move it to the project directory you want to test in, then run:
 
 ```bash
-$test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
+npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
 
 > **Note**
