@@ -1,5 +1,4 @@
 /// <reference types="@chialab/vitest-provider-browserstack" />
-/// <reference types="@vitest/browser/providers/playwright" />
 import 'dotenv/config';
 import { configDefaults, defineProject } from 'vitest/config';
 import * as fs from 'fs/promises';
@@ -7,6 +6,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import { Plugin, transformWithEsbuild } from 'vite';
+import { playwright } from '@vitest/browser-playwright';
 
 const browserstack = {
   options: {
@@ -63,20 +63,17 @@ function getBrowser({ enabled = false, enableScrollbars = false } = {}) {
   }
   return {
     enabled,
-    provider: 'playwright',
+    provider: playwright({
+      launchOptions: {
+        ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
+      },
+    }),
     headless: true,
     viewport: {
       width: 1024,
       height: 896,
     },
-    instances: [
-      {
-        browser: 'chromium',
-        launch: {
-          ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
-        },
-      },
-    ],
+    instances: [{ browser: 'chromium' }],
   };
 }
 
@@ -84,7 +81,7 @@ function forceJsxForJsFiles(): Plugin {
   return {
     name: 'force-jsx-loader-for-js',
     enforce: 'pre',
-    transform(code, id) {
+    async transform(code, id) {
       if (id.includes('/node_modules/')) {
         return null;
       }
@@ -93,9 +90,16 @@ function forceJsxForJsFiles(): Plugin {
         return null;
       }
 
-      return transformWithEsbuild(code, id, {
+      const result = await transformWithEsbuild(code, id, {
         loader: 'jsx',
       });
+
+      // @vitejs/plugin-react only adds the React import for .jsx files.
+      if (!result.code.includes("from 'react'") && !result.code.includes('from "react"')) {
+        result.code = `import * as React from 'react';\n${result.code}`;
+      }
+
+      return result;
     },
   };
 }
