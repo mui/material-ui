@@ -43,7 +43,6 @@ const defaultPackageNames: Record<string, string | undefined> = {
 
 export interface ComponentLinkHeaderProps {
   design?: boolean;
-  markdownAlternate?: boolean;
   markdown: {
     headers: MarkdownHeaders;
   };
@@ -53,7 +52,6 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
   const {
     markdown: { headers },
     design,
-    markdownAlternate,
   } = props;
   const t = useTranslate();
   const router = useRouter();
@@ -63,7 +61,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
 
   return (
     <Root>
-      {packageName === '@mui/material' && markdownAlternate !== false && (
+      {packageName === '@mui/material' && (
         <li>
           <Chip
             clickable
