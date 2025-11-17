@@ -20,7 +20,7 @@
     "@playwright/test": "1.56.1",
     "@testing-library/dom": "^10.4.1",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.2.2",
+    "@types/react": "^19.2.4",
     "@types/react-is": "^19.2.0",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
