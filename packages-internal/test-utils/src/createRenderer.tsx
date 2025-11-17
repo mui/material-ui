@@ -844,3 +844,7 @@ const bodyBoundQueries = within(document.body, { ...queries, ...customQueries })
 export { renderHook, waitFor, within } from '@testing-library/react/pure';
 export { act, fireEvent };
 export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
+
+export async function flushEffects(): Promise<void> {
+  await act(async () => {});
+}

@@ -9,6 +9,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
+  flushEffects,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Tab from '@mui/material/Tab';
@@ -972,6 +973,8 @@ describe('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the last tab while activating it if focus is on the first tab', async () => {
@@ -997,7 +1000,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               firstTab.focus();
             });
-
             fireEvent.keyDown(firstTab, { key: previousItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1005,6 +1007,8 @@ describe('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(2);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('moves focus to the previous tab without activating it', async () => {
@@ -1029,13 +1033,14 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the previous tab while activating it', async () => {
@@ -1061,7 +1066,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1069,6 +1073,8 @@ describe('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('skips over disabled tabs', async () => {
@@ -1092,12 +1098,13 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
         });
 
@@ -1124,13 +1131,14 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the first tab while activating it if focus is on the last tab', async () => {
@@ -1156,7 +1164,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1164,6 +1171,8 @@ describe('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('moves focus to the next tab without activating it it', async () => {
@@ -1188,13 +1197,14 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the next tab while activating it it', async () => {
@@ -1220,7 +1230,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1228,6 +1237,8 @@ describe('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(2);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('skips over disabled tabs', async () => {
@@ -1251,12 +1262,13 @@ describe('<Tabs />', () => {
             await act(async () => {
               firstTab.focus();
             });
-
             fireEvent.keyDown(firstTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
         });
       });
@@ -1287,6 +1299,8 @@ describe('<Tabs />', () => {
           expect(handleChange.callCount).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('when `selectionFollowsFocus` moves focus to the first tab without activating it', async () => {
@@ -1313,6 +1327,8 @@ describe('<Tabs />', () => {
           expect(handleChange.firstCall.args[1]).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('moves focus to first non-disabled tab', async () => {
@@ -1336,6 +1352,8 @@ describe('<Tabs />', () => {
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
       });
 
@@ -1363,6 +1381,8 @@ describe('<Tabs />', () => {
           expect(handleChange.callCount).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('when `selectionFollowsFocus` moves focus to the last tab without activating it', async () => {
@@ -1389,6 +1409,8 @@ describe('<Tabs />', () => {
           expect(handleChange.firstCall.args[1]).to.equal(2);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('moves focus to first non-disabled tab', async () => {
@@ -1412,6 +1434,8 @@ describe('<Tabs />', () => {
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
       });
     });
