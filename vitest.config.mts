@@ -30,8 +30,9 @@ export default defineConfig({
       provider: 'v8',
       reporter: process.env.CI ? ['lcovonly'] : ['text'],
       reportsDirectory: path.resolve(MONOREPO_ROOT, 'coverage'),
-      include: ['packages/*/src/**'],
+      include: ['packages/*/src/**/*.{mts,ts,tsx,mjs,js,jsx}'],
       exclude: [
+        '**/*.d.ts',
         '**/__fixtures__/**',
         'packages/mui-icons-material/src/**',
         'packages/mui-codemod/src/**/{test-cases,*.test}/**',

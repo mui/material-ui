@@ -131,6 +131,7 @@
     "@types/yargs": "^17.0.34",
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/browser-playwright": "^4.0.9",
+    "@vitest/coverage-v8": "^4.0.9",
     "@vvago/vale": "^3.12.0",
     "babel-loader": "^10.0.0",
     "babel-plugin-istanbul": "^7.0.0",
