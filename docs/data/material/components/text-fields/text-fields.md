@@ -299,7 +299,7 @@ We do not recommend using `type="number"` with a Text Field due to potential usa
 
   :::
 
-If you need a text field with number validation, you can use  [Number Field](/material-ui/react-number-field/) instead.
+If you need a text field with number validation, you can use [Number Field](/material-ui/react-number-field/) instead.
 
 ### Helper text
 
