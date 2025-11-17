@@ -73,7 +73,7 @@ function getBrowser({ enabled = false, enableScrollbars = false } = {}) {
       width: 1024,
       height: 896,
     },
-    instances: [{ browser: 'chromium' }],
+    instances: [{ browser: process.env.PLAYWRIGHT_BROWSER || 'chromium' }],
   };
 }
 

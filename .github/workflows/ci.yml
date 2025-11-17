@@ -26,7 +26,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            browser: chrome
+          - os: macos-latest
+            browser: safari
+          - os: windows-latest
+            browser: firefox
     steps:
       - run: echo '${{ github.actor }}'
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -57,6 +63,15 @@ jobs:
           # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
           # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
           NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
+
+      - name: Install browsers (if needed, with Playwright)
+        run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run tests
+        env:
+          PLAYWRIGHT_BROWSER: ${{ matrix.browser }}
+        run: pnpm test:browser
+
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
