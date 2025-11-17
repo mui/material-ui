@@ -1,23 +1,37 @@
-import IconButton from '@mui/material/IconButton';
+import * as React from 'react';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
 
-function notificationsLabel(count) {
-  if (count === 0) {
-    return 'no notifications';
-  }
-  if (count > 99) {
-    return 'more than 99 notifications';
-  }
-  return `${count} notifications`;
-}
-
-export default function AccessibleBadges() {
+export default function AccessibleBadge() {
+  const count = 4;
   return (
-    <IconButton aria-label={notificationsLabel(100)}>
-      <Badge badgeContent={100} color="secondary">
-        <MailIcon />
+    <Stack direction="row" spacing={3} alignItems="center">
+      <Badge 
+        badgeContent={count} 
+        color="error"
+      >
+        {/* 🔑 Crucial accessibility addition: aria-label on the wrapped element */}
+        <IconButton 
+          color="inherit" 
+          aria-label={`Show ${count} unread mail messages`} 
+          title={`New Mail: ${count}`} 
+        >
+          <MailIcon />
+        </IconButton>
       </Badge>
-    </IconButton>
+
+      <Badge 
+        variant="dot" 
+        color="success"
+        overlap="circular"
+      >
+        {/* For a dot, indicate status */}
+        <IconButton color="inherit" aria-label="User status: Online">
+          [User Avatar] 
+        </IconButton>
+      </Badge>
+    </Stack>
   );
 }
