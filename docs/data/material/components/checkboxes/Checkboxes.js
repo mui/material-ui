@@ -1,14 +1,12 @@
 import Checkbox from '@mui/material/Checkbox';
 
-const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };
-
 export default function Checkboxes() {
   return (
     <div>
-      <Checkbox {...label} defaultChecked />
-      <Checkbox {...label} />
-      <Checkbox {...label} disabled />
-      <Checkbox {...label} disabled checked />
+      <Checkbox slotProps={{ input: { 'aria-label': 'checked checkbox' } }} defaultChecked />
+      <Checkbox slotProps={{ input: { 'aria-label': 'unchecked checkbox' } }} />
+      <Checkbox slotProps={{ input: { 'aria-label': 'disabled checkbox' } }} disabled />
+      <Checkbox slotProps={{ input: { 'aria-label': 'disabled checked checkbox' } }} disabled checked />
     </div>
   );
 }
