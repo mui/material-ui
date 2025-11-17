@@ -661,6 +661,9 @@ export async function flushEffects(): Promise<void> {
   await act(async () => {});
 }
 
+/**
+ * returns true when touch is suported and can be mocked
+ */
 export function supportsTouch() {
   // only run in supported browsers
   if (typeof Touch === 'undefined') {

@@ -47,23 +47,13 @@ function hasRightScrollButton(container) {
   return !scrollButton.parentElement.classList.contains('Mui-disabled');
 }
 
-describe('<Tabs />', () => {
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+describeSkipIf(isSafari)('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
   const { clock, render, renderToString } = createRenderer();
-
-  before(function beforeHook() {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    // The test fails on Safari with just:
-    //
-    // container.scrollLeft = 200;
-    // expect(container.scrollLeft).to.equal(200); 💥
-    if (isSafari) {
-      this.skip();
-    }
-  });
 
   describeConformance(<Tabs value={0} />, () => ({
     classes,

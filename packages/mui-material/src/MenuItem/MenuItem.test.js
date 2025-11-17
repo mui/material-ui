@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
@@ -108,7 +108,7 @@ describe('<MenuItem />', () => {
 
     it('should fire onTouchStart', function touchStartTest() {
       // only run in supported browsers
-      if (typeof Touch === 'undefined') {
+      if (!supportsTouch()) {
         this.skip();
       }
 
