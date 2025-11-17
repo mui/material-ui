@@ -27,10 +27,6 @@ default-job: &default-job
       description: The version of typescript to be used
       type: string
       default: stable
-    test-gate:
-      description: A particular type of tests that should be run
-      type: string
-      default: undefined
     e2e-base-url:
       description: The base url for running end-to-end test
       type: string
@@ -44,7 +40,6 @@ default-job: &default-job
     BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
     REACT_VERSION: << parameters.react-version >>
     TYPESCRIPT_VERSION: << parameters.typescript-version >>
-    TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -330,31 +325,6 @@ jobs:
           command: pnpm test:e2e-website
           environment:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
-  test_profile:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
-      - run:
-          name: Tests real browsers
-          # Run a couple of times for a better sample.
-          # TODO: hack something together where we can compile once and run multiple times e.g. by abusing watchmode.
-          command: |
-            # Running on chrome only since actual times are innaccurate anyway
-            # The other reason is that browserstack allows little concurrency so it's likely that we're starving other runs.
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-      # Persist reports for inspection in https://frontend-public.mui.com/
-      - store_artifacts:
-          # see karma.conf.profile.js reactProfilerReporter.outputDir
-          path: tmp/react-profiler-report/karma
-          destination: react-profiler-report/karma
   test_regressions:
     <<: *default-job
     docker:
@@ -686,12 +656,6 @@ workflows:
           <<: *default-context
           requires:
             - test_bundling_prepare
-  profile:
-    when:
-      equal: [profile, << pipeline.parameters.workflow >>]
-    jobs:
-      - test_profile:
-          <<: *default-context
 
   # This workflow can be triggered manually on the PR
   react-17:
