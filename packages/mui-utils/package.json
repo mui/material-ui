@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "7.3.3",
+  "version": "7.3.5",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "keywords": [
@@ -43,9 +43,9 @@
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.19",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
+    "@types/node": "^20.19.25",
+    "@types/react": "^19.2.4",
+    "@types/react-dom": "^19.2.3",
     "@types/react-is": "^19.2.0",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",

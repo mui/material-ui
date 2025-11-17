@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer, simulatePointerDevice, screen } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';

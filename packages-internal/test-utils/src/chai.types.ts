@@ -46,19 +46,19 @@ declare global {
         >,
       ): void;
       /**
-       * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is not `hidden` or `collapsed`.
+       * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/visibility) is not `hidden` or `collapsed`.
        */
       toBeVisible(): void;
       /**
-       * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is `hidden` or `collapsed`.
+       * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/visibility) is `hidden` or `collapsed`.
        */
       toBeHidden(): void;
       /**
        * Checks if the element is inaccessible.
        *
        * Elements are considered inaccessible if they either:
-       * - have [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) `hidden`
-       * - have [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) `none`
+       * - have [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/visibility) `hidden`
+       * - have [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/display) `none`
        * - have `aria-hidden` `true` or any of their parents
        *
        * @see [Excluding Elements from the Accessibility Tree](https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion)

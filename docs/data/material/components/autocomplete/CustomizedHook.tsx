@@ -1,4 +1,3 @@
-import * as React from 'react';
 import useAutocomplete, {
   AutocompleteGetItemProps,
   UseAutocompleteProps,

@@ -58,8 +58,8 @@ import ModalClose from '@mui/joy/ModalClose';
 
 Customize the Drawer's opening transition by using the CSS variables below inside the [`sx` prop](/system/getting-started/the-sx-prop/):
 
-- `--Drawer-transitionFunction`: the [transition function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function); default is `ease`.
-- `--Drawer-transitionDuration`: the [duration of the transition](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration); default is `0.3s`.
+- `--Drawer-transitionFunction`: the [transition function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-timing-function); default is `ease`.
+- `--Drawer-transitionDuration`: the [duration of the transition](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-duration); default is `0.3s`.
 
 {{"demo": "DrawerTransition.js"}}
 

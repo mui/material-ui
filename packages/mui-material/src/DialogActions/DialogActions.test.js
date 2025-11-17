@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';

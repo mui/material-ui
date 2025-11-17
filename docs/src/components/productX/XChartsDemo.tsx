@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';

@@ -8,7 +8,6 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 *.log
-*.tsbuildinfo
 /.eslintcache
 /.nyc_output
 /coverage
@@ -48,3 +47,7 @@ screenshots
 packed
 test-results
 .env
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

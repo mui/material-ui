@@ -96,20 +96,18 @@ The following steps must be proposed as a pull request to `release/<PATCH_VERSIO
 7. Merge PR into `release/<PATCH_VERSION>` once CI is green and it has been approved.
 8. Open and merge a PR from `release/<PATCH_VERSION>` to master to correct the package versioning and update the changelog.
 
-#### Release
+### Release the packages
 
-1. Go to the [publish action](https://github.com/mui/material-ui/actions/workflows/publish.yml).
-2. Choose "Run workflow" dropdown
+1. Run `pnpm release:publish`. You may be asked to authenticate with GitHub when running the command for the first time or after a very long time.
+2. It'll automatically fetch the latest merged release PR and ask for confirmation before publishing.
+3. If you already know the sha of the commit, you can pass it directly like `pnpm release:publish --sha <your-sha>`.
+4. Other flags for the command:
 
-   > - **Branch:** `release/<PATCH_VERSION>`
-   > - **Commit SHA to release from:** the commit that contains the merged release on `release/<PATCH_VERSION>`. This commit is linked to the GitHub release.
-   > - **Run in dry-run mode:** Used for debugging.
-   > - **Create GitHub release:** Keep selected if you want a GitHub release to be automatically created from the changelog.
-   > - **npm dist tag to publish to** Use to publish legacy or canary versions.
+   > - **--dry-run** Used for debugging. Or directly run `pnpm release:publish:dry-run`.
+   > - **--dist-tag** Use to publish legacy or canary versions.
 
-3. Click "Run workflow"
-4. Refresh the page to see the newly created workflow, and click it.
-5. The next screen shows "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
+5. This command invokes the [Publish](https://github.com/mui/base-ui/actions/workflows/publish.yml) GitHub action. It'll log the url which can be opened to see the latest workflow run.
+6. The next screen shows "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
 
 #### Documentation
 

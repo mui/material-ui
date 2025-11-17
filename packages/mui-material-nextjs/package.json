@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "7.3.3",
+  "version": "7.3.5",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
@@ -36,8 +36,8 @@
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^19.2.2",
-    "next": "^15.5.4",
+    "@types/react": "^19.2.4",
+    "next": "^15.5.6",
     "react": "^19.2.0"
   },
   "peerDependencies": {
@@ -45,7 +45,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "next": "^13.0.0 || ^14.0.0 || ^15.0.0",
+    "next": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
