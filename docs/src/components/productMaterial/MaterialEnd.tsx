@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
-import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import { GlowingIconContainer } from '@mui/docs/InfoCard';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
