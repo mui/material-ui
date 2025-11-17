@@ -23,7 +23,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 ## Basic button
 
-The `Button` comes with three variants: text (default), contained, and outlined.
+The `Button` component comes in three variants: text (the default), contained (for high-emphasis actions), and outlined (for medium-emphasis).
 
 {{"demo": "BasicButtons.js"}}
 
