@@ -28,9 +28,9 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            browser: chrome
+            browser: chromium
           - os: macos-latest
-            browser: safari
+            browser: webkit
           - os: windows-latest
             browser: firefox
     steps:
@@ -47,6 +47,15 @@ jobs:
           node-version: '22.18.0'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
+
+      - name: Install browsers (if needed, with Playwright)
+        run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run tests
+        env:
+          PLAYWRIGHT_BROWSER: ${{ matrix.browser }}
+        run: pnpm test:browser
+
       - name: Cache Next.js build
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
@@ -63,15 +72,6 @@ jobs:
           # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
           # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
           NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
-
-      - name: Install browsers (if needed, with Playwright)
-        run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
-
-      - name: Run tests
-        env:
-          PLAYWRIGHT_BROWSER: ${{ matrix.browser }}
-        run: pnpm test:browser
-
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
