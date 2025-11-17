@@ -54,7 +54,7 @@ jobs:
       - name: Run tests
         env:
           PLAYWRIGHT_BROWSER: ${{ matrix.browser }}
-        run: pnpm test:browser --no=file-parallelism
+        run: pnpm test:browser --no-file-parallelism
 
       - name: Cache Next.js build
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
