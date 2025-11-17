@@ -7,31 +7,33 @@ chai.use(chaiDom);
 (globalThis as any).jest = null;
 (globalThis as any).IS_REACT_ACT_ENVIRONMENT = true;
 
-// Not yet supported: https://github.com/jsdom/jsdom/issues/2152
-(globalThis as any).window.Touch ??= class Touch {
-  instance: any;
+if (window.navigator.userAgent.includes('jsdom')) {
+  // Not yet supported: https://github.com/jsdom/jsdom/issues/2152
+  (globalThis as any).window.Touch = class Touch {
+    instance: any;
 
-  constructor(instance: any) {
-    this.instance = instance;
-  }
+    constructor(instance: any) {
+      this.instance = instance;
+    }
 
-  get identifier() {
-    return this.instance.identifier;
-  }
+    get identifier() {
+      return this.instance.identifier;
+    }
 
-  get pageX() {
-    return this.instance.pageX;
-  }
+    get pageX() {
+      return this.instance.pageX;
+    }
 
-  get pageY() {
-    return this.instance.pageY;
-  }
+    get pageY() {
+      return this.instance.pageY;
+    }
 
-  get clientX() {
-    return this.instance.clientX;
-  }
+    get clientX() {
+      return this.instance.clientX;
+    }
 
-  get clientY() {
-    return this.instance.clientY;
-  }
-};
+    get clientY() {
+      return this.instance.clientY;
+    }
+  };
+}
