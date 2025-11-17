@@ -258,9 +258,6 @@ const isFocusIndex = (index, value) => {
 };
 
 // ... inside the map loop where you render the input/star ...
-<RadioGroup
-  // ... other props ...
->
   {/* Map through the stars/inputs */}
   {new Array(max).fill(0).map((_, index) => {
     const itemValue = index + 1;
