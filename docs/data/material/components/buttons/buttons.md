@@ -206,3 +206,32 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
+
+### Loading Button Example
+
+```jsx
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+
+export default function LoadingButtonExample() {
+  const [loading, setLoading] = React.useState(false);
+
+  const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 1500);
+  };
+
+  return (
+    <Button
+      variant="contained"
+      disabled={loading}
+      onClick={handleClick}
+      startIcon={loading ? <CircularProgress size={18} /> : null}
+    >
+      {loading ? 'Loading...' : 'Click Me'}
+    </Button>
+  );
+}
+
+This example demonstrates how to build a simple loading state inside a Material UI Button using a spinner and temporary disabled state.
