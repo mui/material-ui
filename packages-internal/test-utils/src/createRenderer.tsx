@@ -660,3 +660,20 @@ export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyB
 export async function flushEffects(): Promise<void> {
   await act(async () => {});
 }
+
+export function supportsTouch() {
+  // only run in supported browsers
+  if (typeof Touch === 'undefined') {
+    return false;
+  }
+
+  try {
+    // eslint-disable-next-line no-new
+    new Touch({ identifier: 0, target: window, pageX: 0, pageY: 0 });
+  } catch {
+    // Touch constructor not supported
+    return false;
+  }
+
+  return true;
+}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { fireEvent, createRenderer, screen } from '@mui/internal-test-utils';
+import { fireEvent, createRenderer, screen, supportsTouch } from '@mui/internal-test-utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
@@ -97,7 +97,7 @@ describe('<SwipeableDrawer />', () => {
   });
 
   // only run in supported browsers
-  if (typeof Touch === 'undefined') {
+  if (!supportsTouch()) {
     return;
   }
 
