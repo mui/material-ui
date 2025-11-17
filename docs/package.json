@@ -99,7 +99,7 @@
     "react-transition-group": "^4.4.5",
     "react-virtuoso": "^4.14.1",
     "react-window": "^2.2.3",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "styled-components": "^6.1.19",
     "stylis": "4.2.0",
     "use-count-up": "^3.0.1",
