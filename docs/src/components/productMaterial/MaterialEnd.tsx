@@ -84,18 +84,6 @@ export default function MaterialEnd({ noFaq }: MaterialEndProps) {
           </Grid>
           <Grid size={{ xs: 12, sm: 6 }}>
             <List sx={{ '& > li': { alignItems: 'flex-start' } }}>
-              <ListItem sx={{ p: 0, mb: 4, gap: 2.5 }}>
-                <GlowingIconContainer icon={<CompareIcon color="primary" />} />
-                <div>
-                  <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
-                    Material UI vs. MUI Base
-                  </Typography>
-                  <Typography>
-                    Material UI implements Google&apos;s Material Design whereas MUI Base features
-                    many of the same components, but without the Material Design implementation.
-                  </Typography>
-                </div>
-              </ListItem>
               <ListItem sx={{ p: 0, gap: 2.5 }}>
                 <GlowingIconContainer icon={<StyleRoundedIcon color="primary" />} />
                 <div>

@@ -128,9 +128,6 @@ export default function ColorInversionFooter() {
                 <ListItemButton>Joy UI</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>MUI Base</ListItemButton>
-              </ListItem>
-              <ListItem>
                 <ListItemButton>Material UI</ListItemButton>
               </ListItem>
             </List>
