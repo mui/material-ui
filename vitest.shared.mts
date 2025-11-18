@@ -107,15 +107,9 @@ export default async function create(
           width: 1024,
           height: 896,
         },
-        instances: [
-          { browser: 'chromium' },
-          ...(process.env.CI
-            ? [
-                { browser: 'firefox' } satisfies BrowserInstanceOption,
-                { browser: 'webkit' } satisfies BrowserInstanceOption,
-              ]
-            : []),
-        ],
+        instances: (process.env.VITEST_BROWSERS || 'chromium')
+          .split(',')
+          .map((browser) => ({ browser }) as BrowserInstanceOption),
       },
       env: {
         VITEST: 'true',

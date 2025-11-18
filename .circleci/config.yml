@@ -279,8 +279,14 @@ jobs:
       - install_js:
           browsers: true
       - run:
-          name: Tests real browsers
-          command: pnpm test:browser --coverage --no-file-parallelism
+          name: Tests chromium
+          command: pnpm test:browser --no-isolate --no-file-parallelism --coverage
+      - run:
+          # other browsers without coverage
+          name: Tests other browsers
+          environment:
+            VITEST_BROWSERS: 'webkit,firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
           name: Check coverage generated
           command: |
