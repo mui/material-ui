@@ -854,6 +854,7 @@ function useAutocomplete(props) {
           break;
         case 'ArrowLeft':
           if (!multiple && renderValue && value != null) {
+            setFocusedItem(0);
             focusItem(0);
           } else {
             handleFocusItem(event, 'previous');
@@ -861,6 +862,7 @@ function useAutocomplete(props) {
           break;
         case 'ArrowRight':
           if (!multiple && renderValue) {
+            setFocusedItem(-1);
             focusItem(-1);
           } else {
             handleFocusItem(event, 'next');
@@ -925,6 +927,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
+            setFocusedItem(-1);
             focusItem(-1);
           }
           break;
@@ -946,6 +949,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
+            setFocusedItem(-1);
             focusItem(-1);
           }
           break;
