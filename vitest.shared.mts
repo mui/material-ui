@@ -7,75 +7,7 @@ import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import { Plugin, transformWithEsbuild } from 'vite';
 import { playwright } from '@vitest/browser-playwright';
-
-const browserstack = {
-  options: {
-    user: process.env.BROWSERSTACK_USERNAME,
-    key: process.env.BROWSERSTACK_ACCESS_KEY,
-  },
-  capabilities: {
-    'chrome-latest': {
-      browserName: 'Chrome',
-      'bstack:options': {
-        browserVersion: 'latest',
-      },
-    },
-    'firefox-latest': {
-      browserName: 'Firefox',
-      'bstack:options': {
-        browserVersion: 'latest',
-      },
-    },
-    'safari-latest': {
-      browserName: 'Safari',
-      'bstack:options': {
-        browserVersion: 'latest',
-      },
-    },
-    'edge-latest': {
-      browserName: 'MicrosoftEdge',
-      'bstack:options': {
-        browserVersion: 'latest',
-      },
-    },
-  },
-};
-
-const BROWSERSTACK_ENABLED = false;
-
-function getBrowser({ enabled = false, enableScrollbars = false } = {}) {
-  if (BROWSERSTACK_ENABLED) {
-    return {
-      enabled,
-      // Use the browserstack provider.
-      provider: '@chialab/vitest-provider-browserstack',
-      // We need to expose the server to the network in order to let Browserstack access it.
-      api: {
-        host: '0.0.0.0',
-        port: 5176,
-      },
-      viewport: {
-        width: 1024,
-        height: 896,
-      },
-      instances: [{ browser: 'browserstack:chrome-latest' }],
-    };
-  }
-  return {
-    enabled,
-    provider: playwright({
-      launchOptions: {
-        ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
-      },
-    }),
-    headless: true,
-    viewport: {
-      width: 1024,
-      height: 896,
-    },
-    instances: [{ browser: process.env.PLAYWRIGHT_BROWSER || 'chromium' }],
-  };
-}
+import { BrowserInstanceOption } from 'vitest/node';
 
 function forceJsxForJsFiles(): Plugin {
   return {
@@ -163,11 +95,31 @@ export default async function create(
         // We use performance.now in the codebase
         toFake: [...(configDefaults.fakeTimers.toFake ?? []), 'performance'],
       },
-      browser: getBrowser({ enabled: testEnv === 'browser', enableScrollbars }),
+      browser: {
+        enabled: testEnv === 'browser',
+        provider: playwright({
+          launchOptions: {
+            ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
+          },
+        }),
+        headless: true,
+        viewport: {
+          width: 1024,
+          height: 896,
+        },
+        instances: [
+          { browser: 'chromium' },
+          ...(process.env.CI
+            ? [
+                { browser: 'firefox' } satisfies BrowserInstanceOption,
+                { browser: 'webkit' } satisfies BrowserInstanceOption,
+              ]
+            : []),
+        ],
+      },
       env: {
         VITEST: 'true',
       },
-      browserstack,
     },
     resolve: {
       dedupe: ['react', 'react-dom'],
