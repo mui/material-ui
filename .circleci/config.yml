@@ -69,6 +69,11 @@ commands:
         description: 'Set to true if you intend to any browser (for example with playwright).'
     steps:
       - run:
+          name: Install jq
+          command: |
+            sudo apt-get update -y
+            sudo apt-get install -y jq
+      - run:
           name: Set npm registry public signing keys
           command: |
             echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
