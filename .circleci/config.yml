@@ -71,8 +71,8 @@ commands:
       - run:
           name: Install jq
           command: |
-            sudo apt-get update -y
-            sudo apt-get install -y jq
+            apt-get update -y
+            apt-get install -y jq
       - run:
           name: Set npm registry public signing keys
           command: |
