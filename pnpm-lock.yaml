@@ -400,9 +400,6 @@ importers:
       chance:
         specifier: ^1.1.13
         version: 1.1.13
-      clean-css:
-        specifier: ^5.3.3
-        version: 5.3.3
       clipboard-copy:
         specifier: ^4.0.1
         version: 4.0.1
