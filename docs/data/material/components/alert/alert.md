@@ -140,3 +140,13 @@ The Alert component is composed of a root [Paper](/material-ui/react-paper/) com
   </div>
 </div>
 ```
+## Usage tip 
+If you want to control the spacing around an Alert, wrap it in a Stack component. 
+This makes it easier to align multiple alerts without writing custom CSS. 
+## Troubleshooting 
+### ❗ Alert not visible?
+ Make sure the parent container has enough space. Alerts may collapse if their container has overflow: hidden or a fixed height. 
+ ### ❗ Icons not showing?
+The Alert component uses Material Icons. Install the icon package if you haven't:
+sh
+pnpm add @mui/icons-material  
