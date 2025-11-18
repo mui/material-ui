@@ -3668,6 +3668,32 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
+    // https://github.com/mui/material-ui/issues/47244
+    it('should show input caret when focusing input after chip navigation', () => {
+      const view = render(
+        <Autocomplete
+          defaultValue="two"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = view.container.querySelector(`.${chipClasses.root}`);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+
+      fireEvent.click(textbox);
+
+      expect(textbox).toHaveFocus();
+      expect(chip).not.toHaveFocus();
+      expect(textbox).toHaveComputedStyle({ opacity: '1' });
+    });
+
     it('should allow zero number (0) as a value to render', () => {
       const view = render(
         <Autocomplete
