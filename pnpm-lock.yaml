@@ -605,9 +605,6 @@ importers:
       gm:
         specifier: ^1.25.1
         version: 1.25.1
-      marked:
-        specifier: ^16.2.0
-        version: 16.4.2
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
