@@ -455,14 +455,35 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   }, []);
 
   const handleClick = (event) => {
-    if (inputRef.current && event.currentTarget === event.target) {
-      inputRef.current.focus();
-    }
+  if (inputRef.current && event.currentTarget === event.target) {
+    const input = inputRef.current;
 
-    if (onClick) {
-      onClick(event);
-    }
-  };
+    // Save current caret position (if any)
+    const pos = typeof input.selectionStart === 'number'
+      ? input.selectionStart
+      : input.value.length;
+
+    input.focus();
+
+    // Restore caret position after focus is forced
+    requestAnimationFrame(() => {
+      try {
+        // If caret was at 0 due to focus forwarding, move to end instead
+        const restorePos =
+          pos === 0 && event.target === event.currentTarget
+            ? input.value.length
+            : pos;
+
+        input.setSelectionRange(restorePos, restorePos);
+      } catch (e) {}
+    });
+  }
+
+  if (onClick) {
+    onClick(event);
+  }
+};
+
   let InputComponent = inputComponent;
   let inputProps = inputPropsProp;
 
