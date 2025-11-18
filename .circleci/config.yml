@@ -71,8 +71,8 @@ commands:
       - run:
           name: Install jq
           command: |
-            apt-get update -y
-            apt-get install -y jq
+            apt-get update -y || sudo apt-get update -y
+            apt-get install -y jq || sudo apt-get install -y jq
       - run:
           name: Set npm registry public signing keys
           command: |
@@ -329,7 +329,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+      - image: cimg/base:stable
     steps:
       - checkout
       - install_js:
