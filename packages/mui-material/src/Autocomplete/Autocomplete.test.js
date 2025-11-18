@@ -3668,7 +3668,8 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('shows input caret when focusing input after chip navigation', () => {
+    // https://github.com/mui/material-ui/issues/47244
+    it('should show input caret when focusing input after chip navigation', () => {
       const view = render(
         <Autocomplete
           defaultValue="two"
@@ -3690,6 +3691,7 @@ describe('<Autocomplete />', () => {
 
       expect(textbox).toHaveFocus();
       expect(chip).not.toHaveFocus();
+      expect(textbox).toHaveComputedStyle({ opacity: '1' });
     });
 
     it('should allow zero number (0) as a value to render', () => {
