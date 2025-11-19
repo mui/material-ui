@@ -227,28 +227,34 @@ function createVitestClock(
         vi.setSystemTime(config);
       }
     });
-    afterEach(() => {
-      vi.useRealTimers();
-    });
   } else {
     beforeEach(() => {
       if (config) {
         vi.setSystemTime(config);
       }
     });
-    afterEach(() => {
-      vi.useRealTimers();
-    });
   }
+
+  afterEach(async () => {
+    if (vi.isFakeTimers()) {
+      await rtlAct(async () => {
+        vi.runOnlyPendingTimers();
+      });
+      vi.useRealTimers();
+    }
+  });
 
   return {
     withFakeTimers: () => {
+      if (vi.isFakeTimers()) {
+        return;
+      }
       beforeEach(() => {
         vi.useFakeTimers({
           now: config,
           // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
           // Technically we'd want to reset all modules between tests but we don't have that technology.
-          // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+          // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
           shouldClearNativeTimers: true,
           toFake: [
             'setTimeout',
@@ -265,9 +271,6 @@ function createVitestClock(
         if (config) {
           vi.setSystemTime(config);
         }
-      });
-      afterEach(() => {
-        vi.useRealTimers();
       });
     },
     runToLast: () => {
