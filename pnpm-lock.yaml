@@ -118,6 +118,9 @@ importers:
       '@types/babel__register':
         specifier: ^7.17.3
         version: 7.17.3
+      '@types/ip':
+        specifier: ^1.1.3
+        version: 1.1.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -136,6 +139,9 @@ importers:
       '@vitest/browser-playwright':
         specifier: ^4.0.10
         version: 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(playwright@1.56.1)(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)
+      '@vitest/browser-webdriverio':
+        specifier: ^4.0.10
+        version: 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)(webdriverio@9.20.0)
       '@vitest/coverage-v8':
         specifier: ^4.0.10
         version: 4.0.10(@vitest/browser@4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10))(vitest@4.0.10)
@@ -151,6 +157,9 @@ importers:
       babel-plugin-module-resolver:
         specifier: ^5.0.2
         version: 5.0.2
+      browserstack-local:
+        specifier: ^1.5.8
+        version: 1.5.8
       chalk:
         specifier: ^5.6.0
         version: 5.6.2
@@ -190,6 +199,9 @@ importers:
       globby:
         specifier: ^15.0.0
         version: 15.0.0
+      ip:
+        specifier: ^2.0.1
+        version: 2.0.1
       karma:
         specifier: ^6.4.4
         version: 6.4.4
@@ -267,10 +279,13 @@ importers:
         version: 7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       vitest:
         specifier: ^4.0.10
-        version: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+        version: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       vitest-fail-on-console:
         specifier: ^0.10.1
         version: 0.10.1(@vitest/utils@4.0.10)(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)
+      webdriverio:
+        specifier: ^9.20.0
+        version: 9.20.0
       webpack:
         specifier: ^5.101.3
         version: 5.101.3(webpack-cli@6.0.1(webpack@5.101.3))
@@ -5474,6 +5489,9 @@ packages:
   '@types/http-errors@2.0.4':
     resolution: {integrity: sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==}
 
+  '@types/ip@1.1.3':
+    resolution: {integrity: sha512-64waoJgkXFTYnCYDUWgSATJ/dXEBanVkaP5d4Sbk7P6U7cTTMhxVyROTckc6JKdwCrgnAjZMn0k3177aQxtDEA==}
+
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
 
@@ -5775,6 +5793,12 @@ packages:
     peerDependencies:
       playwright: '*'
       vitest: 4.0.10
+
+  '@vitest/browser-webdriverio@4.0.10':
+    resolution: {integrity: sha512-DRaeYGu2hMwJyIaQX8TrYi71HnHWAj8glKhxct7KlZNoR/c+1v9K70Lnm2Y09ChnMFNyiHh9Xlo3DMUNhVMRTw==}
+    peerDependencies:
+      vitest: 4.0.10
+      webdriverio: '*'
 
   '@vitest/browser@3.2.4':
     resolution: {integrity: sha512-tJxiPrWmzH8a+w9nLKlQMzAKX/7VjFs50MWgcAj7p9XQ7AQ9/35fByFYptgPELyLw+0aixTnC4pUWV+APcZ/kw==}
@@ -17373,6 +17397,10 @@ snapshots:
 
   '@types/http-errors@2.0.4': {}
 
+  '@types/ip@1.1.3':
+    dependencies:
+      '@types/node': 20.19.25
+
   '@types/istanbul-lib-coverage@2.0.6': {}
 
   '@types/jscodeshift@0.12.0':
@@ -17671,7 +17699,18 @@ snapshots:
       '@vitest/mocker': 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))
       playwright: 1.56.1
       tinyrainbow: 3.0.3
-      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+    transitivePeerDependencies:
+      - bufferutil
+      - msw
+      - utf-8-validate
+      - vite
+
+  '@vitest/browser-webdriverio@4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)(webdriverio@9.20.0)':
+    dependencies:
+      '@vitest/browser': 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)
+      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+      webdriverio: 9.20.0
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -17687,7 +17726,7 @@ snapshots:
       magic-string: 0.30.21
       sirv: 3.0.2
       tinyrainbow: 2.0.0
-      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       ws: 8.18.3
     optionalDependencies:
       playwright: 1.56.1
@@ -17707,7 +17746,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.0.3
-      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
@@ -17728,7 +17767,7 @@ snapshots:
       magicast: 0.5.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
     optionalDependencies:
       '@vitest/browser': 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)
     transitivePeerDependencies:
@@ -25584,9 +25623,9 @@ snapshots:
       '@vitest/utils': 4.0.10
       chalk: 5.6.2
       vite: 7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
-      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+      vitest: 4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
 
-  vitest@4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0):
+  vitest@4.0.10(@types/debug@4.1.12)(@types/node@20.19.25)(@vitest/browser-playwright@4.0.10)(@vitest/browser-webdriverio@4.0.10)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0):
     dependencies:
       '@vitest/expect': 4.0.10
       '@vitest/mocker': 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))
@@ -25612,6 +25651,7 @@ snapshots:
       '@types/debug': 4.1.12
       '@types/node': 20.19.25
       '@vitest/browser-playwright': 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(playwright@1.56.1)(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)
+      '@vitest/browser-webdriverio': 4.0.10(msw@2.7.3(@types/node@20.19.25)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.10)(webdriverio@9.20.0)
       happy-dom: 15.11.6
       jsdom: 26.1.0
     transitivePeerDependencies:

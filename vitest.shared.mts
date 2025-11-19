@@ -7,7 +7,123 @@ import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import { Plugin, transformWithEsbuild } from 'vite';
 import { playwright } from '@vitest/browser-playwright';
-import { BrowserInstanceOption } from 'vitest/node';
+import { BrowserInstanceOption, BrowserProviderOption } from 'vitest/node';
+import { webdriverio } from '@vitest/browser-webdriverio';
+import { Local, Options } from 'browserstack-local';
+import ip from 'ip';
+
+declare global {
+  // eslint-disable-next-line vars-on-top
+  var bsTunnel: Promise<Local> | undefined;
+}
+
+const browserStackUser = process.env.BROWSERSTACK_USERNAME;
+const browserStackKey = process.env.BROWSERSTACK_ACCESS_KEY;
+const browserStack =
+  browserStackUser && browserStackUser
+    ? {
+        user: browserStackUser,
+        key: browserStackKey,
+      }
+    : null;
+
+async function startTunnel(bsOptions: Partial<Options>): Promise<Local> {
+  if (!globalThis.bsTunnel) {
+    globalThis.bsTunnel = new Promise((resolve, reject) => {
+      const bs = new Local();
+      bs.start(bsOptions, (error) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(bs);
+        }
+      });
+    });
+  }
+  return globalThis.bsTunnel;
+}
+
+function browserstack({ verbose = false } = {}): BrowserProviderOption<object> {
+  const localIdentifier = `vitest-${Date.now()}`;
+  const user = /** @type {string} */ process.env.BROWSERSTACK_USERNAME;
+  const key = /** @type {string} */ process.env.BROWSERSTACK_ACCESS_KEY;
+
+  const tunnelPromise = startTunnel({
+    verbose,
+    force: true,
+    forceLocal: true,
+    user,
+    key,
+    localIdentifier,
+    onlyHosts: 'localhost,0.0.0.0,127.0.0.1',
+  });
+
+  const provider = webdriverio({
+    logLevel: verbose ? 'debug' : 'error',
+    protocol: 'https',
+    capabilities: {
+      webSocketUrl: true,
+      browserName: 'chrome',
+
+      browserVersion: 'latest',
+      'goog:chromeOptions': {
+        args: [`--unsafely-treat-insecure-origin-as-secure=http://${ip.address()}:5176`],
+      },
+      'bstack:options': {
+        // @ts-expect-error the type doesn't seem up-to-date
+        seleniumBidi: true,
+        seleniumVersion: '4.20.0',
+        browserVersion: 'latest',
+        wsLocalSupport: true,
+        local: true,
+        buildName: 'vitest',
+        localIdentifier,
+        os: 'OS X',
+        osVersion: 'Monterey',
+        userName: user,
+        accessKey: key,
+      },
+    },
+
+    user,
+    key,
+  });
+
+  return new Proxy(provider, {
+    get(target, prop, receiver) {
+      if (prop === 'providerFactory') {
+        return function providerFactory(project) {
+          const browser = target.providerFactory(project);
+          return new Proxy(browser, {
+            get(browserTarget, browserProp, browserReceiver) {
+              if (browserProp === 'openPage') {
+                return async function openPage(sessionId, url) {
+                  await tunnelPromise;
+
+                  const localUrl = url.replace(/localhost|127\.0\.0\.1|0\.0\.0\.0/, ip.address());
+                  return browserTarget.openPage(sessionId, localUrl);
+                } satisfies (typeof browserTarget)['openPage'];
+              }
+              if (browserProp === 'close') {
+                return async function close() {
+                  const bsLocal = await tunnelPromise;
+                  await Promise.all([
+                    browserTarget.close(),
+                    new Promise<void>((resolve) => {
+                      bsLocal.stop(() => resolve());
+                    }).catch(() => null),
+                  ]);
+                } satisfies (typeof browserTarget)['close'];
+              }
+              return Reflect.get(browserTarget, browserProp, browserReceiver);
+            },
+          });
+        } satisfies (typeof target)['providerFactory'];
+      }
+      return Reflect.get(target, prop, receiver);
+    },
+  });
+}
 
 function forceJsxForJsFiles(): Plugin {
   return {
@@ -97,19 +213,30 @@ export default async function create(
       },
       browser: {
         enabled: testEnv === 'browser',
-        provider: playwright({
-          launchOptions: {
-            ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
-          },
-        }),
+        provider: browserStack
+          ? browserstack()
+          : playwright({
+              launchOptions: {
+                ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
+              },
+            }),
+        api: browserStack
+          ? {
+              host: '0.0.0.0',
+              port: 5176,
+            }
+          : undefined,
         headless: true,
         viewport: {
           width: 1024,
           height: 896,
         },
-        instances: (process.env.VITEST_BROWSERS || 'chromium')
-          .split(',')
-          .map((browser) => ({ browser }) as BrowserInstanceOption),
+        instances: browserStack
+          ? [{ browser: 'chrome' } as BrowserInstanceOption]
+          : (process.env.VITEST_BROWSERS || 'chromium')
+              .split(',')
+              .map((browser) => ({ browser }) as BrowserInstanceOption),
+        screenshotFailures: false,
       },
       env: {
         VITEST: 'true',
