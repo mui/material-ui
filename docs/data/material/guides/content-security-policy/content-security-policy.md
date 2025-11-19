@@ -31,10 +31,7 @@ import crypto from 'crypto';
 const nonce = crypto.randomBytes(16).toString('base64'); // 128 bits of entropy
 ```
 
-This satisfies the [W3C CSP specification](https://w3c.github.io/webappsec-csp/#security-nonces) guidelines:
-
-> The generated value SHOULD be at least 128 bits long (before encoding), and SHOULD be generated via a cryptographically
-> secure random number generator in order to ensure that the value is difficult for an attacker to predict.
+This generates a value that satisfies the [W3C CSP specification](https://w3c.github.io/webappsec-csp/#security-nonces) guidelines.
 
 You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
 
