@@ -4,6 +4,7 @@ import {
   SxProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
@@ -18,6 +19,7 @@ import {
   ColorSystemOptions,
   Shape,
   ShapeOptions,
+  SupportedColorScheme,
 } from './createThemeFoundation';
 
 /**
@@ -61,6 +63,7 @@ export interface BaseTheme extends SystemTheme {
   typography: TypographyVariants;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
+  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
@@ -69,7 +72,6 @@ export {};
 type CssVarsProperties = CssThemeVariables extends { enabled: true }
   ? Pick<
       CssVarsTheme,
-      | 'applyStyles'
       | 'colorSchemes'
       | 'colorSchemeSelector'
       | 'rootSelector'
