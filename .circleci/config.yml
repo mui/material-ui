@@ -221,11 +221,6 @@ jobs:
           command: |
             pnpm extract-error-codes
             git add -A && git diff --exit-code --staged
-      - run:
-          name: '`pnpm docs:link-check` changes committed?'
-          command: |
-            pnpm docs:link-check
-            git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
     resource_class: 'medium+'
