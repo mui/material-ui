@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import sinon, { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, reactMajor } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
@@ -691,6 +691,32 @@ describe('<InputBase />', () => {
       const inputRef = React.createRef();
       const { container } = render(<InputBase multiline inputRef={inputRef} />);
       expect(inputRef.current).to.equal(container.querySelector('textarea'));
+    });
+  });
+
+  describe('caret behavior', () => {
+    it('should preserve caret position when clicking on the Root wrapper', () => {
+      const clock = sinon.useFakeTimers();
+
+      const { container } = render(<InputBase defaultValue="hello" />);
+      const input = container.querySelector('input');
+
+      act(() => {
+        input.setSelectionRange(2, 2); 
+      });
+
+      const wrapper = input.parentElement;
+
+      fireEvent.click(wrapper);
+
+      act(() => {
+        clock.runAll();
+      });
+
+      expect(input.selectionStart).to.equal(2);
+      expect(input.selectionEnd).to.equal(2);
+
+      clock.restore();
     });
   });
 
