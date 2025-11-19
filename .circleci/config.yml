@@ -51,15 +51,6 @@ default-context: &default-context
   context:
     - org-global
 
-# CircleCI has disabled the cache across forks for security reasons.
-# Following their official statement, it was a quick solution, they
-# are working on providing this feature back with appropriate security measures.
-# https://discuss.circleci.com/t/saving-cache-stopped-working-warning-skipping-this-step-disabled-in-configuration/24423/21
-#
-# restore_repo: &restore_repo
-#   restore_cache:
-#     key: v1-repo-{{ .Branch }}-{{ .Revision }}
-
 commands:
   setup_corepack:
     parameters:
