@@ -17,4 +17,5 @@ jobs:
         with:
           mode: minimum
           count: 1
-          labels: ''
+          labels: |
+             needs-triage
