@@ -26,7 +26,7 @@ A nonce is a randomly generated string that is only used once, therefore you nee
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 
 ```js
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 const nonce = crypto.randomBytes(16).toString('base64'); // 128 bits of entropy
 ```
