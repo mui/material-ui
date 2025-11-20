@@ -20,6 +20,10 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
+/**
+ * @param {object} props
+ * @param {React.ReactNode} props.children
+ */
 export function CodeStylingProvider(props) {
   const { children } = props;
 

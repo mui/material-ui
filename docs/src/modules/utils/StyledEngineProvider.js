@@ -17,6 +17,11 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin, globalSelector],
 });
 
+/**
+ * @param {object} props
+ * @param {object} props.cacheLtr
+ * @param {React.ReactNode} [props.children]
+ */
 export default function StyledEngineProvider(props) {
   const { children, cacheLtr } = props;
   const { direction } = React.useContext(ThemeOptionsContext);
