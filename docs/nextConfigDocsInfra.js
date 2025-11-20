@@ -52,6 +52,7 @@ function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
     reactStrictMode: true,
+    productionBrowserSourceMaps: true,
     ...nextConfig,
     env: {
       BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
