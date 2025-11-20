@@ -26,13 +26,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        include:
-          - os: ubuntu-latest
-            browser: chromium
-          - os: macos-latest
-            browser: webkit
-          - os: windows-latest
-            browser: firefox
+        os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo '${{ github.actor }}'
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
