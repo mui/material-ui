@@ -47,27 +47,17 @@ const roboto = Roboto({
 });
 
 const generalSans = localFont({
-  declarations: [
-    {
-      prop: 'font-family',
-      value: 'General Sans',
-    },
-  ],
+  declarations: [{ prop: 'font-family', value: 'General Sans' }],
   src: [
     { path: '../public/static/fonts/GeneralSans-Regular.woff2', weight: '400', style: 'normal' },
     { path: '../public/static/fonts/GeneralSans-Medium.woff2', weight: '500', style: 'normal' },
-    { path: '../public/static/fonts/GeneralSans-SemiBold.woff2', weight: '600', style: 'normal' },
+    { path: '../public/static/fonts/GeneralSans-Semibold.woff2', weight: '600', style: 'normal' },
     { path: '../public/static/fonts/GeneralSans-Bold.woff2', weight: '700', style: 'normal' },
   ],
 });
 
 const ibmPlexSans = localFont({
-  declarations: [
-    {
-      prop: 'font-family',
-      value: 'IBM Plex Sans',
-    },
-  ],
+  declarations: [{ prop: 'font-family', value: 'IBM Plex Sans' }],
   src: [
     { path: '../public/static/fonts/IBMPlexSans-Regular.woff2', weight: '400', style: 'normal' },
     { path: '../public/static/fonts/IBMPlexSans-Medium.woff2', weight: '500', style: 'normal' },
