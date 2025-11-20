@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/e8720c89db86b256b0422d1c77fc292f979b892c/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/5ca0857a7a6973f8ec525b83c7f0213ae756ca09/.circleci/orbs/code-infra.yml
 
 parameters:
   browserstack-force:
