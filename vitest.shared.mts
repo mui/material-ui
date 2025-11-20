@@ -11,10 +11,13 @@ import { BrowserInstanceOption, BrowserProviderOption } from 'vitest/node';
 import { webdriverio } from '@vitest/browser-webdriverio';
 import { Local, Options } from 'browserstack-local';
 import ip from 'ip';
+import crypto from 'crypto';
+
+type LocalPromise = Promise<Local> & { localId: string };
 
 declare global {
   // eslint-disable-next-line vars-on-top
-  var bsTunnel: Promise<Local> | undefined;
+  var bsTunnel: LocalPromise | undefined;
 }
 
 interface BrowserStackConfigOptions {
@@ -33,18 +36,24 @@ const browserStackConfig: BrowserStackConfigOptions | null =
       }
     : null;
 
-async function startTunnel(bsOptions: Partial<Options>): Promise<Local> {
+function startTunnel(bsOptions: Partial<Options>): LocalPromise {
   if (!globalThis.bsTunnel) {
-    globalThis.bsTunnel = new Promise((resolve, reject) => {
-      const bs = new Local();
-      bs.start(bsOptions, (error) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(bs);
-        }
-      });
-    });
+    const localIdentifier = `vitest-${crypto.randomUUID()}`;
+    globalThis.bsTunnel = Object.assign(
+      new Promise<Local>((resolve, reject) => {
+        const bs = new Local();
+        bs.start({ ...bsOptions, localIdentifier }, (error) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(bs);
+          }
+        });
+      }),
+      {
+        localId: localIdentifier || '',
+      },
+    );
   }
   return globalThis.bsTunnel;
 }
@@ -54,16 +63,12 @@ function browserstack({
   key,
   verbose = false,
 }: BrowserStackConfigOptions): BrowserProviderOption<object> {
-  const localIdentifier = `vitest-${Date.now()}`;
-
   const tunnelPromise = startTunnel({
     verbose,
     force: true,
     forceLocal: true,
     user,
     key,
-    localIdentifier,
-    onlyHosts: 'localhost,0.0.0.0,127.0.0.1',
   });
 
   const provider = webdriverio({
@@ -85,7 +90,7 @@ function browserstack({
         wsLocalSupport: true,
         local: true,
         buildName: 'vitest',
-        localIdentifier,
+        localIdentifier: tunnelPromise.localId,
         os: 'OS X',
         osVersion: 'Monterey',
         userName: user,
