@@ -43,7 +43,9 @@ default-job: &default-job
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
-  executor: code-infra/mui-node
+  executor:
+    name: code-infra/mui-node
+    node-version: '22.18'
 
 default-context: &default-context
   context:
