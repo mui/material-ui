@@ -5,6 +5,7 @@ import {
   SxProps,
   SxConfig,
   Interpolation,
+  ApplyStyles,
 } from '@mui/system';
 import { Palette, PaletteOptions } from '../styles/createPalette';
 import { Mixins, MixinsOptions } from '../styles/createMixins';
@@ -128,12 +129,12 @@ export interface BaseTheme extends SystemTheme {
   typography: TypographyVariants;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
+  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 type CssVarsProperties = CssThemeVariables extends { enabled: true }
   ? Pick<
       CssVarsTheme,
-      | 'applyStyles'
       | 'colorSchemes'
       | 'colorSchemeSelector'
       | 'rootSelector'

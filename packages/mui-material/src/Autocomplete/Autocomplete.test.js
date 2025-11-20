@@ -3668,6 +3668,32 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
+    // https://github.com/mui/material-ui/issues/47244
+    it('should show input caret when focusing input after chip navigation', () => {
+      const view = render(
+        <Autocomplete
+          defaultValue="two"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = view.container.querySelector(`.${chipClasses.root}`);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+
+      fireEvent.click(textbox);
+
+      expect(textbox).toHaveFocus();
+      expect(chip).not.toHaveFocus();
+      expect(textbox).toHaveComputedStyle({ opacity: '1' });
+    });
+
     it('should allow zero number (0) as a value to render', () => {
       const view = render(
         <Autocomplete
@@ -3682,6 +3708,49 @@ describe('<Autocomplete />', () => {
       );
 
       expect(view.container.querySelector(`.${chipClasses.root}`)).to.have.text('0');
+    });
+
+    it('should not throw error on pressing ArrowLeft key with no value in single value rendering', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderValue={(value, getItemProps) => {
+            return value ? <Chip label={value} {...getItemProps()} /> : null;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      }).not.to.throw();
+
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should not throw error on pressing ArrowLeft key with input text but no value in single value rendering', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderValue={(value, getItemProps) => {
+            return value ? <Chip label={value} {...getItemProps()} /> : null;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.change(textbox, { target: { value: 'on' } });
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      }).not.to.throw();
+
+      expect(textbox).to.have.property('value', 'on');
+      expect(textbox).toHaveFocus();
     });
   });
 

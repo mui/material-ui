@@ -18,6 +18,7 @@ import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+import getActiveElement from '../utils/getActiveElement';
 import useSlot from '../utils/useSlot';
 
 const nextItem = (list, item) => {
@@ -820,11 +821,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
 
     const list = tabListRef.current;
-    const currentFocus = ownerDocument(list).activeElement;
+    const currentFocus = getActiveElement(ownerDocument(list));
     // Keyboard navigation assumes that [role="tab"] are siblings
     // though we might warn in the future about nested, interactive elements
     // as a a11y violation
-    const role = currentFocus.getAttribute('role');
+    const role = currentFocus?.getAttribute('role');
     if (role !== 'tab') {
       return;
     }
