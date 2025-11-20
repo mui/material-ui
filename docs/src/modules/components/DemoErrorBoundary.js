@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
@@ -21,6 +22,17 @@ function newGitHubIssueUrl(options) {
   return `${url}?${query}`;
 }
 
+/**
+ * @typedef {object} DemoErrorBoundaryProps
+ * @property {React.ReactNode} [children]
+ * @property {string} name
+ * @property {Function} onResetDemoClick
+ * @property {Function} t - translate function from redux store
+ */
+
+/**
+ * @extends {React.Component<DemoErrorBoundaryProps>}
+ */
 export default class DemoErrorBoundary extends React.Component {
   state = {
     error: null,

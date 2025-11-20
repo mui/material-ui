@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { getCookie } from 'docs/src/modules/utils/helpers';

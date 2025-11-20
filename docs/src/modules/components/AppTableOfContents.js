@@ -1,3 +1,4 @@
+// @ts-check
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -168,6 +169,10 @@ function shouldShowJobAd() {
 
 const showJobAd = featureToggle.enable_job_banner && shouldShowJobAd();
 
+/**
+ * @param {object} props
+ * @param {Array} props.toc
+ */
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();

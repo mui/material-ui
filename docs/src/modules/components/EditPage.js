@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -5,6 +6,10 @@ import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 
+/**
+ * @param {object} props
+ * @param {string} props.sourceLocation
+ */
 export default function EditPage(props) {
   const { sourceLocation } = props;
   const t = useTranslate();

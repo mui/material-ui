@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from 'prop-types';
 import { styled, useTheme, useColorScheme } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
@@ -35,6 +36,11 @@ const IconToggleButton = styled(ToggleButton)({
   },
 });
 
+/**
+ * @param {object} props
+ * @param {Function} props.onChange
+ * @param {'light' | 'system' | 'dark'} [props.value]
+ */
 function ToggleTheme(props) {
   const { value, onChange } = props;
   const t = useTranslate();
@@ -82,6 +88,11 @@ ToggleTheme.propTypes = {
   value: PropTypes.oneOf(['light', 'system', 'dark']),
 };
 
+/**
+ * @param {object} props
+ * @param {Function} props.onChange
+ * @param {'light' | 'system' | 'dark'} [props.value]
+ */
 function ToggleVarTheme(props) {
   const { setMode } = useColorScheme();
 
@@ -100,6 +111,11 @@ ToggleVarTheme.propTypes = {
   value: PropTypes.oneOf(['light', 'system', 'dark']),
 };
 
+/**
+ * @param {object} props
+ * @param {Function} props.onClose
+ * @param {boolean} [props.open]
+ */
 export default function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();

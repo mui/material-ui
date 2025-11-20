@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
@@ -31,6 +32,10 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
   },
 }));
 
+/**
+ * @param {object} props
+ * @param {object} props.docs
+ */
 export default function TopLayoutCareers(props) {
   const { docs } = props;
   const { description, rendered, title } = docs.en;

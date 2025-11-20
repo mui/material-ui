@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
@@ -202,6 +203,11 @@ function getDisplayTag(hit) {
   return <Chip label={productName} size="small" variant="outlined" sx={{ mr: 1 }} />;
 }
 
+/**
+ * @param {object} props
+ * @param {React.ReactNode} [props.children]
+ * @param {object} props.hit
+ */
 function DocSearchHit(props) {
   const { children, hit } = props;
 

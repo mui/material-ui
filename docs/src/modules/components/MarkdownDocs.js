@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import { Ad, AdGuest } from '@mui/docs/Ad';
@@ -5,6 +6,15 @@ import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
 
+/**
+ * @param {object} props
+ * @param {object} [props.demoComponents]
+ * @param {object} [props.demos]
+ * @param {boolean} [props.disableAd]
+ * @param {boolean} [props.disableToc]
+ * @param {object} props.docs
+ * @param {object} [props.srcComponents]
+ */
 export default function MarkdownDocs(props) {
   const {
     disableAd = false,

@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
@@ -269,6 +270,25 @@ function useToolbar(controlRefs, options = {}) {
   };
 }
 
+/**
+ * @param {object} props
+ * @param {boolean} props.codeOpen
+ * @param {string} props.codeVariant
+ * @param {Function} props.copyButtonOnClick
+ * @param {object} props.copyIcon
+ * @param {object} props.demo
+ * @param {object} props.demoData
+ * @param {string} [props.demoId]
+ * @param {string} props.demoName
+ * @param {object} props.demoOptions
+ * @param {string} [props.demoSourceId]
+ * @param {string} [props.hasNonSystemDemos]
+ * @param {object} props.initialFocusRef
+ * @param {Function} props.onCodeOpenChange
+ * @param {Function} props.onResetDemoClick
+ * @param {boolean} props.openDemoSource
+ * @param {boolean} props.showPreview
+ */
 export default function DemoToolbar(props) {
   const {
     codeOpen,

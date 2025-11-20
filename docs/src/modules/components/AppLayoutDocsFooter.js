@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
@@ -182,6 +183,11 @@ const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API 
 
 const iconColor = 'grey.500';
 
+/**
+ * @param {object} props
+ * @param {string} props.location
+ * @param {Array} [props.tableOfContents]
+ */
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [], location } = props;
 

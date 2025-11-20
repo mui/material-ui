@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
@@ -115,6 +116,22 @@ const StyledAppContainer = styled(AppContainer, {
   };
 });
 
+/**
+ * @param {object} props
+ * @param {React.ElementType} [props.BannerComponent]
+ * @param {object} [props.cardOptions]
+ * @param {string} [props.cardOptions.description]
+ * @param {string} [props.cardOptions.title]
+ * @param {React.ReactNode} props.children
+ * @param {string} props.description
+ * @param {boolean} props.disableAd
+ * @param {boolean} [props.disableLayout]
+ * @param {boolean} props.disableToc
+ * @param {boolean} [props.hasTabs]
+ * @param {string} props.location
+ * @param {string} props.title
+ * @param {Array} props.toc
+ */
 export default function AppLayoutDocs(props) {
   const router = useRouter();
   const {

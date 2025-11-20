@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled, alpha } from '@mui/material/styles';
@@ -34,6 +35,15 @@ const LinkTab = styled(Link)(({ theme }) => ({
   }),
 }));
 
+/**
+ * @param {object} props
+ * @param {string} [props.activeTab]
+ * @param {React.ReactNode} [props.children]
+ * @param {object} props.markdown
+ * @param {object} props.markdown.headers
+ * @param {Array} [props.markdown.headers.components]
+ * @param {Array} [props.markdown.headers.hooks]
+ */
 export default function ComponentPageTabs(props) {
   const {
     activeTab,

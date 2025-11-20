@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
@@ -314,6 +315,13 @@ const selectionOverride = (theme) => ({
   },
 });
 
+/**
+ * @param {object} props
+ * @param {object} props.demo
+ * @param {object} props.demoOptions - The options provided with: {{"demo": "Name.js", …demoOptions}}
+ * @param {boolean} props.disableAd
+ * @param {string} props.githubLocation
+ */
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation } = props;
 

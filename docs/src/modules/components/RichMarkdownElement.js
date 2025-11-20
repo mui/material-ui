@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCodeWithTabs } from '@mui/docs/HighlightedCodeWithTabs';
@@ -10,6 +11,16 @@ function noComponent(moduleID) {
   };
 }
 
+/**
+ * @param {object} props
+ * @param {string} [props.activeTab]
+ * @param {*} [props.demoComponents]
+ * @param {*} [props.demos]
+ * @param {boolean} [props.disableAd]
+ * @param {*} [props.localizedDoc]
+ * @param {string | {component?: *, demo?: *}} [props.renderedMarkdownOrDemo]
+ * @param {*} [props.srcComponents]
+ */
 export default function RichMarkdownElement(props) {
   const {
     activeTab,

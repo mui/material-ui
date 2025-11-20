@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
@@ -320,6 +321,14 @@ const Root = styled('div')(
     }),
 );
 
+/**
+ * @param {object} props
+ * @param {string} [props.className]
+ * @param {object} [props.demoComponents]
+ * @param {object} [props.demos]
+ * @param {object} props.docs
+ * @param {object} [props.srcComponents]
+ */
 export default function TopLayoutBlog(props) {
   const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;

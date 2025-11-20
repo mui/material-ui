@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
@@ -36,6 +37,19 @@ function getHookTranslatedHeader(t, header) {
   return translations[header] || header;
 }
 
+/**
+ * @param {object} props
+ * @param {object} [props.componentsApiDescriptions]
+ * @param {object} [props.componentsApiPageContents]
+ * @param {object} [props.demoComponents]
+ * @param {object} [props.demos]
+ * @param {boolean} [props.disableAd]
+ * @param {boolean} [props.disableToc]
+ * @param {object} props.docs
+ * @param {object} [props.hooksApiDescriptions]
+ * @param {object} [props.hooksApiPageContents]
+ * @param {object} [props.srcComponents]
+ */
 export default function MarkdownDocsV2(props) {
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
