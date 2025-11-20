@@ -17,10 +17,16 @@ declare global {
   var bsTunnel: Promise<Local> | undefined;
 }
 
+interface BrowserStackConfigOptions {
+  user: string;
+  key: string;
+  verbose?: boolean;
+}
+
 const browserStackUser = process.env.BROWSERSTACK_USERNAME;
 const browserStackKey = process.env.BROWSERSTACK_ACCESS_KEY;
-const browserStack =
-  browserStackUser && browserStackUser
+const browserStackConfig: BrowserStackConfigOptions | null =
+  browserStackUser && browserStackKey
     ? {
         user: browserStackUser,
         key: browserStackKey,
@@ -43,10 +49,12 @@ async function startTunnel(bsOptions: Partial<Options>): Promise<Local> {
   return globalThis.bsTunnel;
 }
 
-function browserstack({ verbose = false } = {}): BrowserProviderOption<object> {
+function browserstack({
+  user,
+  key,
+  verbose = false,
+}: BrowserStackConfigOptions): BrowserProviderOption<object> {
   const localIdentifier = `vitest-${Date.now()}`;
-  const user = /** @type {string} */ process.env.BROWSERSTACK_USERNAME;
-  const key = /** @type {string} */ process.env.BROWSERSTACK_ACCESS_KEY;
 
   const tunnelPromise = startTunnel({
     verbose,
@@ -99,7 +107,6 @@ function browserstack({ verbose = false } = {}): BrowserProviderOption<object> {
               if (browserProp === 'openPage') {
                 return async function openPage(sessionId, url) {
                   await tunnelPromise;
-
                   const localUrl = url.replace(/localhost|127\.0\.0\.1|0\.0\.0\.0/, ip.address());
                   return browserTarget.openPage(sessionId, localUrl);
                 } satisfies (typeof browserTarget)['openPage'];
@@ -213,14 +220,14 @@ export default async function create(
       },
       browser: {
         enabled: testEnv === 'browser',
-        provider: browserStack
-          ? browserstack()
+        provider: browserStackConfig
+          ? browserstack(browserStackConfig)
           : playwright({
               launchOptions: {
                 ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
               },
             }),
-        api: browserStack
+        api: browserStackConfig
           ? {
               host: '0.0.0.0',
               port: 5176,
@@ -231,7 +238,7 @@ export default async function create(
           width: 1024,
           height: 896,
         },
-        instances: browserStack
+        instances: browserStackConfig
           ? [{ browser: 'chrome' } as BrowserInstanceOption]
           : (process.env.VITEST_BROWSERS || 'chromium')
               .split(',')
