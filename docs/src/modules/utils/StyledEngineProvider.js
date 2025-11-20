@@ -32,6 +32,7 @@ export default function StyledEngineProvider(props) {
 
   return (
     <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
+      {/* @ts-expect-error EmotionCache type is complex */}
       <CacheProvider value={emotionCache}>
         <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
         {children}

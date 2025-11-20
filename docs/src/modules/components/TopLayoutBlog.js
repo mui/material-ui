@@ -331,6 +331,7 @@ const Root = styled('div')(
  */
 export default function TopLayoutBlog(props) {
   const { className, docs, demos, demoComponents, srcComponents } = props;
+  // @ts-expect-error docs structure is complex
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
@@ -341,6 +342,7 @@ export default function TopLayoutBlog(props) {
       ? `/static/blog/${slug}/card.png`
       : `/edge-functions/og-image/?title=${headers.cardTitle || finalTitle}&authors=${headers.authors
           .map((author) => {
+            // @ts-expect-error author indexing is complex
             const { github, name } = authors[author];
             return `${name} @${github}`;
           })
@@ -368,6 +370,7 @@ export default function TopLayoutBlog(props) {
         card={card}
         type="article"
       >
+        {/* @ts-expect-error author indexing is complex */}
         <meta name="author" content={headers.authors.map((key) => authors[key].name).join(', ')} />
         <meta property="article:published_time" content={headers.date} />
         <script
@@ -388,13 +391,16 @@ export default function TopLayoutBlog(props) {
               },
               author: {
                 '@type': 'Person',
+                // @ts-expect-error author indexing is complex
                 name: authors[headers.authors[0]].name,
                 image: {
                   '@type': 'ImageObject',
+                  // @ts-expect-error author indexing is complex
                   url: `${authors[headers.authors[0]].avatar}?s=${250}`,
                   width: 250,
                   height: 250,
                 },
+                // @ts-expect-error author indexing is complex
                 sameAs: [`https://github.com/${authors[headers.authors[0]].github}`],
               },
               headline: finalTitle,
@@ -450,35 +456,41 @@ export default function TopLayoutBlog(props) {
                 <h1>{headers.title}</h1>
               </MarkdownElement>
               <AuthorsContainer>
-                {headers.authors.map((author) => (
-                  <div key={author} className="author">
-                    <Avatar
-                      sx={{ width: 36, height: 36 }}
-                      alt=""
-                      src={`${authors[author].avatar}?s=${36}`}
-                      srcSet={`${authors[author].avatar}?s=${36 * 2} 2x, ${
-                        authors[author].avatar
-                      }?s=${36 * 3} 3x`}
-                    />
-                    <div>
-                      <Typography variant="body2" sx={{ fontWeight: '500' }}>
-                        {authors[author].name}
-                      </Typography>
-                      <Link
-                        href={`https://github.com/${authors[author].github}`}
-                        target="_blank"
-                        rel="noopener"
-                        variant="body2"
-                        sx={{ color: 'primary', fontWeight: 500 }}
-                      >
-                        @{authors[author].github}
-                      </Link>
+                {/* @ts-expect-error author indexing is complex */}
+                {headers.authors.map((author) => {
+                  // @ts-expect-error author indexing is complex
+                  const authorData = authors[author];
+                  return (
+                    <div key={author} className="author">
+                      <Avatar
+                        sx={{ width: 36, height: 36 }}
+                        alt=""
+                        src={`${authorData.avatar}?s=${36}`}
+                        srcSet={`${authorData.avatar}?s=${36 * 2} 2x, ${
+                          authorData.avatar
+                        }?s=${36 * 3} 3x`}
+                      />
+                      <div>
+                        <Typography variant="body2" sx={{ fontWeight: '500' }}>
+                          {authorData.name}
+                        </Typography>
+                        <Link
+                          href={`https://github.com/${authorData.github}`}
+                          target="_blank"
+                          rel="noopener"
+                          variant="body2"
+                          sx={{ color: 'primary', fontWeight: 500 }}
+                        >
+                          @{authorData.github}
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </AuthorsContainer>
             </React.Fragment>
           ) : null}
+          {/* @ts-expect-error rendered map types are complex */}
           {rendered.map((chunk, index) => {
             return (
               <RichMarkdownElement
@@ -486,8 +498,10 @@ export default function TopLayoutBlog(props) {
                 demos={demos}
                 demoComponents={demoComponents}
                 srcComponents={srcComponents}
+                // @ts-expect-error Using renderedMarkdown instead of renderedMarkdownOrDemo
                 renderedMarkdown={chunk}
                 disableAd
+                // @ts-expect-error docs structure is complex
                 localizedDoc={docs.en}
                 renderedMarkdownOrDemo={chunk}
               />
@@ -503,6 +517,7 @@ export default function TopLayoutBlog(props) {
   );
 }
 
+// @ts-expect-error PropTypes type inference is complex
 TopLayoutBlog.propTypes = {
   className: PropTypes.string,
   demoComponents: PropTypes.object,

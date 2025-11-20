@@ -95,6 +95,7 @@ export default function MarkdownDocsV2(props) {
     };
   }
 
+  // @ts-expect-error hooksToc is dynamically built
   const hooksToc = [];
   if (hooksApiPageContents) {
     Object.keys(hooksApiPageContents).forEach((key) => {
@@ -135,6 +136,7 @@ export default function MarkdownDocsV2(props) {
     };
   }
 
+  // @ts-expect-error componentsApiToc is dynamically built
   const componentsApiToc = [];
 
   if (componentsApiPageContents) {
@@ -214,6 +216,7 @@ export default function MarkdownDocsV2(props) {
     activeToc = componentsApiToc;
   }
 
+  // @ts-expect-error localizedDoc.rendered has complex type
   const hasTabs = localizedDoc.rendered.some((renderedMarkdownOrDemo) => {
     if (
       typeof renderedMarkdownOrDemo === 'object' &&
@@ -242,6 +245,7 @@ export default function MarkdownDocsV2(props) {
     >
       <div
         style={{
+          // @ts-expect-error Custom CSS property
           '--MuiDocs-header-height': hasTabs
             ? `${AppFrameHeight + TabsHeight}px`
             : `${AppFrameHeight}px`,
@@ -256,6 +260,7 @@ export default function MarkdownDocsV2(props) {
         {activeTab === '' &&
           localizedDoc.rendered
             .slice(i)
+            // @ts-expect-error rendered.map has complex types
             .map((renderedMarkdownOrDemo, index) => (
               <RichMarkdownElement
                 key={`demos-section-${index}`}
@@ -270,13 +275,17 @@ export default function MarkdownDocsV2(props) {
             ))}
         {activeTab === 'components-api' && (
           <ComponentsApiContent
+            // @ts-expect-error optional props may be undefined
             descriptions={componentsApiDescriptions}
+            // @ts-expect-error optional props may be undefined
             pageContents={componentsApiPageContents}
           />
         )}
         {activeTab === 'hooks-api' && (
           <HooksApiContent
+            // @ts-expect-error optional props may be undefined
             descriptions={hooksApiDescriptions}
+            // @ts-expect-error optional props may be undefined
             pagesContents={hooksApiPageContents}
           />
         )}
@@ -285,6 +294,7 @@ export default function MarkdownDocsV2(props) {
   );
 }
 
+// @ts-expect-error PropTypes type inference is complex
 MarkdownDocsV2.propTypes = {
   componentsApiDescriptions: PropTypes.object,
   componentsApiPageContents: PropTypes.object,

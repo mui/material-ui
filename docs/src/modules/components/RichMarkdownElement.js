@@ -5,6 +5,9 @@ import { HighlightedCodeWithTabs } from '@mui/docs/HighlightedCodeWithTabs';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import Demo from 'docs/src/modules/components/Demo';
 
+/**
+ * @param {string} moduleID
+ */
 function noComponent(moduleID) {
   return function NoComponent() {
     throw new Error(`No demo component provided for '${moduleID}'`);
@@ -38,7 +41,9 @@ export default function RichMarkdownElement(props) {
     return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />;
   }
 
+  // @ts-expect-error renderedMarkdownOrDemo structure is complex
   if (renderedMarkdownOrDemo.component) {
+    // @ts-expect-error renderedMarkdownOrDemo structure is complex
     const name = renderedMarkdownOrDemo.component;
     const Component = srcComponents?.[name];
 
@@ -48,23 +53,28 @@ export default function RichMarkdownElement(props) {
 
     const additionalProps = {};
     if (name === 'modules/components/ComponentPageTabs.js') {
+      // @ts-expect-error additionalProps is a dynamic object
       additionalProps.activeTab = activeTab;
     }
 
     return <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />;
   }
 
+  // @ts-expect-error renderedMarkdownOrDemo structure is complex
   if (renderedMarkdownOrDemo.type === 'codeblock') {
     return (
       <HighlightedCodeWithTabs
+        // @ts-expect-error renderedMarkdownOrDemo structure is complex
         tabs={renderedMarkdownOrDemo.data}
         storageKey={
+          // @ts-expect-error renderedMarkdownOrDemo structure is complex
           renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
         }
       />
     );
   }
 
+  // @ts-expect-error renderedMarkdownOrDemo structure is complex
   const name = renderedMarkdownOrDemo.demo;
   const demo = demos?.[name];
   if (demo === undefined) {
@@ -121,7 +131,9 @@ export default function RichMarkdownElement(props) {
         gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
         relativeModules: demo.relativeModules,
       }}
+      // @ts-expect-error disableAd may be undefined but is handled by component
       disableAd={disableAd}
+      // @ts-expect-error renderedMarkdownOrDemo type is complex
       demoOptions={renderedMarkdownOrDemo}
       githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
     />

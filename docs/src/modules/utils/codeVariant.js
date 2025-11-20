@@ -6,6 +6,7 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 const CodeVariantContext = React.createContext({
   codeVariant: CODE_VARIANTS.TS,
+  noSsrCodeVariant: CODE_VARIANTS.TS,
   setCodeVariant: () => {},
 });
 if (process.env.NODE_ENV !== 'production') {
@@ -69,6 +70,7 @@ export function CodeVariantProvider(props) {
     return { codeVariant, noSsrCodeVariant, setCodeVariant };
   }, [codeVariant, noSsrCodeVariant]);
 
+  // @ts-expect-error Context type mismatch between initial value and actual value
   return <CodeVariantContext.Provider value={contextValue}>{children}</CodeVariantContext.Provider>;
 }
 

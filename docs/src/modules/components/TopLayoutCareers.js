@@ -38,6 +38,7 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
  */
 export default function TopLayoutCareers(props) {
   const { docs } = props;
+  // @ts-expect-error docs structure is complex
   const { description, rendered, title } = docs.en;
   const t = useTranslate();
 
@@ -62,6 +63,7 @@ export default function TopLayoutCareers(props) {
             <KeyboardArrowLeftIcon fontSize="small" />
             {t('backToOpenRoles')}
           </Link>
+          {/* @ts-expect-error rendered map types are complex */}
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}

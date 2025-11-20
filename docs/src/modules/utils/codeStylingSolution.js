@@ -6,6 +6,7 @@ import { CODE_STYLING } from 'docs/src/modules/constants';
 
 const CodeStylingContext = React.createContext({
   codeStyling: CODE_STYLING.SYSTEM,
+  noSsrCodeStyling: CODE_STYLING.SYSTEM,
   setCodeStyling: () => {},
 });
 if (process.env.NODE_ENV !== 'production') {
@@ -81,6 +82,7 @@ export function CodeStylingProvider(props) {
     return { codeStyling, noSsrCodeStyling, setCodeStyling };
   }, [codeStyling, noSsrCodeStyling]);
 
+  // @ts-expect-error Context type mismatch between initial value and actual value
   return <CodeStylingContext.Provider value={contextValue}>{children}</CodeStylingContext.Provider>;
 }
 
