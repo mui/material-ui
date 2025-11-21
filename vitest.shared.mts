@@ -78,7 +78,7 @@ function browserstack({
       webSocketUrl: true,
       browserName: 'chrome',
 
-      browserVersion: 'latest',
+      browserVersion: '131.0',
       'goog:chromeOptions': {
         args: [`--unsafely-treat-insecure-origin-as-secure=http://${ip.address()}:5176`],
       },
@@ -86,7 +86,6 @@ function browserstack({
         // @ts-expect-error the type doesn't seem up-to-date
         seleniumBidi: true,
         seleniumVersion: '4.20.0',
-        browserVersion: 'latest',
         wsLocalSupport: true,
         local: true,
         buildName: 'vitest',
