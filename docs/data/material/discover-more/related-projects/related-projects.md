@@ -65,4 +65,4 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 
 ### Adaptive
 
-- [Adaptive Material UI](https://github.com/unimorphic/adaptive-material-ui): Collection of components which adapt to the current device.
+- [Adaptive Material UI](https://github.com/unimorphic/adaptive-material-ui): Collection of components which adapt to the current device.
