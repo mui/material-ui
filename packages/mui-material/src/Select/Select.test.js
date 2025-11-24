@@ -1889,7 +1889,7 @@ describe('<Select />', () => {
     expect(event).to.have.property('key', 'a');
   });
 
-    it('should call onMouseDown when passed', async () => {
+  it('should call onMouseDown when passed', async () => {
     const handleMouseDown = spy();
 
     render(
