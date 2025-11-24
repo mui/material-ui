@@ -1866,4 +1866,23 @@ describe('<Select />', () => {
     expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
+
+  it('should call onKeyDown when passed', async () => {
+    const handleKeyDown = spy();
+
+    render(
+      <Select value="one" onKeyDown={handleKeyDown}>
+        <MenuItem value="one">One</MenuItem>
+        <MenuItem value="two">Two</MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    await act(async () => {
+      trigger.focus();
+    });
+
+    fireEvent.keyDown(trigger, { key: 'a' });
+    expect(handleKeyDown.callCount).to.equal(1);
+  });
 });
