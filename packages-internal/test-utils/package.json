@@ -63,7 +63,7 @@
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.4",
+    "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
     "@types/sinon": "^17.0.4",
     "typescript": "^5.9.2"
