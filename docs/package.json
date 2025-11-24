@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/core": "^7.28.5",
     "@babel/runtime": "^7.28.4",
-    "@base-ui-components/react": "1.0.0-beta.4",
+    "@base-ui-components/react": "1.0.0-beta.6",
     "@docsearch/react": "^3.9.0",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
