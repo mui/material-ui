@@ -25,6 +25,9 @@ describe('<CarouselIndicators />', () => {
     resumeAutoPlay: spy(),
     transition: 'slide',
     transitionDuration: 450,
+    carouselId: 'test-carousel',
+    slidesContainerId: 'test-carousel-slides',
+    getSlideId: (index: number) => `test-carousel-slide-${index}`,
     ...overrides,
   });
 
@@ -70,9 +73,9 @@ describe('<CarouselIndicators />', () => {
     renderWithContext(<CarouselIndicators />, context);
 
     const indicators = screen.getAllByRole('tab');
-    expect(indicators[0].getAttribute('aria-label')).to.equal('Go to slide 1');
-    expect(indicators[1].getAttribute('aria-label')).to.equal('Go to slide 2');
-    expect(indicators[2].getAttribute('aria-label')).to.equal('Go to slide 3');
+    expect(indicators[0].getAttribute('aria-label')).to.equal('Go to slide 1 of 3');
+    expect(indicators[1].getAttribute('aria-label')).to.equal('Go to slide 2 of 3');
+    expect(indicators[2].getAttribute('aria-label')).to.equal('Go to slide 3 of 3');
   });
 
   it('should call goToSlide with correct index on click', () => {
