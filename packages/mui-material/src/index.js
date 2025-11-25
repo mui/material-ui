@@ -121,6 +121,9 @@ export * from './DialogContentText';
 export { default as DialogTitle } from './DialogTitle';
 export * from './DialogTitle';
 
+export { default as DndContext } from './DndContext';
+export * from './DndContext';
+
 export { default as Divider } from './Divider';
 export * from './Divider';
 
@@ -213,6 +216,9 @@ export * from './ListItemSecondaryAction';
 export { default as ListItemText } from './ListItemText';
 export * from './ListItemText';
 
+export { default as DraggableListItem } from './ListItem/DraggableListItem';
+export * from './ListItem/DraggableListItem';
+
 export { default as ListSubheader } from './ListSubheader';
 export * from './ListSubheader';
 
@@ -287,6 +293,9 @@ export * from './Snackbar';
 
 export { default as SnackbarContent } from './SnackbarContent';
 export * from './SnackbarContent';
+
+export { default as SortableContext } from './SortableContext';
+export * from './SortableContext';
 
 export { default as SpeedDial } from './SpeedDial';
 export * from './SpeedDial';
@@ -404,6 +413,15 @@ export * from './Zoom';
 
 // createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
+
+export { default as useDraggable } from './useDraggable';
+export * from './useDraggable';
+
+export { default as useDroppable } from './useDroppable';
+export * from './useDroppable';
+
+export { default as useSortable } from './useSortable';
+export * from './useSortable';
 
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
