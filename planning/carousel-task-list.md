@@ -1527,7 +1527,7 @@ Must work with screen readers. Follow WAI-ARIA carousel patterns. KEYBOARD_KEYS 
 ---
 pr_id: PR-009
 title: Implement ARIA Attributes and Screen Reader Support
-cold_state: new
+cold_state: complete
 priority: critical
 complexity:
   score: 5
@@ -1538,32 +1538,201 @@ dependencies: [PR-003, PR-004, PR-008]
 estimated_files:
   - path: packages/mui-carousel/src/Carousel/Carousel.tsx
     action: modify
-    description: add ARIA attributes
-  - path: packages/mui-carousel/src/Carousel/CarouselNavigation.tsx
+    description: |
+      Enhance accessibility in main carousel component:
+      - Generate unique carousel ID using React 18's useId hook
+      - Add id attribute to slides container for aria-controls relationships
+      - Add id attribute to each slide (pattern: `${carouselId}-slide-${index}`)
+      - Add visually hidden instructions element for screen readers
+      - Add aria-describedby linking to instructions element
+      - Add comment clarifying aria-hidden behavior (only active slide visible, intentional)
+      - Add carouselId and slidesContainerId to context value
+  - path: packages/mui-carousel/src/CarouselNavigation/CarouselNavigation.tsx
     action: modify
-    description: add ARIA labels to controls
-  - path: packages/mui-carousel/src/Carousel/CarouselIndicators.tsx
+    description: |
+      Add aria-controls to navigation buttons:
+      - Get slidesContainerId from context
+      - Add aria-controls={slidesContainerId} to prev button
+      - Add aria-controls={slidesContainerId} to next button
+      - Buttons already have aria-label (verified)
+  - path: packages/mui-carousel/src/CarouselIndicators/CarouselIndicators.tsx
     action: modify
-    description: add ARIA attributes to indicators
+    description: |
+      Implement roving tabindex and aria-controls:
+      - Add aria-controls pointing to corresponding slide ID
+      - Implement roving tabindex: active indicator has tabIndex=0, others -1
+      - Add keyboard navigation within indicator group (left/right arrows)
+      - Wrap behavior based on enableLoop: wrap when true, stop at ends when false
+      - Add onKeyDown handler for arrow key navigation between indicators
+      - Use refs array to programmatically focus indicators
+  - path: packages/mui-carousel/src/types/index.ts
+    action: modify
+    description: |
+      Extend CarouselContextValue interface:
+      - Add carouselId: string
+      - Add slidesContainerId: string
+      - Add getSlideId: (index: number) => string
   - path: packages/mui-carousel/src/utils/a11yHelpers.ts
     action: create
-    description: accessibility utility functions
+    description: |
+      Accessibility utility functions:
+      - getSlideId(carouselId: string, index: number): string
+      - getSlidesContainerId(carouselId: string): string
+      - getIndicatorId(carouselId: string, index: number): string
+      - getInstructionsId(carouselId: string): string
+      - CAROUSEL_INSTRUCTIONS constant with keyboard usage text
+      - VisuallyHidden component (styled span with screen-reader-only CSS)
+planning_notes: |
+  ## Planning Analysis (PR-009)
+
+  ### Current Accessibility State (Already Implemented)
+  After reviewing the codebase, significant accessibility work is ALREADY COMPLETE:
+
+  **Carousel.tsx:**
+  - ✓ role="region" on root
+  - ✓ aria-roledescription="carousel" on root
+  - ✓ aria-label / aria-labelledby support
+  - ✓ tabIndex for keyboard focus
+  - ✓ focus-visible styling
+  - ✓ aria-live="off"/"polite" on slides container (toggles with autoPlay)
+
+  **Slides:**
+  - ✓ role="group" on each slide
+  - ✓ aria-roledescription="slide"
+  - ✓ aria-label="Slide X of Y"
+  - ✓ aria-hidden on non-active slides (needs update for multi-slide)
+
+  **CarouselNavigation.tsx:**
+  - ✓ aria-label="Go to previous slide" / "Go to next slide"
+
+  **CarouselIndicators.tsx:**
+  - ✓ role="tablist" on container
+  - ✓ role="tab" on each indicator
+  - ✓ aria-selected={isActive}
+  - ✓ aria-label="Go to slide X"
+
+  ### What PR-009 Needs to ADD
+
+  1. **ID Relationships (aria-controls):**
+     - Generate unique carouselId using React.useId()
+     - Each slide needs id={`${carouselId}-slide-${index}`}
+     - Slides container needs id={`${carouselId}-slides`}
+     - Navigation buttons: aria-controls={slidesContainerId}
+     - Indicators: aria-controls={slideId} for corresponding slide
+
+  2. **Roving Tabindex for Indicators:**
+     - Active indicator: tabIndex={0}
+     - Inactive indicators: tabIndex={-1}
+     - Arrow key navigation moves focus within indicator group
+     - This follows WAI-ARIA tab/tablist pattern properly
+
+  3. **Screen Reader Instructions:**
+     - Visually hidden element with usage instructions
+     - Link via aria-describedby on carousel root
+     - Text: "Use arrow keys to navigate. Home for first, End for last slide."
+
+  4. **Multi-slide Visibility:**
+     - When slidesPerView > 1, multiple slides are visible
+     - Visible slides should have aria-hidden="false"
+     - Calculate: slides from activeIndex to activeIndex + slidesPerView - 1
+
+  5. **Context Enhancement:**
+     - Add to CarouselContextValue: carouselId, slidesContainerId, getSlideId()
+     - Navigation and Indicators access these via useCarouselContext()
+
+  ### Implementation Strategy
+
+  **ID Generation (in Carousel.tsx):**
+  ```typescript
+  const generatedId = React.useId();
+  const carouselId = props.id || `carousel-${generatedId}`;
+  const slidesContainerId = `${carouselId}-slides`;
+  const instructionsId = `${carouselId}-instructions`;
+  const getSlideId = (index: number) => `${carouselId}-slide-${index}`;
+  ```
+
+  **Roving Tabindex (in CarouselIndicators.tsx):**
+  ```typescript
+  // Get enableLoop from context to determine wrap behavior
+  const { enableLoop } = useCarouselContext();
+
+  const handleIndicatorKeyDown = (event: React.KeyboardEvent, index: number) => {
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (enableLoop) {
+        const nextIndex = (index + 1) % slideCount;
+        // Focus next indicator (wrap around)
+      } else if (index < slideCount - 1) {
+        // Focus next indicator (stop at end)
+      }
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (enableLoop) {
+        const prevIndex = (index - 1 + slideCount) % slideCount;
+        // Focus prev indicator (wrap around)
+      } else if (index > 0) {
+        // Focus prev indicator (stop at start)
+      }
+    }
+  };
+
+  <Indicator
+    tabIndex={isActive ? 0 : -1}
+    onKeyDown={(e) => handleIndicatorKeyDown(e, index)}
+    ...
+  />
+  ```
+
+  **aria-hidden on Slides (in Carousel.tsx):**
+  ```typescript
+  // NOTE: Only the active slide has aria-hidden="false", even when slidesPerView > 1.
+  // This is intentional - screen readers should focus on the semantically "active" slide,
+  // not all visible slides. Users can still Tab into content on adjacent visible slides.
+  const isActive = index === activeIndex;
+
+  // In renderSlides():
+  aria-hidden={!isActive}
+  ```
+
+  ### Files NOT Modified
+  - CarouselContext.tsx: No changes to provider structure, just pass new values
+  - useCarousel.ts: No changes needed, ID logic is in Carousel.tsx
+  - carouselClasses.ts: No accessibility-related classes needed
+
+  ### Testing Strategy
+  - Test with VoiceOver (macOS) - primary screen reader for Safari
+  - Test with NVDA (Windows) - most common screen reader
+  - Verify focus management with Tab and arrow keys
+  - Use aXe DevTools browser extension for automated checks
+  - Verify aria-controls relationships are valid (IDs exist)
+
+  ### Questions Resolved During Planning
+  - Q: Should indicators navigate on focus change? A: No, focus moves independently of slide. User must click/press Enter to navigate.
+  - Q: Should indicator keyboard navigation wrap? A: Key this based on enableLoop setting. If loop enabled, wrap; if not, stop at ends.
+  - Q: Use aria-current or aria-selected for active indicator? A: aria-selected (already using, correct for tab pattern)
+  - Q: Dedicated live region vs current approach? A: Current aria-live on slides is sufficient for v1
+  - Q: Include instructions for all languages? A: English only for v1; i18n is future work
+  - Q: Multi-slide aria-hidden behavior? A: Only the active slide has aria-hidden="false", even when slidesPerView > 1. Add comment explaining this is intentional.
 ---
 
 **Description:**
-Add comprehensive ARIA attributes and screen reader support following WAI-ARIA authoring practices for carousels.
+Enhance accessibility with comprehensive ARIA attributes and screen reader support following WAI-ARIA authoring practices for carousels. Much of the foundation is already in place; this PR adds ID relationships (aria-controls), roving tabindex for indicators, screen reader instructions, and multi-slide visibility handling.
 
 **Acceptance Criteria:**
-- [ ] role="region" with proper labels
-- [ ] aria-live regions for announcements
-- [ ] aria-current for active slide
-- [ ] Navigation controls have descriptive labels
-- [ ] Slide changes are announced
-- [ ] Instructions available for screen readers
-- [ ] Passes accessibility audit tools
+- [x] role="region" with proper labels (already complete)
+- [x] aria-live regions for announcements (already complete)
+- [x] Navigation controls have descriptive aria-labels (already complete)
+- [x] aria-hidden on slides (already complete - only active slide visible to screen readers)
+- [x] aria-controls relationships between controls and slides
+- [x] Roving tabindex on indicators (only active in tab order)
+- [x] Keyboard navigation within indicator group (arrow keys, respects enableLoop)
+- [x] Visually hidden instructions for screen readers
+- [x] aria-describedby linking carousel to instructions
+- [x] Unique IDs on carousel, slides container, and each slide
+- [ ] Passes accessibility audit tools (aXe, Lighthouse)
 
 **Notes:**
-Test with NVDA, JAWS, and VoiceOver. Reference WAI-ARIA carousel pattern.
+Test with NVDA, JAWS, and VoiceOver. Reference WAI-ARIA carousel pattern. Much of the basic accessibility is already implemented - this PR focuses on proper ID relationships, roving tabindex, and screen reader instructions. The tablist/tab pattern for indicators requires roving tabindex to be fully compliant.
 
 ### PR-010: Add Responsive Behavior and Breakpoints
 

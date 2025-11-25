@@ -26,6 +26,13 @@ import {
   calculateTransformOffset,
 } from '../utils/carouselHelpers';
 import { getEffectiveDuration } from '../transitions/transitionUtils';
+import {
+  getSlidesContainerId,
+  getSlideId,
+  getInstructionsId,
+  CAROUSEL_INSTRUCTIONS,
+  VisuallyHidden,
+} from '../utils/a11yHelpers';
 import FadeTransition from '../transitions/FadeTransition';
 import CarouselNavigation from '../CarouselNavigation';
 import CarouselIndicators from '../CarouselIndicators';
@@ -178,6 +185,16 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     defaultValue: DEFAULT_SLIDES_PER_VIEW,
   });
 
+  // Generate unique IDs for ARIA relationships
+  const generatedId = React.useId();
+  const carouselId = other.id || `carousel${generatedId}`;
+  const slidesContainerId = getSlidesContainerId(carouselId);
+  const instructionsId = getInstructionsId(carouselId);
+  const getSlideIdForIndex = React.useCallback(
+    (index: number) => getSlideId(carouselId, index),
+    [carouselId],
+  );
+
   // Use carousel state management hook
   const {
     activeIndex,
@@ -269,6 +286,10 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     resumeAutoPlay,
     transition,
     transitionDuration,
+    // ID properties for ARIA relationships
+    carouselId,
+    slidesContainerId,
+    getSlideId: getSlideIdForIndex,
   };
 
   // Slot components
@@ -283,10 +304,12 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     externalForwardedProps: other,
     additionalProps: {
       ref,
+      id: carouselId,
       role: 'region',
       'aria-roledescription': 'carousel',
       'aria-label': ariaLabelledBy ? undefined : ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      'aria-describedby': instructionsId,
       // Keyboard navigation support
       tabIndex: disableKeyboard ? -1 : 0,
       ...keyboardHandlers,
@@ -300,6 +323,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     elementType: SlidesSlot,
     externalSlotProps: slotProps.slides,
     additionalProps: {
+      id: slidesContainerId,
       'aria-live': isAutoPlaying ? 'off' : 'polite',
       ...swipeHandlers,
     },
@@ -312,11 +336,12 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     if (transition === 'fade') {
       // Fade transition: render only active slide with TransitionGroup
       return (
-        <FadeSlidesContainer>
+        <FadeSlidesContainer id={slidesContainerId}>
           <TransitionGroup component={null}>
             <FadeTransition key={activeIndex} in timeout={transitionDuration}>
               <FadeSlideWrapper>
                 <SlideSlot
+                  id={getSlideIdForIndex(activeIndex)}
                   role="group"
                   aria-roledescription="slide"
                   aria-label={`Slide ${activeIndex + 1} of ${slideCount}`}
@@ -341,6 +366,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     return (
       <SlidesSlot {...slidesProps}>
         {slides.map((child, index) => {
+          // NOTE: Only the active slide has aria-hidden="false", even when slidesPerView > 1.
+          // This is intentional - screen readers should focus on the semantically "active" slide,
+          // not all visible slides. Users can still Tab into content on adjacent visible slides.
           const isActive = index === activeIndex;
           const slideOwnerState = {
             ...ownerState,
@@ -351,6 +379,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
           return (
             <SlideSlot
               key={child.key ?? index}
+              id={getSlideIdForIndex(index)}
               role="group"
               aria-roledescription="slide"
               aria-label={`Slide ${index + 1} of ${slideCount}`}
@@ -371,6 +400,8 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
   return (
     <CarouselProvider value={contextValue}>
       <RootSlot {...rootProps} {...autoPlayHandlers}>
+        {/* Screen reader instructions - visually hidden but accessible */}
+        <VisuallyHidden id={instructionsId}>{CAROUSEL_INSTRUCTIONS}</VisuallyHidden>
         {renderSlides()}
         {!hideNavigation && (
           <CarouselNavigation

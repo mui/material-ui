@@ -94,6 +94,7 @@ const CarouselNavigation = React.forwardRef<HTMLDivElement, CarouselNavigationPr
       goToNext,
       goToPrevious,
       enableLoop,
+      slidesContainerId,
     } = useCarouselContext();
 
     // Calculate disabled states
@@ -130,6 +131,7 @@ const CarouselNavigation = React.forwardRef<HTMLDivElement, CarouselNavigationPr
           onClick={handlePrevClick}
           disabled={prevDisabled}
           aria-label="Go to previous slide"
+          aria-controls={slidesContainerId}
           ownerState={{ ...ownerState, position: 'prev' }}
           className={clsx(classes.buttonPrev, prevButtonProps?.className)}
         >
@@ -140,6 +142,7 @@ const CarouselNavigation = React.forwardRef<HTMLDivElement, CarouselNavigationPr
           onClick={handleNextClick}
           disabled={nextDisabled}
           aria-label="Go to next slide"
+          aria-controls={slidesContainerId}
           ownerState={{ ...ownerState, position: 'next' }}
           className={clsx(classes.buttonNext, nextButtonProps?.className)}
         >

@@ -3,13 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import { useCarouselContext } from '../CarouselContext';
 import {
   CarouselIndicatorsProps,
   CarouselIndicatorsOwnerState,
 } from './CarouselIndicators.types';
 import { getCarouselIndicatorsUtilityClass } from './carouselIndicatorsClasses';
+import { getIndicatorId } from '../utils/a11yHelpers';
 
 const useUtilityClasses = (ownerState: CarouselIndicatorsOwnerState) => {
   const { classes, isActive } = ownerState;
@@ -79,7 +80,74 @@ const CarouselIndicators = React.forwardRef<HTMLDivElement, CarouselIndicatorsPr
     const props = useThemeProps({ props: inProps, name: 'MuiCarouselIndicators' });
     const { className, classes: classesProp, ...other } = props;
 
-    const { activeIndex, slideCount, goToSlide } = useCarouselContext();
+    const theme = useTheme();
+    const isRtl = theme.direction === 'rtl';
+
+    const {
+      activeIndex,
+      slideCount,
+      goToSlide,
+      enableLoop,
+      carouselId,
+      getSlideId,
+    } = useCarouselContext();
+
+    // Refs for each indicator to enable programmatic focus
+    const indicatorRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+
+    // Ensure refs array is the correct size
+    React.useEffect(() => {
+      indicatorRefs.current = indicatorRefs.current.slice(0, slideCount);
+    }, [slideCount]);
+
+    /**
+     * Handle keyboard navigation within the indicator group.
+     * Implements roving tabindex pattern - arrow keys move focus between indicators.
+     * Wrap behavior respects the enableLoop setting.
+     */
+    const handleKeyDown = React.useCallback(
+      (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+        let nextIndex: number | null = null;
+
+        // RTL-aware: swap left/right arrow behavior
+        const isForward =
+          (event.key === 'ArrowRight' && !isRtl) ||
+          (event.key === 'ArrowLeft' && isRtl) ||
+          event.key === 'ArrowDown';
+        const isBackward =
+          (event.key === 'ArrowLeft' && !isRtl) ||
+          (event.key === 'ArrowRight' && isRtl) ||
+          event.key === 'ArrowUp';
+
+        if (isForward) {
+          event.preventDefault();
+          if (enableLoop) {
+            nextIndex = (index + 1) % slideCount;
+          } else if (index < slideCount - 1) {
+            nextIndex = index + 1;
+          }
+        } else if (isBackward) {
+          event.preventDefault();
+          if (enableLoop) {
+            nextIndex = (index - 1 + slideCount) % slideCount;
+          } else if (index > 0) {
+            nextIndex = index - 1;
+          }
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          nextIndex = 0;
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          nextIndex = slideCount - 1;
+        }
+
+        // Focus the new indicator if we have a valid index
+        if (nextIndex !== null && indicatorRefs.current[nextIndex]) {
+          indicatorRefs.current[nextIndex]?.focus();
+        }
+      },
+      [enableLoop, slideCount, isRtl],
+    );
 
     const ownerState: CarouselIndicatorsOwnerState = {
       ...props,
@@ -94,6 +162,7 @@ const CarouselIndicators = React.forwardRef<HTMLDivElement, CarouselIndicatorsPr
       <IndicatorsRoot
         ref={ref}
         role="tablist"
+        aria-label="Slide indicators"
         className={clsx(classes.root, className)}
         ownerState={ownerState}
         {...other}
@@ -109,10 +178,18 @@ const CarouselIndicators = React.forwardRef<HTMLDivElement, CarouselIndicatorsPr
           return (
             <Indicator
               key={index}
+              ref={(el) => {
+                indicatorRefs.current[index] = el;
+              }}
+              id={getIndicatorId(carouselId, index)}
               role="tab"
+              // Roving tabindex: only active indicator is in tab order
+              tabIndex={isActive ? 0 : -1}
               aria-selected={isActive}
-              aria-label={`Go to slide ${index + 1}`}
+              aria-label={`Go to slide ${index + 1} of ${slideCount}`}
+              aria-controls={getSlideId(index)}
               onClick={() => goToSlide(index, 'indicator')}
+              onKeyDown={(e) => handleKeyDown(e, index)}
               ownerState={indicatorOwnerState}
               className={indicatorClasses.indicator}
             />

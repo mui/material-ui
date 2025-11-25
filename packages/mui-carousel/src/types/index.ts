@@ -83,4 +83,10 @@ export interface CarouselContextValue {
   transition: CarouselTransition;
   /** Transition duration in ms */
   transitionDuration: number;
+  /** Unique ID for the carousel instance (for ARIA relationships) */
+  carouselId: string;
+  /** ID of the slides container (for aria-controls) */
+  slidesContainerId: string;
+  /** Get the ID for a specific slide by index (for aria-controls) */
+  getSlideId: (index: number) => string;
 }
