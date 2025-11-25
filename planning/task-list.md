@@ -2084,7 +2084,7 @@ export default draggableChipClasses;
 ---
 pr_id: PR-013
 title: Tests for DraggableListItem and DraggableTableRow
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 4
