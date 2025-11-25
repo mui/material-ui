@@ -18,7 +18,7 @@
 ---
 pr_id: PR-001
 title: Create @mui/carousel Package Structure
-cold_state: new
+cold_state: complete
 priority: critical
 complexity:
   score: 3
@@ -29,30 +29,99 @@ dependencies: []
 estimated_files:
   - path: packages/mui-carousel/package.json
     action: create
-    description: package configuration with dependencies
+    description: |
+      Package configuration with dependencies. Must include:
+      - name: "@mui/carousel"
+      - scripts using "code-infra build" (MUI's internal build tool)
+      - dependencies: @babel/runtime, @mui/system, @mui/types, @mui/utils, clsx, prop-types
+      - devDependencies: @mui/internal-test-utils, @mui/material, testing libs
+      - peerDependencies: @emotion/react, @emotion/styled, react, react-dom
+      - sideEffects: false (for tree-shaking)
+      - publishConfig.directory: "build"
+      - exports with subpath pattern for component access
   - path: packages/mui-carousel/tsconfig.json
     action: create
-    description: TypeScript configuration extending root config
+    description: |
+      TypeScript configuration extending root config:
+      - extends: "../../tsconfig.json"
+      - include: ["src/**/*", "test/**/*"]
+      - compilerOptions.moduleResolution: "Bundler"
+  - path: packages/mui-carousel/tsconfig.build.json
+    action: create
+    description: |
+      Build-specific TypeScript config for declaration generation:
+      - extends: "./tsconfig.json"
+      - composite: true, declaration: true, noEmit: false
+      - emitDeclarationOnly: true (Babel handles JS transpilation)
+      - outDir: "build/esm", rootDir: "./src"
+      - references to dependent package tsconfig.build.json files
   - path: packages/mui-carousel/README.md
     action: create
-    description: package documentation and usage guide
-  - path: packages/mui-carousel/.gitignore
-    action: create
-    description: ignore built files and dependencies
+    description: Package documentation and usage guide following MUI README patterns
   - path: packages/mui-carousel/src/index.ts
     action: create
-    description: main export file
+    description: |
+      Main export file - initially empty placeholder with comment.
+      Will export components as they are added in subsequent PRs.
+  - path: tsconfig.json
+    action: modify
+    description: |
+      Add path aliases for @mui/carousel to root tsconfig.json paths:
+      - "@mui/carousel": ["./packages/mui-carousel/src"]
+      - "@mui/carousel/package.json": ["./packages/mui-carousel/package.json"]
+      - "@mui/carousel/*": ["./packages/mui-carousel/src/*"]
+planning_notes: |
+  ## Planning Analysis (2024)
+
+  ### MUI Monorepo Build System
+  - Uses `code-infra build` command (MUI's internal build tool from @mui/internal-code-infra)
+  - Babel handles TypeScript transpilation (configured at root babel.config.mjs)
+  - TypeScript only emits .d.ts declaration files during build
+  - Lerna with PNPM workspaces and Nx for caching
+  - Packages publish from `build/` directory, not `src/`
+
+  ### Key Patterns Discovered
+  1. **No rollup.config.js needed** - build is handled by code-infra
+  2. **No .gitignore per package** - root .gitignore covers all packages
+  3. **tsconfig.build.json is required** - separate from tsconfig.json for declaration generation
+  4. **Workspace protocol** - dependencies use `workspace:^` for local monorepo packages
+  5. **Test command** - runs from root: `cross-env NODE_ENV=test mocha 'packages/mui-carousel/**/*.test.?(c|m)[jt]s?(x)'`
+
+  ### Files Removed from Original Estimate
+  - `.gitignore` - Not needed per-package; root .gitignore handles all
+
+  ### Files Added to Estimate
+  - `tsconfig.build.json` - Required for TypeScript declaration generation
+  - `tsconfig.json` (root modify) - Must add path aliases for new package
+
+  ### Reference Packages Studied
+  - packages/mui-material (157 components, main reference)
+  - packages/mui-joy (92+ components)
+  - packages/mui-lab (experimental components)
+  - packages/mui-utils (utility functions)
+
+  ### Implementation Order
+  1. Create package directory structure
+  2. Add package.json with correct dependencies and scripts
+  3. Add tsconfig.json extending root
+  4. Add tsconfig.build.json for declarations
+  5. Add README.md with basic documentation
+  6. Add src/index.ts as placeholder
+  7. Modify root tsconfig.json to add path aliases
+  8. Verify build works with `pnpm build` in package directory
 ---
 
 **Description:**
 Set up the new @mui/carousel package following Material UI's monorepo structure. Configure build tools, TypeScript, and establish the foundation for component development.
 
 **Acceptance Criteria:**
-- [ ] Package structure matches other MUI packages
-- [ ] Build configuration works with monorepo setup
-- [ ] TypeScript configuration extends root config correctly
-- [ ] Package.json includes correct peer dependencies
-- [ ] Export structure follows MUI patterns
+- [x] Package structure matches other MUI packages
+- [x] Build configuration works with monorepo setup
+- [x] TypeScript configuration extends root config correctly
+- [x] Package.json includes correct peer dependencies
+- [x] Export structure follows MUI patterns
+- [x] Root tsconfig.json updated with path aliases
+- [ ] Package can be built with `pnpm build`
 
 **Notes:**
 This establishes the foundation for all subsequent carousel development. Must follow MUI's exact package structure for consistency.

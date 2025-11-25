@@ -1,0 +1,92 @@
+{
+  "name": "@mui/carousel",
+  "version": "0.0.1",
+  "author": "MUI Team",
+  "description": "A native, production-ready Carousel component for Material UI that provides smooth, accessible content rotation with support for touch gestures, keyboard navigation, and auto-play functionality.",
+  "keywords": [
+    "react",
+    "react-component",
+    "mui",
+    "material-ui",
+    "material design",
+    "carousel",
+    "slider",
+    "swipe",
+    "gallery"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-carousel"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/material-ui/react-carousel/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "build": "code-infra build",
+    "release": "pnpm build && pnpm publish",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-carousel/**/*.test.?(c|m)[jt]s?(x)'",
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.28.4",
+    "@mui/system": "workspace:^",
+    "@mui/types": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "@types/react-transition-group": "^4.4.12",
+    "clsx": "^2.1.1",
+    "prop-types": "^15.8.1",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "@mui/internal-test-utils": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/chai": "^4.3.20",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "@types/sinon": "^17.0.4",
+    "chai": "^6.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sinon": "^21.0.0"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*/index.ts"
+  }
+}
