@@ -12,6 +12,10 @@
 export { default as Carousel } from './Carousel';
 export * from './Carousel';
 
+// Sub-components
+export * from './CarouselNavigation';
+export * from './CarouselIndicators';
+
 // Context for sub-component communication
 export * from './CarouselContext';
 
@@ -20,6 +24,9 @@ export * from './hooks';
 
 // Shared types
 export * from './types';
+
+// Transitions
+export * from './transitions';
 
 // Utilities (for advanced usage)
 export {

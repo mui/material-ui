@@ -141,16 +141,16 @@ export function calculateTransformOffset(
   const normalizedSpacing = normalizeSpacing(spacing);
 
   if (slidesPerView <= 1 && normalizedSpacing === '0px') {
-    return `${-activeIndex * 100}%`;
+    return `translateX(${-activeIndex * 100}%)`;
   }
 
   // Complex calculation accounting for spacing
   const slideWidth = calculateSlideWidth(slidesPerView, spacing);
 
   if (normalizedSpacing === '0px') {
-    return `calc(-${activeIndex} * ${slideWidth})`;
+    return `translateX(calc(-${activeIndex} * ${slideWidth}))`;
   }
 
   // Each slide offset = slideWidth + spacing
-  return `calc(-${activeIndex} * (${slideWidth} + ${normalizedSpacing}))`;
+  return `translateX(calc(-${activeIndex} * (${slideWidth} + ${normalizedSpacing})))`;
 }

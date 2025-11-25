@@ -5,9 +5,11 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import { styled, useThemeProps } from '@mui/system';
+import { TransitionGroup } from 'react-transition-group';
 import { CarouselProps, CarouselOwnerState } from './Carousel.types';
 import { getCarouselUtilityClass } from './carouselClasses';
 import { useCarousel } from '../hooks/useCarousel';
+import { useSwipe } from '../hooks/useSwipe';
 import { CarouselProvider } from '../CarouselContext';
 import { CarouselContextValue } from '../types';
 import {
@@ -20,6 +22,10 @@ import {
   calculateSlideWidth,
   calculateTransformOffset,
 } from '../utils/carouselHelpers';
+import { getEffectiveDuration } from '../transitions/transitionUtils';
+import FadeTransition from '../transitions/FadeTransition';
+import CarouselNavigation from '../CarouselNavigation';
+import CarouselIndicators from '../CarouselIndicators';
 
 const useUtilityClasses = (ownerState: CarouselOwnerState) => {
   const { classes, isAutoPlaying } = ownerState;
@@ -56,19 +62,30 @@ export const CarouselSlides = styled('div', {
   name: 'MuiCarousel',
   slot: 'Slides',
   overridesResolver: (props, styles) => styles.slides,
-})<{ ownerState: CarouselOwnerState }>(({ ownerState }) => ({
-  display: 'flex',
-  flexDirection: 'row',
-  width: '100%',
-  // No transition in PR-003 - will be added in PR-006
-  // transition: `transform ${ownerState.transitionDuration}ms ease-in-out`,
-  transform: calculateTransformOffset(
-    ownerState.activeIndex,
-    ownerState.slidesPerView ?? DEFAULT_SLIDES_PER_VIEW,
-    ownerState.spacing,
-  ),
-  gap: normalizeSpacing(ownerState.spacing),
-}));
+})<{ ownerState: CarouselOwnerState }>(({ ownerState, theme }) => {
+  const effectiveDuration = getEffectiveDuration(ownerState.transitionDuration);
+  const easing = theme.transitions?.easing?.easeInOut || 'ease-in-out';
+
+  return {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    // CSS transition for slide mode - disabled during drag
+    transition: ownerState.dragging
+      ? 'none'
+      : `transform ${effectiveDuration}ms ${easing}`,
+    transform: calculateTransformOffset(
+      ownerState.activeIndex,
+      ownerState.slidesPerView ?? DEFAULT_SLIDES_PER_VIEW,
+      ownerState.spacing,
+    ),
+    gap: normalizeSpacing(ownerState.spacing),
+    // Gesture support
+    touchAction: 'pan-y', // Allow vertical scroll, capture horizontal
+    cursor: ownerState.dragging ? 'grabbing' : 'grab',
+    userSelect: ownerState.dragging ? 'none' : 'auto',
+  };
+});
 
 export const CarouselSlide = styled('div', {
   name: 'MuiCarousel',
@@ -82,6 +99,20 @@ export const CarouselSlide = styled('div', {
   ),
   overflow: 'hidden',
 }));
+
+// Container for fade transitions - uses grid to stack slides
+const FadeSlidesContainer = styled('div')({
+  position: 'relative',
+  width: '100%',
+  display: 'grid',
+  gridTemplateAreas: '"slide"',
+});
+
+// Wrapper for individual fade slides - stacked using grid area
+const FadeSlideWrapper = styled('div')({
+  gridArea: 'slide',
+  width: '100%',
+});
 
 /**
  * A native, production-ready Carousel component for Material UI.
@@ -136,6 +167,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     slideCount,
     direction,
     dragging,
+    setDragging,
     isAutoPlaying,
     goToSlide,
     goToNext,
@@ -144,12 +176,14 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     resumeAutoPlay,
     slides,
     ownerState: hookOwnerState,
+    autoPlayHandlers,
   } = useCarousel({
     activeIndex: activeIndexProp,
     defaultActiveIndex,
     autoPlay,
     autoPlayInterval,
     children,
+    disableGestures,
     enableLoop,
     onChange,
     slidesPerView,
@@ -157,6 +191,18 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     transition,
     transitionDuration,
   });
+
+  // Use swipe/drag gesture detection
+  const { handlers: swipeHandlers, swiping } = useSwipe({
+    onSwipeLeft: () => goToNext('swipe'),
+    onSwipeRight: () => goToPrevious('swipe'),
+    disabled: disableGestures,
+  });
+
+  // Sync swiping state with dragging
+  React.useEffect(() => {
+    setDragging(swiping);
+  }, [swiping, setDragging]);
 
   // Compose owner state with all props
   const ownerState: CarouselOwnerState = {
@@ -215,41 +261,86 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     externalSlotProps: slotProps.slides,
     additionalProps: {
       'aria-live': isAutoPlaying ? 'off' : 'polite',
+      ...swipeHandlers,
     },
     ownerState,
     className: classes.slides,
   });
 
+  // Render slides based on transition type
+  const renderSlides = () => {
+    if (transition === 'fade') {
+      // Fade transition: render only active slide with TransitionGroup
+      return (
+        <FadeSlidesContainer>
+          <TransitionGroup component={null}>
+            <FadeTransition key={activeIndex} in timeout={transitionDuration}>
+              <FadeSlideWrapper>
+                <SlideSlot
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`Slide ${activeIndex + 1} of ${slideCount}`}
+                  aria-hidden={false}
+                  ownerState={{
+                    ...ownerState,
+                    slideIndex: activeIndex,
+                    isActive: true,
+                  }}
+                  className={clsx(classes.slide, getCarouselUtilityClass('slideActive'))}
+                >
+                  {slides[activeIndex]}
+                </SlideSlot>
+              </FadeSlideWrapper>
+            </FadeTransition>
+          </TransitionGroup>
+        </FadeSlidesContainer>
+      );
+    }
+
+    // Slide transition (default): render all slides with transform
+    return (
+      <SlidesSlot {...slidesProps}>
+        {slides.map((child, index) => {
+          const isActive = index === activeIndex;
+          const slideOwnerState = {
+            ...ownerState,
+            slideIndex: index,
+            isActive,
+          };
+
+          return (
+            <SlideSlot
+              key={child.key ?? index}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Slide ${index + 1} of ${slideCount}`}
+              aria-hidden={!isActive}
+              ownerState={slideOwnerState}
+              className={clsx(classes.slide, {
+                [getCarouselUtilityClass('slideActive')]: isActive,
+              })}
+            >
+              {child}
+            </SlideSlot>
+          );
+        })}
+      </SlidesSlot>
+    );
+  };
+
   return (
     <CarouselProvider value={contextValue}>
-      <RootSlot {...rootProps}>
-        <SlidesSlot {...slidesProps}>
-          {slides.map((child, index) => {
-            const isActive = index === activeIndex;
-            const slideOwnerState = {
-              ...ownerState,
-              slideIndex: index,
-              isActive,
-            };
-
-            return (
-              <SlideSlot
-                key={child.key ?? index}
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`Slide ${index + 1} of ${slideCount}`}
-                aria-hidden={!isActive}
-                ownerState={slideOwnerState}
-                className={clsx(classes.slide, {
-                  [getCarouselUtilityClass('slideActive')]: isActive,
-                })}
-              >
-                {child}
-              </SlideSlot>
-            );
-          })}
-        </SlidesSlot>
-        {/* Navigation and indicators will be added in PR-004 */}
+      <RootSlot {...rootProps} {...autoPlayHandlers}>
+        {renderSlides()}
+        {!hideNavigation && (
+          <CarouselNavigation
+            prevIcon={prevIcon}
+            nextIcon={nextIcon}
+            prevButtonProps={prevButtonProps}
+            nextButtonProps={nextButtonProps}
+          />
+        )}
+        {!hideIndicators && <CarouselIndicators />}
       </RootSlot>
     </CarouselProvider>
   );

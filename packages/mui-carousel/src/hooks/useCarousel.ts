@@ -14,6 +14,7 @@ import {
   DEFAULT_SLIDES_PER_VIEW,
 } from '../utils/constants';
 import { clampIndex, wrapIndex, getValidChildren } from '../utils/carouselHelpers';
+import { useAutoPlay } from './useAutoPlay';
 
 export interface UseCarouselParameters
   extends Pick<
@@ -23,6 +24,7 @@ export interface UseCarouselParameters
     | 'autoPlay'
     | 'autoPlayInterval'
     | 'children'
+    | 'disableGestures'
     | 'enableLoop'
     | 'onChange'
     | 'slidesPerView'
@@ -40,6 +42,8 @@ export interface UseCarouselReturnValue {
   direction: CarouselDirection;
   /** Whether the carousel is currently being dragged/swiped */
   dragging: boolean;
+  /** Set dragging state */
+  setDragging: React.Dispatch<React.SetStateAction<boolean>>;
   /** Whether auto-play is currently active */
   isAutoPlaying: boolean;
   /** Navigate to a specific slide */
@@ -64,6 +68,13 @@ export interface UseCarouselReturnValue {
   ownerState: CarouselOwnerState;
   /** Valid children as slides */
   slides: React.ReactElement[];
+  /** Auto-play event handlers for root element */
+  autoPlayHandlers: {
+    onMouseEnter: () => void;
+    onMouseLeave: () => void;
+    onFocus: () => void;
+    onBlur: () => void;
+  };
 }
 
 /**
@@ -100,11 +111,8 @@ export function useCarousel(parameters: UseCarouselParameters): UseCarouselRetur
   // Track transition direction
   const [direction, setDirection] = React.useState<CarouselDirection>('forward');
 
-  // Auto-play state (will be expanded in PR-007)
-  const [isAutoPlaying, setIsAutoPlaying] = React.useState(autoPlay);
-
-  // Dragging state (will be expanded in PR-005)
-  const dragging = false;
+  // Dragging state (for swipe/drag gestures)
+  const [dragging, setDragging] = React.useState(false);
 
   // Calculate navigation boundaries
   const maxIndex = Math.max(0, slideCount - slidesPerView);
@@ -155,21 +163,36 @@ export function useCarousel(parameters: UseCarouselParameters): UseCarouselRetur
     },
   );
 
-  // Auto-play controls (basic implementation, expanded in PR-007)
-  const pauseAutoPlay = useEventCallback(() => {
-    setIsAutoPlaying(false);
-  });
-
-  const resumeAutoPlay = useEventCallback(() => {
-    if (autoPlay) {
-      setIsAutoPlaying(true);
+  // Auto-play tick handler
+  const handleAutoPlayTick = useEventCallback(() => {
+    if (!enableLoop && activeIndex >= maxIndex) {
+      // At last slide and not looping - stop auto-play
+      // The hook will handle pausing via pauseAutoPlay
+      return;
     }
+    goToNext('auto');
   });
 
-  // Sync auto-play state with prop
+  // Auto-play integration
+  const {
+    isPlaying: isAutoPlaying,
+    pause: pauseAutoPlay,
+    resume: resumeAutoPlay,
+    handlers: autoPlayHandlers,
+  } = useAutoPlay({
+    enabled: autoPlay && slideCount > 1,
+    interval: autoPlayInterval,
+    onTick: handleAutoPlayTick,
+    pauseOnHover: true,
+    pauseOnFocus: true,
+  });
+
+  // Stop auto-play when reaching end of non-looping carousel
   React.useEffect(() => {
-    setIsAutoPlaying(autoPlay);
-  }, [autoPlay]);
+    if (!enableLoop && activeIndex >= maxIndex && isAutoPlaying) {
+      pauseAutoPlay();
+    }
+  }, [activeIndex, maxIndex, enableLoop, isAutoPlaying, pauseAutoPlay]);
 
   // Compose owner state for styled components
   const ownerState: CarouselOwnerState = {
@@ -193,6 +216,7 @@ export function useCarousel(parameters: UseCarouselParameters): UseCarouselRetur
     slideCount,
     direction,
     dragging,
+    setDragging,
     isAutoPlaying,
     goToSlide,
     goToNext,
@@ -205,6 +229,7 @@ export function useCarousel(parameters: UseCarouselParameters): UseCarouselRetur
     transitionDuration,
     ownerState,
     slides,
+    autoPlayHandlers,
   };
 }
 
