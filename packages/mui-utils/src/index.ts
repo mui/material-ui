@@ -49,4 +49,5 @@ export { default as unstable_resolveComponentProps } from './resolveComponentPro
 export { default as unstable_extractEventHandlers } from './extractEventHandlers';
 export { default as unstable_getReactNodeRef } from './getReactNodeRef';
 export { default as unstable_getReactElementRef } from './getReactElementRef';
+export { default as shouldSpreadAdditionalProps } from './shouldSpreadAdditionalProps';
 export * from './types';

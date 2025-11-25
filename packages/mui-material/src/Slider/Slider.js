@@ -12,7 +12,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
-import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
+import shouldSpreadAdditionalProps from '@mui/utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import BaseSliderValueLabel from './SliderValueLabel';
