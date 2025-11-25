@@ -18,7 +18,7 @@
 ---
 pr_id: PR-001
 title: Create @mui/carousel Package Structure
-cold_state: planned
+cold_state: complete
 priority: critical
 complexity:
   score: 3
@@ -115,12 +115,12 @@ planning_notes: |
 Set up the new @mui/carousel package following Material UI's monorepo structure. Configure build tools, TypeScript, and establish the foundation for component development.
 
 **Acceptance Criteria:**
-- [ ] Package structure matches other MUI packages
-- [ ] Build configuration works with monorepo setup
-- [ ] TypeScript configuration extends root config correctly
-- [ ] Package.json includes correct peer dependencies
-- [ ] Export structure follows MUI patterns
-- [ ] Root tsconfig.json updated with path aliases
+- [x] Package structure matches other MUI packages
+- [x] Build configuration works with monorepo setup
+- [x] TypeScript configuration extends root config correctly
+- [x] Package.json includes correct peer dependencies
+- [x] Export structure follows MUI patterns
+- [x] Root tsconfig.json updated with path aliases
 - [ ] Package can be built with `pnpm build`
 
 **Notes:**
