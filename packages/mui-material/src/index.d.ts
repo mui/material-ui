@@ -415,6 +415,9 @@ export * from './useDraggable';
 export { default as useDroppable } from './useDroppable';
 export * from './useDroppable';
 
+export { default as useSortable } from './useSortable';
+export * from './useSortable';
+
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 

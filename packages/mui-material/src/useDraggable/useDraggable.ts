@@ -47,6 +47,7 @@ export interface UseDraggableReturn {
    */
   listeners: {
     onPointerDown: (event: React.PointerEvent) => void;
+    onMouseDown: (event: React.MouseEvent) => void;
     onKeyDown: (event: React.KeyboardEvent) => void;
   } | undefined;
   /**
@@ -166,7 +167,11 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
     }
 
     // Capture pointer for reliable move/up events
-    event.currentTarget.setPointerCapture(event.pointerId);
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch (e) {
+      // Ignore errors if pointer capture is not supported (e.g., in JSDOM)
+    }
 
     // Store initial positions
     const rect = node.getBoundingClientRect();
@@ -236,6 +241,66 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
     document.addEventListener('pointermove', handlePointerMove);
     document.addEventListener('pointerup', handlePointerUp);
     document.addEventListener('pointercancel', handlePointerCancel);
+  });
+
+  /**
+   * Handle mouse down event - fallback for environments without pointer events
+   */
+  const handleMouseDown = useEventCallback((event: React.MouseEvent) => {
+    if (disabled) {
+      return;
+    }
+
+    // Only handle left mouse button
+    if (event.button !== 0) {
+      return;
+    }
+
+    // Prevent default to avoid text selection
+    event.preventDefault();
+
+    const node = nodeRef.current;
+    if (!node) {
+      return;
+    }
+
+    // Store initial positions
+    const rect = node.getBoundingClientRect();
+    initialPointerPosition.current = {
+      x: event.clientX,
+      y: event.clientY,
+    };
+    initialNodePosition.current = {
+      x: rect.left,
+      y: rect.top,
+    };
+    isKeyboardDragging.current = false;
+
+    // Start drag operation
+    dragStart(id);
+
+    // Set up document-level move and up handlers
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      if (initialPointerPosition.current) {
+        dragMove({
+          x: moveEvent.clientX,
+          y: moveEvent.clientY,
+        });
+      }
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+
+      initialPointerPosition.current = null;
+      initialNodePosition.current = null;
+
+      dragEnd();
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
   });
 
   /**
@@ -368,9 +433,10 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
 
     return {
       onPointerDown: handlePointerDown,
+      onMouseDown: handleMouseDown,
       onKeyDown: handleKeyDown,
     };
-  }, [disabled, handlePointerDown, handleKeyDown]);
+  }, [disabled, handlePointerDown, handleMouseDown, handleKeyDown]);
 
   return {
     attributes,
