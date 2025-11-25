@@ -131,7 +131,7 @@ This establishes the foundation for all subsequent carousel development. Must fo
 ---
 pr_id: PR-002
 title: Implement Core Carousel Types and Interfaces
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
   score: 4
@@ -142,16 +142,114 @@ dependencies: [PR-001]
 estimated_files:
   - path: packages/mui-carousel/src/Carousel/Carousel.types.ts
     action: create
-    description: comprehensive TypeScript interfaces and types
+    description: |
+      Main TypeScript types file following MUI patterns (similar to Slider.d.ts):
+      - CarouselPropsColorOverrides, CarouselPropsSizeOverrides (empty extension interfaces)
+      - CarouselOwnProps interface with all documented props:
+        - activeIndex?: number (controlled mode)
+        - autoPlay?: boolean (@default false)
+        - autoPlayInterval?: number (@default 5000)
+        - children: React.ReactNode
+        - classes?: Partial<CarouselClasses>
+        - defaultActiveIndex?: number (@default 0)
+        - disableGestures?: boolean (@default false)
+        - disableKeyboard?: boolean (@default false)
+        - enableLoop?: boolean (@default false)
+        - hideNavigation?: boolean (@default false)
+        - hideIndicators?: boolean (@default false)
+        - onChange?: (event: React.SyntheticEvent, newIndex: number, reason: SlideChangeReason) => void
+        - slidesPerView?: number (@default 1)
+        - spacing?: number | string (@default 0)
+        - sx?: SxProps<Theme>
+        - transition?: CarouselTransition (@default 'slide')
+        - transitionDuration?: number (@default theme.transitions.duration.complex)
+      - CarouselOwnerState interface (extends props with dragging, direction, etc.)
+      - CarouselSlots interface (root, slides, slide, navigation, indicators)
+      - CarouselSlotProps interface for slot customization
+      - CarouselTypeMap following OverridableComponent pattern
+      - CarouselProps generic type
   - path: packages/mui-carousel/src/Carousel/carouselClasses.ts
     action: create
-    description: CSS class definitions following MUI patterns
+    description: |
+      CSS class definitions using MUI utilities (following buttonClasses.ts pattern):
+      - CarouselClasses interface with JSDoc for each class:
+        - root: Styles applied to the root element
+        - slides: Styles applied to the slides container
+        - slide: Styles applied to each slide
+        - slideActive: Styles applied to the active slide
+        - slideNext: Styles applied to the next slide (for transitions)
+        - slidePrev: Styles applied to the previous slide (for transitions)
+        - navigation: Styles applied to the navigation container
+        - navigationButton: Base styles for navigation buttons
+        - navigationPrev: Styles for previous button
+        - navigationNext: Styles for next button
+        - navigationDisabled: Styles when navigation is disabled
+        - indicators: Styles for indicators container
+        - indicator: Styles for each indicator
+        - indicatorActive: Styles for active indicator
+        - horizontal: Styles for horizontal orientation
+        - autoPlaying: Styles when auto-play is active
+      - CarouselClassKey type
+      - getCarouselUtilityClass(slot: string) function
+      - carouselClasses default export using generateUtilityClasses
   - path: packages/mui-carousel/src/types/index.ts
     action: create
-    description: shared types across carousel package
+    description: |
+      Shared types used across carousel package components:
+      - CarouselTransition = 'slide' | 'fade'
+      - CarouselOrientation = 'horizontal' (v1 only, no union type)
+      - SlideChangeReason = 'auto' | 'navigation' | 'swipe' | 'keyboard' | 'indicator'
+      - CarouselDirection = 'forward' | 'backward'
+      - CarouselContextValue interface for context provider
+      - Re-export types from Carousel.types.ts for convenience
   - path: packages/mui-carousel/src/utils/constants.ts
     action: create
-    description: carousel constants and configuration values
+    description: |
+      Carousel constants following MUI patterns:
+      - CAROUSEL_PREFIX = 'MuiCarousel' (for class name generation)
+      - DEFAULT_AUTO_PLAY_INTERVAL = 5000 (ms)
+      - DEFAULT_TRANSITION_DURATION = 450 (ms, aligns with theme.transitions.duration.complex)
+      - DEFAULT_SLIDES_PER_VIEW = 1
+      - MIN_SWIPE_DISTANCE = 50 (px threshold for swipe recognition)
+      - SWIPE_VELOCITY_THRESHOLD = 0.3 (px/ms for fling detection)
+      - KEYBOARD_KEYS object mapping key codes to actions
+planning_notes: |
+  ## Planning Analysis (PR-002)
+
+  ### MUI Type Patterns Studied
+  - Slider.d.ts: Comprehensive example with slots, slotProps, controlled/uncontrolled, OwnerState
+  - Button.d.ts: TypeMap pattern, override interfaces for extensibility
+  - buttonClasses.ts: CSS class generation with generateUtilityClasses
+  - useBadge.types.ts: Hook types pattern for useCarousel hook (PR-003)
+
+  ### Key Design Decisions
+  1. **Controlled/Uncontrolled Pattern**: Use activeIndex + defaultActiveIndex (like Slider's value/defaultValue)
+  2. **Transition Types**: 'slide' | 'fade' only; zoom excluded from v1
+  3. **Orientation**: 'horizontal' only in v1 (not a union type)
+  4. **Override Interfaces**: Empty interfaces for color/size/variant allow theme extension
+  5. **SlotProps Pattern**: Follow modern MUI slots/slotProps over deprecated components/componentsProps
+
+  ### Files NOT Added (Considered but Deferred)
+  - Carousel/index.ts: Will be created in PR-003 with component
+  - Hook types (useCarousel.types.ts): Will be created in PR-003 with hook
+  - Navigation/Indicator class files: Separate files in PR-004
+
+  ### Implementation Order
+  1. Create utils/constants.ts first (no dependencies)
+  2. Create types/index.ts (shared types)
+  3. Create carouselClasses.ts (depends on constants for prefix)
+  4. Create Carousel.types.ts (depends on classes, types)
+
+  ### Integration Notes
+  - Types must align with PRD props: autoPlay, interval, loop, orientation, slidesPerView, spacing, transition, transitionDuration
+  - PRD prop 'interval' renamed to 'autoPlayInterval' for clarity
+  - PRD prop 'loop' renamed to 'enableLoop' to follow MUI boolean naming (disableX, enableX)
+  - Use theme.transitions.duration.complex (450ms) as default transition duration
+
+  ### Testing Considerations
+  - Types are tested implicitly via TypeScript compilation
+  - Export all types from package for consumer type checking
+  - JSDoc @default annotations will appear in IDE tooltips
 ---
 
 **Description:**
