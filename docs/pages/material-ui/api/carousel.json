@@ -1,0 +1,85 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" }, "required": true },
+    "activeIndex": { "type": { "name": "number" } },
+    "autoPlay": { "type": { "name": "bool" }, "default": "false" },
+    "autoPlayInterval": { "type": { "name": "number" }, "default": "5000" },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "defaultActiveIndex": { "type": { "name": "number" }, "default": "0" },
+    "disableGestures": { "type": { "name": "bool" }, "default": "false" },
+    "disableKeyboard": { "type": { "name": "bool" }, "default": "false" },
+    "enableLoop": { "type": { "name": "bool" }, "default": "false" },
+    "hideIndicators": { "type": { "name": "bool" }, "default": "false" },
+    "hideNavigation": { "type": { "name": "bool" }, "default": "false" },
+    "nextIcon": { "type": { "name": "node" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent | null, index: number, reason: string) => void",
+        "describedArgs": ["event", "index", "reason"]
+      }
+    },
+    "prevIcon": { "type": { "name": "node" } },
+    "slidesPerView": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ xs?: number, sm?: number, md?: number, lg?: number, xl?: number }"
+      },
+      "default": "1"
+    },
+    "spacing": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "default": "0"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "transition": {
+      "type": { "name": "enum", "description": "'slide'<br>&#124;&nbsp;'fade'" },
+      "default": "'slide'"
+    },
+    "transitionDuration": { "type": { "name": "number" }, "default": "450" }
+  },
+  "name": "Carousel",
+  "imports": [
+    "import Carousel from '@mui/carousel/Carousel';",
+    "import { Carousel } from '@mui/carousel';"
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiCarousel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "slidesContainer",
+      "className": "MuiCarousel-slidesContainer",
+      "description": "Styles applied to the slides container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "slide",
+      "className": "MuiCarousel-slide",
+      "description": "Styles applied to each slide element.",
+      "isGlobal": false
+    },
+    {
+      "key": "slideActive",
+      "className": "MuiCarousel-slideActive",
+      "description": "Styles applied to the active slide element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCarousel",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-carousel/src/Carousel/Carousel.tsx",
+  "demos": "<ul><li><a href=\"/material-ui/react-carousel/\">Carousel</a></li></ul>",
+  "cssComponent": false
+}

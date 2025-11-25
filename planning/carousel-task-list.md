@@ -1938,7 +1938,7 @@ Use MUI's useMediaQuery and theme breakpoints. Handle SSR properly. The Responsi
 ---
 pr_id: PR-011
 title: Implement Comprehensive Unit Tests
-cold_state: new
+cold_state: complete
 priority: critical
 complexity:
   score: 6
@@ -1949,23 +1949,252 @@ dependencies: [PR-003, PR-004, PR-005, PR-006, PR-007, PR-008, PR-009]
 estimated_files:
   - path: packages/mui-carousel/src/Carousel/Carousel.test.tsx
     action: create
-    description: main component test suite
+    description: |
+      Main component test suite using MUI patterns:
+      - describeConformance for standard MUI component tests (classes, ref forwarding, muiName)
+      - Props testing: activeIndex, defaultActiveIndex, autoPlay, autoPlayInterval,
+        enableLoop, hideNavigation, hideIndicators, transition, transitionDuration,
+        slidesPerView (including responsive object), spacing, disableGestures, disableKeyboard
+      - Controlled vs uncontrolled mode testing
+      - onChange callback testing with reason parameter validation
+      - Slot and slotProps customization tests
+      - ARIA attribute verification (role="region", aria-roledescription, aria-live)
+  - path: packages/mui-carousel/src/CarouselNavigation/CarouselNavigation.test.tsx
+    action: create
+    description: |
+      Navigation component tests:
+      - Renders prev/next buttons correctly
+      - Disabled state at boundaries when !enableLoop
+      - Click handlers call goToPrevious/goToNext with 'navigation' reason
+      - RTL icon swapping (KeyboardArrowLeft/Right swap in RTL)
+      - Custom icon props (prevIcon, nextIcon)
+      - Button props forwarding (prevButtonProps, nextButtonProps)
+      - ARIA labels ("Go to previous slide", "Go to next slide")
+  - path: packages/mui-carousel/src/CarouselIndicators/CarouselIndicators.test.tsx
+    action: create
+    description: |
+      Indicators component tests:
+      - Renders correct number of indicator dots
+      - Active indicator has correct styling/class
+      - Click on indicator calls goToSlide with correct index and 'indicator' reason
+      - ARIA attributes (role="tablist", role="tab", aria-selected)
+      - Focus styling (focus-visible outline)
+  - path: packages/mui-carousel/src/hooks/useCarousel.test.ts
+    action: create
+    description: |
+      Core hook tests:
+      - Controlled mode: responds to activeIndex prop changes
+      - Uncontrolled mode: manages internal state with defaultActiveIndex
+      - goToSlide: navigates to correct index, respects bounds
+      - goToNext/goToPrevious: increments/decrements correctly
+      - enableLoop: wraps around at boundaries
+      - direction tracking: 'forward' when incrementing, 'backward' when decrementing
+      - slideCount computation from children
+      - canGoPrevious/canGoNext boundary detection
+      - onChange callback invocation with (event, index, reason)
   - path: packages/mui-carousel/src/hooks/useSwipe.test.ts
     action: create
-    description: swipe hook tests
+    description: |
+      Swipe/drag gesture hook tests:
+      - Pointer event handling (onPointerDown, onPointerMove, onPointerUp, onPointerCancel)
+      - Swipe left triggers onSwipeLeft callback
+      - Swipe right triggers onSwipeRight callback
+      - Threshold validation: short swipes don't trigger
+      - Velocity detection: fast flicks trigger even if short distance
+      - Horizontal vs vertical direction detection
+      - disabled prop prevents gesture handling
+      - Interactive element detection (buttons, inputs ignored)
+      - defaultMuiPrevented pattern respected
+      - swiping state updates during gesture
   - path: packages/mui-carousel/src/hooks/useAutoPlay.test.ts
     action: create
-    description: auto-play hook tests
+    description: |
+      Auto-play hook tests:
+      - Timer fires onTick at specified interval
+      - Pauses on mouseenter when pauseOnHover=true
+      - Resumes on mouseleave
+      - Pauses on focus when pauseOnFocus=true
+      - Resumes on blur
+      - Manual pause/resume methods work
+      - Timer cleanup on unmount (no memory leaks)
+      - Respects prefers-reduced-motion (mock matchMedia)
+      - Pauses when document.hidden (visibility change)
+      - isPlaying reflects correct state
   - path: packages/mui-carousel/src/hooks/useKeyboard.test.ts
     action: create
-    description: keyboard hook tests
-  - path: packages/mui-carousel/src/test-utils/index.ts
+    description: |
+      Keyboard navigation hook tests:
+      - ArrowLeft/ArrowRight trigger onPrevious/onNext
+      - RTL mode: arrow directions swap
+      - Home key triggers onFirst
+      - End key triggers onLast
+      - Escape key triggers onPause
+      - Number keys 1-9 trigger onGoToSlide with correct index
+      - Number keys beyond slideCount are ignored
+      - Modifier keys (Ctrl/Alt/Meta/Shift) prevent navigation
+      - disabled prop prevents handling
+      - preventDefault called for handled keys
+  - path: packages/mui-carousel/src/hooks/useResponsive.test.ts
     action: create
-    description: test utilities and helpers
+    description: |
+      Responsive hook tests:
+      - Simple value passes through unchanged
+      - Responsive object resolves to correct breakpoint value
+      - Breakpoint fallback: md falls back to sm if md not specified
+      - SSR-safe: returns xs value during SSR (mock useMediaQuery)
+      - Theme breakpoints integration
+  - path: packages/mui-carousel/src/utils/carouselHelpers.test.ts
+    action: create
+    description: |
+      Utility function tests:
+      - clampIndex: clamps to min/max bounds
+      - wrapIndex: wraps correctly for loop mode, handles negative indices
+      - normalizeSpacing: converts numbers to px, passes strings through
+      - getValidChildren: filters React.isValidElement children
+      - isInteractiveElement: detects buttons, inputs, links, contenteditable
+      - calculateSlideWidth: correct calc() expressions for various slidesPerView/spacing
+      - calculateTransformOffset: correct translateX values
+  - path: packages/mui-carousel/src/utils/gestureHelpers.test.ts
+    action: create
+    description: |
+      Gesture utility tests:
+      - calculateDistance: correct signed distance
+      - calculateVelocity: correct px/ms calculation, handles zero duration
+      - getSwipeDirection: horizontal/vertical/none detection
+      - shouldPreventScroll: true for horizontal gestures
+      - isValidSwipe: threshold and velocity validation
+  - path: packages/mui-carousel/src/utils/keyboardHelpers.test.ts
+    action: create
+    description: |
+      Keyboard utility tests:
+      - isNavigationKey: identifies all handled keys
+      - getSlideIndexFromKey: converts 1-9 to indices, returns null for invalid
+      - getActionForKey: correct actions for all keys, RTL support
+      - hasModifierKey: detects ctrl/alt/meta/shift
+  - path: packages/mui-carousel/src/transitions/transitionUtils.test.ts
+    action: create
+    description: |
+      Transition utility tests:
+      - getEffectiveDuration: returns 0 when reduced motion preferred
+      - shouldReduceMotion: checks prefers-reduced-motion media query
+planning_notes: |
+  ## Planning Analysis (PR-011)
+
+  ### MUI Testing Patterns Studied
+  After reviewing packages/mui-material/src/Card/Card.test.tsx and other MUI tests:
+
+  1. **Testing Framework Stack**
+     - chai for assertions (expect...to.have.class, etc.)
+     - @mui/internal-test-utils for createRenderer
+     - describeConformance for standard component conformance tests
+     - Mocha as test runner (not Jest)
+     - sinon for spying/stubbing
+
+  2. **describeConformance Pattern**
+     ```typescript
+     describeConformance(<Carousel>{children}</Carousel>, () => ({
+       classes,
+       inheritComponent: 'div',
+       render,
+       muiName: 'MuiCarousel',
+       refInstanceof: window.HTMLDivElement,
+       testVariantProps: { transition: 'fade' },
+       skip: ['componentsProp'], // Skip tests that don't apply
+     }));
+     ```
+
+  3. **Test File Location**
+     Tests are co-located with components in the src directory, not in a separate test/ folder.
+     Pattern: `ComponentName.test.tsx` in same directory as component.
+
+  ### Components and Hooks to Test
+
+  1. **Main Component: Carousel.tsx**
+     - All 18+ props need testing
+     - Controlled vs uncontrolled mode
+     - Slide rendering (slide and fade transitions)
+     - Integration with navigation and indicators
+     - Context provision to child components
+
+  2. **Sub-Components**
+     - CarouselNavigation: button rendering, disabled states, RTL
+     - CarouselIndicators: dot rendering, active state, click handling
+
+  3. **Hooks (5 total)**
+     - useCarousel: Core state management
+     - useSwipe: Pointer event handling
+     - useAutoPlay: Timer management
+     - useKeyboard: Key event handling
+     - useResponsive: Breakpoint resolution
+
+  4. **Utilities (4 files)**
+     - carouselHelpers: 6 functions
+     - gestureHelpers: 5 functions
+     - keyboardHelpers: 4 functions
+     - transitionUtils: 2 functions
+
+  ### Testing Strategy
+
+  1. **Unit Tests for Pure Functions**
+     All utility functions are pure - simple input/output testing.
+     No mocking required. Fast execution.
+
+  2. **Hook Tests**
+     Use @testing-library/react-hooks or renderHook from RTL.
+     Mock external dependencies (useMediaQuery, document events).
+     Test state changes and callback invocations.
+
+  3. **Component Tests**
+     - Use createRenderer from @mui/internal-test-utils
+     - Test user interactions (click, keyboard, pointer events)
+     - Verify ARIA attributes for accessibility
+     - Check class application based on state
+
+  4. **Mocking Requirements**
+     - window.matchMedia for prefers-reduced-motion and breakpoints
+     - document.addEventListener for visibility change
+     - setInterval/clearInterval for auto-play (use fake timers)
+     - Pointer events for swipe testing
+
+  ### File Count: 14 test files
+
+  Previous estimate: 5 files (too low)
+  Revised estimate: 14 files for comprehensive coverage
+
+  ### Implementation Order
+  1. Utils tests first (no dependencies, pure functions)
+  2. Hook tests next (some mocking required)
+  3. Sub-component tests (CarouselNavigation, CarouselIndicators)
+  4. Main Carousel component tests last (integration of all parts)
+
+  ### Edge Cases to Cover
+  - Empty carousel (no children)
+  - Single slide (navigation disabled)
+  - Rapid successive navigations
+  - Swipe during transition
+  - Tab visibility change during auto-play
+  - RTL layout
+  - SSR (useMediaQuery returns false)
+  - Responsive slidesPerView changes
+  - Loop mode boundary behavior
+
+  ### Accessibility Tests
+  - ARIA roles present (region, tablist, tab)
+  - aria-live updates based on auto-play
+  - aria-selected on active indicator
+  - aria-label on navigation buttons
+  - Focus management (tabIndex, focus-visible)
+  - Keyboard navigation works from any focusable element
+
+  ### Test Performance Target
+  - All tests < 10 seconds total
+  - Use fake timers for auto-play tests
+  - Mock transitions (skip actual animation delays)
+  - Avoid unnecessary re-renders
 ---
 
 **Description:**
-Write comprehensive unit tests using React Testing Library and Jest, achieving >95% code coverage and testing all user interactions.
+Write comprehensive unit tests using Mocha/Chai and @mui/internal-test-utils, achieving >95% code coverage and testing all user interactions. Follow MUI's established testing patterns.
 
 **Acceptance Criteria:**
 - [ ] >95% code coverage achieved
@@ -1974,10 +2203,13 @@ Write comprehensive unit tests using React Testing Library and Jest, achieving >
 - [ ] Edge cases covered
 - [ ] Accessibility tests included
 - [ ] Tests run quickly (<10 seconds)
-- [ ] Follows MUI testing patterns
+- [ ] Follows MUI testing patterns (chai, describeConformance)
+- [ ] All 5 hooks have dedicated test files
+- [ ] All utility functions tested
+- [ ] Sub-components (Navigation, Indicators) tested
 
 **Notes:**
-Focus on user behavior testing rather than implementation details. Mock animations for test performance.
+Focus on user behavior testing rather than implementation details. Mock animations for test performance. Use describeConformance for standard MUI component conformance. Tests are co-located with source files.
 
 ### PR-012: Add Integration and Visual Tests
 
@@ -2023,7 +2255,7 @@ Use MUI's existing visual regression test infrastructure. Test theme customizati
 ---
 pr_id: PR-013
 title: Create Documentation and Examples
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
   score: 5
@@ -2034,35 +2266,291 @@ dependencies: [PR-003, PR-004, PR-005, PR-006, PR-007, PR-008, PR-009, PR-010]
 estimated_files:
   - path: docs/data/material/components/carousel/carousel.md
     action: create
-    description: main documentation page
+    description: |
+      Main documentation page following MUI docs structure:
+      - Frontmatter: productId, title, components, githubLabel, waiAria, githubSource
+      - Introduction paragraph explaining what carousels are for
+      - Sections: Basic Carousel, Navigation Controls, Auto-Play, Transitions,
+        Touch/Swipe Gestures, Keyboard Navigation, Responsive Behavior,
+        Customization, Accessibility, Common Use Cases
+      - Each section references demo files using {{"demo": "DemoFile.js"}} syntax
+      - API reference link at bottom
   - path: docs/data/material/components/carousel/BasicCarousel.js
     action: create
-    description: basic usage example
+    description: |
+      Basic usage example showing simplest implementation:
+      - Import Carousel from @mui/carousel
+      - Wrap image slides in Carousel component
+      - Shows default navigation and indicators
+  - path: docs/data/material/components/carousel/BasicCarousel.tsx
+    action: create
+    description: TypeScript version of BasicCarousel for TS users
+  - path: docs/data/material/components/carousel/AutoPlayCarousel.js
+    action: create
+    description: |
+      Auto-play functionality demo:
+      - autoPlay={true} prop
+      - autoPlayInterval customization
+      - Shows pause on hover behavior
+      - enableLoop for continuous cycling
+  - path: docs/data/material/components/carousel/AutoPlayCarousel.tsx
+    action: create
+    description: TypeScript version of AutoPlayCarousel
+  - path: docs/data/material/components/carousel/TransitionCarousel.js
+    action: create
+    description: |
+      Transition effects demo:
+      - Side-by-side comparison of transition="slide" vs transition="fade"
+      - transitionDuration customization
+      - Visual explanation of each transition type
+  - path: docs/data/material/components/carousel/TransitionCarousel.tsx
+    action: create
+    description: TypeScript version of TransitionCarousel
   - path: docs/data/material/components/carousel/ResponsiveCarousel.js
     action: create
-    description: responsive carousel example
+    description: |
+      Responsive slidesPerView demo:
+      - Shows responsive object syntax: { xs: 1, sm: 2, md: 3, lg: 4 }
+      - Demonstrates breakpoint behavior
+      - Shows spacing prop usage with multiple slides
+  - path: docs/data/material/components/carousel/ResponsiveCarousel.tsx
+    action: create
+    description: TypeScript version of ResponsiveCarousel
+  - path: docs/data/material/components/carousel/ControlledCarousel.js
+    action: create
+    description: |
+      Controlled mode demo:
+      - External state management with activeIndex
+      - onChange callback handling
+      - External navigation buttons controlling the carousel
+      - Shows integration with app state
+  - path: docs/data/material/components/carousel/ControlledCarousel.tsx
+    action: create
+    description: TypeScript version of ControlledCarousel
   - path: docs/data/material/components/carousel/CustomizedCarousel.js
     action: create
-    description: customization example
-  - path: docs/data/material/components/carousel/AccessibleCarousel.js
+    description: |
+      Customization examples:
+      - Custom navigation icons (prevIcon, nextIcon)
+      - Theme-based styling via sx prop
+      - Slots and slotProps customization
+      - Custom indicator styling
+      - Integration with theme overrides
+  - path: docs/data/material/components/carousel/CustomizedCarousel.tsx
     action: create
-    description: accessibility example
+    description: TypeScript version of CustomizedCarousel
+  - path: docs/data/material/components/carousel/ImageGallery.js
+    action: create
+    description: |
+      Image gallery use case demo:
+      - Full-width image carousel
+      - Caption overlays
+      - Thumbnail navigation option
+      - Lazy loading considerations
+  - path: docs/data/material/components/carousel/ImageGallery.tsx
+    action: create
+    description: TypeScript version of ImageGallery
+  - path: docs/data/material/components/carousel/TestimonialCarousel.js
+    action: create
+    description: |
+      Testimonials/quotes use case demo:
+      - Card-based content
+      - Text-focused design
+      - Auto-play with pause on focus
+      - Professional styling
+  - path: docs/data/material/components/carousel/TestimonialCarousel.tsx
+    action: create
+    description: TypeScript version of TestimonialCarousel
+  - path: docs/data/material/components/carousel/ProductCarousel.js
+    action: create
+    description: |
+      E-commerce product carousel demo:
+      - Multiple products visible (slidesPerView: 3)
+      - Responsive design for mobile/tablet/desktop
+      - Product cards with images, titles, prices
+      - Navigation-focused design
+  - path: docs/data/material/components/carousel/ProductCarousel.tsx
+    action: create
+    description: TypeScript version of ProductCarousel
+  - path: docs/data/material/components/carousel/HiddenControls.js
+    action: create
+    description: |
+      Demo showing control visibility options:
+      - hideNavigation prop
+      - hideIndicators prop
+      - Minimal UI for touch-focused interfaces
+  - path: docs/data/material/components/carousel/HiddenControls.tsx
+    action: create
+    description: TypeScript version of HiddenControls
+  - path: docs/data/material/components/carousel/DisabledFeatures.js
+    action: create
+    description: |
+      Demo showing disabled features:
+      - disableGestures for non-swipeable carousels
+      - disableKeyboard for custom keyboard handling
+      - Use cases for each disabled mode
+  - path: docs/data/material/components/carousel/DisabledFeatures.tsx
+    action: create
+    description: TypeScript version of DisabledFeatures
+  - path: docs/pages/material-ui/api/carousel.json
+    action: create
+    description: |
+      API page configuration for docs site navigation:
+      - Component name and description
+      - Props documentation links
+      - Demos links
+planning_notes: |
+  ## Planning Analysis (PR-013)
+
+  ### MUI Documentation Structure Studied
+  After reviewing docs/data/material/components/slider/:
+
+  1. **Markdown File Structure**
+     ```markdown
+     ---
+     productId: material-ui
+     title: React Carousel component
+     components: Carousel
+     githubLabel: 'scope: carousel'
+     waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/carousel/
+     githubSource: packages/mui-carousel/src/Carousel
+     ---
+
+     # Carousel
+
+     <p class="description">Brief description of the component.</p>
+
+     Longer explanation of what carousels do and when to use them.
+
+     {{"component": "@mui/docs/ComponentLinkHeader"}}
+
+     ## Section Title
+
+     Explanation of this feature.
+
+     {{"demo": "DemoFile.js"}}
+     ```
+
+  2. **Demo File Pattern**
+     - Each demo has both .js and .tsx versions
+     - Files are self-contained with all imports
+     - Export default the demo component
+     - Use consistent styling patterns
+
+  3. **Section Organization (Proposed for Carousel)**
+     1. **Basic carousel** - Simplest usage
+     2. **Navigation controls** - Show/hide arrows and dots
+     3. **Auto-play** - Automatic advancing
+     4. **Transitions** - Slide vs fade
+     5. **Touch and swipe** - Gesture support
+     6. **Keyboard navigation** - Accessibility
+     7. **Responsive behavior** - slidesPerView breakpoints
+     8. **Controlled mode** - External state management
+     9. **Customization** - Styling and slots
+     10. **Common use cases** - Image gallery, testimonials, products
+     11. **Accessibility** - ARIA and keyboard guidelines
+
+  ### File Count: 22 files
+
+  Previous estimate: 5 files (insufficient)
+  Revised estimate: 22 files (11 demos × 2 for JS/TS + 1 markdown + 1 API config)
+
+  ### Demo Content Strategy
+
+  1. **Use Placeholder Images**
+     - picsum.photos for random images
+     - Consistent aspect ratios
+     - Alt text for accessibility
+
+  2. **Realistic Content**
+     - Product data: name, price, image, rating
+     - Testimonials: quote, author, company, role
+     - Gallery: images with captions
+
+  3. **Show Best Practices**
+     - ARIA labels in all demos
+     - Accessible descriptions
+     - Keyboard-friendly design
+
+  ### Documentation Sections to Include
+
+  1. **Introduction**
+     - What is a carousel
+     - When to use (and when not to)
+     - Basic implementation
+
+  2. **Features**
+     - Navigation (arrows, dots)
+     - Auto-play with pause behavior
+     - Touch/swipe gestures
+     - Keyboard navigation
+     - Responsive design
+
+  3. **Customization**
+     - Theme integration
+     - Custom icons
+     - Slot customization
+     - CSS classes
+
+  4. **Accessibility**
+     - ARIA attributes
+     - Keyboard shortcuts
+     - Screen reader support
+     - Reduced motion
+
+  5. **Common Patterns**
+     - Image galleries
+     - Testimonials
+     - Product carousels
+     - Hero banners
+
+  ### TypeScript Examples
+  All demos need TypeScript versions showing:
+  - Proper type imports
+  - Typed event handlers
+  - Generic slot props
+  - Type-safe custom components
+
+  ### Migration Guide Content
+  Brief comparison with popular libraries:
+  - react-slick: Prop name mappings
+  - swiper: Feature comparison
+  - react-carousel: Migration steps
+
+  ### Implementation Order
+  1. Create carousel.md with structure
+  2. Create BasicCarousel.js/tsx first
+  3. Add demos section by section
+  4. Create API config last
+  5. Test all demos render correctly
+
+  ### WAI-ARIA Reference
+  Use https://www.w3.org/WAI/ARIA/apg/patterns/carousel/ as the waiAria link.
+  Document keyboard shortcuts:
+  - Arrow Left/Right: Previous/Next
+  - Home: First slide
+  - End: Last slide
+  - 1-9: Direct slide access
+  - Escape: Pause auto-play
 ---
 
 **Description:**
-Create comprehensive documentation with live examples, API reference, and best practices following Material UI's documentation standards.
+Create comprehensive documentation with live examples, API reference, and best practices following Material UI's documentation standards. Include both JavaScript and TypeScript versions of all demos.
 
 **Acceptance Criteria:**
 - [ ] API documentation complete
-- [ ] Multiple interactive examples
+- [ ] Multiple interactive examples (11 demos)
+- [ ] Both JS and TSX versions of all demos
 - [ ] Customization guide included
 - [ ] Accessibility guide included
-- [ ] Migration guide from popular libraries
+- [ ] Common use cases demonstrated (gallery, testimonials, products)
 - [ ] TypeScript examples included
-- [ ] Follows MUI docs structure
+- [ ] Follows MUI docs structure exactly
+- [ ] All demos are self-contained and runnable
+- [ ] WAI-ARIA carousel pattern referenced
 
 **Notes:**
-Examples should be runnable in documentation. Cover common use cases and edge cases.
+Examples should be runnable in documentation. Cover common use cases and edge cases. Follow the exact pattern used by other MUI component docs like Slider. Each demo needs both .js and .tsx versions.
 
 ### PR-014: Add Storybook Stories
 
