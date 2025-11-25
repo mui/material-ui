@@ -2216,7 +2216,7 @@ Focus on user behavior testing rather than implementation details. Mock animatio
 ---
 pr_id: PR-012
 title: Add Integration and Visual Tests
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 4
@@ -2225,30 +2225,120 @@ complexity:
   rationale: Integration testing with other MUI components and visual regression
 dependencies: [PR-011]
 estimated_files:
+  - path: test/regressions/fixtures/Carousel/SimpleCarousel.js
+    action: create
+    description: |
+      Basic carousel fixture with text/colored box slides (no external images).
+      Shows default state with navigation and indicators visible.
+      Uses simple colored divs as slide content following MUI fixture patterns.
+  - path: test/regressions/fixtures/Carousel/CarouselTransitions.js
+    action: create
+    description: |
+      Side-by-side comparison of transition types:
+      - One carousel with transition="slide"
+      - One carousel with transition="fade"
+      Uses text labels to identify each transition type.
+  - path: test/regressions/fixtures/Carousel/CarouselHiddenControls.js
+    action: create
+    description: |
+      Demonstrates control visibility options:
+      - Carousel with hideNavigation={true}
+      - Carousel with hideIndicators={true}
+      - Carousel with both hidden
+  - path: test/regressions/fixtures/Carousel/CarouselSingleSlide.js
+    action: create
+    description: |
+      Edge case fixture with single slide:
+      - Shows that indicators display one dot
+      - Navigation buttons should be disabled (not looping)
+  - path: test/regressions/fixtures/Carousel/CarouselRTL.js
+    action: create
+    description: |
+      RTL layout testing fixture:
+      - Wrapped in RTL direction context
+      - Verifies navigation icons swap correctly
+      - Tests indicator positioning in RTL
   - path: packages/mui-carousel/src/Carousel/Carousel.integration.test.tsx
     action: create
-    description: integration test suite
-  - path: packages/mui-carousel/src/Carousel/Carousel.visual.test.tsx
-    action: create
-    description: visual regression tests
-  - path: test/regressions/tests/Carousel/SimpleCarousel.js
-    action: create
-    description: visual regression fixtures
+    description: |
+      Integration test suite testing carousel with MUI components:
+      - Carousel inside Card component
+      - Carousel inside Paper component
+      - Carousel inside Dialog (modal context)
+      - Carousel with custom theme (light/dark modes)
+      - Carousel with theme spacing/density variations
+      - RTL support verification
+planning_notes: |
+  ## Planning Analysis (PR-012)
+
+  ### MUI Visual Regression Infrastructure
+  After reviewing test/regressions/:
+
+  1. **Fixture Location**: `test/regressions/fixtures/ComponentName/FixtureName.js`
+     - NOT `test/regressions/tests/` (original estimate was wrong)
+     - Fixtures are auto-discovered via import.meta.glob
+
+  2. **Image Handling**: Images are BLOCKED during regression tests
+     - Line 27-33 of index.test.js: `if (type === 'image') { route.abort(); }`
+     - Must use text/colored boxes instead of external images
+     - This follows MUI's pattern for other fixtures (Slider, Button, etc.)
+
+  3. **Demo Auto-Import**: Demos from docs/data are auto-imported
+     - Carousel demos will be included automatically
+     - Custom fixtures needed for specific regression scenarios not covered by demos
+
+  4. **No .visual.test.tsx Pattern**: MUI doesn't use separate visual test files
+     - Visual regression is handled by fixtures + playwright screenshots
+     - Removed Carousel.visual.test.tsx from file list
+
+  ### Fixture Design Decisions
+
+  1. **Use Colored Boxes**: Following patterns from existing fixtures like:
+     - `fixtures/Slider/SimpleDisabledSlider.js` - simple prop showcase
+     - `fixtures/Button/IconLabelButtons.js` - multiple variants in one fixture
+
+  2. **Text Labels**: Each slide uses text to identify content
+     - Helps verify correct slide is displayed
+     - No reliance on external resources
+
+  3. **Multiple Fixtures vs One Large**: Split into focused fixtures
+     - Easier to identify which scenario regressed
+     - Follows MUI pattern of small, focused fixtures
+
+  ### Integration Test Strategy
+
+  Focus on MUI component integration (per user decision):
+  - Card: Common container for carousels
+  - Paper: Tests elevation/shadow interaction
+  - Dialog: Tests modal/portal context
+  - Themes: Light/dark mode, custom palettes
+  - RTL: Direction-aware navigation
+
+  NOT including (deferred/out of scope):
+  - SSR/hydration testing (monorepo-level concern)
+  - Memory leak testing (requires profiling infrastructure)
+  - Performance benchmarks (requires benchmark tooling)
+
+  ### Implementation Order
+  1. Create fixture directory: test/regressions/fixtures/Carousel/
+  2. SimpleCarousel.js first (validates setup works)
+  3. Other fixtures in parallel
+  4. Integration test file last (depends on understanding fixture results)
 ---
 
 **Description:**
-Create integration tests verifying carousel works with other MUI components and visual regression tests for styling consistency.
+Create visual regression fixtures for screenshot testing and integration tests verifying carousel works correctly with other MUI components and themes. Fixtures use text/colored boxes instead of images (images are blocked during regression tests).
 
 **Acceptance Criteria:**
-- [ ] Tests carousel in various MUI containers
-- [ ] Tests with different themes
-- [ ] Visual regression tests pass
-- [ ] Tests SSR/hydration scenarios
-- [ ] Performance benchmarks included
-- [ ] Memory leak tests pass
+- [ ] Visual regression fixtures created in test/regressions/fixtures/Carousel/
+- [ ] Fixtures use text/colored content (no external images)
+- [ ] Tests carousel in MUI containers (Card, Paper, Dialog)
+- [ ] Tests with different themes (light/dark)
+- [ ] RTL layout support verified
+- [ ] All fixtures render without errors in regression test viewer
 
 **Notes:**
-Use MUI's existing visual regression test infrastructure. Test theme customization thoroughly.
+Visual regression tests use playwright to capture screenshots. Fixtures are auto-discovered. The demos from PR-013 are also auto-imported into regression tests but may have missing images (blocked). Custom fixtures ensure reliable visual regression coverage.
 
 ### PR-013: Create Documentation and Examples
 
@@ -2552,41 +2642,132 @@ Create comprehensive documentation with live examples, API reference, and best p
 **Notes:**
 Examples should be runnable in documentation. Cover common use cases and edge cases. Follow the exact pattern used by other MUI component docs like Slider. Each demo needs both .js and .tsx versions.
 
-### PR-014: Add Storybook Stories
+### PR-014: Add Interactive Playground to Demo
 
 ---
 pr_id: PR-014
-title: Add Storybook Stories
-cold_state: new
+title: Add Interactive Playground to Demo
+cold_state: planned
 priority: medium
 complexity:
   score: 3
   estimated_minutes: 45
   suggested_model: haiku
-  rationale: Storybook configuration for component development and testing
-dependencies: [PR-003, PR-013]
+  rationale: Interactive prop exploration in demo app (replaces Storybook which MUI no longer uses)
+dependencies: [PR-003, PR-003A]
 estimated_files:
-  - path: packages/mui-carousel/src/Carousel/Carousel.stories.tsx
+  - path: demo/src/components/InteractivePlayground.tsx
     action: create
-    description: comprehensive Storybook stories
-  - path: .storybook/stories/Carousel.stories.tsx
+    description: |
+      Interactive playground component with real-time prop controls:
+      - Toggle switches for boolean props (autoPlay, enableLoop, hideNavigation,
+        hideIndicators, disableGestures, disableKeyboard)
+      - Number inputs for autoPlayInterval, transitionDuration, slidesPerView, spacing
+      - Select dropdown for transition type (slide/fade)
+      - Slider for activeIndex (controlled mode demo)
+      - Reset button to restore defaults
+      - Live carousel preview that responds to all changes
+      - Code snippet display showing current prop configuration
+  - path: demo/src/components/PropControl.tsx
     action: create
-    description: root Storybook integration
+    description: |
+      Reusable prop control components:
+      - ToggleControl: Switch with label for boolean props
+      - NumberControl: Input with label, min/max for numeric props
+      - SelectControl: Dropdown for enum props
+      - SliderControl: Slider with label for range values
+      All controls use MUI components for consistency
+  - path: demo/src/App.tsx
+    action: modify
+    description: |
+      Add Interactive Playground section to demo app:
+      - New "Playground" tab/section in navigation
+      - Import and render InteractivePlayground component
+      - Position prominently for easy discovery
+  - path: demo/src/utils/codeGenerator.ts
+    action: create
+    description: |
+      Utility to generate code snippets from current prop values:
+      - Takes prop object, returns formatted JSX string
+      - Omits default values for cleaner output
+      - Handles all prop types (boolean, number, string, object)
+planning_notes: |
+  ## Planning Analysis (PR-014)
+
+  ### Why Not Storybook
+  MUI has moved away from Storybook - they use:
+  - Visual regression tests with playwright (test/regressions/)
+  - Documentation demos (docs/data/material/components/)
+  - No .storybook/ directory exists in the codebase
+
+  Setting up Storybook would be significant work that doesn't follow MUI patterns.
+
+  ### Interactive Playground Approach
+  Instead, add an interactive playground to the existing demo app (PR-003A):
+  - Provides same functionality as Storybook controls addon
+  - Integrates with existing demo infrastructure
+  - More useful for video demonstration/submission
+  - Follows pattern of other component library playgrounds
+
+  ### UI Design
+  Layout concept:
+  ```
+  +------------------------------------------+
+  |  Interactive Playground                   |
+  +------------------------------------------+
+  |  +----------------+  +------------------+ |
+  |  | Controls Panel |  | Live Preview     | |
+  |  |                |  |                  | |
+  |  | [x] autoPlay   |  | +------------+   | |
+  |  | [x] enableLoop |  | | Carousel   |   | |
+  |  | [ ] hideNav    |  | | Preview    |   | |
+  |  | ...            |  | +------------+   | |
+  |  |                |  |                  | |
+  |  | Interval: 5000 |  | Code Snippet:    | |
+  |  | Duration: 450  |  | <Carousel        | |
+  |  | Transition: v  |  |   autoPlay       | |
+  |  |                |  |   enableLoop     | |
+  |  +----------------+  | />               | |
+  |                      +------------------+ |
+  +------------------------------------------+
+  ```
+
+  ### Props to Include
+  All configurable props from Carousel.types.ts:
+  - autoPlay (boolean)
+  - autoPlayInterval (number)
+  - enableLoop (boolean)
+  - hideNavigation (boolean)
+  - hideIndicators (boolean)
+  - disableGestures (boolean)
+  - disableKeyboard (boolean)
+  - transition ('slide' | 'fade')
+  - transitionDuration (number)
+  - slidesPerView (number)
+  - spacing (number)
+  - activeIndex (number, for controlled mode)
+
+  ### Implementation Order
+  1. PropControl.tsx - reusable control components
+  2. codeGenerator.ts - code snippet utility
+  3. InteractivePlayground.tsx - main playground component
+  4. App.tsx - integrate into demo app
 ---
 
 **Description:**
-Create Storybook stories showcasing all carousel variants, props, and use cases for development and testing purposes.
+Create an interactive playground in the demo application allowing real-time exploration of all carousel props. This replaces the originally planned Storybook stories since MUI no longer uses Storybook.
 
 **Acceptance Criteria:**
-- [ ] Stories for all prop combinations
-- [ ] Stories for edge cases
-- [ ] Interactive controls configured
-- [ ] Accessibility addon configured
-- [ ] Performance monitoring included
-- [ ] Mobile viewport stories
+- [ ] Interactive controls for all carousel props
+- [ ] Live preview updates as props change
+- [ ] Code snippet shows current configuration
+- [ ] Boolean toggles, number inputs, and dropdowns for different prop types
+- [ ] Reset to defaults functionality
+- [ ] Mobile-responsive layout
+- [ ] Integrated into demo app navigation
 
 **Notes:**
-Use Storybook's controls addon for interactive prop exploration.
+This provides Storybook-like functionality without requiring Storybook setup. The playground will be valuable for the video demonstration and helps users understand available props.
 
 ## Block 5: Performance & Polish (Depends on Block 4)
 
@@ -2737,8 +2918,8 @@ This is the actual submission to the upstream repository. Ensure the PR descript
 **Parallel Opportunities:**
 - Block 1 features (PR-004, PR-005) can be developed in parallel after PR-003
 - Block 2 features (PR-006, PR-007, PR-008) can be developed in parallel
-- Documentation (PR-013, PR-014) can start early and evolve
-- Demo updates (PR-003A, PR-015A) can be done incrementally
+- Documentation (PR-013) can start early and evolve
+- Demo updates (PR-003A, PR-014, PR-015A) can be done incrementally
 
 **Demo Milestones:**
 - **Early Demo (PR-003A):** Basic carousel functionality for initial testing
