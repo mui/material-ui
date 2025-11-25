@@ -2279,7 +2279,7 @@ Same constraints as PR-007/PR-008 apply:
 ---
 pr_id: PR-014
 title: Tests for DraggableGridItem and DraggableChip
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 4
