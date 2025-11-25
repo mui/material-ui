@@ -216,6 +216,9 @@ export * from './ListItemSecondaryAction';
 export { default as ListItemText } from './ListItemText';
 export * from './ListItemText';
 
+export { default as DraggableListItem } from './ListItem/DraggableListItem';
+export * from './ListItem/DraggableListItem';
+
 export { default as ListSubheader } from './ListSubheader';
 export * from './ListSubheader';
 

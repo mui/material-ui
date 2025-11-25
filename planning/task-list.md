@@ -1029,7 +1029,7 @@ function mockElementRect(element, rect) {...}
 ---
 pr_id: PR-008
 title: Unit Tests for Sortable Abstractions
-cold_state: new
+cold_state: planned
 priority: high
 complexity:
   score: 4
@@ -1038,12 +1038,15 @@ complexity:
   rationale: Testing higher-level hooks with integration scenarios
 dependencies: [PR-005, PR-006]
 estimated_files:
-  - path: packages/mui-material/src/useSortable/useSortable.test.ts
+  - path: packages/mui-material/src/useSortable/useSortable.test.tsx
     action: create
-    description: useSortable unit tests
+    description: useSortable unit tests (uses .tsx for React hook testing with JSX)
   - path: packages/mui-material/src/SortableContext/SortableContext.test.tsx
     action: create
     description: SortableContext unit tests
+  - path: packages/mui-material/src/SortableContext/strategies.test.ts
+    action: create
+    description: Sorting strategy pure function tests (high coverage, no JSDOM limitations)
 ---
 
 **Description:**
@@ -1059,6 +1062,144 @@ Unit tests for useSortable hook and SortableContext provider. Test sorting behav
 **Notes:**
 These tests build on the core hook tests. Focus on the sortable-specific behavior.
 
+**Planning Notes (PR-008):**
+
+**File Extension Change:** Changed `useSortable.test.ts` → `useSortable.test.tsx` for consistency with existing DnD tests that require JSX for rendering hooks.
+
+**Added strategies.test.ts:** The sorting strategies are pure functions and can achieve 100% coverage without JSDOM limitations. This offsets any coverage gaps in the hook tests due to JSDOM event handling issues.
+
+**Test Structure for useSortable.test.tsx:**
+```typescript
+describe('useSortable', () => {
+  describe('initialization', () => {
+    // - Returns correct initial state
+    // - Registers with DndContext and optionally SortableContext
+    // - Unregisters on unmount
+    // - Handles disabled prop
+  });
+
+  describe('composed hooks', () => {
+    // - isDragging reflects useDraggable state
+    // - isOver reflects useDroppable state
+    // - active passes through from useDroppable
+  });
+
+  describe('transform calculation', () => {
+    // - Uses useDraggable transform when isDragging
+    // - Uses SortableContext transform when not dragging (if available)
+    // - Returns null when no SortableContext and not dragging
+  });
+
+  describe('transition', () => {
+    // - Returns transition string when not dragging
+    // - Returns undefined when dragging
+    // - Respects custom transition config (duration, easing)
+  });
+
+  describe('isSorting', () => {
+    // - True when any item is being sorted
+    // - Prefers SortableContext's isSorting when available
+    // - Falls back to DndContext active state
+  });
+
+  describe('ref merging', () => {
+    // - setNodeRef calls both draggable and droppable setNodeRef
+    // - Registers rect with SortableContext when available
+    // - Unregisters on unmount
+  });
+});
+```
+
+**Test Structure for SortableContext.test.tsx:**
+```typescript
+describe('SortableContext', () => {
+  describe('rendering', () => {
+    // - Renders children
+    // - Provides context to nested useSortable hooks
+    // - Throws if not wrapped in DndContext
+  });
+
+  describe('items tracking', () => {
+    // - getIndex returns correct index
+    // - getIndex returns -1 for missing item
+    // - getNewIndex calculates correct new position
+  });
+
+  describe('transform calculation', () => {
+    // - Returns null when not sorting
+    // - Returns null for the actively dragged item
+    // - Calls correct strategy function based on strategy prop
+  });
+
+  describe('registration', () => {
+    // - registerItemRect stores rect in ref
+    // - unregisterItemRect removes rect from ref
+  });
+
+  describe('isSorting state', () => {
+    // - True when DndContext.active is not null
+    // - False when DndContext.active is null
+  });
+
+  describe('strategy prop', () => {
+    // - Defaults to 'vertical'
+    // - Accepts 'horizontal'
+    // - 'grid' requires columns prop (TypeScript enforcement)
+  });
+});
+```
+
+**Test Structure for strategies.test.ts:**
+```typescript
+describe('sorting strategies', () => {
+  // Helper to create mock DOMRect
+  const mockRect = (left, top, width, height) => ({...});
+
+  describe('verticalListSortingStrategy', () => {
+    // - Returns null when overId is null
+    // - Returns null for the dragged item (id === activeId)
+    // - Returns null for items outside affected range
+    // - Dragging down: items between activeIndex and overIndex shift UP
+    // - Dragging up: items between overIndex and activeIndex shift DOWN
+    // - Uses correct height from itemRects
+  });
+
+  describe('horizontalListSortingStrategy', () => {
+    // - Same structure as vertical but with x-axis
+    // - Dragging right: items shift LEFT
+    // - Dragging left: items shift RIGHT
+  });
+
+  describe('gridSortingStrategy', () => {
+    // - Returns null when overId is null
+    // - Returns null without valid columns prop
+    // - Handles 2D reflow correctly
+    // - Items shift to fill gaps when dragging forward
+    // - Items shift to make room when dragging backward
+    // - Calculates correct x/y transform based on column/row changes
+  });
+
+  describe('getSortingStrategy', () => {
+    // - Returns verticalListSortingStrategy for 'vertical' and default
+    // - Returns horizontalListSortingStrategy for 'horizontal'
+    // - Returns gridSortingStrategy for 'grid'
+  });
+});
+```
+
+**Testing Utilities:**
+Reuse patterns from existing DnD tests:
+- Mock pointer capture methods globally
+- Custom render wrapper with DndContext and SortableContext
+- Mock getBoundingClientRect for items
+
+**Known JSDOM Limitations:**
+Same limitations apply as PR-007. Full drag cycle tests may fail in JSDOM. Focus on:
+- Initialization and cleanup
+- State derivation logic
+- Integration with context providers
+- Strategy calculations (pure functions - 100% testable)
+
 ---
 
 ## Block 4: Component Integrations (Depends on Block 2, Parallel)
@@ -1068,7 +1209,7 @@ These tests build on the core hook tests. Focus on the sortable-specific behavio
 ---
 pr_id: PR-009
 title: Implement DraggableListItem
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 5
@@ -1079,16 +1220,22 @@ dependencies: [PR-005, PR-006]
 estimated_files:
   - path: packages/mui-material/src/ListItem/DraggableListItem.tsx
     action: create
-    description: Draggable list item component
-  - path: packages/mui-material/src/ListItem/DraggableListItem.d.ts
+    description: Draggable list item component with inline TypeScript types (follows new DnD pattern)
+  - path: packages/mui-material/src/ListItem/draggableListItemClasses.ts
     action: create
-    description: TypeScript declarations
-  - path: packages/mui-material/src/ListItem/index.ts
+    description: Class names for styling (MuiDraggableListItem-root, -dragging, etc.)
+  - path: packages/mui-material/src/ListItem/index.js
     action: modify
     description: Add DraggableListItem export
-  - path: packages/mui-material/src/index.ts
+  - path: packages/mui-material/src/ListItem/index.d.ts
     action: modify
-    description: Add DraggableListItem export
+    description: Add DraggableListItem type export
+  - path: packages/mui-material/src/index.js
+    action: modify
+    description: Add DraggableListItem export (alphabetically after ListItemText)
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add DraggableListItem type export
 ---
 
 **Description:**
@@ -1104,6 +1251,172 @@ Implement DraggableListItem component that wraps ListItem with drag-and-drop fun
 **Notes:**
 Co-located with ListItem. Follow MUI's component composition patterns.
 
+**Planning Notes (PR-009):**
+
+**File Pattern Decision:** Using `.tsx` with inline TypeScript types (consistent with new DnD code pattern) rather than separate `.d.ts` files. This provides better co-location of types with implementation.
+
+**API Design:**
+```typescript
+import type { UniqueIdentifier } from '../DndContext/DndContextTypes';
+import type { ListItemProps } from '../ListItem';
+
+export interface DraggableListItemOwnProps {
+  /**
+   * Unique identifier for this draggable item.
+   * Used by DndContext for tracking.
+   */
+  id: UniqueIdentifier;
+  /**
+   * Optional data to attach to drag events.
+   * Accessible in onDragStart, onDragEnd, etc.
+   */
+  data?: Record<string, unknown>;
+  /**
+   * If true, disables drag functionality.
+   * The item renders normally but cannot be dragged.
+   * @default false
+   */
+  dragDisabled?: boolean;
+  /**
+   * Transition configuration for smooth reordering animations.
+   */
+  transition?: {
+    duration?: number;  // ms, default 200
+    easing?: string;    // default 'ease'
+  };
+}
+
+export interface DraggableListItemProps
+  extends Omit<ListItemProps, 'ref'>,
+    DraggableListItemOwnProps {}
+```
+
+**Implementation Approach:**
+```tsx
+'use client';
+import * as React from 'react';
+import { styled } from '../styles';
+import ListItem from '../ListItem';
+import { useSortable } from '../useSortable';
+import { getTransformStyle } from '../DndContext/transform';
+
+const DraggableListItemRoot = styled(ListItem, {
+  name: 'MuiDraggableListItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.ownerState.isDragging && styles.dragging,
+  ],
+})(({ theme, ownerState }) => ({
+  cursor: ownerState.dragDisabled ? 'default' : 'grab',
+  userSelect: 'none',
+  touchAction: 'none',
+  ...(ownerState.isDragging && {
+    cursor: 'grabbing',
+    opacity: 0.5,
+    boxShadow: theme.shadows[4],
+    zIndex: theme.zIndex.modal,
+  }),
+}));
+
+export const DraggableListItem = React.forwardRef(function DraggableListItem(
+  props: DraggableListItemProps,
+  ref: React.Ref<HTMLLIElement>
+) {
+  const {
+    id,
+    data,
+    dragDisabled = false,
+    transition: transitionConfig,
+    children,
+    sx,
+    ...other
+  } = props;
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+    isSorting,
+  } = useSortable({
+    id,
+    data,
+    disabled: dragDisabled,
+    transition: transitionConfig,
+  });
+
+  const ownerState = { ...props, isDragging, isSorting, dragDisabled };
+
+  const style: React.CSSProperties = {
+    transform: transform ? getTransformStyle(transform.x, transform.y) : undefined,
+    transition,
+  };
+
+  return (
+    <DraggableListItemRoot
+      ref={(node) => {
+        setNodeRef(node);
+        // Forward ref if provided
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      }}
+      ownerState={ownerState}
+      sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
+      {...attributes}
+      {...(dragDisabled ? {} : listeners)}
+      {...other}
+    >
+      {children}
+    </DraggableListItemRoot>
+  );
+});
+```
+
+**Class Names (draggableListItemClasses.ts):**
+```typescript
+export interface DraggableListItemClasses {
+  root: string;
+  dragging: string;
+  disabled: string;
+}
+
+const draggableListItemClasses: DraggableListItemClasses = {
+  root: 'MuiDraggableListItem-root',
+  dragging: 'MuiDraggableListItem-dragging',
+  disabled: 'MuiDraggableListItem-disabled',
+};
+
+export default draggableListItemClasses;
+```
+
+**Visual Feedback During Drag:**
+1. `opacity: 0.5` - Semi-transparent to show it's being moved
+2. `boxShadow: theme.shadows[4]` - Elevated appearance
+3. `cursor: grabbing` - Visual cursor change
+4. `zIndex: modal` - Ensures dragged item appears above others
+
+**Usage Example:**
+```tsx
+<DndContext onDragEnd={handleDragEnd}>
+  <SortableContext items={items.map(i => i.id)} strategy="vertical">
+    <List>
+      {items.map((item) => (
+        <DraggableListItem key={item.id} id={item.id}>
+          <ListItemText primary={item.title} />
+        </DraggableListItem>
+      ))}
+    </List>
+  </SortableContext>
+</DndContext>
+```
+
+**Parallel Execution:**
+- Can run in parallel with PR-010, PR-011, PR-012
+- No file conflicts (each touches different component directories)
+
 ---
 
 ### PR-010: Implement DraggableTableRow
@@ -1111,7 +1424,7 @@ Co-located with ListItem. Follow MUI's component composition patterns.
 ---
 pr_id: PR-010
 title: Implement DraggableTableRow
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 5
@@ -1122,16 +1435,22 @@ dependencies: [PR-005, PR-006]
 estimated_files:
   - path: packages/mui-material/src/TableRow/DraggableTableRow.tsx
     action: create
-    description: Draggable table row component
-  - path: packages/mui-material/src/TableRow/DraggableTableRow.d.ts
+    description: Draggable table row component with inline TypeScript types
+  - path: packages/mui-material/src/TableRow/draggableTableRowClasses.ts
     action: create
-    description: TypeScript declarations
-  - path: packages/mui-material/src/TableRow/index.ts
+    description: Class names for styling
+  - path: packages/mui-material/src/TableRow/index.js
     action: modify
     description: Add DraggableTableRow export
-  - path: packages/mui-material/src/index.ts
+  - path: packages/mui-material/src/TableRow/index.d.ts
     action: modify
-    description: Add DraggableTableRow export
+    description: Add DraggableTableRow type export
+  - path: packages/mui-material/src/index.js
+    action: modify
+    description: Add DraggableTableRow export (alphabetically after TableRow)
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add DraggableTableRow type export
 ---
 
 **Description:**
@@ -1147,6 +1466,144 @@ Implement DraggableTableRow component for reorderable table rows. Must handle ta
 **Notes:**
 Tables are trickier due to layout constraints. May need to render a drag preview that maintains cell structure.
 
+**Planning Notes (PR-010):**
+
+**Table Layout Challenge:**
+When a `<tr>` is dragged with CSS transform, cells can collapse because:
+1. Table cells derive width from the table's column structure
+2. During drag with transform, the row is visually displaced but still participates in table layout
+3. Without explicit widths, cells may collapse or change size
+
+**Solution: Width Preservation:**
+Capture cell widths on drag start, apply as inline styles during drag:
+
+```tsx
+const DraggableTableRow = React.forwardRef(function DraggableTableRow(
+  props: DraggableTableRowProps,
+  ref: React.Ref<HTMLTableRowElement>
+) {
+  const { id, data, dragDisabled = false, children, ...other } = props;
+  const cellWidthsRef = React.useRef<number[]>([]);
+  const rowRef = React.useRef<HTMLTableRowElement | null>(null);
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id, data, disabled: dragDisabled });
+
+  // Capture cell widths on drag start
+  React.useEffect(() => {
+    if (isDragging && rowRef.current) {
+      const cells = rowRef.current.querySelectorAll('td, th');
+      cellWidthsRef.current = Array.from(cells).map(
+        (cell) => cell.getBoundingClientRect().width
+      );
+    }
+  }, [isDragging]);
+
+  // Clone children and apply widths during drag
+  const processedChildren = React.Children.map(children, (child, index) => {
+    if (!isDragging || !React.isValidElement(child)) {
+      return child;
+    }
+    const width = cellWidthsRef.current[index];
+    return React.cloneElement(child, {
+      style: { ...child.props.style, width, minWidth: width, maxWidth: width },
+    });
+  });
+
+  // ...
+});
+```
+
+**API Design:**
+```typescript
+export interface DraggableTableRowOwnProps {
+  id: UniqueIdentifier;
+  data?: Record<string, unknown>;
+  dragDisabled?: boolean;
+  transition?: { duration?: number; easing?: string };
+}
+
+export interface DraggableTableRowProps
+  extends Omit<TableRowProps, 'ref'>,
+    DraggableTableRowOwnProps {}
+```
+
+**Visual Feedback:**
+```tsx
+const DraggableTableRowRoot = styled(TableRow, {
+  name: 'MuiDraggableTableRow',
+  slot: 'Root',
+})(({ theme, ownerState }) => ({
+  cursor: ownerState.dragDisabled ? 'default' : 'grab',
+  touchAction: 'none',
+  ...(ownerState.isDragging && {
+    cursor: 'grabbing',
+    backgroundColor: theme.palette.action.selected,
+    boxShadow: theme.shadows[2],
+    // Keep row in document flow but position it with transform
+    position: 'relative',
+    zIndex: 1,
+  }),
+}));
+```
+
+**Class Names (draggableTableRowClasses.ts):**
+```typescript
+export interface DraggableTableRowClasses {
+  root: string;
+  dragging: string;
+  disabled: string;
+}
+
+const draggableTableRowClasses: DraggableTableRowClasses = {
+  root: 'MuiDraggableTableRow-root',
+  dragging: 'MuiDraggableTableRow-dragging',
+  disabled: 'MuiDraggableTableRow-disabled',
+};
+
+export default draggableTableRowClasses;
+```
+
+**Usage Example:**
+```tsx
+<DndContext onDragEnd={handleDragEnd}>
+  <SortableContext items={rows.map(r => r.id)} strategy="vertical">
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Name</TableCell>
+          <TableCell>Status</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map((row) => (
+          <DraggableTableRow key={row.id} id={row.id}>
+            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.status}</TableCell>
+          </DraggableTableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </SortableContext>
+</DndContext>
+```
+
+**Edge Cases to Handle:**
+1. Tables with colSpan/rowSpan cells
+2. Fixed-width vs auto-width tables
+3. Responsive tables that may have overflow
+4. Table within a scrollable container
+
+**Parallel Execution:**
+- Can run in parallel with PR-009, PR-011, PR-012
+- No file conflicts
+
 ---
 
 ### PR-011: Implement DraggableGridItem
@@ -1154,7 +1611,7 @@ Tables are trickier due to layout constraints. May need to render a drag preview
 ---
 pr_id: PR-011
 title: Implement DraggableGridItem
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 5
@@ -1165,16 +1622,19 @@ dependencies: [PR-005, PR-006]
 estimated_files:
   - path: packages/mui-material/src/Grid/DraggableGridItem.tsx
     action: create
-    description: Draggable grid item component
-  - path: packages/mui-material/src/Grid/DraggableGridItem.d.ts
+    description: Draggable grid item component with inline TypeScript types
+  - path: packages/mui-material/src/Grid/draggableGridItemClasses.ts
     action: create
-    description: TypeScript declarations
+    description: Class names for styling
   - path: packages/mui-material/src/Grid/index.ts
     action: modify
     description: Add DraggableGridItem export
-  - path: packages/mui-material/src/index.ts
+  - path: packages/mui-material/src/index.js
     action: modify
-    description: Add DraggableGridItem export
+    description: Add DraggableGridItem export (alphabetically near Grid)
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add DraggableGridItem type export
 ---
 
 **Description:**
@@ -1190,6 +1650,195 @@ Implement DraggableGridItem for dashboard-style layouts with 2D reordering. Uses
 **Notes:**
 Grid sorting is more complex than vertical/horizontal. Ensure the grid strategy in SortableContext handles this.
 
+**Planning Notes (PR-011):**
+
+**Grid System Context:**
+MUI Grid uses `createGrid` from `@mui/system` and works with:
+- Container Grid (`container` prop) - defines the grid layout
+- Item Grid (with `size` prop) - individual items in the grid
+
+DraggableGridItem wraps item Grids (NOT containers). It's used for dashboard cards, image galleries, etc.
+
+**API Design:**
+```typescript
+import type { UniqueIdentifier } from '../DndContext/DndContextTypes';
+import type { GridProps } from '../Grid';
+
+export interface DraggableGridItemOwnProps {
+  /**
+   * Unique identifier for this draggable grid item.
+   */
+  id: UniqueIdentifier;
+  /**
+   * Optional data to attach to drag events.
+   */
+  data?: Record<string, unknown>;
+  /**
+   * If true, disables drag functionality.
+   * @default false
+   */
+  dragDisabled?: boolean;
+  /**
+   * Transition configuration for smooth reordering.
+   */
+  transition?: { duration?: number; easing?: string };
+}
+
+// Exclude 'container' since DraggableGridItem is always an item, not a container
+export interface DraggableGridItemProps
+  extends Omit<GridProps, 'container' | 'ref'>,
+    DraggableGridItemOwnProps {}
+```
+
+**Implementation Approach:**
+```tsx
+'use client';
+import * as React from 'react';
+import { styled } from '../styles';
+import Grid from '../Grid';
+import { useSortable } from '../useSortable';
+import { getTransformStyle } from '../DndContext/transform';
+
+const DraggableGridItemRoot = styled(Grid, {
+  name: 'MuiDraggableGridItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.ownerState.isDragging && styles.dragging,
+  ],
+})(({ theme, ownerState }) => ({
+  cursor: ownerState.dragDisabled ? 'default' : 'grab',
+  userSelect: 'none',
+  touchAction: 'none',
+  ...(ownerState.isDragging && {
+    cursor: 'grabbing',
+    opacity: 0.7,
+    boxShadow: theme.shadows[8],
+    zIndex: theme.zIndex.modal,
+    // Scale slightly to indicate active drag
+    '& > *': {
+      transform: 'scale(1.02)',
+    },
+  }),
+}));
+
+export const DraggableGridItem = React.forwardRef(function DraggableGridItem(
+  props: DraggableGridItemProps,
+  ref: React.Ref<HTMLDivElement>
+) {
+  const {
+    id,
+    data,
+    dragDisabled = false,
+    transition: transitionConfig,
+    children,
+    size,
+    sx,
+    ...other
+  } = props;
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+    isSorting,
+  } = useSortable({
+    id,
+    data,
+    disabled: dragDisabled,
+    transition: transitionConfig,
+  });
+
+  const ownerState = { ...props, isDragging, isSorting, dragDisabled };
+
+  const style: React.CSSProperties = {
+    transform: transform ? getTransformStyle(transform.x, transform.y) : undefined,
+    transition,
+  };
+
+  return (
+    <DraggableGridItemRoot
+      ref={(node) => {
+        setNodeRef(node);
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      }}
+      ownerState={ownerState}
+      size={size}
+      sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
+      {...attributes}
+      {...(dragDisabled ? {} : listeners)}
+      {...other}
+    >
+      {children}
+    </DraggableGridItemRoot>
+  );
+});
+```
+
+**Class Names (draggableGridItemClasses.ts):**
+```typescript
+export interface DraggableGridItemClasses {
+  root: string;
+  dragging: string;
+  disabled: string;
+}
+
+const draggableGridItemClasses: DraggableGridItemClasses = {
+  root: 'MuiDraggableGridItem-root',
+  dragging: 'MuiDraggableGridItem-dragging',
+  disabled: 'MuiDraggableGridItem-disabled',
+};
+
+export default draggableGridItemClasses;
+```
+
+**Usage Example (Dashboard Cards):**
+```tsx
+<DndContext onDragEnd={handleDragEnd}>
+  <SortableContext items={cards.map(c => c.id)} strategy="grid" columns={3}>
+    <Grid container spacing={2}>
+      {cards.map((card) => (
+        <DraggableGridItem key={card.id} id={card.id} size={{ xs: 12, sm: 6, md: 4 }}>
+          <Card>
+            <CardContent>
+              <Typography>{card.title}</Typography>
+            </CardContent>
+          </Card>
+        </DraggableGridItem>
+      ))}
+    </Grid>
+  </SortableContext>
+</DndContext>
+```
+
+**Grid Strategy Requirement:**
+When using DraggableGridItem for true 2D reordering, users MUST:
+1. Wrap with `<SortableContext strategy="grid" columns={N}>`
+2. Ensure `columns` matches the actual grid layout
+
+If `strategy="vertical"` is used with grid items, sorting will only consider vertical position (items shift up/down but not across rows). This may be intentional for some use cases.
+
+**Responsive Behavior:**
+- Grid responsive props (`size={{ xs: 12, md: 6 }}`) are preserved
+- The grid strategy assumes a fixed column count at runtime
+- For responsive grids that change column count at breakpoints, users should:
+  - Update `columns` prop when breakpoint changes, OR
+  - Use vertical strategy for simpler behavior
+
+**Visual Feedback:**
+1. `opacity: 0.7` - Slightly transparent
+2. `boxShadow: theme.shadows[8]` - High elevation for dashboard cards
+3. Subtle scale effect on content for polish
+4. `zIndex: modal` - Float above siblings
+
+**Parallel Execution:**
+- Can run in parallel with PR-009, PR-010, PR-012
+- No file conflicts
+
 ---
 
 ### PR-012: Implement DraggableChip
@@ -1197,7 +1846,7 @@ Grid sorting is more complex than vertical/horizontal. Ensure the grid strategy 
 ---
 pr_id: PR-012
 title: Implement DraggableChip
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 4
@@ -1208,16 +1857,22 @@ dependencies: [PR-005, PR-006]
 estimated_files:
   - path: packages/mui-material/src/Chip/DraggableChip.tsx
     action: create
-    description: Draggable chip component
-  - path: packages/mui-material/src/Chip/DraggableChip.d.ts
+    description: Draggable chip component with inline TypeScript types
+  - path: packages/mui-material/src/Chip/draggableChipClasses.ts
     action: create
-    description: TypeScript declarations
-  - path: packages/mui-material/src/Chip/index.ts
+    description: Class names for styling
+  - path: packages/mui-material/src/Chip/index.js
     action: modify
     description: Add DraggableChip export
-  - path: packages/mui-material/src/index.ts
+  - path: packages/mui-material/src/Chip/index.d.ts
     action: modify
-    description: Add DraggableChip export
+    description: Add DraggableChip type export
+  - path: packages/mui-material/src/index.js
+    action: modify
+    description: Add DraggableChip export (alphabetically after Chip)
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add DraggableChip type export
 ---
 
 **Description:**
@@ -1232,6 +1887,193 @@ Implement DraggableChip for tag management use cases. Typically used in horizont
 
 **Notes:**
 Simplest of the component integrations. Good candidate for demonstrating the pattern.
+
+**Planning Notes (PR-012):**
+
+**Use Case:**
+Reorderable tag lists, filter chips, priority labels. Common pattern in:
+- Email clients (label ordering)
+- Project management (tag priority)
+- Filter UIs (filter chip arrangement)
+- Input fields with draggable tags (like email recipients)
+
+**API Design:**
+```typescript
+import type { UniqueIdentifier } from '../DndContext/DndContextTypes';
+import type { ChipProps } from '../Chip';
+
+export interface DraggableChipOwnProps {
+  /**
+   * Unique identifier for this draggable chip.
+   */
+  id: UniqueIdentifier;
+  /**
+   * Optional data to attach to drag events.
+   */
+  data?: Record<string, unknown>;
+  /**
+   * If true, disables drag functionality.
+   * Note: This is separate from Chip's `disabled` prop which affects styling.
+   * @default false
+   */
+  dragDisabled?: boolean;
+  /**
+   * Transition configuration for smooth reordering.
+   */
+  transition?: { duration?: number; easing?: string };
+}
+
+export interface DraggableChipProps
+  extends Omit<ChipProps, 'ref'>,
+    DraggableChipOwnProps {}
+```
+
+**Implementation Approach:**
+```tsx
+'use client';
+import * as React from 'react';
+import { styled } from '../styles';
+import Chip from '../Chip';
+import { useSortable } from '../useSortable';
+import { getTransformStyle } from '../DndContext/transform';
+
+const DraggableChipRoot = styled(Chip, {
+  name: 'MuiDraggableChip',
+  slot: 'Root',
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.ownerState.isDragging && styles.dragging,
+    props.ownerState.variant === 'outlined' && styles.outlined,
+    props.ownerState.variant === 'filled' && styles.filled,
+  ],
+})(({ theme, ownerState }) => ({
+  cursor: ownerState.dragDisabled || ownerState.disabled ? 'default' : 'grab',
+  userSelect: 'none',
+  touchAction: 'none',
+  ...(ownerState.isDragging && {
+    cursor: 'grabbing',
+    opacity: 0.7,
+    boxShadow: theme.shadows[2],
+    zIndex: theme.zIndex.tooltip,
+  }),
+}));
+
+export const DraggableChip = React.forwardRef(function DraggableChip(
+  props: DraggableChipProps,
+  ref: React.Ref<HTMLDivElement>
+) {
+  const {
+    id,
+    data,
+    dragDisabled = false,
+    transition: transitionConfig,
+    disabled,
+    sx,
+    ...other
+  } = props;
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+    isSorting,
+  } = useSortable({
+    id,
+    data,
+    disabled: dragDisabled || disabled,
+    transition: transitionConfig,
+  });
+
+  const ownerState = { ...props, isDragging, isSorting, dragDisabled };
+
+  const style: React.CSSProperties = {
+    transform: transform ? getTransformStyle(transform.x, transform.y) : undefined,
+    transition,
+  };
+
+  return (
+    <DraggableChipRoot
+      ref={(node) => {
+        setNodeRef(node);
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      }}
+      ownerState={ownerState}
+      disabled={disabled}
+      sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
+      {...attributes}
+      {...(dragDisabled || disabled ? {} : listeners)}
+      {...other}
+    />
+  );
+});
+```
+
+**Class Names (draggableChipClasses.ts):**
+```typescript
+export interface DraggableChipClasses {
+  root: string;
+  dragging: string;
+  disabled: string;
+  outlined: string;
+  filled: string;
+}
+
+const draggableChipClasses: DraggableChipClasses = {
+  root: 'MuiDraggableChip-root',
+  dragging: 'MuiDraggableChip-dragging',
+  disabled: 'MuiDraggableChip-disabled',
+  outlined: 'MuiDraggableChip-outlined',
+  filled: 'MuiDraggableChip-filled',
+};
+
+export default draggableChipClasses;
+```
+
+**Usage Example (Horizontal Tag List):**
+```tsx
+<DndContext onDragEnd={handleDragEnd}>
+  <SortableContext items={tags.map(t => t.id)} strategy="horizontal">
+    <Stack direction="row" spacing={1} flexWrap="wrap">
+      {tags.map((tag) => (
+        <DraggableChip
+          key={tag.id}
+          id={tag.id}
+          label={tag.name}
+          color={tag.color}
+          variant="outlined"
+          onDelete={() => handleDelete(tag.id)}
+        />
+      ))}
+    </Stack>
+  </SortableContext>
+</DndContext>
+```
+
+**Chip-Specific Considerations:**
+
+1. **onDelete interaction:** Chip's delete button should still work during non-drag interactions. The drag listeners are attached to the chip root, and clicking the delete icon should NOT trigger drag.
+
+2. **Clickable chips:** If `onClick` is provided, the chip becomes clickable. Clicks should still work; only pointer-drag starts a drag operation.
+
+3. **disabled vs dragDisabled:**
+   - `disabled` (Chip prop): Affects visual styling, disables click/delete, AND disables drag
+   - `dragDisabled`: Only disables drag, chip remains interactive otherwise
+
+4. **Small touch targets:** Chips are small. Ensure the 44x44px touch target guideline is met, possibly via padding or minimum sizes in the styled component.
+
+**Visual Feedback:**
+1. `opacity: 0.7` - Semi-transparent
+2. `boxShadow: theme.shadows[2]` - Subtle elevation (chips are small, don't need heavy shadow)
+3. `zIndex: tooltip` - Float above siblings but not as high as modal
+
+**Parallel Execution:**
+- Can run in parallel with PR-009, PR-010, PR-011
+- No file conflicts
+- Simplest implementation - good template for the other components
 
 ---
 
