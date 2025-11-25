@@ -29,7 +29,10 @@ export { useDndContext, useDndContextOptional } from './useDndContext';
 export { useDndMonitor } from './useDndMonitor';
 
 // Collision detection algorithms
-export { rectIntersection, pointerWithin } from './collision';
+export { rectIntersection, pointerWithin, closestCenter, closestCorners } from './collision';
+
+// Transform utilities
+export { getTransformStyle, getRelativePosition, applyTransform, CSS_TRANSFORM } from './transform';
 
 // Announcement utilities (for customization)
 export { defaultAnnouncements, defaultScreenReaderInstructions } from './announcements';

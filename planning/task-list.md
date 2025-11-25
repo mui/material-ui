@@ -54,7 +54,7 @@ This PR is already complete. The planning documents have been created and approv
 ---
 pr_id: PR-001
 title: Implement DndContext Provider
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
   score: 6
@@ -66,32 +66,52 @@ estimated_files:
   - path: packages/mui-material/src/DndContext/DndContext.tsx
     action: create
     description: Main context provider component
-  - path: packages/mui-material/src/DndContext/DndContext.d.ts
+  - path: packages/mui-material/src/DndContext/DndContextTypes.ts
     action: create
-    description: TypeScript declarations
-  - path: packages/mui-material/src/DndContext/dndContextClasses.ts
+    description: TypeScript type definitions
+  - path: packages/mui-material/src/DndContext/useDndContext.ts
     action: create
-    description: CSS class definitions
+    description: Hook for consuming DndContext
+  - path: packages/mui-material/src/DndContext/useDndMonitor.ts
+    action: create
+    description: Hook for subscribing to drag events
+  - path: packages/mui-material/src/DndContext/collision.ts
+    action: create
+    description: Collision detection algorithms (rectIntersection, pointerWithin)
+  - path: packages/mui-material/src/DndContext/announcements.ts
+    action: create
+    description: Screen reader announcement utilities
   - path: packages/mui-material/src/DndContext/index.ts
     action: create
     description: Public exports
   - path: packages/mui-material/src/index.ts
     action: modify
     description: Add DndContext export
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add DndContext type export
 ---
 
 **Description:**
 Implement the core DndContext provider that manages global drag-and-drop state. This is the foundation that all draggable and droppable components will use. Handles drag lifecycle events (start, move, over, end, cancel), coordinates between draggables and droppables, and provides accessibility announcements.
 
 **Acceptance Criteria:**
-- [ ] DndContext provider manages drag state
-- [ ] Event callbacks (onDragStart, onDragMove, onDragOver, onDragEnd, onDragCancel) work correctly
-- [ ] Context values accessible to child components
-- [ ] TypeScript types properly exported
-- [ ] Follows MUI component patterns (styled, classes, etc.)
+- [x] DndContext provider manages drag state
+- [x] Event callbacks (onDragStart, onDragMove, onDragOver, onDragEnd, onDragCancel) work correctly
+- [x] Context values accessible to child components
+- [x] TypeScript types properly exported
+- [x] Follows MUI component patterns (styled, classes, etc.)
 
 **Notes:**
-This is a foundational component. Keep the API minimal but extensible. Study MUI's existing context patterns (ThemeProvider, etc.) for consistency.
+COMPLETED. Implementation includes:
+- Full type system in DndContextTypes.ts
+- DndContext provider with drag lifecycle management
+- useDndContext hook for internal consumption
+- useDndMonitor hook for external event subscription
+- Two collision detection algorithms: rectIntersection, pointerWithin
+- Screen reader announcements with customization support
+- Live region for accessibility
+- RequestAnimationFrame throttling for performance
 
 ---
 
@@ -100,7 +120,7 @@ This is a foundational component. Keep the API minimal but extensible. Study MUI
 ---
 pr_id: PR-002
 title: Implement useDraggable Hook
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
   score: 6
@@ -111,31 +131,83 @@ dependencies: [PR-001]
 estimated_files:
   - path: packages/mui-material/src/useDraggable/useDraggable.ts
     action: create
-    description: Main hook implementation
-  - path: packages/mui-material/src/useDraggable/useDraggable.d.ts
-    action: create
-    description: TypeScript declarations
+    description: Main hook implementation with types
   - path: packages/mui-material/src/useDraggable/index.ts
     action: create
     description: Public exports
   - path: packages/mui-material/src/index.ts
     action: modify
-    description: Add useDraggable export
+    description: Add useDraggable export (line ~397, after useAutocomplete)
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add useDraggable type export (line ~409, after useAutocomplete)
 ---
 
 **Description:**
 Implement the useDraggable hook that makes any element draggable via Pointer Events. Returns attributes, listeners, ref setter, transform position, and drag state. Supports keyboard activation (Enter/Space to grab, arrows to move, Escape to cancel).
 
 **Acceptance Criteria:**
-- [ ] Hook returns attributes, listeners, setNodeRef, transform, isDragging
-- [ ] Pointer events (pointerdown, pointermove, pointerup, pointercancel) handled correctly
-- [ ] Keyboard navigation works (Enter/Space, arrows, Escape)
-- [ ] ARIA attributes provided for accessibility
-- [ ] Integrates with DndContext for state coordination
-- [ ] Works on touch and mouse devices
+- [x] Hook returns attributes, listeners, setNodeRef, transform, isDragging
+- [x] Pointer events (pointerdown, pointermove, pointerup, pointercancel) handled correctly
+- [x] Keyboard navigation works (Enter/Space, arrows, Escape)
+- [x] ARIA attributes provided for accessibility
+- [x] Integrates with DndContext for state coordination
+- [x] Works on touch and mouse devices
 
 **Notes:**
 Use MUI's useEventCallback for stable references. Ensure SSR compatibility with useEnhancedEffect.
+
+**Planning Notes (PR-002):**
+
+**API Design:**
+```typescript
+interface UseDraggableOptions {
+  id: UniqueIdentifier;
+  data?: Record<string, unknown>;
+  disabled?: boolean;
+}
+
+interface UseDraggableReturn {
+  attributes: {
+    role: 'button';
+    tabIndex: 0;
+    'aria-describedby': string;
+    'aria-pressed': boolean;
+    'aria-disabled': boolean;
+  };
+  listeners: {
+    onPointerDown: (e: PointerEvent) => void;
+    onKeyDown: (e: KeyboardEvent) => void;
+  };
+  setNodeRef: (node: HTMLElement | null) => void;
+  transform: { x: number; y: number } | null;
+  isDragging: boolean;
+}
+```
+
+**Implementation Approach:**
+1. Use `useDndContext()` to access DndContext API
+2. Register on mount via `registerDraggable(id, node, data)`
+3. Unregister on unmount via `unregisterDraggable(id)`
+4. Pointer event flow:
+   - `onPointerDown`: Call `dragStart(id)`, set pointer capture
+   - Track `onPointerMove` on document: Call `dragMove({x, y})`
+   - `onPointerUp/Cancel`: Call `dragEnd()` or `dragCancel()`
+5. Keyboard flow:
+   - Enter/Space: Toggle drag mode
+   - Arrow keys (during drag): Move by fixed increment
+   - Escape: Cancel drag
+6. Derive `isDragging` from `active?.id === id`
+7. Derive `transform` from tracking delta between initial and current pointer position
+
+**CSS Considerations:**
+- Set `touch-action: none` on draggable element
+- Apply `cursor: grab` (idle) / `cursor: grabbing` (dragging)
+- Consider `user-select: none` during drag
+
+**Parallel Execution:**
+- Can run in parallel with PR-003 and PR-004
+- Minor merge conflict expected with PR-003 on index.ts/index.d.ts (different export lines)
 
 ---
 
@@ -144,7 +216,7 @@ Use MUI's useEventCallback for stable references. Ensure SSR compatibility with 
 ---
 pr_id: PR-003
 title: Implement useDroppable Hook
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
   score: 5
@@ -155,30 +227,77 @@ dependencies: [PR-001]
 estimated_files:
   - path: packages/mui-material/src/useDroppable/useDroppable.ts
     action: create
-    description: Main hook implementation
-  - path: packages/mui-material/src/useDroppable/useDroppable.d.ts
-    action: create
-    description: TypeScript declarations
+    description: Main hook implementation with types
   - path: packages/mui-material/src/useDroppable/index.ts
     action: create
     description: Public exports
   - path: packages/mui-material/src/index.ts
     action: modify
-    description: Add useDroppable export
+    description: Add useDroppable export (line ~398, after useDraggable alphabetically)
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add useDroppable type export (line ~410, after useDraggable)
 ---
 
 **Description:**
 Implement the useDroppable hook that designates an element as a drop target. Returns ref setter, isOver state, and information about the currently active draggable. Supports nested drop zones with proper event propagation.
 
 **Acceptance Criteria:**
-- [ ] Hook returns setNodeRef, isOver, active
-- [ ] Correctly detects when draggable is over drop zone
-- [ ] Provides information about active draggable item
-- [ ] Handles nested drop zones correctly
-- [ ] Integrates with DndContext
+- [x] Hook returns setNodeRef, isOver, active
+- [x] Correctly detects when draggable is over drop zone
+- [x] Provides information about active draggable item
+- [x] Handles nested drop zones correctly
+- [x] Integrates with DndContext
 
 **Notes:**
-Can be developed in parallel with PR-002 since both depend only on DndContext.
+COMPLETED. Implementation includes:
+- Simple hook that registers/unregisters with DndContext
+- Derives isOver from context's over state
+- Passes through active draggable info from context
+- Uses MUI patterns: useEventCallback, useEnhancedEffect
+- Full TypeScript types and JSDoc documentation
+- Examples showing basic usage and custom data filtering
+
+**Planning Notes (PR-003):**
+
+**API Design:**
+```typescript
+interface UseDroppableOptions {
+  id: UniqueIdentifier;
+  data?: Record<string, unknown>;
+  disabled?: boolean;
+}
+
+interface UseDroppableReturn {
+  setNodeRef: (node: HTMLElement | null) => void;
+  isOver: boolean;
+  active: Active | null;  // Currently dragged item info
+}
+```
+
+**Implementation Approach:**
+1. Use `useDndContext()` to access:
+   - `registerDroppable` / `unregisterDroppable`
+   - `active` - currently dragged item
+   - `over` - currently hovered drop target
+2. Register on mount via `registerDroppable(id, node, data)`
+3. Unregister on unmount via `unregisterDroppable(id)`
+4. Derive `isOver` from `over?.id === id`
+5. Pass through `active` from context
+
+**Key Characteristics:**
+- Much simpler than useDraggable - no event handling needed
+- Purely registration + state derivation
+- Collision detection happens in DndContext, not in this hook
+- Nested droppables handled by collision detection algorithm (pointerWithin prioritizes later DOM elements)
+
+**ARIA Considerations:**
+- Consider adding `aria-dropeffect` (deprecated but still useful)
+- Or use custom labeling via `aria-label`
+
+**Parallel Execution:**
+- Can run in parallel with PR-002 and PR-004
+- Minor merge conflict expected with PR-002 on index.ts/index.d.ts (different export lines, simple rebase)
 
 ---
 
@@ -187,47 +306,118 @@ Can be developed in parallel with PR-002 since both depend only on DndContext.
 ---
 pr_id: PR-004
 title: Implement Internal Utilities
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
-  score: 5
-  estimated_minutes: 45
+  score: 4
+  estimated_minutes: 35
   suggested_model: sonnet
-  rationale: Multiple utility modules but each is straightforward
+  rationale: Reduced scope - only additional collision algorithms and transform utilities needed
 dependencies: [PR-001]
 estimated_files:
-  - path: packages/mui-material/src/internal/collision/closestCenter.ts
+  - path: packages/mui-material/src/DndContext/collision.ts
+    action: modify
+    description: Add closestCenter and closestCorners collision algorithms
+  - path: packages/mui-material/src/DndContext/index.ts
+    action: modify
+    description: Export new collision algorithms
+  - path: packages/mui-material/src/DndContext/transform.ts
     action: create
-    description: Closest center collision detection algorithm
-  - path: packages/mui-material/src/internal/collision/closestCorners.ts
-    action: create
-    description: Closest corners collision detection
-  - path: packages/mui-material/src/internal/collision/rectIntersection.ts
-    action: create
-    description: Rectangle intersection detection
-  - path: packages/mui-material/src/internal/collision/index.ts
-    action: create
-    description: Collision module exports
-  - path: packages/mui-material/src/internal/coordinates/transform.ts
-    action: create
-    description: Transform calculation utilities
-  - path: packages/mui-material/src/internal/accessibility/announcements.ts
-    action: create
-    description: Screen reader announcement utilities
+    description: Coordinate transform utilities for drag positioning
 ---
 
 **Description:**
-Implement internal utilities for collision detection, coordinate transforms, and accessibility announcements. These are used by the hooks and context but not directly exported to users.
+Implement additional collision detection algorithms and coordinate transform utilities. These extend the DndContext capabilities for advanced use cases.
+
+**IMPORTANT SCOPE REVISION:**
+PR-001 already implemented:
+- `rectIntersection` collision detection (DndContext/collision.ts)
+- `pointerWithin` collision detection (DndContext/collision.ts)
+- Accessibility announcements (DndContext/announcements.ts)
+
+This PR now focuses on:
+1. Additional collision algorithms: `closestCenter`, `closestCorners`
+2. Transform utilities for calculating visual offsets during drag
 
 **Acceptance Criteria:**
-- [ ] Collision detection algorithms (closestCenter, closestCorners, rectIntersection) work correctly
-- [ ] Transform utilities calculate drag positions accurately
-- [ ] Accessibility announcements provide clear screen reader feedback
-- [ ] All utilities are tree-shakeable
-- [ ] Performance acceptable for 100+ items
+- [x] closestCenter collision algorithm works correctly
+- [x] closestCorners collision algorithm works correctly
+- [x] Transform utilities calculate drag positions accurately
+- [x] All utilities are tree-shakeable
+- [x] Performance acceptable for 100+ items
 
 **Notes:**
-Keep these internal (not exported from main index). Can be developed in parallel with PR-002 and PR-003.
+Export collision algorithms and transform utilities from DndContext for advanced users. Can be developed in parallel with PR-002 and PR-003.
+
+**Planning Notes (PR-004):**
+
+**closestCenter Algorithm:**
+```typescript
+export function closestCenter({
+  active,
+  droppables,
+}: CollisionDetectionArgs): UniqueIdentifier | null {
+  // Calculate center of active draggable
+  const activeCenter = {
+    x: active.rect.left + active.rect.width / 2,
+    y: active.rect.top + active.rect.height / 2,
+  };
+
+  let minDistance = Infinity;
+  let result: UniqueIdentifier | null = null;
+
+  droppables.forEach((droppable, id) => {
+    const rect = droppable.node.getBoundingClientRect();
+    const droppableCenter = {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    };
+
+    // Euclidean distance
+    const distance = Math.sqrt(
+      Math.pow(activeCenter.x - droppableCenter.x, 2) +
+      Math.pow(activeCenter.y - droppableCenter.y, 2)
+    );
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      result = id;
+    }
+  });
+
+  return result;
+}
+```
+
+**closestCorners Algorithm:**
+- Calculate distances from all 4 corners of active to all 4 corners of each droppable
+- Sum or average the minimum corner-to-corner distances
+- Return droppable with smallest aggregate distance
+
+**Transform Utilities:**
+```typescript
+// Get CSS transform string from coordinates
+export function getTransformStyle(x: number, y: number): string {
+  return `translate3d(${x}px, ${y}px, 0)`;
+}
+
+// Calculate relative position within a container
+export function getRelativePosition(
+  element: HTMLElement,
+  container: HTMLElement
+): Coordinates { ... }
+
+// Apply transform to element (for drag overlay)
+export function applyTransform(
+  element: HTMLElement,
+  transform: Coordinates
+): void { ... }
+```
+
+**Parallel Execution:**
+- NO file conflicts with PR-002 or PR-003
+- Only touches DndContext files (collision.ts, index.ts, new transform.ts)
+- Safe to run fully in parallel
 
 ---
 

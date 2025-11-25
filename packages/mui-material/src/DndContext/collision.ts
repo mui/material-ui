@@ -95,3 +95,119 @@ export function pointerWithin({
 
   return null;
 }
+
+/**
+ * Center-based collision detection using Euclidean distance.
+ *
+ * Returns the ID of the droppable whose center is closest to the active
+ * draggable's center, or null if no droppables are available.
+ */
+export function closestCenter({
+  active,
+  droppables,
+}: {
+  active: Active;
+  droppables: Map<UniqueIdentifier, DroppableEntry>;
+  pointerCoordinates: Coordinates;
+}): UniqueIdentifier | null {
+  const activeRect = active.rect;
+
+  // Calculate center of active draggable
+  const activeCenter = {
+    x: activeRect.left + activeRect.width / 2,
+    y: activeRect.top + activeRect.height / 2,
+  };
+
+  let minDistance = Infinity;
+  let result: UniqueIdentifier | null = null;
+
+  droppables.forEach((droppable, id) => {
+    const rect = droppable.node.getBoundingClientRect();
+
+    // Calculate center of droppable
+    const droppableCenter = {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    };
+
+    // Calculate Euclidean distance between centers
+    const distance = Math.sqrt(
+      Math.pow(activeCenter.x - droppableCenter.x, 2) +
+        Math.pow(activeCenter.y - droppableCenter.y, 2),
+    );
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      result = id;
+    }
+  });
+
+  return result;
+}
+
+/**
+ * Corner-based collision detection.
+ *
+ * Calculates the minimum distance from each corner of the active draggable
+ * to all corners of each droppable, then sums these minimum distances.
+ * Returns the ID of the droppable with the smallest aggregate distance.
+ */
+export function closestCorners({
+  active,
+  droppables,
+}: {
+  active: Active;
+  droppables: Map<UniqueIdentifier, DroppableEntry>;
+  pointerCoordinates: Coordinates;
+}): UniqueIdentifier | null {
+  const activeRect = active.rect;
+
+  // Get all 4 corners of the active draggable
+  const activeCorners = [
+    { x: activeRect.left, y: activeRect.top }, // Top-left
+    { x: activeRect.right, y: activeRect.top }, // Top-right
+    { x: activeRect.left, y: activeRect.bottom }, // Bottom-left
+    { x: activeRect.right, y: activeRect.bottom }, // Bottom-right
+  ];
+
+  let minAggregateDistance = Infinity;
+  let result: UniqueIdentifier | null = null;
+
+  droppables.forEach((droppable, id) => {
+    const rect = droppable.node.getBoundingClientRect();
+
+    // Get all 4 corners of the droppable
+    const droppableCorners = [
+      { x: rect.left, y: rect.top }, // Top-left
+      { x: rect.right, y: rect.top }, // Top-right
+      { x: rect.left, y: rect.bottom }, // Bottom-left
+      { x: rect.right, y: rect.bottom }, // Bottom-right
+    ];
+
+    // For each active corner, find the minimum distance to any droppable corner
+    let aggregateDistance = 0;
+    for (const activeCorner of activeCorners) {
+      let minCornerDistance = Infinity;
+
+      for (const droppableCorner of droppableCorners) {
+        const distance = Math.sqrt(
+          Math.pow(activeCorner.x - droppableCorner.x, 2) +
+            Math.pow(activeCorner.y - droppableCorner.y, 2),
+        );
+
+        if (distance < minCornerDistance) {
+          minCornerDistance = distance;
+        }
+      }
+
+      aggregateDistance += minCornerDistance;
+    }
+
+    if (aggregateDistance < minAggregateDistance) {
+      minAggregateDistance = aggregateDistance;
+      result = id;
+    }
+  });
+
+  return result;
+}

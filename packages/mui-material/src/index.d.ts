@@ -409,6 +409,12 @@ export * from './Zoom';
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
 
+export { default as useDraggable } from './useDraggable';
+export * from './useDraggable';
+
+export { default as useDroppable } from './useDroppable';
+export * from './useDroppable';
+
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
