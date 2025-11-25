@@ -9,6 +9,7 @@ import {
   CarouselOrientation,
   SlideChangeReason,
   CarouselDirection,
+  ResponsiveValue,
 } from '../types';
 
 /**
@@ -185,9 +186,17 @@ export interface CarouselOwnProps {
   orientation?: CarouselOrientation;
   /**
    * Number of slides visible at once.
+   * Can be a number or a responsive object with breakpoint values.
+   *
    * @default 1
+   * @example
+   * // Simple number
+   * slidesPerView={3}
+   *
+   * // Responsive object
+   * slidesPerView={{ xs: 1, sm: 2, md: 3 }}
    */
-  slidesPerView?: number;
+  slidesPerView?: ResponsiveValue<number>;
   /**
    * The components used for each slot inside.
    * @default {}

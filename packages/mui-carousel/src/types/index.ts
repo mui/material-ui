@@ -2,6 +2,29 @@
  * Shared types used across carousel package components.
  */
 
+import { Breakpoint } from '@mui/material/styles';
+
+/**
+ * Responsive value type for breakpoint-based configuration.
+ * Allows specifying different values for each MUI breakpoint.
+ *
+ * @example
+ * // Show 1 slide on mobile, 2 on tablet, 3 on desktop
+ * slidesPerView={{ xs: 1, sm: 2, md: 3 }}
+ */
+export type ResponsiveValue<T> = T | {
+  xs?: T;
+  sm?: T;
+  md?: T;
+  lg?: T;
+  xl?: T;
+};
+
+/**
+ * MUI Breakpoint keys in order from smallest to largest.
+ */
+export const BREAKPOINT_ORDER: readonly Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+
 /**
  * Available transition effects for slide changes.
  * - 'slide': Slides move horizontally (default)

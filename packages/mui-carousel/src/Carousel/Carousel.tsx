@@ -8,8 +8,11 @@ import { styled, useThemeProps } from '@mui/system';
 import { TransitionGroup } from 'react-transition-group';
 import { CarouselProps, CarouselOwnerState } from './Carousel.types';
 import { getCarouselUtilityClass } from './carouselClasses';
+import { useTheme } from '@mui/material/styles';
 import { useCarousel } from '../hooks/useCarousel';
 import { useSwipe } from '../hooks/useSwipe';
+import { useKeyboard } from '../hooks/useKeyboard';
+import { useResponsive } from '../hooks/useResponsive';
 import { CarouselProvider } from '../CarouselContext';
 import { CarouselContextValue } from '../types';
 import {
@@ -50,13 +53,21 @@ export const CarouselRoot = styled('div', {
       ownerState.isAutoPlaying && styles.autoPlaying,
     ];
   },
-})<{ ownerState: CarouselOwnerState }>({
+})<{ ownerState: CarouselOwnerState }>(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
-});
+  // Focus-visible styling for keyboard navigation
+  '&:focus': {
+    outline: 'none',
+  },
+  '&:focus-visible': {
+    outline: `2px solid ${theme.palette?.primary?.main || '#1976d2'}`,
+    outlineOffset: 2,
+  },
+}));
 
 export const CarouselSlides = styled('div', {
   name: 'MuiCarousel',
@@ -161,6 +172,12 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     ...other
   } = props;
 
+  // Resolve responsive slidesPerView value
+  const { value: effectiveSlidesPerView } = useResponsive({
+    value: slidesPerView,
+    defaultValue: DEFAULT_SLIDES_PER_VIEW,
+  });
+
   // Use carousel state management hook
   const {
     activeIndex,
@@ -186,7 +203,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     disableGestures,
     enableLoop,
     onChange,
-    slidesPerView,
+    slidesPerView: effectiveSlidesPerView,
     spacing,
     transition,
     transitionDuration,
@@ -203,6 +220,26 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
   React.useEffect(() => {
     setDragging(swiping);
   }, [swiping, setDragging]);
+
+  // Get theme for RTL support
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
+  // Calculate max index for keyboard navigation to last slide
+  const maxIndex = Math.max(0, slideCount - slidesPerView);
+
+  // Use keyboard navigation
+  const { handlers: keyboardHandlers } = useKeyboard({
+    onNext: () => goToNext('keyboard'),
+    onPrevious: () => goToPrevious('keyboard'),
+    onFirst: () => goToSlide(0, 'keyboard'),
+    onLast: () => goToSlide(maxIndex, 'keyboard'),
+    onPause: pauseAutoPlay,
+    onGoToSlide: (index) => goToSlide(index, 'keyboard'),
+    disabled: disableKeyboard,
+    slideCount,
+    rtl: isRtl,
+  });
 
   // Compose owner state with all props
   const ownerState: CarouselOwnerState = {
@@ -250,6 +287,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
       'aria-roledescription': 'carousel',
       'aria-label': ariaLabelledBy ? undefined : ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      // Keyboard navigation support
+      tabIndex: disableKeyboard ? -1 : 0,
+      ...keyboardHandlers,
     },
     ownerState,
     className: clsx(classes.root, className),
@@ -435,9 +475,19 @@ Carousel.propTypes /* remove-proptypes */ = {
   prevIcon: PropTypes.node,
   /**
    * Number of slides visible at once.
+   * Can be a number or a responsive object with breakpoint values.
    * @default 1
    */
-  slidesPerView: PropTypes.number,
+  slidesPerView: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      xs: PropTypes.number,
+      sm: PropTypes.number,
+      md: PropTypes.number,
+      lg: PropTypes.number,
+      xl: PropTypes.number,
+    }),
+  ]),
   /**
    * The extra props for the slot components.
    * @default {}

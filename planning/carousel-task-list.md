@@ -489,7 +489,7 @@ Focus on getting the basic structure right. Animations and advanced features com
 ---
 pr_id: PR-003A
 title: Create Early Demo Application
-cold_state: planned
+cold_state: complete
 priority: critical
 complexity:
   score: 3
@@ -648,7 +648,7 @@ This demo will be enhanced as more features are added (PR-015A). Keep it simple 
 ---
 pr_id: PR-004
 title: Add Navigation Controls and Indicators
-cold_state: planned
+cold_state: complete
 priority: high
 complexity:
   score: 5
@@ -823,7 +823,7 @@ Navigation elements should be composable and replaceable. Follow MUI patterns fo
 ---
 pr_id: PR-005
 title: Implement Touch and Swipe Gestures
-cold_state: planned
+cold_state: complete
 priority: high
 complexity:
   score: 7
@@ -987,7 +987,7 @@ Follow patterns from SwipeableDrawer and Slider components. No external gesture 
 ---
 pr_id: PR-006
 title: Add React Transition Group Animations
-cold_state: planned
+cold_state: complete
 priority: high
 complexity:
   score: 5
@@ -1175,7 +1175,7 @@ Use hybrid approach: CSS transitions on container for 'slide', React Transition 
 ---
 pr_id: PR-007
 title: Implement Auto-Play Functionality
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 4
@@ -1351,7 +1351,7 @@ Build on existing auto-play scaffolding in useCarousel. Create dedicated useAuto
 ---
 pr_id: PR-008
 title: Add Keyboard Navigation Support
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
   score: 4
@@ -1362,13 +1362,144 @@ dependencies: [PR-003, PR-004]
 estimated_files:
   - path: packages/mui-carousel/src/hooks/useKeyboard.ts
     action: create
-    description: keyboard navigation hook
+    description: |
+      Keyboard navigation hook following MUI patterns:
+      - Parameters: { onNext, onPrevious, onFirst, onLast, onPause, disabled, enableLoop, slideCount }
+      - Returns: { handlers: { onKeyDown } }
+      - Uses existing KEYBOARD_KEYS constants from utils/constants.ts
+      - Handles ArrowLeft/Right for prev/next navigation
+      - Handles Home/End for first/last slide
+      - Handles Escape to pause auto-play
+      - Handles number keys 1-9 for direct slide access
+      - RTL-aware: ArrowLeft goes forward in RTL mode (check theme.direction)
+      - Uses useEventCallback for stable callback references
+      - Respects disabled prop to conditionally enable/disable
   - path: packages/mui-carousel/src/Carousel/Carousel.tsx
     action: modify
-    description: integrate keyboard handling
+    description: |
+      Integrate keyboard handling:
+      - Import and use useKeyboard hook
+      - Add tabIndex={0} to CarouselRoot for keyboard focusability
+      - Attach onKeyDown handler from useKeyboard to root element
+      - Pass disableKeyboard prop to conditionally disable
+      - Connect keyboard callbacks to goToNext('keyboard'), goToPrevious('keyboard'), goToSlide(index, 'keyboard')
+      - Connect Escape key to pauseAutoPlay
+      - Ensure focus ring is visible (use MUI's focusVisible styling)
   - path: packages/mui-carousel/src/utils/keyboardHelpers.ts
     action: create
-    description: keyboard event utilities
+    description: |
+      Keyboard utility functions:
+      - getActionForKey(key: string, rtl: boolean): 'next' | 'previous' | 'first' | 'last' | 'pause' | number | null
+      - isNavigationKey(key: string): boolean
+      - getSlideIndexFromKey(key: string, slideCount: number): number | null (for 1-9 keys)
+      - Note: KEYBOARD_KEYS constants already exist in utils/constants.ts
+  - path: packages/mui-carousel/src/hooks/index.ts
+    action: modify
+    description: |
+      Export useKeyboard hook:
+      - export { default as useKeyboard } from './useKeyboard'
+      - export * from './useKeyboard'
+planning_notes: |
+  ## Planning Analysis (PR-008)
+
+  ### Current State Analysis
+  After reviewing the implemented codebase:
+  1. **KEYBOARD_KEYS already defined** in utils/constants.ts with ArrowLeft, ArrowRight, Home, End, Escape
+  2. **disableKeyboard prop exists** in Carousel.types.ts but is NOT YET USED in Carousel.tsx
+  3. **SlideChangeReason type** already includes 'keyboard' value
+  4. **Focus management** not yet implemented - carousel root needs tabIndex
+
+  ### MUI Keyboard Patterns Studied
+  1. **Tabs** (packages/mui-material/src/Tabs/Tabs.js):
+     - Uses onKeyDown on tablist role element
+     - Arrow keys move focus between tabs
+     - Home/End for first/last tab
+     - Handles RTL with conditional direction
+
+  2. **Slider** (packages/mui-material/src/Slider/Slider.js):
+     - Keyboard navigation on thumb elements
+     - Arrow keys adjust value
+     - Home/End for min/max
+
+  3. **Menu** (packages/mui-material/src/Menu/Menu.js):
+     - Alphanumeric keys for quick selection
+     - Arrow keys for navigation
+
+  ### Implementation Strategy
+
+  1. **Focus Management**
+     ```tsx
+     // CarouselRoot needs to be focusable
+     <CarouselRoot
+       tabIndex={disableKeyboard ? -1 : 0}
+       onKeyDown={handleKeyDown}
+       // MUI focus-visible styling
+       sx={{
+         '&:focus-visible': {
+           outline: (theme) => `2px solid ${theme.palette.primary.main}`,
+           outlineOffset: 2,
+         },
+       }}
+     />
+     ```
+
+  2. **useKeyboard Hook Interface**
+     ```typescript
+     interface UseKeyboardParameters {
+       onNext: () => void;
+       onPrevious: () => void;
+       onFirst: () => void;
+       onLast: () => void;
+       onPause: () => void;
+       onGoToSlide: (index: number) => void;
+       disabled?: boolean;
+       slideCount: number;
+       rtl?: boolean;
+     }
+
+     interface UseKeyboardReturn {
+       handlers: {
+         onKeyDown: (event: React.KeyboardEvent) => void;
+       };
+     }
+     ```
+
+  3. **RTL Support**
+     - In RTL mode, ArrowLeft should go FORWARD (next), ArrowRight should go BACKWARD (previous)
+     - Get RTL from theme.direction via useTheme() or pass as parameter
+     - Pattern: `const isRtl = theme.direction === 'rtl'`
+
+  4. **Number Key Navigation (1-9)**
+     - Keys '1'-'9' map to slides 0-8 (index = parseInt(key) - 1)
+     - Only navigate if index < slideCount
+     - Call goToSlide(index, 'keyboard')
+
+  ### Implementation Order
+  1. Create utils/keyboardHelpers.ts with utility functions
+  2. Create hooks/useKeyboard.ts hook
+  3. Update hooks/index.ts to export useKeyboard
+  4. Modify Carousel.tsx to integrate keyboard handling
+  5. Test all keyboard interactions
+
+  ### Edge Cases to Handle
+  - Focus should not be trapped in carousel
+  - Tab is NOT captured - let it flow naturally through focusable elements
+  - Keyboard navigation works when ANY element in carousel has focus (use event bubbling)
+  - Escape only pauses if auto-play is active
+  - Number keys beyond slideCount should be ignored
+  - Modifier keys (Ctrl+Arrow, etc.) should not trigger navigation
+  - Prevent default for handled keys to avoid page scrolling
+
+  ### Focus Scope Strategy
+  Attach onKeyDown to CarouselRoot. Since events bubble, this will catch keyboard
+  events from anywhere within the carousel (nav buttons, indicators, slide content).
+  This matches user expectation: "if I'm focused somewhere in the carousel, arrow keys should work."
+
+  ### Accessibility Considerations
+  - visible focus indicator (focus-visible)
+  - Announce slide changes via aria-live (already implemented in PR-007)
+  - Support roving tabindex for indicators (already in CarouselIndicators)
+  - Ensure screen readers can navigate without keyboard shortcuts
 ---
 
 **Description:**
@@ -1377,14 +1508,17 @@ Implement comprehensive keyboard navigation including arrow keys, Home/End, Tab,
 **Acceptance Criteria:**
 - [ ] Arrow keys navigate next/previous
 - [ ] Home/End go to first/last slide
-- [ ] Tab navigates through interactive elements
 - [ ] Escape stops auto-play
 - [ ] Number keys (1-9) for direct access
 - [ ] Focus management works correctly
-- [ ] Keyboard traps prevented
+- [ ] Keyboard works when focus is anywhere in carousel (root, buttons, indicators, content)
+- [ ] Tab flows naturally (not captured) to nav buttons, indicators, and beyond
+- [ ] RTL support (arrow directions swap)
+- [ ] Modifier keys don't trigger navigation
+- [ ] Focus ring visible when focused via keyboard
 
 **Notes:**
-Must work with screen readers. Follow WAI-ARIA carousel patterns.
+Must work with screen readers. Follow WAI-ARIA carousel patterns. KEYBOARD_KEYS constants already exist in utils/constants.ts. The disableKeyboard prop exists but isn't wired up yet. Tab is NOT captured - let it flow naturally through focusable elements.
 
 ## Block 3: Accessibility & Responsive (Depends on Block 2)
 
@@ -1436,7 +1570,7 @@ Test with NVDA, JAWS, and VoiceOver. Reference WAI-ARIA carousel pattern.
 ---
 pr_id: PR-010
 title: Add Responsive Behavior and Breakpoints
-cold_state: new
+cold_state: complete
 priority: medium
 complexity:
   score: 4
@@ -1447,13 +1581,168 @@ dependencies: [PR-003]
 estimated_files:
   - path: packages/mui-carousel/src/hooks/useResponsive.ts
     action: create
-    description: responsive behavior hook
+    description: |
+      Responsive behavior hook using MUI's useMediaQuery:
+      - Parameters: { slidesPerView: ResponsiveSlidesPerView, theme: Theme }
+      - Returns: { effectiveSlidesPerView: number }
+      - Uses useMediaQuery to detect current breakpoint
+      - Supports breakpoint object: { xs?: number, sm?: number, md?: number, lg?: number, xl?: number }
+      - Falls back through breakpoints (md falls back to sm if md not specified)
+      - Handles SSR gracefully (returns xs value or default during SSR)
+      - Memoizes breakpoint queries to avoid re-renders
   - path: packages/mui-carousel/src/Carousel/Carousel.tsx
     action: modify
-    description: integrate responsive behavior
+    description: |
+      Integrate responsive behavior:
+      - Import and use useResponsive hook
+      - Pass slidesPerView prop to useResponsive
+      - Use effectiveSlidesPerView in useCarousel and styled components
+      - Ensure smooth recalculation on window resize
+      - No layout shift during breakpoint transitions
+  - path: packages/mui-carousel/src/Carousel/Carousel.types.ts
+    action: modify
+    description: |
+      Add responsive type definitions:
+      - ResponsiveValue<T> generic type for breakpoint objects
+      - Update slidesPerView prop type to: number | ResponsiveValue<number>
+      - Export ResponsiveValue for consumer use
   - path: packages/mui-carousel/src/utils/responsiveHelpers.ts
     action: create
-    description: breakpoint calculation utilities
+    description: |
+      Responsive utility functions:
+      - isResponsiveValue<T>(value): boolean type guard
+      - getBreakpointValue<T>(value: T | ResponsiveValue<T>, breakpoint: Breakpoint, theme: Theme): T
+      - normalizeResponsiveValue<T>(value: T | ResponsiveValue<T>): ResponsiveValue<T>
+      - getActiveBreakpoint(theme: Theme): Breakpoint (using window.innerWidth)
+  - path: packages/mui-carousel/src/hooks/index.ts
+    action: modify
+    description: |
+      Export useResponsive hook:
+      - export { default as useResponsive } from './useResponsive'
+      - export * from './useResponsive'
+  - path: packages/mui-carousel/src/types/index.ts
+    action: modify
+    description: |
+      Add shared responsive types:
+      - ResponsiveValue<T> = T | { xs?: T; sm?: T; md?: T; lg?: T; xl?: T }
+      - Export for use in consumer code
+planning_notes: |
+  ## Planning Analysis (PR-010)
+
+  ### Current State Analysis
+  After reviewing the implemented codebase:
+  1. **slidesPerView prop** is currently `number` type in Carousel.types.ts
+  2. **MUI theme** is available via useThemeProps in Carousel.tsx
+  3. **Spacing calculation** in carouselHelpers.ts already handles slidesPerView
+  4. **Styled components** use slidesPerView via ownerState
+
+  ### MUI Responsive Patterns Studied
+  1. **Grid** (packages/mui-material/src/Grid/Grid.js):
+     - Uses breakpoint props: xs, sm, md, lg, xl
+     - Each prop can be number or 'auto'
+     - Resolves via theme.breakpoints
+
+  2. **useMediaQuery** (packages/mui-material/src/useMediaQuery/useMediaQuery.js):
+     - SSR-safe media query hook
+     - Returns boolean for query match
+     - Options: { noSsr, ssrMatchMedia, matchMedia }
+
+  3. **Stack** (packages/mui-material/src/Stack/Stack.js):
+     - Uses responsive props for direction and spacing
+     - resolveBreakpointValues utility function
+
+  ### Implementation Strategy
+
+  1. **ResponsiveValue Type**
+     ```typescript
+     export type ResponsiveValue<T> = T | {
+       xs?: T;
+       sm?: T;
+       md?: T;
+       lg?: T;
+       xl?: T;
+     };
+     ```
+
+  2. **useResponsive Hook**
+     ```typescript
+     function useResponsive<T>(
+       value: ResponsiveValue<T>,
+       defaultValue: T,
+     ): T {
+       const theme = useTheme();
+       // Use multiple useMediaQuery calls for each breakpoint
+       const isXs = useMediaQuery(theme.breakpoints.only('xs'));
+       const isSm = useMediaQuery(theme.breakpoints.only('sm'));
+       // ... etc
+
+       // Return appropriate value based on matched breakpoint
+       // Fall back through breakpoints if not specified
+     }
+     ```
+
+  3. **Breakpoint Fallback Logic**
+     If slidesPerView = { xs: 1, md: 3 }:
+     - xs: 1 (specified)
+     - sm: 1 (fallback to xs)
+     - md: 3 (specified)
+     - lg: 3 (fallback to md)
+     - xl: 3 (fallback to md)
+
+  4. **SSR Handling**
+     During SSR, useMediaQuery returns false by default.
+     Strategy: Default to xs breakpoint value during SSR.
+     ```typescript
+     // In useResponsive:
+     const isClient = typeof window !== 'undefined';
+     if (!isClient) {
+       return getBreakpointValue(value, 'xs', theme) ?? defaultValue;
+     }
+     ```
+
+  ### Implementation Order
+  1. Add ResponsiveValue type to types/index.ts
+  2. Create utils/responsiveHelpers.ts with utility functions
+  3. Create hooks/useResponsive.ts hook
+  4. Update hooks/index.ts to export useResponsive
+  5. Update Carousel.types.ts slidesPerView type
+  6. Modify Carousel.tsx to use useResponsive for slidesPerView
+  7. Update demo to showcase responsive behavior
+
+  ### Performance Considerations
+  - useMediaQuery creates event listeners; minimize calls
+  - Consider using a single breakpoint detection hook
+  - Memoize computed values to prevent unnecessary re-renders
+  - Use CSS where possible (e.g., responsive widths) vs JS breakpoints
+
+  ### Alternative Approach: CSS-based
+  Could use CSS Grid/Flexbox with responsive widths instead of JS:
+  ```css
+  .slide {
+    width: 100%; /* xs: 1 slide */
+  }
+  @media (min-width: 600px) {
+    .slide { width: 50%; } /* sm: 2 slides */
+  }
+  @media (min-width: 900px) {
+    .slide { width: 33.33%; } /* md: 3 slides */
+  }
+  ```
+  This is more performant but less flexible. Use JS approach for v1.
+
+  ### Demo Enhancement
+  Add a responsive demo section showing:
+  - 1 slide on mobile (xs)
+  - 2 slides on tablet (sm/md)
+  - 3+ slides on desktop (lg/xl)
+
+  ### Scope Decision: Only slidesPerView is Responsive
+  For v1, only `slidesPerView` supports ResponsiveValue. Other props like `spacing`
+  remain simple types. Rationale:
+  - `slidesPerView` is the primary responsive use case (1 on mobile → 3 on desktop)
+  - Users can use `sx` prop with breakpoint values for responsive spacing if needed
+  - Adding ResponsiveValue to multiple props increases type complexity significantly
+  - Better to ship focused v1 and add more responsive props in v2 if there's demand
 ---
 
 **Description:**
@@ -1462,13 +1751,16 @@ Implement responsive behavior using Material UI's breakpoint system, including a
 **Acceptance Criteria:**
 - [ ] Adapts to container width changes
 - [ ] Breakpoint-based configuration works
-- [ ] Touch enabled on mobile automatically
-- [ ] Images handle srcSet properly
+- [ ] slidesPerView accepts responsive object { xs, sm, md, lg, xl }
+- [ ] Falls back through breakpoints correctly
 - [ ] Performance optimized for mobile
 - [ ] useMediaQuery integration works
+- [ ] SSR-safe (doesn't cause hydration mismatch)
+- [ ] No layout shift during breakpoint transitions
+- [ ] Demo updated to showcase responsive slidesPerView
 
 **Notes:**
-Use MUI's useMediaQuery and theme breakpoints. Handle SSR properly.
+Use MUI's useMediaQuery and theme breakpoints. Handle SSR properly. The ResponsiveValue<T> type pattern follows MUI's Grid component approach.
 
 ## Block 4: Testing & Documentation (Depends on Block 3)
 
