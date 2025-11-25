@@ -88,6 +88,9 @@ export * from './Checkbox';
 export { default as Chip } from './Chip';
 export * from './Chip';
 
+export { default as DraggableChip } from './Chip/DraggableChip';
+export * from './Chip/DraggableChip';
+
 export { default as CircularProgress } from './CircularProgress';
 export * from './CircularProgress';
 
@@ -162,6 +165,9 @@ export { GridLegacyProps, GridLegacyTypeMap } from './GridLegacy';
 
 export { default as Grid } from './Grid';
 export * from './Grid';
+
+export { default as DraggableGridItem } from './Grid/DraggableGridItem';
+export * from './Grid/DraggableGridItem';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
@@ -372,6 +378,9 @@ export * from './TablePaginationActions';
 
 export { default as TableRow } from './TableRow';
 export * from './TableRow';
+
+export { default as DraggableTableRow } from './TableRow/DraggableTableRow';
+export * from './TableRow/DraggableTableRow';
 
 export { default as TableSortLabel } from './TableSortLabel';
 export * from './TableSortLabel';
