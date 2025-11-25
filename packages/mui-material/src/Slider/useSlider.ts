@@ -267,7 +267,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         }))
       : marksProp || [];
 
-  const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
+  const marksValues = (marks as readonly Mark[]).map((mark: Mark) => mark.value);
 
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
@@ -802,7 +802,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks: marks as Mark[],
+    marks: marks as readonly Mark[],
     open,
     range,
     rootRef: handleRef,
