@@ -272,7 +272,7 @@ Critical for TypeScript consumers. Must carefully design the API to be extensibl
 ---
 pr_id: PR-003
 title: Implement Basic Carousel Component Structure
-cold_state: new
+cold_state: complete
 priority: critical
 complexity:
   score: 6
@@ -283,16 +283,189 @@ dependencies: [PR-002]
 estimated_files:
   - path: packages/mui-carousel/src/Carousel/Carousel.tsx
     action: create
-    description: main carousel component with basic functionality
+    description: |
+      Main carousel component following MUI patterns:
+      - React.forwardRef wrapper with proper displayName
+      - useDefaultProps for theme default props integration
+      - Styled slot components (CarouselRoot, CarouselSlides, CarouselSlide)
+      - useSlotProps for each slot with ownerState
+      - useUtilityClasses for CSS class composition
+      - Renders children as slides with proper clipping/overflow
+      - Integrates useCarousel hook for state management
+      - Provides CarouselContext for sub-components
+      - No navigation buttons (deferred to PR-004)
+      - No animations (deferred to PR-006)
   - path: packages/mui-carousel/src/Carousel/index.ts
     action: create
-    description: carousel exports
+    description: |
+      Carousel directory exports:
+      - default export: Carousel component
+      - named exports: CarouselRoot, CarouselSlides, CarouselSlide (styled slots)
+      - re-export types from Carousel.types.ts
+      - re-export carouselClasses
   - path: packages/mui-carousel/src/hooks/useCarousel.ts
     action: create
-    description: custom hook for carousel state management
+    description: |
+      Core carousel state management hook:
+      - Uses useControlled for activeIndex (controlled/uncontrolled pattern)
+      - Computes slideCount from children via React.Children.count
+      - Implements goToSlide(index, reason) with bounds checking
+      - Implements goToNext(reason) and goToPrevious(reason)
+      - Handles enableLoop logic for wraparound navigation
+      - Tracks direction ('forward' | 'backward') for transitions
+      - Returns ownerState object for styled components
+      - Returns navigation methods for context/imperative use
+      - Calls onChange callback with (event, newIndex, reason)
+  - path: packages/mui-carousel/src/hooks/index.ts
+    action: create
+    description: Hooks directory exports (useCarousel)
   - path: packages/mui-carousel/src/utils/carouselHelpers.ts
     action: create
-    description: utility functions for carousel logic
+    description: |
+      Utility functions:
+      - clampIndex(index, min, max): Clamp index within bounds
+      - wrapIndex(index, count): Wrap index for loop mode
+      - normalizeSpacing(spacing): Convert spacing prop to CSS value
+      - getValidChildren(children): Filter valid React children for slides
+      - isInteractiveElement(element): Check if element is button/input/etc
+  - path: packages/mui-carousel/src/CarouselContext/CarouselContext.ts
+    action: create
+    description: |
+      React context for sub-component communication:
+      - CarouselContext created with React.createContext
+      - CarouselProvider component wrapping context provider
+      - useCarouselContext hook with error if used outside provider
+      - Provides: activeIndex, slideCount, goToSlide, goToNext, goToPrevious,
+        enableLoop, direction, isAutoPlaying, pauseAutoPlay, resumeAutoPlay,
+        transition, transitionDuration (matching CarouselContextValue interface)
+  - path: packages/mui-carousel/src/CarouselContext/index.ts
+    action: create
+    description: Context exports (CarouselContext, CarouselProvider, useCarouselContext)
+  - path: packages/mui-carousel/src/index.ts
+    action: modify
+    description: |
+      Update package main exports:
+      - export { default as Carousel } from './Carousel'
+      - export * from './Carousel' (types, classes, styled slots)
+      - export * from './CarouselContext' (context, provider, hook)
+      - export * from './types' (shared types)
+planning_notes: |
+  ## Planning Analysis (PR-003)
+
+  ### MUI Component Patterns to Follow
+  Based on analysis of Slider.js and Tabs.js in mui-material:
+
+  1. **Component Structure**
+     - 'use client' directive at top
+     - Import order: React, PropTypes, clsx, MUI utils, local imports
+     - Styled components defined before main component
+     - useUtilityClasses function for class composition
+     - React.forwardRef with function name matching component
+     - useDefaultProps for theme integration
+     - PropTypes at bottom (though we use TypeScript)
+
+  2. **Styled Components Pattern**
+     ```typescript
+     const CarouselRoot = styled('div', {
+       name: 'MuiCarousel',
+       slot: 'Root',
+       overridesResolver: (props, styles) => [styles.root],
+     })(({ theme }) => ({
+       position: 'relative',
+       overflow: 'hidden',
+       width: '100%',
+     }));
+     ```
+
+  3. **useSlotProps Pattern**
+     ```typescript
+     const rootProps = useSlotProps({
+       elementType: RootSlot,
+       externalSlotProps: slotProps?.root,
+       externalForwardedProps: other,
+       additionalProps: { ref },
+       ownerState,
+       className: classes.root,
+     });
+     ```
+
+  4. **Controlled/Uncontrolled with useControlled**
+     ```typescript
+     const [activeIndex, setActiveIndex] = useControlled({
+       controlled: activeIndexProp,
+       default: defaultActiveIndex ?? 0,
+       name: 'Carousel',
+       state: 'activeIndex',
+     });
+     ```
+
+  ### Implementation Order
+  1. carouselHelpers.ts - No dependencies, pure utilities
+  2. hooks/index.ts - Simple export file
+  3. useCarousel.ts - Depends on helpers and existing types
+  4. CarouselContext/CarouselContext.ts - Depends on types
+  5. CarouselContext/index.ts - Export file
+  6. Carousel/Carousel.tsx - Main component, depends on all above
+  7. Carousel/index.ts - Export file
+  8. src/index.ts - Update package exports
+
+  ### Key Design Decisions
+
+  1. **No Navigation Buttons in PR-003**
+     Navigation methods (goToNext, goToPrevious, goToSlide) are exposed via:
+     - CarouselContext for sub-components (PR-004 will use this)
+     - Imperative handle via ref (optional, for external control)
+     PR-004 will add CarouselNavigation and CarouselIndicators components.
+
+  2. **Slide Container Layout**
+     Use flexbox with translateX for slide positioning:
+     - CarouselSlides: display flex, width 100%
+     - CarouselSlide: flex-shrink 0, width based on slidesPerView
+     - Active slide determined by transform: translateX(-activeIndex * 100%)
+     This prepares for CSS transition animation in PR-006.
+
+  3. **No Animation in PR-003**
+     Slide changes will be instant (no transition).
+     PR-006 adds react-transition-group integration.
+
+  4. **Context vs Props**
+     Context is provided but optional for basic usage.
+     Direct children are wrapped automatically; context enables
+     compound component patterns (CarouselNavigation, etc.)
+
+  5. **ownerState Composition**
+     ```typescript
+     const ownerState = {
+       ...props,
+       activeIndex,
+       slideCount,
+       direction,
+       dragging: false,  // PR-005 will make this dynamic
+       isAutoPlaying: false,  // PR-007 will make this dynamic
+     };
+     ```
+
+  ### Files NOT Included (Deferred)
+  - CarouselNavigation.tsx → PR-004
+  - CarouselIndicators.tsx → PR-004
+  - useSwipe.ts → PR-005
+  - useAutoPlay.ts → PR-007
+  - useKeyboard.ts → PR-008
+  - Transition components → PR-006
+
+  ### Testing Considerations
+  - Unit tests for useCarousel hook (controlled/uncontrolled, navigation)
+  - Unit tests for carouselHelpers (pure functions)
+  - Component tests for Carousel (render, slot props, class names)
+  - Tests deferred to PR-011 but structure should support testing
+
+  ### Integration with Existing Types
+  All types from PR-002 are used:
+  - CarouselProps, CarouselOwnProps, CarouselOwnerState
+  - CarouselSlots, CarouselSlotProps
+  - CarouselClasses, carouselClasses, getCarouselUtilityClass
+  - CarouselContextValue, CarouselDirection, SlideChangeReason
+  - Constants: DEFAULT_TRANSITION_DURATION, DEFAULT_SLIDES_PER_VIEW
 ---
 
 **Description:**
@@ -300,14 +473,16 @@ Implement the core Carousel component with basic slide navigation, state managem
 
 **Acceptance Criteria:**
 - [ ] Component renders slides correctly
-- [ ] Basic next/previous navigation works
+- [ ] Basic next/previous navigation works (via context/methods, no UI buttons)
 - [ ] State management handles slide changes
 - [ ] Component uses forwardRef pattern
 - [ ] Supports controlled and uncontrolled modes
 - [ ] Integrates with MUI theme system
+- [ ] CarouselContext provides state to sub-components
+- [ ] Package exports updated in src/index.ts
 
 **Notes:**
-Focus on getting the basic structure right. Animations and advanced features come in later PRs. Must follow MUI component patterns exactly.
+Focus on getting the basic structure right. Animations and advanced features come in later PRs. Must follow MUI component patterns exactly. Navigation buttons deferred to PR-004.
 
 ### PR-003A: Create Early Demo Application
 
