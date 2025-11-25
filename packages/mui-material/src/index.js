@@ -121,9 +121,6 @@ export * from './DialogContentText';
 export { default as DialogTitle } from './DialogTitle';
 export * from './DialogTitle';
 
-export { default as DndContext } from './DndContext';
-export * from './DndContext';
-
 export { default as Divider } from './Divider';
 export * from './Divider';
 
