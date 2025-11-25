@@ -291,6 +291,9 @@ export * from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export * from './SnackbarContent';
 
+export { default as SortableContext } from './SortableContext';
+export * from './SortableContext';
+
 export { default as SpeedDial } from './SpeedDial';
 export * from './SpeedDial';
 

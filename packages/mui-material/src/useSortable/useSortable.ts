@@ -1,9 +1,11 @@
 'use client';
 import * as React from 'react';
 import useEventCallback from '@mui/utils/useEventCallback';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { useDraggable } from '../useDraggable';
 import { useDroppable } from '../useDroppable';
 import { useDndContext } from '../DndContext/useDndContext';
+import { useSortableContextOptional } from '../SortableContext/SortableContext';
 import type { UniqueIdentifier, Coordinates, Active } from '../DndContext/DndContextTypes';
 
 /**
@@ -162,15 +164,52 @@ export function useSortable(options: UseSortableOptions): UseSortableReturn {
   // Get the active state from DndContext to determine if any item is being sorted
   const { active } = useDndContext();
 
+  // Optionally get SortableContext - may be null if not wrapped in SortableContext
+  const sortableContext = useSortableContextOptional();
+
   // Compose both hooks with the same id
   const draggable = useDraggable({ id, data, disabled });
   const droppable = useDroppable({ id, data, disabled });
 
+  // Track the DOM node for rect registration with SortableContext
+  const nodeRef = React.useRef<HTMLElement | null>(null);
+
   // Merge refs - call both setNodeRef functions when the ref changes
+  // Also register rect with SortableContext if available
   const setNodeRef = useEventCallback((node: HTMLElement | null) => {
+    nodeRef.current = node;
     draggable.setNodeRef(node);
     droppable.setNodeRef(node);
+
+    // Register/update rect with SortableContext
+    if (sortableContext && node) {
+      const rect = node.getBoundingClientRect();
+      sortableContext.registerItemRect(id, rect);
+    }
   });
+
+  // Unregister from SortableContext on unmount
+  useEnhancedEffect(() => {
+    return () => {
+      if (sortableContext) {
+        sortableContext.unregisterItemRect(id);
+      }
+    };
+  }, [sortableContext, id]);
+
+  // Calculate transform - use SortableContext for non-dragged items when available
+  const transform = React.useMemo((): Coordinates | null => {
+    if (draggable.isDragging) {
+      // Dragged item uses useDraggable's transform (follows pointer)
+      return draggable.transform;
+    }
+    if (sortableContext) {
+      // Non-dragged items get transform from SortableContext (shift to make room)
+      return sortableContext.getItemTransform(id);
+    }
+    // No SortableContext - no transform for non-dragged items
+    return null;
+  }, [draggable.isDragging, draggable.transform, sortableContext, id]);
 
   // Calculate transition CSS string
   // Disable transition when this element is being dragged for immediate movement
@@ -185,19 +224,20 @@ export function useSortable(options: UseSortableOptions): UseSortableReturn {
   }, [draggable.isDragging, transitionConfig]);
 
   // Derive isSorting from context state - true if any item is being dragged
-  const isSorting = active !== null;
+  // Prefer SortableContext's isSorting if available (more accurate)
+  const isSorting = sortableContext?.isSorting ?? active !== null;
 
   return {
     // From useDraggable
     attributes: draggable.attributes,
     listeners: draggable.listeners,
-    transform: draggable.transform,
     isDragging: draggable.isDragging,
     // From useDroppable
     isOver: droppable.isOver,
     active: droppable.active,
     // Combined/computed
     setNodeRef,
+    transform,
     transition,
     isSorting,
   };

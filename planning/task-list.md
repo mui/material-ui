@@ -582,41 +582,193 @@ export type { UseSortableOptions, UseSortableReturn } from './useSortable';
 ---
 pr_id: PR-006
 title: Implement SortableContext Provider
-cold_state: new
+cold_state: complete
 priority: high
 complexity:
-  score: 4
-  estimated_minutes: 35
+  score: 5
+  estimated_minutes: 45
   suggested_model: sonnet
-  rationale: Context provider with list order tracking
+  rationale: Context provider with list order tracking, sorting strategies, and useSortable integration
 dependencies: [PR-001, PR-005]
 estimated_files:
   - path: packages/mui-material/src/SortableContext/SortableContext.tsx
     action: create
-    description: Sortable context provider component
-  - path: packages/mui-material/src/SortableContext/SortableContext.d.ts
+    description: Sortable context provider component with inline types
+  - path: packages/mui-material/src/SortableContext/strategies.ts
     action: create
-    description: TypeScript declarations
+    description: Sorting strategy implementations (vertical, horizontal, grid)
   - path: packages/mui-material/src/SortableContext/index.ts
     action: create
     description: Public exports
-  - path: packages/mui-material/src/index.ts
+  - path: packages/mui-material/src/useSortable/useSortable.ts
     action: modify
-    description: Add SortableContext export
+    description: Integrate with SortableContext (optional consumption)
+  - path: packages/mui-material/src/index.js
+    action: modify
+    description: Add SortableContext export (after DndContext, ~line 126)
+  - path: packages/mui-material/src/index.d.ts
+    action: modify
+    description: Add SortableContext type export (after DndContext, ~line 128)
 ---
 
 **Description:**
-Implement the SortableContext provider that tracks item order for sortable lists. Manages the items array and provides sorting strategy (vertical, horizontal, grid) to child useSortable hooks.
+Implement the SortableContext provider that tracks item order for sortable lists. Manages the items array and provides sorting strategy (vertical, horizontal, grid) to child useSortable hooks. Also modifies useSortable to optionally consume SortableContext for intelligent sorting behavior.
 
 **Acceptance Criteria:**
-- [ ] Provider tracks item order
-- [ ] Supports vertical, horizontal, and grid strategies
-- [ ] Integrates with DndContext
-- [ ] Provides context values to useSortable hooks
-- [ ] TypeScript types properly exported
+- [x] Provider tracks item order
+- [x] Supports vertical, horizontal, and grid strategies
+- [x] Integrates with DndContext
+- [x] Provides context values to useSortable hooks
+- [x] TypeScript types properly exported
+- [x] useSortable consumes SortableContext when available (optional)
+- [x] Grid strategy requires `columns` prop (enforced via TypeScript discriminated union)
 
 **Notes:**
 Keep nested inside DndContext. Study how MUI handles nested contexts.
+
+**Planning Notes (PR-006):**
+
+**Purpose:**
+SortableContext provides sorting intelligence that useSortable currently lacks. The current useSortable simply composes useDraggable + useDroppable but doesn't calculate how items should re-position during sorting. SortableContext fills this gap.
+
+**API Design:**
+```typescript
+type SortingStrategy = 'vertical' | 'horizontal' | 'grid';
+
+// Base props shared by all strategies
+interface SortableContextBaseProps {
+  children: React.ReactNode;
+  /** Ordered array of item identifiers */
+  items: UniqueIdentifier[];
+}
+
+// Discriminated union: columns required only for grid strategy
+type SortableContextProps = SortableContextBaseProps & (
+  | { strategy?: 'vertical' | 'horizontal'; columns?: never }
+  | { strategy: 'grid'; columns: number }
+);
+
+// Context value provided to useSortable hooks
+interface SortableContextValue {
+  items: UniqueIdentifier[];
+  strategy: SortingStrategy;
+  columns?: number;
+  /** Get the index of an item in the sorted list */
+  getIndex: (id: UniqueIdentifier) => number;
+  /** Get calculated transform for an item during active sorting */
+  getItemTransform: (id: UniqueIdentifier) => Coordinates | null;
+  /** Whether any item is currently being sorted */
+  isSorting: boolean;
+  /** The index an item would be at if dropped now */
+  getNewIndex: (activeId: UniqueIdentifier, overId: UniqueIdentifier) => number;
+}
+```
+
+**Implementation Approach:**
+
+1. **Create SortableInternalContext** - similar to DndInternalContext pattern
+2. **Create useSortableContext hook** - optional consumption (returns null if not in SortableContext)
+3. **Track active sorting state** - derive from DndContext's `active` and `over`
+4. **Implement sorting strategies in strategies.ts**:
+   - `verticalListSortingStrategy`: Items stack vertically, shift up/down based on activeIndex vs overIndex
+   - `horizontalListSortingStrategy`: Items flow horizontally, shift left/right
+   - `gridSortingStrategy`: Items in grid, requires `columns` prop for wrap calculation
+
+**Transform Calculation Logic (vertical example):**
+```typescript
+function calculateVerticalTransform(
+  id: UniqueIdentifier,
+  activeId: UniqueIdentifier,
+  overId: UniqueIdentifier | null,
+  items: UniqueIdentifier[],
+  itemRects: Map<UniqueIdentifier, DOMRect>
+): Coordinates | null {
+  if (!overId || id === activeId) return null;
+
+  const activeIndex = items.indexOf(activeId);
+  const overIndex = items.indexOf(overId);
+  const currentIndex = items.indexOf(id);
+
+  // If current item is between active's original position and drop target
+  if (activeIndex < overIndex) {
+    // Dragging down: items between activeIndex and overIndex shift UP
+    if (currentIndex > activeIndex && currentIndex <= overIndex) {
+      const activeRect = itemRects.get(activeId);
+      return { x: 0, y: -(activeRect?.height ?? 0) };
+    }
+  } else if (activeIndex > overIndex) {
+    // Dragging up: items between overIndex and activeIndex shift DOWN
+    if (currentIndex >= overIndex && currentIndex < activeIndex) {
+      const activeRect = itemRects.get(activeId);
+      return { x: 0, y: activeRect?.height ?? 0 };
+    }
+  }
+  return null;
+}
+```
+
+**useSortable Integration:**
+Modify useSortable to:
+1. Optionally consume SortableContext via `useSortableContext()`
+2. If SortableContext exists, get transform from `getItemTransform(id)` for non-dragged items
+3. If no SortableContext, behave as currently (standalone mode)
+
+```typescript
+// In useSortable.ts
+const sortableContext = useSortableContextOptional(); // returns null if not wrapped
+
+// Calculate final transform
+const transform = React.useMemo(() => {
+  if (draggable.isDragging) {
+    // Dragged item uses useDraggable's transform
+    return draggable.transform;
+  }
+  if (sortableContext) {
+    // Non-dragged items get transform from SortableContext
+    return sortableContext.getItemTransform(id);
+  }
+  return null;
+}, [draggable.isDragging, draggable.transform, sortableContext, id]);
+```
+
+**File Structure:**
+
+`SortableContext/SortableContext.tsx`:
+```
+'use client';
+- SortableContextProps interface
+- SortableContextValue interface
+- SortableInternalContext (React.createContext)
+- useSortableContext hook (throws if not in context)
+- useSortableContextOptional hook (returns null if not in context)
+- SortableContext component
+```
+
+`SortableContext/strategies.ts`:
+```
+- SortingStrategy type
+- verticalListSortingStrategy function
+- horizontalListSortingStrategy function
+- gridSortingStrategy function
+```
+
+`SortableContext/index.ts`:
+```
+export { SortableContext, default } from './SortableContext';
+export { useSortableContext, useSortableContextOptional } from './SortableContext';
+export type { SortableContextProps, SortableContextValue } from './SortableContext';
+export * from './strategies';
+```
+
+**Design Decisions:**
+1. SortableContext is **optional** for useSortable - maintains backward compatibility
+2. Grid strategy **requires** `columns` prop via TypeScript discriminated union - compile-time enforcement, no runtime surprises
+3. Types are inline in .tsx (MUI convention for new components), no separate .d.ts file
+4. Strategies are in separate file for tree-shaking and clarity
+
+**Parallel Execution:**
+- Can run after PR-005 completes
+- No file conflicts with PR-007 (tests) or PR-008 (sortable tests)
 
 ---
 
