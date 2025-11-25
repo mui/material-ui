@@ -3,6 +3,7 @@ packages:
   - packages/mui-envinfo/test
   - packages-internal/*
   - docs
+  - demo
   - test
   - test/*
 

@@ -2647,7 +2647,7 @@ Examples should be runnable in documentation. Cover common use cases and edge ca
 ---
 pr_id: PR-014
 title: Add Interactive Playground to Demo
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 3

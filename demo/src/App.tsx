@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import { Carousel } from '@mui/carousel';
 import DemoSection from './components/DemoSection';
+import InteractivePlayground from './components/InteractivePlayground';
 import { imageSlides, testimonials } from './data/sampleData';
 
 function App() {
@@ -63,6 +64,16 @@ function App() {
           </Stack>
         </Container>
       </Box>
+
+      {/* Interactive Playground */}
+      <DemoSection
+        title="Interactive Playground"
+        description="Explore all carousel props in real-time. Adjust the controls to see how each prop affects the carousel behavior."
+      >
+        <InteractivePlayground />
+      </DemoSection>
+
+      <Divider />
 
       {/* Interactive Image Carousel Demo */}
       <DemoSection
