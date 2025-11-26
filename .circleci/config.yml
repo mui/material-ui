@@ -184,16 +184,16 @@ jobs:
     resource_class: 'medium+'
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.54.2-noble
+      playwright-img-version: v1.49.1-noble
     steps:
       - checkout
       - install-deps:
           react-version: << parameters.react-version >>
-          playwright-version: '1.54.2'
+          playwright-version: '1.49.1'
       - run:
-          name: Tests other browsers
-          # environment:
-          #   VITEST_BROWSERS: 'chromium,webkit,firefox'
+          name: Tests all browsers
+          environment:
+            VITEST_BROWSERS: 'chromium,webkit,firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
