@@ -7,6 +7,7 @@ import ownerDocument from '@mui/utils/ownerDocument';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import exactProp from '@mui/utils/exactProp';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getActiveElement from '../utils/getActiveElement';
 import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
@@ -162,8 +163,9 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
+    const activeElement = getActiveElement(doc);
 
-    if (!rootRef.current.contains(doc.activeElement)) {
+    if (!rootRef.current.contains(activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
@@ -209,6 +211,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
+    const activeElement = getActiveElement(doc);
 
     const loopFocus = (nativeEvent: KeyboardEvent) => {
       lastKeydown.current = nativeEvent;
@@ -218,8 +221,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       // Make sure the next tab starts from the right place.
-      // doc.activeElement refers to the origin.
-      if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
+      // activeElement refers to the origin.
+      if (activeElement === rootRef.current && nativeEvent.shiftKey) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
@@ -238,27 +241,29 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         return;
       }
 
+      const activeEl = getActiveElement(doc);
+
       if (!doc.hasFocus() || !isEnabled() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
         return;
       }
 
       // The focus is already inside
-      if (rootElement.contains(doc.activeElement)) {
+      if (rootElement.contains(activeEl)) {
         return;
       }
 
       // The disableEnforceFocus is set and the focus is outside of the focus trap (and sentinel nodes)
       if (
         disableEnforceFocus &&
-        doc.activeElement !== sentinelStart.current &&
-        doc.activeElement !== sentinelEnd.current
+        activeEl !== sentinelStart.current &&
+        activeEl !== sentinelEnd.current
       ) {
         return;
       }
 
       // if the focus event is not coming from inside the children's react tree, reset the refs
-      if (doc.activeElement !== reactFocusEventTarget.current) {
+      if (activeEl !== reactFocusEventTarget.current) {
         reactFocusEventTarget.current = null;
       } else if (reactFocusEventTarget.current !== null) {
         return;
@@ -309,7 +314,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
-      if (doc.activeElement && doc.activeElement.tagName === 'BODY') {
+      const activeEl = getActiveElement(doc);
+      if (activeEl && activeEl.tagName === 'BODY') {
         contain();
       }
     }, 50);
