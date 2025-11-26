@@ -201,7 +201,7 @@ function createVitestClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: import('vitest').VitestUtils,
+  vi: VitestUtils,
 ): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
@@ -401,7 +401,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi as typeof import('vitest').vi | undefined,
+    vi = (globalThis as any).vi as VitestUtils | undefined,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
