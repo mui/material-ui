@@ -67,7 +67,7 @@ commands:
         default: stable
     steps:
       - code-infra/install-deps:
-          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >> @playwright/test@<< parameters.playwright-version >>
+          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >> @playwright/test@<< parameters.playwright-version >> playwright@<< parameters.playwright-version >>
           ignore-workspace: << parameters.ignore-workspace >>
 
 jobs:
@@ -184,16 +184,16 @@ jobs:
     resource_class: 'medium+'
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.55.0-noble
+      playwright-img-version: v1.40.0-noble
     steps:
       - checkout
       - install-deps:
           react-version: << parameters.react-version >>
-          playwright-version: '1.55.0'
+          playwright-version: '1.40.0'
       - run:
           name: Tests other browsers
-          environment:
-            VITEST_BROWSERS: 'chromium,webkit,firefox'
+          # environment:
+          #   VITEST_BROWSERS: 'chromium,webkit,firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
