@@ -1029,7 +1029,7 @@ function mockElementRect(element, rect) {...}
 ---
 pr_id: PR-008
 title: Unit Tests for Sortable Abstractions
-cold_state: planned
+cold_state: complete
 priority: high
 complexity:
   score: 4
@@ -1209,7 +1209,7 @@ Same limitations apply as PR-007. Full drag cycle tests may fail in JSDOM. Focus
 ---
 pr_id: PR-009
 title: Implement DraggableListItem
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 5
@@ -1424,7 +1424,7 @@ export default draggableListItemClasses;
 ---
 pr_id: PR-010
 title: Implement DraggableTableRow
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 5
@@ -1611,7 +1611,7 @@ export default draggableTableRowClasses;
 ---
 pr_id: PR-011
 title: Implement DraggableGridItem
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 5
@@ -1846,7 +1846,7 @@ If `strategy="vertical"` is used with grid items, sorting will only consider ver
 ---
 pr_id: PR-012
 title: Implement DraggableChip
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 4
@@ -2815,7 +2815,7 @@ Each demo will include accessibility guidance in comments:
 ---
 pr_id: PR-016
 title: Video Demo Playground
-cold_state: planned
+cold_state: skipped
 priority: medium
 complexity:
   score: 3
@@ -2841,6 +2841,9 @@ Create a temporary consolidated playground page for recording the demo video. Sh
 
 **Notes:**
 This is for the assignment video only. Remove before upstream PR.
+
+**SKIPPED - Rationale:**
+The existing demo pages created in PR-015 (DraggableList.tsx, DraggableTable.tsx, DraggableGrid.tsx, DraggableChips.tsx) are sufficient for demonstrating the feature via the MUI docs site. The DnD system is intentionally simple with minimal configuration options, so a separate playground adds no value beyond what's already available. A video demo can simply navigate the existing docs pages.
 
 **Planning Notes (PR-016):**
 
@@ -3077,7 +3080,7 @@ This keeps the PR clean and avoids adding a dependency that would need to be rem
 ---
 pr_id: PR-017
 title: Migration Guide and API Docs
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 4
@@ -3086,12 +3089,15 @@ complexity:
   rationale: Technical writing with code examples
 dependencies: [PR-015]
 estimated_files:
-  - path: docs/data/material/guides/drag-and-drop-migration.md
+  - path: docs/data/material/guides/drag-and-drop-migration/drag-and-drop-migration.md
     action: create
     description: Migration guide from react-beautiful-dnd
   - path: docs/data/material/components/drag-and-drop/drag-and-drop.md
     action: create
     description: Main DnD documentation page
+  - path: docs/data/material/pages.ts
+    action: modify
+    description: Add navigation entries for drag-and-drop component page and migration guide
 ---
 
 **Description:**
@@ -3107,6 +3113,164 @@ Create migration guide showing how to convert from react-beautiful-dnd to native
 **Notes:**
 This helps adoption. Users with existing react-beautiful-dnd implementations need a clear upgrade path.
 
+**Planning Notes (PR-017):**
+
+**File Structure:**
+Following MUI's documentation pattern, create a guide folder with the guide name:
+
+```
+docs/data/material/guides/drag-and-drop-migration/
+  └── drag-and-drop-migration.md
+
+docs/data/material/components/drag-and-drop/
+  └── drag-and-drop.md
+```
+
+**Migration Guide Structure (drag-and-drop-migration.md):**
+
+```markdown
+# Migrating from react-beautiful-dnd
+
+## Overview
+Brief introduction explaining why users might want to migrate and the benefits.
+
+## Concept Mapping
+
+| react-beautiful-dnd | MUI Native DnD | Notes |
+|---------------------|----------------|-------|
+| `<DragDropContext>` | `<DndContext>` | Similar API, no render props |
+| `<Droppable>` | `<SortableContext>` or `useDroppable` | Simplified |
+| `<Draggable>` | `<DraggableListItem>` / `useSortable` | Component-specific |
+| `provided.innerRef` | `setNodeRef` | Ref callback |
+| `provided.droppableProps` | Automatic | No manual spreading |
+| `provided.draggableProps` | `attributes` | ARIA attributes |
+| `provided.dragHandleProps` | `listeners` | Event handlers |
+| `provided.placeholder` | Not needed | Layout handled internally |
+
+## Step-by-Step Migration
+
+### Step 1: Update Imports
+Show import changes from react-beautiful-dnd to MUI.
+
+### Step 2: Convert DragDropContext
+Before/after code showing context conversion.
+
+### Step 3: Convert Droppable Areas
+Show how Droppable becomes SortableContext or useDroppable.
+
+### Step 4: Convert Draggable Items
+Show conversion for each component type (List, Table, Grid, Chip).
+
+### Step 5: Update Event Handlers
+Show onDragEnd handler differences.
+
+## Common Patterns
+
+### Sortable Lists (most common)
+Complete before/after example.
+
+### Sortable Tables
+Before/after with table-specific notes.
+
+### Drag Between Containers
+Note: Cross-container is out of scope for initial release.
+
+## Troubleshooting
+
+### "Cannot find module" Errors
+Check import paths.
+
+### Items Not Dragging
+- Verify DndContext wrapper
+- Check disabled prop
+- Ensure setNodeRef is properly applied
+
+### Animation Issues
+- Verify transition config
+- Check for CSS conflicts
+
+### Accessibility
+- Explain automatic ARIA attribute handling
+- Keyboard navigation built-in
+```
+
+**API Documentation Structure (drag-and-drop.md):**
+
+```markdown
+# Drag and Drop
+
+## Overview
+Native drag-and-drop system for Material UI.
+
+## Getting Started
+Basic example showing minimal setup.
+
+## Core Hooks
+
+### useDraggable
+API reference with:
+- Options interface
+- Return value interface
+- Example code
+- Accessibility notes
+
+### useDroppable
+API reference (similar structure)
+
+### useSortable
+API reference (similar structure)
+
+## Context Providers
+
+### DndContext
+- Props reference
+- Event callbacks
+- Collision detection options
+- Accessibility customization
+
+### SortableContext
+- Props reference
+- Sorting strategies (vertical, horizontal, grid)
+- Performance considerations
+
+## Component Integrations
+
+### DraggableListItem
+### DraggableTableRow
+### DraggableGridItem
+### DraggableChip
+
+Each with:
+- Props table
+- Basic example
+- Advanced example
+- Theming notes
+
+## Advanced Topics
+
+### Custom Collision Detection
+### Keyboard Navigation
+### Screen Reader Announcements
+### Performance Optimization
+```
+
+**Navigation Config (docs/data/material/pages.ts):**
+Add entries to the pages.ts navigation config:
+
+1. **Component page** - Add to an appropriate component group (e.g., under "utils" or create new "interactions" subheader):
+```typescript
+{ pathname: '/material-ui/react-drag-and-drop', title: 'Drag and Drop', newFeature: true },
+```
+
+2. **Migration guide** - Add to the guides section:
+```typescript
+{ pathname: '/material-ui/guides/drag-and-drop-migration', title: 'Migrating from react-beautiful-dnd' },
+```
+
+**Parallel Execution:**
+- Can run in parallel with PR-018
+- No file conflicts expected
+
 ---
 
 ## Block 7: E2E Tests and Final (Depends on all above)
@@ -3116,7 +3280,7 @@ This helps adoption. Users with existing react-beautiful-dnd implementations nee
 ---
 pr_id: PR-018
 title: E2E Tests
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 6
@@ -3125,6 +3289,18 @@ complexity:
   rationale: Cross-browser E2E tests with Playwright, touch simulation
 dependencies: [PR-007, PR-008, PR-013, PR-014]
 estimated_files:
+  - path: test/e2e/fixtures/DragAndDrop/SortableList.tsx
+    action: create
+    description: List sorting E2E fixture
+  - path: test/e2e/fixtures/DragAndDrop/SortableTable.tsx
+    action: create
+    description: Table sorting E2E fixture
+  - path: test/e2e/fixtures/DragAndDrop/SortableGrid.tsx
+    action: create
+    description: Grid sorting E2E fixture
+  - path: test/e2e/fixtures/DragAndDrop/SortableChips.tsx
+    action: create
+    description: Chips sorting E2E fixture
   - path: test/e2e/drag-and-drop.spec.ts
     action: create
     description: E2E tests for DnD functionality
@@ -3146,6 +3322,398 @@ End-to-end tests using Playwright for cross-browser verification. Test mouse, to
 
 **Notes:**
 These are the final quality gate before the feature is complete.
+
+**Planning Notes (PR-018):**
+
+**Test Framework:**
+Uses Playwright with @playwright/test (already set up in test/e2e/). Follow existing patterns from test/e2e/index.test.ts.
+
+**File Structure:**
+```
+test/e2e/
+  ├── fixtures/
+  │   └── DragAndDrop/
+  │       ├── SortableList.tsx       # List demo fixture
+  │       ├── SortableTable.tsx      # Table demo fixture
+  │       ├── SortableGrid.tsx       # Grid demo fixture
+  │       └── SortableChips.tsx      # Chips demo fixture
+  ├── drag-and-drop.spec.ts          # Main DnD E2E tests
+  └── drag-and-drop-accessibility.spec.ts  # A11y E2E tests
+```
+
+**Updated estimated_files:**
+Should include fixture files:
+```yaml
+estimated_files:
+  - path: test/e2e/fixtures/DragAndDrop/SortableList.tsx
+    action: create
+    description: List sorting E2E fixture
+  - path: test/e2e/fixtures/DragAndDrop/SortableTable.tsx
+    action: create
+    description: Table sorting E2E fixture
+  - path: test/e2e/fixtures/DragAndDrop/SortableGrid.tsx
+    action: create
+    description: Grid sorting E2E fixture
+  - path: test/e2e/fixtures/DragAndDrop/SortableChips.tsx
+    action: create
+    description: Chips sorting E2E fixture
+  - path: test/e2e/drag-and-drop.spec.ts
+    action: create
+    description: E2E tests for DnD functionality
+  - path: test/e2e/drag-and-drop-accessibility.spec.ts
+    action: create
+    description: Accessibility E2E tests
+```
+
+**drag-and-drop.spec.ts Structure:**
+
+```typescript
+import { expect } from 'chai';
+import { test, Page, Browser, chromium } from '@playwright/test';
+
+describe('Drag and Drop E2E', () => {
+  let browser: Browser;
+  let page: Page;
+
+  before(async () => {
+    browser = await chromium.launch();
+  });
+
+  beforeEach(async () => {
+    page = await browser.newPage();
+  });
+
+  afterEach(async () => {
+    await page.close();
+  });
+
+  after(async () => {
+    await browser.close();
+  });
+
+  describe('SortableList', () => {
+    beforeEach(async () => {
+      await page.goto('http://localhost:5001/e2e/DragAndDrop/SortableList');
+    });
+
+    describe('mouse interactions', () => {
+      it('should drag item down to new position', async () => {
+        // Get initial order
+        // Perform drag operation
+        // Verify new order
+      });
+
+      it('should drag item up to new position', async () => {
+        // Similar test for upward movement
+      });
+
+      it('should show visual feedback during drag', async () => {
+        // Verify opacity change
+        // Verify elevation/shadow
+        // Verify cursor change
+      });
+
+      it('should animate other items during drag', async () => {
+        // Verify transform transitions on non-dragged items
+      });
+    });
+
+    describe('keyboard interactions', () => {
+      it('should pick up item with Enter key', async () => {
+        // Focus item
+        // Press Enter
+        // Verify isDragging state via CSS class
+      });
+
+      it('should move item with Arrow keys', async () => {
+        // Enter drag mode
+        // Press ArrowDown
+        // Verify position change
+      });
+
+      it('should drop item with Enter key', async () => {
+        // Complete keyboard drag cycle
+      });
+
+      it('should cancel drag with Escape key', async () => {
+        // Start drag
+        // Press Escape
+        // Verify return to original position
+      });
+    });
+
+    describe('touch interactions', () => {
+      it('should drag with touch gestures', async () => {
+        // Use page.touchscreen.tap and drag APIs
+        // Verify drag operation completes
+      });
+    });
+  });
+
+  describe('SortableTable', () => {
+    beforeEach(async () => {
+      await page.goto('http://localhost:5001/e2e/DragAndDrop/SortableTable');
+    });
+
+    it('should preserve cell widths during drag', async () => {
+      // Get cell widths before drag
+      // Start drag
+      // Verify widths are preserved
+    });
+
+    it('should reorder table rows', async () => {
+      // Full drag and drop cycle
+    });
+  });
+
+  describe('SortableGrid', () => {
+    beforeEach(async () => {
+      await page.goto('http://localhost:5001/e2e/DragAndDrop/SortableGrid');
+    });
+
+    it('should support 2D grid reordering', async () => {
+      // Drag item horizontally
+      // Drag item vertically
+      // Verify 2D position changes
+    });
+  });
+
+  describe('SortableChips', () => {
+    beforeEach(async () => {
+      await page.goto('http://localhost:5001/e2e/DragAndDrop/SortableChips');
+    });
+
+    it('should reorder chips horizontally', async () => {
+      // Horizontal drag test
+    });
+
+    it('should allow delete during non-drag', async () => {
+      // Click delete icon
+      // Verify chip removed
+    });
+  });
+
+  describe('edge cases', () => {
+    it('should handle rapid drag operations', async () => {
+      // Multiple quick drags
+    });
+
+    it('should clean up on page navigation', async () => {
+      // Start drag
+      // Navigate away
+      // Return and verify clean state
+    });
+  });
+});
+```
+
+**drag-and-drop-accessibility.spec.ts Structure:**
+
+```typescript
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+describe('Drag and Drop Accessibility', () => {
+  describe('axe-core audits', () => {
+    const fixtures = [
+      'SortableList',
+      'SortableTable',
+      'SortableGrid',
+      'SortableChips',
+    ];
+
+    fixtures.forEach((fixture) => {
+      it(`${fixture} should have no accessibility violations`, async ({ page }) => {
+        await page.goto(`http://localhost:5001/e2e/DragAndDrop/${fixture}`);
+        const results = await new AxeBuilder({ page }).analyze();
+        expect(results.violations).toHaveLength(0);
+      });
+
+      it(`${fixture} should have no violations during drag`, async ({ page }) => {
+        // Start drag operation
+        // Run axe audit mid-drag
+        // Verify no violations
+      });
+    });
+  });
+
+  describe('ARIA attributes', () => {
+    it('should have role="button" on draggable items', async ({ page }) => {
+      // Verify ARIA roles
+    });
+
+    it('should have aria-pressed reflecting drag state', async ({ page }) => {
+      // Check aria-pressed before and during drag
+    });
+
+    it('should have aria-describedby pointing to instructions', async ({ page }) => {
+      // Verify instructions element exists
+      // Verify aria-describedby references it
+    });
+  });
+
+  describe('screen reader announcements', () => {
+    it('should announce drag start', async ({ page }) => {
+      // Check live region content on drag start
+    });
+
+    it('should announce position changes', async ({ page }) => {
+      // Check live region during drag
+    });
+
+    it('should announce drag end', async ({ page }) => {
+      // Check live region on drop
+    });
+  });
+
+  describe('focus management', () => {
+    it('should maintain focus on dragged item', async ({ page }) => {
+      // Verify focus during keyboard drag
+    });
+
+    it('should support Tab navigation through items', async ({ page }) => {
+      // Tab through list
+      // Verify all items focusable
+    });
+  });
+
+  describe('keyboard navigation', () => {
+    it('should complete full drag cycle with keyboard only', async ({ page }) => {
+      // Tab to item
+      // Enter to pick up
+      // Arrow keys to move
+      // Enter to drop
+      // Verify final position
+    });
+  });
+});
+```
+
+**Fixture Component Pattern:**
+
+```tsx
+// test/e2e/fixtures/DragAndDrop/SortableList.tsx
+import * as React from 'react';
+import { DndContext, DragEndEvent } from '@mui/material/DndContext';
+import { SortableContext } from '@mui/material/SortableContext';
+import { DraggableListItem } from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import ListItemText from '@mui/material/ListItemText';
+
+export default function SortableList() {
+  const [items, setItems] = React.useState([
+    { id: '1', label: 'Item 1' },
+    { id: '2', label: 'Item 2' },
+    { id: '3', label: 'Item 3' },
+    { id: '4', label: 'Item 4' },
+  ]);
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      setItems((prev) => {
+        const oldIndex = prev.findIndex((i) => i.id === active.id);
+        const newIndex = prev.findIndex((i) => i.id === over.id);
+        const reordered = [...prev];
+        const [removed] = reordered.splice(oldIndex, 1);
+        reordered.splice(newIndex, 0, removed);
+        return reordered;
+      });
+    }
+  };
+
+  return (
+    <div data-testid="testcase">
+      <DndContext onDragEnd={handleDragEnd}>
+        <SortableContext items={items.map((i) => i.id)} strategy="vertical">
+          <List>
+            {items.map((item) => (
+              <DraggableListItem key={item.id} id={item.id} data-testid={`item-${item.id}`}>
+                <ListItemText primary={item.label} />
+              </DraggableListItem>
+            ))}
+          </List>
+        </SortableContext>
+      </DndContext>
+    </div>
+  );
+}
+```
+
+**Playwright Helpers for Drag Operations:**
+
+```typescript
+// Helper to perform mouse drag
+async function dragElement(page: Page, from: string, to: string) {
+  const fromEl = await page.locator(from);
+  const toEl = await page.locator(to);
+
+  const fromBox = await fromEl.boundingBox();
+  const toBox = await toEl.boundingBox();
+
+  if (!fromBox || !toBox) throw new Error('Elements not found');
+
+  await page.mouse.move(fromBox.x + fromBox.width / 2, fromBox.y + fromBox.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(toBox.x + toBox.width / 2, toBox.y + toBox.height / 2, { steps: 10 });
+  await page.mouse.up();
+}
+
+// Helper to perform touch drag
+async function touchDragElement(page: Page, from: string, to: string) {
+  const fromEl = await page.locator(from);
+  const toEl = await page.locator(to);
+
+  const fromBox = await fromEl.boundingBox();
+  const toBox = await toEl.boundingBox();
+
+  if (!fromBox || !toBox) throw new Error('Elements not found');
+
+  await page.touchscreen.tap(fromBox.x + fromBox.width / 2, fromBox.y + fromBox.height / 2);
+  // Simulate drag via pointer events
+}
+
+// Helper for keyboard drag
+async function keyboardDrag(page: Page, selector: string, direction: 'up' | 'down', steps: number) {
+  await page.locator(selector).focus();
+  await page.keyboard.press('Enter'); // Pick up
+  for (let i = 0; i < steps; i++) {
+    await page.keyboard.press(direction === 'down' ? 'ArrowDown' : 'ArrowUp');
+  }
+  await page.keyboard.press('Enter'); // Drop
+}
+```
+
+**Running E2E Tests:**
+```bash
+# Start fixture server
+pnpm test:e2e:server
+
+# Run tests
+pnpm test:e2e:run
+
+# Or with specific browser
+pnpm test:e2e:run --project=chromium
+pnpm test:e2e:run --project=firefox
+pnpm test:e2e:run --project=webkit
+```
+
+**Visual Regression Considerations:**
+If visual regression testing is desired:
+1. Use Playwright's `toHaveScreenshot()` matcher
+2. Create baseline screenshots in CI
+3. Compare against baselines on PR
+
+**Performance Benchmarks:**
+Document performance metrics in test output or as comments:
+- Initial render time for 100 items
+- Average frame rate during drag
+- Memory usage after 100 drag cycles
+
+**Parallel Execution:**
+- E2E tests can run after unit tests complete
+- Can run in parallel with PR-017 (no file conflicts)
+- Fixtures are isolated from each other
 
 ---
 
