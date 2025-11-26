@@ -72,9 +72,12 @@ commands:
       typescript-version:
         type: string
         default: stable
+      playwright-version:
+        type: string
+        default: stable
     steps:
       - code-infra/install-deps:
-          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >>
+          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >> @playwright/test@<< parameters.playwright-version >>
           ignore-workspace: << parameters.ignore-workspace >>
 
 jobs:
@@ -186,6 +189,24 @@ jobs:
           name: Log defect declaration files
           command: |
             node scripts/testBuiltTypes.mjs
+  test_browser_legacy:
+    <<: *default-job
+    resource_class: 'medium+'
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.55.0-noble
+    steps:
+      - checkout
+      - install-deps:
+          react-version: << parameters.react-version >>
+          playwright-version: '1.55.0'
+      - run:
+          name: Tests other browsers
+          environment:
+            VITEST_BROWSERS: 'chromium,webkit,firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - store_test_results:
+          path: test-results
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
@@ -214,10 +235,6 @@ jobs:
             fi
       - code-infra/upload-coverage:
           key: '<< parameters.react-version >>-browser'
-      - store_artifacts:
-          # hardcoded in karma-webpack
-          path: /tmp/_karma_webpack_
-          destination: artifact-file
       - store_test_results:
           path: test-results
   test_e2e:
