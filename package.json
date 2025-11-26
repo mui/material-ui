@@ -104,7 +104,6 @@
     "@babel/core": "^7.28.5",
     "@babel/node": "^7.28.0",
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
-    "@chialab/vitest-provider-browserstack": "^0.19.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.11",
