@@ -2541,7 +2541,7 @@ Same constraints as PR-013 apply.
 ---
 pr_id: PR-015
 title: Component Demo Pages
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 5

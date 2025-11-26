@@ -47,7 +47,6 @@ export interface UseDraggableReturn {
    */
   listeners: {
     onPointerDown: (event: React.PointerEvent) => void;
-    onMouseDown: (event: React.MouseEvent) => void;
     onKeyDown: (event: React.KeyboardEvent) => void;
   } | undefined;
   /**
@@ -111,21 +110,17 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
   const isKeyboardDragging = React.useRef(false);
   const keyboardPosition = React.useRef<Coordinates | null>(null);
 
+  // Track current pointer position for transform calculation
+  const [currentPointerPosition, setCurrentPointerPosition] = React.useState<Coordinates | null>(null);
+
   const isDragging = active?.id === id;
 
-  // Register/unregister with DndContext
+  // Unregister on unmount
   useEnhancedEffect(() => {
-    const node = nodeRef.current;
-    if (!node || disabled) {
-      return undefined;
-    }
-
-    registerDraggable(id, node, data);
-
     return () => {
       unregisterDraggable(id);
     };
-  }, [id, data, disabled, registerDraggable, unregisterDraggable]);
+  }, [id, unregisterDraggable]);
 
   /**
    * Calculate transform based on current drag state
@@ -140,10 +135,16 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
       return keyboardPosition.current;
     }
 
-    // For pointer dragging, transform is managed by drag overlay or handled in dragMove
-    // Return null here as the DndContext tracks the position via dragMove events
+    // For pointer dragging, calculate delta from initial to current position
+    if (initialPointerPosition.current && currentPointerPosition) {
+      return {
+        x: currentPointerPosition.x - initialPointerPosition.current.x,
+        y: currentPointerPosition.y - initialPointerPosition.current.y,
+      };
+    }
+
     return null;
-  }, [isDragging]);
+  }, [isDragging, currentPointerPosition]);
 
   /**
    * Handle pointer down event - start drag operation
@@ -191,10 +192,12 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
     // Set up document-level move and up handlers
     const handlePointerMove = (moveEvent: PointerEvent) => {
       if (initialPointerPosition.current) {
-        dragMove({
+        const coords = {
           x: moveEvent.clientX,
           y: moveEvent.clientY,
-        });
+        };
+        setCurrentPointerPosition(coords);
+        dragMove(coords);
       }
     };
 
@@ -214,6 +217,7 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
 
       initialPointerPosition.current = null;
       initialNodePosition.current = null;
+      setCurrentPointerPosition(null);
 
       dragEnd();
     };
@@ -234,6 +238,7 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
 
       initialPointerPosition.current = null;
       initialNodePosition.current = null;
+      setCurrentPointerPosition(null);
 
       dragCancel();
     };
@@ -241,66 +246,6 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
     document.addEventListener('pointermove', handlePointerMove);
     document.addEventListener('pointerup', handlePointerUp);
     document.addEventListener('pointercancel', handlePointerCancel);
-  });
-
-  /**
-   * Handle mouse down event - fallback for environments without pointer events
-   */
-  const handleMouseDown = useEventCallback((event: React.MouseEvent) => {
-    if (disabled) {
-      return;
-    }
-
-    // Only handle left mouse button
-    if (event.button !== 0) {
-      return;
-    }
-
-    // Prevent default to avoid text selection
-    event.preventDefault();
-
-    const node = nodeRef.current;
-    if (!node) {
-      return;
-    }
-
-    // Store initial positions
-    const rect = node.getBoundingClientRect();
-    initialPointerPosition.current = {
-      x: event.clientX,
-      y: event.clientY,
-    };
-    initialNodePosition.current = {
-      x: rect.left,
-      y: rect.top,
-    };
-    isKeyboardDragging.current = false;
-
-    // Start drag operation
-    dragStart(id);
-
-    // Set up document-level move and up handlers
-    const handleMouseMove = (moveEvent: MouseEvent) => {
-      if (initialPointerPosition.current) {
-        dragMove({
-          x: moveEvent.clientX,
-          y: moveEvent.clientY,
-        });
-      }
-    };
-
-    const handleMouseUp = () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-
-      initialPointerPosition.current = null;
-      initialNodePosition.current = null;
-
-      dragEnd();
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
   });
 
   /**
@@ -404,10 +349,16 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
   });
 
   /**
-   * Ref callback to track the DOM node
+   * Ref callback to track the DOM node and register immediately
    */
   const setNodeRef = useEventCallback((node: HTMLElement | null) => {
     nodeRef.current = node;
+
+    // Register new node immediately (re-registration is idempotent via Map.set)
+    // Don't unregister on null - let the cleanup effect handle unmount
+    if (node && !disabled) {
+      registerDraggable(id, node, data);
+    }
   });
 
   // Build attributes object
@@ -433,10 +384,9 @@ export function useDraggable(options: UseDraggableOptions): UseDraggableReturn {
 
     return {
       onPointerDown: handlePointerDown,
-      onMouseDown: handleMouseDown,
       onKeyDown: handleKeyDown,
     };
-  }, [disabled, handlePointerDown, handleMouseDown, handleKeyDown]);
+  }, [disabled, handlePointerDown, handleKeyDown]);
 
   return {
     attributes,

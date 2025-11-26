@@ -188,14 +188,19 @@ export function useSortable(options: UseSortableOptions): UseSortableReturn {
     }
   });
 
-  // Unregister from SortableContext on unmount
+  // Store sortableContext in a ref so cleanup doesn't depend on it changing
+  // This prevents the cleanup from running when contextValue changes (which happens on drag start)
+  const sortableContextRef = React.useRef(sortableContext);
+  sortableContextRef.current = sortableContext;
+
+  // Unregister from SortableContext on unmount only
   useEnhancedEffect(() => {
     return () => {
-      if (sortableContext) {
-        sortableContext.unregisterItemRect(id);
+      if (sortableContextRef.current) {
+        sortableContextRef.current.unregisterItemRect(id);
       }
     };
-  }, [sortableContext, id]);
+  }, [id]); // Only depend on id, not sortableContext
 
   // Calculate transform - use SortableContext for non-dragged items when available
   const transform = React.useMemo((): Coordinates | null => {

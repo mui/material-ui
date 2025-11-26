@@ -133,6 +133,26 @@ export interface DndContextProps {
    * Accessibility configuration for screen readers.
    */
   accessibility?: DndAccessibility;
+  /**
+   * Callback fired when a drag operation starts.
+   */
+  onDragStart?: (event: DragStartEvent) => void;
+  /**
+   * Callback fired during drag movement.
+   */
+  onDragMove?: (event: DragMoveEvent) => void;
+  /**
+   * Callback fired when dragging over a new droppable target.
+   */
+  onDragOver?: (event: DragOverEvent) => void;
+  /**
+   * Callback fired when a drag operation ends (item is dropped).
+   */
+  onDragEnd?: (event: DragEndEvent) => void;
+  /**
+   * Callback fired when a drag operation is cancelled.
+   */
+  onDragCancel?: (event: DragCancelEvent) => void;
 }
 
 /**

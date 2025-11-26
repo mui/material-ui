@@ -109,25 +109,24 @@ export function useDroppable(options: UseDroppableOptions): UseDroppableReturn {
   // Derive isOver from context state
   const isOver = over?.id === id;
 
-  // Register/unregister with DndContext
+  // Unregister on unmount or when disabled changes
   useEnhancedEffect(() => {
-    const node = nodeRef.current;
-    if (!node || disabled) {
-      return undefined;
-    }
-
-    registerDroppable(id, node, data);
-
     return () => {
       unregisterDroppable(id);
     };
-  }, [id, data, disabled, registerDroppable, unregisterDroppable]);
+  }, [id, unregisterDroppable]);
 
   /**
-   * Ref callback to track the DOM node
+   * Ref callback to track the DOM node and register immediately
    */
   const setNodeRef = useEventCallback((node: HTMLElement | null) => {
     nodeRef.current = node;
+
+    // Register new node immediately (re-registration is idempotent via Map.set)
+    // Don't unregister on null - let the cleanup effect handle unmount
+    if (node && !disabled) {
+      registerDroppable(id, node, data);
+    }
   });
 
   return {

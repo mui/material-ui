@@ -44,8 +44,15 @@ const liveRegionStyles: React.CSSProperties = {
  * @example
  * ```tsx
  * function App() {
+ *   const handleDragEnd = (event: DragEndEvent) => {
+ *     const { active, over } = event;
+ *     if (over && active.id !== over.id) {
+ *       // Reorder items
+ *     }
+ *   };
+ *
  *   return (
- *     <DndContext>
+ *     <DndContext onDragEnd={handleDragEnd}>
  *       <MyDraggableList />
  *     </DndContext>
  *   );
@@ -53,7 +60,16 @@ const liveRegionStyles: React.CSSProperties = {
  * ```
  */
 export function DndContext(props: DndContextProps): React.JSX.Element {
-  const { children, collisionDetection = rectIntersection, accessibility } = props;
+  const {
+    children,
+    collisionDetection = rectIntersection,
+    accessibility,
+    onDragStart: onDragStartProp,
+    onDragMove: onDragMoveProp,
+    onDragOver: onDragOverProp,
+    onDragEnd: onDragEndProp,
+    onDragCancel: onDragCancelProp,
+  } = props;
 
   // Registries for draggables and droppables
   const draggablesRef = React.useRef<Map<UniqueIdentifier, DraggableEntry>>(new Map());
@@ -66,11 +82,24 @@ export function DndContext(props: DndContextProps): React.JSX.Element {
   const [active, setActive] = React.useState<Active | null>(null);
   const [over, setOver] = React.useState<Over | null>(null);
 
+  // Ref to track active state synchronously (React state updates are async)
+  const activeRef = React.useRef<Active | null>(null);
+
   // Track previous over state to detect changes
   const previousOverRef = React.useRef<Over | null>(null);
 
+  // Track the latest over value for immediate access in dragEnd
+  // (React state might not be updated yet if RAF is pending)
+  const latestOverRef = React.useRef<Over | null>(null);
+
   // Track the starting coordinates for delta calculation
   const startCoordinatesRef = React.useRef<Coordinates | null>(null);
+
+  // Track the initial rect of the dragged element for virtual rect calculation
+  const initialRectRef = React.useRef<DOMRect | null>(null);
+
+  // Track the last pointer coordinates for synchronous collision detection on dragEnd
+  const lastPointerCoordinatesRef = React.useRef<Coordinates | null>(null);
 
   // Live region for screen reader announcements
   const [announcement, setAnnouncement] = React.useState<string>('');
@@ -174,77 +203,101 @@ export function DndContext(props: DndContextProps): React.JSX.Element {
         y: rect.top + rect.height / 2,
       };
 
+      // Store initial rect for virtual rect calculation during drag
+      initialRectRef.current = rect;
+
+      // Set ref synchronously for immediate access in dragMove
+      activeRef.current = newActive;
       setActive(newActive);
       setOver(null);
       previousOverRef.current = null;
+      latestOverRef.current = null;
 
       const event: DragStartEvent = { active: newActive };
       dispatchMonitorEvent('onDragStart', event);
+      onDragStartProp?.(event);
       announce('onDragStart', newActive, null);
     },
-    [dispatchMonitorEvent, announce],
+    [dispatchMonitorEvent, announce, onDragStartProp],
   );
 
   /**
    * Update during drag movement.
+   * Collision detection runs synchronously for immediate visual feedback,
+   * while event callbacks are throttled with RAF for performance.
    */
   const dragMove = React.useCallback(
     (coordinates: Coordinates) => {
-      // Cancel any pending collision detection
+      // Store coordinates for synchronous access in dragEnd
+      lastPointerCoordinatesRef.current = coordinates;
+
+      // Use ref for synchronous access (state might not be updated yet)
+      const currentActive = activeRef.current;
+      if (!currentActive || !initialRectRef.current || !startCoordinatesRef.current) {
+        return;
+      }
+
+      // Calculate delta from start position
+      const delta: Coordinates = {
+        x: coordinates.x - startCoordinatesRef.current.x,
+        y: coordinates.y - startCoordinatesRef.current.y,
+      };
+
+      // Calculate virtual rect based on initial rect + delta
+      // This represents where the dragged element visually appears
+      const initialRect = initialRectRef.current;
+      const virtualRect = {
+        left: initialRect.left + delta.x,
+        top: initialRect.top + delta.y,
+        right: initialRect.right + delta.x,
+        bottom: initialRect.bottom + delta.y,
+        width: initialRect.width,
+        height: initialRect.height,
+        x: initialRect.x + delta.x,
+        y: initialRect.y + delta.y,
+        toJSON: () => ({}),
+      } as DOMRect;
+
+      const updatedActive: Active = {
+        ...currentActive,
+        rect: virtualRect,
+      };
+
+      // Also update the ref with the latest active state
+      activeRef.current = updatedActive;
+
+      // Run collision detection synchronously for immediate visual feedback
+      const collidingId = collisionDetection({
+        active: updatedActive,
+        droppables: droppablesRef.current,
+        pointerCoordinates: coordinates,
+      });
+
+      let newOver: Over | null = null;
+      if (collidingId !== null) {
+        const droppable = droppablesRef.current.get(collidingId);
+        if (droppable) {
+          newOver = {
+            id: droppable.id,
+            data: droppable.data,
+            rect: droppable.node.getBoundingClientRect(),
+          };
+        }
+      }
+
+      // Update state synchronously for immediate visual feedback
+      latestOverRef.current = newOver;
+      setOver(newOver);
+      setActive(updatedActive);
+
+      // Throttle event callbacks with RAF for performance
+      // Cancel any pending callback
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
       }
 
-      // Throttle collision detection to animation frame
       rafRef.current = requestAnimationFrame(() => {
         rafRef.current = null;
-
-        if (!active) {
-          return;
-        }
-
-        // Update active rect based on movement
-        const draggable = draggablesRef.current.get(active.id);
-        if (!draggable) {
-          return;
-        }
-
-        const currentRect = draggable.node.getBoundingClientRect();
-        const updatedActive: Active = {
-          ...active,
-          rect: currentRect,
-        };
-
-        // Run collision detection
-        const collidingId = collisionDetection({
-          active: updatedActive,
-          droppables: droppablesRef.current,
-          pointerCoordinates: coordinates,
-        });
-
-        // Calculate delta from start position
-        const delta: Coordinates = startCoordinatesRef.current
-          ? {
-              x: coordinates.x - startCoordinatesRef.current.x,
-              y: coordinates.y - startCoordinatesRef.current.y,
-            }
-          : { x: 0, y: 0 };
-
-        let newOver: Over | null = null;
-        if (collidingId !== null) {
-          const droppable = droppablesRef.current.get(collidingId);
-          if (droppable) {
-            newOver = {
-              id: droppable.id,
-              data: droppable.data,
-              rect: droppable.node.getBoundingClientRect(),
-            };
-          }
-        }
-
-        // Update over state
-        setOver(newOver);
-        setActive(updatedActive);
 
         // Dispatch move event
         const moveEvent: DragMoveEvent = {
@@ -253,6 +306,7 @@ export function DndContext(props: DndContextProps): React.JSX.Element {
           delta,
         };
         dispatchMonitorEvent('onDragMove', moveEvent);
+        onDragMoveProp?.(moveEvent);
 
         // Check if we entered a new droppable
         const previousOverId = previousOverRef.current?.id;
@@ -264,13 +318,14 @@ export function DndContext(props: DndContextProps): React.JSX.Element {
             over: newOver,
           };
           dispatchMonitorEvent('onDragOver', overEvent);
+          onDragOverProp?.(overEvent);
           announce('onDragOver', updatedActive, newOver);
         }
 
         previousOverRef.current = newOver;
       });
     },
-    [active, collisionDetection, dispatchMonitorEvent, announce],
+    [collisionDetection, dispatchMonitorEvent, announce, onDragMoveProp, onDragOverProp],
   );
 
   /**
@@ -283,23 +338,82 @@ export function DndContext(props: DndContextProps): React.JSX.Element {
       rafRef.current = null;
     }
 
-    if (!active) {
+    // Use ref for synchronous access (state might not be updated yet)
+    const currentActive = activeRef.current;
+    if (!currentActive) {
       return;
     }
 
+    // Run synchronous collision detection with the last known coordinates
+    // This ensures we have the correct "over" target even if RAF hasn't fired
+    let finalOver: Over | null = latestOverRef.current;
+
+    if (lastPointerCoordinatesRef.current && initialRectRef.current && startCoordinatesRef.current) {
+      const coordinates = lastPointerCoordinatesRef.current;
+
+      // Calculate delta from start position
+      const delta: Coordinates = {
+        x: coordinates.x - startCoordinatesRef.current.x,
+        y: coordinates.y - startCoordinatesRef.current.y,
+      };
+
+      // Calculate virtual rect based on initial rect + delta
+      const initialRect = initialRectRef.current;
+      const virtualRect = {
+        left: initialRect.left + delta.x,
+        top: initialRect.top + delta.y,
+        right: initialRect.right + delta.x,
+        bottom: initialRect.bottom + delta.y,
+        width: initialRect.width,
+        height: initialRect.height,
+        x: initialRect.x + delta.x,
+        y: initialRect.y + delta.y,
+        toJSON: () => ({}),
+      } as DOMRect;
+
+      const updatedActive: Active = {
+        ...currentActive,
+        rect: virtualRect,
+      };
+
+      // Run collision detection synchronously
+      const collidingId = collisionDetection({
+        active: updatedActive,
+        droppables: droppablesRef.current,
+        pointerCoordinates: coordinates,
+      });
+
+      if (collidingId !== null) {
+        const droppable = droppablesRef.current.get(collidingId);
+        if (droppable) {
+          finalOver = {
+            id: droppable.id,
+            data: droppable.data,
+            rect: droppable.node.getBoundingClientRect(),
+          };
+        }
+      }
+    }
+
     const event: DragEndEvent = {
-      active,
-      over,
+      active: currentActive,
+      over: finalOver,
     };
 
     dispatchMonitorEvent('onDragEnd', event);
-    announce('onDragEnd', active, over);
+    onDragEndProp?.(event);
+    announce('onDragEnd', currentActive, finalOver);
 
+    // Clear both ref and state
+    activeRef.current = null;
     setActive(null);
     setOver(null);
     previousOverRef.current = null;
+    latestOverRef.current = null;
     startCoordinatesRef.current = null;
-  }, [active, over, dispatchMonitorEvent, announce]);
+    initialRectRef.current = null;
+    lastPointerCoordinatesRef.current = null;
+  }, [collisionDetection, dispatchMonitorEvent, announce, onDragEndProp]);
 
   /**
    * Cancel a drag operation.
@@ -311,20 +425,28 @@ export function DndContext(props: DndContextProps): React.JSX.Element {
       rafRef.current = null;
     }
 
-    if (!active) {
+    // Use ref for synchronous access (state might not be updated yet)
+    const currentActive = activeRef.current;
+    if (!currentActive) {
       return;
     }
 
-    const event: DragCancelEvent = { active };
+    const event: DragCancelEvent = { active: currentActive };
 
     dispatchMonitorEvent('onDragCancel', event);
-    announce('onDragCancel', active, null);
+    onDragCancelProp?.(event);
+    announce('onDragCancel', currentActive, null);
 
+    // Clear both ref and state
+    activeRef.current = null;
     setActive(null);
     setOver(null);
     previousOverRef.current = null;
+    latestOverRef.current = null;
     startCoordinatesRef.current = null;
-  }, [active, dispatchMonitorEvent, announce]);
+    initialRectRef.current = null;
+    lastPointerCoordinatesRef.current = null;
+  }, [dispatchMonitorEvent, announce, onDragCancelProp]);
 
   /**
    * Register a monitor to receive drag events.
