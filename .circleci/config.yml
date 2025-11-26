@@ -195,7 +195,7 @@ jobs:
           command: |
             pnpm -r why playwright
             pnpm -r why @playwright/test
-            pnpm dlx playwright --version
+            pnpm exec playwright --version
       - run:
           name: Tests all browsers
           environment:
