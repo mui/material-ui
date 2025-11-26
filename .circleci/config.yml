@@ -184,7 +184,7 @@ jobs:
     resource_class: 'medium+'
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.40.0-noble
+      playwright-img-version: v1.40.0-focal
     steps:
       - checkout
       - install-deps:
