@@ -5,10 +5,6 @@ orbs:
   code-infra: https://raw.githubusercontent.com/mui/mui-public/ba771b1b32f517a82df3ad050db91d5bec15599a/.circleci/orbs/code-infra.yml
 
 parameters:
-  browserstack-force:
-    description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
-    type: boolean
-    default: false
   workflow:
     description: The name of the workflow to run
     type: string
@@ -32,13 +28,7 @@ default-job: &default-job
       description: The base url for running end-to-end test
       type: string
       default: << pipeline.parameters.e2e-base-url >>
-    browserstack-enabled:
-      type: boolean
-      default: false
   environment:
-    # expose it globally otherwise we have to thread it from each job to the install command
-    BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
-    BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -518,8 +508,8 @@ workflows:
           <<: *default-context
       - test_browser:
           <<: *default-context
-          # only enable on pipeline, the karma.conf.js has logic to disable browserstack on PRs
-          browserstack-enabled: true
+      - test_browser_legacy:
+          <<: *default-context
       - test_regressions:
           <<: *default-context
       - test_e2e:
@@ -653,8 +643,7 @@ workflows:
   react-18-cron:
     triggers:
       - schedule:
-          # Stagger daily cron job to prevent Browserstack timeouts
-          cron: '40 23 * * *'
+          cron: '0 0 * * *'
           filters:
             branches:
               only:
@@ -705,8 +694,7 @@ workflows:
   react-next-cron:
     triggers:
       - schedule:
-          # Stagger daily cron job to prevent Browserstack timeouts
-          cron: '50 23 * * *'
+          cron: '0 0 * * *'
           filters:
             branches:
               only:
