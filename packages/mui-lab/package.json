@@ -43,7 +43,7 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.2",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",

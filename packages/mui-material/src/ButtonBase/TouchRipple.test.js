@@ -271,7 +271,9 @@ describe('<TouchRipple />', () => {
     it('should handle empty event.touches', () => {
       const { instance } = renderTouchRipple();
 
-      instance.start({ type: 'touchstart', touches: [], clientX: 0, clientY: 0 });
+      expect(() =>
+        instance.start({ type: 'touchstart', touches: [], clientX: 0, clientY: 0 }),
+      ).not.toErrorDev();
     });
   });
 });

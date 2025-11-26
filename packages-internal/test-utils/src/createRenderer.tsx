@@ -201,7 +201,7 @@ function createVitestClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: import('vitest').VitestUtils,
+  vi: VitestUtils,
 ): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
@@ -209,7 +209,7 @@ function createVitestClock(
         now: config,
         // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
         // Technically we'd want to reset all modules between tests but we don't have that technology.
-        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+        // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
         shouldClearNativeTimers: true,
         toFake: [
           'setTimeout',
@@ -401,7 +401,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi as typeof import('vitest').vi | undefined,
+    vi = (globalThis as any).vi as VitestUtils | undefined,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
