@@ -36,9 +36,9 @@ export default function InteractivePlayground() {
   const [slidesPerView, setSlidesPerView] = React.useState(DEFAULTS.slidesPerView);
   const [spacing, setSpacing] = React.useState(DEFAULTS.spacing);
 
-  // Controlled mode state
+  // Controlled mode - always controlled in playground to demonstrate external control
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const [useControlledMode, setUseControlledMode] = React.useState(false);
+  const [showExternalControl, setShowExternalControl] = React.useState(false);
 
   const currentProps: CarouselPlaygroundProps = {
     autoPlay,
@@ -69,7 +69,7 @@ export default function InteractivePlayground() {
     setSlidesPerView(DEFAULTS.slidesPerView);
     setSpacing(DEFAULTS.spacing);
     setActiveIndex(0);
-    setUseControlledMode(false);
+    setShowExternalControl(false);
   };
 
   return (
@@ -185,17 +185,17 @@ export default function InteractivePlayground() {
 
             <Divider sx={{ my: 2 }} />
 
-            {/* Controlled Mode */}
+            {/* External Control */}
             <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1 }}>
-              Controlled Mode
+              External Control
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <ToggleControl
-                label="Use Controlled"
-                value={useControlledMode}
-                onChange={setUseControlledMode}
+                label="Show Slider Control"
+                value={showExternalControl}
+                onChange={setShowExternalControl}
               />
-              {useControlledMode && (
+              {showExternalControl && (
                 <SliderControl
                   label="Active Index"
                   value={activeIndex}
@@ -236,12 +236,8 @@ export default function InteractivePlayground() {
                 transitionDuration={transitionDuration}
                 slidesPerView={slidesPerView}
                 spacing={spacing}
-                {...(useControlledMode
-                  ? {
-                      activeIndex,
-                      onChange: (_, newIndex) => setActiveIndex(newIndex),
-                    }
-                  : {})}
+                activeIndex={activeIndex}
+                onChange={(_, newIndex) => setActiveIndex(newIndex)}
                 aria-label="Interactive playground carousel"
               >
                 {imageSlides.map((slide) => (

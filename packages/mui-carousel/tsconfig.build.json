@@ -12,5 +12,8 @@
   },
   "include": ["./src/**/*.ts*"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
-  "references": [{ "path": "../mui-system/tsconfig.build.json" }]
+  "references": [
+    { "path": "../mui-system/tsconfig.build.json" },
+    { "path": "../mui-material/tsconfig.build.json" }
+  ]
 }

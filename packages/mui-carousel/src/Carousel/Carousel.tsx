@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
-import { styled, useThemeProps } from '@mui/system';
+import { useThemeProps } from '@mui/system';
 import { TransitionGroup } from 'react-transition-group';
 import { CarouselProps, CarouselOwnerState } from './Carousel.types';
 import { getCarouselUtilityClass } from './carouselClasses';
-import { useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { useCarousel } from '../hooks/useCarousel';
 import { useSwipe } from '../hooks/useSwipe';
 import { useKeyboard } from '../hooks/useKeyboard';
@@ -81,8 +81,8 @@ export const CarouselSlides = styled('div', {
   slot: 'Slides',
   overridesResolver: (props, styles) => styles.slides,
 })<{ ownerState: CarouselOwnerState }>(({ ownerState, theme }) => {
-  const effectiveDuration = getEffectiveDuration(ownerState.transitionDuration);
-  const easing = theme.transitions?.easing?.easeInOut || 'ease-in-out';
+  const effectiveDuration = getEffectiveDuration(ownerState.transitionDuration ?? DEFAULT_TRANSITION_DURATION);
+  const easing = theme.transitions?.easing.easeInOut || 'ease-in-out';
 
   return {
     display: 'flex',
@@ -243,7 +243,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
   const isRtl = theme.direction === 'rtl';
 
   // Calculate max index for keyboard navigation to last slide
-  const maxIndex = Math.max(0, slideCount - slidesPerView);
+  const maxIndex = Math.max(0, slideCount - effectiveSlidesPerView);
 
   // Use keyboard navigation
   const { handlers: keyboardHandlers } = useKeyboard({
@@ -258,9 +258,10 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(function Carous
     rtl: isRtl,
   });
 
-  // Compose owner state with all props
+  // Compose owner state with all props (excluding slidesPerView which is resolved in hookOwnerState)
+  const { slidesPerView: _slidesPerView, ...propsWithoutSlidesPerView } = props;
   const ownerState: CarouselOwnerState = {
-    ...props,
+    ...propsWithoutSlidesPerView,
     ...hookOwnerState,
     activeIndex,
     slideCount,

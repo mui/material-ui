@@ -11,7 +11,7 @@ export default defineConfig({
       '@mui/carousel': path.resolve(__dirname, '../packages/mui-carousel/src'),
     },
     // Ensure these resolve from demo's node_modules
-    dedupe: ['react', 'react-dom', '@emotion/react', '@emotion/styled'],
+    dedupe: ['react', 'react-dom', '@emotion/react', '@emotion/styled', '@mui/material', '@mui/system', '@mui/utils'],
   },
   server: {
     port: 3000,

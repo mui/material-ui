@@ -2776,43 +2776,104 @@ This provides Storybook-like functionality without requiring Storybook setup. Th
 ---
 pr_id: PR-015
 title: Optimize Performance and Bundle Size
-cold_state: new
+cold_state: planned
 priority: high
 complexity:
-  score: 5
-  estimated_minutes: 75
+  score: 4
+  estimated_minutes: 60
   suggested_model: sonnet
-  rationale: Performance optimization requiring profiling and careful refactoring
+  rationale: Performance optimization focusing on memoization and runtime performance (virtualization deferred)
 dependencies: [PR-003, PR-011]
 estimated_files:
   - path: packages/mui-carousel/src/Carousel/Carousel.tsx
     action: modify
-    description: performance optimizations
+    description: |
+      Memoization optimizations:
+      - Wrap contextValue in useMemo to prevent unnecessary re-renders of consumers
+      - Memoize slot assignments (RootSlot, SlidesSlot, SlideSlot)
+      - Add React.memo to internal styled components if beneficial
+      - Review and optimize useEffect dependencies
   - path: packages/mui-carousel/src/hooks/useCarousel.ts
     action: modify
-    description: memoization improvements
-  - path: packages/mui-carousel/rollup.config.js
-    action: create
-    description: build optimization configuration
+    description: |
+      Memoization improvements:
+      - Memoize ownerState object construction (lines 198-212 create new object every render)
+      - Review useEventCallback usage for potential optimization
+      - Ensure autoPlayHandlers object is stable across renders
+  - path: packages/mui-carousel/src/CarouselNavigation/CarouselNavigation.tsx
+    action: modify
+    description: |
+      Wrap component in React.memo to prevent re-renders when carousel state unchanged
+  - path: packages/mui-carousel/src/CarouselIndicators/CarouselIndicators.tsx
+    action: modify
+    description: |
+      Wrap component in React.memo to prevent re-renders when carousel state unchanged
   - path: packages/mui-carousel/src/utils/performance.ts
     action: create
-    description: performance utilities
+    description: |
+      Performance utilities:
+      - debounce: Debounce function for resize handlers
+      - throttle: Throttle function for scroll/gesture handlers
+      - preloadImage: Utility to preload adjacent slide images
+      - measureRenderTime: Development utility for profiling (tree-shaken in production)
+  - path: packages/mui-carousel/src/utils/performance.test.ts
+    action: create
+    description: Tests for performance utilities (debounce, throttle, preloadImage)
+planning_notes: |
+  ## Planning Analysis (PR-015)
+
+  ### Current State Analysis
+  After reviewing the codebase:
+
+  1. **Build System**: MUI uses `code-infra build` internally - NO custom rollup.config.js needed
+     - Removed rollup.config.js from file list (original estimate was incorrect)
+     - Bundle optimization is handled by code-infra's Babel + bundler configuration
+
+  2. **Memoization Opportunities Identified**:
+     - `useCarousel.ts:198-212`: `ownerState` object recreated every render
+     - `Carousel.tsx:276-293`: `contextValue` object recreated every render
+     - `Carousel.tsx:296-298`: Slot assignments could be memoized
+     - Sub-components (CarouselNavigation, CarouselIndicators) not wrapped in React.memo
+
+  3. **Virtualization Deferred**: Per user decision, virtual scrolling for 100+ slides
+     is deferred to a future version. Focus is on runtime performance for typical use cases.
+
+  4. **Bundle Size**: Need to verify current size before optimization. Build command:
+     ```bash
+     pnpm --filter @mui/carousel build
+     # Check: du -sh packages/mui-carousel/build/
+     ```
+
+  ### Implementation Strategy
+  1. Profile current performance with React DevTools Profiler
+  2. Add memoization to high-impact areas (context value, owner state)
+  3. Wrap sub-components in React.memo
+  4. Create performance utilities for common patterns
+  5. Verify 60fps animations and <100ms touch response
+  6. Measure and document final bundle size
+
+  ### Files Removed from Original Estimate
+  - `rollup.config.js` - Not needed; MUI uses code-infra build system
+
+  ### Deferred to Future Version
+  - Virtualization hook (useVirtualization.ts) for 100+ slides
+  - Lazy loading hook for off-screen slides
 ---
 
 **Description:**
-Optimize carousel performance through memoization, virtualization for large slide counts, and bundle size reduction to meet <30KB gzipped target.
+Optimize carousel performance through memoization and runtime optimizations to ensure smooth 60fps animations and responsive touch interactions. Bundle size reduction and virtualization are secondary concerns.
 
 **Acceptance Criteria:**
-- [ ] Bundle size <30KB gzipped
+- [ ] Bundle size <30KB gzipped (verify current size first)
 - [ ] 60fps animations consistently
 - [ ] <100ms touch response time
-- [ ] Memory usage optimized
-- [ ] Virtual scrolling for 100+ slides
-- [ ] Lazy loading implemented
-- [ ] No unnecessary re-renders
+- [ ] No unnecessary re-renders (verified with React DevTools Profiler)
+- [ ] Context value and owner state properly memoized
+- [ ] Sub-components wrapped in React.memo where beneficial
+- [ ] Performance utilities created and tested
 
 **Notes:**
-Profile with React DevTools and Chrome Performance tab. Consider code splitting strategies.
+Profile with React DevTools Profiler and Chrome Performance tab. Virtualization for 100+ slides deferred to future version. Focus on memoization and preventing unnecessary re-renders.
 
 ## Final Block: Submission Preparation
 
@@ -2821,49 +2882,123 @@ Profile with React DevTools and Chrome Performance tab. Consider code splitting 
 ---
 pr_id: PR-015A
 title: Complete Demo Application with All Features
-cold_state: new
+cold_state: planned
 priority: high
 complexity:
   score: 3
   estimated_minutes: 45
   suggested_model: haiku
   rationale: Final demo showcasing all carousel features for video presentation
-dependencies: [PR-003A, PR-004, PR-005, PR-006, PR-007, PR-008, PR-009, PR-010]
+dependencies: [PR-003A, PR-004, PR-005, PR-006, PR-007, PR-008, PR-009, PR-010, PR-014]
 estimated_files:
   - path: demo/src/App.tsx
     action: modify
-    description: update demo with all features
+    description: |
+      Enhance main demo application:
+      - Add tabbed navigation or sections for organized demo flow
+      - Integrate FeatureShowcase component for feature-by-feature demos
+      - Add AccessibilityGuide section with keyboard navigation instructions
+      - Add responsive design demo section showing breakpoint behavior
+      - Ensure all demos have clear labels and descriptions
   - path: demo/src/components/FeatureShowcase.tsx
     action: create
-    description: component showcasing individual features
-  - path: demo/src/components/InteractivePlayground.tsx
+    description: |
+      Component showcasing individual features with code snippets:
+      - Touch/Swipe gestures demo with visual feedback
+      - Auto-play demo with pause-on-hover visualization
+      - Keyboard navigation demo with key hints overlay
+      - Transition comparison (slide vs fade side-by-side)
+      - Responsive slidesPerView demo
+      Each showcase includes: live demo, feature description, code snippet
+  - path: demo/src/components/AccessibilityGuide.tsx
     action: create
-    description: interactive controls for testing props
+    description: |
+      Accessibility demonstration component:
+      - Keyboard shortcuts reference (Arrow keys, Home/End, Escape, 1-9)
+      - Screen reader instructions and ARIA explanation
+      - Focus management demonstration
+      - Reduced motion preference demo
   - path: demo/src/data/sampleData.ts
     action: modify
-    description: enhanced sample content
+    description: |
+      Enhanced sample content:
+      - Add more varied image slides (landscapes, products, portraits)
+      - Add product cards data for e-commerce demo
+      - Add feature descriptions for FeatureShowcase
+      - Ensure all images have proper alt text for accessibility demo
   - path: demo/vercel.json
     action: create
-    description: deployment configuration
-  - path: demo/netlify.toml
-    action: create
-    description: alternative deployment configuration
+    description: |
+      Vercel deployment configuration:
+      - Build command: pnpm build
+      - Output directory: dist
+      - Framework: vite
+      - Redirects/rewrites if needed for SPA routing
+  - path: demo/README.md
+    action: modify
+    description: |
+      Update demo documentation:
+      - Local development instructions (pnpm install, pnpm dev)
+      - Vercel deployment instructions (manual and CLI)
+      - Feature list with links to demo sections
+      - Screenshots of key features
+planning_notes: |
+  ## Planning Analysis (PR-015A)
+
+  ### Current State (Post PR-014)
+  PR-014 has been completed and merged, providing:
+  - `InteractivePlayground.tsx` - Full prop control panel with live preview
+  - `PropControl.tsx` - Reusable toggle/number/select/slider controls
+  - `codeGenerator.ts` - JSX code snippet generation from prop values
+  - App.tsx updated to include Interactive Playground section
+
+  ### What PR-015A Adds
+  Building on PR-014's interactive playground, PR-015A completes the demo with:
+  1. **FeatureShowcase** - Focused demos for each major feature
+  2. **AccessibilityGuide** - Keyboard shortcuts and screen reader guidance
+  3. **Vercel Deployment** - Configuration and instructions (user will deploy locally)
+  4. **Enhanced Content** - More sample data for comprehensive demos
+
+  ### Files Removed from Original Estimate
+  - `InteractivePlayground.tsx` - Already created by PR-014
+  - `netlify.toml` - User specified Vercel only
+
+  ### Demo Structure (Proposed)
+  ```
+  1. Hero Section (existing)
+  2. Interactive Playground (from PR-014)
+  3. Feature Showcases (new)
+     - Touch/Swipe Gestures
+     - Auto-Play Behavior
+     - Keyboard Navigation
+     - Transitions Comparison
+     - Responsive Design
+  4. Accessibility Guide (new)
+  5. Image Gallery Demo (existing, enhanced)
+  6. Testimonials Demo (existing)
+  7. Footer with Links
+  ```
+
+  ### Deployment Notes
+  - Vercel deployment will be handled by user with local credentials
+  - PR-015A provides vercel.json config and README instructions
+  - User will create Vercel project and deploy after pulling this PR
 ---
 
 **Description:**
-Enhance the demo application to showcase all implemented carousel features including touch gestures, auto-play, keyboard navigation, accessibility, and responsive behavior. This will be the primary demonstration for the video submission.
+Enhance the demo application to showcase all implemented carousel features including touch gestures, auto-play, keyboard navigation, accessibility, and responsive behavior. Builds on PR-014's Interactive Playground with additional feature showcases and accessibility documentation. This will be the primary demonstration for the video submission.
 
 **Acceptance Criteria:**
-- [ ] Demo showcases all carousel features
-- [ ] Interactive controls to toggle features
-- [ ] Multiple carousel examples with different configurations
-- [ ] Mobile-responsive demonstration
-- [ ] Accessibility features clearly demonstrated
-- [ ] Performance metrics displayed
-- [ ] Deployed to public URL for easy access
+- [ ] Demo showcases all carousel features systematically
+- [ ] Interactive Playground functional (from PR-014)
+- [ ] Feature showcases for each major capability
+- [ ] Accessibility guide with keyboard shortcuts
+- [ ] Mobile-responsive design verified
+- [ ] Vercel configuration and deployment instructions provided
+- [ ] README updated with deployment steps
 
 **Notes:**
-This is the demo that will be shown in the video presentation. Make it impressive and comprehensive. Include clear labels and instructions for each feature demonstration.
+This is the demo that will be shown in the video presentation. Builds on PR-014's Interactive Playground. Vercel deployment will be performed by user with local credentials - just provide configuration and instructions.
 
 ### PR-016: Create and Submit Upstream Pull Request
 

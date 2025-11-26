@@ -5,9 +5,22 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, useTheme, useThemeProps } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import SvgIcon from '@mui/material/SvgIcon';
 import { useCarouselContext } from '../CarouselContext';
+
+// Inline SVG icons to avoid @mui/icons-material dependency
+const KeyboardArrowLeft = (props: React.ComponentProps<typeof SvgIcon>) => (
+  <SvgIcon {...props}>
+    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
+  </SvgIcon>
+);
+
+const KeyboardArrowRight = (props: React.ComponentProps<typeof SvgIcon>) => (
+  <SvgIcon {...props}>
+    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+  </SvgIcon>
+);
+
 import {
   CarouselNavigationProps,
   CarouselNavigationOwnerState,
@@ -124,10 +137,14 @@ const CarouselNavigation = React.forwardRef<HTMLDivElement, CarouselNavigationPr
       nextButtonProps?.onClick?.(event);
     };
 
+    // Omit 'color' prop as it conflicts with IconButton's color type
+    const { color: _prevColor, ...prevButtonPropsWithoutColor } = prevButtonProps || {};
+    const { color: _nextColor, ...nextButtonPropsWithoutColor } = nextButtonProps || {};
+
     return (
       <NavigationRoot ref={ref} className={clsx(classes.root, className)} ownerState={ownerState} {...other}>
         <NavigationButton
-          {...prevButtonProps}
+          {...prevButtonPropsWithoutColor}
           onClick={handlePrevClick}
           disabled={prevDisabled}
           aria-label="Go to previous slide"
@@ -138,7 +155,7 @@ const CarouselNavigation = React.forwardRef<HTMLDivElement, CarouselNavigationPr
           {prevIcon ?? <PrevIcon />}
         </NavigationButton>
         <NavigationButton
-          {...nextButtonProps}
+          {...nextButtonPropsWithoutColor}
           onClick={handleNextClick}
           disabled={nextDisabled}
           aria-label="Go to next slide"

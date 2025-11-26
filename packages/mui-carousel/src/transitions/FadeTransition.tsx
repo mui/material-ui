@@ -45,16 +45,17 @@ const FadeTransition = React.forwardRef<HTMLElement, FadeTransitionProps>(
         onExited={onExited}
         appear
       >
-        {(state) =>
-          React.cloneElement(children, {
+        {(state) => {
+          const childProps = children.props as { style?: React.CSSProperties };
+          return React.cloneElement(children, {
             ref: nodeRef,
             style: {
               ...defaultStyle,
               ...transitionStyles[state],
-              ...children.props.style,
+              ...childProps.style,
             },
-          })
-        }
+          } as any);
+        }}
       </Transition>
     );
   },

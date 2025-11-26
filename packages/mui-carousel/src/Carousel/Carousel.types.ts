@@ -37,7 +37,7 @@ export interface CarouselSlotPropsOverrides {}
  * Owner state passed to styled components and slot props.
  * Contains all props plus internal state for styling decisions.
  */
-export interface CarouselOwnerState extends CarouselOwnProps {
+export interface CarouselOwnerState extends Omit<CarouselOwnProps, 'slidesPerView'> {
   /** Current active slide index */
   activeIndex: number;
   /** Total number of slides */
@@ -48,6 +48,8 @@ export interface CarouselOwnerState extends CarouselOwnProps {
   dragging: boolean;
   /** Whether auto-play is currently active */
   isAutoPlaying: boolean;
+  /** Number of slides visible at once (resolved from responsive value) */
+  slidesPerView?: number;
 }
 
 /**
