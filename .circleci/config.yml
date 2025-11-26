@@ -184,12 +184,12 @@ jobs:
     resource_class: 'medium+'
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.40.0-focal
+      playwright-img-version: v1.49.1-noble
     steps:
       - checkout
       - install-deps:
           react-version: << parameters.react-version >>
-          playwright-version: '1.40.0'
+          playwright-version: '1.49.1'
       - run:
           name: Tests other browsers
           # environment:
