@@ -1,16 +1,19 @@
 # @mui/carousel Demo
 
-An early demo application showcasing the Material UI Carousel component.
+A comprehensive demo application showcasing the Material UI Carousel component with all its features.
 
 ## Overview
 
-This demo application demonstrates the core functionality of the `@mui/carousel` package, including:
+This demo application demonstrates the full functionality of the `@mui/carousel` package, including:
 
-- Image carousel with external navigation controls
-- Testimonials carousel with card-based design
-- Auto-play carousel with looping
-- Controlled mode with external state management
-- Custom navigation buttons and indicators
+- Interactive Playground with real-time prop configuration
+- Feature Showcase demonstrating each capability
+- Accessibility Guide with keyboard navigation
+- Multiple example carousels (images, testimonials, auto-play, transitions)
+
+## Live Demo
+
+The demo is deployed at: **https://grays-material-carousel.vercel.app**
 
 ## Prerequisites
 
@@ -20,6 +23,18 @@ This demo application demonstrates the core functionality of the `@mui/carousel`
 ## Getting Started
 
 ### Installation
+
+From the repository root:
+
+```bash
+# Install all dependencies
+pnpm install
+
+# Navigate to demo
+cd demo
+```
+
+Or from the demo directory:
 
 ```bash
 cd demo
@@ -46,11 +61,56 @@ pnpm build
 
 ### Preview
 
-Preview the production build:
+Preview the production build locally:
 
 ```bash
 pnpm preview
 ```
+
+## Deployment
+
+### Deploy to Vercel
+
+#### Option 1: Vercel CLI
+
+1. Install Vercel CLI:
+   ```bash
+   npm i -g vercel
+   ```
+
+2. Navigate to the demo directory:
+   ```bash
+   cd demo
+   ```
+
+3. Deploy:
+   ```bash
+   vercel
+   ```
+
+4. For production deployment:
+   ```bash
+   vercel --prod
+   ```
+
+#### Option 2: Vercel Dashboard
+
+1. Go to [vercel.com](https://vercel.com) and sign in
+2. Click "New Project"
+3. Import the repository
+4. Set the following:
+   - **Framework Preset**: Vite
+   - **Root Directory**: `demo`
+   - **Build Command**: `pnpm build`
+   - **Output Directory**: `dist`
+5. Click "Deploy"
+
+### Environment Configuration
+
+The `vercel.json` file includes:
+- SPA routing rewrites for client-side navigation
+- Security headers (X-Content-Type-Options, X-Frame-Options, X-XSS-Protection)
+- Cache headers for static assets
 
 ## Project Structure
 
@@ -58,64 +118,81 @@ pnpm preview
 demo/
 ├── src/
 │   ├── components/
-│   │   └── DemoSection.tsx    # Reusable section wrapper
+│   │   ├── DemoSection.tsx         # Reusable section wrapper
+│   │   ├── InteractivePlayground.tsx  # Prop control panel
+│   │   ├── FeatureShowcase.tsx     # Feature demonstrations
+│   │   ├── AccessibilityGuide.tsx  # Accessibility documentation
+│   │   └── PropControl.tsx         # Reusable prop controls
 │   ├── data/
-│   │   └── sampleData.ts      # Sample images and testimonials
-│   ├── App.tsx                # Main application component
-│   ├── main.tsx               # React entry point
-│   └── theme.ts               # Material UI theme configuration
-├── index.html                 # HTML entry point
-├── vite.config.ts             # Vite configuration
-├── tsconfig.json              # TypeScript configuration
-└── package.json               # Project dependencies
+│   │   └── sampleData.ts           # Sample images, testimonials, products
+│   ├── utils/
+│   │   └── codeGenerator.ts        # JSX code snippet generator
+│   ├── App.tsx                     # Main application component
+│   ├── main.tsx                    # React entry point
+│   └── theme.ts                    # Material UI theme configuration
+├── index.html                      # HTML entry point
+├── vite.config.ts                  # Vite configuration
+├── vercel.json                     # Vercel deployment config
+├── tsconfig.json                   # TypeScript configuration
+└── package.json                    # Project dependencies
 ```
 
-## Features Demonstrated
+## Demo Sections
 
-### Image Carousel
-- Displays a collection of images with captions
-- External navigation buttons (IconButtons with arrows)
-- Slide position indicator
-- Custom dot indicators for direct slide navigation
+### 1. Interactive Playground
+- Real-time prop manipulation
+- Live carousel preview
+- Generated code snippets
+- All props configurable (autoPlay, enableLoop, transition, etc.)
 
-### Testimonials Carousel
-- Card-based testimonial display
-- External navigation with labeled buttons
-- Elegant typography and spacing
+### 2. Feature Showcase
+- Touch/Swipe Gestures demo
+- Auto-Play with pause-on-hover
+- Slide and Fade transitions
+- Loop mode demonstration
+- Navigation controls showcase
 
-### Auto-Play Carousel
-- Automatically advances every 3 seconds
-- Loop enabled for continuous playback
-- Overlay text with image background
+### 3. Accessibility Guide
+- Keyboard shortcuts reference
+- ARIA attributes documentation
+- Screen reader instructions
+- Motion preferences handling
 
-## Implementation Notes
+### 4. Examples
+- **Image Carousel**: Toggle navigation, indicators, loop, auto-play
+- **Testimonials**: Card-based design with elegant typography
+- **Auto-Play**: Automatic advancement with overlay text
+- **Fade Transition**: Smooth crossfade effect
 
-### Controlled Mode
+## Features Implemented
 
-This demo uses controlled mode for carousel navigation since PR-004 (which adds built-in navigation buttons) is not yet complete. The carousel's `activeIndex` is managed externally with React state:
+### Core Features
+- Navigation arrows and dot indicators
+- Touch/swipe gesture support
+- Mouse drag navigation
+- Auto-play with configurable interval
+- Pause on hover/focus
+- Loop/infinite mode
 
-```tsx
-const [imageIndex, setImageIndex] = useState(0);
+### Transitions
+- Slide transition (default)
+- Fade/crossfade transition
+- Configurable transition duration
 
-<Carousel
-  activeIndex={imageIndex}
-  onChange={(newIndex) => setImageIndex(newIndex)}
->
-  {slides}
-</Carousel>
-```
+### Accessibility
+- Full keyboard navigation (Arrow keys, Home, End, Escape, 1-9)
+- ARIA attributes (role, aria-label, aria-live, etc.)
+- Screen reader announcements
+- Focus management
+- Respects prefers-reduced-motion
 
-### External Navigation
+### Customization
+- Theme integration with MUI
+- Custom slots for navigation and indicators
+- Responsive slidesPerView
+- Configurable spacing
 
-Navigation buttons are implemented outside the Carousel component and update the state directly:
-
-```tsx
-const handleNext = () => {
-  setImageIndex((prev) => (prev + 1) % slides.length);
-};
-```
-
-### Vite Configuration
+## Vite Configuration
 
 The demo uses a Vite alias to import the carousel component directly from the source:
 
@@ -136,21 +213,16 @@ This allows testing the component during development without publishing to npm.
 - **Vite** - Build tool and dev server
 - **Material UI** - Component library and design system
 - **Emotion** - CSS-in-JS styling
+- **React Transition Group** - Animation transitions
 
-## Known Limitations
+## Scripts
 
-- Navigation buttons are not yet built into the Carousel component (pending PR-004)
-- Transitions are not yet animated (pending PR-006)
-- Touch gestures are not yet implemented (pending PR-005)
-- Only horizontal orientation is supported
-
-## Next Steps
-
-Future PRs will add:
-- **PR-004**: Built-in navigation buttons and indicators
-- **PR-005**: Touch/swipe gesture support
-- **PR-006**: Smooth transitions and animations
-- **PR-007**: Accessibility enhancements
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Build for production |
+| `pnpm preview` | Preview production build |
+| `pnpm lint` | Run ESLint |
 
 ## License
 
