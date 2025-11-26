@@ -173,6 +173,8 @@ function getVitestEnvironment(fileName: string): 'browser' | 'node' {
 
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
+console.log(browserStackConfig);
+
 export interface CreateOptions {
   jsdom?: boolean;
   enableScrollbars?: boolean;
