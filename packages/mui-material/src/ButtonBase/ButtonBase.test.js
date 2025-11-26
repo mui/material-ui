@@ -10,6 +10,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
+  supportsTouch,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import PropTypes from 'prop-types';
@@ -199,7 +200,7 @@ describe('<ButtonBase />', () => {
       const button = screen.getByText('Hello');
 
       // only run in supported browsers
-      if (typeof Touch !== 'undefined') {
+      if (supportsTouch()) {
         const touch = new Touch({ identifier: 0, target: button, clientX: 0, clientY: 0 });
 
         fireEvent.touchStart(button, { touches: [touch] });

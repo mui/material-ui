@@ -1,6 +1,7 @@
 import * as chai from 'chai';
 import * as DomTestingLibrary from '@testing-library/dom';
 import type { ElementHandle } from '@playwright/test';
+import { AssertionError } from 'assertion-error';
 
 // https://stackoverflow.com/a/46755166/3406963
 declare global {
@@ -33,9 +34,7 @@ chai.use((chaiAPI, utils) => {
   chai.Assertion.addMethod('toHaveFocus', async function elementHandleIsFocused() {
     const $elementOrHandle: ElementHandle | Promise<ElementHandle> = utils.flag(this, 'object');
     if ($elementOrHandle == null) {
-      throw new chai.AssertionError(
-        `Expected an element handle but got ${String($elementOrHandle)}.`,
-      );
+      throw new AssertionError(`Expected an element handle but got ${String($elementOrHandle)}.`);
     }
     const $element =
       typeof ($elementOrHandle as Promise<any>).then === 'function'
@@ -68,9 +67,7 @@ chai.use((chaiAPI, utils) => {
     async function elementHandleHasAttribute(attributeName: string, attributeValue?: string) {
       const $elementOrHandle: ElementHandle | Promise<ElementHandle> = utils.flag(this, 'object');
       if ($elementOrHandle == null) {
-        throw new chai.AssertionError(
-          `Expected an element handle but got ${String($elementOrHandle)}.`,
-        );
+        throw new AssertionError(`Expected an element handle but got ${String($elementOrHandle)}.`);
       }
       const $element =
         typeof ($elementOrHandle as Promise<any>).then === 'function'

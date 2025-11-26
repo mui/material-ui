@@ -50,7 +50,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.2",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
