@@ -26,14 +26,22 @@ interface BrowserStackConfigOptions {
   verbose?: boolean;
 }
 
+const browserstackEnabled =
+  process.env.BROWSERSTACK_FORCE === 'true' ||
+  (process.env.BROWSERSTACK_ENABLED === 'true' &&
+    process.env.CIRCLE_BRANCH?.match(/^(master|next|v\d+\.x)$/));
 const browserStackUser = process.env.BROWSERSTACK_USERNAME;
 const browserStackKey = process.env.BROWSERSTACK_ACCESS_KEY;
+
+if (browserstackEnabled && (!browserStackUser || !browserStackKey)) {
+  throw new Error(
+    'BrowserStack is enabled, but BROWSERSTACK_USERNAME or BROWSERSTACK_ACCESS_KEY is not set.',
+  );
+}
+
 const browserStackConfig: BrowserStackConfigOptions | null =
-  browserStackUser && browserStackKey
-    ? {
-        user: browserStackUser,
-        key: browserStackKey,
-      }
+  browserstackEnabled && browserStackUser && browserStackKey
+    ? { user: browserStackUser, key: browserStackKey }
     : null;
 
 function startTunnel(bsOptions: Partial<Options>): LocalPromise {
