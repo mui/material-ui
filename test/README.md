@@ -14,8 +14,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)
 - [Chai](https://www.chaijs.com/)
 - [Sinon](https://sinonjs.org/)
-- [Mocha](https://mochajs.org/)
-- [Karma](https://karma-runner.github.io/latest/index.html)
+- [Vitest](https://vitest.dev/)
 - [Playwright](https://playwright.dev/)
 - [jsdom](https://github.com/jsdom/jsdom)
 
@@ -212,7 +211,7 @@ This check is fairly expensive which is why it is disabled when tests are run lo
 The rationale being that in almost all cases including or excluding elements from a query-set depending on their a11y-tree membership makes no difference.
 
 The queries where this does make a difference explicitly include checking for a11y tree inclusion, for example `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
-To see if your test (`test:karma` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
+To see if your test (`test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
 
 Not considering a11y tree exclusion is a common cause of "Unable to find an accessible element with the role" or "Found multiple elements with the role".
 
