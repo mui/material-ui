@@ -120,9 +120,7 @@ export default defineConfig(
   // Test start
   {
     files: [`**/*${EXTENSION_TEST_FILE}`],
-    extends: createTestConfig({
-      useMocha: true,
-    }),
+    extends: createTestConfig({}),
     rules: {
       'material-ui/no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.

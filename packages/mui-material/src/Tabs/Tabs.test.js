@@ -388,7 +388,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
 
         before(function test() {
           nodeEnv = process.env.NODE_ENV;
-          // We can't use a regular assignment, because it causes a syntax error in Karma
           Object.defineProperty(process.env, 'NODE_ENV', {
             value: 'development',
             configurable: true,
