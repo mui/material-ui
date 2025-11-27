@@ -3080,7 +3080,7 @@ This keeps the PR clean and avoids adding a dependency that would need to be rem
 ---
 pr_id: PR-017
 title: Migration Guide and API Docs
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 4
@@ -3280,7 +3280,7 @@ Add entries to the pages.ts navigation config:
 ---
 pr_id: PR-018
 title: E2E Tests
-cold_state: planned
+cold_state: complete
 priority: medium
 complexity:
   score: 6

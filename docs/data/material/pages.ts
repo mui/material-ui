@@ -125,6 +125,11 @@ const pages: MuiPage[] = [
           },
           { pathname: '/material-ui/react-css-baseline', title: 'CSS Baseline' },
           {
+            pathname: '/material-ui/react-drag-and-drop',
+            title: 'Drag and Drop',
+            newFeature: true,
+          },
+          {
             pathname: '/material-ui/react-init-color-scheme-script',
             title: 'InitColorSchemeScript',
           },
@@ -257,6 +262,11 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/guides/content-security-policy',
         title: 'Content Security Policy',
+      },
+      {
+        pathname: '/material-ui/guides/drag-and-drop-migration',
+        title: 'Migrating from react-beautiful-dnd',
+        newFeature: true,
       },
     ],
   },
