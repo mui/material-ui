@@ -18,13 +18,11 @@ describeSkipIf(window.navigator.userAgent.includes('jsdom'))('<Popper />', () =>
   let originalScrollX;
   let originalScrollY;
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
   beforeEach(() => {
     originalScrollX = window.screenX;
     originalScrollY = window.scrollY;
   });
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
   afterEach(() => {
     window.scrollTo(originalScrollX, originalScrollY);
   });

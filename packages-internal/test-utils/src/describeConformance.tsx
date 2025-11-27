@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import * as React from 'react';
+import { describe, it, afterAll, afterEach, beforeEach } from 'vitest';
 import createDescribe from './createDescribe';
 import { MuiRenderResult } from './createRenderer';
-import { describe, it, afterAll, afterEach, beforeEach } from 'vitest';
 
 function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
