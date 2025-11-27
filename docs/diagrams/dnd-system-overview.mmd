@@ -1,0 +1,67 @@
+%% MUI Native Drag-and-Drop System Architecture Overview
+%% This diagram shows the layered architecture of the DnD system
+
+graph TB
+    subgraph "Application Layer"
+        App["Application Code"]
+        Handlers["Event Handlers<br/>(onDragStart, onDragEnd, etc.)"]
+    end
+
+    subgraph "Context Layer"
+        DndContext["DndContext<br/>━━━━━━━━━━━━━━<br/>• State: active, over<br/>• Registries: draggables, droppables<br/>• Collision detection<br/>• Screen reader announcements"]
+        SortableContext["SortableContext<br/>━━━━━━━━━━━━━━<br/>• Item order tracking<br/>• Sorting strategy<br/>• Transform calculations<br/>• Item rect registry"]
+    end
+
+    subgraph "Hook Layer"
+        useDraggable["useDraggable<br/>━━━━━━━━━━━━━━<br/>• Pointer event handling<br/>• Keyboard navigation<br/>• Transform calculation<br/>• ARIA attributes"]
+        useDroppable["useDroppable<br/>━━━━━━━━━━━━━━<br/>• Drop target registration<br/>• isOver state<br/>• Active item info"]
+        useSortable["useSortable<br/>━━━━━━━━━━━━━━<br/>• Composes useDraggable<br/>• Composes useDroppable<br/>• Transition handling<br/>• SortableContext integration"]
+    end
+
+    subgraph "Component Layer"
+        DraggableListItem["DraggableListItem<br/>━━━━━━━━━━━━━━<br/>Sortable list items"]
+        DraggableTableRow["DraggableTableRow<br/>━━━━━━━━━━━━━━<br/>Sortable table rows<br/>(preserves cell widths)"]
+        DraggableGridItem["DraggableGridItem<br/>━━━━━━━━━━━━━━<br/>Sortable grid items<br/>(dashboard layouts)"]
+        DraggableChip["DraggableChip<br/>━━━━━━━━━━━━━━<br/>Sortable chips<br/>(tag management)"]
+    end
+
+    subgraph "Internal Utilities"
+        Collision["Collision Detection<br/>━━━━━━━━━━━━━━<br/>• rectIntersection<br/>• pointerWithin<br/>• closestCenter<br/>• closestCorners"]
+        Strategies["Sorting Strategies<br/>━━━━━━━━━━━━━━<br/>• vertical<br/>• horizontal<br/>• grid"]
+        Announcements["Accessibility<br/>━━━━━━━━━━━━━━<br/>• Live region<br/>• Default announcements<br/>• Custom callbacks"]
+    end
+
+    %% Relationships
+    App --> DndContext
+    App --> Handlers
+    DndContext --> Handlers
+
+    DndContext --> useDraggable
+    DndContext --> useDroppable
+    SortableContext --> useSortable
+    DndContext --> SortableContext
+
+    useDraggable --> useSortable
+    useDroppable --> useSortable
+
+    useSortable --> DraggableListItem
+    useSortable --> DraggableTableRow
+    useSortable --> DraggableGridItem
+    useSortable --> DraggableChip
+
+    DndContext --> Collision
+    SortableContext --> Strategies
+    DndContext --> Announcements
+
+    %% Styling
+    classDef contextLayer fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef hookLayer fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef componentLayer fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    classDef utilityLayer fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef appLayer fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+
+    class DndContext,SortableContext contextLayer
+    class useDraggable,useDroppable,useSortable hookLayer
+    class DraggableListItem,DraggableTableRow,DraggableGridItem,DraggableChip componentLayer
+    class Collision,Strategies,Announcements utilityLayer
+    class App,Handlers appLayer

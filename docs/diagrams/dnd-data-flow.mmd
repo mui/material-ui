@@ -1,0 +1,109 @@
+%% MUI Native Drag-and-Drop Data Flow
+%% This sequence diagram shows the complete lifecycle of a drag operation
+
+sequenceDiagram
+    participant User
+    participant Element as Draggable Element
+    participant useDraggable
+    participant DndContext
+    participant Collision as Collision Detection
+    participant SortableContext
+    participant useDroppable
+    participant ScreenReader as Screen Reader
+
+    Note over User,ScreenReader: === DRAG START ===
+
+    User->>Element: pointerdown / Enter / Space
+    Element->>useDraggable: handlePointerDown / handleKeyDown
+    useDraggable->>useDraggable: Store initial position
+    useDraggable->>useDraggable: setPointerCapture (pointer only)
+    useDraggable->>DndContext: dragStart(id)
+
+    DndContext->>DndContext: Look up draggable in registry
+    DndContext->>DndContext: Capture initial rect
+    DndContext->>DndContext: Set active state
+    DndContext->>DndContext: Store start coordinates
+
+    DndContext->>ScreenReader: Announce "Picked up item {id}"
+    DndContext-->>useDraggable: onDragStart callback
+
+    Note over DndContext: active = { id, data, rect }
+
+    Note over User,ScreenReader: === DRAG MOVE (repeated) ===
+
+    loop During Drag
+        User->>Element: pointermove / Arrow keys
+        Element->>useDraggable: handlePointerMove / handleKeyDown
+        useDraggable->>useDraggable: Calculate new coordinates
+        useDraggable->>DndContext: dragMove(coordinates)
+
+        DndContext->>DndContext: Calculate delta from start
+        DndContext->>DndContext: Compute virtual rect (initial + delta)
+
+        DndContext->>Collision: collisionDetection({ active, droppables, pointer })
+        Collision->>Collision: Check all droppables
+        Collision-->>DndContext: overId | null
+
+        alt overId !== previous overId
+            DndContext->>DndContext: Update over state
+            DndContext->>ScreenReader: Announce "Over droppable {overId}"
+            DndContext-->>useDraggable: onDragOver callback
+        end
+
+        DndContext->>DndContext: Update active rect in state
+
+        Note over DndContext: State updated synchronously
+
+        DndContext->>DndContext: RAF throttle callbacks
+        DndContext-->>useDraggable: onDragMove callback (throttled)
+
+        DndContext->>SortableContext: Context value updated
+        SortableContext->>SortableContext: Recalculate transforms
+
+        loop For each sortable item
+            SortableContext->>SortableContext: getItemTransform(itemId)
+            Note right of SortableContext: Strategy determines shift direction/distance
+        end
+
+        SortableContext-->>useDroppable: isOver updated
+        useDroppable-->>Element: Re-render with new transform
+    end
+
+    Note over User,ScreenReader: === DRAG END ===
+
+    User->>Element: pointerup / Enter / Space
+    Element->>useDraggable: handlePointerUp / handleKeyDown
+    useDraggable->>useDraggable: Release pointer capture
+    useDraggable->>DndContext: dragEnd()
+
+    DndContext->>DndContext: Cancel any pending RAF
+    DndContext->>Collision: Final collision detection
+    Collision-->>DndContext: final overId
+
+    DndContext->>DndContext: Build DragEndEvent
+
+    Note over DndContext: event = { active, over }
+
+    DndContext-->>useDraggable: onDragEnd(event)
+    DndContext->>ScreenReader: Announce "Dropped over {overId}"
+
+    DndContext->>DndContext: Clear active state
+    DndContext->>DndContext: Clear over state
+    DndContext->>DndContext: Clear refs
+
+    Note over DndContext: active = null, over = null
+
+    Note over User,ScreenReader: === DRAG CANCEL (alternative ending) ===
+
+    User->>Element: Escape key
+    Element->>useDraggable: handleKeyDown
+    useDraggable->>DndContext: dragCancel()
+
+    DndContext->>DndContext: Cancel any pending RAF
+    DndContext-->>useDraggable: onDragCancel(event)
+    DndContext->>ScreenReader: Announce "Drag cancelled"
+    DndContext->>DndContext: Clear all state
+
+    Note over User,ScreenReader: === STATE SUMMARY ===
+
+    Note over DndContext: Key State Variables:<br/>• active: Active | null<br/>• over: Over | null<br/>• draggablesRef: Map<id, entry><br/>• droppablesRef: Map<id, entry><br/>• initialRectRef: DOMRect<br/>• startCoordinatesRef: Coordinates
