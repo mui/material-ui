@@ -3722,7 +3722,7 @@ Document performance metrics in test output or as comments:
 ---
 pr_id: PR-019
 title: Generate Comprehensive Architecture Documentation
-cold_state: new
+cold_state: planned
 priority: medium
 complexity:
   score: 8
@@ -3755,6 +3755,176 @@ Create detailed technical documentation that serves as the definitive reference 
 
 **Notes:**
 High complexity task requiring comprehensive system understanding. Opus recommended. This is the final PR in the dependency graph and synthesizes all the work done.
+
+**Planning Notes (PR-019):**
+
+**Document Structure for docs/architecture.md:**
+
+```markdown
+# MUI Native Drag-and-Drop System Architecture
+
+## Table of Contents
+1. Introduction
+2. System Overview
+3. Core Architecture
+4. Context Providers
+5. Core Hooks
+6. Collision Detection Strategies
+7. Sorting Strategies
+8. Component Integrations
+9. Data Flow
+10. Accessibility
+11. Performance Considerations
+12. Design Decisions & Rationale
+```
+
+**Section Details:**
+
+**1. Introduction**
+- Purpose: Native DnD for MUI without third-party dependencies
+- Goals: API inspired by dnd-kit, native MUI theming, full accessibility
+- Comparison with react-beautiful-dnd (bundle size, API simplicity)
+
+**2. System Overview**
+- Layered architecture: Context → Hooks → Components
+- Link to dnd-system-overview.mmd diagram
+
+**3. Core Architecture**
+- State management model: `active` (dragged item), `over` (drop target)
+- Registries: `draggablesRef`, `droppablesRef` (Map-based)
+- Event lifecycle: dragStart → dragMove → dragOver → dragEnd/dragCancel
+- RAF throttling for performance
+
+**4. Context Providers**
+- `DndContext`: Central coordinator
+  - Props: collisionDetection, accessibility, event callbacks
+  - State: active, over
+  - Methods: registerDraggable/Droppable, dragStart/Move/End/Cancel
+  - Live region for screen reader announcements
+- `SortableContext`: Sorting intelligence
+  - Props: items, strategy, columns (for grid)
+  - Provides: getIndex, getItemTransform, getNewIndex, isSorting
+  - Item rect registration for transform calculations
+
+**5. Core Hooks**
+- `useDraggable(options: {id, data?, disabled?})`
+  - Returns: attributes, listeners, setNodeRef, transform, isDragging
+  - Handles: pointer events (down/move/up/cancel), keyboard (Enter/Space/arrows/Escape)
+  - Registers with DndContext on mount
+- `useDroppable(options: {id, data?, disabled?})`
+  - Returns: setNodeRef, isOver, active
+  - Simple registration, collision detection handled by DndContext
+- `useSortable(options: {id, data?, disabled?, transition?})`
+  - Composition pattern: internally uses useDraggable + useDroppable
+  - Returns: all from both hooks + transition CSS string + isSorting
+  - Integrates with SortableContext for non-dragged item transforms
+
+**6. Collision Detection Strategies**
+- `rectIntersection` (default): Largest intersection area wins
+- `pointerWithin`: Pointer position inside droppable bounds
+- `closestCenter`: Euclidean distance between centers
+- `closestCorners`: Aggregate distance from corners
+- All implement: `(args: {active, droppables, pointerCoordinates}) => UniqueIdentifier | null`
+
+**7. Sorting Strategies**
+- `verticalListSortingStrategy`: Items shift up/down by dragged item height
+- `horizontalListSortingStrategy`: Items shift left/right by dragged item width
+- `gridSortingStrategy`: Items reflow based on column count
+- All implement: `(args: SortingStrategyArgs) => Coordinates | null`
+
+**8. Component Integrations**
+- `DraggableListItem`: Wraps ListItem, styled with cursor/opacity/elevation
+- `DraggableTableRow`: Wraps TableRow, preserves cell widths during drag
+- `DraggableGridItem`: Wraps Grid item, works with grid strategy
+- `DraggableChip`: Wraps Chip, horizontal sorting for tag management
+- Pattern: styled(BaseComponent) + useSortable + ownerState for styling
+
+**9. Data Flow**
+- Link to dnd-data-flow.mmd diagram
+- Flow: User interaction → useDraggable listeners → DndContext methods → collision detection → state update → context consumers re-render
+
+**10. Accessibility**
+- Keyboard: Enter/Space to grab, arrows to move (25px steps), Escape to cancel
+- Screen reader: Live region with aria-live="assertive"
+- Announcements: onDragStart, onDragOver, onDragEnd, onDragCancel
+- ARIA: role="button", aria-describedby="dnd-instructions", aria-pressed, aria-disabled
+- Touch: touchAction: 'none' on draggables
+
+**11. Performance Considerations**
+- RAF throttling: dragMove callbacks throttled, state updates synchronous
+- Virtual rect: Calculated from initialRect + delta (no DOM queries during drag)
+- Memoization: Context values memoized with useMemo
+- Pointer capture: setPointerCapture for reliable move/up events
+
+**12. Design Decisions & Rationale**
+- Pointer Events API: Unified touch/mouse handling, wide browser support
+- Single DndContext: Simpler mental model, no nested context complexity
+- Composition in useSortable: Flexibility to use hooks independently
+- Cell width preservation (DraggableTableRow): Prevents layout collapse during drag
+- Transform-based positioning: GPU-accelerated via translate3d
+
+**Diagram: dnd-system-overview.mmd**
+```mermaid
+graph TB
+    subgraph "Context Layer"
+        DndContext["DndContext<br/>(State, Events, Collision)"]
+        SortableContext["SortableContext<br/>(Order, Strategy, Transforms)"]
+    end
+
+    subgraph "Hook Layer"
+        useDraggable["useDraggable<br/>(Pointer/Keyboard Events)"]
+        useDroppable["useDroppable<br/>(Registration, isOver)"]
+        useSortable["useSortable<br/>(Composition)"]
+    end
+
+    subgraph "Component Layer"
+        DraggableListItem
+        DraggableTableRow
+        DraggableGridItem
+        DraggableChip
+    end
+
+    DndContext --> useDraggable
+    DndContext --> useDroppable
+    SortableContext --> useSortable
+    useDraggable --> useSortable
+    useDroppable --> useSortable
+    useSortable --> DraggableListItem
+    useSortable --> DraggableTableRow
+    useSortable --> DraggableGridItem
+    useSortable --> DraggableChip
+```
+
+**Diagram: dnd-data-flow.mmd**
+```mermaid
+sequenceDiagram
+    participant User
+    participant useDraggable
+    participant DndContext
+    participant Collision
+    participant SortableContext
+    participant Components
+
+    User->>useDraggable: pointerdown/keydown
+    useDraggable->>DndContext: dragStart(id)
+    DndContext->>DndContext: setActive, announce
+    DndContext->>Components: Re-render (active !== null)
+
+    loop During Drag
+        User->>useDraggable: pointermove/arrow keys
+        useDraggable->>DndContext: dragMove(coordinates)
+        DndContext->>Collision: collisionDetection()
+        Collision-->>DndContext: overId | null
+        DndContext->>DndContext: setOver, announce if changed
+        DndContext->>SortableContext: active/over updated
+        SortableContext->>Components: getItemTransform()
+    end
+
+    User->>useDraggable: pointerup/Enter/Space
+    useDraggable->>DndContext: dragEnd()
+    DndContext->>DndContext: Clear state, announce
+    DndContext->>Components: onDragEnd callback
+```
 
 ---
 
