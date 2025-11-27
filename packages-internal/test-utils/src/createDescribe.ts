@@ -1,3 +1,5 @@
+import { describe } from 'vitest';
+
 type MUIDescribe<P extends any[]> = {
   (...args: P): void;
 

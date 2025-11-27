@@ -20,7 +20,7 @@ import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
-import { VitestUtils } from 'vitest';
+import { beforeEach, afterEach, beforeAll, afterAll, expect, VitestUtils } from 'vitest';
 import reactMajor from './reactMajor';
 
 function queryAllDescriptionsOf(baseElement: HTMLElement, element: Element): HTMLElement[] {
