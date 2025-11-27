@@ -135,6 +135,12 @@ Virtualization helps with performance issues.
 
 {{"demo": "ReactVirtualizedTable.js", "bg": true}}
 
+## Draggable table rows
+
+Use `DraggableTableRow` with `DndContext` and `SortableContext` for tables with drag-and-drop row reordering.
+
+{{"demo": "DraggableTable.js", "bg": true}}
+
 ## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)

@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import { styled } from '../styles';
-import TableRow from '../TableRow';
+import TableRow from './TableRow';
 import { useSortable } from '../useSortable';
 import { getTransformStyle } from '../DndContext/transform';
 import type { UniqueIdentifier } from '../DndContext/DndContextTypes';
-import type { TableRowProps } from '../TableRow';
+import type { TableRowProps } from './TableRow';
 
 export interface DraggableTableRowOwnProps {
   /**
@@ -207,14 +207,21 @@ export const DraggableTableRow = React.forwardRef<HTMLTableRowElement, Draggable
       transition,
     };
 
+    // Memoize the ref callback to prevent unnecessary ref cleanup/setup cycles
+    // which would cause re-registration with DndContext on every render
+    const combinedRef = React.useCallback(
+      (node: HTMLTableRowElement | null) => {
+        rowRef.current = node;
+        setNodeRef(node);
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      },
+      [setNodeRef, ref],
+    );
+
     return (
       <DraggableTableRowRoot
-        ref={(node) => {
-          rowRef.current = node;
-          setNodeRef(node);
-          if (typeof ref === 'function') ref(node);
-          else if (ref) ref.current = node;
-        }}
+        ref={combinedRef}
         ownerState={ownerState}
         sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
         {...attributes}

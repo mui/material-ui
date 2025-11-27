@@ -124,6 +124,12 @@ Virtualization helps with performance issues.
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 If this library doesn't cover your use case, you should consider using alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
+## Draggable list items
+
+Use `DraggableListItem` with `DndContext` and `SortableContext` for reorderable lists with drag-and-drop functionality.
+
+{{"demo": "DraggableList.js", "bg": true}}
+
 ## Customization
 
 Here are some examples of customizing the component.

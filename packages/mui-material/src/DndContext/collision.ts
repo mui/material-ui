@@ -51,6 +51,11 @@ export function rectIntersection({
   let result: UniqueIdentifier | null = null;
 
   droppables.forEach((droppable, id) => {
+    // Skip the active draggable itself (sortable items are both draggable and droppable)
+    if (id === active.id) {
+      return;
+    }
+
     const droppableRect = droppable.node.getBoundingClientRect();
 
     if (rectsIntersect(activeRect, droppableRect)) {
@@ -73,6 +78,7 @@ export function rectIntersection({
  * or null if the pointer is not over any droppable.
  */
 export function pointerWithin({
+  active,
   droppables,
   pointerCoordinates,
 }: {
@@ -86,6 +92,11 @@ export function pointerWithin({
   const entries = Array.from(droppables.entries()).reverse();
 
   for (const [id, droppable] of entries) {
+    // Skip the active draggable itself
+    if (id === active.id) {
+      continue;
+    }
+
     const rect = droppable.node.getBoundingClientRect();
 
     if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
@@ -122,6 +133,11 @@ export function closestCenter({
   let result: UniqueIdentifier | null = null;
 
   droppables.forEach((droppable, id) => {
+    // Skip the active draggable itself
+    if (id === active.id) {
+      return;
+    }
+
     const rect = droppable.node.getBoundingClientRect();
 
     // Calculate center of droppable
@@ -174,6 +190,11 @@ export function closestCorners({
   let result: UniqueIdentifier | null = null;
 
   droppables.forEach((droppable, id) => {
+    // Skip the active draggable itself
+    if (id === active.id) {
+      return;
+    }
+
     const rect = droppable.node.getBoundingClientRect();
 
     // Get all 4 corners of the droppable

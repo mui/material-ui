@@ -81,7 +81,17 @@ export default function DemoEditor(props: DemoEditorProps) {
   const handlers = useCodeCopy();
 
   React.useEffect(() => {
-    wrapperRef.current!.querySelector('textarea')!.tabIndex = -1;
+    // NoSsr defers rendering, so we need to wait for the textarea to appear
+    const checkTextarea = () => {
+      const textarea = wrapperRef.current?.querySelector('textarea');
+      if (textarea) {
+        textarea.tabIndex = -1;
+      } else {
+        // Retry on next frame if textarea isn't rendered yet
+        requestAnimationFrame(checkTextarea);
+      }
+    };
+    checkTextarea();
   }, []);
 
   return (
@@ -113,16 +123,16 @@ export default function DemoEditor(props: DemoEditorProps) {
         <div className="scrollContainer">
           <NoSsr>
             <CodeCopyButton {...copyButtonProps} code={value} />
+            <StyledSimpleCodeEditor
+              padding={contextTheme.spacing(2)}
+              highlight={(code: any) =>
+                `<code class="language-${language}">${prism(code, language)}</code>`
+              }
+              id={id}
+              value={value}
+              onValueChange={onChange}
+            />
           </NoSsr>
-          <StyledSimpleCodeEditor
-            padding={contextTheme.spacing(2)}
-            highlight={(code: any) =>
-              `<code class="language-${language}">${prism(code, language)}</code>`
-            }
-            id={id}
-            value={value}
-            onValueChange={onChange}
-          />
         </div>
         <Box
           ref={enterRef}

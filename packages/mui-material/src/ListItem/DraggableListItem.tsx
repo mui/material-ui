@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import { styled } from '../styles';
-import ListItem from '../ListItem';
+import ListItem from './ListItem';
 import { useSortable } from '../useSortable';
 import { getTransformStyle } from '../DndContext/transform';
 import type { UniqueIdentifier } from '../DndContext/DndContextTypes';
-import type { ListItemProps } from '../ListItem';
+import type { ListItemProps } from './ListItem';
 
 export interface DraggableListItemOwnProps {
   id: UniqueIdentifier;
@@ -67,13 +67,19 @@ export const DraggableListItem = React.forwardRef<HTMLLIElement, DraggableListIt
       transition,
     };
 
+    // Memoize the ref callback to prevent unnecessary ref cleanup/setup cycles
+    const combinedRef = React.useCallback(
+      (node: HTMLLIElement | null) => {
+        setNodeRef(node);
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      },
+      [setNodeRef, ref],
+    );
+
     return (
       <DraggableListItemRoot
-        ref={(node) => {
-          setNodeRef(node);
-          if (typeof ref === 'function') ref(node);
-          else if (ref) ref.current = node;
-        }}
+        ref={combinedRef}
         ownerState={ownerState}
         sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
         {...attributes}

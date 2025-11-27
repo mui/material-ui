@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import { styled } from '../styles';
-import Chip from '../Chip';
+import Chip from './Chip';
 import { useSortable } from '../useSortable';
 import { getTransformStyle } from '../DndContext/transform';
 import type { UniqueIdentifier } from '../DndContext/DndContextTypes';
-import type { ChipProps } from '../Chip';
+import type { ChipProps } from './Chip';
 
 export interface DraggableChipOwnProps {
   /**
@@ -138,13 +138,19 @@ export const DraggableChip = React.forwardRef<HTMLDivElement, DraggableChipProps
       transition,
     };
 
+    // Memoize the ref callback to prevent unnecessary ref cleanup/setup cycles
+    const combinedRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        setNodeRef(node);
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      },
+      [setNodeRef, ref],
+    );
+
     return (
       <DraggableChipRoot
-        ref={(node) => {
-          setNodeRef(node);
-          if (typeof ref === 'function') ref(node);
-          else if (ref) ref.current = node;
-        }}
+        ref={combinedRef}
         ownerState={ownerState}
         disabled={disabled}
         variant={variant}

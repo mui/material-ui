@@ -84,6 +84,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import { DndContext } from '@mui/material/DndContext';
@@ -129,10 +130,12 @@ export default function DraggableTable() {
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 500 }} aria-label="draggable table">
             <TableHead>
-              <TableCell sx={{ width: 50 }} />
-              <TableCell>Name</TableCell>
-              <TableCell>Role</TableCell>
-              <TableCell>Status</TableCell>
+              <TableRow>
+                <TableCell sx={{ width: 50 }} />
+                <TableCell>Name</TableCell>
+                <TableCell>Role</TableCell>
+                <TableCell>Status</TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (

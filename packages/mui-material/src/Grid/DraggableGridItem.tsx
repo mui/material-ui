@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import { styled } from '../styles';
-import Grid from '../Grid';
+import Grid from './Grid';
 import { useSortable } from '../useSortable';
 import { getTransformStyle } from '../DndContext/transform';
 import type { UniqueIdentifier } from '../DndContext/DndContextTypes';
-import type { GridProps } from '../Grid';
+import type { GridProps } from './Grid';
 
 export interface DraggableGridItemOwnProps {
   /**
@@ -140,13 +140,19 @@ export const DraggableGridItem = React.forwardRef<HTMLDivElement, DraggableGridI
       transition,
     };
 
+    // Memoize the ref callback to prevent unnecessary ref cleanup/setup cycles
+    const combinedRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        setNodeRef(node);
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      },
+      [setNodeRef, ref],
+    );
+
     return (
       <DraggableGridItemRoot
-        ref={(node) => {
-          setNodeRef(node);
-          if (typeof ref === 'function') ref(node);
-          else if (ref) ref.current = node;
-        }}
+        ref={combinedRef}
         ownerState={ownerState}
         size={size}
         sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}

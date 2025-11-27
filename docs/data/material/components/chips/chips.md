@@ -98,6 +98,12 @@ gain depth while clicked or touched.
 
 {{"demo": "ChipsPlayground.js", "hideToolbar": true}}
 
+## Draggable chips
+
+Use `DraggableChip` with `DndContext` and `SortableContext` for reorderable tag lists with drag-and-drop functionality.
+
+{{"demo": "DraggableChips.js"}}
+
 ## Accessibility
 
 If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (for example when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

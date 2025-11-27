@@ -241,6 +241,12 @@ It cannot wrap other elements.
 
 {{"demo": "HalfBorderedGrid.js"}}
 
+## Draggable grid items
+
+Use `DraggableGridItem` with `DndContext` and `SortableContext` for dashboard-style layouts with drag-and-drop reordering.
+
+{{"demo": "DraggableGrid.js", "bg": true}}
+
 ## Limitations
 
 ### Column direction
