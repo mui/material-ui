@@ -555,23 +555,17 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
-        clock.tick(111);
-      });
+      clock.tick(111);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      act(() => {
         document.activeElement.blur();
       });
 
-      await act(async () => {
-        clock.tick(5);
-      });
+      clock.tick(5);
 
-      await act(async () => {
-        clock.tick(6);
-      });
+      clock.tick(6);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -579,9 +573,7 @@ describe('<Tooltip />', () => {
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
-        clock.tick(30);
-      });
+      clock.tick(30);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
