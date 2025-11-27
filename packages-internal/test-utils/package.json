@@ -22,11 +22,8 @@
       "types": "./build/initPlaywrightMatchers.d.ts",
       "default": "./build/initPlaywrightMatchers.js"
     },
-    "./KarmaReporterReactProfiler": "./build/KarmaReporterReactProfiler.js",
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
-    "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js",
     "./chaiPlugin": "./build/chaiPlugin.js",
     "./setupVitest": "./build/setupVitest.js",
     "./describeSkipIf": "./build/describeSkipIf.js"

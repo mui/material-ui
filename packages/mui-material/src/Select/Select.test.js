@@ -1514,7 +1514,6 @@ describe('<Select />', () => {
     }
 
     const handleSubmit = spy((event) => {
-      // avoid karma reload.
       event.preventDefault();
     });
     function Form(props) {

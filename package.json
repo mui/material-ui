@@ -62,8 +62,6 @@
     "test:e2e:server": "serve test/e2e -p 5001",
     "test:e2e-website": "playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
     "test:e2e-website:dev": "cross-env PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
-    "test:karma": "nx run nx_test_karma",
-    "test:karma:profile": "nx run nx_test_karma_profile",
     "test:regressions": "cross-env NODE_ENV=production pnpm test:regressions:build && concurrently --success first --kill-others \"pnpm test:regressions:run\" \"pnpm test:regressions:server\"",
     "test:regressions:build": "vite build test/regressions",
     "test:regressions:dev": "vite test/regressions --port 5001",
@@ -87,7 +85,6 @@
     "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
     "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
     "nx_test_e2e_run": "mocha --config test/e2e/.mocharc.js \"test/e2e/**/*.test.?(c|m)[jt]s?(x)\"",
-    "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "clean": "pnpm -r exec rm -rf build",
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
@@ -96,8 +93,7 @@
     "@netlify/functions": "^5.1.0",
     "@slack/bolt": "^4.6.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
-    "execa": "^9.6.0",
-    "karma-spec-reporter": "^0.0.36"
+    "execa": "^9.6.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
@@ -151,14 +147,6 @@
     "git-url-parse": "^16.1.0",
     "globby": "^15.0.0",
     "ip": "^2.0.1",
-    "karma": "^6.4.4",
-    "karma-browserstack-launcher": "~1.6.0",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-firefox-launcher": "^2.1.3",
-    "karma-mocha": "^2.0.1",
-    "karma-sourcemap-loader": "^0.4.0",
-    "karma-webpack": "^5.0.0",
     "lerna": "^9.0.1",
     "markdownlint-cli2": "^0.18.1",
     "mocha": "^11.7.1",
@@ -225,16 +213,6 @@
         ]
       },
       "nx_test_unit": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_karma": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_karma_profile": {
         "dependsOn": [
           "@mui/internal-test-utils:build"
         ]
