@@ -8,7 +8,7 @@ describe('<SvgIcon />', () => {
 
   let path;
 
-  before(() => {
+  beforeAll(() => {
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
   });
 
@@ -137,40 +137,39 @@ describe('<SvgIcon />', () => {
     });
   });
 
-  it('should not override internal ownerState with the ownerState passed to the icon', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should not override internal ownerState with the ownerState passed to the icon',
+    function test() {
+      const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
+      expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
+    },
+  );
 
-    const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
-    expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
-  });
-
-  it('should have `fill="currentColor"`', function test() {
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-    const { container } = render(
-      <SvgIcon>
-        <path />
-      </SvgIcon>,
-    );
-
-    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
-  });
-
-  it('should not add `fill` if svg is a direct child', function test() {
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-    const { container } = render(
-      <SvgIcon>
-        <svg>
+  it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+    'should have `fill="currentColor"`',
+    function test() {
+      const { container } = render(
+        <SvgIcon>
           <path />
-        </svg>
-      </SvgIcon>,
-    );
+        </SvgIcon>,
+      );
 
-    expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
-  });
+      expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
+    },
+  );
+
+  it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+    'should not add `fill` if svg is a direct child',
+    function test() {
+      const { container } = render(
+        <SvgIcon>
+          <svg>
+            <path />
+          </svg>
+        </SvgIcon>,
+      );
+
+      expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
+    },
+  );
 });

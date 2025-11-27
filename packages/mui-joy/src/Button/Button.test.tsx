@@ -135,29 +135,29 @@ describe('Joy <Button />', () => {
   });
 
   describe('prop:disabled', () => {
-    it('should apply disabled styles when button is disabled', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      render(<Button disabled />);
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should apply disabled styles when button is disabled',
+      function test() {
+        render(<Button disabled />);
 
-      expect(screen.getByRole('button')).toHaveComputedStyle({
-        color: 'rgb(159, 166, 173)',
-        backgroundColor: 'rgb(240, 244, 248)',
-      });
-    });
+        expect(screen.getByRole('button')).toHaveComputedStyle({
+          color: 'rgb(159, 166, 173)',
+          backgroundColor: 'rgb(240, 244, 248)',
+        });
+      },
+    );
 
-    it('should apply disabled styles when button is disabled and when component prop is provided', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      render(<Button disabled component="a" />);
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should apply disabled styles when button is disabled and when component prop is provided',
+      function test() {
+        render(<Button disabled component="a" />);
 
-      expect(screen.getByRole('button')).toHaveComputedStyle({
-        color: 'rgb(159, 166, 173)',
-        backgroundColor: 'rgb(240, 244, 248)',
-      });
-    });
+        expect(screen.getByRole('button')).toHaveComputedStyle({
+          color: 'rgb(159, 166, 173)',
+          backgroundColor: 'rgb(240, 244, 248)',
+        });
+      },
+    );
   });
 
   describe('prop: loadingIndicator', () => {
@@ -167,21 +167,21 @@ describe('Joy <Button />', () => {
       expect(screen.getByRole('button')).to.have.text('Test');
     });
 
-    it('is rendered properly when `loading` and children should not be visible', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      const { container } = render(
-        <Button loadingIndicator="loading.." loading>
-          Test
-        </Button>,
-      );
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'is rendered properly when `loading` and children should not be visible',
+      function test() {
+        const { container } = render(
+          <Button loadingIndicator="loading.." loading>
+            Test
+          </Button>,
+        );
 
-      expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
-        'loading..',
-      );
-      expect(screen.getByRole('button')).toHaveComputedStyle({ color: 'rgba(0, 0, 0, 0)' });
-    });
+        expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
+          'loading..',
+        );
+        expect(screen.getByRole('button')).toHaveComputedStyle({ color: 'rgba(0, 0, 0, 0)' });
+      },
+    );
   });
 
   describe('prop: loadingPosition', () => {

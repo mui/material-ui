@@ -35,7 +35,6 @@
     "@types/chai": "^5.2.2",
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.25",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.4",

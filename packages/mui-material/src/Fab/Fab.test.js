@@ -103,28 +103,27 @@ describe('<Fab />', () => {
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple', async function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should have a focusRipple',
+    async function test() {
+      render(
+        <Fab
+          TouchRippleProps={{
+            classes: { ripplePulsate: 'pulsate-focus-visible' },
+          }}
+        >
+          Fab
+        </Fab>,
+      );
 
-    render(
-      <Fab
-        TouchRippleProps={{
-          classes: { ripplePulsate: 'pulsate-focus-visible' },
-        }}
-      >
-        Fab
-      </Fab>,
-    );
+      const button = screen.getByRole('button');
 
-    const button = screen.getByRole('button');
+      await ripple.startFocus(button);
 
-    await ripple.startFocus(button);
-
-    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
-  });
+      expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+    },
+  );
 
   it('should pass disableFocusRipple to ButtonBase', async () => {
     render(

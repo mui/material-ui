@@ -16,7 +16,7 @@ describe('<Popper />', () => {
     open: true,
   };
 
-  before(() => {
+  beforeAll(() => {
     rtlTheme = createTheme({
       direction: 'rtl',
     });
@@ -100,25 +100,25 @@ describe('<Popper />', () => {
       });
     });
 
-    it('should flip placement when edge is reached', async function test() {
-      // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      const popperRef = React.createRef();
-      render(
-        <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
-          {({ placement }) => {
-            return <div data-testid="placement">{placement}</div>;
-          }}
-        </Popper>,
-      );
-      expect(screen.getByTestId('placement')).to.have.text('bottom');
+    // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should flip placement when edge is reached',
+      async function test() {
+        const popperRef = React.createRef();
+        render(
+          <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
+            {({ placement }) => {
+              return <div data-testid="placement">{placement}</div>;
+            }}
+          </Popper>,
+        );
+        expect(screen.getByTestId('placement')).to.have.text('bottom');
 
-      await popperRef.current.setOptions({ placement: 'top' });
+        await popperRef.current.setOptions({ placement: 'top' });
 
-      expect(screen.getByTestId('placement')).to.have.text('bottom');
-    });
+        expect(screen.getByTestId('placement')).to.have.text('bottom');
+      },
+    );
   });
 
   describe('prop: open', () => {

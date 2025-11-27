@@ -55,21 +55,20 @@ describe('Joy <ListItemButton />', () => {
   });
 
   describe('prop: focusVisibleClassName', () => {
-    it('should have focusVisible classes', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should have focusVisible classes',
+      async function test() {
+        render(<ListItemButton />);
+        const button = screen.getByRole('button');
 
-      render(<ListItemButton />);
-      const button = screen.getByRole('button');
+        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+        await act(() => {
+          button.focus();
+        });
 
-      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
-      await act(() => {
-        button.focus();
-      });
-
-      expect(button).to.have.class(classes.focusVisible);
-    });
+        expect(button).to.have.class(classes.focusVisible);
+      },
+    );
   });
 });

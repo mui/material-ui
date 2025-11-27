@@ -325,35 +325,34 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
 
-    it('scrolls if overflown on the Y axis', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'scrolls if overflown on the Y axis',
+      function test() {
+        const ITEM_HEIGHT = 100;
+        const ITEM_COUNT = 10;
 
-      const ITEM_HEIGHT = 100;
-      const ITEM_COUNT = 10;
+        render(
+          <Dialog
+            open
+            fullScreen
+            PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
+          >
+            {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
+              <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
+                {item}
+              </div>
+            ))}
+          </Dialog>,
+        );
 
-      render(
-        <Dialog
-          open
-          fullScreen
-          PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
-        >
-          {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
-            <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
-              {item}
-            </div>
-          ))}
-        </Dialog>,
-      );
-
-      const paperElement = screen.getByTestId('paper');
-      expect(paperElement.scrollTop).to.equal(0);
-      expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
-      expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
-      fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
-      expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
-    });
+        const paperElement = screen.getByTestId('paper');
+        expect(paperElement.scrollTop).to.equal(0);
+        expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
+        expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
+        fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
+        expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
+      },
+    );
   });
 
   describe('prop: PaperProps.className', () => {
@@ -400,54 +399,51 @@ describe('<Dialog />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the default theme values by default',
+      function test() {
+        const theme = createTheme();
+        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+        render(<Dialog open />);
 
-      const theme = createTheme();
-      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-      render(<Dialog open />);
+        const container = document.querySelector(`.${classes.container}`);
+        expect(container).toHaveComputedStyle({
+          transitionDuration: `${enteringScreenDurationInSeconds}s`,
+        });
+      },
+    );
 
-      const container = document.querySelector(`.${classes.container}`);
-      expect(container).toHaveComputedStyle({
-        transitionDuration: `${enteringScreenDurationInSeconds}s`,
-      });
-    });
-
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const theme = createTheme({
-        transitions: {
-          duration: {
-            enteringScreen: 1,
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the custom theme values',
+      function test() {
+        const theme = createTheme({
+          transitions: {
+            duration: {
+              enteringScreen: 1,
+            },
           },
-        },
-      });
-      render(
-        <ThemeProvider theme={theme}>
-          <Dialog open />
-        </ThemeProvider>,
-      );
+        });
+        render(
+          <ThemeProvider theme={theme}>
+            <Dialog open />
+          </ThemeProvider>,
+        );
 
-      const container = document.querySelector(`.${classes.container}`);
-      expect(container).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
+        const container = document.querySelector(`.${classes.container}`);
+        expect(container).toHaveComputedStyle({ transitionDuration: '0.001s' });
+      },
+    );
 
-    it('should render the values provided via prop', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the values provided via prop',
+      function test() {
+        render(<Dialog open transitionDuration={{ enter: 1 }} />);
 
-      render(<Dialog open transitionDuration={{ enter: 1 }} />);
-
-      const container = document.querySelector(`.${classes.container}`);
-      expect(container).toHaveComputedStyle({
-        transitionDuration: '0.001s',
-      });
-    });
+        const container = document.querySelector(`.${classes.container}`);
+        expect(container).toHaveComputedStyle({
+          transitionDuration: '0.001s',
+        });
+      },
+    );
   });
 });

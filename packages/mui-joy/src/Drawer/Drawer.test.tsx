@@ -65,34 +65,33 @@ describe('<Drawer />', () => {
       expect(screen.getByTestId('content').getAttribute('tabIndex')).to.equal('0');
     });
 
-    it('should apply content theme styles for content slot', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const theme = extendTheme({
-        components: {
-          JoyDrawer: {
-            styleOverrides: {
-              content: {
-                backgroundColor: 'var(--joy-palette-primary-500)',
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should apply content theme styles for content slot',
+      function test() {
+        const theme = extendTheme({
+          components: {
+            JoyDrawer: {
+              styleOverrides: {
+                content: {
+                  backgroundColor: 'var(--joy-palette-primary-500)',
+                },
               },
             },
           },
-        },
-      });
+        });
 
-      render(
-        <CssVarsProvider theme={theme}>
-          <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
-            <span>test</span>
-          </Drawer>
-        </CssVarsProvider>,
-      );
+        render(
+          <CssVarsProvider theme={theme}>
+            <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
+              <span>test</span>
+            </Drawer>
+          </CssVarsProvider>,
+        );
 
-      expect(screen.getByTestId('content')).toHaveComputedStyle({
-        backgroundColor: 'rgb(11, 107, 203)',
-      });
-    });
+        expect(screen.getByTestId('content')).toHaveComputedStyle({
+          backgroundColor: 'rgb(11, 107, 203)',
+        });
+      },
+    );
   });
 });

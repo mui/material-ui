@@ -589,59 +589,57 @@ describeSkipIf(!supportsTouch())('<Slider />', () => {
       expect(screen.getByRole('slider')).not.to.have.attribute('tabIndex');
     });
 
-    it('should not respond to drag events after becoming disabled', function test() {
-      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should not respond to drag events after becoming disabled',
+      function test() {
+        const { setProps, container } = render(<Slider defaultValue={0} />);
 
-      const { setProps, container } = render(<Slider defaultValue={0} />);
+        stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+          width: 100,
+          height: 10,
+          bottom: 10,
+          left: 0,
+        }));
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        height: 10,
-        bottom: 10,
-        left: 0,
-      }));
+        fireEvent.touchStart(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+        );
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+        const thumb = screen.getByRole('slider');
 
-      const thumb = screen.getByRole('slider');
+        expect(thumb).to.have.attribute('aria-valuenow', '21');
+        expect(thumb).toHaveFocus();
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
-      expect(thumb).toHaveFocus();
+        setProps({ disabled: true });
+        expect(thumb).not.toHaveFocus();
+        expect(thumb).not.to.have.class(classes.active);
 
-      setProps({ disabled: true });
-      expect(thumb).not.toHaveFocus();
-      expect(thumb).not.to.have.class(classes.active);
+        fireEvent.touchMove(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
+        );
 
-      fireEvent.touchMove(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
-      );
+        expect(thumb).to.have.attribute('aria-valuenow', '21');
+      },
+    );
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
-    });
+    // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'is not focused (visibly) after becoming disabled',
+      function test() {
+        const { setProps } = render(<Slider defaultValue={0} />);
 
-    it('is not focused (visibly) after becoming disabled', function test() {
-      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const { setProps } = render(<Slider defaultValue={0} />);
-
-      const thumb = screen.getByRole('slider');
-      act(() => {
-        thumb.focus();
-      });
-      setProps({ disabled: true });
-      expect(thumb).not.toHaveFocus();
-      expect(thumb).not.to.have.class(classes.focusVisible);
-    });
+        const thumb = screen.getByRole('slider');
+        act(() => {
+          thumb.focus();
+        });
+        setProps({ disabled: true });
+        expect(thumb).not.toHaveFocus();
+        expect(thumb).not.to.have.class(classes.focusVisible);
+      },
+    );
 
     it('should be customizable in the theme', () => {
       const theme = createTheme({
@@ -1637,71 +1635,69 @@ describeSkipIf(!supportsTouch())('<Slider />', () => {
     });
   });
 
-  it('marked slider should be customizable in the theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
-    const theme = createTheme({
-      components: {
-        MuiSlider: {
-          styleOverrides: {
-            marked: {
-              marginTop: 40,
-              marginBottom: 0,
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'marked slider should be customizable in the theme',
+    function test() {
+      const theme = createTheme({
+        components: {
+          MuiSlider: {
+            styleOverrides: {
+              marked: {
+                marginTop: 40,
+                marginBottom: 0,
+              },
             },
           },
         },
-      },
-    });
+      });
 
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Slider
-          marks={[
-            { label: '1', value: 1 },
-            { label: '2', value: 2 },
-          ]}
-          step={null}
-        />
-      </ThemeProvider>,
-    );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Slider
+            marks={[
+              { label: '1', value: 1 },
+              { label: '2', value: 2 },
+            ]}
+            step={null}
+          />
+        </ThemeProvider>,
+      );
 
-    expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
-      marginTop: '40px',
-      marginBottom: '0px',
-    });
-  });
+      expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
+        marginTop: '40px',
+        marginBottom: '0px',
+      });
+    },
+  );
 
-  it('active marks should be customizable in theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
-    const theme = createTheme({
-      components: {
-        MuiSlider: {
-          styleOverrides: {
-            markActive: {
-              height: '10px',
-              width: '10px',
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'active marks should be customizable in theme',
+    function test() {
+      const theme = createTheme({
+        components: {
+          MuiSlider: {
+            styleOverrides: {
+              markActive: {
+                height: '10px',
+                width: '10px',
+              },
             },
           },
         },
-      },
-    });
+      });
 
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Slider value={2} min={1} max={3} step={1} marks />
-      </ThemeProvider>,
-    );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Slider value={2} min={1} max={3} step={1} marks />
+        </ThemeProvider>,
+      );
 
-    expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
-      height: '10px',
-      width: '10px',
-    });
-  });
+      expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
+        height: '10px',
+        width: '10px',
+      });
+    },
+  );
 
   describe('When the onMouseUp event occurs at a different location than the last onChange event', () => {
     it('should pass onChangeCommitted the same value that was passed to the last onChange event', () => {

@@ -15,33 +15,31 @@ describe('@mui/envinfo', () => {
     });
   }
 
-  it('includes info about the environment relevant to MUI', function test() {
-    // only run in node
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+    'includes info about the environment relevant to MUI',
+    function test() {
+      const envinfoJSON = execEnvinfo(['--json']);
 
-    const envinfoJSON = execEnvinfo(['--json']);
+      const envinfo = JSON.parse(envinfoJSON);
 
-    const envinfo = JSON.parse(envinfoJSON);
-
-    // chai doesn't have expect.any(String) like jest so we have to use what's available
-    // We basically want to test like https://github.com/eps1lon/testing-library-envinfo/blob/2543092f4e4af02d79e306ec6546a9c12b258675/index.test.js#L20-L68
-    // The specific versions change over time so we can't use snapshots.
-    expect(envinfo).to.have.nested.property('Binaries.Node');
-    expect(envinfo).to.have.nested.property('Binaries.pnpm');
-    expect(envinfo).to.have.nested.property('Binaries.npm');
-    // CI doesn't install all the covered browsers. Simply asserting that it does print browsers.
-    expect(envinfo).to.have.nested.property('Browsers');
-    // Non-exhaustive list of `@mui/*` packages
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/joy');
-    expect(envinfo).to.have.nested.property('npmPackages.@mui/base');
-    // Other libraries
-    expect(envinfo).to.have.nested.property('npmPackages.react');
-    expect(envinfo).to.have.nested.property('npmPackages.react-dom');
-    expect(envinfo).to.have.nested.property('npmPackages.@types/react');
-    expect(envinfo).to.have.nested.property('npmPackages.@emotion/react');
-    expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
-  });
+      // chai doesn't have expect.any(String) like jest so we have to use what's available
+      // We basically want to test like https://github.com/eps1lon/testing-library-envinfo/blob/2543092f4e4af02d79e306ec6546a9c12b258675/index.test.js#L20-L68
+      // The specific versions change over time so we can't use snapshots.
+      expect(envinfo).to.have.nested.property('Binaries.Node');
+      expect(envinfo).to.have.nested.property('Binaries.pnpm');
+      expect(envinfo).to.have.nested.property('Binaries.npm');
+      // CI doesn't install all the covered browsers. Simply asserting that it does print browsers.
+      expect(envinfo).to.have.nested.property('Browsers');
+      // Non-exhaustive list of `@mui/*` packages
+      expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
+      expect(envinfo).to.have.nested.property('npmPackages.@mui/joy');
+      expect(envinfo).to.have.nested.property('npmPackages.@mui/base');
+      // Other libraries
+      expect(envinfo).to.have.nested.property('npmPackages.react');
+      expect(envinfo).to.have.nested.property('npmPackages.react-dom');
+      expect(envinfo).to.have.nested.property('npmPackages.@types/react');
+      expect(envinfo).to.have.nested.property('npmPackages.@emotion/react');
+      expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
+    },
+  );
 });

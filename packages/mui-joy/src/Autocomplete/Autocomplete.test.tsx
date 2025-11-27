@@ -537,45 +537,42 @@ describe('Joy <Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    it('should fail validation if a required field has no value', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should fail validation if a required field has no value',
+      async function test() {
+        const handleSubmit = spy((event) => event.preventDefault());
+        const { user } = render(
+          <form onSubmit={handleSubmit}>
+            <Autocomplete multiple options={['one', 'two']} required value={[]} />
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-      const handleSubmit = spy((event) => event.preventDefault());
-      const { user } = render(
-        <form onSubmit={handleSubmit}>
-          <Autocomplete multiple options={['one', 'two']} required value={[]} />
-          <button type="submit">Submit</button>
-        </form>,
-      );
+        await user.click(screen.getByRole('button', { name: 'Submit' }));
 
-      await user.click(screen.getByRole('button', { name: 'Submit' }));
+        expect(handleSubmit.callCount).to.equal(0);
+      },
+    );
 
-      expect(handleSubmit.callCount).to.equal(0);
-    });
+    // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+    // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
+    // Unclear how native Constraint validation can be enabled for `multiple`
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should fail validation if a required field has a value',
+      async function test() {
+        const handleSubmit = spy((event) => event.preventDefault());
+        const { user } = render(
+          <form onSubmit={handleSubmit}>
+            <Autocomplete multiple options={['one', 'two']} required value={['one']} />
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-    it('should fail validation if a required field has a value', async function test() {
-      // Unclear how native Constraint validation can be enabled for `multiple`
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
-        // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
-        this.skip();
-      }
+        await user.click(screen.getByRole('button', { name: 'Submit' }));
 
-      const handleSubmit = spy((event) => event.preventDefault());
-      const { user } = render(
-        <form onSubmit={handleSubmit}>
-          <Autocomplete multiple options={['one', 'two']} required value={['one']} />
-          <button type="submit">Submit</button>
-        </form>,
-      );
-
-      await user.click(screen.getByRole('button', { name: 'Submit' }));
-
-      expect(handleSubmit.callCount).to.equal(0);
-    });
+        expect(handleSubmit.callCount).to.equal(0);
+      },
+    );
   });
 
   it('should trigger a form expectedly', () => {
@@ -674,7 +671,7 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('WAI-ARIA conforming markup', () => {
-    specify('when closed', () => {
+    it('when closed', () => {
       render(<Autocomplete options={[]} />);
 
       const textbox = screen.getByRole('combobox');
@@ -702,7 +699,7 @@ describe('Joy <Autocomplete />', () => {
       expect(buttons[0], 'button is not in tab order').to.have.property('tabIndex', -1);
     });
 
-    specify('when open', () => {
+    it('when open', () => {
       render(<Autocomplete open options={['one', 'two']} />);
 
       const textbox = screen.getByRole('combobox');
@@ -929,10 +926,6 @@ describe('Joy <Autocomplete />', () => {
     });
 
     it('should ignore keydown event until the IME is confirmed', function test() {
-      // TODO: Often times out in Firefox 78.
-      // Is this slow because of testing-library or because of the implementation?
-      this?.timeout?.(4000);
-
       render(<Autocomplete open options={['가1', '가2']} autoFocus />);
       const textbox = screen.getByRole('combobox');
       const listbox = screen.getByRole('listbox');
@@ -943,7 +936,9 @@ describe('Joy <Autocomplete />', () => {
 
       checkHighlightIs(listbox, '가1');
     });
-  });
+    // TODO: Often times out in Firefox 78.
+    // Is this slow because of testing-library or because of the implementation?
+  }, 4000);
 
   describe('prop: openOnFocus', () => {
     it('enables open on input focus', () => {
@@ -1281,46 +1276,46 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it('should scroll selected option into view when multiple elements with role as listbox available', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      render(
-        <React.Fragment>
-          <Autocomplete
-            defaultValue={'six'}
-            options={['one', 'two', 'three', 'four', 'five', 'six']}
-            slotProps={{
-              listbox: {
-                'data-testid': 'autocomplete-listbox',
-                sx: {
-                  height: '40px',
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should scroll selected option into view when multiple elements with role as listbox available',
+      function test() {
+        render(
+          <React.Fragment>
+            <Autocomplete
+              defaultValue={'six'}
+              options={['one', 'two', 'three', 'four', 'five', 'six']}
+              slotProps={{
+                listbox: {
+                  'data-testid': 'autocomplete-listbox',
+                  sx: {
+                    height: '40px',
+                  },
                 },
-              },
-              input: {
-                'data-testid': 'autocomplete-input',
-              },
-            }}
-            autoFocus
-          />
-          <Select defaultValue="1">
-            <Option value="1">1</Option>
-            <Option value="2">2</Option>
-          </Select>
-        </React.Fragment>,
-      );
-      const autocompleteInput = screen.getByTestId('autocomplete-input');
+                input: {
+                  'data-testid': 'autocomplete-input',
+                },
+              }}
+              autoFocus
+            />
+            <Select defaultValue="1">
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+            </Select>
+          </React.Fragment>,
+        );
+        const autocompleteInput = screen.getByTestId('autocomplete-input');
 
-      act(() => {
-        autocompleteInput.focus();
-      });
-      fireEvent.keyDown(autocompleteInput, { key: 'ArrowDown' });
+        act(() => {
+          autocompleteInput.focus();
+        });
+        fireEvent.keyDown(autocompleteInput, { key: 'ArrowDown' });
 
-      const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
+        const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
 
-      checkHighlightIs(autocompleteListbox, 'six');
-      expect(autocompleteListbox.scrollTop).to.greaterThan(0);
-    });
+        checkHighlightIs(autocompleteListbox, 'six');
+        expect(autocompleteListbox.scrollTop).to.greaterThan(0);
+      },
+    );
 
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);

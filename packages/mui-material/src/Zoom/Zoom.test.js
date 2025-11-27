@@ -120,64 +120,61 @@ describe('<Zoom />', () => {
   });
 
   describe('prop: timeout', () => {
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the default theme values by default',
+      function test() {
+        const theme = createTheme();
+        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
-      const theme = createTheme();
-      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-
-      render(
-        <Zoom in appear>
-          <div data-testid="child">Foo</div>
-        </Zoom>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({
-        transitionDuration: `${enteringScreenDurationInSeconds}s`,
-      });
-    });
-
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const theme = createTheme({
-        transitions: {
-          duration: {
-            enteringScreen: 1,
-          },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
+        render(
           <Zoom in appear>
             <div data-testid="child">Foo</div>
-          </Zoom>
-        </ThemeProvider>,
-      );
+          </Zoom>,
+        );
 
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
+        const child = screen.getByTestId('child');
+        expect(child).toHaveComputedStyle({
+          transitionDuration: `${enteringScreenDurationInSeconds}s`,
+        });
+      },
+    );
 
-    it('should render the values provided via prop', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the custom theme values',
+      function test() {
+        const theme = createTheme({
+          transitions: {
+            duration: {
+              enteringScreen: 1,
+            },
+          },
+        });
 
-      render(
-        <Zoom in appear timeout={{ enter: 1 }}>
-          <div data-testid="child">Foo</div>
-        </Zoom>,
-      );
+        render(
+          <ThemeProvider theme={theme}>
+            <Zoom in appear>
+              <div data-testid="child">Foo</div>
+            </Zoom>
+          </ThemeProvider>,
+        );
 
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
+        const child = screen.getByTestId('child');
+        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+      },
+    );
+
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the values provided via prop',
+      function test() {
+        render(
+          <Zoom in appear timeout={{ enter: 1 }}>
+            <div data-testid="child">Foo</div>
+          </Zoom>,
+        );
+
+        const child = screen.getByTestId('child');
+        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+      },
+    );
   });
 });

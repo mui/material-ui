@@ -56,103 +56,101 @@ describe('createTheme', () => {
   });
 
   describe('system', () => {
-    it('resolves system when used inside styled()', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'resolves system when used inside styled()',
+      function test() {
+        const Test = styled('div')(({ theme: t }) =>
+          t.unstable_sx({
+            color: 'primary.main',
+            bgcolor: 'secondary.main',
+            m: 2,
+            p: 1,
+            fontSize: 'fontSize',
+            maxWidth: 'sm',
+          }),
+        );
 
-      const Test = styled('div')(({ theme: t }) =>
-        t.unstable_sx({
-          color: 'primary.main',
-          bgcolor: 'secondary.main',
-          m: 2,
-          p: 1,
-          fontSize: 'fontSize',
-          maxWidth: 'sm',
-        }),
-      );
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Test />
+          </ThemeProvider>,
+        );
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Test />
-        </ThemeProvider>,
-      );
+        expect(container.firstChild).toHaveComputedStyle({
+          color: 'rgb(0, 0, 255)',
+          backgroundColor: 'rgb(0, 255, 0)',
+          marginTop: '20px',
+          marginRight: '20px',
+          marginBottom: '20px',
+          marginLeft: '20px',
+          paddingTop: '10px',
+          paddingRight: '10px',
+          paddingBottom: '10px',
+          paddingLeft: '10px',
+          fontSize: '14px',
+          maxWidth: '600px',
+        });
+      },
+    );
 
-      expect(container.firstChild).toHaveComputedStyle({
-        color: 'rgb(0, 0, 255)',
-        backgroundColor: 'rgb(0, 255, 0)',
-        marginTop: '20px',
-        marginRight: '20px',
-        marginBottom: '20px',
-        marginLeft: '20px',
-        paddingTop: '10px',
-        paddingRight: '10px',
-        paddingBottom: '10px',
-        paddingLeft: '10px',
-        fontSize: '14px',
-        maxWidth: '600px',
-      });
-    });
-
-    it('resolves system when used inside variants', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const themeWithVariants = {
-        ...theme,
-        components: {
-          MuiTest: {
-            variants: [
-              {
-                props: {}, // all props
-                style: ({ theme: t }) =>
-                  t.unstable_sx({
-                    color: 'primary.main',
-                    bgcolor: 'secondary.main',
-                    m: 2,
-                    p: 1,
-                    fontSize: 'fontSize',
-                    maxWidth: 'sm',
-                  }),
-              },
-            ],
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'resolves system when used inside variants',
+      function test() {
+        const themeWithVariants = {
+          ...theme,
+          components: {
+            MuiTest: {
+              variants: [
+                {
+                  props: {}, // all props
+                  style: ({ theme: t }) =>
+                    t.unstable_sx({
+                      color: 'primary.main',
+                      bgcolor: 'secondary.main',
+                      m: 2,
+                      p: 1,
+                      fontSize: 'fontSize',
+                      maxWidth: 'sm',
+                    }),
+                },
+              ],
+            },
           },
-        },
-      };
+        };
 
-      const Test = styled('div', { name: 'MuiTest', slot: 'Root' })(({ theme: t }) =>
-        t.unstable_sx({
-          color: 'primary.main',
-          bgcolor: 'secondary.main',
-          m: 2,
-          p: 1,
-          fontSize: 'fontSize',
-          maxWidth: 'sm',
-        }),
-      );
+        const Test = styled('div', { name: 'MuiTest', slot: 'Root' })(({ theme: t }) =>
+          t.unstable_sx({
+            color: 'primary.main',
+            bgcolor: 'secondary.main',
+            m: 2,
+            p: 1,
+            fontSize: 'fontSize',
+            maxWidth: 'sm',
+          }),
+        );
 
-      const { container } = render(
-        <ThemeProvider theme={themeWithVariants}>
-          <Test />
-        </ThemeProvider>,
-      );
+        const { container } = render(
+          <ThemeProvider theme={themeWithVariants}>
+            <Test />
+          </ThemeProvider>,
+        );
 
-      expect(container.firstChild).toHaveComputedStyle({
-        color: 'rgb(0, 0, 255)',
-        backgroundColor: 'rgb(0, 255, 0)',
-        marginTop: '20px',
-        marginRight: '20px',
-        marginBottom: '20px',
-        marginLeft: '20px',
-        paddingTop: '10px',
-        paddingRight: '10px',
-        paddingBottom: '10px',
-        paddingLeft: '10px',
-        fontSize: '14px',
-        maxWidth: '600px',
-      });
-    });
+        expect(container.firstChild).toHaveComputedStyle({
+          color: 'rgb(0, 0, 255)',
+          backgroundColor: 'rgb(0, 255, 0)',
+          marginTop: '20px',
+          marginRight: '20px',
+          marginBottom: '20px',
+          marginLeft: '20px',
+          paddingTop: '10px',
+          paddingRight: '10px',
+          paddingBottom: '10px',
+          paddingLeft: '10px',
+          fontSize: '14px',
+          maxWidth: '600px',
+        });
+      },
+    );
 
     it('apply correct styles', () => {
       const darkTheme = createTheme({

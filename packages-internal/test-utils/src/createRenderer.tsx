@@ -358,11 +358,11 @@ function createClock(
       return setTimeout.hasOwnProperty('clock') === false;
     },
     withFakeTimers() {
-      before(() => {
+      beforeAll(() => {
         mode = 'fake';
       });
 
-      after(() => {
+      afterAll(() => {
         mode = defaultMode;
       });
     },
@@ -410,10 +410,10 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
-   * For legacy reasons `createRenderer` might accidentally be called in a before(Each) hook.
+   * For legacy reasons `createRenderer` might accidentally be called in a beforeAll(Each) hook.
    */
   let wasCalledInSuite = false;
-  before(function beforeHook() {
+  beforeAll(function beforeHook() {
     wasCalledInSuite = true;
   });
 
@@ -424,7 +424,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   let serverContainer: HTMLElement;
   /**
    * Flag whether all setup for `configuredClientRender` was completed.
-   * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
+   * For legacy reasons `configuredClientRender` might accidentally be called in a beforeAll(Each) hook.
    */
   let prepared = false;
   beforeEach(function beforeEachHook() {
@@ -436,14 +436,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       throw error;
     }
 
-    let id: string | null = null;
-
-    if (isVitest(vi)) {
-      // @ts-expect-error
-      id = expect.getState().currentTestName;
-    } else {
-      id = this.currentTest?.fullTitle() ?? null;
-    }
+    const id = expect.getState().currentTestName;
 
     if (!id) {
       throw new Error(
@@ -501,7 +494,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
-            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'This usually indicates that `render()` was called in a `beforeAll()` or `beforeEach` hook. ' +
             'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
         );
       }
@@ -522,7 +515,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
-            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'This usually indicates that `render()` was called in a `beforeAll()` or `beforeEach` hook. ' +
             'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
         );
       }

@@ -155,48 +155,48 @@ describe('<Slide />', () => {
       );
     });
 
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      const theme = createTheme();
-      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the default theme values by default',
+      function test() {
+        const theme = createTheme();
+        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
-      render(
-        <Slide in appear>
-          <div data-testid="child">Foo</div>
-        </Slide>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({
-        transitionDuration: `${enteringScreenDurationInSeconds}s`,
-      });
-    });
-
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      const theme = createTheme({
-        transitions: {
-          duration: {
-            enteringScreen: 1,
-          },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
+        render(
           <Slide in appear>
             <div data-testid="child">Foo</div>
-          </Slide>
-        </ThemeProvider>,
-      );
+          </Slide>,
+        );
 
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
+        const child = screen.getByTestId('child');
+        expect(child).toHaveComputedStyle({
+          transitionDuration: `${enteringScreenDurationInSeconds}s`,
+        });
+      },
+    );
+
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the custom theme values',
+      function test() {
+        const theme = createTheme({
+          transitions: {
+            duration: {
+              enteringScreen: 1,
+            },
+          },
+        });
+
+        render(
+          <ThemeProvider theme={theme}>
+            <Slide in appear>
+              <div data-testid="child">Foo</div>
+            </Slide>
+          </ThemeProvider>,
+        );
+
+        const child = screen.getByTestId('child');
+        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+      },
+    );
   });
 
   describe('prop: easing', () => {
@@ -237,42 +237,42 @@ describe('<Slide />', () => {
       );
     });
 
-    it('should render the default theme values by default', function test() {
-      if (!window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      const theme = createTheme();
-      const handleEntering = spy();
-      render(<Slide {...defaultProps} onEntering={handleEntering} />);
+    it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+      'should render the default theme values by default',
+      function test() {
+        const theme = createTheme();
+        const handleEntering = spy();
+        render(<Slide {...defaultProps} onEntering={handleEntering} />);
 
-      expect(handleEntering.args[0][0].style.transition).to.equal(
-        `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
-      );
-    });
+        expect(handleEntering.args[0][0].style.transition).to.equal(
+          `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
+        );
+      },
+    );
 
-    it('should render the custom theme values', function test() {
-      if (!window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      const theme = createTheme({
-        transitions: {
-          easing: {
-            easeOut: 'cubic-bezier(1, 1, 1, 1)',
+    it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+      'should render the custom theme values',
+      function test() {
+        const theme = createTheme({
+          transitions: {
+            easing: {
+              easeOut: 'cubic-bezier(1, 1, 1, 1)',
+            },
           },
-        },
-      });
+        });
 
-      const handleEntering = spy();
-      render(
-        <ThemeProvider theme={theme}>
-          <Slide {...defaultProps} onEntering={handleEntering} />
-        </ThemeProvider>,
-      );
+        const handleEntering = spy();
+        render(
+          <ThemeProvider theme={theme}>
+            <Slide {...defaultProps} onEntering={handleEntering} />
+          </ThemeProvider>,
+        );
 
-      expect(handleEntering.args[0][0].style.transition).to.equal(
-        `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
-      );
-    });
+        expect(handleEntering.args[0][0].style.transition).to.equal(
+          `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
+        );
+      },
+    );
   });
 
   describe('prop: direction', () => {
@@ -535,41 +535,40 @@ describe('<Slide />', () => {
     });
 
     describe('prop: container', () => {
-      it('should set element transform and transition in the `up` direction', async function test() {
-        if (window.navigator.userAgent.includes('jsdom')) {
-          // Need layout
-          this.skip();
-        }
-
-        let nodeExitingTransformStyle;
-        const height = 200;
-        function Test(props) {
-          const [container, setContainer] = React.useState(null);
-          return (
-            <div
-              ref={(node) => {
-                setContainer(node);
-              }}
-              style={{ height, width: 200 }}
-            >
-              <Slide
-                direction="up"
-                in
-                {...props}
-                container={container}
-                onExit={(node) => {
-                  nodeExitingTransformStyle = node.style.transform;
+      // Need layout
+      it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+        'should set element transform and transition in the `up` direction',
+        async function test() {
+          let nodeExitingTransformStyle;
+          const height = 200;
+          function Test(props) {
+            const [container, setContainer] = React.useState(null);
+            return (
+              <div
+                ref={(node) => {
+                  setContainer(node);
                 }}
+                style={{ height, width: 200 }}
               >
-                <RealDiv rect={{ top: 8 }} />
-              </Slide>
-            </div>
-          );
-        }
-        const { setProps } = render(<Test />);
-        setProps({ in: false });
-        expect(nodeExitingTransformStyle).to.equal(`translateY(${height}px)`);
-      });
+                <Slide
+                  direction="up"
+                  in
+                  {...props}
+                  container={container}
+                  onExit={(node) => {
+                    nodeExitingTransformStyle = node.style.transform;
+                  }}
+                >
+                  <RealDiv rect={{ top: 8 }} />
+                </Slide>
+              </div>
+            );
+          }
+          const { setProps } = render(<Test />);
+          setProps({ in: false });
+          expect(nodeExitingTransformStyle).to.equal(`translateY(${height}px)`);
+        },
+      );
     });
 
     describe('mount', () => {

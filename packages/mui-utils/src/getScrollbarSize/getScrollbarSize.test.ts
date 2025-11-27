@@ -15,14 +15,9 @@ describe('getScrollbarSize', () => {
     divElement.parentElement?.removeChild(divElement);
   });
 
-  it('should return correct value when using a custom scrollbar', function test() {
-    if (
-      window.navigator.userAgent.includes('jsdom') ||
-      !/WebKit/.test(window.navigator.userAgent)
-    ) {
-      this.skip();
-    }
-
+  it.skipIf(
+    window.navigator.userAgent.includes('jsdom') || !/WebKit/.test(window.navigator.userAgent),
+  )('should return correct value when using a custom scrollbar', function test() {
     styleElement.textContent = `
       ::-webkit-scrollbar {
         width: 5px;

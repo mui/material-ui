@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 type MUIDescribe<P extends any[]> = {
   (...args: P): void;
 

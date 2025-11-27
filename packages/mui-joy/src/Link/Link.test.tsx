@@ -74,27 +74,26 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should add the focusVisible class when focused',
+      function test() {
+        const { container } = render(<Link href="/">Home</Link>);
+        const anchor = container.querySelector('a');
 
-      const { container } = render(<Link href="/">Home</Link>);
-      const anchor = container.querySelector('a');
+        expect(anchor).not.to.have.class(classes.focusVisible);
 
-      expect(anchor).not.to.have.class(classes.focusVisible);
+        focusVisible(anchor);
 
-      focusVisible(anchor);
+        expect(anchor).to.have.class(classes.focusVisible);
 
-      expect(anchor).to.have.class(classes.focusVisible);
+        act(() => {
+          anchor?.blur();
+        });
 
-      act(() => {
-        anchor?.blur();
-      });
-
-      expect(anchor).not.to.have.class(classes.focusVisible);
-    });
+        expect(anchor).not.to.have.class(classes.focusVisible);
+      },
+    );
   });
 
   describe('prop: variant', () => {

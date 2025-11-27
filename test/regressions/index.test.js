@@ -103,7 +103,7 @@ async function main() {
       });
     });
 
-    after(async () => {
+    afterAll(async () => {
       await browser.close();
     });
 

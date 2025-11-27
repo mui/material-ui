@@ -111,35 +111,34 @@ describe('<Radio />', () => {
   });
 
   describe('theme: customization', () => {
-    it('should be customizable in the theme using the size prop.', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const theme = createTheme({
-        components: {
-          MuiRadio: {
-            styleOverrides: {
-              sizeSmall: {
-                marginLeft: -40,
-                paddingRight: 2,
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should be customizable in the theme using the size prop.',
+      function test() {
+        const theme = createTheme({
+          components: {
+            MuiRadio: {
+              styleOverrides: {
+                sizeSmall: {
+                  marginLeft: -40,
+                  paddingRight: 2,
+                },
               },
             },
           },
-        },
-      });
+        });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Radio size="small" />
-        </ThemeProvider>,
-      );
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Radio size="small" />
+          </ThemeProvider>,
+        );
 
-      expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
-        marginLeft: '-40px',
-        paddingRight: '2px',
-      });
-    });
+        expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
+          marginLeft: '-40px',
+          paddingRight: '2px',
+        });
+      },
+    );
   });
 
   it('deprecated `inputProps` should work', () => {

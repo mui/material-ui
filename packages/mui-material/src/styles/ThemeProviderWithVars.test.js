@@ -334,14 +334,9 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     });
   });
 
-  it("should use numeric values in system's spacing", function test() {
-    if (
-      window.navigator.userAgent.includes('jsdom') ||
-      !/WebKit/.test(window.navigator.userAgent)
-    ) {
-      this.skip();
-    }
-
+  it.skipIf(
+    window.navigator.userAgent.includes('jsdom') || !/WebKit/.test(window.navigator.userAgent),
+  )("should use numeric values in system's spacing", function test() {
     render(
       <CssVarsProvider>
         <Box

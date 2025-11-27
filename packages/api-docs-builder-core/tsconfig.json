@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node", "mocha"]
+    "types": ["node", "vitest/globals"]
   },
   "include": ["./**/*.ts", "./**/*.js"],
   "exclude": ["node_modules", "vitest.config.ts"]

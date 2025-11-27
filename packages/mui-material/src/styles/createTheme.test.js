@@ -14,6 +14,8 @@ import createPalette from './createPalette';
 const lightPalette = createPalette({ mode: 'light' });
 const darkPalette = createPalette({ mode: 'dark' });
 
+const isJSDOM = window.navigator.userAgent.includes('jsdom');
+
 describe('createTheme', () => {
   const { render } = createRenderer();
 
@@ -474,32 +476,29 @@ describe('createTheme', () => {
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
 
-  it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
-    const isJSDOM = window.navigator.userAgent.includes('jsdom');
+  it.skipIf(isJSDOM)(
+    'should apply the correct borderRadius styles via sx prop if theme values are 0',
+    function test() {
+      const theme = createTheme({
+        shape: {
+          borderRadius: 0,
+        },
+      });
 
-    if (isJSDOM) {
-      this.skip();
-    }
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
+        </ThemeProvider>,
+      );
 
-    const theme = createTheme({
-      shape: {
-        borderRadius: 0,
-      },
-    });
-
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
-      </ThemeProvider>,
-    );
-
-    expect(container.firstChild).toHaveComputedStyle({
-      borderTopLeftRadius: '0px',
-      borderBottomLeftRadius: '0px',
-      borderTopRightRadius: '0px',
-      borderBottomRightRadius: '0px',
-    });
-  });
+      expect(container.firstChild).toHaveComputedStyle({
+        borderTopLeftRadius: '0px',
+        borderBottomLeftRadius: '0px',
+        borderTopRightRadius: '0px',
+        borderBottomRightRadius: '0px',
+      });
+    },
+  );
 
   it('should apply dark styles when using applyStyles if mode="dark"', function test() {
     const darkTheme = createTheme({

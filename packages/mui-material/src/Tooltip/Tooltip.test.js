@@ -485,37 +485,36 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should handle autoFocus + onFocus forwarding',
+      async function test() {
+        const handleFocus = spy();
+        function AutoFocus(props) {
+          return (
+            <div>
+              {props.open ? (
+                <Tooltip enterDelay={100} title="Title">
+                  <input autoFocus onFocus={handleFocus} />
+                </Tooltip>
+              ) : null}
+            </div>
+          );
+        }
 
-      const handleFocus = spy();
-      function AutoFocus(props) {
-        return (
-          <div>
-            {props.open ? (
-              <Tooltip enterDelay={100} title="Title">
-                <input autoFocus onFocus={handleFocus} />
-              </Tooltip>
-            ) : null}
-          </div>
+        const { setProps } = render(
+          <AutoFocus />,
+          // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+          { strictEffects: false },
         );
-      }
 
-      const { setProps } = render(
-        <AutoFocus />,
-        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-        { strictEffects: false },
-      );
+        setProps({ open: true });
+        clock.tick(100);
 
-      setProps({ open: true });
-      clock.tick(100);
-
-      expect(screen.getByRole('tooltip')).toBeVisible();
-      expect(handleFocus.callCount).to.equal(1);
-    });
+        expect(screen.getByRole('tooltip')).toBeVisible();
+        expect(handleFocus.callCount).to.equal(1);
+      },
+    );
   });
 
   describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: delay', () => {
@@ -639,37 +638,36 @@ describe('<Tooltip />', () => {
       });
     });
 
-    it(`should be transparent for the focus and blur event`, async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      `should be transparent for the focus and blur event`,
+      async function test() {
+        const handleBlur = spy();
+        const handleFocus = spy();
+        render(
+          <Tooltip title="Hello World">
+            <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+        const button = screen.getByRole('button');
 
-      const handleBlur = spy();
-      const handleFocus = spy();
-      render(
-        <Tooltip title="Hello World">
-          <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      const button = screen.getByRole('button');
+        await act(async () => {
+          button.focus();
+        });
 
-      await act(async () => {
-        button.focus();
-      });
+        expect(handleBlur.callCount).to.equal(0);
+        expect(handleFocus.callCount).to.equal(1);
 
-      expect(handleBlur.callCount).to.equal(0);
-      expect(handleFocus.callCount).to.equal(1);
+        await act(async () => {
+          button.blur();
+        });
 
-      await act(async () => {
-        button.blur();
-      });
-
-      expect(handleBlur.callCount).to.equal(1);
-      expect(handleFocus.callCount).to.equal(1);
-    });
+        expect(handleBlur.callCount).to.equal(1);
+        expect(handleFocus.callCount).to.equal(1);
+      },
+    );
 
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
@@ -1135,12 +1133,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should warn when children is a string', function test() {
-      if (reactMajor >= 19) {
-        // React 19 removed prop types support
-        this.skip();
-      }
-
+    // React 19 removed prop types support
+    it.skipIf(reactMajor >= 19)('should warn when children is a string', function test() {
       expect(() => {
         render(<Tooltip title="Hello World">Hello World</Tooltip>);
       }).toErrorDev('Invalid prop `children` of type `string` supplied');

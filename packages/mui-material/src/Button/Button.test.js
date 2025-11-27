@@ -594,48 +594,46 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.disableElevation);
   });
 
-  it('should have a focusRipple', async function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should have a focusRipple',
+    async function test() {
+      render(
+        <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
+          Hello World
+        </Button>,
+      );
 
-    render(
-      <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
-        Hello World
-      </Button>,
-    );
+      const button = screen.getByRole('button');
 
-    const button = screen.getByRole('button');
+      simulateKeyboardDevice();
+      await ripple.startFocus(button);
 
-    simulateKeyboardDevice();
-    await ripple.startFocus(button);
+      expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+    },
+  );
 
-    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
-  });
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'can disable the focusRipple',
+    async function test() {
+      render(
+        <Button
+          disableFocusRipple
+          TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
+        >
+          Hello World
+        </Button>,
+      );
 
-  it('can disable the focusRipple', async function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
+      const button = screen.getByRole('button');
 
-    render(
-      <Button
-        disableFocusRipple
-        TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
-      >
-        Hello World
-      </Button>,
-    );
+      simulateKeyboardDevice();
+      await ripple.startFocus(button);
 
-    const button = screen.getByRole('button');
-
-    simulateKeyboardDevice();
-    await ripple.startFocus(button);
-
-    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
-  });
+      expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
+    },
+  );
 
   describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('should server-side render', () => {

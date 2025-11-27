@@ -695,31 +695,31 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    it('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-      const theme = createTheme({
-        palette: {
-          primary: {
-            main: 'rgb(0, 191, 165)',
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render correct border color with `ThemeProvider` imported from `@emotion/react`',
+      function test() {
+        const theme = createTheme({
+          palette: {
+            primary: {
+              main: 'rgb(0, 191, 165)',
+            },
           },
-        },
-      });
+        });
 
-      render(
-        <ThemeProvider theme={theme}>
-          <TextField focused label="Your email" />
-        </ThemeProvider>,
-      );
+        render(
+          <ThemeProvider theme={theme}>
+            <TextField focused label="Your email" />
+          </ThemeProvider>,
+        );
 
-      const fieldset = screen.getByRole('textbox').nextSibling;
-      expect(fieldset).toHaveComputedStyle({
-        borderTopColor: 'rgb(0, 191, 165)',
-        borderRightColor: 'rgb(0, 191, 165)',
-        borderBottomColor: 'rgb(0, 191, 165)',
-        borderLeftColor: 'rgb(0, 191, 165)',
-      });
-    });
+        const fieldset = screen.getByRole('textbox').nextSibling;
+        expect(fieldset).toHaveComputedStyle({
+          borderTopColor: 'rgb(0, 191, 165)',
+          borderRightColor: 'rgb(0, 191, 165)',
+          borderBottomColor: 'rgb(0, 191, 165)',
+          borderLeftColor: 'rgb(0, 191, 165)',
+        });
+      },
+    );
   });
 });

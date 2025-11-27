@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 import describeConformance from '../../test/describeConformance';
 
+const isJSDOM = window.navigator.userAgent.includes('jsdom');
+
 describe('<Box />', () => {
   const { render } = createRenderer();
 
@@ -22,13 +24,7 @@ describe('<Box />', () => {
     refInstanceof: window.HTMLDivElement,
   }));
 
-  it('respects theme from context', function test() {
-    const isJSDOM = window.navigator.userAgent.includes('jsdom');
-
-    if (isJSDOM) {
-      this.skip();
-    }
-
+  it.skipIf(isJSDOM)('respects theme from context', function test() {
     const theme = createTheme({
       palette: {
         primary: {

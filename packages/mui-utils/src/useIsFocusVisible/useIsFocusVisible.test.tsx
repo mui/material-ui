@@ -60,7 +60,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(
 describe('useIsFocusVisible', () => {
   const { render } = createRenderer();
 
-  before(() => {
+  beforeAll(() => {
     // isolate test from previous component test that use the polyfill in the document scope
     teardownFocusVisible(document);
   });

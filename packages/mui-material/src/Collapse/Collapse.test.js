@@ -287,20 +287,19 @@ describe('<Collapse />', () => {
   });
 
   // Test for https://github.com/mui/material-ui/issues/40653
-  it('should render correctly when external ownerState prop is passed', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should render correctly when external ownerState prop is passed',
+    function test() {
+      const { container } = render(
+        <Collapse in ownerState={{}}>
+          <div style={{ height: '100px' }} />
+        </Collapse>,
+      );
+      const collapse = container.firstChild;
 
-    const { container } = render(
-      <Collapse in ownerState={{}}>
-        <div style={{ height: '100px' }} />
-      </Collapse>,
-    );
-    const collapse = container.firstChild;
-
-    expect(collapse).toHaveComputedStyle({
-      height: '100px',
-    });
-  });
+      expect(collapse).toHaveComputedStyle({
+        height: '100px',
+      });
+    },
+  );
 });

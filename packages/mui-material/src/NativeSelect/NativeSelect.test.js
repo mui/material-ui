@@ -63,33 +63,32 @@ describe('<NativeSelect />', () => {
     expect(screen.getByRole('combobox')).to.have.class(classes.select);
   });
 
-  it('slots overrides should work', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'slots overrides should work',
+    function test() {
+      const iconStyle = {
+        marginTop: '13px',
+      };
 
-    const iconStyle = {
-      marginTop: '13px',
-    };
-
-    const theme = createTheme({
-      components: {
-        MuiNativeSelect: {
-          styleOverrides: {
-            icon: iconStyle,
+      const theme = createTheme({
+        components: {
+          MuiNativeSelect: {
+            styleOverrides: {
+              icon: iconStyle,
+            },
           },
         },
-      },
-    });
+      });
 
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <NativeSelect {...defaultProps} />
-      </ThemeProvider>,
-    );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <NativeSelect {...defaultProps} />
+        </ThemeProvider>,
+      );
 
-    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
-  });
+      expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
+    },
+  );
 
   it('styled NativeSelect with custom input should not overwritten className', () => {
     const StyledSelect = styled(NativeSelect)({});

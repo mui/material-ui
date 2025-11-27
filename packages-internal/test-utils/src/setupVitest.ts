@@ -1,4 +1,3 @@
-import { beforeAll, afterAll, it } from 'vitest';
 import failOnConsole from 'vitest-fail-on-console';
 import * as chai from 'chai';
 import './chai.types';
@@ -35,32 +34,3 @@ failOnConsole({
     return false;
   },
 });
-
-function wrapIt(itFn: typeof it.only) {
-  return function wrapper(name: string, fn: Function) {
-    return itFn(name, (context) => {
-      return fn?.call({
-        ...context,
-        currentTest: {
-          fullTitle: () => context.task.name,
-        },
-      });
-    });
-  };
-}
-
-const wrappedIt: any = wrapIt(it);
-wrappedIt.skip = wrapIt(it.skip);
-wrappedIt.only = wrapIt(it.only);
-
-(globalThis as any).it = wrappedIt;
-
-if (!globalThis.before) {
-  (globalThis as any).before = beforeAll;
-}
-if (!globalThis.after) {
-  (globalThis as any).after = afterAll;
-}
-if (!globalThis.specify) {
-  (globalThis as any).specify = wrappedIt;
-}

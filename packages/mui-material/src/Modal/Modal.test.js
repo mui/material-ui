@@ -14,7 +14,7 @@ describe('<Modal />', () => {
 
   let savedBodyStyle;
 
-  before(() => {
+  beforeAll(() => {
     savedBodyStyle = document.body.style;
   });
 
@@ -50,12 +50,12 @@ describe('<Modal />', () => {
   describe('props:', () => {
     let container;
 
-    before(() => {
+    beforeAll(() => {
       container = document.createElement('div');
       document.body.appendChild(container);
     });
 
-    after(() => {
+    afterAll(() => {
       document.body.removeChild(container);
     });
 
@@ -480,69 +480,68 @@ describe('<Modal />', () => {
     describe('focus stealing', () => {
       clock.withFakeTimers();
 
-      it('does not steal focus from other frames', function test() {
-        if (window.navigator.userAgent.includes('jsdom')) {
-          // TODO: Unclear why this fails. Not important
-          // since a browser test gives us more confidence anyway
-          this.skip();
-        }
+      // TODO: Unclear why this fails. Not important
+      // since a browser test gives us more confidence anyway
+      it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+        'does not steal focus from other frames',
+        function test() {
+          const FrameContext = React.createContext(document);
+          // by default Modal will use the document where the module! was initialized
+          // which is usually the top document
+          function FramedModal(props) {
+            const document = React.useContext(FrameContext);
 
-        const FrameContext = React.createContext(document);
-        // by default Modal will use the document where the module! was initialized
-        // which is usually the top document
-        function FramedModal(props) {
-          const document = React.useContext(FrameContext);
+            return <Modal container={document.body} {...props} />;
+          }
+          // react requires some more work to get <iframe>{children}</iframe> working
+          // see "DemoFrame" in our docs for a documented implementation
+          function IFrame(props) {
+            const { children } = props;
+            const frameRef = React.useRef(null);
+            const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
 
-          return <Modal container={document.body} {...props} />;
-        }
-        // react requires some more work to get <iframe>{children}</iframe> working
-        // see "DemoFrame" in our docs for a documented implementation
-        function IFrame(props) {
-          const { children } = props;
-          const frameRef = React.useRef(null);
-          const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
+            React.useEffect(() => {
+              const document = frameRef.current.contentDocument;
 
-          React.useEffect(() => {
-            const document = frameRef.current.contentDocument;
+              if (document != null && document.readyState === 'complete' && !iframeLoaded) {
+                onLoad();
+              }
+            }, [iframeLoaded]);
 
-            if (document != null && document.readyState === 'complete' && !iframeLoaded) {
-              onLoad();
-            }
-          }, [iframeLoaded]);
+            const document = frameRef.current?.contentDocument;
+            return (
+              <React.Fragment>
+                <iframe onLoad={onLoad} ref={frameRef} />
+                {iframeLoaded !== false
+                  ? ReactDOM.createPortal(
+                      <FrameContext.Provider value={document}>{children}</FrameContext.Provider>,
+                      document.body,
+                    )
+                  : null}
+              </React.Fragment>
+            );
+          }
 
-          const document = frameRef.current?.contentDocument;
-          return (
+          render(
             <React.Fragment>
-              <iframe onLoad={onLoad} ref={frameRef} />
-              {iframeLoaded !== false
-                ? ReactDOM.createPortal(
-                    <FrameContext.Provider value={document}>{children}</FrameContext.Provider>,
-                    document.body,
-                  )
-                : null}
-            </React.Fragment>
+              <input data-testid="foreign-input" type="text" />
+              <IFrame>
+                <FramedModal open>
+                  <div data-testid="modal" />
+                </FramedModal>
+              </IFrame>
+            </React.Fragment>,
           );
-        }
 
-        render(
-          <React.Fragment>
-            <input data-testid="foreign-input" type="text" />
-            <IFrame>
-              <FramedModal open>
-                <div data-testid="modal" />
-              </FramedModal>
-            </IFrame>
-          </React.Fragment>,
-        );
+          act(() => {
+            screen.getByTestId('foreign-input').focus();
+          });
+          // wait for the `contain` interval check to kick in.
+          clock.tick(500);
 
-        act(() => {
-          screen.getByTestId('foreign-input').focus();
-        });
-        // wait for the `contain` interval check to kick in.
-        clock.tick(500);
-
-        expect(screen.getByTestId('foreign-input')).toHaveFocus();
-      });
+          expect(screen.getByTestId('foreign-input')).toHaveFocus();
+        },
+      );
     });
 
     describe('when starting open and closing immediately', () => {

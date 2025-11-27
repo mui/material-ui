@@ -214,50 +214,49 @@ describe('<SpeedDial />', () => {
       await flushEffects();
     });
 
-    it('should reset the state of the tooltip when the speed dial is closed while it is open', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should reset the state of the tooltip when the speed dial is closed while it is open',
+      async function test() {
+        const handleOpen = spy();
 
-      const handleOpen = spy();
+        render(
+          <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
+            <SpeedDialAction tooltipTitle="action1" />
+            <SpeedDialAction tooltipTitle="action2" />
+          </SpeedDial>,
+        );
 
-      render(
-        <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
-          <SpeedDialAction tooltipTitle="action1" />
-          <SpeedDialAction tooltipTitle="action2" />
-        </SpeedDial>,
-      );
+        const fab = screen.getByRole('button');
+        const actions = screen.getAllByRole('menuitem');
 
-      const fab = screen.getByRole('button');
-      const actions = screen.getAllByRole('menuitem');
+        await act(async () => {
+          fab.focus();
+        });
+        clock.runAll();
 
-      await act(async () => {
-        fab.focus();
-      });
-      clock.runAll();
+        expect(fab).to.have.attribute('aria-expanded', 'true');
 
-      expect(fab).to.have.attribute('aria-expanded', 'true');
+        fireEvent.keyDown(fab, { key: 'ArrowUp' });
+        clock.runAll();
+        expect(screen.queryByRole('tooltip')).not.to.equal(null);
 
-      fireEvent.keyDown(fab, { key: 'ArrowUp' });
-      clock.runAll();
-      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+        await act(async () => {
+          fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
+        });
+        clock.runAll();
 
-      await act(async () => {
-        fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
-      });
-      clock.runAll();
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+        expect(fab).to.have.attribute('aria-expanded', 'false');
+        expect(fab).toHaveFocus();
 
-      expect(screen.queryByRole('tooltip')).to.equal(null);
-      expect(fab).to.have.attribute('aria-expanded', 'false');
-      expect(fab).toHaveFocus();
+        clock.runAll();
 
-      clock.runAll();
-
-      expect(screen.queryByRole('tooltip')).to.equal(null);
-      expect(fab).to.have.attribute('aria-expanded', 'false');
-      expect(fab).toHaveFocus();
-    });
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+        expect(fab).to.have.attribute('aria-expanded', 'false');
+        expect(fab).toHaveFocus();
+      },
+    );
   });
 
   describe('dial focus', () => {
@@ -636,53 +635,50 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the default theme values by default',
+      function test() {
+        const theme = createTheme();
+        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+        render(<SpeedDial data-testid="speedDial" {...defaultProps} />);
 
-      const theme = createTheme();
-      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-      render(<SpeedDial data-testid="speedDial" {...defaultProps} />);
+        const child = screen.getByTestId('speedDial').firstChild;
+        expect(child).toHaveComputedStyle({
+          transitionDuration: `${enteringScreenDurationInSeconds}s`,
+        });
+      },
+    );
 
-      const child = screen.getByTestId('speedDial').firstChild;
-      expect(child).toHaveComputedStyle({
-        transitionDuration: `${enteringScreenDurationInSeconds}s`,
-      });
-    });
-
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const theme = createTheme({
-        transitions: {
-          duration: {
-            enteringScreen: 1,
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the custom theme values',
+      function test() {
+        const theme = createTheme({
+          transitions: {
+            duration: {
+              enteringScreen: 1,
+            },
           },
-        },
-      });
+        });
 
-      render(
-        <ThemeProvider theme={theme}>
-          <SpeedDial data-testid="speedDial" {...defaultProps} />,
-        </ThemeProvider>,
-      );
+        render(
+          <ThemeProvider theme={theme}>
+            <SpeedDial data-testid="speedDial" {...defaultProps} />,
+          </ThemeProvider>,
+        );
 
-      const child = screen.getByTestId('speedDial').firstChild;
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
+        const child = screen.getByTestId('speedDial').firstChild;
+        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+      },
+    );
 
-    it('should render the values provided via prop', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should render the values provided via prop',
+      function test() {
+        render(<SpeedDial data-testid="speedDial" {...defaultProps} transitionDuration={1} />);
 
-      render(<SpeedDial data-testid="speedDial" {...defaultProps} transitionDuration={1} />);
-
-      const child = screen.getByTestId('speedDial').firstChild;
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
+        const child = screen.getByTestId('speedDial').firstChild;
+        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+      },
+    );
   });
 });

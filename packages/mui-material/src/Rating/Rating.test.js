@@ -211,40 +211,41 @@ describe('<Rating />', () => {
     expect(view.container.querySelector('.customized')).to.have.tagName('label');
   });
 
-  it('should apply labelEmptyValueActive styles from theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
-    const theme = createTheme({
-      components: {
-        MuiRating: {
-          styleOverrides: {
-            labelEmptyValueActive: {
-              height: '120px',
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should apply labelEmptyValueActive styles from theme',
+    function test() {
+      const theme = createTheme({
+        components: {
+          MuiRating: {
+            styleOverrides: {
+              labelEmptyValueActive: {
+                height: '120px',
+              },
             },
           },
         },
-      },
-    });
-    const view = render(
-      <ThemeProvider theme={theme}>
-        <Rating value={null} />
-      </ThemeProvider>,
-    );
+      });
+      const view = render(
+        <ThemeProvider theme={theme}>
+          <Rating value={null} />
+        </ThemeProvider>,
+      );
 
-    act(() => {
-      const noValueRadio = screen.getAllByRole('radio').find((radio) => {
-        return radio.checked;
+      act(() => {
+        const noValueRadio = screen.getAllByRole('radio').find((radio) => {
+          return radio.checked;
+        });
+
+        noValueRadio.focus();
       });
 
-      noValueRadio.focus();
-    });
-
-    expect(view.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
-      height: '120px',
-    });
-  });
+      expect(view.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle(
+        {
+          height: '120px',
+        },
+      );
+    },
+  );
 
   // Internal test that only applies if Rating is implemented using `input[type"radio"]`
   // It ensures that keyboard navigation for Arrow and TAB keys is handled by the browser

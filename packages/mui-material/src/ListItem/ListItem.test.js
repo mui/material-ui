@@ -128,58 +128,56 @@ describe('<ListItem />', () => {
         PropTypes.resetWarningCache();
       });
 
-      it('warns if it cant detect the secondary action properly', function test() {
-        if (reactMajor >= 19) {
-          // React 19 removed prop types support
-          this.skip();
-        }
-
-        expect(() => {
-          PropTypes.checkPropTypes(
-            ListItem.propTypes,
-            {
-              classes: {},
-              children: [
-                <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
-                <ListItemText>My position does not matter.</ListItemText>,
-              ],
-            },
-            'prop',
-            'MockedName',
-          );
-        }).toErrorDev('Warning: Failed prop type: MUI: You used an element');
-      });
+      // React 19 removed prop types support
+      it.skipIf(reactMajor >= 19)(
+        'warns if it cant detect the secondary action properly',
+        function test() {
+          expect(() => {
+            PropTypes.checkPropTypes(
+              ListItem.propTypes,
+              {
+                classes: {},
+                children: [
+                  <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
+                  <ListItemText>My position does not matter.</ListItemText>,
+                ],
+              },
+              'prop',
+              'MockedName',
+            );
+          }).toErrorDev('Warning: Failed prop type: MUI: You used an element');
+        },
+      );
     });
   });
 
-  it('container overrides should work', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'container overrides should work',
+    function test() {
+      const testStyle = {
+        marginTop: '13px',
+      };
 
-    const testStyle = {
-      marginTop: '13px',
-    };
-
-    const theme = createTheme({
-      components: {
-        MuiListItem: {
-          styleOverrides: {
-            container: testStyle,
+      const theme = createTheme({
+        components: {
+          MuiListItem: {
+            styleOverrides: {
+              container: testStyle,
+            },
           },
         },
-      },
-    });
+      });
 
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <ListItem>
-          Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
-        </ListItem>
-      </ThemeProvider>,
-    );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <ListItem>
+            Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
+          </ListItem>
+        </ThemeProvider>,
+      );
 
-    const listItemContainer = container.getElementsByClassName(classes.container)[0];
-    expect(listItemContainer).to.toHaveComputedStyle(testStyle);
-  });
+      const listItemContainer = container.getElementsByClassName(classes.container)[0];
+      expect(listItemContainer).to.toHaveComputedStyle(testStyle);
+    },
+  );
 });

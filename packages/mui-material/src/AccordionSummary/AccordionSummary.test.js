@@ -115,23 +115,22 @@ describe('<AccordionSummary />', () => {
     expect(handleChange.callCount).to.equal(1);
   });
 
-  it('calls onFocusVisible if focused visibly', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'calls onFocusVisible if focused visibly',
+    function test() {
+      const handleFocusVisible = spy();
+      render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
+      // simulate pointer device
+      fireEvent.mouseDown(document.body);
 
-    const handleFocusVisible = spy();
-    render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
-    // simulate pointer device
-    fireEvent.mouseDown(document.body);
+      // this doesn't actually apply focus like in the browser. we need to move focus manually
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+      act(() => {
+        screen.getByRole('button').focus();
+      });
 
-    // this doesn't actually apply focus like in the browser. we need to move focus manually
-    fireEvent.keyDown(document.body, { key: 'Tab' });
-    act(() => {
-      screen.getByRole('button').focus();
-    });
-
-    expect(handleFocusVisible.callCount).to.equal(1);
-  });
+      expect(handleFocusVisible.callCount).to.equal(1);
+    },
+  );
 });

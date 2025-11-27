@@ -109,45 +109,44 @@ describe('<Checkbox />', () => {
   });
 
   describe('theme: customization', () => {
-    it('should be customizable in the theme using the size prop.', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const theme = createTheme({
-        components: {
-          MuiCheckbox: {
-            styleOverrides: {
-              sizeMedium: {
-                marginTop: 40,
-                paddingLeft: 20,
-              },
-              sizeSmall: {
-                marginLeft: -40,
-                paddingRight: 2,
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'should be customizable in the theme using the size prop.',
+      function test() {
+        const theme = createTheme({
+          components: {
+            MuiCheckbox: {
+              styleOverrides: {
+                sizeMedium: {
+                  marginTop: 40,
+                  paddingLeft: 20,
+                },
+                sizeSmall: {
+                  marginLeft: -40,
+                  paddingRight: 2,
+                },
               },
             },
           },
-        },
-      });
+        });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Checkbox />
-          <Checkbox size="small" />
-        </ThemeProvider>,
-      );
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Checkbox />
+            <Checkbox size="small" />
+          </ThemeProvider>,
+        );
 
-      expect(container.querySelector(`.${classes.sizeMedium}`)).toHaveComputedStyle({
-        marginTop: '40px',
-        paddingLeft: '20px',
-      });
+        expect(container.querySelector(`.${classes.sizeMedium}`)).toHaveComputedStyle({
+          marginTop: '40px',
+          paddingLeft: '20px',
+        });
 
-      expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
-        marginLeft: '-40px',
-        paddingRight: '2px',
-      });
-    });
+        expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
+          marginLeft: '-40px',
+          paddingRight: '2px',
+        });
+      },
+    );
   });
 
   describe('with FormControl', () => {

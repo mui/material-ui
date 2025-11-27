@@ -115,32 +115,31 @@ describe('<Paper />', () => {
     });
   });
 
-  it('should have no boxShadow or background-image on Paper with elevation 0 in dark mode using CSS variables', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should have no boxShadow or background-image on Paper with elevation 0 in dark mode using CSS variables',
+    function test() {
+      const theme = createTheme({
+        cssVariables: true,
+        colorSchemes: {
+          dark: true,
+        },
+        defaultColorScheme: 'dark',
+      });
 
-    const theme = createTheme({
-      cssVariables: true,
-      colorSchemes: {
-        dark: true,
-      },
-      defaultColorScheme: 'dark',
-    });
+      render(
+        <ThemeProvider theme={theme}>
+          <Paper data-testid="parent" elevation={23}>
+            elevation=23
+            <Paper data-testid="child" elevation={0} />
+          </Paper>
+        </ThemeProvider>,
+      );
 
-    render(
-      <ThemeProvider theme={theme}>
-        <Paper data-testid="parent" elevation={23}>
-          elevation=23
-          <Paper data-testid="child" elevation={0} />
-        </Paper>
-      </ThemeProvider>,
-    );
-
-    const childPaper = screen.getByTestId('child');
-    expect(childPaper).toHaveComputedStyle({
-      boxShadow: 'none',
-      backgroundImage: 'none',
-    });
-  });
+      const childPaper = screen.getByTestId('child');
+      expect(childPaper).toHaveComputedStyle({
+        boxShadow: 'none',
+        backgroundImage: 'none',
+      });
+    },
+  );
 });

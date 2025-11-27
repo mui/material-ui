@@ -64,41 +64,39 @@ describe('<AppBar />', () => {
     });
   });
 
-  it('should inherit Paper background color with ThemeProvider', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should inherit Paper background color with ThemeProvider',
+    function test() {
+      render(
+        <ThemeProvider theme={defaultTheme}>
+          <AppBar data-testid="root" color="inherit">
+            Hello World
+          </AppBar>
+        </ThemeProvider>,
+      );
 
-    render(
-      <ThemeProvider theme={defaultTheme}>
-        <AppBar data-testid="root" color="inherit">
-          Hello World
-        </AppBar>
-      </ThemeProvider>,
-    );
+      const appBar = screen.getByTestId('root');
+      expect(appBar).toHaveComputedStyle({
+        backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
+      });
+    },
+  );
 
-    const appBar = screen.getByTestId('root');
-    expect(appBar).toHaveComputedStyle({
-      backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
-    });
-  });
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should inherit Paper background color with CssVarsProvider',
+    function test() {
+      render(
+        <CssVarsProvider>
+          <AppBar data-testid="root" color="inherit">
+            Hello World
+          </AppBar>
+        </CssVarsProvider>,
+      );
 
-  it('should inherit Paper background color with CssVarsProvider', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
-    render(
-      <CssVarsProvider>
-        <AppBar data-testid="root" color="inherit">
-          Hello World
-        </AppBar>
-      </CssVarsProvider>,
-    );
-
-    const appBar = screen.getByTestId('root');
-    expect(appBar).toHaveComputedStyle({
-      backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
-    });
-  });
+      const appBar = screen.getByTestId('root');
+      expect(appBar).toHaveComputedStyle({
+        backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
+      });
+    },
+  );
 });

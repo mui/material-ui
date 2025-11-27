@@ -7,56 +7,53 @@ import GlobalStyles from './GlobalStyles';
 describe('GlobalStyles', () => {
   const { render } = createRenderer();
 
-  it('should add global styles', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should add global styles',
+    function test() {
+      const { container } = render(
+        <div>
+          <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
+          <span>Blue text</span>
+        </div>,
+      );
 
-    const { container } = render(
-      <div>
-        <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
-        <span>Blue text</span>
-      </div>,
-    );
+      expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
+      });
+    },
+  );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
-      color: 'rgb(0, 0, 255)',
-    });
-  });
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should add global styles using JS syntax',
+    function test() {
+      const { container } = render(
+        <div>
+          <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
+          <span>Blue text</span>
+        </div>,
+      );
 
-  it('should add global styles using JS syntax', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+      expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
+      });
+    },
+  );
 
-    const { container } = render(
-      <div>
-        <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
-        <span>Blue text</span>
-      </div>,
-    );
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should add global styles using function',
+    function test() {
+      const { container } = render(
+        <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
+          <GlobalStyles styles={(theme) => ({ span: { color: theme.color } })} />
+          <span>Blue text</span>
+        </ThemeProvider>,
+      );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
-      color: 'rgb(0, 0, 255)',
-    });
-  });
-
-  it('should add global styles using function', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
-    const { container } = render(
-      <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
-        <GlobalStyles styles={(theme) => ({ span: { color: theme.color } })} />
-        <span>Blue text</span>
-      </ThemeProvider>,
-    );
-
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
-      color: 'rgb(0, 0, 255)',
-    });
-  });
+      expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
+      });
+    },
+  );
 
   it('should not throw if no theme is available', () => {
     expect(() =>
@@ -69,45 +66,43 @@ describe('GlobalStyles', () => {
     ).not.to.throw();
   });
 
-  it('should give precedence to styled()', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should give precedence to styled()',
+    function test() {
+      const Span = styled('span')`
+        color: rgb(255, 0, 0);
+      `;
 
-    const Span = styled('span')`
-      color: rgb(255, 0, 0);
-    `;
+      const { container } = render(
+        <div>
+          <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
+          <Span>Red text</Span>
+        </div>,
+      );
 
-    const { container } = render(
-      <div>
-        <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
-        <Span>Red text</Span>
-      </div>,
-    );
+      expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+        color: 'rgb(255, 0, 0)',
+      });
+    },
+  );
 
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
-      color: 'rgb(255, 0, 0)',
-    });
-  });
+  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    'should give precedence to styled() using JS syntax',
+    function test() {
+      const Span = styled('span')({
+        color: 'rgb(255, 0, 0)',
+      });
 
-  it('should give precedence to styled() using JS syntax', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+      const { container } = render(
+        <div>
+          <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
+          <Span>Red text</Span>
+        </div>,
+      );
 
-    const Span = styled('span')({
-      color: 'rgb(255, 0, 0)',
-    });
-
-    const { container } = render(
-      <div>
-        <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
-        <Span>Red text</Span>
-      </div>,
-    );
-
-    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
-      color: 'rgb(255, 0, 0)',
-    });
-  });
+      expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+        color: 'rgb(255, 0, 0)',
+      });
+    },
+  );
 });
