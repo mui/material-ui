@@ -191,15 +191,12 @@ jobs:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
       - run:
-          name: Debug
-          command: |
-            pnpm -r why playwright
-            pnpm -r why @playwright/test
-            pnpm exec playwright --version
+          name: Tests chromium
+          command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests all browsers
+          name: Tests other browsers
           environment:
-            VITEST_BROWSERS: 'chromium,webkit,firefox'
+            VITEST_BROWSERS: 'webkit,firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
