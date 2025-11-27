@@ -275,8 +275,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
       let tabbable: ReadonlyArray<HTMLElement> = [];
       if (
-        doc.activeElement === sentinelStart.current ||
-        doc.activeElement === sentinelEnd.current
+        activeEl === sentinelStart.current ||
+        activeEl === sentinelEnd.current
       ) {
         tabbable = getTabbable(rootRef.current!);
       }
