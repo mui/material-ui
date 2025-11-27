@@ -10,6 +10,7 @@ import {
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
+import * as vitestPlugin from 'vite-plugin-vitest-eslint';
 import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
@@ -120,7 +121,13 @@ export default defineConfig(
   // Test start
   {
     files: [`**/*${EXTENSION_TEST_FILE}`],
-    extends: createTestConfig({}),
+    extends: createTestConfig({
+      useMocha: false,
+      useVitest: true,
+    }),
+    languageOptions: {
+      ...vitestPlugin.environments.env.globals,
+    },
     rules: {
       'material-ui/no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
