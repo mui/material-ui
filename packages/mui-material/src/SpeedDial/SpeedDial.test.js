@@ -6,7 +6,6 @@ import {
   fireEvent,
   fireDiscreteEvent,
   screen,
-  flushEffects,
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
@@ -141,8 +140,6 @@ describe('<SpeedDial />', () => {
 
       expect(handleKeyDown.callCount).to.equal(1);
       expect(handleKeyDown.args[0][0]).to.have.property('key', ' ');
-
-      await flushEffects();
     });
   });
 
@@ -210,8 +207,6 @@ describe('<SpeedDial />', () => {
       fireEvent.keyDown(fab, { key: 'ArrowUp' });
       expect(document.activeElement).to.equal(actions[0]);
       expect(fab).to.have.attribute('aria-expanded', 'true');
-
-      await flushEffects();
     });
 
     it('should reset the state of the tooltip when the speed dial is closed while it is open', async function test() {
@@ -345,8 +340,6 @@ describe('<SpeedDial />', () => {
       expect(isActionFocused(1)).to.equal(true);
       fireEvent.keyDown(getActionButton(1), { key: 'right' });
       expect(isActionFocused(0)).to.equal(true);
-
-      await flushEffects();
     });
 
     describe('actions navigation', () => {
@@ -382,8 +375,6 @@ describe('<SpeedDial />', () => {
               )} should be ${expectedFocusedAction}`,
             );
           }
-
-          await flushEffects();
         });
       };
 
@@ -534,8 +525,6 @@ describe('<SpeedDial />', () => {
       expect(isActionFocused(1)).to.equal(true);
       fireEvent.keyDown(getActionButton(1), { key: 'right' });
       expect(isActionFocused(0)).to.equal(true);
-
-      await flushEffects();
     });
 
     describe('actions navigation', () => {
@@ -569,7 +558,6 @@ describe('<SpeedDial />', () => {
               )} should be ${expectedFocusedAction}`,
             );
           }
-          await flushEffects();
         });
       };
 

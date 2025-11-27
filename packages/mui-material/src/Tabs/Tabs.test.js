@@ -9,7 +9,6 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-  flushEffects,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Tab from '@mui/material/Tab';
@@ -963,8 +962,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the last tab while activating it if focus is on the first tab', async () => {
@@ -997,8 +994,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(2);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('moves focus to the previous tab without activating it', async () => {
@@ -1029,8 +1024,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the previous tab while activating it', async () => {
@@ -1063,8 +1056,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('skips over disabled tabs', async () => {
@@ -1093,8 +1084,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(firstTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
         });
 
@@ -1127,8 +1116,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the first tab while activating it if focus is on the last tab', async () => {
@@ -1161,8 +1148,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('moves focus to the next tab without activating it it', async () => {
@@ -1193,8 +1178,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the next tab while activating it it', async () => {
@@ -1227,8 +1210,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(2);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
 
           it('skips over disabled tabs', async () => {
@@ -1257,8 +1238,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(lastTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-            await flushEffects();
           });
         });
       });
@@ -1289,8 +1268,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.callCount).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-          await flushEffects();
         });
 
         it('when `selectionFollowsFocus` moves focus to the first tab without activating it', async () => {
@@ -1317,8 +1294,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.firstCall.args[1]).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-          await flushEffects();
         });
 
         it('moves focus to first non-disabled tab', async () => {
@@ -1342,8 +1317,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-          await flushEffects();
         });
       });
 
@@ -1371,8 +1344,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.callCount).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-          await flushEffects();
         });
 
         it('when `selectionFollowsFocus` moves focus to the last tab without activating it', async () => {
@@ -1399,8 +1370,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.firstCall.args[1]).to.equal(2);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-          await flushEffects();
         });
 
         it('moves focus to first non-disabled tab', async () => {
@@ -1424,8 +1393,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-
-          await flushEffects();
         });
       });
     });
