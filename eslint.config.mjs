@@ -10,7 +10,7 @@ import {
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
-import * as vitestPlugin from 'vite-plugin-vitest-eslint';
+import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
@@ -126,7 +126,9 @@ export default defineConfig(
       useVitest: true,
     }),
     languageOptions: {
-      ...vitestPlugin.environments.env.globals,
+      globals: {
+        ...vitestPlugin.environments.env.globals,
+      },
     },
     rules: {
       'material-ui/no-empty-box': 'off',

@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 /* eslint-disable compat/compat -- Test environment */
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
