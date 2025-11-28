@@ -94,7 +94,7 @@ We're looking for someone with strong core JavaScript skills. More important tha
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Willingness to ask and answer questions**.
-  You're comfortable saying you're unsure and asking for help. You'll also reach out out to assist others. We thrive through continuous learning—first-time mistakes are celebrated, not blamed.
+  You're comfortable saying you're unsure and asking for help. You'll also reach out to assist others. We thrive through continuous learning—first-time mistakes are celebrated, not blamed.
 - **Leadership skills**.
   You will guide and mentor contributors, steering the community in the right direction.
 
