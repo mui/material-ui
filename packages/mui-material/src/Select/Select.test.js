@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
+import { fireEvent as domFireEvent } from '@testing-library/dom';
 import {
   ErrorBoundary,
   act,
@@ -1926,7 +1927,7 @@ describe('<Select />', () => {
       const shadowRoot = document.createElement('div');
       shadowContainer.appendChild(shadowRoot);
 
-      const { user } = render(
+      render(
         <Select value="" MenuProps={{ container: shadowRoot }}>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -1949,7 +1950,7 @@ describe('<Select />', () => {
 
       expect(shadowContainer.activeElement).to.equal(options[0]);
 
-      fireEvent.keyDown(options[0], { key: 'ArrowDown' });
+      domFireEvent.keyDown(options[0], { key: 'ArrowDown' });
 
       expect(shadowContainer.activeElement).to.equal(options[1]);
     });
