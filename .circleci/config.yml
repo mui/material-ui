@@ -194,9 +194,14 @@ jobs:
           name: Tests chromium
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests other browsers
+          name: Tests webkit
           environment:
-            VITEST_BROWSERS: 'webkit,firefox'
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests firefox
+          environment:
+            VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
@@ -214,10 +219,14 @@ jobs:
           name: Tests chromium
           command: pnpm test:browser --no-isolate --no-file-parallelism --coverage
       - run:
-          # other browsers without coverage
-          name: Tests other browsers
+          name: Tests webkit
           environment:
-            VITEST_BROWSERS: 'webkit,firefox'
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests firefox
+          environment:
+            VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
           name: Check coverage generated
