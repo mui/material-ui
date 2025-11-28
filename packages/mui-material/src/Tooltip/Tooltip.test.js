@@ -26,6 +26,16 @@ async function focusVisible(element) {
   });
 }
 
+function focusVisibleSync(element) {
+  act(() => {
+    element.blur();
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  act(() => {
+    element.focus();
+  });
+}
+
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -536,7 +546,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', async () => {
+    it('should use hysteresis with the enterDelay', () => {
       render(
         <Tooltip
           title="Hello World"
@@ -551,7 +561,8 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = screen.getByRole('button');
-      await focusVisible(children);
+
+      focusVisibleSync(children);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -569,7 +580,8 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await focusVisible(children);
+      focusVisibleSync(children);
+
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
