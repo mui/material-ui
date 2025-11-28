@@ -1913,7 +1913,7 @@ describe('<Select />', () => {
   });
 
   describe('keyboard navigation in shadow DOM', () => {
-    it.only('should navigate between options using arrow keys when rendered in shadow DOM', async function test() {
+    it('should navigate between options using arrow keys when rendered in shadow DOM', async function test() {
       if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
