@@ -321,10 +321,10 @@ describe('Joy <Select />', () => {
 
     // TODO: need to make this work
     // aria-disabled is better then disabled. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled
-    // it('sets aria-disabled="true" when component is disabled', () => {
-    //   const { getByRole } = render(<Select disabled value="" />);
-    //   expect(getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
-    // });
+    it.todo('sets aria-disabled="true" when component is disabled', () => {
+      render(<Select disabled value="" />);
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
+    });
 
     it('aria-disabled is not present if component is not disabled', () => {
       render(<Select disabled={false} value="" />);

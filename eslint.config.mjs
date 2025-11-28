@@ -134,6 +134,8 @@ export default defineConfig(
       'material-ui/no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
+      // TODO: investigate and fix
+      'vitest/expect-expect': 'off',
     },
   },
   // Test end

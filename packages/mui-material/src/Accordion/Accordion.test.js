@@ -303,7 +303,7 @@ describe('<Accordion />', () => {
     ];
 
     transitions.forEach((transition) => {
-      it(transition.name, () => {
+      it(`${transition.name}`, () => {
         render(
           <Accordion
             defaultExpanded

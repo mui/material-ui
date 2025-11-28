@@ -988,7 +988,7 @@ describeSkipIf(!supportsTouch())('<Slider />', () => {
     ].forEach((entry) => {
       const [direction, orientation, decrementKeys, incrementKeys] = entry;
 
-      describe(direction, () => {
+      describe(`${direction}`, () => {
         describe(`orientation: ${orientation}`, () => {
           decrementKeys.forEach((key) => {
             it(`key: ${key} decrements the value`, () => {

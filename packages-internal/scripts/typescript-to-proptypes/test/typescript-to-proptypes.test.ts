@@ -55,7 +55,7 @@ describe('typescript-to-proptypes', () => {
   testCases.forEach((testCase) => {
     const { name: testName, inputPath, inputJS, outputPath } = testCase;
 
-    it(testName, async () => {
+    it(`${testName}`, async () => {
       const project = getProject();
       let options: TestOptions = {};
       try {

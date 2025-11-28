@@ -901,7 +901,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
       });
 
       describe(`when focus is on a tab element in a ${orientation} ${direction} tablist`, () => {
-        describe(previousItemKey, () => {
+        describe(`${previousItemKey}`, () => {
           it('moves focus to the last tab without activating it if focus is on the first tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
@@ -1066,7 +1066,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           });
         });
 
-        describe(nextItemKey, () => {
+        describe(`${nextItemKey}`, () => {
           it('moves focus to the first tab without activating it if focus is on the last tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
