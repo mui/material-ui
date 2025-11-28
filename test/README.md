@@ -171,21 +171,7 @@ Our tests run on different browsers to increase the coverage:
 - Headless Firefox
 - Webkit
 
-##### BrowserStack
-
-We only use BrowserStack for non-PR commits to save resources.
-BrowserStack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
-
-To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.
-For example, you've opened a PR with the number 64209 and now after everything is green you want to make sure the change passes all browsers:
-
-```bash
-curl --request POST \
-  --url https://circleci.com/api/v2/project/gh/mui/material-ui/pipeline \
-  --header 'content-type: application/json' \
-  --header 'Circle-Token: $CIRCLE_TOKEN' \
-  --data-raw '{"branch":"pull/64209/head","parameters":{"browserstack-force":true}}'
-```
+You can run on other browsers using `VITEST_BROWSERS=firefox,webkit pnpm test:browser`.
 
 ### Browser API level
 
