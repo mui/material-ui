@@ -34,4 +34,4 @@ export const ibmPlexSans = localFont({
 
 export const fonts = [inter, roboto, generalSans, ibmPlexSans];
 
-export const fontClasses = Array.from(fonts, (font) => font.className).join(' ');
+export const fontClasses = fonts.map((font) => font.className).join(' ');
