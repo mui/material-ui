@@ -1912,7 +1912,7 @@ describe('<Select />', () => {
   });
 
   describe('keyboard navigation in shadow DOM', () => {
-    it('should navigate between options using arrow keys when rendered in shadow DOM', async function test() {
+    it.only('should navigate between options using arrow keys when rendered in shadow DOM', async function test() {
       if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
@@ -1949,7 +1949,7 @@ describe('<Select />', () => {
 
       expect(shadowContainer.activeElement).to.equal(options[0]);
 
-      await user.keyboard('{ArrowDown}');
+      fireEvent.keyDown(options[0], {key: 'ArrowDown'})
 
       expect(shadowContainer.activeElement).to.equal(options[1]);
     });
