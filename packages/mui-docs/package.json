@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "code-infra build --copy \"src/translations/translations.json\" --copy \"src/translations/translations.json:esm\" --copy \"src/fonts/static\" --copy \"src/fonts/static:esm\"",
+    "build": "code-infra build --copy \"src/translations/translations.json\" --copy \"src/translations/translations.json:esm\" --copy \"src/nextFonts/fonts\" --copy \"src/nextFonts/fonts:esm\"",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsc -p tsconfig.json"

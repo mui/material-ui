@@ -15,20 +15,20 @@ export const roboto = Roboto({
 export const generalSans = localFont({
   declarations: [{ prop: 'font-family', value: 'General Sans' }],
   src: [
-    { path: './static/GeneralSans-Regular.woff2', weight: '400', style: 'normal' },
-    { path: './static/GeneralSans-Medium.woff2', weight: '500', style: 'normal' },
-    { path: './static/GeneralSans-Semibold.woff2', weight: '600', style: 'normal' },
-    { path: './static/GeneralSans-Bold.woff2', weight: '700', style: 'normal' },
+    { path: './fonts/GeneralSans-Regular.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/GeneralSans-Medium.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/GeneralSans-Semibold.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/GeneralSans-Bold.woff2', weight: '700', style: 'normal' },
   ],
 });
 
 export const ibmPlexSans = localFont({
   declarations: [{ prop: 'font-family', value: 'IBM Plex Sans' }],
   src: [
-    { path: './static/IBMPlexSans-Regular.woff2', weight: '400', style: 'normal' },
-    { path: './static/IBMPlexSans-Medium.woff2', weight: '500', style: 'normal' },
-    { path: './static/IBMPlexSans-SemiBold.woff2', weight: '600', style: 'normal' },
-    { path: './static/IBMPlexSans-Bold.woff2', weight: '700', style: 'normal' },
+    { path: './fonts/IBMPlexSans-Regular.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/IBMPlexSans-Medium.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/IBMPlexSans-SemiBold.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/IBMPlexSans-Bold.woff2', weight: '700', style: 'normal' },
   ],
 });
 
