@@ -53,8 +53,7 @@
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
     "test:coverage": "nx run nx_test_coverage",
     "vitest": "vitest",
-    "test:coverage:ci": "nx run nx_test_coverage_ci",
-    "test:coverage:html": "nx run nx_test_coverage_html",
+    "test:coverage:html": "pnpm test:unit run --coverage --coverage.reporter html",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
     "test:e2e:build": "nx run nx_test_e2e_build",
     "test:e2e:dev": "concurrently \"pnpm test:e2e:build --watch\" \"pnpm test:e2e:server\"",
@@ -65,7 +64,7 @@
     "test:regressions": "cross-env NODE_ENV=production pnpm test:regressions:build && concurrently --success first --kill-others \"pnpm test:regressions:run\" \"pnpm test:regressions:server\"",
     "test:regressions:build": "vite build test/regressions",
     "test:regressions:dev": "vite test/regressions --port 5001",
-    "test:regressions:run": "nx run nx_test_regressions_run",
+    "test:regressions:run": "vitest --config test/regressions/vitest.config.ts run",
     "test:regressions:server": "vite preview test/regressions --port 5001",
     "test": "pnpm test:node",
     "test:unit": "cross-env TZ=UTC vitest",
@@ -81,6 +80,8 @@
     "canary:release": "tsx ./scripts/canaryRelease.mts",
     "nx_test_tc": "node test/cli.js",
     "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
+    "nx_test_e2e_run": "vitest run -r ./test/e2e/",
+    "nx_test_regressions_run": "vitest run -r ./test/regressions/",
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
@@ -201,26 +202,6 @@
   "nx": {
     "targets": {
       "nx_test_tc": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_unit": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_coverage": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_coverage_ci": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_coverage_html": {
         "dependsOn": [
           "@mui/internal-test-utils:build"
         ]
