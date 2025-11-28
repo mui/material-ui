@@ -2,7 +2,7 @@
 
 <p class="description">Support the development of the open-source projects of the MUI organization through crowdfunding.</p>
 
-Material UI, MUI Base, MUI System, and Joy UI are crowd-funded open-source projects, licensed under the permissive MIT license.
+Material UI is a crowd-funded open-source project, licensed under the permissive MIT license.
 Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
 ## Diamond sponsors
@@ -82,7 +82,7 @@ via [Open Collective](https://opencollective.com/mui-org)
 
 ### Why is Material UI a "crowd-funded open-source project"?
 
-Material UI (as well as MUI Base, MUI System, and Joy UI) is open-source to give users great freedom in how they use the software and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use cases.
+Material UI is open-source to give users great freedom in how they use the software and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use cases.
 To ensure that these open-source libraries can stand the test of time for our users, they need to be well-directed and financially sustainable.
 
 The absolute best way to support the MUI organization to work on its libraries' ongoing development efforts is to become a sponsor.
