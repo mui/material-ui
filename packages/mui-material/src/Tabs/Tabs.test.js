@@ -20,6 +20,8 @@ import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
 import describeConformance from '../../test/describeConformance';
 
+const isJSDOM = window.navigator.userAgent.includes('jsdom');
+
 const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
 const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
 
@@ -50,9 +52,6 @@ function hasRightScrollButton(container) {
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 describeSkipIf(isSafari)('<Tabs />', () => {
-  // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = window.navigator.userAgent.includes('jsdom');
-
   const { clock, render, renderToString } = createRenderer();
 
   describeConformance(<Tabs value={0} />, () => ({
@@ -275,7 +274,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
         expect(container.querySelector(`.${classes.indicator}`)).not.to.equal(null);
       });
 
-      it.skipIf(isJSDOM)('should update the indicator at each render', function test() {
+      it('should update the indicator at each render', function test() {
         const { forceUpdate, container } = render(
           <Tabs value={1}>
             <Tab />
@@ -418,7 +417,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           ]);
         });
 
-        it.skipIf(isJSDOM)('should not warn if the whole Tabs is hidden', function test() {
+        it('should not warn if the whole Tabs is hidden', function test() {
           expect(() => {
             render(
               <Tabs value="demo" style={{ display: 'none' }}>
@@ -618,7 +617,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
     });
 
     describe('scroll button visibility states', () => {
-      it.skipIf(isJSDOM)('should set neither left nor right scroll button state', function test() {
+      it('should set neither left nor right scroll button state', function test() {
         const { container } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 50, minWidth: 'auto' }} />
@@ -779,7 +778,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
   describe('scroll into view behavior', () => {
     clock.withFakeTimers();
 
-    it.skipIf(isJSDOM)('should scroll left tab into view', function test() {
+    it('should scroll left tab into view', function test() {
       const { forceUpdate } = render(
         <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
           <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -822,7 +821,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
   });
 
   describe('prop: orientation', () => {
-    it.skipIf(isJSDOM)('should support orientation="vertical"', function test() {
+    it('should support orientation="vertical"', function test() {
       const { forceUpdate, container } = render(
         <Tabs value={1} variant="scrollable" scrollButtons orientation="vertical">
           <Tab />
@@ -1438,56 +1437,53 @@ describeSkipIf(isSafari)('<Tabs />', () => {
   });
 
   describe('keyboard navigation in shadow DOM', () => {
-    it.skipIf(isJSDOM)(
-      'should navigate between tabs using arrow keys when rendered in shadow DOM',
-      async function test() {
-        // Create a shadow root
-        const shadowHost = document.createElement('div');
-        document.body.appendChild(shadowHost);
-        const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+    it('should navigate between tabs using arrow keys when rendered in shadow DOM', async function test() {
+      // Create a shadow root
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
 
-        // Render directly into shadow root
-        const shadowContainer = document.createElement('div');
-        shadowRoot.appendChild(shadowContainer);
+      // Render directly into shadow root
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
 
-        const { unmount, user } = render(
-          <Tabs value={0}>
-            <Tab />
-            <Tab />
-            <Tab />
-          </Tabs>,
-          { container: shadowContainer },
-        );
+      const { unmount, user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+        { container: shadowContainer },
+      );
 
-        const tabs = shadowRoot.querySelectorAll('[role="tab"]');
-        const [firstTab, secondTab, thirdTab] = Array.from(tabs);
+      const tabs = shadowRoot.querySelectorAll('[role="tab"]');
+      const [firstTab, secondTab, thirdTab] = Array.from(tabs);
 
-        await act(async () => {
-          firstTab.focus();
-        });
+      await act(async () => {
+        firstTab.focus();
+      });
 
-        // Verify first tab has focus
-        expect(shadowRoot.activeElement).to.equal(firstTab);
+      // Verify first tab has focus
+      expect(shadowRoot.activeElement).to.equal(firstTab);
 
-        // Navigate to second tab using ArrowRight
-        await user.keyboard('{ArrowRight}');
-        expect(shadowRoot.activeElement).to.equal(secondTab);
+      // Navigate to second tab using ArrowRight
+      await user.keyboard('{ArrowRight}');
+      expect(shadowRoot.activeElement).to.equal(secondTab);
 
-        // Navigate to third tab using ArrowRight
-        await user.keyboard('{ArrowRight}');
-        expect(shadowRoot.activeElement).to.equal(thirdTab);
+      // Navigate to third tab using ArrowRight
+      await user.keyboard('{ArrowRight}');
+      expect(shadowRoot.activeElement).to.equal(thirdTab);
 
-        // Navigate back to second tab using ArrowLeft
-        await user.keyboard('{ArrowLeft}');
-        expect(shadowRoot.activeElement).to.equal(secondTab);
+      // Navigate back to second tab using ArrowLeft
+      await user.keyboard('{ArrowLeft}');
+      expect(shadowRoot.activeElement).to.equal(secondTab);
 
-        // Cleanup
-        unmount();
-        if (shadowHost.parentNode) {
-          document.body.removeChild(shadowHost);
-        }
-      },
-    );
+      // Cleanup
+      unmount();
+      if (shadowHost.parentNode) {
+        document.body.removeChild(shadowHost);
+      }
+    });
   });
 
   describe('dynamic tabs', () => {
@@ -1499,67 +1495,64 @@ describeSkipIf(isSafari)('<Tabs />', () => {
       });
 
     // https://github.com/mui/material-ui/issues/31936
-    it.skipIf(isJSDOM)(
-      'should not show scroll buttons if a tab added or removed in vertical mode',
-      async function test() {
-        function DynamicTabs() {
-          const [value, setValue] = React.useState(0);
-          const handleChange = (event, newValue) => {
-            setValue(newValue);
-          };
-          const [tabs, setTabs] = React.useState(['item1', 'item2']);
-          return (
-            <React.Fragment>
-              <button
-                data-testid="add"
-                onClick={() => {
-                  setTabs([...tabs, `item${tabs.length + 1}`]);
-                }}
-              >
-                add
-              </button>
-              <button
-                data-testid="delete"
-                onClick={() => {
-                  setTabs(tabs.slice(0, tabs.length - 1));
-                  setValue(0);
-                }}
-              >
-                delete
-              </button>
-              <Tabs
-                onChange={handleChange}
-                value={value}
-                orientation="vertical"
-                variant="scrollable"
-                scrollButtons
-                style={{ width: '260px' }}
-              >
-                {tabs.map((label, index) => (
-                  <Tab key={`tab${index}`} label={label} />
-                ))}
-              </Tabs>
-            </React.Fragment>
-          );
-        }
-        const { container, user } = render(<DynamicTabs />);
-        const addButton = screen.getByTestId('add');
-        const deleteButton = screen.getByTestId('delete');
+    it('should not show scroll buttons if a tab added or removed in vertical mode', async function test() {
+      function DynamicTabs() {
+        const [value, setValue] = React.useState(0);
+        const handleChange = (event, newValue) => {
+          setValue(newValue);
+        };
+        const [tabs, setTabs] = React.useState(['item1', 'item2']);
+        return (
+          <React.Fragment>
+            <button
+              data-testid="add"
+              onClick={() => {
+                setTabs([...tabs, `item${tabs.length + 1}`]);
+              }}
+            >
+              add
+            </button>
+            <button
+              data-testid="delete"
+              onClick={() => {
+                setTabs(tabs.slice(0, tabs.length - 1));
+                setValue(0);
+              }}
+            >
+              delete
+            </button>
+            <Tabs
+              onChange={handleChange}
+              value={value}
+              orientation="vertical"
+              variant="scrollable"
+              scrollButtons
+              style={{ width: '260px' }}
+            >
+              {tabs.map((label, index) => (
+                <Tab key={`tab${index}`} label={label} />
+              ))}
+            </Tabs>
+          </React.Fragment>
+        );
+      }
+      const { container, user } = render(<DynamicTabs />);
+      const addButton = screen.getByTestId('add');
+      const deleteButton = screen.getByTestId('delete');
 
-        await user.click(addButton);
-        expect(hasLeftScrollButton(container)).to.equal(false);
-        expect(hasRightScrollButton(container)).to.equal(false);
+      await user.click(addButton);
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(false);
 
-        const tabs = screen.getAllByRole('tab');
-        const lastTab = tabs[tabs.length - 1];
-        await user.click(lastTab);
-        await pause(400);
+      const tabs = screen.getAllByRole('tab');
+      const lastTab = tabs[tabs.length - 1];
+      await user.click(lastTab);
+      await pause(400);
 
-        await user.click(deleteButton);
-        expect(hasLeftScrollButton(container)).to.equal(false);
-        expect(hasRightScrollButton(container)).to.equal(false);
-      },
-    );
+      await user.click(deleteButton);
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(false);
+    });
   });
 
   describe('scrollButton slot', () => {

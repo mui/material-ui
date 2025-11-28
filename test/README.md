@@ -119,18 +119,22 @@ Note that the test will not get executed until you start code execution in the i
 We have a dedicated task to use VS Code's integrated debugger to debug the currently opened test file.
 Open the test you want to run and press F5 (launch "Test Current File").
 
-#### Run the core mocha unit/integration test suite
+#### Run the core unit/integration test suite
 
-To run all of the unit and integration tests run `pnpm test:unit`
+To run all of the unit and integration tests run `pnpm test:unit`. You can scope down to one or more specific files with
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `pnpm t <testFilePattern>`.
+```bash
+pnpm test:unit <file name pattern>
+```
 
-#### Watch the core mocha unit/integration test suite
+If you want to `grep` for certain tests by name add `-t STRING_TO_GREP`
+
+#### Watch the core unit/integration test suite
 
 `pnpm t <testFilePattern>`
 
 First, we have the **unit test** suite.
-It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
+It uses [vitest](https://vitest.dev) and a thin wrapper around `@testing-library/react`.
 Here is an [example](https://github.com/mui/material-ui/blob/6d9f42a637184a3b3cb552d2591e2cf39653025d/packages/mui-material/src/Dialog/Dialog.test.js#L60-L69) with the `Dialog` component.
 
 Next, we have the **integration** tests. They are mostly used for components that
@@ -201,8 +205,8 @@ Checkout the [end-to-end testing readme](./e2e/README.md) for more information.
 
 When working on the visual regression tests you can run `pnpm test:regressions:dev` in the background to constantly rebuild the views used for visual regression testing.
 To actually take the screenshots you can then run `pnpm test:regressions:run`.
-You can pass the same arguments as you could to `mocha`.
-For example, `pnpm test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
+You can pass the same arguments as you could to `vitest`.
+For example, `pnpm test:regressions:run -t "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
 Alternatively, you might want to open `http://localhost:5001` (while `pnpm test:regressions:dev` is running) to view individual views separately.
