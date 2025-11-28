@@ -1910,4 +1910,48 @@ describe('<Select />', () => {
     const event = handleMouseDown.firstCall.args[0];
     expect(event.button).to.equal(0);
   });
+
+  describe('keyboard navigation in shadow DOM', () => {
+    it('should navigate between options using arrow keys when rendered in shadow DOM', async function test() {
+      if (window.navigator.userAgent.includes('jsdom')) {
+        this.skip();
+      }
+
+      // Create a shadow container
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowContainer = shadowHost.attachShadow({ mode: 'open' });
+
+      // Render directly into shadow container
+      const shadowRoot = document.createElement('div');
+      shadowContainer.appendChild(shadowRoot);
+
+      const { user } = render(
+        <Select value="" MenuProps={{ container: shadowRoot }}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+        { container: shadowRoot },
+      );
+
+      const trigger = shadowRoot.querySelector('[role="combobox"]');
+      expect(trigger).not.to.equal(null);
+
+      await act(async () => {
+        trigger.focus();
+      });
+      // Open Select
+      fireEvent.mouseDown(trigger);
+
+      const options = shadowRoot.querySelectorAll('[role="option"]');
+      expect(options.length).to.equal(3);
+
+      expect(shadowContainer.activeElement).to.equal(options[0]);
+
+      await user.keyboard('{ArrowDown}');
+
+      expect(shadowContainer.activeElement).to.equal(options[1]);
+    });
+  });
 });
