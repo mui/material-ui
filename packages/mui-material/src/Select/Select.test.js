@@ -1949,7 +1949,7 @@ describe('<Select />', () => {
 
       expect(shadowContainer.activeElement).to.equal(options[0]);
 
-      fireEvent.keyDown(options[0], {key: 'ArrowDown'})
+      fireEvent.keyDown(options[0], { key: 'ArrowDown' });
 
       expect(shadowContainer.activeElement).to.equal(options[1]);
     });
