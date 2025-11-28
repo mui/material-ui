@@ -25,7 +25,7 @@ describe('borders', () => {
   });
 
   describe('theme shape as string', () => {
-    it('should work ', () => {
+    it('should work', () => {
       const output = borders({
         borderRadius: 2,
         theme: {

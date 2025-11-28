@@ -752,7 +752,7 @@ describe('<Select />', () => {
       });
     });
 
-    it('it will fallback to its content for the accessible name when it has no name', () => {
+    it('will fallback to its content for the accessible name when it has no name', () => {
       render(<Select value="" />);
 
       // TODO what is the accessible name actually?

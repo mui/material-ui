@@ -128,14 +128,14 @@ describe('<Divider />', () => {
       expect(container.firstChild).not.to.have.class(classes.middle);
     });
 
-    describe('prop: variant="fullWidth" ', () => {
+    describe('prop: variant="fullWidth"', () => {
       it('should render with the root and default class', () => {
         const { container } = render(<Divider />);
         expect(container.firstChild).to.have.class(classes.root);
       });
     });
 
-    describe('prop: variant="inset" ', () => {
+    describe('prop: variant="inset"', () => {
       it('should set the inset class', () => {
         const { container } = render(<Divider variant="inset" />);
         expect(container.firstChild).to.have.class(classes.inset);

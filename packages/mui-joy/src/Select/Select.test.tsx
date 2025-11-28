@@ -390,7 +390,7 @@ describe('Joy <Select />', () => {
       });
     });
 
-    it('it will fallback to its content for the accessible name when it has no name', () => {
+    it('will fallback to its content for the accessible name when it has no name', () => {
       render(<Select value="" />);
 
       expect(screen.getByRole('combobox')).not.to.have.attribute('aria-labelledby');

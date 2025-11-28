@@ -1002,7 +1002,7 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should generate correct responsive styles regardless of breakpoints order ', () => {
+    it('should generate correct responsive styles regardless of breakpoints order', () => {
       const theme = createTheme();
       expect(
         generateRowGap({
@@ -1053,7 +1053,7 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should generate correct responsive styles regardless of custom breakpoints order ', () => {
+    it('should generate correct responsive styles regardless of custom breakpoints order', () => {
       const theme = createTheme({
         breakpoints: {
           keys: ['mobile', 'desktop'],
@@ -1639,7 +1639,7 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should generate responsive grid when grid item has a custom breakpoints and grid container columns are responsive ', () => {
+    it('should generate responsive grid when grid item has a custom breakpoints and grid container columns are responsive', () => {
       const theme = createTheme({
         breakpoints: {
           keys: ['mobile', 'tablet', 'desktop'],

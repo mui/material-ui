@@ -77,7 +77,7 @@ describe('<Menu /> integration', () => {
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
-  it('does not gain any focus when mounted ', () => {
+  it('does not gain any focus when mounted', () => {
     render(<ButtonMenu />);
 
     expect(screen.getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);

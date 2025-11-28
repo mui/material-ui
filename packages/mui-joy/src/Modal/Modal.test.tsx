@@ -435,7 +435,7 @@ describe('<Modal />', () => {
       clock.withFakeTimers();
 
       // Test case for https://github.com/mui/material-ui/issues/12831
-      it('should unmount the children ', () => {
+      it('should unmount the children', () => {
         function TestCase() {
           const [open, setOpen] = React.useState(true);
 

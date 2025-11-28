@@ -1365,7 +1365,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('when popup open', () => {
-    it('closes the popup if Escape is pressed ', () => {
+    it('closes the popup if Escape is pressed', () => {
       const handleClose = spy();
       render(
         <Autocomplete

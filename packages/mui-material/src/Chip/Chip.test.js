@@ -450,7 +450,7 @@ describe('<Chip />', () => {
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
     });
 
-    it('should call onClick when `space` is released ', () => {
+    it('should call onClick when `space` is released', () => {
       const handleClick = spy();
       render(<Chip onClick={handleClick} />);
       const chip = screen.getByRole('button');
@@ -463,7 +463,7 @@ describe('<Chip />', () => {
       expect(handleClick.callCount).to.equal(1);
     });
 
-    it('should call onClick when `enter` is pressed ', () => {
+    it('should call onClick when `enter` is pressed', () => {
       const handleClick = spy();
       render(<Chip onClick={handleClick} />);
       const chip = screen.getByRole('button');

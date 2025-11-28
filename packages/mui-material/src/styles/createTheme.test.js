@@ -171,7 +171,7 @@ describe('createTheme', () => {
   });
 
   describe('CSS variables', () => {
-    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided ', () => {
+    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
       const theme = createTheme({
         cssVariables: true,
         colorSchemes: { dark: true },

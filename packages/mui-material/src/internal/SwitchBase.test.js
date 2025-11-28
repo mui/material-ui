@@ -80,7 +80,7 @@ describe('<SwitchBase />', () => {
     expect(container.firstChild).to.have.class(classes.edgeStart);
   });
 
-  it('can disable the ripple ', async () => {
+  it('can disable the ripple', async () => {
     const { container } = render(
       <SwitchBase
         checkedIcon="checked"
