@@ -1,0 +1,54 @@
+<content>
+# Customizing the Material You Theme
+
+Material You components in `@mui/material-next` support theme customization through MUI's theme system.
+
+Wrap your app in a `ThemeProvider` from `@mui/material-next/styles` and provide an override for the Material You system tokens (commonly exposed on `mdSys`). Below is a minimal example demonstrating the approach.
+
+```jsx
+import * as React from 'react';
+import { ThemeProvider, createTheme } from '@mui/material-next/styles';
+import Button from '@mui/material-next/Button';
+
+const theme = createTheme({
+  // mdSys is the Material You system token container. The actual token names may evolve;
+  // check API docs for the complete, up-to-date token names.
+  mdSys: {
+    color: {
+      primary: '#6750A4',
+      onPrimary: '#FFFFFF',
+      secondary: '#0061A4',
+    },
+    shape: {
+      corner: 12,
+    },
+    // typescale, motion, elevation, etc. can also be customized here.
+  },
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Button>Custom Themed Button</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+## Tokens you can typically override
+
+* `mdSys.color` — core color tokens used by Material You components
+* `mdSys.shape` — corner radii / shape tokens
+* `mdSys.typescale` — typography scale tokens
+* `mdSys.motion` — animation/motion tokens
+* `mdSys.elevation` — elevation/shadow tokens
+
+> **Note:** The exact token names and structure may evolve as `@mui/material-next` matures. Use the package's API docs to confirm the current token names; this guide shows the common pattern and a concrete example.
+
+## Tips
+
+* Prefer `createTheme` + `ThemeProvider` so your theme composes with MUI defaults.
+* Test visual changes by previewing a few Material You components (Button, Card, Switch).
+* If you need to override very specific styles, use `sx` as a complement to theming.
+
+</content>
