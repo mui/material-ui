@@ -2,11 +2,7 @@
   "extends": "../../tsconfig.json",
   "include": ["src/**/*", "test/**/*"],
   "compilerOptions": {
-    "moduleResolution": "Bundler",
-    // Remove once:
-    // * vitest is at >= 3.2.0
-    // * https://github.com/capricorn86/happy-dom/issues/1444 is solved
-    "skipLibCheck": true
+    "moduleResolution": "Bundler"
   },
   "exclude": ["test/typescript/moduleAugmentation", "src/types/OverridableComponentAugmentation.ts"]
 }
