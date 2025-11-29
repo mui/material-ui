@@ -19,7 +19,7 @@ import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
-import { beforeEach, afterEach, beforeAll, afterAll, expect, VitestUtils } from 'vitest';
+import { beforeEach, afterEach, beforeAll, vi, expect } from 'vitest';
 import reactMajor from './reactMajor';
 
 function queryAllDescriptionsOf(baseElement: HTMLElement, element: Element): HTMLElement[] {
@@ -192,15 +192,10 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-function isVitest(vi: any) {
-  return vi != null;
-}
-
-function createVitestClock(
+function createClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: VitestUtils,
 ): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
@@ -296,81 +291,6 @@ function createVitestClock(
   };
 }
 
-function createClock(
-  defaultMode: 'fake' | 'real',
-  config: ClockConfig,
-  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
-): Clock {
-  if (isVitest(vi)) {
-    return createVitestClock(defaultMode, config, options, vi);
-  }
-
-  let clock: ReturnType<typeof useFakeTimers> | null = null;
-
-  let mode = defaultMode;
-
-  beforeEach(() => {
-    if (mode === 'fake') {
-      clock = useFakeTimers({
-        now: config,
-        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
-        // Technically we'd want to reset all modules between tests but we don't have that technology.
-        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
-        shouldClearNativeTimers: true,
-        ...options,
-      });
-    }
-  });
-
-  afterEach(() => {
-    clock?.restore();
-    clock = null;
-  });
-
-  return {
-    tick(timeoutMS: number) {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      rtlAct(() => {
-        clock!.tick(timeoutMS);
-      });
-    },
-    runAll() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      rtlAct(() => {
-        clock!.runAll();
-      });
-    },
-    runToLast() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      rtlAct(() => {
-        clock!.runToLast();
-      });
-    },
-    isReal() {
-      return setTimeout.hasOwnProperty('clock') === false;
-    },
-    withFakeTimers() {
-      beforeAll(() => {
-        mode = 'fake';
-      });
-
-      afterAll(() => {
-        mode = defaultMode;
-      });
-    },
-    restore() {
-      clock?.restore();
-    },
-  };
-}
-
 export interface Renderer {
   clock: Clock;
   render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
@@ -387,11 +307,6 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
   clockOptions?: Parameters<typeof createClock>[2];
-  /**
-   * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
-   * @default {}
-   */
-  vi?: VitestUtils;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -400,12 +315,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi as VitestUtils | undefined,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig, clockOptions, vi);
+  const clock = createClock(clockMode, clockConfig, clockOptions);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.

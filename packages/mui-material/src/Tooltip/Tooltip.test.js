@@ -10,7 +10,6 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
 } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
@@ -527,7 +526,7 @@ describe('<Tooltip />', () => {
     );
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: delay', () => {
+  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
       render(
         <Tooltip title="Hello World" enterDelay={111}>
@@ -977,7 +976,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('focus', () => {
+  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">

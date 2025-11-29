@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
@@ -85,7 +84,7 @@ describe('<Divider />', () => {
       });
     });
 
-    describeSkipIf(window.navigator.userAgent.includes('jsdom'))(
+    describe.skipIf(window.navigator.userAgent.includes('jsdom'))(
       'custom border style',
       function test() {
         const StyledDivider = styled(Divider)(() => ({

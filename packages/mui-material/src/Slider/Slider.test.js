@@ -5,7 +5,6 @@ import { expect } from 'chai';
 import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import describeConformance from '../../test/describeConformance';
 
 function createTouches(touches) {
@@ -20,7 +19,7 @@ function createTouches(touches) {
   };
 }
 
-describeSkipIf(!supportsTouch())('<Slider />', () => {
+describe.skipIf(!supportsTouch())('<Slider />', () => {
   const { render } = createRenderer();
 
   describeConformance(

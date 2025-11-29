@@ -12,7 +12,6 @@ import {
   programmaticFocusTriggersFocusVisible,
   supportsTouch,
 } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
@@ -248,7 +247,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('ripple', () => {
+  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('ripple', () => {
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
         render(
@@ -614,7 +613,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('focusRipple', () => {
+  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('focusRipple', () => {
     it('should pulsate the ripple when focusVisible', async () => {
       render(
         <ButtonBase
@@ -922,7 +921,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('event: keydown', () => {
+  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('event: keydown', () => {
     it('ripples on repeated keydowns', async () => {
       const { container } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -1183,7 +1182,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: action', () => {
+  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('prop: action', () => {
     it('should be able to focus visible the button', async () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions | null>}

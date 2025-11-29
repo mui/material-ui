@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
@@ -161,7 +160,7 @@ describe('<Fab />', () => {
     expect(renderedIconChild).to.have.class(childClassName);
   });
 
-  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
+  describe.skipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');

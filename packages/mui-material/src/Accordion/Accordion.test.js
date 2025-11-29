@@ -11,7 +11,6 @@ import Slide from '@mui/material/Slide';
 import Grow from '@mui/material/Grow';
 import Zoom from '@mui/material/Zoom';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import describeConformance from '../../test/describeConformance';
 
 function NoTransition(props) {
@@ -178,7 +177,7 @@ describe('<Accordion />', () => {
   });
 
   describe('prop: children', () => {
-    describeSkipIf(reactMajor >= 19)('first child', () => {
+    describe.skipIf(reactMajor >= 19)('first child', () => {
       beforeEach(() => {
         PropTypes.resetWarningCache();
       });

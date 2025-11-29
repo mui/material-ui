@@ -11,7 +11,6 @@ import {
   waitFor,
   flushEffects,
 } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
@@ -51,7 +50,7 @@ function hasRightScrollButton(container) {
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-describeSkipIf(isSafari)('<Tabs />', () => {
+describe.skipIf(isSafari)('<Tabs />', () => {
   const { clock, render, renderToString } = createRenderer();
 
   describeConformance(<Tabs value={0} />, () => ({
@@ -379,7 +378,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
         ]);
       });
 
-      describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('hidden tab / tabs', () => {
+      describe.skipIf(!window.navigator.userAgent.includes('jsdom'))('hidden tab / tabs', () => {
         let nodeEnv;
 
         beforeAll(function test() {
