@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { fireEvent as domFireEvent } from '@testing-library/dom';
 import {
   ErrorBoundary,
   act,
@@ -1913,7 +1912,7 @@ describe('<Select />', () => {
   });
 
   describe('keyboard navigation in shadow DOM', () => {
-    it('should navigate between options using arrow keys when rendered in shadow DOM', async function test() {
+    it('should navigate between options using arrow keys', async function test() {
       if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
@@ -1927,7 +1926,7 @@ describe('<Select />', () => {
       const shadowRoot = document.createElement('div');
       shadowContainer.appendChild(shadowRoot);
 
-      render(
+      const { user } = render(
         <Select value="" MenuProps={{ container: shadowRoot }}>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -1939,18 +1938,15 @@ describe('<Select />', () => {
       const trigger = shadowRoot.querySelector('[role="combobox"]');
       expect(trigger).not.to.equal(null);
 
-      await act(async () => {
-        trigger.focus();
-      });
       // Open Select
-      fireEvent.mouseDown(trigger);
+      await user.click(trigger);
 
       const options = shadowRoot.querySelectorAll('[role="option"]');
       expect(options.length).to.equal(3);
 
       expect(shadowContainer.activeElement).to.equal(options[0]);
 
-      domFireEvent.keyDown(options[0], { key: 'ArrowDown' });
+      await user.keyboard('{ArrowDown}');
 
       expect(shadowContainer.activeElement).to.equal(options[1]);
     });
