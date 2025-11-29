@@ -1913,6 +1913,9 @@ describe('<Select />', () => {
 
   describe('keyboard navigation in shadow DOM', () => {
     it('should navigate between options using arrow keys', async function test() {
+      // reset fake timers
+      clock.restore();
+
       if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
@@ -1926,7 +1929,7 @@ describe('<Select />', () => {
       const shadowRoot = document.createElement('div');
       shadowContainer.appendChild(shadowRoot);
 
-      const { user } = render(
+      const { unmount, user } = render(
         <Select value="" MenuProps={{ container: shadowRoot }}>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -1949,6 +1952,16 @@ describe('<Select />', () => {
       await user.keyboard('{ArrowDown}');
 
       expect(shadowContainer.activeElement).to.equal(options[1]);
+
+      await user.keyboard('{ArrowUp}');
+
+      expect(shadowContainer.activeElement).to.equal(options[0]);
+
+      // Cleanup
+      unmount();
+      if (shadowHost.parentNode) {
+        document.body.removeChild(shadowHost);
+      }
     });
   });
 });
