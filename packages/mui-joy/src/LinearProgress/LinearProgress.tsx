@@ -17,11 +17,9 @@ import {
 import useSlot from '../utils/useSlot';
 import { resolveSxValue } from '../styles/styleUtils';
 
-// TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
-//       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
 const progressKeyframe = keyframes`
   0% {
-    left: var(--_LinearProgress-progressInset);
+    inset-inline-start: var(--_LinearProgress-progressInset);
     width: var(--LinearProgress-progressMinWidth);
   }
 
@@ -30,7 +28,7 @@ const progressKeyframe = keyframes`
   }
 
   50% {
-    left: var(--_LinearProgress-progressLeft);
+    inset-inline-start: var(--_LinearProgress-progressLeft);
     width: var(--LinearProgress-progressMinWidth);
   }
 
@@ -39,7 +37,7 @@ const progressKeyframe = keyframes`
   }
 
   100% {
-    left: var(--_LinearProgress-progressInset);
+    inset-inline-start: var(--_LinearProgress-progressInset);
     width: var(--LinearProgress-progressMinWidth);
   }
 `;
@@ -126,7 +124,7 @@ const LinearProgressRoot = styled('div', {
     ownerState.determinate
       ? {
           '&::before': {
-            left: 'var(--_LinearProgress-padding)',
+            'inset-inline-start': 'var(--_LinearProgress-padding)',
             inlineSize:
               'calc(var(--LinearProgress-percent) * 1% - 2 * var(--_LinearProgress-padding))',
           },
