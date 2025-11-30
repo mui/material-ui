@@ -4,6 +4,7 @@ import * as chai from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 import { kebabCase } from 'es-toolkit/string';
+import { AssertionError } from 'assertion-error';
 import './chai.types';
 
 const isKarma = Boolean(process.env.KARMA);
@@ -315,7 +316,7 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
       const element = utils.flag(this, 'object') as HTMLElement;
       if (element?.nodeType !== 1) {
         // Same pre-condition for negated and unnegated assertion
-        throw new chai.AssertionError(`Expected an Element but got ${String(element)}`);
+        throw new AssertionError(`Expected an Element but got ${String(element)}`);
       }
 
       assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
@@ -330,7 +331,7 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
       const element = utils.flag(this, 'object') as HTMLElement;
       if (element?.nodeType !== 1) {
         // Same pre-condition for negated and unnegated  assertion
-        throw new chai.AssertionError(`Expected an Element but got ${String(element)}`);
+        throw new AssertionError(`Expected an Element but got ${String(element)}`);
       }
       const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
 

@@ -119,6 +119,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     onChange,
     onClose,
     onFocus,
+    // eslint-disable-next-line react/prop-types
+    onKeyDown,
+    // eslint-disable-next-line react/prop-types
+    onMouseDown,
     onOpen,
     open: openProp,
     readOnly,
@@ -226,6 +230,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = (event) => {
+    onMouseDown?.(event);
     // Ignore everything but left-click
     if (event.button !== 0) {
       return;
@@ -321,6 +326,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         event.preventDefault();
         update(true, event);
       }
+      onKeyDown?.(event);
     }
   };
 

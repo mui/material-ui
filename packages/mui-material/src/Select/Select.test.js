@@ -1866,4 +1866,48 @@ describe('<Select />', () => {
     expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
+
+  it('should call onKeyDown when passed', async () => {
+    const handleKeyDown = spy();
+
+    render(
+      <Select value="one" onKeyDown={handleKeyDown}>
+        <MenuItem value="one">One</MenuItem>
+        <MenuItem value="two">Two</MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    await act(async () => {
+      trigger.focus();
+    });
+
+    fireEvent.keyDown(trigger, { key: 'a' });
+
+    expect(handleKeyDown.callCount).to.equal(1);
+    const event = handleKeyDown.firstCall.args[0];
+    expect(event).to.have.property('key', 'a');
+  });
+
+  it('should call onMouseDown when passed', async () => {
+    const handleMouseDown = spy();
+
+    render(
+      <Select value="one" onMouseDown={handleMouseDown}>
+        <MenuItem value="one">One</MenuItem>
+        <MenuItem value="two">Two</MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    await act(async () => {
+      trigger.focus();
+    });
+
+    fireEvent.mouseDown(trigger);
+
+    expect(handleMouseDown.callCount).to.equal(1);
+    const event = handleMouseDown.firstCall.args[0];
+    expect(event.button).to.equal(0);
+  });
 });

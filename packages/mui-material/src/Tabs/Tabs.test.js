@@ -46,23 +46,13 @@ function hasRightScrollButton(container) {
   return !scrollButton.parentElement.classList.contains('Mui-disabled');
 }
 
-describe('<Tabs />', () => {
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+describeSkipIf(isSafari)('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
   const { clock, render, renderToString } = createRenderer();
-
-  before(function beforeHook() {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    // The test fails on Safari with just:
-    //
-    // container.scrollLeft = 200;
-    // expect(container.scrollLeft).to.equal(200); 💥
-    if (isSafari) {
-      this.skip();
-    }
-  });
 
   describeConformance(<Tabs value={0} />, () => ({
     classes,
@@ -997,7 +987,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               firstTab.focus();
             });
-
             fireEvent.keyDown(firstTab, { key: previousItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1029,7 +1018,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1061,7 +1049,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1092,7 +1079,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1124,7 +1110,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1156,7 +1141,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1188,7 +1172,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1220,7 +1203,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1251,7 +1233,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               firstTab.focus();
             });
-
             fireEvent.keyDown(firstTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
