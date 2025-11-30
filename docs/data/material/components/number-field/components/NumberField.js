@@ -25,7 +25,6 @@ function NumberField({ id: idProp, label, error, size = 'medium', ...other }) {
   }
   return (
     <BaseNumberField.Root
-      allowWheelScrub
       {...other}
       render={(props, state) => (
         <FormControl
