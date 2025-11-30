@@ -113,7 +113,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@playwright/test": "^1.56.1",
     "@types/autosuggest-highlight": "^3.2.3",
-    "@types/chai": "^5.2.2",
+    "@types/chai": "^5.2.3",
     "@types/chance": "^1.1.7",
     "@types/css-mediaquery": "^0.1.4",
     "@types/fg-loadcss": "^3.1.3",

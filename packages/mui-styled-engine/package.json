@@ -43,7 +43,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/styled-engine": "workspace:*",
-    "@types/chai": "^5.2.2",
+    "@types/chai": "^5.2.3",
     "@types/react": "^19.2.6",
     "chai": "^6.0.1",
     "react": "^19.2.0"

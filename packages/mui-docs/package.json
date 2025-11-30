@@ -37,7 +37,7 @@
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
-    "@types/chai": "^5.2.2",
+    "@types/chai": "^5.2.3",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^20.19.25",
     "@types/prop-types": "^15.7.15",
