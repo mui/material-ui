@@ -122,7 +122,7 @@
     "@types/babel__register": "^7.17.3",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.25",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "@types/yargs": "^17.0.35",
     "@vitejs/plugin-react": "^5.1.1",
     "@vvago/vale": "^3.12.0",
