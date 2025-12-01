@@ -8,14 +8,14 @@ rank: '7'
 manualCard: true
 ---
 
+# How Delivery Hero's Partner Portal streamlined development with MUI X
+
 <img
     id="blog-responsive-image"
-    src="/static/branding/companies/delivery-hero.svg"
-    alt=""
-    style="width: 30%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+    src="/static/branding/companies/headers/deliveryhero-header.png"
+    alt="Delivery Hero logo"
+    style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
-
-**Partner Since: 2020**
 
 ## Overview
 

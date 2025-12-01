@@ -17,14 +17,14 @@ manualCard: true
   }
 </style>
 
+# Tebra | Modernizing legacy reporting systems in healthcare
+
 <img
     id="blog-responsive-image"
-    src="/static/branding/companies/tebra.svg"
-    alt=""
-    style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+    src="/static/branding/companies/headers/tebra-header.png"
+    alt="Tebra logo"
+    style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
-
-**Partner Since: 2023**
 
 ## Overview
 

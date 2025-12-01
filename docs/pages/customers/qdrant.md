@@ -17,24 +17,14 @@ manualCard: true
   }
 </style>
 
-<span class="only-light-mode">
-<img
-  id="blog-responsive-image-light"
-  src="/static/branding/companies/qdrant-light.svg"
-  alt=""
-  style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
-/>
-</span>
-<span class="only-dark-mode">
-<img
-    id="blog-responsive-image-dark"
-    src="/static/branding/companies/qdrant-dark.svg"
-    alt=""
-    style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
-  />
-</span>
+# Qdrant | Accelerating feature delivery as a rising vector databse provider
 
-**Partner Since: 2022**
+<img
+  id="blog-responsive-image"
+  src="/static/branding/companies/headers/qdrant-header.png"
+  alt="Qdrant logo"
+  style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+/>
 
 ## Overview
 

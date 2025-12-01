@@ -17,14 +17,14 @@ manualCard: true
   }
 </style>
 
+# Coupa | Delivering features 50% faster with MUI Components
+
 <img
   id="blog-responsive-image-light"
-  src="/static/branding/companies/coupa.svg"
-  alt=""
-  style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+  src="/static/branding/companies/headers/coupa-header.png"
+  alt="Coupa logo"
+  style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
 />
-
-**Partner Since: 2024**
 
 ## Overview
 

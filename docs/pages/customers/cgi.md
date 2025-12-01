@@ -17,14 +17,14 @@ manualCard: true
   }
 </style>
 
+# How CGI's Techyon Project enhanced performance and usability with MUI X
+
 <img
     id="blog-responsive-image"
-    src="/static/branding/companies/cgi.svg"
-    alt=""
-    style="width: 20%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+    src="/static/branding/companies/headers/cgi-header.png"
+    alt="CGI logo"
+    style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
-
-**Partner Since: 2020**
 
 ## Overview
 

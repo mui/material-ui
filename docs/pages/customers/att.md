@@ -17,24 +17,14 @@ manualCard: true
   }
 </style>
 
-<span class="only-light-mode">
-<img
-  id="blog-responsive-image-light"
-  src="/static/branding/companies/atandt-light.svg"
-  alt=""
-  style="width: 30%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
-/>
-</span>
-<span class="only-dark-mode">
-<img
-    id="blog-responsive-image-dark"
-    src="/static/branding/companies/atandt-dark.svg"
-    alt=""
-    style="width: 30%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
-  />
-</span>
+# AT&T | Streamlining development workflows for internal tools
 
-**Partner Since: 2021**
+<img
+  id="blog-responsive-image"
+  src="/static/branding/companies/headers/atnt-header.png"
+  alt="AT&T logo"
+  style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+/>
 
 ## Overview
 

@@ -17,14 +17,14 @@ manualCard: true
   }
 </style>
 
+# How John Deere standardized UI development with MUI X
+
 <img
     id="blog-responsive-image"
-    src="/static/branding/companies/john-deere.svg"
-    alt=""
-    style="width: 20%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+    src="/static/branding/companies/headers/johndeere-header.png"
+    alt="John Deere logo"
+    style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
-
-**Partner Since: 2022**
 
 ## Overview
 
