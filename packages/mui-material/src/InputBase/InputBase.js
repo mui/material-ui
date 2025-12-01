@@ -455,14 +455,38 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   }, []);
 
   const handleClick = (event) => {
-    if (inputRef.current && event.currentTarget === event.target) {
-      inputRef.current.focus();
-    }
+  const input = inputRef.current;
 
-    if (onClick) {
-      onClick(event);
-    }
-  };
+  if (
+    input &&
+    event.currentTarget === event.target &&
+    (input.nodeName === 'INPUT' || input.nodeName === 'TEXTAREA')
+  ) {
+    const pos =
+      typeof input.selectionStart === 'number'
+        ? input.selectionStart
+        : input.value.length;
+
+    input.focus();
+
+    requestAnimationFrame(() => {
+      const restorePos =
+        pos === 0 && event.target === event.currentTarget
+          ? input.value.length
+          : pos;
+
+      if (typeof input.setSelectionRange === 'function') {
+        input.setSelectionRange(restorePos, restorePos);
+      }
+    });
+  }
+
+  if (onClick) {
+    onClick(event);
+  }
+};
+
+
   let InputComponent = inputComponent;
   let inputProps = inputPropsProp;
 
