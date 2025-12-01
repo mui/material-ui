@@ -11,7 +11,7 @@ import describeConformance from '../../test/describeConformance';
 describe('<ListItem />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItem />, () => ({
+  describeConformance(<ListItem secondaryAction="foo" />, () => ({
     classes,
     inheritComponent: 'li',
     render,
@@ -21,6 +21,7 @@ describe('<ListItem />', () => {
     testLegacyComponentsProp: true,
     slots: {
       root: {},
+      secondaryAction: { expectedClassName: classes.secondaryAction },
     },
     skip: [
       'componentsProp',
