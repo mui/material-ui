@@ -122,7 +122,7 @@ importers:
         specifier: ^20.19.25
         version: 20.19.25
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/yargs':
         specifier: ^17.0.35
@@ -555,8 +555,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/chance':
         specifier: ^1.1.7
         version: 1.1.7
@@ -582,7 +582,7 @@ importers:
         specifier: ^15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/react-dom':
         specifier: ^19.2.3
@@ -661,8 +661,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -670,7 +670,7 @@ importers:
         specifier: ^20.19.25
         version: 20.19.25
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/uuid':
         specifier: ^10.0.0
@@ -758,8 +758,8 @@ importers:
         specifier: ^1.56.1
         version: 1.56.1
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/chai-dom':
         specifier: ^1.11.3
         version: 1.11.3
@@ -773,7 +773,7 @@ importers:
         specifier: ^15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/react-dom':
         specifier: ^19.2.3
@@ -840,8 +840,8 @@ importers:
         specifier: ^7.28.0
         version: 7.28.0
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -883,8 +883,8 @@ importers:
         version: 1.41.0
     devDependencies:
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -920,8 +920,8 @@ importers:
         version: 1.30.0
     devDependencies:
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       chai:
         specifier: ^6.0.1
         version: 6.2.1
@@ -960,8 +960,8 @@ importers:
         specifier: npm:@mui/material@5.18.0
         version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.0))(@types/react@19.2.7)(react@19.2.0))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)'
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/jscodeshift':
         specifier: 0.12.0
         version: 0.12.0
@@ -1012,8 +1012,8 @@ importers:
         specifier: workspace:*
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/gtag.js':
         specifier: ^0.0.20
         version: 0.0.20
@@ -1024,7 +1024,7 @@ importers:
         specifier: ^15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       next:
         specifier: ^15.5.6
@@ -1041,8 +1041,8 @@ importers:
         version: 7.20.0
     devDependencies:
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       chai:
         specifier: ^6.0.1
         version: 6.2.1
@@ -1073,7 +1073,7 @@ importers:
         version: 19.2.0(react@19.2.0)
     devDependencies:
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
 
   packages/mui-icons-material:
@@ -1092,10 +1092,10 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1172,13 +1172,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/react-dom':
         specifier: ^19.2.3
@@ -1246,13 +1246,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/react-dom':
         specifier: ^19.2.3
@@ -1325,20 +1325,14 @@ importers:
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
-      '@testing-library/dom':
-        specifier: ^10.4.1
-        version: 10.4.1
-      '@testing-library/user-event':
-        specifier: ^14.6.1
-        version: 14.6.1(@testing-library/dom@10.4.1)
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/react-dom':
         specifier: ^19.2.3
@@ -1388,7 +1382,7 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0(@emotion/css@11.13.4)
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       next:
         specifier: ^15.5.6
@@ -1434,10 +1428,10 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1481,10 +1475,10 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1516,10 +1510,10 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1545,8 +1539,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -1610,13 +1604,13 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/sinon':
         specifier: ^17.0.4
@@ -1651,7 +1645,7 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
     publishDirectory: build
 
@@ -1680,8 +1674,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -1689,7 +1683,7 @@ importers:
         specifier: ^20.19.25
         version: 20.19.25
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/react-dom':
         specifier: ^19.2.3
@@ -1771,10 +1765,10 @@ importers:
         specifier: ^10.4.1
         version: 10.4.1
       '@types/chai':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.2.3
+        version: 5.2.3
       '@types/react':
-        specifier: ^19.2.6
+        specifier: ^19.2.7
         version: 19.2.7
       '@types/react-is':
         specifier: ^19.2.0
@@ -5351,8 +5345,8 @@ packages:
   '@types/chai-dom@1.11.3':
     resolution: {integrity: sha512-EUEZI7uID4ewzxnU7DJXtyvykhQuwe+etJ1wwOiJyQRTH/ifMWKX+ghiXkxCUvNJ6IQDodf0JXhuP6zZcy2qXQ==}
 
-  '@types/chai@5.2.2':
-    resolution: {integrity: sha512-8kB30R7Hwqf40JPiKhVzodJs2Qc1ZJ5zuT3uzw5Hq/dhNCl3G3l83jfpdI1e20BP348+fV7VIL/+FxaXkqBmWg==}
+  '@types/chai@5.2.3':
+    resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
   '@types/chance@1.1.7':
     resolution: {integrity: sha512-40you9610GTQPJyvjMBgmj9wiDO6qXhbfjizNYod/fmvLSfUUxURAJMTD8tjmbcZSsyYE5iEUox61AAcCjW/wQ==}
@@ -17179,11 +17173,12 @@ snapshots:
 
   '@types/chai-dom@1.11.3':
     dependencies:
-      '@types/chai': 5.2.2
+      '@types/chai': 5.2.3
 
-  '@types/chai@5.2.2':
+  '@types/chai@5.2.3':
     dependencies:
       '@types/deep-eql': 4.0.2
+      assertion-error: 2.0.1
 
   '@types/chance@1.1.7': {}
 
@@ -17630,7 +17625,7 @@ snapshots:
   '@vitest/expect@4.0.10':
     dependencies:
       '@standard-schema/spec': 1.0.0
-      '@types/chai': 5.2.2
+      '@types/chai': 5.2.3
       '@vitest/spy': 4.0.10
       '@vitest/utils': 4.0.10
       chai: 6.2.1
