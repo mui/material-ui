@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import ImageList, { imageListClasses as classes } from '@mui/material/ImageList';
 import describeConformance from '../../test/describeConformance';
 
@@ -90,7 +90,7 @@ describe('<ImageList />', () => {
   });
 
   describe('style attribute:', () => {
-    it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(!isJsdom())(
       'should render with default grid-template-columns and gap styles',
       function test() {
         render(<ImageList data-testid="test-root">{children}</ImageList>);
@@ -136,7 +136,7 @@ describe('<ImageList />', () => {
     });
 
     describe('prop: variant', () => {
-      it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+      it.skipIf(!isJsdom())(
         'should render with column-count and column-gap styles',
         function test() {
           render(
@@ -152,7 +152,7 @@ describe('<ImageList />', () => {
     });
 
     describe('prop: cols', () => {
-      it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
+      it.skipIf(!isJsdom())(
         'should render with modified grid-template-columns style',
         function test() {
           render(
@@ -167,22 +167,19 @@ describe('<ImageList />', () => {
         },
       );
 
-      it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-        'should render with modified column-count style',
-        function test() {
-          render(
-            <ImageList data-testid="test-root" variant="masonry" cols={4}>
-              {children}
-            </ImageList>,
-          );
+      it.skipIf(!isJsdom())('should render with modified column-count style', function test() {
+        render(
+          <ImageList data-testid="test-root" variant="masonry" cols={4}>
+            {children}
+          </ImageList>,
+        );
 
-          expect(screen.getByTestId('test-root').style['column-count']).to.equal('4');
-        },
-      );
+        expect(screen.getByTestId('test-root').style['column-count']).to.equal('4');
+      });
     });
 
     describe('prop: gap', () => {
-      it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      it.skipIf(isJsdom())(
         'should render with modified grid-template-columns style',
         function test() {
           render(
@@ -198,20 +195,17 @@ describe('<ImageList />', () => {
         },
       );
 
-      it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-        'should render with modified column-gap style',
-        function test() {
-          render(
-            <ImageList data-testid="test-root" variant="masonry" gap={8}>
-              {children}
-            </ImageList>,
-          );
+      it.skipIf(isJsdom())('should render with modified column-gap style', function test() {
+        render(
+          <ImageList data-testid="test-root" variant="masonry" gap={8}>
+            {children}
+          </ImageList>,
+        );
 
-          expect(screen.getByTestId('test-root')).toHaveComputedStyle({
-            columnGap: '8px',
-          });
-        },
-      );
+        expect(screen.getByTestId('test-root')).toHaveComputedStyle({
+          columnGap: '8px',
+        });
+      });
     });
   });
 });

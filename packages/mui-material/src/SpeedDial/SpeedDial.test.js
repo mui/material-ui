@@ -7,6 +7,7 @@ import {
   fireDiscreteEvent,
   screen,
   flushEffects,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
@@ -215,7 +216,7 @@ describe('<SpeedDial />', () => {
     });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should reset the state of the tooltip when the speed dial is closed while it is open',
       async function test() {
         const handleOpen = spy();
@@ -635,50 +636,41 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the default theme values by default',
-      function test() {
-        const theme = createTheme();
-        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-        render(<SpeedDial data-testid="speedDial" {...defaultProps} />);
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      render(<SpeedDial data-testid="speedDial" {...defaultProps} />);
 
-        const child = screen.getByTestId('speedDial').firstChild;
-        expect(child).toHaveComputedStyle({
-          transitionDuration: `${enteringScreenDurationInSeconds}s`,
-        });
-      },
-    );
+      const child = screen.getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the custom theme values',
-      function test() {
-        const theme = createTheme({
-          transitions: {
-            duration: {
-              enteringScreen: 1,
-            },
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
           },
-        });
+        },
+      });
 
-        render(
-          <ThemeProvider theme={theme}>
-            <SpeedDial data-testid="speedDial" {...defaultProps} />,
-          </ThemeProvider>,
-        );
+      render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial data-testid="speedDial" {...defaultProps} />,
+        </ThemeProvider>,
+      );
 
-        const child = screen.getByTestId('speedDial').firstChild;
-        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      },
-    );
+      const child = screen.getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the values provided via prop',
-      function test() {
-        render(<SpeedDial data-testid="speedDial" {...defaultProps} transitionDuration={1} />);
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
+      render(<SpeedDial data-testid="speedDial" {...defaultProps} transitionDuration={1} />);
 
-        const child = screen.getByTestId('speedDial').firstChild;
-        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      },
-    );
+      const child = screen.getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
   });
 });

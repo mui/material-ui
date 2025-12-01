@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
 import { ThemeProvider } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
@@ -135,19 +135,16 @@ describe('Joy <Button />', () => {
   });
 
   describe('prop:disabled', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should apply disabled styles when button is disabled',
-      function test() {
-        render(<Button disabled />);
+    it.skipIf(isJsdom())('should apply disabled styles when button is disabled', function test() {
+      render(<Button disabled />);
 
-        expect(screen.getByRole('button')).toHaveComputedStyle({
-          color: 'rgb(159, 166, 173)',
-          backgroundColor: 'rgb(240, 244, 248)',
-        });
-      },
-    );
+      expect(screen.getByRole('button')).toHaveComputedStyle({
+        color: 'rgb(159, 166, 173)',
+        backgroundColor: 'rgb(240, 244, 248)',
+      });
+    });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should apply disabled styles when button is disabled and when component prop is provided',
       function test() {
         render(<Button disabled component="a" />);
@@ -167,7 +164,7 @@ describe('Joy <Button />', () => {
       expect(screen.getByRole('button')).to.have.text('Test');
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'is rendered properly when `loading` and children should not be visible',
       function test() {
         const { container } = render(

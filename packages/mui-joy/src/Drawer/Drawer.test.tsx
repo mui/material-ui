@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 import describeConformance from '../../test/describeConformance';
@@ -65,33 +65,30 @@ describe('<Drawer />', () => {
       expect(screen.getByTestId('content').getAttribute('tabIndex')).to.equal('0');
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should apply content theme styles for content slot',
-      function test() {
-        const theme = extendTheme({
-          components: {
-            JoyDrawer: {
-              styleOverrides: {
-                content: {
-                  backgroundColor: 'var(--joy-palette-primary-500)',
-                },
+    it.skipIf(isJsdom())('should apply content theme styles for content slot', function test() {
+      const theme = extendTheme({
+        components: {
+          JoyDrawer: {
+            styleOverrides: {
+              content: {
+                backgroundColor: 'var(--joy-palette-primary-500)',
               },
             },
           },
-        });
+        },
+      });
 
-        render(
-          <CssVarsProvider theme={theme}>
-            <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
-              <span>test</span>
-            </Drawer>
-          </CssVarsProvider>,
-        );
+      render(
+        <CssVarsProvider theme={theme}>
+          <Drawer open slotProps={{ content: { 'data-testid': 'content' } }}>
+            <span>test</span>
+          </Drawer>
+        </CssVarsProvider>,
+      );
 
-        expect(screen.getByTestId('content')).toHaveComputedStyle({
-          backgroundColor: 'rgb(11, 107, 203)',
-        });
-      },
-    );
+      expect(screen.getByTestId('content')).toHaveComputedStyle({
+        backgroundColor: 'rgb(11, 107, 203)',
+      });
+    });
   });
 });

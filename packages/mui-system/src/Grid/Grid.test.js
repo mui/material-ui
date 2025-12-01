@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grid, { gridClasses as classes } from '@mui/system/Grid';
@@ -47,7 +47,7 @@ describe('System <Grid />', () => {
     });
 
     // Need full CSS resolution
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should apply the styles necessary for variable width nested item when set to auto',
       function test() {
         render(
@@ -115,46 +115,43 @@ describe('System <Grid />', () => {
   });
 
   describe('spacing', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should generate the right values',
-      function test() {
-        const parentWidth = 500;
-        const remValue = 16;
-        const remTheme = createTheme({
-          spacing: (factor) => `${0.25 * factor}rem`,
-        });
+    it.skipIf(isJsdom())('should generate the right values', function test() {
+      const parentWidth = 500;
+      const remValue = 16;
+      const remTheme = createTheme({
+        spacing: (factor) => `${0.25 * factor}rem`,
+      });
 
-        const view = render(
-          <div style={{ width: parentWidth }}>
-            <ThemeProvider theme={remTheme}>
-              <Grid data-testid="grid" container spacing={2}>
-                <Grid data-testid="first-custom-theme" />
-                <Grid />
-              </Grid>
-            </ThemeProvider>
-          </div>,
-        );
-
-        expect(screen.getByTestId('grid')).toHaveComputedStyle({
-          rowGap: `${0.5 * remValue}px`, // 0.5rem
-          columnGap: `${0.5 * remValue}px`, // 0.5rem
-        });
-
-        view.rerender(
-          <div style={{ width: parentWidth }}>
+      const view = render(
+        <div style={{ width: parentWidth }}>
+          <ThemeProvider theme={remTheme}>
             <Grid data-testid="grid" container spacing={2}>
-              <Grid data-testid="first-default-theme" />
+              <Grid data-testid="first-custom-theme" />
               <Grid />
             </Grid>
-          </div>,
-        );
+          </ThemeProvider>
+        </div>,
+      );
 
-        expect(screen.getByTestId('grid')).toHaveComputedStyle({
-          rowGap: '16px',
-          columnGap: '16px',
-        });
-      },
-    );
+      expect(screen.getByTestId('grid')).toHaveComputedStyle({
+        rowGap: `${0.5 * remValue}px`, // 0.5rem
+        columnGap: `${0.5 * remValue}px`, // 0.5rem
+      });
+
+      view.rerender(
+        <div style={{ width: parentWidth }}>
+          <Grid data-testid="grid" container spacing={2}>
+            <Grid data-testid="first-default-theme" />
+            <Grid />
+          </Grid>
+        </div>,
+      );
+
+      expect(screen.getByTestId('grid')).toHaveComputedStyle({
+        rowGap: '16px',
+        columnGap: '16px',
+      });
+    });
   });
 
   it('combines system properties with the sx prop', () => {

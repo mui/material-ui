@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
@@ -101,24 +101,21 @@ describe('<Popper />', () => {
     });
 
     // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should flip placement when edge is reached',
-      async function test() {
-        const popperRef = React.createRef();
-        render(
-          <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
-            {({ placement }) => {
-              return <div data-testid="placement">{placement}</div>;
-            }}
-          </Popper>,
-        );
-        expect(screen.getByTestId('placement')).to.have.text('bottom');
+    it.skipIf(isJsdom())('should flip placement when edge is reached', async function test() {
+      const popperRef = React.createRef();
+      render(
+        <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
+          {({ placement }) => {
+            return <div data-testid="placement">{placement}</div>;
+          }}
+        </Popper>,
+      );
+      expect(screen.getByTestId('placement')).to.have.text('bottom');
 
-        await popperRef.current.setOptions({ placement: 'top' });
+      await popperRef.current.setOptions({ placement: 'top' });
 
-        expect(screen.getByTestId('placement')).to.have.text('bottom');
-      },
-    );
+      expect(screen.getByTestId('placement')).to.have.text('bottom');
+    });
   });
 
   describe('prop: open', () => {

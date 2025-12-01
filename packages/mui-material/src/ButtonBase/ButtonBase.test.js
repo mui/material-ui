@@ -11,6 +11,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   supportsTouch,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -247,7 +248,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('ripple', () => {
+  describe.skipIf(isJsdom())('ripple', () => {
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
         render(
@@ -613,7 +614,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('focusRipple', () => {
+  describe.skipIf(isJsdom())('focusRipple', () => {
     it('should pulsate the ripple when focusVisible', async () => {
       render(
         <ButtonBase
@@ -746,22 +747,19 @@ describe('<ButtonBase />', () => {
     });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should reset the focused state',
-      function test() {
-        const { setProps } = render(<ButtonBase>Hello</ButtonBase>);
-        const button = screen.getByText('Hello');
-        simulatePointerDevice();
+    it.skipIf(isJsdom())('should reset the focused state', function test() {
+      const { setProps } = render(<ButtonBase>Hello</ButtonBase>);
+      const button = screen.getByText('Hello');
+      simulatePointerDevice();
 
-        focusVisible(button);
+      focusVisible(button);
 
-        expect(button).to.have.class(classes.focusVisible);
+      expect(button).to.have.class(classes.focusVisible);
 
-        setProps({ disabled: true });
+      setProps({ disabled: true });
 
-        expect(button).not.to.have.class(classes.focusVisible);
-      },
-    );
+      expect(button).not.to.have.class(classes.focusVisible);
+    });
 
     it('should not use aria-disabled with button host', () => {
       render(<ButtonBase disabled>Hello</ButtonBase>);
@@ -819,82 +817,76 @@ describe('<ButtonBase />', () => {
     });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'has a focus-visible polyfill',
-      async function test() {
-        render(<ButtonBase>Hello</ButtonBase>);
-        const button = screen.getByText('Hello');
-        simulatePointerDevice();
+    it.skipIf(isJsdom())('has a focus-visible polyfill', async function test() {
+      render(<ButtonBase>Hello</ButtonBase>);
+      const button = screen.getByText('Hello');
+      simulatePointerDevice();
 
-        expect(button).not.to.have.class(classes.focusVisible);
+      expect(button).not.to.have.class(classes.focusVisible);
 
-        await act(async () => {
-          button.focus();
-        });
+      await act(async () => {
+        button.focus();
+      });
 
-        if (programmaticFocusTriggersFocusVisible()) {
-          expect(button).to.have.class(classes.focusVisible);
-        } else {
-          expect(button).not.to.have.class(classes.focusVisible);
-        }
-
-        focusVisible(button);
-
+      if (programmaticFocusTriggersFocusVisible()) {
         expect(button).to.have.class(classes.focusVisible);
-      },
-    );
+      } else {
+        expect(button).not.to.have.class(classes.focusVisible);
+      }
+
+      focusVisible(button);
+
+      expect(button).to.have.class(classes.focusVisible);
+    });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'removes focus-visible if focus is re-targetted',
-      function test() {
+    it.skipIf(isJsdom())('removes focus-visible if focus is re-targetted', function test() {
+      /**
+       * @type {string[]}
+       */
+      const eventLog = [];
+      function Test() {
         /**
-         * @type {string[]}
+         * @type {React.Ref<HTMLButtonElement>}
          */
-        const eventLog = [];
-        function Test() {
-          /**
-           * @type {React.Ref<HTMLButtonElement>}
-           */
-          const focusRetargetRef = React.useRef(null);
-          return (
-            <div
-              onFocus={() => {
-                const { current: focusRetarget } = focusRetargetRef;
-                if (focusRetarget === null) {
-                  throw new TypeError('Nothing to focus. Test cannot work.');
-                }
-                focusRetarget.focus();
-              }}
+        const focusRetargetRef = React.useRef(null);
+        return (
+          <div
+            onFocus={() => {
+              const { current: focusRetarget } = focusRetargetRef;
+              if (focusRetarget === null) {
+                throw new TypeError('Nothing to focus. Test cannot work.');
+              }
+              focusRetarget.focus();
+            }}
+          >
+            <button ref={focusRetargetRef} type="button">
+              you cannot escape me
+            </button>
+            <ButtonBase
+              onBlur={() => eventLog.push('blur')}
+              onFocus={() => eventLog.push('focus')}
+              onFocusVisible={() => eventLog.push('focus-visible')}
             >
-              <button ref={focusRetargetRef} type="button">
-                you cannot escape me
-              </button>
-              <ButtonBase
-                onBlur={() => eventLog.push('blur')}
-                onFocus={() => eventLog.push('focus')}
-                onFocusVisible={() => eventLog.push('focus-visible')}
-              >
-                Hello
-              </ButtonBase>
-            </div>
-          );
-        }
-        render(<Test />);
-        const buttonBase = screen.getByText('Hello');
-        const focusRetarget = screen.getByText('you cannot escape me');
-        simulatePointerDevice();
+              Hello
+            </ButtonBase>
+          </div>
+        );
+      }
+      render(<Test />);
+      const buttonBase = screen.getByText('Hello');
+      const focusRetarget = screen.getByText('you cannot escape me');
+      simulatePointerDevice();
 
-        focusVisible(buttonBase);
+      focusVisible(buttonBase);
 
-        expect(focusRetarget).toHaveFocus();
-        expect(eventLog).to.deep.equal(['focus-visible', 'focus', 'blur']);
-        expect(buttonBase).not.to.have.class(classes.focusVisible);
-      },
-    );
+      expect(focusRetarget).toHaveFocus();
+      expect(eventLog).to.deep.equal(['focus-visible', 'focus', 'blur']);
+      expect(buttonBase).not.to.have.class(classes.focusVisible);
+    });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'onFocusVisibleHandler() should propagate call to onFocusVisible prop',
       function test() {
         const onFocusVisibleSpy = spy();
@@ -921,7 +913,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('event: keydown', () => {
+  describe.skipIf(isJsdom())('event: keydown', () => {
     it('ripples on repeated keydowns', async () => {
       const { container } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -1182,7 +1174,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('prop: action', () => {
+  describe.skipIf(isJsdom())('prop: action', () => {
     it('should be able to focus visible the button', async () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions | null>}
@@ -1214,30 +1206,27 @@ describe('<ButtonBase />', () => {
     });
 
     // Only run the test on node. On the browser the thrown error is not caught
-    it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-      'warns on invalid `component` prop: ref forward',
-      function test() {
-        /**
-         *
-         * @param {import('react').HTMLAttributes<HTMLButtonElement>} props
-         */
-        function Component(props) {
-          return <button type="button" {...props} />;
-        }
+    it.skipIf(!isJsdom())('warns on invalid `component` prop: ref forward', function test() {
+      /**
+       *
+       * @param {import('react').HTMLAttributes<HTMLButtonElement>} props
+       */
+      function Component(props) {
+        return <button type="button" {...props} />;
+      }
 
-        expect(() => {
-          PropTypes.checkPropTypes(
-            // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
-            ButtonBase.propTypes,
-            { classes: {}, component: Component },
-            'prop',
-            'MockedName',
-          );
-        }).toErrorDev(
-          'Invalid prop `component` supplied to `MockedName`. Expected an element type that can hold a ref',
+      expect(() => {
+        PropTypes.checkPropTypes(
+          // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
+          ButtonBase.propTypes,
+          { classes: {}, component: Component },
+          'prop',
+          'MockedName',
         );
-      },
-    );
+      }).toErrorDev(
+        'Invalid prop `component` supplied to `MockedName`. Expected an element type that can hold a ref',
+      );
+    });
   });
 
   describe('prop: type', () => {
@@ -1290,7 +1279,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('form attributes', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should not set default type when formAction is present',
       async function test() {
         const formActionSpy = spy();

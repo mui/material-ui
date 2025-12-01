@@ -4,6 +4,7 @@ import {
   createRenderer,
   strictModeDoubleLoggingSuppressed,
   screen,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Paper, { paperClasses as classes } from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -115,7 +116,7 @@ describe('<Paper />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+  it.skipIf(isJsdom())(
     'should have no boxShadow or background-image on Paper with elevation 0 in dark mode using CSS variables',
     function test() {
       const theme = createTheme({

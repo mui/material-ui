@@ -7,6 +7,7 @@ import {
   fireEvent,
   screen,
   programmaticFocusTriggersFocusVisible,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -540,27 +541,24 @@ describe('<MenuList> integration', () => {
     });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should not get focusVisible class on click',
-      async function test() {
-        const { user } = render(
-          <MenuList>
-            <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>
-          </MenuList>,
-        );
+    it.skipIf(isJsdom())('should not get focusVisible class on click', async function test() {
+      const { user } = render(
+        <MenuList>
+          <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>
+        </MenuList>,
+      );
 
-        const menuitem = screen.getByText('Arizona');
+      const menuitem = screen.getByText('Arizona');
 
-        await user.click(menuitem);
+      await user.click(menuitem);
 
-        expect(menuitem).toHaveFocus();
-        if (programmaticFocusTriggersFocusVisible()) {
-          expect(menuitem).to.have.class('focus-visible');
-        } else {
-          expect(menuitem).not.to.have.class('focus-visible');
-        }
-      },
-    );
+      expect(menuitem).toHaveFocus();
+      if (programmaticFocusTriggersFocusVisible()) {
+        expect(menuitem).to.have.class('focus-visible');
+      } else {
+        expect(menuitem).not.to.have.class('focus-visible');
+      }
+    });
 
     it('should not move focus when no match', () => {
       render(

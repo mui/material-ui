@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import NotchedOutline from './NotchedOutline';
 
@@ -54,7 +54,7 @@ describe('<NotchedOutline />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+  it.skipIf(isJsdom())(
     'should not set padding (notch) for empty, null or undefined label props',
     function test() {
       const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };

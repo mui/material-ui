@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import NativeSelect, { nativeSelectClasses as classes } from '@mui/material/NativeSelect';
 import Input, { inputClasses } from '@mui/material/Input';
@@ -63,32 +63,29 @@ describe('<NativeSelect />', () => {
     expect(screen.getByRole('combobox')).to.have.class(classes.select);
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'slots overrides should work',
-    function test() {
-      const iconStyle = {
-        marginTop: '13px',
-      };
+  it.skipIf(isJsdom())('slots overrides should work', function test() {
+    const iconStyle = {
+      marginTop: '13px',
+    };
 
-      const theme = createTheme({
-        components: {
-          MuiNativeSelect: {
-            styleOverrides: {
-              icon: iconStyle,
-            },
+    const theme = createTheme({
+      components: {
+        MuiNativeSelect: {
+          styleOverrides: {
+            icon: iconStyle,
           },
         },
-      });
+      },
+    });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <NativeSelect {...defaultProps} />
-        </ThemeProvider>,
-      );
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <NativeSelect {...defaultProps} />
+      </ThemeProvider>,
+    );
 
-      expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
-    },
-  );
+    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
+  });
 
   it('styled NativeSelect with custom input should not overwritten className', () => {
     const StyledSelect = styled(NativeSelect)({});

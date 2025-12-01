@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -210,41 +210,36 @@ describe('<Rating />', () => {
     expect(view.container.querySelector('.customized')).to.have.tagName('label');
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'should apply labelEmptyValueActive styles from theme',
-    function test() {
-      const theme = createTheme({
-        components: {
-          MuiRating: {
-            styleOverrides: {
-              labelEmptyValueActive: {
-                height: '120px',
-              },
+  it.skipIf(isJsdom())('should apply labelEmptyValueActive styles from theme', function test() {
+    const theme = createTheme({
+      components: {
+        MuiRating: {
+          styleOverrides: {
+            labelEmptyValueActive: {
+              height: '120px',
             },
           },
         },
-      });
-      const view = render(
-        <ThemeProvider theme={theme}>
-          <Rating value={null} />
-        </ThemeProvider>,
-      );
+      },
+    });
+    const view = render(
+      <ThemeProvider theme={theme}>
+        <Rating value={null} />
+      </ThemeProvider>,
+    );
 
-      act(() => {
-        const noValueRadio = screen.getAllByRole('radio').find((radio) => {
-          return radio.checked;
-        });
-
-        noValueRadio.focus();
+    act(() => {
+      const noValueRadio = screen.getAllByRole('radio').find((radio) => {
+        return radio.checked;
       });
 
-      expect(view.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle(
-        {
-          height: '120px',
-        },
-      );
-    },
-  );
+      noValueRadio.focus();
+    });
+
+    expect(view.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
+      height: '120px',
+    });
+  });
 
   // Internal test that only applies if Rating is implemented using `input[type"radio"]`
   // It ensures that keyboard navigation for Arrow and TAB keys is handled by the browser
@@ -304,7 +299,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('<form> integration', () => {
+  describe.skipIf(isJsdom())('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },

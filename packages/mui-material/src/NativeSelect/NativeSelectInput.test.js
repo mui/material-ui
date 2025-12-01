@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import NativeSelectInput from './NativeSelectInput';
 import nativeSelectClasses from './nativeSelectClasses';
@@ -71,7 +71,7 @@ describe('<NativeSelectInput />', () => {
   });
 
   describe('prop: multiple', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should be able to override `multiple` rule name in `select` slot',
       function test() {
         const selectStyle = {
@@ -113,7 +113,7 @@ describe('<NativeSelectInput />', () => {
   });
 
   describe('theme styleOverrides:', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should override with error style when `select` has `error` state',
       function test() {
         const iconStyle = { color: 'rgb(255, 0, 0)' };

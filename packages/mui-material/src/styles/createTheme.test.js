@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
@@ -14,7 +14,7 @@ import createPalette from './createPalette';
 const lightPalette = createPalette({ mode: 'light' });
 const darkPalette = createPalette({ mode: 'dark' });
 
-const isJSDOM = window.navigator.userAgent.includes('jsdom');
+const isJSDOM = isJsdom();
 
 describe('createTheme', () => {
   const { render } = createRenderer();

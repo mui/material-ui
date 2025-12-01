@@ -2,7 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen, reactMajor } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  reactMajor,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -695,7 +702,7 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should render correct border color with `ThemeProvider` imported from `@emotion/react`',
       function test() {
         const theme = createTheme({

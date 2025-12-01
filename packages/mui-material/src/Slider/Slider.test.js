@@ -2,7 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  supportsTouch,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 import describeConformance from '../../test/describeConformance';
@@ -589,7 +596,7 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     });
 
     // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should not respond to drag events after becoming disabled',
       function test() {
         const { setProps, container } = render(<Slider defaultValue={0} />);
@@ -625,20 +632,17 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     );
 
     // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'is not focused (visibly) after becoming disabled',
-      function test() {
-        const { setProps } = render(<Slider defaultValue={0} />);
+    it.skipIf(isJsdom())('is not focused (visibly) after becoming disabled', function test() {
+      const { setProps } = render(<Slider defaultValue={0} />);
 
-        const thumb = screen.getByRole('slider');
-        act(() => {
-          thumb.focus();
-        });
-        setProps({ disabled: true });
-        expect(thumb).not.toHaveFocus();
-        expect(thumb).not.to.have.class(classes.focusVisible);
-      },
-    );
+      const thumb = screen.getByRole('slider');
+      act(() => {
+        thumb.focus();
+      });
+      setProps({ disabled: true });
+      expect(thumb).not.toHaveFocus();
+      expect(thumb).not.to.have.class(classes.focusVisible);
+    });
 
     it('should be customizable in the theme', () => {
       const theme = createTheme({
@@ -1634,69 +1638,63 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'marked slider should be customizable in the theme',
-    function test() {
-      const theme = createTheme({
-        components: {
-          MuiSlider: {
-            styleOverrides: {
-              marked: {
-                marginTop: 40,
-                marginBottom: 0,
-              },
+  it.skipIf(isJsdom())('marked slider should be customizable in the theme', function test() {
+    const theme = createTheme({
+      components: {
+        MuiSlider: {
+          styleOverrides: {
+            marked: {
+              marginTop: 40,
+              marginBottom: 0,
             },
           },
         },
-      });
+      },
+    });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Slider
-            marks={[
-              { label: '1', value: 1 },
-              { label: '2', value: 2 },
-            ]}
-            step={null}
-          />
-        </ThemeProvider>,
-      );
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Slider
+          marks={[
+            { label: '1', value: 1 },
+            { label: '2', value: 2 },
+          ]}
+          step={null}
+        />
+      </ThemeProvider>,
+    );
 
-      expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
-        marginTop: '40px',
-        marginBottom: '0px',
-      });
-    },
-  );
+    expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
+      marginTop: '40px',
+      marginBottom: '0px',
+    });
+  });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'active marks should be customizable in theme',
-    function test() {
-      const theme = createTheme({
-        components: {
-          MuiSlider: {
-            styleOverrides: {
-              markActive: {
-                height: '10px',
-                width: '10px',
-              },
+  it.skipIf(isJsdom())('active marks should be customizable in theme', function test() {
+    const theme = createTheme({
+      components: {
+        MuiSlider: {
+          styleOverrides: {
+            markActive: {
+              height: '10px',
+              width: '10px',
             },
           },
         },
-      });
+      },
+    });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Slider value={2} min={1} max={3} step={1} marks />
-        </ThemeProvider>,
-      );
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Slider value={2} min={1} max={3} step={1} marks />
+      </ThemeProvider>,
+    );
 
-      expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
-        height: '10px',
-        width: '10px',
-      });
-    },
-  );
+    expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
+      height: '10px',
+      width: '10px',
+    });
+  });
 
   describe('When the onMouseUp event occurs at a different location than the last onChange event', () => {
     it('should pass onChangeCommitted the same value that was passed to the last onChange event', () => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -510,7 +510,7 @@ describe('Joy <Select />', () => {
 
   describe('form submission', () => {
     // FormData is not available in JSDOM
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'includes the Select value in the submitted form data when the `name` attribute is provided',
       function test() {
         let isEventHandled = false;
@@ -542,7 +542,7 @@ describe('Joy <Select />', () => {
     );
 
     // FormData is not available in JSDOM
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'transforms the selected value before posting using the getSerializedValue prop, if provided',
       function test() {
         let isEventHandled = false;
@@ -581,44 +581,41 @@ describe('Joy <Select />', () => {
     );
 
     // FormData is not available in JSDOM
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'formats the object values as JSON before posting',
-      function test() {
-        let isEventHandled = false;
+    it.skipIf(isJsdom())('formats the object values as JSON before posting', function test() {
+      let isEventHandled = false;
 
-        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-          event.preventDefault();
-          const formData = new FormData(event.currentTarget);
-          expect(formData.get('test-select')).to.equal('{"firstName":"Olivia"}');
-          isEventHandled = true;
-        };
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('{"firstName":"Olivia"}');
+        isEventHandled = true;
+      };
 
-        const options = [
-          { value: { firstName: 'Alice' }, label: 'Alice' },
-          { value: { firstName: 'Olivia' }, label: 'Olivia' },
-        ];
+      const options = [
+        { value: { firstName: 'Alice' }, label: 'Alice' },
+        { value: { firstName: 'Olivia' }, label: 'Olivia' },
+      ];
 
-        render(
-          <form onSubmit={handleSubmit}>
-            <Select defaultValue={options[1].value} name="test-select">
-              {options.map((o) => (
-                <Option key={o.value.firstName} value={o.value}>
-                  {o.label}
-                </Option>
-              ))}
-            </Select>
-            <button type="submit">Submit</button>
-          </form>,
-        );
+      render(
+        <form onSubmit={handleSubmit}>
+          <Select defaultValue={options[1].value} name="test-select">
+            {options.map((o) => (
+              <Option key={o.value.firstName} value={o.value}>
+                {o.label}
+              </Option>
+            ))}
+          </Select>
+          <button type="submit">Submit</button>
+        </form>,
+      );
 
-        const button = screen.getByText('Submit');
-        act(() => {
-          button.click();
-        });
+      const button = screen.getByText('Submit');
+      act(() => {
+        button.click();
+      });
 
-        expect(isEventHandled).to.equal(true);
-      },
-    );
+      expect(isEventHandled).to.equal(true);
+    });
   });
 
   it('should show dropdown if the children of the select button is clicked', () => {

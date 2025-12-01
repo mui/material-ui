@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import SvgIcon, {
   svgIconClasses as classes,
@@ -149,7 +149,7 @@ describe('<SvgIcon />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+  it.skipIf(isJsdom())(
     'should not override internal ownerState with the ownerState passed to the icon',
     function test() {
       const { container } = render(
@@ -160,31 +160,25 @@ describe('<SvgIcon />', () => {
     },
   );
 
-  it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-    'should have `fill="currentColor"`',
-    function test() {
-      const { container } = render(
-        <SvgIcon>
+  it.skipIf(!isJsdom())('should have `fill="currentColor"`', function test() {
+    const { container } = render(
+      <SvgIcon>
+        <path />
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
+  });
+
+  it.skipIf(!isJsdom())('should not add `fill` if svg is a direct child', function test() {
+    const { container } = render(
+      <SvgIcon>
+        <svg>
           <path />
-        </SvgIcon>,
-      );
+        </svg>
+      </SvgIcon>,
+    );
 
-      expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
-    },
-  );
-
-  it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-    'should not add `fill` if svg is a direct child',
-    function test() {
-      const { container } = render(
-        <SvgIcon>
-          <svg>
-            <path />
-          </svg>
-        </SvgIcon>,
-      );
-
-      expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
-    },
-  );
+    expect(container.firstChild).not.toHaveComputedStyle({ fill: 'currentColor' });
+  });
 });

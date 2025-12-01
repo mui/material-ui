@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
@@ -103,26 +103,23 @@ describe('<Fab />', () => {
   });
 
   // JSDOM doesn't support :focus-visible
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'should have a focusRipple',
-    async function test() {
-      render(
-        <Fab
-          TouchRippleProps={{
-            classes: { ripplePulsate: 'pulsate-focus-visible' },
-          }}
-        >
-          Fab
-        </Fab>,
-      );
+  it.skipIf(isJsdom())('should have a focusRipple', async function test() {
+    render(
+      <Fab
+        TouchRippleProps={{
+          classes: { ripplePulsate: 'pulsate-focus-visible' },
+        }}
+      >
+        Fab
+      </Fab>,
+    );
 
-      const button = screen.getByRole('button');
+    const button = screen.getByRole('button');
 
-      await ripple.startFocus(button);
+    await ripple.startFocus(button);
 
-      expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
-    },
-  );
+    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+  });
 
   it('should pass disableFocusRipple to ButtonBase', async () => {
     render(
@@ -160,7 +157,7 @@ describe('<Fab />', () => {
     expect(renderedIconChild).to.have.class(childClassName);
   });
 
-  describe.skipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
+  describe.skipIf(!isJsdom())('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { CssVarsProvider, ThemeProvider, styled, extendTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
@@ -8,71 +8,62 @@ const toPixel = (val: string | number | undefined) => (typeof val === 'number' ?
 describe('[Joy] styled', () => {
   const { render } = createRenderer();
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'use defaultTheme given no ThemeProvider',
-    function test() {
-      const Text = styled('div')(({ theme }) => ({
-        borderRadius: theme.vars.radius.md,
-      }));
+  it.skipIf(isJsdom())('use defaultTheme given no ThemeProvider', function test() {
+    const Text = styled('div')(({ theme }) => ({
+      borderRadius: theme.vars.radius.md,
+    }));
 
-      const { container } = render(<Text />);
+    const { container } = render(<Text />);
 
-      expect(container.firstChild).toHaveComputedStyle({
-        borderTopLeftRadius: toPixel(defaultTheme.radius.md),
-        borderTopRightRadius: toPixel(defaultTheme.radius.md),
-        borderBottomRightRadius: toPixel(defaultTheme.radius.md),
-        borderBottomLeftRadius: toPixel(defaultTheme.radius.md),
-      });
-    },
-  );
+    expect(container.firstChild).toHaveComputedStyle({
+      borderTopLeftRadius: toPixel(defaultTheme.radius.md),
+      borderTopRightRadius: toPixel(defaultTheme.radius.md),
+      borderBottomRightRadius: toPixel(defaultTheme.radius.md),
+      borderBottomLeftRadius: toPixel(defaultTheme.radius.md),
+    });
+  });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'use theme from ThemeProvider',
-    function test() {
-      const Text = styled('div')(({ theme }) => ({
-        borderRadius: theme.vars.radius.md,
-      }));
+  it.skipIf(isJsdom())('use theme from ThemeProvider', function test() {
+    const Text = styled('div')(({ theme }) => ({
+      borderRadius: theme.vars.radius.md,
+    }));
 
-      const { container } = render(
-        <ThemeProvider theme={{ radius: { md: '50%' } }}>
-          <Text />
-        </ThemeProvider>,
-      );
+    const { container } = render(
+      <ThemeProvider theme={{ radius: { md: '50%' } }}>
+        <Text />
+      </ThemeProvider>,
+    );
 
-      expect(container.firstChild).toHaveComputedStyle({
-        borderTopLeftRadius: '50%',
-        borderTopRightRadius: '50%',
-        borderBottomRightRadius: '50%',
-        borderBottomLeftRadius: '50%',
-      });
-    },
-  );
+    expect(container.firstChild).toHaveComputedStyle({
+      borderTopLeftRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+      borderBottomLeftRadius: '50%',
+    });
+  });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'supports unstable_sx in the theme callback',
-    function test() {
-      const customTheme = extendTheme({
-        colorSchemes: {
-          light: {
-            palette: {
-              primary: {
-                plainColor: 'rgb(255, 0, 0)',
-              },
+  it.skipIf(isJsdom())('supports unstable_sx in the theme callback', function test() {
+    const customTheme = extendTheme({
+      colorSchemes: {
+        light: {
+          palette: {
+            primary: {
+              plainColor: 'rgb(255, 0, 0)',
             },
           },
         },
-      });
-      const Text = styled('div')(({ theme }) => theme.unstable_sx({ color: 'primary.plainColor' }));
+      },
+    });
+    const Text = styled('div')(({ theme }) => theme.unstable_sx({ color: 'primary.plainColor' }));
 
-      const { container } = render(
-        <CssVarsProvider theme={customTheme}>
-          <Text>Text</Text>
-        </CssVarsProvider>,
-      );
+    const { container } = render(
+      <CssVarsProvider theme={customTheme}>
+        <Text>Text</Text>
+      </CssVarsProvider>,
+    );
 
-      expect(container.firstChild).toHaveComputedStyle({
-        color: 'rgb(255, 0, 0)',
-      });
-    },
-  );
+    expect(container.firstChild).toHaveComputedStyle({
+      color: 'rgb(255, 0, 0)',
+    });
+  });
 });

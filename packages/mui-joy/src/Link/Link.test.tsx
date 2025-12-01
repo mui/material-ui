@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
@@ -75,25 +75,22 @@ describe('<Link />', () => {
 
   describe('keyboard focus', () => {
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should add the focusVisible class when focused',
-      function test() {
-        const { container } = render(<Link href="/">Home</Link>);
-        const anchor = container.querySelector('a');
+    it.skipIf(isJsdom())('should add the focusVisible class when focused', function test() {
+      const { container } = render(<Link href="/">Home</Link>);
+      const anchor = container.querySelector('a');
 
-        expect(anchor).not.to.have.class(classes.focusVisible);
+      expect(anchor).not.to.have.class(classes.focusVisible);
 
-        focusVisible(anchor);
+      focusVisible(anchor);
 
-        expect(anchor).to.have.class(classes.focusVisible);
+      expect(anchor).to.have.class(classes.focusVisible);
 
-        act(() => {
-          anchor?.blur();
-        });
+      act(() => {
+        anchor?.blur();
+      });
 
-        expect(anchor).not.to.have.class(classes.focusVisible);
-      },
-    );
+      expect(anchor).not.to.have.class(classes.focusVisible);
+    });
   });
 
   describe('prop: variant', () => {

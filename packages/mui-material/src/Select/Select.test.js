@@ -21,6 +21,7 @@ import { listClasses } from '@mui/material/List';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
+import { isJsdom } from '@mui/internal-test-utils/env';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -891,7 +892,7 @@ describe('<Select />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/38700
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should merge `slotProps.paper` with the default Paper props',
       function test() {
         render(
@@ -976,7 +977,7 @@ describe('<Select />', () => {
       expect(screen.getByRole('combobox')).to.have.text('Ten');
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should notch the outline to accommodate the label when displayEmpty',
       function test() {
         const { container } = render(
@@ -1239,34 +1240,30 @@ describe('<Select />', () => {
       // can't catch render errors in the browser for unknown reason
       // tried try-catch + error boundary + window onError preventDefault
       // TODO is this fixed?
-      it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-        'should throw if non array',
-        function test() {
-          const errorRef = React.createRef();
-          expect(() => {
-            render(
-              <ErrorBoundary ref={errorRef}>
-                <Select multiple value="10,20">
-                  <MenuItem value="10">Ten</MenuItem>
-                  <MenuItem value="20">Twenty</MenuItem>
-                  <MenuItem value="30">Thirty</MenuItem>
-                </Select>
-              </ErrorBoundary>,
-            );
-          }).toErrorDev([
-            'MUI: The `value` prop must be an array',
-            // React 18 Strict Effects run mount effects twice
-            reactMajor === 18 && 'MUI: The `value` prop must be an array',
-            reactMajor < 19 &&
-              'The above error occurred in the <ForwardRef(SelectInput)> component',
-          ]);
-          const {
-            current: { errors },
-          } = errorRef;
-          expect(errors).to.have.length(1);
-          expect(errors[0].toString()).to.include('MUI: The `value` prop must be an array');
-        },
-      );
+      it.skipIf(!isJsdom())('should throw if non array', function test() {
+        const errorRef = React.createRef();
+        expect(() => {
+          render(
+            <ErrorBoundary ref={errorRef}>
+              <Select multiple value="10,20">
+                <MenuItem value="10">Ten</MenuItem>
+                <MenuItem value="20">Twenty</MenuItem>
+                <MenuItem value="30">Thirty</MenuItem>
+              </Select>
+            </ErrorBoundary>,
+          );
+        }).toErrorDev([
+          'MUI: The `value` prop must be an array',
+          // React 18 Strict Effects run mount effects twice
+          reactMajor === 18 && 'MUI: The `value` prop must be an array',
+          reactMajor < 19 && 'The above error occurred in the <ForwardRef(SelectInput)> component',
+        ]);
+        const {
+          current: { errors },
+        } = errorRef;
+        expect(errors).to.have.length(1);
+        expect(errors[0].toString()).to.include('MUI: The `value` prop must be an array');
+      });
     });
 
     describe('prop: onChange', () => {
@@ -1331,7 +1328,7 @@ describe('<Select />', () => {
       expect(container.querySelector(`.${classes.select}`)).to.have.class(classes.multiple);
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should be able to override `multiple` rule name in `select` slot',
       function test() {
         const selectStyle = {
@@ -1505,35 +1502,32 @@ describe('<Select />', () => {
   });
 
   // see https://github.com/jsdom/jsdom/issues/123
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'should support native form validation',
-    function test() {
-      const handleSubmit = spy((event) => {
-        event.preventDefault();
-      });
-      function Form(props) {
-        return (
-          <form onSubmit={handleSubmit}>
-            <Select required name="country" {...props}>
-              <MenuItem value="" />
-              <MenuItem value="france">France</MenuItem>
-              <MenuItem value="germany">Germany</MenuItem>
-              <MenuItem value="china">China</MenuItem>
-            </Select>
-            <button type="submit" />
-          </form>
-        );
-      }
-      const { container, setProps } = render(<Form value="" />);
+  it.skipIf(isJsdom())('should support native form validation', function test() {
+    const handleSubmit = spy((event) => {
+      event.preventDefault();
+    });
+    function Form(props) {
+      return (
+        <form onSubmit={handleSubmit}>
+          <Select required name="country" {...props}>
+            <MenuItem value="" />
+            <MenuItem value="france">France</MenuItem>
+            <MenuItem value="germany">Germany</MenuItem>
+            <MenuItem value="china">China</MenuItem>
+          </Select>
+          <button type="submit" />
+        </form>
+      );
+    }
+    const { container, setProps } = render(<Form value="" />);
 
-      fireEvent.click(container.querySelector('button[type=submit]'));
-      expect(handleSubmit.callCount).to.equal(0, 'the select is empty it should disallow submit');
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(0, 'the select is empty it should disallow submit');
 
-      setProps({ value: 'france' });
-      fireEvent.click(container.querySelector('button[type=submit]'));
-      expect(handleSubmit.callCount).to.equal(1);
-    },
-  );
+    setProps({ value: 'france' });
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(1);
+  });
 
   it('should programmatically focus the select', () => {
     render(
@@ -1588,67 +1582,62 @@ describe('<Select />', () => {
     expect(handleChange.callCount).to.equal(0);
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'slots overrides should work',
-    function test() {
-      const rootStyle = {
-        marginTop: '15px',
-      };
+  it.skipIf(isJsdom())('slots overrides should work', function test() {
+    const rootStyle = {
+      marginTop: '15px',
+    };
 
-      const iconStyle = {
-        marginTop: '13px',
-      };
+    const iconStyle = {
+      marginTop: '13px',
+    };
 
-      const nativeInputStyle = {
-        marginTop: '10px',
-      };
+    const nativeInputStyle = {
+      marginTop: '10px',
+    };
 
-      const selectStyle = {
-        marginLeft: '10px',
-        marginTop: '12px',
-      };
+    const selectStyle = {
+      marginLeft: '10px',
+      marginTop: '12px',
+    };
 
-      const multipleStyle = {
-        marginTop: '14px',
-      };
+    const multipleStyle = {
+      marginTop: '14px',
+    };
 
-      const theme = createTheme({
-        components: {
-          MuiSelect: {
-            styleOverrides: {
-              root: rootStyle,
-              select: selectStyle,
-              icon: iconStyle,
-              nativeInput: nativeInputStyle,
-              multiple: multipleStyle,
-            },
+    const theme = createTheme({
+      components: {
+        MuiSelect: {
+          styleOverrides: {
+            root: rootStyle,
+            select: selectStyle,
+            icon: iconStyle,
+            nativeInput: nativeInputStyle,
+            multiple: multipleStyle,
           },
         },
-      });
+      },
+    });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Select open value="first" data-testid="select">
-            <MenuItem value="first" />
-            <MenuItem value="second" />
-          </Select>
-        </ThemeProvider>,
-      );
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Select open value="first" data-testid="select">
+          <MenuItem value="first" />
+          <MenuItem value="second" />
+        </Select>
+      </ThemeProvider>,
+    );
 
-      expect(screen.getByTestId('select')).toHaveComputedStyle(rootStyle);
-      expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
-      expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
-        nativeInputStyle,
-      );
-      expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(
-        selectStyle,
-      );
-    },
-  );
+    expect(screen.getByTestId('select')).toHaveComputedStyle(rootStyle);
+    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
+    expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
+      nativeInputStyle,
+    );
+    expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
+  });
 
   describe('form submission', () => {
     // FormData is not available in JSDOM
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'includes Select value in formData only if the `name` attribute is provided',
       async function test() {
         const handleSubmit = (event) => {
@@ -1683,7 +1672,7 @@ describe('<Select />', () => {
   });
 
   describe('theme styleOverrides:', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should override with error style when `native select` has `error` state',
       function test() {
         const iconStyle = { color: 'rgb(255, 0, 0)' };
@@ -1714,7 +1703,7 @@ describe('<Select />', () => {
       },
     );
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should override with error style when `select` has `error` state',
       function test() {
         const iconStyle = { color: 'rgb(255, 0, 0)' };
@@ -1906,13 +1895,9 @@ describe('<Select />', () => {
   });
 
   describe('keyboard navigation in shadow DOM', () => {
-    it('should navigate between options using arrow keys', async function test() {
+    it.skipIf(isJsdom())('should navigate between options using arrow keys', async function test() {
       // reset fake timers
       clock.restore();
-
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
 
       // Create a shadow container
       const shadowHost = document.createElement('div');

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/material/ListItemButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -54,25 +54,22 @@ describe('<ListItemButton />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'prop: focusVisibleClassName',
-    () => {
-      it('should merge the class names', async () => {
-        render(<ListItemButton focusVisibleClassName="focusVisibleClassName" />);
+  describe.skipIf(isJsdom())('prop: focusVisibleClassName', () => {
+    it('should merge the class names', async () => {
+      render(<ListItemButton focusVisibleClassName="focusVisibleClassName" />);
 
-        const button = screen.getByRole('button');
+      const button = screen.getByRole('button');
 
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
 
-        await act(async () => {
-          button.focus();
-        });
-
-        expect(button).to.have.class('focusVisibleClassName');
-        expect(button).to.have.class(classes.focusVisible);
+      await act(async () => {
+        button.focus();
       });
-    },
-  );
+
+      expect(button).to.have.class('focusVisibleClassName');
+      expect(button).to.have.class(classes.focusVisible);
+    });
+  });
 
   describe('prop: href', () => {
     const href = 'example.com';

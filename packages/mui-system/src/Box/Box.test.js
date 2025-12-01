@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { Box, ThemeProvider, boxClasses as classes } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import describeConformance from '../../test/describeConformance';
-
-const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
 describe('<Box />', () => {
   const { render } = createRenderer();
@@ -59,50 +57,47 @@ describe('<Box />', () => {
     expect(box.tagName).to.equal('SPAN');
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'respect properties order when generating the CSS',
-    function test() {
-      const { container: testCaseBorderColorWins } = render(
-        <Box border={1} borderColor="rgb(0, 0, 255)" />,
-      );
+  it.skipIf(isJsdom())('respect properties order when generating the CSS', function test() {
+    const { container: testCaseBorderColorWins } = render(
+      <Box border={1} borderColor="rgb(0, 0, 255)" />,
+    );
 
-      expect(testCaseBorderColorWins.firstChild).toHaveComputedStyle({
-        borderTopWidth: '1px',
-        borderRightWidth: '1px',
-        borderBottomWidth: '1px',
-        borderLeftWidth: '1px',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderBottomStyle: 'solid',
-        borderLeftStyle: 'solid',
-        borderTopColor: 'rgb(0, 0, 255)',
-        borderRightColor: 'rgb(0, 0, 255)',
-        borderBottomColor: 'rgb(0, 0, 255)',
-        borderLeftColor: 'rgb(0, 0, 255)',
-      });
+    expect(testCaseBorderColorWins.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 255)',
+      borderRightColor: 'rgb(0, 0, 255)',
+      borderBottomColor: 'rgb(0, 0, 255)',
+      borderLeftColor: 'rgb(0, 0, 255)',
+    });
 
-      const { container: testCaseBorderWins } = render(
-        <Box borderColor={'rgb(0, 0, 255)'} border={1} />,
-      );
+    const { container: testCaseBorderWins } = render(
+      <Box borderColor={'rgb(0, 0, 255)'} border={1} />,
+    );
 
-      expect(testCaseBorderWins.firstChild).toHaveComputedStyle({
-        borderTopWidth: '1px',
-        borderRightWidth: '1px',
-        borderBottomWidth: '1px',
-        borderLeftWidth: '1px',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderBottomStyle: 'solid',
-        borderLeftStyle: 'solid',
-        borderTopColor: 'rgb(0, 0, 0)',
-        borderRightColor: 'rgb(0, 0, 0)',
-        borderBottomColor: 'rgb(0, 0, 0)',
-        borderLeftColor: 'rgb(0, 0, 0)',
-      });
-    },
-  );
+    expect(testCaseBorderWins.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
+    });
+  });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+  it.skipIf(isJsdom())(
     'respect border-*-color properties order when generating the CSS',
     function test() {
       const { container: testCaseBorderPositionColorWins } = render(
@@ -163,7 +158,7 @@ describe('<Box />', () => {
     },
   );
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+  it.skipIf(isJsdom())(
     'respect properties order when generating the CSS from the sx prop',
     function test() {
       const { container: testCaseBorderColorWins } = render(
@@ -283,7 +278,7 @@ describe('<Box />', () => {
   });
 
   describe('prop: maxWidth', () => {
-    it.skipIf(isJSDOM)('should resolve breakpoints with custom units', function test() {
+    it.skipIf(isJsdom())('should resolve breakpoints with custom units', function test() {
       const theme = createTheme({
         breakpoints: {
           unit: 'rem',

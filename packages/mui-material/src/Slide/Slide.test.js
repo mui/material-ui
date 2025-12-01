@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Slide from '@mui/material/Slide';
@@ -155,48 +155,42 @@ describe('<Slide />', () => {
       );
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the default theme values by default',
-      function test() {
-        const theme = createTheme();
-        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
-        render(
+      render(
+        <Slide in appear>
+          <div data-testid="child">Foo</div>
+        </Slide>,
+      );
+
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
           <Slide in appear>
             <div data-testid="child">Foo</div>
-          </Slide>,
-        );
+          </Slide>
+        </ThemeProvider>,
+      );
 
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({
-          transitionDuration: `${enteringScreenDurationInSeconds}s`,
-        });
-      },
-    );
-
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the custom theme values',
-      function test() {
-        const theme = createTheme({
-          transitions: {
-            duration: {
-              enteringScreen: 1,
-            },
-          },
-        });
-
-        render(
-          <ThemeProvider theme={theme}>
-            <Slide in appear>
-              <div data-testid="child">Foo</div>
-            </Slide>
-          </ThemeProvider>,
-        );
-
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      },
-    );
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
   });
 
   describe('prop: easing', () => {
@@ -237,42 +231,36 @@ describe('<Slide />', () => {
       );
     });
 
-    it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-      'should render the default theme values by default',
-      function test() {
-        const theme = createTheme();
-        const handleEntering = spy();
-        render(<Slide {...defaultProps} onEntering={handleEntering} />);
+    it.skipIf(!isJsdom())('should render the default theme values by default', function test() {
+      const theme = createTheme();
+      const handleEntering = spy();
+      render(<Slide {...defaultProps} onEntering={handleEntering} />);
 
-        expect(handleEntering.args[0][0].style.transition).to.equal(
-          `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
-        );
-      },
-    );
+      expect(handleEntering.args[0][0].style.transition).to.equal(
+        `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
+      );
+    });
 
-    it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-      'should render the custom theme values',
-      function test() {
-        const theme = createTheme({
-          transitions: {
-            easing: {
-              easeOut: 'cubic-bezier(1, 1, 1, 1)',
-            },
+    it.skipIf(!isJsdom())('should render the custom theme values', function test() {
+      const theme = createTheme({
+        transitions: {
+          easing: {
+            easeOut: 'cubic-bezier(1, 1, 1, 1)',
           },
-        });
+        },
+      });
 
-        const handleEntering = spy();
-        render(
-          <ThemeProvider theme={theme}>
-            <Slide {...defaultProps} onEntering={handleEntering} />
-          </ThemeProvider>,
-        );
+      const handleEntering = spy();
+      render(
+        <ThemeProvider theme={theme}>
+          <Slide {...defaultProps} onEntering={handleEntering} />
+        </ThemeProvider>,
+      );
 
-        expect(handleEntering.args[0][0].style.transition).to.equal(
-          `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
-        );
-      },
-    );
+      expect(handleEntering.args[0][0].style.transition).to.equal(
+        `transform 225ms ${theme.transitions.easing.easeOut} 0ms`,
+      );
+    });
   });
 
   describe('prop: direction', () => {
@@ -536,7 +524,7 @@ describe('<Slide />', () => {
 
     describe('prop: container', () => {
       // Need layout
-      it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      it.skipIf(isJsdom())(
         'should set element transform and transition in the `up` direction',
         async function test() {
           let nodeExitingTransformStyle;

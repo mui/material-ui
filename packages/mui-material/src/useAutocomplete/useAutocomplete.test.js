@@ -7,6 +7,7 @@ import {
   act,
   fireEvent,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
@@ -243,95 +244,92 @@ describe('useAutocomplete', () => {
   // can't catch render errors in the browser for unknown reason
   // tried try-catch + error boundary + window onError preventDefault
   // TODO is this fixed?
-  it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-    'should warn if the input is not binded',
-    function test() {
-      function Test(props) {
-        const { options } = props;
-        const {
-          groupedOptions,
-          getRootProps,
-          getInputLabelProps,
-          // getInputProps,
-          getListboxProps,
-          getOptionProps,
-        } = useAutocomplete({
-          options,
-          open: true,
-        });
+  it.skipIf(!isJsdom())('should warn if the input is not binded', function test() {
+    function Test(props) {
+      const { options } = props;
+      const {
+        groupedOptions,
+        getRootProps,
+        getInputLabelProps,
+        // getInputProps,
+        getListboxProps,
+        getOptionProps,
+      } = useAutocomplete({
+        options,
+        open: true,
+      });
 
-        return (
-          <div>
-            <div {...getRootProps()}>
-              <label {...getInputLabelProps()}>useAutocomplete</label>
-            </div>
-            {groupedOptions.length > 0 ? (
-              <ul {...getListboxProps()}>
-                {groupedOptions.map((option, index) => {
-                  const { key, ...optionProps } = getOptionProps({ option, index });
-                  return (
-                    <li key={key} {...optionProps}>
-                      {option}
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : null}
+      return (
+        <div>
+          <div {...getRootProps()}>
+            <label {...getInputLabelProps()}>useAutocomplete</label>
           </div>
-        );
-      }
+          {groupedOptions.length > 0 ? (
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((option, index) => {
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {option}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : null}
+        </div>
+      );
+    }
 
-      const muiErrorMessage = 'MUI: Unable to find the input element.';
-      const aboveErrorUlElementMessage = 'The above error occurred in the <ul> component';
-      const aboveErrorTestComponentMessage = 'The above error occurred in the <Test> component';
-      const node16ErrorMessage =
-        "TypeError: Cannot read properties of null (reading 'removeAttribute')";
-      const olderNodeErrorMessage = "TypeError: Cannot read property 'removeAttribute' of null";
+    const muiErrorMessage = 'MUI: Unable to find the input element.';
+    const aboveErrorUlElementMessage = 'The above error occurred in the <ul> component';
+    const aboveErrorTestComponentMessage = 'The above error occurred in the <Test> component';
+    const node16ErrorMessage =
+      "TypeError: Cannot read properties of null (reading 'removeAttribute')";
+    const olderNodeErrorMessage = "TypeError: Cannot read property 'removeAttribute' of null";
 
-      const nodeVersion = Number(process.versions.node.split('.')[0]);
-      const nodeErrorMessage = nodeVersion >= 16 ? node16ErrorMessage : olderNodeErrorMessage;
+    const nodeVersion = Number(process.versions.node.split('.')[0]);
+    const nodeErrorMessage = nodeVersion >= 16 ? node16ErrorMessage : olderNodeErrorMessage;
 
-      const defaultErrorMessages = [muiErrorMessage, nodeErrorMessage, nodeErrorMessage];
+    const defaultErrorMessages = [muiErrorMessage, nodeErrorMessage, nodeErrorMessage];
 
-      const errorMessagesByReactMajor = {
-        17: [
-          nodeErrorMessage,
-          muiErrorMessage,
-          nodeErrorMessage,
-          aboveErrorUlElementMessage,
-          aboveErrorTestComponentMessage,
-        ],
-        18: [
-          nodeErrorMessage,
-          muiErrorMessage,
-          nodeErrorMessage,
-          muiErrorMessage,
-          nodeErrorMessage,
-          aboveErrorUlElementMessage,
-          aboveErrorTestComponentMessage,
-          aboveErrorTestComponentMessage,
-        ],
-        19: [
-          muiErrorMessage,
-          muiErrorMessage,
-          nodeErrorMessage,
-          nodeErrorMessage,
-          nodeErrorMessage,
-          nodeErrorMessage,
-        ],
-      };
+    const errorMessagesByReactMajor = {
+      17: [
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        aboveErrorUlElementMessage,
+        aboveErrorTestComponentMessage,
+      ],
+      18: [
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        aboveErrorUlElementMessage,
+        aboveErrorTestComponentMessage,
+        aboveErrorTestComponentMessage,
+      ],
+      19: [
+        muiErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+      ],
+    };
 
-      const devErrorMessages = errorMessagesByReactMajor[reactMajor] || defaultErrorMessages;
+    const devErrorMessages = errorMessagesByReactMajor[reactMajor] || defaultErrorMessages;
 
-      expect(() => {
-        render(
-          <ErrorBoundary>
-            <Test options={['foo', 'bar']} />
-          </ErrorBoundary>,
-        );
-      }).toErrorDev(devErrorMessages);
-    },
-  );
+    expect(() => {
+      render(
+        <ErrorBoundary>
+          <Test options={['foo', 'bar']} />
+        </ErrorBoundary>,
+      );
+    }).toErrorDev(devErrorMessages);
+  });
 
   describe('prop: freeSolo', () => {
     it('should not reset if the component value does not change on blur', () => {

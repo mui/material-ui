@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -152,33 +152,30 @@ describe('<ListItem />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'container overrides should work',
-    function test() {
-      const testStyle = {
-        marginTop: '13px',
-      };
+  it.skipIf(isJsdom())('container overrides should work', function test() {
+    const testStyle = {
+      marginTop: '13px',
+    };
 
-      const theme = createTheme({
-        components: {
-          MuiListItem: {
-            styleOverrides: {
-              container: testStyle,
-            },
+    const theme = createTheme({
+      components: {
+        MuiListItem: {
+          styleOverrides: {
+            container: testStyle,
           },
         },
-      });
+      },
+    });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <ListItem>
-            Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
-          </ListItem>
-        </ThemeProvider>,
-      );
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <ListItem>
+          Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
+        </ListItem>
+      </ThemeProvider>,
+    );
 
-      const listItemContainer = container.getElementsByClassName(classes.container)[0];
-      expect(listItemContainer).to.toHaveComputedStyle(testStyle);
-    },
-  );
+    const listItemContainer = container.getElementsByClassName(classes.container)[0];
+    expect(listItemContainer).to.toHaveComputedStyle(testStyle);
+  });
 });

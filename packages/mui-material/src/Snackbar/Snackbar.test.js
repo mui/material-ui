@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 import { snackbarContentClasses } from '@mui/material/SnackbarContent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -564,62 +564,53 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the default theme values by default',
-      function test() {
-        const theme = createTheme();
-        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
-        render(
+      render(
+        <Snackbar open message="Hello, World!">
+          <div data-testid="child">Foo</div>
+        </Snackbar>,
+      );
+
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s, 0.15s`,
+      });
+    });
+
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
           <Snackbar open message="Hello, World!">
             <div data-testid="child">Foo</div>
-          </Snackbar>,
-        );
+          </Snackbar>
+        </ThemeProvider>,
+      );
 
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({
-          transitionDuration: `${enteringScreenDurationInSeconds}s, 0.15s`,
-        });
-      },
-    );
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
+    });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the custom theme values',
-      function test() {
-        const theme = createTheme({
-          transitions: {
-            duration: {
-              enteringScreen: 1,
-            },
-          },
-        });
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
+      render(
+        <Snackbar open message="Hello, World!" transitionDuration={1}>
+          <div data-testid="child">Foo</div>
+        </Snackbar>,
+      );
 
-        render(
-          <ThemeProvider theme={theme}>
-            <Snackbar open message="Hello, World!">
-              <div data-testid="child">Foo</div>
-            </Snackbar>
-          </ThemeProvider>,
-        );
-
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
-      },
-    );
-
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the values provided via prop',
-      function test() {
-        render(
-          <Snackbar open message="Hello, World!" transitionDuration={1}>
-            <div data-testid="child">Foo</div>
-          </Snackbar>,
-        );
-
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
-      },
-    );
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
+    });
   });
 
   it('should skip default clickAway behavior when defaultMuiPrevented is true', () => {

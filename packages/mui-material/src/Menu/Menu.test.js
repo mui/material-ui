@@ -7,6 +7,7 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
@@ -361,7 +362,7 @@ describe('<Menu />', () => {
   });
 
   describe('theme customization', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should override Menu Paper styles following correct precedence',
       function test() {
         const menuPaperOverrides = { borderRadius: 4 };
@@ -400,7 +401,7 @@ describe('<Menu />', () => {
       },
     );
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should override Menu Paper styles using styles in MuiPaper slot',
       function test() {
         const theme = createTheme({

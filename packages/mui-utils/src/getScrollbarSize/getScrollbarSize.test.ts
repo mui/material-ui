@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import getScrollbarSize from './getScrollbarSize';
 
 describe('getScrollbarSize', () => {
@@ -15,17 +16,18 @@ describe('getScrollbarSize', () => {
     divElement.parentElement?.removeChild(divElement);
   });
 
-  it.skipIf(
-    window.navigator.userAgent.includes('jsdom') || !/WebKit/.test(window.navigator.userAgent),
-  )('should return correct value when using a custom scrollbar', function test() {
-    styleElement.textContent = `
+  it.skipIf(isJsdom() || !/WebKit/.test(window.navigator.userAgent))(
+    'should return correct value when using a custom scrollbar',
+    function test() {
+      styleElement.textContent = `
       ::-webkit-scrollbar {
         width: 5px;
       }
     `;
-    document.head.appendChild(styleElement);
-    divElement.style.height = '2000px';
-    document.body.appendChild(divElement);
-    expect(getScrollbarSize(window)).to.equal(5);
-  });
+      document.head.appendChild(styleElement);
+      divElement.style.height = '2000px';
+      document.body.appendChild(divElement);
+      expect(getScrollbarSize(window)).to.equal(5);
+    },
+  );
 });

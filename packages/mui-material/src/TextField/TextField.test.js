@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -193,7 +193,7 @@ describe('<TextField />', () => {
       expect(notch).to.have.text('0\u2009*');
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should not set padding for empty, null or undefined label props',
       function test() {
         const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };

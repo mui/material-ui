@@ -9,6 +9,7 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Autocomplete, {
   autocompleteClasses as classes,
@@ -257,7 +258,7 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!window.navigator.userAgent.includes('jsdom')) {
+      if (!isJsdom()) {
         expect(screen.getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -281,7 +282,7 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!window.navigator.userAgent.includes('jsdom')) {
+      if (!isJsdom()) {
         expect(screen.getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -537,7 +538,7 @@ describe('Joy <Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should fail validation if a required field has no value',
       async function test() {
         const handleSubmit = spy((event) => event.preventDefault());
@@ -557,7 +558,7 @@ describe('Joy <Autocomplete />', () => {
     // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
     // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
     // Unclear how native Constraint validation can be enabled for `multiple`
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should fail validation if a required field has a value',
       async function test() {
         const handleSubmit = spy((event) => event.preventDefault());
@@ -1276,7 +1277,7 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should scroll selected option into view when multiple elements with role as listbox available',
       function test() {
         render(

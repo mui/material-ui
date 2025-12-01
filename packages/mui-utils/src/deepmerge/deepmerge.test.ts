@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
@@ -60,15 +61,12 @@ describe('deepmerge', () => {
     expect({}).not.to.have.property('isAdmin');
   });
 
-  it.skipIf(!window.navigator.userAgent.includes('jsdom'))(
-    'should merge objects across realms',
-    async function test() {
-      const { runInNewContext } = await import('vm');
-      const vmObject = runInNewContext('({hello: "realm"})');
-      const result = deepmerge({ hello: 'original' }, vmObject);
-      expect(result.hello).to.equal('realm');
-    },
-  );
+  it.skipIf(!isJsdom())('should merge objects across realms', async function test() {
+    const { runInNewContext } = await import('vm');
+    const vmObject = runInNewContext('({hello: "realm"})');
+    const result = deepmerge({ hello: 'original' }, vmObject);
+    expect(result.hello).to.equal('realm');
+  });
 
   // https://github.com/mui/material-ui/issues/20095
   it('should not merge HTML elements', () => {

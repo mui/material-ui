@@ -6,10 +6,7 @@ import formatUtil from 'format-util';
 import { kebabCase } from 'es-toolkit/string';
 import { AssertionError } from 'assertion-error';
 import './chai.types';
-
-function isInJSDOM() {
-  return window.navigator.userAgent.includes('jsdom');
-}
+import { isJsdom } from './env';
 
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element: Element | null | undefined) {
@@ -123,7 +120,7 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
     );
 
     const actualName = computeAccessibleName(root, {
-      computedStyleSupportsPseudoElements: !isInJSDOM(),
+      computedStyleSupportsPseudoElements: !isJsdom(),
       // in local development we pretend to be visible. full getComputedStyle is
       // expensive and reserved for CI
       getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
@@ -276,7 +273,7 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
 
     const jsdomHint =
       'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
-      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `it.skipIf(window.navigator.userAgent.includes("jsdom"))(\'...`';
+      "If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `it.skipIf(isJsdom())('...`";
     const shorthandHint =
       'Browsers can compute shorthand properties differently. Prefer longhand properties e.g. `borderTopColor`, `borderRightColor` etc. instead of `border` or `border-color`.';
     const messageHint = `${jsdomHint}\n${shorthandHint}`;

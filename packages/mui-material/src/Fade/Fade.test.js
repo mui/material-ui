@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -117,61 +117,52 @@ describe('<Fade />', () => {
   });
 
   describe('prop: timeout', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the default theme values by default',
-      function test() {
-        const theme = createTheme();
-        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
-        render(
+      render(
+        <Fade in appear>
+          <div data-testid="child">Foo</div>
+        </Fade>,
+      );
+
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
           <Fade in appear>
             <div data-testid="child">Foo</div>
-          </Fade>,
-        );
+          </Fade>
+        </ThemeProvider>,
+      );
 
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({
-          transitionDuration: `${enteringScreenDurationInSeconds}s`,
-        });
-      },
-    );
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the custom theme values',
-      function test() {
-        const theme = createTheme({
-          transitions: {
-            duration: {
-              enteringScreen: 1,
-            },
-          },
-        });
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
+      render(
+        <Fade in appear timeout={{ enter: 1 }}>
+          <div data-testid="child">Foo</div>
+        </Fade>,
+      );
 
-        render(
-          <ThemeProvider theme={theme}>
-            <Fade in appear>
-              <div data-testid="child">Foo</div>
-            </Fade>
-          </ThemeProvider>,
-        );
-
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      },
-    );
-
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the values provided via prop',
-      function test() {
-        render(
-          <Fade in appear timeout={{ enter: 1 }}>
-            <div data-testid="child">Foo</div>
-          </Fade>,
-        );
-
-        const child = screen.getByTestId('child');
-        expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      },
-    );
+      const child = screen.getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
   });
 });

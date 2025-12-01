@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Typography, { typographyClasses as classes, TypographyProps } from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
@@ -97,18 +97,15 @@ describe('<Typography />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'combines system properties with the sx prop',
-    function test() {
-      const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
+  it.skipIf(isJsdom())('combines system properties with the sx prop', function test() {
+    const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
-      expect(container.firstChild).toHaveComputedStyle({
-        marginTop: '16px',
-        marginRight: '40px',
-        marginBottom: '16px',
-      });
-    },
-  );
+    expect(container.firstChild).toHaveComputedStyle({
+      marginTop: '16px',
+      marginRight: '40px',
+      marginBottom: '16px',
+    });
+  });
 
   describe('nested typography', () => {
     it('nested Typography should be span unless `component` is specified', () => {

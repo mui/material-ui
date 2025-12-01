@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
@@ -127,7 +127,7 @@ describe('<ToggleButton />', () => {
     });
   });
 
-  describe.skipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
+  describe.skipIf(!isJsdom())('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<ToggleButton value="hello">Hello World</ToggleButton>);
       expect(container.firstChild).to.have.text('Hello World');

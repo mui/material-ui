@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, screen, reactMajor, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import GridLegacy, { gridLegacyClasses as classes } from '@mui/material/GridLegacy';
@@ -107,7 +107,7 @@ describe('Material UI <GridLegacy />', () => {
     });
 
     // Need full CSS resolution
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should apply the styles necessary for variable width nested item when set to auto',
       function test() {
         render(
@@ -1751,58 +1751,55 @@ describe('Material UI <GridLegacy />', () => {
   });
 
   describe('spacing', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should generate the right values',
-      function test() {
-        const parentWidth = 500;
-        const remValue = 16;
-        const remTheme = createTheme({
-          spacing: (factor) => `${0.25 * factor}rem`,
-        });
+    it.skipIf(isJsdom())('should generate the right values', function test() {
+      const parentWidth = 500;
+      const remValue = 16;
+      const remTheme = createTheme({
+        spacing: (factor) => `${0.25 * factor}rem`,
+      });
 
-        const view = render(
-          <div style={{ width: parentWidth }}>
-            <ThemeProvider theme={remTheme}>
-              <GridLegacy data-testid="grid" container spacing={2}>
-                <GridLegacy item data-testid="first-custom-theme" />
-                <GridLegacy item />
-              </GridLegacy>
-            </ThemeProvider>
-          </div>,
-        );
-
-        expect(screen.getByTestId('grid')).toHaveComputedStyle({
-          marginTop: `${-1 * remValue * 0.5}px`, // '-0.5rem'
-          marginLeft: `${-1 * remValue * 0.5}px`, // '-0.5rem'
-          width: `${parentWidth + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
-        });
-
-        expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
-          paddingTop: `${0.5 * remValue}px`, // 0.5rem
-          paddingLeft: `${0.5 * remValue}px`, // 0.5rem
-        });
-
-        view.rerender(
-          <div style={{ width: parentWidth }}>
+      const view = render(
+        <div style={{ width: parentWidth }}>
+          <ThemeProvider theme={remTheme}>
             <GridLegacy data-testid="grid" container spacing={2}>
-              <GridLegacy item data-testid="first-default-theme" />
+              <GridLegacy item data-testid="first-custom-theme" />
               <GridLegacy item />
             </GridLegacy>
-          </div>,
-        );
+          </ThemeProvider>
+        </div>,
+      );
 
-        expect(screen.getByTestId('grid')).toHaveComputedStyle({
-          marginTop: '-16px',
-          marginLeft: '-16px',
-          width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
-        });
+      expect(screen.getByTestId('grid')).toHaveComputedStyle({
+        marginTop: `${-1 * remValue * 0.5}px`, // '-0.5rem'
+        marginLeft: `${-1 * remValue * 0.5}px`, // '-0.5rem'
+        width: `${parentWidth + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
+      });
 
-        expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
-          paddingTop: '16px',
-          paddingLeft: '16px',
-        });
-      },
-    );
+      expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
+        paddingTop: `${0.5 * remValue}px`, // 0.5rem
+        paddingLeft: `${0.5 * remValue}px`, // 0.5rem
+      });
+
+      view.rerender(
+        <div style={{ width: parentWidth }}>
+          <GridLegacy data-testid="grid" container spacing={2}>
+            <GridLegacy item data-testid="first-default-theme" />
+            <GridLegacy item />
+          </GridLegacy>
+        </div>,
+      );
+
+      expect(screen.getByTestId('grid')).toHaveComputedStyle({
+        marginTop: '-16px',
+        marginLeft: '-16px',
+        width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
+      });
+
+      expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
+        paddingTop: '16px',
+        paddingLeft: '16px',
+      });
+    });
   });
 
   it('combines system properties with the sx prop', () => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -325,34 +325,31 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'scrolls if overflown on the Y axis',
-      function test() {
-        const ITEM_HEIGHT = 100;
-        const ITEM_COUNT = 10;
+    it.skipIf(isJsdom())('scrolls if overflown on the Y axis', function test() {
+      const ITEM_HEIGHT = 100;
+      const ITEM_COUNT = 10;
 
-        render(
-          <Dialog
-            open
-            fullScreen
-            PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
-          >
-            {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
-              <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
-                {item}
-              </div>
-            ))}
-          </Dialog>,
-        );
+      render(
+        <Dialog
+          open
+          fullScreen
+          PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
+        >
+          {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
+            <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
+              {item}
+            </div>
+          ))}
+        </Dialog>,
+      );
 
-        const paperElement = screen.getByTestId('paper');
-        expect(paperElement.scrollTop).to.equal(0);
-        expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
-        expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
-        fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
-        expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
-      },
-    );
+      const paperElement = screen.getByTestId('paper');
+      expect(paperElement.scrollTop).to.equal(0);
+      expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
+      expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
+      fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
+      expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
+    });
   });
 
   describe('prop: PaperProps.className', () => {
@@ -399,51 +396,42 @@ describe('<Dialog />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the default theme values by default',
-      function test() {
-        const theme = createTheme();
-        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-        render(<Dialog open />);
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      render(<Dialog open />);
 
-        const container = document.querySelector(`.${classes.container}`);
-        expect(container).toHaveComputedStyle({
-          transitionDuration: `${enteringScreenDurationInSeconds}s`,
-        });
-      },
-    );
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the custom theme values',
-      function test() {
-        const theme = createTheme({
-          transitions: {
-            duration: {
-              enteringScreen: 1,
-            },
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
           },
-        });
-        render(
-          <ThemeProvider theme={theme}>
-            <Dialog open />
-          </ThemeProvider>,
-        );
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Dialog open />
+        </ThemeProvider>,
+      );
 
-        const container = document.querySelector(`.${classes.container}`);
-        expect(container).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      },
-    );
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
 
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should render the values provided via prop',
-      function test() {
-        render(<Dialog open transitionDuration={{ enter: 1 }} />);
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
+      render(<Dialog open transitionDuration={{ enter: 1 }} />);
 
-        const container = document.querySelector(`.${classes.container}`);
-        expect(container).toHaveComputedStyle({
-          transitionDuration: '0.001s',
-        });
-      },
-    );
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({
+        transitionDuration: '0.001s',
+      });
+    });
   });
 });

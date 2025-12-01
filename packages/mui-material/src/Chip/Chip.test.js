@@ -9,6 +9,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   screen,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
@@ -667,7 +668,7 @@ describe('<Chip />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('event: focus', () => {
+  describe.skipIf(isJsdom())('event: focus', () => {
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);

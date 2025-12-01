@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
 } from '@mui/material/AccordionSummary';
@@ -116,21 +116,18 @@ describe('<AccordionSummary />', () => {
   });
 
   // JSDOM doesn't support :focus-visible
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'calls onFocusVisible if focused visibly',
-    function test() {
-      const handleFocusVisible = spy();
-      render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
-      // simulate pointer device
-      fireEvent.mouseDown(document.body);
+  it.skipIf(isJsdom())('calls onFocusVisible if focused visibly', function test() {
+    const handleFocusVisible = spy();
+    render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
+    // simulate pointer device
+    fireEvent.mouseDown(document.body);
 
-      // this doesn't actually apply focus like in the browser. we need to move focus manually
-      fireEvent.keyDown(document.body, { key: 'Tab' });
-      act(() => {
-        screen.getByRole('button').focus();
-      });
+    // this doesn't actually apply focus like in the browser. we need to move focus manually
+    fireEvent.keyDown(document.body, { key: 'Tab' });
+    act(() => {
+      screen.getByRole('button').focus();
+    });
 
-      expect(handleFocusVisible.callCount).to.equal(1);
-    },
-  );
+    expect(handleFocusVisible.callCount).to.equal(1);
+  });
 });

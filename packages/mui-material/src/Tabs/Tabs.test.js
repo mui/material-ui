@@ -10,6 +10,7 @@ import {
   strictModeDoubleLoggingSuppressed,
   waitFor,
   flushEffects,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -19,7 +20,7 @@ import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
 import describeConformance from '../../test/describeConformance';
 
-const isJSDOM = window.navigator.userAgent.includes('jsdom');
+const isJSDOM = isJsdom();
 
 const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
 const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
@@ -378,7 +379,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         ]);
       });
 
-      describe.skipIf(!window.navigator.userAgent.includes('jsdom'))('hidden tab / tabs', () => {
+      describe.skipIf(!isJsdom())('hidden tab / tabs', () => {
         let nodeEnv;
 
         beforeAll(function test() {

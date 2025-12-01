@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
 import { ThemeProvider, CssVarsProvider, hexToRgb } from '@mui/material/styles';
@@ -64,25 +64,22 @@ describe('<AppBar />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'should inherit Paper background color with ThemeProvider',
-    function test() {
-      render(
-        <ThemeProvider theme={defaultTheme}>
-          <AppBar data-testid="root" color="inherit">
-            Hello World
-          </AppBar>
-        </ThemeProvider>,
-      );
+  it.skipIf(isJsdom())('should inherit Paper background color with ThemeProvider', function test() {
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <AppBar data-testid="root" color="inherit">
+          Hello World
+        </AppBar>
+      </ThemeProvider>,
+    );
 
-      const appBar = screen.getByTestId('root');
-      expect(appBar).toHaveComputedStyle({
-        backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
-      });
-    },
-  );
+    const appBar = screen.getByTestId('root');
+    expect(appBar).toHaveComputedStyle({
+      backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
+    });
+  });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+  it.skipIf(isJsdom())(
     'should inherit Paper background color with CssVarsProvider',
     function test() {
       render(

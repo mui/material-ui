@@ -9,6 +9,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -495,38 +496,35 @@ describe('<Tooltip />', () => {
     });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should handle autoFocus + onFocus forwarding',
-      async function test() {
-        const handleFocus = spy();
-        function AutoFocus(props) {
-          return (
-            <div>
-              {props.open ? (
-                <Tooltip enterDelay={100} title="Title">
-                  <input autoFocus onFocus={handleFocus} />
-                </Tooltip>
-              ) : null}
-            </div>
-          );
-        }
-
-        const { setProps } = render(
-          <AutoFocus />,
-          // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-          { strictEffects: false },
+    it.skipIf(isJsdom())('should handle autoFocus + onFocus forwarding', async function test() {
+      const handleFocus = spy();
+      function AutoFocus(props) {
+        return (
+          <div>
+            {props.open ? (
+              <Tooltip enterDelay={100} title="Title">
+                <input autoFocus onFocus={handleFocus} />
+              </Tooltip>
+            ) : null}
+          </div>
         );
+      }
 
-        setProps({ open: true });
-        clock.tick(100);
+      const { setProps } = render(
+        <AutoFocus />,
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+        { strictEffects: false },
+      );
 
-        expect(screen.getByRole('tooltip')).toBeVisible();
-        expect(handleFocus.callCount).to.equal(1);
-      },
-    );
+      setProps({ open: true });
+      clock.tick(100);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+      expect(handleFocus.callCount).to.equal(1);
+    });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('prop: delay', () => {
+  describe.skipIf(isJsdom())('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
       render(
         <Tooltip title="Hello World" enterDelay={111}>
@@ -650,7 +648,7 @@ describe('<Tooltip />', () => {
     });
 
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       `should be transparent for the focus and blur event`,
       async function test() {
         const handleBlur = spy();
@@ -976,7 +974,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe.skipIf(window.navigator.userAgent.includes('jsdom'))('focus', () => {
+  describe.skipIf(isJsdom())('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, act, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/joy/ListItemButton';
 import describeConformance from '../../test/describeConformance';
@@ -56,19 +56,16 @@ describe('Joy <ListItemButton />', () => {
 
   describe('prop: focusVisibleClassName', () => {
     // JSDOM doesn't support :focus-visible
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-      'should have focusVisible classes',
-      async function test() {
-        render(<ListItemButton />);
-        const button = screen.getByRole('button');
+    it.skipIf(isJsdom())('should have focusVisible classes', async function test() {
+      render(<ListItemButton />);
+      const button = screen.getByRole('button');
 
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
-        await act(() => {
-          button.focus();
-        });
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+      await act(() => {
+        button.focus();
+      });
 
-        expect(button).to.have.class(classes.focusVisible);
-      },
-    );
+      expect(button).to.have.class(classes.focusVisible);
+    });
   });
 });

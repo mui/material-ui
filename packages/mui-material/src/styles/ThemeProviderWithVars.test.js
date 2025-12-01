@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {
   CssVarsProvider,
@@ -334,39 +334,40 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     });
   });
 
-  it.skipIf(
-    window.navigator.userAgent.includes('jsdom') || !/WebKit/.test(window.navigator.userAgent),
-  )("should use numeric values in system's spacing", function test() {
-    render(
-      <CssVarsProvider>
-        <Box
-          data-testid="box-1"
-          sx={{
-            borderRadius: '50%',
-          }}
-        />
-        <Box
-          data-testid="box-2"
-          sx={{
-            borderRadius: 4,
-          }}
-        />
-      </CssVarsProvider>,
-    );
+  it.skipIf(isJsdom() || !/WebKit/.test(window.navigator.userAgent))(
+    "should use numeric values in system's spacing",
+    function test() {
+      render(
+        <CssVarsProvider>
+          <Box
+            data-testid="box-1"
+            sx={{
+              borderRadius: '50%',
+            }}
+          />
+          <Box
+            data-testid="box-2"
+            sx={{
+              borderRadius: 4,
+            }}
+          />
+        </CssVarsProvider>,
+      );
 
-    expect(screen.getByTestId('box-1')).toHaveComputedStyle({
-      borderTopLeftRadius: '50%',
-      borderTopRightRadius: '50%',
-      borderBottomLeftRadius: '50%',
-      borderBottomRightRadius: '50%',
-    });
-    expect(screen.getByTestId('box-2')).toHaveComputedStyle({
-      borderTopLeftRadius: '16px',
-      borderTopRightRadius: '16px',
-      borderBottomLeftRadius: '16px',
-      borderBottomRightRadius: '16px',
-    });
-  });
+      expect(screen.getByTestId('box-1')).toHaveComputedStyle({
+        borderTopLeftRadius: '50%',
+        borderTopRightRadius: '50%',
+        borderBottomLeftRadius: '50%',
+        borderBottomRightRadius: '50%',
+      });
+      expect(screen.getByTestId('box-2')).toHaveComputedStyle({
+        borderTopLeftRadius: '16px',
+        borderTopRightRadius: '16px',
+        borderBottomLeftRadius: '16px',
+        borderBottomRightRadius: '16px',
+      });
+    },
+  );
 
   it('warns when using `setMode` without configuring `colorSchemeSelector`', () => {
     function Test() {

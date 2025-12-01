@@ -7,6 +7,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Box from '@mui/system/Box';
@@ -292,7 +293,7 @@ describe('<Autocomplete />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/34998
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted',
       function test() {
         render(
@@ -459,7 +460,7 @@ describe('<Autocomplete />', () => {
       });
       expect(view.container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!window.navigator.userAgent.includes('jsdom')) {
+      if (!isJsdom()) {
         expect(screen.getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -484,7 +485,7 @@ describe('<Autocomplete />', () => {
       });
       expect(view.container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!window.navigator.userAgent.includes('jsdom')) {
+      if (!isJsdom()) {
         expect(screen.getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -824,7 +825,7 @@ describe('<Autocomplete />', () => {
     });
 
     // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should fail validation if a required field has no value',
       async function test() {
         const handleSubmit = spy((event) => event.preventDefault());
@@ -849,7 +850,7 @@ describe('<Autocomplete />', () => {
     // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
     // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
     // Unclear how native Constraint validation can be enabled for `multiple`
-    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+    it.skipIf(isJsdom())(
       'should fail validation if a required field has a value',
       async function test() {
         const handleSubmit = spy((event) => event.preventDefault());
@@ -3510,7 +3511,7 @@ describe('<Autocomplete />', () => {
   });
 
   // https://github.com/mui/material-ui/issues/36212
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+  it.skipIf(isJsdom())(
     'should preserve scrollTop position of the listbox when adding new options on mobile',
     function test() {
       function getOptions(count) {

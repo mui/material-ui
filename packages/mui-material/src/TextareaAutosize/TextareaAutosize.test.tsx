@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 function getStyleValue(value: string) {
@@ -97,50 +97,47 @@ describe('<TextareaAutosize />', () => {
 
   // For https://github.com/mui/material-ui/pull/37135
   // It depends on ResizeObserver
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'should update height without delay',
-    async function test() {
-      function App() {
-        const ref = React.useRef<HTMLTextAreaElement>(null);
-        return (
+  it.skipIf(isJsdom())('should update height without delay', async function test() {
+    function App() {
+      const ref = React.useRef<HTMLTextAreaElement>(null);
+      return (
+        <div>
+          <button
+            onClick={() => {
+              ref.current!.style.width = '250px';
+            }}
+          >
+            change
+          </button>
           <div>
-            <button
-              onClick={() => {
-                ref.current!.style.width = '250px';
+            <TextareaAutosize
+              ref={ref}
+              style={{
+                width: 150,
+                padding: 0,
+                fontSize: 14,
+                lineHeight: '15px',
+                border: '1px solid',
               }}
-            >
-              change
-            </button>
-            <div>
-              <TextareaAutosize
-                ref={ref}
-                style={{
-                  width: 150,
-                  padding: 0,
-                  fontSize: 14,
-                  lineHeight: '15px',
-                  border: '1px solid',
-                }}
-                defaultValue="qdzqzd qzd qzd qzd qz dqz"
-              />
-            </div>
+              defaultValue="qdzqzd qzd qzd qzd qz dqz"
+            />
           </div>
-        );
-      }
-      render(<App />);
-      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
-        hidden: false,
-      });
-      const button = screen.getByRole('button');
-      expect(parseInt(input.style.height, 10)).to.be.within(30, 32);
-      fireEvent.click(button);
-      await raf();
-      await raf();
-      expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
-    },
-  );
+        </div>
+      );
+    }
+    render(<App />);
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
+    const button = screen.getByRole('button');
+    expect(parseInt(input.style.height, 10)).to.be.within(30, 32);
+    fireEvent.click(button);
+    await raf();
+    await raf();
+    expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
+  });
 
-  describe.skipIf(!window.navigator.userAgent.includes('jsdom'))('layout', () => {
+  describe.skipIf(!isJsdom())('layout', () => {
     const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
     function setLayout(
       input: HTMLTextAreaElement,
@@ -471,45 +468,39 @@ describe('<TextareaAutosize />', () => {
     });
   });
 
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'should apply the inline styles using the "style" prop',
-    function test() {
-      render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
-      const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
-        hidden: false,
-      });
+  it.skipIf(isJsdom())('should apply the inline styles using the "style" prop', function test() {
+    render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
 
-      expect(input).toHaveComputedStyle({
-        backgroundColor: 'rgb(255, 255, 0)',
-      });
-    },
-  );
+    expect(input).toHaveComputedStyle({
+      backgroundColor: 'rgb(255, 255, 0)',
+    });
+  });
 
   // edge case: https://github.com/mui/material-ui/issues/45307
   // document selectionchange event doesn't fire in JSDOM
-  it.skipIf(window.navigator.userAgent.includes('jsdom'))(
-    'should not infinite loop document selectionchange',
-    async function test() {
-      const handleSelectionChange = spy();
+  it.skipIf(isJsdom())('should not infinite loop document selectionchange', async function test() {
+    const handleSelectionChange = spy();
 
-      function App() {
-        React.useEffect(() => {
-          document.addEventListener('selectionchange', handleSelectionChange);
-          return () => {
-            document.removeEventListener('selectionchange', handleSelectionChange);
-          };
-        }, []);
+    function App() {
+      React.useEffect(() => {
+        document.addEventListener('selectionchange', handleSelectionChange);
+        return () => {
+          document.removeEventListener('selectionchange', handleSelectionChange);
+        };
+      }, []);
 
-        return (
-          <TextareaAutosize defaultValue="some long text that makes the input start with multiple rows" />
-        );
-      }
+      return (
+        <TextareaAutosize defaultValue="some long text that makes the input start with multiple rows" />
+      );
+    }
 
-      render(<App />);
-      await sleep(100);
-      // when the component mounts and idles this fires 3 times in browser tests
-      // and 2 times in a real browser
-      expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
-    },
-  );
+    render(<App />);
+    await sleep(100);
+    // when the component mounts and idles this fires 3 times in browser tests
+    // and 2 times in a real browser
+    expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
+  });
 });
