@@ -447,9 +447,9 @@ export default function AppSearch(props) {
             initialQuery={initialQuery}
             appId="TZGZ85B9TB"
             apiKey="8177dfb3e2be72b241ffb8c5abafa899"
-            indexName="material-ui"
+            indexName="material-ui-v7"
             searchParameters={{
-              facetFilters: ['version:master', facetFilterLanguage],
+              facetFilters: [facetFilterLanguage],
               optionalFilters,
               attributesToRetrieve: [
                 // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
