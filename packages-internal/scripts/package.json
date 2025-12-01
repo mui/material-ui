@@ -41,10 +41,10 @@
   "devDependencies": {
     "@babel/register": "^7.28.3",
     "@types/babel__core": "^7.20.5",
-    "@types/chai": "^5.2.2",
+    "@types/chai": "^5.2.3",
     "@types/doctrine": "^0.0.9",
     "@types/node": "^20.19.25",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "@types/uuid": "^10.0.0",
     "chai": "^6.0.1",
     "fast-glob": "^3.3.3",

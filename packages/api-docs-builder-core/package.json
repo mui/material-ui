@@ -20,7 +20,7 @@
     "es-toolkit": "^1.41.0"
   },
   "devDependencies": {
-    "@types/chai": "^5.2.2",
+    "@types/chai": "^5.2.3",
     "@types/node": "^20.19.25",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
