@@ -18,7 +18,7 @@ describe('<ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
-    testLegacyComponentsProp: true,
+    testLegacyComponentsProp: ['root'],
     slots: {
       root: {},
       secondaryAction: { expectedClassName: classes.secondaryAction },
