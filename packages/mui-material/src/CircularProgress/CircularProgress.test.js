@@ -103,7 +103,7 @@ describe('<CircularProgress />', () => {
     });
   });
 
-  describe('prop: disableShrink ', () => {
+  describe('prop: disableShrink', () => {
     it('should default to false', () => {
       const { container } = render(<CircularProgress variant="indeterminate" />);
       const circularProgress = container.firstChild;

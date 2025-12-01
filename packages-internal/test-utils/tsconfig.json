@@ -4,7 +4,7 @@
     "noEmit": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "types": ["node", "mocha"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "isolatedModules": true,

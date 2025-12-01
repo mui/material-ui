@@ -176,7 +176,7 @@ describe('<PaginationItem />', () => {
       });
     });
 
-    it('icons passed in slots should override icons passed in components prop ', () => {
+    it('icons passed in slots should override icons passed in components prop', () => {
       const slots = {
         previous: CustomPreviousIcon,
         next: CustomNextIcon,

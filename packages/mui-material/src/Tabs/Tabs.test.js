@@ -9,8 +9,9 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
+  flushEffects,
+  isJsdom,
 } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
@@ -18,6 +19,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createSvgIcon } from '@mui/material/utils';
 import capitalize from '../utils/capitalize';
 import describeConformance from '../../test/describeConformance';
+
+const isJSDOM = isJsdom();
 
 const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
 const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
@@ -48,10 +51,7 @@ function hasRightScrollButton(container) {
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-describeSkipIf(isSafari)('<Tabs />', () => {
-  // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = window.navigator.userAgent.includes('jsdom');
-
+describe.skipIf(isSafari)('<Tabs />', () => {
   const { clock, render, renderToString } = createRenderer();
 
   describeConformance(<Tabs value={0} />, () => ({
@@ -275,10 +275,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
       });
 
       it('should update the indicator at each render', function test() {
-        if (isJSDOM) {
-          this.skip();
-        }
-
         const { forceUpdate, container } = render(
           <Tabs value={1}>
             <Tab />
@@ -383,12 +379,11 @@ describeSkipIf(isSafari)('<Tabs />', () => {
         ]);
       });
 
-      describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('hidden tab / tabs', () => {
+      describe.skipIf(!isJsdom())('hidden tab / tabs', () => {
         let nodeEnv;
 
-        before(function test() {
+        beforeAll(function test() {
           nodeEnv = process.env.NODE_ENV;
-          // We can't use a regular assignment, because it causes a syntax error in Karma
           Object.defineProperty(process.env, 'NODE_ENV', {
             value: 'development',
             configurable: true,
@@ -397,7 +392,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           });
         });
 
-        after(() => {
+        afterAll(() => {
           Object.defineProperty(process.env, 'NODE_ENV', {
             value: nodeEnv,
             configurable: true,
@@ -406,11 +401,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           });
         });
 
-        it('should warn if a `Tab` has display: none', function test() {
-          if (isJSDOM) {
-            this.skip();
-          }
-
+        it.skipIf(isJSDOM)('should warn if a `Tab` has display: none', function test() {
           expect(() => {
             render(
               <Tabs value="hidden-tab">
@@ -427,9 +418,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
         });
 
         it('should not warn if the whole Tabs is hidden', function test() {
-          if (isJSDOM) {
-            this.skip();
-          }
           expect(() => {
             render(
               <Tabs value="demo" style={{ display: 'none' }}>
@@ -630,9 +618,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
 
     describe('scroll button visibility states', () => {
       it('should set neither left nor right scroll button state', function test() {
-        if (isJSDOM) {
-          this.skip();
-        }
         const { container } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 50, minWidth: 'auto' }} />
@@ -644,10 +629,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
         expect(hasRightScrollButton(container)).to.equal(false);
       });
 
-      it('should set only left scroll button state', async function test() {
-        if (isJSDOM) {
-          this.skip();
-        }
+      it.skipIf(isJSDOM)('should set only left scroll button state', async function test() {
         const { container } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -665,10 +647,7 @@ describeSkipIf(isSafari)('<Tabs />', () => {
         expect(hasRightScrollButton(container)).to.equal(false);
       });
 
-      it('should set only right scroll button state', async function test() {
-        if (isJSDOM) {
-          this.skip();
-        }
+      it.skipIf(isJSDOM)('should set only right scroll button state', async function test() {
         const { container } = render(
           <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
@@ -688,38 +667,35 @@ describeSkipIf(isSafari)('<Tabs />', () => {
         });
       });
 
-      it('should set both left and right scroll button state', async function test() {
-        if (isJSDOM) {
-          this.skip();
-        }
-        const { container } = render(
-          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
-            <Tab style={{ width: 120, minWidth: 'auto' }} />
-            <Tab style={{ width: 120, minWidth: 'auto' }} />
-          </Tabs>,
-        );
-        const tablistContainer = screen.getByRole('tablist').parentElement;
+      it.skipIf(isJSDOM)(
+        'should set both left and right scroll button state',
+        async function test() {
+          const { container } = render(
+            <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+              <Tab style={{ width: 120, minWidth: 'auto' }} />
+            </Tabs>,
+          );
+          const tablistContainer = screen.getByRole('tablist').parentElement;
 
-        tablistContainer.scrollLeft = 5;
+          tablistContainer.scrollLeft = 5;
 
-        await waitFor(() => {
-          expect(hasLeftScrollButton(container)).to.equal(true);
-        });
-        await waitFor(() => {
-          expect(hasRightScrollButton(container)).to.equal(true);
-        });
-      });
+          await waitFor(() => {
+            expect(hasLeftScrollButton(container)).to.equal(true);
+          });
+          await waitFor(() => {
+            expect(hasRightScrollButton(container)).to.equal(true);
+          });
+        },
+      );
     });
   });
 
   describe('scroll button behavior', () => {
     clock.withFakeTimers();
 
-    it('should scroll visible items', async function test() {
+    it.skipIf(isJSDOM)('should scroll visible items', async function test() {
       clock.restore();
-      if (isJSDOM) {
-        this.skip();
-      }
       const { container } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab style={{ width: 100, minWidth: 'auto' }} />
@@ -803,10 +779,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
     clock.withFakeTimers();
 
     it('should scroll left tab into view', function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-
       const { forceUpdate } = render(
         <Tabs value={0} variant="scrollable" style={{ width: 200 }}>
           <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -850,10 +822,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
 
   describe('prop: orientation', () => {
     it('should support orientation="vertical"', function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-
       const { forceUpdate, container } = render(
         <Tabs value={1} variant="scrollable" scrollButtons orientation="vertical">
           <Tab />
@@ -926,13 +894,13 @@ describeSkipIf(isSafari)('<Tabs />', () => {
       const [orientation, direction, previousItemKey, nextItemKey] = entry;
 
       let wrapper;
-      before(() => {
+      beforeAll(() => {
         const theme = createTheme({ direction });
         wrapper = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
       });
 
       describe(`when focus is on a tab element in a ${orientation} ${direction} tablist`, () => {
-        describe(previousItemKey, () => {
+        describe(`${previousItemKey}`, () => {
           it('moves focus to the last tab without activating it if focus is on the first tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
@@ -962,6 +930,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the last tab while activating it if focus is on the first tab', async () => {
@@ -994,6 +964,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(2);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('moves focus to the previous tab without activating it', async () => {
@@ -1024,6 +996,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the previous tab while activating it', async () => {
@@ -1056,6 +1030,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('skips over disabled tabs', async () => {
@@ -1084,10 +1060,12 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(firstTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
         });
 
-        describe(nextItemKey, () => {
+        describe(`${nextItemKey}`, () => {
           it('moves focus to the first tab without activating it if focus is on the last tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
@@ -1116,6 +1094,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the first tab while activating it if focus is on the last tab', async () => {
@@ -1148,6 +1128,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('moves focus to the next tab without activating it it', async () => {
@@ -1178,6 +1160,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.callCount).to.equal(0);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('when `selectionFollowsFocus` moves focus to the next tab while activating it it', async () => {
@@ -1210,6 +1194,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(handleChange.firstCall.args[1]).to.equal(2);
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
 
           it('skips over disabled tabs', async () => {
@@ -1238,6 +1224,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
             expect(lastTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+            await flushEffects();
           });
         });
       });
@@ -1268,6 +1256,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.callCount).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('when `selectionFollowsFocus` moves focus to the first tab without activating it', async () => {
@@ -1294,6 +1284,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.firstCall.args[1]).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('moves focus to first non-disabled tab', async () => {
@@ -1317,6 +1309,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
       });
 
@@ -1344,6 +1338,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.callCount).to.equal(0);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('when `selectionFollowsFocus` moves focus to the last tab without activating it', async () => {
@@ -1370,6 +1366,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(handleChange.firstCall.args[1]).to.equal(2);
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
 
         it('moves focus to first non-disabled tab', async () => {
@@ -1393,6 +1391,8 @@ describeSkipIf(isSafari)('<Tabs />', () => {
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
+
+          await flushEffects();
         });
       });
     });
@@ -1438,10 +1438,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
 
   describe('keyboard navigation in shadow DOM', () => {
     it('should navigate between tabs using arrow keys when rendered in shadow DOM', async function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-
       // Create a shadow root
       const shadowHost = document.createElement('div');
       document.body.appendChild(shadowHost);
@@ -1500,9 +1496,6 @@ describeSkipIf(isSafari)('<Tabs />', () => {
 
     // https://github.com/mui/material-ui/issues/31936
     it('should not show scroll buttons if a tab added or removed in vertical mode', async function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
       function DynamicTabs() {
         const [value, setValue] = React.useState(0);
         const handleChange = (event, newValue) => {

@@ -5,7 +5,7 @@
   "private": "true",
   "main": "./index.ts",
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/api-docs-builder/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui-internal/api-docs-builder-core\"",
     "typescript": "tsc -p tsconfig.json"
   },
   "repository": {
@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@types/chai": "^5.2.3",
-    "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.25",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",

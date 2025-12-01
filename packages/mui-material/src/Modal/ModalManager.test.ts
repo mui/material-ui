@@ -18,7 +18,7 @@ describe('ModalManager', () => {
   let modalManager: ModalManager;
   let container1: HTMLDivElement;
 
-  before(() => {
+  beforeAll(() => {
     modalManager = new ModalManager();
     container1 = document.createElement('div');
     container1.style.paddingRight = '20px';
@@ -33,7 +33,7 @@ describe('ModalManager', () => {
     document.body.appendChild(container1);
   });
 
-  after(() => {
+  afterAll(() => {
     document.body.removeChild(container1);
   });
 
@@ -51,7 +51,7 @@ describe('ModalManager', () => {
     let modal2: Modal;
     let modal3: Modal;
 
-    before(() => {
+    beforeAll(() => {
       modal1 = getDummyModal();
       modal2 = getDummyModal();
       modal3 = getDummyModal();

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, simulatePointerDevice, screen } from '@mui/internal-test-utils';
+import { createRenderer, simulatePointerDevice, screen, isJsdom } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -35,12 +35,8 @@ describe('<Tab />', () => {
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should have a focusRipple', async function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
-
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())('should have a focusRipple', async function test() {
     const { container } = render(
       <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
@@ -164,11 +160,7 @@ describe('<Tab />', () => {
     });
   });
 
-  it('should apply iconWrapper styles from theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply iconWrapper styles from theme', function test() {
     const theme = createTheme({
       components: {
         MuiTab: {
@@ -193,11 +185,7 @@ describe('<Tab />', () => {
     });
   });
 
-  it('should apply icon styles from theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply icon styles from theme', function test() {
     const theme = createTheme({
       components: {
         MuiTab: {
@@ -222,39 +210,38 @@ describe('<Tab />', () => {
     });
   });
 
-  it('icon styles should override iconWrapper styles from theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
-    const theme = createTheme({
-      components: {
-        MuiTab: {
-          styleOverrides: {
-            iconWrapper: {
-              backgroundColor: 'rgb(255, 0, 0)',
-            },
-            icon: {
-              backgroundColor: 'rgb(0, 0, 255)',
+  it.skipIf(isJsdom())(
+    'icon styles should override iconWrapper styles from theme',
+    function test() {
+      const theme = createTheme({
+        components: {
+          MuiTab: {
+            styleOverrides: {
+              iconWrapper: {
+                backgroundColor: 'rgb(255, 0, 0)',
+              },
+              icon: {
+                backgroundColor: 'rgb(0, 0, 255)',
+              },
             },
           },
         },
-      },
-    });
+      });
 
-    render(
-      <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
-      </ThemeProvider>,
-    );
+      render(
+        <ThemeProvider theme={theme}>
+          <Tab icon={<div>hello</div>} label="icon" />
+        </ThemeProvider>,
+      );
 
-    const icon = screen.getByRole('tab').querySelector(`.${classes.icon}`);
-    const iconWrapper = screen.getByRole('tab').querySelector(`.${classes.iconWrapper}`);
-    expect(iconWrapper).toHaveComputedStyle({
-      backgroundColor: 'rgb(0, 0, 255)',
-    });
-    expect(icon).toHaveComputedStyle({
-      backgroundColor: 'rgb(0, 0, 255)',
-    });
-  });
+      const icon = screen.getByRole('tab').querySelector(`.${classes.icon}`);
+      const iconWrapper = screen.getByRole('tab').querySelector(`.${classes.iconWrapper}`);
+      expect(iconWrapper).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+      expect(icon).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+    },
+  );
 });

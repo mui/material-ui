@@ -138,7 +138,7 @@ describe('styled', () => {
      */
     let TestObj;
 
-    before(() => {
+    beforeAll(() => {
       theme = createTheme({
         palette: {
           primary: {

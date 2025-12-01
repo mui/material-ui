@@ -22,11 +22,8 @@
       "types": "./build/initPlaywrightMatchers.d.ts",
       "default": "./build/initPlaywrightMatchers.js"
     },
-    "./KarmaReporterReactProfiler": "./build/KarmaReporterReactProfiler.js",
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
-    "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js",
     "./chaiPlugin": "./build/chaiPlugin.js",
     "./setupVitest": "./build/setupVitest.js",
     "./describeSkipIf": "./build/describeSkipIf.js"
@@ -54,7 +51,6 @@
     "es-toolkit": "^1.41.0",
     "format-util": "^1.0.5",
     "jsdom": "^26.1.0",
-    "mocha": "^11.7.5",
     "prop-types": "^15.8.1",
     "sinon": "^21.0.0"
   },

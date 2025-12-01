@@ -27,7 +27,7 @@
   "scripts": {
     "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
@@ -57,6 +57,7 @@
     "css-mediaquery": "^0.1.2",
     "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
+    "jsdom": "^26.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router": "^7.9.6",

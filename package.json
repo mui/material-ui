@@ -48,13 +48,12 @@
     "size:snapshot": "pnpm -F ./test/bundle-size check",
     "size:why": "pnpm size:snapshot --analyze",
     "start": "pnpm install && pnpm docs:dev",
-    "test": "node scripts/test.mjs",
-    "tc": "nx run nx_test_tc",
+    "tc": "pnpm test:node",
     "test:attw": "pnpm run --parallel -r attw",
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
-    "test:coverage": "nx run nx_test_coverage",
-    "test:coverage:ci": "nx run nx_test_coverage_ci",
-    "test:coverage:html": "nx run nx_test_coverage_html",
+    "test:coverage": "pnpm test:unit run --coverage",
+    "vitest": "vitest",
+    "test:coverage:html": "pnpm test:unit run --coverage --coverage.reporter html",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
     "test:e2e:build": "nx run nx_test_e2e_build",
     "test:e2e:dev": "concurrently \"pnpm test:e2e:build --watch\" \"pnpm test:e2e:server\"",
@@ -62,39 +61,33 @@
     "test:e2e:server": "serve test/e2e -p 5001",
     "test:e2e-website": "playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
     "test:e2e-website:dev": "cross-env PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
-    "test:karma": "nx run nx_test_karma",
-    "test:karma:profile": "nx run nx_test_karma_profile",
     "test:regressions": "cross-env NODE_ENV=production pnpm test:regressions:build && concurrently --success first --kill-others \"pnpm test:regressions:run\" \"pnpm test:regressions:server\"",
     "test:regressions:build": "vite build test/regressions",
     "test:regressions:dev": "vite test/regressions --port 5001",
-    "test:regressions:run": "nx run nx_test_regressions_run",
+    "test:regressions:run": "vitest run -r ./test/regressions/",
     "test:regressions:server": "vite preview test/regressions --port 5001",
-    "test:unit": "nx run nx_test_unit",
+    "test": "pnpm test:node",
+    "test:unit": "cross-env TZ=UTC vitest",
+    "test:node": "cross-env TEST_SCOPE=node pnpm test:unit",
+    "test:browser": "cross-env TEST_SCOPE=browser pnpm test:unit",
     "test:argos": "code-infra argos-push --folder test/regressions/screenshots/chrome",
     "typescript": "lerna run --no-bail typescript",
     "typescript:ci": "lerna run --concurrency 2 --no-bail typescript",
-    "typescript:module-augmentation": "lerna run --concurrency 2 --no-bail typescript:module-augmentation",
+    "typescript:module-augmentation": "lerna run --concurrency 1 --no-bail typescript:module-augmentation",
     "use-react-version": "node ./scripts/useReactVersion.mjs",
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
-    "nx_test_tc": "node test/cli.js",
-    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
-    "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
-    "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
     "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
-    "nx_test_e2e_run": "mocha --config test/e2e/.mocharc.js \"test/e2e/**/*.test.?(c|m)[jt]s?(x)\"",
-    "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
-    "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
-    "clean": "pnpm -r exec rm -rf build",
-    "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
+    "nx_test_e2e_run": "vitest run -r ./test/e2e/",
+    "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
     "@netlify/functions": "^5.1.0",
     "@slack/bolt": "^4.6.0",
+    "@vitest/eslint-plugin": "^1.5.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
-    "execa": "^9.6.0",
-    "karma-spec-reporter": "^0.0.36"
+    "execa": "^9.6.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
@@ -120,11 +113,13 @@
     "@pnpm/find-workspace-dir": "^1000.1.3",
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
-    "@types/mocha": "^10.0.10",
+    "@types/ip": "^1.1.3",
     "@types/node": "^20.19.25",
     "@types/react": "^19.2.7",
     "@types/yargs": "^17.0.35",
     "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/browser-playwright": "^4.0.10",
+    "@vitest/coverage-v8": "^4.0.10",
     "@vvago/vale": "^3.12.0",
     "babel-loader": "^10.0.0",
     "babel-plugin-istanbul": "^7.0.0",
@@ -134,6 +129,7 @@
     "cpy-cli": "^6.0.0",
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
+    "dotenv": "^17.2.2",
     "es-toolkit": "^1.39.10",
     "eslint": "^9.39.1",
     "eslint-import-resolver-webpack": "^0.13.10",
@@ -141,19 +137,11 @@
     "fast-glob": "^3.3.3",
     "git-url-parse": "^16.1.0",
     "globby": "^15.0.0",
-    "karma": "^6.4.4",
-    "karma-browserstack-launcher": "~1.6.0",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-firefox-launcher": "^2.1.3",
-    "karma-mocha": "^2.0.1",
-    "karma-sourcemap-loader": "^0.4.0",
-    "karma-webpack": "^5.0.0",
     "lerna": "^9.0.1",
     "markdownlint-cli2": "^0.18.1",
-    "mocha": "^11.7.1",
     "nx": "^20.8.2",
     "nyc": "^17.1.0",
+    "playwright": "1.56.1",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
     "process": "^0.11.10",
@@ -166,7 +154,7 @@
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
     "vite": "^7.2.2",
-    "vitest": "^4.0.8",
+    "vitest": "^4.0.10",
     "vitest-fail-on-console": "^0.10.1",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
@@ -175,7 +163,7 @@
   "packageManager": "pnpm@10.22.0",
   "engines": {
     "pnpm": "10.22.0",
-    "node": ">=22.18.0"
+    "node": ">=22.12.0"
   },
   "resolutions": {
     "@babel/core": "^7.28.5",
@@ -207,46 +195,6 @@
   },
   "nx": {
     "targets": {
-      "nx_test_tc": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_unit": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_karma": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_karma_profile": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_coverage": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_coverage_ci": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_coverage_html": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_regressions_run": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
       "nx_test_e2e_build": {
         "dependsOn": [
           "@mui/internal-test-utils:build"

@@ -27,6 +27,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+    permissions:
+      contents: read
     steps:
       - run: echo '${{ github.actor }}'
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
@@ -57,6 +59,7 @@ jobs:
           # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
           # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
           NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
+          GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

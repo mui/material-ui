@@ -201,15 +201,14 @@ If it fails then `pnpm test:unit` should<sup>[1](test/README.md#accessibility-tr
 You can narrow the scope of tests run with `pnpm test:unit --grep ComponentName`.
 If `pnpm test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-#### ci/circleci: test_browser-1
+#### ci/circleci: test_browser
 
-This runs the unit tests in multiple browsers (via BrowserStack).
+This runs the unit tests in multiple browsers (via Playwright).
 The log of the failed build should list which browsers failed.
-If Chrome failed then `pnpm test:karma` should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well.
-If other browsers failed, then debugging might be trickier.
-If `pnpm test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
+If Chrome failed then `pnpm test:browser` should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well.
+If other browsers failed, you can debug using `VITEST_BROWSERS=firefox,webkit pnpm test:browser`.
 
-#### ci/circleci: test_regression-1
+#### ci/circleci: test_regression
 
 This renders tests in `test/regressions/tests` and takes screenshots.
 This step shouldn't fail if the others pass.

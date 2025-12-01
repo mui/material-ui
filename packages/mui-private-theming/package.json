@@ -26,7 +26,7 @@
   "scripts": {
     "build": "code-infra build --skipTsc",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-private-theming/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/private-theming\"",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {

@@ -5,10 +5,6 @@ orbs:
   code-infra: https://raw.githubusercontent.com/mui/mui-public/9cc15ae47e8be0c5f9fe8c09553d5aeb238b9d8a/.circleci/orbs/code-infra.yml
 
 parameters:
-  browserstack-force:
-    description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
-    type: boolean
-    default: false
   workflow:
     description: The name of the workflow to run
     type: string
@@ -32,13 +28,7 @@ default-job: &default-job
       description: The base url for running end-to-end test
       type: string
       default: << pipeline.parameters.e2e-base-url >>
-    browserstack-enabled:
-      type: boolean
-      default: false
   environment:
-    # expose it globally otherwise we have to thread it from each job to the install command
-    BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
-    BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -72,9 +62,12 @@ commands:
       typescript-version:
         type: string
         default: stable
+      playwright-version:
+        type: string
+        default: stable
     steps:
       - code-infra/install-deps:
-          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >>
+          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >> @playwright/test@<< parameters.playwright-version >> playwright@<< parameters.playwright-version >>
           ignore-workspace: << parameters.ignore-workspace >>
 
 jobs:
@@ -86,7 +79,7 @@ jobs:
           react-version: << parameters.react-version >>
       - run:
           name: Tests fake browser
-          command: pnpm test:coverage:ci
+          command: pnpm test:node --no-isolate --no-file-parallelism --coverage
       - run:
           name: internal-scripts
           command: |
@@ -104,6 +97,8 @@ jobs:
             fi
       - code-infra/upload-coverage:
           key: '<< parameters.react-version >>-jsdom'
+      - store_test_results:
+          path: test-results
 
   test_lint:
     <<: *default-job
@@ -184,6 +179,32 @@ jobs:
           name: Log defect declaration files
           command: |
             node scripts/testBuiltTypes.mjs
+  test_browser_legacy:
+    <<: *default-job
+    resource_class: 'medium+'
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.49.1-noble
+    steps:
+      - checkout
+      - install-deps:
+          react-version: << parameters.react-version >>
+          playwright-version: '1.49.1'
+      - run:
+          name: Tests chromium
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests webkit
+          environment:
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests firefox
+          environment:
+            VITEST_BROWSERS: 'firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - store_test_results:
+          path: test-results
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
@@ -195,14 +216,29 @@ jobs:
       - install-deps:
           react-version: << parameters.react-version >>
       - run:
-          name: Tests real browsers
-          command: pnpm test:karma
+          name: Tests chromium
+          command: pnpm test:browser --no-isolate --no-file-parallelism --coverage
+      - run:
+          name: Tests webkit
+          environment:
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests firefox
+          environment:
+            VITEST_BROWSERS: 'firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Check coverage generated
+          command: |
+            if ! [[ -s coverage/lcov.info ]]
+            then
+              exit 1
+            fi
       - code-infra/upload-coverage:
           key: '<< parameters.react-version >>-browser'
-      - store_artifacts:
-          # hardcoded in karma-webpack
-          path: /tmp/_karma_webpack_
-          destination: artifact-file
+      - store_test_results:
+          path: test-results
   test_e2e:
     <<: *default-job
     executor:
@@ -484,8 +520,8 @@ workflows:
           <<: *default-context
       - test_browser:
           <<: *default-context
-          # only enable on pipeline, the karma.conf.js has logic to disable browserstack on PRs
-          browserstack-enabled: true
+      - test_browser_legacy:
+          <<: *default-context
       - test_regressions:
           <<: *default-context
       - test_e2e:
@@ -619,8 +655,7 @@ workflows:
   react-18-cron:
     triggers:
       - schedule:
-          # Stagger daily cron job to prevent Browserstack timeouts
-          cron: '40 23 * * *'
+          cron: '0 0 * * *'
           filters:
             branches:
               only:
@@ -671,8 +706,7 @@ workflows:
   react-next-cron:
     triggers:
       - schedule:
-          # Stagger daily cron job to prevent Browserstack timeouts
-          cron: '50 23 * * *'
+          cron: '0 0 * * *'
           filters:
             branches:
               only:

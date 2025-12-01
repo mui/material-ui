@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noEmit": true,
-    "types": ["node", "mocha"],
+    "types": ["node", "vitest/globals"],
     "strict": true,
     "esModuleInterop": true,
     "isolatedModules": true
