@@ -14,6 +14,7 @@ import {
   render as testingLibraryRender,
   RenderOptions as TestingLibraryRenderOptions,
   within,
+  createEvent,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
@@ -563,7 +564,7 @@ function act<T>(callback: () => void | T | Promise<T>) {
 const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
 
 export { renderHook, waitFor, within } from '@testing-library/react/pure';
-export { act, fireEvent };
+export { act, fireEvent, createEvent };
 export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
 
 export async function flushEffects(): Promise<void> {
