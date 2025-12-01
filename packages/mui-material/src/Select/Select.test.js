@@ -18,10 +18,10 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import { listClasses } from '@mui/material/List';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
-import { isJsdom } from '@mui/internal-test-utils/env';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
