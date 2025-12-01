@@ -17,7 +17,7 @@ manualCard: true
   }
 </style>
 
-# How CGI's Techyon Project enhanced performance and usability with MUI X
+# How CGI's Techyon Project enhanced performance and usability with MUI X
 
 <img
     id="blog-responsive-image"

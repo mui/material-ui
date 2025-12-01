@@ -67,7 +67,7 @@ After researching various options, Coupa implemented MUI with a focus on:
 
 - Creating custom theme to match their existing design system
 - Integrating MUI components within a greenfield application
-- Expanding usage from core components to MUI X advanced components (date picker and charts)
+- Expanding usage from core components to MUI X advanced components (date picker and charts)
 - Doubling the licenses as adoption grew grew across projects
 
 ## Results
@@ -75,7 +75,7 @@ After researching various options, Coupa implemented MUI with a focus on:
 After integrating MUI X, Coupa managed to meet an aggressive one-year product delivery deadline resulting in a 50% faster time to market.
 They significantly enhanced user experience with a unified, modern interface.
 They also increased the platform production quality with reduced P0, P1 bugs.
-Recently, they also integrated MUI X Charts for a new AI chatbot feature:
+Recently, they also integrated MUI X Charts for a new AI chatbot feature:
 
 <img
   id="coupa-ui"

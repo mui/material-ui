@@ -8,7 +8,7 @@ rank: '7'
 manualCard: true
 ---
 
-# How Delivery Hero's Partner Portal streamlined development with MUI X
+# How Delivery Hero's Partner Portal streamlined development with MUI X
 
 <img
     id="blog-responsive-image"

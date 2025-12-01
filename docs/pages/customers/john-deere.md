@@ -17,7 +17,7 @@ manualCard: true
   }
 </style>
 
-# How John Deere standardized UI development with MUI X
+# How John Deere standardized UI development with MUI X
 
 <img
     id="blog-responsive-image"
