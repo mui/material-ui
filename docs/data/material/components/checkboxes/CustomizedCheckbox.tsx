@@ -19,10 +19,10 @@ const BpIcon = styled('span')(({ theme }) => ({
     outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
-  'input:hover ~ &': {
+  '.MuiCheckbox-root:hover &': {
     backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
   },
-  'input:disabled ~ &': {
+  '.MuiCheckbox-root.Mui-disabled &': {
     boxShadow: 'none',
     background:
       theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
@@ -42,7 +42,7 @@ const BpCheckedIcon = styled(BpIcon)({
       "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
     content: '""',
   },
-  'input:hover ~ &': {
+  '.MuiCheckbox-root:hover &': {
     backgroundColor: '#106ba3',
   },
 });
