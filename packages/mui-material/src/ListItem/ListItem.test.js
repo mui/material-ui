@@ -11,16 +11,17 @@ import describeConformance from '../../test/describeConformance';
 describe('<ListItem />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItem />, () => ({
+  describeConformance(<ListItem secondaryAction="foo" />, () => ({
     classes,
     inheritComponent: 'li',
     render,
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
-    testLegacyComponentsProp: true,
+    testLegacyComponentsProp: ['root'],
     slots: {
       root: {},
+      secondaryAction: { expectedClassName: classes.secondaryAction },
     },
     skip: [
       'componentsProp',
