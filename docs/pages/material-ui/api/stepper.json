@@ -6,6 +6,13 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },
     "connector": { "type": { "name": "element" }, "default": "<StepConnector />" },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(totalSteps: number) => string",
+        "describedArgs": ["totalSteps"]
+      }
+    },
     "nonLinear": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },

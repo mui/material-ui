@@ -5,6 +5,13 @@
       "description": "Can be a <code>StepLabel</code> or a node to place inside <code>StepLabel</code> as children."
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
+    "getAriaLabel": {
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the step button. This is important for screen reader users.",
+      "typeDescriptions": {
+        "index": { "name": "index", "description": "The step&#39;s index." },
+        "totalSteps": { "name": "totalSteps", "description": "The total number of steps." }
+      }
+    },
     "icon": { "description": "The icon displayed by the step label." },
     "optional": { "description": "The optional node to display." },
     "sx": {

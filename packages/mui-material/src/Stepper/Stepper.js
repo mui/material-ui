@@ -151,13 +151,6 @@ Stepper.propTypes /* remove-proptypes */ = {
    */
   alternativeLabel: PropTypes.bool,
   /**
-   * Accepts a function which returns a string value that provides a user-friendly name for the stepper navigation.
-   * This is important for screen reader users when the stepper contains interactive steps.
-   * @param {number} totalSteps The total number of steps.
-   * @returns {string}
-   */
-  getAriaLabel: PropTypes.func,
-  /**
    * Two or more `<Step />` components.
    */
   children: PropTypes.node,
@@ -179,6 +172,13 @@ Stepper.propTypes /* remove-proptypes */ = {
    * @default <StepConnector />
    */
   connector: PropTypes.element,
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the stepper navigation.
+   * This is important for screen reader users when the stepper contains interactive steps.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {string}
+   */
+  getAriaLabel: PropTypes.func,
   /**
    * If set the `Stepper` will not assist in controlling steps for linear flow.
    * @default false

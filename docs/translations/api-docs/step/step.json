@@ -14,6 +14,13 @@
       "description": "If <code>true</code>, the step is disabled, will also disable the button if <code>StepButton</code> is a child of <code>Step</code>. Is passed to child components."
     },
     "expanded": { "description": "Expand the step." },
+    "getAriaLabel": {
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the step. This is important for screen reader users.",
+      "typeDescriptions": {
+        "index": { "name": "index", "description": "The step&#39;s index." },
+        "totalSteps": { "name": "totalSteps", "description": "The total number of steps." }
+      }
+    },
     "index": {
       "description": "The position of the step. The prop defaults to the value inherited from the parent Stepper component."
     },

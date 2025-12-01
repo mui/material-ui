@@ -2,6 +2,13 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(index: number, totalSteps: number) => string",
+        "describedArgs": ["index", "totalSteps"]
+      }
+    },
     "icon": { "type": { "name": "node" } },
     "optional": { "type": { "name": "node" } },
     "sx": {
