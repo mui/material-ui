@@ -1,4 +1,4 @@
-import { createRenderer, reactMajor, act, screen } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, act, screen, flushEffects } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
@@ -71,7 +71,7 @@ describe('<Masonry />', () => {
     // only run on browser
     it.skipIf(window.navigator.userAgent.includes('jsdom'))(
       'should re-compute the height of masonry when dimensions of any child change',
-      function test() {
+      async () => {
         const spacingProp = 1;
         const firstChildHeight = 10;
         const secondChildInitialHeight = 20;
@@ -98,6 +98,8 @@ describe('<Masonry />', () => {
         expect(window.getComputedStyle(masonry).height).to.equal(
           `${firstChildHeight + secondChildNewHeight + topAndBottomMargin}px`,
         );
+
+        await flushEffects();
       },
     );
 
