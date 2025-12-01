@@ -29,11 +29,11 @@ export default withDocsInfra({
   webpack: (config: NextConfig, options): NextConfig => {
     const plugins = config.plugins.slice();
 
-    if (process.env.DOCS_STATS_ENABLED) {
+    if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
       plugins.push(
         // For all options see https://github.com/th0r/webpack-bundle-analyzer#as-plugin
         new BundleAnalyzerPlugin({
-          analyzerMode: 'server',
+          analyzerMode: 'static',
           generateStatsFile: true,
           analyzerPort: options.isServer ? 8888 : 8889,
           reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,

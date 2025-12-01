@@ -259,7 +259,7 @@ describe('<TablePagination />', () => {
   });
 
   describe('label', () => {
-    it('should display 0 as start number if the table is empty ', () => {
+    it('should display 0 as start number if the table is empty', () => {
       const { container } = render(
         <table>
           <TableFooter>

@@ -77,7 +77,7 @@ describe('<Menu /> integration', () => {
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
-  it('does not gain any focus when mounted ', () => {
+  it('does not gain any focus when mounted', () => {
     render(<ButtonMenu />);
 
     expect(screen.getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
@@ -141,7 +141,7 @@ describe('<Menu /> integration', () => {
       return <Menu anchorEl={document.body} open {...props} />;
     }
 
-    specify('[variant=menu] will focus the first item if nothing is selected', () => {
+    it('[variant=menu] will focus the first item if nothing is selected', () => {
       render(
         <OpenMenu variant="menu">
           <MenuItem />
@@ -158,7 +158,7 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] will focus the first item if nothing is selected', () => {
+    it('[variant=selectedMenu] will focus the first item if nothing is selected', () => {
       render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
@@ -176,7 +176,7 @@ describe('<Menu /> integration', () => {
     });
 
     // no case for variant=selectedMenu
-    specify('[variant=menu] prioritizes `autoFocus` on `MenuItem`', () => {
+    it('[variant=menu] prioritizes `autoFocus` on `MenuItem`', () => {
       render(
         <OpenMenu variant="menu">
           <MenuItem />
@@ -193,7 +193,7 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=menu] ignores `selected` on `MenuItem`', () => {
+    it('[variant=menu] ignores `selected` on `MenuItem`', () => {
       render(
         <OpenMenu variant="menu">
           <MenuItem />
@@ -210,7 +210,7 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] focuses the `selected` `MenuItem`', () => {
+    it('[variant=selectedMenu] focuses the `selected` `MenuItem`', () => {
       render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
@@ -227,7 +227,7 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', () => {
+    it('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', () => {
       render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
@@ -247,32 +247,29 @@ describe('<Menu /> integration', () => {
     // falling back to the menu immediately so that we don't have to come up
     // with custom fallbacks (for example what happens if the first item is also selected)
     // it's debatable whether disabled items should still be focusable
-    specify(
-      '[variant=selectedMenu] focuses the first non-disabled item if the selected menuitem is disabled',
-      () => {
-        render(
-          <OpenMenu variant="selectedMenu">
-            <MenuItem disabled />
-            <MenuItem />
-            <MenuItem disabled selected />
-            <MenuItem />
-          </OpenMenu>,
-        );
+    it('[variant=selectedMenu] focuses the first non-disabled item if the selected menuitem is disabled', () => {
+      render(
+        <OpenMenu variant="selectedMenu">
+          <MenuItem disabled />
+          <MenuItem />
+          <MenuItem disabled selected />
+          <MenuItem />
+        </OpenMenu>,
+      );
 
-        const menuitems = screen.getAllByRole('menuitem');
+      const menuitems = screen.getAllByRole('menuitem');
 
-        expect(menuitems[1]).toHaveFocus();
-        expect(menuitems[0]).to.have.property('tabIndex', -1);
-        expect(menuitems[1]).to.have.property('tabIndex', 0);
-        expect(menuitems[2]).to.have.property('tabIndex', -1);
-        expect(menuitems[3]).to.have.property('tabIndex', -1);
-      },
-    );
+      expect(menuitems[1]).toHaveFocus();
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[3]).to.have.property('tabIndex', -1);
+    });
 
     // no case for menu
     // TODO: should this even change focus? I would guess that autoFocus={false}
     // means "developer: I take care of focus don't steal it from me"
-    specify('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', () => {
+    it('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', () => {
       render(
         <OpenMenu autoFocus={false} variant="selectedMenu" PaperProps={{ 'data-testid': 'Paper' }}>
           <MenuItem />
@@ -289,29 +286,26 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] focuses nothing when it is closed and mounted', () => {
+    it('[variant=selectedMenu] focuses nothing when it is closed and mounted', () => {
       render(<ButtonMenu selectedIndex={1} variant="selectedMenu" />);
 
       expect(screen.getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
     });
 
-    specify(
-      '[variant=selectedMenu] focuses the selected item when opening when it was already mounted',
-      async () => {
-        render(<ButtonMenu selectedIndex={1} variant="selectedMenu" />);
+    it('[variant=selectedMenu] focuses the selected item when opening when it was already mounted', async () => {
+      render(<ButtonMenu selectedIndex={1} variant="selectedMenu" />);
 
-        await act(async () => {
-          screen.getByRole('button').focus();
-          screen.getByRole('button').click();
-        });
-        const menuitems = screen.getAllByRole('menuitem');
+      await act(async () => {
+        screen.getByRole('button').focus();
+        screen.getByRole('button').click();
+      });
+      const menuitems = screen.getAllByRole('menuitem');
 
-        expect(menuitems[1]).toHaveFocus();
-        expect(menuitems[0]).to.have.property('tabIndex', -1);
-        expect(menuitems[1]).to.have.property('tabIndex', 0);
-        expect(menuitems[2]).to.have.property('tabIndex', -1);
-      },
-    );
+      expect(menuitems[1]).toHaveFocus();
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
+    });
   });
 
   it('closes the menu when Tabbing while the list is active', async () => {

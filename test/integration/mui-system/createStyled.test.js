@@ -8,18 +8,11 @@ import { createRenderer, screen } from '@mui/internal-test-utils';
 describe('createStyled', () => {
   const { render } = createRenderer();
 
-  describe('displayName', () => {
-    // These tests rely on implementation details (namely `displayName`)
-    // Ideally we'd just test if the proper name appears in a React warning.
-    // But React warnings are deduplicated during module lifetime.
-    // We would need to reset modules to make the tests work in watchmode.
-    before(function beforeHook() {
-      // display names are dev-only
-      if (process.env.NODE_ENV === 'production') {
-        this.skip();
-      }
-    });
-
+  // These tests rely on implementation details (namely `displayName`)
+  // Ideally we'd just test if the proper name appears in a React warning.
+  // But React warnings are deduplicated during module lifetime.
+  // We would need to reset modules to make the tests work in watchmode.
+  describe.skipIf(process.env.NODE_ENV === 'production')('displayName', () => {
     it('uses the `componentName` if set', () => {
       const styled = createStyled({});
       const SomeMuiComponent = styled('div', { name: 'SomeMuiComponent' })({});

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
@@ -60,14 +61,7 @@ describe('deepmerge', () => {
     expect({}).not.to.have.property('isAdmin');
   });
 
-  it('should merge objects across realms', async function test() {
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      // vm is only available in Node.js.
-      // We could use https://github.com/browserify/vm-browserify to run the test in an iframe when
-      // in Karma but it doesn't seem we need to go as far.
-      this.skip();
-    }
-
+  it.skipIf(!isJsdom())('should merge objects across realms', async function test() {
     const { runInNewContext } = await import('vm');
     const vmObject = runInNewContext('({hello: "realm"})');
     const result = deepmerge({ hello: 'original' }, vmObject);

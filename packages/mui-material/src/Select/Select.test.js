@@ -18,6 +18,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import { listClasses } from '@mui/material/List';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
@@ -63,7 +64,7 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.property('value', '10');
   });
 
-  specify('the trigger is in tab order', () => {
+  it('the trigger is in tab order', () => {
     render(
       <Select value="">
         <MenuItem value="">None</MenuItem>
@@ -460,7 +461,7 @@ describe('<Select />', () => {
       );
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
+    it('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       render(<Select value="" />);
 
       expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
@@ -478,7 +479,7 @@ describe('<Select />', () => {
       expect(container.querySelector('input')).to.have.property('disabled', true);
     });
 
-    specify('aria-disabled is not present if component is not disabled', () => {
+    it('aria-disabled is not present if component is not disabled', () => {
       render(<Select disabled={false} value="" />);
 
       expect(screen.getByRole('combobox')).not.to.have.attribute('aria-disabled');
@@ -541,7 +542,7 @@ describe('<Select />', () => {
       expect(screen.getByRole('combobox', { hidden: true })).to.not.have.attribute('aria-controls');
     });
 
-    specify('the listbox is focusable', async () => {
+    it('the listbox is focusable', async () => {
       render(<Select open value="" />);
 
       await act(async () => {
@@ -752,7 +753,7 @@ describe('<Select />', () => {
       });
     });
 
-    it('it will fallback to its content for the accessible name when it has no name', () => {
+    it('will fallback to its content for the accessible name when it has no name', () => {
       render(<Select value="" />);
 
       // TODO what is the accessible name actually?
@@ -804,13 +805,13 @@ describe('<Select />', () => {
       );
     });
 
-    specify('the list of options is not labelled by default', () => {
+    it('the list of options is not labelled by default', () => {
       render(<Select open value="" />);
 
       expect(screen.getByRole('listbox')).not.to.have.attribute('aria-labelledby');
     });
 
-    specify('the list of options can be labelled by providing `labelId`', () => {
+    it('the list of options can be labelled by providing `labelId`', () => {
       render(
         <React.Fragment>
           <span id="select-label">Choose one:</span>
@@ -891,22 +892,21 @@ describe('<Select />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/38700
-    it('should merge `slotProps.paper` with the default Paper props', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should merge `slotProps.paper` with the default Paper props',
+      function test() {
+        render(
+          <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
+            <MenuItem value="10">Ten</MenuItem>
+          </Select>,
+        );
 
-      render(
-        <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} open value="10">
-          <MenuItem value="10">Ten</MenuItem>
-        </Select>,
-      );
+        const paper = screen.getByTestId('paper');
+        const selectButton = screen.getByRole('combobox', { hidden: true });
 
-      const paper = screen.getByTestId('paper');
-      const selectButton = screen.getByRole('combobox', { hidden: true });
-
-      expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
-    });
+        expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
+      },
+    );
 
     // https://github.com/mui/material-ui/issues/46273
     it('should merge `slotProps.list` with default List props', () => {
@@ -977,23 +977,22 @@ describe('<Select />', () => {
       expect(screen.getByRole('combobox')).to.have.text('Ten');
     });
 
-    it('should notch the outline to accommodate the label when displayEmpty', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should notch the outline to accommodate the label when displayEmpty',
+      function test() {
+        const { container } = render(
+          <Select value="" label="Age" displayEmpty>
+            <MenuItem value="">None</MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+          </Select>,
+        );
 
-      const { container } = render(
-        <Select value="" label="Age" displayEmpty>
-          <MenuItem value="">None</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-        </Select>,
-      );
-
-      expect(container.querySelector('legend')).toHaveComputedStyle({
-        maxWidth: '100%',
-      });
-    });
+        expect(container.querySelector('legend')).toHaveComputedStyle({
+          maxWidth: '100%',
+        });
+      },
+    );
   });
 
   describe('prop: renderValue', () => {
@@ -1238,14 +1237,10 @@ describe('<Select />', () => {
     });
 
     describe('errors', () => {
-      it('should throw if non array', function test() {
-        // TODO is this fixed?
-        if (!window.navigator.userAgent.includes('jsdom')) {
-          // can't catch render errors in the browser for unknown reason
-          // tried try-catch + error boundary + window onError preventDefault
-          this.skip();
-        }
-
+      // can't catch render errors in the browser for unknown reason
+      // tried try-catch + error boundary + window onError preventDefault
+      // TODO is this fixed?
+      it.skipIf(!isJsdom())('should throw if non array', function test() {
         const errorRef = React.createRef();
         expect(() => {
           render(
@@ -1333,46 +1328,45 @@ describe('<Select />', () => {
       expect(container.querySelector(`.${classes.select}`)).to.have.class(classes.multiple);
     });
 
-    it('should be able to override `multiple` rule name in `select` slot', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should be able to override `multiple` rule name in `select` slot',
+      function test() {
+        const selectStyle = {
+          marginLeft: '10px',
+          marginTop: '10px',
+        };
 
-      const selectStyle = {
-        marginLeft: '10px',
-        marginTop: '10px',
-      };
+        const multipleStyle = {
+          marginTop: '14px',
+        };
 
-      const multipleStyle = {
-        marginTop: '14px',
-      };
-
-      const theme = createTheme({
-        components: {
-          MuiSelect: {
-            styleOverrides: {
-              select: selectStyle,
-              multiple: multipleStyle,
+        const theme = createTheme({
+          components: {
+            MuiSelect: {
+              styleOverrides: {
+                select: selectStyle,
+                multiple: multipleStyle,
+              },
             },
           },
-        },
-      });
+        });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Select open value={['first']} multiple>
-            <MenuItem value="first" />
-            <MenuItem value="second" />
-          </Select>
-        </ThemeProvider>,
-      );
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Select open value={['first']} multiple>
+              <MenuItem value="first" />
+              <MenuItem value="second" />
+            </Select>
+          </ThemeProvider>,
+        );
 
-      const combinedStyle = { ...selectStyle, ...multipleStyle };
+        const combinedStyle = { ...selectStyle, ...multipleStyle };
 
-      expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(
-        combinedStyle,
-      );
-    });
+        expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(
+          combinedStyle,
+        );
+      },
+    );
   });
 
   describe('prop: autoFocus', () => {
@@ -1507,14 +1501,9 @@ describe('<Select />', () => {
     expect(screen.getByRole('combobox')).to.have.text('France');
   });
 
-  it('should support native form validation', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // see https://github.com/jsdom/jsdom/issues/123
-      this.skip();
-    }
-
+  // see https://github.com/jsdom/jsdom/issues/123
+  it.skipIf(isJsdom())('should support native form validation', function test() {
     const handleSubmit = spy((event) => {
-      // avoid karma reload.
       event.preventDefault();
     });
     function Form(props) {
@@ -1593,11 +1582,7 @@ describe('<Select />', () => {
     expect(handleChange.callCount).to.equal(0);
   });
 
-  it('slots overrides should work', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('slots overrides should work', function test() {
     const rootStyle = {
       marginTop: '15px',
     };
@@ -1651,105 +1636,103 @@ describe('<Select />', () => {
   });
 
   describe('form submission', () => {
-    it('includes Select value in formData only if the `name` attribute is provided', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // FormData is not available in JSDOM
-        this.skip();
-      }
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        expect(formData.get('select-one')).to.equal('2');
+    // FormData is not available in JSDOM
+    it.skipIf(isJsdom())(
+      'includes Select value in formData only if the `name` attribute is provided',
+      async function test() {
+        const handleSubmit = (event) => {
+          event.preventDefault();
+          const formData = new FormData(event.currentTarget);
+          expect(formData.get('select-one')).to.equal('2');
 
-        const formDataAsObject = Object.fromEntries(formData);
-        expect(Object.keys(formDataAsObject).length).to.equal(1);
-      };
+          const formDataAsObject = Object.fromEntries(formData);
+          expect(Object.keys(formDataAsObject).length).to.equal(1);
+        };
 
-      render(
-        <form onSubmit={handleSubmit}>
-          <Select defaultValue={2} name="select-one">
-            <MenuItem value={1} />
-            <MenuItem value={2} />
-          </Select>
-          <Select defaultValue="a">
-            <MenuItem value="a" />
-            <MenuItem value="b" />
-          </Select>
-          <button type="submit">Submit</button>
-        </form>,
-      );
+        render(
+          <form onSubmit={handleSubmit}>
+            <Select defaultValue={2} name="select-one">
+              <MenuItem value={1} />
+              <MenuItem value={2} />
+            </Select>
+            <Select defaultValue="a">
+              <MenuItem value="a" />
+              <MenuItem value="b" />
+            </Select>
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-      const button = screen.getByText('Submit');
-      await act(async () => {
-        button.click();
-      });
-    });
+        const button = screen.getByText('Submit');
+        await act(async () => {
+          button.click();
+        });
+      },
+    );
   });
 
   describe('theme styleOverrides:', () => {
-    it('should override with error style when `native select` has `error` state', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should override with error style when `native select` has `error` state',
+      function test() {
+        const iconStyle = { color: 'rgb(255, 0, 0)' };
 
-      const iconStyle = { color: 'rgb(255, 0, 0)' };
-
-      const theme = createTheme({
-        components: {
-          MuiNativeSelect: {
-            styleOverrides: {
-              icon: (props) => ({
-                ...(props.ownerState.error && iconStyle),
-              }),
+        const theme = createTheme({
+          components: {
+            MuiNativeSelect: {
+              styleOverrides: {
+                icon: (props) => ({
+                  ...(props.ownerState.error && iconStyle),
+                }),
+              },
             },
           },
-        },
-      });
+        });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Select value="first" error IconComponent="div" native>
-            <option value="first">first</option>
-          </Select>
-        </ThemeProvider>,
-      );
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Select value="first" error IconComponent="div" native>
+              <option value="first">first</option>
+            </Select>
+          </ThemeProvider>,
+        );
 
-      expect(container.querySelector(`.${nativeSelectClasses.icon}`)).toHaveComputedStyle(
-        iconStyle,
-      );
-    });
+        expect(container.querySelector(`.${nativeSelectClasses.icon}`)).toHaveComputedStyle(
+          iconStyle,
+        );
+      },
+    );
 
-    it('should override with error style when `select` has `error` state', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should override with error style when `select` has `error` state',
+      function test() {
+        const iconStyle = { color: 'rgb(255, 0, 0)' };
+        const selectStyle = { color: 'rgb(255, 192, 203)' };
 
-      const iconStyle = { color: 'rgb(255, 0, 0)' };
-      const selectStyle = { color: 'rgb(255, 192, 203)' };
-
-      const theme = createTheme({
-        components: {
-          MuiSelect: {
-            styleOverrides: {
-              icon: (props) => ({
-                ...(props.ownerState.error && iconStyle),
-              }),
-              select: (props) => ({
-                ...(props.ownerState.error && selectStyle),
-              }),
+        const theme = createTheme({
+          components: {
+            MuiSelect: {
+              styleOverrides: {
+                icon: (props) => ({
+                  ...(props.ownerState.error && iconStyle),
+                }),
+                select: (props) => ({
+                  ...(props.ownerState.error && selectStyle),
+                }),
+              },
             },
           },
-        },
-      });
+        });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Select value="" error IconComponent="div" />
-        </ThemeProvider>,
-      );
-      expect(container.querySelector(`.${classes.select}`)).toHaveComputedStyle(selectStyle);
-      expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(iconStyle);
-    });
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Select value="" error IconComponent="div" />
+          </ThemeProvider>,
+        );
+        expect(container.querySelector(`.${classes.select}`)).toHaveComputedStyle(selectStyle);
+        expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(iconStyle);
+      },
+    );
   });
 
   ['standard', 'outlined', 'filled'].forEach((variant) => {
@@ -1865,5 +1848,99 @@ describe('<Select />', () => {
     const { container } = render(<Select value="" variant="filled" />);
     expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('should call onKeyDown when passed', async () => {
+    const handleKeyDown = spy();
+
+    render(
+      <Select value="one" onKeyDown={handleKeyDown}>
+        <MenuItem value="one">One</MenuItem>
+        <MenuItem value="two">Two</MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    await act(async () => {
+      trigger.focus();
+    });
+
+    fireEvent.keyDown(trigger, { key: 'a' });
+
+    expect(handleKeyDown.callCount).to.equal(1);
+    const event = handleKeyDown.firstCall.args[0];
+    expect(event).to.have.property('key', 'a');
+  });
+
+  it('should call onMouseDown when passed', async () => {
+    const handleMouseDown = spy();
+
+    render(
+      <Select value="one" onMouseDown={handleMouseDown}>
+        <MenuItem value="one">One</MenuItem>
+        <MenuItem value="two">Two</MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    await act(async () => {
+      trigger.focus();
+    });
+
+    fireEvent.mouseDown(trigger);
+
+    expect(handleMouseDown.callCount).to.equal(1);
+    const event = handleMouseDown.firstCall.args[0];
+    expect(event.button).to.equal(0);
+  });
+
+  describe('keyboard navigation in shadow DOM', () => {
+    it.skipIf(isJsdom())('should navigate between options using arrow keys', async function test() {
+      // reset fake timers
+      clock.restore();
+
+      // Create a shadow container
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowContainer = shadowHost.attachShadow({ mode: 'open' });
+
+      // Render directly into shadow container
+      const shadowRoot = document.createElement('div');
+      shadowContainer.appendChild(shadowRoot);
+
+      const { unmount, user } = render(
+        <Select value="" MenuProps={{ container: shadowRoot }}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+        { container: shadowRoot },
+      );
+
+      const trigger = shadowRoot.querySelector('[role="combobox"]');
+      expect(trigger).not.to.equal(null);
+
+      // Open Select
+      await user.click(trigger);
+
+      const options = shadowRoot.querySelectorAll('[role="option"]');
+      expect(options.length).to.equal(3);
+
+      expect(shadowContainer.activeElement).to.equal(options[0]);
+
+      await user.keyboard('{ArrowDown}');
+
+      expect(shadowContainer.activeElement).to.equal(options[1]);
+
+      await user.keyboard('{ArrowUp}');
+
+      expect(shadowContainer.activeElement).to.equal(options[0]);
+
+      // Cleanup
+      unmount();
+      if (shadowHost.parentNode) {
+        document.body.removeChild(shadowHost);
+      }
+    });
   });
 });

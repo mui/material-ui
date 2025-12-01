@@ -22,11 +22,8 @@
       "types": "./build/initPlaywrightMatchers.d.ts",
       "default": "./build/initPlaywrightMatchers.js"
     },
-    "./KarmaReporterReactProfiler": "./build/KarmaReporterReactProfiler.js",
     "./setupBabel": "./build/setupBabel.js",
     "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
-    "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js",
     "./chaiPlugin": "./build/chaiPlugin.js",
     "./setupVitest": "./build/setupVitest.js",
     "./describeSkipIf": "./build/describeSkipIf.js"
@@ -48,22 +45,23 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
+    "assertion-error": "^2.0.1",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
     "es-toolkit": "^1.41.0",
     "format-util": "^1.0.5",
     "jsdom": "^26.1.0",
-    "mocha": "^11.7.5",
     "prop-types": "^15.8.1",
     "sinon": "^21.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.3",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
+    "@types/jsdom": "^21.1.7",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.4",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/sinon": "^17.0.4",
     "typescript": "^5.9.2"

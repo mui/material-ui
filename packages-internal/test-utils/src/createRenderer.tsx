@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 /* eslint-disable compat/compat -- Test environment */
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
@@ -20,6 +19,7 @@ import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
+import { beforeEach, afterEach, beforeAll, vi, expect } from 'vitest';
 import reactMajor from './reactMajor';
 
 function queryAllDescriptionsOf(baseElement: HTMLElement, element: Element): HTMLElement[] {
@@ -192,25 +192,34 @@ export interface Clock {
 
 export type ClockConfig = undefined | number | Date;
 
-function isVitest(vi: any) {
-  return vi != null;
-}
-
-function createVitestClock(
+function createClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
 ): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
-      vi.useFakeTimers(options);
+      vi.useFakeTimers({
+        now: config,
+        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+        // Technically we'd want to reset all modules between tests but we don't have that technology.
+        // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
+        shouldClearNativeTimers: true,
+        toFake: [
+          'setTimeout',
+          'setInterval',
+          'clearTimeout',
+          'clearInterval',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+          'performance',
+          'Date',
+        ],
+        ...options,
+      });
       if (config) {
         vi.setSystemTime(config);
       }
-    });
-    afterEach(() => {
-      vi.useRealTimers();
     });
   } else {
     beforeEach(() => {
@@ -218,18 +227,44 @@ function createVitestClock(
         vi.setSystemTime(config);
       }
     });
-    afterEach(() => {
-      vi.useRealTimers();
-    });
   }
+
+  afterEach(async () => {
+    if (vi.isFakeTimers()) {
+      await rtlAct(async () => {
+        vi.runOnlyPendingTimers();
+      });
+      vi.useRealTimers();
+    }
+  });
 
   return {
     withFakeTimers: () => {
+      if (vi.isFakeTimers()) {
+        return;
+      }
       beforeEach(() => {
-        vi.useFakeTimers(options);
-      });
-      afterEach(() => {
-        vi.useRealTimers();
+        vi.useFakeTimers({
+          now: config,
+          // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+          // Technically we'd want to reset all modules between tests but we don't have that technology.
+          // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
+          shouldClearNativeTimers: true,
+          toFake: [
+            'setTimeout',
+            'setInterval',
+            'clearTimeout',
+            'clearInterval',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+            'Date',
+          ],
+          ...options,
+        });
+        if (config) {
+          vi.setSystemTime(config);
+        }
       });
     },
     runToLast: () => {
@@ -256,81 +291,6 @@ function createVitestClock(
   };
 }
 
-function createClock(
-  defaultMode: 'fake' | 'real',
-  config: ClockConfig,
-  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
-): Clock {
-  if (isVitest(vi)) {
-    return createVitestClock(defaultMode, config, options, vi);
-  }
-
-  let clock: ReturnType<typeof useFakeTimers> | null = null;
-
-  let mode = defaultMode;
-
-  beforeEach(() => {
-    if (mode === 'fake') {
-      clock = useFakeTimers({
-        now: config,
-        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
-        // Technically we'd want to reset all modules between tests but we don't have that technology.
-        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
-        shouldClearNativeTimers: true,
-        ...options,
-      });
-    }
-  });
-
-  afterEach(() => {
-    clock?.restore();
-    clock = null;
-  });
-
-  return {
-    tick(timeoutMS: number) {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      rtlAct(() => {
-        clock!.tick(timeoutMS);
-      });
-    },
-    runAll() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      rtlAct(() => {
-        clock!.runAll();
-      });
-    },
-    runToLast() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      rtlAct(() => {
-        clock!.runToLast();
-      });
-    },
-    isReal() {
-      return setTimeout.hasOwnProperty('clock') === false;
-    },
-    withFakeTimers() {
-      before(() => {
-        mode = 'fake';
-      });
-
-      after(() => {
-        mode = defaultMode;
-      });
-    },
-    restore() {
-      clock?.restore();
-    },
-  };
-}
-
 export interface Renderer {
   clock: Clock;
   render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
@@ -347,11 +307,6 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
   clockOptions?: Parameters<typeof createClock>[2];
-  /**
-   * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
-   * @default {}
-   */
-  vi?: any;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -360,19 +315,18 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig, clockOptions, vi);
+  const clock = createClock(clockMode, clockConfig, clockOptions);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
-   * For legacy reasons `createRenderer` might accidentally be called in a before(Each) hook.
+   * For legacy reasons `createRenderer` might accidentally be called in a beforeAll(Each) hook.
    */
   let wasCalledInSuite = false;
-  before(function beforeHook() {
+  beforeAll(function beforeHook() {
     wasCalledInSuite = true;
   });
 
@@ -383,7 +337,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   let serverContainer: HTMLElement;
   /**
    * Flag whether all setup for `configuredClientRender` was completed.
-   * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
+   * For legacy reasons `configuredClientRender` might accidentally be called in a beforeAll(Each) hook.
    */
   let prepared = false;
   beforeEach(function beforeEachHook() {
@@ -395,14 +349,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       throw error;
     }
 
-    let id: string | null = null;
-
-    if (isVitest(vi)) {
-      // @ts-expect-error
-      id = expect.getState().currentTestName;
-    } else {
-      id = this.currentTest?.fullTitle() ?? null;
-    }
+    const id = expect.getState().currentTestName;
 
     if (!id) {
       throw new Error(
@@ -460,7 +407,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
-            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'This usually indicates that `render()` was called in a `beforeAll()` or `beforeEach` hook. ' +
             'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
         );
       }
@@ -481,7 +428,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
-            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'This usually indicates that `render()` was called in a `beforeAll()` or `beforeEach` hook. ' +
             'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
         );
       }
@@ -615,6 +562,30 @@ function act<T>(callback: () => void | T | Promise<T>) {
 
 const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
 
-export * from '@testing-library/react/pure';
+export { renderHook, waitFor, within } from '@testing-library/react/pure';
 export { act, fireEvent };
 export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
+
+export async function flushEffects(): Promise<void> {
+  await act(async () => {});
+}
+
+/**
+ * returns true when touch is suported and can be mocked
+ */
+export function supportsTouch() {
+  // only run in supported browsers
+  if (typeof Touch === 'undefined') {
+    return false;
+  }
+
+  try {
+    // eslint-disable-next-line no-new
+    new Touch({ identifier: 0, target: window, pageX: 0, pageY: 0 });
+  } catch {
+    // Touch constructor not supported
+    return false;
+  }
+
+  return true;
+}

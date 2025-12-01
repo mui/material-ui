@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
@@ -74,12 +74,8 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('should add the focusVisible class when focused', function test() {
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 

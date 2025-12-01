@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { modalClasses } from '@mui/material/Modal';
@@ -90,48 +90,48 @@ describe('<Drawer />', () => {
         exit: 2967,
       };
 
-      it('should delay the slide transition to complete using default theme values by default', function test() {
-        if (window.navigator.userAgent.includes('jsdom')) {
-          this.skip();
-        }
-        const theme = createTheme();
-        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-        render(
-          <Drawer open>
-            <div />
-          </Drawer>,
-        );
-
-        const container = document.querySelector(`.${classes.root}`);
-        const backdropRoot = container.firstChild;
-        expect(backdropRoot).toHaveComputedStyle({
-          transitionDuration: `${enteringScreenDurationInSeconds}s`,
-        });
-      });
-
-      it('should delay the slide transition to complete using custom theme values', function test() {
-        if (window.navigator.userAgent.includes('jsdom')) {
-          this.skip();
-        }
-        const theme = createTheme({
-          transitions: {
-            duration: {
-              enteringScreen: 1,
-            },
-          },
-        });
-        render(
-          <ThemeProvider theme={theme}>
+      it.skipIf(isJsdom())(
+        'should delay the slide transition to complete using default theme values by default',
+        function test() {
+          const theme = createTheme();
+          const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+          render(
             <Drawer open>
               <div />
-            </Drawer>
-          </ThemeProvider>,
-        );
+            </Drawer>,
+          );
 
-        const container = document.querySelector(`.${classes.root}`);
-        const backdropRoot = container.firstChild;
-        expect(backdropRoot).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      });
+          const container = document.querySelector(`.${classes.root}`);
+          const backdropRoot = container.firstChild;
+          expect(backdropRoot).toHaveComputedStyle({
+            transitionDuration: `${enteringScreenDurationInSeconds}s`,
+          });
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should delay the slide transition to complete using custom theme values',
+        function test() {
+          const theme = createTheme({
+            transitions: {
+              duration: {
+                enteringScreen: 1,
+              },
+            },
+          });
+          render(
+            <ThemeProvider theme={theme}>
+              <Drawer open>
+                <div />
+              </Drawer>
+            </ThemeProvider>,
+          );
+
+          const container = document.querySelector(`.${classes.root}`);
+          const backdropRoot = container.firstChild;
+          expect(backdropRoot).toHaveComputedStyle({ transitionDuration: '0.001s' });
+        },
+      );
 
       it('delay the slide transition to complete using values provided via prop', () => {
         const handleEntered = spy();

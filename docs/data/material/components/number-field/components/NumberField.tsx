@@ -34,7 +34,6 @@ export default function NumberField({
   }
   return (
     <BaseNumberField.Root
-      allowWheelScrub
       {...other}
       render={(props, state) => (
         <FormControl

@@ -172,17 +172,6 @@ These great services sponsor MUI's core infrastructure:
 </div>
 
 <div>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/browserstack-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/browserstack-lightmode.svg">
-  <img alt="BrowserStack logo" src="https://mui.com/static/readme/browserstack-lightmode.svg" width="140" height="25">
-</picture>
-
-[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
-
-</div>
-
-<div>
 <img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=105" width="35" height="35">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.

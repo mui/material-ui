@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -67,7 +67,7 @@ describe('Joy <Select />', () => {
     expect(screen.getByRole('combobox')).to.have.text('Ten');
   });
 
-  specify('the trigger is in tab order', () => {
+  it('the trigger is in tab order', () => {
     render(
       <Select value="">
         <Option value="">None</Option>
@@ -313,7 +313,7 @@ describe('Joy <Select />', () => {
       );
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
+    it('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       render(<Select value="" />);
 
       expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
@@ -321,12 +321,12 @@ describe('Joy <Select />', () => {
 
     // TODO: need to make this work
     // aria-disabled is better then disabled. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled
-    // it('sets aria-disabled="true" when component is disabled', () => {
-    //   const { getByRole } = render(<Select disabled value="" />);
-    //   expect(getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
-    // });
+    it.todo('sets aria-disabled="true" when component is disabled', () => {
+      render(<Select disabled value="" />);
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
+    });
 
-    specify('aria-disabled is not present if component is not disabled', () => {
+    it('aria-disabled is not present if component is not disabled', () => {
       render(<Select disabled={false} value="" />);
 
       expect(screen.getByRole('combobox')).not.to.have.attribute('aria-disabled');
@@ -390,13 +390,13 @@ describe('Joy <Select />', () => {
       });
     });
 
-    it('it will fallback to its content for the accessible name when it has no name', () => {
+    it('will fallback to its content for the accessible name when it has no name', () => {
       render(<Select value="" />);
 
       expect(screen.getByRole('combobox')).not.to.have.attribute('aria-labelledby');
     });
 
-    specify('the list of options is not labelled by default', () => {
+    it('the list of options is not labelled by default', () => {
       render(<Select defaultListboxOpen value="" />);
 
       expect(screen.getByRole('listbox')).not.to.have.attribute('aria-labelledby');
@@ -509,81 +509,79 @@ describe('Joy <Select />', () => {
   });
 
   describe('form submission', () => {
-    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // FormData is not available in JSDOM
-        this.skip();
-      }
+    // FormData is not available in JSDOM
+    it.skipIf(isJsdom())(
+      'includes the Select value in the submitted form data when the `name` attribute is provided',
+      function test() {
+        let isEventHandled = false;
 
-      let isEventHandled = false;
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+          const formData = new FormData(event.currentTarget);
+          expect(formData.get('test-select')).to.equal('2');
+          isEventHandled = true;
+        };
 
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        expect(formData.get('test-select')).to.equal('2');
-        isEventHandled = true;
-      };
+        render(
+          <form onSubmit={handleSubmit}>
+            <Select defaultValue={2} name="test-select">
+              <Option value={1}>1</Option>
+              <Option value={2}>2</Option>
+            </Select>
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-      render(
-        <form onSubmit={handleSubmit}>
-          <Select defaultValue={2} name="test-select">
-            <Option value={1}>1</Option>
-            <Option value={2}>2</Option>
-          </Select>
-          <button type="submit">Submit</button>
-        </form>,
-      );
+        const button = screen.getByText('Submit');
+        act(() => {
+          button.click();
+        });
 
-      const button = screen.getByText('Submit');
-      act(() => {
-        button.click();
-      });
+        expect(isEventHandled).to.equal(true);
+      },
+    );
 
-      expect(isEventHandled).to.equal(true);
-    });
+    // FormData is not available in JSDOM
+    it.skipIf(isJsdom())(
+      'transforms the selected value before posting using the getSerializedValue prop, if provided',
+      function test() {
+        let isEventHandled = false;
 
-    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // FormData is not available in JSDOM
-        this.skip();
-      }
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+          const formData = new FormData(event.currentTarget);
+          expect(formData.get('test-select')).to.equal('option 2');
+          isEventHandled = true;
+        };
 
-      let isEventHandled = false;
+        const customFormValueProvider = (option: SelectOption<number> | null) =>
+          option != null ? `option ${option.value}` : '';
 
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        expect(formData.get('test-select')).to.equal('option 2');
-        isEventHandled = true;
-      };
+        render(
+          <form onSubmit={handleSubmit}>
+            <Select
+              defaultValue={2}
+              name="test-select"
+              getSerializedValue={customFormValueProvider}
+            >
+              <Option value={1}>1</Option>
+              <Option value={2}>2</Option>
+            </Select>
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-      const customFormValueProvider = (option: SelectOption<number> | null) =>
-        option != null ? `option ${option.value}` : '';
+        const button = screen.getByText('Submit');
+        act(() => {
+          button.click();
+        });
 
-      render(
-        <form onSubmit={handleSubmit}>
-          <Select defaultValue={2} name="test-select" getSerializedValue={customFormValueProvider}>
-            <Option value={1}>1</Option>
-            <Option value={2}>2</Option>
-          </Select>
-          <button type="submit">Submit</button>
-        </form>,
-      );
+        expect(isEventHandled).to.equal(true);
+      },
+    );
 
-      const button = screen.getByText('Submit');
-      act(() => {
-        button.click();
-      });
-
-      expect(isEventHandled).to.equal(true);
-    });
-
-    it('formats the object values as JSON before posting', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // FormData is not available in JSDOM
-        this.skip();
-      }
-
+    // FormData is not available in JSDOM
+    it.skipIf(isJsdom())('formats the object values as JSON before posting', function test() {
       let isEventHandled = false;
 
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

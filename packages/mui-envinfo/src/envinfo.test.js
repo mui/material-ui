@@ -1,3 +1,5 @@
+import { isJsdom } from '@mui/internal-test-utils/env';
+
 const { execFileSync } = require('child_process');
 const path = require('path');
 const { expect } = require('chai');
@@ -15,12 +17,7 @@ describe('@mui/envinfo', () => {
     });
   }
 
-  it('includes info about the environment relevant to MUI', function test() {
-    // only run in node
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(!isJsdom())('includes info about the environment relevant to MUI', function test() {
     const envinfoJSON = execEnvinfo(['--json']);
 
     const envinfo = JSON.parse(envinfoJSON);
