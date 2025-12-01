@@ -171,12 +171,16 @@ describe('<StepButton />', () => {
       render(
         <Stepper activeStep={0}>
           <Step>
-            <StepButton getAriaLabel={(index, totalSteps) => `Go to step ${index + 1} of ${totalSteps}`}>
+            <StepButton
+              getAriaLabel={(index, totalSteps) => `Go to step ${index + 1} of ${totalSteps}`}
+            >
               First
             </StepButton>
           </Step>
           <Step>
-            <StepButton getAriaLabel={(index, totalSteps) => `Go to step ${index + 1} of ${totalSteps}`}>
+            <StepButton
+              getAriaLabel={(index, totalSteps) => `Go to step ${index + 1} of ${totalSteps}`}
+            >
               Second
             </StepButton>
           </Step>
