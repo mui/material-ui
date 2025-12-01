@@ -21,6 +21,13 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
    */
   alternativeLabel?: boolean;
   /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the stepper navigation.
+   * This is important for screen reader users when the stepper contains interactive steps.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {string}
+   */
+  getAriaLabel?: (totalSteps: number) => string;
+  /**
    * Two or more `<Step />` components.
    */
   children?: React.ReactNode;

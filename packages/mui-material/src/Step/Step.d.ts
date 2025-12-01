@@ -32,6 +32,14 @@ export interface StepOwnProps {
    */
   expanded?: boolean;
   /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the step.
+   * This is important for screen reader users.
+   * @param {number} index The step's index.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {string}
+   */
+  getAriaLabel?: (index: number, totalSteps: number) => string;
+  /**
    * The position of the step.
    * The prop defaults to the value inherited from the parent Stepper component.
    */

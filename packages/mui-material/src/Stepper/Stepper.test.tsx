@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
+import StepButton from '@mui/material/StepButton';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import StepContent, { stepContentClasses } from '@mui/material/StepContent';
@@ -269,5 +270,60 @@ describe('<Stepper />', () => {
 
     const stepper = container.querySelector(`.${classes.root}`);
     expect(stepper).to.have.class(classes.nonLinear);
+  });
+
+  describe('accessibility', () => {
+    it('should have navigation role and aria-label for interactive steppers', () => {
+      const { container } = render(
+        <Stepper activeStep={0}>
+          <Step>
+            <StepButton>Step 1</StepButton>
+          </Step>
+          <Step>
+            <StepButton>Step 2</StepButton>
+          </Step>
+          <Step>
+            <StepButton>Step 3</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepper = container.querySelector(`.${classes.root}`);
+      expect(stepper).to.have.attribute('role', 'navigation');
+      expect(stepper).to.have.attribute('aria-label', 'Stepper with 3 steps');
+    });
+
+    it('should not have navigation role for non-interactive steppers', () => {
+      const { container } = render(
+        <Stepper activeStep={0}>
+          <Step>
+            <StepLabel>Step 1</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 2</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepper = container.querySelector(`.${classes.root}`);
+      expect(stepper).not.to.have.attribute('role');
+      expect(stepper).not.to.have.attribute('aria-label');
+    });
+
+    it('should use custom getAriaLabel for interactive steppers', () => {
+      const { container } = render(
+        <Stepper activeStep={0} getAriaLabel={(totalSteps) => `Checkout with ${totalSteps} steps`}>
+          <Step>
+            <StepButton>Cart</StepButton>
+          </Step>
+          <Step>
+            <StepButton>Payment</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepper = container.querySelector(`.${classes.root}`);
+      expect(stepper).to.have.attribute('aria-label', 'Checkout with 2 steps');
+    });
   });
 });

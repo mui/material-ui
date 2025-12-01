@@ -9,6 +9,7 @@ export interface StepContextType {
   active: boolean;
   completed: boolean;
   disabled: boolean;
+  totalSteps: number;
 }
 
 /**

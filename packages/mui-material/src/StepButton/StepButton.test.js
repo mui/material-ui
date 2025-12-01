@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent, supportsTouch } from '@mui/internal-test-utils';
 import StepButton, { stepButtonClasses as classes } from '@mui/material/StepButton';
 import Step from '@mui/material/Step';
+import Stepper from '@mui/material/Stepper';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
@@ -142,5 +143,66 @@ describe('<StepButton />', () => {
     );
 
     expect(screen.getByRole('button')).not.to.equal(null);
+  });
+
+  describe('accessibility', () => {
+    it('should have aria-label with step position', () => {
+      render(
+        <Stepper activeStep={0}>
+          <Step>
+            <StepButton>Step 1</StepButton>
+          </Step>
+          <Step>
+            <StepButton>Step 2</StepButton>
+          </Step>
+          <Step>
+            <StepButton>Step 3</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).to.have.attribute('aria-label', 'Step 1 of 3');
+      expect(buttons[1]).to.have.attribute('aria-label', 'Step 2 of 3');
+      expect(buttons[2]).to.have.attribute('aria-label', 'Step 3 of 3');
+    });
+
+    it('should use custom getAriaLabel', () => {
+      render(
+        <Stepper activeStep={0}>
+          <Step>
+            <StepButton getAriaLabel={(index, totalSteps) => `Go to step ${index + 1} of ${totalSteps}`}>
+              First
+            </StepButton>
+          </Step>
+          <Step>
+            <StepButton getAriaLabel={(index, totalSteps) => `Go to step ${index + 1} of ${totalSteps}`}>
+              Second
+            </StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).to.have.attribute('aria-label', 'Go to step 1 of 2');
+      expect(buttons[1]).to.have.attribute('aria-label', 'Go to step 2 of 2');
+    });
+
+    it('should have aria-current="step" on active button', () => {
+      render(
+        <Stepper activeStep={1}>
+          <Step>
+            <StepButton>Step 1</StepButton>
+          </Step>
+          <Step>
+            <StepButton>Step 2</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const buttons = screen.getAllByRole('button');
+      expect(buttons[0]).not.to.have.attribute('aria-current');
+      expect(buttons[1]).to.have.attribute('aria-current', 'step');
+    });
   });
 });

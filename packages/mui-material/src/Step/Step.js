@@ -62,12 +62,13 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     completed: completedProp,
     disabled: disabledProp,
     expanded = false,
+    getAriaLabel,
     index,
     last,
     ...other
   } = props;
 
-  const { activeStep, connector, alternativeLabel, orientation, nonLinear } =
+  const { activeStep, connector, alternativeLabel, orientation, nonLinear, totalSteps = 0 } =
     React.useContext(StepperContext);
 
   let [active = false, completed = false, disabled = false] = [
@@ -85,8 +86,8 @@ const Step = React.forwardRef(function Step(inProps, ref) {
   }
 
   const contextValue = React.useMemo(
-    () => ({ index, last, expanded, icon: index + 1, active, completed, disabled }),
-    [index, last, expanded, active, completed, disabled],
+    () => ({ index, last, expanded, icon: index + 1, active, completed, disabled, totalSteps }),
+    [index, last, expanded, active, completed, disabled, totalSteps],
   );
 
   const ownerState = {
@@ -102,12 +103,17 @@ const Step = React.forwardRef(function Step(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Only add aria-label if user explicitly provides getAriaLabel
+  // Otherwise, rely on visually hidden text in StepLabel to avoid redundancy
+  const ariaLabel = getAriaLabel ? getAriaLabel(index, totalSteps) : undefined;
+
   const newChildren = (
     <StepRoot
       as={component}
       className={clsx(classes.root, className)}
       ref={ref}
       ownerState={ownerState}
+      aria-label={ariaLabel}
       {...other}
     >
       {connector && alternativeLabel && index !== 0 ? connector : null}
@@ -169,6 +175,14 @@ Step.propTypes /* remove-proptypes */ = {
    * @default false
    */
   expanded: PropTypes.bool,
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the step.
+   * This is important for screen reader users.
+   * @param {number} index The step's index.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {string}
+   */
+  getAriaLabel: PropTypes.func,
   /**
    * The position of the step.
    * The prop defaults to the value inherited from the parent Stepper component.

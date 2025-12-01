@@ -63,6 +63,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const {
     activeStep = 0,
     alternativeLabel = false,
+    getAriaLabel,
     children,
     className,
     component = 'div',
@@ -83,6 +84,17 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const totalSteps = childrenArray.length;
+
+  // Detect if stepper contains interactive steps (StepButton)
+  const hasInteractiveSteps = React.useMemo(() => {
+    return childrenArray.some((step) => {
+      const child = step.props?.children;
+      if (!child) return false;
+      return React.Children.toArray(child).some((c) => c?.type?.muiName === 'StepButton');
+    });
+  }, [childrenArray]);
+
   const steps = childrenArray.map((step, index) => {
     return React.cloneElement(step, {
       index,
@@ -91,9 +103,17 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     });
   });
   const contextValue = React.useMemo(
-    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation }),
-    [activeStep, alternativeLabel, connector, nonLinear, orientation],
+    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation, totalSteps }),
+    [activeStep, alternativeLabel, connector, nonLinear, orientation, totalSteps],
   );
+
+  // Add navigation attributes for interactive steppers
+  const navigationProps = hasInteractiveSteps
+    ? {
+        role: 'navigation',
+        'aria-label': getAriaLabel ? getAriaLabel(totalSteps) : `Stepper with ${totalSteps} steps`,
+      }
+    : {};
 
   return (
     <StepperContext.Provider value={contextValue}>
@@ -102,6 +122,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
+        {...navigationProps}
         {...other}
       >
         {steps}
@@ -127,6 +148,13 @@ Stepper.propTypes /* remove-proptypes */ = {
    * @default false
    */
   alternativeLabel: PropTypes.bool,
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the stepper navigation.
+   * This is important for screen reader users when the stepper contains interactive steps.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {string}
+   */
+  getAriaLabel: PropTypes.func,
   /**
    * Two or more `<Step />` components.
    */
