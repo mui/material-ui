@@ -276,8 +276,8 @@ export default function MarkdownDocsV2(props) {
           {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
           {isBase && (
             <MuiBaseDeprecation
-              newComponentUrl={localizedDoc.headers.newUrl}
-              newComponentName={localizedDoc.headers.newName}
+              newUrl={localizedDoc.headers.newUrl}
+              newName={localizedDoc.headers.newName}
             />
           )}
           {commonElements}

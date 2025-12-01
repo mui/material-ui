@@ -6,7 +6,7 @@ export default function App() {
     <div className="box">
       <h1>Base UI + Create React App scaffold (TypeScript)</h1>
       <div className="item">
-        <a href="https://mui.com/base-ui/">Base UI</a> is a library of unstyled React UI components
+        <a href="https://v6.mui.com/base-ui/getting-started/">MUI Base</a> is a library of unstyled React UI components
         which includes prebuilt components with production-ready functionality, along with low-level
         hooks for transferring that functionality to other components.
       </div>

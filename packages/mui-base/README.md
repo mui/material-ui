@@ -1,11 +1,11 @@
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/base-ui/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Base UI logo"></a>
+  <a href="https://v6.mui.com/base-ui/getting-started/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="MUI Base logo"></a>
 </p>
 
-<h1 align="center">Base UI</h1>
+<h1 align="center">MUI Base</h1>
 
-Base UI is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.
+MUI Base is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.
 
 ## Installation
 
@@ -19,7 +19,7 @@ npm install @mui/base
 
 <!-- #host-reference -->
 
-Visit [https://v6.mui.com/base-ui/](https://v6.mui.com/base-ui/) to view the full documentation.
+Visit [https://v6.mui.com/base-ui/getting-started/](https://v6.mui.com/base-ui/getting-started/) to view the full documentation.
 
 ## Questions
 
@@ -28,7 +28,7 @@ Use the "base-ui" tag on Stack Overflow to make it easier for the community to 
 
 ## Examples
 
-Our documentation features [a collection of example projects using Base UI](https://github.com/mui/material-ui/tree/master/examples).
+Our documentation features [a collection of example projects using MUI Base](https://github.com/mui/material-ui/tree/master/examples).
 
 ## Contributing
 
