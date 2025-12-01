@@ -36,9 +36,9 @@
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.3",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.24",
+    "@types/node": "^20.19.25",
     "@types/sinon": "^17.0.4",
     "@types/stylis": "4.2.7",
     "chai": "^6.0.1",

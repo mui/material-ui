@@ -2,9 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import describeConformance from '../../test/describeConformance';
 
 function createTouches(touches) {
@@ -19,14 +20,7 @@ function createTouches(touches) {
   };
 }
 
-describe('<Slider />', () => {
-  before(function beforeHook() {
-    // only run in supported browsers
-    if (typeof Touch === 'undefined') {
-      this.skip();
-    }
-  });
-
+describeSkipIf(!supportsTouch())('<Slider />', () => {
   const { render } = createRenderer();
 
   describeConformance(

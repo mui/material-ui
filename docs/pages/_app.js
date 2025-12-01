@@ -22,7 +22,6 @@ import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
@@ -32,7 +31,42 @@ import SvgMuiLogomark, {
 } from 'docs/src/icons/SvgMuiLogomark';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
+import { Inter, Roboto } from 'next/font/google';
+import localFont from 'next/font/local';
 import * as config from '../config';
+
+const inter = Inter({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+});
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+});
+
+const generalSans = localFont({
+  declarations: [{ prop: 'font-family', value: 'General Sans' }],
+  src: [
+    { path: '../public/static/fonts/GeneralSans-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/static/fonts/GeneralSans-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../public/static/fonts/GeneralSans-Semibold.woff2', weight: '600', style: 'normal' },
+    { path: '../public/static/fonts/GeneralSans-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+});
+
+const ibmPlexSans = localFont({
+  declarations: [{ prop: 'font-family', value: 'IBM Plex Sans' }],
+  src: [
+    { path: '../public/static/fonts/IBMPlexSans-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/static/fonts/IBMPlexSans-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../public/static/fonts/IBMPlexSans-SemiBold.woff2', weight: '600', style: 'normal' },
+    { path: '../public/static/fonts/IBMPlexSans-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+});
+
+export const fontClasses = `${inter.className} ${roboto.className} ${generalSans.className} ${ibmPlexSans.className}`;
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -298,20 +332,10 @@ function AppWrapper(props) {
     };
   }, [productId, productCategoryId, productIdentifier, router.pathname]);
 
-  let fonts = [];
-  if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
-    fonts = [
-      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Work+Sans:wght@300;400&display=swap',
-    ];
-  }
-
   return (
     <React.Fragment>
       <NextHead>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        {fonts.map((font) => (
-          <link rel="stylesheet" href={font} key={font} />
-        ))}
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>

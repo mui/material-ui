@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, supportsTouch } from '@mui/internal-test-utils';
 import StepButton, { stepButtonClasses as classes } from '@mui/material/StepButton';
 import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
@@ -84,7 +84,7 @@ describe('<StepButton />', () => {
   describe('event handlers', () => {
     it('should forward mouseenter, mouseleave and touchstart', function touchTests() {
       // only run in supported browsers
-      if (typeof Touch === 'undefined') {
+      if (!supportsTouch()) {
         this.skip();
       }
 

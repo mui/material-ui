@@ -20,146 +20,8 @@ import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
+import { VitestUtils } from 'vitest';
 import reactMajor from './reactMajor';
-
-interface Interaction {
-  id: number;
-  name: string;
-  timestamp: number;
-}
-
-const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
-
-function noTrace<T>(interactionName: string, callback: () => T): T {
-  return callback();
-}
-
-/**
- * Path used in Error.prototype.stack.
- *
- * Computed in `before` hook.
- */
-let workspaceRoot: string;
-
-let interactionID = 0;
-const interactionStack: Interaction[] = [];
-/**
- * interactionName - Human readable label for this particular interaction.
- */
-function traceByStackSync<T>(interactionName: string, callback: () => T): T {
-  const { stack } = new Error();
-  const testLines = stack!
-    .split(/\r?\n/)
-    .map((line) => {
-      // anonymous functions create a "weird" stackframe like
-      // "at path/to/actual.test.js (path/to/utility/file.js <- karma.test.js)"
-      // and we just want "path/to/actual.test.js" not "karma.test.js"
-      // TODO: Only supports chrome at the moment
-      const fileMatch = line.match(/([^\s(]+\.test\.(js|ts|tsx)):(\d+):(\d+)/);
-      if (fileMatch === null) {
-        return null;
-      }
-      return { name: fileMatch[1], line: +fileMatch[3], column: +fileMatch[4] };
-    })
-    .filter((maybeTestFile): maybeTestFile is NonNullable<typeof maybeTestFile> => {
-      return maybeTestFile !== null;
-    })
-    .map((file) => {
-      return `${file.name.replace(workspaceRoot, '')}:${file.line}:${file.column}`;
-    });
-  const originLine = testLines[testLines.length - 1] ?? 'unknown line';
-
-  interactionID += 1;
-  const interaction: Interaction = {
-    id: interactionID,
-    name: `${originLine} (${interactionName})`,
-    timestamp: performance.now(),
-  };
-
-  interactionStack.push(interaction);
-  try {
-    return callback();
-  } finally {
-    interactionStack.pop();
-  }
-}
-
-interface Profiler {
-  id: string;
-  onRender: import('react').ProfilerOnRenderCallback;
-  report(): void;
-}
-
-class NoopProfiler implements Profiler {
-  id = 'noop';
-
-  onRender() {}
-
-  report() {}
-}
-
-type RenderMark = [
-  id: string,
-  phase: 'mount' | 'update' | 'nested-update',
-  actualDuration: number,
-  baseDuration: number,
-  startTime: number,
-  commitTime: number,
-  interactions: Interaction[],
-];
-
-class DispatchingProfiler implements Profiler {
-  id: string;
-
-  private renders: RenderMark[] = [];
-
-  constructor(id: string) {
-    this.id = id;
-  }
-
-  onRender: Profiler['onRender'] = (
-    id,
-    phase,
-    actualDuration,
-    baseDuration,
-    startTime,
-    commitTime,
-  ) => {
-    // Do minimal work here to keep the render fast.
-    // Though it's unclear whether work here affects the profiler results.
-    // But even if it doesn't we'll keep the test feedback snappy.
-    this.renders.push([
-      id,
-      phase,
-      actualDuration,
-      baseDuration,
-      startTime,
-      commitTime,
-      interactionStack.slice(),
-    ]);
-  };
-
-  report() {
-    const event = new window.CustomEvent('reactProfilerResults', {
-      detail: {
-        [this.id]: this.renders.map((entry) => {
-          return {
-            phase: entry[1],
-            actualDuration: entry[2],
-            baseDuration: entry[3],
-            startTime: entry[4],
-            commitTime: entry[5],
-            interactions: entry[6],
-          };
-        }),
-      },
-    });
-    window.dispatchEvent(event);
-  }
-}
-
-const UsedProfiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
-const traceSync = enableDispatchingProfiler ? traceByStackSync : noTrace;
 
 function queryAllDescriptionsOf(baseElement: HTMLElement, element: Element): HTMLElement[] {
   const ariaDescribedBy = element.getAttribute('aria-describedby');
@@ -258,31 +120,25 @@ function render(
 ): MuiRenderResult {
   const { container, hydrate, wrapper, reactStrictMode } = configuration;
 
-  const testingLibraryRenderResult = traceSync('render', () =>
-    testingLibraryRender(element, {
-      container,
-      hydrate,
-      queries: { ...queries, ...customQueries },
-      wrapper,
-      reactStrictMode,
-    }),
-  );
+  const testingLibraryRenderResult = testingLibraryRender(element, {
+    container,
+    hydrate,
+    queries: { ...queries, ...customQueries },
+    wrapper,
+    reactStrictMode,
+  });
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
     user: userEvent.setup({ document }),
     forceUpdate() {
-      traceSync('forceUpdate', () =>
-        testingLibraryRenderResult.rerender(
-          React.cloneElement(element, {
-            'data-force-update': String(Math.random()),
-          }),
-        ),
+      testingLibraryRenderResult.rerender(
+        React.cloneElement(element, {
+          'data-force-update': String(Math.random()),
+        }),
       );
     },
     setProps(props) {
-      traceSync('setProps', () =>
-        testingLibraryRenderResult.rerender(React.cloneElement(element, props)),
-      );
+      testingLibraryRenderResult.rerender(React.cloneElement(element, props));
     },
   };
 
@@ -295,9 +151,7 @@ function renderToString(
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
 
-  traceSync('renderToString', () => {
-    container.innerHTML = ReactDOMServer.renderToString(<Wrapper>{element}</Wrapper>);
-  });
+  container.innerHTML = ReactDOMServer.renderToString(<Wrapper>{element}</Wrapper>);
 
   return {
     container,
@@ -347,17 +201,31 @@ function createVitestClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
+  vi: VitestUtils,
 ): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
-      vi.useFakeTimers(options);
+      vi.useFakeTimers({
+        now: config,
+        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+        // Technically we'd want to reset all modules between tests but we don't have that technology.
+        // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
+        shouldClearNativeTimers: true,
+        toFake: [
+          'setTimeout',
+          'setInterval',
+          'clearTimeout',
+          'clearInterval',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+          'performance',
+          'Date',
+        ],
+        ...options,
+      });
       if (config) {
         vi.setSystemTime(config);
       }
-    });
-    afterEach(() => {
-      vi.useRealTimers();
     });
   } else {
     beforeEach(() => {
@@ -365,25 +233,49 @@ function createVitestClock(
         vi.setSystemTime(config);
       }
     });
-    afterEach(() => {
-      vi.useRealTimers();
-    });
   }
+
+  afterEach(async () => {
+    if (vi.isFakeTimers()) {
+      await rtlAct(async () => {
+        vi.runOnlyPendingTimers();
+      });
+      vi.useRealTimers();
+    }
+  });
 
   return {
     withFakeTimers: () => {
+      if (vi.isFakeTimers()) {
+        return;
+      }
       beforeEach(() => {
-        vi.useFakeTimers(options);
-      });
-      afterEach(() => {
-        vi.useRealTimers();
+        vi.useFakeTimers({
+          now: config,
+          // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+          // Technically we'd want to reset all modules between tests but we don't have that technology.
+          // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
+          shouldClearNativeTimers: true,
+          toFake: [
+            'setTimeout',
+            'setInterval',
+            'clearTimeout',
+            'clearInterval',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+            'Date',
+          ],
+          ...options,
+        });
+        if (config) {
+          vi.setSystemTime(config);
+        }
       });
     },
     runToLast: () => {
-      traceSync('runToLast', () => {
-        rtlAct(() => {
-          vi.runOnlyPendingTimers();
-        });
+      rtlAct(() => {
+        vi.runOnlyPendingTimers();
       });
     },
     isReal() {
@@ -393,17 +285,13 @@ function createVitestClock(
       vi.useRealTimers();
     },
     tick(timeoutMS: number) {
-      traceSync('tick', () => {
-        rtlAct(() => {
-          vi.advanceTimersByTime(timeoutMS);
-        });
+      rtlAct(() => {
+        vi.advanceTimersByTime(timeoutMS);
       });
     },
     runAll() {
-      traceSync('runAll', () => {
-        rtlAct(() => {
-          vi.runAllTimers();
-        });
+      rtlAct(() => {
+        vi.runAllTimers();
       });
     },
   };
@@ -446,30 +334,24 @@ function createClock(
       if (clock === null) {
         throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
       }
-      traceSync('tick', () => {
-        rtlAct(() => {
-          clock!.tick(timeoutMS);
-        });
+      rtlAct(() => {
+        clock!.tick(timeoutMS);
       });
     },
     runAll() {
       if (clock === null) {
         throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
       }
-      traceSync('runAll', () => {
-        rtlAct(() => {
-          clock!.runAll();
-        });
+      rtlAct(() => {
+        clock!.runAll();
       });
     },
     runToLast() {
       if (clock === null) {
         throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
       }
-      traceSync('runToLast', () => {
-        rtlAct(() => {
-          clock!.runToLast();
-        });
+      rtlAct(() => {
+        clock!.runToLast();
       });
     },
     isReal() {
@@ -510,7 +392,7 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
    * @default {}
    */
-  vi?: any;
+  vi?: VitestUtils;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -519,7 +401,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi,
+    vi = (globalThis as any).vi as VitestUtils | undefined,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks
@@ -533,27 +415,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   let wasCalledInSuite = false;
   before(function beforeHook() {
     wasCalledInSuite = true;
-
-    if (enableDispatchingProfiler) {
-      // TODO windows?
-      const filename = new Error()
-        .stack!.split(/\r?\n/)
-        .map((line) => {
-          const fileMatch =
-            // chrome: "    at Context.beforeHook (webpack-internal:///./test/utils/createRenderer.tsx:257:24)""
-            line.match(/\(([^)]+):\d+:\d+\)/) ??
-            // firefox: "beforeHook@webpack-internal:///./test/utils/createRenderer.tsx:257:24"
-            line.match(/@(.*?):\d+:\d+$/);
-          if (fileMatch === null) {
-            return null;
-          }
-          return fileMatch[1];
-        })
-        .find((file) => {
-          return file?.endsWith('createRenderer.tsx');
-        });
-      workspaceRoot = filename!.replace('test/utils/createRenderer.tsx', '');
-    }
   });
 
   let emotionCache: import('@emotion/cache').EmotionCache = null!;
@@ -566,7 +427,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
    * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
    */
   let prepared = false;
-  let profiler: Profiler = null!;
   beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
       const error = new Error(
@@ -591,8 +451,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       );
     }
 
-    profiler = new UsedProfiler(id);
-
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 
     serverContainer = document.createElement('div');
@@ -615,8 +473,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     }
 
     cleanup();
-    profiler.report();
-    profiler = null!;
 
     emotionCache.sheet.tags.forEach((styleTag) => {
       styleTag.remove();
@@ -633,9 +489,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
         <EmotionCacheProvider value={emotionCache}>
-          <React.Profiler id={profiler.id} onRender={profiler.onRender}>
-            <InnerWrapper>{children}</InnerWrapper>
-          </React.Profiler>
+          <InnerWrapper>{children}</InnerWrapper>
         </EmotionCacheProvider>
       );
     };
@@ -684,14 +538,13 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 }
 
 const fireEvent = ((target, event, ...args) => {
-  return traceSync(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
+  return rtlFireEvent(target, event, ...args);
 }) as typeof rtlFireEvent;
 
 Object.keys(rtlFireEvent).forEach(
   // @ts-expect-error
   (eventType: keyof typeof rtlFireEvent) => {
-    fireEvent[eventType] = (...args) =>
-      traceSync(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
+    fireEvent[eventType] = (...args) => rtlFireEvent[eventType](...args);
   },
 );
 
@@ -718,7 +571,7 @@ fireEvent.keyDown = (desiredTarget, options = {}) => {
     throw error;
   }
 
-  return traceSync('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
+  return originalFireEventKeyDown(element, options);
 };
 
 const originalFireEventKeyUp = rtlFireEvent.keyUp;
@@ -744,7 +597,7 @@ fireEvent.keyUp = (desiredTarget, options = {}) => {
     throw error;
   }
 
-  return traceSync('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
+  return originalFireEventKeyUp(element, options);
 };
 
 export function fireTouchChangedEvent(
@@ -798,11 +651,35 @@ export function fireTouchChangedEvent(
 function act<T>(callback: () => T | Promise<T>): Promise<T>;
 function act(callback: () => void): void;
 function act<T>(callback: () => void | T | Promise<T>) {
-  return traceSync('act', () => rtlAct(callback));
+  return rtlAct(callback);
 }
 
 const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
 
-export * from '@testing-library/react/pure';
+export { renderHook, waitFor, within } from '@testing-library/react/pure';
 export { act, fireEvent };
 export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
+
+export async function flushEffects(): Promise<void> {
+  await act(async () => {});
+}
+
+/**
+ * returns true when touch is suported and can be mocked
+ */
+export function supportsTouch() {
+  // only run in supported browsers
+  if (typeof Touch === 'undefined') {
+    return false;
+  }
+
+  try {
+    // eslint-disable-next-line no-new
+    new Touch({ identifier: 0, target: window, pageX: 0, pageY: 0 });
+  } catch {
+    // Touch constructor not supported
+    return false;
+  }
+
+  return true;
+}

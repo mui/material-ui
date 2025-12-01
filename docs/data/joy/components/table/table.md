@@ -43,7 +43,7 @@ Columns that don't have an explicit width will spread equally to fill the rest o
 {{"demo": "TableColumnWidth.js"}}
 
 :::info
-The Table component uses a [`fixed`](https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout) layout to let you control the width of each column.
+The Table component uses a [`fixed`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout) layout to let you control the width of each column.
 
 To learn more about why we take this approach, check out this article from Chris Coyier on [Fixed Table Layouts](https://css-tricks.com/fixing-tables-long-strings/).
 :::
@@ -63,7 +63,7 @@ An alternative way of controlling the column's width is to use [inline styles](h
 
 ### Alignment
 
-Use the `sx` prop to target columns with the appropriate CSS selector and apply the [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) property.
+Use the `sx` prop to target columns with the appropriate CSS selector and apply the [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-align) property.
 
 ```js
 // target cells that are not the first in their respective rows.
@@ -101,7 +101,7 @@ To create contrast between rows, use the `stripe` prop with `odd` or `even` valu
 
 :::success
 
-The `stripe` prop supports complex arguments with the [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#syntax) CSS selector.
+The `stripe` prop supports complex arguments with the [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:nth-child#syntax) CSS selector.
 
 For example, you can use `3n` as a value to create stripes on row numbers three, six, nine, and so on:
 
@@ -182,7 +182,7 @@ Add a caption to summarize the contents of a Table by inserting a `<caption>` el
 {{"demo": "TableCaption.js"}}
 
 :::success
-To display a caption at the bottom of the Table, set the [caption side](https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side) to `bottom`:
+To display a caption at the bottom of the Table, set the [caption side](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/caption-side) to `bottom`:
 
 ```js
 <Table sx={{ captionSide: 'bottom' }}>

@@ -10,6 +10,7 @@ import {
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
+  supportsTouch,
 } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import PropTypes from 'prop-types';
@@ -199,7 +200,7 @@ describe('<ButtonBase />', () => {
       const button = screen.getByText('Hello');
 
       // only run in supported browsers
-      if (typeof Touch !== 'undefined') {
+      if (supportsTouch()) {
         const touch = new Touch({ identifier: 0, target: button, clientX: 0, clientY: 0 });
 
         fireEvent.touchStart(button, { touches: [touch] });
@@ -1292,6 +1293,28 @@ describe('<ButtonBase />', () => {
       render(<ButtonBase touchRippleRef={ref} />);
       await ripple.startTouch(screen.getByRole('button'));
       expect(ref.current).not.to.equal(null);
+    });
+  });
+
+  describe('form attributes', () => {
+    it('should not set default type when formAction is present', async function test() {
+      if (window.navigator.userAgent.includes('jsdom')) {
+        this.skip();
+      }
+
+      const formActionSpy = spy();
+      const { user } = render(
+        <form>
+          <ButtonBase formAction={formActionSpy}>Submit</ButtonBase>
+        </form>,
+      );
+      const button = screen.getByRole('button');
+
+      // Should not have type="button" when formAction is present
+      expect(button).not.to.have.attribute('type', 'button');
+      expect(button).to.have.attribute('formaction');
+      await user.click(button);
+      expect(formActionSpy.callCount).to.equal(1);
     });
   });
 });

@@ -46,23 +46,13 @@ function hasRightScrollButton(container) {
   return !scrollButton.parentElement.classList.contains('Mui-disabled');
 }
 
-describe('<Tabs />', () => {
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+describeSkipIf(isSafari)('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
   const { clock, render, renderToString } = createRenderer();
-
-  before(function beforeHook() {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    // The test fails on Safari with just:
-    //
-    // container.scrollLeft = 200;
-    // expect(container.scrollLeft).to.equal(200); 💥
-    if (isSafari) {
-      this.skip();
-    }
-  });
 
   describeConformance(<Tabs value={0} />, () => ({
     classes,
@@ -997,7 +987,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               firstTab.focus();
             });
-
             fireEvent.keyDown(firstTab, { key: previousItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1029,7 +1018,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1061,7 +1049,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1092,7 +1079,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: previousItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1124,7 +1110,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1156,7 +1141,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               lastTab.focus();
             });
-
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
             expect(firstTab).toHaveFocus();
@@ -1188,7 +1172,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1220,7 +1203,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               secondTab.focus();
             });
-
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1251,7 +1233,6 @@ describe('<Tabs />', () => {
             await act(async () => {
               firstTab.focus();
             });
-
             fireEvent.keyDown(firstTab, { key: nextItemKey });
 
             expect(lastTab).toHaveFocus();
@@ -1452,6 +1433,60 @@ describe('<Tabs />', () => {
         expect(secondTab).toHaveFocus();
         expect(firstTab).not.toHaveFocus();
       });
+    });
+  });
+
+  describe('keyboard navigation in shadow DOM', () => {
+    it('should navigate between tabs using arrow keys when rendered in shadow DOM', async function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
+      // Create a shadow root
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+
+      // Render directly into shadow root
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      const { unmount, user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+        { container: shadowContainer },
+      );
+
+      const tabs = shadowRoot.querySelectorAll('[role="tab"]');
+      const [firstTab, secondTab, thirdTab] = Array.from(tabs);
+
+      await act(async () => {
+        firstTab.focus();
+      });
+
+      // Verify first tab has focus
+      expect(shadowRoot.activeElement).to.equal(firstTab);
+
+      // Navigate to second tab using ArrowRight
+      await user.keyboard('{ArrowRight}');
+      expect(shadowRoot.activeElement).to.equal(secondTab);
+
+      // Navigate to third tab using ArrowRight
+      await user.keyboard('{ArrowRight}');
+      expect(shadowRoot.activeElement).to.equal(thirdTab);
+
+      // Navigate back to second tab using ArrowLeft
+      await user.keyboard('{ArrowLeft}');
+      expect(shadowRoot.activeElement).to.equal(secondTab);
+
+      // Cleanup
+      unmount();
+      if (shadowHost.parentNode) {
+        document.body.removeChild(shadowHost);
+      }
     });
   });
 

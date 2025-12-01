@@ -84,7 +84,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * The strategy to generate CSS variables
    *
    * @example 'media'
-   * Generate CSS variables using [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+   * Generate CSS variables using [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme)
    *
    * @example '.mode-%s'
    * Generate CSS variables within a class .mode-light, .mode-dark
@@ -100,7 +100,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   cssVarPrefix?: string;
   /**
    * If `true`, the CSS color-scheme will not be set.
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * @default false
    */
   disableCssColorScheme?: boolean;
