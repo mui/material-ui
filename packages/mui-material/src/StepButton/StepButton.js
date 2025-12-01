@@ -79,11 +79,12 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   );
 
   // Add aria-label with step position
-  const ariaLabel = getAriaLabel
-    ? getAriaLabel(index, totalSteps)
-    : totalSteps > 0 && index !== undefined
-      ? `Step ${index + 1} of ${totalSteps}`
-      : undefined;
+  let ariaLabel;
+  if (getAriaLabel) {
+    ariaLabel = getAriaLabel(index, totalSteps);
+  } else if (totalSteps > 0 && index !== undefined) {
+    ariaLabel = `Step ${index + 1} of ${totalSteps}`;
+  }
 
   return (
     <StepButtonRoot

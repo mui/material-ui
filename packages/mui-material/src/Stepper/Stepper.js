@@ -90,7 +90,9 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const hasInteractiveSteps = React.useMemo(() => {
     return childrenArray.some((step) => {
       const child = step.props?.children;
-      if (!child) return false;
+      if (!child) {
+        return false;
+      }
       return React.Children.toArray(child).some((c) => c?.type?.muiName === 'StepButton');
     });
   }, [childrenArray]);
