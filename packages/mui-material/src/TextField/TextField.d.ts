@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
@@ -11,7 +11,7 @@ import { FilledInputProps } from '../FilledInput';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
-import { TextFieldClasses } from './textFieldClasses';
+import { TextFieldClasses, TextFieldClassKey } from './textFieldClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface TextFieldPropsColorOverrides {}
@@ -398,3 +398,7 @@ export default function TextField<Variant extends TextFieldVariants>(
     variant?: Variant;
   } & Omit<TextFieldProps, 'variant'>,
 ): React.JSX.Element;
+
+export type TextFieldTheme = {
+  MuiTextField?: CreateThemeComponent<TextFieldClassKey, TextFieldProps>;
+};

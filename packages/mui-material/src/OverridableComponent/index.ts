@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DistributiveOmit } from '@mui/types';
-import { StyledComponentProps } from '../styles';
+import { StyledComponentProps } from '../stylesOptimized';
 
 /**
  * A component whose root component can be controlled via a `component` prop.

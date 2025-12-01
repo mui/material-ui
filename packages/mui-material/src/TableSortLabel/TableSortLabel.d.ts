@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { TableSortLabelClasses } from './tableSortLabelClasses';
+import { TableSortLabelClasses, TableSortLabelClassKey } from './tableSortLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface TableSortLabelRootSlotPropsOverrides {}
@@ -111,6 +111,10 @@ export type TableSortLabelProps<
   AdditionalProps = {},
 > = OverrideProps<TableSortLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TableSortLabelTheme = {
+  MuiTableSortLabel?: CreateThemeComponent<TableSortLabelClassKey, TableSortLabelProps>;
 };
 
 export default TableSortLabel;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { StepIconProps } from '../StepIcon';
-import { StepLabelClasses } from './stepLabelClasses';
+import { StepLabelClasses, StepLabelClassKey } from './stepLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface StepLabelSlots {
@@ -112,6 +112,10 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  */
 declare const StepLabel: ((props: StepLabelProps) => React.JSX.Element) & {
   muiName: string;
+};
+
+export type StepLabelTheme = {
+  MuiStepLabel?: CreateThemeComponent<StepLabelClassKey, StepLabelProps>;
 };
 
 export default StepLabel;

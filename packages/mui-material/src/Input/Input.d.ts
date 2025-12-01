@@ -1,8 +1,8 @@
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseProps } from '../InputBase';
-import { InputClasses } from './inputClasses';
+import { InputClasses, InputClassKey } from './inputClasses';
 
 export interface InputProps extends StandardProps<InputBaseProps> {
   /**
@@ -32,5 +32,9 @@ export interface InputProps extends StandardProps<InputBaseProps> {
  * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 declare const Input: ((props: InputProps) => React.JSX.Element) & { muiName: string };
+
+export type InputTheme = {
+  MuiInput?: CreateThemeComponent<InputClassKey, InputProps>;
+};
 
 export default Input;

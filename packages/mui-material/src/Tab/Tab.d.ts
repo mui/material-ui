@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { TabClasses } from './tabClasses';
+import { TabClasses, TabClassKey } from './tabClasses';
 
 export interface TabOwnProps {
   /**
@@ -80,6 +80,10 @@ export type TabProps<
   AdditionalProps = {},
 > = OverrideProps<TabTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TabTheme = {
+  MuiTab?: CreateThemeComponent<TabClassKey, TabProps>;
 };
 
 export default Tab;

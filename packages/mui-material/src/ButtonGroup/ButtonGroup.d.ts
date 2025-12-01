@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
-import { ButtonGroupClasses } from './buttonGroupClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { ButtonGroupClasses, ButtonGroupClassKey } from './buttonGroupClasses';
 
 export interface ButtonGroupPropsColorOverrides {}
 export interface ButtonGroupPropsVariantOverrides {}
@@ -103,6 +103,10 @@ export type ButtonGroupProps<
   AdditionalProps = {},
 > = OverrideProps<ButtonGroupTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ButtonGroupTheme = {
+  MuiButtonGroup?: CreateThemeComponent<ButtonGroupClassKey, ButtonGroupProps>;
 };
 
 export default ButtonGroup;

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { DistributiveOmit } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { TypographyOwnProps } from '../Typography';
-import { LinkClasses } from './linkClasses';
+import { LinkClasses, LinkClassKey } from './linkClasses';
 
 export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'> {
   /**
@@ -69,6 +69,10 @@ export type LinkProps<
   AdditionalProps = {},
 > = OverrideProps<LinkTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type LinkTheme = {
+  MuiLink?: CreateThemeComponent<LinkClassKey, LinkProps>;
 };
 
 export default Link;

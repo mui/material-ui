@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { PaperProps } from '../Paper';
-import { SnackbarContentClasses } from './snackbarContentClasses';
+import { SnackbarContentClasses, SnackbarContentClassKey } from './snackbarContentClasses';
 
 export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**
@@ -41,3 +41,7 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function SnackbarContent(props: SnackbarContentProps): React.JSX.Element;
+
+export type SnackbarContentTheme = {
+  MuiSnackbarContent?: CreateThemeComponent<SnackbarContentClassKey, SnackbarContentProps>;
+};

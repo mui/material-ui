@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import {
   TablePaginationActionsProps,
@@ -9,7 +9,7 @@ import {
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
-import { TablePaginationClasses } from './tablePaginationClasses';
+import { TablePaginationClasses, TablePaginationClassKey } from './tablePaginationClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ToolbarProps } from '../Toolbar';
 import { MenuItemProps } from '../MenuItem';
@@ -302,6 +302,10 @@ export type TablePaginationProps<
   AdditionalProps = {},
 > = OverrideProps<TablePaginationTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TablePaginationTheme = {
+  MuiTablePagination?: CreateThemeComponent<TablePaginationClassKey, TablePaginationProps>;
 };
 
 export default TablePagination;

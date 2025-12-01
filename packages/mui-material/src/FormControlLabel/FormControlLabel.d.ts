@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import Typography, { TypographyProps } from '../Typography';
-import { FormControlLabelClasses } from './formControlLabelClasses';
+import { FormControlLabelClasses, FormControlLabelClassKey } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface FormControlLabelSlots {
@@ -108,3 +108,7 @@ export interface FormControlLabelProps
  * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;
+
+export type FormControlLabelTheme = {
+  MuiFormControlLabel?: CreateThemeComponent<FormControlLabelClassKey, FormControlLabelProps>;
+};

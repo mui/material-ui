@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
-import { CheckboxClasses } from './checkboxClasses';
+import { CheckboxClasses, CheckboxClassKey } from './checkboxClasses';
 
 export interface CheckboxPropsSizeOverrides {}
 
@@ -153,3 +153,7 @@ export interface CheckboxOwnerState extends Omit<CheckboxProps, 'slots' | 'slotP
  * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 export default function Checkbox(props: CheckboxProps): React.JSX.Element;
+
+export type CheckboxTheme = {
+  MuiCheckbox?: CreateThemeComponent<CheckboxClassKey, CheckboxProps>;
+};

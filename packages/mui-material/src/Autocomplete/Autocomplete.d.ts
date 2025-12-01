@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { IconButtonProps } from '../IconButton';
 import { ChipProps, ChipTypeMap } from '../Chip';
@@ -17,7 +17,7 @@ import useAutocomplete, {
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
 } from '../useAutocomplete';
-import { AutocompleteClasses } from './autocompleteClasses';
+import { AutocompleteClasses, AutocompleteClassKey } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AutocompletePaperSlotPropsOverrides {}
@@ -421,3 +421,10 @@ export default function Autocomplete<
 >(
   props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
 ): React.JSX.Element;
+
+export type AutocompleteTheme = {
+  MuiAutocomplete?: CreateThemeComponent<
+    AutocompleteClassKey,
+    AutocompleteProps<any, any, any, any>
+  >;
+};

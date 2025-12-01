@@ -8,7 +8,7 @@ import capitalize from '@mui/utils/capitalize';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import { SxProps, Breakpoint } from '@mui/system';
-import { Theme } from '../styles';
+import { Theme } from '../stylesOptimized';
 import { ContainerClasses } from '../Container/containerClasses';
 
 export interface PigmentContainerOwnProps {

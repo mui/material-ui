@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponentProps } from '../styles';
+import { StyledComponentProps } from '../stylesOptimized';
 
 export interface CssBaselineProps extends StyledComponentProps<never> {
   /**

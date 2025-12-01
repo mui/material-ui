@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
+import { ToggleButtonGroupClasses, ToggleButtonGroupClassKey } from './toggleButtonGroupClasses';
 
 export interface ToggleButtonGroupPropsSizeOverrides {}
 
@@ -87,3 +87,7 @@ export interface ToggleButtonGroupProps
  * - [ToggleButtonGroup API](https://mui.com/material-ui/api/toggle-button-group/)
  */
 export default function ToggleButtonGroup(props: ToggleButtonGroupProps): React.JSX.Element;
+
+export type ToggleButtonGroupTheme = {
+  MuiToggleButtonGroup?: CreateThemeComponent<ToggleButtonGroupClassKey, ToggleButtonGroupProps>;
+};

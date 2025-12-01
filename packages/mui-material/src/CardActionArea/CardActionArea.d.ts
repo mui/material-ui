@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import {
   ButtonBaseProps,
   ButtonBaseTypeMap,
@@ -9,7 +9,7 @@ import {
   ExtendButtonBaseTypeMap,
 } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { CardActionAreaClasses } from './cardActionAreaClasses';
+import { CardActionAreaClasses, CardActionAreaClassKey } from './cardActionAreaClasses';
 
 export interface CardActionAreaSlots {
   /**
@@ -83,6 +83,10 @@ export type CardActionAreaProps<
   AdditionalProps = {},
 > = OverrideProps<CardActionAreaTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type CardActionAreaTheme = {
+  MuiCardActionArea?: CreateThemeComponent<CardActionAreaClassKey, CardActionAreaProps>;
 };
 
 export default CardActionArea;

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { FormLabelProps, ExtendFormLabelTypeMap } from '../FormLabel';
-import { Theme } from '../styles';
-import { InputLabelClasses } from './inputLabelClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { InputLabelClasses, InputLabelClassKey } from './inputLabelClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface InputLabelPropsSizeOverrides {}
@@ -86,6 +86,10 @@ export type InputLabelProps<
   AdditionalProps = {},
 > = OverrideProps<InputLabelTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type InputLabelTheme = {
+  MuiInputLabel?: CreateThemeComponent<InputLabelClassKey, InputLabelProps>;
 };
 
 export default InputLabel;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CollapseProps } from '../Collapse';
 import { TransitionProps } from '../transitions/transition';
-import { StepContentClasses } from './stepContentClasses';
+import { StepContentClasses, StepContentClassKey } from './stepContentClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types';
 
 export interface StepContentSlots {
@@ -84,3 +84,7 @@ export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>
  * - [StepContent API](https://mui.com/material-ui/api/step-content/)
  */
 export default function StepContent(props: StepContentProps): React.JSX.Element;
+
+export type StepContentTheme = {
+  MuiStepContent?: CreateThemeComponent<StepContentClassKey, StepContentProps>;
+};

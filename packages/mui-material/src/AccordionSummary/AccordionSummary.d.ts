@@ -3,8 +3,8 @@ import { SxProps } from '@mui/system';
 import { ButtonBaseProps, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
-import { AccordionSummaryClasses } from './accordionSummaryClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { AccordionSummaryClasses, AccordionSummaryClassKey } from './accordionSummaryClasses';
 
 export interface AccordionSummarySlots {
   /**
@@ -106,6 +106,10 @@ export type AccordionSummaryProps<
   AdditionalProps = {},
 > = OverrideProps<AccordionSummaryTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type AccordionSummaryTheme = {
+  MuiAccordionSummary?: CreateThemeComponent<AccordionSummaryClassKey, AccordionSummaryProps>;
 };
 
 export default AccordionSummary;

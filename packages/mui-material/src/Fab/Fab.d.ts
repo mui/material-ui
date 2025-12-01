@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { PropTypes, Theme } from '../styles';
+import { PropTypes, CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { FabClasses } from './fabClasses';
+import { FabClasses, FabClassKey } from './fabClasses';
 
 export interface FabPropsVariantOverrides {}
 
@@ -93,6 +93,10 @@ export type FabProps<
   AdditionalProps = {},
 > = OverrideProps<FabTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type FabTheme = {
+  MuiFab?: CreateThemeComponent<FabClassKey, FabProps>;
 };
 
 export default Fab;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps, Breakpoint } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ContainerClasses } from './containerClasses';
+import { ContainerClasses, ContainerClassKey } from './containerClasses';
 
 export interface ContainerOwnProps {
   children?: React.ReactNode;
@@ -60,6 +60,10 @@ export type ContainerProps<
   AdditionalProps = {},
 > = OverrideProps<ContainerTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ContainerTheme = {
+  MuiContainer?: CreateThemeComponent<ContainerClassKey, ContainerProps>;
 };
 
 export default Container;

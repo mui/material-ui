@@ -3,10 +3,10 @@ import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Mark } from './useSlider.types';
 import { SlotComponentProps } from '../utils/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
-import { SliderClasses } from './sliderClasses';
+import { SliderClasses, SliderClassKey } from './sliderClasses';
 
 export interface SliderPropsColorOverrides {}
 
@@ -328,6 +328,10 @@ export type SliderProps<
   AdditionalProps = {},
 > = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type SliderTheme = {
+  MuiSlider?: CreateThemeComponent<SliderClassKey, SliderProps>;
 };
 
 export default Slider;

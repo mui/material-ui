@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { TransitionStatus } from 'react-transition-group';
-import { Theme } from '../styles';
+import { Theme, CreateThemeComponent } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { TransitionProps } from '../transitions/transition';
-import { CollapseClasses } from './collapseClasses';
+import { CollapseClasses, CollapseClassKey } from './collapseClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface CollapseSlots {
@@ -112,3 +112,7 @@ export interface CollapseOwnerState extends CollapseProps {
  */
 
 export default function Collapse(props: CollapseProps): React.JSX.Element;
+
+export type CollapseTheme = {
+  MuiCollapse?: CreateThemeComponent<CollapseClassKey, CollapseProps>;
+};

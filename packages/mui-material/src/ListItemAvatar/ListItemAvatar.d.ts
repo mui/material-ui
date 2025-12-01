@@ -1,7 +1,7 @@
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { ListItemAvatarClasses } from './listItemAvatarClasses';
+import { ListItemAvatarClasses, ListItemAvatarClassKey } from './listItemAvatarClasses';
 
 export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -30,3 +30,7 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
  * - [ListItemAvatar API](https://mui.com/material-ui/api/list-item-avatar/)
  */
 export default function ListItemAvatar(props: ListItemAvatarProps): React.JSX.Element;
+
+export type ListItemAvatarTheme = {
+  MuiListItemAvatar?: CreateThemeComponent<ListItemAvatarClassKey, ListItemAvatarProps>;
+};

@@ -1,10 +1,10 @@
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import * as React from 'react';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { ToggleButtonClasses } from './toggleButtonClasses';
+import { ToggleButtonClasses, ToggleButtonClassKey } from './toggleButtonClasses';
 
 export interface ToggleButtonPropsSizeOverrides {}
 
@@ -105,6 +105,10 @@ export type ToggleButtonProps<
   AdditionalProps = {},
 > = OverrideProps<ToggleButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ToggleButtonTheme = {
+  MuiToggleButton?: CreateThemeComponent<ToggleButtonClassKey, ToggleButtonProps>;
 };
 
 export default ToggleButton;

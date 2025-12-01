@@ -2,11 +2,11 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { SvgIconProps } from '../SvgIcon';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { IconButtonProps } from '../IconButton';
 import { PaperProps } from '../Paper';
-import { AlertClasses } from './alertClasses';
+import { AlertClasses, AlertClassKey } from './alertClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
@@ -203,3 +203,7 @@ export interface AlertOwnerState extends AlertProps {}
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function Alert(props: AlertProps): React.JSX.Element;
+
+export type AlertTheme = {
+  MuiAlert?: CreateThemeComponent<AlertClassKey, AlertProps>;
+};

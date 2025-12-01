@@ -1,38 +1,15 @@
-import {
-  ThemeOptions as SystemThemeOptions,
-  Theme as SystemTheme,
-  SxProps,
-  CSSObject,
-  SxConfig,
-  ApplyStyles,
-} from '@mui/system';
-import { Mixins, MixinsOptions } from './createMixins';
+import { ThemeOptions as SystemThemeOptions, SxConfig } from '@mui/system';
+import { MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
-import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
+import { TypographyVariantsOptions } from './createTypography';
 import { Shadows } from './shadows';
-import { Transitions, TransitionsOptions } from './createTransitions';
-import { ZIndex, ZIndexOptions } from './zIndex';
+import { TransitionsOptions } from './createTransitions';
+import { ZIndexOptions } from './zIndex';
 import { Components } from './components';
-import {
-  CssVarsTheme,
-  CssVarsPalette,
-  ColorSystemOptions,
-  Shape,
-  ShapeOptions,
-  SupportedColorScheme,
-} from './createThemeFoundation';
+import { ColorSystemOptions } from './createThemeFoundation';
+import { Theme, CssThemeVariables, ShapeOptions } from '../stylesOptimized';
 
-/**
- * To disable custom properties, use module augmentation
- *
- * @example
- * declare module '@mui/material/styles' {
- *   interface CssThemeVariables {
- *     enabled: true;
- *   }
- * }
- */
-export interface CssThemeVariables {}
+export { CssThemeVariables };
 
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
@@ -54,51 +31,11 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   modularCssLayers?: boolean | string;
 }
 
-export interface BaseTheme extends SystemTheme {
-  mixins: Mixins;
-  palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
-  shadows: Shadows;
-  shape: Shape;
-  transitions: Transitions;
-  typography: TypographyVariants;
-  zIndex: ZIndex;
-  unstable_strictMode?: boolean;
-  applyStyles: ApplyStyles<SupportedColorScheme>;
+declare module '../stylesOptimized' {
+  interface ThemeComponents extends Components<Omit<Theme, 'components'>> {}
 }
 
-// shut off automatic exporting for the `BaseTheme` above
-export {};
-
-type CssVarsProperties = CssThemeVariables extends { enabled: true }
-  ? Pick<
-      CssVarsTheme,
-      | 'colorSchemes'
-      | 'colorSchemeSelector'
-      | 'rootSelector'
-      | 'cssVarPrefix'
-      | 'defaultColorScheme'
-      | 'getCssVar'
-      | 'getColorSchemeSelector'
-      | 'generateThemeVars'
-      | 'generateStyleSheets'
-      | 'generateSpacing'
-      | 'shouldSkipGeneratingVar'
-      | 'vars'
-    >
-  : Partial<Pick<CssVarsTheme, 'vars'>>;
-
-/**
- * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
- */
-export interface Theme extends BaseTheme, CssVarsProperties {
-  cssVariables?: false;
-  components?: Components<BaseTheme>;
-  unstable_sx: (props: SxProps<Theme>) => CSSObject;
-  unstable_sxConfig: SxConfig;
-  alpha: (color: string, value: number | string) => string;
-  lighten: (color: string, coefficient: number | string) => string;
-  darken: (color: string, coefficient: number | string) => string;
-}
+export { Theme };
 
 /**
  * Generate a theme base on the options received.

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { AvatarClasses } from './avatarClasses';
+import { AvatarClasses, AvatarClassKey } from './avatarClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SvgIconProps } from '../SvgIcon';
 
@@ -128,6 +128,10 @@ export type AvatarProps<
   AdditionalProps = {},
 > = OverrideProps<AvatarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type AvatarTheme = {
+  MuiAvatar?: CreateThemeComponent<AvatarClassKey, AvatarProps>;
 };
 
 export default Avatar;

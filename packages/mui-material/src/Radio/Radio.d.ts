@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
-import { RadioClasses } from './radioClasses';
+import { RadioClasses, RadioClassKey } from './radioClasses';
 
 export interface RadioPropsSizeOverrides {}
 
@@ -108,3 +108,7 @@ export interface RadioOwnerState extends Omit<RadioProps, 'slots' | 'slotProps'>
  * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 export default function Radio(props: RadioProps): React.JSX.Element;
+
+export type RadioTheme = {
+  MuiRadio?: CreateThemeComponent<RadioClassKey, RadioProps>;
+};

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { AccordionDetailsClasses } from './accordionDetailsClasses';
+import { AccordionDetailsClasses, AccordionDetailsClassKey } from './accordionDetailsClasses';
 
 export interface AccordionDetailsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -30,3 +30,7 @@ export interface AccordionDetailsProps extends StandardProps<React.HTMLAttribute
  * - [AccordionDetails API](https://mui.com/material-ui/api/accordion-details/)
  */
 export default function AccordionDetails(props: AccordionDetailsProps): React.JSX.Element;
+
+export type AccordionDetailsTheme = {
+  MuiAccordionDetails?: CreateThemeComponent<AccordionDetailsClassKey, AccordionDetailsProps>;
+};

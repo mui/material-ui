@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TableClasses } from './tableClasses';
+import { TableClasses, TableClassKey } from './tableClasses';
 
 export interface TablePropsSizeOverrides {}
 
@@ -61,6 +61,10 @@ export type TableProps<
   AdditionalProps = {},
 > = OverrideProps<TableTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type TableTheme = {
+  MuiTable?: CreateThemeComponent<TableClassKey, TableProps>;
 };
 
 export default Table;

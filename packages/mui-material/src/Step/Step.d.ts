@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
-import { StepClasses } from './stepClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { StepClasses, StepClassKey } from './stepClasses';
 
 export interface StepOwnProps {
   /**
@@ -75,5 +75,9 @@ export type StepClasskey = keyof NonNullable<StepProps['classes']>;
  * - [Step API](https://mui.com/material-ui/api/step/)
  */
 declare const Step: OverridableComponent<StepTypeMap>;
+
+export type StepTheme = {
+  MuiStep?: CreateThemeComponent<StepClassKey, StepProps>;
+};
 
 export default Step;

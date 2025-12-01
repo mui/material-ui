@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
-import { CardContentClasses } from './cardContentClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { CardContentClasses, CardContentClassKey } from './cardContentClasses';
 
 export interface CardContentOwnProps {
   /**
@@ -43,6 +43,10 @@ export type CardContentProps<
   AdditionalProps = {},
 > = OverrideProps<CardContentTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type CardContentTheme = {
+  MuiCardContent?: CreateThemeComponent<CardContentClassKey, CardContentProps>;
 };
 
 export default CardContent;

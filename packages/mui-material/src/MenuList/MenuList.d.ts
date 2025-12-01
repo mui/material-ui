@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ExtendList, ExtendListTypeMap } from '../List';
 import { OverrideProps } from '../OverridableComponent';
+import { CreateThemeComponent } from '../stylesOptimized';
 
 export interface MenuListOwnProps {
   /**
@@ -68,6 +69,10 @@ export type MenuListProps<
   AdditionalProps = {},
 > = OverrideProps<MenuListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type MenuListTheme = {
+  MuiMenuList?: CreateThemeComponent<MenuListClassKey, MenuListProps>;
 };
 
 export default MenuList;

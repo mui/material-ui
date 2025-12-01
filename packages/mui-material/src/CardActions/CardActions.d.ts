@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { CardActionsClasses } from './cardActionsClasses';
+import { CardActionsClasses, CardActionsClassKey } from './cardActionsClasses';
 
 export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -35,3 +35,7 @@ export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTM
  * - [CardActions API](https://mui.com/material-ui/api/card-actions/)
  */
 export default function CardActions(props: CardActionsProps): React.JSX.Element;
+
+export type CardActionsTheme = {
+  MuiCardActions?: CreateThemeComponent<CardActionsClassKey, CardActionsProps>;
+};

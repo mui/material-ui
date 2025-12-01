@@ -248,6 +248,9 @@ jobs:
           name: Validate type declarations
           command: pnpm validate-declarations
       - run:
+          name: Run tests that depend on built packages
+          command: pnpm -r run release:test
+      - run:
           name: Analyze exported typescript
           command: pnpm test:attw
       - run:

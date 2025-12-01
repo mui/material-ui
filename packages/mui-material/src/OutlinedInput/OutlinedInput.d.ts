@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseProps } from '../InputBase';
-import { OutlinedInputClasses } from './outlinedInputClasses';
+import { OutlinedInputClasses, OutlinedInputClassKey } from './outlinedInputClasses';
 
 interface OutlinedInputSlots {
   /**
@@ -62,6 +62,10 @@ export interface OutlinedInputOwnerState extends Omit<OutlinedInputProps, 'slots
  */
 declare const OutlinedInput: ((props: OutlinedInputProps) => React.JSX.Element) & {
   muiName: string;
+};
+
+export type OutlinedInputTheme = {
+  MuiOutlinedInput?: CreateThemeComponent<OutlinedInputClassKey, OutlinedInputProps>;
 };
 
 export default OutlinedInput;

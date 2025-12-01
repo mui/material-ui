@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ListItemClasses } from './listItemClasses';
+import { ListItemClasses, ListItemClassKey } from './listItemClasses';
 
 export interface ListItemComponentsPropsOverrides {}
 
@@ -130,6 +130,10 @@ export type ListItemProps<
   AdditionalProps = {},
 > = OverrideProps<ListItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ListItemTheme = {
+  MuiListItem?: CreateThemeComponent<ListItemClassKey, ListItemProps>;
 };
 
 export default ListItem;

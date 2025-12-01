@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ImageListItemClasses } from './imageListItemClasses';
+import { ImageListItemClasses, ImageListItemClassKey } from './imageListItemClasses';
 
 export interface ImageListItemOwnProps {
   /**
@@ -53,6 +53,10 @@ export type ImageListItemProps<
   AdditionalProps = {},
 > = OverrideProps<ImageListItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type ImageListItemTheme = {
+  MuiImageListItem?: CreateThemeComponent<ImageListItemClassKey, ImageListItemProps>;
 };
 
 export default ImageListItem;

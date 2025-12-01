@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
-import { SnackbarClasses } from './snackbarClasses';
+import { SnackbarClasses, SnackbarClassKey } from './snackbarClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface SnackbarSlots {
@@ -205,3 +205,7 @@ export interface SnackbarProps
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
 
 export interface SnackbarOwnerState extends Omit<SnackbarProps, 'slots' | 'slotProps'> {}
+
+export type SnackbarTheme = {
+  MuiSnackbar?: CreateThemeComponent<SnackbarClassKey, SnackbarProps>;
+};

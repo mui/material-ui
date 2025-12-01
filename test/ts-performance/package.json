@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "release:test": "mocha instantiations.test.js"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@mui/material": "workspace:^"
+  }
+}

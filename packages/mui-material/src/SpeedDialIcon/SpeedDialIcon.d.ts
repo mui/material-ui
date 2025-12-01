@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { SpeedDialIconClasses } from './speedDialIconClasses';
+import { SpeedDialIconClasses, SpeedDialIconClassKey } from './speedDialIconClasses';
 
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -41,6 +41,10 @@ export interface SpeedDialIconProps
  */
 declare const SpeedDialIcon: ((props: SpeedDialIconProps) => React.JSX.Element) & {
   muiName: string;
+};
+
+export type SpeedDialIconTheme = {
+  MuiSpeedDialIcon?: CreateThemeComponent<SpeedDialIconClassKey, SpeedDialIconProps>;
 };
 
 export default SpeedDialIcon;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import {
   ButtonBaseProps,
   ButtonBaseTypeMap,
@@ -9,7 +9,10 @@ import {
   ExtendButtonBaseTypeMap,
 } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
+import {
+  BottomNavigationActionClasses,
+  BottomNavigationActionClassKey,
+} from './bottomNavigationActionClasses';
 
 export interface BottomNavigationActionSlots {
   /**
@@ -108,5 +111,12 @@ export type BottomNavigationActionProps<
 
 export interface BottomNavigationActionOwnerState
   extends Omit<BottomNavigationActionProps, 'slots' | 'slotProps'> {}
+
+export type BottomNavigationActionTheme = {
+  MuiBottomNavigationAction?: CreateThemeComponent<
+    BottomNavigationActionClassKey,
+    BottomNavigationActionProps
+  >;
+};
 
 export default BottomNavigationAction;

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { TypographyProps } from '../Typography';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { CardHeaderClasses } from './cardHeaderClasses';
+import { CardHeaderClasses, CardHeaderClassKey } from './cardHeaderClasses';
 
 export interface CardHeaderRootSlotPropsOverrides {}
 
@@ -230,5 +230,9 @@ export type CardHeaderPropsWithComponent<
   TitleTypographyComponent,
   SubheaderTypographyComponent
 >;
+
+export type CardHeaderTheme = {
+  MuiCardHeader?: CreateThemeComponent<CardHeaderClassKey, CardHeaderProps>;
+};
 
 export default CardHeader;

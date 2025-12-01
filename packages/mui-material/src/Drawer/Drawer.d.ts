@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ModalProps } from '../Modal';
@@ -8,7 +8,7 @@ import { BackdropProps } from '../Backdrop';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
-import { DrawerClasses } from './drawerClasses';
+import { DrawerClasses, DrawerClassKey } from './drawerClasses';
 
 export interface DrawerRootSlotPropsOverrides {}
 
@@ -178,3 +178,7 @@ export interface DrawerOwnerState extends Omit<DrawerProps, 'slots' | 'slotProps
  * - [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): React.JSX.Element;
+
+export type DrawerTheme = {
+  MuiDrawer?: CreateThemeComponent<DrawerClassKey, DrawerProps>;
+};

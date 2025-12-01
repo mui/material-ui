@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { ImageListItemBarClasses } from './imageListItemBarClasses';
+import { ImageListItemBarClasses, ImageListItemBarClassKey } from './imageListItemBarClasses';
 
 export interface ImageListItemBarProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -50,3 +50,7 @@ export interface ImageListItemBarProps
  * - [ImageListItemBar API](https://mui.com/material-ui/api/image-list-item-bar/)
  */
 export default function ImageListItemBar(props: ImageListItemBarProps): React.JSX.Element;
+
+export type ImageListItemBarTheme = {
+  MuiImageListItemBar?: CreateThemeComponent<ImageListItemBarClassKey, ImageListItemBarProps>;
+};

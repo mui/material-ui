@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
-import { FormHelperTextClasses } from './formHelperTextClasses';
+import { CreateThemeComponent, Theme } from '../stylesOptimized';
+import { FormHelperTextClasses, FormHelperTextClassKey } from './formHelperTextClasses';
 
 export interface FormHelperTextPropsVariantOverrides {}
 
@@ -81,6 +81,10 @@ export type FormHelperTextProps<
   AdditionalProps = {},
 > = OverrideProps<FormHelperTextTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+};
+
+export type FormHelperTextTheme = {
+  MuiFormHelperText?: CreateThemeComponent<FormHelperTextClassKey, FormHelperTextProps>;
 };
 
 export default FormHelperText;
