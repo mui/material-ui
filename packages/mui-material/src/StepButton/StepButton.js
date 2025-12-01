@@ -145,4 +145,6 @@ StepButton.propTypes /* remove-proptypes */ = {
   ]),
 };
 
+StepButton.muiName = 'StepButton';
+
 export default StepButton;
