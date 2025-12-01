@@ -1,13 +1,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import {
-  createTheme,
-  ThemeProvider,
-  useTheme,
-  rgbToHex,
-  styled,
-} from '@mui/material/styles';
+import { useTheme, rgbToHex, styled } from '@mui/material/styles';
 
 const Group = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(3),
@@ -33,7 +27,7 @@ function IntentionsInner() {
       <div style={{ backgroundColor: color }} />
       <div>
         <Typography variant="body2">{name}</Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography variant="body2" color="textSecondary">
           {rgbToHex(color)}
         </Typography>
       </div>
@@ -83,17 +77,5 @@ function IntentionsInner() {
 }
 
 export default function Intentions() {
-  const theme = useTheme();
-
-  return (
-    <ThemeProvider
-      theme={createTheme({
-        palette: {
-          mode: theme.palette.mode,
-        },
-      })}
-    >
-      <IntentionsInner />
-    </ThemeProvider>
-  );
+  return <IntentionsInner />;
 }
