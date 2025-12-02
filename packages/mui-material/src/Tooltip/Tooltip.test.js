@@ -13,6 +13,8 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import SaveIcon from '@mui/icons-material/Save';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -1490,6 +1492,77 @@ describe('<Tooltip />', () => {
       );
       expect(screen.getByTestId('popper')).to.have.class('my-class-2');
       expect(screen.getByTestId('popper')).to.have.class('my-class');
+    });
+  });
+
+  describe('IconButton trigger', () => {
+    it('uncontrolled mode', async () => {
+      render(
+        <Tooltip enterDelay={0} title="Save" TransitionProps={{ timeout: 0 }}>
+          <IconButton>
+            <SaveIcon />
+          </IconButton>
+        </Tooltip>,
+      );
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+
+      fireEvent.mouseOver(screen.getByRole('button'));
+      clock.tick(0);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseLeave(screen.getByRole('button'));
+      // Tooltip schedules timeout even with no delay
+      clock.tick(0);
+      clock.tick(0);
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('controlled mode', async () => {
+      function App() {
+        const [open, setOpen] = React.useState(false);
+
+        const handleClose = () => {
+          setOpen(false);
+        };
+
+        const handleOpen = () => {
+          setOpen(true);
+        };
+
+        return (
+          <Tooltip
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            title="Save"
+            enterDelay={0}
+            TransitionProps={{ timeout: 0 }}
+          >
+            <IconButton>
+              <SaveIcon />
+            </IconButton>
+          </Tooltip>
+        );
+      }
+
+      await render(<App />);
+
+      const trigger = screen.getByRole('button');
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
+
+      fireEvent.mouseOver(trigger);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseLeave(screen.getByRole('button'));
+
+      clock.tick(0); // enterDelay
+      clock.tick(0); // TransitionProps.timeout
+
+      expect(screen.queryByRole('tooltip')).to.equal(null);
     });
   });
 });

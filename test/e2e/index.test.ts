@@ -264,4 +264,19 @@ describe('e2e', () => {
       await errorSelector.waitFor();
     });
   });
+
+  describe('<Tooltip />', () => {
+    it('icon button trigger', async () => {
+      await renderFixture('Tooltip/ControlledTooltip');
+
+      const tooltip = page.getByRole('tooltip');
+      await expect(tooltip).toBeHidden();
+
+      await page.mouse.move(20, 20);
+      await expect(tooltip).toBeVisible();
+
+      await page.mouse.move(99, 99);
+      await expect(tooltip).toBeHidden();
+    });
+  });
 });
