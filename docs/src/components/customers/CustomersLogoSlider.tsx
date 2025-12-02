@@ -88,6 +88,18 @@ export default function CustomersLogoSlider({
 }: CustomersLogoSliderProps) {
   const { mode } = useColorScheme();
 
+  React.useEffect(() => {
+    logos.forEach((logo) => {
+      const lightImg = new Image();
+      lightImg.src = logo.lightLogo;
+
+      if (logo.darkLogo) {
+        const darkImg = new Image();
+        darkImg.src = logo.darkLogo;
+      }
+    });
+  }, [logos]);
+
   const logoWidth = 180;
   const totalWidth = logos.length * logoWidth;
 

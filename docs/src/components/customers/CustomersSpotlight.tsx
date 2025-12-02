@@ -17,6 +17,17 @@ interface SpotlightProps {
 function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
   const { mode } = useColorScheme();
 
+  React.useEffect(() => {
+    posts.forEach((post) => {
+      if (post.image) {
+        const lightImg = new Image();
+        const darkImg = new Image();
+        lightImg.src = post.image;
+        darkImg.src = post.image.replace('light', 'dark');
+      }
+    });
+  }, [posts]);
+
   return (
     <Container>
       <Box
