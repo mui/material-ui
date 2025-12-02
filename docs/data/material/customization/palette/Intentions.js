@@ -19,7 +19,7 @@ const Color = styled(Grid)(({ theme }) => ({
   },
 }));
 
-function IntentionsInner() {
+export default function Intentions() {
   const theme = useTheme();
 
   const item = (color, name) => (
@@ -74,8 +74,4 @@ function IntentionsInner() {
       </Grid>
     </Box>
   );
-}
-
-export default function Intentions() {
-  return <IntentionsInner />;
 }
