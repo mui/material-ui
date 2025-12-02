@@ -84,7 +84,7 @@ importers:
         version: link:packages-internal/scripts
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:packages-internal/test-utils
+        version: link:packages-internal/test-utils/build
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -532,7 +532,7 @@ importers:
         version: link:../packages-internal/scripts
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../packages-internal/test-utils
+        version: link:../packages-internal/test-utils/build
       '@playwright/test':
         specifier: ^1.56.1
         version: 1.56.1
@@ -675,15 +675,6 @@ importers:
 
   packages-internal/test-utils:
     dependencies:
-      '@babel/plugin-transform-modules-commonjs':
-        specifier: ^7.27.1
-        version: 7.27.1(@babel/core@7.28.5)
-      '@babel/preset-typescript':
-        specifier: ^7.28.5
-        version: 7.28.5(@babel/core@7.28.5)
-      '@babel/register':
-        specifier: ^7.28.3
-        version: 7.28.3(@babel/core@7.28.5)
       '@babel/runtime':
         specifier: ^7.28.4
         version: 7.28.4
@@ -766,6 +757,7 @@ importers:
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
+    publishDirectory: build
 
   packages/api-docs-builder:
     dependencies:
@@ -1143,7 +1135,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
@@ -1217,7 +1209,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@mui/material':
         specifier: workspace:^
         version: link:../mui-material/build
@@ -1300,7 +1292,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@types/chai':
         specifier: ^5.2.3
         version: 5.2.3
@@ -1402,7 +1394,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -1449,7 +1441,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.0))(@types/react@19.2.7)(react@19.2.0)
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@mui/styled-engine':
         specifier: workspace:*
         version: link:build
@@ -1487,7 +1479,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@types/chai':
         specifier: ^5.2.3
         version: 5.2.3
@@ -1516,7 +1508,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@types/chai':
         specifier: ^5.2.3
         version: 5.2.3
@@ -1575,7 +1567,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.0))(@types/react@19.2.7)(react@19.2.0)
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@mui/system':
         specifier: workspace:*
         version: link:build
@@ -1648,7 +1640,7 @@ importers:
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/test-utils
+        version: link:../../packages-internal/test-utils/build
       '@types/chai':
         specifier: ^5.2.3
         version: 5.2.3
@@ -1712,7 +1704,7 @@ importers:
         version: link:../packages/mui-icons-material/build
       '@mui/internal-test-utils':
         specifier: workspace:^
-        version: link:../packages-internal/test-utils
+        version: link:../packages-internal/test-utils/build
       '@mui/joy':
         specifier: workspace:*
         version: link:../packages/mui-joy/build

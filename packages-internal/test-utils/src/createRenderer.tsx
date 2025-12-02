@@ -562,7 +562,14 @@ function act<T>(callback: () => void | T | Promise<T>) {
 
 const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
 
-export { renderHook, waitFor, within } from '@testing-library/react/pure';
+export {
+  renderHook,
+  waitFor,
+  within,
+  createEvent,
+  type RenderHookResult,
+  type EventType,
+} from '@testing-library/react/pure';
 export { act, fireEvent };
 export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
 

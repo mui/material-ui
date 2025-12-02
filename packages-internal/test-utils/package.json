@@ -3,42 +3,29 @@
   "version": "2.0.15",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
-  "main": "./build/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages-internal/test-utils"
   },
   "exports": {
-    ".": "./build/index.js",
-    "./createDescribe": "./build/createDescribe.js",
-    "./createRenderer": "./build/createRenderer.js",
-    "./init": "./build/init.js",
-    "./initMatchers": {
-      "types": "./build/initMatchers.d.ts",
-      "default": "./build/initMatchers.js"
-    },
-    "./initPlaywrightMatchers": {
-      "types": "./build/initPlaywrightMatchers.d.ts",
-      "default": "./build/initPlaywrightMatchers.js"
-    },
-    "./setupBabel": "./build/setupBabel.js",
-    "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
-    "./chaiPlugin": "./build/chaiPlugin.js",
-    "./setupVitest": "./build/setupVitest.js",
-    "./describeSkipIf": "./build/describeSkipIf.js"
+    ".": "./src/index.ts",
+    "./createDescribe": "./src/createDescribe.ts",
+    "./createRenderer": "./src/createRenderer.tsx",
+    "./init": "./src/init.js",
+    "./initMatchers": "./src/initMatchers.ts",
+    "./initPlaywrightMatchers": "./src/initPlaywrightMatchers.ts",
+    "./chaiPlugin": "./src/chaiPlugin.ts",
+    "./setupVitest": "./src/setupVitest.ts"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "code-infra build",
     "typescript": "tsc -p tsconfig.json",
     "release:publish": "pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.27.1",
-    "@babel/preset-typescript": "^7.28.5",
-    "@babel/register": "^7.28.3",
     "@babel/runtime": "^7.28.4",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
@@ -73,6 +60,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   }
 }
