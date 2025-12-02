@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Find Comment
-        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e # v3
+        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4
         id: findComment
         with:
           issue-number: ${{ github.event.issue.number }}
@@ -25,13 +25,13 @@ jobs:
 
       - name: Create comment
         if: ${{ steps.findComment.outputs.comment-id == '' && contains(github.event.label.name, 'unknown') }}
-        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
             You have created a support request under the ["Priority Support"](https://mui.com/legal/technical-support-sla/#priority-support) terms, which is a paid add-on to MUI X Premium ⏰. Please validate your support key using the link below:
 
-            https://tools-public.mui.com/prod/pages/jyhs86t?repo=mui-x&issueId=${{ github.event.issue.number }}
+            https://tools-public.mui.com/prod/pages/validateSupport?repo=mui-x&issueId=${{ github.event.issue.number }}
 
             Do not share your support key in this issue!
 
@@ -39,7 +39,7 @@ jobs:
 
       - name: Update comment
         if: ${{ steps.findComment.outputs.comment-id != '' && contains(github.event.label.name, 'priority') }}
-        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         with:
           comment-id: ${{ steps.findComment.outputs.comment-id }}
           body: |

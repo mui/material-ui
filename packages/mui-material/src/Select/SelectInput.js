@@ -3,7 +3,6 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
@@ -59,7 +58,6 @@ const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
   name: 'MuiSelect',
   slot: 'NativeInput',
-  overridesResolver: (props, styles) => styles.nativeInput,
 })({
   bottom: 0,
   left: 0,
@@ -121,10 +119,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     onChange,
     onClose,
     onFocus,
+    // eslint-disable-next-line react/prop-types
+    onKeyDown,
+    // eslint-disable-next-line react/prop-types
+    onMouseDown,
     onOpen,
     open: openProp,
     readOnly,
     renderValue,
+    required,
     SelectDisplayProps = {},
     tabIndex: tabIndexProp,
     // catching `type` from Input which makes no sense for SelectInput
@@ -150,6 +153,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
+
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -180,6 +184,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       displayRef.current.focus();
     }
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayNode, autoWidth]);
   // `isOpenControlled` is ignored because the component should never switch between controlled and uncontrolled modes.
@@ -225,6 +230,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = (event) => {
+    onMouseDown?.(event);
     // Ignore everything but left-click
     if (event.button !== 0) {
       return;
@@ -316,10 +322,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         'Enter',
       ];
 
-      if (validKeys.indexOf(event.key) !== -1) {
+      if (validKeys.includes(event.key)) {
         event.preventDefault();
         update(true, event);
       }
+      onKeyDown?.(event);
     }
   };
 
@@ -371,7 +378,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (multiple) {
       if (!Array.isArray(value)) {
-        throw new MuiError(
+        throw /* minify-error */ new Error(
           'MUI: The `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );
@@ -415,6 +422,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   });
 
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!foundMatch && !multiple && value !== '') {
@@ -483,7 +491,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const paperProps = {
     ...MenuProps.PaperProps,
-    ...MenuProps.slotProps?.paper,
+    ...(typeof MenuProps.slotProps?.paper === 'function'
+      ? MenuProps.slotProps.paper(ownerState)
+      : MenuProps.slotProps?.paper),
+  };
+
+  const listProps = {
+    ...MenuProps.MenuListProps,
+    ...(typeof MenuProps.slotProps?.list === 'function'
+      ? MenuProps.slotProps.list(ownerState)
+      : MenuProps.slotProps?.list),
   };
 
   const listboxId = useId();
@@ -495,13 +512,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="combobox"
-        aria-controls={listboxId}
+        aria-controls={open ? listboxId : undefined}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
         aria-label={ariaLabel}
         aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         aria-describedby={ariaDescribedby}
+        aria-required={required ? 'true' : undefined}
+        aria-invalid={error ? 'true' : undefined}
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
@@ -515,7 +534,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          <span className="notranslate">&#8203;</span>
+          <span className="notranslate" aria-hidden>
+            &#8203;
+          </span>
         ) : (
           display
         )}
@@ -531,6 +552,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
+        required={required}
         {...other}
         ownerState={ownerState}
       />
@@ -549,16 +571,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           horizontal: 'center',
         }}
         {...MenuProps}
-        MenuListProps={{
-          'aria-labelledby': labelId,
-          role: 'listbox',
-          'aria-multiselectable': multiple ? 'true' : undefined,
-          disableListWrap: true,
-          id: listboxId,
-          ...MenuProps.MenuListProps,
-        }}
         slotProps={{
           ...MenuProps.slotProps,
+          list: {
+            'aria-labelledby': labelId,
+            role: 'listbox',
+            'aria-multiselectable': multiple ? 'true' : undefined,
+            disableListWrap: true,
+            id: listboxId,
+            ...listProps,
+          },
           paper: {
             ...paperProps,
             style: {
@@ -697,6 +719,10 @@ SelectInput.propTypes = {
    * @returns {ReactNode}
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the component is required.
+   */
+  required: PropTypes.bool,
   /**
    * Props applied to the clickable div element.
    */

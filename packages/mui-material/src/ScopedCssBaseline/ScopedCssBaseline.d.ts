@@ -15,7 +15,7 @@ export interface ScopedCssBaselineOwnProps {
   classes?: Partial<ScopedCssBaselineClasses>;
   /**
    * Enable `color-scheme` CSS property to use `theme.palette.mode`.
-   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    */
   enableColorScheme?: boolean;
@@ -36,11 +36,11 @@ export interface ScopedCssBaselineTypeMap<
  *
  * Demos:
  *
- * - [CSS Baseline](https://next.mui.com/material-ui/react-css-baseline/)
+ * - [CSS Baseline](https://mui.com/material-ui/react-css-baseline/)
  *
  * API:
  *
- * - [ScopedCssBaseline API](https://next.mui.com/material-ui/api/scoped-css-baseline/)
+ * - [ScopedCssBaseline API](https://mui.com/material-ui/api/scoped-css-baseline/)
  */
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
@@ -17,15 +16,18 @@ describe('createCssVarsProvider', () => {
   let storage = {};
   const createMatchMedia = (matches) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: () => {},
+    addEventListener: () => {},
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
 
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: spy((key) => storage[key]),
         setItem: spy((key, value) => {
@@ -102,7 +104,7 @@ describe('createCssVarsProvider', () => {
         const { allColorSchemes } = useColorScheme();
         return <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>;
       }
-      const { rerender } = render(
+      const view = render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
@@ -110,7 +112,7 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark');
 
-      rerender(
+      view.rerender(
         <CssVarsProvider
           theme={createCssVarsTheme({
             colorSchemes: { light: {}, dark: {}, comfort: { palette: { color: '#e5e5e5' } } },
@@ -581,13 +583,9 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
-        true,
-      );
-
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
+      expect(window.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
         true,
       );
     });
@@ -881,7 +879,8 @@ describe('createCssVarsProvider', () => {
           </button>
         );
       }
-      const { getByTestId } = render(
+
+      render(
         <CssVarsProvider>
           <Toggle data-testid="outer" />
           <CssVarsProvider disableNestedContext>
@@ -889,13 +888,14 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>
         </CssVarsProvider>,
       );
-      fireEvent.click(getByTestId('inner'));
+
+      fireEvent.click(screen.getByTestId('inner'));
 
       // state changes in nested provider should not affect the upper context
       // if `disableNestedContext` is true.
-      expect(getByTestId('outer')).to.have.text('system');
+      expect(screen.getByTestId('outer')).to.have.text('system');
 
-      expect(getByTestId('inner')).to.have.text('dark');
+      expect(screen.getByTestId('inner')).to.have.text('dark');
     });
 
     it('themeId should not exist in the theme if not provided as a prop', () => {

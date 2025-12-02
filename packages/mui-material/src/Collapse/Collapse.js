@@ -7,10 +7,12 @@ import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
 import { useForkRef } from '../utils';
+import useSlot from '../utils/useSlot';
 import { getCollapseUtilityClass } from './collapseClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -43,53 +45,54 @@ const CollapseRoot = styled('div', {
         styles.hidden,
     ];
   },
-})(({ theme }) => ({
-  height: 0,
-  overflow: 'hidden',
-  transition: theme.transitions.create('height'),
-  variants: [
-    {
-      props: {
-        orientation: 'horizontal',
+})(
+  memoTheme(({ theme }) => ({
+    height: 0,
+    overflow: 'hidden',
+    transition: theme.transitions.create('height'),
+    variants: [
+      {
+        props: {
+          orientation: 'horizontal',
+        },
+        style: {
+          height: 'auto',
+          width: 0,
+          transition: theme.transitions.create('width'),
+        },
       },
-      style: {
-        height: 'auto',
-        width: 0,
-        transition: theme.transitions.create('width'),
+      {
+        props: {
+          state: 'entered',
+        },
+        style: {
+          height: 'auto',
+          overflow: 'visible',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
+      {
+        props: {
+          state: 'entered',
+          orientation: 'horizontal',
+        },
+        style: {
+          width: 'auto',
+        },
       },
-      style: {
-        height: 'auto',
-        overflow: 'visible',
+      {
+        props: ({ ownerState }) =>
+          ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
+        style: {
+          visibility: 'hidden',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
-        orientation: 'horizontal',
-      },
-      style: {
-        width: 'auto',
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
-      style: {
-        visibility: 'hidden',
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
-  overridesResolver: (props, styles) => styles.wrapper,
 })({
   // Hack to get children with a negative margin to not falsify the height computation.
   display: 'flex',
@@ -110,7 +113,6 @@ const CollapseWrapper = styled('div', {
 const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',
-  overridesResolver: (props, styles) => styles.wrapperInner,
 })({
   width: '100%',
   variants: [
@@ -148,6 +150,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     onExited,
     onExiting,
     orientation = 'vertical',
+    slots = {},
+    slotProps = {},
     style,
     timeout = duration.standard,
     // eslint-disable-next-line react/prop-types
@@ -291,6 +295,41 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   };
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+    component,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref: handleRef,
+    className: clsx(classes.root, className),
+    elementType: CollapseRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      style: {
+        [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
+        ...style,
+      },
+    },
+  });
+
+  const [WrapperSlot, wrapperSlotProps] = useSlot('wrapper', {
+    ref: wrapperRef,
+    className: classes.wrapper,
+    elementType: CollapseWrapper,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [WrapperInnerSlot, wrapperInnerSlotProps] = useSlot('wrapperInner', {
+    className: classes.wrapperInner,
+    elementType: CollapseWrapperInner,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <TransitionComponent
       in={inProp}
@@ -305,41 +344,27 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {(state, childProps) => (
-        <CollapseRoot
-          as={component}
-          className={clsx(
-            classes.root,
-            {
+      {/* Destructure child props to prevent the component's "ownerState" from being overridden by incomingOwnerState. */}
+      {(state, { ownerState: incomingOwnerState, ...restChildProps }) => {
+        const stateOwnerState = { ...ownerState, state };
+        return (
+          <RootSlot
+            {...rootSlotProps}
+            className={clsx(rootSlotProps.className, {
               [classes.entered]: state === 'entered',
               [classes.hidden]: state === 'exited' && !inProp && collapsedSize === '0px',
-            },
-            className,
-          )}
-          style={{
-            [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
-            ...style,
-          }}
-          ref={handleRef}
-          {...childProps}
-          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
-          // that might have been forwarded from the Transition component.
-          ownerState={{ ...ownerState, state }}
-        >
-          <CollapseWrapper
-            ownerState={{ ...ownerState, state }}
-            className={classes.wrapper}
-            ref={wrapperRef}
+            })}
+            ownerState={stateOwnerState}
+            {...restChildProps}
           >
-            <CollapseWrapperInner
-              ownerState={{ ...ownerState, state }}
-              className={classes.wrapperInner}
-            >
-              {children}
-            </CollapseWrapperInner>
-          </CollapseWrapper>
-        </CollapseRoot>
-      )}
+            <WrapperSlot {...wrapperSlotProps} ownerState={stateOwnerState}>
+              <WrapperInnerSlot {...wrapperInnerSlotProps} ownerState={stateOwnerState}>
+                {children}
+              </WrapperInnerSlot>
+            </WrapperSlot>
+          </RootSlot>
+        );
+      }}
     </TransitionComponent>
   );
 });
@@ -421,6 +446,24 @@ Collapse.propTypes /* remove-proptypes */ = {
    * @default 'vertical'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    wrapperInner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+    wrapper: PropTypes.elementType,
+    wrapperInner: PropTypes.elementType,
+  }),
   /**
    * @ignore
    */

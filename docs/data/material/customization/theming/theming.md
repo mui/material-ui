@@ -10,8 +10,8 @@ To promote greater consistency between apps, light and dark theme types are avai
 
 ## Theme provider
 
-Use `ThemeProvider` or [`CssVarsProvider`](#css-variables-provider) to inject a custom theme into your application.
-However, this is optional; Material UI components come with a default theme.
+Material UI components adhere to the library's default theme out of the box.
+Use `ThemeProvider` to inject a custom theme into your application.
 
 `ThemeProvider` relies on the [context feature of React](https://react.dev/learn/passing-data-deeply-with-context) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](#themeprovider).
@@ -67,7 +67,7 @@ declare module '@mui/material/styles' {
       danger: string;
     };
   }
-  // allow configuration using `createTheme`
+  // allow configuration using `createTheme()`
   interface ThemeOptions {
     status?: {
       danger?: string;
@@ -106,7 +106,7 @@ function DeepChild() {
 
 ## Nesting the theme
 
-[You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
+[You can nest](https://v6.mui.com/system/styles/advanced/#theme-nesting) multiple theme providers.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -115,11 +115,37 @@ You can extend the outer theme by providing a function:
 
 {{"demo": "ThemeNestingExtend.js"}}
 
-## CSS variables provider
+## CSS theme variables
 
-The `CssVarsProvider` is built on top of the `ThemeProvider` with extra features like theme CSS variables generation, built-in color scheme synchronization with the user's system preference, and more.
+To generate CSS variables from the theme, set `cssVariables` to `true` in the theme configuration and pass it to the `ThemeProvider`:
 
-To start using the `CssVarsProvider`, check out the [basic usage guide](/material-ui/customization/css-theme-variables/usage/). If you are using the `ThemeProvider`, read the [migration guide](/material-ui/migration/migration-css-theme-variables/).
+```jsx
+const theme = createTheme({
+  cssVariables: true,
+});
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+```
+
+This generates a global stylesheet with the CSS theme variables:
+
+```css
+:root {
+  --mui-palette-primary-main: #1976d2;
+  /* ...other variables */
+}
+```
+
+All components under the `ThemeProvider` will use those CSS theme variables instead of raw values.
+
+```diff title="Button styles"
+- color: #1976d2;
++ color: var(--mui-palette-primary-main);
+```
+
+To learn more about this feature, see the [CSS theme variables guide](/material-ui/customization/css-theme-variables/overview/).
 
 ## API
 
@@ -133,8 +159,9 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 :::warning
-Only the first argument (`options`) is processed by the `createTheme` function.
-If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+Only the first argument (`options`) is processed by the `createTheme()` function.
+While passing multiple arguments currently works for backward compatibility, this behavior may be removed in future versions.
+To ensure your code remains forward-compatible, you should manually deep merge the theme objects and pass the result as a single object to `createTheme()`.
 :::
 
 ```js
@@ -196,6 +223,61 @@ theme = createTheme(theme, {
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
 **WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
+
+### Merging className and style props in defaultProps
+
+By default, when a component has `defaultProps` defined in the theme, props passed to the component override the default props completely.
+
+```jsx
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      defaultProps: {
+        className: 'default-button-class',
+        style: { marginTop: 8 },
+      },
+    },
+  },
+});
+
+// className will be: "custom-button-class" (default ignored)
+// style will be: { color: 'blue' } (default ignored)
+<Button className="custom-button-class" style={{ color: 'blue' }}>
+  Click me
+</Button>;
+```
+
+You can change this behavior by configuring the theme to merge `className` and `style` props instead of replacing them.
+
+To do this, set `theme.components.mergeClassNameAndStyle` to `true`:
+
+```jsx
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    mergeClassNameAndStyle: true,
+    MuiButton: {
+      defaultProps: {
+        className: 'default-button-class',
+        style: { marginTop: 8 },
+      },
+    },
+  },
+});
+```
+
+Here's what the example above looks like with this configuration:
+
+```jsx
+// className will be: "default-button-class custom-button-class"
+// style will be: { marginTop: 8, color: 'blue' }
+<Button className="custom-button-class" style={{ color: 'blue' }}>
+  Click me
+</Button>
+```
 
 ### `responsiveFontSizes(theme, options) => theme`
 

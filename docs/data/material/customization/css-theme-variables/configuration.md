@@ -7,7 +7,7 @@
 To change the default variable prefix (`--mui`), provide a string to `cssVarPrefix` property, as shown below:
 
 ```js
-extendTheme({ cssVarPrefix: 'any' });
+createTheme({ cssVariables: { cssVarPrefix: 'any' } });
 
 // generated stylesheet:
 // --any-palette-primary-main: ...;
@@ -16,7 +16,7 @@ extendTheme({ cssVarPrefix: 'any' });
 To remove the prefix, use an empty string as a value:
 
 ```js
-extendTheme({ cssVarPrefix: '' });
+createTheme({ cssVariables: { cssVarPrefix: '' } });
 
 // generated stylesheet:
 // --palette-primary-main: ...;
@@ -26,84 +26,61 @@ extendTheme({ cssVarPrefix: '' });
 
 To toggle between modes manually, set the `colorSchemeSelector` with one of the following selectors:
 
-<codeblock>
+- `class`: adds a class to the `<html>` element.
 
-```js class
-extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class'
-});
+  ```js class
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'class'
+    }
+  });
 
-// CSS Result
-.light { ... }
-.dark { ... }
-```
+  // CSS Result
+  .light { ... }
+  .dark { ... }
+  ```
 
-```js data
-extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'data'
-});
+- `data`: adds a data attribute to the `<html>` element.
 
-// CSS Result
-[data-light] { ... }
-[data-dark] { ... }
-```
+  ```js data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'data'
+    }
+  });
 
-```js string
-// The value must start with dot (.) for class or square brackets ([]) for data
-extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: '.theme-%s'
-});
+  // CSS Result
+  [data-light] { ... }
+  [data-dark] { ... }
+  ```
 
-// CSS Result
-.theme-light { ... }
-.theme-dark { ... }
-```
+- `string`: adds a custom selector to the `<html>` element.
 
-</codeblock>
+  ```js string
+  // The value must start with dot (.) for class or square brackets ([]) for data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: '.theme-%s'
+    }
+  });
+
+  // CSS Result
+  .theme-light { ... }
+  .theme-dark { ... }
+  ```
 
 Then, use `useColorScheme` hook to switch between modes:
 
-<codeblock>
-
-```jsx client-side-app
+```jsx
 import { useColorScheme } from '@mui/material/styles';
 
 function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
 
-  return (
-    <select
-      value={mode}
-      onChange={(event) => {
-        setMode(event.target.value);
-        // For TypeScript, cast `event.target.value as 'light' | 'dark' | 'system'`:
-      }}
-    >
-      <option value="system">System</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  );
-}
-```
-
-```jsx server-side-app
-import { useColorScheme } from '@mui/material/styles';
-
-function ModeSwitcher() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // for server-side rendering
-    // learn more at https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
+  if (!mode) {
     return null;
   }
 
@@ -123,10 +100,8 @@ function ModeSwitcher() {
 }
 ```
 
-</codeblock>
-
 :::success
-The mode will be `system` by default to follow the user's preference.
+After React hydrates the tree, the mode is set to `system` to follow the user's preference.
 :::
 
 ### Determining the system mode
@@ -155,7 +130,7 @@ For SSR (server-side rendering) applications, Material UI can not detected user
 
 To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
 
-If you have such a condition, replace it with the [`theme.applyStyles`](#appling-dark-styles) function:
+If you have such a condition, replace it with the [`theme.applyStyles()` function](/material-ui/customization/dark-mode/#styling-in-dark-mode):
 
 ```diff
  import Card from '@mui/material/Card';
@@ -163,57 +138,72 @@ If you have such a condition, replace it with the [`theme.applyStyles`](#appling
  function App() {
    return (
      <Card
-       sx={(theme) => ({
+-      sx={(theme) => ({
 -        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
 -        '&:hover': {
 -          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
 -        },
-+        backgroundColor: '#fff',
-+        '&:hover': {
-+          backgroundColor: '#f5f5f5',
-+          ...theme.applyStyles('dark', {
-+            backgroundColor: '#333',
-+          }),
+-      })}
++      sx={[
++        {
++          backgroundColor: '#fff',
++          '&:hover': {
++            backgroundColor: '#f5f5f5',
++          },
 +        },
-+        ...theme.applyStyles('dark', {
-+          backgroundColor: '#000',
-+        }),
-       })}
++        (theme) =>
++          theme.applyStyles('dark', {
++            backgroundColor: '#000',
++            '&:hover': {
++              backgroundColor: '#333',
++            },
++          }),
++      ]}
      />
    );
  }
 ```
 
-Next, if you have a custom selector that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
+Next, if you have a custom selector that is **not** `media`, add the [`InitColorSchemeScript`](/material-ui/react-init-color-scheme-script/) component based on the framework that you are using:
 
 :::success
 The `attribute` has to be the same as the one you set in the `colorSchemeSelector` property:
 
 ```js
-<InitColorSchemeScript attribute=".mode-%s" />
+createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'class'
+  }
+})
+
+<InitColorSchemeScript attribute="class" />
 ```
 
 :::
 
 ### Next.js App Router
 
-Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
+Add the following code to the [root layout](https://nextjs.org/docs/app/api-reference/file-conventions/layout#root-layouts) file:
 
 ```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
-export default function RootLayout({ children }) {
+export default function RootLayout(props) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         {/* must come before the <main> element */}
-        <InitColorSchemeScript attribute=".mode-%s" />
+        <InitColorSchemeScript attribute="class" />
         <main>{children}</main>
       </body>
     </html>
   );
 }
 ```
+
+:::warning
+If you don't add `suppressHydrationWarning` to your `<html>` tag, you will see warnings about `"Extra attributes from the server"` because `InitColorSchemeScript` updates that element.
+:::
 
 ### Next.js Pages Router
 
@@ -226,11 +216,11 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html data-color-scheme="light">
+      <Html>
         <Head>...</Head>
         <body>
           {/* must come before the <Main> element */}
-          <InitColorSchemeScript attribute=".mode-%s" />
+          <InitColorSchemeScript attribute="class" />
           <Main />
           <NextScript />
         </body>
@@ -249,7 +239,7 @@ import * as React from 'react';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([<InitColorSchemeScript attribute=".mode-%s" />]);
+  setPreBodyComponents([<InitColorSchemeScript attribute="class" />]);
 }
 ```
 
@@ -289,12 +279,12 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, the `extendTheme` attach [CSS color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode. If you want to disable it, set `disableCssColorScheme` to `true`:
+By default, `createTheme()` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme) based on the palette mode.
+You can disable this by setting `disableCssColorScheme` to `true`:
 
 ```js
-extendTheme({
-  colorSchemes: { light: true, dark: true },
-  disableCssColorScheme: true,
+createTheme({
+  cssVariables: { disableCssColorScheme: true },
 });
 ```
 
@@ -312,8 +302,20 @@ The generated CSS will not include the `color-scheme` property:
 
 ## Instant transition between color schemes
 
-To disable CSS transition when switching between modes, use `disableTransitionOnChange` prop:
+To disable CSS transitions when switching between modes, apply the `disableTransitionOnChange` prop:
 
 ```js
-<CssVarsProvider disableTransitionOnChange />
+<ThemeProvider disableTransitionOnChange />
+```
+
+{{"demo": "DisableTransitionOnChange.js"}}
+
+## Force theme recalculation between modes
+
+By default, the `ThemeProvider` does not re-render when switching between light and dark modes when `cssVariables: true` is set in the theme.
+
+If you want to opt-out from this behavior, use the `forceThemeRerender` prop in the ThemeProvider:
+
+```js
+<ThemeProvider forceThemeRerender />
 ```

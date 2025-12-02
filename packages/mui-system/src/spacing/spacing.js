@@ -110,6 +110,12 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
       }
 
       if (typeof themeSpacing === 'string') {
+        if (themeSpacing.startsWith('var(') && val === 0) {
+          return 0;
+        }
+        if (themeSpacing.startsWith('var(') && val === 1) {
+          return themeSpacing;
+        }
         return `calc(${val} * ${themeSpacing})`;
       }
       return themeSpacing * val;
@@ -150,6 +156,10 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
 
       if (typeof transformed === 'number') {
         return -transformed;
+      }
+
+      if (typeof transformed === 'string' && transformed.startsWith('var(')) {
+        return `calc(-1 * ${transformed})`;
       }
 
       return `-${transformed}`;
@@ -195,7 +205,7 @@ export function getStyleFromPropValue(cssProperties, transformer) {
 function resolveCssProperty(props, keys, prop, transformer) {
   // Using a hash computation over an array iteration could be faster, but with only 28 items,
   // it's doesn't worth the bundle size.
-  if (keys.indexOf(prop) === -1) {
+  if (!keys.includes(prop)) {
     return null;
   }
 

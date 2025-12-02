@@ -1,9 +1,11 @@
-import chai, { AssertionError } from 'chai';
+import * as chai from 'chai';
 import * as DomTestingLibrary from '@testing-library/dom';
-import type { ElementHandle } from 'playwright';
+import type { ElementHandle } from '@playwright/test';
+import { AssertionError } from 'assertion-error';
 
 // https://stackoverflow.com/a/46755166/3406963
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Chai {
     interface Assertion {
       /**

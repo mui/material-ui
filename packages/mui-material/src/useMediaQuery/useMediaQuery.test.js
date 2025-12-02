@@ -11,7 +11,7 @@ import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { ThemeProvider } from '@mui/material/styles';
+import { THEME_ID, ThemeProvider, createTheme } from '@mui/material/styles';
 
 const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
 const matchMediaInstances = new Map();
@@ -247,11 +247,11 @@ describe('useMediaQuery', () => {
         );
       }
 
-      const { unmount } = render(<Test />);
+      const view = render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
 
-      unmount();
+      view.unmount();
 
       render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
@@ -332,6 +332,40 @@ describe('useMediaQuery', () => {
         return (
           <ThemeProvider
             theme={{ components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } }}
+          >
+            <MyComponent />
+          </ThemeProvider>
+        );
+      }
+
+      const { container } = renderToString(<Test />);
+
+      expect(container.firstChild).to.have.text('true');
+    });
+  });
+
+  describe('theme scoping', () => {
+    it('should work with theme scoping', () => {
+      function MyComponent() {
+        const matches = useMediaQuery((theme) => theme.breakpoints.up('xl'));
+
+        return <span>{`${matches}`}</span>;
+      }
+
+      function Test() {
+        const ssrMatchMedia = (query) => ({
+          matches: mediaQuery.match(query, {
+            width: 3000,
+          }),
+        });
+
+        return (
+          <ThemeProvider
+            theme={{
+              [THEME_ID]: createTheme({
+                components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } },
+              }),
+            }}
           >
             <MyComponent />
           </ThemeProvider>

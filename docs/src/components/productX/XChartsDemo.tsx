@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';
@@ -47,7 +46,7 @@ export default function XChartsDemo() {
             ]}
             height={290}
             xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-            margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
+            margin={{ top: 10, bottom: 0, left: 0, right: 10 }}
             colors={blueberryTwilightPaletteLight}
           />
         </Paper>

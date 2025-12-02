@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useTimeout from '@mui/utils/useTimeout';
 import clamp from '@mui/utils/clamp';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
@@ -50,74 +51,75 @@ const SpeedDialRoot = styled('div', {
 
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.speedDial,
-  display: 'flex',
-  alignItems: 'center',
-  pointerEvents: 'none',
-  variants: [
-    {
-      props: {
-        direction: 'up',
-      },
-      style: {
-        flexDirection: 'column-reverse',
-        [`& .${speedDialClasses.actions}`]: {
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.speedDial,
+    display: 'flex',
+    alignItems: 'center',
+    pointerEvents: 'none',
+    variants: [
+      {
+        props: {
+          direction: 'up',
+        },
+        style: {
           flexDirection: 'column-reverse',
-          marginBottom: -dialRadius,
-          paddingBottom: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'column-reverse',
+            marginBottom: -dialRadius,
+            paddingBottom: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'down',
-      },
-      style: {
-        flexDirection: 'column',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'down',
+        },
+        style: {
           flexDirection: 'column',
-          marginTop: -dialRadius,
-          paddingTop: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'column',
+            marginTop: -dialRadius,
+            paddingTop: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'left',
-      },
-      style: {
-        flexDirection: 'row-reverse',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'left',
+        },
+        style: {
           flexDirection: 'row-reverse',
-          marginRight: -dialRadius,
-          paddingRight: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'row-reverse',
+            marginRight: -dialRadius,
+            paddingRight: spacingActions + dialRadius,
+          },
         },
       },
-    },
-    {
-      props: {
-        direction: 'right',
-      },
-      style: {
-        flexDirection: 'row',
-        [`& .${speedDialClasses.actions}`]: {
+      {
+        props: {
+          direction: 'right',
+        },
+        style: {
           flexDirection: 'row',
-          marginLeft: -dialRadius,
-          paddingLeft: spacingActions + dialRadius,
+          [`& .${speedDialClasses.actions}`]: {
+            flexDirection: 'row',
+            marginLeft: -dialRadius,
+            paddingLeft: spacingActions + dialRadius,
+          },
         },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',
   slot: 'Fab',
-  overridesResolver: (props, styles) => styles.fab,
-})(() => ({
+})({
   pointerEvents: 'auto',
-}));
+});
 
 const SpeedDialActions = styled('div', {
   name: 'MuiSpeedDial',
@@ -219,12 +221,20 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
    *
    * @param dialActionIndex {number}
    * @param origButtonRef {React.RefObject?}
+   * @param fabSlotOrigButtonRef {React.RefObject?}
    */
-  const createHandleSpeedDialActionButtonRef = (dialActionIndex, origButtonRef) => {
+  const createHandleSpeedDialActionButtonRef = (
+    dialActionIndex,
+    origButtonRef,
+    fabSlotOrigButtonRef,
+  ) => {
     return (buttonRef) => {
       actions.current[dialActionIndex + 1] = buttonRef;
       if (origButtonRef) {
         origButtonRef(buttonRef);
+      }
+      if (fabSlotOrigButtonRef) {
+        fabSlotOrigButtonRef(buttonRef);
       }
     };
   };
@@ -366,17 +376,24 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
 
   const children = allItems.map((child, index) => {
     const {
-      FabProps: { ref: origButtonRef, ...ChildFabProps } = {},
+      FabProps: { ref: origButtonRef } = {},
+      slotProps: childSlotProps = {},
       tooltipPlacement: tooltipPlacementProp,
     } = child.props;
+
+    const { fab: { ref: fabSlotOrigButtonRef, ...fabSlotProps } = {}, ...restOfSlotProps } =
+      childSlotProps;
 
     const tooltipPlacement =
       tooltipPlacementProp || (getOrientation(direction) === 'vertical' ? 'left' : 'top');
 
     return React.cloneElement(child, {
-      FabProps: {
-        ...ChildFabProps,
-        ref: createHandleSpeedDialActionButtonRef(index, origButtonRef),
+      slotProps: {
+        fab: {
+          ...fabSlotProps,
+          ref: createHandleSpeedDialActionButtonRef(index, origButtonRef, fabSlotOrigButtonRef),
+        },
+        ...restOfSlotProps,
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,
@@ -392,6 +409,43 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     slotProps: backwardCompatibleSlotProps,
   };
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    elementType: SpeedDialRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+    additionalProps: {
+      role: 'presentation',
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onKeyDown: (event) => {
+        handlers.onKeyDown?.(event);
+        handleKeyDown(event);
+      },
+      onBlur: (event) => {
+        handlers.onBlur?.(event);
+        handleClose(event);
+      },
+      onFocus: (event) => {
+        handlers.onFocus?.(event);
+        handleOpen(event);
+      },
+      onMouseEnter: (event) => {
+        handlers.onMouseEnter?.(event);
+        handleOpen(event);
+      },
+      onMouseLeave: (event) => {
+        handlers.onMouseLeave?.(event);
+        handleClose(event);
+      },
+    }),
+  });
+
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Zoom,
     externalForwardedProps,
@@ -399,18 +453,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   });
 
   return (
-    <SpeedDialRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      role="presentation"
-      onKeyDown={handleKeyDown}
-      onBlur={handleClose}
-      onFocus={handleOpen}
-      onMouseEnter={handleOpen}
-      onMouseLeave={handleClose}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       <TransitionSlot in={!hidden} timeout={transitionDuration} unmountOnExit {...transitionProps}>
         <SpeedDialFab
           color="primary"
@@ -438,7 +481,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       >
         {children}
       </SpeedDialActions>
-    </SpeedDialRoot>
+    </RootSlot>
   );
 });
 
@@ -470,7 +513,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
+   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -531,6 +574,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -538,6 +582,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
@@ -550,8 +595,9 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
+   * * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -573,6 +619,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps: PropTypes.object,
 };

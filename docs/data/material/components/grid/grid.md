@@ -1,40 +1,38 @@
 ---
 productId: material-ui
 title: React Grid component
-components: Grid
+components: PigmentGrid, Grid
 githubLabel: 'component: Grid'
 materialDesign: https://m2.material.io/design/layout/understanding-layout.html
+githubSource: packages/mui-material/src/Grid
 ---
 
 # Grid
 
-<p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
+<p class="description">The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-The [grid](https://m2.material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-Material Design's responsive UI is based on a 12-column grid layout.
+The `Grid` component works well for a layout with a known number of columns.
+The columns can be configured with multiple breakpoints to specify the column span of each child.
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
-
-:::warning
-The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
-:::
-
-:::warning
-The `Grid` component has been deprecated. Please use the [Grid v2](/material-ui/react-grid2/) instead. See how to migrate in the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/) and [Material UI v6 migration guide](/material-ui/migration/migrating-to-v6/).
-:::
 
 ## How it works
 
 The grid system is implemented with the `Grid` component:
 
-- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-- There are two types of layout: _containers_ and _items_.
+- It uses [CSS Flexbox](https://www.w3.org/TR/css-flexbox-1/) (rather than CSS Grid) for high flexibility.
+- The grid is always a flex item. Use the `container` prop to add a flex container.
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
-- Items have padding to create the spacing between individual items.
-- There are five grid breakpoints: xs, sm, md, lg, and xl.
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
+- There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
+- You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
+- It uses [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) to add spacing between items.
+- It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) if you need this functionality.
+- It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
-If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
+:::warning
+The `Grid` component is a _layout_ grid, not a _data_ grid.
+If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
+:::
 
 ## Fluid grids
 
@@ -42,63 +40,57 @@ Fluid grids use columns that scale and resize content. A fluid grid's layout can
 
 ### Basic grid
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+In order to create a grid layout, you need a container.
+Use the `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).
 
-A value passed to any given breakpoint also applies to all wider breakpoints (if they have no values explicitly defined).
-For example, `xs={12}` sizes a component to occupy the full width of its parent container, regardless of the viewport size.
+Column widths are integer values between 1 and 12.
+For example, an item with `size={6}` occupies half of the grid container's width.
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
-### Grid with multiple breakpoints
+### Multiple breakpoints
 
-Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
+Items may have multiple widths defined, causing the layout to change at the defined breakpoint.
+Width values apply to all wider breakpoints, and larger breakpoints override those given to smaller breakpoints.
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/material-ui/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+For example, a component with `size={{ xs: 12, sm: 6 }}` occupies the entire viewport width when the viewport is [less than 600 pixels wide](/material-ui/customization/breakpoints/#default-breakpoints).
+When the viewport grows beyond this size, the component occupies half of the total width—six columns rather than 12.
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
 ## Spacing
 
-To control space between children, use the `spacing` prop.
-The spacing value can be any positive number, including decimals and any string.
+Use the `spacing` prop to control the space between children.
+The spacing value can be any positive number (including decimals) or a string.
 The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
-{{"demo": "SpacingGrid.js", "bg": true}}
+The following demo illustrates the use of the `spacing` prop:
 
-### Row & column spacing
+{{"demo": "SpacingGrid.js", "bg": true, "hideToolbar": true}}
 
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
-It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+### Row and column spacing
+
+The `rowSpacing` and `columnSpacing` props let you specify row and column gaps independently of one another.
+They behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
 
 {{"demo": "RowAndColumnSpacing.js", "bg": true}}
 
 ## Responsive values
 
-You can switch the props' value based on the active breakpoint.
-For instance, we can implement the ["recommended"](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+You can set prop values to change when a given breakpoint is active.
+For instance, we can implement Material Design's [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 
-Responsive values is supported by:
+Responsive values are supported by:
 
+- `size`
 - `columns`
 - `columnSpacing`
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of MUI System
-
-:::warning
-When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
-For instance, this is not working. The grid item misses the value for `md`:
-
-```jsx
-<Grid container columns={{ xs: 4, md: 12 }}>
-  <Grid item xs={2} />
-</Grid>
-```
-
-:::
+- `offset`
 
 ## Interactive
 
@@ -108,99 +100,154 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ## Auto-layout
 
-The Auto-layout makes the _items_ equitably share the available space.
-That also means you can set the width of one _item_ and the others will automatically resize around it.
+The auto-layout feature gives equal space to all items present.
+When you set the width of one item, the others will automatically resize to match it.
 
 {{"demo": "AutoGrid.js", "bg": true}}
 
 ### Variable width content
 
-Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size
-a column based on the natural width of its content.
+When a breakpoint's value is given as `"auto"`, then a column's size will automatically adjust to match the width of its content.
+The demo below shows how this works:
 
 {{"demo": "VariableWidthGrid.js", "bg": true}}
 
-## Complex Grid
+## Nested grid
 
-The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
+The grid container that renders as a **direct child** inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level.
+It will also inherit the props of the top-level grid if it receives those props.
 
-{{"demo": "ComplexGrid.js", "bg": true}}
+:::success
 
-## Nested Grid
+Note that a nested grid container should be a direct child of another grid container. If there are non-grid elements in between, the grid container will start as the new root container.
 
-The `container` and `item` props are two independent booleans; they can be combined to allow a Grid component to be both a flex container and child.
+```js
+<Grid container>
+  <Grid container> // A nested grid container that inherits columns and spacing from above.
+    <div>
+      <Grid container> // A new root grid container with its own variables scope.
+```
 
-:::info
-A flex **container** is the box generated by an element with a computed display of `flex` or `inline-flex`. In-flow children of a flex container are called flex **items** and are laid out using the flex layout model.
 :::
 
-https://www.w3.org/TR/css-flexbox-1/#box-model
+### Inheriting spacing
+
+A nested grid container inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
 
 {{"demo": "NestedGrid.js", "bg": true}}
 
-⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time leads to unexpected behavior, avoid doing it:
+### Inheriting columns
 
-```jsx
-<Grid spacing={1} container item xs={12}>
-```
+A nested grid container inherits the columns from its parent unless the `columns` prop is specified to the instance.
 
-If you need to do such, remove one of the props.
+{{"demo": "NestedGridColumns.js", "bg": true}}
 
 ## Columns
 
-You can change the default number of columns (12) with the `columns` prop.
+Use the `columns` prop to change the default number of columns (12) in the grid, as shown below:
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
 
-## Limitations
+## Offset
 
-### Negative margin
+The `offset` prop pushes an item to the right side of the grid.
+This props accepts:
 
-The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
+- numbers—for example, `offset={{ md: 2 }}` pushes an item two columns to the right when the viewport size is equal to or greater than the `md` breakpoint.
+- `"auto"`—this pushes the item to the far right side of the grid container.
 
-### white-space: nowrap
+The demo below illustrates how to use the offset props:
 
-The initial setting on flex items is `min-width: auto`.
-This causes a positioning conflict when children use `white-space: nowrap;`.
-You can reproduce the issue with:
+{{"demo": "OffsetGrid.js", "bg": true}}
 
-```jsx
-<Grid item xs>
-  <Typography noWrap>
+## Custom breakpoints
+
+If you specify custom breakpoints in the theme, you can use those names as grid item props in responsive values:
+
+```js
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+function Demo() {
+  return (
+    <ThemeProvider
+      theme={createTheme({
+        breakpoints: {
+          values: {
+            laptop: 1024,
+            tablet: 640,
+            mobile: 0,
+            desktop: 1280,
+          },
+        },
+      })}
+    >
+      <Grid container spacing={{ mobile: 1, tablet: 2, laptop: 3 }}>
+        {Array.from(Array(4)).map((_, index) => (
+          <Grid key={index} size={{ mobile: 6, tablet: 4, laptop: 3 }}>
+            <div>{index + 1}</div>
+          </Grid>
+        ))}
+      </Grid>
+    </ThemeProvider>
+  );
+}
 ```
-
-In order for the item to stay within the container you need to set `min-width: 0`.
-In practice, you can set the `zeroMinWidth` prop:
-
-```jsx
-<Grid item xs zeroMinWidth>
-  <Typography noWrap>
-```
-
-{{"demo": "AutoGridNoWrap.js", "bg": true}}
-
-### direction: column | column-reverse
-
-The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
-
-They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers.
-If used, these props may have undesirable effects on the height of the `Grid` item elements.
-
-## CSS Grid Layout
-
-The `Grid` component is using CSS flexbox internally.
-But as seen below, you can easily use [MUI System](/system/grid/) and CSS Grid to layout your pages.
-
-{{"demo": "CSSGrid.js", "bg": true}}
-
-## System props
 
 :::info
-System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
+Custom breakpoints affect all [responsive values](#responsive-values).
+:::
 
-```diff
-- <Grid item p={2} />
-+ <Grid item sx={{ p: 2 }} />
+### TypeScript
+
+You have to set module augmentation on the theme breakpoints interface.
+
+```ts
+declare module '@mui/system' {
+  interface BreakpointOverrides {
+    // Your custom breakpoints
+    laptop: true;
+    tablet: true;
+    mobile: true;
+    desktop: true;
+    // Remove default breakpoints
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+  }
+}
 ```
 
+## Customization
+
+### Centered elements
+
+To center a grid item's content, specify `display="flex"` directly on the item.
+Then use `justifyContent` and/or `alignItems` to adjust the position of the content, as shown below:
+
+{{"demo": "CenteredElementGrid.js", "bg": true}}
+
+:::warning
+Using the `container` prop does not work in this situation because the grid container is designed exclusively to wrap grid items.
+It cannot wrap other elements.
 :::
+
+### Full border
+
+{{"demo": "FullBorderedGrid.js"}}
+
+### Half border
+
+{{"demo": "HalfBorderedGrid.js"}}
+
+## Limitations
+
+### Column direction
+
+Using `direction="column"` or `direction="column-reverse"` is not supported.
+The Grid component is specifically designed to subdivide a layout into columns, not rows.
+You should not use the Grid component on its own to stack layout elements vertically.
+Instead, you should use the [Stack component](/material-ui/react-stack/) inside of a Grid to create vertical layouts as shown below:
+
+{{"demo": "ColumnLayoutInsideGrid.js"}}

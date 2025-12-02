@@ -4,9 +4,11 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
+import getActiveElement from '../utils/getActiveElement';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import { ownerWindow } from '../utils';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
@@ -44,7 +46,7 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   if (textCriteria.repeating) {
     return text[0] === textCriteria.keys[0];
   }
-  return text.indexOf(textCriteria.keys.join('')) === 0;
+  return text.startsWith(textCriteria.keys.join(''));
 }
 
 function moveFocus(
@@ -130,7 +132,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
-          const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
+          const scrollbarSize = `${getScrollbarSize(ownerWindow(containerElement))}px`;
           listRef.current.style[direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
             scrollbarSize;
           listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
@@ -144,13 +146,23 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   const handleKeyDown = (event) => {
     const list = listRef.current;
     const key = event.key;
+    const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
+
+    if (isModifierKeyPressed) {
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+
+      return;
+    }
+
     /**
      * @type {Element} - will always be defined since we are in a keydown handler
      * attached to an element. A keydown event is either dispatched to the activeElement
      * or document.body or document.documentElement. Only the first case will
      * trigger this specific handler.
      */
-    const currentFocus = ownerDocument(list).activeElement;
+    const currentFocus = getActiveElement(ownerDocument(list));
 
     if (key === 'ArrowDown') {
       // Prevent scroll of the page

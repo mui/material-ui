@@ -1,3 +1,3 @@
 import * as React from 'react';
 
-export default Number(React.version.split('.')[0]);
+export default parseInt(React.version, 10);

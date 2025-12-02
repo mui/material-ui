@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, act, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, act, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/joy/ListItemButton';
 import describeConformance from '../../test/describeConformance';
@@ -26,18 +25,18 @@ describe('Joy <ListItemButton />', () => {
   }));
 
   it('should render with the selected class', () => {
-    const { getByRole } = render(<ListItemButton selected />);
-    expect(getByRole('button')).to.have.class(classes.selected);
+    render(<ListItemButton selected />);
+    expect(screen.getByRole('button')).to.have.class(classes.selected);
   });
 
   it('should render with the variant class', () => {
-    const { getByRole } = render(<ListItemButton variant="outlined" />);
-    expect(getByRole('button')).to.have.class(classes.variantOutlined);
+    render(<ListItemButton variant="outlined" />);
+    expect(screen.getByRole('button')).to.have.class(classes.variantOutlined);
   });
 
   it('should render with primary color class', () => {
-    const { getByRole } = render(<ListItemButton color="primary" />);
-    expect(getByRole('button')).to.have.class(classes.colorPrimary);
+    render(<ListItemButton color="primary" />);
+    expect(screen.getByRole('button')).to.have.class(classes.colorPrimary);
   });
 
   it('should accept className prop', () => {
@@ -51,22 +50,18 @@ describe('Joy <ListItemButton />', () => {
   });
 
   it('should accept custom role', () => {
-    const { getByRole } = render(<ListItemButton role="menuitem" />);
-    expect(getByRole('menuitem')).toBeVisible();
+    render(<ListItemButton role="menuitem" />);
+    expect(screen.getByRole('menuitem')).toBeVisible();
   });
 
   describe('prop: focusVisibleClassName', () => {
-    it('should have focusVisible classes', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('should have focusVisible classes', async function test() {
+      render(<ListItemButton />);
+      const button = screen.getByRole('button');
 
-      const { getByRole } = render(<ListItemButton />);
-      const button = getByRole('button');
-
-      act(() => {
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+      await act(() => {
         button.focus();
       });
 

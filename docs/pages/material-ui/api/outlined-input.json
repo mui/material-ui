@@ -13,7 +13,7 @@
       "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
@@ -42,8 +42,18 @@
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: object, notchedOutline?: func<br>&#124;&nbsp;object, root?: object }"
+      },
+      "default": "{}"
+    },
     "slots": {
-      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, notchedOutline?: elementType, root?: elementType }"
+      },
       "default": "{}"
     },
     "startAdornment": { "type": { "name": "node" } },
@@ -109,25 +119,29 @@
       "key": "inputAdornedEnd",
       "className": "MuiOutlinedInput-inputAdornedEnd",
       "description": "Styles applied to the input element if `endAdornment` is provided.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputAdornedStart",
       "className": "MuiOutlinedInput-inputAdornedStart",
       "description": "Styles applied to the input element if `startAdornment` is provided.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputMultiline",
       "className": "MuiOutlinedInput-inputMultiline",
       "description": "Styles applied to the input element if `multiline={true}`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputSizeSmall",
       "className": "MuiOutlinedInput-inputSizeSmall",
       "description": "Styles applied to the input element if `size=\"small\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputTypeSearch",
@@ -166,6 +180,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/OutlinedInput/OutlinedInput.js",
   "inheritance": { "component": "InputBase", "pathname": "/material-ui/api/input-base/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-number-field/\">Number Field</a></li>\n<li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

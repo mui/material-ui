@@ -8,7 +8,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -26,7 +26,7 @@ const defaultInput = <Input />;
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
 const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiNativeSelect', props: inProps });
+  const props = useDefaultProps({ name: 'MuiNativeSelect', props: inProps });
   const {
     className,
     children,
@@ -102,7 +102,7 @@ NativeSelect.propTypes /* remove-proptypes */ = {
    */
   input: PropTypes.element,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select#attributes) applied to the `select` element.
    */
   inputProps: PropTypes.object,
   /**

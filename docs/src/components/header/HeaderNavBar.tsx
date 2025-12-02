@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
 import ButtonBase from '@mui/material/ButtonBase';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
@@ -69,13 +68,12 @@ const Navigation = styled('nav')(({ theme }) => [
 const PRODUCT_IDS = [
   'product-core',
   'product-advanced',
-  'product-toolpad',
   'product-templates',
   'product-design',
-];
+] as const;
 
 type ProductSubMenuProps = {
-  icon: React.ReactElement<any>;
+  icon: React.ReactElement<unknown>;
   name: React.ReactNode;
   description: React.ReactNode;
   chip?: React.ReactNode;
@@ -111,15 +109,24 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         {...props}
       >
         <Box sx={{ px: 2 }}>{icon}</Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
-            {name}
-          </Typography>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+              {name}
+            </Typography>
+            {chip}
+          </div>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {description}
           </Typography>
-        </Box>
-        {chip}
+        </div>
       </Box>
     );
   },
@@ -128,8 +135,8 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
 export default function HeaderNavBar() {
   const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
-  const navRef = React.useRef<HTMLUListElement | null>(null);
-  const productSelectorRef = React.useRef<HTMLDivElement | null>(null);
+  const navRef = React.useRef<HTMLUListElement>(null);
+  const productSelectorRef = React.useRef<HTMLDivElement>(null);
   const productsMenuRef = React.useRef<HTMLButtonElement>(null);
   const docsMenuRef = React.useRef<HTMLButtonElement>(null);
 
@@ -300,16 +307,6 @@ export default function HeaderNavBar() {
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name="product-toolpad" />}
-                        name="Toolpad"
-                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Components and tools for dashboards and internal apps."
-                      />
-                    </li>
-                    <li>
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[3]}
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
@@ -318,7 +315,7 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
+                        id={PRODUCT_IDS[3]}
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
                         name="Design Kits"

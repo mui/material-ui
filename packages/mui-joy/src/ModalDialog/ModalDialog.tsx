@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isMuiElement as isMuiElement,
-  unstable_useId as useId,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isMuiElement from '@mui/utils/isMuiElement';
+import useId from '@mui/utils/useId';
 import { Breakpoint } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { Theme } from '../styles/types/theme';
@@ -18,6 +16,7 @@ import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 import useSlot from '../utils/useSlot';
 import { StyledCardRoot } from '../Card/Card';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
@@ -195,11 +194,11 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
             }
             const extraProps: Record<string, any> = {};
             if (isMuiElement(child, ['Divider'])) {
-              extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+              const childProps = child.props as DividerProps;
+              extraProps.inset = childProps?.inset ?? 'context';
 
               const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-              extraProps.orientation =
-                'orientation' in child.props ? child.props.orientation : dividerOrientation;
+              extraProps.orientation = childProps?.orientation ?? dividerOrientation;
             }
             if (index === 0) {
               extraProps['data-first-child'] = '';

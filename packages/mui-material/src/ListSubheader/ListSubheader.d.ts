@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListSubheaderClasses } from './listSubheaderClasses';
 
@@ -51,11 +51,11 @@ export interface ListSubheaderTypeMap<
  *
  * Demos:
  *
- * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListSubheader API](https://next.mui.com/material-ui/api/list-subheader/)
+ * - [ListSubheader API](https://mui.com/material-ui/api/list-subheader/)
  */
 declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 

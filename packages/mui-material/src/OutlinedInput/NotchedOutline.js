@@ -1,10 +1,13 @@
 'use client';
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 
-const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldForwardProp })({
+const NotchedOutlineRoot = styled('fieldset', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   textAlign: 'left',
   position: 'absolute',
   bottom: 0,
@@ -21,8 +24,11 @@ const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldFor
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldForwardProp })(
-  ({ theme }) => ({
+const NotchedOutlineLegend = styled('legend', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})(
+  memoTheme(({ theme }) => ({
     float: 'unset', // Fix conflict with bootstrap
     width: 'auto', // Fix conflict with bootstrap
     overflow: 'hidden', // Fix Horizontal scroll when label too long
@@ -73,7 +79,7 @@ const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldFor
         },
       },
     ],
-  }),
+  })),
 );
 
 /**
@@ -95,7 +101,9 @@ export default function NotchedOutline(props) {
           <span>{label}</span>
         ) : (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          <span className="notranslate">&#8203;</span>
+          <span className="notranslate" aria-hidden>
+            &#8203;
+          </span>
         )}
       </NotchedOutlineLegend>
     </NotchedOutlineRoot>

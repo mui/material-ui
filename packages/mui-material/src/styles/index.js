@@ -1,6 +1,3 @@
-'use client';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
-
 export { default as THEME_ID } from './identifier';
 export { default as adaptV4Theme } from './adaptV4Theme';
 export {
@@ -22,12 +19,12 @@ export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 // TODO: Remove this function in v6.
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx() {
-  throw new MuiError(
+  throw /* minify-error */ new Error(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
       'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );
 }
-export { default as createTheme, createMuiTheme } from './createTheme';
+export { default as createTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
@@ -37,7 +34,6 @@ export { default as createColorScheme } from './createColorScheme';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';
-export { default as experimentalStyled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export { StyledEngineProvider } from '@mui/system';
 // The legacy utilities from @mui/styles

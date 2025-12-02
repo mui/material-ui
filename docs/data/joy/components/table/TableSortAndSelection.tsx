@@ -178,7 +178,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                   : undefined
               }
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 underline="none"
                 color="neutral"
@@ -331,7 +330,6 @@ export default function TableSortAndSelection() {
       ? rows.length
       : Math.min(rows.length, (page + 1) * rowsPerPage);
   };
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -370,7 +368,7 @@ export default function TableSortAndSelection() {
             .sort(getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row, index) => {
-              const isItemSelected = isSelected(row.name);
+              const isItemSelected = selected.includes(row.name);
               const labelId = `enhanced-table-checkbox-${index}`;
 
               return (

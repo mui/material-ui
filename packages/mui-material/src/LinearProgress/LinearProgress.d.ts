@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { LinearProgressClasses } from './linearProgressClasses';
 
 export interface LinearProgressPropsColorOverrides {}
+export interface LinearProgressPropsVariantOverrides {}
 
 export interface LinearProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -41,7 +43,10 @@ export interface LinearProgressProps
    * Use indeterminate or query when there is no progress value.
    * @default 'indeterminate'
    */
-  variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
+  variant?: OverridableStringUnion<
+    'determinate' | 'indeterminate' | 'buffer' | 'query',
+    LinearProgressPropsVariantOverrides
+  >;
 }
 
 /**
@@ -53,10 +58,10 @@ export interface LinearProgressProps
  *
  * Demos:
  *
- * - [Progress](https://next.mui.com/material-ui/react-progress/)
+ * - [Progress](https://mui.com/material-ui/react-progress/)
  *
  * API:
  *
- * - [LinearProgress API](https://next.mui.com/material-ui/api/linear-progress/)
+ * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
  */
 export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;

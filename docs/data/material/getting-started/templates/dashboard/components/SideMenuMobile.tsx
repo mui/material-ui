@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { PaletteMode } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -8,31 +6,23 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-
 import MenuButton from './MenuButton';
-import ToggleColorMode from './ToggleColorMode';
 import MenuContent from './MenuContent';
 import CardAlert from './CardAlert';
 
 interface SideMenuMobileProps {
   open: boolean | undefined;
   toggleDrawer: (newOpen: boolean) => () => void;
-  mode: PaletteMode;
-  toggleColorMode: () => void;
 }
 
-export default function SideMenuMobile({
-  open,
-  toggleDrawer,
-  mode,
-  toggleColorMode,
-}: SideMenuMobileProps) {
+export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobileProps) {
   return (
     <Drawer
       anchor="right"
       open={open}
       onClose={toggleDrawer(false)}
       sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
         [`& .${drawerClasses.paper}`]: {
           backgroundImage: 'none',
           backgroundColor: 'background.paper',
@@ -63,7 +53,6 @@ export default function SideMenuMobile({
           <MenuButton showBadge>
             <NotificationsRoundedIcon />
           </MenuButton>
-          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Divider />
         <Stack sx={{ flexGrow: 1 }}>

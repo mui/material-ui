@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import {
   createRenderer,
@@ -30,6 +29,8 @@ describe('<LinearProgress />', () => {
     expect(progressbar).to.have.class(classes.indeterminate);
     expect(progressbar.children[0]).to.have.class(classes.bar1Indeterminate);
     expect(progressbar.children[1]).to.have.class(classes.bar2Indeterminate);
+    expect(progressbar.children[0]).to.have.class(classes.bar1);
+    expect(progressbar.children[1]).to.have.class(classes.bar2);
   });
 
   it('should render for the primary color by default', () => {

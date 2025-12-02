@@ -1,54 +1,54 @@
-/**
- * Split this component for RSC import
- */
-import * as React from 'react';
-
 export const DEFAULT_MODE_STORAGE_KEY = 'mode';
 export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
 export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
 
 export interface InitColorSchemeScriptProps {
   /**
-   * The default color scheme to be used on the light mode
+   * The default mode when the storage is empty (user's first visit).
+   * @default 'system'
+   */
+  defaultMode?: 'system' | 'light' | 'dark';
+  /**
+   * The default color scheme to be used on the light mode.
    * @default 'light'
    */
   defaultLightColorScheme?: string;
   /**
-   * The default color scheme to be used on the dark mode
+   * The default color scheme to be used on the dark mode.
    * * @default 'dark'
    */
   defaultDarkColorScheme?: string;
   /**
-   * The node (provided as string) used to attach the color-scheme attribute
+   * The node (provided as string) used to attach the color-scheme attribute.
    * @default 'document.documentElement'
    */
   colorSchemeNode?: string;
   /**
-   * localStorage key used to store `mode`
+   * localStorage key used to store `mode`.
    * @default 'mode'
    */
   modeStorageKey?: string;
   /**
-   * localStorage key used to store `colorScheme`
+   * localStorage key used to store `colorScheme`.
    * @default 'color-scheme'
    */
   colorSchemeStorageKey?: string;
   /**
-   * DOM attribute for applying color scheme
+   * DOM attribute for applying color scheme.
    * @default 'data-color-scheme'
-   *
    * @example '.mode-%s' // for class based color scheme
    * @example '[data-mode-%s]' // for data-attribute without '='
    */
   attribute?: 'class' | 'data' | string;
   /**
-   * Nonce string to pass to the inline script for CSP headers
+   * Nonce string to pass to the inline script for CSP headers.
    */
   nonce?: string | undefined;
 }
 
 export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
   const {
+    defaultMode = 'system',
     defaultLightColorScheme = 'light',
     defaultDarkColorScheme = 'dark',
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -70,7 +70,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
     setter += `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
       ${colorSchemeNode}.classList.add('${selector}'.replace('%s', colorScheme));`;
   }
-  const matches = attribute.match(/\[([^\]]+)\]/); // case [data-color-scheme=%s] or [data-color-scheme]
+  const matches = attribute.match(/\[([^[\]]+)\]/); // case [data-color-scheme='%s'] or [data-color-scheme]
   if (matches) {
     const [attr, value] = matches[1].split('=');
     if (!value) {
@@ -79,7 +79,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
     }
     setter += `
       ${colorSchemeNode}.setAttribute('${attr}'.replace('%s', colorScheme), ${value ? `${value}.replace('%s', colorScheme)` : '""'});`;
-  } else {
+  } else if (attribute !== '.%s') {
     setter += `${colorSchemeNode}.setAttribute('${attribute}', colorScheme);`;
   }
 
@@ -92,13 +92,13 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
       dangerouslySetInnerHTML={{
         __html: `(function() {
 try {
-  var mode = localStorage.getItem('${modeStorageKey}') || 'system';
-  var colorScheme = '';
-  var dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-  var light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
+  let colorScheme = '';
+  const mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
+  const dark = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
+  const light = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
   if (mode === 'system') {
     // handle system mode
-    var mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
     if (mql.matches) {
       colorScheme = dark
     } else {

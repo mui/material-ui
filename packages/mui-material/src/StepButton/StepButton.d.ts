@@ -5,11 +5,6 @@ import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { StepButtonClasses } from './stepButtonClasses';
 
-/**
- * @deprecated use `StepButtonProps['icon']` instead.
- */
-export type StepButtonIcon = React.ReactNode;
-
 export interface StepButtonOwnProps {
   /**
    * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
@@ -47,12 +42,12 @@ export type StepButtonTypeMap<
  *
  * Demos:
  *
- * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepButton API](https://next.mui.com/material-ui/api/step-button/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [StepButton API](https://mui.com/material-ui/api/step-button/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const StepButton: ExtendButtonBase<
   StepButtonTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>

@@ -10,6 +10,7 @@ export const roboto = Roboto({
 
 // Create a theme instance.
 const theme = createTheme({
+  cssVariables: true,
   palette: {
     primary: {
       main: '#556cd6',

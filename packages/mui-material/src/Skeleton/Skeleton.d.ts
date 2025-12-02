@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { SkeletonClasses } from './skeletonClasses';
 
@@ -58,11 +58,11 @@ export interface SkeletonTypeMap<
  *
  * Demos:
  *
- * - [Skeleton](https://next.mui.com/material-ui/react-skeleton/)
+ * - [Skeleton](https://mui.com/material-ui/react-skeleton/)
  *
  * API:
  *
- * - [Skeleton API](https://next.mui.com/material-ui/api/skeleton/)
+ * - [Skeleton API](https://mui.com/material-ui/api/skeleton/)
  */
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 

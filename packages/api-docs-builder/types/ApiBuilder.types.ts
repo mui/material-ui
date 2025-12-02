@@ -1,7 +1,6 @@
 import { ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
-import { ComponentClassDefinition } from '@mui/internal-docs-utils';
-import { ComponentInfo, Slot, HookInfo, SeeMore } from './utils.types';
+import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -34,6 +33,7 @@ interface CommonReactApi extends ReactDocgenApi {
    */
   apiDocsTranslationFolder?: string;
   deprecated: true | undefined;
+  customAnnotation?: string;
 }
 
 export interface PropsTableItem {
@@ -57,13 +57,26 @@ export interface PropsTranslations {
     [key: string]: ClassDescription;
   };
   slotDescriptions?: { [key: string]: string };
+  cssVariablesDescriptions?: { [key: string]: string };
+  dataAttributesDescriptions?: { [key: string]: string };
+}
+
+export interface TypeDescription {
+  name: string;
+  description: string;
+  argType?: string;
+  argTypeDescription?: string;
+}
+
+export interface TypeDescriptions {
+  [t: string]: TypeDescription;
 }
 
 interface PropDescription {
   description: string;
   requiresRef?: boolean;
   deprecated?: string;
-  typeDescriptions?: { [t: string]: string };
+  typeDescriptions?: { [t: string]: TypeDescription };
   seeMoreText?: string;
 }
 
@@ -92,7 +105,9 @@ export interface ComponentReactApi extends CommonReactApi {
   themeDefaultProps: boolean | undefined | null;
   classes: ComponentClassDefinition[];
   slots: Slot[];
-  propsTable: _.Dictionary<PropsTableItem>;
+  cssVariables: { [key: string]: ApiItemDescription };
+  dataAttributes: { [key: string]: ApiItemDescription };
+  propsTable: { [key: string]: PropsTableItem };
   translations: PropsTranslations;
 }
 
@@ -101,6 +116,8 @@ export interface ComponentApiContent {
   name: string;
   imports: string[];
   slots?: Slot[];
+  cssVariables?: { [key: string]: ApiItemDescription };
+  dataAttributes?: { [key: string]: ApiItemDescription };
   classes: ComponentClassDefinition[];
   spread: boolean | undefined;
   themeDefaultProps: boolean | null | undefined;
@@ -138,6 +155,15 @@ export interface HooksTranslations {
   };
 }
 
+export interface ComponentClassDefinition {
+  key: string;
+  className: string;
+  description: string;
+  isGlobal: boolean;
+  isDeprecated?: boolean;
+  deprecationInfo?: string;
+}
+
 interface AttributeDefinition {
   default: string | undefined;
   required: boolean | undefined;
@@ -154,8 +180,8 @@ export interface HookReactApi extends CommonReactApi {
    * @example 'useButton'
    */
   name: string;
-  parametersTable: _.Dictionary<AttributeDefinition>;
-  returnValueTable: _.Dictionary<AttributeDefinition>;
+  parametersTable: { [key: string]: AttributeDefinition };
+  returnValueTable: { [key: string]: AttributeDefinition };
   translations: HooksTranslations;
 }
 

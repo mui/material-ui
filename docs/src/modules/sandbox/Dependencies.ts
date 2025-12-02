@@ -1,8 +1,15 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { DemoData } from './types';
 
-const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
-const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
+const packagesWithBundledTypes = [
+  'date-fns',
+  '@emotion/react',
+  '@emotion/styled',
+  'dayjs',
+  'clsx',
+  '@react-spring/web',
+];
+const muiNpmOrgs = ['@mui', '@base-ui-components', '@pigment-css', '@toolpad'];
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -12,9 +19,9 @@ const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
  *
  * @param deps - list of dependency as `name => version`
  */
-function addTypeDeps(deps: Record<string, string>): void {
+function addTypeDeps(deps: Record<string, string>, devDeps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
-    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    .filter((name) => !packagesWithBundledTypes.includes(name))
     // All the MUI packages come with bundled types
     .filter((name) => !muiNpmOrgs.some((org) => name.startsWith(org)));
 
@@ -26,19 +33,17 @@ function addTypeDeps(deps: Record<string, string>): void {
       resolvedName = name.slice(1).replace('/', '__');
     }
 
-    deps[`@types/${resolvedName}`] = 'latest';
+    devDeps[`@types/${resolvedName}`] = 'latest';
   });
 }
 
+type Demo = Pick<DemoData, 'productId' | 'raw' | 'codeVariant' | 'relativeModules'>;
+
 export default function SandboxDependencies(
-  demo: {
-    raw: string;
-    productId?: MuiProductId;
-    codeVariant: keyof typeof CODE_VARIANTS;
-  },
-  options?: { commitRef?: string },
+  demo: Demo,
+  options?: { commitRef?: string; devDeps?: Record<string, string> },
 ) {
-  const { commitRef } = options || {};
+  const { commitRef, devDeps = {} } = options || {};
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -49,14 +54,16 @@ export default function SandboxDependencies(
       commitRef === undefined ||
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
-      // #default-branch-switch
-      return 'next';
+      if (['joy', 'base'].includes(packageName)) {
+        return 'latest';
+      }
+      // #npm-tag-reference
+      return 'latest';
     }
-    const shortSha = commitRef.slice(0, 8);
-    return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
+    return `https://pkg.pr.new/mui/material-ui/@mui/${packageName}@${commitRef}`;
   }
 
-  function extractDependencies(raw: string) {
+  function extractDependencies() {
     const muiDocConfig = (window as any).muiDocConfig;
 
     function includePeerDependencies(
@@ -98,7 +105,6 @@ export default function SandboxDependencies(
       '@mui/icons-material': getMuiPackageVersion('icons-material'),
       '@mui/lab': getMuiPackageVersion('lab'),
       '@mui/styled-engine': getMuiPackageVersion('styled-engine'),
-      '@mui/styles': getMuiPackageVersion('styles'),
       '@mui/system': getMuiPackageVersion('system'),
       '@mui/private-theming': getMuiPackageVersion('theming'),
       '@mui/private-classnames': getMuiPackageVersion('classnames'),
@@ -114,37 +120,37 @@ export default function SandboxDependencies(
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
-    let m: RegExpExecArray | null = null;
-    // eslint-disable-next-line no-cond-assign
-    while ((m = re.exec(raw))) {
-      const fullName = m[2] ?? m[1];
-      // handle scope names
-      const name =
-        fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
+    const extractImportedDependencies = (raw: string) => {
+      let m: RegExpExecArray | null = null;
+      // eslint-disable-next-line no-cond-assign
+      while ((m = re.exec(raw))) {
+        const fullName = m[2] ?? m[1];
+        // handle scope names
+        const name =
+          fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
-      if (!deps[name] && !name.startsWith('.')) {
-        deps[name] = versions[name] ?? 'latest';
-      }
+        if (!deps[name] && !name.startsWith('.')) {
+          deps[name] = versions[name] ?? 'latest';
+        }
 
-      if (muiDocConfig && muiDocConfig.postProcessImport) {
-        const resolvedDep = muiDocConfig.postProcessImport(fullName);
-        if (resolvedDep) {
-          deps = { ...deps, ...resolvedDep };
+        if (muiDocConfig && muiDocConfig.postProcessImport) {
+          const resolvedDep = muiDocConfig.postProcessImport(fullName);
+          if (resolvedDep) {
+            deps = { ...deps, ...resolvedDep };
+          }
         }
       }
-    }
+    };
+
+    extractImportedDependencies(demo.raw);
+    demo.relativeModules?.forEach(({ raw }) => extractImportedDependencies(raw));
 
     deps = includePeerDependencies(deps, versions);
 
     return deps;
   }
 
-  const dependencies = extractDependencies(demo.raw);
-
-  if (demo.codeVariant === CODE_VARIANTS.TS) {
-    addTypeDeps(dependencies);
-    dependencies.typescript = 'latest';
-  }
+  const dependencies = extractDependencies();
 
   if (!demo.productId && !dependencies['@mui/material']) {
     // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
@@ -155,9 +161,12 @@ export default function SandboxDependencies(
     dependencies[name] = versions[name] ? versions[name] : 'latest';
   }
 
-  const devDependencies = {
-    'react-scripts': 'latest',
-  };
+  const devDependencies: Record<string, string> = { ...devDeps };
+
+  if (demo.codeVariant === CODE_VARIANTS.TS) {
+    addTypeDeps(dependencies, devDependencies);
+    dependencies.typescript = 'latest';
+  }
 
   return { dependencies, devDependencies };
 }

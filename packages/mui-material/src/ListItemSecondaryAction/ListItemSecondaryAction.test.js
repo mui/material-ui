@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ListItem from '@mui/material/ListItem';
 import ListItemSecondaryAction, {
   listItemSecondaryActionClasses as classes,
@@ -20,20 +19,22 @@ describe('<ListItemSecondaryAction />', () => {
   }));
 
   it('should render without classes that disable gutters', () => {
-    const { getByTestId } = render(
+    render(
       <ListItem>
         <ListItemSecondaryAction data-testid="secondary-action" />
       </ListItem>,
     );
-    expect(getByTestId('secondary-action')).not.to.have.class(classes.disableGutters);
+
+    expect(screen.getByTestId('secondary-action')).not.to.have.class(classes.disableGutters);
   });
 
   it('should disable the gutters', () => {
-    const { getByTestId } = render(
+    render(
       <ListItem disableGutters>
         <ListItemSecondaryAction data-testid="secondary-action" />
       </ListItem>,
     );
-    expect(getByTestId('secondary-action')).to.have.class(classes.disableGutters);
+
+    expect(screen.getByTestId('secondary-action')).to.have.class(classes.disableGutters);
   });
 });

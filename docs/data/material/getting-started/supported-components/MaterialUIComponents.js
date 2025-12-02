@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -22,7 +21,7 @@ const components = [
   },
   {
     name: 'App Bar: bottom',
-    materialUI: '/material-ui/react-app-bar#bottom-app-bar/',
+    materialUI: '/material-ui/react-app-bar#bottom-app-bar',
     materialDesign: 'https://m2.material.io/components/app-bars-bottom',
   },
   { name: 'Autocomplete', materialUI: '/material-ui/react-autocomplete' },
@@ -73,7 +72,7 @@ const components = [
   },
   {
     name: 'Date Pickers',
-    materialUI: '/x/react-date-pickers/getting-started/',
+    materialUI: '/x/react-date-pickers/',
     materialDesign: 'https://m2.material.io/components/date-pickers',
   },
   {
@@ -126,6 +125,11 @@ const components = [
   {
     name: 'Navigation Rail',
     materialDesign: 'https://m2.material.io/components/navigation-rail',
+  },
+  {
+    name: 'Number Field',
+    materialUI: '/material-ui/react-number-field/',
+    baseUI: 'https://base-ui.com/react/components/number-field',
   },
   { name: 'Pagination', materialUI: '/material-ui/react-pagination/' },
   {
@@ -236,7 +240,8 @@ export default function MaterialUIComponents() {
               </TableCell>
               <TableCell>
                 {component.materialUI &&
-                component.materialUI.indexOf('/material-ui') === 0 ? (
+                component.materialUI.startsWith('/material-ui') &&
+                !component.baseUI ? (
                   <Link
                     variant="body2"
                     data-no-markdown-link="true"
@@ -245,7 +250,16 @@ export default function MaterialUIComponents() {
                     Native support
                   </Link>
                 ) : null}
-                {component.materialUI && component.materialUI.indexOf('/x') === 0 ? (
+                {component.baseUI ? (
+                  <Link
+                    variant="body2"
+                    data-no-markdown-link="true"
+                    href={component.baseUI}
+                  >
+                    Composed with Base UI
+                  </Link>
+                ) : null}
+                {component.materialUI && component.materialUI.startsWith('/x') ? (
                   <Link
                     variant="body2"
                     data-no-markdown-link="true"

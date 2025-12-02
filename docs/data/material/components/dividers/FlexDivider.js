@@ -1,4 +1,3 @@
-import * as React from 'react';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import Box from '@mui/material/Box';
@@ -8,7 +7,7 @@ export default function FlexDivider() {
   return (
     <Box
       sx={{
-        display: 'flex',
+        display: 'inline-flex',
         alignItems: 'center',
         border: '1px solid',
         borderColor: 'divider',

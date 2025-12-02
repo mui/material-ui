@@ -33,7 +33,6 @@ const useUtilityClasses = (ownerState) => {
 export const ButtonBaseRoot = styled('button', {
   name: 'MuiButtonBase',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   display: 'inline-flex',
   alignItems: 'center',
@@ -137,38 +136,29 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   }, [disableRipple, focusRipple, focusVisible, ripple]);
 
-  function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
-    return useEventCallback((event) => {
-      if (eventCallback) {
-        eventCallback(event);
+  const handleMouseDown = useRippleHandler(ripple, 'start', onMouseDown, disableTouchRipple);
+  const handleContextMenu = useRippleHandler(ripple, 'stop', onContextMenu, disableTouchRipple);
+  const handleDragLeave = useRippleHandler(ripple, 'stop', onDragLeave, disableTouchRipple);
+  const handleMouseUp = useRippleHandler(ripple, 'stop', onMouseUp, disableTouchRipple);
+  const handleMouseLeave = useRippleHandler(
+    ripple,
+    'stop',
+    (event) => {
+      if (focusVisible) {
+        event.preventDefault();
       }
-
-      const ignore = skipRippleAction;
-      if (!ignore) {
-        ripple[rippleAction](event);
+      if (onMouseLeave) {
+        onMouseLeave(event);
       }
-
-      return true;
-    });
-  }
-
-  const handleMouseDown = useRippleHandler('start', onMouseDown);
-  const handleContextMenu = useRippleHandler('stop', onContextMenu);
-  const handleDragLeave = useRippleHandler('stop', onDragLeave);
-  const handleMouseUp = useRippleHandler('stop', onMouseUp);
-  const handleMouseLeave = useRippleHandler('stop', (event) => {
-    if (focusVisible) {
-      event.preventDefault();
-    }
-    if (onMouseLeave) {
-      onMouseLeave(event);
-    }
-  });
-  const handleTouchStart = useRippleHandler('start', onTouchStart);
-  const handleTouchEnd = useRippleHandler('stop', onTouchEnd);
-  const handleTouchMove = useRippleHandler('stop', onTouchMove);
+    },
+    disableTouchRipple,
+  );
+  const handleTouchStart = useRippleHandler(ripple, 'start', onTouchStart, disableTouchRipple);
+  const handleTouchEnd = useRippleHandler(ripple, 'stop', onTouchEnd, disableTouchRipple);
+  const handleTouchMove = useRippleHandler(ripple, 'stop', onTouchMove, disableTouchRipple);
 
   const handleBlur = useRippleHandler(
+    ripple,
     'stop',
     (event) => {
       if (!isFocusVisible(event.target)) {
@@ -267,7 +257,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const buttonProps = {};
   if (ComponentProp === 'button') {
-    buttonProps.type = type === undefined ? 'button' : type;
+    const hasFormAttributes = !!other.formAction;
+    // ButtonBase was defaulting to type="button" when no type prop was provided, which prevented form submission and broke formAction functionality.
+    // The fix checks for form-related attributes and skips the default type to allow the browser's natural submit behavior (type="submit").
+    buttonProps.type = type === undefined && !hasFormAttributes ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
     if (!other.href && !other.to) {
@@ -325,6 +318,20 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     </ButtonBaseRoot>
   );
 });
+
+function useRippleHandler(ripple, rippleAction, eventCallback, skipRippleAction = false) {
+  return useEventCallback((event) => {
+    if (eventCallback) {
+      eventCallback(event);
+    }
+
+    if (!skipRippleAction) {
+      ripple[rippleAction](event);
+    }
+
+    return true;
+  });
+}
 
 ButtonBase.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -391,6 +398,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   */
+  formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**
    * @ignore
    */

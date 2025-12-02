@@ -97,7 +97,7 @@ Use the `buttonFlex` prop to make the buttons fill the available space of the Bu
 
 #### Minimum width
 
-For a large container, control the default width of the buttons by providing a valid [CSS `flex`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) value to the `buttonFlex` prop.
+For a large container, control the default width of the buttons by providing a valid [CSS `flex`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex) value to the `buttonFlex` prop.
 
 {{"demo": "MinWidthButtonGroup.js"}}
 

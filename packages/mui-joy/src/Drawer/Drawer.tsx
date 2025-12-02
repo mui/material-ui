@@ -1,11 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  HTMLElementType,
-  unstable_capitalize as capitalize,
-  unstable_useId as useId,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useId from '@mui/utils/useId';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
@@ -245,12 +243,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       <ModalDialogSizeContext.Provider value={size}>
         <ModalDialogVariantColorContext.Provider value={contextValue}>
           <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-            {/*
-             * Marking an element with the role presentation indicates to assistive technology
-             * that this element should be ignored; it exists to support the web application and
-             * is not meant for humans to interact with directly.
-             * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-             */}
             <SlotRoot {...rootProps}>
               {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
               <FocusTrap

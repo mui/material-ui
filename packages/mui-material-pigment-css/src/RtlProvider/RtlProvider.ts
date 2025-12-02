@@ -1,3 +1,1 @@
-'use client';
-
-export * from '@mui/system/RtlProvider';
+export { useRtl, default } from '@mui/system/RtlProvider';

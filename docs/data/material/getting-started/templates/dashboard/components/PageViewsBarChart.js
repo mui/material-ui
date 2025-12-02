@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
@@ -10,9 +9,9 @@ import { useTheme } from '@mui/material/styles';
 export default function PageViewsBarChart() {
   const theme = useTheme();
   const colorPalette = [
-    theme.palette.primary.dark,
-    theme.palette.primary.main,
-    theme.palette.primary.light,
+    (theme.vars || theme).palette.primary.dark,
+    (theme.vars || theme).palette.primary.main,
+    (theme.vars || theme).palette.primary.light,
   ];
 
   return (
@@ -47,8 +46,10 @@ export default function PageViewsBarChart() {
               scaleType: 'band',
               categoryGapRatio: 0.5,
               data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+              height: 24,
             },
           ]}
+          yAxis={[{ width: 50 }]}
           series={[
             {
               id: 'page-views',
@@ -70,13 +71,9 @@ export default function PageViewsBarChart() {
             },
           ]}
           height={250}
-          margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
+          margin={{ left: 0, right: 0, top: 20, bottom: 0 }}
           grid={{ horizontal: true }}
-          slotProps={{
-            legend: {
-              hidden: true,
-            },
-          }}
+          hideLegend
         />
       </CardContent>
     </Card>

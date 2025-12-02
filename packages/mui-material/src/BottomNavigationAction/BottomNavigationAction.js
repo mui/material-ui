@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, showLabel, selected } = ownerState;
@@ -30,58 +32,61 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
 
     return [styles.root, !ownerState.showLabel && !ownerState.selected && styles.iconOnly];
   },
-})(({ theme }) => ({
-  transition: theme.transitions.create(['color', 'padding-top'], {
-    duration: theme.transitions.duration.short,
-  }),
-  padding: '0px 12px',
-  minWidth: 80,
-  maxWidth: 168,
-  color: (theme.vars || theme).palette.text.secondary,
-  flexDirection: 'column',
-  flex: '1',
-  [`&.${bottomNavigationActionClasses.selected}`]: {
-    color: (theme.vars || theme).palette.primary.main,
-  },
-  variants: [
-    {
-      props: ({ showLabel, selected }) => !showLabel && !selected,
-      style: {
-        paddingTop: 14,
-      },
+})(
+  memoTheme(({ theme }) => ({
+    transition: theme.transitions.create(['color', 'padding-top'], {
+      duration: theme.transitions.duration.short,
+    }),
+    padding: '0px 12px',
+    minWidth: 80,
+    maxWidth: 168,
+    color: (theme.vars || theme).palette.text.secondary,
+    flexDirection: 'column',
+    flex: '1',
+    [`&.${bottomNavigationActionClasses.selected}`]: {
+      color: (theme.vars || theme).palette.primary.main,
     },
-    {
-      props: ({ showLabel, selected, label }) => !showLabel && !selected && !label,
-      style: {
-        paddingTop: 0,
+    variants: [
+      {
+        props: ({ showLabel, selected }) => !showLabel && !selected,
+        style: {
+          paddingTop: 14,
+        },
       },
-    },
-  ],
-}));
+      {
+        props: ({ showLabel, selected, label }) => !showLabel && !selected && !label,
+        style: {
+          paddingTop: 0,
+        },
+      },
+    ],
+  })),
+);
 
 const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})(({ theme }) => ({
-  fontFamily: theme.typography.fontFamily,
-  fontSize: theme.typography.pxToRem(12),
-  opacity: 1,
-  transition: 'font-size 0.2s, opacity 0.2s',
-  transitionDelay: '0.1s',
-  [`&.${bottomNavigationActionClasses.selected}`]: {
-    fontSize: theme.typography.pxToRem(14),
-  },
-  variants: [
-    {
-      props: ({ showLabel, selected }) => !showLabel && !selected,
-      style: {
-        opacity: 0,
-        transitionDelay: '0s',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(12),
+    opacity: 1,
+    transition: 'font-size 0.2s, opacity 0.2s',
+    transitionDelay: '0.1s',
+    [`&.${bottomNavigationActionClasses.selected}`]: {
+      fontSize: theme.typography.pxToRem(14),
     },
-  ],
-}));
+    variants: [
+      {
+        props: ({ showLabel, selected }) => !showLabel && !selected,
+        style: {
+          opacity: 0,
+          transitionDelay: '0s',
+        },
+      },
+    ],
+  })),
+);
 
 const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBottomNavigationAction' });
@@ -95,6 +100,8 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     selected,
     showLabel,
     value,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -111,20 +118,45 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     }
   };
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: BottomNavigationActionRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    shouldForwardComponentProp: true,
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+    additionalProps: {
+      focusRipple: true,
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onClick: (event) => {
+        handlers.onClick?.(event);
+        handleChange(event);
+      },
+    }),
+  });
+
+  const [LabelSlot, labelProps] = useSlot('label', {
+    elementType: BottomNavigationActionLabel,
+    externalForwardedProps,
+    ownerState,
+    className: classes.label,
+  });
+
   return (
-    <BottomNavigationActionRoot
-      ref={ref}
-      className={clsx(classes.root, className)}
-      focusRipple
-      onClick={handleChange}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {icon}
-      <BottomNavigationActionLabel className={classes.label} ownerState={ownerState}>
-        {label}
-      </BottomNavigationActionLabel>
-    </BottomNavigationActionRoot>
+      <LabelSlot {...labelProps}>{label}</LabelSlot>
+    </RootSlot>
   );
 });
 
@@ -170,6 +202,22 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
    */
   showLabel: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

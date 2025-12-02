@@ -14,6 +14,14 @@ import { Grid as GridF } from '@mui/joy';
 <GridE xs={2} />;
 <GridF xs={2} />;
 
+<GridA item />;
+<GridA item={true} />;
+<GridA item={false} />;
+
+<GridA zeroMinWidth />;
+<GridA zeroMinWidth={true} />;
+<GridA zeroMinWidth={false} />;
+
 // Transforms responsive sizes
 <GridA xs={2} sm={4} md={6} lg={8} xl={10} />;
 

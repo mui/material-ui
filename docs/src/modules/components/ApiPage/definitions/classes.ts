@@ -1,6 +1,6 @@
 import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { Translate } from '@mui/docs/i18n';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
 
 export interface ClassDefinition {
@@ -19,7 +19,7 @@ export type GetCssToCParams = {
   hash?: string;
 };
 
-export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
+export const getClassesToc = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
   !classes || classes.length === 0
     ? []
     : [
@@ -27,9 +27,9 @@ export const getClassesToC = ({ classes, t, hash }: GetCssToCParams): TableOfCon
           text: t('api-docs.classes'),
           hash: hash ?? 'classes',
           children: [
-            ...classes.map(({ key, hash: classeHash }) => ({
+            ...classes.map(({ key, hash: classHash }) => ({
               text: key,
-              hash: classeHash,
+              hash: classHash,
               children: [],
             })),
           ],
@@ -60,14 +60,14 @@ export function getClassApiDefinitions(params: GetClassApiDefinitionsParams): Cl
 
     if (description.includes('{{conditions}}')) {
       if (!conditions) {
-        throw Error(errorMessage(componentName, classDefinition.className, 'conditions'));
+        throw new Error(errorMessage(componentName, classDefinition.className, 'conditions'));
       }
       description = description.replace(/{{conditions}}/, conditions);
     }
 
     if (description.includes('{{nodeName}}')) {
       if (!nodeName) {
-        throw Error(errorMessage(componentName, classDefinition.className, 'nodeName'));
+        throw new Error(errorMessage(componentName, classDefinition.className, 'nodeName'));
       }
       description = description.replace(/{{nodeName}}/, nodeName);
     }

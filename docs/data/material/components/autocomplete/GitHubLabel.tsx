@@ -27,15 +27,19 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
     fontSize: 13,
   },
   [`& .${autocompleteClasses.listbox}`]: {
-    backgroundColor: '#fff',
-
     padding: 0,
+    backgroundColor: '#fff',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1c2128',
+    }),
     [`& .${autocompleteClasses.option}`]: {
       minHeight: 'auto',
       alignItems: 'flex-start',
       padding: 8,
-      borderBottom: `1px solid  ${' #eaecef'}`,
-
+      borderBottom: '1px solid #eaecef',
+      ...theme.applyStyles('dark', {
+        borderBottom: '1px solid #30363d',
+      }),
       '&[aria-selected="true"]': {
         backgroundColor: 'transparent',
       },
@@ -43,13 +47,7 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
         {
           backgroundColor: theme.palette.action.hover,
         },
-      ...theme.applyStyles('dark', {
-        borderBottom: `1px solid  ${'#30363d'}`,
-      }),
     },
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#1c2128',
-    }),
   },
   [`&.${autocompleteClasses.popperDisablePortal}`]: {
     position: 'relative',
@@ -62,7 +60,7 @@ function PopperComponent(props: PopperComponentProps) {
 }
 
 const StyledPopper = styled(Popper)(({ theme }) => ({
-  border: `1px solid ${'#e1e4e8'}`,
+  border: '1px solid #e1e4e8',
   boxShadow: `0 8px 24px ${'rgba(149, 157, 165, 0.2)'}`,
   color: '#24292e',
   backgroundColor: '#fff',
@@ -71,8 +69,8 @@ const StyledPopper = styled(Popper)(({ theme }) => ({
   zIndex: theme.zIndex.modal,
   fontSize: 13,
   ...theme.applyStyles('dark', {
-    border: `1px solid ${'#30363d'}`,
-    boxShadow: `0 8px 24px ${'rgb(1, 4, 9)'}`,
+    border: '1px solid #30363d',
+    boxShadow: '0 8px 24px rgb(1, 4, 9)',
     color: '#c9d1d9',
     backgroundColor: '#1c2128',
   }),
@@ -81,30 +79,30 @@ const StyledPopper = styled(Popper)(({ theme }) => ({
 const StyledInput = styled(InputBase)(({ theme }) => ({
   padding: 10,
   width: '100%',
-  borderBottom: `1px solid ${'#30363d'}`,
+  borderBottom: '1px solid #eaecef',
+  ...theme.applyStyles('dark', {
+    borderBottom: '1px solid #30363d',
+  }),
   '& input': {
     borderRadius: 4,
-    backgroundColor: '#0d1117',
-    border: `1px solid ${'#30363d'}`,
     padding: 8,
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     fontSize: 14,
+    backgroundColor: '#fff',
+    border: '1px solid #30363d',
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#0d1117',
+      border: '1px solid #eaecef',
+    }),
     '&:focus': {
-      boxShadow: `0px 0px 0px 3px ${'rgba(3, 102, 214, 0.3)'}`,
+      boxShadow: '0px 0px 0px 3px rgba(3, 102, 214, 0.3)',
       borderColor: '#0366d6',
       ...theme.applyStyles('dark', {
-        boxShadow: `0px 0px 0px 3px ${'rgb(12, 45, 107)'}`,
+        boxShadow: '0px 0px 0px 3px rgb(12, 45, 107)',
         borderColor: '#388bfd',
       }),
     },
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#fff',
-      border: `1px solid ${'#eaecef'}`,
-    }),
   },
-  ...theme.applyStyles('dark', {
-    borderBottom: `1px solid ${'#eaecef'}`,
-  }),
 }));
 
 const Button = styled(ButtonBase)(({ theme }) => ({
@@ -112,8 +110,11 @@ const Button = styled(ButtonBase)(({ theme }) => ({
   width: '100%',
   textAlign: 'left',
   paddingBottom: 8,
-  color: '#586069',
   fontWeight: 600,
+  color: '#586069',
+  ...theme.applyStyles('dark', {
+    color: '#8b949e',
+  }),
   '&:hover,&:focus': {
     color: '#0366d6',
     ...theme.applyStyles('dark', {
@@ -127,9 +128,6 @@ const Button = styled(ButtonBase)(({ theme }) => ({
     width: 16,
     height: 16,
   },
-  ...theme.applyStyles('dark', {
-    color: '#8b949e',
-  }),
 }));
 
 export default function GitHubLabel() {
@@ -186,11 +184,11 @@ export default function GitHubLabel() {
           <div>
             <Box
               sx={(t) => ({
-                borderBottom: `1px solid ${'#30363d'}`,
+                borderBottom: '1px solid #30363d',
                 padding: '8px 10px',
                 fontWeight: 600,
                 ...t.applyStyles('light', {
-                  borderBottom: `1px solid ${'#eaecef'}`,
+                  borderBottom: '1px solid #eaecef',
                 }),
               })}
             >
@@ -220,7 +218,7 @@ export default function GitHubLabel() {
                 setPendingValue(newValue);
               }}
               disableCloseOnSelect
-              renderTags={() => null}
+              renderValue={() => null}
               noOptionsText="No labels"
               renderOption={(props, option, { selected }) => {
                 const { key, ...optionProps } = props;

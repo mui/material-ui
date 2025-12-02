@@ -1,15 +1,15 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { chromium } from 'playwright';
+import { chromium } from '@playwright/test';
 
 /**
  * README
  *
  * Usage:
- * - `yarn screenshot` to generate all screenshots
- * - `yarn screenshot material-ui` to generate all screenshots for Material-UI templates
- * - `yarn screenshot order-dashboard` to generate screenshots for file named `order-dashboard.tsx`
- * - `yarn screenshot material-ui dashboard` to generate screenshots for file named `dashboard.tsx` of Material UI templates
+ * - `pnpm template:screenshot` to generate all screenshots
+ * - `pnpm template:screenshot material-ui` to generate all screenshots for Material-UI templates
+ * - `pnpm template:screenshot order-dashboard` to generate screenshots for file named `order-dashboard.tsx`
+ * - `pnpm template:screenshot material-ui dashboard` to generate screenshots for file named `dashboard.tsx` of Material UI templates
  *
  * Note:
  * - The screenshot with `-dark` suffix is generated if the page has a button with id `toggle-mode`
@@ -24,6 +24,14 @@ import { chromium } from 'playwright';
  * - Set `chromium.launch({ headless: false })` in line:50 to see the browser
  */
 
+function sleep(duration: number): Promise<void> {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
+  });
+}
+
 const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
 
 /**
@@ -33,7 +41,7 @@ const projects = {
   'material-ui': {
     input: path.join(process.cwd(), 'docs/pages/material-ui/getting-started/templates'),
     output: 'docs/public/static/screenshots',
-    viewport: { width: 1680, height: 1092 },
+    viewport: { width: 813 * 2, height: 457 * 2 },
   },
   'joy-ui': {
     input: path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
@@ -71,17 +79,48 @@ const names = new Set(process.argv.slice(2));
             (file) => `/${project}/getting-started/templates/${file.replace(/\.(js|tsx)$/, '/')}`,
           );
 
+        async function toggleMode() {
+          await page.locator('css=[data-screenshot="toggle-mode"]').locator('visible=true').click();
+        }
+
         async function captureDarkMode(outputPath: string) {
           const btn = await page.$('[data-screenshot="toggle-mode"]');
           if (btn) {
-            await page.click('[data-screenshot="toggle-mode"]');
-            await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
-            await page.screenshot({
-              path: outputPath,
-              animations: 'disabled',
-            });
+            if ((await btn.getAttribute('aria-haspopup')) === 'true') {
+              await toggleMode();
+              await page.getByRole('menuitem').filter({ hasText: /dark/i }).click();
+              await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
+              await sleep(100); // give time for image decoding, resizing, rendering
 
-            await page.click('[data-screenshot="toggle-mode"]'); // switch back to light
+              await page.screenshot({ path: outputPath, animations: 'disabled' });
+
+              await toggleMode();
+              await page
+                .getByRole('menuitem')
+                .filter({ hasText: /system/i })
+                .click(); // switch back to light
+            } else if ((await btn.getAttribute('aria-haspopup')) === 'listbox') {
+              await toggleMode();
+              await page.getByRole('option').filter({ hasText: /dark/i }).click();
+              await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
+              await sleep(100); // give time for image decoding, resizing, rendering
+
+              await page.screenshot({ path: outputPath, animations: 'disabled' });
+
+              await toggleMode();
+              await page
+                .getByRole('option')
+                .filter({ hasText: /system/i })
+                .click(); // switch back to light
+            } else {
+              await toggleMode();
+              await page.waitForLoadState('networkidle'); // changing to dark mode might trigger image loading
+              await sleep(100); // give time for image decoding, resizing, rendering
+
+              await page.screenshot({ path: outputPath, animations: 'disabled' });
+
+              await toggleMode(); // switch back to light
+            }
           }
         }
 
@@ -89,7 +128,7 @@ const names = new Set(process.argv.slice(2));
           await Promise.resolve().then(() =>
             urls.reduce(async (sequence, aUrl) => {
               await sequence;
-              await page.goto(`${host}${aUrl}`, { waitUntil: 'networkidle' });
+              await page.goto(`${host}${aUrl}?hideFrame=true`, { waitUntil: 'networkidle' });
 
               const filePath = `${output}${aUrl.replace(/\/$/, '')}.jpg`;
               // eslint-disable-next-line no-console

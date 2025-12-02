@@ -1,7 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import exactProp from '@mui/utils/exactProp';
 import { NoSsrProps } from './NoSsr.types';
 
 /**
@@ -9,18 +10,18 @@ import { NoSsrProps } from './NoSsr.types';
  *
  * This component can be useful in a variety of situations:
  *
- * *   Escape hatch for broken dependencies not supporting SSR.
- * *   Improve the time-to-first paint on the client by only rendering above the fold.
- * *   Reduce the rendering time on the server.
- * *   Under too heavy server load, you can turn on service degradation.
+ * * Escape hatch for broken dependencies not supporting SSR.
+ * * Improve the time-to-first paint on the client by only rendering above the fold.
+ * * Reduce the rendering time on the server.
+ * * Under too heavy server load, you can turn on service degradation.
  *
  * Demos:
  *
- * - [No SSR](https://next.mui.com/material-ui/react-no-ssr/)
+ * - [No SSR](https://mui.com/material-ui/react-no-ssr/)
  *
  * API:
  *
- * - [NoSsr API](https://next.mui.com/material-ui/api/no-ssr/)
+ * - [NoSsr API](https://mui.com/material-ui/api/no-ssr/)
  */
 function NoSsr(props: NoSsrProps): React.JSX.Element {
   const { children, defer = false, fallback = null } = props;
@@ -38,8 +39,8 @@ function NoSsr(props: NoSsrProps): React.JSX.Element {
     }
   }, [defer]);
 
-  // We need the Fragment here to force react-docgen to recognise NoSsr as a component.
-  return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
+  // TODO casting won't be needed at one point https://github.com/DefinitelyTyped/DefinitelyTyped/pull/65135
+  return (mountedState ? children : fallback) as React.JSX.Element;
 }
 
 NoSsr.propTypes /* remove-proptypes */ = {

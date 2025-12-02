@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { DistributiveOmit } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
-import { Theme } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 import { PaperOwnProps } from '../Paper';
 import { CardClasses } from './cardClasses';
 
@@ -37,12 +37,12 @@ export interface CardTypeMap<
  *
  * Demos:
  *
- * - [Card](https://next.mui.com/material-ui/react-card/)
+ * - [Card](https://mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [Card API](https://next.mui.com/material-ui/api/card/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [Card API](https://mui.com/material-ui/api/card/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 
 declare const Card: OverridableComponent<CardTypeMap>;

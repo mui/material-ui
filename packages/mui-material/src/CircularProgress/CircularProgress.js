@@ -5,8 +5,10 @@ import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
@@ -33,8 +35,8 @@ const circularDashKeyframe = keyframes`
   }
 
   100% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -125px;
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: -126px;
   }
 `;
 
@@ -61,6 +63,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`],
     svg: ['svg'],
+    track: ['track'],
     circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
   };
 
@@ -79,40 +82,41 @@ const CircularProgressRoot = styled('span', {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  display: 'inline-block',
-  variants: [
-    {
-      props: {
-        variant: 'determinate',
-      },
-      style: {
-        transition: theme.transitions.create('transform'),
-      },
-    },
-    {
-      props: {
-        variant: 'indeterminate',
-      },
-      style: rotateAnimation || {
-        animation: `${circularRotateKeyframe} 1.4s linear infinite`,
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          color: (theme.vars || theme).palette[color].main,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-block',
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
         },
-      })),
-  ],
-}));
+        style: {
+          transition: theme.transitions.create('transform'),
+        },
+      },
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: rotateAnimation || {
+          animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+    ],
+  })),
+);
 
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
   slot: 'Svg',
-  overridesResolver: (props, styles) => styles.svg,
 })({
   display: 'block', // Keeps the progress centered
 });
@@ -129,37 +133,49 @@ const CircularProgressCircle = styled('circle', {
       ownerState.disableShrink && styles.circleDisableShrink,
     ];
   },
-})(({ theme }) => ({
-  stroke: 'currentColor',
-  variants: [
-    {
-      props: {
-        variant: 'determinate',
+})(
+  memoTheme(({ theme }) => ({
+    stroke: 'currentColor',
+    variants: [
+      {
+        props: {
+          variant: 'determinate',
+        },
+        style: {
+          transition: theme.transitions.create('stroke-dashoffset'),
+        },
       },
-      style: {
-        transition: theme.transitions.create('stroke-dashoffset'),
+      {
+        props: {
+          variant: 'indeterminate',
+        },
+        style: {
+          // Some default value that looks fine waiting for the animation to kicks in.
+          strokeDasharray: '80px, 200px',
+          strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+        },
       },
-    },
-    {
-      props: {
-        variant: 'indeterminate',
+      {
+        props: ({ ownerState }) =>
+          ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+        style: dashAnimation || {
+          // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+          animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+        },
       },
-      style: {
-        // Some default value that looks fine waiting for the animation to kicks in.
-        strokeDasharray: '80px, 200px',
-        strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-      style: dashAnimation || {
-        // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
-        animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
+
+const CircularProgressTrack = styled('circle', {
+  name: 'MuiCircularProgress',
+  slot: 'Track',
+})(
+  memoTheme(({ theme }) => ({
+    stroke: 'currentColor',
+    opacity: (theme.vars || theme).palette.action.activatedOpacity,
+  })),
+);
 
 /**
  * ## ARIA
@@ -174,6 +190,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className,
     color = 'primary',
     disableShrink = false,
+    enableTrackSlot = false,
     size = 40,
     style,
     thickness = 3.6,
@@ -190,6 +207,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness,
     value,
     variant,
+    enableTrackSlot,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -221,6 +239,18 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
         ownerState={ownerState}
         viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
       >
+        {enableTrackSlot ? (
+          <CircularProgressTrack
+            className={classes.track}
+            ownerState={ownerState}
+            cx={SIZE}
+            cy={SIZE}
+            r={(SIZE - thickness) / 2}
+            fill="none"
+            strokeWidth={thickness}
+            aria-hidden="true"
+          />
+        ) : null}
         <CircularProgressCircle
           className={classes.circle}
           style={circleStyle}
@@ -274,6 +304,12 @@ CircularProgress.propTypes /* remove-proptypes */ = {
 
     return null;
   }),
+  /**
+   * If `true`, a track circle slot is mounted to show a subtle background for the progress.
+   * The `size` and `thickness` apply to the track slot to be consistent with the progress circle.
+   * @default false
+   */
+  enableTrackSlot: PropTypes.bool,
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.

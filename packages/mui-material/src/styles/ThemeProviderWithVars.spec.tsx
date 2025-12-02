@@ -1,5 +1,11 @@
-import * as React from 'react';
-import { extendTheme, CssVarsProvider, styled, useTheme, Overlays } from '@mui/material/styles';
+import {
+  extendTheme,
+  ThemeProvider,
+  styled,
+  useTheme,
+  Overlays,
+  StorageManager,
+} from '@mui/material/styles';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const customTheme = extendTheme({
@@ -53,7 +59,7 @@ function TestUseTheme() {
   return <div style={{ background: theme.vars.palette.common.background }}>test</div>;
 }
 
-<CssVarsProvider theme={customTheme}>
+<ThemeProvider theme={customTheme}>
   <TestStyled
     sx={(theme) => ({
       // test that `theme` in sx has access to CSS vars
@@ -63,4 +69,16 @@ function TestUseTheme() {
       },
     })}
   />
-</CssVarsProvider>;
+</ThemeProvider>;
+
+<ThemeProvider theme={customTheme} storageManager={null} />;
+
+const storageManager: StorageManager = () => {
+  return {
+    get: () => 'light',
+    set: () => {},
+    subscribe: () => () => {},
+  };
+};
+
+<ThemeProvider theme={customTheme} storageManager={storageManager} />;

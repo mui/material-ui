@@ -1,9 +1,7 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_useEventCallback as useEventCallback,
-  unstable_useTimeout as useTimeout,
-} from '@mui/utils';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useTimeout from '@mui/utils/useTimeout';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   UseSnackbarParameters,
@@ -12,17 +10,6 @@ import {
 } from './useSnackbar.types';
 import { EventHandlers } from '../utils/types';
 
-/**
- * The basic building block for creating custom snackbar.
- *
- * Demos:
- *
- * - [Snackbar](https://next.mui.com/base-ui/react-snackbar/#hook)
- *
- * API:
- *
- * - [useSnackbar API](https://next.mui.com/base-ui/react-snackbar/hooks-api/#use-snackbar)
- */
 function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
@@ -14,7 +13,7 @@ describe('extendTheme', () => {
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
         setItem: (key, value) => {
@@ -24,8 +23,11 @@ describe('extendTheme', () => {
       configurable: true,
     });
     window.matchMedia = () => ({
+      // Keep mocking legacy methods because @mui/material v5 still uses them
       addListener: () => {},
+      addEventListener: () => {},
       removeListener: () => {},
+      removeEventListener: () => {},
     });
   });
 
@@ -342,14 +344,14 @@ describe('extendTheme', () => {
       const theme = extendTheme({ defaultColorScheme: 'dark' });
       expect(theme.colorSchemes.dark.overlays).to.have.length(25);
 
-      expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
+      expect(theme.colorSchemes.dark.overlays[0]).to.equal('none');
       expect(theme.colorSchemes.dark.overlays[24]).to.equal(
         'linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165))',
       );
     });
 
     it('should override the array as expected', () => {
-      const overlays = Array(24).fill('none');
+      const overlays = Array(25).fill('none');
       const theme = extendTheme({
         defaultColorScheme: 'dark',
         colorSchemes: { dark: { overlays } },
@@ -492,8 +494,16 @@ describe('extendTheme', () => {
 
     it('can be customized as a function', () => {
       const theme = extendTheme({ spacing: (factor) => `${0.25 * factor}rem` });
-      expect(theme.vars.spacing).to.deep.equal('var(--mui-spacing, 0.25rem)');
-      expect(theme.spacing(2)).to.equal('calc(2 * var(--mui-spacing, 0.25rem))');
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing(2)).to.equal('0.5rem');
+    });
+
+    it('a custom function should not be altered', () => {
+      const theme = extendTheme({
+        spacing: (val) => (val === 'xs' ? '100px' : val),
+      });
+      expect('spacing' in theme.vars).to.equal(false);
+      expect(theme.spacing('xs')).to.equal('100px');
     });
   });
 
@@ -840,5 +850,25 @@ describe('extendTheme', () => {
         '.mode-light',
       ]);
     });
+
+    it('should use a custom root selector', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: 'class',
+        rootSelector: ':host',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':host',
+        ':host, .light',
+        '.dark',
+      ]);
+    });
+  });
+
+  it('should not generate vars for modularCssLayers', () => {
+    const theme = extendTheme({
+      modularCssLayers: '@layer mui,utilities;',
+    });
+    expect(theme.vars.modularCssLayers).to.equal(undefined);
   });
 });

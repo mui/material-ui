@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
@@ -127,7 +127,7 @@ const TitleTypography = styled(Typography)(({ theme }) => ({
     height: '1px',
     bottom: 0,
     left: 0,
-    backgroundColor: theme.palette.text.primary,
+    backgroundColor: (theme.vars || theme).palette.text.primary,
     opacity: 0.3,
     transition: 'width 0.3s ease, opacity 0.3s ease',
   },

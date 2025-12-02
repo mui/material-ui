@@ -1,5 +1,4 @@
-import * as React from 'react';
-import sortedUniqBy from 'lodash/sortedUniqBy';
+import { uniqBy } from 'es-toolkit/array';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';
 import * as pageProps from 'docs/src/pages/versions/versions.md?muiMarkdown';
@@ -36,7 +35,7 @@ async function getBranches() {
   return JSON.parse(text);
 }
 
-Page.getInitialProps = async () => {
+export async function getStaticProps() {
   const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
 
   const branches = await getBranches();
@@ -45,7 +44,7 @@ Page.getInitialProps = async () => {
    */
   const versions = [];
   branches.forEach((branch) => {
-    if (FILTERED_BRANCHES.indexOf(branch.name) === -1) {
+    if (!FILTERED_BRANCHES.includes(branch.name)) {
       const version = branch.name;
       versions.push({
         version,
@@ -76,5 +75,5 @@ Page.getInitialProps = async () => {
     });
   }
 
-  return { versions: sortedUniqBy(versions, 'version') };
-};
+  return { props: { versions: uniqBy(versions, (item) => item.version) } };
+}

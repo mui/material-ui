@@ -8,7 +8,8 @@ import capitalize from '../utils/capitalize';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
@@ -48,7 +49,7 @@ const FabRoot = styled(ButtonBase, {
     ];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     ...theme.typography.button,
     minHeight: 36,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
@@ -65,7 +66,7 @@ const FabRoot = styled(ButtonBase, {
       boxShadow: (theme.vars || theme).shadows[12],
     },
     color: theme.vars
-      ? theme.vars.palette.text.primary
+      ? theme.vars.palette.grey[900]
       : theme.palette.getContrastText?.(theme.palette.grey[300]),
     backgroundColor: (theme.vars || theme).palette.grey[300],
     '&:hover': {
@@ -132,11 +133,11 @@ const FabRoot = styled(ButtonBase, {
         },
       },
     ],
-  }),
-  ({ theme }) => ({
+  })),
+  memoTheme(({ theme }) => ({
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main && value.dark && value.contrastText) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter(['dark', 'contrastText'])) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {
@@ -152,14 +153,14 @@ const FabRoot = styled(ButtonBase, {
           },
         })),
     ],
-  }),
-  ({ theme }) => ({
+  })),
+  memoTheme(({ theme }) => ({
     [`&.${fabClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
       boxShadow: (theme.vars || theme).shadows[0],
       backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
     },
-  }),
+  })),
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {

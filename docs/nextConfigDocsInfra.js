@@ -1,3 +1,5 @@
+const os = require('os');
+
 /**
  * See the docs of the Netlify environment variables:
  * https://docs.netlify.com/configure-builds/environment-variables/#build-metadata.
@@ -49,15 +51,13 @@ process.env.DEPLOY_ENV = DEPLOY_ENV;
 function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
-    // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
-    optimizeFonts: false,
     reactStrictMode: true,
+    productionBrowserSourceMaps: true,
     ...nextConfig,
     env: {
       BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
-      FEEDBACK_URL: process.env.FEEDBACK_URL,
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
       // reference ID (also known as "SHA" or "hash") of the commit we're building.
@@ -71,12 +71,19 @@ function withDocsInfra(nextConfig) {
       NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
       // Name of the site, its Netlify subdomain; for example, material-ui-docs
       NETLIFY_SITE_NAME: process.env.SITE_NAME,
+      // For template images
+      TEMPLATE_IMAGE_URL: '',
     },
     experimental: {
       scrollRestoration: true,
-      esmExternals: false,
-      workerThreads: true,
-      cpus: 3,
+      workerThreads: false,
+      ...(process.env.CI
+        ? {
+            cpus: process.env.NEXT_PARALLELISM
+              ? parseInt(process.env.NEXT_PARALLELISM, 10)
+              : os.availableParallelism(),
+          }
+        : {}),
       ...nextConfig.experimental,
     },
     eslint: {

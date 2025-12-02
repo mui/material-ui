@@ -46,9 +46,13 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
   );
 });
 
-function Frame({ sx, ...props }: BoxProps) {
+const Frame = React.forwardRef<HTMLDivElement, BoxProps>(function Frame(
+  { sx, ...props }: BoxProps,
+  ref,
+) {
   return (
     <Box
+      ref={ref}
       {...props}
       sx={[
         {
@@ -67,7 +71,10 @@ function Frame({ sx, ...props }: BoxProps) {
       ]}
     />
   );
-}
+}) as ReturnType<typeof React.forwardRef<HTMLDivElement, BoxProps>> & {
+  Demo: typeof FrameDemo;
+  Info: typeof FrameInfo;
+};
 
 Frame.Demo = FrameDemo;
 Frame.Info = FrameInfo;

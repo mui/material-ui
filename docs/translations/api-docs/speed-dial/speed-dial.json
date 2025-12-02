@@ -12,7 +12,7 @@
       "description": "The direction the actions open relative to the floating action button."
     },
     "FabProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/fab/\"><code>Fab</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/fab/\"><code>Fab</code></a> element."
     },
     "hidden": { "description": "If <code>true</code>, the SpeedDial is hidden." },
     "icon": {
@@ -21,15 +21,21 @@
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;mouseLeave&quot;</code>, <code>&quot;escapeKeyDown&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;mouseLeave&quot;</code>, <code>&quot;escapeKeyDown&quot;</code>."
+        }
       }
     },
     "onOpen": {
       "description": "Callback fired when the component requests to be open.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;focus&quot;</code>, <code>&quot;mouseEnter&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;focus&quot;</code>, <code>&quot;mouseEnter&quot;</code>."
+        }
       }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
@@ -42,7 +48,7 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+      "description": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "transitionDuration": {
       "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
@@ -73,10 +79,10 @@
     "directionUp": {
       "description": "Styles applied to the root element if direction=&quot;up&quot;"
     },
-    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
-    "root": { "description": "Styles applied to the root element." }
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" }
   },
   "slotDescriptions": {
-    "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+    "root": "The component that renders the root slot.",
+    "transition": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

@@ -9,7 +9,8 @@ function moveJsxPropIntoSlots(j, element, propName, slotName) {
   );
 
   if (index !== -1) {
-    const removedValue = element.openingElement.attributes.splice(index, 1)[0].value.expression;
+    const attrNode = element.openingElement.attributes.splice(index, 1)[0];
+    const removedValue = attrNode.value.expression || attrNode.value;
     let hasSlots = false;
     element.openingElement.attributes.forEach((attr) => {
       if (attr.name?.name === 'slots') {
@@ -79,13 +80,13 @@ function moveDefaultPropsPropIntoSlots(j, defaultPropsPathCollection, propName, 
  * @example <Component TransitionComponent={CustomTransition} /> => <Component slots={{ transition: CustomTransition }} />
  */
 export default function movePropIntoSlots(j, options) {
-  const { root, componentName, propName, slotName } = options;
+  const { propName, slotName } = options;
 
-  findComponentJSX(j, { root, componentName }, (elementPath) => {
+  findComponentJSX(j, options, (elementPath) => {
     moveJsxPropIntoSlots(j, elementPath.node, propName, slotName);
   });
 
-  const defaultPropsPathCollection = findComponentDefaultProps(j, { root, componentName });
+  const defaultPropsPathCollection = findComponentDefaultProps(j, options);
 
   moveDefaultPropsPropIntoSlots(j, defaultPropsPathCollection, propName, slotName);
 }

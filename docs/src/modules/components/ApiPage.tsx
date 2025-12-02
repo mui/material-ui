@@ -14,6 +14,7 @@ import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
@@ -23,14 +24,17 @@ import {
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {
-  getPropertiesToC,
   getPropsApiDefinitions,
+  getPropertiesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import {
   getClassApiDefinitions,
-  getClassesToC,
+  getClassesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { getSlotsApiDefinitions } from './ApiPage/definitions/slots';
+import {
+  getSlotsApiDefinitions,
+  getSlotsToc,
+} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
 export interface TableOfContentsParams {
@@ -47,7 +51,8 @@ type ApiHeaderKeys =
   | 'inheritance'
   | 'slots'
   | 'classes'
-  | 'css';
+  | 'css'
+  | 'source-code';
 
 export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
   const translations = {
@@ -59,6 +64,7 @@ export function getTranslatedHeader(t: Translate, header: ApiHeaderKeys) {
     slots: t('api-docs.slots'),
     classes: t('api-docs.classes'),
     css: t('api-docs.css'),
+    'source-code': t('api-docs.source-code'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -94,7 +100,7 @@ interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
       // Table of Content added by the mapApiPageTranslations function
-      componentDescriptionToc: TableOfContentsEntry[];
+      componentDescriptionToc: TableOfContentsParams[];
     };
   };
   disableAd?: boolean;
@@ -136,7 +142,6 @@ export default function ApiPage(props: ApiPageProps) {
     : [];
 
   const isJoyComponent = filename.includes('mui-joy');
-  const isBaseComponent = filename.includes('mui-base');
   const defaultPropsLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#theme-default-props'
     : '/material-ui/customization/theme-components/#theme-default-props';
@@ -146,8 +151,6 @@ export default function ApiPage(props: ApiPageProps) {
   let slotGuideLink = '';
   if (isJoyComponent) {
     slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-  } else if (isBaseComponent) {
-    slotGuideLink = '/base-ui/guides/overriding-component-structure/';
   }
 
   const {
@@ -180,17 +183,17 @@ export default function ApiPage(props: ApiPageProps) {
     slotDescriptions,
   });
 
-  function createTocEntry(sectionName: ApiHeaderKeys) {
+  function createTocEntry(sectionName: ApiHeaderKeys): TableOfContentsParams {
     return {
       text: getTranslatedHeader(t, sectionName),
       hash: sectionName,
       children: [
         ...(sectionName === 'props' && inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
         ...(sectionName === 'props' && pageContent.themeDefaultProps
           ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-          : []),
+          : ([] as TableOfContentsParams[])),
       ],
     };
   }
@@ -199,10 +202,11 @@ export default function ApiPage(props: ApiPageProps) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
-    ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
-    ...getClassesToC({ classes: classesDef, t }),
-  ].filter(Boolean);
+    getPropertiesToc({ properties: propertiesDef, hash: 'props', t }),
+    ...getSlotsToc({ slots: slotsDef, t }),
+    ...getClassesToc({ classes: classesDef, t }),
+    pageContent.filename ? createTocEntry('source-code') : null,
+  ].filter((item): item is TableOfContentsParams => Boolean(item));
 
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');
@@ -228,145 +232,157 @@ export default function ApiPage(props: ApiPageProps) {
   }
 
   return (
-    <AppLayoutDocs
-      description={description}
-      disableAd={disableAd}
-      disableToc={false}
-      location={apiSourceLocation}
-      title={`${pageContent.name} API`}
-      toc={toc}
-    >
-      <MarkdownElement>
-        <h1>{pageContent.name} API</h1>
-        {deprecated ? (
-          <Alert
-            severity="warning"
-            icon={<WarningRoundedIcon fontSize="small" />}
-            sx={{ mt: 1.5, mb: 3 }}
-          >
+    <BrandingCssVarsProvider>
+      <AppLayoutDocs
+        description={description}
+        disableAd={disableAd}
+        disableToc={false}
+        location={apiSourceLocation}
+        title={`${pageContent.name} API`}
+        toc={toc}
+      >
+        <MarkdownElement>
+          <h1>{pageContent.name} API</h1>
+          {deprecated ? (
+            <Alert
+              severity="warning"
+              icon={<WarningRoundedIcon fontSize="small" />}
+              sx={{ mt: 1.5, mb: 3 }}
+            >
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: deprecationInfo || t('api-docs.defaultDeprecationMessage'),
+                }}
+              />
+            </Alert>
+          ) : null}
+          <Typography variant="h5" component="p" className="description" gutterBottom>
+            {description}
+            {disableAd ? null : (
+              <BrandingProvider>
+                <AdGuest>
+                  <Ad />
+                </AdGuest>
+              </BrandingProvider>
+            )}
+          </Typography>
+          <Heading hash="demos" />
+          <Alert severity="success" icon={<VerifiedRoundedIcon fontSize="small" />}>
             <span
               dangerouslySetInnerHTML={{
-                __html: deprecationInfo || t('api-docs.defaultDeprecationMessage'),
+                __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
+              ${demos}`,
               }}
             />
           </Alert>
-        ) : null}
-        <Typography variant="h5" component="p" className="description" gutterBottom>
-          {description}
-          {disableAd ? null : (
-            <BrandingProvider>
-              <AdGuest>
-                <Ad />
-              </AdGuest>
-            </BrandingProvider>
-          )}
-        </Typography>
-        <Heading hash="demos" />
-        <Alert severity="success" icon={<VerifiedRoundedIcon fontSize="small" />}>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
-              ${demos}`,
-            }}
-          />
-        </Alert>
-        <Heading hash="import" />
-        <HighlightedCode
-          code={pageContent.imports.join(`
+          <Heading hash="import" />
+          <HighlightedCode
+            code={pageContent.imports.join(`
 // ${t('or')}
 `)}
-          language="jsx"
-        />
-        {pageContent.imports.length > 1 && (
-          <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-        )}
-        {componentDescription ? (
-          <React.Fragment>
-            <br />
-            <br />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: componentDescription,
-              }}
-            />
-          </React.Fragment>
-        ) : null}
-        <PropertiesSection
-          properties={propertiesDef}
-          spreadHint={spreadHint}
-          defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey.props}
-        />
-        {cssComponent && (
-          <React.Fragment>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
-              }}
-            />
-            <br />
-            <br />
-          </React.Fragment>
-        )}
-        <div
-          className="MuiCallout-root MuiCallout-info"
-          dangerouslySetInnerHTML={{ __html: refHint }}
-          style={{
-            alignItems: 'baseline',
-            gap: '4px',
-            marginTop: 0,
-          }}
-        />
-        {inheritance && (
-          <React.Fragment>
-            <Heading hash="inheritance" level="h3" />
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.inheritanceDescription')
-                  .replace(/{{component}}/, inheritance.component)
-                  .replace(/{{pathname}}/, inheritance.pathname)
-                  .replace(/{{suffix}}/, inheritanceSuffix)
-                  .replace(/{{name}}/, pageContent.name),
-              }}
-            />
-          </React.Fragment>
-        )}
-        {pageContent.themeDefaultProps && (
-          <React.Fragment>
-            <Heading hash="theme-default-props" level="h3" />
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.themeDefaultPropsDescription')
-                  .replace(/{{muiName}}/, pageContent.muiName)
-                  .replace(/{{defaultPropsLink}}/, defaultPropsLink),
-              }}
-            />
-          </React.Fragment>
-        )}
-        <SlotsSection
-          slots={slotsDef}
-          spreadHint={
-            slotGuideLink &&
-            t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
-          }
-          defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey.slots}
-        />
-        <ClassesSection
-          classes={classesDef}
-          spreadHint={t('api-docs.classesDescription')}
-          styleOverridesLink={styleOverridesLink}
-          defaultLayout={defaultLayout}
-          layoutStorageKey={layoutStorageKey.classes}
-          displayClassKeys
-        />
-      </MarkdownElement>
-      <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
-        <symbol id="anchor-link-icon" viewBox="0 0 12 6">
-          <path d="M8.9176 0.083252H7.1676C6.84677 0.083252 6.58427 0.345752 6.58427 0.666585C6.58427 0.987419 6.84677 1.24992 7.1676 1.24992H8.9176C9.8801 1.24992 10.6676 2.03742 10.6676 2.99992C10.6676 3.96242 9.8801 4.74992 8.9176 4.74992H7.1676C6.84677 4.74992 6.58427 5.01242 6.58427 5.33325C6.58427 5.65409 6.84677 5.91659 7.1676 5.91659H8.9176C10.5276 5.91659 11.8343 4.60992 11.8343 2.99992C11.8343 1.38992 10.5276 0.083252 8.9176 0.083252ZM3.6676 2.99992C3.6676 3.32075 3.9301 3.58325 4.25094 3.58325H7.75094C8.07177 3.58325 8.33427 3.32075 8.33427 2.99992C8.33427 2.67909 8.07177 2.41659 7.75094 2.41659H4.25094C3.9301 2.41659 3.6676 2.67909 3.6676 2.99992ZM4.83427 4.74992H3.08427C2.12177 4.74992 1.33427 3.96242 1.33427 2.99992C1.33427 2.03742 2.12177 1.24992 3.08427 1.24992H4.83427C5.1551 1.24992 5.4176 0.987419 5.4176 0.666585C5.4176 0.345752 5.1551 0.083252 4.83427 0.083252H3.08427C1.47427 0.083252 0.167603 1.38992 0.167603 2.99992C0.167603 4.60992 1.47427 5.91659 3.08427 5.91659H4.83427C5.1551 5.91659 5.4176 5.65409 5.4176 5.33325C5.4176 5.01242 5.1551 4.74992 4.83427 4.74992Z" />
-        </symbol>
-      </svg>
-    </AppLayoutDocs>
+            language="jsx"
+          />
+          {pageContent.imports.length > 1 && (
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+          )}
+          {componentDescription ? (
+            <React.Fragment>
+              <br />
+              <br />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: componentDescription,
+                }}
+              />
+            </React.Fragment>
+          ) : null}
+          <PropertiesSection
+            properties={propertiesDef}
+            spreadHint={spreadHint}
+            defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey.props}
+          />
+          {cssComponent && (
+            <React.Fragment>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
+                }}
+              />
+              <br />
+              <br />
+            </React.Fragment>
+          )}
+          <div
+            className="MuiCallout-root MuiCallout-info"
+            dangerouslySetInnerHTML={{ __html: refHint }}
+            style={{
+              alignItems: 'baseline',
+              gap: '4px',
+              marginTop: 0,
+            }}
+          />
+          {inheritance && (
+            <React.Fragment>
+              <Heading hash="inheritance" level="h3" />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.inheritanceDescription')
+                    .replace(/{{component}}/, inheritance.component)
+                    .replace(/{{pathname}}/, inheritance.pathname)
+                    .replace(/{{suffix}}/, inheritanceSuffix)
+                    .replace(/{{name}}/, pageContent.name),
+                }}
+              />
+            </React.Fragment>
+          )}
+          {pageContent.themeDefaultProps && (
+            <React.Fragment>
+              <Heading hash="theme-default-props" level="h3" />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.themeDefaultPropsDescription')
+                    .replace(/{{muiName}}/, pageContent.muiName)
+                    .replace(/{{defaultPropsLink}}/, defaultPropsLink),
+                }}
+              />
+            </React.Fragment>
+          )}
+          <SlotsSection
+            slots={slotsDef}
+            spreadHint={
+              slotGuideLink &&
+              t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
+            }
+            defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey.slots}
+          />
+          <ClassesSection
+            classes={classesDef}
+            spreadHint={t('api-docs.classesDescription')}
+            styleOverridesLink={styleOverridesLink}
+            defaultLayout={defaultLayout}
+            layoutStorageKey={layoutStorageKey.classes}
+            displayClassKeys
+          />
+
+          <Heading hash="source-code" level="h2" />
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t('api-docs.seeSourceCode').replace(
+                '{{href}}',
+                `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${pageContent.filename}`,
+              ),
+            }}
+          />
+        </MarkdownElement>
+        <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
+          <symbol id="anchor-link-icon" viewBox="0 0 12 6">
+            <path d="M8.9176 0.083252H7.1676C6.84677 0.083252 6.58427 0.345752 6.58427 0.666585C6.58427 0.987419 6.84677 1.24992 7.1676 1.24992H8.9176C9.8801 1.24992 10.6676 2.03742 10.6676 2.99992C10.6676 3.96242 9.8801 4.74992 8.9176 4.74992H7.1676C6.84677 4.74992 6.58427 5.01242 6.58427 5.33325C6.58427 5.65409 6.84677 5.91659 7.1676 5.91659H8.9176C10.5276 5.91659 11.8343 4.60992 11.8343 2.99992C11.8343 1.38992 10.5276 0.083252 8.9176 0.083252ZM3.6676 2.99992C3.6676 3.32075 3.9301 3.58325 4.25094 3.58325H7.75094C8.07177 3.58325 8.33427 3.32075 8.33427 2.99992C8.33427 2.67909 8.07177 2.41659 7.75094 2.41659H4.25094C3.9301 2.41659 3.6676 2.67909 3.6676 2.99992ZM4.83427 4.74992H3.08427C2.12177 4.74992 1.33427 3.96242 1.33427 2.99992C1.33427 2.03742 2.12177 1.24992 3.08427 1.24992H4.83427C5.1551 1.24992 5.4176 0.987419 5.4176 0.666585C5.4176 0.345752 5.1551 0.083252 4.83427 0.083252H3.08427C1.47427 0.083252 0.167603 1.38992 0.167603 2.99992C0.167603 4.60992 1.47427 5.91659 3.08427 5.91659H4.83427C5.1551 5.91659 5.4176 5.65409 5.4176 5.33325C5.4176 5.01242 5.1551 4.74992 4.83427 4.74992Z" />
+          </symbol>
+        </svg>
+      </AppLayoutDocs>
+    </BrandingCssVarsProvider>
   );
 }
 

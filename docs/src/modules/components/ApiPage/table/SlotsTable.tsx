@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-import * as React from 'react';
 import { useTranslate } from '@mui/docs/i18n';
 import { styled, alpha } from '@mui/material/styles';
 import {
@@ -92,7 +90,7 @@ export default function SlotsTable(props: SlotsTableProps) {
             const { description, className, name, defaultValue, hash } = params;
 
             return (
-              <tr key={className} id={hash}>
+              <tr key={`${className}-${hash}`} id={hash}>
                 <td className="slot-name" style={{ fontWeight: '600' }}>
                   {name}
                 </td>
@@ -100,8 +98,10 @@ export default function SlotsTable(props: SlotsTableProps) {
                   {className && <span className="class-name">{`.${className}`}</span>}
                 </td>
                 <td>{defaultValue && <code className="item-default">{defaultValue}</code>}</td>
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <td className="description-column">
                   <span
+                    // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{
                       __html: description || '',
                     }}

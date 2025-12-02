@@ -48,6 +48,10 @@ export default function myDestRewriter(svgPathObj) {
     return `ThreeSixty${fileName.slice(3)}`;
   }
 
+  if (/\dFt/.test(fileName)) {
+    return `${singleDigitNumbers[fileName[0]]}${fileName.slice(1)}`;
+  }
+
   if (/\dk/.test(fileName)) {
     return `${singleDigitNumbers[fileName[0]]}K${fileName.slice(2)}`;
   }

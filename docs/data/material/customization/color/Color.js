@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import { styled, useTheme } from '@mui/material/styles';
 import * as colors from '@mui/material/colors';
@@ -64,7 +63,7 @@ function getColorBlock(theme, colorName, colorValue, colorTitle) {
     padding: 15,
   };
 
-  if (colorValue.toString().indexOf('A1') === 0) {
+  if (colorValue.toString().startsWith('A1')) {
     rowStyle = {
       ...rowStyle,
       marginTop: 4,

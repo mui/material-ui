@@ -138,7 +138,7 @@ describe('styled', () => {
      */
     let TestObj;
 
-    before(() => {
+    beforeAll(() => {
       theme = createTheme({
         palette: {
           primary: {
@@ -168,10 +168,10 @@ describe('styled', () => {
         },
       });
 
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       Test = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
@@ -197,7 +197,6 @@ describe('styled', () => {
       const CustomTest = styled('div', {
         name: 'MuiTest',
         slot: 'Rect',
-        overridesResolver: (props, styles) => styles.rect,
       })({
         width: '200px',
         height: '300px',
@@ -290,7 +289,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
       })`
         width: 200px;
         height: 300px;
@@ -315,7 +313,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
         skipVariantsResolver: false,
       })`
         width: 200px;
@@ -429,10 +426,10 @@ describe('styled', () => {
     });
 
     it('should respect the skipSx option', () => {
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       const TestNoSx = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
@@ -564,12 +561,13 @@ describe('styled', () => {
         height: 300px;
       `;
 
-      const { getByTestId } = render(
+      render(
         <Component data-testid="root" classes={{ root: 'foo' }}>
           Test
         </Component>,
       );
-      expect(getByTestId('root').getAttribute('data-with-classes')).to.equal('false');
+
+      expect(screen.getByTestId('root').getAttribute('data-with-classes')).to.equal('false');
     });
 
     it('should propagate classes props to component if it is not a root slot', () => {
@@ -584,7 +582,7 @@ describe('styled', () => {
         height: 300px;
       `;
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Component data-testid="with-classes" classes={{ root: 'foo' }}>
             Test
@@ -593,8 +591,10 @@ describe('styled', () => {
         </React.Fragment>,
       );
 
-      expect(getByTestId('with-classes').getAttribute('data-with-classes')).to.equal('true');
-      expect(getByTestId('without-classes').getAttribute('data-with-classes')).to.equal('false');
+      expect(screen.getByTestId('with-classes').getAttribute('data-with-classes')).to.equal('true');
+      expect(screen.getByTestId('without-classes').getAttribute('data-with-classes')).to.equal(
+        'false',
+      );
     });
 
     it('should propagate classes props to component if no slot is specified', () => {
@@ -606,7 +606,7 @@ describe('styled', () => {
         height: 300px;
       `;
 
-      const { getByTestId } = render(
+      render(
         <React.Fragment>
           <Component data-testid="with-classes" classes={{ root: 'foo' }}>
             Test
@@ -615,8 +615,10 @@ describe('styled', () => {
         </React.Fragment>,
       );
 
-      expect(getByTestId('with-classes').getAttribute('data-with-classes')).to.equal('true');
-      expect(getByTestId('without-classes').getAttribute('data-with-classes')).to.equal('false');
+      expect(screen.getByTestId('with-classes').getAttribute('data-with-classes')).to.equal('true');
+      expect(screen.getByTestId('without-classes').getAttribute('data-with-classes')).to.equal(
+        'false',
+      );
     });
 
     it('classes props should be correctly applied to root and slot elements', () => {

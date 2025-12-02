@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
@@ -24,34 +25,34 @@ const useUtilityClasses = (ownerState) => {
 const SnackbarContentRoot = styled(Paper, {
   name: 'MuiSnackbarContent',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
-  const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
-  const backgroundColor = emphasize(theme.palette.background.default, emphasis);
+})(
+  memoTheme(({ theme }) => {
+    const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
 
-  return {
-    ...theme.typography.body2,
-    color: theme.vars
-      ? theme.vars.palette.SnackbarContent.color
-      : theme.palette.getContrastText(backgroundColor),
-    backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    padding: '6px 16px',
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    flexGrow: 1,
-    [theme.breakpoints.up('sm')]: {
-      flexGrow: 'initial',
-      minWidth: 288,
-    },
-  };
-});
+    return {
+      ...theme.typography.body2,
+      color: theme.vars
+        ? theme.vars.palette.SnackbarContent.color
+        : theme.palette.getContrastText(emphasize(theme.palette.background.default, emphasis)),
+      backgroundColor: theme.vars
+        ? theme.vars.palette.SnackbarContent.bg
+        : emphasize(theme.palette.background.default, emphasis),
+      display: 'flex',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      padding: '6px 16px',
+      flexGrow: 1,
+      [theme.breakpoints.up('sm')]: {
+        flexGrow: 'initial',
+        minWidth: 288,
+      },
+    };
+  }),
+);
 
 const SnackbarContentMessage = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Message',
-  overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
 });
@@ -59,7 +60,6 @@ const SnackbarContentMessage = styled('div', {
 const SnackbarContentAction = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
 })({
   display: 'flex',
   alignItems: 'center',
@@ -77,7 +77,6 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) 
   return (
     <SnackbarContentRoot
       role={role}
-      square
       elevation={6}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
@@ -121,7 +120,7 @@ SnackbarContent.propTypes /* remove-proptypes */ = {
    * The ARIA role attribute of the element.
    * @default 'alert'
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

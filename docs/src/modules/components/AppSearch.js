@@ -6,7 +6,6 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
-import SearchIcon from '@mui/icons-material/Search';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
@@ -17,91 +16,16 @@ import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookm
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
-import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import { Link } from '@mui/docs/Link';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
-
-const SearchButton = styled('button')(({ theme }) => [
-  {
-    minHeight: 32,
-    minWidth: 32,
-    margin: 0,
-    paddingLeft: theme.spacing(1),
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    [theme.breakpoints.only('xs')]: {
-      backgroundColor: 'transparent',
-      padding: 0,
-      justifyContent: 'center',
-      '& > *:not(.MuiSvgIcon-root)': {
-        display: 'none',
-      },
-    },
-    position: 'relative',
-    backgroundColor: alpha(theme.palette.grey[50], 0.6),
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(14),
-    color: (theme.vars || theme).palette.text.secondary,
-    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    cursor: 'pointer',
-    transitionProperty: 'all',
-    transitionDuration: '150ms',
-    boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
-    '&:hover': {
-      background: alpha(theme.palette.grey[100], 0.5),
-      borderColor: (theme.vars || theme).palette.grey[300],
-      boxShadow: 'none',
-    },
-    '&:focus-visible': {
-      outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-      outlineOffset: '2px',
-    },
-  },
-  theme.applyDarkStyles({
-    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-    borderColor: alpha(theme.palette.primaryDark[600], 0.4),
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
-    '&:hover': {
-      background: (theme.vars || theme).palette.primaryDark[700],
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
-      boxShadow: 'none',
-    },
-  }),
-]);
-
-const SearchLabel = styled('span')(({ theme }) => ({
-  marginRight: 'auto',
-  marginBottom: '1px', // optical alignment
-  color: (theme.vars || theme).palette.text.tertiary,
-  lineHeight: 1,
-}));
-
-const Shortcut = styled('kbd')(({ theme }) => {
-  return {
-    all: 'unset',
-    fontSize: theme.typography.pxToRem(12),
-    fontWeight: 'bold',
-    lineHeight: '19px',
-    marginLeft: theme.spacing(0.5),
-    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-    backgroundColor: '#FFF',
-    padding: theme.spacing(0, 0.5),
-    borderRadius: 7,
-    ...theme.applyDarkStyles({
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-    }),
-  };
-});
+import SearchButton from './SearchButton';
 
 function NewStartScreen() {
   const startScreenOptions = [
@@ -129,33 +53,6 @@ function NewStartScreen() {
           name: 'Templates',
           href: '/material-ui/getting-started/templates/',
           icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-      ],
-    },
-    {
-      category: {
-        name: 'Base UI',
-      },
-      items: [
-        {
-          name: 'Installation',
-          href: '/base-ui/getting-started/quickstart/',
-          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Components',
-          href: '/base-ui/all-components/',
-          icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Customization',
-          href: '/base-ui/getting-started/customization/',
-          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Usage',
-          href: '/base-ui/getting-started/usage/',
-          icon: <DriveFileRenameOutlineRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -270,7 +167,7 @@ function NewStartScreen() {
 const productNameProductId = {
   'material-ui': 'Material UI',
   'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
+  'base-ui': 'MUI Base',
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
@@ -331,10 +228,13 @@ DocSearchHit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
+const standaloneProducts = ['base-ui', 'joy-ui'];
+
 export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
+    { layer: 'docsearch' },
   );
   const FADE_DURATION = 120; // ms
   const t = useTranslate();
@@ -342,9 +242,9 @@ export default function AppSearch(props) {
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [initialQuery, setInitialQuery] = React.useState(undefined);
-  const facetFilterLanguage =
-    LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
-  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage)
+    ? `language:${userLanguage}`
+    : `language:en`;
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
@@ -425,21 +325,21 @@ export default function AppSearch(props) {
     optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
   }
 
+  // Filter out stand-alone products unless we're on their subsections
+  let filters = undefined;
+  if (standaloneProducts.length > 0) {
+    const filtersPredicates = [];
+    for (let i = 0; i < standaloneProducts.length; i += 1) {
+      if (pageContext.productId !== standaloneProducts[i]) {
+        filtersPredicates.push(`NOT productId:${standaloneProducts[i]}`);
+      }
+    }
+    filters = filtersPredicates.join(' AND ');
+  }
+
   return (
     <React.Fragment>
-      <SearchButton
-        ref={searchButtonRef}
-        onClick={onOpen}
-        aria-labelledby="app-search-label"
-        {...props}
-      >
-        <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
-        <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
-        <Shortcut aria-hidden="true">
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-          {macOS ? '⌘' : 'Ctrl+'}K
-        </Shortcut>
-      </SearchButton>
+      <SearchButton onRef={searchButtonRef} onClick={onOpen} {...props} />
       {isOpen &&
         ReactDOM.createPortal(
           <DocSearchModal
@@ -449,6 +349,7 @@ export default function AppSearch(props) {
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
+              filters,
               optionalFilters,
               attributesToRetrieve: [
                 // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
@@ -458,7 +359,6 @@ export default function AppSearch(props) {
                 'hierarchy.lvl3',
                 'hierarchy.lvl4',
                 'hierarchy.lvl5',
-                'hierarchy.lvl6',
                 'content',
                 'type',
                 'url',

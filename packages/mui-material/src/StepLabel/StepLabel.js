@@ -7,6 +7,7 @@ import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 import useSlot from '../utils/useSlot';
@@ -75,34 +76,35 @@ const StepLabelRoot = styled('span', {
 const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  display: 'block',
-  transition: theme.transitions.create('color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  [`&.${stepLabelClasses.active}`]: {
-    color: (theme.vars || theme).palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.completed}`]: {
-    color: (theme.vars || theme).palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    marginTop: 16,
-  },
-  [`&.${stepLabelClasses.error}`]: {
-    color: (theme.vars || theme).palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body2,
+    display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    [`&.${stepLabelClasses.active}`]: {
+      color: (theme.vars || theme).palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.completed}`]: {
+      color: (theme.vars || theme).palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      marginTop: 16,
+    },
+    [`&.${stepLabelClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
-  overridesResolver: (props, styles) => styles.iconContainer,
 })({
+  flexShrink: 0,
   display: 'flex',
   paddingRight: 8,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
@@ -113,14 +115,15 @@ const StepLabelIconContainer = styled('span', {
 const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
-  overridesResolver: (props, styles) => styles.labelContainer,
-})(({ theme }) => ({
-  width: '100%',
-  color: (theme.vars || theme).palette.text.secondary,
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    textAlign: 'center',
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    color: (theme.vars || theme).palette.text.secondary,
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      textAlign: 'center',
+    },
+  })),
+);
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepLabel' });
@@ -169,6 +172,17 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: StepLabelRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+  });
+
   const [LabelSlot, labelProps] = useSlot('label', {
     elementType: StepLabelLabel,
     externalForwardedProps,
@@ -182,12 +196,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   });
 
   return (
-    <StepLabelRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
           <StepIconSlot
@@ -207,7 +216,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
         ) : null}
         {optional}
       </StepLabelLabelContainer>
-    </StepLabelRoot>
+    </RootSlot>
   );
 });
 
@@ -231,7 +240,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     label: PropTypes.object,
@@ -255,6 +264,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     stepIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -263,14 +273,17 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     label: PropTypes.elementType,
+    root: PropTypes.elementType,
     stepIcon: PropTypes.elementType,
   }),
   /**
-   * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
+   * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
+   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`StepIcon`](/material-ui/api/step-icon/) element.
+   * Props applied to the [`StepIcon`](https://mui.com/material-ui/api/step-icon/) element.
+   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconProps: PropTypes.object,
   /**
@@ -283,8 +296,6 @@ StepLabel.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-if (StepLabel) {
-  StepLabel.muiName = 'StepLabel';
-}
+StepLabel.muiName = 'StepLabel';
 
 export default StepLabel;

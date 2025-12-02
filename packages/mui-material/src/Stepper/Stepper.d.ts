@@ -32,7 +32,7 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
    * An element to be placed between each step.
    * @default <StepConnector />
    */
-  connector?: React.ReactElement<any, any> | null;
+  connector?: React.ReactElement<unknown, any> | null;
   /**
    * If set the `Stepper` will not assist in controlling steps for linear flow.
    * @default false
@@ -70,11 +70,11 @@ export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
  *
  * Demos:
  *
- * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [Stepper API](https://next.mui.com/material-ui/api/stepper/)
+ * - [Stepper API](https://mui.com/material-ui/api/stepper/)
  */
 declare const Stepper: OverridableComponent<StepperTypeMap>;
 

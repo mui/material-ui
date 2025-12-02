@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -14,7 +13,7 @@ export default function AccordionExpandDefault() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography>Expanded by default</Typography>
+          <Typography component="span">Expanded by default</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -29,7 +28,7 @@ export default function AccordionExpandDefault() {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          <Typography>Header</Typography>
+          <Typography component="span">Header</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -58,7 +57,7 @@ function ColorDemo(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Box component="pre" sx={{ m: 2, fontSize: 16 }}>
+        <Box component="pre" sx={{ m: 2, fontSize: 16, overflowX: 'auto' }}>
           {`{
   palette: {
     primary: ${primary.output},

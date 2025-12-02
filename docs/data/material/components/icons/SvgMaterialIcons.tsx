@@ -1,4 +1,4 @@
-import * as React from 'react';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,50 +17,52 @@ import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
 
 export default function SvgMaterialIcons() {
   return (
-    <Grid container sx={{ color: 'text.primary' }}>
-      <Grid item xs={4}>
-        <Typography>Filled</Typography>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container sx={{ color: 'text.primary' }}>
+        <Grid size={4}>
+          <Typography>Filled</Typography>
+        </Grid>
+        <Grid size={8}>
+          <DeleteIcon />
+          <DeleteForeverIcon />
+        </Grid>
+        <Grid size={4}>
+          <Typography>Outlined</Typography>
+        </Grid>
+        <Grid size={8}>
+          <DeleteOutlinedIcon />
+          <DeleteForeverOutlinedIcon />
+        </Grid>
+        <Grid size={4}>
+          <Typography>Rounded</Typography>
+        </Grid>
+        <Grid size={8}>
+          <DeleteRoundedIcon />
+          <DeleteForeverRoundedIcon />
+        </Grid>
+        <Grid size={4}>
+          <Typography>Two Tone</Typography>
+        </Grid>
+        <Grid size={8}>
+          <DeleteTwoToneIcon />
+          <DeleteForeverTwoToneIcon />
+        </Grid>
+        <Grid size={4}>
+          <Typography>Sharp</Typography>
+        </Grid>
+        <Grid size={8}>
+          <DeleteSharpIcon />
+          <DeleteForeverSharpIcon />
+        </Grid>
+        <Grid size={4}>
+          <Typography>Edge-cases</Typography>
+        </Grid>
+        <Grid size={8}>
+          <ThreeDRotationIcon />
+          <FourKIcon />
+          <ThreeSixtyIcon />
+        </Grid>
       </Grid>
-      <Grid item xs={8}>
-        <DeleteIcon />
-        <DeleteForeverIcon />
-      </Grid>
-      <Grid item xs={4}>
-        <Typography>Outlined</Typography>
-      </Grid>
-      <Grid item xs={8}>
-        <DeleteOutlinedIcon />
-        <DeleteForeverOutlinedIcon />
-      </Grid>
-      <Grid item xs={4}>
-        <Typography>Rounded</Typography>
-      </Grid>
-      <Grid item xs={8}>
-        <DeleteRoundedIcon />
-        <DeleteForeverRoundedIcon />
-      </Grid>
-      <Grid item xs={4}>
-        <Typography>Two Tone</Typography>
-      </Grid>
-      <Grid item xs={8}>
-        <DeleteTwoToneIcon />
-        <DeleteForeverTwoToneIcon />
-      </Grid>
-      <Grid item xs={4}>
-        <Typography>Sharp</Typography>
-      </Grid>
-      <Grid item xs={8}>
-        <DeleteSharpIcon />
-        <DeleteForeverSharpIcon />
-      </Grid>
-      <Grid item xs={4}>
-        <Typography>Edge-cases</Typography>
-      </Grid>
-      <Grid item xs={8}>
-        <ThreeDRotationIcon />
-        <FourKIcon />
-        <ThreeSixtyIcon />
-      </Grid>
-    </Grid>
+    </Box>
   );
 }

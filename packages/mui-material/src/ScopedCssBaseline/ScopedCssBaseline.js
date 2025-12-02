@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
@@ -21,40 +22,41 @@ const useUtilityClasses = (ownerState) => {
 const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
-  const colorSchemeStyles = {};
-  if (theme.colorSchemes) {
-    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      const selector = theme.getColorSchemeSelector(key);
-      if (selector.startsWith('@')) {
-        colorSchemeStyles[selector] = {
-          colorScheme: scheme.palette?.mode,
-        };
-      } else {
-        colorSchemeStyles[`&${selector.replace(/\s*&/, '')}`] = {
-          colorScheme: scheme.palette?.mode,
-        };
-      }
-    });
-  }
-  return {
-    ...html(theme, false),
-    ...body(theme),
-    '& *, & *::before, & *::after': {
-      boxSizing: 'inherit',
-    },
-    '& strong, & b': {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    variants: [
-      {
-        props: { enableColorScheme: true },
-        style: theme.vars ? colorSchemeStyles : { colorScheme: theme.palette.mode },
+})(
+  memoTheme(({ theme }) => {
+    const colorSchemeStyles = {};
+    if (theme.colorSchemes) {
+      Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+        const selector = theme.getColorSchemeSelector(key);
+        if (selector.startsWith('@')) {
+          colorSchemeStyles[selector] = {
+            colorScheme: scheme.palette?.mode,
+          };
+        } else {
+          colorSchemeStyles[`&${selector.replace(/\s*&/, '')}`] = {
+            colorScheme: scheme.palette?.mode,
+          };
+        }
+      });
+    }
+    return {
+      ...html(theme, false),
+      ...body(theme),
+      '& *, & *::before, & *::after': {
+        boxSizing: 'inherit',
       },
-    ],
-  };
-});
+      '& strong, & b': {
+        fontWeight: theme.typography.fontWeightBold,
+      },
+      variants: [
+        {
+          props: { enableColorScheme: true },
+          style: theme.vars ? colorSchemeStyles : { colorScheme: theme.palette.mode },
+        },
+      ],
+    };
+  }),
+);
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiScopedCssBaseline' });
@@ -102,7 +104,7 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * Enable `color-scheme` CSS property to use `theme.palette.mode`.
-   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    */
   enableColorScheme: PropTypes.bool,

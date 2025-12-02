@@ -1,11 +1,9 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-  unstable_useEventCallback as useEventCallback,
-  unstable_createChainedFunction as createChainedFunction,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useForkRef from '@mui/utils/useForkRef';
+import useEventCallback from '@mui/utils/useEventCallback';
+import createChainedFunction from '@mui/utils/createChainedFunction';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 import { ModalManager, ariaHidden } from './ModalManager';
@@ -24,26 +22,17 @@ function getHasTransition(children: UseModalParameters['children']) {
   return children ? children.props.hasOwnProperty('in') : false;
 }
 
+const noop = () => {};
+
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
-const defaultManager = new ModalManager();
-/**
- *
- * Demos:
- *
- * - [Modal](https://next.mui.com/base-ui/react-modal/#hook)
- *
- * API:
- *
- * - [useModal API](https://next.mui.com/base-ui/react-modal/hooks-api/#use-modal)
- */
+const manager = new ModalManager();
+
 function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
     disableEscapeKeyDown = false,
     disableScrollLock = false,
-    // @ts-ignore internal logic - Base UI supports the manager as a prop too
-    manager = defaultManager,
     closeAfterTransition = false,
     onTransitionEnter,
     onTransitionExited,
@@ -53,8 +42,9 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     rootRef,
   } = parameters;
 
-  const modal = React.useRef<{ modalRef?: HTMLDivElement; mount?: HTMLElement }>({});
-  const mountNodeRef = React.useRef<HTMLElement | null>(null);
+  // @ts-ignore internal logic
+  const modal = React.useRef<{ modalRef: HTMLDivElement; mount: HTMLElement }>({});
+  const mountNodeRef = React.useRef<HTMLElement>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleRef = useForkRef(modalRef, rootRef);
   const [exited, setExited] = React.useState(!open);
@@ -84,7 +74,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const handleOpen = useEventCallback(() => {
     const resolvedContainer = getContainer(container) || getDoc().body;
 
-    manager.add(getModal(), resolvedContainer);
+    manager.add(getModal(), resolvedContainer as HTMLElement);
 
     // The element was already mounted.
     if (modalRef.current) {
@@ -92,7 +82,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     }
   });
 
-  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
+  const isTopModal = () => manager.isTopModal(getModal());
 
   const handlePortalRef = useEventCallback((node: HTMLElement) => {
     mountNodeRef.current = node;
@@ -110,7 +100,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
   const handleClose = React.useCallback(() => {
     manager.remove(getModal(), ariaHiddenProp);
-  }, [ariaHiddenProp, manager]);
+  }, [ariaHiddenProp]);
 
   React.useEffect(() => {
     return () => {
@@ -180,6 +170,12 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     };
 
     return {
+      /*
+       * Marking an element with the role presentation indicates to assistive technology
+       * that this element should be ignored; it exists to support the web application and
+       * is not meant for humans to interact with directly.
+       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+       */
       role: 'presentation',
       ...externalEventHandlers,
       onKeyDown: createHandleKeyDown(externalEventHandlers),
@@ -222,8 +218,8 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     };
 
     return {
-      onEnter: createChainedFunction(handleEnter, children?.props.onEnter),
-      onExited: createChainedFunction(handleExited, children?.props.onExited),
+      onEnter: createChainedFunction(handleEnter, children?.props.onEnter ?? noop),
+      onExited: createChainedFunction(handleExited, children?.props.onExited ?? noop),
     };
   };
 

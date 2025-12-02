@@ -1,8 +1,8 @@
 /* eslint-disable no-eval */
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import InitColorSchemeScript, {
+import InitColorSchemeScript from '@mui/system/InitColorSchemeScript';
+import {
   DEFAULT_ATTRIBUTE,
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -14,13 +14,13 @@ describe('InitColorSchemeScript', () => {
   let storage = {};
   const createMatchMedia = (matches) => () => ({
     matches,
-    addListener: () => {},
-    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
       },
@@ -52,6 +52,9 @@ describe('InitColorSchemeScript', () => {
     document.documentElement.classList.remove(...document.documentElement.classList);
 
     const { container } = render(<InitColorSchemeScript attribute="class" />);
+    expect(container.firstChild.textContent.replace(/\s/g, '')).not.to.include(
+      "setAttribute('.%s',colorScheme)",
+    );
     eval(container.firstChild.textContent);
     expect(document.documentElement.classList.value).to.equal('foo');
     document.documentElement.classList.remove('foo'); // cleanup

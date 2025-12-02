@@ -59,7 +59,7 @@ const StyledText = styled('text', {
 })<StyledTextProps>(({ theme }) => ({
   textAnchor: 'middle',
   dominantBaseline: 'central',
-  fill: theme.palette.text.secondary,
+  fill: (theme.vars || theme).palette.text.secondary,
   variants: [
     {
       props: {
@@ -146,14 +146,12 @@ export default function ChartUserByCountry() {
                 innerRadius: 75,
                 outerRadius: 100,
                 paddingAngle: 0,
-                highlightScope: { faded: 'global', highlighted: 'item' },
+                highlightScope: { fade: 'global', highlight: 'item' },
               },
             ]}
             height={260}
             width={260}
-            slotProps={{
-              legend: { hidden: true },
-            }}
+            hideLegend
           >
             <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
           </PieChart>

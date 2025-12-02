@@ -1,17 +1,15 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import { loadCSS } from 'fg-loadcss';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { LicenseInfo } from '@mui/x-license';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
+import materialPkgJson from '@mui/material/package.json';
+import joyPkgJson from '@mui/joy/package.json';
+import systemPkgJson from '@mui/system/package.json';
 import generalDocsPages from 'docs/data/docs/pages';
-import basePages from 'docs/data/base/pages';
 import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
@@ -21,11 +19,9 @@ import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
-import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
@@ -33,13 +29,44 @@ import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
-import SvgBaseUiLogo, {
-  baseSvgLogoString,
-  baseSvgWordmarkString,
-} from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
-import config from '../config';
+import { Inter, Roboto } from 'next/font/google';
+import localFont from 'next/font/local';
+import * as config from '../config';
+
+const inter = Inter({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+});
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+});
+
+const generalSans = localFont({
+  declarations: [{ prop: 'font-family', value: 'General Sans' }],
+  src: [
+    { path: '../public/static/fonts/GeneralSans-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/static/fonts/GeneralSans-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../public/static/fonts/GeneralSans-Semibold.woff2', weight: '600', style: 'normal' },
+    { path: '../public/static/fonts/GeneralSans-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+});
+
+const ibmPlexSans = localFont({
+  declarations: [{ prop: 'font-family', value: 'IBM Plex Sans' }],
+  src: [
+    { path: '../public/static/fonts/IBMPlexSans-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/static/fonts/IBMPlexSans-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../public/static/fonts/IBMPlexSans-SemiBold.woff2', weight: '600', style: 'normal' },
+    { path: '../public/static/fonts/IBMPlexSans-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+});
+
+export const fontClasses = `${inter.className} ${roboto.className} ${generalSans.className} ${ibmPlexSans.className}`;
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -105,7 +132,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('mui.com') !== -1
+    window.location.host.includes('mui.com')
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -178,7 +205,14 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
-          { text: `v5`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
+          {
+            text: 'v6',
+            href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
+          {
+            text: 'v5',
+            href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
+          },
           {
             text: 'v4',
             href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
@@ -211,24 +245,14 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
-          { text: 'v5', href: `https://mui.com${languagePrefix}/system/getting-started/` },
+          { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
+          { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',
             href: `https://mui.com${languagePrefix}/versions/`,
           },
         ],
-      };
-    }
-
-    if (productId === 'base-ui') {
-      return {
-        metadata: '',
-        name: 'Base UI',
-        logo: SvgBaseUiLogo,
-        logoSvg: baseSvgLogoString,
-        wordmarkSvg: baseSvgWordmarkString,
-        versions: [{ text: `v${basePkgJson.version}`, current: true }],
       };
     }
 
@@ -286,9 +310,7 @@ function AppWrapper(props) {
 
   const pageContextValue = React.useMemo(() => {
     let pages = generalDocsPages;
-    if (productId === 'base-ui') {
-      pages = basePages;
-    } else if (productId === 'material-ui') {
+    if (productId === 'material-ui') {
       pages = materialPages;
     } else if (productId === 'joy-ui') {
       pages = joyPages;
@@ -310,20 +332,10 @@ function AppWrapper(props) {
     };
   }, [productId, productCategoryId, productIdentifier, router.pathname]);
 
-  let fonts = [];
-  if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
-    fonts = [
-      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Work+Sans:wght@300;400&display=swap',
-    ];
-  }
-
   return (
     <React.Fragment>
       <NextHead>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        {fonts.map((font) => (
-          <link rel="stylesheet" href={font} key={font} />
-        ))}
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
@@ -334,18 +346,16 @@ function AppWrapper(props) {
         translations={pageProps.translations}
       >
         <CodeCopyProvider>
-          <CodeStylingProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <ThemeProvider>
-                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                    {children}
-                    <GoogleAnalytics />
-                  </DocsStyledEngineProvider>
-                </ThemeProvider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeStylingProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={pageContextValue}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                  <GoogleAnalytics />
+                </DocsStyledEngineProvider>
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
         </CodeCopyProvider>
       </DocsProvider>
     </React.Fragment>

@@ -1,10 +1,32 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseProps } from '../InputBase';
 import { OutlinedInputClasses } from './outlinedInputClasses';
 
-export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
+interface OutlinedInputSlots {
+  /**
+   * The component that renders the notchedOutline slot.
+   * @default NotchedOutline
+   */
+  notchedOutline: React.ElementType;
+}
+
+type OutlinedInputSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  OutlinedInputSlots,
+  {
+    notchedOutline: SlotProps<'fieldset', {}, OutlinedInputOwnerState>;
+  }
+> & {
+  slots?: InputBaseProps['slots'];
+  slotProps?: InputBaseProps['slotProps'];
+};
+
+export interface OutlinedInputProps
+  extends Omit<StandardProps<InputBaseProps>, 'slots' | 'slotProps'>,
+    OutlinedInputSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -24,16 +46,19 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   sx?: SxProps<Theme>;
 }
 
+export interface OutlinedInputOwnerState extends Omit<OutlinedInputProps, 'slots' | 'slotProps'> {}
+
 /**
  *
  * Demos:
  *
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Number Field](https://mui.com/material-ui/react-number-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [OutlinedInput API](https://next.mui.com/material-ui/api/outlined-input/)
- * - inherits [InputBase API](https://next.mui.com/material-ui/api/input-base/)
+ * - [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
+ * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 declare const OutlinedInput: ((props: OutlinedInputProps) => React.JSX.Element) & {
   muiName: string;

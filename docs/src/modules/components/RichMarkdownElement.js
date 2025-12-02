@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCodeWithTabs } from '@mui/docs/HighlightedCodeWithTabs';
@@ -20,19 +19,12 @@ export default function RichMarkdownElement(props) {
     localizedDoc,
     renderedMarkdownOrDemo,
     srcComponents,
-    theme,
-    WrapperComponent: Wrapper,
-    wrapperProps,
   } = props;
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
   if (typeof renderedMarkdownOrDemo === 'string') {
-    return (
-      <Wrapper {...wrapperProps}>
-        <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
-      </Wrapper>
-    );
+    return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />;
   }
 
   if (renderedMarkdownOrDemo.component) {
@@ -48,23 +40,17 @@ export default function RichMarkdownElement(props) {
       additionalProps.activeTab = activeTab;
     }
 
-    return (
-      <Wrapper {...wrapperProps}>
-        <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />
-      </Wrapper>
-    );
+    return <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />;
   }
 
   if (renderedMarkdownOrDemo.type === 'codeblock') {
     return (
-      <Wrapper {...wrapperProps}>
-        <HighlightedCodeWithTabs
-          tabs={renderedMarkdownOrDemo.data}
-          storageKey={
-            renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
-          }
-        />
-      </Wrapper>
+      <HighlightedCodeWithTabs
+        tabs={renderedMarkdownOrDemo.data}
+        storageKey={
+          renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
+        }
+      />
     );
   }
 
@@ -91,7 +77,6 @@ export default function RichMarkdownElement(props) {
     );
     return (
       <div>
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         {warnIcon} Missing demo `{name}` {warnIcon}
       </div>
     );
@@ -103,8 +88,6 @@ export default function RichMarkdownElement(props) {
 
   return (
     <Demo
-      {...wrapperProps}
-      mode={theme.palette.mode}
       demo={{
         raw: demo.raw,
         js: demoComponents[demo.module] ?? noComponent(demo.module),
@@ -145,7 +128,4 @@ RichMarkdownElement.propTypes = {
     PropTypes.shape({ component: PropTypes.any, demo: PropTypes.any }),
   ]),
   srcComponents: PropTypes.any,
-  theme: PropTypes.object,
-  WrapperComponent: PropTypes.elementType,
-  wrapperProps: PropTypes.object,
 };

@@ -3,13 +3,13 @@ import { DemoData } from 'docs/src/modules/sandbox/types';
 export const getHtml = ({
   title,
   language,
-  codeStyling,
   raw,
+  main,
 }: {
   title: string;
   language: string;
-  codeStyling?: 'Tailwind' | 'MUI System';
   raw?: string;
+  main?: string;
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -22,7 +22,7 @@ export const getHtml = ({
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -30,60 +30,11 @@ export const getHtml = ({
       href="https://fonts.googleapis.com/icon?family=Material+Icons${
         raw?.includes('material-icons-two-tone') ? '+Two+Tone' : ''
       }"
-    />${
-      codeStyling === 'Tailwind'
-        ? `
-    <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            animation: {
-              appear: 'in-right 200ms',
-            },
-            border: {
-              3: '3px',
-            },
-            boxShadow: {
-              'outline-purple': '0 0 0 4px rgba(192, 132, 252, 0.25)',
-              'outline-purple-light': '0 0 0 4px rgba(245, 208, 254, 0.25)',
-              'outline-purple-xs': '0 0 0 1px rgba(192, 132, 252, 0.25)',
-              'outline-switch': '0 0 1px 3px rgba(168, 85, 247, 0.35)',
-            },
-            cursor: {
-              inherit: 'inherit',
-            },
-            keyframes: {
-              'in-right': {
-                from: { transform: 'translateX(100%)' },
-                to: { transform: 'translateX(0)' },
-              },
-            },
-            lineHeight: {
-              '5.5': '1.375rem',
-            },
-            maxWidth: {
-              snackbar: '560px',
-            },
-            minHeight: {
-              badge: '22px',
-            },
-            minWidth: {
-              badge: '22px',
-              listbox: '200px',
-              snackbar: '300px',
-              'tabs-list': '400px',
-            },
-          },
-        },
-      }
-    </script>`
-        : ''
-    }
+    />
   </head>
   <body>
     <div id="root"></div>
+    ${main ? `<script type="module" src="${main}"></script>` : ''}
   </body>
 </html>`;
 };
@@ -105,17 +56,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
         <Demo />
       </CssVarsProvider>
     </StyledEngineProvider>
-  </React.StrictMode>
-);`;
-  }
-  if (demoData.productId === 'base-ui') {
-    return `import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import Demo from './Demo';
-
-ReactDOM.createRoot(document.querySelector("#root")${type}).render(
-  <React.StrictMode>
-    <Demo />
   </React.StrictMode>
 );`;
   }

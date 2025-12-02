@@ -177,5 +177,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('inheritance sx-v6', () => {
+      it('should do nothing', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-inheritance.actual.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-inheritance.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/sx-inheritance.expected.js') },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./test-cases/sx-inheritance.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });

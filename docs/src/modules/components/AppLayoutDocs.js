@@ -156,7 +156,11 @@ export default function AppLayoutDocs(props) {
         }}
       />
       <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
-        <Head title={`${title} - ${productName}`} description={description} card={card} />
+        <Head
+          title={`${title}${productName ? ` - ${productName}` : ''}`}
+          description={description}
+          card={card}
+        />
         <Main disableToc={disableToc}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
@@ -167,9 +171,9 @@ export default function AppLayoutDocs(props) {
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} />}
+          <BackToTop />
         </Main>
       </AdManager>
-      <BackToTop />
     </Layout>
   );
 }

@@ -10,19 +10,16 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
 import FolderRounded from '@mui/icons-material/FolderRounded';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
-import { treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import {
-  unstable_useTreeItem2 as useTreeItem2,
-  UseTreeItem2Parameters,
-} from '@mui/x-tree-view/useTreeItem2';
-import {
-  TreeItem2Content,
-  TreeItem2IconContainer,
-  TreeItem2Label,
-  TreeItem2Root,
-} from '@mui/x-tree-view/TreeItem2';
-import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
-import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
+  treeItemClasses,
+  TreeItemContent,
+  TreeItemIconContainer,
+  TreeItemLabel,
+  TreeItemRoot,
+} from '@mui/x-tree-view/TreeItem';
+import { useTreeItem, UseTreeItemParameters } from '@mui/x-tree-view/useTreeItem';
+import { TreeItemIcon } from '@mui/x-tree-view/TreeItemIcon';
+import { TreeItemProvider } from '@mui/x-tree-view/TreeItemProvider';
 import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 
 type ExtendedTreeItemProps = {
@@ -81,7 +78,7 @@ declare module 'react' {
   }
 }
 
-const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
+const StyledTreeItemRoot = styled(TreeItemRoot)(({ theme }) => ({
   color: theme.palette.grey[800],
   position: 'relative',
   [`& .${treeItemClasses.groupTransition}`]: {
@@ -90,8 +87,8 @@ const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
   ...theme.applyStyles('dark', {
     color: theme.palette.grey[400],
   }),
-})) as unknown as typeof TreeItem2Root;
-const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
+})) as unknown as typeof TreeItemRoot;
+const CustomTreeItemContent = styled(TreeItemContent)(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
   '&.Mui-expanded&::before': {
     content: '""',
@@ -129,18 +126,17 @@ interface CustomLabelProps {
 }
 
 function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps) {
-  let Icon;
+  let Icon: null | React.ElementType = null;
   if (expandable) {
     Icon = FolderRounded;
   } else {
     Icon = DotIcon;
   }
   return (
-    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
+    <TreeItemLabel {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {Icon && (
         <Box component={Icon} className="labelIcon" sx={{ mr: 1, fontSize: '1rem', color }} />
       )}
-
       <Typography
         sx={(theme) => ({
           fontWeight: expandable
@@ -151,7 +147,7 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
       >
         {children}
       </Typography>
-    </TreeItem2Label>
+    </TreeItemLabel>
   );
 }
 
@@ -163,7 +159,7 @@ const isExpandable = (reactChildren: React.ReactNode): boolean => {
 };
 
 interface CustomTreeItemProps
-  extends Omit<UseTreeItem2Parameters, 'rootRef'>,
+  extends Omit<UseTreeItemParameters, 'rootRef'>,
     Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {}
 
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
@@ -180,13 +176,13 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     getGroupTransitionProps,
     status,
     publicAPI,
-  } = useTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
+  } = useTreeItem({ id, itemId, children, label, disabled, rootRef: ref });
 
   const item = publicAPI.getItem(itemId);
   const expandable = isExpandable(children);
 
   return (
-    <TreeItem2Provider itemId={itemId}>
+    <TreeItemProvider id={id} itemId={itemId}>
       <StyledTreeItemRoot {...getRootProps(other)}>
         <CustomTreeItemContent
           {...getContentProps({
@@ -205,14 +201,14 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
             })}
           />
           {expandable && (
-            <TreeItem2IconContainer {...getIconContainerProps()}>
-              <TreeItem2Icon status={status} />
-            </TreeItem2IconContainer>
+            <TreeItemIconContainer {...getIconContainerProps()}>
+              <TreeItemIcon status={status} />
+            </TreeItemIconContainer>
           )}
         </CustomTreeItemContent>
         {children && <TransitionComponent {...getGroupTransitionProps()} />}{' '}
       </StyledTreeItemRoot>
-    </TreeItem2Provider>
+    </TreeItemProvider>
   );
 });
 function CustomEndIcon() {
@@ -235,6 +231,7 @@ export default function TreeViewDemo() {
       defaultExpandedItems={['1', '1.1', '1.2', '1.2.2']}
       defaultSelectedItems="1.1"
       sx={{ height: 'fit-content', flexGrow: 1, p: 1 }}
+      itemChildrenIndentation={0}
       slots={{
         item: CustomTreeItem,
         endIcon: CustomEndIcon,

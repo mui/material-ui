@@ -6,24 +6,20 @@
 
 Run one of the following commands to add Material UI to your project:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material@next @emotion/react @emotion/styled
-```
-
-```bash yarn
-yarn add @mui/material@next @emotion/react @emotion/styled
+npm install @mui/material @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/material@next @emotion/react @emotion/styled
+pnpm add @mui/material @emotion/react @emotion/styled
+```
+
+```bash yarn
+yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -36,10 +32,74 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ```json
 "peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0",
-  "react-dom": "^17.0.0 || ^18.0.0"
+  "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
 },
 ```
+
+### React 18 and below
+
+If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
+
+For example, if you are using `react@18.3.1`, do the following steps:
+
+1. Install `react-is@18.3.1`.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react-is@18.3.1
+```
+
+```bash pnpm
+pnpm add react-is@18.3.1
+```
+
+```bash yarn
+yarn add react-is@18.3.1
+```
+
+</codeblock>
+
+2. Set the resolutions or overrides in the `package.json`.
+
+<codeblock storageKey="package-manager">
+
+```json npm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json pnpm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json yarn
+{
+  …
+  "resolutions": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+</codeblock>
+
+#### Why is this needed?
+
+Material UI uses `react-is@19`, which changed how React elements are identified.
+
+If you're on React 18 or below, mismatched versions of `react-is` can cause runtime errors in prop type checks.
+Forcing `react-is` to match your React version prevents these errors.
 
 ## With styled-components
 
@@ -52,12 +112,12 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
-```bash yarn
-yarn add @mui/material @mui/styled-engine-sc styled-components
-```
-
 ```bash pnpm
 pnpm add @mui/material @mui/styled-engine-sc styled-components
+```
+
+```bash yarn
+yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 </codeblock>
@@ -83,12 +143,12 @@ Add it to your project via Fontsource, or with the Google Fonts CDN.
 npm install @fontsource/roboto
 ```
 
-```bash yarn
-yarn add @fontsource/roboto
-```
-
 ```bash pnpm
 pnpm add @fontsource/roboto
+```
+
+```bash yarn
+yarn add @fontsource/roboto
 ```
 
 </codeblock>
@@ -130,12 +190,12 @@ You can do so with npm, or with the Google Web Fonts CDN.
 npm install @mui/icons-material
 ```
 
-```bash yarn
-yarn add @mui/icons-material
-```
-
 ```bash pnpm
 pnpm add @mui/icons-material
+```
+
+```bash yarn
+yarn add @mui/icons-material
 ```
 
 </codeblock>
@@ -160,9 +220,9 @@ For instance, via Google Web Fonts:
 
 You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
-Follow [this CDN example](https://github.com/mui/material-ui/tree/next/examples/material-ui-via-cdn) to get started.
+Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn) to get started.
 
 :::error
 We do _not_ recommend using this approach in production.

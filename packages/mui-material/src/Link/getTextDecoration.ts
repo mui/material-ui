@@ -2,19 +2,6 @@ import { getPath } from '@mui/system/style';
 import { alpha } from '@mui/system/colorManipulator';
 import type { Theme } from '../styles';
 
-// TODO v7: remove this transformation
-export const colorTransformations: Record<string, string | null | undefined> = {
-  textPrimary: 'text.primary',
-  textSecondary: 'text.secondary',
-  // For main palette, the color will be applied by the styles above.
-  primary: null,
-  secondary: null,
-  error: null,
-  info: null,
-  success: null,
-  warning: null,
-};
-
 const getTextDecoration = <T extends Theme>({
   theme,
   ownerState,
@@ -22,16 +9,21 @@ const getTextDecoration = <T extends Theme>({
   theme: T;
   ownerState: { color: string };
 }) => {
-  let transformedColor = colorTransformations[ownerState.color];
-  if (transformedColor === null) {
-    return null;
+  const transformedColor = ownerState.color;
+
+  if ('colorSpace' in theme && theme.colorSpace) {
+    const color = (getPath(theme, `palette.${transformedColor}.main`) ||
+      getPath(theme, `palette.${transformedColor}`) ||
+      ownerState.color) as string;
+    return theme.alpha(color, 0.4);
   }
-  if (transformedColor === undefined) {
-    transformedColor = ownerState.color;
-  }
-  const color = (getPath(theme, `palette.${transformedColor}`, false) ||
+
+  // check the `main` color first for a custom palette, then fallback to the color itself
+  const color = (getPath(theme, `palette.${transformedColor}.main`, false) ||
+    getPath(theme, `palette.${transformedColor}`, false) ||
     ownerState.color) as string;
-  const channelColor = getPath(theme, `palette.${transformedColor}Channel`) as string | null;
+  const channelColor = (getPath(theme, `palette.${transformedColor}.mainChannel`) ||
+    getPath(theme, `palette.${transformedColor}Channel`)) as string | null;
   if ('vars' in theme && channelColor) {
     return `rgba(${channelColor} / 0.4)`;
   }

@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
-import getReactNodeRef from '@mui/utils/getReactNodeRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
@@ -19,7 +19,7 @@ const styles = {
 
 /**
  * The Zoom transition can be used for the floating variant of the
- * [Button](/material-ui/react-button/#floating-action-buttons) component.
+ * [Button](/material-ui/react-floating-action-button/#animation) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {
@@ -49,7 +49,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   } = props;
 
   const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, getReactNodeRef(children), ref);
+  const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
@@ -128,7 +128,8 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             transform: 'scale(0)',
@@ -138,7 +139,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>

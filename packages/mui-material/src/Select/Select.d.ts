@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
@@ -11,7 +12,7 @@ import { FilledInputProps } from '../FilledInput';
 export { SelectChangeEvent };
 
 export interface BaseSelectProps<Value = unknown>
-  extends StandardProps<InputProps, 'value' | 'onChange'> {
+  extends StandardProps<InputProps, 'value' | 'onChange' | 'placeholder'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -63,14 +64,14 @@ export interface BaseSelectProps<Value = unknown>
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: React.ReactElement<any, any>;
+  input?: React.ReactElement<unknown, any>;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps?: InputProps['inputProps'];
   /**
-   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
+   * See [OutlinedInput#label](https://mui.com/material-ui/api/outlined-input/#props)
    */
   label?: React.ReactNode;
   /**
@@ -79,7 +80,7 @@ export interface BaseSelectProps<Value = unknown>
    */
   labelId?: string;
   /**
-   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
+   * Props applied to the [`Menu`](https://mui.com/material-ui/api/menu/) element.
    */
   MenuProps?: Partial<MenuProps>;
   /**
@@ -152,7 +153,10 @@ export interface BaseSelectProps<Value = unknown>
 }
 
 export interface FilledSelectProps
-  extends Omit<FilledInputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
+  extends Omit<
+    FilledInputProps,
+    'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  > {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -161,7 +165,7 @@ export interface FilledSelectProps
 }
 
 export interface StandardSelectProps
-  extends Omit<InputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
+  extends Omit<InputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'> {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -170,7 +174,10 @@ export interface StandardSelectProps
 }
 
 export interface OutlinedSelectProps
-  extends Omit<OutlinedInputProps, 'value' | 'onChange' | 'id' | 'classes' | 'inputProps'> {
+  extends Omit<
+    OutlinedInputProps,
+    'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  > {
   /**
    * The variant to use.
    * @default 'outlined'
@@ -189,12 +196,12 @@ export type SelectProps<Value = unknown> =
  *
  * Demos:
  *
- * - [Select](https://next.mui.com/material-ui/react-select/)
+ * - [Select](https://mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://next.mui.com/material-ui/api/select/)
- * - inherits [OutlinedInput API](https://next.mui.com/material-ui/api/outlined-input/)
+ * - [Select API](https://mui.com/material-ui/api/select/)
+ * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
 declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX.Element) & {
   muiName: string;

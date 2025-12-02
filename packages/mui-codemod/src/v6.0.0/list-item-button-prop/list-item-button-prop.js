@@ -9,6 +9,7 @@ export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;
+  const { packageName = '@mui/material' } = options;
 
   const defaultPropsPathCollection = findComponentDefaultProps(j, {
     root,
@@ -54,14 +55,16 @@ export default function transformer(file, api, options) {
 
   const openTaggedNotHavingButtonProp = new Set();
   const openTaggedHavingButtonProp = new Set();
+  let addedListItemButton = false;
   // Rename components that have ListItem button to ListItemButton
-  findComponentJSX(j, { root, componentName: 'ListItem' }, (elementPath) => {
+  findComponentJSX(j, { root, packageName, componentName: 'ListItem' }, (elementPath) => {
     const index = elementPath.node.openingElement.attributes.findIndex(
       (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'button',
     );
     // The ListItem has a button prop
     if (index !== -1) {
       openTaggedHavingButtonProp.add(elementPath.node.openingElement.name.name);
+      addedListItemButton = true;
       elementPath.node.openingElement.name.name = `ListItemButton`;
       elementPath.node.openingElement.attributes.splice(index, 1);
     } else {
@@ -75,11 +78,11 @@ export default function transformer(file, api, options) {
 
   root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value === '@mui/material/ListItem')
+    .filter((path) => path.node.source.value.match(new RegExp(`^${packageName}(/ListItem)?$`)))
     .filter((path) => {
       path.node.specifiers.forEach((specifier) => {
         if (specifier.type === 'ImportDefaultSpecifier') {
-          if (importsToRemove.indexOf(specifier.local.name) >= 0) {
+          if (importsToRemove.includes(specifier.local.name)) {
             path.node.specifiers = path.node.specifiers.filter((spec) => spec !== specifier);
           }
         }
@@ -93,13 +96,13 @@ export default function transformer(file, api, options) {
 
   root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value === '@mui/material')
+    .filter((path) => path.node.source.value.match(new RegExp(`^${packageName}$`)))
     .filter((path) => {
       path.node.specifiers.forEach((specifier) => {
         if (
           specifier.type === 'ImportSpecifier' &&
           specifier.imported.name === 'ListItem' &&
-          importsToRemove.indexOf(specifier.local.name) >= 0
+          importsToRemove.includes(specifier.local.name)
         ) {
           path.node.specifiers = path.node.specifiers.filter((spec) => spec !== specifier);
         }
@@ -110,19 +113,20 @@ export default function transformer(file, api, options) {
       return false;
     })
     .remove();
-  // If ListItemButton does not already exist, add it at the end
+
+  // If ListItemButton import does not already exist, add it at the end
   const imports = root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value === '@mui/material/ListItemButton');
+    .filter((path) => path.node.source.value.match(new RegExp(`^${packageName}/ListItemButton$`)));
 
-  if (imports.length === 0) {
+  if (addedListItemButton && imports.length === 0) {
     const lastImport = root.find(j.ImportDeclaration).at(-1);
 
     // Insert the import for 'ListItemButton' after the last import declaration
     lastImport.insertAfter(
       j.importDeclaration(
         [j.importDefaultSpecifier(j.identifier('ListItemButton'))],
-        j.stringLiteral('@mui/material/ListItemButton'),
+        j.stringLiteral(`${packageName}/ListItemButton`),
       ),
     );
   }

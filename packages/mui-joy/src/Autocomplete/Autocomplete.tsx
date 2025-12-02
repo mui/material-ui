@@ -2,12 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  chainPropTypes,
-  integerPropType,
-  unstable_useForkRef as useForkRef,
-  unstable_capitalize as capitalize,
-} from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
+import capitalize from '@mui/utils/capitalize';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import integerPropType from '@mui/utils/integerPropType';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/useAutocomplete';
 import { Popper } from '@mui/base/Popper';
@@ -45,7 +43,7 @@ import useSlot from '../utils/useSlot';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
-const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
+const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement | null>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
 // @ts-ignore
 const defaultGetOptionLabel = (option) => option.label ?? option;
@@ -822,14 +820,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText: PropTypes.string,
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
@@ -999,7 +997,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText: PropTypes.node,
@@ -1015,7 +1013,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText: PropTypes.node,
@@ -1075,7 +1073,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText: PropTypes.string,
@@ -1190,7 +1188,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    */
   type: PropTypes.string,
   /**

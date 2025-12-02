@@ -20,7 +20,7 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-export interface SliderOwnProps {
+export interface SliderOwnProps<Value extends number | number[]> {
   /**
    * The label of the slider.
    */
@@ -46,7 +46,7 @@ export interface SliderOwnProps {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -64,7 +64,7 @@ export interface SliderOwnProps {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -93,7 +93,7 @@ export interface SliderOwnProps {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: number | number[];
+  defaultValue?: Value;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -125,7 +125,7 @@ export interface SliderOwnProps {
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
-  marks?: boolean | Mark[];
+  marks?: boolean | readonly Mark[];
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
@@ -148,17 +148,17 @@ export interface SliderOwnProps {
    * @param {Event} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
-  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
+  onChange?: (event: Event, value: Value, activeThumb: number) => void;
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    */
-  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
+  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: Value) => void;
   /**
    * The component orientation.
    * @default 'horizontal'
@@ -246,7 +246,7 @@ export interface SliderOwnProps {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value?: Value;
   /**
    * Controls when the value label is displayed:
    *
@@ -275,16 +275,25 @@ export interface SliderOwnProps {
 export interface SliderTypeMap<
   RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
+  Value extends number | number[] = number | number[],
 > {
-  props: AdditionalProps & SliderOwnProps;
+  props: AdditionalProps & SliderOwnProps<Value>;
   defaultComponent: RootComponent;
 }
+
+export type SliderComponent<Value extends number | number[]> = OverridableComponent<
+  SliderTypeMap<'span', {}, Value>
+>;
+
+export type SliderType = SliderComponent<number> &
+  SliderComponent<number[]> &
+  SliderComponent<number | number[]>;
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement<unknown>;
   index: number;
   open: boolean;
-  value: number;
+  value: React.ReactNode;
 }
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
@@ -306,13 +315,13 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://next.mui.com/material-ui/react-slider/)
+ * - [Slider](https://mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://next.mui.com/material-ui/api/slider/)
+ * - [Slider API](https://mui.com/material-ui/api/slider/)
  */
-declare const Slider: OverridableComponent<SliderTypeMap>;
+declare const Slider: SliderType;
 
 export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],

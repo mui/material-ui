@@ -8,7 +8,6 @@ import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
 import { styled } from '../zero-styled';
-
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
@@ -35,7 +34,6 @@ const PaginationRoot = styled('nav', {
 const PaginationUl = styled('ul', {
   name: 'MuiPagination',
   slot: 'Ul',
-  overridesResolver: (props, styles) => styles.ul,
 })({
   display: 'flex',
   flexWrap: 'wrap',
@@ -174,10 +172,10 @@ Pagination.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
-   * @param {number} page The page number to format.
-   * @param {bool} selected If true, the current page is selected.
+   * @param {number | null} page The page number to format.
+   * @param {boolean} selected If true, the current page is selected.
    * @returns {string}
    */
   getItemAriaLabel: PropTypes.func,

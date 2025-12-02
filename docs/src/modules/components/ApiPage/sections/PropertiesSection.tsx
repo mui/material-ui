@@ -14,8 +14,12 @@ import {
   getPropsApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
-import { ComponentApiContent, PropsTableItem, PropsTranslations } from 'packages/api-docs-builder';
-import kebabCase from 'lodash/kebabCase';
+import {
+  ComponentApiContent,
+  PropsTableItem,
+  PropsTranslations,
+} from '@mui-internal/api-docs-builder';
+import { kebabCase } from 'es-toolkit/string';
 
 interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
   componentProps: ComponentApiContent['props'];
@@ -28,7 +32,7 @@ interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 't
 }
 
 /**
- * @deprecated Use the one from ApiPage/processors
+ * @deprecated Use the one from ApiPage/definitions
  */
 export function getPropsToC({
   componentName,

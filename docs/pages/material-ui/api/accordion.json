@@ -16,14 +16,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ heading?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ heading?: func<br>&#124;&nbsp;object, region?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ heading?: elementType, transition?: elementType }"
+        "description": "{ heading?: elementType, region?: elementType, root?: elementType, transition?: elementType }"
       },
       "default": "{}"
     },
@@ -35,8 +35,16 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" } },
-    "TransitionProps": { "type": { "name": "object" } }
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    }
   },
   "name": "Accordion",
   "imports": [
@@ -45,6 +53,12 @@
   ],
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "Paper",
+      "class": "MuiAccordion-root"
+    },
+    {
       "name": "heading",
       "description": "The component that renders the heading.",
       "default": "'h3'",
@@ -52,9 +66,15 @@
     },
     {
       "name": "transition",
-      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": null
+    },
+    {
+      "name": "region",
+      "description": "The component that renders the region.",
+      "default": "'div'",
+      "class": "MuiAccordion-region"
     }
   ],
   "classes": [
@@ -74,18 +94,6 @@
       "key": "gutters",
       "className": "MuiAccordion-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "region",
-      "className": "MuiAccordion-region",
-      "description": "Styles applied to the region element, the container of the children.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiAccordion-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

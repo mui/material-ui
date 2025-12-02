@@ -3,6 +3,7 @@ productId: material-ui
 title: React Stack component
 components: Stack, PigmentStack
 githubLabel: 'component: Stack'
+githubSource: packages/mui-material/src/Stack
 ---
 
 # Stack
@@ -59,7 +60,7 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 ## Flexbox gap
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set the `useFlexGap` prop to true.
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) for the spacing implementation, set the `useFlexGap` prop to true.
 
 It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
 

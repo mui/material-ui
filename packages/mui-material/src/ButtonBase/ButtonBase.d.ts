@@ -5,6 +5,8 @@ import { TouchRippleActions, TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
+export { TouchRippleActions, TouchRippleProps };
+
 export interface ButtonBaseOwnProps {
   /**
    * A ref for imperative actions.
@@ -115,11 +117,11 @@ export type ExtendButtonBase<TypeMap extends OverridableTypeMap> = ((
  *
  * Demos:
  *
- * - [Button](https://next.mui.com/material-ui/react-button/)
+ * - [Button](https://mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 

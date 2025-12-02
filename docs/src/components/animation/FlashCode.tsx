@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { styled, alpha, SxProps } from '@mui/material/styles';
-import { shouldForwardProp } from '@mui/system';
 
-const FlashCodeRoot = styled('div', {
-  shouldForwardProp: (prop) =>
-    shouldForwardProp(prop) && prop !== 'endLine' && prop !== 'startLine' && prop !== 'lineHeight',
-})<{ endLine?: number; startLine?: number; lineHeight?: number | string }>(({ theme }) => ({
+const FlashCodeRoot = styled('div')(({ theme }) => ({
   borderRadius: 2,
   pointerEvents: 'none',
   position: 'absolute',
@@ -29,23 +25,20 @@ const FlashCode = React.forwardRef(function FlashCode(
     startLine?: number;
     lineHeight?: number | string;
   },
-  ref: React.Ref<HTMLDivElement>,
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const { children, startLine = 0, endLine = startLine, lineHeight = '0.75rem', ...other } = props;
 
   return (
     <FlashCodeRoot
       ref={ref}
-      endLine={endLine}
-      startLine={startLine}
-      lineHeight={lineHeight}
       {...other}
       style={{
-        ...({
+        ...{
           '--Flashcode-lineHeight': lineHeight,
           '--Flashcode-startLine': startLine,
           '--Flashcode-endLine': endLine,
-        } as any),
+        },
         ...other.style,
       }}
     >

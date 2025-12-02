@@ -2,15 +2,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
-import useSlotProps from '@mui/utils/useSlotProps';
 import useSnackbar from './useSnackbar';
 import ClickAwayListener from '../ClickAwayListener';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 import { getSnackbarUtilityClass } from './snackbarClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, anchorOrigin } = ownerState;
@@ -40,55 +41,57 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.snackbar,
-  position: 'fixed',
-  display: 'flex',
-  left: 8,
-  right: 8,
-  justifyContent: 'center',
-  alignItems: 'center',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
-      style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
-      style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
-      style: {
-        justifyContent: 'flex-start',
-        [theme.breakpoints.up('sm')]: {
-          left: 24,
-          right: 'auto',
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.snackbar,
+    position: 'fixed',
+    display: 'flex',
+    left: 8,
+    right: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
+        style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+        style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
+        style: {
+          justifyContent: 'flex-start',
+          [theme.breakpoints.up('sm')]: {
+            left: 24,
+            right: 'auto',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
-      style: {
-        justifyContent: 'flex-end',
-        [theme.breakpoints.up('sm')]: {
-          right: 24,
-          left: 'auto',
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
+        style: {
+          justifyContent: 'flex-end',
+          [theme.breakpoints.up('sm')]: {
+            right: 24,
+            left: 'auto',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
-      style: {
-        [theme.breakpoints.up('sm')]: {
-          left: '50%',
-          right: 'auto',
-          transform: 'translateX(-50%)',
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
+        style: {
+          [theme.breakpoints.up('sm')]: {
+            left: '50%',
+            right: 'auto',
+            transform: 'translateX(-50%)',
+          },
         },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
@@ -104,8 +107,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     autoHideDuration = null,
     children,
     className,
-    ClickAwayListenerProps,
-    ContentProps,
+    ClickAwayListenerProps: ClickAwayListenerPropsProp,
+    ContentProps: ContentPropsProp,
     disableWindowBlurListener = false,
     message,
     onBlur,
@@ -115,9 +118,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     onMouseLeave,
     open,
     resumeHideDuration,
-    TransitionComponent = Grow,
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp,
     transitionDuration = defaultTransitionDuration,
-    TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
+    TransitionProps: { onEnter, onExited, ...TransitionPropsProp } = {},
     ...other
   } = props;
 
@@ -126,26 +131,15 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     anchorOrigin: { vertical, horizontal },
     autoHideDuration,
     disableWindowBlurListener,
-    TransitionComponent,
+    TransitionComponent: TransitionComponentProp,
     transitionDuration,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
+  const { getRootProps, onClickAway } = useSnackbar(ownerState);
 
   const [exited, setExited] = React.useState(true);
-
-  const rootProps = useSlotProps({
-    elementType: SnackbarRoot,
-    getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
-    },
-    className: [classes.root, className],
-  });
 
   const handleExited = (node) => {
     setExited(true);
@@ -163,27 +157,97 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     }
   };
 
+  const externalForwardedProps = {
+    slots: {
+      transition: TransitionComponentProp,
+      ...slots,
+    },
+    slotProps: {
+      content: ContentPropsProp,
+      clickAwayListener: ClickAwayListenerPropsProp,
+      transition: TransitionPropsProp,
+      ...slotProps,
+    },
+  };
+
+  const [Root, rootProps] = useSlot('root', {
+    ref,
+    className: [classes.root, className],
+    elementType: SnackbarRoot,
+    getSlotProps: getRootProps,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+  });
+
+  const [ClickAwaySlot, { ownerState: clickAwayOwnerStateProp, ...clickAwayListenerProps }] =
+    useSlot('clickAwayListener', {
+      elementType: ClickAwayListener,
+      externalForwardedProps,
+      getSlotProps: (handlers) => ({
+        onClickAway: (...params) => {
+          const event = params[0];
+          handlers.onClickAway?.(...params);
+          if (event?.defaultMuiPrevented) {
+            return;
+          }
+          onClickAway(...params);
+        },
+      }),
+      ownerState,
+    });
+
+  const [ContentSlot, contentSlotProps] = useSlot('content', {
+    elementType: SnackbarContent,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    additionalProps: {
+      message,
+      action,
+    },
+    ownerState,
+  });
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps,
+    getSlotProps: (handlers) => ({
+      onEnter: (...params) => {
+        handlers.onEnter?.(...params);
+        handleEnter(...params);
+      },
+      onExited: (...params) => {
+        handlers.onExited?.(...params);
+        handleExited(...params);
+      },
+    }),
+    additionalProps: {
+      appear: true,
+      in: open,
+      timeout: transitionDuration,
+      direction: vertical === 'top' ? 'down' : 'up',
+    },
+    ownerState,
+  });
+
   // So we only render active snackbars.
   if (!open && exited) {
     return null;
   }
 
   return (
-    <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
-      <SnackbarRoot {...rootProps}>
-        <TransitionComponent
-          appear
-          in={open}
-          timeout={transitionDuration}
-          direction={vertical === 'top' ? 'down' : 'up'}
-          onEnter={handleEnter}
-          onExited={handleExited}
-          {...TransitionProps}
-        >
-          {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
-        </TransitionComponent>
-      </SnackbarRoot>
-    </ClickAwayListener>
+    <ClickAwaySlot
+      {...clickAwayListenerProps}
+      {...(slots.clickAwayListener && { ownerState: clickAwayOwnerStateProp })}
+    >
+      <Root {...rootProps}>
+        <TransitionSlot {...transitionProps}>
+          {children || <ContentSlot {...contentSlotProps} />}
+        </TransitionSlot>
+      </Root>
+    </ClickAwaySlot>
   );
 });
 
@@ -228,10 +292,12 @@ Snackbar.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `ClickAwayListener` element.
+   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
+   * @deprecated Use `slotProps.content` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContentProps: PropTypes.object,
   /**
@@ -289,6 +355,26 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   resumeHideDuration: PropTypes.number,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    clickAwayListener: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    clickAwayListener: PropTypes.elementType,
+    content: PropTypes.elementType,
+    root: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -298,7 +384,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -321,6 +408,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps: PropTypes.object,

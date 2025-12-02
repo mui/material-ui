@@ -89,7 +89,7 @@ export default function MusicPlayerSlider() {
     return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
   return (
-    <Box sx={{ width: '100%', overflow: 'hidden' }}>
+    <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative', p: 3 }}>
       <Widget>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <CoverImage>
@@ -120,7 +120,7 @@ export default function MusicPlayerSlider() {
           min={0}
           step={1}
           max={duration}
-          onChange={(_, value) => setPosition(value as number)}
+          onChange={(_, value) => setPosition(value)}
           sx={(t) => ({
             color: 'rgba(0,0,0,0.87)',
             height: 4,

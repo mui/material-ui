@@ -17,13 +17,13 @@
       },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "icon": { "type": { "name": "node" } },
     "iconMapping": {
@@ -50,14 +50,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ closeButton?: func<br>&#124;&nbsp;object, closeIcon?: func<br>&#124;&nbsp;object }"
+        "description": "{ action?: func<br>&#124;&nbsp;object, closeButton?: func<br>&#124;&nbsp;object, closeIcon?: func<br>&#124;&nbsp;object, icon?: func<br>&#124;&nbsp;object, message?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ closeButton?: elementType, closeIcon?: elementType }"
+        "description": "{ action?: elementType, closeButton?: elementType, closeIcon?: elementType, icon?: elementType, message?: elementType, root?: elementType }"
       },
       "default": "{}"
     },
@@ -80,6 +80,30 @@
   "imports": ["import Alert from '@mui/material/Alert';", "import { Alert } from '@mui/material';"],
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "Paper",
+      "class": "MuiAlert-root"
+    },
+    {
+      "name": "icon",
+      "description": "The component that renders the icon slot.",
+      "default": "div",
+      "class": "MuiAlert-icon"
+    },
+    {
+      "name": "message",
+      "description": "The component that renders the message slot.",
+      "default": "div",
+      "class": "MuiAlert-message"
+    },
+    {
+      "name": "action",
+      "description": "The component that renders the action slot.",
+      "default": "div",
+      "class": "MuiAlert-action"
+    },
+    {
       "name": "closeButton",
       "description": "The component that renders the close button.",
       "default": "IconButton",
@@ -93,12 +117,6 @@
     }
   ],
   "classes": [
-    {
-      "key": "action",
-      "className": "MuiAlert-action",
-      "description": "Styles applied to the action wrapper element if `action` is provided.",
-      "isGlobal": false
-    },
     {
       "key": "colorError",
       "className": "MuiAlert-colorError",
@@ -158,18 +176,6 @@
       "isDeprecated": true
     },
     {
-      "key": "icon",
-      "className": "MuiAlert-icon",
-      "description": "Styles applied to the icon wrapper element.",
-      "isGlobal": false
-    },
-    {
-      "key": "message",
-      "className": "MuiAlert-message",
-      "description": "Styles applied to the message wrapper element.",
-      "isGlobal": false
-    },
-    {
       "key": "outlined",
       "className": "MuiAlert-outlined",
       "description": "Styles applied to the root element if `variant=\"outlined\"`.",
@@ -202,12 +208,6 @@
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"warning\"`.",
       "isGlobal": false,
       "isDeprecated": true
-    },
-    {
-      "key": "root",
-      "className": "MuiAlert-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "standard",

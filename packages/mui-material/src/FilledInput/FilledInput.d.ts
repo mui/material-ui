@@ -1,5 +1,6 @@
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseProps } from '../InputBase';
 import { FilledInputClasses } from './filledInputClasses';
 
@@ -30,12 +31,12 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
  *
  * Demos:
  *
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [FilledInput API](https://next.mui.com/material-ui/api/filled-input/)
- * - inherits [InputBase API](https://next.mui.com/material-ui/api/input-base/)
+ * - [FilledInput API](https://mui.com/material-ui/api/filled-input/)
+ * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 declare const FilledInput: ((props: FilledInputProps) => React.JSX.Element) & { muiName: string };
 

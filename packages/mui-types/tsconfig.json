@@ -1,4 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "exclude": ["OverridableComponentAugmentation.ts"]
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["src/OverridableComponentAugmentation.ts"]
 }

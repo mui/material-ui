@@ -340,6 +340,10 @@ export default function sxV6(file, api, options) {
           }
           if (data.node.argument.type === 'ConditionalExpression') {
             const isSxSpread =
+              (data.node.argument.test.type === 'CallExpression' &&
+                data.node.argument.test.callee.type === 'MemberExpression' &&
+                data.node.argument.test.callee.object.name === 'Array' &&
+                data.node.argument.test.callee.property.name === 'isArray') ||
               (data.node.argument.consequent.type === 'Identifier' &&
                 data.node.argument.consequent.name === 'sx') ||
               (data.node.argument.alternate.type === 'Identifier' &&

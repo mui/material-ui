@@ -1,8 +1,15 @@
 packages:
-  - 'benchmark'
-  - 'packages/*'
-  - 'packages/mui-envinfo/test'
-  - 'packages-internal/*'
-  - 'docs'
-  - 'test'
-  - 'apps/*'
+  - packages/*
+  - packages/mui-envinfo/test
+  - packages-internal/*
+  - docs
+  - test
+  - test/*
+
+patchedDependencies:
+  styled-components: patches/styled-components.patch
+
+onlyBuiltDependencies:
+  - '@vvago/vale'
+
+engineStrict: true

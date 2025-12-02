@@ -15,7 +15,7 @@ Material UI v4 has finally arrived. We are so excited about this release, as it
 
 ![TypeScript switch](/static/blog/material-ui-v4-is-out/banner.png)
 
-<p class="blog-description">https://mui.com/</p>
+<p class="blog-description">https://material-ui.com/</p>
 
 ## Summary
 
@@ -67,7 +67,7 @@ import { StylesProvider } from '@mui/styles';
 
 - **classes boilerplate**. Early in the v1 effort, we [decided](https://github.com/oliviertassinari/a-journey-toward-better-style) to use a CSS-in-JS styling solution: [JSS](https://cssinjs.org/). The large majority of the CSS-in-JS solutions output non-deterministic class names, for example `.fHmkjM`. This design decision helps the isolation of the style of each component, however, it makes the overrides harder. We introduced a `classes` API in v1 to target all our elements as an attempt to mitigate this problem.
   We have observed the use of this API for months and have seen many people struggling with it. It can be challenging to apply the class name on the right element and requires boilerplate as well.
-  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/system/styles/advanced/), while keeping the `classes` API working as before 💅.
+  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](https://v6.mui.com/system/styles/advanced/), while keeping the `classes` API working as before 💅.
 
 ![styled-components](/static/blog/material-ui-v4-is-out/styled-components.png)
 
@@ -143,7 +143,7 @@ Documentation was reported as the 3rd most critical pain point in the Developer 
 
 You may be afraid that using Material UI's components will bloat and slow down your website/application. Would you be better off writing your own components? Well, it's our mission to make this cost as minimal as possible 🚀.
 
-- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
+- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
 
 ```js
 import {
@@ -254,7 +254,7 @@ An example of the new spacing helper API.
 
 <p class="blog-description">Inline mode</p>
 
-- A new [@mui/styles](/system/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
+- A new [@mui/styles](https://v6.mui.com/system/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
 
 ```jsx
 import * as React from 'react';

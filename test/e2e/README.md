@@ -26,5 +26,5 @@ For development `pnpm test:e2e:dev` and `pnpm test:e2e:run --watch` in separate 
 | `pnpm test:e2e`        | Full run                                                                                      |
 | `pnpm test:e2e:dev`    | Prepares the fixtures to be able to test in watchmode                                         |
 | `pnpm test:e2e:run`    | Runs the tests (requires `pnpm test:e2e:dev` or `pnpm test:e2e:build`+`pnpm test:e2e:server`) |
-| `pnpm test:e2e:build`  | Builds the Webpack bundle for viewing the fixtures                                            |
+| `pnpm test:e2e:build`  | Builds the webpack bundle for viewing the fixtures                                            |
 | `pnpm test:e2e:server` | Serves the fixture bundle.                                                                    |

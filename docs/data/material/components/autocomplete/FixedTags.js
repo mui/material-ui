@@ -15,20 +15,20 @@ export default function FixedTags() {
       onChange={(event, newValue) => {
         setValue([
           ...fixedOptions,
-          ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
+          ...newValue.filter((option) => !fixedOptions.includes(option)),
         ]);
       }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
-      renderTags={(tagValue, getTagProps) =>
-        tagValue.map((option, index) => {
-          const { key, ...tagProps } = getTagProps({ index });
+      renderValue={(values, getItemProps) =>
+        values.map((option, index) => {
+          const { key, ...itemProps } = getItemProps({ index });
           return (
             <Chip
               key={key}
               label={option.title}
-              {...tagProps}
-              disabled={fixedOptions.indexOf(option) !== -1}
+              {...itemProps}
+              disabled={fixedOptions.includes(option)}
             />
           );
         })

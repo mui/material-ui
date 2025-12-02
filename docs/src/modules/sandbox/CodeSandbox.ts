@@ -4,7 +4,11 @@ import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import { DemoData, CodeVariant, CodeStyling } from 'docs/src/modules/sandbox/types';
+import { DemoData, CodeVariant } from 'docs/src/modules/sandbox/types';
+
+const CSB_DEV_DEPENDENCIES = {
+  'react-scripts': 'latest',
+};
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -23,10 +27,11 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   form.target = '_blank';
   form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
   addHiddenInput(form, 'parameters', parameters);
+  addHiddenInput(form, 'embed', '1');
   addHiddenInput(
     form,
     'query',
-    `file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
+    `module=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}&fontsize=12`,
   );
   document.body.appendChild(form);
   form.submit();
@@ -45,10 +50,7 @@ function createReactApp(demoData: DemoData) {
       content: CRA.getRootIndex(demoData),
     },
     [`src/Demo.${ext}`]: {
-      content: flattenRelativeImports(
-        demoData.raw,
-        demoData.relativeModules?.map((file) => file.module),
-      ),
+      content: flattenRelativeImports(demoData.raw),
     },
     // Spread the relative modules
     ...(demoData.relativeModules &&
@@ -58,7 +60,7 @@ function createReactApp(demoData: DemoData) {
           ...acc,
           // Remove the path and keep the filename
           [`src/${curr.module.replace(/^.*[\\/]/g, '')}`]: {
-            content: curr.raw,
+            content: flattenRelativeImports(curr.raw),
           },
         }),
         {},
@@ -72,10 +74,12 @@ function createReactApp(demoData: DemoData) {
 
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    devDeps: CSB_DEV_DEPENDENCIES,
   });
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -85,9 +89,6 @@ function createReactApp(demoData: DemoData) {
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(demoData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 
@@ -112,7 +113,6 @@ function createJoyTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-  codeStyling?: CodeStyling;
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
@@ -125,7 +125,6 @@ function createJoyTemplate(templateData: {
       content: CRA.getHtml({
         title: templateData.title,
         language: 'en',
-        codeStyling: templateData.codeStyling ?? 'MUI System',
       }),
     },
     [`index.${ext}`]: {
@@ -166,11 +165,13 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      devDeps: CSB_DEV_DEPENDENCIES,
     },
   );
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -180,9 +181,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(templateData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 
@@ -196,7 +194,100 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   };
 }
 
+function createMaterialTemplate(templateData: {
+  title: string;
+  files: Record<string, string>;
+  githubLocation: string;
+  codeVariant: CodeVariant;
+}) {
+  const ext = getFileExtension(templateData.codeVariant);
+  const { title, githubLocation: description } = templateData;
+
+  // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
+  const type = templateData.codeVariant === 'TS' ? '!' : '';
+
+  const files: Record<string, { content: string | Record<string, any> }> = {
+    'public/index.html': {
+      content: CRA.getHtml({
+        title: templateData.title,
+        language: 'en',
+      }),
+    },
+    [`index.${ext}`]: {
+      content: `import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider } from '@mui/material/styles';
+import App from './App';
+
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <App />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`,
+    },
+    ...Object.entries(templateData.files).reduce(
+      (prev, curr) => ({
+        ...prev,
+        [curr[0]]: {
+          content: curr[1],
+        },
+      }),
+      {},
+    ),
+    ...(templateData.codeVariant === 'TS' && {
+      'tsconfig.json': {
+        content: CRA.getTsconfig(),
+      },
+    }),
+  };
+
+  const { dependencies, devDependencies } = SandboxDependencies(
+    {
+      codeVariant: templateData.codeVariant,
+      raw: Object.entries(templateData.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
+      productId: 'material-ui',
+    },
+    {
+      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      devDeps: CSB_DEV_DEPENDENCIES,
+    },
+  );
+
+  files['package.json'] = {
+    content: {
+      private: true,
+      description,
+      dependencies,
+      devDependencies,
+      scripts: {
+        start: 'react-scripts start',
+        build: 'react-scripts build',
+        test: 'react-scripts test',
+        eject: 'react-scripts eject',
+      },
+    },
+  };
+
+  return {
+    title,
+    files,
+    dependencies,
+    devDependencies,
+    replaceContent(updater: (content: string | Record<string, any>, filePath: string) => string) {
+      Object.keys(files).forEach((filePath) => {
+        files[filePath].content = updater(files[filePath].content, filePath);
+      });
+      return this;
+    },
+    openSandbox: (initialFile: string = '/App') =>
+      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
+  };
+}
+
 export default {
   createReactApp,
   createJoyTemplate,
+  createMaterialTemplate,
 };

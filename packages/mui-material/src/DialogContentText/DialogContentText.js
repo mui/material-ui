@@ -28,7 +28,6 @@ const DialogContentTextRoot = styled(Typography, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiDialogContentText',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
@@ -40,7 +39,7 @@ const DialogContentText = React.forwardRef(function DialogContentText(inProps, r
     <DialogContentTextRoot
       component="p"
       variant="body1"
-      color="text.secondary"
+      color="textSecondary"
       ref={ref}
       ownerState={ownerState}
       className={clsx(classes.root, className)}

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import CircularProgress from '@mui/joy/CircularProgress';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 

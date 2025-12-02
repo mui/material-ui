@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -9,7 +8,7 @@ import describeConformance from '../../test/describeConformance';
 describe('<Rating />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Rating />, () => ({
+  describeConformance(<Rating max={0} />, () => ({
     classes,
     inheritComponent: 'span',
     render,
@@ -18,7 +17,53 @@ describe('<Rating />', () => {
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      label: {
+        expectedClassName: classes.label,
+      },
+    },
+    skip: ['componentsProp'],
+  }));
+
+  describeConformance(<Rating max={1} />, () => ({
+    render,
+    refInstanceof: window.HTMLSpanElement,
+    slots: {
+      icon: {
+        expectedClassName: classes.icon,
+      },
+    },
+    only: [
+      'slotsProp',
+      'slotPropsProp',
+      'slotPropsCallback',
+      'slotPropsCallbackWithPropsAsOwnerState',
+    ],
+  }));
+
+  function CustomDecimal({ iconActive, ownerState, ...props }) {
+    return <i data-testid="custom" {...props} />;
+  }
+
+  describeConformance(<Rating max={1} precision={0.5} />, () => ({
+    render,
+    refInstanceof: window.HTMLSpanElement,
+    slots: {
+      decimal: {
+        expectedClassName: classes.decimal,
+        testWithComponent: CustomDecimal,
+        testWithElement: CustomDecimal,
+      },
+    },
+    only: [
+      'slotsProp',
+      'slotPropsProp',
+      'slotPropsCallback',
+      'slotPropsCallbackWithPropsAsOwnerState',
+    ],
   }));
 
   it('should render', () => {
@@ -148,11 +193,11 @@ describe('<Rating />', () => {
   });
 
   it('has a customization point for the label of the empty value when it is active', () => {
-    const { container } = render(
+    const view = render(
       <Rating classes={{ labelEmptyValueActive: 'customized' }} name="" value={null} />,
     );
 
-    expect(container.querySelector('.customized')).to.equal(null);
+    expect(view.container.querySelector('.customized')).to.equal(null);
 
     act(() => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
@@ -162,14 +207,10 @@ describe('<Rating />', () => {
       noValueRadio.focus();
     });
 
-    expect(container.querySelector('.customized')).to.have.tagName('label');
+    expect(view.container.querySelector('.customized')).to.have.tagName('label');
   });
 
-  it('should apply labelEmptyValueActive styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply labelEmptyValueActive styles from theme', function test() {
     const theme = createTheme({
       components: {
         MuiRating: {
@@ -181,7 +222,7 @@ describe('<Rating />', () => {
         },
       },
     });
-    const { container } = render(
+    const view = render(
       <ThemeProvider theme={theme}>
         <Rating value={null} />
       </ThemeProvider>,
@@ -195,7 +236,7 @@ describe('<Rating />', () => {
       noValueRadio.focus();
     });
 
-    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
+    expect(view.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
       height: '120px',
     });
   });
@@ -210,6 +251,26 @@ describe('<Rating />', () => {
     expect(arbitraryRadio.name).not.to.equal('');
     // all input[type="radio"] have the same name
     expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
+  });
+
+  it('should use `name` as prefix of input element ids', () => {
+    render(<Rating name="rating-test" />);
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+
+    for (let i = 0; i < radios.length; i += 1) {
+      expect(radios[i].getAttribute('id')).to.match(/^rating-test-/);
+    }
+  });
+
+  it('should be able to replace the icon', () => {
+    function Icon(props) {
+      return <i data-testid="custom" {...props} />;
+    }
+    render(<Rating name="rating-test" max={1} slotProps={{ icon: { component: Icon } }} />);
+
+    expect(screen.getByTestId('custom')).to.have.property('tagName', 'I');
+    expect(screen.getByTestId('custom')).to.have.class(classes.icon);
   });
 
   describe('prop: readOnly', () => {
@@ -238,15 +299,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describe('<form> integration', () => {
-    before(function beforeHook() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM has issues with form validation for certain elements.
-        // We could address them individually but that doesn't add much value if we already have a working environment.
-        this.skip();
-      }
-    });
-
+  describe.skipIf(isJsdom())('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },

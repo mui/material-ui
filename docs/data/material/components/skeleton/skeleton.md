@@ -2,7 +2,8 @@
 productId: material-ui
 title: React Skeleton component
 components: Skeleton
-githubLabel: 'component: skeleton'
+githubLabel: 'scope: skeleton'
+githubSource: packages/mui-material/src/Skeleton
 ---
 
 # Skeleton

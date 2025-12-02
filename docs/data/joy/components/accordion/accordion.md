@@ -2,13 +2,15 @@
 productId: joy-ui
 title: React Accordion component
 components: Accordion, AccordionDetails, AccordionGroup, AccordionSummary
-githubLabel: 'component: accordion'
+githubLabel: 'scope: accordion'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
 # Accordion
 
 <p class="description">Accordions let users show and hide sections of related content on a page.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

@@ -4,16 +4,18 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
+import useFormControl from '../FormControl/useFormControl';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import useSlot from '../utils/useSlot';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
@@ -42,58 +44,62 @@ const RadioRoot = styled(SwitchBase, {
       styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  [`&.${radioClasses.disabled}`]: {
-    color: (theme.vars || theme).palette.action.disabled,
-  },
-  variants: [
-    {
-      props: { color: 'default', disableRipple: false },
-      style: {
-        '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        },
-      },
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    [`&.${radioClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
     },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color, disableRipple: false },
+    variants: [
+      {
+        props: { color: 'default', disabled: false, disableRipple: false },
         style: {
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-          },
-        },
-      })),
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette && palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          [`&.${radioClasses.checked}`]: {
-            color: (theme.vars || theme).palette[color].main,
-          },
-        },
-      })),
-    {
-      // Should be last to override other colors
-      props: { disableRipple: false },
-      style: {
-        // Reset on touch devices, it doesn't add specificity
-        '&:hover': {
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.action.active,
+              (theme.vars || theme).palette.action.hoverOpacity,
+            ),
           },
         },
       },
-    },
-  ],
-}));
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color, disabled: false, disableRipple: false },
+          style: {
+            '&:hover': {
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                (theme.vars || theme).palette.action.hoverOpacity,
+              ),
+            },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color, disabled: false },
+          style: {
+            [`&.${radioClasses.checked}`]: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          },
+        })),
+      {
+        // Should be last to override other colors
+        props: { disableRipple: false },
+        style: {
+          // Reset on touch devices, it doesn't add specificity
+          '&:hover': {
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+    ],
+  })),
+);
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {
@@ -118,11 +124,29 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onChange: onChangeProp,
     size = 'medium',
     className,
+    disabled: disabledProp,
     disableRipple = false,
+    slots = {},
+    slotProps = {},
+    inputProps,
     ...other
   } = props;
+
+  const muiFormControl = useFormControl();
+
+  let disabled = disabledProp;
+
+  if (muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
+  }
+
+  disabled ??= false;
+
   const ownerState = {
     ...props,
+    disabled,
     disableRipple,
     color,
     size,
@@ -144,23 +168,47 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     }
   }
 
-  return (
-    <RadioRoot
-      type="radio"
-      icon={React.cloneElement(icon, { fontSize: defaultIcon.props.fontSize ?? size })}
-      checkedIcon={React.cloneElement(checkedIcon, {
-        fontSize: defaultCheckedIcon.props.fontSize ?? size,
-      })}
-      ownerState={ownerState}
-      classes={classes}
-      name={name}
-      checked={checked}
-      onChange={onChange}
-      ref={ref}
-      className={clsx(classes.root, className)}
-      {...other}
-    />
-  );
+  const externalInputProps = slotProps.input ?? inputProps;
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: RadioRoot,
+    className: clsx(classes.root, className),
+    shouldForwardComponentProp: true,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+      ...other,
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onChange: (event, ...args) => {
+        handlers.onChange?.(event, ...args);
+        onChange(event, ...args);
+      },
+    }),
+    ownerState,
+    additionalProps: {
+      type: 'radio',
+      icon: React.cloneElement(icon, { fontSize: icon.props.fontSize ?? size }),
+      checkedIcon: React.cloneElement(checkedIcon, {
+        fontSize: checkedIcon.props.fontSize ?? size,
+      }),
+      disabled,
+      name,
+      checked,
+      slots,
+      slotProps: {
+        // Do not forward `slotProps.root` again because it's already handled by the `RootSlot` in this file.
+        input:
+          typeof externalInputProps === 'function'
+            ? externalInputProps(ownerState)
+            : externalInputProps,
+      },
+    },
+  });
+
+  return <RootSlot {...rootSlotProps} classes={classes} />;
 });
 
 Radio.propTypes /* remove-proptypes */ = {
@@ -214,11 +262,13 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
   /**
    * Pass a ref to the `input` element.
+   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputRef: refType,
   /**
@@ -247,6 +297,22 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

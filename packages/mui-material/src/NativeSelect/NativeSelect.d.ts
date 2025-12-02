@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 import { NativeSelectClasses } from './nativeSelectClasses';
@@ -26,9 +27,9 @@ export interface NativeSelectProps
    * An `Input` element; does not have to be a material-ui specific `Input`.
    * @default <Input />
    */
-  input?: React.ReactElement<any, any>;
+  input?: React.ReactElement<unknown, any>;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select#attributes) applied to the `select` element.
    */
   inputProps?: Partial<NativeSelectInputProps>;
   /**
@@ -57,12 +58,12 @@ export interface NativeSelectProps
  *
  * Demos:
  *
- * - [Select](https://next.mui.com/material-ui/react-select/)
+ * - [Select](https://mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [NativeSelect API](https://next.mui.com/material-ui/api/native-select/)
- * - inherits [Input API](https://next.mui.com/material-ui/api/input/)
+ * - [NativeSelect API](https://mui.com/material-ui/api/native-select/)
+ * - inherits [Input API](https://mui.com/material-ui/api/input/)
  */
 declare const NativeSelect: ((props: NativeSelectProps) => React.JSX.Element) & { muiName: string };
 

@@ -1,11 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 import describeConformance from '../../test/describeConformance';
+
+const CustomCollapse = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
+const CustomWrapper = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
+const CustomWrapperInner = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} />
+));
 
 describe('<Collapse />', () => {
   const { clock, render } = createRenderer();
@@ -23,6 +33,14 @@ describe('<Collapse />', () => {
     muiName: 'MuiCollapse',
     testVariantProps: { orientation: 'horizontal' },
     testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    slots: {
+      root: { expectedClassName: classes.root, testWithElement: CustomCollapse },
+      wrapper: { expectedClassName: classes.wrapper, testWithElement: CustomWrapper },
+      wrapperInner: {
+        expectedClassName: classes.wrapperInner,
+        testWithElement: CustomWrapperInner,
+      },
+    },
     skip: ['componentsProp'],
   }));
 
@@ -78,7 +96,8 @@ describe('<Collapse />', () => {
     const handleAddEndListener = spy();
 
     beforeEach(() => {
-      const renderProps = render(
+      // eslint-disable-next-line testing-library/no-render-in-lifecycle
+      ({ container, setProps } = render(
         <Collapse
           addEndListener={handleAddEndListener}
           onEnter={handleEnterWrapper}
@@ -91,9 +110,7 @@ describe('<Collapse />', () => {
         >
           <div />
         </Collapse>,
-      );
-      container = renderProps.container;
-      setProps = renderProps.setProps;
+      ));
       collapse = container.firstChild;
       stub(collapse.firstChild, 'clientHeight').get(() => 666);
     });
@@ -155,12 +172,12 @@ describe('<Collapse />', () => {
           </ThemeProvider>
         );
       }
-      const renderProps1 = render(<Test />);
-      const collapse = renderProps1.container.firstChild;
+      const { setProps: setProps1, container: container1 } = render(<Test />);
+      const collapse = container1.firstChild;
       // Gets wrapper
       stub(collapse.firstChild, 'clientHeight').get(() => 10);
 
-      renderProps1.setProps({
+      setProps1({
         in: true,
       });
 
@@ -174,12 +191,12 @@ describe('<Collapse />', () => {
       expect(next1.callCount).to.equal(1);
 
       const next2 = spy();
-      const renderProps2 = render(
+      const { setProps: setProps2 } = render(
         <Collapse timeout="auto" onEntered={next2}>
           <div />
         </Collapse>,
       );
-      renderProps2.setProps({ in: true });
+      setProps2({ in: true });
 
       expect(next2.callCount).to.equal(0);
       clock.tick(0);
@@ -268,4 +285,21 @@ describe('<Collapse />', () => {
       expect(handleExiting.args[0][0].style.height).to.equal(collapsedSize);
     });
   });
+
+  // Test for https://github.com/mui/material-ui/issues/40653
+  it.skipIf(isJsdom())(
+    'should render correctly when external ownerState prop is passed',
+    function test() {
+      const { container } = render(
+        <Collapse in ownerState={{}}>
+          <div style={{ height: '100px' }} />
+        </Collapse>,
+      );
+      const collapse = container.firstChild;
+
+      expect(collapse).toHaveComputedStyle({
+        height: '100px',
+      });
+    },
+  );
 });
