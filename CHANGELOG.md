@@ -39,7 +39,7 @@ A big thanks to the 22 contributors who made this release possible.
 - [docs] Fix default theme viewer styling (#47400) @sai6855
 - [docs] Remove repetitive words (#47384) @rifeplight
 - [docs] Fix link to Portal API docs (#47383) @ZeeshanTamboli
-- [docs] Remove mentions of MUI Base from Material UI docs (#47324) @mapache-salvaje
+- [docs] Remove mentions of MUI Base from Material UI docs (#47324) @mapache-salvaje
 - [docs] Update CSP guidance (#47342) @rossdakin
 - [docs] Fix pathname collision in LLMs docs generator (#47209) @siriwatknp
 - [docs] Resolve redirected urls to their final location (#47193) @Janpot
