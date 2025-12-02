@@ -5,7 +5,8 @@ import * as fs from 'fs';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
-import { findPages } from './src/modules/utils/find';
+import { Configuration } from 'webpack';
+import { findPages, NextJSPage } from './src/modules/utils/find';
 import { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES, LANGUAGES_IN_PROGRESS } from './config';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
@@ -25,7 +26,8 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
-  webpack: (config: NextConfig, options): NextConfig => {
+  webpack: (config: Configuration, options): Configuration => {
+    config.plugins ??= [];
     const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
@@ -52,11 +54,16 @@ export default withDocsInfra({
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
+      if (!Array.isArray(config.externals)) {
+        throw new Error('Expected externals to be an array');
+      }
       const externals = config.externals.slice(0, -1);
       const nextExternals = config.externals.at(-1);
+      if (typeof nextExternals !== 'function') {
+        throw new Error('Expected externals to be a function');
+      }
 
       config.externals = [
-        // @ts-ignore
         (ctx, callback) => {
           const { request } = ctx;
           const hasDependencyOnRepoPackages = [
@@ -64,7 +71,7 @@ export default withDocsInfra({
             // Assume any X dependencies depend on a package defined in this repository.
             '@mui/x-',
             '@toolpad/core',
-          ].some((dep) => request.startsWith(dep));
+          ].some((dep) => request?.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -75,10 +82,17 @@ export default withDocsInfra({
       ];
     }
 
-    // @ts-ignore
+    config.module ??= {};
+    config.module.rules ??= [];
     config.module.rules.forEach((rule) => {
-      rule.resourceQuery = { not: [/raw/] };
+      if (rule && typeof rule === 'object') {
+        rule.resourceQuery = { not: [/raw/] };
+      }
     });
+
+    config.resolve ??= {};
+    config.resolve.alias ??= {};
+    config.resolve.extensions ??= [];
 
     return {
       ...config,
@@ -118,7 +132,6 @@ export default withDocsInfra({
         },
         extensions: [
           '.tsx',
-          // @ts-ignore
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
       },
@@ -201,16 +214,13 @@ export default withDocsInfra({
   distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
-  // @ts-ignore
   exportPathMap: () => {
     const pages = findPages();
-    const map = {};
+    const map: Record<string, { page: string; query: { userLanguage: string } }> = {};
 
-    // @ts-ignore
-    function traverse(pages2, userLanguage) {
+    function traverse(pages2: NextJSPage[], userLanguage: string) {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
-      // @ts-ignore
       pages2.forEach((page) => {
         // The experiments pages are only meant for experiments, they shouldn't leak to production.
         if (
@@ -227,7 +237,6 @@ export default withDocsInfra({
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
           // ii: /*/api-docs/* > /*/api/* (for new structure)
-          // @ts-ignore
           map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
             page: page.pathname,
             query: {

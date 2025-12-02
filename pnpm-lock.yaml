@@ -581,6 +581,9 @@ importers:
       '@types/stylis':
         specifier: ^4.2.7
         version: 4.2.7
+      '@types/webpack-bundle-analyzer':
+        specifier: ^4.7.0
+        version: 4.7.0(webpack-cli@6.0.1(webpack@5.101.3))
       chai:
         specifier: ^6.0.1
         version: 6.2.1
@@ -5520,6 +5523,9 @@ packages:
 
   '@types/uuid@10.0.0':
     resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
+
+  '@types/webpack-bundle-analyzer@4.7.0':
+    resolution: {integrity: sha512-c5i2ThslSNSG8W891BRvOd/RoCjI2zwph8maD22b1adtSns20j+0azDDMCK06DiVrzTgnwiDl5Ntmu1YRJw8Sg==}
 
   '@types/which@2.0.2':
     resolution: {integrity: sha512-113D3mDkZDjo+EeUEHCFy0qniNc1ZpecGiAU7WSo7YDoSzolZIQKpYFHrPpjkB2nuyahcKfrmLXeQlh7gqJYdw==}
@@ -17071,6 +17077,17 @@ snapshots:
 
   '@types/uuid@10.0.0': {}
 
+  '@types/webpack-bundle-analyzer@4.7.0(webpack-cli@6.0.1(webpack@5.101.3))':
+    dependencies:
+      '@types/node': 20.19.25
+      tapable: 2.2.1
+      webpack: 5.101.3(webpack-cli@6.0.1(webpack@5.101.3))
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+      - webpack-cli
+
   '@types/which@2.0.2':
     optional: true
 
@@ -24353,7 +24370,7 @@ snapshots:
 
   temp-dir@1.0.0: {}
 
-  terser-webpack-plugin@5.3.14(webpack@5.101.3(webpack-cli@6.0.1(webpack@5.101.3))):
+  terser-webpack-plugin@5.3.14(webpack@5.101.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
@@ -25052,7 +25069,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.2
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.14(webpack@5.101.3(webpack-cli@6.0.1(webpack@5.101.3)))
+      terser-webpack-plugin: 5.3.14(webpack@5.101.3)
       watchpack: 2.4.1
       webpack-sources: 3.3.3
     optionalDependencies:
