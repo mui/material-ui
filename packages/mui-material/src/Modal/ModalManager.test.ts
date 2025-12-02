@@ -129,18 +129,18 @@ describe('ModalManager', () => {
     });
 
     it('should handle the scroll', () => {
-      fixedNode.style.paddingRight = '14px';
+      fixedNode.style.paddingRight = '14.4px';
 
       const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
       expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
-      expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${14.4 + getScrollbarSize(window)}px`);
       modalManager.remove(modal);
       expect(container1.style.overflow).to.equal('');
       expect(container1.style.paddingRight).to.equal('20px');
-      expect(fixedNode.style.paddingRight).to.equal('14px');
+      expect(fixedNode.style.paddingRight).to.equal('14.4px');
     });
 
     it('should disable the scroll even when not overflowing', () => {

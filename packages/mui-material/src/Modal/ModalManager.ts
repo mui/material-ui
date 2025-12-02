@@ -26,7 +26,7 @@ export function ariaHidden(element: Element, hide: boolean): void {
 }
 
 function getPaddingRight(element: Element): number {
-  return parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) || 0;
+  return parseFloat(ownerWindow(element).getComputedStyle(element).paddingRight) || 0;
 }
 
 function isAriaHiddenForbiddenOnElement(element: Element): boolean {
