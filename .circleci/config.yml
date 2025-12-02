@@ -2,12 +2,9 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/9cc15ae47e8be0c5f9fe8c09553d5aeb238b9d8a/.circleci/orbs/code-infra.yml
 
 parameters:
-  browserstack-force:
-    description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
-    type: boolean
-    default: false
   workflow:
     description: The name of the workflow to run
     type: string
@@ -27,30 +24,18 @@ default-job: &default-job
       description: The version of typescript to be used
       type: string
       default: stable
-    test-gate:
-      description: A particular type of tests that should be run
-      type: string
-      default: undefined
     e2e-base-url:
       description: The base url for running end-to-end test
       type: string
       default: << pipeline.parameters.e2e-base-url >>
-    browserstack-enabled:
-      type: boolean
-      default: false
   environment:
-    # expose it globally otherwise we have to thread it from each job to the install command
-    BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
-    BROWSERSTACK_ENABLED: << parameters.browserstack-enabled >>
-    REACT_VERSION: << parameters.react-version >>
-    TYPESCRIPT_VERSION: << parameters.typescript-version >>
-    TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
-  docker:
-    - image: cimg/node:22.18
+  executor:
+    name: code-infra/mui-node
+    node-version: '22.18'
 
 default-context: &default-context
   context:
@@ -66,70 +51,35 @@ default-context: &default-context
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
 commands:
-  setup_corepack:
+  install-deps:
     parameters:
-      browsers:
+      ignore-workspace:
         type: boolean
         default: false
-        description: 'Set to true if you intend to any browser (for example with playwright).'
+      react-version:
+        type: string
+        default: stable
+      typescript-version:
+        type: string
+        default: stable
+      playwright-version:
+        type: string
+        default: stable
     steps:
-      - run:
-          name: Set npm registry public signing keys
-          command: |
-            echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
-      - when:
-          condition: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install pnpm package manager
-                command: corepack enable
-      - when:
-          condition:
-            not: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install pnpm package manager
-                command: sudo corepack enable
-      - run:
-          name: View install environment
-          command: |
-            which node
-            node --version
-            which pnpm
-            pnpm --version
-  install_js:
-    parameters:
-      browsers:
-        type: boolean
-        default: false
-        description: 'Set to true if you intend to any browser (for example with playwright).'
-    steps:
-      - setup_corepack:
-          browsers: << parameters.browsers >>
-      - run:
-          name: Install js dependencies
-          command: pnpm install
-      - run:
-          name: Set version overrides
-          command: |
-            pnpm code-infra set-version-overrides --pkg "react@$REACT_VERSION" --pkg "typescript@$TYPESCRIPT_VERSION"
+      - code-infra/install-deps:
+          package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >> @playwright/test@<< parameters.playwright-version >> playwright@<< parameters.playwright-version >>
+          ignore-workspace: << parameters.ignore-workspace >>
 
 jobs:
   test_unit:
     <<: *default-job
     steps:
       - checkout
-      - install_js
+      - install-deps:
+          react-version: << parameters.react-version >>
       - run:
           name: Tests fake browser
-          command: pnpm test:coverage:ci
-      - run:
-          name: Check coverage generated
-          command: |
-            if ! [[ -s coverage/lcov.info ]]
-            then
-              exit 1
-            fi
+          command: pnpm test:node --no-isolate --no-file-parallelism --coverage
       - run:
           name: internal-scripts
           command: |
@@ -145,54 +95,23 @@ jobs:
             else
               echo "no changes"
             fi
-      - run:
-          name: Coverage
-          command: |
-            curl -Os https://uploader.codecov.io/latest/linux/codecov
-            chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
+      - code-infra/upload-coverage:
+          key: '<< parameters.react-version >>-jsdom'
+      - store_test_results:
+          path: test-results
+
   test_lint:
     <<: *default-job
     steps:
       - checkout
-      - install_js
-      - run:
-          name: ESLint
-          command: pnpm eslint:ci
-      - run:
-          name: Stylelint
-          command: pnpm stylelint
-      - run:
-          name: Lint Markdown
-          command: pnpm markdownlint
-      - run:
-          name: Lint writing style
-          command: pnpm valelint
+      - install-deps
+      - code-infra/run-linters
   test_static:
     <<: *default-job
     steps:
       - checkout
-      - install_js
-      - run:
-          name: '`pnpm dedupe` was run?'
-          command: |
-            # #target-branch-reference
-            if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
-            then
-                echo "No changes to dependencies detected. Skipping..."
-            else
-                pnpm dedupe --check
-            fi
-      - run:
-          name: '`pnpm prettier` changes committed?'
-          command: |
-            # #target-branch-reference
-            if [[ $(git diff --name-status master | grep pnpm-lock) == "" ]];
-            then
-                pnpm prettier --check
-            else
-                pnpm exec prettier --check . --ignore-path .lintignore
-            fi
+      - install-deps
+      - code-infra/check-static-changes
       - run:
           name: Generate PropTypes
           command: pnpm proptypes
@@ -216,17 +135,12 @@ jobs:
           command: |
             pnpm extract-error-codes
             git add -A && git diff --exit-code --staged
-      - run:
-          name: '`pnpm docs:link-check` changes committed?'
-          command: |
-            pnpm docs:link-check
-            git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
     resource_class: 'medium+'
     steps:
       - checkout
-      - install_js
+      - install-deps
       - run:
           name: Transpile TypeScript demos
           command: pnpm docs:typescript:formatted
@@ -240,16 +154,14 @@ jobs:
             NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Test module augmentation
-          command: |
-            pnpm --filter @mui/material typescript:module-augmentation
-            pnpm --filter @mui/joy typescript:module-augmentation
-            pnpm --filter @mui/system typescript:module-augmentation
+          command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
     resource_class: 'medium+'
     steps:
       - checkout
-      - install_js
+      - install-deps:
+          typescript-version: << parameters.typescript-version >>
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
@@ -267,18 +179,55 @@ jobs:
           name: Log defect declaration files
           command: |
             node scripts/testBuiltTypes.mjs
+  test_browser_legacy:
+    <<: *default-job
+    resource_class: 'medium+'
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.49.1-noble
+    steps:
+      - checkout
+      - install-deps:
+          react-version: << parameters.react-version >>
+          playwright-version: '1.49.1'
+      - run:
+          name: Tests chromium
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests webkit
+          environment:
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests firefox
+          environment:
+            VITEST_BROWSERS: 'firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - store_test_results:
+          path: test-results
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     steps:
       - checkout
-      - install_js:
-          browsers: true
+      - install-deps:
+          react-version: << parameters.react-version >>
       - run:
-          name: Tests real browsers
-          command: pnpm test:karma
+          name: Tests chromium
+          command: pnpm test:browser --no-isolate --no-file-parallelism --coverage
+      - run:
+          name: Tests webkit
+          environment:
+            VITEST_BROWSERS: 'webkit'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
+      - run:
+          name: Tests firefox
+          environment:
+            VITEST_BROWSERS: 'firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
           name: Check coverage generated
           command: |
@@ -286,80 +235,54 @@ jobs:
             then
               exit 1
             fi
-      - run:
-          name: Coverage
-          command: |
-            curl -Os https://uploader.codecov.io/latest/linux/codecov
-            chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-browser"
-      - store_artifacts:
-          # hardcoded in karma-webpack
-          path: /tmp/_karma_webpack_
-          destination: artifact-file
+      - code-infra/upload-coverage:
+          key: '<< parameters.react-version >>-browser'
+      - store_test_results:
+          path: test-results
   test_e2e:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     steps:
       - checkout
-      - install_js:
-          browsers: true
+      - install-deps:
+          react-version: << parameters.react-version >>
       - run:
           name: pnpm test:e2e
           command: pnpm test:e2e
   test_e2e_website:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     steps:
       - checkout
-      - install_js:
-          browsers: true
+      - install-deps
       - run:
           name: pnpm test:e2e-website
           command: pnpm test:e2e-website
           environment:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
-  test_profile:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
-      - run:
-          name: Tests real browsers
-          # Run a couple of times for a better sample.
-          # TODO: hack something together where we can compile once and run multiple times e.g. by abusing watchmode.
-          command: |
-            # Running on chrome only since actual times are innaccurate anyway
-            # The other reason is that browserstack allows little concurrency so it's likely that we're starving other runs.
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-            pnpm test:karma:profile --browsers chrome,chromeHeadless
-      # Persist reports for inspection in https://frontend-public.mui.com/
-      - store_artifacts:
-          # see karma.conf.profile.js reactProfilerReporter.outputDir
-          path: tmp/react-profiler-report/karma
-          destination: react-profiler-report/karma
   test_regressions:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     steps:
       - checkout
-      - install_js:
-          browsers: true
+      - install-deps:
+          react-version: << parameters.react-version >>
       - run:
           name: Run visual regression tests
           command: xvfb-run pnpm test:regressions
       - run:
           name: Build packages for fixtures
           command: pnpm release:build
+      - run:
+          name: Validate type declarations
+          command: pnpm validate-declarations
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
@@ -376,7 +299,7 @@ jobs:
     <<: *default-job
     steps:
       - checkout
-      - install_js
+      - install-deps
       - run:
           name: Build packages for fixtures
           command: pnpm lerna run --scope "@mui/*" build
@@ -395,10 +318,8 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
@@ -410,101 +331,89 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           # TODO: Known failure
           command: pnpm start
   test_bundling_next_webpack4:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_next_webpack5:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_create_react_app:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_snowpack:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_vite:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
@@ -518,31 +427,26 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_gatsby:
     <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.56.1-noble
-        environment:
-          GATSBY_CPU_COUNT: '3'
+    executor:
+      name: code-infra/mui-node-browser
+      playwright-img-version: v1.56.1-noble
+      environment:
+        GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
-          browsers: true
-      - run:
-          name: Install dependencies
-          command: pnpm install --ignore-workspace
+      - install-deps:
+          ignore-workspace: true
       - run:
           name: Test fixture
           command: pnpm start
@@ -550,22 +454,20 @@ jobs:
     <<: *default-job
     steps:
       - checkout
-      - install_js
+      - install-deps
       - run:
           name: prepare danger on PRs
           command: pnpm danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
-      - setup_corepack
-
       - run:
           name: build @mui packages
-          command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+          command: pnpm release:build
       - aws-cli/setup:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
           region: ${AWS_REGION_ARTIFACTS}
-
+      # @TODO: Not using code-infra/upload-size-snapshot since it doesn't support setting concurrency yet
       - run:
           name: create and upload a size snapshot
           command: |
@@ -618,8 +520,8 @@ workflows:
           <<: *default-context
       - test_browser:
           <<: *default-context
-          # only enable on pipeline, the karma.conf.js has logic to disable browserstack on PRs
-          browserstack-enabled: true
+      - test_browser_legacy:
+          <<: *default-context
       - test_regressions:
           <<: *default-context
       - test_e2e:
@@ -674,12 +576,6 @@ workflows:
           <<: *default-context
           requires:
             - test_bundling_prepare
-  profile:
-    when:
-      equal: [profile, << pipeline.parameters.workflow >>]
-    jobs:
-      - test_profile:
-          <<: *default-context
 
   # This workflow can be triggered manually on the PR
   react-17:
@@ -759,8 +655,7 @@ workflows:
   react-18-cron:
     triggers:
       - schedule:
-          # Stagger daily cron job to prevent Browserstack timeouts
-          cron: '40 23 * * *'
+          cron: '0 0 * * *'
           filters:
             branches:
               only:
@@ -811,8 +706,7 @@ workflows:
   react-next-cron:
     triggers:
       - schedule:
-          # Stagger daily cron job to prevent Browserstack timeouts
-          cron: '50 23 * * *'
+          cron: '0 0 * * *'
           filters:
             branches:
               only:

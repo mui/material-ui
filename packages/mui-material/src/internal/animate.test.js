@@ -1,15 +1,14 @@
 import { expect } from 'chai';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import animate from './animate';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-const isJSDOM = window.navigator.userAgent.includes('jsdom');
+const isJSDOM = isJsdom();
 
-describeSkipIf(isJSDOM || isSafari)('animate', () => {
+describe.skipIf(isJSDOM || isSafari)('animate', () => {
   let container;
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
-  before(function beforeHook() {
+  beforeAll(function beforeHook() {
     container = document.createElement('div');
     container.style.cssText = [
       'height: 100px',
@@ -23,8 +22,7 @@ describeSkipIf(isJSDOM || isSafari)('animate', () => {
     document.body.appendChild(container);
   });
 
-  // eslint-disable-next-line mocha/no-top-level-hooks
-  after(() => {
+  afterAll(() => {
     if (container !== undefined) {
       document.body.removeChild(container);
     }

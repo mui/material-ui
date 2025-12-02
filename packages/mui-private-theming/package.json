@@ -26,7 +26,7 @@
   "scripts": {
     "build": "code-infra build --skipTsc",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-private-theming/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/private-theming\"",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
@@ -37,8 +37,8 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.20",
-    "@types/react": "^19.2.2",
+    "@types/chai": "^5.2.3",
+    "@types/react": "^19.2.7",
     "chai": "^6.0.1",
     "react": "^19.2.0"
   },

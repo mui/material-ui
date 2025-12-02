@@ -9,8 +9,8 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   screen,
+  isJsdom,
 } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
 import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
@@ -450,7 +450,7 @@ describe('<Chip />', () => {
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
     });
 
-    it('should call onClick when `space` is released ', () => {
+    it('should call onClick when `space` is released', () => {
       const handleClick = spy();
       render(<Chip onClick={handleClick} />);
       const chip = screen.getByRole('button');
@@ -463,7 +463,7 @@ describe('<Chip />', () => {
       expect(handleClick.callCount).to.equal(1);
     });
 
-    it('should call onClick when `enter` is pressed ', () => {
+    it('should call onClick when `enter` is pressed', () => {
       const handleClick = spy();
       render(<Chip onClick={handleClick} />);
       const chip = screen.getByRole('button');
@@ -668,7 +668,7 @@ describe('<Chip />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('event: focus', () => {
+  describe.skipIf(isJsdom())('event: focus', () => {
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);

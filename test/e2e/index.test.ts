@@ -95,9 +95,7 @@ describe('e2e', () => {
     await page.waitForSelector('[data-testid="testcase"]:not([aria-busy="true"])');
   }
 
-  before(async function beforeHook() {
-    this?.timeout?.(20000);
-
+  beforeAll(async function beforeHook() {
     browser = await chromium.launch({
       headless: true,
     });
@@ -108,9 +106,9 @@ describe('e2e', () => {
         `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
       );
     }
-  });
+  }, 20000);
 
-  after(async () => {
+  afterAll(async () => {
     await browser.close();
   });
 

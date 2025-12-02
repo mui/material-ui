@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grid, { gridClasses as classes } from '@mui/system/Grid';
@@ -46,28 +46,27 @@ describe('System <Grid />', () => {
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
 
-    it('should apply the styles necessary for variable width nested item when set to auto', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // Need full CSS resolution
-        this.skip();
-      }
-
-      render(
-        <Grid container>
-          <Grid container data-testid="auto" size="auto">
-            <div style={{ width: '300px' }} />
-          </Grid>
-          <Grid size={11} />
-        </Grid>,
-      );
-      expect(screen.getByTestId('auto')).toHaveComputedStyle({
-        flexBasis: 'auto',
-        flexGrow: '0',
-        flexShrink: '0',
-        maxWidth: 'none',
-        width: '300px',
-      });
-    });
+    // Need full CSS resolution
+    it.skipIf(isJsdom())(
+      'should apply the styles necessary for variable width nested item when set to auto',
+      function test() {
+        render(
+          <Grid container>
+            <Grid container data-testid="auto" size="auto">
+              <div style={{ width: '300px' }} />
+            </Grid>
+            <Grid size={11} />
+          </Grid>,
+        );
+        expect(screen.getByTestId('auto')).toHaveComputedStyle({
+          flexBasis: 'auto',
+          flexGrow: '0',
+          flexShrink: '0',
+          maxWidth: 'none',
+          width: '300px',
+        });
+      },
+    );
   });
 
   describe('prop: spacing', () => {
@@ -116,11 +115,7 @@ describe('System <Grid />', () => {
   });
 
   describe('spacing', () => {
-    it('should generate the right values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should generate the right values', function test() {
       const parentWidth = 500;
       const remValue = 16;
       const remTheme = createTheme({

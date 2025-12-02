@@ -4,22 +4,17 @@ import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslation
 import jsonPageContent from './image-list.json';
 
 export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  const { descriptions } = props;
+  return <ApiPage descriptions={descriptions} pageContent={jsonPageContent} />;
 }
 
 export async function getStaticProps() {
   const req = require.context(
     'docs/translations/api-docs/image-list',
     false,
-    /\.\/image-list.*.json$/,
+    /\.\/image-list.*\.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 
-  return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
-  };
+  return { props: { descriptions } };
 }

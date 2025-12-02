@@ -15,8 +15,7 @@ import MaterialDesignIcon from '../svgIcons/MaterialDesignIcon';
 import { useTranslate } from '../i18n';
 
 const Root = styled('ul')(({ theme }) => ({
-  margin: 0,
-  marginTop: theme.spacing(2),
+  margin: theme.spacing(2, 0),
   padding: 0,
   listStyle: 'none',
   display: 'flex',

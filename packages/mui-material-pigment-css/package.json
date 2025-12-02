@@ -27,9 +27,8 @@
   "scripts": {
     "build": "code-infra build --copy \"src/styles.css\" --copy \"src/styles.css:esm\"",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
-    "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-pigment-css\"",
+    "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",

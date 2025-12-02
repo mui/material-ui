@@ -33,11 +33,7 @@ describe('typescript-to-proptypes', () => {
     return cachedProject;
   }
 
-  // @ts-expect-error Second argument is vitest
-  before(function beforeHook() {
-    // Creating a TS program might take a while.
-    this?.timeout?.(20000);
-
+  beforeAll(function beforeHook() {
     const buildProject = createTypeScriptProjectBuilder({
       test: {
         rootPath: path.join(__dirname, '..'),
@@ -59,7 +55,7 @@ describe('typescript-to-proptypes', () => {
   testCases.forEach((testCase) => {
     const { name: testName, inputPath, inputJS, outputPath } = testCase;
 
-    it(testName, async () => {
+    it(`${testName}`, async () => {
       const project = getProject();
       let options: TestOptions = {};
       try {

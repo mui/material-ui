@@ -9,8 +9,8 @@ import {
 } from '@mui/internal-code-infra/eslint';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
-import eslintPluginReact from 'eslint-plugin-react';
 import * as path from 'node:path';
+import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
@@ -122,12 +122,20 @@ export default defineConfig(
   {
     files: [`**/*${EXTENSION_TEST_FILE}`],
     extends: createTestConfig({
-      useMocha: true,
+      useMocha: false,
+      useVitest: true,
     }),
+    languageOptions: {
+      globals: {
+        ...vitestPlugin.environments.env.globals,
+      },
+    },
     rules: {
       'material-ui/no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
+      // TODO: investigate and fix
+      'vitest/expect-expect': 'off',
     },
   },
   // Test end
@@ -285,23 +293,13 @@ export default defineConfig(
       'import/prefer-default-export': 'off',
     },
   },
-  // Migrated config from apps/bare-next-app/.eslintrc.js
   {
-    files: [`apps/**/*${EXTENSION_TS}`, `examples/**/*${EXTENSION_TS}`],
+    files: [`examples/**/*${EXTENSION_TS}`],
     rules: {
       'import/no-relative-packages': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'import/prefer-default-export': 'off',
-    },
-  },
-  {
-    files: [`apps/bare-next-app/**/*${EXTENSION_TS}`],
-    extends: [eslintPluginReact.configs.flat['jsx-runtime']],
-    rules: {
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
-      'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     },
   },
   {

@@ -7,6 +7,7 @@ import {
   fireEvent,
   screen,
   programmaticFocusTriggersFocusVisible,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,7 +16,7 @@ import Divider from '@mui/material/Divider';
 describe('<MenuList> integration', () => {
   const { clock, render } = createRenderer();
 
-  specify('the MenuItems have the `menuitem` role', () => {
+  it('the MenuItems have the `menuitem` role', () => {
     render(
       <MenuList>
         <MenuItem>Menu Item 1</MenuItem>
@@ -28,7 +29,7 @@ describe('<MenuList> integration', () => {
   });
 
   describe('keyboard controls and tabIndex manipulation', () => {
-    specify('the specified item should be in tab order while the rest is focusable', () => {
+    it('the specified item should be in tab order while the rest is focusable', () => {
       render(
         <MenuList>
           <MenuItem tabIndex={0}>Menu Item 1</MenuItem>
@@ -312,27 +313,24 @@ describe('<MenuList> integration', () => {
     });
   });
 
-  specify(
-    'initial focus is controlled by setting the selected prop when `autoFocusItem` is enabled',
-    () => {
-      render(
-        <MenuList autoFocusItem>
-          <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
-          <MenuItem selected>Menu Item 3</MenuItem>
-          <MenuItem>Menu Item 4</MenuItem>
-        </MenuList>,
-      );
+  it('initial focus is controlled by setting the selected prop when `autoFocusItem` is enabled', () => {
+    render(
+      <MenuList autoFocusItem>
+        <MenuItem>Menu Item 1</MenuItem>
+        <MenuItem>Menu Item 2</MenuItem>
+        <MenuItem selected>Menu Item 3</MenuItem>
+        <MenuItem>Menu Item 4</MenuItem>
+      </MenuList>,
+    );
 
-      const menuitems = screen.getAllByRole('menuitem');
+    const menuitems = screen.getAllByRole('menuitem');
 
-      expect(menuitems[2]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', -1);
-      expect(menuitems[2]).to.have.property('tabIndex', 0);
-      expect(menuitems[3]).to.have.property('tabIndex', -1);
-    },
-  );
+    expect(menuitems[2]).toHaveFocus();
+    expect(menuitems[0]).to.have.property('tabIndex', -1);
+    expect(menuitems[1]).to.have.property('tabIndex', -1);
+    expect(menuitems[2]).to.have.property('tabIndex', 0);
+    expect(menuitems[3]).to.have.property('tabIndex', -1);
+  });
 
   describe('MenuList with disableListWrap', () => {
     it('should not wrap focus with ArrowUp from first', () => {
@@ -476,7 +474,7 @@ describe('<MenuList> integration', () => {
   describe('MenuList text-based keyboard controls', () => {
     let innerTextSupported;
 
-    before(() => {
+    beforeAll(() => {
       const element = document.createElement('div');
       element.appendChild(document.createTextNode('Hello, Dave!'));
       innerTextSupported = element.innerText !== undefined;
@@ -542,12 +540,8 @@ describe('<MenuList> integration', () => {
       expect(screen.getByText('Arcansas')).toHaveFocus();
     });
 
-    it('should not get focusVisible class on click', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('should not get focusVisible class on click', async function test() {
       const { user } = render(
         <MenuList>
           <MenuItem focusVisibleClassName="focus-visible">Arizona</MenuItem>
@@ -649,12 +643,8 @@ describe('<MenuList> integration', () => {
       });
     });
 
-    it('should match ignoring hidden text', function testHiddenText() {
-      if (!innerTextSupported) {
-        // Will only be executed in Karma tests, since jsdom doesn't support innerText
-        this.skip();
-      }
-
+    // Will only be executed in browser tests, since jsdom doesn't support innerText
+    it.skipIf(!innerTextSupported)('should match ignoring hidden text', function testHiddenText() {
       render(
         <MenuList autoFocus>
           <MenuItem>

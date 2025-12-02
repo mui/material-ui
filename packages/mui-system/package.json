@@ -26,7 +26,7 @@
   "scripts": {
     "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/system\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
@@ -46,9 +46,9 @@
     "@emotion/styled": "^11.14.1",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.3",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.2",
+    "@types/react": "^19.2.7",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
     "es-toolkit": "^1.39.10",

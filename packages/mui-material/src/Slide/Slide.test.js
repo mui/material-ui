@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Slide from '@mui/material/Slide';
@@ -155,10 +155,7 @@ describe('<Slide />', () => {
       );
     });
 
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
@@ -174,10 +171,7 @@ describe('<Slide />', () => {
       });
     });
 
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
       const theme = createTheme({
         transitions: {
           duration: {
@@ -237,10 +231,7 @@ describe('<Slide />', () => {
       );
     });
 
-    it('should render the default theme values by default', function test() {
-      if (!window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(!isJsdom())('should render the default theme values by default', function test() {
       const theme = createTheme();
       const handleEntering = spy();
       render(<Slide {...defaultProps} onEntering={handleEntering} />);
@@ -250,10 +241,7 @@ describe('<Slide />', () => {
       );
     });
 
-    it('should render the custom theme values', function test() {
-      if (!window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(!isJsdom())('should render the custom theme values', function test() {
       const theme = createTheme({
         transitions: {
           easing: {
@@ -535,41 +523,40 @@ describe('<Slide />', () => {
     });
 
     describe('prop: container', () => {
-      it('should set element transform and transition in the `up` direction', async function test() {
-        if (window.navigator.userAgent.includes('jsdom')) {
-          // Need layout
-          this.skip();
-        }
-
-        let nodeExitingTransformStyle;
-        const height = 200;
-        function Test(props) {
-          const [container, setContainer] = React.useState(null);
-          return (
-            <div
-              ref={(node) => {
-                setContainer(node);
-              }}
-              style={{ height, width: 200 }}
-            >
-              <Slide
-                direction="up"
-                in
-                {...props}
-                container={container}
-                onExit={(node) => {
-                  nodeExitingTransformStyle = node.style.transform;
+      // Need layout
+      it.skipIf(isJsdom())(
+        'should set element transform and transition in the `up` direction',
+        async function test() {
+          let nodeExitingTransformStyle;
+          const height = 200;
+          function Test(props) {
+            const [container, setContainer] = React.useState(null);
+            return (
+              <div
+                ref={(node) => {
+                  setContainer(node);
                 }}
+                style={{ height, width: 200 }}
               >
-                <RealDiv rect={{ top: 8 }} />
-              </Slide>
-            </div>
-          );
-        }
-        const { setProps } = render(<Test />);
-        setProps({ in: false });
-        expect(nodeExitingTransformStyle).to.equal(`translateY(${height}px)`);
-      });
+                <Slide
+                  direction="up"
+                  in
+                  {...props}
+                  container={container}
+                  onExit={(node) => {
+                    nodeExitingTransformStyle = node.style.transform;
+                  }}
+                >
+                  <RealDiv rect={{ top: 8 }} />
+                </Slide>
+              </div>
+            );
+          }
+          const { setProps } = render(<Test />);
+          setProps({ in: false });
+          expect(nodeExitingTransformStyle).to.equal(`translateY(${height}px)`);
+        },
+      );
     });
 
     describe('mount', () => {

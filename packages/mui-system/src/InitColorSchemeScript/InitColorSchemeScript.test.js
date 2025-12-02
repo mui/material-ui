@@ -52,6 +52,9 @@ describe('InitColorSchemeScript', () => {
     document.documentElement.classList.remove(...document.documentElement.classList);
 
     const { container } = render(<InitColorSchemeScript attribute="class" />);
+    expect(container.firstChild.textContent.replace(/\s/g, '')).not.to.include(
+      "setAttribute('.%s',colorScheme)",
+    );
     eval(container.firstChild.textContent);
     expect(document.documentElement.classList.value).to.equal('foo');
     document.documentElement.classList.remove('foo'); // cleanup

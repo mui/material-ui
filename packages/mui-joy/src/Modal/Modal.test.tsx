@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { createRenderer, act, fireEvent, within, screen } from '@mui/internal-test-utils';
+import { createRenderer, act, fireEvent, within, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal, { modalClasses as classes, ModalProps } from '@mui/joy/Modal';
 import describeConformance from '../../test/describeConformance';
@@ -40,12 +40,12 @@ describe('<Modal />', () => {
   describe('props:', () => {
     let container: HTMLElement | undefined;
 
-    before(() => {
+    beforeAll(() => {
       container = document.createElement('div');
       document.body.appendChild(container);
     });
 
-    after(() => {
+    afterAll(() => {
       document.body.removeChild(container!);
     });
 
@@ -366,13 +366,9 @@ describe('<Modal />', () => {
     describe('focus stealing', () => {
       clock.withFakeTimers();
 
-      it('does not steal focus from other frames', function test() {
-        if (window.navigator.userAgent.includes('jsdom')) {
-          // TODO: Unclear why this fails. Not important
-          // since a browser test gives us more confidence anyway
-          this.skip();
-        }
-
+      // TODO: Unclear why this fails. Not important
+      // since a browser test gives us more confidence anyway
+      it.skipIf(isJsdom())('does not steal focus from other frames', function test() {
         const FrameContext = React.createContext(document);
         // by default Modal will use the document where the module! was initialized
         // which is usually the top document
@@ -436,7 +432,7 @@ describe('<Modal />', () => {
       clock.withFakeTimers();
 
       // Test case for https://github.com/mui/material-ui/issues/12831
-      it('should unmount the children ', () => {
+      it('should unmount the children', () => {
         function TestCase() {
           const [open, setOpen] = React.useState(true);
 
