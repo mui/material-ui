@@ -153,7 +153,7 @@ function ObjectEntry(props: {
   return (
     <TreeItem
       sx={{
-        paddingLeft: `${depth * 8}px`,
+        paddingLeft: depth,
       }}
       itemId={itemId}
       label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
