@@ -16,7 +16,7 @@
       },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "page": { "type": { "name": "node" } },
@@ -74,10 +74,30 @@
     "import { PaginationItem } from '@mui/material';"
   ],
   "slots": [
-    { "name": "first", "description": "", "class": null },
-    { "name": "last", "description": "", "class": null },
-    { "name": "next", "description": "", "class": null },
-    { "name": "previous", "description": "", "class": null }
+    {
+      "name": "first",
+      "description": "The component that renders the first page slot.",
+      "default": "FirstPageIcon",
+      "class": null
+    },
+    {
+      "name": "last",
+      "description": "The component that renders the last page slot.",
+      "default": "LastPageIcon",
+      "class": null
+    },
+    {
+      "name": "next",
+      "description": "The component that renders the next page slot.",
+      "default": "NavigateNextIcon",
+      "class": null
+    },
+    {
+      "name": "previous",
+      "description": "The component that renders the previous page slot.",
+      "default": "NavigateBeforeIcon",
+      "class": null
+    }
   ],
   "classes": [
     {
@@ -210,7 +230,7 @@
   "muiName": "MuiPaginationItem",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/PaginationItem/PaginationItem.js",
-  "inheritance": null,
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
   "demos": "<ul><li><a href=\"/material-ui/react-pagination/\">Pagination</a></li></ul>",
   "cssComponent": false
 }

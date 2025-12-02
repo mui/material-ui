@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 import describeConformance from '../../test/describeConformance';
 
@@ -35,15 +35,23 @@ describe('<Badge />', () => {
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
       testVariantProps: { color: 'secondary', variant: 'dot' },
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+        badge: {
+          expectedClassName: classes.badge,
+        },
+      },
     }),
   );
 
   it('renders children and badgeContent', () => {
     const children = <div id="child" data-testid="child" />;
     const badge = <div id="badge" data-testid="badge" />;
-    const { container, getByTestId } = render(<Badge badgeContent={badge}>{children}</Badge>);
-    expect(container.firstChild).to.contain(getByTestId('child'));
-    expect(container.firstChild).to.contain(getByTestId('badge'));
+    const { container } = render(<Badge badgeContent={badge}>{children}</Badge>);
+    expect(container.firstChild).to.contain(screen.getByTestId('child'));
+    expect(container.firstChild).to.contain(screen.getByTestId('badge'));
   });
 
   it('applies customized classes', () => {
@@ -80,10 +88,8 @@ describe('<Badge />', () => {
   });
 
   it('renders children', () => {
-    const { container, getByTestId } = render(
-      <Badge className="testClassName" {...defaultProps} />,
-    );
-    expect(container.firstChild).to.contain(getByTestId('children'));
+    const { container } = render(<Badge className="testClassName" {...defaultProps} />);
+    expect(container.firstChild).to.contain(screen.getByTestId('children'));
   });
 
   describe('prop: color', () => {
@@ -309,7 +315,7 @@ describe('<Badge />', () => {
         return <span {...other} ref={ref} data-testid="custom-badge" />;
       });
 
-      const { getByTestId } = render(
+      render(
         <Badge
           {...defaultProps}
           badgeContent={1}
@@ -317,8 +323,8 @@ describe('<Badge />', () => {
         />,
       );
 
-      getByTestId('custom-root');
-      getByTestId('custom-badge');
+      screen.getByTestId('custom-root');
+      screen.getByTestId('custom-badge');
     });
 
     it('allows overriding the slots using the slots prop', () => {
@@ -332,7 +338,7 @@ describe('<Badge />', () => {
         return <span {...other} ref={ref} data-testid="custom-badge" />;
       });
 
-      const { getByTestId } = render(
+      render(
         <Badge
           {...defaultProps}
           badgeContent={1}
@@ -340,14 +346,14 @@ describe('<Badge />', () => {
         />,
       );
 
-      getByTestId('custom-root');
-      getByTestId('custom-badge');
+      screen.getByTestId('custom-root');
+      screen.getByTestId('custom-badge');
     });
   });
 
   describe('prop: componentsProps / slotProps', () => {
     it('allows modifying slots props using the componentsProps prop', () => {
-      const { getByTestId } = render(
+      render(
         <Badge
           {...defaultProps}
           badgeContent={1}
@@ -358,12 +364,12 @@ describe('<Badge />', () => {
         />,
       );
 
-      getByTestId('custom-root');
-      getByTestId('custom-badge');
+      screen.getByTestId('custom-root');
+      screen.getByTestId('custom-badge');
     });
 
     it('allows modifying slots props using the slotProps prop', () => {
-      const { getByTestId } = render(
+      render(
         <Badge
           {...defaultProps}
           badgeContent={1}
@@ -374,8 +380,8 @@ describe('<Badge />', () => {
         />,
       );
 
-      getByTestId('custom-root');
-      getByTestId('custom-badge');
+      screen.getByTestId('custom-root');
+      screen.getByTestId('custom-badge');
     });
   });
 

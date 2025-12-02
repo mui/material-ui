@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled, Theme } from '@mui/material/styles';
+import { styled, Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import Typography from '../components/Typography';
 
@@ -32,10 +32,10 @@ const Root = styled('div', {
 }));
 
 export default function FormFeedback(props: FormFeedbackProps) {
-  const { className, children, error, success, ...others } = props;
+  const { className, children, error, success, ...other } = props;
 
   return (
-    <Root error={error} success={success} className={className} {...others}>
+    <Root error={error} success={success} className={className} {...other}>
       <Typography color="inherit">{children}</Typography>
     </Root>
   );

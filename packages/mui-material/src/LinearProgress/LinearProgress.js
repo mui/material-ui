@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -94,6 +93,7 @@ const useUtilityClasses = (ownerState) => {
     dashed: ['dashed', `dashedColor${capitalize(color)}`],
     bar1: [
       'bar',
+      'bar1',
       `barColor${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
       variant === 'determinate' && 'bar1Determinate',
@@ -101,6 +101,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     bar2: [
       'bar',
+      'bar2',
       variant !== 'buffer' && `barColor${capitalize(color)}`,
       variant === 'buffer' && `color${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
@@ -116,8 +117,8 @@ const getColorShade = (theme, color) => {
     return theme.vars.palette.LinearProgress[`${color}Bg`];
   }
   return theme.palette.mode === 'light'
-    ? lighten(theme.palette[color].main, 0.62)
-    : darken(theme.palette[color].main, 0.5);
+    ? theme.lighten(theme.palette[color].main, 0.62)
+    : theme.darken(theme.palette[color].main, 0.5);
 };
 
 const LinearProgressRoot = styled('span', {
@@ -231,6 +232,7 @@ const LinearProgressBar1 = styled('span', {
 
     return [
       styles.bar,
+      styles.bar1,
       styles[`barColor${capitalize(ownerState.color)}`],
       (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
         styles.bar1Indeterminate,
@@ -307,6 +309,7 @@ const LinearProgressBar2 = styled('span', {
 
     return [
       styles.bar,
+      styles.bar2,
       styles[`barColor${capitalize(ownerState.color)}`],
       (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
         styles.bar2Indeterminate,

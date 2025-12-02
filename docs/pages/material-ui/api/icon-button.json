@@ -19,6 +19,11 @@
       },
       "default": "false"
     },
+    "loading": { "type": { "name": "bool" }, "default": "null" },
+    "loadingIndicator": {
+      "type": { "name": "node" },
+      "default": "<CircularProgress color=\"inherit\" size={16} />"
+    },
     "size": {
       "type": {
         "name": "union",
@@ -101,6 +106,24 @@
       "isGlobal": false
     },
     {
+      "key": "loading",
+      "className": "MuiIconButton-loading",
+      "description": "Styles applied to the root element if `loading={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIndicator",
+      "className": "MuiIconButton-loadingIndicator",
+      "description": "Styles applied to the loadingIndicator element.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingWrapper",
+      "className": "MuiIconButton-loadingWrapper",
+      "description": "Styles applied to the loadingWrapper element.",
+      "isGlobal": false
+    },
+    {
       "key": "root",
       "className": "MuiIconButton-root",
       "description": "Styles applied to the root element.",
@@ -131,6 +154,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Button</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Button</a></li>\n<li><a href=\"/material-ui/react-number-field/\">Number Field</a></li></ul>",
   "cssComponent": false
 }

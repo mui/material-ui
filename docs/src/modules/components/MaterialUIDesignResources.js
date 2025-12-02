@@ -1,5 +1,4 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
@@ -29,26 +28,13 @@ const content = [
       />
     ),
   },
-  {
-    title: 'Material UI for Adobe XD',
-    link: 'https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd',
-    svg: (
-      <img
-        src={`/static/branding/design-kits/adobexd-logo.svg`}
-        alt="Adobe XD logo"
-        loading="lazy"
-        width="36"
-        height="36"
-      />
-    ),
-  },
 ];
 
 export default function MaterialUIDesignResources() {
   return (
     <Grid container spacing={2}>
       {content.map(({ svg, title, link }) => (
-        <Grid key={title} size={{ xs: 12, sm: 4 }}>
+        <Grid key={title} size={{ xs: 12, sm: 6 }}>
           <InfoCard classNameTitle="algolia-lvl3" link={link} title={title} svg={svg} />
         </Grid>
       ))}

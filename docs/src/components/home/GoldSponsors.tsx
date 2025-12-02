@@ -1,10 +1,10 @@
-import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
 import { Link } from '@mui/docs/Link';
@@ -15,20 +15,7 @@ const GOLDs = [
     src: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
-  },
-  {
-    src: 'https://rxdb.info/files/logo/logo_text.svg',
-    name: 'RxDB',
-    description: 'Local-first JavaScript database.',
-    href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
-  },
-  {
-    src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=120 3x',
-    name: 'Text-em-all',
-    description: 'Mass text messaging and automated calling.',
-    href: 'https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+    href: 'https://tidelift.com/',
   },
   {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
@@ -38,13 +25,15 @@ const GOLDs = [
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/route4me/71fb6fa/avatar/40.png',
-    srcSet: 'https://images.opencollective.com/route4me/71fb6fa/avatar/120.png 3x',
-    name: 'Route4Me',
-    description: 'Trusted last mile route planning and optimization.',
-    href: 'https://route4me.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+    src: '/static/sponsors/wispr-square-light.svg',
+    srcSet: '/static/sponsors/wispr-square-light.svg 3x',
+    srcDark: '/static/sponsors/wispr-square-dark.svg',
+    name: 'Wispr Flow',
+    description: 'AI Dictation: from speech to clear, polished text.',
+    href: 'https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
+
 const BACKLINKs = [
   {
     name: 'Goread.io',
@@ -54,6 +43,11 @@ const BACKLINKs = [
   {
     name: 'Buzzoid',
     description: 'Instant delivery Instagram followers.',
+    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Buzzoid',
+    description: 'Instant delivery YouTube Views.',
     href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -70,6 +64,21 @@ const BACKLINKs = [
     name: 'Poprey',
     description: 'Buy Instagram likes with crypto.',
     href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'SocialWick',
+    description: 'Buy Instagram followers.',
+    href: 'https://www.socialwick.com/instagram/followers',
+  },
+  {
+    name: 'Follower24',
+    description: 'Social media success.',
+    href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Reputation Manage',
+    description: 'Instant Delivery Google Reviews.',
+    href: 'https://reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -150,11 +159,11 @@ export default function GoldSponsors() {
           </Paper>
         </Grid>
       </Grid>
-      <div>
-        {BACKLINKs.map((item) => (
-          <BacklinkSponsor key={item.name} item={item} />
+      <Box sx={{ maxWidth: 1000, mt: { xs: 2, md: 3 } }}>
+        {BACKLINKs.map((item, index) => (
+          <BacklinkSponsor key={index} item={item} />
         ))}
-      </div>
+      </Box>
     </div>
   );
 }

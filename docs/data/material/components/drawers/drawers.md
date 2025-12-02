@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
-githubLabel: 'component: drawer'
+githubLabel: 'scope: drawer'
 materialDesign: https://m2.material.io/components/navigation-drawer
 githubSource: packages/mui-material/src/Drawer
 ---
@@ -135,11 +135,3 @@ Apps focused on information consumption that use a left-to-right hierarchy.
 Apps focused on productivity that require balance across the screen.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}
-
-## Toolpad (Beta)
-
-### Dashboard Layout
-
-The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:
-
-{{"demo": "../app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "bg": "inline", "defaultExpanded": false}}

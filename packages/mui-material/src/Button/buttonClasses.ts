@@ -7,91 +7,91 @@ export interface ButtonClasses {
   /** Styles applied to the root element if `variant="text"`. */
   text: string;
   /** Styles applied to the root element if `variant="text"` and `color="inherit"`.
-   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-text) and [.MuiButton-colorInherit](/material-ui/api/button/#button-classes-colorInherit) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) and [.MuiButton-colorInherit](/material-ui/api/button/#button-classes-MuiButton-colorInherit) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textInherit: string;
   /** Styles applied to the root element if `variant="text"` and `color="primary"`.
-   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-text) and [.MuiButton-colorPrimary](/material-ui/api/button/#button-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) and [.MuiButton-colorPrimary](/material-ui/api/button/#button-classes-MuiButton-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textPrimary: string;
   /** Styles applied to the root element if `variant="text"` and `color="secondary"`.
-   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-text) and [.MuiButton-colorSecondary](/material-ui/api/button/#button-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) and [.MuiButton-colorSecondary](/material-ui/api/button/#button-classes-MuiButton-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textSecondary: string;
   /** Styles applied to the root element if `variant="text"` and `color="success"`.
-   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-text) and [.MuiButton-colorSuccess](/material-ui/api/button/#button-classes-colorSuccess) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) and [.MuiButton-colorSuccess](/material-ui/api/button/#button-classes-MuiButton-colorSuccess) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textSuccess: string;
   /** Styles applied to the root element if `variant="text"` and `color="error"`.
-   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-text) and [.MuiButton-colorError](/material-ui/api/button/#button-classes-colorError) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) and [.MuiButton-colorError](/material-ui/api/button/#button-classes-MuiButton-colorError) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textError: string;
   /** Styles applied to the root element if `variant="text"` and `color="info"`.
-   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-text) and [.MuiButton-colorInfo](/material-ui/api/button/#button-classes-colorInfo) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) and [.MuiButton-colorInfo](/material-ui/api/button/#button-classes-MuiButton-colorInfo) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textInfo: string;
   /** Styles applied to the root element if `variant="text"` and `color="warning"`.
-   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-text) and [.MuiButton-colorWarning](/material-ui/api/button/#button-classes-colorWarning) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) and [.MuiButton-colorWarning](/material-ui/api/button/#button-classes-MuiButton-colorWarning) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textWarning: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   outlined: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="inherit"`.
-   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) and [.MuiButton-colorInherit](/material-ui/api/button/#button-classes-colorInherit) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) and [.MuiButton-colorInherit](/material-ui/api/button/#button-classes-MuiButton-colorInherit) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedInherit: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) and [.MuiButton-colorPrimary](/material-ui/api/button/#button-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) and [.MuiButton-colorPrimary](/material-ui/api/button/#button-classes-MuiButton-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedPrimary: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) and [.MuiButton-colorSecondary](/material-ui/api/button/#button-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) and [.MuiButton-colorSecondary](/material-ui/api/button/#button-classes-MuiButton-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSecondary: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="success"`.
-   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) and [.MuiButton-colorSuccess](/material-ui/api/button/#button-classes-colorSuccess) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) and [.MuiButton-colorSuccess](/material-ui/api/button/#button-classes-MuiButton-colorSuccess) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSuccess: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="error"`.
-   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) and [.MuiButton-colorError](/material-ui/api/button/#button-classes-colorError) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) and [.MuiButton-colorError](/material-ui/api/button/#button-classes-MuiButton-colorError) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedError: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="info"`.
-   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) and [.MuiButton-colorInfo](/material-ui/api/button/#button-classes-colorInfo) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) and [.MuiButton-colorInfo](/material-ui/api/button/#button-classes-MuiButton-colorInfo) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedInfo: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="warning"`.
-   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) and [.MuiButton-colorWarning](/material-ui/api/button/#button-classes-colorWarning) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) and [.MuiButton-colorWarning](/material-ui/api/button/#button-classes-MuiButton-colorWarning) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedWarning: string;
   /** Styles applied to the root element if `variant="contained"`. */
   contained: string;
   /** Styles applied to the root element if `variant="contained"` and `color="inherit"`.
-   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) and [.MuiButton-colorInherit](/material-ui/api/button/#button-classes-colorInherit) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) and [.MuiButton-colorInherit](/material-ui/api/button/#button-classes-MuiButton-colorInherit) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedInherit: string;
   /** Styles applied to the root element if `variant="contained"` and `color="primary"`.
-   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) and [.MuiButton-colorPrimary](/material-ui/api/button/#button-classes-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) and [.MuiButton-colorPrimary](/material-ui/api/button/#button-classes-MuiButton-colorPrimary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedPrimary: string;
   /** Styles applied to the root element if `variant="contained"` and `color="secondary"`.
-   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) and [.MuiButton-colorSecondary](/material-ui/api/button/#button-classes-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) and [.MuiButton-colorSecondary](/material-ui/api/button/#button-classes-MuiButton-colorSecondary) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedSecondary: string;
   /** Styles applied to the root element if `variant="contained"` and `color="success"`.
-   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) and [.MuiButton-colorSuccess](/material-ui/api/button/#button-classes-colorSuccess) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) and [.MuiButton-colorSuccess](/material-ui/api/button/#button-classes-MuiButton-colorSuccess) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedSuccess: string;
   /** Styles applied to the root element if `variant="contained"` and `color="info"`.
-   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) and [.MuiButton-colorInfo](/material-ui/api/button/#button-classes-colorInfo) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) and [.MuiButton-colorInfo](/material-ui/api/button/#button-classes-MuiButton-colorInfo) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedInfo: string;
   /** Styles applied to the root element if `variant="contained"` and `color="error"`.
-   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) and [.MuiButton-colorError](/material-ui/api/button/#button-classes-colorError) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) and [.MuiButton-colorError](/material-ui/api/button/#button-classes-MuiButton-colorError) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedError: string;
   /** Styles applied to the root element if `variant="contained"` and `color="warning"`.
-   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) and [.MuiButton-colorWarning](/material-ui/api/button/#button-classes-colorWarning) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) and [.MuiButton-colorWarning](/material-ui/api/button/#button-classes-MuiButton-colorWarning) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedWarning: string;
   /** Styles applied to the root element if `disableElevation={true}`. */
@@ -103,39 +103,39 @@ export interface ButtonClasses {
   /** Styles applied to the root element if `color="inherit"`. */
   colorInherit: string;
   /** Styles applied to the root element if `size="small"` and `variant="text"`.
-   * @deprecated Combine the [.MuiButton-sizeSmall](/material-ui/api/button/#button-classes-sizeSmall) and [.MuiButton-text](/material-ui/api/button/#button-classes-text) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeSmall](/material-ui/api/button/#button-classes-MuiButton-sizeSmall) and [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textSizeSmall: string;
   /** Styles applied to the root element if `size="medium"` and `variant="text"`.
-   * @deprecated Combine the [.MuiButton-sizeMedium](/material-ui/api/button/#button-classes-sizeMedium) and [.MuiButton-text](/material-ui/api/button/#button-classes-text) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeMedium](/material-ui/api/button/#button-classes-MuiButton-sizeMedium) and [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textSizeMedium: string;
   /** Styles applied to the root element if `size="large"` and `variant="text"`.
-   * @deprecated Combine the [.MuiButton-sizeLarge](/material-ui/api/button/#button-classes-sizeLarge) and [.MuiButton-text](/material-ui/api/button/#button-classes-text) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeLarge](/material-ui/api/button/#button-classes-MuiButton-sizeLarge) and [.MuiButton-text](/material-ui/api/button/#button-classes-MuiButton-text) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   textSizeLarge: string;
   /** Styles applied to the root element if `size="small"` and `variant="outlined"`.
-   * @deprecated Combine the [.MuiButton-sizeSmall](/material-ui/api/button/#button-classes-sizeSmall) and [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeSmall](/material-ui/api/button/#button-classes-MuiButton-sizeSmall) and [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSizeSmall: string;
   /** Styles applied to the root element if `size="medium"` and `variant="outlined"`.
-   * @deprecated Combine the [.MuiButton-sizeMedium](/material-ui/api/button/#button-classes-sizeMedium) and [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeMedium](/material-ui/api/button/#button-classes-MuiButton-sizeMedium) and [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSizeMedium: string;
   /** Styles applied to the root element if `size="large"` and `variant="outlined"`.
-   * @deprecated Combine the [.MuiButton-sizeLarge](/material-ui/api/button/#button-classes-sizeLarge) and [.MuiButton-outlined](/material-ui/api/button/#button-classes-outlined) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeLarge](/material-ui/api/button/#button-classes-MuiButton-sizeLarge) and [.MuiButton-outlined](/material-ui/api/button/#button-classes-MuiButton-outlined) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   outlinedSizeLarge: string;
   /** Styles applied to the root element if `size="small"` and `variant="contained"`.
-   * @deprecated Combine the [.MuiButton-sizeSmall](/material-ui/api/button/#button-classes-sizeSmall) and [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeSmall](/material-ui/api/button/#button-classes-MuiButton-sizeSmall) and [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedSizeSmall: string;
   /** Styles applied to the root element if `size="medium"` and `variant="contained"`.
-   * @deprecated Combine the [.MuiButton-sizeMedium](/material-ui/api/button/#button-classes-sizeMedium) and [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeMedium](/material-ui/api/button/#button-classes-MuiButton-sizeMedium) and [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedSizeMedium: string;
   /** Styles applied to the root element if `size="large"` and `variant="contained"`.
-   * @deprecated Combine the [.MuiButton-sizeLarge](/material-ui/api/button/#button-classes-sizeLarge) and [.MuiButton-contained](/material-ui/api/button/#button-classes-contained) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-sizeLarge](/material-ui/api/button/#button-classes-MuiButton-sizeLarge) and [.MuiButton-contained](/material-ui/api/button/#button-classes-MuiButton-contained) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   containedSizeLarge: string;
   /** Styles applied to the root element if `size="small"`. */
@@ -153,15 +153,15 @@ export interface ButtonClasses {
   /** Styles applied to the endIcon element if supplied. */
   endIcon: string;
   /** Styles applied to the icon element if supplied and `size="small"`.
-   * @deprecated Combine the [.MuiButton-icon](/material-ui/api/button/#button-classes-icon) and [.MuiButtonSizeSmall](/material-ui/api/button/#button-classes-sizeSmall) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-icon](/material-ui/api/button/#button-classes-MuiButton-icon) and [.MuiButtonSizeSmall](/material-ui/api/button/#button-classes-MuiButton-sizeSmall) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   iconSizeSmall: string;
   /** Styles applied to the icon element if supplied and `size="medium"`.
-   * @deprecated Combine the [.MuiButton-icon](/material-ui/api/button/#button-classes-icon) and [.MuiButtonSizeMedium](/material-ui/api/button/#button-classes-sizeMedium) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-icon](/material-ui/api/button/#button-classes-MuiButton-icon) and [.MuiButtonSizeMedium](/material-ui/api/button/#button-classes-MuiButton-sizeMedium) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   iconSizeMedium: string;
   /** Styles applied to the icon element if supplied and `size="large"`.
-   * @deprecated Combine the [.MuiButton-icon](/material-ui/api/button/#button-classes-icon) and [.MuiButtonSizeLarge](/material-ui/api/button/#button-classes-sizeLarge) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Combine the [.MuiButton-icon](/material-ui/api/button/#button-classes-MuiButton-icon) and [.MuiButtonSizeLarge](/material-ui/api/button/#button-classes-MuiButton-sizeLarge) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   iconSizeLarge: string;
   /** Styles applied to the root element if `color="primary"`. */
@@ -176,6 +176,20 @@ export interface ButtonClasses {
   colorInfo: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element if `loading={true}`. */
+  loading: string;
+  /** Styles applied to the loadingWrapper element. */
+  loadingWrapper: string;
+  /** Styles applied to the loadingIconPlaceholder element. */
+  loadingIconPlaceholder: string;
+  /** Styles applied to the loadingIndicator element. */
+  loadingIndicator: string;
+  /** Styles applied to the root element if `loadingPosition="center"`. */
+  loadingPositionCenter: string;
+  /** Styles applied to the root element if `loadingPosition="start"`. */
+  loadingPositionStart: string;
+  /** Styles applied to the root element if `loadingPosition="end"`. */
+  loadingPositionEnd: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -239,6 +253,13 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'iconSizeSmall',
   'iconSizeMedium',
   'iconSizeLarge',
+  'loading',
+  'loadingWrapper',
+  'loadingIconPlaceholder',
+  'loadingIndicator',
+  'loadingPositionCenter',
+  'loadingPositionStart',
+  'loadingPositionEnd',
 ]);
 
 export default buttonClasses;

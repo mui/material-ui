@@ -21,12 +21,14 @@
     "maxWidth": {
       "description": "Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to <code>false</code> to disable <code>maxWidth</code>."
     },
-    "onBackdropClick": { "description": "Callback fired when the backdrop is clicked." },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>."
+        }
       }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
@@ -35,6 +37,8 @@
       "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element."
     },
     "scroll": { "description": "Determine the container for scrolling the dialog." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -49,14 +53,6 @@
     }
   },
   "classDescriptions": {
-    "container": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the container element"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
     "paperFullScreen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
@@ -70,12 +66,14 @@
     "paperScrollBody": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
-      "conditions": "<code>scroll=\"body\"</code>"
+      "conditions": "<code>scroll=\"body\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#Dialog-css-MuiDialog-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-MuiDialog-scrollBody\">.MuiDialog-scrollBody</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "paperScrollPaper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
-      "conditions": "<code>scroll=\"paper\"</code>"
+      "conditions": "<code>scroll=\"paper\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#Dialog-css-MuiDialog-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-MuiDialog-scrollPaper\">.MuiDialog-scrollPaper</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "paperWidthFalse": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -107,7 +105,6 @@
       "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"xs\"</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "scrollBody": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the container element",
@@ -118,5 +115,12 @@
       "nodeName": "the container element",
       "conditions": "<code>scroll=\"paper\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "backdrop": "The component that renders the backdrop.",
+    "container": "The component that renders the container.",
+    "paper": "The component that renders the paper.",
+    "root": "The component that renders the root.",
+    "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

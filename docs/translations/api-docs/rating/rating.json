@@ -13,7 +13,9 @@
     "emptyLabelText": { "description": "The label read when the rating input is empty." },
     "getLabelText": {
       "description": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
-      "typeDescriptions": { "value": "The rating label&#39;s value to format." }
+      "typeDescriptions": {
+        "value": { "name": "value", "description": "The rating label&#39;s value to format." }
+      }
     },
     "highlightSelectedOnly": {
       "description": "If <code>true</code>, only the selected icon will be highlighted."
@@ -27,31 +29,28 @@
     "onChange": {
       "description": "Callback fired when the value changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "The new value."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "The new value." }
       }
     },
     "onChangeActive": {
       "description": "Callback function that is fired when the hover state changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "The new value."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "The new value." }
       }
     },
     "precision": { "description": "The minimum increment value change allowed." },
     "readOnly": { "description": "Removes all hover effects and pointer events." },
     "size": { "description": "The size of the component." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "value": { "description": "The rating value." }
   },
   "classDescriptions": {
-    "decimal": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the icon wrapping elements",
-      "conditions": "decimals are necessary"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -61,10 +60,6 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
-    },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon wrapping elements"
     },
     "iconActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
@@ -91,7 +86,6 @@
       "nodeName": "the icon wrapping elements",
       "conditions": "hover"
     },
-    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
     "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the label of the &quot;no value&quot; input",
@@ -102,7 +96,6 @@
       "nodeName": "the root element",
       "conditions": "<code>readOnly={true}</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "sizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -119,5 +112,11 @@
       "conditions": "<code>size=\"small\"</code>"
     },
     "visuallyHidden": { "description": "Visually hide an element." }
+  },
+  "slotDescriptions": {
+    "decimal": "The component used for the decimal slot.",
+    "icon": "The component used for the icon slot.",
+    "label": "The component used for the label slot.",
+    "root": "The component used for the root slot."
   }
 }

@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import ButtonGroup, {
   buttonGroupClasses as classes,
@@ -34,32 +33,32 @@ describe('<ButtonGroup />', () => {
 
   describe('prop: variant', () => {
     it('has role group', () => {
-      const { getByRole } = render(<ButtonGroup />);
+      render(<ButtonGroup />);
 
-      expect(getByRole('group')).toBeVisible();
+      expect(screen.getByRole('group')).toBeVisible();
     });
 
     it('plain by default', () => {
-      const { getByTestId } = render(
+      render(
         <ButtonGroup data-testid="root">
           <Button />
           <IconButton />
         </ButtonGroup>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.variantOutlined);
+      expect(screen.getByTestId('root')).to.have.class(classes.variantOutlined);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByTestId, container } = render(
+        const { container } = render(
           <ButtonGroup data-testid="root" variant={variant}>
             <Button />
             <IconButton />
           </ButtonGroup>,
         );
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`variant${capitalize(variant)}` as ButtonGroupClassKey],
         );
 
@@ -73,39 +72,40 @@ describe('<ButtonGroup />', () => {
     });
 
     it('should override button group value', () => {
-      const { getAllByRole } = render(
+      render(
         <ButtonGroup variant="soft">
           <Button variant="solid" />
           <IconButton variant="plain" />
         </ButtonGroup>,
       );
-      expect(getAllByRole('button')[0]).to.have.class(buttonClasses.variantSolid);
-      expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.variantPlain);
+
+      expect(screen.getAllByRole('button')[0]).to.have.class(buttonClasses.variantSolid);
+      expect(screen.getAllByRole('button')[1]).to.have.class(iconButtonClasses.variantPlain);
     });
   });
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(
+      render(
         <ButtonGroup data-testid="root">
           <Button />
           <IconButton />
         </ButtonGroup>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(screen.getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByTestId, container } = render(
+        const { container } = render(
           <ButtonGroup data-testid="root" color={color}>
             <Button />
             <IconButton />
           </ButtonGroup>,
         );
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`color${capitalize(color)}` as ButtonGroupClassKey],
         );
 
@@ -119,19 +119,20 @@ describe('<ButtonGroup />', () => {
     });
 
     it('should override button group value', () => {
-      const { getAllByRole } = render(
+      render(
         <ButtonGroup color="primary">
           <Button color="danger" />
           <IconButton color="success" />
         </ButtonGroup>,
       );
-      expect(getAllByRole('button')[0]).to.have.class(buttonClasses.colorDanger);
-      expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.colorSuccess);
+
+      expect(screen.getAllByRole('button')[0]).to.have.class(buttonClasses.colorDanger);
+      expect(screen.getAllByRole('button')[1]).to.have.class(iconButtonClasses.colorSuccess);
     });
   });
 
   it('can change size', () => {
-    const { container, getAllByRole, rerender } = render(
+    const { container, rerender } = render(
       <ButtonGroup>
         <Button />
         <IconButton />
@@ -139,8 +140,8 @@ describe('<ButtonGroup />', () => {
     );
 
     expect(container.firstChild).to.have.class(classes.sizeMd);
-    expect(getAllByRole('button')[0]).to.have.class(buttonClasses.sizeMd);
-    expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeMd);
+    expect(screen.getAllByRole('button')[0]).to.have.class(buttonClasses.sizeMd);
+    expect(screen.getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeMd);
 
     rerender(
       <ButtonGroup size="lg">
@@ -150,8 +151,8 @@ describe('<ButtonGroup />', () => {
     );
 
     expect(container.firstChild).to.have.class(classes.sizeLg);
-    expect(getAllByRole('button')[0]).to.have.class(buttonClasses.sizeLg);
-    expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeLg);
+    expect(screen.getAllByRole('button')[0]).to.have.class(buttonClasses.sizeLg);
+    expect(screen.getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeLg);
 
     rerender(
       <ButtonGroup size="lg">
@@ -159,8 +160,8 @@ describe('<ButtonGroup />', () => {
         <IconButton size="sm" />
       </ButtonGroup>,
     );
-    expect(getAllByRole('button')[0]).to.have.class(buttonClasses.sizeSm);
-    expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeSm);
+    expect(screen.getAllByRole('button')[0]).to.have.class(buttonClasses.sizeSm);
+    expect(screen.getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeSm);
   });
 
   it('add data-attribute to the first and last child', () => {
@@ -186,24 +187,26 @@ describe('<ButtonGroup />', () => {
   });
 
   it('pass disabled to buttons', () => {
-    const { getAllByRole } = render(
+    render(
       <ButtonGroup disabled>
         <Button />
         <IconButton />
       </ButtonGroup>,
     );
-    expect(getAllByRole('button')[0]).to.have.property('disabled', true);
-    expect(getAllByRole('button')[1]).to.have.property('disabled', true);
+
+    expect(screen.getAllByRole('button')[0]).to.have.property('disabled', true);
+    expect(screen.getAllByRole('button')[1]).to.have.property('disabled', true);
   });
 
   it('pass disabled to buttons unless it is overriden', () => {
-    const { getAllByRole } = render(
+    render(
       <ButtonGroup disabled>
         <Button disabled={false} />
         <IconButton disabled={false} />
       </ButtonGroup>,
     );
-    expect(getAllByRole('button')[0]).not.to.have.property('disabled', true);
-    expect(getAllByRole('button')[1]).not.to.have.property('disabled', true);
+
+    expect(screen.getAllByRole('button')[0]).not.to.have.property('disabled', true);
+    expect(screen.getAllByRole('button')[1]).not.to.have.property('disabled', true);
   });
 });

@@ -2,14 +2,14 @@
   "compilerOptions": {
     "lib": ["es2020", "dom"],
     "noEmit": true,
-    "moduleResolution": "node",
-    "types": ["node", "mocha"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react",
-    // https://github.com/vitest-dev/vitest/issues/4688
-    // TODO: Remove after fully migrated chai to vitest
+    // Remove when https://github.com/thomasbrodusch/vitest-fail-on-console/issues/160 is resolved
     "skipLibCheck": true
   },
   "include": ["./src/**/*"]

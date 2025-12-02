@@ -23,10 +23,16 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Staff Engineer — Pigment CSS',
+        title: 'React Engineer — Material UI Maintainer',
         description:
-          'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
-        url: '/careers/staff-engineer-pigment-css/',
+          'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
+        url: '/careers/react-engineer-material-ui-maintainer/',
+      },
+      {
+        title: 'Product Engineer — Store',
+        description:
+          'You will lead the technical, product, and operational development of the store.',
+        url: '/careers/product-engineer-store/',
       },
       // {
       //   title: 'React Engineer — xCharts',
@@ -34,20 +40,47 @@ const openRolesData = [
       //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
       //   url: '/careers/react-engineer-x-charts/',
       // },
-      {
-        title: 'React Engineer — eXplore',
-        description:
-          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
-        url: '/careers/react-engineer-explore/',
-      },
-      {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
+      // {
+      //   title: 'React Engineer — eXplore',
+      //   description:
+      //     'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+      //   url: '/careers/react-engineer-explore/',
+      // },
+      // {
+      //   title: 'React Engineer — X',
+      //   description:
+      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x/',
+      // },
     ],
   },
+  {
+    title: 'Sales',
+    roles: [
+      {
+        title: 'Account Executive',
+        description:
+          'You will be a key player in driving revenue growth and building strong customer relationships.',
+        url: '/careers/account-executive/',
+      },
+      // {
+      //   title: 'Account Manager',
+      //   description:
+      //     'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
+      //   url: '/careers/account-manager/',
+      // },
+    ],
+  },
+  // {
+  //   title: 'People',
+  //   roles: [
+  //     {
+  //       title: 'Technical Recruiter',
+  //       description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
+  //       url: '/careers/technical-recruiter/',
+  //     },
+  //   ],
+  // },
   {
     title: 'Design',
     roles: [],
@@ -63,50 +96,20 @@ const nextRolesData = [
     title: 'Engineering',
     roles: [
       // {
-      //   title: 'React Engineer — Docs-infra',
+      //   title: 'React Community Engineer — X',
       //   description:
-      //     'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-      //   url: '/careers/react-engineer-docs-infra/',
-      // },
-      {
-        title: 'React Tech Lead — Core',
-        description:
-          'You will lead the development of the core libraries, helping position it as the industry standard for design system teams.',
-        url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Community Engineer — X',
-        description:
-          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
-        url: '/careers/react-community-engineer/',
-      },
-      {
-        title: 'Accessibility Engineer',
-        description:
-          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
-        url: '/careers/accessibility-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'People',
-    roles: [
-      // {
-      //   title: 'Technical Recruiter',
-      //   description: 'You will hire the next engineers, among other roles, joining the team.',
-      //   url: '/careers/technical-recruiter/',
+      //     'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+      //   url: '/careers/react-community-engineer/',
       // },
     ],
   },
   {
     title: 'Sales',
-    roles: [
-      // {
-      //   title: 'Account Executive',
-      //   description:
-      //     'You will build client relationships and manage the sales process from start to finish.',
-      // },
-    ],
+    roles: [],
+  },
+  {
+    title: 'People',
+    roles: [],
   },
   {
     title: 'Marketing',

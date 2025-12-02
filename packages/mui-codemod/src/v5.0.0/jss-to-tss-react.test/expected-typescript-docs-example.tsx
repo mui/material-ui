@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles<void, 'child' | 'small'>()((theme, _params, classes) => ({

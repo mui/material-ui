@@ -1,14 +1,8 @@
 {
   "name": "@mui/types",
-  "version": "7.2.20",
-  "private": false,
+  "version": "7.4.8",
   "author": "MUI Team",
-  "description": "Utility types for MUI.",
-  "types": "./index.d.ts",
-  "files": [
-    "index.d.ts",
-    "OverridableComponentAugmentation.ts"
-  ],
+  "description": "Utility types for Material UI.",
   "keywords": [
     "react",
     "react-component",
@@ -26,21 +20,23 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "build": "mkdir build && cpy index.d.ts build/ && cpy OverridableComponentAugmentation.ts build/ && pnpm build:copy-files",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "prebuild": "rimraf build",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsc -p tsconfig.json",
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern"
   },
   "sideEffects": false,
   "publishConfig": {
     "access": "public",
     "directory": "build"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.28.4"
+  },
   "devDependencies": {
     "@mui/types": "workspace:*",
-    "@types/react": "^19.0.2"
+    "@types/react": "^19.2.7"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0"
@@ -49,5 +45,8 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }

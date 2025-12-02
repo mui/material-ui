@@ -7,14 +7,15 @@
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
-    "outDir": "build",
+    "outDir": "build/esm",
     "rootDir": "./src",
     "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo"
   },
-  "include": ["src/**/*.ts*", "src/**/*.json"],
+  "include": ["./types.d.ts", "src/**/*.ts*", "src/**/*.json"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
     { "path": "../mui-material/tsconfig.build.json" },
-    { "path": "../mui-system/tsconfig.build.json" }
+    { "path": "../mui-system/tsconfig.build.json" },
+    { "path": "../mui-icons-material/tsconfig.build.json" }
   ]
 }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -111,7 +110,7 @@ export default function BasicTimeline() {
                 <TimelineDot />
                 <TimelineConnector />
               </TimelineSeparator>
-              <TimelineContent>Base UI</TimelineContent>
+              <TimelineContent>MUI Base</TimelineContent>
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>

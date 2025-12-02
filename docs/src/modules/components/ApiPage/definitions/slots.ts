@@ -1,4 +1,6 @@
 import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
+import { Translate } from '@mui/docs/i18n';
+import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
 
 export type SlotDefinition = {
   className: string | null;
@@ -30,3 +32,26 @@ export function getSlotsApiDefinitions(params: GetSlotsApiDefinitionsParams): Sl
     };
   });
 }
+
+export type GetCssToCParams = {
+  slots: SlotDefinition[];
+  t: Translate;
+  hash?: string;
+};
+
+export const getSlotsToc = ({ slots, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
+  !slots || slots.length === 0
+    ? []
+    : [
+        {
+          text: t('api-docs.slots'),
+          hash: hash ?? 'slots',
+          children: [
+            ...slots.map(({ name, hash: slotHash }) => ({
+              text: name,
+              hash: slotHash,
+              children: [],
+            })),
+          ],
+        },
+      ];

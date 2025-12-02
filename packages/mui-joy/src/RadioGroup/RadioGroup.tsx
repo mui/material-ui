@@ -3,11 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useControlled as useControlled,
-  unstable_useId as useId,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useControlled from '@mui/utils/useControlled';
+import useId from '@mui/utils/useId';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
@@ -151,7 +149,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
       role,
       // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labelable element
       // MDN: "If it is not a labelable element, then the for attribute has no effect"
-      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label#attributes
       id: formControl?.htmlFor,
       'aria-labelledby': formControl?.labelId,
       'aria-describedby': formControl?.['aria-describedby'],
@@ -239,7 +237,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * The size of the component.
    * @default 'md'

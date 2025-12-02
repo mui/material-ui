@@ -67,7 +67,7 @@ You can learn more about this prop in the **[composition guide](/material-ui/gui
 
 ## React Router examples
 
-Here are a few demos with the [Link component](https://reactrouter.com/start/library/navigating#link) of [React Router](https://github.com/remix-run/react-router).
+Here are a few demos with the [Link component](https://reactrouter.com/start/declarative/navigating#link) of [React Router](https://github.com/remix-run/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 ### Link
@@ -147,3 +147,24 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/mater
     );
   }
   ```
+
+### TanStack Router
+
+TanStack Router supports custom links through its `createLink` helper function.
+The snippet below shows the most basic implementation, wrapping a Material UI Link component.
+See [TanStack Router—Custom Link](https://tanstack.com/router/latest/docs/framework/react/guide/custom-link) for more component integration examples.
+
+```tsx
+import { createLink } from '@tanstack/react-router';
+import { Link as MUILink } from '@mui/material';
+
+const CustomLink = createLink(MUILink);
+
+function App() {
+  return (
+    <CustomLink underline="none" to="/about">
+      Link to about page
+    </CustomLink>
+  );
+}
+```

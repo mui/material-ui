@@ -2,18 +2,23 @@ name: CI
 
 on:
   push:
-    branches-ignore:
-      # Renovate branches are always Pull Requests.
-      # We don't need to run CI twice (push+pull_request)
-      - 'renovate/**'
+    branches:
+      # should sync with ci-check.yml as a workaround to bypass github checks
+      - master
+      - next
+      - v*.x
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
-      - 'examples/**'
+      - 'docs/**'
 
 permissions: {}
 
 jobs:
+  continuous-releases:
+    name: Continuous releases
+    uses: mui/mui-public/.github/workflows/ci-base.yml@master
+
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
@@ -22,28 +27,42 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+    permissions:
+      contents: read
     steps:
-      - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - run: echo '${{ github.actor }}'
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+      - name: Use Node.js
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: 20
+          node-version: '22.18.0'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
-      - run: pnpm build:ci
+      - name: Cache Next.js build
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: docs/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.js', 'docs/**/*.ts', 'docs/**/*.tsx', 'docs/**/*.jsx', 'docs/**/*.json', 'docs/**/*.md', 'docs/**/*.mdx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-
+      - run: pnpm release:build
+      - name: Build docs
+        run: pnpm docs:build
         env:
-          NODE_OPTIONS: --max_old_space_size=4096
-      - run: pnpm release:changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: pnpm validate-declarations
-      - name: pnpm release:tag
-        run: |
-          git remote -v
-          pnpm release:tag --dryRun
+          NODE_OPTIONS: --max_old_space_size=6144
+          # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
+          # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
+          NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
+          GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
+      # - run: pnpm release:changelog
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
+        if: failure()
+        run: cat ./docs/.next/export-detail.json || true

@@ -1,15 +1,13 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_ownerDocument as ownerDocument,
-  unstable_useControlled as useControlled,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useForkRef as useForkRef,
-  unstable_isFocusVisible as isFocusVisible,
-  visuallyHidden,
-  clamp,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useControlled from '@mui/utils/useControlled';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useForkRef from '@mui/utils/useForkRef';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import visuallyHidden from '@mui/utils/visuallyHidden';
+import clamp from '@mui/utils/clamp';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   Mark,
@@ -198,16 +196,7 @@ function doesSupportTouchActionNone() {
   }
   return cachedSupportsTouchActionNone;
 }
-/**
- *
- * Demos:
- *
- * - [Slider](https://mui.com/base-ui/react-slider/#hook)
- *
- * API:
- *
- * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
- */
+
 export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
@@ -238,6 +227,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const [open, setOpen] = React.useState(-1);
   const [dragging, setDragging] = React.useState(false);
   const moveCount = React.useRef(0);
+  // lastChangedValue is updated whenever onChange is triggered.
+  const lastChangedValue = React.useRef<number | number[] | null>(null);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
@@ -261,6 +252,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         value: { value, name },
       });
 
+      lastChangedValue.current = value;
       onChange(clonedEvent, value, thumbIndex);
     });
 
@@ -275,7 +267,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         }))
       : marksProp || [];
 
-  const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
+  const marksValues = (marks as readonly Mark[]).map((mark: Mark) => mark.value);
 
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
@@ -308,9 +300,9 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     let newValue: number | number[] = valueInput;
     if (marks && step == null) {
       const maxMarksValue = marksValues[marksValues.length - 1];
-      if (newValue > maxMarksValue) {
+      if (newValue >= maxMarksValue) {
         newValue = maxMarksValue;
-      } else if (newValue < marksValues[0]) {
+      } else if (newValue <= marksValues[0]) {
         newValue = marksValues[0];
       } else {
         newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
@@ -350,7 +342,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     if (onChangeCommitted) {
-      onChangeCommitted(event, newValue);
+      onChangeCommitted(event, lastChangedValue.current ?? newValue);
     }
   };
 
@@ -587,7 +579,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     if (onChangeCommitted) {
-      onChangeCommitted(nativeEvent, newValue);
+      onChangeCommitted(nativeEvent, lastChangedValue.current ?? newValue);
     }
 
     touchId.current = undefined;
@@ -810,7 +802,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks: marks as Mark[],
+    marks: marks as readonly Mark[],
     open,
     range,
     rootRef: handleRef,

@@ -14,6 +14,8 @@ import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
+import useSlot from '../utils/useSlot';
+import { mergeSlotProps } from '../utils';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -29,7 +31,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, anchor, variant } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root: ['root', `anchor${capitalize(anchor)}`],
     docked: [(variant === 'permanent' || variant === 'persistent') && 'docked'],
     modal: ['modal'],
     paper: [
@@ -207,9 +209,11 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     PaperProps = {},
     SlideProps,
     // eslint-disable-next-line react/prop-types
-    TransitionComponent = Slide,
+    TransitionComponent,
     transitionDuration = defaultTransitionDuration,
     variant = 'temporary',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -235,76 +239,96 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const drawer = (
-    <DrawerPaper
-      elevation={variant === 'temporary' ? elevation : 0}
-      square
-      {...PaperProps}
-      className={clsx(classes.paper, PaperProps.className)}
-      ownerState={ownerState}
-    >
-      {children}
-    </DrawerPaper>
-  );
+  const externalForwardedProps = {
+    slots: {
+      transition: TransitionComponent,
+      ...slots,
+    },
+    slotProps: {
+      paper: PaperProps,
+      transition: SlideProps,
+      ...slotProps,
+      backdrop: mergeSlotProps(slotProps.backdrop || { ...BackdropProps, ...BackdropPropsProp }, {
+        transitionDuration,
+      }),
+    },
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: DrawerRoot,
+    className: clsx(classes.root, classes.modal, className),
+    shouldForwardComponentProp: true,
+    ownerState,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      ...ModalProps,
+    },
+    additionalProps: {
+      open,
+      onClose,
+      hideBackdrop,
+      slots: {
+        backdrop: externalForwardedProps.slots.backdrop,
+      },
+      slotProps: {
+        backdrop: externalForwardedProps.slotProps.backdrop,
+      },
+    },
+  });
+
+  const [PaperSlot, paperSlotProps] = useSlot('paper', {
+    elementType: DrawerPaper,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.paper, PaperProps.className),
+    ownerState,
+    externalForwardedProps,
+    additionalProps: {
+      elevation: variant === 'temporary' ? elevation : 0,
+      square: true,
+      ...(variant === 'temporary' && {
+        role: 'dialog',
+        'aria-modal': 'true',
+      }),
+    },
+  });
+
+  const [DockedSlot, dockedSlotProps] = useSlot('docked', {
+    elementType: DrawerDockedRoot,
+    ref,
+    className: clsx(classes.root, classes.docked, className),
+    ownerState,
+    externalForwardedProps,
+    additionalProps: other, // pass `other` here because `DockedSlot` is also a root slot for some variants
+  });
+
+  const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
+    elementType: Slide,
+    ownerState,
+    externalForwardedProps,
+    additionalProps: {
+      in: open,
+      direction: oppositeDirection[anchorInvariant],
+      timeout: transitionDuration,
+      appear: mounted.current,
+    },
+  });
+
+  const drawer = <PaperSlot {...paperSlotProps}>{children}</PaperSlot>;
 
   if (variant === 'permanent') {
-    return (
-      <DrawerDockedRoot
-        className={clsx(classes.root, classes.docked, className)}
-        ownerState={ownerState}
-        ref={ref}
-        {...other}
-      >
-        {drawer}
-      </DrawerDockedRoot>
-    );
+    return <DockedSlot {...dockedSlotProps}>{drawer}</DockedSlot>;
   }
 
-  const slidingDrawer = (
-    <TransitionComponent
-      in={open}
-      direction={oppositeDirection[anchorInvariant]}
-      timeout={transitionDuration}
-      appear={mounted.current}
-      {...SlideProps}
-    >
-      {drawer}
-    </TransitionComponent>
-  );
+  const slidingDrawer = <TransitionSlot {...transitionSlotProps}>{drawer}</TransitionSlot>;
 
   if (variant === 'persistent') {
-    return (
-      <DrawerDockedRoot
-        className={clsx(classes.root, classes.docked, className)}
-        ownerState={ownerState}
-        ref={ref}
-        {...other}
-      >
-        {slidingDrawer}
-      </DrawerDockedRoot>
-    );
+    return <DockedSlot {...dockedSlotProps}>{slidingDrawer}</DockedSlot>;
   }
 
   // variant === temporary
-  return (
-    <DrawerRoot
-      BackdropProps={{
-        ...BackdropProps,
-        ...BackdropPropsProp,
-        transitionDuration,
-      }}
-      className={clsx(classes.root, classes.modal, className)}
-      open={open}
-      ownerState={ownerState}
-      onClose={onClose}
-      hideBackdrop={hideBackdrop}
-      ref={ref}
-      {...other}
-      {...ModalProps}
-    >
-      {slidingDrawer}
-    </DrawerRoot>
-  );
+  return <RootSlot {...rootSlotProps}>{slidingDrawer}</RootSlot>;
 });
 
 Drawer.propTypes /* remove-proptypes */ = {
@@ -363,13 +387,37 @@ Drawer.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool,
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
+   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   PaperProps: PropTypes.object,
   /**
    * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SlideProps: PropTypes.object,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    docked: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    docked: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

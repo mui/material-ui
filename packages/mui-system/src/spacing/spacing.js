@@ -110,6 +110,12 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
       }
 
       if (typeof themeSpacing === 'string') {
+        if (themeSpacing.startsWith('var(') && val === 0) {
+          return 0;
+        }
+        if (themeSpacing.startsWith('var(') && val === 1) {
+          return themeSpacing;
+        }
         return `calc(${val} * ${themeSpacing})`;
       }
       return themeSpacing * val;
@@ -150,6 +156,10 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
 
       if (typeof transformed === 'number') {
         return -transformed;
+      }
+
+      if (typeof transformed === 'string' && transformed.startsWith('var(')) {
+        return `calc(-1 * ${transformed})`;
       }
 
       return `-${transformed}`;

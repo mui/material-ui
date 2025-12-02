@@ -58,7 +58,6 @@ const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
   name: 'MuiSelect',
   slot: 'NativeInput',
-  overridesResolver: (props, styles) => styles.nativeInput,
 })({
   bottom: 0,
   left: 0,
@@ -120,6 +119,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     onChange,
     onClose,
     onFocus,
+    // eslint-disable-next-line react/prop-types
+    onKeyDown,
+    // eslint-disable-next-line react/prop-types
+    onMouseDown,
     onOpen,
     open: openProp,
     readOnly,
@@ -150,6 +153,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
+
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -226,6 +230,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = (event) => {
+    onMouseDown?.(event);
     // Ignore everything but left-click
     if (event.button !== 0) {
       return;
@@ -321,6 +326,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         event.preventDefault();
         update(true, event);
       }
+      onKeyDown?.(event);
     }
   };
 
@@ -485,7 +491,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const paperProps = {
     ...MenuProps.PaperProps,
-    ...MenuProps.slotProps?.paper,
+    ...(typeof MenuProps.slotProps?.paper === 'function'
+      ? MenuProps.slotProps.paper(ownerState)
+      : MenuProps.slotProps?.paper),
+  };
+
+  const listProps = {
+    ...MenuProps.MenuListProps,
+    ...(typeof MenuProps.slotProps?.list === 'function'
+      ? MenuProps.slotProps.list(ownerState)
+      : MenuProps.slotProps?.list),
   };
 
   const listboxId = useId();
@@ -497,7 +512,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="combobox"
-        aria-controls={listboxId}
+        aria-controls={open ? listboxId : undefined}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -556,16 +571,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           horizontal: 'center',
         }}
         {...MenuProps}
-        MenuListProps={{
-          'aria-labelledby': labelId,
-          role: 'listbox',
-          'aria-multiselectable': multiple ? 'true' : undefined,
-          disableListWrap: true,
-          id: listboxId,
-          ...MenuProps.MenuListProps,
-        }}
         slotProps={{
           ...MenuProps.slotProps,
+          list: {
+            'aria-labelledby': labelId,
+            role: 'listbox',
+            'aria-multiselectable': multiple ? 'true' : undefined,
+            disableListWrap: true,
+            id: listboxId,
+            ...listProps,
+          },
           paper: {
             ...paperProps,
             style: {

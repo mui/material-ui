@@ -23,8 +23,6 @@ We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
-We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
-
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
 ## The culture
@@ -50,7 +48,7 @@ We're well-positioned to make this happen, so we're looking for a talented engin
 
 ### Why this is interesting
 
-If the team is successful, we believe that over 1/3 of the JavaScript community would use Pigment CSS to style their application, making the mission both extreamly challenging and impactful.
+If the team is successful, we believe that over 1/3 of the JavaScript community would use Pigment CSS to style their application, making the mission both extremely challenging and impactful.
 
 ## The role
 
@@ -96,7 +94,7 @@ We're looking for someone with strong core JavaScript skills. More important tha
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Willingness to ask and answer questions**.
-  You're comfortable saying you're unsure and asking for help. You'll also reach out out to assist others. We thrive through continuous learning—first-time mistakes are celebrated, not blamed.
+  You're comfortable saying you're unsure and asking for help. You'll also reach out to assist others. We thrive through continuous learning—first-time mistakes are celebrated, not blamed.
 - **Leadership skills**.
   You will guide and mentor contributors, steering the community in the right direction.
 

@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Chip component
 components: Chip, ChipDelete
-githubLabel: 'component: chip'
+githubLabel: 'scope: chip'
 ---
 
 # Chip

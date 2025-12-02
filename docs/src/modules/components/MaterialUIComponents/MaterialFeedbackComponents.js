@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import ComponentShowcaseCard from 'docs/src/components/action/ComponentShowcaseCard';
 
@@ -69,7 +68,14 @@ export default function MaterialFeedbackComponents() {
   return (
     <Grid container spacing={2} sx={{ pt: 1 }}>
       {feedbackComponents.map(({ name, link, srcLight, srcDark, md1, md2, md3, noGuidelines }) => (
-        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={name}>
+        <Grid
+          sx={{ flexGrow: 1 }}
+          key={name}
+          size={{
+            xs: 12,
+            sm: 4,
+          }}
+        >
           <ComponentShowcaseCard
             link={link}
             name={name}

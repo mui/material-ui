@@ -7,8 +7,6 @@ title: New Free React Templates
 
 <p class="description">Browse our collection of free React templates to get started building your app with Material UI, including a React dashboard, React marketing page, and more.</p>
 
-<!-- #default-branch-switch -->
-
 ## Free templates
 
 Our curated collection of free Material UI templates includes a dashboard, a marketing page, a checkout flow, sign-in and sign-up pages, and a blog.
@@ -21,10 +19,8 @@ Sections of each layout are defined either by comments or use of separate files,
 These templates can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter app.
 
 :::info
-If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core examples](http://mui.com/toolpad/core/introduction/examples/#featured-examples) for functional apps with authentication, routing and theming already integrated.
-:::
-
 If you see any room for improvement, please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
+:::
 
 {{"component": "modules/components/MaterialFreeTemplatesCollection.js"}}
 
@@ -39,18 +35,5 @@ You can find complete templates and themes like those shown below in the <a href
 </span>
 <span class="only-dark-mode">
   <img src="/static/images/themes-display-dark.png" alt="The MUI Store includes several carefully curated React templates using Material UI" width="2280" height="1200" style="display: block;" />
-</span>
-</a>
-
-## Toolpad Core (beta)
-
-If you're looking to build internal tools and dashboards fast, but don't want to start building from scratch, you can find examples of functional dashboards – with authentication, routing, and theming already integrated – in the [featured examples](http://mui.com/toolpad/core/introduction/examples/#featured-examples) section of the Toolpad Core docs.
-
-<a href="https://mui.com/toolpad/core/introduction/examples/#featured-examples">
-<span class="only-light-mode">
-<img src="/static/images/toolpad-core-template-light.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block;" />
-</span>
-<span class="only-dark-mode">
-<img src="/static/images/toolpad-core-template-dark.png" alt="The Toolpad Core template comes with authentication, navigation and theming integrated" width="2280" height="1200" style="display: block;"/>
 </span>
 </a>

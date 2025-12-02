@@ -6,7 +6,7 @@
     "noEmit": false,
     "declaration": true,
     "rootDir": "./src",
-    "outDir": "./build",
+    "outDir": "build/esm",
     "emitDeclarationOnly": true
   },
   "include": ["src/**/*.ts*"],

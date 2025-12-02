@@ -16,8 +16,6 @@ We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
-We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
-
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
 ## The culture
@@ -38,7 +36,7 @@ The new brand was fundamental to set the stage for MUI to become larger than Mat
 Currently, we have five main projects that are not at all related to MD:
 
 - [MUI Core](https://mui.com/core/):
-  - [Base UI](https://mui.com/base-ui/getting-started/): the unstyled version of the components.
+  - [Base UI](https://v6.mui.com/base-ui/getting-started/): the unstyled version of the components.
   - [MUI System](https://mui.com/system/getting-started/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](https://mui.com/x/): as mentioned, a growing set of advanced components.

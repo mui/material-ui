@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable material-ui/no-hardcoded-labels */
+
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';
@@ -82,7 +82,7 @@ function ColorSchemeControls() {
             borderRadius: (theme.vars || theme).shape.borderRadius,
             border: '1px solid',
             borderColor: theme.vars
-              ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
               : borderColor,
           };
         }}

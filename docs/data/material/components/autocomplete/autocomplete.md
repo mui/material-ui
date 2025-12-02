@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
-githubLabel: 'component: autocomplete'
+githubLabel: 'scope: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 githubSource: packages/mui-material/src/Autocomplete
 ---
@@ -52,6 +52,20 @@ const options = ['The Godfather', 'Pulp Fiction'];
 However, you can use different structures by providing a `getOptionLabel` prop.
 
 If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
+
+:::warning
+If your options have duplicate labels, you must extract a unique key with the `getOptionKey` prop.
+
+```tsx
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'The Godfather', id: 2 },
+];
+
+return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
+```
+
+:::
 
 ### Playground
 
@@ -181,7 +195,7 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 ### Customized hook
 
-{{"demo": "CustomizedHook.js"}}
+{{"demo": "CustomizedHook.js", "defaultCodeOpen": false}}
 
 Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
 
@@ -215,19 +229,33 @@ overriding the `filterOptions` prop:
 A customized UI for Google Maps Places Autocomplete.
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
-:::info
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
-:::
-
 {{"demo": "GoogleMaps.js"}}
 
+The demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+
 :::error
-Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+
+This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
+
+## Single value rendering
+
+By default (when `multiple={false}`), the selected option is displayed as plain text inside the input.
+The `renderValue` prop allows you to customize how the selected value is rendered.
+This can be useful for adding custom styles, displaying additional information, or formatting the value differently.
+
+- The `getItemProps` getter provides props like `data-item-index`, `disabled`, `tabIndex` and others. These props should be spread onto the rendered component for proper accessibility.
+- If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
+
+{{"demo": "CustomSingleValueRendering.js"}}
 
 ## Multiple values
 
-Also known as tags, the user is allowed to enter more than one value.
+When `multiple={true}`, the user can select multiple values. These selected values, referred to as "items" can be customized using the `renderValue` prop.
+
+- The `getItemProps` getter supplies essential props like `data-item-index`, `disabled`, `tabIndex` and others. Make sure to spread them on each rendered item.
+- If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
 
 {{"demo": "Tags.js"}}
 
@@ -267,7 +295,7 @@ If you're using a custom input component inside the Autocomplete, make sure that
 
 {{"demo": "CustomInputAutocomplete.js"}}
 
-### Globally Customized Options
+### Globally customized options
 
 To globally customize the Autocomplete options for all components in your app,
 you can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key.

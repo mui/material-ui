@@ -105,6 +105,17 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    className: clsx(classes.root, className),
+    elementType: ListItemTextRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+  });
+
   const [PrimarySlot, primarySlotProps] = useSlot('primary', {
     className: classes.primary,
     elementType: Typography,
@@ -139,15 +150,10 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   }
 
   return (
-    <ListItemTextRoot
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {primary}
       {secondary}
-    </ListItemTextRoot>
+    </RootSlot>
   );
 });
 
@@ -189,7 +195,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the primary typography component
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.primary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   primaryTypographyProps: PropTypes.object,
   /**
@@ -199,7 +205,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the secondary typography component
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   secondaryTypographyProps: PropTypes.object,
   /**
@@ -208,6 +214,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -216,6 +223,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     primary: PropTypes.elementType,
+    root: PropTypes.elementType,
     secondary: PropTypes.elementType,
   }),
   /**

@@ -46,9 +46,9 @@ export interface InputLabelOwnProps extends Pick<FormLabelProps, 'children'> {
   shrink?: boolean;
   /**
    * The size of the component.
-   * @default 'normal'
+   * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'normal', InputLabelPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', InputLabelPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -71,6 +71,7 @@ export type InputLabelTypeMap<
  *
  * Demos:
  *
+ * - [Number Field](https://mui.com/material-ui/react-number-field/)
  * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:

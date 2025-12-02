@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Accordion component
 components: Accordion, AccordionDetails, AccordionGroup, AccordionSummary
-githubLabel: 'component: accordion'
+githubLabel: 'scope: accordion'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 

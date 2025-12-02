@@ -15,19 +15,16 @@ import ImageIcon from '@mui/icons-material/Image';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
-import { treeItemClasses } from '@mui/x-tree-view/TreeItem';
+import { useTreeItem, UseTreeItemParameters } from '@mui/x-tree-view/useTreeItem';
 import {
-  unstable_useTreeItem2 as useTreeItem2,
-  UseTreeItem2Parameters,
-} from '@mui/x-tree-view/useTreeItem2';
-import {
-  TreeItem2Content,
-  TreeItem2IconContainer,
-  TreeItem2Label,
-  TreeItem2Root,
-} from '@mui/x-tree-view/TreeItem2';
-import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
-import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
+  TreeItemContent,
+  TreeItemIconContainer,
+  TreeItemLabel,
+  TreeItemRoot,
+  treeItemClasses,
+} from '@mui/x-tree-view/TreeItem';
+import { TreeItemIcon } from '@mui/x-tree-view/TreeItemIcon';
+import { TreeItemProvider } from '@mui/x-tree-view/TreeItemProvider';
 import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 
 type FileType = 'image' | 'pdf' | 'video' | 'folder';
@@ -92,7 +89,7 @@ declare module 'react' {
   }
 }
 
-const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
+const StyledTreeItemRoot = styled(TreeItemRoot)(({ theme }) => ({
   color: theme.palette.grey[800],
   position: 'relative',
   [`& .${treeItemClasses.groupTransition}`]: {
@@ -101,8 +98,8 @@ const StyledTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
   ...theme.applyStyles('dark', {
     color: theme.palette.grey[400],
   }),
-})) as unknown as typeof TreeItem2Root;
-const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
+})) as unknown as typeof TreeItemRoot;
+const CustomTreeItemContent = styled(TreeItemContent)(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
   marginBottom: theme.spacing(0.2),
   marginTop: theme.spacing(0.2),
@@ -144,7 +141,7 @@ interface CustomLabelProps {
 
 function CustomLabel({ icon: Icon, expandable, children, ...other }: CustomLabelProps) {
   return (
-    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
+    <TreeItemLabel {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {Icon && (
         <Box
           component={Icon}
@@ -156,7 +153,6 @@ function CustomLabel({ icon: Icon, expandable, children, ...other }: CustomLabel
           })}
         />
       )}
-
       <Typography
         sx={(theme) => ({
           fontWeight: expandable
@@ -168,7 +164,7 @@ function CustomLabel({ icon: Icon, expandable, children, ...other }: CustomLabel
       >
         {children}
       </Typography>
-    </TreeItem2Label>
+    </TreeItemLabel>
   );
 }
 
@@ -195,7 +191,7 @@ const getIconFromFileType = (fileType: FileType) => {
 };
 
 interface CustomTreeItemProps
-  extends Omit<UseTreeItem2Parameters, 'rootRef'>,
+  extends Omit<UseTreeItemParameters, 'rootRef'>,
     Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {}
 
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
@@ -212,7 +208,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     getGroupTransitionProps,
     status,
     publicAPI,
-  } = useTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
+  } = useTreeItem({ id, itemId, children, label, disabled, rootRef: ref });
 
   const item = publicAPI.getItem(itemId);
   const expandable = isExpandable(children);
@@ -228,7 +224,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   }
 
   return (
-    <TreeItem2Provider itemId={itemId}>
+    <TreeItemProvider id={id} itemId={itemId}>
       <StyledTreeItemRoot {...getRootProps(other)}>
         <CustomTreeItemContent
           {...getContentProps({
@@ -241,16 +237,16 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
           })}
         >
           {expandable && (
-            <TreeItem2IconContainer {...getIconContainerProps()}>
-              <TreeItem2Icon status={status} />
-            </TreeItem2IconContainer>
+            <TreeItemIconContainer {...getIconContainerProps()}>
+              <TreeItemIcon status={status} />
+            </TreeItemIconContainer>
           )}
 
           <CustomLabel {...getLabelProps({ icon, expandable })} />
         </CustomTreeItemContent>
         {children && <TransitionComponent {...getGroupTransitionProps()} />}
       </StyledTreeItemRoot>
-    </TreeItem2Provider>
+    </TreeItemProvider>
   );
 });
 

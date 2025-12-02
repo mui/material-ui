@@ -2,10 +2,9 @@
 productId: material-ui
 title: React Slider component
 components: Slider
-githubLabel: 'component: slider'
+githubLabel: 'scope: slider'
 materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
-unstyled: /base-ui/react-slider/
 githubSource: packages/mui-material/src/Slider
 ---
 
@@ -39,7 +38,7 @@ You can generate a mark for each step with `marks={true}`.
 ### Small steps
 
 You can change the default step increment.
-Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`.
+Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divisible by the `step`.
 
 {{"demo": "DiscreteSliderSteps.js"}}
 

@@ -1,5 +1,11 @@
-import * as React from 'react';
-import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  reactMajor,
+  act,
+  screen,
+  flushEffects,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
@@ -29,23 +35,22 @@ describe('<Masonry />', () => {
   const maxColumnHeight = 100;
 
   describe('render', () => {
-    it('should render with correct default styles', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())('should render with correct default styles', function test() {
       const width = 400;
       const columns = 4;
       const spacing = 1;
-      const { getByTestId } = render(
+
+      render(
         <div style={{ width: `${width}px` }}>
           <Masonry data-testid="container">
             <div data-testid="child" />
           </Masonry>
         </div>,
       );
+
       const containerMargin = `-${parseToNumber(theme.spacing(spacing)) / 2}px`;
       const childMargin = `${parseToNumber(theme.spacing(spacing)) / 2}px`;
-      expect(getByTestId('container')).toHaveComputedStyle({
+      expect(screen.getByTestId('container')).toHaveComputedStyle({
         width: `${width}px`,
         display: 'flex',
         flexDirection: 'column',
@@ -57,7 +62,7 @@ describe('<Masonry />', () => {
         marginBottom: containerMargin,
         marginLeft: containerMargin,
       });
-      expect(getByTestId('child')).toHaveComputedStyle({
+      expect(screen.getByTestId('child')).toHaveComputedStyle({
         boxSizing: 'border-box',
         marginTop: childMargin,
         marginRight: childMargin,
@@ -67,53 +72,52 @@ describe('<Masonry />', () => {
       });
     });
 
-    it('should re-compute the height of masonry when dimensions of any child change', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // only run on browser
-        this.skip();
-      }
-      const spacingProp = 1;
-      const firstChildHeight = 10;
-      const secondChildInitialHeight = 20;
-      const secondChildNewHeight = 10;
+    // only run on browser
+    it.skipIf(isJsdom())(
+      'should re-compute the height of masonry when dimensions of any child change',
+      async () => {
+        const spacingProp = 1;
+        const firstChildHeight = 10;
+        const secondChildInitialHeight = 20;
+        const secondChildNewHeight = 10;
 
-      const { getByTestId } = render(
-        <Masonry columns={2} spacing={spacingProp} data-testid="container">
-          <div style={{ height: `${firstChildHeight}px` }} />
-        </Masonry>,
-      );
-      const masonry = getByTestId('container');
-      const secondItem = document.createElement('div');
-      secondItem.style.height = `${secondChildInitialHeight}px`;
-      masonry.appendChild(secondItem);
+        render(
+          <Masonry columns={2} spacing={spacingProp} data-testid="container">
+            <div style={{ height: `${firstChildHeight}px` }} />
+          </Masonry>,
+        );
 
-      const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
-      expect(window.getComputedStyle(masonry).height).to.equal(
-        `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
-      );
+        const masonry = screen.getByTestId('container');
+        const secondItem = document.createElement('div');
+        secondItem.style.height = `${secondChildInitialHeight}px`;
+        masonry.appendChild(secondItem);
 
-      secondItem.style.height = `${secondChildNewHeight}px`;
+        const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
+        expect(window.getComputedStyle(masonry).height).to.equal(
+          `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
+        );
 
-      expect(window.getComputedStyle(masonry).height).to.equal(
-        `${firstChildHeight + secondChildNewHeight + topAndBottomMargin}px`,
-      );
-    });
+        secondItem.style.height = `${secondChildNewHeight}px`;
 
-    it('should throw console error when children are empty', function test() {
-      // React 19 removed prop types support
-      if (!/jsdom/.test(window.navigator.userAgent) || reactMajor >= 19) {
-        this.skip();
-      }
-      expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
-        'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
-      );
-    });
+        expect(window.getComputedStyle(masonry).height).to.equal(
+          `${firstChildHeight + secondChildNewHeight + topAndBottomMargin}px`,
+        );
 
-    it('should not throw type error when children are empty', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+        await flushEffects();
+      },
+    );
 
+    // React 19 removed prop types support
+    it.skipIf(!isJsdom() || reactMajor >= 19)(
+      'should throw console error when children are empty',
+      function test() {
+        expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
+          'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+        );
+      },
+    );
+
+    it.skipIf(isJsdom())('should not throw type error when children are empty', function test() {
       // React 19 removed prop types support
       if (reactMajor < 19) {
         expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
@@ -379,29 +383,29 @@ describe('<Masonry />', () => {
 
   describe('prop: sequential', () => {
     const pause = (timeout) =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, timeout);
-      });
+      act(
+        async () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, timeout);
+          }),
+      );
 
-    it('should place children in sequential order', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // only run on browser
-        this.skip();
-      }
-
-      const { getByTestId } = render(
+    // only run on browser
+    it.skipIf(isJsdom())('should place children in sequential order', async function test() {
+      render(
         <Masonry columns={2} spacing={1} sequential>
           <div style={{ height: `20px` }} data-testid="child1" />
           <div style={{ height: `10px` }} data-testid="child2" />
           <div style={{ height: `10px` }} data-testid="child3" />
         </Masonry>,
       );
+
       await pause(400); // Masonry elements aren't ordered immediately, and so we need the pause to wait for them to be ordered
-      const child1 = getByTestId('child1');
-      const child2 = getByTestId('child2');
-      const child3 = getByTestId('child3');
+      const child1 = screen.getByTestId('child1');
+      const child2 = screen.getByTestId('child2');
+      const child3 = screen.getByTestId('child3');
       expect(window.getComputedStyle(child1).order).to.equal(`1`);
       expect(window.getComputedStyle(child2).order).to.equal(`2`);
       expect(window.getComputedStyle(child3).order).to.equal(`1`);

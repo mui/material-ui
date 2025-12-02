@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { runInNewContext } from 'vm';
+import { isJsdom } from '@mui/internal-test-utils/env';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
@@ -61,14 +61,8 @@ describe('deepmerge', () => {
     expect({}).not.to.have.property('isAdmin');
   });
 
-  it('should merge objects across realms', function test() {
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      // vm is only available in Node.js.
-      // We could use https://github.com/browserify/vm-browserify to run the test in an iframe when
-      // in Karma but it doesn't seem we need to go as far.
-      this.skip();
-    }
-
+  it.skipIf(!isJsdom())('should merge objects across realms', async function test() {
+    const { runInNewContext } = await import('vm');
     const vmObject = runInNewContext('({hello: "realm"})');
     const result = deepmerge({ hello: 'original' }, vmObject);
     expect(result.hello).to.equal('realm');
@@ -130,6 +124,17 @@ describe('deepmerge', () => {
     const result = deepmerge({ element }, { element: element2 });
 
     expect(result.element).to.equal(element2);
+  });
+
+  it('should not deep clone React component', () => {
+    // most 3rd-party components use `forwardRef`
+    const Link = React.forwardRef((props, ref) => React.createElement('a', { ref, ...props }));
+    const result = deepmerge(
+      { defaultProps: { component: 'a' } },
+      { defaultProps: { component: Link } },
+    );
+
+    expect(result.defaultProps.component).to.equal(Link);
   });
 
   it('should deep clone example correctly', () => {

@@ -2,8 +2,8 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { styled, alpha, lighten } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import ExpandIcon from '@mui/icons-material/ExpandMore';
-import CollapseIcon from '@mui/icons-material/ChevronRight';
+import ChevronDownIcon from '@mui/icons-material/ExpandMoreRounded';
+import ChevronRightIcon from '@mui/icons-material/ChevronRightRounded';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import { blue, blueDark } from '@mui/docs/branding';
@@ -81,7 +81,6 @@ function ObjectEntryLabel(props: { objectKey: string; objectValue: any }) {
 
   return (
     <React.Fragment>
-      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
       {`${objectKey}: `}
       {type === 'color' ? (
         <Color style={{ borderColor: lighten(label, 0.7) }}>
@@ -121,8 +120,13 @@ const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
   },
 }));
 
-function ObjectEntry(props: { itemId: string; objectKey: string; objectValue: any }) {
-  const { itemId, objectKey, objectValue } = props;
+function ObjectEntry(props: {
+  itemId: string;
+  objectKey: string;
+  objectValue: any;
+  depth: number;
+}) {
+  const { itemId, objectKey, objectValue, depth } = props;
   const keyPrefix = itemId;
   let children = null;
 
@@ -139,6 +143,7 @@ function ObjectEntry(props: { itemId: string; objectKey: string; objectValue: an
                 key={key}
                 itemId={`${keyPrefix}.${key}`}
                 objectKey={key}
+                depth={depth + 1}
                 objectValue={objectValue[key]}
               />
             );
@@ -147,6 +152,9 @@ function ObjectEntry(props: { itemId: string; objectKey: string; objectValue: an
 
   return (
     <TreeItem
+      sx={{
+        paddingLeft: depth,
+      }}
       itemId={itemId}
       label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
     >
@@ -202,8 +210,8 @@ export default function ThemeViewer({
     <SimpleTreeView
       key={key}
       slots={{
-        expandIcon: ExpandIcon,
-        collapseIcon: CollapseIcon,
+        expandIcon: ChevronRightIcon,
+        collapseIcon: ChevronDownIcon,
         endIcon: CustomEndIcon,
       }}
       defaultExpandedItems={defaultExpanded}
@@ -223,6 +231,7 @@ export default function ThemeViewer({
             itemId={`${keyPrefix}.${objectKey}`}
             objectKey={objectKey}
             objectValue={data[objectKey]}
+            depth={0}
           />
         );
       })}

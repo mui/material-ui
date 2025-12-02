@@ -1,0 +1,61 @@
+{
+  "name": "@mui/stylis-plugin-rtl",
+  "version": "7.3.5",
+  "author": "MUI Team",
+  "description": "A plugin for Material UI that provides RTL (right-to-left) support.",
+  "keywords": [
+    "react",
+    "react-component",
+    "mui",
+    "rtl"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-stylis-plugin-rtl"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-utils",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "build": "code-infra build",
+    "release": "pnpm build && pnpm publish",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/stylis-plugin-rtl\"",
+    "typescript": "tsc -p tsconfig.json",
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.28.4",
+    "cssjanus": "^2.3.0"
+  },
+  "devDependencies": {
+    "@mui/internal-test-utils": "workspace:^",
+    "@types/chai": "^5.2.3",
+    "@types/node": "^20.19.25",
+    "@types/sinon": "^17.0.4",
+    "@types/stylis": "4.2.7",
+    "chai": "^6.0.1",
+    "sinon": "^21.0.0",
+    "stylis": "4.3.6"
+  },
+  "peerDependencies": {
+    "stylis": "4.x"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

@@ -559,6 +559,9 @@ const Root = styled('div')(
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
+      '@media (max-width: 640px)': {
+        display: 'none',
+      },
       '& .MuiCode-copied-label': {
         display: 'none',
       },

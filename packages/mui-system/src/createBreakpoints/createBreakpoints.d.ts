@@ -9,7 +9,7 @@ export type Breakpoint = OverridableStringUnion<
 export const keys: Breakpoint[];
 
 // Keep in sync with docs/src/pages/customization/breakpoints/breakpoints.md
-// #default-branch-switch
+// #host-reference
 export interface Breakpoints {
   keys: Breakpoint[];
   /**
