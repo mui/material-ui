@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { LinkProps } from 'next/link';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -302,7 +303,7 @@ function reduceChildRoutes(context: ReduceChildRoutesContext): React.ReactNode[]
 
     const subheader = Boolean(page.subheader);
 
-    let href = firstChild.pathname;
+    let href: LinkProps['href'] = firstChild.pathname;
 
     if (!href.startsWith('http')) {
       const [pathname, hash] = href.split('#');
@@ -343,7 +344,7 @@ function reduceChildRoutes(context: ReduceChildRoutesContext): React.ReactNode[]
       </AppNavDrawerItem>,
     );
   } else {
-    let href = page.pathname;
+    let href: LinkProps['href'] = page.pathname;
 
     if (!href.startsWith('http')) {
       const [pathname, hash] = href.split('#');

@@ -1,3 +1,4 @@
+import type { LinkProps } from 'next/link';
 import { camelCase, upperFirst } from 'es-toolkit/string';
 import { LANGUAGES } from 'docs/config';
 import { Translate } from '@mui/docs/i18n';
@@ -12,7 +13,7 @@ function titleize(hyphenedString: string): string {
 
 export interface Page {
   pathname: string;
-  query?: object;
+  query?: Exclude<LinkProps['href'], string>['query'];
   subheader?: string;
   title?: string | false;
 }
