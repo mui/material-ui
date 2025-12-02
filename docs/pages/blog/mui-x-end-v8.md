@@ -19,8 +19,8 @@ manualCard: false
 <a href="https://github.com/mui/mui-x/releases/tag/v8.20.0">
   <img
     id="blog-responsive-image"
-    src="/static/blog/mui-x-end-v8/intro.png"
-    alt=""
+    src="https://github.com/user-attachments/assets/dd199fd9-f053-4bbe-b5d5-95361d11e773"
+    alt="MUI X v8 and beyond"
     height="2400"
     width="800"
     style="width: 100%; object-fit: cover; object-position: center; border: 0px;"
@@ -202,12 +202,7 @@ Excel export now relies on our own internally vetted and private `ExcelJS` fork 
 
 ### Better range defaults [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Range components can use different reference dates for start and for end, so pickers open where users expect—e.g., next Monday through Friday for travel, or “this month” for reporting:
-
-<figure style="margin:16px 0;">
-  <img src="/static/blog/mui-x-end-v8/pickers-range-reference.png" alt="Range picker with different reference dates" style="width:100%;max-width:720px;border-radius:12px;">
-  <figcaption style="text-align:center;margin-top:8px;">Open ranges where users naturally start.</figcaption>
-</figure>
+Range components can use different reference dates for start and for end, so pickers open where users expect—e.g., next Monday through Friday for travel, or “this month” for reporting.
 
 [Reference dates in ranges](/x/react-date-pickers/base-concepts/#reference-date)
 
