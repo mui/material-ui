@@ -178,10 +178,9 @@ For CircleCI, you need to log in first.
 No further permissions are required to view the build logs.
 The following sections give an overview of what each check is responsible for.
 
-#### ci/codesandbox
+#### Continuous Releases
 
-This task creates multiple sandboxes on CodeSandbox.com that use the version of npm packages that was built from this pull request.
-It should not fail in isolation. Use it to test more complex scenarios.
+This task publishes a preview for the packages to pkg.pr.new. It should not fail in isolation. Use it to test more complex scenarios.
 
 #### ci/circleci: checkout
 
@@ -202,15 +201,14 @@ If it fails then `pnpm test:unit` should<sup>[1](test/README.md#accessibility-tr
 You can narrow the scope of tests run with `pnpm test:unit --grep ComponentName`.
 If `pnpm test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-#### ci/circleci: test_browser-1
+#### ci/circleci: test_browser
 
-This runs the unit tests in multiple browsers (via BrowserStack).
+This runs the unit tests in multiple browsers (via Playwright).
 The log of the failed build should list which browsers failed.
-If Chrome failed then `pnpm test:karma` should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well.
-If other browsers failed, then debugging might be trickier.
-If `pnpm test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
+If Chrome failed then `pnpm test:browser` should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well.
+If other browsers failed, you can debug using `VITEST_BROWSERS=firefox,webkit pnpm test:browser`.
 
-#### ci/circleci: test_regression-1
+#### ci/circleci: test_regression
 
 This renders tests in `test/regressions/tests` and takes screenshots.
 This step shouldn't fail if the others pass.
@@ -329,9 +327,9 @@ Check out [this Toggle Button demo PR](https://github.com/mui/material-ui/pull/1
 
 ## How can I use a change that hasn't been released yet?
 
-We use [CodeSandbox CI](https://codesandbox.io/docs/ci) to publish a working version of the packages for each pull request as a "preview."
+We use [pkg.pr.new](https://pkg.pr.new) to publish a working version of the packages for each pull request as a "preview."
 
-You can check the CodeSandbox CI status of a pull request to get the URL needed to install these preview packages:
+You can check the _Continuous Releases_ status of a pull request to get the URL needed to install these preview packages:
 
 ```diff
 diff --git a//package.json b//package.json
@@ -343,11 +341,11 @@ index 791a7da1f4..a5db13b414 100644
      "@babel/runtime": "^7.4.4",
      "@mui/styled-engine": "^5.0.0-alpha.16",
 -    "@mui/material": "^5.0.0-alpha.15",
-+    "@mui/material": "https://pkg.csb.dev/mui/material-ui/commit/371c952b/@mui/material",
++    "@mui/material": "https://pkg.pr.new/mui/material-ui/@mui/material@b0f26aa",
      "@mui/system": "^5.0.0-alpha.16",
 ```
 
-Alternatively, you can open the Netlify preview of the documentation, and open any demo in CodeSandbox.
+Alternatively, you can open the Netlify preview of the documentation, and open any demo in CodeSandbox or StackBlitz.
 The documentation automatically configures the dependencies to use the preview packages.
 
 You can also package and test your changes locally.

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 

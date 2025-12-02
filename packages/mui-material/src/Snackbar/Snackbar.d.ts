@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
 import { SnackbarClasses } from './snackbarClasses';
@@ -43,12 +43,12 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     root: SlotProps<'div', SnackbarRootSlotPropsOverrides, SnackbarOwnerState>;
     /**
      * Props forwarded to the content slot.
-     * By default, the avaible props are based on the [SnackbarContent](https://mui.com/material-ui/api/snackbar-content/#props) component.
+     * By default, the available props are based on the [SnackbarContent](https://mui.com/material-ui/api/snackbar-content/#props) component.
      */
     content: SlotProps<
       React.ElementType<SnackbarContentProps>,
@@ -57,7 +57,7 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the clickAwayListener slot.
-     * By default, the avaible props are based on the [ClickAwayListener](https://mui.com/material-ui/api/click-away-listener/#props) component.
+     * By default, the available props are based on the [ClickAwayListener](https://mui.com/material-ui/api/click-away-listener/#props) component.
      */
     clickAwayListener: SlotComponentProps<
       typeof ClickAwayListener,

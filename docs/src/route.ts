@@ -19,11 +19,10 @@ const ROUTES = {
   customization: '/material-ui/customization/how-to-customize/',
   theming: '/material-ui/customization/theming/',
   documentation: '/material-ui/getting-started/',
-  communityHelp: '/material-ui/getting-started/support/#community-help-free',
   showcase: '/material-ui/discover-more/showcase/',
   coreRoadmap: '/material-ui/discover-more/roadmap/',
   vision: '/material-ui/discover-more/vision/',
-  support: '/material-ui/getting-started/support/#professional-support-premium',
+  support: '/material-ui/getting-started/support/',
   goldSponsor: '/material-ui/discover-more/backers/#gold-sponsors',
   // Base UI doc pages
   baseDocs: '/base-ui/getting-started/',

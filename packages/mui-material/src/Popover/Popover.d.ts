@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/utils/types';
-import { BackdropProps, InternalStandardProps as StandardProps } from '..';
+import { BackdropProps } from '../Backdrop';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalProps } from '../Modal';
-import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -42,17 +43,17 @@ export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
+     * By default, the available props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
      */
     root: SlotProps<typeof Modal, PopoverRootSlotPropsOverrides, PopoverOwnerState>;
     /**
      * Props forwarded to the paper slot.
-     * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
+     * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
     paper: SlotProps<typeof Paper, PopoverPaperSlotPropsOverrides, PopoverOwnerState>;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
+     * By default, the available props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotComponentProps<
       // use SlotComponentProps because transition slot does not support `component` and `sx` prop
@@ -62,7 +63,7 @@ export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the backdrop slot.
-     * By default, the avaible props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
+     * By default, the available props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
      */
     backdrop: SlotProps<
       React.ElementType<BackdropProps>,
@@ -189,7 +190,7 @@ export interface PopoverProps
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    *
-   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.paper` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.paper` instead.
    *
    * @default {}

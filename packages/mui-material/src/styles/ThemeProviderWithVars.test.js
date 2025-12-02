@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {
   CssVarsProvider,
@@ -334,41 +334,40 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     });
   });
 
-  it("should use numeric values in system's spacing", function test() {
-    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+  it.skipIf(isJsdom() || !/WebKit/.test(window.navigator.userAgent))(
+    "should use numeric values in system's spacing",
+    function test() {
+      render(
+        <CssVarsProvider>
+          <Box
+            data-testid="box-1"
+            sx={{
+              borderRadius: '50%',
+            }}
+          />
+          <Box
+            data-testid="box-2"
+            sx={{
+              borderRadius: 4,
+            }}
+          />
+        </CssVarsProvider>,
+      );
 
-    const { getByTestId } = render(
-      <CssVarsProvider>
-        <Box
-          data-testid="box-1"
-          sx={{
-            borderRadius: '50%',
-          }}
-        />
-        <Box
-          data-testid="box-2"
-          sx={{
-            borderRadius: 4,
-          }}
-        />
-      </CssVarsProvider>,
-    );
-
-    expect(getByTestId('box-1')).toHaveComputedStyle({
-      borderTopLeftRadius: '50%',
-      borderTopRightRadius: '50%',
-      borderBottomLeftRadius: '50%',
-      borderBottomRightRadius: '50%',
-    });
-    expect(getByTestId('box-2')).toHaveComputedStyle({
-      borderTopLeftRadius: '16px',
-      borderTopRightRadius: '16px',
-      borderBottomLeftRadius: '16px',
-      borderBottomRightRadius: '16px',
-    });
-  });
+      expect(screen.getByTestId('box-1')).toHaveComputedStyle({
+        borderTopLeftRadius: '50%',
+        borderTopRightRadius: '50%',
+        borderBottomLeftRadius: '50%',
+        borderBottomRightRadius: '50%',
+      });
+      expect(screen.getByTestId('box-2')).toHaveComputedStyle({
+        borderTopLeftRadius: '16px',
+        borderTopRightRadius: '16px',
+        borderBottomLeftRadius: '16px',
+        borderBottomRightRadius: '16px',
+      });
+    },
+  );
 
   it('warns when using `setMode` without configuring `colorSchemeSelector`', () => {
     function Test() {
@@ -468,13 +467,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const view = render(<App />);
 
-    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+    expect(view.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+    expect(view.container).to.have.text(`2 light`);
   });
 
   it('palette mode should change if not using CSS variables', () => {
@@ -503,16 +502,14 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const view = render(<App />);
 
-    expect(container).to.have.text(
-      `${reactMajor >= 19 ? 2 : 1} light ${createTheme().palette.primary.main}`,
-    );
+    expect(view.container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(
-      `${reactMajor >= 19 ? 3 : 2} dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
+    expect(view.container).to.have.text(
+      `3 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
     );
   });
 
@@ -542,12 +539,12 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const view = render(<App />);
 
-    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+    expect(view.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(`${reactMajor >= 19 ? 3 : 2} dark`);
+    expect(view.container).to.have.text(`3 dark`);
   });
 });

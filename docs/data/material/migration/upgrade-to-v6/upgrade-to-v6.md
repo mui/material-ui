@@ -145,6 +145,13 @@ yarn add react-is@18.3.1
 
 </codeblock>
 
+#### Why is this needed?
+
+Material UI v6 uses `react-is@19`, which changed how React elements are identified.
+
+If you're on React 18 or below, mismatched versions of `react-is` can cause runtime errors in prop type checks.
+Forcing `react-is` to match your React version prevents these errors.
+
 ### Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
@@ -377,7 +384,7 @@ This eliminates the need for the `disableEqualOverflow` prop:
 #### Grid item spacing change
 
 In v5, Grid items included spacing in their boxes.
-In v6, Grid items no longer include spacing in their boxes by using the [CSS gap property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
+In v6, Grid items no longer include spacing in their boxes by using the [CSS gap property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap).
 
 Note that the item position doesn't change.
 
@@ -387,6 +394,20 @@ Note that the item position doesn't change.
 These updates may lead to unexpected changes to your app's layout.
 Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
+
+#### Container width
+
+The updated Grid component doesn't grow to the full width of the container by default.
+If you need the grid to grow to the full width, you can use the `sx` prop:
+
+```diff
+-<Grid container>
++<Grid container sx={{ width: '100%' }}>
+
+ // alternatively, if the Grid's parent is a flex container:
+-<Grid container>
++<Grid container sx={{ flexGrow: 1 }}>
+```
 
 ### ListItem
 

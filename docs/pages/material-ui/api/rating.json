@@ -93,7 +93,7 @@
     },
     {
       "name": "decimal",
-      "description": "The component used fo r the decimal slot.",
+      "description": "The component used for the decimal slot.",
       "default": "'span'",
       "class": "MuiRating-decimal"
     }

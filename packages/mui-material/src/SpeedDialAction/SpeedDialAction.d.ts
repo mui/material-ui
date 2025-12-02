@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { FabProps } from '../Fab';
 import { TooltipProps } from '../Tooltip';
 import { SpeedDialActionClasses } from './speedDialActionClasses';
@@ -40,7 +40,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the fab slot.
-     * By default, the avaible props are based on the [Fab](https://mui.com/material-ui/api/fab/#props) component.
+     * By default, the available props are based on the [Fab](https://mui.com/material-ui/api/fab/#props) component.
      */
     fab: SlotProps<
       React.ElementType<FabProps>,
@@ -49,7 +49,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the tooltip slot.
-     * By default, the avaible props are based on the [Tooltip](https://mui.com/material-ui/api/tooltip/#props) component.
+     * By default, the available props are based on the [Tooltip](https://mui.com/material-ui/api/tooltip/#props) component.
      */
     tooltip: SlotProps<
       React.ElementType<TooltipProps>,
@@ -58,7 +58,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the static tooltip slot.
-     * By default, the avaible props are based on a span element.
+     * By default, the available props are based on a span element.
      */
     staticTooltip: SlotProps<
       'span',
@@ -67,7 +67,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the static tooltip label slot.
-     * By default, the avaible props are based on a span element.
+     * By default, the available props are based on a span element.
      */
     staticTooltipLabel: SlotProps<
       'span',

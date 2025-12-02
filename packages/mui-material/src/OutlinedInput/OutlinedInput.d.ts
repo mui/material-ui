@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import {
-  CreateSlotsAndSlotProps,
-  SlotProps,
-  InternalStandardProps as StandardProps,
-  Theme,
-} from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseProps } from '../InputBase';
 import { OutlinedInputClasses } from './outlinedInputClasses';
 
@@ -55,6 +52,7 @@ export interface OutlinedInputOwnerState extends Omit<OutlinedInputProps, 'slots
  *
  * Demos:
  *
+ * - [Number Field](https://mui.com/material-ui/react-number-field/)
  * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:

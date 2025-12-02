@@ -7,7 +7,7 @@ export default function SelectMultiple() {
     event: React.SyntheticEvent | null,
     newValue: Array<string> | null,
   ) => {
-    console.log(`You have choosen "${newValue}"`);
+    console.log(`You have chosen "${newValue}"`);
   };
   return (
     <Select

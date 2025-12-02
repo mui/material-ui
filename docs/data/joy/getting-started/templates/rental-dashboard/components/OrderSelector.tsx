@@ -1,4 +1,3 @@
-import * as React from 'react';
 import MenuButton from '@mui/joy/MenuButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';

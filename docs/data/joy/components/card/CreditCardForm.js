@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/joy/Card';
 import CardActions from '@mui/joy/CardActions';
 import CardContent from '@mui/joy/CardContent';

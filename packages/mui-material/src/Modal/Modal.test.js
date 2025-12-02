@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, within, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, within, screen, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import Modal, { modalClasses as classes } from '@mui/material/Modal';
@@ -14,7 +14,7 @@ describe('<Modal />', () => {
 
   let savedBodyStyle;
 
-  before(() => {
+  beforeAll(() => {
     savedBodyStyle = document.body.style;
   });
 
@@ -50,12 +50,12 @@ describe('<Modal />', () => {
   describe('props:', () => {
     let container;
 
-    before(() => {
+    beforeAll(() => {
       container = document.createElement('div');
       document.body.appendChild(container);
     });
 
-    after(() => {
+    afterAll(() => {
       document.body.removeChild(container);
     });
 
@@ -75,47 +75,48 @@ describe('<Modal />', () => {
 
   describe('prop: classes', () => {
     it('adds custom classes to the component', () => {
-      const { getByTestId } = render(
+      render(
         <Modal data-testid="Portal" open classes={{ root: 'custom-root', hidden: 'custom-hidden' }}>
           <div />
         </Modal>,
       );
-      expect(getByTestId('Portal')).to.have.class(classes.root);
-      expect(getByTestId('Portal')).to.have.class('custom-root');
-      expect(getByTestId('Portal')).not.to.have.class('custom-hidden');
+
+      expect(screen.getByTestId('Portal')).to.have.class(classes.root);
+      expect(screen.getByTestId('Portal')).to.have.class('custom-root');
+      expect(screen.getByTestId('Portal')).not.to.have.class('custom-hidden');
     });
   });
 
   describe('prop: open', () => {
     it('should not render the children by default', () => {
-      const { queryByTestId } = render(
+      render(
         <Modal open={false}>
           <p data-testid="content">Hello World</p>
         </Modal>,
       );
 
-      expect(queryByTestId('content')).to.equal(null);
+      expect(screen.queryByTestId('content')).to.equal(null);
     });
 
     it('renders the children inside a div through a portal when open', () => {
-      const { getByTestId } = render(
+      render(
         <Modal data-testid="Portal" open>
           <p>Hello World</p>
         </Modal>,
       );
 
-      expect(getByTestId('Portal')).to.have.tagName('div');
+      expect(screen.getByTestId('Portal')).to.have.tagName('div');
     });
 
     it('makes the child focusable without adding a role', () => {
-      const { getByTestId } = render(
+      render(
         <Modal open>
           <div data-testid="child">Hello World</div>
         </Modal>,
       );
 
-      expect(getByTestId('child')).not.to.have.attribute('role');
-      expect(getByTestId('child')).to.have.attribute('tabIndex', '-1');
+      expect(screen.getByTestId('child')).not.to.have.attribute('role');
+      expect(screen.getByTestId('child')).to.have.attribute('tabIndex', '-1');
     });
   });
 
@@ -140,14 +141,14 @@ describe('<Modal />', () => {
     });
 
     it('should render a backdrop component into the portal before the modal content', () => {
-      const { getByTestId } = render(
+      render(
         <Modal open data-testid="modal">
           <div data-testid="container" />
         </Modal>,
       );
 
-      const modal = getByTestId('modal');
-      const container = getByTestId('container');
+      const modal = screen.getByTestId('modal');
+      const container = screen.getByTestId('container');
       expect(modal.children).to.have.length(4);
       expect(modal.children[0]).not.to.equal(undefined);
       expect(modal.children[0]).not.to.equal(null);
@@ -182,7 +183,8 @@ describe('<Modal />', () => {
 
     it('should attach a handler to the backdrop that fires onClose', () => {
       const onClose = spy();
-      const { getByTestId } = render(
+
+      render(
         <Modal
           onClose={onClose}
           open
@@ -196,7 +198,7 @@ describe('<Modal />', () => {
         </Modal>,
       );
 
-      getByTestId('backdrop').click();
+      screen.getByTestId('backdrop').click();
 
       expect(onClose).to.have.property('callCount', 1);
     });
@@ -217,7 +219,8 @@ describe('<Modal />', () => {
         );
       }
       const onClose = spy();
-      const { getByTestId } = render(
+
+      render(
         <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
@@ -227,7 +230,7 @@ describe('<Modal />', () => {
         </ModalWithDisabledBackdropClick>,
       );
 
-      getByTestId('backdrop').click();
+      screen.getByTestId('backdrop').click();
 
       expect(onClose).to.have.property('callCount', 0);
     });
@@ -235,14 +238,14 @@ describe('<Modal />', () => {
 
   describe('hide backdrop', () => {
     it('should not render a backdrop component into the portal before the modal content', () => {
-      const { getByTestId } = render(
+      render(
         <Modal open hideBackdrop data-testid="modal">
           <div data-testid="container" />
         </Modal>,
       );
 
-      const modal = getByTestId('modal');
-      const container = getByTestId('container');
+      const modal = screen.getByTestId('modal');
+      const container = screen.getByTestId('container');
       expect(modal.children).to.have.length(3);
       expect(modal.children[1]).to.equal(container);
     });
@@ -251,16 +254,18 @@ describe('<Modal />', () => {
   describe('event: keydown', () => {
     it('when mounted, TopModal and event not esc should not call given functions', () => {
       const onCloseSpy = spy();
-      const { getByTestId } = render(
+
+      render(
         <Modal open onClose={onCloseSpy}>
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
+
       act(() => {
-        getByTestId('modal').focus();
+        screen.getByTestId('modal').focus();
       });
 
-      fireEvent.keyDown(getByTestId('modal'), {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         key: 'j', // Not escape
       });
 
@@ -270,18 +275,20 @@ describe('<Modal />', () => {
     it('should call onClose when Esc is pressed and stop event propagation', () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
-      const { getByTestId } = render(
+
+      render(
         <div onKeyDown={handleKeyDown}>
           <Modal open onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
       );
+
       act(() => {
-        getByTestId('modal').focus();
+        screen.getByTestId('modal').focus();
       });
 
-      fireEvent.keyDown(getByTestId('modal'), {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         key: 'Escape',
       });
 
@@ -292,18 +299,20 @@ describe('<Modal />', () => {
     it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
-      const { getByTestId } = render(
+
+      render(
         <div onKeyDown={handleKeyDown}>
           <Modal open disableEscapeKeyDown onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
       );
+
       act(() => {
-        getByTestId('modal').focus();
+        screen.getByTestId('modal').focus();
       });
 
-      fireEvent.keyDown(getByTestId('modal'), {
+      fireEvent.keyDown(screen.getByTestId('modal'), {
         key: 'Escape',
       });
 
@@ -313,13 +322,14 @@ describe('<Modal />', () => {
 
     it('calls onKeyDown on the Modal', () => {
       const handleKeyDown = spy();
-      const { getByTestId } = render(
+
+      render(
         <Modal open onKeyDown={handleKeyDown}>
           <button autoFocus data-testid="target" />
         </Modal>,
       );
 
-      fireEvent.keyDown(getByTestId('target'), { key: 'j' });
+      fireEvent.keyDown(screen.getByTestId('target'), { key: 'j' });
 
       expect(handleKeyDown).to.have.property('callCount', 1);
     });
@@ -327,7 +337,7 @@ describe('<Modal />', () => {
 
   describe('prop: keepMounted', () => {
     it('should keep the children in the DOM', () => {
-      const { getByTestId } = render(
+      render(
         <Modal keepMounted open={false}>
           <div>
             <p data-testid="children">Hello World</p>
@@ -335,7 +345,7 @@ describe('<Modal />', () => {
         </Modal>,
       );
 
-      expect(getByTestId('children')).not.to.equal(null);
+      expect(screen.getByTestId('children')).not.to.equal(null);
     });
 
     it('does not include the children in the a11y tree', () => {
@@ -384,14 +394,14 @@ describe('<Modal />', () => {
           );
         }
       }
-      const { queryByTestId, getByRole } = render(<OpenClose />);
-      expect(queryByTestId('children')).to.equal(null);
+      render(<OpenClose />);
+      expect(screen.queryByTestId('children')).to.equal(null);
 
       act(() => {
-        getByRole('button').click();
+        screen.getByRole('button').click();
       });
 
-      expect(queryByTestId('children')).to.equal(null);
+      expect(screen.queryByTestId('children')).to.equal(null);
     });
   });
 
@@ -412,13 +422,13 @@ describe('<Modal />', () => {
     });
 
     it('should focus on the modal when it is opened', () => {
-      const { getByTestId, setProps } = render(
+      const { setProps } = render(
         <Modal open>
           <div data-testid="modal">Foo</div>
         </Modal>,
       );
 
-      expect(getByTestId('modal')).toHaveFocus();
+      expect(screen.getByTestId('modal')).toHaveFocus();
 
       setProps({ open: false });
 
@@ -426,7 +436,7 @@ describe('<Modal />', () => {
     });
 
     it('should support autoFocus', () => {
-      const { getByTestId, setProps } = render(
+      const { setProps } = render(
         <Modal open>
           <div>
             <input data-testid="auto-focus" type="text" autoFocus />
@@ -436,7 +446,7 @@ describe('<Modal />', () => {
         { strictEffects: false },
       );
 
-      expect(getByTestId('auto-focus')).toHaveFocus();
+      expect(screen.getByTestId('auto-focus')).toHaveFocus();
 
       setProps({ open: false });
 
@@ -444,13 +454,13 @@ describe('<Modal />', () => {
     });
 
     it('should keep focus on the modal when it is closed', () => {
-      const { getByTestId, setProps } = render(
+      const { setProps } = render(
         <Modal open disableRestoreFocus>
           <div data-testid="modal">Foo</div>
         </Modal>,
       );
 
-      expect(getByTestId('modal')).toHaveFocus();
+      expect(screen.getByTestId('modal')).toHaveFocus();
 
       setProps({ open: false });
 
@@ -470,13 +480,9 @@ describe('<Modal />', () => {
     describe('focus stealing', () => {
       clock.withFakeTimers();
 
-      it('does not steal focus from other frames', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          // TODO: Unclear why this fails. Not important
-          // since a browser test gives us more confidence anyway
-          this.skip();
-        }
-
+      // TODO: Unclear why this fails. Not important
+      // since a browser test gives us more confidence anyway
+      it.skipIf(isJsdom())('does not steal focus from other frames', function test() {
         const FrameContext = React.createContext(document);
         // by default Modal will use the document where the module! was initialized
         // which is usually the top document
@@ -513,7 +519,8 @@ describe('<Modal />', () => {
             </React.Fragment>
           );
         }
-        const { getByTestId } = render(
+
+        render(
           <React.Fragment>
             <input data-testid="foreign-input" type="text" />
             <IFrame>
@@ -525,12 +532,12 @@ describe('<Modal />', () => {
         );
 
         act(() => {
-          getByTestId('foreign-input').focus();
+          screen.getByTestId('foreign-input').focus();
         });
         // wait for the `contain` interval check to kick in.
         clock.tick(500);
 
-        expect(getByTestId('foreign-input')).toHaveFocus();
+        expect(screen.getByTestId('foreign-input')).toHaveFocus();
       });
     });
 
@@ -538,7 +545,7 @@ describe('<Modal />', () => {
       clock.withFakeTimers();
 
       // Test case for https://github.com/mui/material-ui/issues/12831
-      it('should unmount the children ', () => {
+      it('should unmount the children', () => {
         function TestCase() {
           const [open, setOpen] = React.useState(true);
 
@@ -796,25 +803,27 @@ describe('<Modal />', () => {
 
   describe('prop: disablePortal', () => {
     it('should render the content into the parent', () => {
-      const { getByTestId } = render(
+      render(
         <div data-testid="parent">
           <Modal open disablePortal>
             <div data-testid="child" />
           </Modal>
         </div>,
       );
-      expect(within(getByTestId('parent')).getByTestId('child')).not.to.equal(null);
+
+      expect(within(screen.getByTestId('parent')).getByTestId('child')).not.to.equal(null);
     });
   });
 
   describe('prop: BackdropProps', () => {
     it('should handle custom className', () => {
-      const { getByTestId } = render(
+      render(
         <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
           <div />
         </Modal>,
       );
-      expect(getByTestId('backdrop')).to.have.class('custom-backdrop');
+
+      expect(screen.getByTestId('backdrop')).to.have.class('custom-backdrop');
     });
   });
 

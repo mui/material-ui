@@ -1,4 +1,3 @@
-import * as React from 'react';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
 import { useCountUp } from 'use-count-up';

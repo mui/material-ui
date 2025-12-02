@@ -1,26 +1,22 @@
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
-import chai, { AssertionError } from 'chai';
+import * as chai from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
-import _ from 'lodash';
+import { kebabCase } from 'es-toolkit/string';
+import { AssertionError } from 'assertion-error';
 import './chai.types';
-
-const isKarma = Boolean(process.env.KARMA);
-
-function isInJSDOM() {
-  return /jsdom/.test(window.navigator.userAgent);
-}
+import { isJsdom } from './env';
 
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element: Element | null | undefined) {
   if (typeof element?.nodeType === 'number') {
-    return prettyDOM(element, undefined, { highlight: !isKarma, maxDepth: 1 });
+    return prettyDOM(element, undefined, { highlight: true, maxDepth: 1 });
   }
   return String(element);
 }
 
-const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
+const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
   const blockElements = new Set([
     'html',
     'address',
@@ -75,8 +71,7 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
 
     this.assert(
       element === document.activeElement,
-      // karma does not show the diff like mocha does
-      `expected element to have focus${isKarma ? '\nexpected #{exp}\nactual: #{act}' : ''}`,
+      `expected element to have focus`,
       `expected element to NOT have focus \n${elementToString(element)}`,
       elementToString(element),
       elementToString(document.activeElement),
@@ -120,10 +115,12 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
   chaiAPI.Assertion.addMethod('toHaveAccessibleName', function hasAccessibleName(expectedName) {
     const root = utils.flag(this, 'object');
     // make sure it's an Element
-    new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
+    new chaiAPI.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
+      1,
+    );
 
     const actualName = computeAccessibleName(root, {
-      computedStyleSupportsPseudoElements: !isInJSDOM(),
+      computedStyleSupportsPseudoElements: !isJsdom(),
       // in local development we pretend to be visible. full getComputedStyle is
       // expensive and reserved for CI
       getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
@@ -143,9 +140,10 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
     function hasAccessibleDescription(expectedDescription) {
       const root = utils.flag(this, 'object');
       // make sure it's an Element
-      new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
-        1,
-      );
+      new chaiAPI.Assertion(
+        root.nodeType,
+        `Expected an Element but got '${String(root)}'`,
+      ).to.equal(1);
 
       const actualDescription = computeAccessibleDescription(root, {
         // in local development we pretend to be visible. full getComputedStyle is
@@ -198,7 +196,7 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
     Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
-      const hyphenCasedPropertyName = _.kebabCase(cssProperty);
+      const hyphenCasedPropertyName = kebabCase(cssProperty);
       const isVendorPrefixed = /^(moz|ms|o|webkit)-/.test(hyphenCasedPropertyName);
       const propertyName = isVendorPrefixed
         ? `-${hyphenCasedPropertyName}`
@@ -275,35 +273,20 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
 
     const jsdomHint =
       'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
-      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+      "If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `it.skipIf(isJsdom())('...`";
     const shorthandHint =
       'Browsers can compute shorthand properties differently. Prefer longhand properties e.g. `borderTopColor`, `borderRightColor` etc. instead of `border` or `border-color`.';
     const messageHint = `${jsdomHint}\n${shorthandHint}`;
 
-    if (isKarma) {
-      // `#{exp}` and `#{act}` placeholders escape the newlines
-      const expected = JSON.stringify(expectedStyle, null, 2);
-      const actual = JSON.stringify(actualStyle, null, 2);
-      // karma's `dots` reporter does not support diffs
-      this.assert(
-        // TODO Fix upstream docs/types
-        (utils as any).eql(actualStyle, expectedStyle),
-        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${messageHint}`,
-        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${messageHint}`,
-        expectedStyle,
-        actualStyle,
-      );
-    } else {
-      this.assert(
-        // TODO Fix upstream docs/types
-        (utils as any).eql(actualStyle, expectedStyle),
-        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${messageHint}`,
-        `expected #{this} not to have ${styleTypeHint} style #{exp}${messageHint}`,
-        expectedStyle,
-        actualStyle,
-        true,
-      );
-    }
+    this.assert(
+      // TODO Fix upstream docs/types
+      (utils as any).eql(actualStyle, expectedStyle),
+      `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${messageHint}`,
+      `expected #{this} not to have ${styleTypeHint} style #{exp}${messageHint}`,
+      expectedStyle,
+      actualStyle,
+      true,
+    );
   }
 
   chaiAPI.Assertion.addMethod(

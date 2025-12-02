@@ -1,14 +1,7 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import {
-  createTheme,
-  ThemeProvider,
-  useTheme,
-  rgbToHex,
-  styled,
-} from '@mui/material/styles';
+import { useTheme, rgbToHex, styled } from '@mui/material/styles';
 
 const Group = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(3),
@@ -26,7 +19,7 @@ const Color = styled(Grid)(({ theme }) => ({
   },
 }));
 
-function IntentionsInner() {
+export default function Intentions() {
   const theme = useTheme();
 
   const item = (color, name) => (
@@ -80,21 +73,5 @@ function IntentionsInner() {
         {item(theme.palette.success.dark, 'palette.success.dark')}
       </Grid>
     </Box>
-  );
-}
-
-export default function Intentions() {
-  const theme = useTheme();
-
-  return (
-    <ThemeProvider
-      theme={createTheme({
-        palette: {
-          mode: theme.palette.mode,
-        },
-      })}
-    >
-      <IntentionsInner />
-    </ThemeProvider>
   );
 }

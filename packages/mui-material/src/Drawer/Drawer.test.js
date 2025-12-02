@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { modalClasses } from '@mui/material/Modal';
@@ -90,48 +90,48 @@ describe('<Drawer />', () => {
         exit: 2967,
       };
 
-      it('should delay the slide transition to complete using default theme values by default', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
-        const theme = createTheme();
-        const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-        render(
-          <Drawer open>
-            <div />
-          </Drawer>,
-        );
-
-        const container = document.querySelector(`.${classes.root}`);
-        const backdropRoot = container.firstChild;
-        expect(backdropRoot).toHaveComputedStyle({
-          transitionDuration: `${enteringScreenDurationInSeconds}s`,
-        });
-      });
-
-      it('should delay the slide transition to complete using custom theme values', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
-        const theme = createTheme({
-          transitions: {
-            duration: {
-              enteringScreen: 1,
-            },
-          },
-        });
-        render(
-          <ThemeProvider theme={theme}>
+      it.skipIf(isJsdom())(
+        'should delay the slide transition to complete using default theme values by default',
+        function test() {
+          const theme = createTheme();
+          const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+          render(
             <Drawer open>
               <div />
-            </Drawer>
-          </ThemeProvider>,
-        );
+            </Drawer>,
+          );
 
-        const container = document.querySelector(`.${classes.root}`);
-        const backdropRoot = container.firstChild;
-        expect(backdropRoot).toHaveComputedStyle({ transitionDuration: '0.001s' });
-      });
+          const container = document.querySelector(`.${classes.root}`);
+          const backdropRoot = container.firstChild;
+          expect(backdropRoot).toHaveComputedStyle({
+            transitionDuration: `${enteringScreenDurationInSeconds}s`,
+          });
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should delay the slide transition to complete using custom theme values',
+        function test() {
+          const theme = createTheme({
+            transitions: {
+              duration: {
+                enteringScreen: 1,
+              },
+            },
+          });
+          render(
+            <ThemeProvider theme={theme}>
+              <Drawer open>
+                <div />
+              </Drawer>
+            </ThemeProvider>,
+          );
+
+          const container = document.querySelector(`.${classes.root}`);
+          const backdropRoot = container.firstChild;
+          expect(backdropRoot).toHaveComputedStyle({ transitionDuration: '0.001s' });
+        },
+      );
 
       it('delay the slide transition to complete using values provided via prop', () => {
         const handleEntered = spy();
@@ -152,6 +152,44 @@ describe('<Drawer />', () => {
         clock.tick(transitionDuration.enter);
 
         expect(handleEntered.callCount).to.equal(1);
+      });
+    });
+
+    describe('accessibility', () => {
+      it('should have role="dialog" and aria-modal="true" when variant is temporary', () => {
+        render(
+          <Drawer open variant="temporary">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).to.have.attribute('role', 'dialog');
+        expect(paper).to.have.attribute('aria-modal', 'true');
+      });
+
+      it('should not have role="dialog" and aria-modal="true" when variant is permanent', () => {
+        render(
+          <Drawer variant="permanent">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).not.to.have.attribute('role');
+        expect(paper).not.to.have.attribute('aria-modal');
+      });
+
+      it('should not have role="dialog" and aria-modal="true" when variant is persistent', () => {
+        render(
+          <Drawer variant="persistent">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).not.to.have.attribute('role');
+        expect(paper).not.to.have.attribute('aria-modal');
       });
     });
 
@@ -327,7 +365,7 @@ describe('<Drawer />', () => {
       const theme = createTheme({
         direction: 'rtl',
       });
-      const { rerender } = render(
+      const view = render(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="left" TransitionComponent={MockedSlide}>
             <div />
@@ -337,7 +375,7 @@ describe('<Drawer />', () => {
       // slide direction for left is right, if left is switched to right, we should get left
       expect(screen.getByTestId('slide')).to.have.attribute('data-direction', 'left');
 
-      rerender(
+      view.rerender(
         <ThemeProvider theme={theme}>
           <Drawer open anchor="right" TransitionComponent={MockedSlide}>
             <div />

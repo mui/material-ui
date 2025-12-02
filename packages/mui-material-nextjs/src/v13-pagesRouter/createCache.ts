@@ -17,14 +17,14 @@ export default function createEmotionCache(
     insertionPoint = emotionInsertionPoint ?? undefined;
   }
 
-  const { enableCssLayer, ...rest } = options ?? {};
+  const { enableCssLayer, ...other } = options ?? {};
 
-  const emotionCache = createCache({ key: 'mui', insertionPoint, ...rest });
+  const emotionCache = createCache({ key: 'mui', insertionPoint, ...other });
   if (enableCssLayer) {
     const prevInsert = emotionCache.insert;
     emotionCache.insert = (...args) => {
-      if (!args[1].styles.startsWith('@layer')) {
-        // avoid nested @layer
+      // ignore styles that contain layer order (`@layer a, b, c;` without `{`)
+      if (!args[1].styles.match(/^@layer\s+(?:[^{]*?)$/)) {
         args[1].styles = `@layer mui {${args[1].styles}}`;
       }
       return prevInsert(...args);

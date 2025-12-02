@@ -5,12 +5,13 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import isHostComponent from '../utils/isHostComponent';
+import isHostComponent from '@mui/utils/isHostComponent';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
+import useSlot from '../utils/useSlot';
 import ListContext from '../List/ListContext';
 import { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
@@ -52,6 +53,7 @@ const useUtilityClasses = (ownerState) => {
       hasSecondaryAction && 'secondaryAction',
     ],
     container: ['container'],
+    secondaryAction: ['secondaryAction'],
   };
 
   return composeClasses(slots, getListItemUtilityClass, classes);
@@ -215,6 +217,18 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const handleRef = useForkRef(listItemRef, ref);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [SecondaryActionSlot, secondaryActionSlotProps] = useSlot('secondaryAction', {
+    elementType: ListItemSecondaryAction,
+    externalForwardedProps,
+    ownerState,
+    className: classes.secondaryAction,
+  });
+
   const Root = slots.root || components.Root || ListItemRoot;
   const rootProps = slotProps.root || componentsProps.root || {};
 
@@ -276,7 +290,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         {...componentProps}
       >
         {children}
-        {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
+        {secondaryAction && (
+          <SecondaryActionSlot {...secondaryActionSlotProps}>{secondaryAction}</SecondaryActionSlot>
+        )}
       </Root>
     </ListContext.Provider>
   );
@@ -397,6 +413,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     root: PropTypes.object,
+    secondaryAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -405,6 +422,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,
+    secondaryAction: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

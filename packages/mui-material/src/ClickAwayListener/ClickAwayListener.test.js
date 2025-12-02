@@ -25,6 +25,7 @@ describe('<ClickAwayListener />', () => {
    * React bug: https://github.com/facebook/react/issues/20074
    */
   function render(...args) {
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const result = clientRender(...args);
     clock.tick(0);
     return result;
@@ -82,7 +83,8 @@ describe('<ClickAwayListener />', () => {
 
     it('should not be called when clicking inside a portaled element', () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+
+      render(
         <ClickAwayListener onClickAway={handleClickAway}>
           <div>
             <Portal>
@@ -92,13 +94,14 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Inside a portal'));
+      fireEvent.click(screen.getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
     });
 
     it('should be called when clicking inside a portaled element and `disableReactTree` is `true`', () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+
+      render(
         <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
           <div>
             <Portal>
@@ -108,13 +111,14 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Inside a portal'));
+      fireEvent.click(screen.getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(1);
     });
 
     it('should not be called even if the event propagation is stopped', () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+
+      render(
         <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
           <div>
             <div
@@ -147,13 +151,13 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Outside a portal'));
+      fireEvent.click(screen.getByText('Outside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop all inside a portal'));
+      fireEvent.click(screen.getByText('Stop all inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop inside a portal'));
+      fireEvent.click(screen.getByText('Stop inside a portal'));
       // undesired behavior in React 16
       expect(handleClickAway.callCount).to.equal(React.version.startsWith('16') ? 1 : 0);
     });
@@ -230,8 +234,8 @@ describe('<ClickAwayListener />', () => {
           <ClickAwayListener onClickAway={onClickAway}>
             <div data-testid="trigger" onMouseDown={toggleOpen}>
               {open &&
-                // interleave an element during mousedown so that the following mouseup would not be targetted at the mousedown target.
-                // This results in the click event being targetted at the nearest common ancestor.
+                // interleave an element during mousedown so that the following mouseup would not be targeted at the mousedown target.
+                // This results in the click event being targeted at the nearest common ancestor.
                 ReactDOM.createPortal(
                   <div data-testid="interleaved-element">Portaled Div</div>,
                   document.body,
@@ -386,56 +390,54 @@ describe('<ClickAwayListener />', () => {
     ['onClickCapture', false],
     ['onClickCapture', true],
   ].forEach(([eventName, disableReactTree]) => {
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, function test() {
-      if (!new Event('click').composedPath) {
-        this.skip();
-      }
+    it.skipIf(!new Event('click').composedPath)(
+      `when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`,
+      function test() {
+        const handleClickAway = spy();
+        function Test() {
+          const [buttonShown, hideButton] = React.useReducer(() => false, true);
 
-      const handleClickAway = spy();
-      function Test() {
-        const [buttonShown, hideButton] = React.useReducer(() => false, true);
+          return (
+            <React.Fragment>
+              {buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}
+              <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
+                <div />
+              </ClickAwayListener>
+            </React.Fragment>
+          );
+        }
+        render(<Test />);
 
-        return (
-          <React.Fragment>
-            {buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}
+        act(() => {
+          screen.getByRole('button').click();
+        });
+
+        expect(handleClickAway.callCount).to.equal(1);
+      },
+    );
+
+    it.skipIf(!new Event('click').composedPath)(
+      `when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`,
+      function test() {
+        const handleClickAway = spy();
+
+        function Test() {
+          const [buttonShown, hideButton] = React.useReducer(() => false, true);
+
+          return (
             <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
-              <div />
+              <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
             </ClickAwayListener>
-          </React.Fragment>
-        );
-      }
-      render(<Test />);
+          );
+        }
+        render(<Test />);
 
-      act(() => {
-        screen.getByRole('button').click();
-      });
+        act(() => {
+          screen.getByRole('button').click();
+        });
 
-      expect(handleClickAway.callCount).to.equal(1);
-    });
-
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`, function test() {
-      if (!new Event('click').composedPath) {
-        this.skip();
-      }
-
-      const handleClickAway = spy();
-
-      function Test() {
-        const [buttonShown, hideButton] = React.useReducer(() => false, true);
-
-        return (
-          <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
-            <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
-          </ClickAwayListener>
-        );
-      }
-      render(<Test />);
-
-      act(() => {
-        screen.getByRole('button').click();
-      });
-
-      expect(handleClickAway.callCount).to.equal(0);
-    });
+        expect(handleClickAway.callCount).to.equal(0);
+      },
+    );
   });
 });

@@ -155,7 +155,7 @@ function extractClassesFromProps(
 
   const classes: Record<string, ClassInfo> = {};
   classesProp.signatures.forEach((propType) => {
-    const type = typescriptProject.checker.getTypeAtLocation(propType.symbol.declarations?.[0]!);
+    const type = typescriptProject.checker.getTypeAtLocation(propType.symbol.declarations![0]);
     removeUndefinedFromType(type)
       ?.getProperties()
       .forEach((property) => {
@@ -203,6 +203,7 @@ function extractSlots(
 
   const slots: Record<string, Slot> = {};
   const propertiesOnProject = type.getProperties();
+  const classDefMap = new Map(classDefinitions.map((classDef) => [classDef.key, classDef]));
 
   propertiesOnProject.forEach((propertySymbol) => {
     const tags = getSymbolJSDocTags(propertySymbol);
@@ -210,10 +211,7 @@ function extractSlots(
       return;
     }
     const slotName = propertySymbol.name;
-
-    const slotClassDefinition = classDefinitions.find(
-      (classDefinition) => classDefinition.key === slotName,
-    );
+    const slotClassDefinition = classDefMap.get(slotName);
 
     slots[slotName] = {
       name: slotName,

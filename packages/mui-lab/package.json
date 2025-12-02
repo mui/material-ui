@@ -1,10 +1,9 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "7.0.0-beta.12",
+  "version": "7.0.1-beta.19",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -28,18 +27,13 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/lab\"",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.1",
+    "@babel/runtime": "^7.28.4",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -49,15 +43,15 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
-    "@types/chai": "^4.3.20",
-    "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.4",
+    "@types/chai": "^5.2.3",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "sinon": "^19.0.5"
+    "chai": "^6.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sinon": "^21.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -89,5 +83,9 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./*": "./src/*/index.ts"
   }
 }

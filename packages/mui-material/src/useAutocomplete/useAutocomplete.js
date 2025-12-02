@@ -1,11 +1,20 @@
 'use client';
-/* eslint-disable no-constant-condition */
+
 import * as React from 'react';
 import setRef from '@mui/utils/setRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
+
+function areArraysSame({ array1, array2, parser = (value) => value }) {
+  return (
+    array1 &&
+    array2 &&
+    array1.length === array2.length &&
+    array1.every((prevOption, index) => parser(prevOption) === parser(array2[index]))
+  );
+}
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 function stripDiacritics(string) {
@@ -456,6 +465,12 @@ function useAutocomplete(props) {
     }
   });
 
+  const filteredOptionsChanged = !areArraysSame({
+    array1: previousProps.filteredOptions,
+    array2: filteredOptions,
+    parser: getOptionLabel,
+  });
+
   const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
       const label1 = value1 ? getOptionLabel(value1) : '';
@@ -465,8 +480,11 @@ function useAutocomplete(props) {
 
     if (
       highlightedIndexRef.current !== -1 &&
-      previousProps.filteredOptions &&
-      previousProps.filteredOptions.length !== filteredOptions.length &&
+      !areArraysSame({
+        array1: previousProps.filteredOptions,
+        array2: filteredOptions,
+        parser: getOptionLabel,
+      }) &&
       previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
@@ -549,7 +567,6 @@ function useAutocomplete(props) {
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
-    filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,
     popupOpen,
@@ -597,8 +614,10 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    syncHighlightedIndex();
-  }, [syncHighlightedIndex]);
+    if (filteredOptionsChanged || popupOpen) {
+      syncHighlightedIndex();
+    }
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen]);
 
   const handleOpen = (event) => {
     if (open) {
@@ -833,7 +852,8 @@ function useAutocomplete(props) {
           handleOpen(event);
           break;
         case 'ArrowLeft':
-          if (!multiple && renderValue) {
+          if (!multiple && renderValue && value != null) {
+            setFocusedItem(0);
             focusItem(0);
           } else {
             handleFocusItem(event, 'previous');
@@ -841,6 +861,7 @@ function useAutocomplete(props) {
           break;
         case 'ArrowRight':
           if (!multiple && renderValue) {
+            setFocusedItem(-1);
             focusItem(-1);
           } else {
             handleFocusItem(event, 'next');
@@ -905,6 +926,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
+            setFocusedItem(-1);
             focusItem(-1);
           }
           break;
@@ -926,6 +948,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
+            setFocusedItem(-1);
             focusItem(-1);
           }
           break;
@@ -936,6 +959,15 @@ function useAutocomplete(props) {
 
   const handleFocus = (event) => {
     setFocused(true);
+
+    // When focusing the input, ensure any previously focused item (chip)
+    // is cleared so the input receives the visible caret and the
+    // input-focused styling is applied.
+    if (focusedItem !== -1) {
+      setFocusedItem(-1);
+      // Ensure DOM focus lands on the input
+      focusItem(-1);
+    }
 
     if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);

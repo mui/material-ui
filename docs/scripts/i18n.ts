@@ -1,6 +1,6 @@
 // @ts-check
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
@@ -11,7 +11,7 @@ const EXCLUDES = ['/api', '/blog', '/x/react-', '/toolpad'];
 
 async function run() {
   const translationsFilename = path.join(__dirname, '../translations/translations.json');
-  const translationsFile = await fse.readFile(translationsFilename, 'utf8');
+  const translationsFile = await fs.readFile(translationsFilename, 'utf8');
   /**
    * @type {{ pages: Record<String, string> }}
    */
@@ -43,7 +43,7 @@ async function run() {
 
   traverse([...systemPages, ...materialPages, ...joyPages]);
 
-  await fse.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
+  await fs.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
 }
 
 run().catch((error) => {

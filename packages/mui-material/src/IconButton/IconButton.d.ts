@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { IconButtonClasses } from './iconButtonClasses';
@@ -87,6 +87,7 @@ export type IconButtonTypeMap<
  * Demos:
  *
  * - [Button](https://mui.com/material-ui/react-button/)
+ * - [Number Field](https://mui.com/material-ui/react-number-field/)
  *
  * API:
  *

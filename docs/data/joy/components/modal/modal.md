@@ -2,9 +2,8 @@
 productId: joy-ui
 title: React Modal component
 components: Modal, ModalClose, ModalDialog, ModalOverflow, DialogTitle, DialogContent, DialogActions
-githubLabel: 'component: modal'
+githubLabel: 'scope: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-unstyled: https://base-ui.com/react/components/dialog
 ---
 
 # Modal
@@ -145,7 +144,7 @@ declare module '@mui/joy/ModalDialog' {
 
 By default, content within the Modal Dialog won't overflow the screen when its height is bigger than the viewport.
 
-To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) with either `scroll` or `auto` values.
+To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow) with either `scroll` or `auto` values.
 
 {{"demo": "DialogVerticalScroll.js"}}
 

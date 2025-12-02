@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';

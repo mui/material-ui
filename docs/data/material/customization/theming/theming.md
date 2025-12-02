@@ -160,7 +160,8 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 
 :::warning
 Only the first argument (`options`) is processed by the `createTheme()` function.
-If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme()` function.
+While passing multiple arguments currently works for backward compatibility, this behavior may be removed in future versions.
+To ensure your code remains forward-compatible, you should manually deep merge the theme objects and pass the result as a single object to `createTheme()`.
 :::
 
 ```js
@@ -222,6 +223,61 @@ theme = createTheme(theme, {
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
 **WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
+
+### Merging className and style props in defaultProps
+
+By default, when a component has `defaultProps` defined in the theme, props passed to the component override the default props completely.
+
+```jsx
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      defaultProps: {
+        className: 'default-button-class',
+        style: { marginTop: 8 },
+      },
+    },
+  },
+});
+
+// className will be: "custom-button-class" (default ignored)
+// style will be: { color: 'blue' } (default ignored)
+<Button className="custom-button-class" style={{ color: 'blue' }}>
+  Click me
+</Button>;
+```
+
+You can change this behavior by configuring the theme to merge `className` and `style` props instead of replacing them.
+
+To do this, set `theme.components.mergeClassNameAndStyle` to `true`:
+
+```jsx
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    mergeClassNameAndStyle: true,
+    MuiButton: {
+      defaultProps: {
+        className: 'default-button-class',
+        style: { marginTop: 8 },
+      },
+    },
+  },
+});
+```
+
+Here's what the example above looks like with this configuration:
+
+```jsx
+// className will be: "default-button-class custom-button-class"
+// style will be: { marginTop: 8, color: 'blue' }
+<Button className="custom-button-class" style={{ color: 'blue' }}>
+  Click me
+</Button>
+```
 
 ### `responsiveFontSizes(theme, options) => theme`
 

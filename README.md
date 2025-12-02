@@ -26,7 +26,6 @@
 It's trusted by some of the world's greatest product teams because it's been rigorously battle-tested through more than a decade of development by thousands of open-source contributors.
 
 Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases.
-[Toolpad](https://github.com/mui/toolpad) builds on top of Material UI to provide full-stack components and a low-code internal tool builder.
 
 ## Documentation
 
@@ -70,28 +69,36 @@ Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
 via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p>
-  <a href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
-  &nbsp;
-  <a href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
+  <a href="https://tidelift.com/" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
+  &nbsp;
+  <a href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">
+   <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/sponsors/wispr-square-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/sponsors/wispr-square-light.svg">
+      <img height="96" width="96" src="https://mui.com/static/sponsors/wispr-square-light.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" />
+  </picture>
+  </a>
   &nbsp;
 </p>
 
 <p>
-  <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="23" src="https://images.opencollective.com/goread_io/eb6337d/logo/78.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" />Goread.io</a>
+  <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Goread.io</a>
   &nbsp;
-  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/78.png" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" />Buzzoid</a>
+  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Buzzoid</a>
   &nbsp;
-  <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="30" src="https://images.opencollective.com/twicsy/7af290f/logo/78.png" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" />Twicsy</a>
+  <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Twicsy</a>
   &nbsp;
-  <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buy-instagram-followers-v4y/6364714/logo/78.png" alt="views4you.com" title="Views4you: Social media growth services." loading="lazy" />Views4You</a>
+  <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Views4You</a>
   &nbsp;
-  <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/instagram-likes/2a72a03/logo/78.png" alt="poprey.com" title="Poprey: Buy Instagram likes with crypto." loading="lazy" />Poprey</a>
+  <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Poprey</a>
   &nbsp;
-  <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/instagram-followers-socialwick/ac6033a/logo/256.png" alt="socialwick.com/instagram/followers" title="SocialWick: Buy Instagram followers." loading="lazy" />SocialWick</a>
+  <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">SocialWick</a>
   &nbsp;
- <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://mui.com/static/sponsors/follower24-square.svg" alt="follower24.de" title="Follower24: Social media success." loading="lazy" />Follower24</a>
+ <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Follower24</a>
+  &nbsp;
+  <a href="https://reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Reputation Manage</a>
   &nbsp;
 </p>
 
@@ -161,17 +168,6 @@ These great services sponsor MUI's core infrastructure:
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
-
-</div>
-
-<div>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/browserstack-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/browserstack-lightmode.svg">
-  <img alt="BrowserStack logo" src="https://mui.com/static/readme/browserstack-lightmode.svg" width="140" height="25">
-</picture>
-
-[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
 </div>
 

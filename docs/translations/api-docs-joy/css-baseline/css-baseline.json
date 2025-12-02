@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": { "description": "You can wrap a node." },
     "disableColorScheme": {
-      "description": "Disable <code>color-scheme</code> CSS property.<br>For more details, check out <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme\">https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme</a> For browser support, check out <a href=\"https://caniuse.com/?search=color-scheme\">https://caniuse.com/?search=color-scheme</a>"
+      "description": "Disable <code>color-scheme</code> CSS property.<br>For more details, check out <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme\">https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme</a> For browser support, check out <a href=\"https://caniuse.com/?search=color-scheme\">https://caniuse.com/?search=color-scheme</a>"
     }
   },
   "classDescriptions": {}

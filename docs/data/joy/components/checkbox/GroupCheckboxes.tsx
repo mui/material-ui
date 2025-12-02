@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Checkbox from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';

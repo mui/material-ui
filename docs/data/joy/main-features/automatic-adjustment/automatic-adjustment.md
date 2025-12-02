@@ -4,7 +4,7 @@
 
 Joy UI components automatically adjust their styles and DOM structure relative to one another to ensure consistent sizing, spacing, and semantically appropriate HTML throughout your app.
 
-This makes it much faster and more efficient for you to apply pixel-perfect adjustments to your UI without having to worry to about minor inconsistencies between components.
+This makes it much faster and more efficient for you to apply pixel-perfect adjustments to your UI without having to worry about minor inconsistencies between components.
 
 ## Style adjustments
 

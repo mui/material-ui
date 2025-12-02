@@ -1,6 +1,7 @@
+/* eslint-disable testing-library/render-result-naming-convention, testing-library/prefer-screen-queries */
 import * as url from 'url';
 import * as path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
@@ -79,7 +80,7 @@ async function main() {
 
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
-    await fse.ensureDir(path.dirname(screenshotPath));
+    await fs.mkdir(path.dirname(screenshotPath), { recursive: true });
 
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
     const screenshotTarget = explicitScreenshotTarget || testcase;
@@ -92,7 +93,8 @@ async function main() {
   }
 
   // prepare screenshots
-  await fse.emptyDir(screenshotDir);
+  await fs.rm(screenshotDir, { recursive: true, force: true });
+  await fs.mkdir(screenshotDir, { recursive: true });
 
   describe('visual regressions', () => {
     beforeEach(async () => {
@@ -101,7 +103,7 @@ async function main() {
       });
     });
 
-    after(async () => {
+    afterAll(async () => {
       await browser.close();
     });
 
@@ -109,7 +111,7 @@ async function main() {
       it(`creates screenshots of ${route}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
-          this.timeout(0);
+          this?.timeout?.(0);
         }
 
         const testcase = await renderFixture(route);
@@ -184,13 +186,6 @@ async function main() {
       });
     });
   });
-
-  run();
 }
 
-main().catch((error) => {
-  // error during setup.
-  // Throwing lets mocha hang.
-  console.error(error);
-  process.exit(1);
-});
+await main();
