@@ -748,14 +748,14 @@ function useAutocomplete(props) {
       return;
     }
 
-    if (inputValue === '') {
+    if (inputValue === '' || inputRef.current.selectionStart === 0) {
       handleClose(event, 'toggleInput');
     }
 
     let nextItem = focusedItem;
 
     if (focusedItem === -1) {
-      if (inputValue === '' && direction === 'previous') {
+      if ((inputValue === '' || inputRef.current.selectionStart === 0) && direction === 'previous') {
         nextItem = value.length - 1;
       }
     } else {
@@ -853,10 +853,12 @@ function useAutocomplete(props) {
           handleOpen(event);
           break;
         case 'ArrowLeft':
-          if (!multiple && renderValue && value != null) {
-            focusItem(0);
-          } else {
-            handleFocusItem(event, 'previous');
+          if (inputRef.current && inputRef.current.selectionStart === 0) {
+            if (!multiple && value != null) {
+              focusItem(renderValue ? 0 : -1);
+            } else if (multiple && value && value.length > 0) {
+              handleFocusItem(event, 'previous');
+            }
           }
           break;
         case 'ArrowRight':
