@@ -85,7 +85,6 @@ A big thanks to the 22 contributors who made this release possible.
 - [test] Update e2e test app (#47252) @Ad1tya-007
 - [test] Fix flaky Virtualize Autocomplete regression test (#47199) @ZeeshanTamboli
 
-
 All contributors of this release in alphabetical order: @Ad1tya-007, @akankshahu, @albarv340, @Aleksan4e3, @brijeshb42, @Copilot, @Fanzzzd, @Janpot, @JCQuintas, @kumarvishwajeettrivedi, @mapache-salvaje, @oliviertassinari, @pcorpet, @rifeplight, @rithik56, @rossdakin, @sai6855, @shamblonaut, @siriwatknp, @vrachuri28, @xBlizZer, @ZeeshanTamboli
 
 ## 7.3.5
