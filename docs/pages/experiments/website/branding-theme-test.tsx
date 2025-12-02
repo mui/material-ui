@@ -132,14 +132,13 @@ export default function BrandingThemeTest() {
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
             </FormControl>
-            <FormControl sx={{ width: 120 }}>
+            <FormControl size="small" sx={{ width: 120 }}>
               <InputLabel id="demo-simple-select-label">Age</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={age}
                 label="Age"
-                size="small"
                 onChange={handleChange}
               >
                 <MenuItem value={10}>Ten</MenuItem>

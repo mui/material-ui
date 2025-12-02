@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, act, fireEvent } from '@mui/internal-test-utils';
@@ -28,8 +27,8 @@ describe('Joy <Textarea />', () => {
   }));
 
   it('should have placeholder', () => {
-    const { getByPlaceholderText } = render(<Textarea placeholder="Placeholder" />);
-    expect(getByPlaceholderText('Placeholder')).toBeVisible();
+    render(<Textarea placeholder="Placeholder" />);
+    expect(screen.getByPlaceholderText('Placeholder')).toBeVisible();
   });
 
   it('should have error classes', () => {

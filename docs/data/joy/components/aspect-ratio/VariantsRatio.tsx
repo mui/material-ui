@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Grid from '@mui/joy/Grid';
 import Typography from '@mui/joy/Typography';

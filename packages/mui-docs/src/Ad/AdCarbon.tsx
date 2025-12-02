@@ -47,6 +47,11 @@ function AdCarbonImage() {
     //
     // To solve the issue, for example StrictModel double effect execution, we debounce the load action.
     const load = setTimeout(() => {
+      // The DOM node could have unmounted at this point.
+      if (!ref.current) {
+        return;
+      }
+
       const script = loadScript(
         'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
         ref.current,
@@ -131,7 +136,8 @@ export function AdCarbonInline() {
           link: ad.statlink,
           img: ad.image,
           name: ad.company,
-          description: `<strong>${ad.company}</strong> - ${ad.description}`,
+          descriptionHeader: ad.company,
+          description: ad.description,
           poweredby: 'Carbon',
           label: 'carbon-demo-inline',
         }}

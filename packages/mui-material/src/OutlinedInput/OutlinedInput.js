@@ -18,6 +18,7 @@ import InputBase, {
   InputBaseRoot,
   InputBaseInput,
 } from '../InputBase/InputBase';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -51,6 +52,14 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,
       },
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.vars
+            ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
+            : borderColor,
+        },
+      },
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
         borderWidth: 2,
       },
@@ -66,16 +75,8 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             },
           })),
         {
-          props: {}, // to overide the above style
+          props: {}, // to override the above style
           style: {
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-              [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-                borderColor: theme.vars
-                  ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-                  : borderColor,
-              },
-            },
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
             },
@@ -116,14 +117,13 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
 const NotchedOutlineRoot = styled(NotchedOutline, {
   name: 'MuiOutlinedInput',
   slot: 'NotchedOutline',
-  overridesResolver: (props, styles) => styles.notchedOutline,
 })(
   memoTheme(({ theme }) => {
     const borderColor =
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return {
       borderColor: theme.vars
-        ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+        ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
         : borderColor,
     };
   }),
@@ -197,6 +197,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     multiline = false,
     notched,
     slots = {},
+    slotProps = {},
     type = 'text',
     ...other
   } = props;
@@ -227,23 +228,35 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const RootSlot = slots.root ?? components.Root ?? OutlinedInputRoot;
   const InputSlot = slots.input ?? components.Input ?? OutlinedInputInput;
 
+  const [NotchedSlot, notchedProps] = useSlot('notchedOutline', {
+    elementType: NotchedOutlineRoot,
+    className: classes.notchedOutline,
+    shouldForwardComponentProp: true,
+    ownerState,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+    },
+    additionalProps: {
+      label:
+        label != null && label !== '' && fcs.required ? (
+          <React.Fragment>
+            {label}
+            &thinsp;{'*'}
+          </React.Fragment>
+        ) : (
+          label
+        ),
+    },
+  });
+
   return (
     <InputBase
       slots={{ root: RootSlot, input: InputSlot }}
+      slotProps={slotProps}
       renderSuffix={(state) => (
-        <NotchedOutlineRoot
-          ownerState={ownerState}
-          className={classes.notchedOutline}
-          label={
-            label != null && label !== '' && fcs.required ? (
-              <React.Fragment>
-                {label}
-                &thinsp;{'*'}
-              </React.Fragment>
-            ) : (
-              label
-            )
-          }
+        <NotchedSlot
+          {...notchedProps}
           notched={
             typeof notched !== 'undefined'
               ? notched
@@ -297,7 +310,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -339,7 +352,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    */
   inputComponent: PropTypes.elementType,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @default {}
    */
   inputProps: PropTypes.object,
@@ -405,14 +418,21 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    notchedOutline: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.object,
+  }),
+  /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,
+    notchedOutline: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**
@@ -428,7 +448,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    * @default 'text'
    */
   type: PropTypes.string,
@@ -438,8 +458,6 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-if (OutlinedInput) {
-  OutlinedInput.muiName = 'Input';
-}
+OutlinedInput.muiName = 'Input';
 
 export default OutlinedInput;

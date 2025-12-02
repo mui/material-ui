@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -15,18 +14,6 @@ export default function FormControlLabelPlacement() {
         name="position"
         defaultValue="top"
       >
-        <FormControlLabel
-          value="top"
-          control={<Radio />}
-          label="Top"
-          labelPlacement="top"
-        />
-        <FormControlLabel
-          value="start"
-          control={<Radio />}
-          label="Start"
-          labelPlacement="start"
-        />
         <FormControlLabel
           value="bottom"
           control={<Radio />}

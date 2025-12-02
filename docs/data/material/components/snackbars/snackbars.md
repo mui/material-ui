@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Snackbar component
 components: Snackbar, SnackbarContent
-githubLabel: 'component: snackbar'
+githubLabel: 'scope: snackbar'
 materialDesign: https://m2.material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 githubSource: packages/mui-material/src/Snackbar
@@ -25,7 +25,7 @@ The demo below, inspired by Google Keep, shows a basic Snackbar with a text elem
 
 Snackbars differ from [Alerts](/material-ui/react-alert/) in that Snackbars have a fixed position and a high z-index, so they're intended to break out of the document flow; Alerts, on the other hand, are usually part of the flow—except when they're [used as children of a Snackbar](#use-with-alerts).
 
-Snackbars also from differ from [Dialogs](/material-ui/react-dialog/) in that Snackbars are not intended to convey _critical_ information or block the user from interacting with the rest of the app; Dialogs, by contrast, require input from the user in order to be dismissed.
+Snackbars also differ from [Dialogs](/material-ui/react-dialog/) in that Snackbars are not intended to convey _critical_ information or block the user from interacting with the rest of the app; Dialogs, by contrast, require input from the user in order to be dismissed.
 
 ## Basics
 
@@ -67,6 +67,23 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 
 ## Customization
 
+### Preventing default click away event
+
+If you would like to prevent the default onClickAway behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Snackbar
+  slotProps={{
+    clickAwayListener: {
+      onClickAway: (event) => {
+        // Prevent's default 'onClickAway' behavior.
+        event.defaultMuiPrevented = true;
+      },
+    },
+  }}
+/>
+```
+
 ### Use with Alerts
 
 Use an Alert inside a Snackbar for messages that communicate a certain severity.
@@ -87,7 +104,7 @@ This demo shows how to display multiple Snackbars without stacking them by using
 
 {{"demo": "ConsecutiveSnackbars.js"}}
 
-## Third-party integrations
+## Supplementary components
 
 ### notistack
 
@@ -140,9 +157,3 @@ The Snackbar component is composed of a root `<div>` that houses interior elemen
   </div>
 </div>
 ```
-
-## Experimental APIs
-
-### Imperative API
-
-You can create and manipulate notifications imperatively with the [`useNotifications`](https://mui.com/toolpad/core/react-use-notifications/) API in `@toolpad/core`. This API provides state management for opening and closing snackbars. It also allows for queueing multiple notifications at once.

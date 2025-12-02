@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -14,7 +13,7 @@ export default function DisabledAccordion() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography>Accordion 1</Typography>
+          <Typography component="span">Accordion 1</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -29,7 +28,7 @@ export default function DisabledAccordion() {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          <Typography>Accordion 2</Typography>
+          <Typography component="span">Accordion 2</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -44,7 +43,7 @@ export default function DisabledAccordion() {
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          <Typography>Disabled Accordion</Typography>
+          <Typography component="span">Disabled Accordion</Typography>
         </AccordionSummary>
       </Accordion>
     </div>

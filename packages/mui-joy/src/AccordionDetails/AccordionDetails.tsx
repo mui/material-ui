@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
@@ -98,27 +98,28 @@ const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref
   const handleRef = useForkRef(rootRef, ref);
 
   React.useEffect(() => {
-    // When accordion is closed, prevent tabbing into the details content.
     if (rootRef.current) {
       const elements = rootRef.current.querySelectorAll(
         'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
       );
+
       elements.forEach((elm) => {
+        const currentTabIndex = elm.getAttribute('tabindex');
+        const prevTabIndex = elm.getAttribute('data-prev-tabindex');
+
         if (expanded) {
-          const prevTabIndex = elm.getAttribute('data-prev-tabindex');
-          const currentTabIndex = elm.getAttribute('tabindex');
-
-          if (currentTabIndex && prevTabIndex) {
-            // restore tabindex
-            elm.setAttribute('tabindex', prevTabIndex);
-            elm.removeAttribute('data-prev-tabindex');
-          }
-
-          if (!prevTabIndex && !currentTabIndex) {
+          // Restore the previous tabindex if it exists, or remove it if it was "unset"
+          if (prevTabIndex === 'unset') {
             elm.removeAttribute('tabindex');
+          } else if (prevTabIndex !== null) {
+            elm.setAttribute('tabindex', prevTabIndex);
           }
+          elm.removeAttribute('data-prev-tabindex');
         } else {
-          elm.setAttribute('data-prev-tabindex', elm.getAttribute('tabindex') || '');
+          // If element has no data-prev-tabindex, store the current tabindex or "unset"
+          if (prevTabIndex === null) {
+            elm.setAttribute('data-prev-tabindex', currentTabIndex || 'unset');
+          }
           elm.setAttribute('tabindex', '-1');
         }
       });

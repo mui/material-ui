@@ -1,17 +1,18 @@
-# Material UI Sync plugin
+# Material UI Sync plugin 🧪
 
 <p class="description">Sync is a Figma plugin that generates Material UI themes directly from design to code.</p>
+
+:::warning
+This plugin is experimental.
+:::
 
 ## Introduction
 
 [Material UI Sync](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x).
 
-:::warning
-Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
-Other kits, such as the Joy UI Design Kit, are not supported yet.
-:::
-
 <img src="/static/material-ui/design-resources/sync.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
+
+Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
 
 ## Running the plugin
 
@@ -23,14 +24,14 @@ After installing and opening it in Figma, head over to the [Material UI Sync pl
 
 ## Customizing design tokens
 
-Design tokens are defined in the Design Kit's [local variable collections](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) and include color palettes, breakpoints, shapes, and spacing tokens.
+Design tokens are defined in the Design Kit's [local variable collections](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections) and include color palettes, breakpoints, shapes, and spacing tokens.
 Typography and shadow-related tokens are found in the [local styles collection](https://help.figma.com/hc/en-us/articles/360039820134-Manage-and-share-styles#:~:text=Local%20styles%20are%20styles%20that,or%20from%20the%20style%20picker.).
 
 ### Altering existing tokens
 
 The Design Kit comes fully loaded with design tokens that map out to the [default theme of the Material UI React library](/material-ui/customization/default-theme/).
 
-To customize existing tokens, open the [local variable modal](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables) by clicking on the filter icon as shown below.
+To customize existing tokens, open the [local variable modal](https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections) by clicking on the filter icon as shown below.
 Tweak any of the variables available in the collections (such as palettes, breakpoints, shapes, and spacing) as you see fit.
 
 <img src="/static/material-ui/design-resources/sync-variables.png" style="width: 814px; margin-bottom: 8px;" alt="The Local variables menu in Figma, where all design tokens are stored and new ones can be added." width="1628" height="400" />

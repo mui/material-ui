@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Link component
 components: Link
-githubLabel: 'component: link'
+githubLabel: 'scope: link'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
@@ -125,12 +125,12 @@ import Link from '@mui/joy/Link';
 </NextLink>;
 ```
 
-### React Router
+### React Router
 
-Here is an example with the [Link component](https://reactrouter.com/en/main/components/link) of React Router:
+Here is a demo with the [Link component](https://reactrouter.com/start/declarative/navigating#link) of [React Router](https://github.com/remix-run/react-router).
 
 ```js
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router';
 import Link from '@mui/joy/Link';
 
 <Link component={RouterLink} to="/docs">

@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 const styles = ({ theme }) => ({
   [`& .${snackbarContentClasses.root}`]: {
     backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     flexWrap: 'inherit',
     [theme.breakpoints.up('md')]: {
       borderTopLeftRadius: 0,

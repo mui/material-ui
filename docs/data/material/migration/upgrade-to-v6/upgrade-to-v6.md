@@ -88,6 +88,70 @@ yarn add react@<version> react-dom@<version>
 
 </codeblock>
 
+### React 18 and below
+
+If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
+
+For example, if you are using `react@18.3.1`, do the following steps:
+
+1. Install `react-is@18.3.1`.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react-is@18.3.1
+```
+
+```bash pnpm
+pnpm add react-is@18.3.1
+```
+
+```bash yarn
+yarn add react-is@18.3.1
+```
+
+</codeblock>
+
+2. Set the resolutions or overrides in the `package.json`.
+
+<codeblock storageKey="package-manager">
+
+```json npm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json pnpm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json yarn
+{
+  …
+  "resolutions": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+</codeblock>
+
+#### Why is this needed?
+
+Material UI v6 uses `react-is@19`, which changed how React elements are identified.
+
+If you're on React 18 or below, mismatched versions of `react-is` can cause runtime errors in prop type checks.
+Forcing `react-is` to match your React version prevents these errors.
+
 ### Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
@@ -132,6 +196,8 @@ For alternative installation methods, refer to the [CDN documentation](/material
 
 ### Accordion
 
+#### Summary wrapped in a heading
+
 To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `<h3>` heading element.
 This change may affect customizations relying on the previous DOM structure and CSS specificity.
 Additionally, the default heading element might conflict with existing heading structures on your page.
@@ -154,6 +220,13 @@ If the default heading element conflicts with your existing structure, you can c
   </AccordionDetails>
 </Accordion>
 ```
+
+#### Summary as a button (from v6.3.0)
+
+- The Accordion Summary HTML structure has been updated to fix invalid HTML introduced by wrapping it with a heading shown above:
+  - The root element is now a `button`.
+  - Summary content and the icon wrapper are rendered as `span`.
+- Developers using the previous `div` element for styling in the `AccordionSummary` should update their styling. Additionally, those using `Typography` for text, which defaults to rendering a `p` tag, should replace it with a `span`. You can use the `component` prop to replace the HTML tag (`<Typography component="span" />`), as shown in the [Accordion demos](https://mui.com/material-ui/react-accordion/).
 
 ### Autocomplete
 
@@ -311,7 +384,7 @@ This eliminates the need for the `disableEqualOverflow` prop:
 #### Grid item spacing change
 
 In v5, Grid items included spacing in their boxes.
-In v6, Grid items no longer include spacing in their boxes by using the [CSS gap property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
+In v6, Grid items no longer include spacing in their boxes by using the [CSS gap property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap).
 
 Note that the item position doesn't change.
 
@@ -321,6 +394,20 @@ Note that the item position doesn't change.
 These updates may lead to unexpected changes to your app's layout.
 Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
+
+#### Container width
+
+The updated Grid component doesn't grow to the full width of the container by default.
+If you need the grid to grow to the full width, you can use the `sx` prop:
+
+```diff
+-<Grid container>
++<Grid container sx={{ width: '100%' }}>
+
+ // alternatively, if the Grid's parent is a flex container:
+-<Grid container>
++<Grid container sx={{ flexGrow: 1 }}>
+```
 
 ### ListItem
 
@@ -356,9 +443,21 @@ As the `ListItem` no longer supports these props, the class names related to the
 +listItemButtonClasses.selected
 ```
 
-### Loading Button
+### Button with Loading State
 
-In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+As of `@mui/material` **v6.4.0**, the `LoadingButton` from Lab has been removed. Loading functionality is now part of the standard `Button` component. Update your import as follows:
+
+```diff
+-import { LoadingButton } from '@mui/lab';
++import { Button } from '@mui/material';
+```
+
+```diff
+-import LoadingButton from '@mui/lab/LoadingButton';
++import Button from '@mui/material/Button';
+```
+
+For more details, see the [Loading section](/material-ui/react-button/#loading-2) in the [Material UI `Button` documentation](/material-ui/react-button/).
 
 ### Typography
 
@@ -450,7 +549,7 @@ See [CSS theme variables](/material-ui/customization/css-theme-variables/overvie
 
 ### Color mode theme utility
 
-Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`, designed to replace `theme.palette.mode` when applying light or dark styles:
+Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles()`, designed to replace `theme.palette.mode` when applying light or dark styles:
 
 ```diff
  const MyComponent = styled('button')(({ theme }) => ({
@@ -464,7 +563,7 @@ Material UI v6 introduces a new utility for adding styles to specific color mod
  }))
 ```
 
-Use these codemods to migrate your project to `theme.applyStyles`:
+Use these codemods to migrate your project to `theme.applyStyles()`:
 
 ```bash
 npx @mui/codemod@latest v6.0.0/styled <path/to/folder-or-file>

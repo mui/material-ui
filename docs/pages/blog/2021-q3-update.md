@@ -31,64 +31,62 @@ Here are the most significant improvements since early July 2021.
   You can read more about it in the [release blog post](/blog/mui-core-v5/).
 - ✨ We also introduced a brand new [product page](/core/) this quarter to better present what the Core is about.
 - 🔎 We've reworked the search experience in the docs:
-
   - The component pages now rank before the API pages.
   - Instead of only displaying up to 5 results, you can scroll for more results.
   - An icon illustrates the nature of the match; either a page, a header, or a paragraph.
   - Your most recent searches are saved in local storage.
 
-  <img loading="lazy" src="/static/blog/2021-q3-update/old-search.png" alt="" style="width: 596px;" />
+  <img loading="lazy" src="/static/blog/2021-q3-update/old-search.png" alt="" width="1192" height="936" style="width: 596px;" />
 
   <p class="blog-description">Before</p>
 
-  <img loading="lazy" src="/static/blog/2021-q3-update/new-search.png" alt="" style="width: 600px; margin-top: 32px;" />
+  <img loading="lazy" src="/static/blog/2021-q3-update/new-search.png" alt="" width="1200" height="920" style="width: 600px; margin-top: 32px;" />
 
   <p class="blog-description">After</p>
 
-- [Masonry](/material-ui/react-masonry/). We introduced a new component for use when the `Grid` component leads to wasted space. It's frequently used in dashboards.
+- [Masonry](https://v5.mui.com/material-ui/react-masonry/). We introduced a new component for use when the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
-  <a href="/material-ui/react-masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px; margin-bottom: 16px;" alt="react-masonry" /></a>
+  <a href="/material-ui/react-masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px;" width="1400" height="906" alt="react-masonry" /></a>
 
 - We introduced a new [package of components without styles](https://www.npmjs.com/package/@mui/base), laying the foundations for supporting multiple design systems with headless components.
   While it was tough to balance the time between working on v5 stable and developing the unstyled components, we still managed to introduce the first few:
-
-  - [Autocomplete](/material-ui/react-autocomplete/#useautocomplete)
+  - [Autocomplete](https://v5.mui.com/material-ui/react-autocomplete/#useautocomplete)
 
   ```jsx
   import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
   ```
 
-  - [Button](/material-ui/react-button/#unstyled)
+  - [Button](https://v5.mui.com/material-ui/react-button/#unstyled)
 
   ```jsx
   import { useButton } from '@mui/base/ButtonUnstyled';
   ```
 
-  - [Modal](/material-ui/react-modal/#unstyled)
+  - [Modal](https://v5.mui.com/material-ui/react-modal/#unstyled)
 
   ```jsx
   import { ModalUnstyled } from '@mui/base/ModalUnstyled';
   ```
 
-  - [Slider](/material-ui/react-slider/#unstyled)
+  - [Slider](https://v5.mui.com/material-ui/react-slider/#unstyled)
 
   ```jsx
   import { SliderUnstyled } from '@mui/base/SliderUnstyled';
   ```
 
-  - [Switch](/material-ui/react-switch/#unstyled)
+  - [Switch](https://v5.mui.com/material-ui/react-switch/#unstyled)
 
   ```jsx
   import { useSwitch } from '@mui/base/SwitchUnstyled';
   ```
 
-  - [Portal](/material-ui/react-portal/#unstyled)
+  - [Portal](https://v5.mui.com/material-ui/react-portal/#unstyled)
 
   ```jsx
   import { Portal } from '@mui/base/Portal';
   ```
 
-  - [FocusTrap](/base-ui/react-focus-trap/)
+  - [FocusTrap](https://v6.mui.com/base-ui/react-focus-trap/)
 
   ```jsx
   import { FocusTrap } from '@mui/base/FocusTrap';
@@ -114,12 +112,14 @@ The date picker sits at the border between the core component and advanced compo
 - 🔎 We also added a [quick-filter demo](/x/react-data-grid/filtering/quick-filter/) to illustrate how it can be implemented,
   and will add a [built-in](https://github.com/mui/mui-x/issues/202) solution later on.
 
-  <a href="/x/react-data-grid/filtering/quick-filter/"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" alt="react-data-grid-quick-filter" /></a>
+  <a href="/x/react-data-grid/filtering/quick-filter/"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" width="1508" height="542" alt="react-data-grid-quick-filter" /></a>
 
 - 🐛 We fixed several non-idiomatic React patterns, for instance we were not handling controllable props by the book, and as we do in MUI Core.
 - 🚀 We introduced the [row editing](/x/react-data-grid/editing/#row-editing) feature.
 
-  <img src="/static/blog/2021-q3-update/row-edit.gif" alt="row-editing" width="851" />
+  <video autoplay muted loop playsinline width="1702" height="764">
+    <source src="/static/blog/2021-q3-update/row-edit.mp4" type="video/mp4" />
+  </video>
 
 - 🦺 We added a [`disableVirtualization`](/x/react-data-grid/virtualization/#disable-virtualization) prop to make it easier to test the data grid without a real browser environment, for example in jsdom with Jest.
 - 🚛 We have added an `onViewportRowsChange` prop as a first step toward being able to lazy load a large dataset.
@@ -152,7 +152,7 @@ for members of the team that were not prevented by COVID-19 related travel restr
 Less than half the company made it, but it was still fun!
 We spent half the time doing a [Hackathon](https://x.com/olivtassinari/status/1441773885259583491) and the other half on activities (surfing, biking, winery tour, and sightseeing).
 
-<img loading="lazy" src="/static/blog/2021-q3-update/retreat.jpeg" alt="" style="width: 596px; margin-bottom: 8px" />
+<img loading="lazy" src="/static/blog/2021-q3-update/retreat.jpeg" alt="" width="1613" height="1210" />
 
 <p class="blog-description">Sightseeing in Lisbon</p>
 
@@ -194,7 +194,7 @@ We'll do our best, no guarantee!
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.
   [15%](https://npm-stat.com/charts.html?package=%40material-ui%2Fcore&package=%40mui%2Fmaterial&from=2020-10-25&to=2021-10-15) of the community has migrated, so far.
-- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/base-ui/react-button/).
+- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://v6.mui.com/base-ui/react-button/).
   You can follow our progress in the [umbrella issue](https://github.com/mui/base-ui/issues/10).
 - 🎨 We are [exploring](https://github.com/mui/material-ui/discussions/29024) the introduction of CSS variables.
   Since v5, Material UI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.

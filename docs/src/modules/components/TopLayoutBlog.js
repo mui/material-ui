@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
-import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
@@ -116,6 +115,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/16889233',
     github: 'DiegoAndai',
   },
+  alelthomas: {
+    name: 'Ale Thomas',
+    avatar: 'https://avatars.githubusercontent.com/u/93217218',
+    github: 'alelthomas',
+  },
   DavidCnoops: {
     name: 'David Cnoops',
     avatar: 'https://avatars.githubusercontent.com/u/28001064',
@@ -140,6 +144,21 @@ export const authors = {
     name: 'Romain Gregoire',
     avatar: 'https://avatars.githubusercontent.com/u/1423607',
     github: 'romgrk',
+  },
+  arminmeh: {
+    name: 'Armin Mehinović',
+    avatar: 'https://avatars.githubusercontent.com/u/4390250',
+    github: 'arminmeh',
+  },
+  janpot: {
+    name: 'Jan Potoms',
+    avatar: 'https://avatars.githubusercontent.com/u/2109932',
+    github: 'Janpot',
+  },
+  nadjakovacev: {
+    name: 'Nadja Kovacev',
+    avatar: 'https://avatars.githubusercontent.com/u/159806370',
+    github: 'nadjakovacev',
   },
 };
 
@@ -199,8 +218,10 @@ const Root = styled('div')(
       lineHeight: 1.7,
       '& img, & video': {
         border: '1px solid',
+        // Avoid border to change inline style width properties
+        boxSizing: 'content-box',
         borderColor: (theme.vars || theme).palette.grey[200],
-        borderRadius: 12,
+        borderRadius: 8,
         display: 'block',
         margin: 'auto',
         marginBottom: 16,
@@ -300,7 +321,6 @@ const Root = styled('div')(
 );
 
 export default function TopLayoutBlog(props) {
-  const theme = useTheme();
   const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
@@ -400,7 +420,6 @@ export default function TopLayoutBlog(props) {
             sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             {'Back to blog'}
           </Link>
           {headers.title ? (
@@ -408,7 +427,7 @@ export default function TopLayoutBlog(props) {
               {/*
                 Depending on the timezone, the display date can change from one day to another.
                 e.g. Sunday vs. Monday
-                TODO: Move the date formating to the server.
+                TODO: Move the date formatting to the server.
               */}
               <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {
@@ -462,8 +481,6 @@ export default function TopLayoutBlog(props) {
                 disableAd
                 localizedDoc={docs.en}
                 renderedMarkdownOrDemo={chunk}
-                theme={theme}
-                WrapperComponent={React.Fragment}
               />
             );
           })}

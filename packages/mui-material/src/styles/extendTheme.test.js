@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
@@ -14,7 +13,7 @@ describe('extendTheme', () => {
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
         setItem: (key, value) => {
@@ -851,5 +850,25 @@ describe('extendTheme', () => {
         '.mode-light',
       ]);
     });
+
+    it('should use a custom root selector', () => {
+      const theme = extendTheme({
+        colorSchemes: { light: true, dark: true },
+        colorSchemeSelector: 'class',
+        rootSelector: ':host',
+      });
+      expect(theme.generateStyleSheets().flatMap((sheet) => Object.keys(sheet))).to.deep.equal([
+        ':host',
+        ':host, .light',
+        '.dark',
+      ]);
+    });
+  });
+
+  it('should not generate vars for modularCssLayers', () => {
+    const theme = extendTheme({
+      modularCssLayers: '@layer mui,utilities;',
+    });
+    expect(theme.vars.modularCssLayers).to.equal(undefined);
   });
 });

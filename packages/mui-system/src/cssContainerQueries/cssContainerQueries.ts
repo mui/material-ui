@@ -1,7 +1,6 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import { Breakpoints, Breakpoint } from '../createBreakpoints/createBreakpoints';
 
-interface ContainerQueries {
+export interface ContainerQueries {
   up: Breakpoints['up'];
   down: Breakpoints['down'];
   between: Breakpoints['between'];
@@ -17,7 +16,7 @@ export interface CssContainerQueries {
  * For using in `sx` prop to sort the breakpoint from low to high.
  * Note: this function does not work and will not support multiple units.
  *       e.g. input: { '@container (min-width:300px)': '1rem', '@container (min-width:40rem)': '2rem' }
- *            output: { '@container (min-width:40rem)': '2rem', '@container (min-width:300px)': '1rem' } // since 40 < 300 eventhough 40rem > 300px
+ *            output: { '@container (min-width:40rem)': '2rem', '@container (min-width:300px)': '1rem' } // since 40 < 300 even though 40rem > 300px
  */
 export function sortContainerQueries(
   theme: Partial<CssContainerQueries>,
@@ -58,10 +57,9 @@ export function getContainerQuery(theme: CssContainerQueries, shorthand: string)
   const matches = shorthand.match(/^@([^/]+)?\/?(.+)?$/);
   if (!matches) {
     if (process.env.NODE_ENV !== 'production') {
-      throw new MuiError(
-        'MUI: The provided shorthand %s is invalid. The format should be `@<breakpoint | number>` or `@<breakpoint | number>/<container>`.\n' +
+      throw /* minify-error */ new Error(
+        `MUI: The provided shorthand ${`(${shorthand})`} is invalid. The format should be \`@<breakpoint | number>\` or \`@<breakpoint | number>/<container>\`.\n` +
           'For example, `@sm` or `@600` or `@40rem/sidebar`.',
-        `(${shorthand})`,
       );
     }
     return null;

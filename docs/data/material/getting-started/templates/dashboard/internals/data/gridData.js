@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 
@@ -36,7 +35,7 @@ function renderSparklineCell(params) {
         plotType="bar"
         showHighlight
         showTooltip
-        colors={['hsl(210, 98%, 42%)']}
+        color="hsl(210, 98%, 42%)"
         xAxis={{
           scaleType: 'band',
           data,

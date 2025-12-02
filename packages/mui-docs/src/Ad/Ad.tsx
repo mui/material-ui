@@ -37,38 +37,33 @@ const disableAd =
   process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
 const inHouseAds = [
   {
-    name: 'scaffoldhub',
-    link: 'https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1',
-    img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material UI web-app.',
-  },
-  {
     name: 'templates',
     link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/ads-in-house/themes-2.jpg',
-    description:
-      '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards, and more.',
+    descriptionHeader: 'Premium Templates',
+    description: 'Start your project with the best templates for admins, dashboards, and more.',
   },
   {
     name: 'themes',
     link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
     img: '/static/ads-in-house/themes.png',
-    description:
-      '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
+    descriptionHeader: 'Premium Themes',
+    description: 'Kickstart your application development with a ready-made theme.',
   },
   {
     name: 'tidelift',
-    link: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+    link: 'https://tidelift.com/',
     img: '/static/ads-in-house/tidelift.png',
-    description:
-      '<b>MUI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
+    descriptionHeader: 'MUI for enterprise',
+    description: 'Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
     name: 'figma',
     link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
+    descriptionHeader: 'For Figma',
     description:
-      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material UI, MUI X, Joy UI components 🎨.',
+      'A large UI kit with over 600 handcrafted Material UI, MUI X, Joy UI components 🎨.',
   },
 ];
 
@@ -146,7 +141,7 @@ export function Ad() {
   const ad = React.useContext(AdContext);
   const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
 
-  const timerAdblock = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const timerAdblock = React.useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const checkAdblock = React.useCallback(
     (attempt = 1) => {
@@ -232,7 +227,6 @@ export function Ad() {
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
-      className="Ad-root"
     >
       <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>

@@ -1,11 +1,15 @@
-/* eslint-env mocha */
-import * as React from 'react';
 import { expect } from 'chai';
+import * as React from 'react';
+import { describe, it, afterAll, afterEach, beforeEach } from 'vitest';
 import createDescribe from './createDescribe';
 import { MuiRenderResult } from './createRenderer';
 
 function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+interface DataProps {
+  [key: `data-${string}`]: string;
 }
 
 export interface SlotTestingOptions {
@@ -41,7 +45,7 @@ export interface ConformanceOptions {
   refInstanceof: any;
   after?: () => void;
   inheritComponent?: React.ElementType;
-  render: (node: React.ReactElement<any>) => MuiRenderResult | Promise<MuiRenderResult>;
+  render: (node: React.ReactElement<DataProps>) => MuiRenderResult | Promise<MuiRenderResult>;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
@@ -60,9 +64,13 @@ export interface ConformanceOptions {
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };
   testCustomVariant?: boolean;
   testVariantProps?: object;
-  testLegacyComponentsProp?: boolean;
+  testLegacyComponentsProp?: boolean | string[];
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
+  /**
+   * If provided, the component will be tested by the `DefaultPropsProvider` (in addition to the ThemeProvider).
+   */
+  DefaultPropsProvider?: React.ElementType;
   createTheme?: (arg: any) => any;
 }
 
@@ -91,7 +99,11 @@ function throwMissingPropError(field: string): never {
  * the root component.
  */
 export function testClassName(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the className to the root component', async () => {
@@ -117,7 +129,12 @@ export function testClassName(
  * Component from @inheritComponent
  */
 export function testComponentProp(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component?: string | React.ElementType;
+    }
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop: component', () => {
@@ -153,7 +170,13 @@ export function testComponentProp(
  * MUI components spread additional props to its root.
  */
 export function testPropsSpread(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    DataProps & {
+      className: string;
+      component: string | React.ElementType;
+    }
+  >,
+
   getOptions: () => ConformanceOptions,
 ) {
   it(`spreads props to the root component`, async () => {
@@ -183,7 +206,9 @@ export function testPropsSpread(
  * components that forward their ref and attach it to a host component.
  */
 export function describeRef(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    ref: React.RefObject<any>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('ref', () => {
@@ -208,7 +233,10 @@ export function describeRef(
  * Tests that the root component has the root class
  */
 export function testRootClass(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   it('applies the root class to the root component if it has this class', async () => {
@@ -260,7 +288,39 @@ function forEachSlot(
   });
 }
 
-function testSlotsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testSlotsProp(
+  element: React.ReactElement<{
+    className: string;
+    classes: Record<string, string>;
+    slots: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    components?: {
+      [x: string]:
+        | SlotTestingOptions['testWithComponent']
+        | keyof React.JSX.IntrinsicElements
+        | React.ForwardRefExoticComponent<
+            {
+              children: React.ReactNode;
+            } & React.RefAttributes<HTMLDivElement>
+          >;
+    };
+    slotProps: {
+      [x: string]: DataProps;
+    };
+    componentsProps?: {
+      [x: string]: DataProps;
+    };
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   const CustomComponent = React.forwardRef<
@@ -317,15 +377,20 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
         const renderedElement = queryByTestId('customized');
         expect(renderedElement).not.to.equal(null);
 
-        expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        if (typeof slotElement === 'string') {
+          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+        }
         if (slotOptions.expectedClassName) {
           expect(renderedElement).to.have.class(slotOptions.expectedClassName);
         }
       });
     }
 
-    // For testing Material UI components v5, and v6. Likely to be removed in v7.
-    if (testLegacyComponentsProp) {
+    // For testing Material UI components v5, and v6. Likely to be removed in a future major release.
+    if (
+      testLegacyComponentsProp === true ||
+      (Array.isArray(testLegacyComponentsProp) && testLegacyComponentsProp.includes(slotName))
+    ) {
       it(`allows overriding the ${slotName} slot with a component using the components.${capitalize(
         slotName,
       )} prop`, async () => {
@@ -421,7 +486,9 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
           const renderedElement = queryByTestId('customized');
           expect(renderedElement).not.to.equal(null);
 
-          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          if (typeof slotElement === 'string') {
+            expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          }
           if (slotOptions.expectedClassName) {
             expect(renderedElement).to.have.class(slotOptions.expectedClassName);
           }
@@ -431,7 +498,13 @@ function testSlotsProp(element: React.ReactElement<any>, getOptions: () => Confo
   });
 }
 
-function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testSlotPropsProp(
+  element: React.ReactElement<{
+    componentsProps?: Record<string, DataProps>;
+    slotProps: Record<string, DataProps>;
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
   if (!render) {
@@ -471,7 +544,10 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
       });
     }
 
-    if (testLegacyComponentsProp) {
+    if (
+      testLegacyComponentsProp === true ||
+      (Array.isArray(testLegacyComponentsProp) && testLegacyComponentsProp.includes(slotName))
+    ) {
       it(`sets custom properties on the ${slotName} slot's element with the componentsProps.${slotName} prop`, async () => {
         const componentsProps = {
           [slotName]: {
@@ -515,7 +591,10 @@ function testSlotPropsProp(element: React.ReactElement<any>, getOptions: () => C
 }
 
 function testSlotPropsCallback(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<{
+    slotProps: Record<string, () => DataProps>;
+    className: string;
+  }>,
   getOptions: () => ConformanceOptions,
 ) {
   const { render, slots } = getOptions();
@@ -527,8 +606,8 @@ function testSlotPropsCallback(
   forEachSlot(slots, (slotName) => {
     it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback`, async () => {
       const slotProps = {
-        [slotName]: (ownerState: Record<string, any>) => ({
-          'data-testid': ownerState.className,
+        [slotName]: () => ({
+          'data-testid': 'custom',
         }),
       };
 
@@ -541,12 +620,46 @@ function testSlotPropsCallback(
   });
 }
 
+function testSlotPropsCallbackWithPropsAsOwnerState(
+  element: React.ReactElement<{
+    slotProps: Record<string, (ownerState: Record<string, any>) => DataProps>;
+    className: string;
+  }>,
+  getOptions: () => ConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  forEachSlot(slots, (slotName) => {
+    it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback using the ownerState`, async () => {
+      const slotProps = {
+        [slotName]: (ownerState: Record<string, any>) => ({
+          'data-testid': ownerState.className,
+        }),
+      };
+
+      const { queryByTestId } = await render(
+        React.cloneElement(element, { slotProps, className: 'custom' }),
+      );
+      const slotComponent = queryByTestId('custom', { exact: false });
+      expect(slotComponent).not.to.equal(null);
+    });
+  });
+}
+
 /**
  * MUI components have a `components` prop that allows rendering a different
  * Components from @inheritComponent
  */
 function testComponentsProp(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<
+    {
+      components?: Record<string, string>;
+    } & DataProps
+  >,
   getOptions: () => ConformanceOptions,
 ) {
   describe('prop components:', () => {
@@ -572,7 +685,7 @@ function testComponentsProp(
  * Components from @inheritComponent
  */
 function testThemeDefaultProps(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme default components:', () => {
@@ -611,6 +724,39 @@ function testThemeDefaultProps(
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
   });
+
+  describe('default props provider:', () => {
+    const { muiName, render, DefaultPropsProvider } = getOptions();
+
+    it.skipIf(!DefaultPropsProvider)('respect custom default props', async function test() {
+      const testProp = 'data-id';
+
+      if (!muiName) {
+        throwMissingPropError('muiName');
+      }
+
+      if (!render) {
+        throwMissingPropError('render');
+      }
+
+      const { container } = await render(
+        // @ts-expect-error we skip it above.
+        <DefaultPropsProvider
+          value={{
+            [muiName]: {
+              defaultProps: {
+                [testProp]: 'testProp',
+              },
+            },
+          }}
+        >
+          {element}
+        </DefaultPropsProvider>,
+      );
+
+      expect(container.firstChild).to.have.attribute(testProp, 'testProp');
+    });
+  });
 }
 
 /**
@@ -618,245 +764,243 @@ function testThemeDefaultProps(
  * Components from @inheritComponent
  */
 function testThemeStyleOverrides(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme style overrides:', () => {
-    it("respect theme's styleOverrides custom state", async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const { muiName, testStateOverrides, render, ThemeProvider, createTheme } = getOptions();
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      "respect theme's styleOverrides custom state",
+      async function test() {
+        const { muiName, testStateOverrides, render, ThemeProvider, createTheme } = getOptions();
 
-      if (!testStateOverrides) {
-        return;
-      }
-
-      if (!muiName) {
-        throwMissingPropError('muiName');
-      }
-
-      if (!render) {
-        throwMissingPropError('render');
-      }
-
-      if (!ThemeProvider) {
-        throwMissingPropError('ThemeProvider');
-      }
-
-      if (!createTheme) {
-        throwMissingPropError('createTheme');
-      }
-
-      const testStyle = {
-        marginTop: '13px',
-      };
-
-      const theme = createTheme({
-        components: {
-          [muiName]: {
-            styleOverrides: {
-              [testStateOverrides.styleKey]: testStyle,
-            },
-          },
-        },
-      });
-
-      if (!testStateOverrides.prop) {
-        return;
-      }
-
-      const { container } = await render(
-        <ThemeProvider theme={theme}>
-          {React.cloneElement(element, {
-            [testStateOverrides.prop]: testStateOverrides.value,
-          })}
-        </ThemeProvider>,
-      );
-
-      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
-    });
-
-    it("respect theme's styleOverrides slots", async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      const {
-        muiName,
-        testDeepOverrides,
-        testRootOverrides = { slotName: 'root' },
-        render,
-        ThemeProvider,
-        createTheme,
-      } = getOptions();
-
-      if (!ThemeProvider) {
-        throwMissingPropError('ThemeProvider');
-      }
-
-      if (!createTheme) {
-        throwMissingPropError('createTheme');
-      }
-
-      const testStyle = {
-        mixBlendMode: 'darken',
-      };
-
-      function resolveDeepOverrides(
-        callback: (styles: Record<string, any>, slot: SlotTestOverride) => void,
-      ) {
-        if (!testDeepOverrides) {
-          return {};
+        if (!testStateOverrides) {
+          return;
         }
-        const styles = {};
-        if (Array.isArray(testDeepOverrides)) {
-          testDeepOverrides.forEach((slot) => {
-            callback(styles, slot);
-          });
-        } else {
-          callback(styles, testDeepOverrides);
+
+        if (!muiName) {
+          throwMissingPropError('muiName');
         }
-        return styles;
-      }
 
-      const theme = createTheme({
-        components: {
-          [muiName]: {
-            styleOverrides: {
-              [testRootOverrides.slotName]: {
-                ...testStyle,
-                ...resolveDeepOverrides((styles, slot) => {
-                  styles[`& .${slot.slotClassName}`] = {
-                    fontVariantCaps: 'all-petite-caps',
-                  };
-                }),
-              },
-              ...resolveDeepOverrides((styles, slot) => {
-                styles[slot.slotName] = {
-                  mixBlendMode: 'darken',
-                };
-              }),
-            },
-          },
-        },
-      });
+        if (!render) {
+          throwMissingPropError('render');
+        }
 
-      const { container, setProps } = await render(
-        <ThemeProvider theme={theme}>{element}</ThemeProvider>,
-      );
+        if (!ThemeProvider) {
+          throwMissingPropError('ThemeProvider');
+        }
 
-      if (testRootOverrides.slotClassName) {
-        expect(
-          document.querySelector(`.${testRootOverrides.slotClassName}`),
-        ).to.toHaveComputedStyle(testStyle);
-      } else {
-        expect(container.firstChild).to.toHaveComputedStyle(testStyle);
-      }
+        if (!createTheme) {
+          throwMissingPropError('createTheme');
+        }
 
-      if (testDeepOverrides) {
-        (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
-          (slot) => {
-            expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle({
-              fontVariantCaps: 'all-petite-caps',
-              mixBlendMode: 'darken',
-            });
-          },
-        );
+        const testStyle = {
+          marginTop: '13px',
+        };
 
-        const themeWithoutRootOverrides = createTheme({
+        const theme = createTheme({
           components: {
             [muiName]: {
               styleOverrides: {
+                [testStateOverrides.styleKey]: testStyle,
+              },
+            },
+          },
+        });
+
+        if (!testStateOverrides.prop) {
+          return;
+        }
+
+        const { container } = await render(
+          <ThemeProvider theme={theme}>
+            {React.cloneElement(element, {
+              [testStateOverrides.prop]: testStateOverrides.value,
+            })}
+          </ThemeProvider>,
+        );
+
+        expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+      },
+    );
+
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      "respect theme's styleOverrides slots",
+      async function test() {
+        const {
+          muiName,
+          testDeepOverrides,
+          testRootOverrides = { slotName: 'root' },
+          render,
+          ThemeProvider,
+          createTheme,
+        } = getOptions();
+
+        if (!ThemeProvider) {
+          throwMissingPropError('ThemeProvider');
+        }
+
+        if (!createTheme) {
+          throwMissingPropError('createTheme');
+        }
+
+        const testStyle = {
+          mixBlendMode: 'darken',
+        };
+
+        function resolveDeepOverrides(
+          callback: (styles: Record<string, any>, slot: SlotTestOverride) => void,
+        ) {
+          if (!testDeepOverrides) {
+            return {};
+          }
+          const styles = {};
+          if (Array.isArray(testDeepOverrides)) {
+            testDeepOverrides.forEach((slot) => {
+              callback(styles, slot);
+            });
+          } else {
+            callback(styles, testDeepOverrides);
+          }
+          return styles;
+        }
+
+        const theme = createTheme({
+          components: {
+            [muiName]: {
+              styleOverrides: {
+                [testRootOverrides.slotName]: {
+                  ...testStyle,
+                  ...resolveDeepOverrides((styles, slot) => {
+                    styles[`& .${slot.slotClassName}`] = {
+                      fontVariantCaps: 'all-petite-caps',
+                    };
+                  }),
+                },
                 ...resolveDeepOverrides((styles, slot) => {
-                  styles[slot.slotName] = testStyle;
+                  styles[slot.slotName] = {
+                    mixBlendMode: 'darken',
+                  };
                 }),
               },
             },
           },
         });
 
-        setProps({ theme: themeWithoutRootOverrides });
-
-        (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
-          (slot) => {
-            expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle(
-              testStyle,
-            );
-          },
+        const { container, setProps } = await render(
+          <ThemeProvider theme={theme}>{element}</ThemeProvider>,
         );
-      }
-    });
 
-    it('overrideStyles does not replace each other in slots', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+        if (testRootOverrides.slotClassName) {
+          expect(
+            document.querySelector(`.${testRootOverrides.slotClassName}`),
+          ).to.toHaveComputedStyle(testStyle);
+        } else {
+          expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+        }
 
-      const { muiName, classes, testStateOverrides, render, ThemeProvider, createTheme } =
-        getOptions();
+        if (testDeepOverrides) {
+          (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
+            (slot) => {
+              expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle({
+                fontVariantCaps: 'all-petite-caps',
+                mixBlendMode: 'darken',
+              });
+            },
+          );
 
-      if (!ThemeProvider) {
-        throwMissingPropError('ThemeProvider');
-      }
-
-      if (!createTheme) {
-        throwMissingPropError('createTheme');
-      }
-
-      const classKeys = Object.keys(classes);
-
-      // only test the component that has `root` and other classKey
-      if (!testStateOverrides || !classKeys.includes('root') || classKeys.length === 1) {
-        return;
-      }
-
-      // `styleKey` in some tests is `foo` or `bar`, so need to check if it is a valid classKey.
-      const isStyleKeyExists = classKeys.includes(testStateOverrides.styleKey);
-
-      if (!isStyleKeyExists) {
-        return;
-      }
-
-      const theme = createTheme({
-        components: {
-          [muiName]: {
-            styleOverrides: {
-              root: {
-                [`&.${classes.root}`]: {
-                  filter: 'blur(1px)',
-                  mixBlendMode: 'darken',
+          const themeWithoutRootOverrides = createTheme({
+            components: {
+              [muiName]: {
+                styleOverrides: {
+                  ...resolveDeepOverrides((styles, slot) => {
+                    styles[slot.slotName] = testStyle;
+                  }),
                 },
               },
-              ...(testStateOverrides && {
-                [testStateOverrides.styleKey]: {
+            },
+          });
+
+          setProps({ theme: themeWithoutRootOverrides });
+
+          (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
+            (slot) => {
+              expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle(
+                testStyle,
+              );
+            },
+          );
+        }
+      },
+    );
+
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'overrideStyles does not replace each other in slots',
+      async function test() {
+        const { muiName, classes, testStateOverrides, render, ThemeProvider, createTheme } =
+          getOptions();
+
+        if (!ThemeProvider) {
+          throwMissingPropError('ThemeProvider');
+        }
+
+        if (!createTheme) {
+          throwMissingPropError('createTheme');
+        }
+
+        const classKeys = Object.keys(classes);
+
+        // only test the component that has `root` and other classKey
+        if (!testStateOverrides || !classKeys.includes('root') || classKeys.length === 1) {
+          return;
+        }
+
+        // `styleKey` in some tests is `foo` or `bar`, so need to check if it is a valid classKey.
+        const isStyleKeyExists = classKeys.includes(testStateOverrides.styleKey);
+
+        if (!isStyleKeyExists) {
+          return;
+        }
+
+        const theme = createTheme({
+          components: {
+            [muiName]: {
+              styleOverrides: {
+                root: {
                   [`&.${classes.root}`]: {
-                    mixBlendMode: 'color',
+                    filter: 'blur(1px)',
+                    mixBlendMode: 'darken',
                   },
                 },
-              }),
+                ...(testStateOverrides && {
+                  [testStateOverrides.styleKey]: {
+                    [`&.${classes.root}`]: {
+                      mixBlendMode: 'color',
+                    },
+                  },
+                }),
+              },
             },
           },
-        },
-      });
+        });
 
-      if (!testStateOverrides.prop) {
-        return;
-      }
+        if (!testStateOverrides.prop) {
+          return;
+        }
 
-      await render(
-        <ThemeProvider theme={theme}>
-          {React.cloneElement(element, {
-            [testStateOverrides.prop]: testStateOverrides.value,
-          })}
-        </ThemeProvider>,
-      );
+        await render(
+          <ThemeProvider theme={theme}>
+            {React.cloneElement(element, {
+              [testStateOverrides.prop]: testStateOverrides.value,
+            })}
+          </ThemeProvider>,
+        );
 
-      expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
-        filter: 'blur(1px)', // still valid in root
-        mixBlendMode: 'color', // overridden by `styleKey`
-      });
-    });
+        expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
+          filter: 'blur(1px)', // still valid in root
+          mixBlendMode: 'color', // overridden by `styleKey`
+        });
+      },
+    );
   });
 }
 
@@ -864,104 +1008,105 @@ function testThemeStyleOverrides(
  * MUI theme has a components section that allows specifying custom variants.
  * Components from @inheritComponent
  */
-function testThemeVariants(element: React.ReactElement<any>, getOptions: () => ConformanceOptions) {
+function testThemeVariants(
+  element: React.ReactElement<DataProps & { variant: string }>,
+  getOptions: () => ConformanceOptions,
+) {
   describe('theme variants:', () => {
-    it("respect theme's variants", async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      "respect theme's variants",
+      async function test() {
+        const { muiName, testVariantProps, render, ThemeProvider, createTheme } = getOptions();
 
-      const { muiName, testVariantProps, render, ThemeProvider, createTheme } = getOptions();
+        if (!testVariantProps) {
+          throw new Error('missing testVariantProps');
+        }
 
-      if (!testVariantProps) {
-        throw new Error('missing testVariantProps');
-      }
+        if (!muiName) {
+          throwMissingPropError('muiName');
+        }
 
-      if (!muiName) {
-        throwMissingPropError('muiName');
-      }
+        if (!render) {
+          throwMissingPropError('render');
+        }
 
-      if (!render) {
-        throwMissingPropError('render');
-      }
+        if (!ThemeProvider) {
+          throwMissingPropError('ThemeProvider');
+        }
 
-      if (!ThemeProvider) {
-        throwMissingPropError('ThemeProvider');
-      }
+        if (!createTheme) {
+          throwMissingPropError('createTheme');
+        }
 
-      if (!createTheme) {
-        throwMissingPropError('createTheme');
-      }
+        const testStyle = {
+          mixBlendMode: 'darken',
+        };
 
-      const testStyle = {
-        mixBlendMode: 'darken',
-      };
-
-      const theme = createTheme({
-        components: {
-          [muiName]: {
-            variants: [
-              {
-                props: testVariantProps,
-                style: testStyle,
-              },
-            ],
-          },
-        },
-      });
-
-      const { getByTestId } = await render(
-        <ThemeProvider theme={theme}>
-          {React.cloneElement(element, { ...testVariantProps, 'data-testid': 'with-props' })}
-          {React.cloneElement(element, { 'data-testid': 'without-props' })}
-        </ThemeProvider>,
-      );
-
-      expect(getByTestId('with-props')).to.toHaveComputedStyle(testStyle);
-      expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
-    });
-
-    it('supports custom variant', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      const { muiName, testCustomVariant, render, ThemeProvider, createTheme } = getOptions();
-
-      if (!ThemeProvider) {
-        throwMissingPropError('ThemeProvider');
-      }
-
-      if (!createTheme) {
-        throwMissingPropError('createTheme');
-      }
-
-      if (!testCustomVariant) {
-        return;
-      }
-
-      const theme = createTheme({
-        components: {
-          [muiName]: {
-            styleOverrides: {
-              root: ({ ownerState }: { ownerState: any }) => ({
-                ...(ownerState.variant === 'unknown' && {
-                  mixBlendMode: 'darken',
-                }),
-              }),
+        const theme = createTheme({
+          components: {
+            [muiName]: {
+              variants: [
+                {
+                  props: testVariantProps,
+                  style: testStyle,
+                },
+              ],
             },
           },
-        },
-      });
+        });
 
-      const { getByTestId } = await render(
-        <ThemeProvider theme={theme}>
-          {React.cloneElement(element, { variant: 'unknown', 'data-testid': 'custom-variant' })}
-        </ThemeProvider>,
-      );
+        const { getByTestId } = await render(
+          <ThemeProvider theme={theme}>
+            {React.cloneElement(element, { ...testVariantProps, 'data-testid': 'with-props' })}
+            {React.cloneElement(element, { 'data-testid': 'without-props' })}
+          </ThemeProvider>,
+        );
 
-      expect(getByTestId('custom-variant')).toHaveComputedStyle({ mixBlendMode: 'darken' });
-    });
+        expect(getByTestId('with-props')).to.toHaveComputedStyle(testStyle);
+        expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
+      },
+    );
+
+    it.skipIf(window.navigator.userAgent.includes('jsdom'))(
+      'supports custom variant',
+      async function test() {
+        const { muiName, testCustomVariant, render, ThemeProvider, createTheme } = getOptions();
+
+        if (!ThemeProvider) {
+          throwMissingPropError('ThemeProvider');
+        }
+
+        if (!createTheme) {
+          throwMissingPropError('createTheme');
+        }
+
+        if (!testCustomVariant) {
+          return;
+        }
+
+        const theme = createTheme({
+          components: {
+            [muiName]: {
+              styleOverrides: {
+                root: ({ ownerState }: { ownerState: any }) => ({
+                  ...(ownerState.variant === 'unknown' && {
+                    mixBlendMode: 'darken',
+                  }),
+                }),
+              },
+            },
+          },
+        });
+
+        const { getByTestId } = await render(
+          <ThemeProvider theme={theme}>
+            {React.cloneElement(element, { variant: 'unknown', 'data-testid': 'custom-variant' })}
+          </ThemeProvider>,
+        );
+
+        expect(getByTestId('custom-variant')).toHaveComputedStyle({ mixBlendMode: 'darken' });
+      },
+    );
   });
 }
 
@@ -970,16 +1115,15 @@ function testThemeVariants(element: React.ReactElement<any>, getOptions: () => C
  * The components that iterate over the palette via `variants` should be able to render with or without applying the custom palette styles.
  */
 function testThemeCustomPalette(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<unknown>,
   getOptions: () => ConformanceOptions,
 ) {
   describe('theme extended palette:', () => {
-    it('should render without errors', function test() {
-      const { render, ThemeProvider, createTheme } = getOptions();
-      if (!/jsdom/.test(window.navigator.userAgent) || !render || !ThemeProvider || !createTheme) {
-        this.skip();
-      }
-
+    const { render, ThemeProvider, createTheme } = getOptions();
+    it.skipIf(
+      !window.navigator.userAgent.includes('jsdom') || !render || !ThemeProvider || !createTheme,
+    )('should render without errors', function test() {
+      // @ts-ignore
       const theme = createTheme({
         palette: {
           custom: {
@@ -995,7 +1139,7 @@ function testThemeCustomPalette(
           },
         },
       });
-
+      // @ts-ignore
       expect(() => render(<ThemeProvider theme={theme}>{element}</ThemeProvider>)).not.to.throw();
     });
   });
@@ -1010,6 +1154,7 @@ const fullSuite = {
   rootClass: testRootClass,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallback: testSlotPropsCallback,
+  slotPropsCallbackWithPropsAsOwnerState: testSlotPropsCallbackWithPropsAsOwnerState,
   slotsProp: testSlotsProp,
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
@@ -1030,7 +1175,7 @@ function describeConformance(
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key: string) => storage[key],
         setItem: (key: string, value: string) => {
@@ -1062,14 +1207,19 @@ function describeConformance(
     (testKey) => only.includes(testKey) && !skip.includes(testKey as keyof typeof fullSuite),
   ) as (keyof typeof fullSuite)[];
 
-  const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
+  const slotBasedTests = [
+    'slotsProp',
+    'slotPropsProp',
+    'slotPropsCallback',
+    'slotPropsCallbackWithPropsAsOwnerState',
+  ];
 
   if (!slots) {
     // if `slots` are not defined, do not run tests that depend on them
     filteredTests = filteredTests.filter((testKey) => !slotBasedTests.includes(testKey));
   }
 
-  after(runAfterHook);
+  afterAll(runAfterHook);
 
   filteredTests.forEach((testKey) => {
     const test = fullSuite[testKey];

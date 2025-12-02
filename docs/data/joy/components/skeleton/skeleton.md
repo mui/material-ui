@@ -1,13 +1,15 @@
 ---
 productId: joy-ui
 title: React Skeleton component
-githubLabel: 'component: skeleton'
+githubLabel: 'scope: skeleton'
 components: Skeleton, AspectRatio, Avatar, Typography
 ---
 
 # Skeleton
 
 <p class="description">Skeletons are preview placeholders for components that haven't loaded yet, reducing load-time frustration.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

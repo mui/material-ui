@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
 import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
 import { SupportedColorScheme, CssVarsTheme } from './createThemeWithVars';
@@ -83,7 +82,7 @@ const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (par
  * @deprecated
  * The `CssVarsProvider` component has been deprecated and ported into `ThemeProvider`.
  *
- * You should use `ThemeProvider` and `createTheme` instead:
+ * You should use `ThemeProvider` and `createTheme()` instead:
  *
  * ```diff
  * - import { CssVarsProvider, extendTheme } from '@mui/material/styles';

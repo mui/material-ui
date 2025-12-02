@@ -2,12 +2,15 @@
   "compilerOptions": {
     "lib": ["es2020", "dom"],
     "noEmit": true,
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "jsx": "react"
+    "jsx": "react",
+    // Remove when https://github.com/thomasbrodusch/vitest-fail-on-console/issues/160 is resolved
+    "skipLibCheck": true
   },
   "include": ["./src/**/*"]
 }

@@ -29,10 +29,12 @@ describe('CodeSandbox', () => {
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
+          private: true,
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
             react: 'latest',
+            // #npm-tag-reference
             '@mui/material': 'latest',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
@@ -71,7 +73,7 @@ describe('CodeSandbox', () => {
   </head>
   <body>
     <div id="root"></div>
-  </body>
+    \n  </body>
 </html>`,
       },
       'src/Demo.js': {
@@ -119,22 +121,23 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
+          private: true,
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {
             react: 'latest',
+            // #npm-tag-reference
             '@mui/material': 'latest',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
-            '@types/react': 'latest',
-            '@types/react-dom': 'latest',
             typescript: 'latest',
           },
           devDependencies: {
             'react-scripts': 'latest',
+            '@types/react': 'latest',
+            '@types/react-dom': 'latest',
           },
-          main: 'index.tsx',
           scripts: {
             build: 'react-scripts build',
             eject: 'react-scripts eject',
@@ -165,7 +168,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </head>
   <body>
     <div id="root"></div>
-  </body>
+    \n  </body>
 </html>`,
       },
       'src/Demo.tsx': {
@@ -230,31 +233,17 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
     expect(result.dependencies).to.deep.equal({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'latest',
-      '@types/react': 'latest',
-      '@types/react-dom': 'latest',
       react: 'latest',
       'react-dom': 'latest',
       typescript: 'latest',
     });
     expect(result.devDependencies).to.deep.equal({
       'react-scripts': 'latest',
+      '@types/react': 'latest',
+      '@types/react-dom': 'latest',
     });
-  });
-
-  it('generate the correct index.html result when Tailwind is used', () => {
-    const result = CodeSandbox.createReactApp({
-      title: 'BasicButtons Material Demo',
-      githubLocation:
-        'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
-      codeVariant: 'JS',
-      language: 'en',
-      raw: testCase,
-      codeStyling: 'Tailwind',
-    });
-    expect(result.files['public/index.html'].content).to.contain(
-      '<script src="https://cdn.tailwindcss.com"></script>',
-    );
   });
 
   it('should generate the correct stylesheet font link in index.html for Material Two Tones icons', () => {

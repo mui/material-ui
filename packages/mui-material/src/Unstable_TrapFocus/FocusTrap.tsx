@@ -2,13 +2,12 @@
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  exactProp,
-  elementAcceptingRef,
-  unstable_useForkRef as useForkRef,
-  unstable_ownerDocument as ownerDocument,
-  unstable_getReactNodeRef as getReactNodeRef,
-} from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
+import ownerDocument from '@mui/utils/ownerDocument';
+import getReactElementRef from '@mui/utils/getReactElementRef';
+import exactProp from '@mui/utils/exactProp';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getActiveElement from '../utils/getActiveElement';
 import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
@@ -38,7 +37,7 @@ function getTabIndex(node: HTMLElement): number {
   }
 
   // Browsers do not return `tabIndex` correctly for contentEditable nodes;
-  // https://bugs.chromium.org/p/chromium/issues/detail?id=661108&q=contenteditable%20tabindex&can=2
+  // https://issues.chromium.org/issues/41283952
   // so if they don't have a tabindex attribute specifically set, assume it's 0.
   // in Chrome, <details/>, <audio controls/> and <video controls/> elements get a default
   //  `tabIndex` of -1 when the 'tabindex' attribute isn't specified in the DOM,
@@ -138,15 +137,15 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   const ignoreNextEnforceFocus = React.useRef(false);
   const sentinelStart = React.useRef<HTMLDivElement>(null);
   const sentinelEnd = React.useRef<HTMLDivElement>(null);
-  const nodeToRestore = React.useRef<EventTarget | null>(null);
-  const reactFocusEventTarget = React.useRef<EventTarget | null>(null);
+  const nodeToRestore = React.useRef<EventTarget>(null);
+  const reactFocusEventTarget = React.useRef<EventTarget>(null);
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
 
   const rootRef = React.useRef<HTMLElement>(null);
-  const handleRef = useForkRef(getReactNodeRef(children), rootRef);
-  const lastKeydown = React.useRef<KeyboardEvent | null>(null);
+  const handleRef = useForkRef(getReactElementRef(children), rootRef);
+  const lastKeydown = React.useRef<KeyboardEvent>(null);
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -164,8 +163,9 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
+    const activeElement = getActiveElement(doc);
 
-    if (!rootRef.current.contains(doc.activeElement)) {
+    if (!rootRef.current.contains(activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
@@ -211,6 +211,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
+    const activeElement = getActiveElement(doc);
 
     const loopFocus = (nativeEvent: KeyboardEvent) => {
       lastKeydown.current = nativeEvent;
@@ -220,8 +221,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       // Make sure the next tab starts from the right place.
-      // doc.activeElement refers to the origin.
-      if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
+      // activeElement refers to the origin.
+      if (activeElement === rootRef.current && nativeEvent.shiftKey) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
@@ -240,27 +241,29 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         return;
       }
 
+      const activeEl = getActiveElement(doc);
+
       if (!doc.hasFocus() || !isEnabled() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
         return;
       }
 
       // The focus is already inside
-      if (rootElement.contains(doc.activeElement)) {
+      if (rootElement.contains(activeEl)) {
         return;
       }
 
       // The disableEnforceFocus is set and the focus is outside of the focus trap (and sentinel nodes)
       if (
         disableEnforceFocus &&
-        doc.activeElement !== sentinelStart.current &&
-        doc.activeElement !== sentinelEnd.current
+        activeEl !== sentinelStart.current &&
+        activeEl !== sentinelEnd.current
       ) {
         return;
       }
 
       // if the focus event is not coming from inside the children's react tree, reset the refs
-      if (doc.activeElement !== reactFocusEventTarget.current) {
+      if (activeEl !== reactFocusEventTarget.current) {
         reactFocusEventTarget.current = null;
       } else if (reactFocusEventTarget.current !== null) {
         return;
@@ -271,10 +274,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       let tabbable: ReadonlyArray<HTMLElement> = [];
-      if (
-        doc.activeElement === sentinelStart.current ||
-        doc.activeElement === sentinelEnd.current
-      ) {
+      if (activeEl === sentinelStart.current || activeEl === sentinelEnd.current) {
         tabbable = getTabbable(rootRef.current!);
       }
 
@@ -311,7 +311,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
-      if (doc.activeElement && doc.activeElement.tagName === 'BODY') {
+      const activeEl = getActiveElement(doc);
+      if (activeEl && activeEl.tagName === 'BODY') {
         contain();
       }
     }, 50);
@@ -324,7 +325,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
-  const onFocus = (event: FocusEvent) => {
+  const onFocus = (event: React.FocusEvent<Element, Element>) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }

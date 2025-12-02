@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Typography component
 components: Typography
-githubLabel: 'component: Typography'
+githubLabel: 'scope: typography'
 materialDesign: https://m2.material.io/design/typography/the-type-system.html
 githubSource: packages/mui-material/src/Typography
 ---
@@ -49,7 +49,7 @@ Fontsource can be configured to load specific subsets, weights, and styles. Mate
 
 ### Google Web Fonts
 
-To install Roboto through the Google Web Fonts CDN, add the following code inside your project's <head /> tag:
+To install Roboto through the Google Web Fonts CDN, add the following code inside your project's `<head />` tag:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />

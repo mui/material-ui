@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { fireEvent, createRenderer } from '@mui/internal-test-utils';
+import { fireEvent, createRenderer, screen } from '@mui/internal-test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -49,7 +49,26 @@ describe('<TablePagination />', () => {
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'td',
       testComponentsRootPropWith: 'td',
-      testDeepOverrides: { slotName: 'toolbar', slotClassName: classes.toolbar },
+      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
+      testDeepOverrides: [
+        { slotName: 'toolbar', slotClassName: classes.toolbar },
+        { slotName: 'spacer', slotClassName: classes.spacer },
+        { slotName: 'selectLabel', slotClassName: classes.selectLabel },
+        { slotName: 'displayedRows', slotClassName: classes.displayedRows },
+      ],
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+          testWithComponent: React.forwardRef((props, ref) => (
+            <TableCell component="th" ref={ref} {...props} data-testid="custom" />
+          )),
+          testWithElement: 'th',
+        },
+        toolbar: { expectedClassName: classes.toolbar },
+        spacer: { expectedClassName: classes.spacer },
+        selectLabel: { expectedClassName: classes.selectLabel },
+        displayedRows: { expectedClassName: classes.displayedRows },
+      },
       skip: ['themeVariants', 'componentsProps'],
     }),
   );
@@ -89,7 +108,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: labelRowsPerPage', () => {
     it('labels the select for the current page', () => {
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -106,12 +125,12 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const combobox = getByRole('combobox');
+      const combobox = screen.getByRole('combobox');
       expect(combobox).toHaveAccessibleName('lines per page:');
     });
 
     it('accepts React nodes', () => {
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -132,14 +151,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const combobox = getByRole('combobox');
+      const combobox = screen.getByRole('combobox');
       expect(combobox).toHaveAccessibleName('lines per page:');
     });
   });
 
   describe('prop: page', () => {
     it('should disable the back button on the first page', () => {
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -155,14 +174,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByRole('button', { name: 'Go to previous page' });
-      const nextButton = getByRole('button', { name: 'Go to next page' });
+      const backButton = screen.getByRole('button', { name: 'Go to previous page' });
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
       expect(backButton).to.have.property('disabled', true);
       expect(nextButton).to.have.property('disabled', false);
     });
 
     it('should disable the next button on the last page', () => {
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -178,8 +197,8 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByRole('button', { name: 'Go to previous page' });
-      const nextButton = getByRole('button', { name: 'Go to next page' });
+      const backButton = screen.getByRole('button', { name: 'Go to previous page' });
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
       expect(backButton).to.have.property('disabled', false);
       expect(nextButton).to.have.property('disabled', true);
     });
@@ -188,7 +207,8 @@ describe('<TablePagination />', () => {
   describe('prop: onPageChange', () => {
     it('should handle next button clicks properly', () => {
       let page = 1;
-      const { getByRole } = render(
+
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -206,14 +226,15 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = getByRole('button', { name: 'Go to next page' });
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
       fireEvent.click(nextButton);
       expect(page).to.equal(2);
     });
 
     it('should handle back button clicks properly', () => {
       let page = 1;
-      const { getByRole } = render(
+
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -231,14 +252,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByRole('button', { name: 'Go to previous page' });
+      const backButton = screen.getByRole('button', { name: 'Go to previous page' });
       fireEvent.click(backButton);
       expect(page).to.equal(0);
     });
   });
 
   describe('label', () => {
-    it('should display 0 as start number if the table is empty ', () => {
+    it('should display 0 as start number if the table is empty', () => {
       const { container } = render(
         <table>
           <TableFooter>
@@ -258,7 +279,7 @@ describe('<TablePagination />', () => {
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
-      const { container, queryByRole } = render(
+      const { container } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -276,7 +297,7 @@ describe('<TablePagination />', () => {
       );
 
       expect(container).not.to.include.text('Rows per page');
-      expect(queryByRole('listbox')).to.equal(null);
+      expect(screen.queryByRole('listbox')).to.equal(null);
     });
   });
 
@@ -302,10 +323,10 @@ describe('<TablePagination />', () => {
         );
       }
 
-      const { container, getByRole } = render(<Test />);
+      const { container } = render(<Test />);
 
       expect(container).to.have.text('Rows per page:101–10 of more than 10');
-      fireEvent.click(getByRole('button', { name: 'Go to next page' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Go to next page' }));
       expect(container).to.have.text('Rows per page:1011–20 of more than 20');
     });
   });
@@ -313,7 +334,8 @@ describe('<TablePagination />', () => {
   describe('prop: showFirstButton', () => {
     it('should change the page', () => {
       const handleChangePage = spy();
-      const { getByRole } = render(
+
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -329,7 +351,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      fireEvent.click(getByRole('button', { name: 'Go to first page' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Go to first page' }));
       expect(handleChangePage.args[0][1]).to.equal(0);
     });
   });
@@ -337,7 +359,8 @@ describe('<TablePagination />', () => {
   describe('prop: showLastButton', () => {
     it('should change the page', () => {
       const handleChangePage = spy();
-      const { getByRole } = render(
+
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -353,7 +376,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      fireEvent.click(getByRole('button', { name: 'Go to last page' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Go to last page' }));
       expect(handleChangePage.args[0][1]).to.equal(9);
     });
   });
@@ -362,7 +385,7 @@ describe('<TablePagination />', () => {
     it('should apply props to the back button', () => {
       const backIconButtonPropsDisabled = true;
 
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -379,7 +402,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = getByRole('button', { name: 'Go to previous page' });
+      const backButton = screen.getByRole('button', { name: 'Go to previous page' });
       expect(backButton).to.have.property('disabled', backIconButtonPropsDisabled);
     });
   });
@@ -388,7 +411,7 @@ describe('<TablePagination />', () => {
     it('should apply props to the next button', () => {
       const nextIconButtonPropsDisabled = true;
 
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -405,14 +428,14 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = getByRole('button', { name: 'Go to next page' });
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
       expect(nextButton).to.have.property('disabled', nextIconButtonPropsDisabled);
     });
   });
 
   describe('prop: disabled', () => {
     it('should disable the first, last, next, and back buttons', () => {
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -431,10 +454,10 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const firstButton = getByRole('button', { name: 'Go to first page' });
-      const lastButton = getByRole('button', { name: 'Go to last page' });
-      const nextButton = getByRole('button', { name: 'Go to next page' });
-      const backButton = getByRole('button', { name: 'Go to previous page' });
+      const firstButton = screen.getByRole('button', { name: 'Go to first page' });
+      const lastButton = screen.getByRole('button', { name: 'Go to last page' });
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
+      const backButton = screen.getByRole('button', { name: 'Go to previous page' });
       expect(firstButton).to.have.property('disabled', true);
       expect(lastButton).to.have.property('disabled', true);
       expect(nextButton).to.have.property('disabled', true);
@@ -442,7 +465,7 @@ describe('<TablePagination />', () => {
     });
 
     it('should disable TablePaginationSelect', () => {
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -459,7 +482,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const combobox = getByRole('combobox');
+      const combobox = screen.getByRole('combobox');
       expect(combobox.parentElement).to.have.class(inputClasses.disabled);
     });
   });
@@ -492,7 +515,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: SelectProps', () => {
     it('does allow manual label ids', () => {
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -509,13 +532,13 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const combobox = getByRole('combobox');
+      const combobox = screen.getByRole('combobox');
       expect(combobox).toHaveAccessibleName('Rows per page:');
     });
 
     ['standard', 'outlined', 'filled'].forEach((variant) => {
       it(`should be able to apply the ${variant} variant to select`, () => {
-        const { getByRole } = render(
+        render(
           <table>
             <TableFooter>
               <TableRow>
@@ -532,7 +555,7 @@ describe('<TablePagination />', () => {
           </table>,
         );
 
-        const combobox = getByRole('combobox');
+        const combobox = screen.getByRole('combobox');
         const comboboxContainer = combobox.parentElement;
 
         if (variant === 'standard') {
@@ -576,7 +599,7 @@ describe('<TablePagination />', () => {
           const slotPropsDisabled = false;
           const backIconButtonPropsDisabled = true;
 
-          const { getByRole } = render(
+          render(
             <table>
               <TableFooter>
                 <TableRow>
@@ -598,7 +621,7 @@ describe('<TablePagination />', () => {
             </table>,
           );
 
-          const backButton = getByRole('button', { name: 'Go to previous page' });
+          const backButton = screen.getByRole('button', { name: 'Go to previous page' });
           expect(slotPropsDisabled).not.to.equal(backIconButtonPropsDisabled);
           expect(backButton).to.have.property('disabled', slotPropsDisabled);
         });
@@ -609,7 +632,7 @@ describe('<TablePagination />', () => {
           const slotPropsDisabled = false;
           const nextIconButtonPropsDisabled = true;
 
-          const { getByRole } = render(
+          render(
             <table>
               <TableFooter>
                 <TableRow>
@@ -629,14 +652,14 @@ describe('<TablePagination />', () => {
             </table>,
           );
 
-          const nextButton = getByRole('button', { name: 'Go to next page' });
+          const nextButton = screen.getByRole('button', { name: 'Go to next page' });
           expect(slotPropsDisabled).not.to.equal(nextIconButtonPropsDisabled);
           expect(nextButton).to.have.property('disabled', slotPropsDisabled);
         });
       });
 
       it('should pass props to button icons', () => {
-        const { getByTestId } = render(
+        render(
           <table>
             <TableFooter>
               <TableRow>
@@ -667,10 +690,14 @@ describe('<TablePagination />', () => {
           </table>,
         );
 
-        expect(getByTestId('FirstPageIcon')).to.have.class(svgIconClasses.fontSizeSmall);
-        expect(getByTestId('LastPageIcon')).to.have.class(svgIconClasses.fontSizeLarge);
-        expect(getByTestId('KeyboardArrowLeftIcon')).to.have.class(svgIconClasses.fontSizeInherit);
-        expect(getByTestId('KeyboardArrowRightIcon')).to.have.class(svgIconClasses.fontSizeMedium);
+        expect(screen.getByTestId('FirstPageIcon')).to.have.class(svgIconClasses.fontSizeSmall);
+        expect(screen.getByTestId('LastPageIcon')).to.have.class(svgIconClasses.fontSizeLarge);
+        expect(screen.getByTestId('KeyboardArrowLeftIcon')).to.have.class(
+          svgIconClasses.fontSizeInherit,
+        );
+        expect(screen.getByTestId('KeyboardArrowRightIcon')).to.have.class(
+          svgIconClasses.fontSizeMedium,
+        );
       });
     });
 
@@ -679,7 +706,7 @@ describe('<TablePagination />', () => {
         const slotPropsDisabled = false;
         const SelectPropsDisabled = true;
 
-        const { getByRole } = render(
+        render(
           <table>
             <TableFooter>
               <TableRow>
@@ -697,7 +724,7 @@ describe('<TablePagination />', () => {
           </table>,
         );
 
-        const combobox = getByRole('combobox');
+        const combobox = screen.getByRole('combobox');
         expect(slotPropsDisabled).not.to.equal(SelectPropsDisabled);
         expect(combobox.parentElement).not.to.have.class(inputClasses.disabled);
       });
@@ -715,7 +742,7 @@ describe('<TablePagination />', () => {
         );
       }
 
-      const { getByRole } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -741,10 +768,10 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const firstButton = getByRole('button', { name: 'Go to first page' });
-      const lastButton = getByRole('button', { name: 'Go to last page' });
-      const nextButton = getByRole('button', { name: 'Go to next page' });
-      const previousButton = getByRole('button', { name: 'Go to previous page' });
+      const firstButton = screen.getByRole('button', { name: 'Go to first page' });
+      const lastButton = screen.getByRole('button', { name: 'Go to last page' });
+      const nextButton = screen.getByRole('button', { name: 'Go to next page' });
+      const previousButton = screen.getByRole('button', { name: 'Go to previous page' });
 
       expect(firstButton).to.have.class(iconButtonClasses.colorSecondary);
       expect(lastButton).to.have.class(iconButtonClasses.colorSecondary);
@@ -753,7 +780,7 @@ describe('<TablePagination />', () => {
     });
 
     it('should render custom action button icons', () => {
-      const { getByTestId } = render(
+      render(
         <table>
           <TableFooter>
             <TableRow>
@@ -779,10 +806,10 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      expect(getByTestId('KeyboardDoubleArrowLeftRoundedIcon')).not.to.equal(null);
-      expect(getByTestId('KeyboardDoubleArrowRightRoundedIcon')).not.to.equal(null);
-      expect(getByTestId('ArrowBackIcon')).not.to.equal(null);
-      expect(getByTestId('ArrowForwardIcon')).not.to.equal(null);
+      expect(screen.getByTestId('KeyboardDoubleArrowLeftRoundedIcon')).not.to.equal(null);
+      expect(screen.getByTestId('KeyboardDoubleArrowRightRoundedIcon')).not.to.equal(null);
+      expect(screen.getByTestId('ArrowBackIcon')).not.to.equal(null);
+      expect(screen.getByTestId('ArrowForwardIcon')).not.to.equal(null);
     });
   });
 
@@ -811,7 +838,7 @@ describe('<TablePagination />', () => {
   });
 
   it('should not have "variant" attribute on TablePaginationSelect', () => {
-    const { getAllByRole } = render(
+    render(
       <table>
         <TableFooter>
           <TableRow>
@@ -827,7 +854,7 @@ describe('<TablePagination />', () => {
       </table>,
     );
 
-    const [combobox] = getAllByRole('button');
+    const [combobox] = screen.getAllByRole('button');
 
     expect(combobox.parentElement).not.to.have.attribute('variant');
   });

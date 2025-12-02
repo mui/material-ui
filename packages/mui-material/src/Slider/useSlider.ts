@@ -1,15 +1,13 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_ownerDocument as ownerDocument,
-  unstable_useControlled as useControlled,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useForkRef as useForkRef,
-  unstable_isFocusVisible as isFocusVisible,
-  visuallyHidden,
-  clamp,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useControlled from '@mui/utils/useControlled';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useForkRef from '@mui/utils/useForkRef';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import visuallyHidden from '@mui/utils/visuallyHidden';
+import clamp from '@mui/utils/clamp';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   Mark,
@@ -23,6 +21,16 @@ import { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
+
+function getNewValue(
+  currentValue: number,
+  step: number,
+  direction: 1 | -1,
+  min: number,
+  max: number,
+): number {
+  return direction === 1 ? Math.min(currentValue + step, max) : Math.max(currentValue - step, min);
+}
 
 function asc(a: number, b: number) {
   return a - b;
@@ -188,16 +196,7 @@ function doesSupportTouchActionNone() {
   }
   return cachedSupportsTouchActionNone;
 }
-/**
- *
- * Demos:
- *
- * - [Slider](https://mui.com/base-ui/react-slider/#hook)
- *
- * API:
- *
- * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
- */
+
 export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
@@ -220,7 +219,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     value: valueProp,
   } = parameters;
 
-  const touchId = React.useRef<number | undefined>(undefined);
+  const touchId = React.useRef<number>(undefined);
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
   // - The active state isn't transferred when inversing a range slider.
@@ -228,6 +227,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const [open, setOpen] = React.useState(-1);
   const [dragging, setDragging] = React.useState(false);
   const moveCount = React.useRef(0);
+  // lastChangedValue is updated whenever onChange is triggered.
+  const lastChangedValue = React.useRef<number | number[] | null>(null);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
@@ -251,6 +252,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         value: { value, name },
       });
 
+      lastChangedValue.current = value;
       onChange(clonedEvent, value, thumbIndex);
     });
 
@@ -265,11 +267,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         }))
       : marksProp || [];
 
-  const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
+  const marksValues = (marks as readonly Mark[]).map((mark: Mark) => mark.value);
 
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
-  const sliderRef = React.useRef<HTMLSpanElement | null>(null);
+  const sliderRef = React.useRef<HTMLSpanElement>(null);
   const handleRef = useForkRef(ref, sliderRef);
 
   const createHandleHiddenInputFocus =
@@ -294,13 +296,13 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const marksIndex = marksValues.indexOf(value);
-    let newValue: number | number[] = valueInput;
 
+    let newValue: number | number[] = valueInput;
     if (marks && step == null) {
       const maxMarksValue = marksValues[marksValues.length - 1];
-      if (newValue > maxMarksValue) {
+      if (newValue >= maxMarksValue) {
         newValue = maxMarksValue;
-      } else if (newValue < marksValues[0]) {
+      } else if (newValue <= marksValues[0]) {
         newValue = marksValues[0];
       } else {
         newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
@@ -340,34 +342,90 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     if (onChangeCommitted) {
-      onChangeCommitted(event, newValue);
+      onChangeCommitted(event, lastChangedValue.current ?? newValue);
     }
   };
 
   const createHandleHiddenInputKeyDown =
-    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
-      // The Shift + Up/Down keyboard shortcuts for moving the slider makes sense to be supported
-      // only if the step is defined. If the step is null, this means tha the marks are used for specifying the valid values.
-      if (step !== null) {
+    (otherHandlers: EventHandlers) => (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (
+        [
+          'ArrowUp',
+          'ArrowDown',
+          'ArrowLeft',
+          'ArrowRight',
+          'PageUp',
+          'PageDown',
+          'Home',
+          'End',
+        ].includes(event.key)
+      ) {
+        event.preventDefault();
         const index = Number(event.currentTarget.getAttribute('data-index'));
         const value = values[index];
-
         let newValue = null;
-        if (
-          ((event.key === 'ArrowLeft' || event.key === 'ArrowDown') && event.shiftKey) ||
-          event.key === 'PageDown'
-        ) {
-          newValue = Math.max(value - shiftStep, min);
-        } else if (
-          ((event.key === 'ArrowRight' || event.key === 'ArrowUp') && event.shiftKey) ||
-          event.key === 'PageUp'
-        ) {
-          newValue = Math.min(value + shiftStep, max);
+        // Keys actions that change the value by more than the most granular `step`
+        // value are only applied if the step not `null`.
+        // When step is `null`, the `marks` prop is used instead to define valid values.
+        if (step != null) {
+          const stepSize = event.shiftKey ? shiftStep : step;
+          switch (event.key) {
+            case 'ArrowUp':
+              newValue = getNewValue(value, stepSize, 1, min, max);
+              break;
+            case 'ArrowRight':
+              newValue = getNewValue(value, stepSize, isRtl ? -1 : 1, min, max);
+              break;
+            case 'ArrowDown':
+              newValue = getNewValue(value, stepSize, -1, min, max);
+              break;
+            case 'ArrowLeft':
+              newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
+              break;
+            case 'PageUp':
+              newValue = getNewValue(value, shiftStep, 1, min, max);
+              break;
+            case 'PageDown':
+              newValue = getNewValue(value, shiftStep, -1, min, max);
+              break;
+            case 'Home':
+              newValue = min;
+              break;
+            case 'End':
+              newValue = max;
+              break;
+            default:
+              break;
+          }
+        } else if (marks) {
+          const maxMarksValue = marksValues[marksValues.length - 1];
+          const currentMarkIndex = marksValues.indexOf(value);
+
+          const decrementKeys = [
+            isRtl ? 'ArrowRight' : 'ArrowLeft',
+            'ArrowDown',
+            'PageDown',
+            'Home',
+          ];
+          const incrementKeys = [isRtl ? 'ArrowLeft' : 'ArrowRight', 'ArrowUp', 'PageUp', 'End'];
+
+          if (decrementKeys.includes(event.key)) {
+            if (currentMarkIndex === 0) {
+              newValue = marksValues[0];
+            } else {
+              newValue = marksValues[currentMarkIndex - 1];
+            }
+          } else if (incrementKeys.includes(event.key)) {
+            if (currentMarkIndex === marksValues.length - 1) {
+              newValue = maxMarksValue;
+            } else {
+              newValue = marksValues[currentMarkIndex + 1];
+            }
+          }
         }
 
-        if (newValue !== null) {
+        if (newValue != null) {
           changeValue(event, newValue);
-          event.preventDefault();
         }
       }
 
@@ -394,11 +452,12 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const createHandleHiddenInputChange =
     (otherHandlers: EventHandlers) => (event: React.ChangeEvent) => {
       otherHandlers.onChange?.(event);
+      // this handles value change by Pointer or Touch events
       // @ts-ignore
       changeValue(event, event.target.valueAsNumber);
     };
 
-  const previousIndex = React.useRef<number | undefined>(undefined);
+  const previousIndex = React.useRef<number>(undefined);
   let axis = orientation;
   if (isRtl && orientation === 'horizontal') {
     axis += '-reverse';
@@ -520,7 +579,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     if (onChangeCommitted) {
-      onChangeCommitted(nativeEvent, newValue);
+      onChangeCommitted(nativeEvent, lastChangedValue.current ?? newValue);
     }
 
     touchId.current = undefined;
@@ -687,6 +746,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
   };
 
+  let cssWritingMode: 'vertical-rl' | 'vertical-lr' | undefined;
+  if (orientation === 'vertical') {
+    cssWritingMode = isRtl ? 'vertical-rl' : 'vertical-lr';
+  }
+
   const getHiddenInputProps = <ExternalProps extends Record<string, unknown> = {}>(
     externalProps: ExternalProps = {} as ExternalProps,
   ): UseSliderHiddenInputProps<ExternalProps> => {
@@ -724,6 +788,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         // So that VoiceOver's focus indicator matches the thumb's dimensions
         width: '100%',
         height: '100%',
+        writingMode: cssWritingMode,
       },
     };
   };
@@ -737,7 +802,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks: marks as Mark[],
+    marks: marks as readonly Mark[],
     open,
     range,
     rootRef: handleRef,

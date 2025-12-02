@@ -23,8 +23,6 @@ We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
-We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
-
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
 ## The culture
@@ -40,8 +38,8 @@ For additional details about the culture, you can check our [careers](https://mu
 
 XXXXXX
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
@@ -51,7 +49,7 @@ Our products empower React developers to build awesome applications faster – w
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 

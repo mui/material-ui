@@ -187,8 +187,3 @@ RaisedButton upgrade path:
 -<DropDownMenu></DropDownMenu>
 +<Select value={this.state.value}></Select>
 ```
-
-### To be continued…
-
-Have you successfully migrated your app, and wish to help the community?
-There is an open issue in order to finish this migration guide [#7195](https://github.com/mui/material-ui/issues/7195). Any pull request is welcomed 😊.

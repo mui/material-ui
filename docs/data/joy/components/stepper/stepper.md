@@ -2,13 +2,15 @@
 productId: joy-ui
 title: React Stepper component
 components: Stepper, Step, StepButton, StepIndicator
-githubLabel: 'component: stepper'
+githubLabel: 'scope: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
 ---
 
 # Stepper
 
 <p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

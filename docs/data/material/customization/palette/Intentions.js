@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -30,7 +29,7 @@ function IntentionsInner() {
   const theme = useTheme();
 
   const item = (color, name) => (
-    <Color item xs={12} sm={6} md={4}>
+    <Color size={{ xs: 12, sm: 6, md: 4 }}>
       <div style={{ backgroundColor: color }} />
       <div>
         <Typography variant="body2">{name}</Typography>

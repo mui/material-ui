@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
@@ -9,7 +8,7 @@ declare module '@mui/material/styles' {
       danger: string;
     };
   }
-  // allow configuration using `createTheme`
+  // allow configuration using `createTheme()`
   interface ThemeOptions {
     status?: {
       danger?: string;

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';

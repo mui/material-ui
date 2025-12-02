@@ -1,166 +1,26 @@
-/* eslint-env mocha */
-import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
+/* eslint-disable compat/compat -- Test environment */
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
-  act as rtlAct,
   buildQueries,
   cleanup,
-  fireEvent as rtlFireEvent,
-  queries,
-  queryHelpers,
-  render as testingLibraryRender,
   prettyDOM,
-  within,
+  queries,
   RenderResult,
+  act as rtlAct,
+  fireEvent as rtlFireEvent,
   screen as rtlScreen,
   Screen,
+  render as testingLibraryRender,
+  RenderOptions as TestingLibraryRenderOptions,
+  within,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
+import { beforeEach, afterEach, beforeAll, vi, expect } from 'vitest';
 import reactMajor from './reactMajor';
-
-interface Interaction {
-  id: number;
-  name: string;
-  timestamp: number;
-}
-
-const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
-
-function noTrace<T>(interactionName: string, callback: () => T): T {
-  return callback();
-}
-
-/**
- * Path used in Error.prototype.stack.
- *
- * Computed in `before` hook.
- */
-let workspaceRoot: string;
-
-let interactionID = 0;
-const interactionStack: Interaction[] = [];
-/**
- * interactionName - Human readable label for this particular interaction.
- */
-function traceByStackSync<T>(interactionName: string, callback: () => T): T {
-  const { stack } = new Error();
-  const testLines = stack!
-    .split(/\r?\n/)
-    .map((line) => {
-      // anonymous functions create a "weird" stackframe like
-      // "at path/to/actual.test.js (path/to/utility/file.js <- karma.test.js)"
-      // and we just want "path/to/actual.test.js" not "karma.test.js"
-      // TODO: Only supports chrome at the moment
-      const fileMatch = line.match(/([^\s(]+\.test\.(js|ts|tsx)):(\d+):(\d+)/);
-      if (fileMatch === null) {
-        return null;
-      }
-      return { name: fileMatch[1], line: +fileMatch[3], column: +fileMatch[4] };
-    })
-    .filter((maybeTestFile): maybeTestFile is NonNullable<typeof maybeTestFile> => {
-      return maybeTestFile !== null;
-    })
-    .map((file) => {
-      return `${file.name.replace(workspaceRoot, '')}:${file.line}:${file.column}`;
-    });
-  const originLine = testLines[testLines.length - 1] ?? 'unknown line';
-
-  interactionID += 1;
-  const interaction: Interaction = {
-    id: interactionID,
-    name: `${originLine} (${interactionName})`,
-    timestamp: performance.now(),
-  };
-
-  interactionStack.push(interaction);
-  try {
-    return callback();
-  } finally {
-    interactionStack.pop();
-  }
-}
-
-interface Profiler {
-  id: string;
-  onRender: import('react').ProfilerOnRenderCallback;
-  report(): void;
-}
-
-class NoopProfiler implements Profiler {
-  id = 'noop';
-
-  // eslint-disable-next-line class-methods-use-this
-  onRender() {}
-
-  // eslint-disable-next-line class-methods-use-this
-  report() {}
-}
-
-type RenderMark = [
-  id: string,
-  phase: 'mount' | 'update' | 'nested-update',
-  actualDuration: number,
-  baseDuration: number,
-  startTime: number,
-  commitTime: number,
-  interactions: Interaction[],
-];
-
-class DispatchingProfiler implements Profiler {
-  id: string;
-
-  private renders: RenderMark[] = [];
-
-  constructor(test: import('mocha').Test) {
-    this.id = test.fullTitle();
-  }
-
-  onRender: Profiler['onRender'] = (
-    id,
-    phase,
-    actualDuration,
-    baseDuration,
-    startTime,
-    commitTime,
-  ) => {
-    // Do minimal work here to keep the render fast.
-    // Though it's unclear whether work here affects the profiler results.
-    // But even if it doesn't we'll keep the test feedback snappy.
-    this.renders.push([
-      id,
-      phase,
-      actualDuration,
-      baseDuration,
-      startTime,
-      commitTime,
-      interactionStack.slice(),
-    ]);
-  };
-
-  report() {
-    const event = new window.CustomEvent('reactProfilerResults', {
-      detail: {
-        [this.id]: this.renders.map((entry) => {
-          return {
-            phase: entry[1],
-            actualDuration: entry[2],
-            baseDuration: entry[3],
-            startTime: entry[4],
-            commitTime: entry[5],
-            interactions: entry[6],
-          };
-        }),
-      },
-    });
-    window.dispatchEvent(event);
-  }
-}
-
-const UsedProfiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
-const traceSync = enableDispatchingProfiler ? traceByStackSync : noTrace;
 
 function queryAllDescriptionsOf(baseElement: HTMLElement, element: Element): HTMLElement[] {
   const ariaDescribedBy = element.getAttribute('aria-describedby');
@@ -193,18 +53,6 @@ const [
   },
 );
 
-const queryAllByMuiTest = queryHelpers.queryAllByAttribute.bind(null, 'data-mui-test');
-const [queryByMuiTest, getAllByMuiTest, getByMuiTest, findAllByMuiTest, findByMuiTest] =
-  buildQueries(
-    queryAllByMuiTest,
-    function getMultipleError(container, dataMuiTest) {
-      return `Found multiple elements with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-    function getMissingError(container, dataMuiTest) {
-      return `Found no element with the data-mui-test attribute of: ${dataMuiTest}`;
-    },
-  );
-
 const customQueries = {
   queryDescriptionOf,
   queryAllDescriptionsOf,
@@ -212,33 +60,9 @@ const customQueries = {
   getAllDescriptionsOf,
   findDescriptionOf,
   findAllDescriptionsOf,
-  /**
-   * @deprecated Use `queryAllByTestId` instead
-   */
-  queryAllByMuiTest,
-  /**
-   * @deprecated Use `queryByTestId` instead
-   */
-  queryByMuiTest,
-  /**
-   * @deprecated Use `getAllByTestId` instead
-   */
-  getAllByMuiTest,
-  /**
-   * @deprecated Use `getByTestId` instead
-   */
-  getByMuiTest,
-  /**
-   * @deprecated Use `findAllByTestId` instead
-   */
-  findAllByMuiTest,
-  /**
-   * @deprecated Use `findByTestId` instead
-   */
-  findByMuiTest,
 };
 
-interface RenderConfiguration {
+interface RenderConfiguration extends Pick<TestingLibraryRenderOptions, 'reactStrictMode'> {
   /**
    * https://testing-library.com/docs/react-testing-library/api#container
    */
@@ -269,7 +93,7 @@ interface ServerRenderConfiguration extends RenderConfiguration {
   container: HTMLElement;
 }
 
-export type RenderOptions = Partial<RenderConfiguration>;
+export type RenderOptions = Omit<Partial<RenderConfiguration>, 'reactStrictMode'>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
   user: ReturnType<typeof userEvent.setup>;
@@ -285,36 +109,35 @@ export interface MuiRenderToStringResult {
   hydrate(): MuiRenderResult;
 }
 
+interface DataAttributes {
+  [key: `data-${string}`]: string;
+}
+
 function render(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
-  const { container, hydrate, wrapper } = configuration;
+  const { container, hydrate, wrapper, reactStrictMode } = configuration;
 
-  const testingLibraryRenderResult = traceSync('render', () =>
-    testingLibraryRender(element, {
-      container,
-      hydrate,
-      queries: { ...queries, ...customQueries },
-      wrapper,
-    }),
-  );
+  const testingLibraryRenderResult = testingLibraryRender(element, {
+    container,
+    hydrate,
+    queries: { ...queries, ...customQueries },
+    wrapper,
+    reactStrictMode,
+  });
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
-    user: userEvent.setup({ delay: null }),
+    user: userEvent.setup({ document, delay: null }),
     forceUpdate() {
-      traceSync('forceUpdate', () =>
-        testingLibraryRenderResult.rerender(
-          React.cloneElement(element, {
-            'data-force-update': String(Math.random()),
-          }),
-        ),
+      testingLibraryRenderResult.rerender(
+        React.cloneElement(element, {
+          'data-force-update': String(Math.random()),
+        }),
       );
     },
     setProps(props) {
-      traceSync('setProps', () =>
-        testingLibraryRenderResult.rerender(React.cloneElement(element, props)),
-      );
+      testingLibraryRenderResult.rerender(React.cloneElement(element, props));
     },
   };
 
@@ -322,14 +145,12 @@ function render(
 }
 
 function renderToString(
-  element: React.ReactElement<any>,
+  element: React.ReactElement<DataAttributes>,
   configuration: ServerRenderConfiguration,
 ): { container: HTMLElement; hydrate(): MuiRenderResult } {
   const { container, wrapper: Wrapper } = configuration;
 
-  traceSync('renderToString', () => {
-    container.innerHTML = ReactDOMServer.renderToString(<Wrapper>{element}</Wrapper>);
-  });
+  container.innerHTML = ReactDOMServer.renderToString(<Wrapper>{element}</Wrapper>);
 
   return {
     container,
@@ -374,84 +195,107 @@ export type ClockConfig = undefined | number | Date;
 function createClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
-  options?: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
+  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
 ): Clock {
-  let clock: ReturnType<typeof useFakeTimers> | null = null;
-
-  let mode = defaultMode;
-
-  beforeEach(() => {
-    if (mode === 'fake') {
-      clock = useFakeTimers({
+  if (defaultMode === 'fake') {
+    beforeEach(() => {
+      vi.useFakeTimers({
         now: config,
         // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
         // Technically we'd want to reset all modules between tests but we don't have that technology.
-        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+        // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
         shouldClearNativeTimers: true,
+        toFake: [
+          'setTimeout',
+          'setInterval',
+          'clearTimeout',
+          'clearInterval',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+          'performance',
+          'Date',
+        ],
         ...options,
       });
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+  } else {
+    beforeEach(() => {
+      if (config) {
+        vi.setSystemTime(config);
+      }
+    });
+  }
+
+  afterEach(async () => {
+    if (vi.isFakeTimers()) {
+      await rtlAct(async () => {
+        vi.runOnlyPendingTimers();
+      });
+      vi.useRealTimers();
     }
   });
 
-  afterEach(() => {
-    clock?.restore();
-    clock = null;
-  });
-
   return {
-    tick(timeoutMS: number) {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
+    withFakeTimers: () => {
+      if (vi.isFakeTimers()) {
+        return;
       }
-      traceSync('tick', () => {
-        rtlAct(() => {
-          clock!.tick(timeoutMS);
+      beforeEach(() => {
+        vi.useFakeTimers({
+          now: config,
+          // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+          // Technically we'd want to reset all modules between tests but we don't have that technology.
+          // In the meantime just continue to clear native timers like we did for the past years when using `sinon` < 8.
+          shouldClearNativeTimers: true,
+          toFake: [
+            'setTimeout',
+            'setInterval',
+            'clearTimeout',
+            'clearInterval',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+            'Date',
+          ],
+          ...options,
         });
+        if (config) {
+          vi.setSystemTime(config);
+        }
       });
     },
-    runAll() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      traceSync('runAll', () => {
-        rtlAct(() => {
-          clock!.runAll();
-        });
-      });
-    },
-    runToLast() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      traceSync('runToLast', () => {
-        rtlAct(() => {
-          clock!.runToLast();
-        });
+    runToLast: () => {
+      rtlAct(() => {
+        vi.runOnlyPendingTimers();
       });
     },
     isReal() {
-      return setTimeout.hasOwnProperty('clock') === false;
-    },
-    withFakeTimers() {
-      before(() => {
-        mode = 'fake';
-      });
-
-      after(() => {
-        mode = defaultMode;
-      });
+      return !vi.isFakeTimers();
     },
     restore() {
-      clock?.restore();
+      vi.useRealTimers();
+    },
+    tick(timeoutMS: number) {
+      rtlAct(() => {
+        vi.advanceTimersByTime(timeoutMS);
+      });
+    },
+    runAll() {
+      rtlAct(() => {
+        vi.runAllTimers();
+      });
     },
   };
 }
 
 export interface Renderer {
   clock: Clock;
-  render(element: React.ReactElement<any>, options?: RenderOptions): MuiRenderResult;
+  render(element: React.ReactElement<DataAttributes>, options?: RenderOptions): MuiRenderResult;
   renderToString(
-    element: React.ReactElement<any>,
+    element: React.ReactElement<DataAttributes>,
     options?: RenderOptions,
   ): MuiRenderToStringResult;
 }
@@ -479,32 +323,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
-   * For legacy reasons `createRenderer` might accidentally be called in a before(Each) hook.
+   * For legacy reasons `createRenderer` might accidentally be called in a beforeAll(Each) hook.
    */
   let wasCalledInSuite = false;
-  before(function beforeHook() {
+  beforeAll(function beforeHook() {
     wasCalledInSuite = true;
-
-    if (enableDispatchingProfiler) {
-      // TODO windows?
-      const filename = new Error()
-        .stack!.split(/\r?\n/)
-        .map((line) => {
-          const fileMatch =
-            // chrome: "    at Context.beforeHook (webpack-internal:///./test/utils/createRenderer.tsx:257:24)""
-            line.match(/\(([^)]+):\d+:\d+\)/) ??
-            // firefox: "beforeHook@webpack-internal:///./test/utils/createRenderer.tsx:257:24"
-            line.match(/@(.*?):\d+:\d+$/);
-          if (fileMatch === null) {
-            return null;
-          }
-          return fileMatch[1];
-        })
-        .find((file) => {
-          return file?.endsWith('createRenderer.tsx');
-        });
-      workspaceRoot = filename!.replace('test/utils/createRenderer.tsx', '');
-    }
   });
 
   let emotionCache: import('@emotion/cache').EmotionCache = null!;
@@ -514,10 +337,9 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   let serverContainer: HTMLElement;
   /**
    * Flag whether all setup for `configuredClientRender` was completed.
-   * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
+   * For legacy reasons `configuredClientRender` might accidentally be called in a beforeAll(Each) hook.
    */
   let prepared = false;
-  let profiler: Profiler = null!;
   beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
       const error = new Error(
@@ -527,13 +349,13 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
       throw error;
     }
 
-    const test = this.currentTest;
-    if (test === undefined) {
+    const id = expect.getState().currentTestName;
+
+    if (!id) {
       throw new Error(
         'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
       );
     }
-    profiler = new UsedProfiler(test);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 
@@ -545,7 +367,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 
   afterEach(() => {
     if (!clock.isReal()) {
-      const error = Error(
+      const error = new Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Only use `clock` from `createRenderer`.\n' +
@@ -557,8 +379,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     }
 
     cleanup();
-    profiler.report();
-    profiler = null!;
 
     emotionCache.sheet.tags.forEach((styleTag) => {
       styleTag.remove();
@@ -569,50 +389,46 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     serverContainer = null!;
   });
 
-  function createWrapper(options: Partial<RenderConfiguration>) {
-    const {
-      strict = globalStrict,
-      strictEffects = globalStrictEffects,
-      wrapper: InnerWrapper = React.Fragment,
-    } = options;
+  function createWrapper(options: Pick<RenderOptions, 'wrapper'>) {
+    const { wrapper: InnerWrapper = React.Fragment } = options;
 
-    const usesLegacyRoot = reactMajor < 18;
-    const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
-        <Mode>
-          <EmotionCacheProvider value={emotionCache}>
-            <React.Profiler id={profiler.id} onRender={profiler.onRender}>
-              <InnerWrapper>{children}</InnerWrapper>
-            </React.Profiler>
-          </EmotionCacheProvider>
-        </Mode>
+        <EmotionCacheProvider value={emotionCache}>
+          <InnerWrapper>{children}</InnerWrapper>
+        </EmotionCacheProvider>
       );
     };
   }
 
   return {
     clock,
-    render(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    render(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
-            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'This usually indicates that `render()` was called in a `beforeAll()` or `beforeEach` hook. ' +
             'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
         );
       }
 
+      const usesLegacyRoot = reactMajor < 18;
+      const reactStrictMode =
+        (options.strict ?? globalStrict) &&
+        ((options.strictEffects ?? globalStrictEffects) || usesLegacyRoot);
+
       return render(element, {
         ...options,
+        reactStrictMode,
         hydrate: false,
         wrapper: createWrapper(options),
       });
     },
-    renderToString(element: React.ReactElement<any>, options: RenderOptions = {}) {
+    renderToString(element: React.ReactElement<DataAttributes>, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(
           'Unable to finish setup before `render()` was called. ' +
-            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'This usually indicates that `render()` was called in a `beforeAll()` or `beforeEach` hook. ' +
             'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
         );
       }
@@ -628,14 +444,13 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
 }
 
 const fireEvent = ((target, event, ...args) => {
-  return traceSync(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
+  return rtlFireEvent(target, event, ...args);
 }) as typeof rtlFireEvent;
 
 Object.keys(rtlFireEvent).forEach(
   // @ts-expect-error
   (eventType: keyof typeof rtlFireEvent) => {
-    fireEvent[eventType] = (...args) =>
-      traceSync(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
+    fireEvent[eventType] = (...args) => rtlFireEvent[eventType](...args);
   },
 );
 
@@ -662,7 +477,7 @@ fireEvent.keyDown = (desiredTarget, options = {}) => {
     throw error;
   }
 
-  return traceSync('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
+  return originalFireEventKeyDown(element, options);
 };
 
 const originalFireEventKeyUp = rtlFireEvent.keyUp;
@@ -688,7 +503,7 @@ fireEvent.keyUp = (desiredTarget, options = {}) => {
     throw error;
   }
 
-  return traceSync('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
+  return originalFireEventKeyUp(element, options);
 };
 
 export function fireTouchChangedEvent(
@@ -742,11 +557,42 @@ export function fireTouchChangedEvent(
 function act<T>(callback: () => T | Promise<T>): Promise<T>;
 function act(callback: () => void): void;
 function act<T>(callback: () => void | T | Promise<T>) {
-  return traceSync('act', () => rtlAct(callback));
+  return rtlAct(callback);
 }
 
 const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
 
-export * from '@testing-library/react/pure';
+export {
+  renderHook,
+  waitFor,
+  within,
+  createEvent,
+  type RenderHookResult,
+  type EventType,
+} from '@testing-library/react/pure';
 export { act, fireEvent };
 export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
+
+export async function flushEffects(): Promise<void> {
+  await act(async () => {});
+}
+
+/**
+ * returns true when touch is suported and can be mocked
+ */
+export function supportsTouch() {
+  // only run in supported browsers
+  if (typeof Touch === 'undefined') {
+    return false;
+  }
+
+  try {
+    // eslint-disable-next-line no-new
+    new Touch({ identifier: 0, target: window, pageX: 0, pageY: 0 });
+  } catch {
+    // Touch constructor not supported
+    return false;
+  }
+
+  return true;
+}

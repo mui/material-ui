@@ -1,5 +1,5 @@
 import * as React from 'react';
-import startCase from 'lodash/startCase';
+import { startCase } from 'es-toolkit/string';
 import NextLink from 'next/link';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
@@ -137,53 +137,48 @@ export default function TemplateCollection() {
                     '--template-name-dark': `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
                   }}
                 />
-                <NextLink
+                <Link
                   href={`/joy-ui/getting-started/templates/${template.name}/`}
-                  passHref
-                  legacyBehavior
+                  tabIndex={-1}
+                  component={NextLink}
+                  overlay
+                  aria-hidden
+                  data-ga-event-category="joy-template"
+                  data-ga-event-label={template.name}
+                  data-ga-event-action="preview-img"
+                  sx={[
+                    (theme) => ({
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                      gap: 1,
+                      transition: '0.15s',
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      opacity: 0,
+                      top: 0,
+                      left: 0,
+                      bgcolor: `rgba(${theme.vars.palette.primary.lightChannel} / 0.3)`,
+                      backdropFilter: 'blur(4px)',
+                      '&:hover, &:focus': {
+                        opacity: 1,
+                      },
+                      [theme.getColorSchemeSelector('dark')]: {
+                        bgcolor: `rgba(${theme.vars.palette.primary.darkChannel} / 0.3)`,
+                      },
+                    }),
+                  ]}
                 >
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <Link
-                    tabIndex={-1}
-                    overlay
-                    aria-hidden
-                    data-ga-event-category="joy-template"
-                    data-ga-event-label={template.name}
-                    data-ga-event-action="preview-img"
-                    sx={[
-                      (theme) => ({
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        gap: 1,
-                        transition: '0.15s',
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
-                        opacity: 0,
-                        top: 0,
-                        left: 0,
-                        bgcolor: `rgba(${theme.vars.palette.primary.lightChannel} / 0.3)`,
-                        backdropFilter: 'blur(4px)',
-                        '&:hover, &:focus': {
-                          opacity: 1,
-                        },
-                        [theme.getColorSchemeSelector('dark')]: {
-                          bgcolor: `rgba(${theme.vars.palette.primary.darkChannel} / 0.3)`,
-                        },
-                      }),
-                    ]}
+                  <Visibility />
+                  <Typography
+                    textColor="text.primary"
+                    sx={{ fontWeight: 'bold', fontFamily: 'IBM Plex Sans' }}
                   >
-                    <Visibility />
-                    <Typography
-                      textColor="text.primary"
-                      sx={{ fontWeight: 'bold', fontFamily: 'IBM Plex Sans' }}
-                    >
-                      View live preview
-                    </Typography>
-                  </Link>
-                </NextLink>
+                    View live preview
+                  </Typography>
+                </Link>
               </AspectRatio>
             </CardOverflow>
             <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -255,26 +250,21 @@ export default function TemplateCollection() {
                   gap: 1.5,
                 }}
               >
-                <NextLink
+                <Button
                   href={`https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/${template.name}`}
-                  passHref
-                  legacyBehavior
+                  component={NextLink}
+                  variant="outlined"
+                  color="neutral"
+                  fullWidth
+                  startDecorator={<CodeRoundedIcon />}
+                  aria-label="Source code"
+                  data-ga-event-category="joy-template"
+                  data-ga-event-label={template.name}
+                  data-ga-event-action="preview"
+                  sx={{ fontFamily: 'IBM Plex Sans' }}
                 >
-                  <Button
-                    component="a"
-                    variant="outlined"
-                    color="neutral"
-                    fullWidth
-                    startDecorator={<CodeRoundedIcon />}
-                    aria-label="Source code"
-                    data-ga-event-category="joy-template"
-                    data-ga-event-label={template.name}
-                    data-ga-event-action="preview"
-                    sx={{ fontFamily: 'IBM Plex Sans' }}
-                  >
-                    Source
-                  </Button>
-                </NextLink>
+                  Source
+                </Button>
                 <Button
                   variant="outlined"
                   color="neutral"

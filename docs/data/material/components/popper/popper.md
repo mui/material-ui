@@ -3,7 +3,6 @@ productId: material-ui
 title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
-unstyled: /base-ui/react-popper/
 githubSource: packages/mui-material/src/Popper
 ---
 
@@ -11,21 +10,21 @@ githubSource: packages/mui-material/src/Popper
 
 <p class="description">A Popper can be used to display some content on top of another. It's an alternative to react-popper.</p>
 
-Some important features of the `Popper` component:
+Some important features of the Popper component:
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/docs/v2/)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- The children is [`Portal`](/material-ui/react-portal/) to the body of the document to avoid rendering problems.
+- Its child element is a [Portal](/material-ui/react-portal/) on the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
-- The scroll isn't blocked like with the [`Popover`](/material-ui/react-popover/) component.
+- The scroll isn't blocked like with the [Popover](/material-ui/react-popover/) component.
   The placement of the popper updates with the available area in the viewport.
-- Clicking away does not hide the `Popper` component.
-  If you need this behavior, you can use [`ClickAwayListener`](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
+- Clicking away does not hide the Popper component.
+  If you need this behavior, you can use the [Click-Away Listener](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#composition-with-menu-list).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
-## Basic popper
+## Basic Popper
 
 {{"demo": "SimplePopper.js"}}
 
@@ -64,7 +63,7 @@ Highlight part of the text to see the popper:
 
 {{"demo": "VirtualElementPopper.js"}}
 
-## Complementary projects
+## Supplementary projects
 
 For more advanced use cases you might be able to take advantage of:
 

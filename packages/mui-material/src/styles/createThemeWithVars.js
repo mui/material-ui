@@ -1,4 +1,3 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
@@ -25,6 +24,7 @@ import createColorScheme, { getOpacity, getOverlays } from './createColorScheme'
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
+import { light, dark } from './createPalette';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -41,7 +41,7 @@ function setColor(obj, key, defaultValue) {
 }
 
 function toRgb(color) {
-  if (!color || !color.startsWith('hsl')) {
+  if (typeof color !== 'string' || !color.startsWith('hsl')) {
     return color;
   }
   return hslToRgb(color);
@@ -85,7 +85,7 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
-function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
+function attachColorScheme(colorSpace, colorSchemes, scheme, restTheme, colorScheme) {
   if (!scheme) {
     return undefined;
   }
@@ -95,12 +95,14 @@ function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
     colorSchemes[colorScheme] = createColorScheme({
       ...scheme,
       palette: { mode, ...scheme?.palette },
+      colorSpace,
     });
     return undefined;
   }
   const { palette, ...muiTheme } = createThemeNoVars({
     ...restTheme,
     palette: { mode, ...scheme?.palette },
+    colorSpace,
   });
   colorSchemes[colorScheme] = {
     ...scheme,
@@ -128,10 +130,12 @@ export default function createThemeWithVars(options = {}, ...args) {
     defaultColorScheme: defaultColorSchemeInput,
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
+    nativeColor = false,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
       ? 'media'
       : undefined,
+    rootSelector = ':root',
     ...input
   } = options;
   const firstColorScheme = Object.keys(colorSchemesInput)[0];
@@ -157,21 +161,32 @@ export default function createThemeWithVars(options = {}, ...args) {
   }
 
   if (!defaultScheme) {
-    throw new MuiError(
-      'MUI: The `colorSchemes.%s` option is either missing or invalid.',
-      defaultColorScheme,
+    throw /* minify-error */ new Error(
+      `MUI: The \`colorSchemes.${defaultColorScheme}\` option is either missing or invalid.`,
     );
   }
 
+  // The reason to use `oklch` is that it is the most perceptually uniform color space and widely supported.
+  let colorSpace;
+  if (nativeColor) {
+    colorSpace = 'oklch';
+  }
+
   // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
-  const muiTheme = attachColorScheme(colorSchemes, defaultScheme, input, defaultColorScheme);
+  const muiTheme = attachColorScheme(
+    colorSpace,
+    colorSchemes,
+    defaultScheme,
+    input,
+    defaultColorScheme,
+  );
 
   if (builtInLight && !colorSchemes.light) {
-    attachColorScheme(colorSchemes, builtInLight, undefined, 'light');
+    attachColorScheme(colorSpace, colorSchemes, builtInLight, undefined, 'light');
   }
 
   if (builtInDark && !colorSchemes.dark) {
-    attachColorScheme(colorSchemes, builtInDark, undefined, 'dark');
+    attachColorScheme(colorSpace, colorSchemes, builtInDark, undefined, 'dark');
   }
 
   let theme = {
@@ -179,6 +194,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     ...muiTheme,
     cssVarPrefix,
     colorSchemeSelector: selector,
+    rootSelector,
     getCssVar,
     colorSchemes,
     font: { ...prepareTypographyVars(muiTheme.typography), ...muiTheme.font },
@@ -205,6 +221,23 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.common, 'onBackground', '#fff');
     }
 
+    function colorMix(method, color, coefficient) {
+      if (colorSpace) {
+        let mixer;
+        if (method === safeAlpha) {
+          mixer = `transparent ${((1 - coefficient) * 100).toFixed(0)}%`;
+        }
+        if (method === safeDarken) {
+          mixer = `#000 ${(coefficient * 100).toFixed(0)}%`;
+        }
+        if (method === safeLighten) {
+          mixer = `#fff ${(coefficient * 100).toFixed(0)}%`;
+        }
+        return `color-mix(in ${colorSpace}, ${color}, ${mixer})`;
+      }
+      return method(color, coefficient);
+    }
+
     // assign component variables
     assignNode(palette, [
       'Alert',
@@ -225,10 +258,10 @@ export default function createThemeWithVars(options = {}, ...args) {
       'Tooltip',
     ]);
     if (palette.mode === 'light') {
-      setColor(palette.Alert, 'errorColor', safeDarken(palette.error.light, 0.6));
-      setColor(palette.Alert, 'infoColor', safeDarken(palette.info.light, 0.6));
-      setColor(palette.Alert, 'successColor', safeDarken(palette.success.light, 0.6));
-      setColor(palette.Alert, 'warningColor', safeDarken(palette.warning.light, 0.6));
+      setColor(palette.Alert, 'errorColor', colorMix(safeDarken, palette.error.light, 0.6));
+      setColor(palette.Alert, 'infoColor', colorMix(safeDarken, palette.info.light, 0.6));
+      setColor(palette.Alert, 'successColor', colorMix(safeDarken, palette.success.light, 0.6));
+      setColor(palette.Alert, 'warningColor', colorMix(safeDarken, palette.warning.light, 0.6));
       setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-main'));
       setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-main'));
       setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-main'));
@@ -253,10 +286,18 @@ export default function createThemeWithVars(options = {}, ...args) {
         'warningFilledColor',
         silent(() => palette.getContrastText(palette.warning.main)),
       );
-      setColor(palette.Alert, 'errorStandardBg', safeLighten(palette.error.light, 0.9));
-      setColor(palette.Alert, 'infoStandardBg', safeLighten(palette.info.light, 0.9));
-      setColor(palette.Alert, 'successStandardBg', safeLighten(palette.success.light, 0.9));
-      setColor(palette.Alert, 'warningStandardBg', safeLighten(palette.warning.light, 0.9));
+      setColor(palette.Alert, 'errorStandardBg', colorMix(safeLighten, palette.error.light, 0.9));
+      setColor(palette.Alert, 'infoStandardBg', colorMix(safeLighten, palette.info.light, 0.9));
+      setColor(
+        palette.Alert,
+        'successStandardBg',
+        colorMix(safeLighten, palette.success.light, 0.9),
+      );
+      setColor(
+        palette.Alert,
+        'warningStandardBg',
+        colorMix(safeLighten, palette.warning.light, 0.9),
+      );
       setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
       setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
       setColor(palette.Alert, 'successIconColor', setCssVarColor('palette-success-main'));
@@ -271,29 +312,55 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
-      setColor(palette.LinearProgress, 'primaryBg', safeLighten(palette.primary.main, 0.62));
-      setColor(palette.LinearProgress, 'secondaryBg', safeLighten(palette.secondary.main, 0.62));
-      setColor(palette.LinearProgress, 'errorBg', safeLighten(palette.error.main, 0.62));
-      setColor(palette.LinearProgress, 'infoBg', safeLighten(palette.info.main, 0.62));
-      setColor(palette.LinearProgress, 'successBg', safeLighten(palette.success.main, 0.62));
-      setColor(palette.LinearProgress, 'warningBg', safeLighten(palette.warning.main, 0.62));
+      setColor(
+        palette.LinearProgress,
+        'primaryBg',
+        colorMix(safeLighten, palette.primary.main, 0.62),
+      );
+      setColor(
+        palette.LinearProgress,
+        'secondaryBg',
+        colorMix(safeLighten, palette.secondary.main, 0.62),
+      );
+      setColor(palette.LinearProgress, 'errorBg', colorMix(safeLighten, palette.error.main, 0.62));
+      setColor(palette.LinearProgress, 'infoBg', colorMix(safeLighten, palette.info.main, 0.62));
+      setColor(
+        palette.LinearProgress,
+        'successBg',
+        colorMix(safeLighten, palette.success.main, 0.62),
+      );
+      setColor(
+        palette.LinearProgress,
+        'warningBg',
+        colorMix(safeLighten, palette.warning.main, 0.62),
+      );
       setColor(
         palette.Skeleton,
         'bg',
-        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
+        colorSpace
+          ? colorMix(safeAlpha, palette.text.primary, 0.11)
+          : `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
       );
-      setColor(palette.Slider, 'primaryTrack', safeLighten(palette.primary.main, 0.62));
-      setColor(palette.Slider, 'secondaryTrack', safeLighten(palette.secondary.main, 0.62));
-      setColor(palette.Slider, 'errorTrack', safeLighten(palette.error.main, 0.62));
-      setColor(palette.Slider, 'infoTrack', safeLighten(palette.info.main, 0.62));
-      setColor(palette.Slider, 'successTrack', safeLighten(palette.success.main, 0.62));
-      setColor(palette.Slider, 'warningTrack', safeLighten(palette.warning.main, 0.62));
-      const snackbarContentBackground = safeEmphasize(palette.background.default, 0.8);
+      setColor(palette.Slider, 'primaryTrack', colorMix(safeLighten, palette.primary.main, 0.62));
+      setColor(
+        palette.Slider,
+        'secondaryTrack',
+        colorMix(safeLighten, palette.secondary.main, 0.62),
+      );
+      setColor(palette.Slider, 'errorTrack', colorMix(safeLighten, palette.error.main, 0.62));
+      setColor(palette.Slider, 'infoTrack', colorMix(safeLighten, palette.info.main, 0.62));
+      setColor(palette.Slider, 'successTrack', colorMix(safeLighten, palette.success.main, 0.62));
+      setColor(palette.Slider, 'warningTrack', colorMix(safeLighten, palette.warning.main, 0.62));
+      const snackbarContentBackground = colorSpace
+        ? colorMix(safeDarken, palette.background.default, 0.6825) // use `0.6825` instead of `0.8` to match the contrast ratio of JS implementation
+        : safeEmphasize(palette.background.default, 0.8);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
         'color',
-        silent(() => palette.getContrastText(snackbarContentBackground)),
+        silent(() =>
+          colorSpace ? dark.text.primary : palette.getContrastText(snackbarContentBackground),
+        ),
       );
       setColor(
         palette.SpeedDialAction,
@@ -304,20 +371,44 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-400'));
       setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-common-white'));
       setColor(palette.Switch, 'defaultDisabledColor', setCssVarColor('palette-grey-100'));
-      setColor(palette.Switch, 'primaryDisabledColor', safeLighten(palette.primary.main, 0.62));
-      setColor(palette.Switch, 'secondaryDisabledColor', safeLighten(palette.secondary.main, 0.62));
-      setColor(palette.Switch, 'errorDisabledColor', safeLighten(palette.error.main, 0.62));
-      setColor(palette.Switch, 'infoDisabledColor', safeLighten(palette.info.main, 0.62));
-      setColor(palette.Switch, 'successDisabledColor', safeLighten(palette.success.main, 0.62));
-      setColor(palette.Switch, 'warningDisabledColor', safeLighten(palette.warning.main, 0.62));
-      setColor(palette.TableCell, 'border', safeLighten(safeAlpha(palette.divider, 1), 0.88));
-      setColor(palette.Tooltip, 'bg', safeAlpha(palette.grey[700], 0.92));
+      setColor(
+        palette.Switch,
+        'primaryDisabledColor',
+        colorMix(safeLighten, palette.primary.main, 0.62),
+      );
+      setColor(
+        palette.Switch,
+        'secondaryDisabledColor',
+        colorMix(safeLighten, palette.secondary.main, 0.62),
+      );
+      setColor(
+        palette.Switch,
+        'errorDisabledColor',
+        colorMix(safeLighten, palette.error.main, 0.62),
+      );
+      setColor(palette.Switch, 'infoDisabledColor', colorMix(safeLighten, palette.info.main, 0.62));
+      setColor(
+        palette.Switch,
+        'successDisabledColor',
+        colorMix(safeLighten, palette.success.main, 0.62),
+      );
+      setColor(
+        palette.Switch,
+        'warningDisabledColor',
+        colorMix(safeLighten, palette.warning.main, 0.62),
+      );
+      setColor(
+        palette.TableCell,
+        'border',
+        colorMix(safeLighten, colorMix(safeAlpha, palette.divider, 1), 0.88),
+      );
+      setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
     if (palette.mode === 'dark') {
-      setColor(palette.Alert, 'errorColor', safeLighten(palette.error.light, 0.6));
-      setColor(palette.Alert, 'infoColor', safeLighten(palette.info.light, 0.6));
-      setColor(palette.Alert, 'successColor', safeLighten(palette.success.light, 0.6));
-      setColor(palette.Alert, 'warningColor', safeLighten(palette.warning.light, 0.6));
+      setColor(palette.Alert, 'errorColor', colorMix(safeLighten, palette.error.light, 0.6));
+      setColor(palette.Alert, 'infoColor', colorMix(safeLighten, palette.info.light, 0.6));
+      setColor(palette.Alert, 'successColor', colorMix(safeLighten, palette.success.light, 0.6));
+      setColor(palette.Alert, 'warningColor', colorMix(safeLighten, palette.warning.light, 0.6));
       setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-dark'));
       setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-dark'));
       setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-dark'));
@@ -342,10 +433,18 @@ export default function createThemeWithVars(options = {}, ...args) {
         'warningFilledColor',
         silent(() => palette.getContrastText(palette.warning.dark)),
       );
-      setColor(palette.Alert, 'errorStandardBg', safeDarken(palette.error.light, 0.9));
-      setColor(palette.Alert, 'infoStandardBg', safeDarken(palette.info.light, 0.9));
-      setColor(palette.Alert, 'successStandardBg', safeDarken(palette.success.light, 0.9));
-      setColor(palette.Alert, 'warningStandardBg', safeDarken(palette.warning.light, 0.9));
+      setColor(palette.Alert, 'errorStandardBg', colorMix(safeDarken, palette.error.light, 0.9));
+      setColor(palette.Alert, 'infoStandardBg', colorMix(safeDarken, palette.info.light, 0.9));
+      setColor(
+        palette.Alert,
+        'successStandardBg',
+        colorMix(safeDarken, palette.success.light, 0.9),
+      );
+      setColor(
+        palette.Alert,
+        'warningStandardBg',
+        colorMix(safeDarken, palette.warning.light, 0.9),
+      );
       setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
       setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
       setColor(palette.Alert, 'successIconColor', setCssVarColor('palette-success-main'));
@@ -362,29 +461,51 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
-      setColor(palette.LinearProgress, 'primaryBg', safeDarken(palette.primary.main, 0.5));
-      setColor(palette.LinearProgress, 'secondaryBg', safeDarken(palette.secondary.main, 0.5));
-      setColor(palette.LinearProgress, 'errorBg', safeDarken(palette.error.main, 0.5));
-      setColor(palette.LinearProgress, 'infoBg', safeDarken(palette.info.main, 0.5));
-      setColor(palette.LinearProgress, 'successBg', safeDarken(palette.success.main, 0.5));
-      setColor(palette.LinearProgress, 'warningBg', safeDarken(palette.warning.main, 0.5));
+      setColor(
+        palette.LinearProgress,
+        'primaryBg',
+        colorMix(safeDarken, palette.primary.main, 0.5),
+      );
+      setColor(
+        palette.LinearProgress,
+        'secondaryBg',
+        colorMix(safeDarken, palette.secondary.main, 0.5),
+      );
+      setColor(palette.LinearProgress, 'errorBg', colorMix(safeDarken, palette.error.main, 0.5));
+      setColor(palette.LinearProgress, 'infoBg', colorMix(safeDarken, palette.info.main, 0.5));
+      setColor(
+        palette.LinearProgress,
+        'successBg',
+        colorMix(safeDarken, palette.success.main, 0.5),
+      );
+      setColor(
+        palette.LinearProgress,
+        'warningBg',
+        colorMix(safeDarken, palette.warning.main, 0.5),
+      );
       setColor(
         palette.Skeleton,
         'bg',
-        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
+        colorSpace
+          ? colorMix(safeAlpha, palette.text.primary, 0.13)
+          : `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
       );
-      setColor(palette.Slider, 'primaryTrack', safeDarken(palette.primary.main, 0.5));
-      setColor(palette.Slider, 'secondaryTrack', safeDarken(palette.secondary.main, 0.5));
-      setColor(palette.Slider, 'errorTrack', safeDarken(palette.error.main, 0.5));
-      setColor(palette.Slider, 'infoTrack', safeDarken(palette.info.main, 0.5));
-      setColor(palette.Slider, 'successTrack', safeDarken(palette.success.main, 0.5));
-      setColor(palette.Slider, 'warningTrack', safeDarken(palette.warning.main, 0.5));
-      const snackbarContentBackground = safeEmphasize(palette.background.default, 0.98);
+      setColor(palette.Slider, 'primaryTrack', colorMix(safeDarken, palette.primary.main, 0.5));
+      setColor(palette.Slider, 'secondaryTrack', colorMix(safeDarken, palette.secondary.main, 0.5));
+      setColor(palette.Slider, 'errorTrack', colorMix(safeDarken, palette.error.main, 0.5));
+      setColor(palette.Slider, 'infoTrack', colorMix(safeDarken, palette.info.main, 0.5));
+      setColor(palette.Slider, 'successTrack', colorMix(safeDarken, palette.success.main, 0.5));
+      setColor(palette.Slider, 'warningTrack', colorMix(safeDarken, palette.warning.main, 0.5));
+      const snackbarContentBackground = colorSpace
+        ? colorMix(safeLighten, palette.background.default, 0.985) // use `0.985` instead of `0.98` to match the contrast ratio of JS implementation
+        : safeEmphasize(palette.background.default, 0.98);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
         'color',
-        silent(() => palette.getContrastText(snackbarContentBackground)),
+        silent(() =>
+          colorSpace ? light.text.primary : palette.getContrastText(snackbarContentBackground),
+        ),
       );
       setColor(
         palette.SpeedDialAction,
@@ -395,14 +516,38 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.StepContent, 'border', setCssVarColor('palette-grey-600'));
       setColor(palette.Switch, 'defaultColor', setCssVarColor('palette-grey-300'));
       setColor(palette.Switch, 'defaultDisabledColor', setCssVarColor('palette-grey-600'));
-      setColor(palette.Switch, 'primaryDisabledColor', safeDarken(palette.primary.main, 0.55));
-      setColor(palette.Switch, 'secondaryDisabledColor', safeDarken(palette.secondary.main, 0.55));
-      setColor(palette.Switch, 'errorDisabledColor', safeDarken(palette.error.main, 0.55));
-      setColor(palette.Switch, 'infoDisabledColor', safeDarken(palette.info.main, 0.55));
-      setColor(palette.Switch, 'successDisabledColor', safeDarken(palette.success.main, 0.55));
-      setColor(palette.Switch, 'warningDisabledColor', safeDarken(palette.warning.main, 0.55));
-      setColor(palette.TableCell, 'border', safeDarken(safeAlpha(palette.divider, 1), 0.68));
-      setColor(palette.Tooltip, 'bg', safeAlpha(palette.grey[700], 0.92));
+      setColor(
+        palette.Switch,
+        'primaryDisabledColor',
+        colorMix(safeDarken, palette.primary.main, 0.55),
+      );
+      setColor(
+        palette.Switch,
+        'secondaryDisabledColor',
+        colorMix(safeDarken, palette.secondary.main, 0.55),
+      );
+      setColor(
+        palette.Switch,
+        'errorDisabledColor',
+        colorMix(safeDarken, palette.error.main, 0.55),
+      );
+      setColor(palette.Switch, 'infoDisabledColor', colorMix(safeDarken, palette.info.main, 0.55));
+      setColor(
+        palette.Switch,
+        'successDisabledColor',
+        colorMix(safeDarken, palette.success.main, 0.55),
+      );
+      setColor(
+        palette.Switch,
+        'warningDisabledColor',
+        colorMix(safeDarken, palette.warning.main, 0.55),
+      );
+      setColor(
+        palette.TableCell,
+        'border',
+        colorMix(safeDarken, colorMix(safeAlpha, palette.divider, 1), 0.68),
+      );
+      setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
 
     // MUI X - DataGrid needs this token.
@@ -421,7 +566,7 @@ export default function createThemeWithVars(options = {}, ...args) {
 
       // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
 
-      if (colors && typeof colors === 'object') {
+      if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
         // Silent the error for custom palettes.
         if (colors.main) {
           setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
@@ -466,6 +611,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     disableCssColorScheme,
     shouldSkipGeneratingVar,
     getSelector: defaultGetSelector(theme),
+    enableContrastVars: nativeColor,
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
   theme.vars = vars;

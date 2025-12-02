@@ -13,10 +13,10 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import ForgotPassword from './ForgotPassword';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+import ForgotPassword from './components/ForgotPassword';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { GoogleIcon, FacebookIcon, SitemarkIcon } from './components/CustomIcons';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -38,8 +38,12 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
-  padding: 20,
-  marginTop: '10vh',
+  height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
+  minHeight: '100%',
+  padding: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+  },
   '&::before': {
     content: '""',
     display: 'block',
@@ -72,7 +76,10 @@ export default function SignIn(props) {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    if (emailError || passwordError) {
+      event.preventDefault();
+      return;
+    }
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
@@ -147,21 +154,10 @@ export default function SignIn(props) {
                 fullWidth
                 variant="outlined"
                 color={emailError ? 'error' : 'primary'}
-                sx={{ ariaLabel: 'email' }}
               />
             </FormControl>
             <FormControl>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <FormLabel htmlFor="password">Password</FormLabel>
-                <Link
-                  component="button"
-                  onClick={handleClickOpen}
-                  variant="body2"
-                  sx={{ alignSelf: 'baseline' }}
-                >
-                  Forgot your password?
-                </Link>
-              </Box>
+              <FormLabel htmlFor="password">Password</FormLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
@@ -190,23 +186,19 @@ export default function SignIn(props) {
             >
               Sign in
             </Button>
-            <Typography sx={{ textAlign: 'center' }}>
-              Don&apos;t have an account?{' '}
-              <span>
-                <Link
-                  href="/material-ui/getting-started/templates/sign-in/"
-                  variant="body2"
-                  sx={{ alignSelf: 'center' }}
-                >
-                  Sign up
-                </Link>
-              </span>
-            </Typography>
+            <Link
+              component="button"
+              type="button"
+              onClick={handleClickOpen}
+              variant="body2"
+              sx={{ alignSelf: 'center' }}
+            >
+              Forgot your password?
+            </Link>
           </Box>
           <Divider>or</Divider>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Button
-              type="submit"
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign in with Google')}
@@ -215,7 +207,6 @@ export default function SignIn(props) {
               Sign in with Google
             </Button>
             <Button
-              type="submit"
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign in with Facebook')}
@@ -223,6 +214,16 @@ export default function SignIn(props) {
             >
               Sign in with Facebook
             </Button>
+            <Typography sx={{ textAlign: 'center' }}>
+              Don&apos;t have an account?{' '}
+              <Link
+                href="/material-ui/getting-started/templates/sign-in/"
+                variant="body2"
+                sx={{ alignSelf: 'center' }}
+              >
+                Sign up
+              </Link>
+            </Typography>
           </Box>
         </Card>
       </SignInContainer>

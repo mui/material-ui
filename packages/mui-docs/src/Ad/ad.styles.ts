@@ -5,11 +5,13 @@ export const adBodyImageStyles = (theme: Theme) => ({
     display: 'block',
     overflow: 'hidden',
     border: '1px dashed',
-    borderColor: theme.palette.divider,
-    borderRadius: theme.shape.borderRadius,
-    padding: '8px 8px 8px calc(8px + 130px)',
+    borderColor: (theme.vars || theme).palette.divider,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    padding: 8,
+    paddingLeft: 8 + 130,
     [theme.breakpoints.up('sm')]: {
-      padding: '12px 12px 12px calc(12px + 130px)',
+      padding: 12,
+      paddingLeft: 12 + 130,
     },
   },
   imgWrapper: {
@@ -22,7 +24,7 @@ export const adBodyImageStyles = (theme: Theme) => ({
     verticalAlign: 'middle',
   },
   a: {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     textDecoration: 'none',
   },
   description: {
@@ -36,7 +38,7 @@ export const adBodyImageStyles = (theme: Theme) => ({
   poweredby: {
     ...theme.typography.caption,
     marginLeft: theme.spacing(1.5),
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     display: 'block',
     marginTop: theme.spacing(0.5),
     fontWeight: theme.typography.fontWeightRegular,
@@ -72,11 +74,11 @@ export const adBodyInlineStyles = (theme: Theme) => {
         marginLeft: 4,
         content: '"Get started"',
         // Style taken from the Link component & MarkdownElement.
-        color: theme.palette.primary[600],
+        color: (theme.vars || theme).palette.primary[600],
         textDecoration: 'underline',
         textDecorationColor: alpha(theme.palette.primary.main, 0.4),
         ...theme.applyStyles('dark', {
-          color: theme.palette.primary[300],
+          color: (theme.vars || theme).palette.primary[300],
         }),
       },
     },

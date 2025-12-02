@@ -1,13 +1,15 @@
 ---
 productId: joy-ui
 title: React Toggle Button Group component
-githubLabel: 'component: toggle button'
+githubLabel: 'scope: toggle button'
 components: ToggleButtonGroup, Button, IconButton
 ---
 
 # Toggle Button Group
 
 <p class="description">A group of mutually exclusive buttons.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

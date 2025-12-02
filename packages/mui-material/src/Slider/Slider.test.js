@@ -2,7 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  supportsTouch,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 import describeConformance from '../../test/describeConformance';
@@ -19,14 +26,7 @@ function createTouches(touches) {
   };
 }
 
-describe('<Slider />', () => {
-  before(function beforeHook() {
-    // only run in supported browsers
-    if (typeof Touch === 'undefined') {
-      this.skip();
-    }
-  });
-
+describe.skipIf(!supportsTouch())('<Slider />', () => {
   const { render } = createRenderer();
 
   describeConformance(
@@ -66,6 +66,7 @@ describe('<Slider />', () => {
       },
       skip: [
         'slotPropsCallback', // not supported yet
+        'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
       ],
     }),
   );
@@ -74,14 +75,14 @@ describe('<Slider />', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
 
-    const { container, getByRole } = render(
+    const { container } = render(
       <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
     );
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
       width: 100,
       left: 0,
     }));
-    const slider = getByRole('slider');
+    const slider = screen.getByRole('slider');
 
     fireEvent.mouseDown(container.firstChild, {
       buttons: 1,
@@ -223,9 +224,9 @@ describe('<Slider />', () => {
 
   describe('prop: orientation', () => {
     it('should render with the vertical classes', () => {
-      const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
+      const { container } = render(<Slider orientation="vertical" value={0} />);
       expect(container.firstChild).to.have.class(classes.vertical);
-      expect(getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
+      expect(screen.getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
     });
 
     it('should report the right position', () => {
@@ -257,8 +258,8 @@ describe('<Slider />', () => {
 
   describe('range', () => {
     it('should support keyboard', () => {
-      const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
-      const [slider1, slider2] = getAllByRole('slider');
+      render(<Slider defaultValue={[20, 30]} />);
+      const [slider1, slider2] = screen.getAllByRole('slider');
 
       act(() => {
         slider1.focus();
@@ -270,8 +271,8 @@ describe('<Slider />', () => {
 
       act(() => {
         slider2.focus();
-        fireEvent.change(slider2, { target: { value: '31' } });
       });
+      fireEvent.change(slider2, { target: { value: '31' } });
 
       expect(slider1.getAttribute('aria-valuenow')).to.equal('21');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('31');
@@ -298,8 +299,8 @@ describe('<Slider />', () => {
     it('custom marks with restricted float values should support keyboard', () => {
       const getMarks = (value) => value.map((val) => ({ value: val, label: val }));
 
-      const { getByRole } = render(<Slider step={null} marks={getMarks([0.5, 30.45, 90.53])} />);
-      const slider = getByRole('slider');
+      render(<Slider step={null} marks={getMarks([0.5, 30.45, 90.53])} />);
+      const slider = screen.getByRole('slider');
 
       act(() => {
         slider.focus();
@@ -324,7 +325,7 @@ describe('<Slider />', () => {
     });
 
     it('should focus the slider when dragging', () => {
-      const { getByRole, getByTestId, container } = render(
+      const { container } = render(
         <Slider
           componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
           defaultValue={30}
@@ -332,8 +333,8 @@ describe('<Slider />', () => {
           marks
         />,
       );
-      const slider = getByRole('slider');
-      const thumb = getByTestId('thumb');
+      const slider = screen.getByRole('slider');
+      const thumb = screen.getByTestId('thumb');
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -383,10 +384,10 @@ describe('<Slider />', () => {
 
     it('should not react to right clicks', () => {
       const handleChange = spy();
-      const { getByRole } = render(
-        <Slider onChange={handleChange} defaultValue={30} step={10} marks />,
-      );
-      const thumb = getByRole('slider');
+
+      render(<Slider onChange={handleChange} defaultValue={30} step={10} marks />);
+
+      const thumb = screen.getByRole('slider');
       fireEvent.mouseDown(thumb, { button: 2 });
       expect(handleChange.callCount).to.equal(0);
     });
@@ -411,8 +412,8 @@ describe('<Slider />', () => {
   });
 
   it('focuses the thumb on when touching', () => {
-    const { getByRole } = render(<Slider value={0} min={20} max={40} />);
-    const thumb = getByRole('slider');
+    render(<Slider value={0} min={20} max={40} />);
+    const thumb = screen.getByRole('slider');
 
     fireEvent.touchStart(thumb, createTouches([{ identifier: 1, clientX: 0, clientY: 0 }]));
 
@@ -420,48 +421,49 @@ describe('<Slider />', () => {
   });
 
   describe('prop: step', () => {
-    it('should handle a null step', () => {
-      const { getByRole, container } = render(
-        <Slider
-          step={null}
-          marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
-          defaultValue={0}
-        />,
-      );
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        height: 10,
-        bottom: 10,
-        left: 0,
-      }));
-      const slider = getByRole('slider');
+    describe('when step is `null`', () => {
+      it('values are defined by mark values', () => {
+        const { container } = render(
+          <Slider
+            step={null}
+            marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
+            defaultValue={0}
+          />,
+        );
+        stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+          width: 100,
+          height: 10,
+          bottom: 10,
+          left: 0,
+        }));
+        const slider = screen.getByRole('slider');
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
-      expect(slider).to.have.attribute('aria-valuenow', '20');
+        fireEvent.touchStart(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+        );
+        expect(slider).to.have.attribute('aria-valuenow', '20');
 
-      fireEvent.change(slider, {
-        target: {
-          value: 21,
-        },
+        fireEvent.change(slider, {
+          target: {
+            value: 21,
+          },
+        });
+        expect(slider).to.have.attribute('aria-valuenow', '30');
+
+        fireEvent.change(slider, {
+          target: {
+            value: 29,
+          },
+        });
+        expect(slider).to.have.attribute('aria-valuenow', '20');
       });
-      expect(slider).to.have.attribute('aria-valuenow', '30');
-
-      fireEvent.change(slider, {
-        target: {
-          value: 29,
-        },
-      });
-      expect(slider).to.have.attribute('aria-valuenow', '20');
     });
 
     it('change events with non integer numbers should work', () => {
-      const { getByRole } = render(
-        <Slider defaultValue={0.2} min={-100} max={100} step={0.00000001} />,
-      );
-      const slider = getByRole('slider');
+      render(<Slider defaultValue={0.2} min={-100} max={100} step={0.00000001} />);
+
+      const slider = screen.getByRole('slider');
       act(() => {
         slider.focus();
       });
@@ -477,10 +479,8 @@ describe('<Slider />', () => {
     });
 
     it('should round value to step precision', () => {
-      const { getByRole, container } = render(
-        <Slider defaultValue={0.2} min={0} max={1} step={0.1} />,
-      );
-      const slider = getByRole('slider');
+      const { container } = render(<Slider defaultValue={0.2} min={0} max={1} step={0.1} />);
+      const slider = screen.getByRole('slider');
 
       act(() => {
         slider.focus();
@@ -518,10 +518,10 @@ describe('<Slider />', () => {
     });
 
     it('should not fail to round value to step precision when step is very small', () => {
-      const { getByRole, container } = render(
+      const { container } = render(
         <Slider defaultValue={0.00000002} min={0} max={0.0000001} step={0.00000001} />,
       );
-      const slider = getByRole('slider');
+      const slider = screen.getByRole('slider');
 
       act(() => {
         slider.focus();
@@ -553,10 +553,10 @@ describe('<Slider />', () => {
     });
 
     it('should not fail to round value to step precision when step is very small and negative', () => {
-      const { getByRole, container } = render(
+      const { container } = render(
         <Slider defaultValue={-0.00000002} min={-0.0000001} max={0} step={0.00000001} />,
       );
-      const slider = getByRole('slider');
+      const slider = screen.getByRole('slider');
 
       act(() => {
         slider.focus();
@@ -590,57 +590,52 @@ describe('<Slider />', () => {
 
   describe('prop: disabled', () => {
     it('should render the disabled classes', () => {
-      const { container, getByRole } = render(<Slider disabled value={0} />);
+      const { container } = render(<Slider disabled value={0} />);
       expect(container.firstChild).to.have.class(classes.disabled);
-      expect(getByRole('slider')).not.to.have.attribute('tabIndex');
+      expect(screen.getByRole('slider')).not.to.have.attribute('tabIndex');
     });
 
-    it('should not respond to drag events after becoming disabled', function test() {
-      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+    it.skipIf(isJsdom())(
+      'should not respond to drag events after becoming disabled',
+      function test() {
+        const { setProps, container } = render(<Slider defaultValue={0} />);
 
-      const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
+        stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+          width: 100,
+          height: 10,
+          bottom: 10,
+          left: 0,
+        }));
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        height: 10,
-        bottom: 10,
-        left: 0,
-      }));
+        fireEvent.touchStart(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+        );
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+        const thumb = screen.getByRole('slider');
 
-      const thumb = getByRole('slider');
+        expect(thumb).to.have.attribute('aria-valuenow', '21');
+        expect(thumb).toHaveFocus();
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
-      expect(thumb).toHaveFocus();
+        setProps({ disabled: true });
+        expect(thumb).not.toHaveFocus();
+        expect(thumb).not.to.have.class(classes.active);
 
-      setProps({ disabled: true });
-      expect(thumb).not.toHaveFocus();
-      expect(thumb).not.to.have.class(classes.active);
+        fireEvent.touchMove(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
+        );
 
-      fireEvent.touchMove(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
-      );
+        expect(thumb).to.have.attribute('aria-valuenow', '21');
+      },
+    );
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
-    });
+    // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+    it.skipIf(isJsdom())('is not focused (visibly) after becoming disabled', function test() {
+      const { setProps } = render(<Slider defaultValue={0} />);
 
-    it('is not focused (visibly) after becoming disabled', function test() {
-      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      const { getByRole, setProps } = render(<Slider defaultValue={0} />);
-
-      const thumb = getByRole('slider');
+      const thumb = screen.getByRole('slider');
       act(() => {
         thumb.focus();
       });
@@ -689,8 +684,8 @@ describe('<Slider />', () => {
 
   describe('aria-valuenow', () => {
     it('should update the aria-valuenow', () => {
-      const { getByRole } = render(<Slider defaultValue={50} />);
-      const slider = getByRole('slider');
+      render(<Slider defaultValue={50} />);
+      const slider = screen.getByRole('slider');
       act(() => {
         slider.focus();
       });
@@ -706,8 +701,8 @@ describe('<Slider />', () => {
   describe('prop: min', () => {
     it('should set the min and aria-valuemin on the input', () => {
       const min = 150;
-      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
-      const slider = getByRole('slider');
+      render(<Slider defaultValue={150} step={100} max={750} min={min} />);
+      const slider = screen.getByRole('slider');
 
       expect(slider).to.have.attribute('aria-valuemin', String(min));
       expect(slider).to.have.attribute('min', String(min));
@@ -715,8 +710,8 @@ describe('<Slider />', () => {
 
     it('should use min as the step origin', () => {
       const min = 150;
-      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
-      const slider = getByRole('slider');
+      render(<Slider defaultValue={150} step={100} max={750} min={min} />);
+      const slider = screen.getByRole('slider');
       act(() => {
         slider.focus();
       });
@@ -726,8 +721,8 @@ describe('<Slider />', () => {
 
     it('should not go less than the min', () => {
       const min = 150;
-      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
-      const slider = getByRole('slider');
+      render(<Slider defaultValue={150} step={100} max={750} min={min} />);
+      const slider = screen.getByRole('slider');
       act(() => {
         slider.focus();
       });
@@ -740,8 +735,8 @@ describe('<Slider />', () => {
   describe('prop: max', () => {
     it('should set the max and aria-valuemax on the input', () => {
       const max = 750;
-      const { getByRole } = render(<Slider defaultValue={150} step={100} max={max} min={150} />);
-      const slider = getByRole('slider');
+      render(<Slider defaultValue={150} step={100} max={max} min={150} />);
+      const slider = screen.getByRole('slider');
 
       expect(slider).to.have.attribute('aria-valuemax', String(max));
       expect(slider).to.have.attribute('max', String(max));
@@ -749,8 +744,8 @@ describe('<Slider />', () => {
 
     it('should not go more than the max', () => {
       const max = 750;
-      const { getByRole } = render(<Slider defaultValue={150} step={100} max={max} min={150} />);
-      const slider = getByRole('slider');
+      render(<Slider defaultValue={150} step={100} max={max} min={150} />);
+      const slider = screen.getByRole('slider');
       act(() => {
         slider.focus();
       });
@@ -760,9 +755,7 @@ describe('<Slider />', () => {
     });
 
     it('should reach right edge value', () => {
-      const { getByRole, container } = render(
-        <Slider defaultValue={90} min={6} max={108} step={10} />,
-      );
+      const { container } = render(<Slider defaultValue={90} min={6} max={108} step={10} />);
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -771,7 +764,7 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      const thumb = getByRole('slider');
+      const thumb = screen.getByRole('slider');
       act(() => {
         thumb.focus();
       });
@@ -828,14 +821,15 @@ describe('<Slider />', () => {
     });
 
     it('should display the value label only on hover for auto', () => {
-      const { getByTestId } = render(
+      render(
         <Slider
           valueLabelDisplay="auto"
           value={50}
           componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
         />,
       );
-      const thumb = getByTestId('thumb');
+
+      const thumb = screen.getByTestId('thumb');
       expect(document.querySelector(`.${classes.valueLabelOpen}`)).to.equal(null);
 
       fireEvent.mouseOver(thumb);
@@ -929,7 +923,7 @@ describe('<Slider />', () => {
 
   describe('rtl', () => {
     it('should add direction css', () => {
-      const { getByRole } = render(
+      render(
         <ThemeProvider
           theme={createTheme({
             direction: 'rtl',
@@ -938,7 +932,8 @@ describe('<Slider />', () => {
           <Slider defaultValue={30} />
         </ThemeProvider>,
       );
-      const thumb = getByRole('slider');
+
+      const thumb = screen.getByRole('slider');
       act(() => {
         thumb.focus();
       });
@@ -948,7 +943,7 @@ describe('<Slider />', () => {
 
     it('should handle RTL', () => {
       const handleChange = spy();
-      const { container, getByTestId } = render(
+      const { container } = render(
         <ThemeProvider
           theme={createTheme({
             direction: 'rtl',
@@ -961,7 +956,7 @@ describe('<Slider />', () => {
           />
         </ThemeProvider>,
       );
-      const thumb = getByTestId('thumb');
+      const thumb = screen.getByTestId('thumb');
       expect(thumb.style.right).to.equal('30%');
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -984,6 +979,261 @@ describe('<Slider />', () => {
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.equal(80);
       expect(handleChange.args[1][1]).to.equal(78);
+    });
+  });
+
+  describe('keyboard interactions', () => {
+    [
+      ['ltr', 'horizontal', ['ArrowLeft', 'ArrowDown'], ['ArrowRight', 'ArrowUp']],
+      ['ltr', 'vertical', ['ArrowLeft', 'ArrowDown'], ['ArrowRight', 'ArrowUp']],
+      ['rtl', 'horizontal', ['ArrowRight', 'ArrowDown'], ['ArrowLeft', 'ArrowUp']],
+      ['rtl', 'vertical', ['ArrowRight', 'ArrowDown'], ['ArrowLeft', 'ArrowUp']],
+    ].forEach((entry) => {
+      const [direction, orientation, decrementKeys, incrementKeys] = entry;
+
+      describe(`${direction}`, () => {
+        describe(`orientation: ${orientation}`, () => {
+          decrementKeys.forEach((key) => {
+            it(`key: ${key} decrements the value`, () => {
+              render(
+                <ThemeProvider
+                  theme={createTheme({
+                    direction,
+                  })}
+                >
+                  <Slider defaultValue={50} orientation={orientation} />
+                </ThemeProvider>,
+              );
+
+              const slider = screen.getByRole('slider');
+              expect(slider).to.have.attribute('aria-valuenow', '50');
+
+              act(() => {
+                slider.focus();
+              });
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '49');
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '48');
+            });
+          });
+
+          incrementKeys.forEach((key) => {
+            it(`key: ${key} increments the value`, () => {
+              render(
+                <ThemeProvider
+                  theme={createTheme({
+                    direction,
+                  })}
+                >
+                  <Slider defaultValue={50} orientation={orientation} />
+                </ThemeProvider>,
+              );
+
+              const slider = screen.getByRole('slider');
+              expect(slider).to.have.attribute('aria-valuenow', '50');
+
+              act(() => {
+                slider.focus();
+              });
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '51');
+
+              fireEvent.keyDown(slider, { key });
+              expect(slider).to.have.attribute('aria-valuenow', '52');
+            });
+          });
+
+          it('key: PageUp and key: PageDown change the value based on `shiftStep`', () => {
+            render(
+              <ThemeProvider
+                theme={createTheme({
+                  direction,
+                })}
+              >
+                <Slider defaultValue={50} orientation={orientation} shiftStep={5} />
+              </ThemeProvider>,
+            );
+
+            const slider = screen.getByRole('slider');
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            act(() => {
+              slider.focus();
+            });
+
+            fireEvent.keyDown(slider, { key: 'PageUp' });
+            expect(slider).to.have.attribute('aria-valuenow', '55');
+
+            fireEvent.keyDown(slider, { key: 'PageDown' });
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            fireEvent.keyDown(slider, { key: 'PageDown' });
+            expect(slider).to.have.attribute('aria-valuenow', '45');
+          });
+
+          it('key: End sets the value to max', () => {
+            render(
+              <ThemeProvider
+                theme={createTheme({
+                  direction,
+                })}
+              >
+                <Slider defaultValue={50} max={99} orientation={orientation} />
+              </ThemeProvider>,
+            );
+
+            const slider = screen.getByRole('slider');
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            act(() => {
+              slider.focus();
+            });
+
+            fireEvent.keyDown(slider, { key: 'End' });
+            expect(slider).to.have.attribute('aria-valuenow', '99');
+          });
+
+          it('key: Home sets the value to min', () => {
+            render(
+              <ThemeProvider
+                theme={createTheme({
+                  direction,
+                })}
+              >
+                <Slider defaultValue={50} min={1} orientation={orientation} />
+              </ThemeProvider>,
+            );
+
+            const slider = screen.getByRole('slider');
+            expect(slider).to.have.attribute('aria-valuenow', '50');
+
+            act(() => {
+              slider.focus();
+            });
+
+            fireEvent.keyDown(slider, { key: 'Home' });
+            expect(slider).to.have.attribute('aria-valuenow', '1');
+          });
+
+          describe('when `step` is `null` and values are restricted by `marks`', () => {
+            decrementKeys.forEach((key) => {
+              it(`key: ${key} decrements the value`, () => {
+                render(
+                  <ThemeProvider
+                    theme={createTheme({
+                      direction,
+                    })}
+                  >
+                    <Slider
+                      step={null}
+                      orientation="horizontal"
+                      marks={[{ value: 9 }, { value: 19 }, { value: 29 }, { value: 79 }]}
+                      defaultValue={79}
+                    />
+                  </ThemeProvider>,
+                );
+
+                const slider = screen.getByRole('slider');
+                expect(slider).to.have.attribute('aria-valuenow', '79');
+
+                act(() => {
+                  slider.focus();
+                });
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '29');
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '19');
+              });
+            });
+
+            incrementKeys.forEach((key) => {
+              it(`key: ${key} increments the value`, () => {
+                render(
+                  <ThemeProvider
+                    theme={createTheme({
+                      direction,
+                    })}
+                  >
+                    <Slider
+                      step={null}
+                      orientation="horizontal"
+                      marks={[{ value: 9 }, { value: 19 }, { value: 29 }, { value: 79 }]}
+                      defaultValue={9}
+                    />
+                  </ThemeProvider>,
+                );
+
+                const slider = screen.getByRole('slider');
+                expect(slider).to.have.attribute('aria-valuenow', '9');
+
+                act(() => {
+                  slider.focus();
+                });
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '19');
+
+                fireEvent.keyDown(slider, { key });
+                expect(slider).to.have.attribute('aria-valuenow', '29');
+              });
+            });
+          });
+        });
+      });
+    });
+
+    it('stops at the max value with custom marks', () => {
+      const handleChange = stub();
+      render(
+        <Slider
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
+          step={null}
+          value={30}
+          onChange={handleChange}
+        />,
+      );
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-valuenow', '30');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowRight' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(slider).to.have.attribute('aria-valuenow', '30');
+    });
+
+    it('stops at the min value with custom marks', () => {
+      const handleChange = stub();
+      render(
+        <Slider
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
+          step={null}
+          value={10}
+          onChange={handleChange}
+        />,
+      );
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-valuenow', '10');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(slider).to.have.attribute('aria-valuenow', '10');
     });
   });
 
@@ -1037,10 +1287,10 @@ describe('<Slider />', () => {
 
   it('should support getAriaValueText', () => {
     const getAriaValueText = (value) => `${value}°C`;
-    const { getAllByRole } = render(
-      <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
-    );
-    const sliders = getAllByRole('slider');
+
+    render(<Slider value={[20, 50]} getAriaValueText={getAriaValueText} />);
+
+    const sliders = screen.getAllByRole('slider');
 
     expect(sliders[0]).to.have.attribute('aria-valuetext', '20°C');
     expect(sliders[1]).to.have.attribute('aria-valuetext', '50°C');
@@ -1048,8 +1298,8 @@ describe('<Slider />', () => {
 
   it('should support getAriaLabel', () => {
     const getAriaLabel = (index) => `Label ${index}`;
-    const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
-    const sliders = getAllByRole('slider');
+    render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
+    const sliders = screen.getAllByRole('slider');
 
     expect(sliders[0]).to.have.attribute('aria-label', 'Label 0');
     expect(sliders[1]).to.have.attribute('aria-label', 'Label 1');
@@ -1086,10 +1336,10 @@ describe('<Slider />', () => {
 
   it('should pass "name" and "value" as part of the event.target for onChange', () => {
     const handleChange = stub().callsFake((event) => event.target);
-    const { getByRole } = render(
-      <Slider onChange={handleChange} name="change-testing" value={3} />,
-    );
-    const slider = getByRole('slider');
+
+    render(<Slider onChange={handleChange} name="change-testing" value={3} />);
+
+    const slider = screen.getByRole('slider');
 
     act(() => {
       slider.focus();
@@ -1116,7 +1366,7 @@ describe('<Slider />', () => {
       }
       ValueLabelComponent.propTypes = { value: PropTypes.string };
 
-      const { getByTestId } = render(
+      render(
         <Slider
           value={10}
           components={{ ValueLabel: ValueLabelComponent }}
@@ -1125,7 +1375,7 @@ describe('<Slider />', () => {
         />,
       );
 
-      expect(getByTestId('value-label')).to.have.text('1010');
+      expect(screen.getByTestId('value-label')).to.have.text('1010');
     });
   });
 
@@ -1271,10 +1521,10 @@ describe('<Slider />', () => {
   describe('prop: disableSwap', () => {
     it('should bound the value when using the keyboard', () => {
       const handleChange = spy();
-      const { getAllByRole } = render(
-        <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
-      );
-      const [slider1, slider2] = getAllByRole('slider');
+
+      render(<Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />);
+
+      const [slider1, slider2] = screen.getAllByRole('slider');
 
       act(() => {
         slider1.focus();
@@ -1366,11 +1616,10 @@ describe('<Slider />', () => {
         return <input {...props} data-testid={dataTestId} name={name} />;
       }
 
-      // ACT
-      const { getByTestId } = render(<Slider components={{ Input: CustomInput }} />);
+      render(<Slider components={{ Input: CustomInput }} />);
 
       // ASSERT
-      expect(getByTestId(dataTestId).name).to.equal(name);
+      expect(screen.getByTestId(dataTestId).name).to.equal(name);
     });
   });
 
@@ -1380,21 +1629,16 @@ describe('<Slider />', () => {
       const dataTestId = 'slider-input-testid';
       const id = 'slider-input-id';
 
-      // ACT
-      const { getByTestId } = render(
+      render(
         <Slider defaultValue={10} componentsProps={{ input: { 'data-testid': dataTestId, id } }} />,
       );
 
       // ASSERT
-      expect(getByTestId(dataTestId).id).to.equal(id);
+      expect(screen.getByTestId(dataTestId).id).to.equal(id);
     });
   });
 
-  it('marked slider should be customizable in the theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('marked slider should be customizable in the theme', function test() {
     const theme = createTheme({
       components: {
         MuiSlider: {
@@ -1426,11 +1670,7 @@ describe('<Slider />', () => {
     });
   });
 
-  it('active marks should be customizable in theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('active marks should be customizable in theme', function test() {
     const theme = createTheme({
       components: {
         MuiSlider: {
@@ -1453,6 +1693,40 @@ describe('<Slider />', () => {
     expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
       height: '10px',
       width: '10px',
+    });
+  });
+
+  describe('When the onMouseUp event occurs at a different location than the last onChange event', () => {
+    it('should pass onChangeCommitted the same value that was passed to the last onChange event', () => {
+      const handleChange = spy();
+      const handleChangeCommitted = spy();
+
+      const { container } = render(
+        <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+      );
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        left: 0,
+      }));
+
+      fireEvent.mouseDown(container.firstChild, {
+        buttons: 1,
+        clientX: 10,
+      });
+      fireEvent.mouseMove(container.firstChild, {
+        buttons: 1,
+        clientX: 15,
+      });
+      fireEvent.mouseUp(container.firstChild, {
+        buttons: 1,
+        clientX: 20,
+      });
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[0][1]).to.equal(10);
+      expect(handleChange.args[1][1]).to.equal(15);
+      expect(handleChangeCommitted.callCount).to.equal(1);
+      expect(handleChangeCommitted.args[0][1]).to.equal(15);
     });
   });
 });

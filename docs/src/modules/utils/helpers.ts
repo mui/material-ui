@@ -1,9 +1,8 @@
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
+import { camelCase, upperFirst } from 'es-toolkit/string';
 import { LANGUAGES } from 'docs/config';
 import { Translate } from '@mui/docs/i18n';
 
-function pascalCase(str: string) {
+export function pascalCase(str: string) {
   return upperFirst(camelCase(str));
 }
 

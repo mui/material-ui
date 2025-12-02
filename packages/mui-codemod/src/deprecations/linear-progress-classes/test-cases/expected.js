@@ -1,0 +1,20 @@
+import { linearProgressClasses } from '@mui/material/LinearProgress';
+
+('&.MuiLinearProgress-buffer > .MuiLinearProgress-bar1');
+('&.MuiLinearProgress-determinate > .MuiLinearProgress-bar1');
+('&.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar1');
+('&.MuiLinearProgress-buffer > .MuiLinearProgress-bar2');
+('&.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar2');
+('&.MuiLinearProgress-colorPrimary > .MuiLinearProgress-bar');
+('&.MuiLinearProgress-colorSecondary > .MuiLinearProgress-bar');
+('&.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed');
+('&.MuiLinearProgress-colorSecondary > .MuiLinearProgress-dashed');
+`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar1}`;
+`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar1}`;
+`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar1}`;
+`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar2}`;
+`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar2}`;
+`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.bar}`;
+`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.bar}`;
+`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.dashed}`;
+`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.dashed}`;

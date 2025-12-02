@@ -70,3 +70,35 @@ function testOnChange() {
     thumb: ({ orientation }) => ({ className: orientation === 'vertical' ? 'thumb_vertical' : '' }),
   }}
 />;
+
+// value, onChange, and onChangeCommitted value type
+<Slider
+  value={5}
+  onChange={(event, value: number) => {}}
+  onChangeCommitted={(event, value: number) => {}}
+/>;
+<Slider
+  value={[5, 10]}
+  onChange={(event, value: number[]) => {}}
+  onChangeCommitted={(event, value: number[]) => {}}
+/>;
+
+const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+  function CustomComponent() {
+    return <div />;
+  };
+
+<Slider component="div" />;
+<Slider component={CustomComponent} stringProp="a" numberProp={1} />;
+/* @ts-expect-error missing stringProp and numberProp */
+<Slider component={CustomComponent} />;
+/* @ts-expect-error does not allow any prop */
+<Slider abc="123" />;
+
+const MARKS = [
+  { value: 0, label: '0°C' },
+  { value: 20, label: '20°C' },
+  { value: 37, label: '37°C' },
+  { value: 100, label: '100°C' },
+] as const;
+<Slider marks={MARKS} />;

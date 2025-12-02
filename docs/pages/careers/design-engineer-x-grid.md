@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -22,8 +22,6 @@ Base UI is our headless component library, and Joy UI is a sister library to M
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
-
-We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
@@ -45,8 +43,8 @@ It's an even bigger problem when developers work on projects around a single maj
 Up until now, we're solving a subset of these problems by smoothly integrating the MUI X Data Grid with Material UI.
 But the time has come to take a step further and double down on design by expanding the Data Grid capacities to integrate nicely with _any_ React project rather than just a Material UI-based one.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
@@ -61,7 +59,7 @@ So, by combining top-notch engineering with sleek product design, you'll be pion
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 The Design Engineer role sits right at the intersection between product design and software engineering. So, depending on the initiative, your day can be entirely different! Here's what you'll be able to do:
 

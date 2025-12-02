@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 
 export default function FreeTemplatesBento() {
@@ -24,6 +23,7 @@ export default function FreeTemplatesBento() {
         <Box
           component="img"
           src="/static/blog/material-ui-v6-is-out/light-templates.png"
+          loading="lazy"
           sx={(theme) => ({
             width: '100%',
             maxWidth: 1000,

@@ -4,10 +4,10 @@
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "module": "Node16",
-    "moduleResolution": "Node16",
-    "types": ["mocha"]
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "types": ["vitest/globals"]
   },
   "include": ["e2e/**/*", "integration/**/*", "regressions/**/*"],
-  "exclude": ["node_modules", "regressions/build/**/*"]
+  "exclude": ["node_modules", "regressions/build/**/*", "vitest.config.ts"]
 }

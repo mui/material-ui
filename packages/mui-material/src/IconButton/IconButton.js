@@ -4,26 +4,30 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
+import { unstable_useId as useId } from '../utils';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
+import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, color, edge, size } = ownerState;
+  const { classes, disabled, color, edge, size, loading } = ownerState;
 
   const slots = {
     root: [
       'root',
+      loading && 'loading',
       disabled && 'disabled',
       color !== 'default' && `color${capitalize(color)}`,
       edge && `edge${capitalize(edge)}`,
       `size${capitalize(size)}`,
     ],
+    loadingIndicator: ['loadingIndicator'],
+    loadingWrapper: ['loadingWrapper'],
   };
 
   return composeClasses(slots, getIconButtonUtilityClass, classes);
@@ -37,6 +41,7 @@ const IconButtonRoot = styled(ButtonBase, {
 
     return [
       styles.root,
+      ownerState.loading && styles.loading,
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
       ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`],
       styles[`size${capitalize(ownerState.size)}`],
@@ -55,12 +60,14 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     variants: [
       {
-        props: { disableRipple: false },
+        props: (props) => !props.disableRipple,
         style: {
+          '--IconButton-hoverBg': theme.alpha(
+            (theme.vars || theme).palette.action.active,
+            (theme.vars || theme).palette.action.hoverOpacity,
+          ),
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: 'var(--IconButton-hoverBg)',
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
@@ -113,20 +120,12 @@ const IconButtonRoot = styled(ButtonBase, {
       ...Object.entries(theme.palette)
         .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
         .map(([color]) => ({
-          props: { color, disableRipple: false },
+          props: { color },
           style: {
-            '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(
-                    (theme.vars || theme).palette[color].main,
-                    theme.palette.action.hoverOpacity,
-                  ),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: 'transparent',
-              },
-            },
+            '--IconButton-hoverBg': theme.alpha(
+              (theme.vars || theme).palette[color].main,
+              (theme.vars || theme).palette.action.hoverOpacity,
+            ),
           },
         })),
       {
@@ -148,8 +147,25 @@ const IconButtonRoot = styled(ButtonBase, {
       backgroundColor: 'transparent',
       color: (theme.vars || theme).palette.action.disabled,
     },
+    [`&.${iconButtonClasses.loading}`]: {
+      color: 'transparent',
+    },
   })),
 );
+
+const IconButtonLoadingIndicator = styled('span', {
+  name: 'MuiIconButton',
+  slot: 'LoadingIndicator',
+})(({ theme }) => ({
+  display: 'none',
+  position: 'absolute',
+  visibility: 'visible',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  color: (theme.vars || theme).palette.action.disabled,
+  variants: [{ props: { loading: true }, style: { display: 'flex' } }],
+}));
 
 /**
  * Refer to the [Icons](/material-ui/icons/) section of the documentation
@@ -164,10 +180,17 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
-    disableRipple = false,
     size = 'medium',
+    id: idProp,
+    loading = null,
+    loadingIndicator: loadingIndicatorProp,
     ...other
   } = props;
+
+  const loadingId = useId(idProp);
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
+  );
 
   const ownerState = {
     ...props,
@@ -175,7 +198,8 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     disabled,
     disableFocusRipple,
-    disableRipple,
+    loading,
+    loadingIndicator,
     size,
   };
 
@@ -183,15 +207,23 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   return (
     <IconButtonRoot
+      id={loading ? loadingId : idProp}
       className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
-      disabled={disabled}
-      disableRipple={disableRipple}
+      disabled={disabled || loading}
       ref={ref}
       {...other}
       ownerState={ownerState}
     >
+      {typeof loading === 'boolean' && (
+        // use plain HTML span to minimize the runtime overhead
+        <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+          <IconButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+            {loading && loadingIndicator}
+          </IconButtonLoadingIndicator>
+        </span>
+      )}
       {children}
     </IconButtonRoot>
   );
@@ -275,6 +307,23 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * If `true`, the loading indicator is visible and the button is disabled.
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
+   */
+  loading: PropTypes.bool,
+  /**
+   * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default, it renders a `CircularProgress` that is labeled by the button itself.
+   * @default <CircularProgress color="inherit" size={16} />
+   */
+  loadingIndicator: PropTypes.node,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

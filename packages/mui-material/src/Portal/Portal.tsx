@@ -2,14 +2,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {
-  exactProp,
-  HTMLElementType,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useForkRef as useForkRef,
-  unstable_setRef as setRef,
-  unstable_getReactNodeRef as getReactNodeRef,
-} from '@mui/utils';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useForkRef from '@mui/utils/useForkRef';
+import setRef from '@mui/utils/setRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
+import exactProp from '@mui/utils/exactProp';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import { PortalProps } from './Portal.types';
 
 function getContainer(container: PortalProps['container']) {
@@ -34,7 +32,11 @@ const Portal = React.forwardRef(function Portal(
 ) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
-  const handleRef = useForkRef(getReactNodeRef(children), forwardedRef);
+
+  const handleRef = useForkRef(
+    React.isValidElement(children) ? getReactElementRef(children) : null,
+    forwardedRef,
+  );
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
@@ -60,14 +62,10 @@ const Portal = React.forwardRef(function Portal(
       };
       return React.cloneElement(children, newProps);
     }
-    return <React.Fragment>{children}</React.Fragment>;
+    return children;
   }
 
-  return (
-    <React.Fragment>
-      {mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode}
-    </React.Fragment>
-  );
+  return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;
 }) as React.ForwardRefExoticComponent<PortalProps & React.RefAttributes<Element>>;
 
 Portal.propTypes /* remove-proptypes */ = {

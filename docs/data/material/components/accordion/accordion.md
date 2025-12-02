@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel: 'component: accordion'
+githubLabel: 'scope: accordion'
 materialDesign: https://m1.material.io/components/expansion-panels.html
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 githubSource: packages/mui-material/src/Accordion
@@ -134,13 +134,15 @@ The Accordion component then derives the necessary `aria-labelledby` and `id` fr
 
 ## Anatomy
 
-The Accordion component is composed of a root `<div>` that houses interior elements like the Accordion Summary and other optional components (such as buttons or decorators).
+The Accordion component consists of a root `<div>` that contains the Accordion Summary, Accordion Details, and optional Accordion Actions for action buttons.
 
 ```jsx
 <div class="MuiAccordion-root">
-  <div class="MuiButtonBase-root MuiAccordionSummary-root" role="button" aria-expanded="">
-      <!-- Accordion header button goes here -->
-  </div>
+  <h3 class="MuiAccordion-heading">
+    <button class="MuiButtonBase-root MuiAccordionSummary-root" aria-expanded="">
+      <!-- Accordion summary goes here -->
+    </button>
+  </h3>
   <div class="MuiAccordion-region" role="region">
     <div class="MuiAccordionDetails-root">
       <!-- Accordion content goes here -->

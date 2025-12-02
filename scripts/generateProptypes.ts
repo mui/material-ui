@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 import * as path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
-import * as _ from 'lodash';
-import * as yargs from 'yargs';
-import * as ts from 'typescript';
+import { flatten } from 'es-toolkit/array';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import type { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
@@ -131,14 +132,7 @@ const ignoreExternalDocumentation: Record<string, readonly string[]> = {
   Zoom: transitionCallbacks,
 };
 
-function sortBreakpointsLiteralByViewportAscending(a: ts.LiteralType, b: ts.LiteralType) {
-  // default breakpoints ordered by their size ascending
-  const breakpointOrder: readonly unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
-
-  return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
-}
-
-function sortSizeByScaleAscending(a: ts.LiteralType, b: ts.LiteralType) {
+function sortSizeByScaleAscending(a: LiteralType, b: LiteralType) {
   const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
   return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
 }
@@ -148,13 +142,6 @@ const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions']
   component,
   propType,
 ) => {
-  if (
-    component.name === 'Hidden' &&
-    (propType.name === 'initialWidth' || propType.name === 'only')
-  ) {
-    return sortBreakpointsLiteralByViewportAscending;
-  }
-
   if (propType.name === 'size') {
     return sortSizeByScaleAscending;
   }
@@ -213,7 +200,7 @@ async function generateProptypes(
     });
   });
 
-  const sourceContent = await fse.readFile(sourceFile, 'utf8');
+  const sourceContent = await fs.readFile(sourceFile, 'utf8');
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
   // If the component inherits the props from some unstyled components
   // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
@@ -303,14 +290,14 @@ async function generateProptypes(
   }
 
   const prettierConfig = await prettier.resolveConfig(process.cwd(), {
-    config: path.join(__dirname, '../prettier.config.js'),
+    config: path.join(__dirname, '../prettier.config.mjs'),
   });
 
   const prettified = await prettier.format(result, { ...prettierConfig, filepath: sourceFile });
   const formatted = fixBabelGeneratorIssues(prettified);
   const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 
-  await fse.writeFile(sourceFile, correctedLineEndings);
+  await fs.writeFile(sourceFile, correctedLineEndings);
 }
 
 interface HandlerArgv {
@@ -343,7 +330,7 @@ async function run(argv: HandlerArgv) {
     ),
   );
 
-  const files = _.flatten(allFiles)
+  const files = flatten(allFiles)
     .filter((filePath) => {
       // Filter out files where the directory name and filename doesn't match
       // Example: Modal/ModalManager.d.ts
@@ -363,9 +350,7 @@ async function run(argv: HandlerArgv) {
   const promises = files.map<Promise<void>>(async (tsFile) => {
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
     try {
-      const projectName = tsFile.match(
-        /packages\/mui-([a-zA-Z-]+)\/src/,
-      )![1] as CoreTypeScriptProjects;
+      const projectName = tsFile.match(/packages\/mui-([a-zA-Z-]+)\/src/)![1];
       const project = buildProject(projectName);
       await generateProptypes(project, sourceFile, tsFile);
     } catch (error: any) {
@@ -388,7 +373,7 @@ async function run(argv: HandlerArgv) {
   }
 }
 
-yargs
+yargs()
   .command<HandlerArgv>({
     command: '$0',
     describe: 'Generates Component.propTypes from TypeScript declarations',
@@ -404,4 +389,4 @@ yargs
   .help()
   .strict(true)
   .version(false)
-  .parse();
+  .parse(hideBin(process.argv));

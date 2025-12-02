@@ -1,12 +1,11 @@
 {
   "name": "material-ui-nextjs",
-  "version": "5.0.0",
+  "version": "7.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -16,9 +15,9 @@
     "@mui/material": "latest",
     "@mui/material-nextjs": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "eslint-config-next": "^15.0.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

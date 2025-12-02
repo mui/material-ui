@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import CircularProgress from '@mui/joy/CircularProgress';
 import ReportIcon from '@mui/icons-material/Report';

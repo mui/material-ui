@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
@@ -28,6 +27,7 @@ describe('<FilledInput />', () => {
       'componentProp',
       'componentsProp',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 

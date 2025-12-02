@@ -1,10 +1,8 @@
 {
   "name": "@mui/system",
-  "version": "6.1.0",
-  "private": false,
+  "version": "7.3.5",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -26,20 +24,15 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.{js,ts,tsx}'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/system\"",
     "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.28.4",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -49,21 +42,20 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/internal-babel-macros": "workspace:^",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
-    "@types/chai": "^4.3.19",
-    "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.3.4",
-    "@types/sinon": "^17.0.3",
-    "chai": "^4.5.0",
-    "fast-glob": "^3.3.2",
-    "lodash": "^4.17.21",
-    "react": "^18.3.1",
-    "sinon": "^18.0.1",
-    "styled-components": "^6.1.13"
+    "@types/chai": "^5.2.3",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.2.7",
+    "@types/sinon": "^17.0.4",
+    "chai": "^6.0.1",
+    "es-toolkit": "^1.39.10",
+    "fast-glob": "^3.3.3",
+    "react": "^19.2.0",
+    "sinon": "^21.0.0",
+    "styled-components": "^6.1.19"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -89,5 +81,9 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./*": "./src/*/index.ts"
   }
 }

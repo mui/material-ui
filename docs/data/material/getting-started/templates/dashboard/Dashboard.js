@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { alpha } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -46,7 +44,7 @@ export default function Dashboard(props) {
             sx={{
               alignItems: 'center',
               mx: 3,
-              pb: 10,
+              pb: 5,
               mt: { xs: 8, md: 0 },
             }}
           >

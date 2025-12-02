@@ -8,7 +8,6 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 *.log
-*.tsbuildinfo
 /.eslintcache
 /.nyc_output
 /coverage
@@ -16,6 +15,7 @@
 /docs/export
 /docs/pages/playground/
 /docs/public/feed/
+/docs/public/material-ui/
 /examples/**/.cache
 /packages/mui-codemod/lib
 /packages/mui-envinfo/*.tgz
@@ -37,9 +37,17 @@ dist
 node_modules
 package-lock.json
 size-snapshot.json
+bundle-sizes/
 docs/public/static/blog/feed/*
 # vale downloaded config
 .github/styles/
 .nx/cache
 .nx/workspace-data
 screenshots
+packed
+test-results
+.env
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

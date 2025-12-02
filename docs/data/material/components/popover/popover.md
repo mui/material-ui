@@ -56,7 +56,7 @@ Highlight part of the text to see the popover:
 For more information on the virtual element's properties, see the following resources:
 
 - [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
-- [DOMRect](https://drafts.fxtf.org/geometry-1/#domrectreadonly)
+- [DOMRect](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect)
 - [Node types](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)
 
 :::warning
@@ -64,7 +64,7 @@ The usage of a virtual element for the Popover component requires the `nodeType`
 This is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) or [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components, both of which don't require the property.
 :::
 
-## Complementary projects
+## Supplementary projects
 
 For more advanced use cases, you might be able to take advantage of:
 

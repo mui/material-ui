@@ -1,5 +1,7 @@
+/* eslint-disable testing-library/no-await-sync-queries */
 import { expect } from 'chai';
-import * as playwright from 'playwright';
+import { Page, Browser, chromium, ElementHandle } from '@playwright/test';
+// eslint-disable-next-line testing-library/no-dom-import
 import type {
   ByRoleMatcher,
   ByRoleOptions,
@@ -22,19 +24,13 @@ interface PlaywrightScreen {
   getByLabelText: (
     labelText: Matcher,
     options?: SelectorMatcherOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
-  getByRole: (
-    role: ByRoleMatcher,
-    options?: ByRoleOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
-  getByTestId: (
-    testId: string,
-    options?: MatcherOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  ) => Promise<ElementHandle<HTMLElement>>;
+  getByRole: (role: ByRoleMatcher, options?: ByRoleOptions) => Promise<ElementHandle<HTMLElement>>;
+  getByTestId: (testId: string, options?: MatcherOptions) => Promise<ElementHandle<HTMLElement>>;
   getByText: (
     text: Matcher,
     options?: SelectorMatcherOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  ) => Promise<ElementHandle<HTMLElement>>;
 }
 
 /**
@@ -44,7 +40,7 @@ interface PlaywrightScreen {
  * @param page
  * @param url
  */
-async function attemptGoto(page: playwright.Page, url: string): Promise<boolean> {
+async function attemptGoto(page: Page, url: string): Promise<boolean> {
   const maxAttempts = 10;
   const retryTimeoutMS = 250;
 
@@ -65,8 +61,8 @@ async function attemptGoto(page: playwright.Page, url: string): Promise<boolean>
 
 describe('e2e', () => {
   const baseUrl = 'http://localhost:5001';
-  let browser: playwright.Browser;
-  let page: playwright.Page;
+  let browser: Browser;
+  let page: Page;
   const screen: PlaywrightScreen = {
     getByLabelText: (...inputArgs) => {
       return page.evaluateHandle(
@@ -99,10 +95,8 @@ describe('e2e', () => {
     await page.waitForSelector('[data-testid="testcase"]:not([aria-busy="true"])');
   }
 
-  before(async function beforeHook() {
-    this.timeout(20000);
-
-    browser = await playwright.chromium.launch({
+  beforeAll(async function beforeHook() {
+    browser = await chromium.launch({
       headless: true,
     });
     page = await browser.newPage();
@@ -112,9 +106,9 @@ describe('e2e', () => {
         `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
       );
     }
-  });
+  }, 20000);
 
-  after(async () => {
+  afterAll(async () => {
     await browser.close();
   });
 
@@ -315,6 +309,7 @@ describe('e2e', () => {
       await renderFixture('TextField/OutlinedTextFieldOnClick');
 
       // execute the click on the focused label position
+      // eslint-disable-next-line testing-library/prefer-screen-queries
       await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
       const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
       await errorSelector.waitFor();

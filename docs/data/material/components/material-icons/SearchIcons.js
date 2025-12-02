@@ -25,6 +25,7 @@ import * as mui from '@mui/icons-material';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
+
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
@@ -95,10 +96,12 @@ function selectNode(node) {
 
 const iconWidth = 35;
 
+const SVG_ICON_CLASS = 'svg-icon';
+
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
-  color: theme.palette.text.secondary,
+  color: (theme.vars ?? theme).palette.text.secondary,
   margin: '0 4px',
   '& > div': {
     flexGrow: 1,
@@ -108,61 +111,94 @@ const StyledIcon = styled('span')(({ theme }) => ({
     textAlign: 'center',
     width: `calc(${iconWidth}px + ${theme.spacing(2)} * 2 + 2px)`,
   },
-}));
-
-const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
-  boxSizing: 'content-box',
-  cursor: 'pointer',
-  color: theme.palette.text.primary,
-  border: '1px solid transparent',
-  fontSize: iconWidth,
-  borderRadius: '12px',
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  padding: theme.spacing(2),
-  margin: theme.spacing(0.5, 0),
-  '&:hover': {
-    backgroundColor: theme.palette.background.default,
-    borderColor: theme.palette.primary.light,
+  [`& .${SVG_ICON_CLASS}`]: {
+    width: iconWidth,
+    height: iconWidth,
+    boxSizing: 'content-box',
+    cursor: 'pointer',
+    color: (theme.vars ?? theme).palette.text.primary,
+    border: '1px solid transparent',
+    fontSize: iconWidth,
+    borderRadius: '12px',
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    padding: theme.spacing(2),
+    margin: theme.spacing(0.5, 0),
+    '&:hover': {
+      backgroundColor: (theme.vars ?? theme).palette.background.default,
+      borderColor: (theme.vars ?? theme).palette.primary.light,
+    },
   },
 }));
 
-const handleIconClick = (event) => {
-  const { iconName, iconTheme } = event.currentTarget.dataset;
-
-  if (Math.random() < 0.1) {
-    window.gtag('event', 'material-icons', {
-      eventAction: 'click',
-      eventLabel: iconName,
-    });
-    window.gtag('event', 'material-icons-theme', {
-      eventAction: 'click',
-      eventLabel: iconTheme,
-    });
-  }
+const handleIconClick = (icon) => () => {
+  window.gtag('event', 'material-icons', {
+    eventAction: 'click',
+    eventLabel: icon.name,
+  });
+  window.gtag('event', 'material-icons-theme', {
+    eventAction: 'click',
+    eventLabel: icon.theme,
+  });
 };
 
 function handleLabelClick(event) {
   selectNode(event.currentTarget);
 }
 
+function isElmVisible(elm, margin = 0) {
+  const rect = elm.getBoundingClientRect();
+  return rect.bottom >= -margin && rect.top <= window.innerHeight + margin;
+}
+
 function Icon(props) {
-  const { icon, onOpenClick } = props;
+  const { icon, onOpenClick, initiallyVisible = false } = props;
+
+  const rootRef = React.useRef(null);
+  const [isVisible, setIsVisible] = React.useState(initiallyVisible);
+
+  // Virtualize the icons to reduce page size and React rendering time.
+  // Only render the icons after they become visible in the viewport.
+  React.useEffect(() => {
+    const margin = 200;
+    const root = /** @type {SVGElement} */ (rootRef.current);
+    if (initiallyVisible || isElmVisible(root, margin)) {
+      setIsVisible(true);
+      return () => {};
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isElmVisible(entries[0].target, margin)) {
+          setIsVisible(true);
+        }
+      },
+      { rootMargin: `${margin}px 0px` },
+    );
+    observer.observe(root);
+    return () => {
+      observer.disconnect();
+    };
+  }, [initiallyVisible]);
+
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   return (
     <StyledIcon
       key={icon.importName}
-      onClick={handleIconClick}
-      data-icon-theme={icon.theme}
-      data-icon-name={icon.name}
+      ref={rootRef}
+      onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
-      <StyledSvgIcon
-        component={icon.Component}
-        tabIndex={-1}
-        onClick={onOpenClick}
-        title={icon.importName}
-      />
+      {isVisible ? (
+        <SvgIcon
+          component={icon.Component}
+          className={SVG_ICON_CLASS}
+          tabIndex={-1}
+          onClick={onOpenClick}
+          title={icon.importName}
+        />
+      ) : (
+        <div className={SVG_ICON_CLASS} />
+      )}
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
       <div onClick={handleLabelClick}>{icon.importName}</div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
@@ -175,8 +211,14 @@ const Icons = React.memo(function Icons(props) {
 
   return (
     <div>
-      {icons.map((icon) => (
-        <Icon key={icon.importName} icon={icon} onOpenClick={handleOpenClick} />
+      {icons.map((icon, i) => (
+        <Icon
+          key={icon.importName}
+          icon={icon}
+          onOpenClick={handleOpenClick}
+          // Render the first 50 icons immediately as they would be visible on page load
+          initiallyVisible={i < 50}
+        />
       ))}
     </div>
   );
@@ -221,7 +263,7 @@ const Title = styled(Typography)(({ theme }) => ({
 
 const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
-  color: theme.palette.text.primary,
+  color: (theme.vars ?? theme).palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
   backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
@@ -250,7 +292,7 @@ const ContextComponent = styled('div', {
         contextColor: 'primary',
       },
       style: {
-        color: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -258,8 +300,8 @@ const ContextComponent = styled('div', {
         contextColor: 'primaryInverse',
       },
       style: {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.contrastText,
+        backgroundColor: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -267,7 +309,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimary',
       },
       style: {
-        color: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -275,8 +317,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -284,7 +326,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondary',
       },
       style: {
-        color: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.text.secondary,
       },
     },
     {
@@ -292,8 +334,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.secondary,
       },
     },
   ],
@@ -334,8 +376,10 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
-              TransitionProps={{
-                onExited: () => setCopied1(false),
+              slotProps={{
+                transition: {
+                  onExited: () => setCopied1(false),
+                },
               }}
             >
               <Title component="span" variant="inherit" onClick={handleClick(1)}>
@@ -346,7 +390,9 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <Tooltip
             placement="top"
             title={copied2 ? t('copied') : t('clickToCopy')}
-            TransitionProps={{ onExited: () => setCopied2(false) }}
+            slotProps={{
+              transition: { onExited: () => setCopied2(false) },
+            }}
           >
             <Markdown
               copyButtonHidden
@@ -364,17 +410,17 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </ImportLink>
           <DialogContent>
             <Grid container>
-              <Grid item xs>
+              <Grid size="grow">
                 <Grid container sx={{ justifyContent: 'center' }}>
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
-              <Grid item xs>
+              <Grid size="grow">
                 <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
                 >
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -382,12 +428,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                       />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize medium">
                       <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize large">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -460,7 +506,7 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   width: '100%',
   borderRadius: '12px',
   border: '1px solid',
-  borderColor: theme.palette.divider,
+  borderColor: (theme.vars ?? theme).palette.divider,
   boxShadow: 'none',
 }));
 
@@ -480,25 +526,21 @@ const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
   .map((importName) => {
-    let theme;
-    if (importName.includes('Outlined')) {
-      theme = 'Outlined';
-    } else if (importName.includes('TwoTone')) {
-      theme = 'Two tone';
-    } else if (importName.includes('Rounded')) {
-      theme = 'Rounded';
-    } else if (importName.includes('Sharp')) {
-      theme = 'Sharp';
-    } else {
-      theme = 'Filled';
-    }
+    let theme = 'Filled';
+    let name = importName;
 
-    const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    for (const currentTheme of ['Outlined', 'Rounded', 'TwoTone', 'Sharp']) {
+      if (importName.endsWith(currentTheme)) {
+        theme = currentTheme === 'TwoTone' ? 'Two tone' : currentTheme;
+        name = importName.slice(0, -currentTheme.length);
+        break;
+      }
+    }
     let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.addAsync(importName, searchable);
+    searchIndex.add(importName, searchable);
 
     const icon = {
       importName,
@@ -565,8 +607,13 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500 }}>
-      <Grid item xs={12} sm={3}>
+    <Grid container sx={{ minHeight: 500, width: '100%' }}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 3,
+        }}
+      >
         <Form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the style
@@ -590,7 +637,12 @@ export default function SearchIcons() {
           </RadioGroup>
         </Form>
       </Grid>
-      <Grid item xs={12} sm={9}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 9,
+        }}
+      >
         <Paper>
           <IconButton sx={{ padding: '10px' }} aria-label="search">
             <SearchIcon />

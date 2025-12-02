@@ -11,15 +11,7 @@ const minDistance = 10;
 export default function MinimumDistanceSlider() {
   const [value1, setValue1] = React.useState<number[]>([20, 37]);
 
-  const handleChange1 = (
-    event: Event,
-    newValue: number | number[],
-    activeThumb: number,
-  ) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
+  const handleChange1 = (event: Event, newValue: number[], activeThumb: number) => {
     if (activeThumb === 0) {
       setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
     } else {
@@ -29,15 +21,7 @@ export default function MinimumDistanceSlider() {
 
   const [value2, setValue2] = React.useState<number[]>([20, 37]);
 
-  const handleChange2 = (
-    event: Event,
-    newValue: number | number[],
-    activeThumb: number,
-  ) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
+  const handleChange2 = (event: Event, newValue: number[], activeThumb: number) => {
     if (newValue[1] - newValue[0] < minDistance) {
       if (activeThumb === 0) {
         const clamped = Math.min(newValue[0], 100 - minDistance);
@@ -47,7 +31,7 @@ export default function MinimumDistanceSlider() {
         setValue2([clamped - minDistance, clamped]);
       }
     } else {
-      setValue2(newValue as number[]);
+      setValue2(newValue);
     }
   };
 

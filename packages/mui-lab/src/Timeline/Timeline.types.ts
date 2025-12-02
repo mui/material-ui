@@ -1,10 +1,9 @@
-// eslint-disable-next-line no-restricted-imports -- importing types
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineClasses } from './timelineClasses';
 
-export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
+export interface TimelineProps extends StandardProps<React.ComponentProps<'ul'>> {
   /**
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'

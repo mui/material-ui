@@ -8,13 +8,15 @@ components: AspectRatio
 
 <p class="description">The Aspect Ratio component resizes its contents to match the desired ratio.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Aspect Ratio is a wrapper component for quickly resizing content to conform to your preferred ratio of width to height.
 Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
 :::info
-A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, and we plan to implement it in Joy UI soon.
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio) does exist, and we plan to implement it in Joy UI soon.
 :::
 
 ## Basics

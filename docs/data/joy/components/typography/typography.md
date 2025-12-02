@@ -2,12 +2,14 @@
 productId: joy-ui
 title: React Typography component
 components: Typography
-githubLabel: 'component: Typography'
+githubLabel: 'scope: typography'
 ---
 
 # Typography
 
 <p class="description">The Typography component helps present design and content clearly and efficiently.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

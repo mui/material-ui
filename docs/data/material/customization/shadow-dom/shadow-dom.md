@@ -32,7 +32,7 @@ ReactDOM.createRoot(shadowRootElement).render(
 
 ### 2. Theme
 
-Material UI components like `Menu`, `Dialog`, `Popover` and others use [`Portal`](/material-ui/react-portal/) to render a new "subtree" in a container outside of current DOM hierarchy.
+Material UI components like Menu, Dialog, Popover, and others use the [Portal](/material-ui/react-portal/) component to render a new "subtree" in a container outside of current DOM hierarchy.
 By default, this container is `document.body`.
 But since the styles are applied only inside of the Shadow DOM, we need to render portals inside the Shadow DOM container as well:
 
@@ -62,6 +62,35 @@ const theme = createTheme({
 <ThemeProvider theme={theme}>
   <App />
 </ThemeProvider>;
+```
+
+### 3. CSS theme variables (optional)
+
+:::info
+If you use **TypeScript**, you need to [extend the interface of the theme](/material-ui/customization/css-theme-variables/usage/#typescript) first.
+:::
+
+To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) inside of the shadow DOM, you need to set the selectors for generating the CSS variables:
+
+```diff
+ const theme = createTheme({
++  cssVariables: {
++    rootSelector: ':host',
++    colorSchemeSelector: 'class',
++  },
+   components: {
+     // ...same as above steps
+   }
+ })
+```
+
+Finally, set the `colorSchemeNode` prop using `shadowRootElement`, from step 1, as the value:
+
+```diff
+ <ThemeProvider
+   theme={theme}
++  colorSchemeNode={shadowRootElement}
+ >
 ```
 
 ## Demo

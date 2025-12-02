@@ -4,7 +4,7 @@ title: Overview
 
 # Joy UI - Overview
 
-<p class="description">Joy UI is an open-source React component library that implements MUI's own design principles. It's comprehensive and can be used in production out of the box.</p>
+<p class="description">Joy UI is an open-source React component library that implements MUI's own design principles.</p>
 
 ## Introduction
 
@@ -12,9 +12,9 @@ Joy UI is an open-source React component library that follows a lightly opinion
 
 :::warning
 Joy UI is in beta and _development is currently on hold_.
-Read [this blog post](/blog/2023-material-ui-v6-and-beyond/) to learn more.
+When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
 
-You're welcome to open new issues and PRs to help improve Joy UI, but please keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner.
+Keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner to issues or pull requests related to Joy UI.
 :::
 
 ## Why use Joy UI
@@ -55,7 +55,7 @@ For example, observe how each element of the [Input](/joy-ui/react-input/) compo
 
 ### Accessibility
 
-Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features out of the box.
+Joy UI components are built on top of [MUI Base's unstyled components and low-level hooks](https://v6.mui.com/base-ui/getting-started/), giving you many accessibility features out of the box.
 We strive to make all components accessible to end users who require assistive technology, and offer suggestions for optimizing accessibility throughout our documentation.
 
 Joy UI's Form Control component automatically generates a unique ID that links the Input that it wraps with the Form Label and Form Helper Text components, ensuring that your app complies with this guideline:

@@ -10,6 +10,8 @@
     "disableTypography": {
       "description": "If <code>true</code>, <code>subheader</code> and <code>title</code> won&#39;t be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the <code>title</code> text, and optional <code>subheader</code> text with the Typography component."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "subheader": { "description": "The content of the component." },
     "subheaderTypographyProps": {
       "description": "These props will be forwarded to the subheader (as long as disableTypography is not <code>true</code>)."
@@ -22,27 +24,13 @@
       "description": "These props will be forwarded to the title (as long as disableTypography is not <code>true</code>)."
     }
   },
-  "classDescriptions": {
-    "action": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the action element"
-    },
-    "avatar": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the avatar element"
-    },
-    "content": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the content wrapper element"
-    },
-    "root": { "description": "Styles applied to the root element." },
-    "subheader": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the subheader Typography element"
-    },
-    "title": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the title Typography element"
-    }
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "action": "The component that renders the action slot.",
+    "avatar": "The component that renders the avatar slot.",
+    "content": "The component that renders the content slot.",
+    "root": "The component that renders the root slot.",
+    "subheader": "The component that renders the subheader slot (as long as disableTypography is not <code>true</code>). <a href=\"https://mui.com/material-ui/api/typography/#props\">Follow this guide</a> to learn more about the requirements for this component.",
+    "title": "The component that renders the title slot (as long as disableTypography is not <code>true</code>). <a href=\"https://mui.com/material-ui/api/typography/#props\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

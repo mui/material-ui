@@ -5,7 +5,7 @@ import createTypography from './createTypography';
 describe('createTypography', () => {
   let palette;
 
-  before(() => {
+  beforeAll(() => {
     palette = createPalette({});
   });
 

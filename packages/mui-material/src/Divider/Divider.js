@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -80,9 +79,7 @@ const DividerRoot = styled('div', {
           light: true,
         },
         style: {
-          borderColor: theme.vars
-            ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-            : alpha(theme.palette.divider, 0.08),
+          borderColor: theme.alpha((theme.vars || theme).palette.divider, 0.08),
         },
       },
       {
@@ -136,7 +133,6 @@ const DividerRoot = styled('div', {
         props: ({ ownerState }) => !!ownerState.children,
         style: {
           display: 'flex',
-          whiteSpace: 'nowrap',
           textAlign: 'center',
           border: 0,
           borderTopStyle: 'solid',
@@ -209,6 +205,7 @@ const DividerWrapper = styled('span', {
     display: 'inline-block',
     paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
     paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
+    whiteSpace: 'nowrap',
     variants: [
       {
         props: {
@@ -331,7 +328,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

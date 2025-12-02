@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
@@ -18,7 +17,7 @@ declare module '@mui/material/styles' {
     neutral: Palette['primary'];
   }
 
-  // allow configuration using `createTheme`
+  // allow configuration using `createTheme()`
   interface PaletteOptions {
     neutral?: PaletteOptions['primary'];
   }

@@ -2,8 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "skipLibCheck": true,
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "types": ["react", "node", "csstype"]
+    "types": ["react", "node", "csstype", "vitest/globals"]
   },
-  "include": ["src/**/*", "test/**/*"]
+  "include": ["./types.d.ts", "src/**/*", "test/**/*"]
 }

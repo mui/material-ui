@@ -33,14 +33,14 @@ describe('grid generator', () => {
     it('nested container level 1', () => {
       const result = generateGridStyles({ ownerState: { container: true, unstable_level: 1 } });
       sinon.assert.match(result, {
-        gap: `var(--Grid-rowSpacingLevel1) var(--Grid-columnSpacingLevel1)`,
+        gap: `var(--Grid-rowSpacing) var(--Grid-columnSpacing)`,
       });
     });
 
     it('nested container level 2', () => {
       const result = generateGridStyles({ ownerState: { container: true, unstable_level: 2 } });
       sinon.assert.match(result, {
-        gap: `var(--Grid-rowSpacingLevel2) var(--Grid-columnSpacingLevel2)`,
+        gap: `var(--Grid-rowSpacing) var(--Grid-columnSpacing)`,
       });
     });
 
@@ -80,7 +80,7 @@ describe('grid generator', () => {
         '@media (min-width:600px)': {
           flexBasis: 'auto',
           flexGrow: 0,
-          width: `calc(100% * 6 / var(--Grid-columns) - (var(--Grid-columns) - 6) * (var(--Grid-columnSpacing) / var(--Grid-columns)))`,
+          width: `calc(100% * 6 / var(--Grid-parent-columns) - (var(--Grid-parent-columns) - 6) * (var(--Grid-parent-columnSpacing) / var(--Grid-parent-columns)))`,
         },
         '@media (min-width:900px)': {
           flexBasis: 0,
@@ -90,7 +90,7 @@ describe('grid generator', () => {
         '@media (min-width:1200px)': {
           flexBasis: 'auto',
           flexGrow: 0,
-          width: `calc(100% * 4 / var(--Grid-columns) - (var(--Grid-columns) - 4) * (var(--Grid-columnSpacing) / var(--Grid-columns)))`,
+          width: `calc(100% * 4 / var(--Grid-parent-columns) - (var(--Grid-parent-columns) - 4) * (var(--Grid-parent-columnSpacing) / var(--Grid-parent-columns)))`,
         },
         '@media (min-width:1536px)': {
           flexBasis: 'auto',
@@ -112,6 +112,9 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-columns': 16,
+        '> *': {
+          '--Grid-parent-columns': 16,
+        },
       });
     });
 
@@ -123,14 +126,26 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-columns': 6,
+        '> *': {
+          '--Grid-parent-columns': 6,
+        },
         '@media (min-width:600px)': {
           '--Grid-columns': 8,
+          '> *': {
+            '--Grid-parent-columns': 8,
+          },
         },
         '@media (min-width:900px)': {
           '--Grid-columns': 12,
+          '> *': {
+            '--Grid-parent-columns': 12,
+          },
         },
         '@media (min-width:1200px)': {
           '--Grid-columns': 16,
+          '> *': {
+            '--Grid-parent-columns': 16,
+          },
         },
       });
     });
@@ -145,6 +160,9 @@ describe('grid generator', () => {
         '--Grid-columns': 12,
         '@media (min-width:1200px)': {
           '--Grid-columns': 16,
+          '> *': {
+            '--Grid-parent-columns': 16,
+          },
         },
       });
     });
@@ -159,6 +177,9 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-rowSpacing': '16px',
+        '> *': {
+          '--Grid-parent-rowSpacing': '16px',
+        },
       });
     });
 
@@ -170,6 +191,9 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-rowSpacing': '1rem',
+        '> *': {
+          '--Grid-parent-rowSpacing': '1rem',
+        },
       });
     });
 
@@ -181,11 +205,20 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-rowSpacing': '16px',
+        '> *': {
+          '--Grid-parent-rowSpacing': '16px',
+        },
         '@media (min-width:900px)': {
           '--Grid-rowSpacing': '24px',
+          '> *': {
+            '--Grid-parent-rowSpacing': '24px',
+          },
         },
         '@media (min-width:1536px)': {
           '--Grid-rowSpacing': '0px',
+          '> *': {
+            '--Grid-parent-rowSpacing': '0px',
+          },
         },
       });
 
@@ -196,21 +229,22 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-rowSpacing': '0px',
+        '> *': {
+          '--Grid-parent-rowSpacing': '0px',
+        },
         '@media (min-width:900px)': {
           '--Grid-rowSpacing': '16px',
+          '> *': {
+            '--Grid-parent-rowSpacing': '16px',
+          },
         },
         '@media (min-width:1536px)': {
           '--Grid-rowSpacing': '0px',
+          '> *': {
+            '--Grid-parent-rowSpacing': '0px',
+          },
         },
       });
-    });
-
-    it('nested item level 1 should have default spacing set to parent', () => {
-      const result = generateGridRowSpacingStyles({
-        theme: { breakpoints },
-        ownerState: { container: true, unstable_level: 1 },
-      });
-      expect(result['--Grid-rowSpacingLevel1']).to.equal('var(--Grid-rowSpacing)');
     });
   });
 
@@ -223,6 +257,9 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-columnSpacing': '16px',
+        '> *': {
+          '--Grid-parent-columnSpacing': '16px',
+        },
       });
     });
 
@@ -234,6 +271,9 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-columnSpacing': '1rem',
+        '> *': {
+          '--Grid-parent-columnSpacing': '1rem',
+        },
       });
     });
 
@@ -245,11 +285,20 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-columnSpacing': '16px',
+        '> *': {
+          '--Grid-parent-columnSpacing': '16px',
+        },
         '@media (min-width:900px)': {
           '--Grid-columnSpacing': '24px',
+          '> *': {
+            '--Grid-parent-columnSpacing': '24px',
+          },
         },
         '@media (min-width:1536px)': {
           '--Grid-columnSpacing': '0px',
+          '> *': {
+            '--Grid-parent-columnSpacing': '0px',
+          },
         },
       });
 
@@ -260,21 +309,22 @@ describe('grid generator', () => {
         }),
       ).to.deep.equal({
         '--Grid-columnSpacing': '0px',
+        '> *': {
+          '--Grid-parent-columnSpacing': '0px',
+        },
         '@media (min-width:900px)': {
           '--Grid-columnSpacing': '16px',
+          '> *': {
+            '--Grid-parent-columnSpacing': '16px',
+          },
         },
         '@media (min-width:1536px)': {
           '--Grid-columnSpacing': '0px',
+          '> *': {
+            '--Grid-parent-columnSpacing': '0px',
+          },
         },
       });
-    });
-
-    it('nested item level 1 should have default spacing set to parent', () => {
-      const result = generateGridColumnSpacingStyles({
-        theme: { breakpoints },
-        ownerState: { container: true, unstable_level: 1 },
-      });
-      expect(result['--Grid-columnSpacingLevel1']).to.equal('var(--Grid-columnSpacing)');
     });
   });
 
@@ -288,7 +338,7 @@ describe('grid generator', () => {
       ).to.deep.equal({
         marginLeft: '0px',
         '@media (min-width:900px)': {
-          marginLeft: `calc(100% * 5 / var(--Grid-columns) + var(--Grid-columnSpacing) * 5 / var(--Grid-columns))`,
+          marginLeft: `calc(100% * 5 / var(--Grid-parent-columns) + var(--Grid-parent-columnSpacing) * 5 / var(--Grid-parent-columns))`,
         },
         '@media (min-width:1200px)': {
           marginLeft: `auto`,

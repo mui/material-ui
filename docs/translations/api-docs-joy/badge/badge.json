@@ -4,7 +4,7 @@
     "anchorOrigin": { "description": "The anchor of the badge." },
     "badgeContent": { "description": "The content rendered within the badge." },
     "badgeInset": {
-      "description": "The inset of the badge. Support shorthand syntax as described in <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/inset\">https://developer.mozilla.org/en-US/docs/Web/CSS/inset</a>."
+      "description": "The inset of the badge. Support shorthand syntax as described in <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset\">https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset</a>."
     },
     "children": { "description": "The badge will be added relative to this node." },
     "color": {

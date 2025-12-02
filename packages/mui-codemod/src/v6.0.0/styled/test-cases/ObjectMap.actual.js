@@ -2,8 +2,6 @@ const IconRoot = styled('span')(({ theme, ownerState }) => ({
   userSelect: 'none',
   width: '1em',
   height: '1em',
-  // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
-  // To remove at some point.
   overflow: 'hidden',
   display: 'inline-block', // allow overflow hidden to take action
   textAlign: 'center', // support non-square icon

@@ -130,6 +130,7 @@ function checkType({
       case 'React.ReactElement': {
         return createElementType({ jsDoc, elementType: 'element' });
       }
+      case 'React.ComponentType':
       case 'React.ElementType': {
         return createElementType({
           jsDoc,
@@ -154,6 +155,12 @@ function checkType({
       }
       case 'RegExp': {
         return createInstanceOfType({ jsDoc, instance: 'RegExp' });
+      }
+      case 'URL': {
+        return createInstanceOfType({ jsDoc, instance: 'URL' });
+      }
+      case 'URLSearchParams': {
+        return createInstanceOfType({ jsDoc, instance: 'URLSearchParams' });
       }
       case 'Date': {
         if (!project.shouldUseObjectForDate?.({ name })) {
@@ -192,12 +199,55 @@ function checkType({
   }
 
   if (type.isUnion()) {
+    const hasStringIntersection = type.types.some((t) => {
+      if (t.isIntersection && t.isIntersection()) {
+        const hasString = t.types.some((it) => it.flags & ts.TypeFlags.String);
+        const hasEmptyObject = t.types.some(
+          (it) =>
+            it.flags & ts.TypeFlags.Object &&
+            (!it.symbol || !it.symbol.members || it.symbol.members.size === 0),
+        );
+        return hasString && hasEmptyObject;
+      }
+      return false;
+    });
+
+    if (hasStringIntersection) {
+      const hasLiterals = type.types.some((t) => t.flags & ts.TypeFlags.Literal);
+      if (hasLiterals) {
+        const hasUndefined = type.types.some((t) => t.flags & ts.TypeFlags.Undefined);
+        if (hasUndefined) {
+          return createUnionType({
+            jsDoc,
+            types: [
+              createStringType({ jsDoc: undefined }),
+              createUndefinedType({ jsDoc: undefined }),
+            ],
+          });
+        }
+        return createStringType({ jsDoc });
+      }
+    }
+
     const node = createUnionType({
       jsDoc,
       types: type.types.map((x) => checkType({ type: x, location, typeStack, name, project })),
     });
 
     return node.types.length === 1 ? node.types[0] : node;
+  }
+
+  if (type.isIntersection && type.isIntersection()) {
+    const hasString = type.types.some((t) => t.flags & ts.TypeFlags.String);
+    const hasEmptyObject = type.types.some(
+      (t) =>
+        t.flags & ts.TypeFlags.Object &&
+        (!t.symbol || !t.symbol.members || t.symbol.members.size === 0),
+    );
+
+    if (hasString && hasEmptyObject) {
+      return createStringType({ jsDoc });
+    }
   }
 
   if (type.flags & ts.TypeFlags.TypeParameter) {
@@ -371,6 +421,7 @@ function checkSymbol({
     const name = declaration.type.typeName.getText();
     if (
       name === 'React.ElementType' ||
+      name === 'React.ComponentType' ||
       name === 'React.JSXElementConstructor' ||
       name === 'React.ReactElement'
     ) {

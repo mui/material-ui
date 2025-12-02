@@ -7,14 +7,34 @@ import {
   fireEvent,
   screen,
   simulatePointerDevice,
-  focusVisible,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
-import { camelCase } from 'lodash/string';
+import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
+
+async function focusVisible(element) {
+  await act(async () => {
+    element.blur();
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  await act(async () => {
+    element.focus();
+  });
+}
+
+function focusVisibleSync(element) {
+  act(() => {
+    element.blur();
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  act(() => {
+    element.focus();
+  });
+}
 
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -31,6 +51,10 @@ describe('<Tooltip />', () => {
       </div>
     );
   }
+
+  const TestTooltipSlot = React.forwardRef(function TestTooltipSlot({ ownerState, ...props }, ref) {
+    return <div data-testid="custom" ref={ref} {...props} />;
+  });
 
   describeConformance(
     <Tooltip title="Hello World" arrow open>
@@ -52,15 +76,14 @@ describe('<Tooltip />', () => {
           testWithElement: null,
         },
         transition: { testWithElement: null },
-        tooltip: { expectedClassName: classes.tooltip, testWithElement: null },
+        tooltip: {
+          expectedClassName: classes.tooltip,
+          testWithComponent: TestTooltipSlot,
+          testWithElement: TestTooltipSlot,
+        },
         arrow: { expectedClassName: classes.arrow },
       },
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        'slotPropsCallback', // not supported yet
-      ],
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 
@@ -472,12 +495,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('should handle autoFocus + onFocus forwarding', async function test() {
       const handleFocus = spy();
       function AutoFocus(props) {
         return (
@@ -505,16 +524,9 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: delay', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describe.skipIf(isJsdom())('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
-      const { queryByRole } = render(
+      render(
         <Tooltip title="Hello World" enterDelay={111}>
           <button id="testChild" type="submit">
             Hello World
@@ -523,15 +535,15 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
-      expect(queryByRole('tooltip')).to.equal(null);
+      await focusVisible(screen.getByRole('button'));
+      expect(screen.queryByRole('tooltip')).to.equal(null);
 
       clock.tick(111);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', async () => {
+    it('should use hysteresis with the enterDelay', () => {
       render(
         <Tooltip
           title="Hello World"
@@ -546,7 +558,8 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = screen.getByRole('button');
-      focusVisible(children);
+
+      focusVisibleSync(children);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -554,21 +567,22 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      act(() => {
         document.activeElement.blur();
       });
+
       clock.tick(5);
+
       clock.tick(6);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(children);
+      focusVisibleSync(children);
+
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
-        clock.tick(30);
-      });
+      clock.tick(30);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
@@ -591,7 +605,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
       clock.tick(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
@@ -633,37 +647,36 @@ describe('<Tooltip />', () => {
       });
     });
 
-    it(`should be transparent for the focus and blur event`, async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())(
+      `should be transparent for the focus and blur event`,
+      async function test() {
+        const handleBlur = spy();
+        const handleFocus = spy();
+        render(
+          <Tooltip title="Hello World">
+            <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+        const button = screen.getByRole('button');
 
-      const handleBlur = spy();
-      const handleFocus = spy();
-      render(
-        <Tooltip title="Hello World">
-          <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      const button = screen.getByRole('button');
+        await act(async () => {
+          button.focus();
+        });
 
-      await act(async () => {
-        button.focus();
-      });
+        expect(handleBlur.callCount).to.equal(0);
+        expect(handleFocus.callCount).to.equal(1);
 
-      expect(handleBlur.callCount).to.equal(0);
-      expect(handleFocus.callCount).to.equal(1);
+        await act(async () => {
+          button.blur();
+        });
 
-      await act(async () => {
-        button.blur();
-      });
-
-      expect(handleBlur.callCount).to.equal(1);
-      expect(handleFocus.callCount).to.equal(1);
-    });
+        expect(handleBlur.callCount).to.equal(1);
+        expect(handleFocus.callCount).to.equal(1);
+      },
+    );
 
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
@@ -703,7 +716,7 @@ describe('<Tooltip />', () => {
             </button>
           </Tooltip>,
         );
-      }).toErrorDev('MUI: You are providing a disabled `button` child to the Tooltip component');
+      }).toWarnDev('MUI: You are providing a disabled `button` child to the Tooltip component');
     });
 
     it('should not raise a warning when we are controlled', () => {
@@ -862,35 +875,106 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: slotProps.popper', () => {
+    it('should merge popperOptions with arrow modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'arrow',
+                    options: {
+                      padding: 8,
+                    },
+                  },
+                ],
+              },
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedArrowModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'arrow',
+      );
+
+      expect(appliedArrowModifier).not.to.equal(undefined);
+      expect(appliedArrowModifier.enabled).to.equal(true);
+      expect(appliedArrowModifier.options.padding).to.equal(8);
+    });
+
+    it('should merge popperOptions with custom modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'foo',
+                    enabled: true,
+                    phase: 'main',
+                    fn: () => {},
+                  },
+                ],
+              },
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedComputeStylesModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'foo',
+      );
+
+      expect(appliedComputeStylesModifier).not.to.equal(undefined);
+    });
+  });
+
   describe('prop forwarding', () => {
     it('should forward props to the child element', () => {
-      const { getByText } = render(
+      render(
         <Tooltip title="Hello World" className="foo">
           <h1 className="bar">H1</h1>
         </Tooltip>,
       );
-      expect(getByText('H1')).to.have.class('foo');
-      expect(getByText('H1')).to.have.class('bar');
+
+      expect(screen.getByText('H1')).to.have.class('foo');
+      expect(screen.getByText('H1')).to.have.class('bar');
     });
 
     it('should respect the props priority', () => {
-      const { getByText } = render(
+      render(
         <Tooltip title="Hello World" name="tooltip">
           <h1 name="heading">H1</h1>
         </Tooltip>,
       );
-      expect(getByText('H1')).to.have.attribute('name', 'heading');
+
+      expect(screen.getByText('H1')).to.have.attribute('name', 'heading');
     });
   });
 
-  describe('focus', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describe.skipIf(isJsdom())('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">
@@ -912,7 +996,7 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('opens on focus-visible', () => {
+    it('opens on focus-visible', async () => {
       const eventLog = [];
       render(
         <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
@@ -923,7 +1007,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
@@ -1058,12 +1142,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should warn when children is a string', function test() {
-      if (reactMajor >= 19) {
-        // React 19 removed prop types support
-        this.skip();
-      }
-
+    // React 19 removed prop types support
+    it.skipIf(reactMajor >= 19)('should warn when children is a string', function test() {
       expect(() => {
         render(<Tooltip title="Hello World">Hello World</Tooltip>);
       }).toErrorDev('Invalid prop `children` of type `string` supplied');
@@ -1247,6 +1327,50 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: slots', () => {
+    it('can render a different Popper component', () => {
+      function CustomPopper() {
+        return <div data-testid="CustomPopper" />;
+      }
+      render(
+        <Tooltip title="Hello World" open slots={{ popper: CustomPopper }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(screen.getByTestId('CustomPopper')).toBeVisible();
+    });
+
+    it('can render a different Tooltip component', () => {
+      const CustomTooltip = React.forwardRef((props, ref) => (
+        <div data-testid="CustomTooltip" ref={ref} />
+      ));
+      render(
+        <Tooltip title="Hello World" open slots={{ tooltip: CustomTooltip }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(screen.getByTestId('CustomTooltip')).toBeVisible();
+    });
+
+    it('can render a different Arrow component', () => {
+      const CustomArrow = React.forwardRef((props, ref) => (
+        <div data-testid="CustomArrow" ref={ref} />
+      ));
+      render(
+        <Tooltip title="Hello World" open arrow slots={{ arrow: CustomArrow }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(screen.getByTestId('CustomArrow')).toBeVisible();
+    });
+  });
+
   describe('user-select state', () => {
     let prevWebkitUserSelect;
 
@@ -1304,7 +1428,7 @@ describe('<Tooltip />', () => {
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
       const transitionTimeout = 10;
-      const { unmount } = render(
+      const view = render(
         <Tooltip
           enterTouchDelay={enterTouchDelay}
           enterDelay={enterDelay}
@@ -1319,7 +1443,7 @@ describe('<Tooltip />', () => {
       document.body.style.WebkitUserSelect = 'text';
       // Let updates flush before unmounting
       fireEvent.touchStart(screen.getByRole('button'));
-      unmount();
+      view.unmount();
 
       expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
