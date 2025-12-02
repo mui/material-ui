@@ -27,7 +27,7 @@ describe('<FormHelperText />', () => {
 
   describe('with FormControl', () => {
     ['error', 'disabled'].forEach((visualState) => {
-      describe(visualState, () => {
+      describe(`${visualState}`, () => {
         function FormHelperTextInFormControl(props) {
           return (
             <FormControl {...{ [visualState]: true }}>

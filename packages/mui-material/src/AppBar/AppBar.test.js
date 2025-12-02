@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
 import { ThemeProvider, CssVarsProvider, hexToRgb } from '@mui/material/styles';
@@ -64,11 +64,7 @@ describe('<AppBar />', () => {
     });
   });
 
-  it('should inherit Paper background color with ThemeProvider', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should inherit Paper background color with ThemeProvider', function test() {
     render(
       <ThemeProvider theme={defaultTheme}>
         <AppBar data-testid="root" color="inherit">
@@ -83,22 +79,21 @@ describe('<AppBar />', () => {
     });
   });
 
-  it('should inherit Paper background color with CssVarsProvider', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(isJsdom())(
+    'should inherit Paper background color with CssVarsProvider',
+    function test() {
+      render(
+        <CssVarsProvider>
+          <AppBar data-testid="root" color="inherit">
+            Hello World
+          </AppBar>
+        </CssVarsProvider>,
+      );
 
-    render(
-      <CssVarsProvider>
-        <AppBar data-testid="root" color="inherit">
-          Hello World
-        </AppBar>
-      </CssVarsProvider>,
-    );
-
-    const appBar = screen.getByTestId('root');
-    expect(appBar).toHaveComputedStyle({
-      backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
-    });
-  });
+      const appBar = screen.getByTestId('root');
+      expect(appBar).toHaveComputedStyle({
+        backgroundColor: hexToRgb(defaultTheme.palette.background.paper),
+      });
+    },
+  );
 });

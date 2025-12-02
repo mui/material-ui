@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer } from '@mui/internal-test-utils';
+import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
@@ -287,20 +287,19 @@ describe('<Collapse />', () => {
   });
 
   // Test for https://github.com/mui/material-ui/issues/40653
-  it('should render correctly when external ownerState prop is passed', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(isJsdom())(
+    'should render correctly when external ownerState prop is passed',
+    function test() {
+      const { container } = render(
+        <Collapse in ownerState={{}}>
+          <div style={{ height: '100px' }} />
+        </Collapse>,
+      );
+      const collapse = container.firstChild;
 
-    const { container } = render(
-      <Collapse in ownerState={{}}>
-        <div style={{ height: '100px' }} />
-      </Collapse>,
-    );
-    const collapse = container.firstChild;
-
-    expect(collapse).toHaveComputedStyle({
-      height: '100px',
-    });
-  });
+      expect(collapse).toHaveComputedStyle({
+        height: '100px',
+      });
+    },
+  );
 });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -325,11 +325,7 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
 
-    it('scrolls if overflown on the Y axis', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('scrolls if overflown on the Y axis', function test() {
       const ITEM_HEIGHT = 100;
       const ITEM_COUNT = 10;
 
@@ -400,11 +396,7 @@ describe('<Dialog />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
       render(<Dialog open />);
@@ -415,11 +407,7 @@ describe('<Dialog />', () => {
       });
     });
 
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
       const theme = createTheme({
         transitions: {
           duration: {
@@ -437,11 +425,7 @@ describe('<Dialog />', () => {
       expect(container).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
 
-    it('should render the values provided via prop', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
       render(<Dialog open transitionDuration={{ enter: 1 }} />);
 
       const container = document.querySelector(`.${classes.container}`);

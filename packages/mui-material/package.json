@@ -27,7 +27,7 @@
   "scripts": {
     "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
@@ -48,20 +48,19 @@
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.3",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.4",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
     "css-mediaquery": "^0.1.2",
     "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
+    "jsdom": "^26.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router": "^7.9.5",
+    "react-router": "^7.9.6",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {

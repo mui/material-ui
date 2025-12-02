@@ -2,7 +2,7 @@
 
 <p class="description">Support the development of the open-source projects of the MUI organization through crowdfunding.</p>
 
-Material UI, MUI Base, MUI System, and Joy UI are crowd-funded open-source projects, licensed under the permissive MIT license.
+Material UI is a crowd-funded open-source project, licensed under the permissive MIT license.
 Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
 ## Diamond sponsors
@@ -20,7 +20,7 @@ Diamond sponsors are those who've pledged \$1,500/month or more to the MUI organ
 via [Open Collective](https://opencollective.com/mui-org) or via [the for-profit](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=288 3x" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=288 3x" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="dialmycalls.com" href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png 3x" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="wisprflow.ai" href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;">
     <span class="only-light-mode">
@@ -82,7 +82,7 @@ via [Open Collective](https://opencollective.com/mui-org)
 
 ### Why is Material UI a "crowd-funded open-source project"?
 
-Material UI (as well as MUI Base, MUI System, and Joy UI) is open-source to give users great freedom in how they use the software and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use cases.
+Material UI is open-source to give users great freedom in how they use the software and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use cases.
 To ensure that these open-source libraries can stand the test of time for our users, they need to be well-directed and financially sustainable.
 
 The absolute best way to support the MUI organization to work on its libraries' ongoing development efforts is to become a sponsor.

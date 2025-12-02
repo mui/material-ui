@@ -15,6 +15,7 @@ export {} from './initMatchers';
 export * as fireDiscreteEvent from './fireDiscreteEvent';
 export { default as flushMicrotasks } from './flushMicrotasks';
 export { default as reactMajor } from './reactMajor';
+export * from './env';
 
 /**
  * Set to true if console logs during [lifecycles that are invoked twice in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) are suppressed.

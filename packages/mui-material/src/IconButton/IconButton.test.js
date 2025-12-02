@@ -108,21 +108,20 @@ describe('<IconButton />', () => {
     });
   });
 
-  it('should raise a warning about onClick in children because of Firefox', function test() {
-    if (reactMajor >= 19) {
-      // React 19 removed prop types support
-      this.skip();
-    }
-
-    expect(() => {
-      PropTypes.checkPropTypes(
-        IconButton.propTypes,
-        { classes: {}, children: <svg onClick={() => {}} /> },
-        'prop',
-        'MockedName',
-      );
-    }).toErrorDev(['MUI: You are providing an onClick event listener']);
-  });
+  // React 19 removed prop types support
+  it.skipIf(reactMajor >= 19)(
+    'should raise a warning about onClick in children because of Firefox',
+    function test() {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          IconButton.propTypes,
+          { classes: {}, children: <svg onClick={() => {}} /> },
+          'prop',
+          'MockedName',
+        );
+      }).toErrorDev(['MUI: You are providing an onClick event listener']);
+    },
+  );
 
   it('should not throw error for a custom color', () => {
     expect(() => (

@@ -26,7 +26,7 @@
   "scripts": {
     "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/utils\"",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
   },
@@ -41,10 +41,9 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^4.3.20",
-    "@types/mocha": "^10.0.10",
+    "@types/chai": "^5.2.3",
     "@types/node": "^20.19.25",
-    "@types/react": "^19.2.4",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/react-is": "^19.2.0",
     "@types/sinon": "^17.0.4",

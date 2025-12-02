@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
@@ -106,12 +106,8 @@ describe('<MenuItem />', () => {
       expect(handleKeyDown.callCount).to.equal(1);
     });
 
-    it('should fire onTouchStart', function touchStartTest() {
-      // only run in supported browsers
-      if (typeof Touch === 'undefined') {
-        this.skip();
-      }
-
+    // only run in supported browsers
+    it.skipIf(!supportsTouch())('should fire onTouchStart', function touchStartTest() {
       const handleTouchStart = spy();
       render(<MenuItem onTouchStart={handleTouchStart} />);
       const menuitem = screen.getByRole('menuitem');

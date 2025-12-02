@@ -137,7 +137,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
+  const { getRootProps, onClickAway } = useSnackbar(ownerState);
 
   const [exited, setExited] = React.useState(true);
 
