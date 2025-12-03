@@ -754,7 +754,10 @@ function useAutocomplete(props) {
     let nextItem = focusedItem;
 
     if (focusedItem === -1) {
-      if ((inputValue === '' || inputRef.current.selectionStart === 0) && direction === 'previous') {
+      if (
+        (inputValue === '' || inputRef.current.selectionStart === 0) &&
+        direction === 'previous'
+      ) {
         nextItem = value.length - 1;
       }
     } else {
