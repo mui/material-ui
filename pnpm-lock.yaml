@@ -506,8 +506,8 @@ importers:
         specifier: ^6.1.19
         version: 6.1.19(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       stylis:
-        specifier: 4.2.0
-        version: 4.2.0
+        specifier: 4.3.6
+        version: 4.3.6
       use-count-up:
         specifier: ^3.0.1
         version: 3.0.1(react@19.2.0)
@@ -9741,6 +9741,7 @@ packages:
   next@15.5.6:
     resolution: {integrity: sha512-zTxsnI3LQo3c9HSdSf91O1jMNsEzIXDShXd4wVdg9y5shwLqBXi4ZtUUJyB86KGVSJLZx0PFONvO54aheGX8QQ==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
