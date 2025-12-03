@@ -20,10 +20,8 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
   React.useEffect(() => {
     posts.forEach((post) => {
       if (post.image) {
-        const lightImg = new Image();
-        const darkImg = new Image();
-        lightImg.src = post.image;
-        darkImg.src = post.image.replace('light', 'dark');
+        const img = new Image();
+        img.src = post.image;
       }
     });
   }, [posts]);
@@ -73,7 +71,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
               <Box
                 component="img"
                 alt="Company Logo"
-                src={mode === 'dark' ? post.image.replace('light', 'dark') : post.image}
+                src={post.image}
                 sx={{
                   position: variant === 'primary' ? 'absolute' : 'relative',
                   top: variant === 'primary' ? 30 : 'auto',
@@ -85,7 +83,10 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   maxHeight: '50px',
                   width: 'auto',
                   zIndex: 1,
-                  filter: mode === 'light' ? 'brightness(0) saturate(100%)' : 'none',
+                  filter:
+                    mode === 'light'
+                      ? 'brightness(0) saturate(100%)'
+                      : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
                 }}
               />
             )}

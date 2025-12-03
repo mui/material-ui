@@ -13,7 +13,7 @@ export default function CustomersTestimonials() {
       sx={{
         display: 'grid',
         m: 0,
-        p: { xs: 2, sm: 4, md: 8, lg: 12 },
+        p: { xs: 8, sm: 6, md: 8, lg: 12 },
         gap: 2,
         maxWidth: '1350px',
         mx: 'auto',
