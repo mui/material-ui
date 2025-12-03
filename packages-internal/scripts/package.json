@@ -24,7 +24,7 @@
     "build": "tsc -b tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages-internal/scripts/typescript-to-proptypes/test/.mocharc.js 'packages-internal/scripts/typescript-to-proptypes/**/*.test.?(c|m)[jt]s?(x)' 'packages-internal/scripts/generate-llms-txt/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-scripts\"",
     "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
@@ -41,10 +41,10 @@
   "devDependencies": {
     "@babel/register": "^7.28.3",
     "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.3",
     "@types/doctrine": "^0.0.9",
-    "@types/node": "^20.19.24",
-    "@types/react": "^19.2.2",
+    "@types/node": "^20.19.25",
+    "@types/react": "^19.2.7",
     "@types/uuid": "^10.0.0",
     "chai": "^6.0.1",
     "fast-glob": "^3.3.3",

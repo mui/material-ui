@@ -79,7 +79,7 @@
   },
   {
     "name": "Prakhar Gupta",
-    "title": "Product Operations — X",
+    "title": "Product Manager — X",
     "location": "New Delhi, India",
     "locationCountry": "in",
     "about": "Into sports and hiking!",
@@ -109,7 +109,8 @@
     "title": "Head of Documentation",
     "location": "Washington state, US",
     "locationCountry": "us",
-    "about": "Musician and edible wild plant enthusiast 🌱."
+    "about": "Musician and edible wild plant enthusiast 🌱.",
+    "github": "mapache-salvaje"
   },
   {
     "name": "Lukas Tyla",
@@ -199,7 +200,7 @@
   },
   {
     "name": "Vadym Raksha",
-    "title": "Product Engineer — Services",
+    "title": "Software Engineer — Services",
     "location": "Prague, Czech Republic",
     "locationCountry": "cz",
     "about": "Product experience geek 🛋, Mediterranean vibes 🍊.",

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 
@@ -18,11 +18,7 @@ describe('<CssBaseline />', () => {
     expect(child).to.have.tagName('div');
   });
 
-  it('supports theme overrides as string', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('supports theme overrides as string', function test() {
     const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: `strong { font-weight: 500; }` } },
     });
@@ -40,11 +36,7 @@ describe('<CssBaseline />', () => {
     expect(child).toHaveComputedStyle({ fontWeight: '500' });
   });
 
-  it('supports theme overrides as object', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('supports theme overrides as object', function test() {
     const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: { strong: { fontWeight: '500' } } } },
     });
@@ -62,15 +54,13 @@ describe('<CssBaseline />', () => {
     expect(child).toHaveComputedStyle({ fontWeight: '500' });
   });
 
-  it('supports theme overrides as callback', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('supports theme overrides as callback', function test() {
     const theme = createTheme({
       components: {
         MuiCssBaseline: {
-          styleOverrides: (themeParam) => ({ strong: { color: themeParam.palette.primary.main } }),
+          styleOverrides: (themeParam) => ({
+            strong: { color: themeParam.palette.primary.main },
+          }),
         },
       },
     });

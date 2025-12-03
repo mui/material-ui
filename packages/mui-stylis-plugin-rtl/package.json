@@ -26,7 +26,7 @@
   "scripts": {
     "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/stylis-plugin-rtl\"",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints esm modern"
   },
@@ -36,9 +36,8 @@
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
-    "@types/chai": "^4.3.20",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.24",
+    "@types/chai": "^5.2.3",
+    "@types/node": "^20.19.25",
     "@types/sinon": "^17.0.4",
     "@types/stylis": "4.2.7",
     "chai": "^6.0.1",

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import SvgIcon, {
   svgIconClasses as classes,
@@ -14,7 +14,7 @@ describe('<SvgIcon />', () => {
 
   let path: any;
 
-  before(() => {
+  beforeAll(() => {
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
   });
 
@@ -149,22 +149,18 @@ describe('<SvgIcon />', () => {
     });
   });
 
-  it('should not override internal ownerState with the ownerState passed to the icon', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(isJsdom())(
+    'should not override internal ownerState with the ownerState passed to the icon',
+    function test() {
+      const { container } = render(
+        // @ts-expect-error
+        <SvgIcon ownerState={{ fontSize: 'sm' }}>{path}</SvgIcon>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: xl2 -> 1.5rem = 24px
+    },
+  );
 
-    const { container } = render(
-      // @ts-expect-error
-      <SvgIcon ownerState={{ fontSize: 'sm' }}>{path}</SvgIcon>,
-    );
-    expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: xl2 -> 1.5rem = 24px
-  });
-
-  it('should have `fill="currentColor"`', function test() {
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(!isJsdom())('should have `fill="currentColor"`', function test() {
     const { container } = render(
       <SvgIcon>
         <path />
@@ -174,10 +170,7 @@ describe('<SvgIcon />', () => {
     expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
   });
 
-  it('should not add `fill` if svg is a direct child', function test() {
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(!isJsdom())('should not add `fill` if svg is a direct child', function test() {
     const { container } = render(
       <SvgIcon>
         <svg>

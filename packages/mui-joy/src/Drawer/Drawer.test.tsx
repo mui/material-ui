@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Drawer, { drawerClasses as classes } from '@mui/joy/Drawer';
 import describeConformance from '../../test/describeConformance';
@@ -65,11 +65,7 @@ describe('<Drawer />', () => {
       expect(screen.getByTestId('content').getAttribute('tabIndex')).to.equal('0');
     });
 
-    it('should apply content theme styles for content slot', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should apply content theme styles for content slot', function test() {
       const theme = extendTheme({
         components: {
           JoyDrawer: {

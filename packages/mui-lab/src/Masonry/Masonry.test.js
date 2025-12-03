@@ -1,4 +1,11 @@
-import { createRenderer, reactMajor, act, screen } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  reactMajor,
+  act,
+  screen,
+  flushEffects,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
@@ -28,10 +35,7 @@ describe('<Masonry />', () => {
   const maxColumnHeight = 100;
 
   describe('render', () => {
-    it('should render with correct default styles', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())('should render with correct default styles', function test() {
       const width = 400;
       const columns = 4;
       const spacing = 1;
@@ -68,54 +72,52 @@ describe('<Masonry />', () => {
       });
     });
 
-    it('should re-compute the height of masonry when dimensions of any child change', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // only run on browser
-        this.skip();
-      }
-      const spacingProp = 1;
-      const firstChildHeight = 10;
-      const secondChildInitialHeight = 20;
-      const secondChildNewHeight = 10;
+    // only run on browser
+    it.skipIf(isJsdom())(
+      'should re-compute the height of masonry when dimensions of any child change',
+      async () => {
+        const spacingProp = 1;
+        const firstChildHeight = 10;
+        const secondChildInitialHeight = 20;
+        const secondChildNewHeight = 10;
 
-      render(
-        <Masonry columns={2} spacing={spacingProp} data-testid="container">
-          <div style={{ height: `${firstChildHeight}px` }} />
-        </Masonry>,
-      );
+        render(
+          <Masonry columns={2} spacing={spacingProp} data-testid="container">
+            <div style={{ height: `${firstChildHeight}px` }} />
+          </Masonry>,
+        );
 
-      const masonry = screen.getByTestId('container');
-      const secondItem = document.createElement('div');
-      secondItem.style.height = `${secondChildInitialHeight}px`;
-      masonry.appendChild(secondItem);
+        const masonry = screen.getByTestId('container');
+        const secondItem = document.createElement('div');
+        secondItem.style.height = `${secondChildInitialHeight}px`;
+        masonry.appendChild(secondItem);
 
-      const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
-      expect(window.getComputedStyle(masonry).height).to.equal(
-        `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
-      );
+        const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
+        expect(window.getComputedStyle(masonry).height).to.equal(
+          `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
+        );
 
-      secondItem.style.height = `${secondChildNewHeight}px`;
+        secondItem.style.height = `${secondChildNewHeight}px`;
 
-      expect(window.getComputedStyle(masonry).height).to.equal(
-        `${firstChildHeight + secondChildNewHeight + topAndBottomMargin}px`,
-      );
-    });
+        expect(window.getComputedStyle(masonry).height).to.equal(
+          `${firstChildHeight + secondChildNewHeight + topAndBottomMargin}px`,
+        );
 
-    it('should throw console error when children are empty', function test() {
-      // React 19 removed prop types support
-      if (!window.navigator.userAgent.includes('jsdom') || reactMajor >= 19) {
-        this.skip();
-      }
-      expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
-        'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
-      );
-    });
+        await flushEffects();
+      },
+    );
 
-    it('should not throw type error when children are empty', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    // React 19 removed prop types support
+    it.skipIf(!isJsdom() || reactMajor >= 19)(
+      'should throw console error when children are empty',
+      function test() {
+        expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
+          'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+        );
+      },
+    );
 
+    it.skipIf(isJsdom())('should not throw type error when children are empty', function test() {
       // React 19 removed prop types support
       if (reactMajor < 19) {
         expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
@@ -390,12 +392,8 @@ describe('<Masonry />', () => {
           }),
       );
 
-    it('should place children in sequential order', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // only run on browser
-        this.skip();
-      }
-
+    // only run on browser
+    it.skipIf(isJsdom())('should place children in sequential order', async function test() {
       render(
         <Masonry columns={2} spacing={1} sequential>
           <div style={{ height: `20px` }} data-testid="child1" />

@@ -26,7 +26,7 @@
   "scripts": {
     "build": "code-infra build --skipTsc",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine\"",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints StyledEngineProvider GlobalStyles"
   },
@@ -43,8 +43,8 @@
     "@emotion/styled": "^11.14.1",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/styled-engine": "workspace:*",
-    "@types/chai": "^4.3.20",
-    "@types/react": "^19.2.2",
+    "@types/chai": "^5.2.3",
+    "@types/react": "^19.2.7",
     "chai": "^6.0.1",
     "react": "^19.2.0"
   },

@@ -567,7 +567,6 @@ function useAutocomplete(props) {
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
-    filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,
     popupOpen,
@@ -863,6 +862,7 @@ function useAutocomplete(props) {
           break;
         case 'ArrowRight':
           if (!multiple && renderValue) {
+            setFocusedItem(-1);
             focusItem(-1);
           } else {
             handleFocusItem(event, 'next');
@@ -927,6 +927,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
+            setFocusedItem(-1);
             focusItem(-1);
           }
           break;
@@ -948,6 +949,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
+            setFocusedItem(-1);
             focusItem(-1);
           }
           break;
@@ -958,6 +960,15 @@ function useAutocomplete(props) {
 
   const handleFocus = (event) => {
     setFocused(true);
+
+    // When focusing the input, ensure any previously focused item (chip)
+    // is cleared so the input receives the visible caret and the
+    // input-focused styling is applied.
+    if (focusedItem !== -1) {
+      setFocusedItem(-1);
+      // Ensure DOM focus lands on the input
+      focusItem(-1);
+    }
 
     if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);

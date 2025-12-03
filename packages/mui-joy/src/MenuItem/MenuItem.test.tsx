@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
@@ -140,12 +140,7 @@ describe('Joy <MenuItem />', () => {
       expect(handleKeyDown.callCount).to.equal(1);
     });
 
-    it('should fire onTouchStart', function touchStartTest() {
-      // only run in supported browsers
-      if (typeof Touch === 'undefined') {
-        this.skip();
-      }
-
+    it.skipIf(!supportsTouch())('should fire onTouchStart', function touchStartTest() {
       const handleTouchStart = spy();
       render(<MenuItem onTouchStart={handleTouchStart} />);
       const menuitem = screen.getByRole('menuitem');

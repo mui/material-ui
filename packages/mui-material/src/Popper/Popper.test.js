@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
@@ -16,7 +16,7 @@ describe('<Popper />', () => {
     open: true,
   };
 
-  before(() => {
+  beforeAll(() => {
     rtlTheme = createTheme({
       direction: 'rtl',
     });
@@ -100,11 +100,8 @@ describe('<Popper />', () => {
       });
     });
 
-    it('should flip placement when edge is reached', async function test() {
-      // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
+    it.skipIf(isJsdom())('should flip placement when edge is reached', async function test() {
       const popperRef = React.createRef();
       render(
         <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
