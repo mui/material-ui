@@ -4,7 +4,7 @@
 
 <!-- generated comparing v7.3.5..master -->
 
-_Dec 2, 2025_
+_Dec 3, 2025_
 
 A big thanks to the 22 contributors who made this release possible.
 
