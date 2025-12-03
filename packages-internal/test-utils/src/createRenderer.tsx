@@ -221,6 +221,15 @@ function createClock(
         vi.setSystemTime(config);
       }
     });
+
+    afterEach(async () => {
+      if (vi.isFakeTimers()) {
+        await rtlAct(async () => {
+          vi.runOnlyPendingTimers();
+        });
+        vi.useRealTimers();
+      }
+    });
   } else {
     beforeEach(() => {
       if (config) {
@@ -228,15 +237,6 @@ function createClock(
       }
     });
   }
-
-  afterEach(async () => {
-    if (vi.isFakeTimers()) {
-      await rtlAct(async () => {
-        vi.runOnlyPendingTimers();
-      });
-      vi.useRealTimers();
-    }
-  });
 
   return {
     withFakeTimers: () => {
@@ -264,6 +264,15 @@ function createClock(
         });
         if (config) {
           vi.setSystemTime(config);
+        }
+      });
+
+      afterEach(async () => {
+        if (vi.isFakeTimers()) {
+          await rtlAct(async () => {
+            vi.runOnlyPendingTimers();
+          });
+          vi.useRealTimers();
         }
       });
     },
