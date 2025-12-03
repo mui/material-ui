@@ -22,9 +22,9 @@ A big thanks to the 22 contributors who made this release possible.
 - [Select] Fix cannot pass certain event handlers (#47366) @ZeeshanTamboli
 - [Slider] Accept readonly array for `marks` prop (#47370) @pcorpet
 - [Snackbar] Avoid unnecessary `ownerState` spread into `useSnackbar` (#47373) @ZeeshanTamboli
-- [TextField] Allow custom props in slot props via TS module augmentation (#47367)@kumarvishwajeettrivedi
+- [TextField] Allow custom props in slot props via TS module augmentation (#47367) @kumarvishwajeettrivedi
 - [Tabs] Fix Arrow key navigation failing when component is rendered in shadow DOM (#47178) @sai6855
-- Fix theme apply styles typings for custom color scheme (#47242) @akankshahu
+- Fix typings for theme `applyStyles` with custom color schemes (#47242) @akankshahu
 
 ### @mui/system@7.3.6
 
@@ -36,17 +36,17 @@ A big thanks to the 22 contributors who made this release possible.
 
 ### Docs
 
-- [docs] Fix default theme viewer styling (#47400) @sai6855
-- [docs] Remove repetitive words (#47384) @rifeplight
-- [docs] Fix link to Portal API docs (#47383) @ZeeshanTamboli
-- [docs] Remove mentions of MUI Base from Material UI docs (#47324) @mapache-salvaje
-- [docs] Update CSP guidance (#47342) @rossdakin
-- [docs] Fix pathname collision in LLMs docs generator (#47209) @siriwatknp
-- [docs] Resolve redirected urls to their final location (#47193) @Janpot
-- [docs] Document correct default values for `elevation` and `square` props (#47261) @Ad1tya-007
-- [docs] Fix display of colors in dark mode in palette customization page (#47403) @sai6855
-- [docs] Add Number Field component page (#47165) @siriwatknp
-- [docs] Fix mcp schema change (#47171) @sai6855
+- Fix default theme viewer styling (#47400) @sai6855
+- Remove repetitive words (#47384) @rifeplight
+- Fix link to Portal API docs (#47383) @ZeeshanTamboli
+- Remove mentions of MUI Base from Material UI docs (#47324) @mapache-salvaje
+- Update CSP guidance (#47342) @rossdakin
+- Fix pathname collision in LLMs docs generator (#47209) @siriwatknp
+- Resolve redirected urls to their final location (#47193) @Janpot
+- Document correct default values for `elevation` and `square` props (#47261) @Ad1tya-007
+- Fix display of colors in dark mode in palette customization page (#47403) @sai6855
+- Add Number Field component page (#47165) @siriwatknp
+- Fix mcp schema change (#47171) @sai6855
 
 ### Core
 
