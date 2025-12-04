@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
   "keywords": [
