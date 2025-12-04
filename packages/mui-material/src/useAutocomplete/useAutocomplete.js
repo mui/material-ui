@@ -747,19 +747,14 @@ function useAutocomplete(props) {
       return;
     }
 
-    if (inputValue === '' || inputRef.current.selectionStart === 0) {
+    if (inputValue === '') {
       handleClose(event, 'toggleInput');
     }
 
     let nextItem = focusedItem;
 
-    if (focusedItem === -1) {
-      if (
-        (inputValue === '' || inputRef.current.selectionStart === 0) &&
-        direction === 'previous'
-      ) {
-        nextItem = value.length - 1;
-      }
+    if (focusedItem === -1 && direction === 'previous') {
+      nextItem = value.length - 1;
     } else {
       nextItem += direction === 'next' ? 1 : -1;
 
@@ -854,15 +849,22 @@ function useAutocomplete(props) {
           changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
           handleOpen(event);
           break;
-        case 'ArrowLeft':
-          if (inputRef.current && inputRef.current.selectionStart === 0) {
-            if (!multiple && value != null) {
-              focusItem(renderValue ? 0 : -1);
-            } else if (multiple && value && value.length > 0) {
-              handleFocusItem(event, 'previous');
-            }
+        case 'ArrowLeft': {
+          const input = inputRef.current;
+          const caretAtStart = input && input.selectionStart === 0 && input.selectionEnd === 0;
+
+          if (!caretAtStart) {
+            // Let the browser handle normal cursor movement
+            return;
+          }
+
+          if (!multiple && value != null) {
+            focusItem(renderValue ? 0 : -1);
+          } else if (multiple && value && value.length > 0) {
+            handleFocusItem(event, 'previous');
           }
           break;
+        }
         case 'ArrowRight':
           if (!multiple && renderValue) {
             setFocusedItem(-1);
