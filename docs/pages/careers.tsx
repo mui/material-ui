@@ -22,18 +22,18 @@ const openRolesData = [
   {
     title: 'Engineering',
     roles: [
-      {
-        title: 'React Engineer — Material UI Maintainer',
-        description:
-          'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
-        url: '/careers/react-engineer-material-ui-maintainer/',
-      },
-      {
-        title: 'Product Engineer — Store',
-        description:
-          'You will lead the technical, product, and operational development of the store.',
-        url: '/careers/product-engineer-store/',
-      },
+      // {
+      //   title: 'React Engineer — Material UI Maintainer',
+      //   description:
+      //     'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
+      //   url: '/careers/react-engineer-material-ui-maintainer/',
+      // },
+      // {
+      //   title: 'Product Engineer — Store',
+      //   description:
+      //     'You will lead the technical, product, and operational development of the store.',
+      //   url: '/careers/product-engineer-store/',
+      // },
       // {
       //   title: 'React Engineer — xCharts',
       //   description:
