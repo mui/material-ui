@@ -858,8 +858,10 @@ function useAutocomplete(props) {
           if (inputRef.current && inputRef.current.selectionStart === 0) {
             if (!multiple && value != null) {
               focusItem(renderValue ? 0 : -1);
+              handleClose(event, 'toggleInput');
             } else if (multiple && value && value.length > 0) {
               handleFocusItem(event, 'previous');
+              handleClose(event, 'toggleInput');
             }
           }
           break;
