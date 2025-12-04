@@ -23,7 +23,7 @@ const openRolesData = [
     // title: 'Engineering',
     // roles: [
     //   {
-    //     title: 'React Engineer — Material UI Maintainer',
+    //     title: 'React Engineer — Material UI Maintainer',
     //     description:
     //       'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
     //     url: '/careers/react-engineer-material-ui-maintainer/',
