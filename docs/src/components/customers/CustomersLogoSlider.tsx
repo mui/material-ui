@@ -37,6 +37,7 @@ export default function CustomersLogoSlider({
   logos = defaultCustomerLogos,
 }: CustomersLogoSliderProps) {
   const { mode } = useColorScheme();
+  const isLight = mode === 'light' || mode === undefined;
 
   React.useEffect(() => {
     logos.forEach((logo) => {
@@ -102,10 +103,9 @@ export default function CustomersLogoSlider({
                   opacity: 0.7,
                   transition: 'opacity 0.3s ease-in-out, filter 0.3s ease-in-out',
                   flexShrink: 0,
-                  filter:
-                    mode === 'light'
-                      ? 'none'
-                      : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  filter: isLight
+                    ? 'none'
+                    : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
                   '&:hover': {
                     opacity: 1,
                   },
@@ -141,10 +141,9 @@ export default function CustomersLogoSlider({
                   opacity: 0.7,
                   transition: 'opacity 0.3s ease-in-out, filter 0.3s ease-in-out',
                   flexShrink: 0,
-                  filter:
-                    mode === 'light'
-                      ? 'none'
-                      : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  filter: isLight
+                    ? 'none'
+                    : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
                   '&:hover': {
                     opacity: 1,
                   },

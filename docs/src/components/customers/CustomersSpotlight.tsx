@@ -16,6 +16,7 @@ interface SpotlightProps {
 
 function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
   const { mode } = useColorScheme();
+  const isLight = mode === 'light' || mode === undefined;
 
   React.useEffect(() => {
     posts.forEach((post) => {
@@ -83,10 +84,9 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   maxHeight: '50px',
                   width: 'auto',
                   zIndex: 1,
-                  filter:
-                    mode === 'light'
-                      ? 'brightness(0) saturate(100%)'
-                      : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  filter: isLight
+                    ? 'brightness(0) saturate(100%)'
+                    : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
                 }}
               />
             )}
