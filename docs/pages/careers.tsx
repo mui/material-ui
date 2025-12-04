@@ -20,8 +20,8 @@ import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 const openRolesData = [
   {
-    // title: 'Engineering',
-    // roles: [
+    title: 'Engineering',
+    roles: [
     //   {
     //     title: 'React Engineer — Material UI Maintainer',
     //     description:
@@ -52,7 +52,7 @@ const openRolesData = [
     //       'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
     //     url: '/careers/react-engineer-x/',
     //   },
-    // ],
+    ],
   },
   {
     title: 'Sales',
@@ -71,16 +71,16 @@ const openRolesData = [
       // },
     ],
   },
-  // {
-  //   title: 'People',
-  //   roles: [
-  //     {
-  //       title: 'Technical Recruiter',
-  //       description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
-  //       url: '/careers/technical-recruiter/',
-  //     },
-  //   ],
-  // },
+  {
+    title: 'People',
+    roles: [
+      // {
+      //   title: 'Technical Recruiter',
+      //   description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
+      //   url: '/careers/technical-recruiter/',
+      // },
+    ],
+  },
   {
     title: 'Design',
     roles: [],
