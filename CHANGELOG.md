@@ -1,5 +1,92 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.6
+
+<!-- generated comparing v7.3.5..master -->
+
+_Dec 3, 2025_
+
+A big thanks to the 22 contributors who made this release possible.
+
+### @mui/material@7.3.6
+
+- [Accordion] Move properties to the AccordionOwnProps interface (#47348) @Aleksan4e3
+- [Autocomplete] Remove unnecessary `filterSelectedOptions` dependency from `syncHighlightedIndex` useCallback (#47378) @ZeeshanTamboli
+- [Autocomplete] Fix input caret not showing when focusing after chip navigation (#47249) @vrachuri28
+- [Autocomplete] Fix ArrowLeft crash when value is not set with single-value rendering (#47214) @rithik56
+- [Button] Fix running formAction when passed (#47185) @sai6855
+- [Chip] Remove leftover closing parenthesis in CSS class key (#47345) @ZeeshanTamboli
+- [ListItem] Add `secondaryAction` slot to `ListItem` (#47399) @sai6855
+- [NumberField] Fix scroll behavior (#47397) @oliviertassinari
+- [Select] Fix keyboard navigation while rendering in shadow DOM (#47380) @xBlizZer
+- [Select] Fix cannot pass certain event handlers (#47366) @ZeeshanTamboli
+- [Slider] Accept readonly array for `marks` prop (#47370) @pcorpet
+- [Snackbar] Avoid unnecessary `ownerState` spread into `useSnackbar` (#47373) @ZeeshanTamboli
+- [TextField] Allow custom props in slot props via TS module augmentation (#47367) @kumarvishwajeettrivedi
+- [Tabs] Fix Arrow key navigation failing when component is rendered in shadow DOM (#47178) @sai6855
+- Fix typings for theme `applyStyles` with custom color schemes (#47242) @akankshahu
+
+### @mui/system@7.3.6
+
+- Fix unwanted attribute on DOM from InitColorSchemeScript `class` attribute (#47200) @siriwatknp
+
+### @mui/lab@7.3.6
+
+- [Masonry] Fix layout flicker and single column issue (#43903) @Fanzzzd
+
+### Docs
+
+- Fix default theme viewer styling (#47400) @sai6855
+- Remove repetitive words (#47384) @rifeplight
+- Fix link to Portal API docs (#47383) @ZeeshanTamboli
+- Remove mentions of MUI Base from Material UI docs (#47324) @mapache-salvaje
+- Update CSP guidance (#47342) @rossdakin
+- Fix pathname collision in LLMs docs generator (#47209) @siriwatknp
+- Resolve redirected urls to their final location (#47193) @Janpot
+- Document correct default values for `elevation` and `square` props (#47261) @Ad1tya-007
+- Fix display of colors in dark mode in palette customization page (#47403) @sai6855
+- Add Number Field component page (#47165) @siriwatknp
+- Fix mcp schema change (#47171) @sai6855
+
+### Core
+
+- [code-infra] Add types for markdown loader (#47075) @Janpot
+- [code-infra] Build test utils with code-infra pipeline (#47405) @Janpot
+- [code-infra] Vitest test migration (#44325) @JCQuintas
+- [code-infra] Revive docs bundle analyzer (#47401) @Janpot
+- [code-infra] Update tests from vitest PR (#47344) @Janpot
+- [code-infra] Use util from code-infra to fetch changelogs (#47350) @brijeshb42
+- [code-infra] Enable production sourcemaps (#47352) @Janpot
+- [code-infra] Use code-infra orb utils in circle ci (#47179) @brijeshb42
+- [code-infra] Use `next/font` for local fonts (#47351) @Janpot
+- [code-infra] New broken links checker (#47113) @Janpot
+- [code-infra] Remove profiler (#47258) @Janpot
+- [code-infra] Api doc optimizations (#47188) @Janpot
+- [code-infra] Increase type check parallelism (#47192) @Janpot
+- [code-infra] Remove deprecated baseUrl (#47210) @Janpot
+- [code-infra] Disable next.js cache (#47233) @Janpot
+- [code-infra] release:build for bundle checker (#47207) @Janpot
+- [code-infra] Parallelize module augmentation tests (#47208) @Janpot
+- [code-infra] Fix next.js parallelism at 2 for macos runner (#47201) @Janpot
+- [code-infra] Fix bash escape (#46969) @oliviertassinari
+- [code-infra] Utilise eslint cache in CI (#47194) @Janpot
+- [code-infra] Enable Next.js build cache to improve CI performance (#47176) @Copilot
+- [code-infra] Remove `apps` folder (#47183) @Janpot
+- [code-infra] Migrate everything to getStaticProps (#47152) @Janpot
+- [docs-infra] Migrate to `next/font` (#47347) @Janpot
+- [docs-infra] Add some `ComponentLinkHeader` bottom margin (#47328) @Janpot
+- [docs-infra] Exclude a few pages from llms-txt (#47111) @Janpot
+- [examples] Add missing .gitignore to NextJS App Router example (#47251) @shamblonaut
+- [examples] Migrate Next.js `next.config.js` to `next.config.mjs` (#44040) @albarv340
+- [internal] Remove leftover testing-library libraries from `mui-material` package (#47392) @ZeeshanTamboli
+- [internal] Remove unnecessary `clean-css` package from docs (#47314) @ZeeshanTamboli
+- [internal] Fix typo `buidApiDocs` -> `buildApiDocs` (#47235) @Ad1tya-007
+- [internal] Remove unused `@vitest/browser` and `@vitest/coverage-v8` (#47189) @ZeeshanTamboli
+- [test] Update e2e test app (#47252) @Ad1tya-007
+- [test] Fix flaky Virtualize Autocomplete regression test (#47199) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @Ad1tya-007, @akankshahu, @albarv340, @Aleksan4e3, @brijeshb42, @Copilot, @Fanzzzd, @Janpot, @JCQuintas, @kumarvishwajeettrivedi, @mapache-salvaje, @oliviertassinari, @pcorpet, @rifeplight, @rithik56, @rossdakin, @sai6855, @shamblonaut, @siriwatknp, @vrachuri28, @xBlizZer, @ZeeshanTamboli
+
 ## 7.3.5
 
 <!-- generated comparing v7.3.4..master -->

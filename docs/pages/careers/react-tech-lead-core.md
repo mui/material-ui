@@ -1,6 +1,6 @@
 # React Tech Lead — Core (future role)
 
-<p class="description">You will lead the development of the core libraries, helping position it as the industry standard for design system teams.</p>
+<p class="description">You will lead the development of the core libraries, helping to position them as the industry standard for design system teams.</p>
 
 ## Details of the role
 
@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of early 2024, and we're growing.
+We're a company of 40 people as of 2025, and we're growing steadily.
 
 ## The products
 
