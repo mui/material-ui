@@ -258,15 +258,6 @@ export default withDocsInfra({
 
     return map;
   },
-  redirects: async () => {
-    return [
-      {
-        source: '/base-ui/',
-        destination: 'https://base-ui.com',
-        permanent: true,
-      },
-    ];
-  },
   // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
