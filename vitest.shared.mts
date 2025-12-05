@@ -77,6 +77,7 @@ export default async function create(
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
+      disableConsoleIntercept: true,
       setupFiles: [
         path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
         ...(jsdom || testEnv === 'browser'
