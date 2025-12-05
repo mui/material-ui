@@ -931,7 +931,7 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderValue && !readOnly) {
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
             setValueState(null);
             setFocusedItem(-1);
             focusItem(-1);
@@ -1016,7 +1016,7 @@ function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (!disableClearable && !multiple) {
+      if (!disableClearable && !multiple && !renderValue) {
         handleValue(event, null, 'clear');
       }
     } else {
