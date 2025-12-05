@@ -7,12 +7,12 @@ const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const pageRegex = /(\.js|\.tsx)$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
-interface NextJSPage {
+export interface NextJSPage {
   pathname: string;
   children?: NextJSPage[];
 }
 
-interface FindPagesOptions {
+export interface FindPagesOptions {
   front?: boolean;
 }
 
@@ -21,7 +21,7 @@ interface FindPagesOptions {
  * The output is in the next.js format.
  * Each pathname is a route you can navigate to.
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export function findPages(
   options: FindPagesOptions = {},
   directory: string = path.resolve(currentDirectory, '../../../pages'),

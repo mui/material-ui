@@ -41,8 +41,7 @@ function getSymbolDocumentation({
 
   const decl = symbol.getDeclarations();
   if (decl) {
-    // @ts-ignore
-    const comments = ts.getJSDocCommentsAndTags(decl[0]) as readonly any[];
+    const comments = ts.getJSDocCommentsAndTags(decl[0]);
     if (comments && comments.length === 1) {
       const commentNode = comments[0];
       if (ts.isJSDoc(commentNode)) {

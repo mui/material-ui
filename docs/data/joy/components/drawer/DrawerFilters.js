@@ -183,7 +183,6 @@ export default function DrawerFilters() {
                             if (!event.target.checked) {
                               set.delete(index);
                             }
-
                             return [...set];
                           })
                         }
