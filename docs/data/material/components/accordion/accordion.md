@@ -80,7 +80,7 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 ### Only one expanded at a time
 
-Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
+Use the `expanded` prop with React's `useState` hook to only allow one Accordion Item to be expanded at a time.
 The demo below also shows a bit of visual customization.
 
 {{"demo": "CustomizedAccordions.js", "bg": true}}

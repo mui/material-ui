@@ -58,7 +58,7 @@ to make the classes structure as simple as possible, while sufficient to impleme
   The lower the style specificity is, the simpler it is to override.
 - We increase the specificity for a variant modifier.
   We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.).
-  It allows much more control at the cost of more boilerplate.
+  It gives you much more control at the cost of more boilerplate.
   Hopefully, it's also more intuitive.
 
 ```js
@@ -89,7 +89,7 @@ Nested components inside a component have:
 ### Prop naming
 
 - **Boolean**
-  - The default value of a boolean prop should be `false`. This allows for better shorthand notation. Consider an example of an input that is enabled by default. How should you name the prop that controls this state? It should be called `disabled`:
+  - The default value of a boolean prop should be `false`. This lets you use better shorthand notation. Consider an example of an input that is enabled by default. How should you name the prop that controls this state? It should be called `disabled`:
 
     ```jsx
     ❌ <Input enabled={false} />

@@ -9,7 +9,7 @@ githubSource: packages/mui-material/src/Rating
 
 # Rating
 
-<p class="description">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>
+<p class="description">Ratings provide insight regarding others' opinions and experiences, and users can submit their own ratings.</p>
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 

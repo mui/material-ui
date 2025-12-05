@@ -48,7 +48,7 @@ yarn add @material-ui/core
 ### Update React version
 
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This allows us to rely on [Hooks](https://react.dev/reference/react/hooks) (we no longer use the class API).
+This lets us take advantage of [hooks](https://react.dev/reference/react/hooks) (we no longer use the class API).
 
 ### Update Material UI Styles version
 
@@ -357,7 +357,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 ### Tabs
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
-  This has allowed us to remove 2 intermediary DOM elements.
+  This has enabled us to remove two intermediary DOM elements.
   You should be able to move the custom styles to the `root` class key.
 
   ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)

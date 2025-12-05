@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Slider
 
 # Slider
 
-<p class="description">Sliders allow users to make selections from a range of values.</p>
+<p class="description">Sliders let users make selections from a range of values.</p>
 
 Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
@@ -18,7 +18,7 @@ Sliders reflect a range of values along a bar, from which users may select a sin
 
 ## Continuous sliders
 
-Continuous sliders allow users to select a value along a subjective range.
+Continuous sliders let users select a value along a subjective range.
 
 {{"demo": "ContinuousSlider.js"}}
 
@@ -76,7 +76,7 @@ If you want the range to shift when reaching minimum distance, you can utilize t
 
 ## Slider with input field
 
-In this example, an input allows a discrete value to be set.
+In this example, an input lets you set a discrete value.
 
 {{"demo": "InputSlider.js"}}
 

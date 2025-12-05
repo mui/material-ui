@@ -34,8 +34,8 @@ The following components have props applying higher density:
 
 ## Explore theme density
 
-This tool allows you to apply density via spacing and component props. You can browse
-around and see how this applies to the overall feel of Material UI components.
+This tool lets you apply density via spacing and component props.
+You can browse around and see how this applies to the overall feel of Material UI components.
 
 If you enable high density a custom theme is applied to the docs. This theme is only
 for demonstration purposes. You _should not_ apply this theme to your whole application

@@ -1,6 +1,6 @@
 # Default theme viewer
 
-<p class="description">This tree view allows you to explore how the theme object looks like with the default values.</p>
+<p class="description">This tree view lets you explore how the theme object looks like with the default values.</p>
 
 If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createTheme.ts`](https://github.com/mui/material-ui/blob/-/packages/mui-material/src/styles/createTheme.ts),
 and the related imports which `createTheme()` uses.

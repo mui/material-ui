@@ -1,6 +1,6 @@
 # Breaking changes in v5, part one: styles and themes
 
-<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrating from v4. This part covers changes to styling and theming.</p>
+<p class="description">This is a reference guide to the breaking changes introduced in Material UI v5, and how to migrate from v4. This part covers changes to styling and theming.</p>
 
 ## Material UI v5 migration
 
@@ -294,7 +294,7 @@ To see how it can be done, take a look at the [`StyledEngineProvider` implementa
 ### ✅ Add adaptV4Theme helper
 
 The structure of the theme has changed in v5. You need to update its shape.
-For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
+For a smoother transition, the `adaptV4Theme` helper lets you iteratively upgrade some of the theme changes to the new theme structure.
 
 ```diff
 -import { createMuiTheme } from '@mui/material/styles';
