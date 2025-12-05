@@ -128,7 +128,7 @@ function render(
   });
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
-    user: userEvent.setup({ document }),
+    user: userEvent.setup({ document, delay: null }),
     forceUpdate() {
       testingLibraryRenderResult.rerender(
         React.cloneElement(element, {
