@@ -932,9 +932,7 @@ function useAutocomplete(props) {
             });
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
-            setValueState(null);
-            setFocusedItem(-1);
-            focusItem(-1);
+            handleValue(event, null, 'removeOption', { option: value });
           }
           break;
         case 'Delete':
@@ -954,9 +952,7 @@ function useAutocomplete(props) {
             });
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
-            setValueState(null);
-            setFocusedItem(-1);
-            focusItem(-1);
+            handleValue(event, null, 'removeOption', { option: value });
           }
           break;
         default:
