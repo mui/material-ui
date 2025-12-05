@@ -953,7 +953,7 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderValue && !readOnly) {
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
             setValueState(null);
             setFocusedItem(-1);
             focusItem(-1);
