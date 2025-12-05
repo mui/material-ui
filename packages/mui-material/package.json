@@ -47,7 +47,6 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
     "@types/chai": "^5.2.3",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.7",

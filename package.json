@@ -55,9 +55,9 @@
     "vitest": "vitest",
     "test:coverage:html": "pnpm test:unit run --coverage --coverage.reporter html",
     "test:e2e": "cross-env NODE_ENV=production pnpm test:e2e:build && concurrently --success first --kill-others \"pnpm test:e2e:run\" \"pnpm test:e2e:server\"",
-    "test:e2e:build": "nx run nx_test_e2e_build",
+    "test:e2e:build": "webpack --config test/e2e/webpack.config.js",
     "test:e2e:dev": "concurrently \"pnpm test:e2e:build --watch\" \"pnpm test:e2e:server\"",
-    "test:e2e:run": "nx run nx_test_e2e_run",
+    "test:e2e:run": "vitest run -r ./test/e2e/",
     "test:e2e:server": "serve test/e2e -p 5001",
     "test:e2e-website": "playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
     "test:e2e-website:dev": "cross-env PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 playwright test test/e2e-website --config test/e2e-website/playwright.config.ts",
@@ -78,8 +78,6 @@
     "validate-declarations": "tsx scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
-    "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",
-    "nx_test_e2e_run": "vitest run -r ./test/e2e/",
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
@@ -102,7 +100,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "^0.0.2-canary.1",
     "@mui/internal-scripts": "workspace:^",
-    "@mui/internal-test-utils": "workspace:^",
+    "@mui/internal-test-utils": "https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@c0ba5ba",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -140,7 +138,6 @@
     "lerna": "^9.0.1",
     "markdownlint-cli2": "^0.18.1",
     "nx": "^20.8.2",
-    "nyc": "^17.1.0",
     "playwright": "1.56.1",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
@@ -181,30 +178,5 @@
     "@pigment-css/unplugin": "0.0.30",
     "@pigment-css/nextjs-plugin": "0.0.30",
     "@pigment-css/vite-plugin": "0.0.30"
-  },
-  "nyc": {
-    "include": [
-      "packages/mui*/src/**/*.?(c|m)[jt]s?(x)"
-    ],
-    "exclude": [
-      "**/*.test.?(c|m)[jt]s?(x)",
-      "**/*.test/*"
-    ],
-    "sourceMap": false,
-    "instrument": false
-  },
-  "nx": {
-    "targets": {
-      "nx_test_e2e_build": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      },
-      "nx_test_e2e_run": {
-        "dependsOn": [
-          "@mui/internal-test-utils:build"
-        ]
-      }
-    }
   }
 }

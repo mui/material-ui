@@ -39,7 +39,6 @@
     "react-is": "^19.2.0"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^5.2.3",
     "@types/node": "^20.19.25",

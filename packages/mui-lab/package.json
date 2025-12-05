@@ -41,7 +41,6 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^5.2.3",
     "@types/prop-types": "^15.7.15",

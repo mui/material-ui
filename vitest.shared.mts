@@ -79,16 +79,19 @@ export default async function create(
       globals: true,
       disableConsoleIntercept: true,
       setupFiles: [
-        path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
+        '@mui/internal-test-utils/setupVitest',
         ...(jsdom || testEnv === 'browser'
           ? [
-              path.resolve(
-                MONOREPO_ROOT,
-                './packages-internal/test-utils/src/setupVitestBrowser.ts',
-              ),
+              '@mui/internal-test-utils/setupVitestBrowser',
+              path.resolve(MONOREPO_ROOT, './test/setupVitest.js'),
             ]
           : []),
       ],
+      server: {
+        deps: {
+          inline: ['@mui/internal-test-utils'],
+        },
+      },
       environment: jsdom ? 'jsdom' : 'node',
 
       fakeTimers: {
@@ -119,10 +122,6 @@ export default async function create(
     resolve: {
       dedupe: ['react', 'react-dom'],
       alias: {
-        '@mui/internal-test-utils': path.resolve(
-          MONOREPO_ROOT,
-          './packages-internal/test-utils/src',
-        ),
         '@mui/internal-docs-utils': path.resolve(
           MONOREPO_ROOT,
           './packages-internal/docs-utils/src',
