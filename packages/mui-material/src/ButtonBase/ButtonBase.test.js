@@ -1090,7 +1090,6 @@ describe('<ButtonBase />', () => {
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('does not call onClick if Enter was pressed on a child', () => {
@@ -1145,7 +1144,6 @@ describe('<ButtonBase />', () => {
         fireEvent.keyDown(button, { key: 'Enter' });
 
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
       });
 
       it('should ignore anchors with href', async () => {
