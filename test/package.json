@@ -10,7 +10,6 @@
     "@emotion/react": "^11.14.0",
     "@mui/base": "5.0.0-beta.70",
     "@mui/icons-material": "workspace:^",
-    "@mui/internal-test-utils": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
