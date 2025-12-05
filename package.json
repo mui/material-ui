@@ -100,7 +100,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "^0.0.2-canary.1",
     "@mui/internal-scripts": "workspace:^",
-    "@mui/internal-test-utils": "https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@c0ba5ba",
+    "@mui/internal-test-utils": "https://pkg.pr.new/mui/mui-public/@mui/internal-test-utils@97307db",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
