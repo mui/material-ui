@@ -83,7 +83,7 @@ export default async function create(
         ...(jsdom || testEnv === 'browser'
           ? [
               '@mui/internal-test-utils/setupVitestBrowser',
-              path.resolve(MONOREPO_ROOT, './test/setupVitest.js'),
+              path.resolve(MONOREPO_ROOT, './test/setupVitest.ts'),
             ]
           : []),
       ],
