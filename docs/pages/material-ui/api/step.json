@@ -7,6 +7,13 @@
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
     "expanded": { "type": { "name": "bool" }, "default": "false" },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(index: number, totalSteps: number) => string",
+        "describedArgs": ["index", "totalSteps"]
+      }
+    },
     "index": { "type": { "name": "custom", "description": "integer" } },
     "last": { "type": { "name": "bool" } },
     "sx": {
