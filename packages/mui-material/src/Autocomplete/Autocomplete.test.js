@@ -871,6 +871,39 @@ describe('<Autocomplete />', () => {
         expect(handleSubmit.callCount).to.equal(0);
       },
     );
+
+    it('should move focus to the last chip with ArrowLeft only when caret is at the start when multiple', () => {
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          multiple
+          options={options}
+          defaultValue={[options[0], options[1]]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chipOne = screen.queryByText('one').parentElement;
+      const chipTwo = screen.queryByText('two').parentElement;
+
+      // Type something so the input has content.
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+
+      // Caret not at start: ArrowLeft should just move the caret, not focus the chip.
+      textbox.setSelectionRange(2, 2);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(textbox).toHaveFocus();
+
+      // Caret at start: ArrowLeft should now move focus to the second chip.
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chipTwo).toHaveFocus();
+
+      // ArrowLeft should now move focus to the first chip.
+      fireEvent.keyDown(chipTwo, { key: 'ArrowLeft' });
+      expect(chipOne).toHaveFocus();
+    });
   });
 
   it('should trigger a form expectedly', () => {
@@ -3749,6 +3782,34 @@ describe('<Autocomplete />', () => {
 
       expect(textbox).to.have.property('value', 'on');
       expect(textbox).toHaveFocus();
+    });
+
+    it('should move focus to the rendered value with ArrowLeft only when caret is at the start', () => {
+      const options = ['one', 'two'];
+      const view = render(
+        <Autocomplete
+          options={options}
+          defaultValue={options[0]}
+          renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = view.container.querySelector(`.${chipClasses.root}`);
+
+      // Type something so the input has content.
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+
+      // Caret not at start: ArrowLeft should just move the caret, not focus the chip.
+      textbox.setSelectionRange(2, 2);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(textbox).toHaveFocus();
+
+      // Caret at start: ArrowLeft should now move focus to the rendered value.
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
     });
   });
 
