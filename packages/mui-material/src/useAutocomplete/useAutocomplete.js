@@ -753,6 +753,8 @@ function useAutocomplete(props) {
 
     let nextItem = focusedItem;
 
+    // When moving focus from the input to tags with ArrowLeft,
+    // always jump to the last tag (if any) from the input.
     if (focusedItem === -1 && direction === 'previous') {
       nextItem = value.length - 1;
     } else {
@@ -851,6 +853,8 @@ function useAutocomplete(props) {
           break;
         case 'ArrowLeft': {
           const input = inputRef.current;
+          // Only handle ArrowLeft when the caret is at the start of the input.
+          // Otherwise let the browser move the caret normally.
           const caretAtStart = input && input.selectionStart === 0 && input.selectionEnd === 0;
 
           if (!caretAtStart) {
@@ -859,9 +863,11 @@ function useAutocomplete(props) {
           }
 
           if (!multiple && renderValue && value != null) {
+            // Single-value rendering: move focus from input to the single tag.
             setFocusedItem(0);
             focusItem(0);
           } else {
+            // Multi-value: delegate to tag navigation helper.
             handleFocusItem(event, 'previous');
           }
           break;
@@ -952,6 +958,8 @@ function useAutocomplete(props) {
             });
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
+            // Single-value rendering: Delete on empty input removes
+            // the single rendered option, same "removeOption" reason as multiple.
             handleValue(event, null, 'removeOption', { option: value });
           }
           break;
@@ -1012,6 +1020,8 @@ function useAutocomplete(props) {
     }
 
     if (newValue === '') {
+      // For normal single-select, clearing the input clears the value.
+      // For renderValue (chip-style single), only Backspace/Delete clear the value.
       if (!disableClearable && !multiple && !renderValue) {
         handleValue(event, null, 'clear');
       }
