@@ -3633,11 +3633,13 @@ describe('<Autocomplete />', () => {
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
     });
 
-    it('should delete using Backspace key', () => {
+    it('should delete using Backspace key with empty input text', () => {
+      const handleChange = spy();
       const view = render(
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
+          onChange={handleChange}
           renderValue={(value, getItemProps) => {
             return <Chip label={value} {...getItemProps()} />;
           }}
@@ -3651,14 +3653,21 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'Backspace' });
 
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(null);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'one' });
+
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
 
-    it('should delete using Delete key', () => {
+    it('should delete using Delete key with empty input text', () => {
+      const handleChange = spy();
       const view = render(
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
+          onChange={handleChange}
           renderValue={(value, getItemProps) => {
             return <Chip label={value} {...getItemProps()} />;
           }}
@@ -3671,6 +3680,11 @@ describe('<Autocomplete />', () => {
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
       fireEvent.keyDown(textbox, { key: 'Delete' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(null);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'one' });
 
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
