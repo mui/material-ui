@@ -42,7 +42,7 @@
     "@mui/material-v5": "npm:@mui/material@5.18.0",
     "@types/chai": "^5.2.3",
     "@types/jscodeshift": "0.12.0",
-    "chai": "^6.0.1"
+    "chai": "^6.2.1"
   },
   "sideEffects": false,
   "publishConfig": {
