@@ -279,6 +279,8 @@ If you're using TypeScript, then you'll need to use [module augmentation](/mater
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
+import '@mui/material/styles';
+
 declare module '@mui/material/styles' {
   interface PaletteColor {
     darker?: string;
