@@ -42,8 +42,8 @@
     "@types/node": "^20.19.25",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.7",
-    "next": "^15.5.6",
-    "react": "^19.2.0"
+    "next": "^15.5.7",
+    "react": "^19.2.1"
   },
   "peerDependencies": {
     "@mui/base": "^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta",
