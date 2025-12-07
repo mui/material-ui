@@ -1,6 +1,6 @@
 # React Community Engineer — X (future role)
 
-<p class="description">You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.</p>
+<p class="description">You will work with the advanced components team to provide guidance to the community and help resolve user issues.</p>
 
 ## Details of the role
 
@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of early 2024, and we're growing.
+We're a company of 40 people as of 2025, and we're growing steadily.
 
 ## The products
 
@@ -39,9 +39,9 @@ For additional details about the culture, you can check our [careers](https://mu
 We need a Community Engineer to solve friction points of users.
 We face challenges on multiple fronts:
 
-- As a result of this growth, we (will) have more users questions and feedback coming in than ever before.
+- As a result of our growth, we have more user questions and feedback coming in than ever before.
 - The commercial version of the library is growing, but our community of developers is still small and has a reduced incentive to contribute compared to the community plan.
-- Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
+- Software engineers at MUI are tasked with user support, but they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
 - The MUI X Premium plan will offer a technical advisor service, we need a Community Engineer to help deliver it.
 
 Overall, both our open-source community and our premium products are growing fast.
@@ -51,18 +51,18 @@ We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
-You will be a key member of the Developer Experience's team and will directly impact customer satisfaction and success.
+You will be a key member of the Developer Experience team and will directly impact customer satisfaction and success.
 You will troubleshoot and depending on your bandwidth also fix complex issues related to MUI.
-At MUI a Community Engineer is considered a developer, it's a person that enjoys optimizing what already exists but is also eager to help our users with features that are requested by the community.
+At MUI a Community Engineer is considered a developer—someone who enjoys optimizing what already exists but is also eager to help our users with features that are requested by the community.
 
-Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+Our products empower React developers to build awesome applications faster—we see millions of developers on MUI's docs every year, one million a month.
 
 ### Key responsibilities
 
 You will own the following responsibilities:
 
 - **Build product knowledge**. You will continually research and learn the current and future best practices of using MUI.
-- **Resolve users' issues**. You will solve these issues at two levels:
+- **Resolve user issues**. You will solve these issues at two levels:
   - On the surface, you will answer developers on GitHub, Zendesk, X, email, Slack.
   - At the root, you will create/update the documentation, fix bugs in collaboration with the relevant developer, implement community driven features and more.
 - **Provide feedback**. You will work alongside product managers to define and shape the product goals, roadmap, priorities, and strategy based on your frontline knowledge of customer needs.

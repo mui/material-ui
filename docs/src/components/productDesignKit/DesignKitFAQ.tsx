@@ -177,10 +177,10 @@ export default function DesignKitFAQ() {
               gutterBottom
               sx={{ color: 'text.primary', fontWeight: 'bold' }}
             >
-              Got any questions unanswered or need more help?
+              Still have questions?
             </Typography>
             <Typography variant="body2" gutterBottom sx={{ color: 'text.primary' }}>
-              From community help to premium business support, we&apos;re here to help.
+              From community help to premium business support, we&apos;re here for you.
             </Typography>
             <Button
               component="a"
