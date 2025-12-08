@@ -48,7 +48,7 @@ export default function CustomersLogoSlider({
 
   const logoWidth = 150;
   const gapSize = 24;
-  const totalWidth = logos.length * logoWidth + (logos.length - 1) * gapSize;
+  const totalWidth = logos.length * (logoWidth + gapSize);
 
   return (
     <Container
@@ -80,7 +80,6 @@ export default function CustomersLogoSlider({
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: 3,
               animation: {
                 xs: `${scroll} 25s linear infinite`,
                 sm: `${scroll} 35s linear infinite`,
@@ -103,6 +102,7 @@ export default function CustomersLogoSlider({
                   opacity: 0.7,
                   transition: 'opacity 0.3s ease-in-out, filter 0.3s ease-in-out',
                   flexShrink: 0,
+                  marginRight: 3,
                   filter: isLight
                     ? 'none'
                     : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
@@ -118,7 +118,6 @@ export default function CustomersLogoSlider({
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: 3,
               animation: {
                 xs: `${scroll} 25s linear infinite`,
                 sm: `${scroll} 35s linear infinite`,
@@ -141,6 +140,7 @@ export default function CustomersLogoSlider({
                   opacity: 0.7,
                   transition: 'opacity 0.3s ease-in-out, filter 0.3s ease-in-out',
                   flexShrink: 0,
+                  marginRight: 3,
                   filter: isLight
                     ? 'none'
                     : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
