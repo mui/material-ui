@@ -79,5 +79,15 @@ Moz developers found MUI documentation intuitive and in-depth, making customizat
 Moz pro tip: "Read the docs thoroughly—there are many small examples that can greatly help with customization."
 :::
 
-Moz strongly recommends MUI X to developers working with large-scale, data-intensive applications.
-Its performance, flexibility, and ease of use makes it a top choice for scalable UI development.
+<span class="only-light-mode">
+<blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
+MUI X is recommended for developers working with large-scale, data-intensive applications.
+Its performance, flexibility, and ease of use makes it a top choice for scalable UI development. - Darko
+</blockquote>
+</span>
+<span class="only-dark-mode">
+<blockquote style="margin: 32px 0; padding: 24px 32px; background: #0D161F; border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
+MUI X is recommended for developers working with large-scale, data-intensive applications.
+Its performance, flexibility, and ease of use makes it a top choice for scalable UI development. - Darko
+</blockquote>
+</span>
