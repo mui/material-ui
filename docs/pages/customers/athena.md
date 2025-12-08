@@ -42,7 +42,7 @@ manualCard: true
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
+  We started using MUI components from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
@@ -51,7 +51,7 @@ manualCard: true
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We started using MUI from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
+  We started using MUI components from day one to provide a wide range of UIs that support data workflows for enterprise teams. MUI X enabled us to iterate faster by offering complex UI components like data grids.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
@@ -61,14 +61,14 @@ manualCard: true
 
 ## Challenge
 
-Athena needed a customizable and performant UI framework to build their schema management interface, which required handling large datasets and ensuring a smooth user experience.
+Athena needed a customizable and performant UI library to build their schema management interface, which required handling large datasets and ensuring a smooth user experience.
 
 ## Solution
 
 To power their schema management interface, Athena integrated the **Data Grid Premium** and the **Tree View**, leveraging MUI X's structured approach to UI development.
 Key benefits of using MUI X included:
 
-- Higher-level abstractions – Built on top of MUI (Material UI) for seamless integration.
+- Higher-level abstractions – Built on top of Material UI for seamless integration.
 - Faster iteration cycles – Simplified the development of complex UI components.
 - Component-based architecture – Aligned perfectly with React's ecosystem.
 - Efficient code organization – Improved maintainability over inline styling methods like Tailwind CSS.
@@ -95,6 +95,6 @@ The ease of integration and instant improvements in interactivity and UI cohesio
 
 ## Developer experience
 
-Athena found the MUI documentation to be highly detailed, structured and clear. The step-by-step guides helped them implement complex features like cell editing, selection, and customization easily. Developers additionally liked the seamless React integration as it helped them optimize the development process, accelerating feature rollouts and overall delivery speed.
+Athena found the MUI documentation to be highly detailed, structured, and clear. The step-by-step guides helped them implement complex features like cell editing, selection, and customization easily. Developers additionally liked the seamless React integration as it helped them optimize the development process, accelerating feature rollouts and overall delivery speed.
 
 MUI X is now an essential tool in Athena's development stack, enabling rapid, scalable, and high-performance UI solutions.

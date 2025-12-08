@@ -17,7 +17,7 @@ manualCard: true
   }
 </style>
 
-# Coupa | Delivering features 50% faster with MUI Components
+# Coupa | Delivering features 50% faster with MUI components
 
 <img
   id="blog-responsive-image-light"
@@ -32,7 +32,7 @@ manualCard: true
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We had very strict and aggressive deadlines, and we were able to meet them. If we had done it using our own components, it probably would have been at least six months to eight months over the deadline. So, with MUI we got 50% faster. But when you put that on a longer period, I think that number is bigger because of maintenance and shifting paradigms and business needs.
+  We had very strict and aggressive deadlines, and we were able to meet them. If we had done it using our own components, it probably would have been at least six to eight months over the deadline. So, with MUI we got 50% faster. But when you put that on a longer horizon, I think that number is bigger because of [the benefits when tackling] maintenance, and shifting paradigms and business needs.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/ali-sipahi/" target="_blank" rel="noopener">Ali Sipahi</a>, Engineering Manager

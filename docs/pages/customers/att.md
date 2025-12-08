@@ -28,7 +28,7 @@ manualCard: true
 
 ## Overview
 
-[AT&T](https://www.att.com/), a leading global telecommunications company develops advanced tools to enhance productivity and performance across its retail and call-center teams.
+[AT&T](https://www.att.com/), a leading global telecommunications company, develops advanced tools to enhance productivity and performance across its retail and call-center teams.
 Their internal applications, MyResults and MyCOACH, serve as key platforms for performance tracking and coaching within the organization.
 
 <span class="only-light-mode">
@@ -52,8 +52,8 @@ Their internal applications, MyResults and MyCOACH, serve as key platforms for p
 
 ## Challenge
 
-They needed a highly customizable, efficient UI solution to help them deliver more consistent performance dashboards across their applications.
-They wanted to have a standard look and feel across their dashbaords and were looking for a solution that helps them build fast.
+AT&T needed a highly customizable, efficient UI solution to help them deliver more consistent performance dashboards across their applications.
+They wanted to have a standard look and feel across their dashboards and were looking for a solution that would accelerate their development speed.
 
 ## Solution
 
@@ -61,16 +61,16 @@ To power MyResults and MyCOACH, AT&T integrated the **MUI X Data Grid Premium**
 Key benefits of using the Data Grid included:
 
 - The technical team could output more as leveraging MUI X Data Grid Premium enabled them to build applications faster.
-- The team could customize the component to meet their use case. For one of their apps, that had lots of columns, the column pinning feature proved to be helpful to deliver a good UX.
-- They team liked how the components work immediately with minimal configuration.
+- The team could customize the component to meet their use case. For one of their apps that includes many columns, the column pinning feature was crucial to delivering a good UX.
+- The team liked how the components work immediately with minimal configuration.
 
 ## Results
 
 By integrating MUI X, AT&T achieved:
 
-- Increased development speed ensured faster feature delivery, enabling the management move to a more agile process.
-- A consistent looking interface across all applications improved the overall UX, enabling internal users to focus on their core tasks.
+- Increased development speed ensuring faster feature delivery, enabling them move to a more agile process.
+- A consistent-looking interface across all applications improved the overall UX, enabling internal users to focus on their core tasks.
 
 ## Developer experience
 
-AT&T's developers found the MUI documentation to be clear and reliable, ensuring smooth implementation without issues. MUI X being React focussed enabled integrating with other React libraries easy, reinforcing its value as the go-to UI framework for AT&T's internal applications.
+AT&T's developers found the MUI documentation to be clear and reliable, ensuring smooth implementation without issues. They found that MUI X integrated easily with other popular React libraries, reinforcing its value as the go-to UI framework for AT&T's internal applications.
