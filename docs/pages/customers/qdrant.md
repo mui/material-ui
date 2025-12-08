@@ -34,7 +34,7 @@ After starting with MUI's open-source components, Qdrant upgraded to a perpetual
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  Having built a date range picker from scratch before, I know firsthand how challenging and time-consuming it can be—it's truly a nightmare. I decided to use the MUI X date range picker. I simply read the documentation, plugged it in, and it worked seamlessly. Honestly, it was a delight.
+  Having built a date range picker from scratch before, I know firsthand how challenging and time-consuming it can be—it's truly a nightmare. I decided to use the MUI X date range picker. I simply read the documentation, plugged it in, and it worked seamlessly. Honestly, it was a delight.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/josep-fornies-escola/" target="_blank" rel="noopener">Josep Fornies</a>, Senior Frontend Developer
@@ -44,7 +44,7 @@ After starting with MUI's open-source components, Qdrant upgraded to a perpetual
 
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  Having built a date range picker from scratch before, I know firsthand how challenging and time-consuming it can be—it's truly a nightmare. I decided to use the MUI X date range picker. I simply read the documentation, plugged it in, and it worked seamlessly. Honestly, it was a delight.
+  Having built a date range picker from scratch before, I know firsthand how challenging and time-consuming it can be—it's truly a nightmare. I decided to use the MUI X date range picker. I simply read the documentation, plugged it in, and it worked seamlessly. Honestly, it was a delight.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/josep-fornies-escola/" target="_blank" rel="noopener">Josep Fornies</a>, Senior Frontend Developer
@@ -68,7 +68,7 @@ As a startup in the competitive vector database space, Qdrant faced several crit
 
 Qdrant adopted Material UI as their primary frontend component library, leveraging both open-source and Pro components:
 
-- Comprehensive component usage – The team had prior experience with Material UI from their previous projects and choosing it again was a no-brainer. They implemented MUI components extensively across their entire product suite, using everything from primitive elements like appbars and menus to advanced components.
+- Comprehensive component usage – The team had prior experience with Material UI from their previous projects and choosing it again was a no-brainer. They implemented MUI components extensively across their entire product suite, using everything from primitive elements like appbars and menus to advanced components.
 
 - Pro license upgrade – After recognizing the value of MUI's advanced components through the community plan, Qdrant purchased a perpetual Pro license specifically for the Date Range Picker, with plans to integrate Data Grid and Charts. The buying process was smooth and the team was able to get started quickly.
 

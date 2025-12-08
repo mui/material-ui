@@ -20,16 +20,16 @@ const scroll = keyframes`
 const defaultCustomerLogos: CustomerLogo[] = [
   { name: 'Spotify', lightLogo: '/static/branding/companies/slider/spotify.png' },
   { name: 'Amazon', lightLogo: '/static/branding/companies/slider/amazon.png' },
-  { name: 'NASA', lightLogo: '/static/branding/companies/slider/nasa.png' },
   { name: 'Netflix', lightLogo: '/static/branding/companies/slider/netflix.png' },
   { name: 'Unity', lightLogo: '/static/branding/companies/slider/unity.png' },
   { name: 'AT&T', lightLogo: '/static/branding/companies/slider/atnt.png' },
-  { name: 'Apple', lightLogo: '/static/branding/companies/slider/apple.png' },
   { name: 'Tesla', lightLogo: '/static/branding/companies/slider/tesla.png' },
   { name: 'Samsung', lightLogo: '/static/branding/companies/slider/samsung.png' },
   { name: 'Verizon', lightLogo: '/static/branding/companies/slider/verizon.png' },
   { name: 'Shutterstock', lightLogo: '/static/branding/companies/slider/shutterstock.png' },
+  { name: 'Apple', lightLogo: '/static/branding/companies/slider/apple.png' },
   { name: 'Volvo', lightLogo: '/static/branding/companies/slider/volvo.png' },
+  { name: 'NASA', lightLogo: '/static/branding/companies/slider/nasa.png' },
   { name: 'Deloitte', lightLogo: '/static/branding/companies/slider/deloitte.png' },
 ];
 
