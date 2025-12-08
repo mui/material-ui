@@ -19,7 +19,7 @@ manualCard: true
 
 ## Overview
 
-[Delivery Hero](https://www.deliveryhero.com/) is a leading local delivery platform, operating in around 70 countries. connecting customers with restaurants, shops, and essential services through fast, technology-driven delivery solutions. Their Partner Portal provides restaurant and vendors with tools to manage operations efficiently, enhance customer experience, and optimize performance.
+[Delivery Hero](https://www.deliveryhero.com/) is a leading local delivery platform, operating in around 70 countries. They connect customers with restaurants, shops, and essential services through fast, technology-driven delivery solutions. Their Partner Portal provides restaurant and vendors with tools to manage operations efficiently, enhance customer experience, and optimizing performance.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">

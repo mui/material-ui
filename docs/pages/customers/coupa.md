@@ -41,7 +41,7 @@ manualCard: true
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  We had very strict and aggressive deadlines, and we were able to meet them. If we had done it using our own components, it probably would have been at least six months to eight months over the deadline. So, with MUI we got 50% faster. But when you put that on a longer period, I think that number is bigger because of maintenance and shifting paradigms and business needs
+  We had very strict and aggressive deadlines, and we were able to meet them. If we had done it using our own components, it probably would have been at least six to eight months over the deadline. So, with MUI we got 50% faster. But when you put that on a longer horizon, I think that number is bigger because of [the benefits when tackling] maintenance, and shifting paradigms and business needs.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/ali-sipahi/" target="_blank" rel="noopener">Ali Sipahi</a>,  Engineering Manager
@@ -53,11 +53,11 @@ manualCard: true
 
 Coupa was struggling with a 12-year-old in-house component library that was:
 
-- Built on React 17 but difficult to maintain and update
-- Lacking a unified design system
-- Limited in component offerings
-- Difficult to scale as it was built specifically for one application
-- Inconsistent component nomeclature
+- built on React 17 but difficult to maintain and update
+- lacking a unified design system
+- limited in component offerings
+- difficult to scale as it was built specifically for one application
+- marred by inconsistent component nomenclature
 
 As Ali explained, it was built over time and not with a complete plan. So some of the things were difficult to update and maintain. It didn't have a design system behind it, which made it difficult to create a unified user experience.
 
@@ -67,15 +67,15 @@ After researching various options, Coupa implemented MUI with a focus on:
 
 - Creating custom theme to match their existing design system
 - Integrating MUI components within a greenfield application
-- Expanding usage from core components to MUI X advanced components (date picker and charts)
+- Expanding usage from core components to MUI X advanced components (Date Picker and Charts)
 - Doubling the licenses as adoption grew grew across projects
 
 ## Results
 
 After integrating MUI X, Coupa managed to meet an aggressive one-year product delivery deadline resulting in a 50% faster time to market.
 They significantly enhanced user experience with a unified, modern interface.
-They also increased the platform production quality with reduced P0, P1 bugs.
-Recently, they also integrated MUI X Charts for a new AI chatbot feature:
+They also increased the platform production quality with reduced P0 and P1 bugs.
+Recently, they also integrated MUI X Charts in a new AI chatbot feature:
 
 <img
   id="coupa-ui"
@@ -87,7 +87,7 @@ Recently, they also integrated MUI X Charts for a new AI chatbot feature:
 ## Developer experience
 
 The switch to MUI dramatically improved the developer workflow as the consistent component APIs made implementation timelines predictable.
-The MUI component structure and the comprehensive documentation reduced learning curve and simplified onboarding for new team members.
+The MUI component structure and the comprehensive documentation reduced the learning time and simplified onboarding for new team members.
 It also reduced friction between design and development teams.
 
 <span class="only-light-mode">
