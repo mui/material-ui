@@ -29,7 +29,7 @@ manualCard: true
 ## Overview
 
 [Oregon State University](https://oregonstate.edu/) is a premier public land-grant research university located in Corvallis, Oregon, recognized for innovation, world-class research, and a diverse academic environment with strong community engagement and global impact.
-To improve their course planning and faculty assignment, they developed Resource Insights-an application, which balances course sections, faculty availability, and student demand.
+To improve their course planning and faculty assignment, they developed Resource Insights, an application for managing course sections, faculty availability, and student demand.
 It replaced outdated Excel-based methods with a modern online system.
 The tool integrates with existing university systems to provide real-time enrollment data, eliminating manual data entry.
 
@@ -62,7 +62,7 @@ Key challenges included:
 - The need for an Excel-like experience in a web-based tool.
 - Finding a framework that was well-supported, actively maintained, and built specifically for React.
 - Ensuring high performance and customization while keeping the UI intuitive.
-  While alternatives like AG Grid were considered, MUI X was preferred because it's deeply integrated with React, whereas AG Grid's approach spans multiple frameworks, leading to inconsistencies in React-specific implementations.
+  While alternatives like AG Grid were considered, MUI X was preferred because it's deeply integrated with React, whereas AG Grid's approach spans multiple frontend frameworks, leading to inconsistencies in React implementations.
 
 ## Solution
 
