@@ -63,9 +63,9 @@ Moz needed a UI framework that could:
 To meet these challenges, Moz integrated **MUI X Premium**, leveraging its **Data Grid** and **Date Picker** components to create an optimized, interactive, and performant UI.
 Key benefits of using MUI X included:
 
-- A great DX and UX. A developer-friendly and intuitive user experience.
-- Advanced customization capabilities. Data Grid API refs allowed them to build a UI for filtering and column management,a game-changer for their keyword analysis platform.
-- Faster feature development accelerated product delivery across the platform.
+- Great DX and UX – a developer-friendly and intuitive user experience.
+- Advanced customization capabilities – Data Grid API refs allowed them to build a UI for filtering and column management, a game-changer for their keyword analysis platform.
+- Faster feature development – accelerating product delivery across the platform.
 
 ## Results
 
@@ -76,7 +76,7 @@ By adopting MUI X, Moz could handling large keyword datasets efficiently with M
 Moz developers found MUI documentation intuitive and in-depth, making customizations straightforward.
 
 :::info
-Pro tip: "Read the docs thoroughly—there are many small examples that can greatly help with customization."
+Moz pro tip: "Read the docs thoroughly—there are many small examples that can greatly help with customization."
 :::
 
 Moz strongly recommends MUI X to developers working with large-scale, data-intensive applications.

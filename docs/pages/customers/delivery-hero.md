@@ -44,7 +44,7 @@ manualCard: true
 
 Before adopting MUI X, the Delivery Hero team faced two major challenges:
 
-- Fixing vendor reported bugs and feature requests took time due to the slow development speed. Building, testing and refining UI components took too much time.
+- Fixing vendor reported bugs and implementing feature requests took time due to the slow development speed. Building, testing, and refining UI components was a slow process.
 - Ensuring a consistent, easy-to-use and performant experience for end users was difficult.
 
 ## Solution
@@ -52,13 +52,13 @@ Before adopting MUI X, the Delivery Hero team faced two major challenges:
 To address these challenges, the team integrated the **MUI X Pro Date and Time Pickers** and **Data Grid** into their platform.
 These components enabled them to:
 
-- Accelerate development by using pre-built, high-quality components. It reduced the time spent on UI implementation.
-- Enhance usability by offering a modern, sleek UI that improved user interactions and consistency.
+- Accelerate development by using pre-built, high-quality components. This reduced the time spent on UI implementation.
+- Enhance usability by offering a modern, sleek UI that improves user interactions and consistency.
 - Optimize performance by providing a smooth experience for restaurant and shop managers.
 
 ## Results
 
-After implementing MUI X, the team saw immediate benefits. It gave them more time to focus on other business features. UI development became faster and more efficient.
+After implementing MUI X, the team saw immediate benefits. UI development became faster and more efficient, which gave them more time to focus on  business features. 
 
 One key success story was the implementation of the Date Time Picker, which significantly reduced the number of clicks required for users to achieve their desired results.
 This simple enhancement greatly improved user efficiency and satisfaction.
