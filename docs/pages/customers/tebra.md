@@ -2,7 +2,6 @@
 title: Tebra
 description: Modernizing legacy reporting systems in healthcare.
 image: '/static/branding/companies/tebra_spotlight.svg'
-date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']
 rank: '2'
 manualCard: true

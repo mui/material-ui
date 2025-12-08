@@ -2,7 +2,6 @@
 title: AT&T
 description: Streamlining development workflows for internal tools.
 image: '/static/branding/companies/atnt_spotlight.svg'
-date: 2022-06-08T00:00:00.000Z
 tags: ['MUI X']
 rank: '4'
 manualCard: true

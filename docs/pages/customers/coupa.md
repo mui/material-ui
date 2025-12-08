@@ -2,7 +2,6 @@
 title: Coupa
 description: Delivering features 50% faster with MUI Components.
 image: '/static/branding/companies/coupa_spotlight.svg'
-date: 2022-06-08T00:00:00.000Z
 rank: '3'
 tags: ['MUI X']
 manualCard: true
