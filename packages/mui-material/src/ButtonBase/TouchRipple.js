@@ -302,6 +302,13 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     [pulsate, start, stop],
   );
 
+  React.useEffect(
+    () => () => {
+      startTimer.clear();
+    },
+    [startTimer],
+  );
+
   return (
     <TouchRippleRoot
       className={clsx(touchRippleClasses.root, classes.root, className)}
