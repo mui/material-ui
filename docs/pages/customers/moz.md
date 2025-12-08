@@ -1,7 +1,7 @@
 ---
 title: Moz
 description: How Moz optimized large-scale keyword analysis with MUI X.
-image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/moz.svg'
+image: '/static/branding/companies/moz.svg'
 tags: ['MUI X']
 rank: '8'
 manualCard: true
