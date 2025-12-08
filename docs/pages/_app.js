@@ -19,6 +19,7 @@ import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
+import { AnalyticsProvider } from 'docs/src/modules/components/AnalyticsProvider';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
@@ -345,18 +346,20 @@ function AppWrapper(props) {
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >
-        <CodeCopyProvider>
-          <CodeVariantProvider>
-            <PageContext.Provider value={pageContextValue}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  {children}
-                  <GoogleAnalytics />
-                </DocsStyledEngineProvider>
-              </ThemeProvider>
-            </PageContext.Provider>
-          </CodeVariantProvider>
-        </CodeCopyProvider>
+        <AnalyticsProvider>
+          <CodeCopyProvider>
+            <CodeVariantProvider>
+              <PageContext.Provider value={pageContextValue}>
+                <ThemeProvider>
+                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                    {children}
+                    <GoogleAnalytics />
+                  </DocsStyledEngineProvider>
+                </ThemeProvider>
+              </PageContext.Provider>
+            </CodeVariantProvider>
+          </CodeCopyProvider>
+        </AnalyticsProvider>
       </DocsProvider>
     </React.Fragment>
   );

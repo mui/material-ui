@@ -15,6 +15,7 @@ const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
 const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
+const APOLLO_TRACKING_ID = PRODUCTION_GA ? '68efaf63a6b6a4001571da4a' : 'dev-id';
 
 export default class MyDocument extends Document {
   render() {
@@ -104,10 +105,47 @@ export default class MyDocument extends Document {
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
+
+${/* Set default consent to denied (Google Consent Mode v2) */ ''}
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'analytics_storage': 'denied',
+  'wait_for_update': 500
+});
+gtag('set', 'ads_data_redaction', true);
+gtag('set', 'url_passthrough', true);
+
 gtag('js', new Date());
 gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
   send_page_view: false,
 });
+
+${/* Apollo initialization - called by AnalyticsProvider when consent is granted */ ''}
+window.initApollo = function() {
+  if (window.apolloInitialized) return;
+  window.apolloInitialized = true;
+  var n = Math.random().toString(36).substring(7),
+    o = document.createElement('script');
+  o.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + n;
+  o.async = true;
+  o.defer = true;
+  o.onload = function () {
+    window.trackingFunctions.onLoad({ appId: '${APOLLO_TRACKING_ID}' });
+  };
+  document.head.appendChild(o);
+};
+
+${/* Check localStorage for existing consent and initialize if already granted */ ''}
+(function() {
+  try {
+    var consent = localStorage.getItem('docs-cookie-consent');
+    if (consent === 'analytics') {
+      window.initApollo();
+    }
+  } catch (e) {}
+})();
 `,
             }}
           />
