@@ -757,6 +757,13 @@ function useAutocomplete(props) {
     // always jump to the last tag (if any) from the input.
     if (focusedItem === -1 && direction === 'previous') {
       nextItem = value.length - 1;
+      // In freeSolo, clear any draft text so it doesn't "come back" later.
+      if (freeSolo && inputValue !== '') {
+        setInputValueState('');
+        if (onInputChange) {
+          onInputChange(event, '', 'reset');
+        }
+      }
     } else {
       nextItem += direction === 'next' ? 1 : -1;
 
@@ -862,8 +869,16 @@ function useAutocomplete(props) {
             return;
           }
 
+          // Single-value rendering: move focus from input to the single tag.
           if (!multiple && renderValue && value != null) {
-            // Single-value rendering: move focus from input to the single tag.
+            // Moving from input to single tag; clear freeSolo draft text,
+            // so it doesn't reappear when we move back.
+            if (freeSolo && inputValue !== '') {
+              setInputValueState('');
+              if (onInputChange) {
+                onInputChange(event, '', 'reset');
+              }
+            }
             setFocusedItem(0);
             focusItem(0);
           } else {

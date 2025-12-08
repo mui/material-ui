@@ -904,6 +904,40 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(chipTwo, { key: 'ArrowLeft' });
       expect(chipOne).toHaveFocus();
     });
+
+    it('should clear freeSolo input when moving focus from input to chip with ArrowLeft and not restore it on ArrowRight', () => {
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          multiple
+          freeSolo
+          options={options}
+          defaultValue={options}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chips = screen.getAllByRole('button'); // chips for "one" and "two"
+      const lastChip = chips[chips.length - 1];
+
+      // Type some freeSolo text
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+      expect(textbox).to.have.property('value', 'foo');
+
+      // Caret at start: ArrowLeft should move focus to the last chip
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(lastChip).toHaveFocus();
+
+      // Input text should be cleared and stay cleared
+      expect(textbox).to.have.property('value', '');
+
+      // ArrowRight should move focus back to the input, without restoring the old text
+      fireEvent.keyDown(lastChip, { key: 'ArrowRight' });
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.property('value', '');
+    });
   });
 
   it('should trigger a form expectedly', () => {
@@ -3824,6 +3858,39 @@ describe('<Autocomplete />', () => {
       textbox.setSelectionRange(0, 0);
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
       expect(chip).toHaveFocus();
+    });
+
+    it('should clear freeSolo input when moving focus to the rendered value with ArrowLeft and not restore it on ArrowRight', () => {
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          freeSolo
+          options={options}
+          defaultValue={options[0]}
+          renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = screen.getByRole('button', { name: 'one' });
+
+      // Type some freeSolo text
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+      expect(textbox).to.have.property('value', 'foo');
+
+      // Caret at start: ArrowLeft should move focus to the rendered value
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+
+      // Input text should be cleared
+      expect(textbox).to.have.property('value', '');
+
+      // ArrowRight should move focus back to input without restoring text
+      fireEvent.keyDown(chip, { key: 'ArrowRight' });
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.property('value', '');
     });
   });
 
