@@ -336,19 +336,18 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
   });
 
   function addConsoleMatcher(matcherName: string, methodName: 'error' | 'warn') {
-    /**
-     * @param {string[]} expectedMessages
-     */
-    function matcher(this: Chai.AssertionStatic, expectedMessagesInput = []) {
+    function matcher(
+      this: Chai.AssertionStatic,
+      expectedMessagesInput: readonly (string | false | RegExp)[] = [],
+    ) {
       // documented pattern to get the actual value of the assertion
       // eslint-disable-next-line no-underscore-dangle
       const callback = this._obj;
 
       if (process.env.NODE_ENV !== 'production') {
-        const expectedMessages =
-          typeof expectedMessagesInput === 'string'
-            ? [expectedMessagesInput]
-            : expectedMessagesInput.slice();
+        const expectedMessages = Array.isArray(expectedMessagesInput)
+          ? expectedMessagesInput.slice()
+          : [expectedMessagesInput];
         const unexpectedMessages: Error[] = [];
         // TODO Remove type once MUI X enables noImplicitAny
         let caughtError: unknown | null = null;
@@ -391,7 +390,10 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
           let message: string | null = null;
           if (expectedMessage === undefined) {
             message = `Expected no more error messages but got:\n"${actualMessage}"`;
-          } else if (!actualMessage.includes(expectedMessage)) {
+          } else if (
+            (typeof expectedMessage === 'string' && !actualMessage.includes(expectedMessage)) ||
+            (expectedMessage instanceof RegExp && !expectedMessage.test(actualMessage))
+          ) {
             message = `Expected #${messagesMatched} "${expectedMessage}" to be included in \n"${actualMessage}"`;
           }
 
