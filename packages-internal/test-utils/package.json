@@ -35,7 +35,7 @@
     "assertion-error": "^2.0.1",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.1",
-    "es-toolkit": "^1.41.0",
+    "es-toolkit": "^1.42.0",
     "format-util": "^1.0.5",
     "jsdom": "^26.1.0",
     "prop-types": "^15.8.1",
