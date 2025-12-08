@@ -87,7 +87,7 @@
     "@slack/bolt": "^4.6.0",
     "@vitest/eslint-plugin": "^1.5.1",
     "babel-plugin-transform-import-meta": "^2.3.3",
-    "execa": "^9.6.0"
+    "execa": "^9.6.1"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
