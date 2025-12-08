@@ -85,9 +85,9 @@
   "dependencies": {
     "@netlify/functions": "^5.1.0",
     "@slack/bolt": "^4.6.0",
-    "@vitest/eslint-plugin": "^1.5.0",
+    "@vitest/eslint-plugin": "^1.5.1",
     "babel-plugin-transform-import-meta": "^2.3.3",
-    "execa": "^9.6.0"
+    "execa": "^9.6.1"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
@@ -106,7 +106,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^15.5.6",
+    "@next/eslint-plugin-next": "^15.5.7",
     "@octokit/rest": "^22.0.1",
     "@pigment-css/react": "0.0.30",
     "@playwright/test": "1.56.1",
@@ -137,9 +137,9 @@
     "fast-glob": "^3.3.3",
     "git-url-parse": "^16.1.0",
     "globby": "^15.0.0",
-    "lerna": "^9.0.1",
+    "lerna": "^9.0.3",
     "markdownlint-cli2": "^0.18.1",
-    "nx": "^20.8.2",
+    "nx": "^20.8.3",
     "nyc": "^17.1.0",
     "playwright": "1.56.1",
     "prettier": "^3.6.2",
