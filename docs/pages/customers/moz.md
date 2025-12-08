@@ -52,7 +52,7 @@ To handle large-scale keyword analysis, Moz required a robust UI solution capabl
 
 ## Challenge
 
-Moz needed a UI framework that could:
+Moz needed a UI library that could:
 
 - Efficiently cater to customer requests and offer a robust handling of large keyword datasets.
 - Support customization for filtering, sorting, grouping and showing data in complex data grids in a readable way.
@@ -60,7 +60,7 @@ Moz needed a UI framework that could:
 
 ## Solution
 
-To meet these challenges, Moz integrated **MUI X Premium**, leveraging its **Data Grid** and **Date Picker** components to create an optimized, interactive, and performant UI.
+To meet these challenges, Moz integrated **Data Grid** and **Date Picker** components to create an optimized, interactive, and performant UI.
 Key benefits of using MUI X included:
 
 - Great DX and UX – a developer-friendly and intuitive user experience.

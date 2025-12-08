@@ -65,7 +65,7 @@ Athena needed a customizable and performant UI library to build their schema man
 
 ## Solution
 
-To power their schema management interface, Athena integrated the **Data Grid Premium** and the **Tree View**, leveraging MUI X's structured approach to UI development.
+To power their schema management interface, Athena integrated the **Data Grid** and the **Tree View**, leveraging MUI X's structured approach to UI development.
 Key benefits of using MUI X included:
 
 - Higher-level abstractions – Built on top of Material UI for seamless integration.
@@ -91,7 +91,7 @@ After integrating MUI X, Athena saw:
 - Better performance and flexibility – Smooth, interactive data management without performance bottlenecks.
 
 A defining moment came when the team rapidly implemented direct asset renaming and customized components using MUI X.
-The ease of integration and instant improvements in interactivity and UI cohesion reinforced the framework's powerful capabilities.
+The ease of integration and instant improvements in interactivity and UI cohesion reinforced the library's powerful capabilities.
 
 ## Developer experience
 

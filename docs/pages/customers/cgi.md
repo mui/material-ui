@@ -66,7 +66,7 @@ Their key challenges included:
 
 ## Solution
 
-CGI adopted **MUI X Data Grid Premium** as the foundation for Techyon's GUI, providing:
+CGI adopted the **Data Grid** as the foundation for Techyon's GUI, providing:
 
 - A seamless, modern UI for managing workflows and energy data.
 - High-performance data handling, even with tens of thousands of rows displayed at once.

@@ -60,7 +60,7 @@ Key challenges included:
 
 - Lack of real-time data integration in current processes.
 - The need for an Excel-like experience in a web-based tool.
-- Finding a framework that was well-supported, actively maintained, and built specifically for React.
+- Finding a library that was well-supported, actively maintained, and built specifically for React.
 - Ensuring high performance and customization while keeping the UI intuitive.
   While alternatives like AG Grid were considered, MUI X was preferred because it's deeply integrated with React, whereas AG Grid's approach spans multiple frontend frameworks, leading to inconsistencies in React implementations.
 
