@@ -917,8 +917,7 @@ describe('<Autocomplete />', () => {
       );
 
       const textbox = screen.getByRole('combobox');
-      const chips = screen.getAllByRole('button'); // chips for "one" and "two"
-      const lastChip = chips[chips.length - 1];
+      const lastChip = screen.getByRole('button', { name: 'two' });
 
       // Type some freeSolo text
       fireEvent.change(textbox, { target: { value: 'foo' } });
