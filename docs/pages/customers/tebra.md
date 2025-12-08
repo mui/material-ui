@@ -33,7 +33,7 @@ As their platform evolved over the years, they accumulated a mix of legacy techn
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  The feature of searching in the grid is absolutely a killer for us. Everything loads to the client, the data sits in memory inside the grid, and now you can search anything—and the search is so fast and amazing.
+  Searching in the grid is an absolute killer feature for us. Everything loads to the client-side, and now you can search anything—and the search is so fast and amazing.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank" rel="noopener">Ronen Akiva</a>, Senior Director of Engineering
@@ -42,7 +42,7 @@ As their platform evolved over the years, they accumulated a mix of legacy techn
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  The feature of searching in the grid is absolutely a killer for us. Everything loads to the client, the data sits in memory inside the grid, and now you can search anything—and the search is so fast and amazing.
+  Searching in the grid is an absolute killer feature for us. Everything loads to the client-side, and now you can search anything—and the search is so fast and amazing.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank" rel="noopener">Ronen Akiva</a>, Senior Director of Engineering
@@ -75,6 +75,7 @@ Here's how Tebra adopted the MUI X Data Grid as the cornerstone of their modern
   - Grouping and summarization functionality
   - Customizable row density for improved readability
   - Advanced sorting capabilities
+  - Lazy loading
 
 - Architectural optimization - They moved from database-heavy pagination to client-side data loading, enabling lightning-fast search and filtering while maintaining performance through strategic data limits.
 

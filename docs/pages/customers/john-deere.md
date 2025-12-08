@@ -57,7 +57,7 @@ Frontend teams at John Deere needed a reliable, standardized component library t
 
 ## Solution
 
-By integrating **MUI X Premium Data Grid**, John Deere's teams found a baseline of standardized components to rely on, ensuring a cohesive development approach in places where their in-house Fuel Design System didn't provide the necessary coverage.
+By integrating MUI X, John Deere's teams found a baseline of standardized components to rely on, ensuring a cohesive development approach in places where their in-house Fuel Design System didn't provide the necessary coverage.
 
 ## Results
 

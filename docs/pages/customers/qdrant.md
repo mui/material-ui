@@ -28,7 +28,7 @@ manualCard: true
 
 ## Overview
 
-[Qdrant](https://qdrant.tech/) is an open-source vector database provider with over 25k GitHub stars. Many companies have been using Qdrant to make sense of their unstructured data through advanced search, recommendation, and other AI capabilities. After a $30M Series-A funding, Qdrant needed to transition into a sustainable business.
+[Qdrant](https://qdrant.tech/) is an open-source vector database provider with over 25k GitHub stars. Thousands of companies use Qdrant to make sense of their unstructured data through advanced search, recommendation, and other AI capabilities. After a $30M Series-A funding, Qdrant needed to transition into a sustainable business.
 
 Their frontend team uses Material UI across all of their products, websites, and dashboards.
 After starting with MUI's open-source components, Qdrant upgraded to a perpetual Pro license for the Date Range Picker, with further plans to explore Data Grid and Charts.
@@ -69,7 +69,7 @@ As a startup in the competitive vector database space, Qdrant faced several crit
 
 Qdrant adopted Material UI as their primary frontend component library, leveraging both open-source and Pro components:
 
-- Comprehensive component usage – The team had prior experience with Material UI from their previous projects and choosing it again was a no-brainer. They implemented MUI components extensively across their entire product suite, using everything from primitive elements like toolbars and menus to advanced components.
+- Comprehensive component usage – The team had prior experience with Material UI from their previous projects and choosing it again was a no-brainer. They implemented MUI components extensively across their entire product suite, using everything from primitive elements like appbars and menus to advanced components.
 
 - Pro license upgrade – After recognizing the value of MUI's advanced components through the community plan, Qdrant purchased a perpetual Pro license specifically for the Date Range Picker, with plans to integrate Data Grid and Charts. The buying process was smooth and the team was able to get started quickly.
 
@@ -98,6 +98,6 @@ Qdrant's development team consistently praised MUI's developer experience.
 The team highlighted MUI's comprehensive documentation, well-documented APIs, and clear migration guides as standout features that accelerated their implementation process. They liked how the components work immediately with minimal configuration.
 
 The team also appreciated the official MCP server from MUI, and said that it had enhanced agent–driven development. They were also introduced to MUI Chat, the latest AI product from MUI, which enables developers to build with MUI components using natural language prompts. The team agreed that this would accelerate their development speed even more.
-The team appreciated having multiple support channels available, including GitHub for technical issues, Zendesk for feature requests, and comprehensive online resources.
+The team appreciated having multiple support channels available, including GitHub for technical issues, Zendesk for billing support, and comprehensive online resources for general inquiries.
 
 The success of MUI at Qdrant shows how the right component library can enable startups to focus on their core product innovation while maintaining professional, scalable user interfaces.

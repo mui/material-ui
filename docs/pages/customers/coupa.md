@@ -68,7 +68,6 @@ After researching various options, Coupa implemented MUI with a focus on:
 - Creating custom theme to match their existing design system
 - Integrating MUI components within a greenfield application
 - Expanding usage from core components to MUI X advanced components (Date Picker and Charts)
-- Doubling the licenses as adoption grew grew across projects
 
 ## Results
 
