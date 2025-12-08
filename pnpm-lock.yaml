@@ -188,8 +188,8 @@ importers:
         specifier: ^15.0.0
         version: 15.0.0
       lerna:
-        specifier: ^9.0.1
-        version: 9.0.1(@types/node@20.19.25)(babel-plugin-macros@3.1.0)
+        specifier: ^9.0.3
+        version: 9.0.3(@types/node@20.19.25)(babel-plugin-macros@3.1.0)
       markdownlint-cli2:
         specifier: ^0.18.1
         version: 0.18.1
@@ -3570,8 +3570,8 @@ packages:
   '@keyv/serialize@1.1.0':
     resolution: {integrity: sha512-RlDgexML7Z63Q8BSaqhXdCYNBy/JQnqYIwxofUrNLGCblOMHp+xux2Q8nLMLlPpgHQPoU0Do8Z6btCpRBEqZ8g==}
 
-  '@lerna/create@9.0.1':
-    resolution: {integrity: sha512-xkZhQ+d7IsLzL5+1G+rKtH3b9aKRyBQ9yaz1VwPTfkD2nUAyaco97BRN9YRJgJrSHY/SI265RaD1D2rt00Jjkg==}
+  '@lerna/create@9.0.3':
+    resolution: {integrity: sha512-hUTEWrR8zH+/Z3bp/R1aLm6DW8vB/BB7KH7Yeg4fMfrvSwxegiLVW9uJFAzWkK4mzEagmj/Dti85Yg9MN13t0g==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
   '@loaderkit/resolve@1.0.3':
@@ -8861,6 +8861,10 @@ packages:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
+  js-yaml@4.1.1:
+    resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
+    hasBin: true
+
   jsbn@1.1.0:
     resolution: {integrity: sha512-4bYVV3aAMtDTTu4+xsDYa6sy9GyJ69/amsu9sYF2zqjiEoZA5xJi3BrfX3uY+/IekIu7MwdObdbDWpoZdBv3/A==}
 
@@ -9057,8 +9061,8 @@ packages:
     resolution: {integrity: sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==}
     engines: {node: '>= 0.6.3'}
 
-  lerna@9.0.1:
-    resolution: {integrity: sha512-sPfufYbSLisgi3mghbfOPxNL0Jhs4p6yCexXEdwgXITV5oKq6mdj2w5NQ32i6wMfSlEZFzIIV17ozdYsHavNhg==}
+  lerna@9.0.3:
+    resolution: {integrity: sha512-wCsJWKX8FaGJoWX2K5gL5q7ReqQNxNsS92AW5glBe/JzWEtoM/jgXXGrEzQzORMb8rTXYFjUjpn60et+i8XugA==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     hasBin: true
 
@@ -14362,7 +14366,7 @@ snapshots:
       globals: 14.0.0
       ignore: 5.3.2
       import-fresh: 3.3.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -14763,7 +14767,7 @@ snapshots:
 
   '@keyv/serialize@1.1.0': {}
 
-  '@lerna/create@9.0.1(@types/node@20.19.25)(babel-plugin-macros@3.1.0)(typescript@5.9.3)':
+  '@lerna/create@9.0.3(@types/node@20.19.25)(babel-plugin-macros@3.1.0)(typescript@5.9.3)':
     dependencies:
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
@@ -14793,7 +14797,7 @@ snapshots:
       inquirer: 12.9.6(@types/node@20.19.25)
       is-ci: 3.0.1
       is-stream: 2.0.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       libnpmpublish: 11.1.2
       load-json-file: 6.2.0
       make-dir: 4.0.0
@@ -18690,7 +18694,7 @@ snapshots:
   cosmiconfig@8.3.6(typescript@5.9.3):
     dependencies:
       import-fresh: 3.3.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
@@ -18700,7 +18704,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.9.3
@@ -20986,6 +20990,10 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  js-yaml@4.1.1:
+    dependencies:
+      argparse: 2.0.1
+
   jsbn@1.1.0: {}
 
   jscodeshift-add-imports@1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.28.5(@babel/core@7.28.5))):
@@ -21225,9 +21233,9 @@ snapshots:
     dependencies:
       readable-stream: 2.3.8
 
-  lerna@9.0.1(@types/node@20.19.25)(babel-plugin-macros@3.1.0):
+  lerna@9.0.3(@types/node@20.19.25)(babel-plugin-macros@3.1.0):
     dependencies:
-      '@lerna/create': 9.0.1(@types/node@20.19.25)(babel-plugin-macros@3.1.0)(typescript@5.9.3)
+      '@lerna/create': 9.0.3(@types/node@20.19.25)(babel-plugin-macros@3.1.0)(typescript@5.9.3)
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
       '@npmcli/run-script': 10.0.2
@@ -21261,7 +21269,7 @@ snapshots:
       is-ci: 3.0.1
       is-stream: 2.0.0
       jest-diff: 30.2.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       libnpmaccess: 10.0.3
       libnpmpublish: 11.1.2
       load-json-file: 6.2.0
