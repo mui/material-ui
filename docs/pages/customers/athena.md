@@ -38,7 +38,7 @@ manualCard: true
 
 ## Overview
 
-[Athena Intelligence](https://www.athenaintel.com/) has developed a AI-native analytics platforms designed for enterprises. Athena automates labor-intensive data analysis tasks, allowing human analysts to focus on strategic decision-making.
+[Athena Intelligence](https://www.athenaintel.com/) has developed an AI-native analytics platform designed for enterprises. Athena Olympus automates labor-intensive data analysis tasks, allowing human analysts to focus on strategic decision-making.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">

@@ -51,7 +51,7 @@ manualCard: true
 
 ## Challenge
 
-Coupa was struggling with a 12-year-old in-house component library that was:
+Coupa was struggling with a twelve year old in-house component library that was:
 
 - built on React 17 but difficult to maintain and update
 - lacking a unified design system
@@ -59,7 +59,7 @@ Coupa was struggling with a 12-year-old in-house component library that was:
 - difficult to scale as it was built specifically for one application
 - marred by inconsistent component nomenclature
 
-As Ali explained, it was built over time and not with a complete plan. So some of the things were difficult to update and maintain. It didn't have a design system behind it, which made it difficult to create a unified user experience.
+As Ali explained, it was built over a long period of time and without a complete plan, so some things were difficult to update and maintain. It didn't have a design system behind it, which made it difficult to create a unified appearance.
 
 ## Solution
 

@@ -65,5 +65,5 @@ This simple enhancement greatly improved user efficiency and satisfaction.
 
 ## Developer experience
 
-The team praised MUI documentation, describing it as clear, well-structured, and easy to follow, which helped their developers integrate and customize components effortlessly.
+The team praised the MUI documentation, describing it as clear, well-structured, and easy to follow. This helped their developers integrate and customize components effortlessly.
 For developers looking to build modern, high-performance UI components with minimal effort, the Delivery Hero team highly recommends MUI X.
