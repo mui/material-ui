@@ -318,4 +318,13 @@ export default defineConfig(
       'import/order': 'off',
     },
   },
+  {
+    files: [`test/**/*${EXTENSION_TS}`],
+    rules: {
+      'guard-for-in': 'off',
+      'testing-library/prefer-screen-queries': 'off', // Enable usage of playwright queries
+      'testing-library/no-await-sync-queries': 'off',
+      'testing-library/render-result-naming-convention': 'off', // inconsequential in regression tests
+    },
+  },
 );
