@@ -83,4 +83,4 @@ The Data Grid's customization capabilities allowed the team to build an interfac
 - Seamless system integration – Real-time enrollment data updates reduced manual input errors.
 - Developer-friendly implementation – MUI X's well-structured documentation and conventions enabled smooth adoption.
 
-The Resource Insights team sees MUI X Data grid as an essential component for projects requiring complex tabular interactions.
+The Resource Insights team sees the Data grid as an essential component for projects requiring complex tabular interactions.
