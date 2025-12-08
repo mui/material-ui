@@ -884,8 +884,7 @@ describe('<Autocomplete />', () => {
       );
 
       const textbox = screen.getByRole('combobox');
-      const chipOne = screen.queryByText('one').parentElement;
-      const chipTwo = screen.queryByText('two').parentElement;
+      const [chipOne, chipTwo] = screen.getAllByRole('button');
 
       // Type something so the input has content.
       fireEvent.change(textbox, { target: { value: 'foo' } });
