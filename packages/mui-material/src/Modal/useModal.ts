@@ -5,6 +5,7 @@ import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import createChainedFunction from '@mui/utils/createChainedFunction';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { EventHandlers } from '../utils/types';
 import { ModalManager, ariaHidden } from './ModalManager';
 import {
@@ -31,6 +32,7 @@ const manager = new ModalManager();
 function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
+    disablePortal = false,
     disableEscapeKeyDown = false,
     disableScrollLock = false,
     closeAfterTransition = false,
@@ -63,7 +65,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   };
 
   const handleMounted = () => {
-    manager.mount(getModal(), { disableScrollLock });
+    manager.mount(getModal(), { disableScrollLock, container });
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     if (modalRef.current) {
@@ -72,7 +74,13 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   };
 
   const handleOpen = useEventCallback(() => {
-    const resolvedContainer = getContainer(container) || getDoc().body;
+    /**
+     * Resolving this could be simplified (mountNodeRef should take priority when it's set)
+     * but this will also work because the logic matches {@link Portal}.
+     */
+    const resolvedContainer = disablePortal
+      ? ((mountNodeRef.current ?? modalRef.current)?.parentElement ?? getDoc().body)
+      : getContainer(container) || getDoc().body;
 
     manager.add(getModal(), resolvedContainer as HTMLElement);
 
@@ -102,7 +110,12 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
     manager.remove(getModal(), ariaHiddenProp);
   }, [ariaHiddenProp]);
 
-  React.useEffect(() => {
+  // We use useLayoutEffect (via useEnhancedEffect) to ensure
+  // aria-hidden attributes are properly cleaned up in the
+  // handleClose -> manager.remove -> ariaHiddenElements chain.
+  // This is important in cases where the Modal gets unmounted
+  // higher up the tree, so cleanup happens before any DOM changes.
+  useEnhancedEffect(() => {
     return () => {
       handleClose();
     };

@@ -40,6 +40,7 @@ const Portal = React.forwardRef(function Portal(
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
+      // If this is changed, make sure it matches `resolvedContainer` in `useModal.handleOpen`.
       setMountNode(getContainer(container) || document.body);
     }
   }, [container, disablePortal]);
