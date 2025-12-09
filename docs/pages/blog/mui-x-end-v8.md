@@ -61,7 +61,7 @@ We're happy to share the newest MUI X features shipped over the past months. As 
 Drag a brush across any cartesian chart to focus the conversation. Zoom a busy week on a time series, isolate a cluster in scatter, or feed the selected window to your own logic. The brush overlay gives a crisp visual cue while you work:
 
 <figure style="margin:16px 0;">
-  <video src="https://github.com/user-attachments/assets/876418a0-60f2-4d34-afbb-724fbb45979c" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/4aea6f6e-b269-47b7-a733-06c21851239b" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Brush a range to zoom or select data.</figcaption>
 </figure>
 
