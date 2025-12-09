@@ -437,7 +437,7 @@ importers:
         specifier: ^5.3.6
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.2.7)(react@19.2.1)
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       notistack:
         specifier: 3.0.2
@@ -455,10 +455,10 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       react-draggable:
         specifier: ^4.5.0
@@ -995,10 +995,10 @@ importers:
         specifier: ^19.2.7
         version: 19.2.7
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
     publishDirectory: build
 
@@ -1164,13 +1164,13 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       sinon:
         specifier: ^21.0.0
@@ -1356,10 +1356,10 @@ importers:
         specifier: ^19.2.7
         version: 19.2.7
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
     publishDirectory: build
 
