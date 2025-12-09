@@ -65,14 +65,14 @@ importers:
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
-        specifier: ^2.0.8-canary.12
-        version: 2.0.8-canary.12(@babel/core@7.28.5)
+        specifier: ^2.0.8-canary.13
+        version: 2.0.8-canary.13(@babel/core@7.28.5)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.55
-        version: 1.0.9-canary.55(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+        specifier: ^1.0.9-canary.56
+        version: 1.0.9-canary.56(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: ^0.0.3-canary.54
-        version: 0.0.3-canary.54(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)
+        specifier: ^0.0.3-canary.55
+        version: 0.0.3-canary.55(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -3487,8 +3487,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@inquirer/select@4.4.0':
-    resolution: {integrity: sha512-kaC3FHsJZvVyIjYBs5Ih8y8Bj4P/QItQWrZW22WJax7zTN+ZPXVGuOM55vzbdCP9zKUiBd9iEJVdesujfF+cAA==}
+  '@inquirer/select@4.4.2':
+    resolution: {integrity: sha512-l4xMuJo55MAe+N7Qr4rX90vypFwCajSakx59qe/tMaC1aEHWLyw68wF4o0A4SLAY4E0nd+Vt+EyskeDIqu1M6w==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/node': ^20.19.25
@@ -3691,8 +3691,8 @@ packages:
       '@babel/core': ^7.28.5
       '@babel/preset-react': ^7.28.5
 
-  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.12':
-    resolution: {integrity: sha512-FkQ9Wo6WAPXk4/RXam7rq2NgYHjS99sh1Hl5z0wbKJzVdhbGYkuqc9h2secAT4bRWddvh/niFBoebSBRxUut/w==}
+  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.13':
+    resolution: {integrity: sha512-Q3hTf04LdS8GbIB+jTkmzIJl4P5z7HVRWKhnA5ZgxBIDQxhV2mhndtd6iHR3xj/MwKcKEA86rhl909LZCbMjrQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@babel/core': ^7.28.5
@@ -3702,12 +3702,12 @@ packages:
     peerDependencies:
       '@babel/core': ^7.28.5
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.55':
-    resolution: {integrity: sha512-oL9xh9fXI0xfqO4P1NPdUOTOXD9jFkI9l0FWcKAl2TkdEaxvVn6d4UUo6S98oReeVDx9U+3zd0/h6jHgsn8hEA==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.56':
+    resolution: {integrity: sha512-28iVCo7Z3TDYWpRv2WqJyoKouexnvZiSwXtr1jI16iCYdaOcyovsgWGjcFraLMYjon2Ey4kw0PcVKDKBoaUkOQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.3-canary.54':
-    resolution: {integrity: sha512-DSO0sKw0BXYm45np4h4RL3/SVim+3mRdLH4rGcABEJ9Kt1MLt5uwtdKNQh4AOo1Mr5/RMGj5wIHcN75EZk8aOQ==}
+  '@mui/internal-code-infra@0.0.3-canary.55':
+    resolution: {integrity: sha512-Vc6U5/k288QstBG5p4vCkIfj3MqwlJ3oMwkVn7o8jQjIw0Z09QeZhOIpZb8jvQqhDWDcYD9AFawrsRIev5esKg==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -6624,8 +6624,8 @@ packages:
     resolution: {integrity: sha512-Su+uU5sr1jkUy1sGRpLKjKrvEOVXgSgiSInwa/qeID6aJ07yh+5NWc3h2QfjHjBnfX4LhtFcuAWKUsJ3r+fjbg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  clipboardy@5.0.0:
-    resolution: {integrity: sha512-MQfKHaD09eP80Pev4qBxZLbxJK/ONnqfSYAPlCmPh+7BDboYtO/3BmB6HGzxDIT0SlTRc2tzS8lQqfcdLtZ0Kg==}
+  clipboardy@5.0.1:
+    resolution: {integrity: sha512-pJ5ZDWjOT593Nli4TqlRLy33KomlAPxIFntMFxXrCqJON1cGcGPT5nNFxRxJ9m4HbfrccsYve7XwXjywW6nXVw==}
     engines: {node: '>=20'}
 
   cliui@6.0.0:
@@ -10364,8 +10364,8 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  piscina@5.1.3:
-    resolution: {integrity: sha512-0u3N7H4+hbr40KjuVn2uNhOcthu/9usKhnw5vT3J7ply79v3D3M8naI00el9Klcy16x557VsEkkUQaHCWFXC/g==}
+  piscina@5.1.4:
+    resolution: {integrity: sha512-7uU4ZnKeQq22t9AsmHGD2w4OYQGonwFnTypDypaWi7Qr2EvQIFVtG8J5D/3bE7W123Wdc9+v4CZDu5hJXVCtBg==}
     engines: {node: '>=20.x'}
 
   pixelmatch@7.1.0:
@@ -14663,7 +14663,7 @@ snapshots:
       '@inquirer/password': 4.0.21(@types/node@20.19.25)
       '@inquirer/rawlist': 4.1.9(@types/node@20.19.25)
       '@inquirer/search': 3.2.0(@types/node@20.19.25)
-      '@inquirer/select': 4.4.0(@types/node@20.19.25)
+      '@inquirer/select': 4.4.2(@types/node@20.19.25)
     optionalDependencies:
       '@types/node': 20.19.25
 
@@ -14684,7 +14684,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.19.25
 
-  '@inquirer/select@4.4.0(@types/node@20.19.25)':
+  '@inquirer/select@4.4.2(@types/node@20.19.25)':
     dependencies:
       '@inquirer/ansi': 1.0.2
       '@inquirer/core': 10.3.2(@types/node@20.19.25)
@@ -14993,7 +14993,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.12(@babel/core@7.28.5)':
+  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.13(@babel/core@7.28.5)':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/helper-module-imports': 7.27.1
@@ -15006,7 +15006,7 @@ snapshots:
       '@babel/core': 7.28.5
       resolve: 1.22.11
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.55(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.56(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)':
     dependencies:
       '@aws-sdk/client-s3': 3.927.0
       '@aws-sdk/credential-providers': 3.927.0
@@ -15016,7 +15016,7 @@ snapshots:
       execa: 9.6.1
       git-url-parse: 16.1.0
       micromatch: 4.0.8
-      piscina: 5.1.3
+      piscina: 5.1.4
       rollup-plugin-visualizer: 6.0.5(rollup@4.46.2)
       vite: 7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       yargs: 18.0.0
@@ -15036,7 +15036,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.3-canary.54(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)':
+  '@mui/internal-code-infra@0.0.3-canary.55(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)':
     dependencies:
       '@argos-ci/core': 4.5.0
       '@babel/cli': 7.28.3(@babel/core@7.28.5)
@@ -15051,9 +15051,9 @@ snapshots:
       '@eslint/js': 9.39.1
       '@eslint/json': 0.14.0
       '@inquirer/confirm': 5.1.21(@types/node@20.19.25)
-      '@inquirer/select': 4.4.0(@types/node@20.19.25)
+      '@inquirer/select': 4.4.2(@types/node@20.19.25)
       '@mui/internal-babel-plugin-display-name': 1.0.4-canary.8(@babel/core@7.28.5)(@babel/preset-react@7.28.5(@babel/core@7.28.5))
-      '@mui/internal-babel-plugin-minify-errors': 2.0.8-canary.12(@babel/core@7.28.5)
+      '@mui/internal-babel-plugin-minify-errors': 2.0.8-canary.13(@babel/core@7.28.5)
       '@mui/internal-babel-plugin-resolve-imports': 2.0.7-canary.28(@babel/core@7.28.5)
       '@napi-rs/keyring': 1.2.0
       '@next/eslint-plugin-next': 15.5.7
@@ -15068,7 +15068,7 @@ snapshots:
       babel-plugin-transform-react-remove-prop-types: 0.4.24
       babel-plugin-transform-remove-imports: 1.8.1(@babel/core@7.28.5)
       chalk: 5.6.2
-      clipboardy: 5.0.0
+      clipboardy: 5.0.1
       content-type: 1.0.5
       env-ci: 11.2.0
       eslint: 9.39.1(jiti@2.6.1)
@@ -18428,7 +18428,7 @@ snapshots:
       execa: 5.1.1
       is-wsl: 2.2.0
 
-  clipboardy@5.0.0:
+  clipboardy@5.0.1:
     dependencies:
       execa: 9.6.1
       is-wayland: 0.1.0
@@ -22912,7 +22912,7 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  piscina@5.1.3:
+  piscina@5.1.4:
     optionalDependencies:
       '@napi-rs/nice': 1.0.4
 
