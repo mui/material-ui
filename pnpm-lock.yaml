@@ -65,19 +65,19 @@ importers:
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
-        specifier: ^2.0.8-canary.13
+        specifier: 2.0.8-canary.13
         version: 2.0.8-canary.13(@babel/core@7.28.5)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.56
+        specifier: 1.0.9-canary.56
         version: 1.0.9-canary.56(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: ^0.0.3-canary.55
+        specifier: 0.0.3-canary.55
         version: 0.0.3-canary.55(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
       '@mui/internal-netlify-cache':
-        specifier: ^0.0.2-canary.1
+        specifier: 0.0.2-canary.1
         version: 0.0.2-canary.1
       '@mui/internal-scripts':
         specifier: workspace:^
@@ -203,7 +203,7 @@ importers:
         specifier: 1.56.1
         version: 1.56.1
       prettier:
-        specifier: ^3.6.2
+        specifier: ~3.6.2
         version: 3.6.2
       pretty-quick:
         specifier: ^4.2.2
@@ -591,7 +591,7 @@ importers:
         specifier: ^1.25.1
         version: 1.25.1
       prettier:
-        specifier: ^3.6.2
+        specifier: ~3.6.2
         version: 3.6.2
       tailwindcss:
         specifier: ^4.1.17
@@ -667,7 +667,7 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prettier:
-        specifier: ^3.6.2
+        specifier: ~3.6.2
         version: 3.6.2
       rimraf:
         specifier: ^6.0.1
@@ -789,7 +789,7 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prettier:
-        specifier: ^3.6.2
+        specifier: ~3.6.2
         version: 3.6.2
       react-docgen:
         specifier: ^5.4.3
