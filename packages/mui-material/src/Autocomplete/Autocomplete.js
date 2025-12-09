@@ -294,11 +294,7 @@ const AutocompletePopper = styled(Popper, {
 const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
-})(
-  memoTheme(({ theme }) => ({
-    ...theme.typography.body1,
-  })),
-);
+})(memoTheme(({ theme }) => theme.typography.body1));
 
 const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
