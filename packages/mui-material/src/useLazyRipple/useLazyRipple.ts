@@ -70,6 +70,9 @@ export class LazyRipple {
         this.mounted!.resolve();
       }
     }
+    return () => {
+      this.ref.current = null;
+    };
   };
 
   /* Ripple API */
