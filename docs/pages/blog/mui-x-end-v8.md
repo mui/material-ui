@@ -74,7 +74,7 @@ Zooming and panning now match expected interactions. Wheel or pinch to zoom, pre
 Tune the interaction config (for example, require CTRL to zoom and SHIFT to pan) so charts play nicely with your page shortcuts.
 
 <figure style="margin:16px 0;">
-  <video src="https://github.com/user-attachments/assets/6a001b61-64f8-4e7b-bf6e-0caa50b1969e" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/4014e63e-7166-47b0-9d1a-986a1074ac69" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Natural zoom and pan on desktop and touch.</figcaption>
 </figure>
 
