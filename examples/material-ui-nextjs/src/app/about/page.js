@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -20,7 +21,7 @@ export default function About() {
         }}
       >
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Material UI - Next.js example in TypeScript
+          Material UI - Next.js example in JavaScript
         </Typography>
         <Box sx={{ maxWidth: 'sm' }}>
           <Button variant="contained" component={NextLink} href="/">
