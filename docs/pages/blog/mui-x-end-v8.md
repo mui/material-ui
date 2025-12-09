@@ -115,7 +115,7 @@ A **Sankey** diagram joins the lineup for flow visualization, while **Funnel** c
 
 ### Clearer axes for dense categories
 
-Multi-level label groups on band/point axes tidy up long category lists and comparisons—perfect for “Region Country City” break-downs:
+Multi-level label groups on band/point axes tidy up long category lists and comparisons—perfect for "Region Country City" break-downs:
 
 <figure style="margin:16px 0;">
   <img src="https://github.com/user-attachments/assets/19710212-4eef-48c1-acc6-46a4e75cffc2" alt="Grouped axes labels" style="width:100%;max-width:960px;border-radius:12px;">
@@ -202,7 +202,7 @@ Excel export now relies on our own internally vetted and private `ExcelJS` fork 
 
 ### Better range defaults [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Range components can use different reference dates for start and for end, so pickers open where users expect—e.g., next Monday through Friday for travel, or “this month” for reporting.
+Range components can use different reference dates for start and for end, so pickers open where users expect—e.g., next Monday through Friday for travel, or "this month" for reporting.
 
 [Reference dates in ranges](/x/react-date-pickers/base-concepts/#reference-date)
 
