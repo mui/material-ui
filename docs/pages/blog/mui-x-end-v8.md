@@ -74,7 +74,7 @@ Zooming and panning now match expected interactions. Wheel or pinch to zoom, pre
 Tune the interaction config (for example, require CTRL to zoom and SHIFT to pan) so charts play nicely with your page shortcuts.
 
 <figure style="margin:16px 0;">
-  <video src="https://github.com/user-attachments/assets/4014e63e-7166-47b0-9d1a-986a1074ac69" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/ba212d3d-b5df-48a4-827d-6a42fd82f493" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Natural zoom and pan on desktop and touch.</figcaption>
 </figure>
 
@@ -85,7 +85,7 @@ Tune the interaction config (for example, require CTRL to zoom and SHIFT to pan)
 A compact slider under the axis makes long ranges effortless to navigate, and the optional preview shows exactly what's in view—the dashboard equivalent of a map's mini-overview:
 
 <figure style="margin:16px 0;">
-  <video src="https://github.com/user-attachments/assets/5c9c4dd3-451e-4281-8e25-c1e8a6283a7c" autoplay muted loop playsinline  alt="Zoom slider and preview" style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/180cb1d1-4537-4c8f-8c7b-eb1dbba1d75e" autoplay muted loop playsinline  alt="Zoom slider and preview" style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Stay oriented while zoomed in.</figcaption>
 </figure>
 
