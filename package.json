@@ -136,7 +136,7 @@
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "fast-glob": "^3.3.3",
     "git-url-parse": "^16.1.0",
-    "globby": "^15.0.0",
+    "globby": "^16.0.0",
     "lerna": "^9.0.3",
     "markdownlint-cli2": "^0.18.1",
     "nx": "^20.8.3",
