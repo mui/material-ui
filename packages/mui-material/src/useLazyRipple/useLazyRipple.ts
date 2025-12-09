@@ -3,6 +3,8 @@ import * as React from 'react';
 import useLazyRef from '@mui/utils/useLazyRef';
 import { TouchRippleActions } from '../ButtonBase/TouchRipple';
 
+const EMPTY_ARRAY = [] as const;
+
 type ControlledPromise<T = unknown> = Promise<T> & {
   resolve: Function;
   reject: Function;
@@ -33,7 +35,7 @@ export class LazyRipple {
   }
 
   static use() {
-    /* eslint-disable */
+    /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
     const ripple = useLazyRef(LazyRipple.create).current;
     const [shouldMount, setShouldMount] = React.useState(false);
 
@@ -41,7 +43,8 @@ export class LazyRipple {
     ripple.setShouldMount = setShouldMount;
 
     React.useEffect(ripple.mountEffect, [shouldMount]);
-    /* eslint-enable */
+    React.useEffect(ripple.unmountEffect, EMPTY_ARRAY);
+    /* eslint-enable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 
     return ripple;
   }
@@ -70,9 +73,10 @@ export class LazyRipple {
         this.mounted!.resolve();
       }
     }
-    return () => {
-      this.ref.current = null;
-    };
+  };
+
+  unmountEffect = () => () => {
+    this.ref.current = null;
   };
 
   /* Ripple API */
