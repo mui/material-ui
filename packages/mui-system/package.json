@@ -53,7 +53,7 @@
     "chai": "^6.0.1",
     "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
-    "react": "^19.2.0",
+    "react": "^19.2.1",
     "sinon": "^21.0.0",
     "styled-components": "^6.1.19"
   },
