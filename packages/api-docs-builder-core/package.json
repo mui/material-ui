@@ -17,7 +17,7 @@
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "docs": "workspace:^",
-    "es-toolkit": "^1.41.0"
+    "es-toolkit": "^1.42.0"
   },
   "devDependencies": {
     "@types/chai": "^5.2.3",
