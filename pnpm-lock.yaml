@@ -212,10 +212,10 @@ importers:
         specifier: ^0.11.10
         version: 0.11.10
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       rimraf:
         specifier: ^6.0.1
@@ -437,7 +437,7 @@ importers:
         specifier: ^5.3.6
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.2.7)(react@19.2.1)
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       notistack:
         specifier: 3.0.2
@@ -455,10 +455,10 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       react-draggable:
         specifier: ^4.5.0
@@ -473,8 +473,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react-is:
-        specifier: ^19.2.0
-        version: 19.2.0
+        specifier: ^19.2.1
+        version: 19.2.1
       react-number-format:
         specifier: ^5.4.4
         version: 5.4.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -995,10 +995,10 @@ importers:
         specifier: ^19.2.7
         version: 19.2.7
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
     publishDirectory: build
 
@@ -1034,10 +1034,10 @@ importers:
         specifier: 5.15.4
         version: 5.15.4(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.1))(@types/react@19.2.7)(react@19.2.1))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
     devDependencies:
       '@types/react':
@@ -1084,7 +1084,7 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       rimraf:
         specifier: ^6.0.1
@@ -1164,13 +1164,13 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       sinon:
         specifier: ^21.0.0
@@ -1232,10 +1232,10 @@ importers:
         specifier: ^6.0.1
         version: 6.2.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       sinon:
         specifier: ^21.0.0
@@ -1284,8 +1284,8 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react-is:
-        specifier: ^19.2.0
-        version: 19.2.0
+        specifier: ^19.2.1
+        version: 19.2.1
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -1324,10 +1324,10 @@ importers:
         specifier: ^26.1.0
         version: 26.1.0
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       react-router:
         specifier: ^7.9.6
@@ -1356,10 +1356,10 @@ importers:
         specifier: ^19.2.7
         version: 19.2.7
       next:
-        specifier: ^15.5.6
+        specifier: ^15.5.7
         version: 15.5.7(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
     publishDirectory: build
 
@@ -1376,7 +1376,7 @@ importers:
         version: 0.0.30(@types/react@19.2.7)(react@19.2.1)(typescript@5.9.3)
     devDependencies:
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
     publishDirectory: build
 
@@ -1408,7 +1408,7 @@ importers:
         specifier: ^6.0.1
         version: 6.2.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
     publishDirectory: build
 
@@ -1455,7 +1455,7 @@ importers:
         specifier: ^6.0.1
         version: 6.2.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
     publishDirectory: build
 
@@ -1490,7 +1490,7 @@ importers:
         specifier: ^6.0.1
         version: 6.2.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       styled-components:
         specifier: ^6.1.19
@@ -1593,7 +1593,7 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       sinon:
         specifier: ^21.0.0
@@ -1635,8 +1635,8 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react-is:
-        specifier: ^19.2.0
-        version: 19.2.0
+        specifier: ^19.2.1
+        version: 19.2.1
     devDependencies:
       '@mui/internal-test-utils':
         specifier: workspace:^
@@ -1663,10 +1663,10 @@ importers:
         specifier: ^6.0.1
         version: 6.2.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       sinon:
         specifier: ^21.0.0
@@ -1760,14 +1760,14 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1
       react-dom:
-        specifier: ^19.2.0
+        specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       react-is:
-        specifier: ^19.2.0
-        version: 19.2.0
+        specifier: ^19.2.1
+        version: 19.2.1
       react-router:
         specifier: ^7.9.6
         version: 7.9.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -10691,8 +10691,8 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-is@19.2.0:
-    resolution: {integrity: sha512-x3Ax3kNSMIIkyVYhWPyO09bu0uttcAIoecO/um/rKGQ4EltYWVYtyiGkS/3xMynrbVQdS69Jhlv8FXUEZehlzA==}
+  react-is@19.2.1:
+    resolution: {integrity: sha512-L7BnWgRbMwzMAubQcS7sXdPdNLmKlucPlopgAzx7FtYbksWZgEWiuYM5x9T6UqS2Ne0rsgQTq5kY2SGqpzUkYA==}
 
   react-number-format@5.4.4:
     resolution: {integrity: sha512-wOmoNZoOpvMminhifQYiYSTCLUDOiUbBunrMrMjA+dV52sY+vck1S4UhR6PkgnoCquvvMSeJjErXZ4qSaWCliA==}
@@ -15176,7 +15176,7 @@ snapshots:
       prop-types: 15.8.1
       react: 19.2.1
       react-dom: 19.2.1(react@19.2.1)
-      react-is: 19.2.0
+      react-is: 19.2.1
       react-transition-group: 4.4.5(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
     optionalDependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.7)(react@19.2.1)
@@ -15276,7 +15276,7 @@ snapshots:
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.2.1
-      react-is: 19.2.0
+      react-is: 19.2.1
     optionalDependencies:
       '@types/react': 19.2.7
 
@@ -15288,7 +15288,7 @@ snapshots:
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.2.1
-      react-is: 19.2.0
+      react-is: 19.2.1
     optionalDependencies:
       '@types/react': 19.2.7
 
@@ -15300,7 +15300,7 @@ snapshots:
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.2.1
-      react-is: 19.2.0
+      react-is: 19.2.1
     optionalDependencies:
       '@types/react': 19.2.7
 
@@ -23267,7 +23267,7 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-is@19.2.0: {}
+  react-is@19.2.1: {}
 
   react-number-format@5.4.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
