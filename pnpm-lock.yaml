@@ -71,8 +71,8 @@ importers:
         specifier: ^1.0.9-canary.56
         version: 1.0.9-canary.56(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: ^0.0.3-canary.55
-        version: 0.0.3-canary.55(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)
+        specifier: ^0.0.3-canary.56
+        version: 0.0.3-canary.56(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -3706,13 +3706,13 @@ packages:
     resolution: {integrity: sha512-28iVCo7Z3TDYWpRv2WqJyoKouexnvZiSwXtr1jI16iCYdaOcyovsgWGjcFraLMYjon2Ey4kw0PcVKDKBoaUkOQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.3-canary.55':
-    resolution: {integrity: sha512-Vc6U5/k288QstBG5p4vCkIfj3MqwlJ3oMwkVn7o8jQjIw0Z09QeZhOIpZb8jvQqhDWDcYD9AFawrsRIev5esKg==}
+  '@mui/internal-code-infra@0.0.3-canary.56':
+    resolution: {integrity: sha512-SmL7in4yPsjyFQ9eZfJPiB73wt4ZEo07z4w24TLNSjItWzo+l2/RCmhe3oOopR3TK7zwtW4mVokoFUlYFbgTww==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
       eslint: ^9.0.0
-      prettier: ^3.5.3
+      prettier: ~3.5.3
       typescript: ^5.0.0
 
   '@mui/internal-netlify-cache@0.0.2-canary.1':
@@ -15048,7 +15048,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.3-canary.55(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)':
+  '@mui/internal-code-infra@0.0.3-canary.56(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.25)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)':
     dependencies:
       '@argos-ci/core': 4.5.0
       '@babel/cli': 7.28.3(@babel/core@7.28.5)
