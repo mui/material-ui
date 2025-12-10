@@ -78,15 +78,7 @@ export default async function create(
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
       disableConsoleIntercept: true,
-      setupFiles: [
-        '@mui/internal-test-utils/setupVitest',
-        ...(jsdom || testEnv === 'browser'
-          ? [
-              '@mui/internal-test-utils/setupVitestBrowser',
-              path.resolve(MONOREPO_ROOT, './test/setupVitest.ts'),
-            ]
-          : []),
-      ],
+      setupFiles: [path.resolve(MONOREPO_ROOT, './test/setupVitest.ts')],
       server: {
         deps: {
           inline: ['@mui/internal-test-utils'],

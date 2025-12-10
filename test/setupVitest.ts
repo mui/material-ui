@@ -1,5 +1,3 @@
-import { configure } from '@mui/internal-test-utils';
+import setupVitest from '@mui/internal-test-utils/setupVitest';
 
-configure({
-  emotion: true,
-});
+setupVitest({ emotion: true });
