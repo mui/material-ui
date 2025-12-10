@@ -12,6 +12,7 @@ import {
   programmaticFocusTriggersFocusVisible,
   supportsTouch,
   isJsdom,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -1279,7 +1280,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('form attributes', () => {
-    it.skipIf(isJsdom())(
+    it.skipIf(isJsdom() || reactMajor < 19)(
       'should not set default type when formAction is present',
       async function test() {
         const formActionSpy = spy();
