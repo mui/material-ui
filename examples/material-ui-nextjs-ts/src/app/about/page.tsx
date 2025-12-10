@@ -1,10 +1,9 @@
-'use client';
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import NextLink from 'next/link';
+import Link from '@/components/Link';
 import ProTip from '@/components/ProTip';
 import Copyright from '@/components/Copyright';
 
@@ -24,7 +23,7 @@ export default function About() {
           Material UI - Next.js example in TypeScript
         </Typography>
         <Box sx={{ maxWidth: 'sm' }}>
-          <Button variant="contained" component={NextLink} href="/">
+          <Button variant="contained" component={Link} href="/">
             Go to the home page
           </Button>
         </Box>
