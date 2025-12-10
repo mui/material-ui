@@ -14,6 +14,9 @@ manualCard: true
       height: 167px;
     }
   }
+  blockquote::before {
+    content: none;
+  }
 </style>
 
 # Qdrant | Accelerating feature delivery as a rising vector database provider

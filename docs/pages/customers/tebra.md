@@ -14,6 +14,9 @@ manualCard: true
       height: 167px;
     }
   }
+  blockquote::before {
+    content: none;
+  }
 </style>
 
 # Tebra | Modernizing legacy reporting systems in healthcare

@@ -14,6 +14,9 @@ manualCard: true
       height: 167px;
     }
   }
+  blockquote::before {
+    content: none;
+  }
 </style>
 
 <img
@@ -59,7 +62,7 @@ Moz needed a UI library that could:
 
 ## Solution
 
-To meet these challenges, Moz integrated **Data Grid** and **Date Picker** components to create an optimized, interactive, and performant UI.
+To meet these challenges, Moz integrated Data Grid and Date Picker components to create an optimized, interactive, and performant UI.
 Key benefits of using MUI X included:
 
 - Great DX and UX – a developer-friendly and intuitive user experience.

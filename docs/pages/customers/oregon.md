@@ -14,6 +14,9 @@ manualCard: true
       height: 167px;
     }
   }
+  blockquote::before {
+    content: none;
+  }
 </style>
 
 <img
@@ -65,7 +68,7 @@ Key challenges included:
 
 ## Solution
 
-The team adopted MUI X's **Data Grid** as the core component for handling tabular data.
+The team adopted the Data Grid as the core component for handling tabular data.
 This choice was driven by its extensive feature set, including:
 
 - Column manipulation – Moving, sorting, filtering, and grouping columns for enhanced usability.

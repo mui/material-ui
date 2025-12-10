@@ -14,6 +14,9 @@ manualCard: true
       height: 167px;
     }
   }
+  blockquote::before {
+    content: none;
+  }
 </style>
 
 # AT&T | Streamlining development workflows for internal tools
@@ -56,7 +59,7 @@ They wanted to have a standard look and feel across their dashboards and were lo
 
 ## Solution
 
-To power MyResults and MyCOACH, AT&T integrated the **Data Grid**, leveraging its robust features and flexible customization options.
+To power MyResults and MyCOACH, AT&T integrated the Data Grid, leveraging its robust features and flexible customization options.
 Key benefits of using the Data Grid included:
 
 - The technical team's productivity improved, as leveraging the Data Grid enabled them to build better applications, faster.

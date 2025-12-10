@@ -7,6 +7,18 @@ rank: '7'
 manualCard: true
 ---
 
+<style>
+  #blog-responsive-image {
+    height: 230px;
+    @media (max-width: 600px) {
+      height: 167px;
+    }
+  }
+  blockquote::before {
+    content: none;
+  }
+</style>
+
 # How Delivery Hero's Partner Portal streamlined development with MUI X
 
 <img
@@ -22,7 +34,7 @@ manualCard: true
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  By leveraging the MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
+  By leveraging the Date Time Picker and Data Grid, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – Ahmed Ibrahim, Senior Manager Software Engineering, Vendor Growth
@@ -31,7 +43,7 @@ manualCard: true
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  By leveraging the MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
+  By leveraging the Date Time Picker and Data Grid, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – Ahmed Ibrahim, Senior Manager Software Engineering, Vendor Growth
@@ -48,7 +60,7 @@ Before adopting MUI X, the Delivery Hero team faced two major challenges:
 
 ## Solution
 
-To address these challenges, the team integrated the **Date and Time Pickers** and **Data Grid** into their platform.
+To address these challenges, the team integrated the Date and Time Pickers and Data Grid into their platform.
 These components enabled them to:
 
 - Accelerate development by using pre-built, high-quality components. This reduced the time spent on UI implementation.
