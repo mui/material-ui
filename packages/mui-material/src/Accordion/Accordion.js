@@ -208,9 +208,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     shouldForwardComponentProp: true,
     ownerState,
     ref,
-    additionalProps: {
-      square,
-    },
   });
 
   const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
