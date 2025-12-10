@@ -148,7 +148,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     disableGutters = false,
     expanded: expandedProp,
     onChange,
-    square = false,
     slots = {},
     slotProps = {},
     TransitionComponent: TransitionComponentProp,
@@ -182,7 +181,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const ownerState = {
     ...props,
-    square,
     disabled,
     disableGutters,
     expanded,
