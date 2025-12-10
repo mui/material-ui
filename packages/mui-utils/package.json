@@ -36,7 +36,7 @@
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.0"
+    "react-is": "^19.2.1"
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
@@ -47,8 +47,8 @@
     "@types/react-is": "^19.2.0",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {

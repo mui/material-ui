@@ -41,9 +41,9 @@
     "@popperjs/core": "^2.11.8",
     "@types/react-transition-group": "^4.4.12",
     "clsx": "^2.1.1",
-    "csstype": "^3.1.3",
+    "csstype": "^3.2.3",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.0",
+    "react-is": "^19.2.1",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
@@ -57,8 +57,8 @@
     "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
     "jsdom": "^26.1.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-router": "^7.9.6",
     "sinon": "^21.0.0"
   },
