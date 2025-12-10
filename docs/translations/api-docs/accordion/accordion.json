@@ -26,7 +26,6 @@
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
-    "square": { "description": "If <code>true</code>, rounded corners are disabled." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },

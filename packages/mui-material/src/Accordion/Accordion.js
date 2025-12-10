@@ -324,11 +324,6 @@ Accordion.propTypes /* remove-proptypes */ = {
     transition: PropTypes.elementType,
   }),
   /**
-   * If `true`, rounded corners are disabled.
-   * @default false
-   */
-  square: PropTypes.bool,
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
