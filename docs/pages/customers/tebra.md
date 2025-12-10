@@ -31,7 +31,7 @@ manualCard: true
 ## Overview
 
 [Tebra](https://tebra.com/) is a healthcare technology company that has been in the market for over a decade.
-As their platform evolved over the years, they accumulated a mix of legacy technologies including JSPs, Angular, and various React implementations, creating inconsistent user experiences across their platform.
+As their platform evolved over the years, they accumulated a mix of legacy technologies including JSPs, Angular, and various React implementations, creating inconsistent UX across their platform.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -62,7 +62,7 @@ Tebra faced several critical challenges with their legacy reporting system:
 - Fragmented technology stack - The platform consisted of multiple technology generations - JSPs, Angular, and different React implementations - all trying to maintain the same look and feel but with vastly different behaviors and codebases.
 - Static, limited reporting - Their existing reports were largely static HTML pages or basic tables with minimal functionality. Users couldn't filter, search, sort, or group data effectively, capabilities that had been standard in desktop applications for fifteen years.
 - Maintenance overhead - Implementing new features across multiple technology stacks required separate implementations in different places, increasing development costs and introducing more bugs.
-- Inconsistent user experience - Users encountered dramatically different experiences depending on which part of the platform they accessed - some screens felt "old and antiquated" while others offered modern functionality.
+- Inconsistent UX - Users encountered dramatically different experiences depending on which part of the platform they accessed - some screens felt "old and antiquated" while others offered modern functionality.
 - Performance constraints - The team had to implement complex throttling and pagination systems to manage large datasets, creating architectural constraints that limited reporting capabilities.
 
 ## Solution
@@ -87,7 +87,7 @@ Here's how Tebra adopted the Data Grid as the cornerstone of their modernization
 
 ## Results
 
-The implementation improved the user experience across Tebra's entire ecosystem.
+The implementation improved the UX across Tebra's entire ecosystem.
 Reports evolved from static displays to interactive interfaces that users expect in contemporary applications.
 The unified design system enabled teams to migrate legacy experiences seamlessly, speeding up development cycles.
 The Data Grid served as a catalyst in this process thanks to its built-in client-side search, with the improved data loading capabilities providing instantaneous search results while maintaining a high level of performance.

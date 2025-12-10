@@ -74,7 +74,7 @@ After researching various options, Coupa implemented MUI with a focus on:
 ## Results
 
 After integrating MUI X, Coupa managed to meet an aggressive one-year product delivery deadline resulting in a 50% faster time to market.
-They significantly enhanced user experience with a unified, modern interface.
+They significantly enhanced the UX with a unified, modern interface.
 They also increased the platform production quality with reduced P0 and P1 bugs.
 Recently, they also integrated MUI X Charts in a new AI chatbot feature:
 

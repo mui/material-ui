@@ -62,7 +62,7 @@ Their Techyon project is dedicated to transforming the energy sector by integrat
 As the energy sector was undergoing rapid transformation, CGI needed a high-performance, scalable GUI to support Techyon's advanced capabilities.
 Their key challenges included:
 
-- Performance bottlenecks, as handling massive data from their Google Cloud without pagination led to slow load times and poor user experience.
+- Performance bottlenecks, as handling massive data from their Google Cloud without pagination led to slow load times and poor UX.
 - Creating an intuitive, consistent, and user-friendly interface for energy operators and analysts.
 - Ensuring developers could quickly build and iterate without wasting time on minor yet complex UI issues.
 

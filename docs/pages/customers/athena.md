@@ -63,7 +63,7 @@ manualCard: true
 
 ## Challenge
 
-Athena needed a customizable and performant UI library to build their schema management interface, which required handling large datasets and ensuring a smooth user experience.
+Athena needed a customizable and performant UI library to build their schema management interface, which required handling large datasets and ensuring a smooth UX.
 
 ## Solution
 
