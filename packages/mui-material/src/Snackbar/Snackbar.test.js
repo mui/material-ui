@@ -685,7 +685,7 @@ describe('<Snackbar />', () => {
 
       const snackbars = container.querySelectorAll('[role="status"]');
       expect(snackbars.length).to.equal(2);
-      // One of the Snackbars should be focused
+
       const focusedSnackbar = Array.from(snackbars).find((s) => s === document.activeElement);
       expect(focusedSnackbar).not.to.equal(undefined);
     });
