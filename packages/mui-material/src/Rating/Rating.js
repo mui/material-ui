@@ -32,6 +32,52 @@ function roundValueToPrecision(value, precision) {
   return Number(nearest.toFixed(getDecimalPrecision(precision)));
 }
 
+// Keyboard helpers to normalize keys across browsers (e.g., Safari)
+const KEY_LEFT = 'ArrowLeft';
+const KEY_RIGHT = 'ArrowRight';
+const KEY_UP = 'ArrowUp';
+const KEY_DOWN = 'ArrowDown';
+const KEY_HOME = 'Home';
+const KEY_END = 'End';
+
+function isKey(eventKey, logical) {
+  if (eventKey === logical) return true;
+  // Safari legacy key values
+  switch (logical) {
+    case KEY_LEFT: return eventKey === 'Left';
+    case KEY_RIGHT: return eventKey === 'Right';
+    case KEY_UP: return eventKey === 'Up';
+    case KEY_DOWN: return eventKey === 'Down';
+    default: return false;
+  }
+}
+
+// Returns undefined if the key isn’t a navigation key.
+// Index 0 means “empty” → returns null.
+function nextValueForKey({ key, value, max, precision, isRtl }) {
+  const totalSteps = Math.round(max / precision);
+  const currentIndex = value == null ? 0 : Math.round(value / precision);
+
+  let nextIndex = currentIndex;
+  const inc = isKey(key, KEY_UP) || (isRtl ? isKey(key, KEY_LEFT) : isKey(key, KEY_RIGHT));
+  const dec = isKey(key, KEY_DOWN) || (isRtl ? isKey(key, KEY_RIGHT) : isKey(key, KEY_LEFT));
+
+  if (inc) nextIndex += 1;
+  else if (dec) nextIndex -= 1;
+  else if (isKey(key, KEY_HOME)) nextIndex = 0;
+  else if (isKey(key, KEY_END)) nextIndex = totalSteps;
+  else return undefined;
+
+  // wrap-around
+  if (nextIndex > totalSteps) nextIndex = 0;
+  if (nextIndex < 0) nextIndex = totalSteps;
+
+  return nextIndex === 0
+    ? null
+    : Number((nextIndex * precision).toFixed(getDecimalPrecision(precision)));
+}
+
+
 const useUtilityClasses = (ownerState) => {
   const { classes, size, readOnly, disabled, emptyValueFocused, focusVisible } = ownerState;
 
@@ -550,6 +596,24 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const handleKeyDown = (event) => {
+    if (readOnly || disabled) return;
+
+    const next = nextValueForKey({
+      key: event.key,
+      value,
+      max,
+      precision,
+      isRtl,
+    });
+
+    if (next === undefined) return; // not a navigation key
+
+    event.preventDefault(); // keep behavior consistent across browsers
+    setValueState(next);
+    if (onChange) onChange(event, next);
+  };
+
   const externalForwardedProps = {
     slots,
     slotProps,
@@ -573,6 +637,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       onMouseLeave: (event) => {
         handleMouseLeave(event);
         handlers.onMouseLeave?.(event);
+      },
+      onKeyDown: (event) => {
+        handleKeyDown(event);
+        handlers.onKeyDown?.(event);
       },
     }),
     ownerState,
