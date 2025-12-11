@@ -250,9 +250,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   return (
     <RootSlot {...rootSlotProps}>
       {icon !== false ? (
-        <IconSlot {...iconSlotProps}>
-          {icon || iconMapping[severity]}
-        </IconSlot>
+        <IconSlot {...iconSlotProps}>{icon || iconMapping[severity]}</IconSlot>
       ) : null}
       <MessageSlot {...messageSlotProps}>{children}</MessageSlot>
       {action != null ? <ActionSlot {...actionSlotProps}>{action}</ActionSlot> : null}
