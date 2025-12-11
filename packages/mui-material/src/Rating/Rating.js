@@ -630,6 +630,21 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const focusRatingInput = (newValue) => {
+    if (!rootRef.current) {
+      return;
+    }
+
+    const selectorValue = newValue == null ? '' : String(newValue);
+    const inputToFocus = rootRef.current.querySelector(
+      `input[name="${name}"][value="${selectorValue}"]`,
+    );
+
+    if (inputToFocus) {
+      inputToFocus.focus();
+    }
+  };
+
   const handleKeyDown = (event) => {
     if (readOnly || disabled) {
       return;
@@ -655,6 +670,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     setValueState(next);
     // Ensure visual value reflects the new rating even if focus overlay is active
     setState((_prev) => ({ hover: -1, focus: -1 }));
+    focusRatingInput(next);
     if (onChange) {
       onChange(event, next);
     }
