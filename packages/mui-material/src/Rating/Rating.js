@@ -41,14 +41,21 @@ const KEY_HOME = 'Home';
 const KEY_END = 'End';
 
 function isKey(eventKey, logical) {
-  if (eventKey === logical) {return true;}
+  if (eventKey === logical) {
+    return true;
+  }
   // Safari legacy key values
   switch (logical) {
-    case KEY_LEFT: return eventKey === 'Left';
-    case KEY_RIGHT: return eventKey === 'Right';
-    case KEY_UP: return eventKey === 'Up';
-    case KEY_DOWN: return eventKey === 'Down';
-    default: return false;
+    case KEY_LEFT:
+      return eventKey === 'Left';
+    case KEY_RIGHT:
+      return eventKey === 'Right';
+    case KEY_UP:
+      return eventKey === 'Up';
+    case KEY_DOWN:
+      return eventKey === 'Down';
+    default:
+      return false;
   }
 }
 
@@ -62,21 +69,30 @@ function nextValueForKey({ key, value, max, precision, isRtl }) {
   const inc = isKey(key, KEY_UP) || (isRtl ? isKey(key, KEY_LEFT) : isKey(key, KEY_RIGHT));
   const dec = isKey(key, KEY_DOWN) || (isRtl ? isKey(key, KEY_RIGHT) : isKey(key, KEY_LEFT));
 
-  if (inc) {nextIndex += 1;}
-  else if (dec) {nextIndex -= 1;}
-  else if (isKey(key, KEY_HOME)) {nextIndex = 0;}
-  else if (isKey(key, KEY_END)) {nextIndex = totalSteps;}
-  else {return undefined;}
+  if (inc) {
+    nextIndex += 1;
+  } else if (dec) {
+    nextIndex -= 1;
+  } else if (isKey(key, KEY_HOME)) {
+    nextIndex = 0;
+  } else if (isKey(key, KEY_END)) {
+    nextIndex = totalSteps;
+  } else {
+    return undefined;
+  }
 
   // wrap-around
-  if (nextIndex > totalSteps) {nextIndex = 0;}
-  if (nextIndex < 0) {nextIndex = totalSteps;}
+  if (nextIndex > totalSteps) {
+    nextIndex = 0;
+  }
+  if (nextIndex < 0) {
+    nextIndex = totalSteps;
+  }
 
   return nextIndex === 0
     ? null
     : Number((nextIndex * precision).toFixed(getDecimalPrecision(precision)));
 }
-
 
 const useUtilityClasses = (ownerState) => {
   const { classes, size, readOnly, disabled, emptyValueFocused, focusVisible } = ownerState;
@@ -582,7 +598,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
 
-   const getStarTabIndex = (itemValue) => {
+  const getStarTabIndex = (itemValue) => {
     if (readOnly || disabled) {
       return -1;
     }
@@ -615,9 +631,11 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const handleKeyDown = (event) => {
-    if (readOnly || disabled) {return;}
+    if (readOnly || disabled) {
+      return;
+    }
 
-     if (event.defaultPrevented) {
+    if (event.defaultPrevented) {
       return;
     }
 
@@ -629,13 +647,17 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       isRtl,
     });
 
-    if (next === undefined) {return;} // not a navigation key
+    if (next === undefined) {
+      return;
+    } // not a navigation key
 
     event.preventDefault(); // keep behavior consistent across browsers
     setValueState(next);
     // Ensure visual value reflects the new rating even if focus overlay is active
     setState((_prev) => ({ hover: -1, focus: -1 }));
-    if (onChange) {onChange(event, next);}
+    if (onChange) {
+      onChange(event, next);
+    }
   };
 
   const externalForwardedProps = {
