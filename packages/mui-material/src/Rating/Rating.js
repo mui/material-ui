@@ -41,7 +41,7 @@ const KEY_HOME = 'Home';
 const KEY_END = 'End';
 
 function isKey(eventKey, logical) {
-  if (eventKey === logical) return true;
+  if (eventKey === logical) {return true;}
   // Safari legacy key values
   switch (logical) {
     case KEY_LEFT: return eventKey === 'Left';
@@ -52,8 +52,8 @@ function isKey(eventKey, logical) {
   }
 }
 
-// Returns undefined if the key isn’t a navigation key.
-// Index 0 means “empty” → returns null.
+// Returns undefined if the key isnt a navigation key.
+// Index 0 means "empty" -> returns null.
 function nextValueForKey({ key, value, max, precision, isRtl }) {
   const totalSteps = Math.round(max / precision);
   const currentIndex = value == null ? 0 : Math.round(value / precision);
@@ -62,15 +62,15 @@ function nextValueForKey({ key, value, max, precision, isRtl }) {
   const inc = isKey(key, KEY_UP) || (isRtl ? isKey(key, KEY_LEFT) : isKey(key, KEY_RIGHT));
   const dec = isKey(key, KEY_DOWN) || (isRtl ? isKey(key, KEY_RIGHT) : isKey(key, KEY_LEFT));
 
-  if (inc) nextIndex += 1;
-  else if (dec) nextIndex -= 1;
-  else if (isKey(key, KEY_HOME)) nextIndex = 0;
-  else if (isKey(key, KEY_END)) nextIndex = totalSteps;
-  else return undefined;
+  if (inc) {nextIndex += 1;}
+  else if (dec) {nextIndex -= 1;}
+  else if (isKey(key, KEY_HOME)) {nextIndex = 0;}
+  else if (isKey(key, KEY_END)) {nextIndex = totalSteps;}
+  else {return undefined;}
 
   // wrap-around
-  if (nextIndex > totalSteps) nextIndex = 0;
-  if (nextIndex < 0) nextIndex = totalSteps;
+  if (nextIndex > totalSteps) {nextIndex = 0;}
+  if (nextIndex < 0) {nextIndex = totalSteps;}
 
   return nextIndex === 0
     ? null
@@ -615,7 +615,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const handleKeyDown = (event) => {
-    if (readOnly || disabled) return;
+    if (readOnly || disabled) {return;}
 
      if (event.defaultPrevented) {
       return;
@@ -629,13 +629,13 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       isRtl,
     });
 
-    if (next === undefined) return; // not a navigation key
+    if (next === undefined) {return;} // not a navigation key
 
     event.preventDefault(); // keep behavior consistent across browsers
     setValueState(next);
     // Ensure visual value reflects the new rating even if focus overlay is active
-    setState((prev) => ({ hover: -1, focus: -1 }));
-    if (onChange) onChange(event, next);
+    setState((_prev) => ({ hover: -1, focus: -1 }));
+    if (onChange) {onChange(event, next);}
   };
 
   const externalForwardedProps = {
@@ -691,6 +691,11 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     externalForwardedProps,
     ownerState,
   });
+
+  let emptyTabIndex = -1;
+  if (!readOnly && !disabled) {
+    emptyTabIndex = valueRounded == null ? 0 : -1;
+  }
 
   return (
     <RootSlot {...rootSlotProps}>
@@ -784,7 +789,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             type="radio"
             name={name}
             checked={valueRounded == null}
-            tabIndex={readOnly || disabled ? -1 : valueRounded == null ? 0 : -1}
+            tabIndex={emptyTabIndex}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
             onKeyDown={handleKeyDown}
