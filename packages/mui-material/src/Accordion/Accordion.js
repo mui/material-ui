@@ -292,12 +292,12 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+   * If `true`, it removes the margin between two expanded accordion items and prevents the increased height when expanded.
    * @default false
    */
   disableGutters: PropTypes.bool,
   /**
-   * If `true`, expands the accordion, otherwise collapse it.
+   * If `true`, expands the accordion, otherwise collapses it.
    * Setting this prop enables control over the accordion.
    */
   expanded: PropTypes.bool,
