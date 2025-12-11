@@ -285,6 +285,7 @@ function RatingItem(props) {
     ratingValueRounded,
     slots = {},
     slotProps = {},
+    tabIndex,
   } = props;
 
   const isFilled = highlightSelectedOnly ? itemValue === ratingValue : itemValue <= ratingValue;
@@ -368,6 +369,7 @@ function RatingItem(props) {
         type="radio"
         name={name}
         checked={isChecked}
+        tabIndex={tabIndex}
       />
     </React.Fragment>
   );
@@ -396,6 +398,7 @@ RatingItem.propTypes = {
   ratingValue: PropTypes.number,
   ratingValueRounded: PropTypes.number,
   readOnly: PropTypes.bool.isRequired,
+  tabIndex: PropTypes.number.isRequired,
   slotProps: PropTypes.object,
   slots: PropTypes.object,
 };
@@ -579,6 +582,18 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
 
+   const getStarTabIndex = (itemValue) => {
+    if (readOnly || disabled) {
+      return -1;
+    }
+
+    if (valueRounded == null) {
+      return -1;
+    }
+
+    return itemValue === valueRounded ? 0 : -1;
+  };
+
   const ownerState = {
     ...props,
     component,
@@ -601,6 +616,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const handleKeyDown = (event) => {
     if (readOnly || disabled) return;
+
+     if (event.defaultPrevented) {
+      return;
+    }
 
     const next = nextValueForKey({
       key: event.key,
@@ -700,6 +719,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           ownerState,
           slots,
           slotProps,
+          tabIndex: getStarTabIndex(itemValue),
         };
 
         const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
@@ -722,6 +742,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                   <RatingItem
                     key={itemDecimalValue}
                     {...ratingItemProps}
+                    tabIndex={getStarTabIndex(itemDecimalValue)}
                     // The icon is already displayed as active
                     isActive={false}
                     itemValue={itemDecimalValue}
@@ -763,6 +784,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             type="radio"
             name={name}
             checked={valueRounded == null}
+            tabIndex={readOnly || disabled ? -1 : valueRounded == null ? 0 : -1}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
             onKeyDown={handleKeyDown}
