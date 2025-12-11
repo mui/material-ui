@@ -139,7 +139,33 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   const { getRootProps, onClickAway } = useSnackbar(ownerState);
 
+  const snackbarRef = React.useRef(null);
+
   const [exited, setExited] = React.useState(true);
+
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    /**
+     * @param {KeyboardEvent} nativeEvent
+     */
+    function handleKeyDown(nativeEvent) {
+      if (!nativeEvent.defaultPrevented) {
+        if (nativeEvent.key === 'F6' && snackbarRef.current) {
+          nativeEvent.preventDefault();
+          snackbarRef.current.focus();
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
 
   const handleExited = (node) => {
     setExited(true);
@@ -174,7 +200,12 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ref,
     className: [classes.root, className],
     elementType: SnackbarRoot,
-    getSlotProps: getRootProps,
+    getSlotProps: (handlers) => ({
+      ...getRootProps(handlers),
+      ref: snackbarRef,
+      tabIndex: 0,
+      role: 'status',
+    }),
     externalForwardedProps: {
       ...externalForwardedProps,
       ...other,

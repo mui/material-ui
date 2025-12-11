@@ -635,4 +635,59 @@ describe('<Snackbar />', () => {
 
     expect(handleClose.callCount).to.equal(0);
   });
+  describe('F6 keyboard shortcut', () => {
+    it('should focus Snackbar when F6 is pressed', () => {
+      const { container } = render(<Snackbar open message="Message" />);
+
+      const snackbar = container.querySelector('[role="status"]');
+      expect(snackbar).not.to.equal(null);
+      expect(snackbar).not.to.equal(document.activeElement);
+
+      fireEvent.keyDown(document.body, { key: 'F6' });
+
+      expect(snackbar).to.equal(document.activeElement);
+    });
+
+    it('should not focus when Snackbar is closed', () => {
+      render(<Snackbar open={false} message="Message" />);
+
+      const snackbar = document.querySelector('[role="status"]');
+      expect(snackbar).to.equal(null);
+
+      fireEvent.keyDown(document.body, { key: 'F6' });
+
+      expect(document.activeElement).to.equal(document.body);
+    });
+
+    it('should have role="status" for accessibility', () => {
+      const { container } = render(<Snackbar open message="Message" />);
+
+      const snackbar = container.querySelector('[role="status"]');
+      expect(snackbar).not.to.equal(null);
+    });
+
+    it('should have tabIndex="0" to be focusable', () => {
+      const { container } = render(<Snackbar open message="Message" />);
+
+      const snackbar = container.querySelector('[role="status"]');
+      expect(snackbar.getAttribute('tabindex')).to.equal('0');
+    });
+
+    it('should work with multiple Snackbars', () => {
+      const { container } = render(
+        <React.Fragment>
+          <Snackbar open message="Message A" />
+          <Snackbar open message="Message B" />
+        </React.Fragment>,
+      );
+
+      fireEvent.keyDown(document.body, { key: 'F6' });
+
+      const snackbars = container.querySelectorAll('[role="status"]');
+      expect(snackbars.length).to.equal(2);
+      // One of the Snackbars should be focused
+      const focusedSnackbar = Array.from(snackbars).find((s) => s === document.activeElement);
+      expect(focusedSnackbar).not.to.equal(undefined);
+    });
+  });
 });
