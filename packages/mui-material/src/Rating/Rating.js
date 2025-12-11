@@ -278,6 +278,7 @@ function RatingItem(props) {
     onChange,
     onClick,
     onFocus,
+    onKeyDown,
     readOnly,
     ownerState,
     ratingValue,
@@ -360,6 +361,7 @@ function RatingItem(props) {
         onBlur={onBlur}
         onChange={onChange}
         onClick={onClick}
+        onKeyDown={onKeyDown}
         disabled={disabled}
         value={itemValue}
         id={id}
@@ -389,6 +391,7 @@ RatingItem.propTypes = {
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
   ownerState: PropTypes.object.isRequired,
   ratingValue: PropTypes.number,
   ratingValueRounded: PropTypes.number,
@@ -611,6 +614,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
     event.preventDefault(); // keep behavior consistent across browsers
     setValueState(next);
+    // Ensure visual value reflects the new rating even if focus overlay is active
+    setState((prev) => ({ hover: -1, focus: -1 }));
     if (onChange) onChange(event, next);
   };
 
@@ -637,6 +642,10 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       onMouseLeave: (event) => {
         handleMouseLeave(event);
         handlers.onMouseLeave?.(event);
+      },
+      onKeyDownCapture: (event) => {
+        handleKeyDown(event);
+        handlers.onKeyDownCapture?.(event);
       },
       onKeyDown: (event) => {
         handleKeyDown(event);
@@ -684,6 +693,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           onChange: handleChange,
           onClick: handleClear,
           onFocus: handleFocus,
+          onKeyDown: handleKeyDown,
           ratingValue: value,
           ratingValueRounded: valueRounded,
           readOnly,
@@ -755,6 +765,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             checked={valueRounded == null}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
+            onKeyDown={handleKeyDown}
             onChange={handleChange}
           />
           <span className={classes.visuallyHidden}>{emptyLabelText}</span>
