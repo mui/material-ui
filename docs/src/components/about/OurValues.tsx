@@ -12,7 +12,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const values = [
   {
-    title: 'User obsessed 💙',
+    title: 'User-obsessed 💙',
     description: "We never lose sight of who we're serving and why.",
     lightIcon: 'url(/static/branding/about/illustrations/community-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/community-dark.svg)',
@@ -21,7 +21,7 @@ const values = [
   },
   {
     title: 'Keep it simple 🚫',
-    description: "We're so not corporate — and we like it that way.",
+    description: "We're so not corporate—and we like it that way.",
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',
     width: 81,
@@ -55,7 +55,7 @@ export default function OurValues() {
             The MUI <GradientText>team pact</GradientText>
           </Typography>
         }
-        description="They explain the behaviors and mindsets we actively encourage, discourage, and why. They serve as a guide toward better decision-making, results, and experiences at work."
+        description="The MUI team pact describes the values we embody as a company, which help guide us toward the experiences and results we aim to deliver."
       />
       <Button
         component={Link}

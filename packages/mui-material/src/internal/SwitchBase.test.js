@@ -442,7 +442,7 @@ describe('<SwitchBase />', () => {
         reactMajor >= 19 && 'A component is changing a controlled input to be uncontrolled.',
         reactMajor < 19 &&
           reactMajor !== 16 &&
-          'Warning: A component is changing an uncontrolled input to be controlled.',
+          'Warning: A component is changing a controlled input to be uncontrolled.',
         'MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
     });
