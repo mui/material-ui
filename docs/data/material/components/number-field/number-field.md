@@ -47,7 +47,7 @@ yarn add @base-ui-components/react
 
 ## Outlined field
 
-The outlined field component uses [text-field composition](/material-ui/react-text-field/#components) with end adornments for the increment and decrement buttons.
+The outlined field component uses [`TextField` composition](/material-ui/react-text-field/#components) with end adornments for the increment and decrement buttons.
 
 {{"demo": "FieldDemo.js"}}
 
