@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import NextLink from 'next/link';
+import NextLink from '@/components/Link';
 import ProTip from '@/components/ProTip';
 import Copyright from '@/components/Copyright';
 
