@@ -438,7 +438,7 @@ importers:
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.2.7)(react@19.2.3)
       next:
         specifier: ^15.5.7
-        version: 15.5.8(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       notistack:
         specifier: 3.0.2
         version: 3.0.2(csstype@3.2.3)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -996,7 +996,7 @@ importers:
         version: 19.2.7
       next:
         specifier: ^15.5.7
-        version: 15.5.8(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: ^19.2.1
         version: 19.2.3
@@ -1165,7 +1165,7 @@ importers:
         version: 3.3.3
       next:
         specifier: ^15.5.7
-        version: 15.5.8(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: ^19.2.1
         version: 19.2.3
@@ -1357,7 +1357,7 @@ importers:
         version: 19.2.7
       next:
         specifier: ^15.5.7
-        version: 15.5.8(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: ^19.2.1
         version: 19.2.3
@@ -4289,8 +4289,8 @@ packages:
     resolution: {integrity: sha512-XOWlZ2wPpdRKkAOcQbjIf/Qz7L4RjcSVINVNQ9p3F6U8V6KSEOsB3fPrc6Ly8EOeJioHUepRPuzHzJE/7V5EsA==}
     engines: {node: ^18.14.0 || >=20}
 
-  '@next/env@15.5.8':
-    resolution: {integrity: sha512-ejZHa3ogTxcy851dFoNtfB5B2h7AbSAtHbR5CymUlnz4yW1QjHNufVpvTu8PTnWBKFKjrd4k6Gbi2SsCiJKvxw==}
+  '@next/env@15.5.9':
+    resolution: {integrity: sha512-4GlTZ+EJM7WaW2HEZcyU317tIQDjkQIyENDLxYJfSWlfqguN+dHkZgyQTV/7ykvobU7yEH5gKvreNrH4B6QgIg==}
 
   '@next/eslint-plugin-next@15.5.7':
     resolution: {integrity: sha512-DtRU2N7BkGr8r+pExfuWHwMEPX5SD57FeA6pxdgCHODo+b/UgIgjE+rgWKtJAbEbGhVZ2jtHn4g3wNhWFoNBQQ==}
@@ -9757,10 +9757,9 @@ packages:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
 
-  next@15.5.8:
-    resolution: {integrity: sha512-Tma2R50eiM7Fx6fbDeHiThq7sPgl06mBr76j6Ga0lMFGrmaLitFsy31kykgb8Z++DR2uIEKi2RZ0iyjIwFd15Q==}
+  next@15.5.9:
+    resolution: {integrity: sha512-agNLK89seZEtC5zUHwtut0+tNrc0Xw4FT/Dg+B/VLEo9pAcS9rtTKpek3V6kVcVwsB2YlqMaHdfZL4eLEVYuCg==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
-    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -11460,8 +11459,8 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  strnum@2.1.1:
-    resolution: {integrity: sha512-7ZvoFTiCnGxBtDqJ//Cu6fWtZtc7Y3x+QOirG15wztbdngGSkht27o2pyGWrVy0b4WAy3jbKmnoK6g5VlVNUUw==}
+  strnum@2.1.2:
+    resolution: {integrity: sha512-l63NF9y/cLROq/yqKXSLtcMeeyOfnSQlfMSlzFt/K73oIaD8DGaQWd7Z34X9GPiKqP5rbSh84Hl4bOlLcjiSrQ==}
 
   stubborn-fs@1.2.5:
     resolution: {integrity: sha512-H2N9c26eXjzL/S/K+i/RHHcFanE74dptvvjM8iwzwbVcWY/zjBbgRqF3K0DY4+OD+uTTASTBvDoxPDaPN02D7g==}
@@ -15688,7 +15687,7 @@ snapshots:
 
   '@netlify/types@2.2.0': {}
 
-  '@next/env@15.5.8': {}
+  '@next/env@15.5.9': {}
 
   '@next/eslint-plugin-next@15.5.7':
     dependencies:
@@ -19874,11 +19873,11 @@ snapshots:
 
   fast-xml-parser@5.2.5:
     dependencies:
-      strnum: 2.1.1
+      strnum: 2.1.2
 
   fast-xml-parser@5.3.3:
     dependencies:
-      strnum: 2.1.1
+      strnum: 2.1.2
     optional: true
 
   fastest-levenshtein@1.0.16: {}
@@ -22128,9 +22127,9 @@ snapshots:
   netmask@2.0.2:
     optional: true
 
-  next@15.5.8(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
-      '@next/env': 15.5.8
+      '@next/env': 15.5.9
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001760
       postcss: 8.4.31
@@ -24193,7 +24192,7 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  strnum@2.1.1: {}
+  strnum@2.1.2: {}
 
   stubborn-fs@1.2.5: {}
 
