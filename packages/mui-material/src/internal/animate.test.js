@@ -2,10 +2,9 @@ import { expect } from 'chai';
 import { isJsdom } from '@mui/internal-test-utils/env';
 import animate from './animate';
 
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const isJSDOM = isJsdom();
 
-describe.skipIf(isJSDOM || isSafari)('animate', () => {
+describe.skipIf(isJSDOM)('animate', () => {
   let container;
 
   beforeAll(function beforeHook() {
