@@ -383,6 +383,9 @@ export default function HeaderNavBar() {
         <li>
           <Link href={ROUTES.blog}>Blog</Link>
         </li>
+        <li>
+          <Link href={ROUTES.customers}>Customers</Link>
+        </li>
       </ul>
     </Navigation>
   );

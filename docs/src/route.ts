@@ -10,6 +10,7 @@ const ROUTES = {
   pricing: '/pricing/',
   about: '/about/',
   blog: '/blog/',
+  customers: '/customers/',
   // Material UI doc pages
   materialDocs: '/material-ui/getting-started/',
   materialIcons: '/material-ui/material-icons/',
