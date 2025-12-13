@@ -6,6 +6,7 @@ import useForkRef from '@mui/utils/useForkRef';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useEventCallback from '@mui/utils/useEventCallback';
 import ownerWindow from '@mui/utils/ownerWindow';
+import ownerDocument from '@mui/utils/ownerDocument';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
 function getStyleValue(value: string) {
@@ -153,6 +154,21 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     if (heightRef.current !== outerHeightStyle) {
       heightRef.current = outerHeightStyle;
       textarea.style.height = `${outerHeightStyle}px`;
+
+      // This is a workaround for Safari/WebKit not reflowing text when the textarea height changes
+      // Force Safari to reflow the text by  manipulating the textarea value
+      const containerDocument = ownerDocument(textarea);
+      const selectionStart = textarea.selectionStart;
+      const selectionEnd = textarea.selectionEnd;
+      const tempValue = textarea.value;
+      textarea.value = '';
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      textarea.offsetHeight;
+      textarea.value = tempValue;
+      // Restore selection position
+      if (containerDocument.activeElement === textarea) {
+        textarea.setSelectionRange(selectionStart, selectionEnd);
+      }
     }
     textarea.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
   }, [calculateTextareaStyles]);
