@@ -203,80 +203,73 @@ const FilledInputInput = styled(InputBaseInput, {
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
 })(
-  memoTheme(({ theme }) => ({
-    paddingTop: 25,
-    paddingRight: 12,
-    paddingBottom: 8,
-    paddingLeft: 12,
-    ...(!theme.vars && {
+  memoTheme(({ theme }) => {
+    const light = theme.palette.mode === 'light';
+    const webkitShadowBox = light ? 'unset' : '0 0 0 100px #266798 inset';
+    const webkitTextFillColor = light ? 'unset' : '#fff';
+    const caretColor = light ? 'unset' : '#fff';
+    return {
+      paddingTop: 25,
+      paddingRight: 12,
+      paddingBottom: 8,
+      paddingLeft: 12,
       '&:-webkit-autofill': {
-        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-        caretColor: theme.palette.mode === 'light' ? null : '#fff',
+        WebkitBoxShadow: theme.vars
+          ? theme.vars.palette.FilledInput.autofillWebkitShadowBox
+          : webkitShadowBox,
+        WebkitTextFillColor: webkitTextFillColor,
+        caretColor,
         borderTopLeftRadius: 'inherit',
         borderTopRightRadius: 'inherit',
       },
-    }),
-    ...(theme.vars && {
-      '&:-webkit-autofill': {
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
-          WebkitTextFillColor: '#fff',
-          caretColor: '#fff',
+      variants: [
+        {
+          props: {
+            size: 'small',
+          },
+          style: {
+            paddingTop: 21,
+            paddingBottom: 4,
+          },
         },
-      },
-    }),
-    variants: [
-      {
-        props: {
-          size: 'small',
+        {
+          props: ({ ownerState }) => ownerState.hiddenLabel,
+          style: {
+            paddingTop: 16,
+            paddingBottom: 17,
+          },
         },
-        style: {
-          paddingTop: 21,
-          paddingBottom: 4,
+        {
+          props: ({ ownerState }) => ownerState.startAdornment,
+          style: {
+            paddingLeft: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.hiddenLabel,
-        style: {
-          paddingTop: 16,
-          paddingBottom: 17,
+        {
+          props: ({ ownerState }) => ownerState.endAdornment,
+          style: {
+            paddingRight: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.startAdornment,
-        style: {
-          paddingLeft: 0,
+        {
+          props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === 'small',
+          style: {
+            paddingTop: 8,
+            paddingBottom: 9,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.endAdornment,
-        style: {
-          paddingRight: 0,
+        {
+          props: ({ ownerState }) => ownerState.multiline,
+          style: {
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === 'small',
-        style: {
-          paddingTop: 8,
-          paddingBottom: 9,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
-        },
-      },
-    ],
-  })),
+      ],
+    };
+  }),
 );
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {

@@ -134,57 +134,51 @@ const OutlinedInputInput = styled(InputBaseInput, {
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
 })(
-  memoTheme(({ theme }) => ({
-    padding: '16.5px 14px',
-    ...(!theme.vars && {
+  memoTheme(({ theme }) => {
+    const light = theme.palette.mode === 'light';
+    const webkitShadowBox = light ? 'unset' : '0 0 0 100px #266798 inset';
+    const webkitTextFillColor = light ? 'unset' : '#fff';
+    const caretColor = light ? 'unset' : '#fff';
+    return {
+      padding: '16.5px 14px',
       '&:-webkit-autofill': {
-        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-        caretColor: theme.palette.mode === 'light' ? null : '#fff',
+        WebkitBoxShadow: theme.vars
+          ? theme.vars.palette.OutlinedInput.autofillWebkitShadowBox
+          : webkitShadowBox,
+        WebkitTextFillColor: webkitTextFillColor,
+        caretColor,
         borderRadius: 'inherit',
       },
-    }),
-    ...(theme.vars && {
-      '&:-webkit-autofill': {
-        borderRadius: 'inherit',
-      },
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
-          WebkitTextFillColor: '#fff',
-          caretColor: '#fff',
+      variants: [
+        {
+          props: {
+            size: 'small',
+          },
+          style: {
+            padding: '8.5px 14px',
+          },
         },
-      },
-    }),
-    variants: [
-      {
-        props: {
-          size: 'small',
+        {
+          props: ({ ownerState }) => ownerState.multiline,
+          style: {
+            padding: 0,
+          },
         },
-        style: {
-          padding: '8.5px 14px',
+        {
+          props: ({ ownerState }) => ownerState.startAdornment,
+          style: {
+            paddingLeft: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          padding: 0,
+        {
+          props: ({ ownerState }) => ownerState.endAdornment,
+          style: {
+            paddingRight: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.startAdornment,
-        style: {
-          paddingLeft: 0,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.endAdornment,
-        style: {
-          paddingRight: 0,
-        },
-      },
-    ],
-  })),
+      ],
+    };
+  }),
 );
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
