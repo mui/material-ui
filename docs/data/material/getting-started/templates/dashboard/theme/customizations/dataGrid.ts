@@ -7,11 +7,19 @@ import { checkboxClasses } from '@mui/material/Checkbox';
 import { listClasses } from '@mui/material/List';
 import { gridClasses } from '@mui/x-data-grid';
 import { tablePaginationClasses } from '@mui/material/TablePagination';
+import type { ComponentsOverrides, ComponentsProps, Theme } from '@mui/material/styles';
 
 import { gray } from '../../../shared-theme/themePrimitives';
 
+interface DataGridComponents<MuiTheme = unknown> {
+  MuiDataGrid?: {
+    defaultProps?: ComponentsProps['MuiDataGrid'];
+    styleOverrides?: ComponentsOverrides<MuiTheme>['MuiDataGrid'];
+  };
+}
+
 /* eslint-disable import/prefer-default-export */
-export const dataGridCustomizations = {
+export const dataGridCustomizations: DataGridComponents<Theme> = {
   MuiDataGrid: {
     styleOverrides: {
       root: ({ theme }) => ({
