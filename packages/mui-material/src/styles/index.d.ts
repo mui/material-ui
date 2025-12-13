@@ -142,6 +142,7 @@ export type {
   PaletteCommonChannel,
   PaletteFilledInput,
   PaletteLinearProgress,
+  PaletteOutlinedInput,
   PaletteSkeleton,
   PaletteSlider,
   PaletteSnackbarContent,

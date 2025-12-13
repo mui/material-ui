@@ -247,6 +247,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       'Chip',
       'FilledInput',
       'LinearProgress',
+      'OutlinedInput',
       'Skeleton',
       'Slider',
       'SnackbarContent',
@@ -312,6 +313,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
+      setColor(palette.FilledInput, 'autofillWebkitShadowBox', 'unset');
       setColor(
         palette.LinearProgress,
         'primaryBg',
@@ -334,6 +336,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         'warningBg',
         colorMix(safeLighten, palette.warning.main, 0.62),
       );
+      setColor(palette.OutlinedInput, 'autofillWebkitShadowBox', 'unset');
       setColor(
         palette.Skeleton,
         'bg',
@@ -461,6 +464,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
+      setColor(palette.FilledInput, 'autofillWebkitShadowBox', '0 0 0 100px #266798 inset');
       setColor(
         palette.LinearProgress,
         'primaryBg',
@@ -483,6 +487,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         'warningBg',
         colorMix(safeDarken, palette.warning.main, 0.5),
       );
+      setColor(palette.OutlinedInput, 'autofillWebkitShadowBox', '0 0 0 100px #266798 inset');
       setColor(
         palette.Skeleton,
         'bg',
