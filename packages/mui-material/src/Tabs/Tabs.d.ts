@@ -95,7 +95,7 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     indicator: SlotProps<'span', TabsIndicatorSlotPropsOverrides, TabsOwnerState>;
     /**
-     * Props forwarded to the scrollButton slot.
+     * Props forwarded to the scrollButtons slot.
      * By default, the available props are based on the [TabScrollButton](https://mui.com/material-ui/api/tab-scroll-button/#props) component.
      */
     scrollButtons: SlotProps<

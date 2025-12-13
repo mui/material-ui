@@ -2289,23 +2289,23 @@ Here's how to migrate:
 
 ### ScrollButtonComponent
 
-The Tabs's `ScrollButtonComponent` prop was deprecated in favor of `slots.scrollButton`:
+The Tabs's `ScrollButtonComponent` prop was deprecated in favor of `slots.scrollButtons`:
 
 ```diff
  <Tabs
 -  ScrollButtonComponent={ScrollButtonComponent}
-+  slots={{ scrollButton: ScrollButtonComponent }}
++  slots={{ scrollButtons: ScrollButtonComponent }}
  />
 ```
 
 ### TabScrollButtonProps
 
-The Tabs's `TabScrollButtonProps` prop was deprecated in favor of `slotProps.scrollButton`:
+The Tabs's `TabScrollButtonProps` prop was deprecated in favor of `slotProps.scrollButtons`:
 
 ```diff
  <Tabs
 -  TabScrollButtonProps={TabScrollButtonProps}
-+  slotProps={{ scrollButton: TabScrollButtonProps }}
++  slotProps={{ scrollButtons: TabScrollButtonProps }}
  />
 ```
 

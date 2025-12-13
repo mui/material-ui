@@ -1555,7 +1555,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('scrollButton slot', () => {
+  describe('scrollButtons slot', () => {
     it('should render start and end scroll buttons', () => {
       render(
         <Tabs
