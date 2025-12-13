@@ -6,10 +6,10 @@
     "defaultExpanded": { "description": "If <code>true</code>, expands the accordion by default." },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "disableGutters": {
-      "description": "If <code>true</code>, it removes the margin between two expanded accordion items and the increase of height."
+      "description": "If <code>true</code>, it removes the margin between two expanded accordion items and prevents the increased height when expanded."
     },
     "expanded": {
-      "description": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion."
+      "description": "If <code>true</code>, expands the accordion, otherwise collapses it. Setting this prop enables control over the accordion."
     },
     "onChange": {
       "description": "Callback fired when the expand/collapse state is changed.",
