@@ -1,0 +1,9 @@
+<NumberField label="Number Field" min={10} max={40} />
+<NumberField
+  label="Small and Error"
+  min={10}
+  max={40}
+  size="small"
+  defaultValue={100}
+  error
+/>

@@ -70,66 +70,68 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
+export interface AccordionOwnProps {
+  /**
+   * The content of the component.
+   */
+  children: NonNullable<React.ReactNode>;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<AccordionClasses>;
+  /**
+   * If `true`, expands the accordion by default.
+   * @default false
+   */
+  defaultExpanded?: boolean;
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+   * @default false
+   */
+  disableGutters?: boolean;
+  /**
+   * If `true`, expands the accordion, otherwise collapse it.
+   * Setting this prop enables control over the accordion.
+   */
+  expanded?: boolean;
+  /**
+   * Callback fired when the expand/collapse state is changed.
+   *
+   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {boolean} expanded The `expanded` state of the accordion.
+   */
+  onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * The component used for the transition.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
+  TransitionComponent?: React.JSXElementConstructor<
+    TransitionProps & { children?: React.ReactElement<unknown, any> }
+  >;
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
+  TransitionProps?: TransitionProps;
+}
+
 export type AccordionTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > = ExtendPaperTypeMap<
   {
-    props: AdditionalProps & {
-      /**
-       * The content of the component.
-       */
-      children: NonNullable<React.ReactNode>;
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: Partial<AccordionClasses>;
-      /**
-       * If `true`, expands the accordion by default.
-       * @default false
-       */
-      defaultExpanded?: boolean;
-      /**
-       * If `true`, the component is disabled.
-       * @default false
-       */
-      disabled?: boolean;
-      /**
-       * If `true`, it removes the margin between two expanded accordion items and the increase of height.
-       * @default false
-       */
-      disableGutters?: boolean;
-      /**
-       * If `true`, expands the accordion, otherwise collapse it.
-       * Setting this prop enables control over the accordion.
-       */
-      expanded?: boolean;
-      /**
-       * Callback fired when the expand/collapse state is changed.
-       *
-       * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
-       * @param {boolean} expanded The `expanded` state of the accordion.
-       */
-      onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps<Theme>;
-      /**
-       * The component used for the transition.
-       * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-       * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-       */
-      TransitionComponent?: React.JSXElementConstructor<
-        TransitionProps & { children?: React.ReactElement<unknown, any> }
-      >;
-      /**
-       * Props applied to the transition element.
-       * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-       * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-       */
-      TransitionProps?: TransitionProps;
-    } & AccordionSlotsAndSlotProps;
+    props: AdditionalProps & AccordionOwnProps & AccordionSlotsAndSlotProps;
     defaultComponent: RootComponent;
   },
   'onChange' | 'classes'

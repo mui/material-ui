@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@mui/material/Zoom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -120,11 +120,7 @@ describe('<Zoom />', () => {
   });
 
   describe('prop: timeout', () => {
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
@@ -140,11 +136,7 @@ describe('<Zoom />', () => {
       });
     });
 
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
       const theme = createTheme({
         transitions: {
           duration: {
@@ -165,11 +157,7 @@ describe('<Zoom />', () => {
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
 
-    it('should render the values provided via prop', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
       render(
         <Zoom in appear timeout={{ enter: 1 }}>
           <div data-testid="child">Foo</div>

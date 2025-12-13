@@ -9,7 +9,7 @@ const packagesWithBundledTypes = [
   'clsx',
   '@react-spring/web',
 ];
-const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
+const muiNpmOrgs = ['@mui', '@base-ui-components', '@pigment-css', '@toolpad'];
 
 /**
  * WARNING: Always uses `latest` typings.

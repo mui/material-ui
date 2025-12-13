@@ -87,6 +87,7 @@ export type IconButtonTypeMap<
  * Demos:
  *
  * - [Button](https://mui.com/material-ui/react-button/)
+ * - [Number Field](https://mui.com/material-ui/react-number-field/)
  *
  * API:
  *

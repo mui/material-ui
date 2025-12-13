@@ -56,7 +56,7 @@ describe('<Switch />', () => {
     });
   });
 
-  specify('should render an .thumb element inside the .switchBase element', () => {
+  it('should render an .thumb element inside the .switchBase element', () => {
     const { container } = render(
       <Switch classes={{ thumb: 'thumb', switchBase: 'switch-base' }} />,
     );
@@ -85,31 +85,31 @@ describe('<Switch />', () => {
     expect(screen.getByRole('switch')).to.have.property('checked', true);
   });
 
-  specify('the switch can be disabled', () => {
+  it('the switch can be disabled', () => {
     render(<Switch disabled />);
 
     expect(screen.getByRole('switch')).to.have.property('disabled', true);
   });
 
-  specify('the switch can be readonly', () => {
+  it('the switch can be readonly', () => {
     render(<Switch readOnly />);
 
     expect(screen.getByRole('switch')).to.have.property('readOnly', true);
   });
 
-  specify('renders a custom icon when provided', () => {
+  it('renders a custom icon when provided', () => {
     render(<Switch icon={<span data-testid="icon" />} />);
 
     expect(screen.getByTestId('icon')).toBeVisible();
   });
 
-  specify('renders a custom checked icon when provided', () => {
+  it('renders a custom checked icon when provided', () => {
     render(<Switch defaultChecked checkedIcon={<span data-testid="icon" />} />);
 
     expect(screen.getByTestId('icon')).toBeVisible();
   });
 
-  specify('the Checked state changes after change events', () => {
+  it('the Checked state changes after change events', () => {
     render(<Switch defaultChecked />);
 
     // how a user would trigger it

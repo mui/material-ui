@@ -50,6 +50,12 @@ export interface TextFieldSlots {
   select: React.ElementType;
 }
 
+export interface TextFieldRootSlotPropsOverrides {}
+export interface TextFieldInputSlotPropsOverrides {}
+export interface TextFieldInputLabelSlotPropsOverrides {}
+export interface TextFieldFormHelperTextSlotPropsOverrides {}
+export interface TextFieldSelectSlotPropsOverrides {}
+
 export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
   TextFieldSlots,
   {
@@ -57,17 +63,29 @@ export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps
      * Props forwarded to the root slot.
      * By default, the available props are based on the [FormControl](https://mui.com/material-ui/api/form-control/#props) component.
      */
-    root: SlotProps<React.ElementType<FormControlProps>, {}, TextFieldOwnerState>;
+    root: SlotProps<
+      React.ElementType<FormControlProps>,
+      TextFieldRootSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the input slot.
      * By default, the available props are based on the [Input](https://mui.com/material-ui/api/input/#props) component.
      */
-    input: SlotProps<React.ElementType<InputPropsType>, {}, TextFieldOwnerState>;
+    input: SlotProps<
+      React.ElementType<InputPropsType>,
+      TextFieldInputSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the input label slot.
      * By default, the available props are based on the [InputLabel](https://mui.com/material-ui/api/input-label/#props) component.
      */
-    inputLabel: SlotProps<React.ElementType<InputLabelProps>, {}, TextFieldOwnerState>;
+    inputLabel: SlotProps<
+      React.ElementType<InputLabelProps>,
+      TextFieldInputLabelSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the html input slot.
      * By default, the available props are based on the html input element.
@@ -77,12 +95,20 @@ export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps
      * Props forwarded to the form helper text slot.
      * By default, the available props are based on the [FormHelperText](https://mui.com/material-ui/api/form-helper-text/#props) component.
      */
-    formHelperText: SlotProps<React.ElementType<FormHelperTextProps>, {}, TextFieldOwnerState>;
+    formHelperText: SlotProps<
+      React.ElementType<FormHelperTextProps>,
+      TextFieldFormHelperTextSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the select slot.
      * By default, the available props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
      */
-    select: SlotProps<React.ElementType<SelectProps>, {}, TextFieldOwnerState>;
+    select: SlotProps<
+      React.ElementType<SelectProps>,
+      TextFieldSelectSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
   }
 >;
 

@@ -6,6 +6,8 @@ import {
   fireEvent,
   fireDiscreteEvent,
   screen,
+  flushEffects,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
@@ -140,6 +142,8 @@ describe('<SpeedDial />', () => {
 
       expect(handleKeyDown.callCount).to.equal(1);
       expect(handleKeyDown.args[0][0]).to.have.property('key', ' ');
+
+      await flushEffects();
     });
   });
 
@@ -207,52 +211,53 @@ describe('<SpeedDial />', () => {
       fireEvent.keyDown(fab, { key: 'ArrowUp' });
       expect(document.activeElement).to.equal(actions[0]);
       expect(fab).to.have.attribute('aria-expanded', 'true');
+
+      await flushEffects();
     });
 
-    it('should reset the state of the tooltip when the speed dial is closed while it is open', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())(
+      'should reset the state of the tooltip when the speed dial is closed while it is open',
+      async function test() {
+        const handleOpen = spy();
 
-      const handleOpen = spy();
+        render(
+          <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
+            <SpeedDialAction tooltipTitle="action1" />
+            <SpeedDialAction tooltipTitle="action2" />
+          </SpeedDial>,
+        );
 
-      render(
-        <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
-          <SpeedDialAction tooltipTitle="action1" />
-          <SpeedDialAction tooltipTitle="action2" />
-        </SpeedDial>,
-      );
+        const fab = screen.getByRole('button');
+        const actions = screen.getAllByRole('menuitem');
 
-      const fab = screen.getByRole('button');
-      const actions = screen.getAllByRole('menuitem');
+        await act(async () => {
+          fab.focus();
+        });
+        clock.runAll();
 
-      await act(async () => {
-        fab.focus();
-      });
-      clock.runAll();
+        expect(fab).to.have.attribute('aria-expanded', 'true');
 
-      expect(fab).to.have.attribute('aria-expanded', 'true');
+        fireEvent.keyDown(fab, { key: 'ArrowUp' });
+        clock.runAll();
+        expect(screen.queryByRole('tooltip')).not.to.equal(null);
 
-      fireEvent.keyDown(fab, { key: 'ArrowUp' });
-      clock.runAll();
-      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+        await act(async () => {
+          fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
+        });
+        clock.runAll();
 
-      await act(async () => {
-        fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
-      });
-      clock.runAll();
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+        expect(fab).to.have.attribute('aria-expanded', 'false');
+        expect(fab).toHaveFocus();
 
-      expect(screen.queryByRole('tooltip')).to.equal(null);
-      expect(fab).to.have.attribute('aria-expanded', 'false');
-      expect(fab).toHaveFocus();
+        clock.runAll();
 
-      clock.runAll();
-
-      expect(screen.queryByRole('tooltip')).to.equal(null);
-      expect(fab).to.have.attribute('aria-expanded', 'false');
-      expect(fab).toHaveFocus();
-    });
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+        expect(fab).to.have.attribute('aria-expanded', 'false');
+        expect(fab).toHaveFocus();
+      },
+    );
   });
 
   describe('dial focus', () => {
@@ -340,6 +345,8 @@ describe('<SpeedDial />', () => {
       expect(isActionFocused(1)).to.equal(true);
       fireEvent.keyDown(getActionButton(1), { key: 'right' });
       expect(isActionFocused(0)).to.equal(true);
+
+      await flushEffects();
     });
 
     describe('actions navigation', () => {
@@ -375,6 +382,8 @@ describe('<SpeedDial />', () => {
               )} should be ${expectedFocusedAction}`,
             );
           }
+
+          await flushEffects();
         });
       };
 
@@ -525,6 +534,8 @@ describe('<SpeedDial />', () => {
       expect(isActionFocused(1)).to.equal(true);
       fireEvent.keyDown(getActionButton(1), { key: 'right' });
       expect(isActionFocused(0)).to.equal(true);
+
+      await flushEffects();
     });
 
     describe('actions navigation', () => {
@@ -558,6 +569,7 @@ describe('<SpeedDial />', () => {
               )} should be ${expectedFocusedAction}`,
             );
           }
+          await flushEffects();
         });
       };
 
@@ -624,11 +636,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
       render(<SpeedDial data-testid="speedDial" {...defaultProps} />);
@@ -639,11 +647,7 @@ describe('<SpeedDial />', () => {
       });
     });
 
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
       const theme = createTheme({
         transitions: {
           duration: {
@@ -662,11 +666,7 @@ describe('<SpeedDial />', () => {
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
 
-    it('should render the values provided via prop', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
       render(<SpeedDial data-testid="speedDial" {...defaultProps} transitionDuration={1} />);
 
       const child = screen.getByTestId('speedDial').firstChild;

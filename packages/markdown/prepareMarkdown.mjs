@@ -11,6 +11,9 @@ import {
   getTitle,
 } from './parseMarkdown.mjs';
 
+/**
+ * @type {string | string[]}
+ */
 const BaseUIReexportedComponents = [];
 
 /**
@@ -48,16 +51,29 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
 }
 
 /**
+ * @typedef  {{ component: string, demo?: undefined }} ComponentEntry
+ * @typedef  {{ component?: undefined, demo: string, hideToolbar?: boolean }} DemoEntry
+ */
+
+/**
+ * @typedef {{ rendered: Array<string | ComponentEntry | DemoEntry> }} TranslatedDoc
+ */
+
+/**
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
  * @param {string} config.fileRelativeContext - posix filename relative to repository root directory
  * @param {object} config.options - provided to the webpack loader
+ * @param {string} config.options.workspaceRoot - The absolute path of the repository root directory
+ * @param {object} [config.componentPackageMapping] - Mapping of productId to mapping of component name to package name
+ * @example { 'material': { 'Button': 'mui-material' } }
+ * @returns {{ docs: Record<string, TranslatedDoc> }} - Mapping of locale to its prepared markdown
  */
 function prepareMarkdown(config) {
   const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
 
   /**
-   * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
+   * @type {Record<string, TranslatedDoc>}
    */
   const docs = {};
   const headingHashes = {};

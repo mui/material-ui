@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import SandboxDependencies from './Dependencies';
 
 describe('Dependencies', () => {
-  before(() => {
+  beforeAll(() => {
     process.env.SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
   });
 
-  after(() => {
+  afterAll(() => {
     delete process.env.SOURCE_CODE_REPO;
   });
 
@@ -540,6 +540,33 @@ export default function EmailExample() {
       '@mui/material': 'latest',
       '@mui/system': 'latest',
       typescript: 'latest',
+    });
+  });
+
+  it('should generate correct Base UI dependencies', () => {
+    const source = `import * as React from 'react';
+import { NumberField as BaseNumberField } from '@base-ui-components/react/number-field';
+import OutlinedInput from '@mui/material/OutlinedInput';
+`;
+
+    const { dependencies, devDependencies } = SandboxDependencies({
+      raw: source,
+      codeVariant: 'TS',
+    });
+
+    expect(dependencies).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      // #npm-tag-reference
+      '@mui/material': 'latest',
+      '@base-ui-components/react': 'latest',
+      typescript: 'latest',
+    });
+    expect(devDependencies).to.deep.equal({
+      '@types/react-dom': 'latest',
+      '@types/react': 'latest',
     });
   });
 });

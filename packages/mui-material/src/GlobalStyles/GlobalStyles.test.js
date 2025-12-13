@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider, createTheme } from '@mui/material/styles/';
 
@@ -10,11 +10,7 @@ const customTheme = createTheme({
 describe('Global', () => {
   const { render } = createRenderer();
 
-  it('should provide default theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should provide default theme', function test() {
     const { container } = render(
       <div>
         <GlobalStyles styles={(theme) => `span { margin-top: ${theme.spacing(1)}; }`} />
@@ -27,11 +23,7 @@ describe('Global', () => {
     });
   });
 
-  it('should respect context theme if available', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should respect context theme if available', function test() {
     const { container } = render(
       <ThemeProvider theme={customTheme}>
         <GlobalStyles styles={(theme) => `span { margin-top: ${theme.spacing(1)}; }`} />

@@ -52,6 +52,7 @@ export interface OutlinedInputOwnerState extends Omit<OutlinedInputProps, 'slots
  *
  * Demos:
  *
+ * - [Number Field](https://mui.com/material-ui/react-number-field/)
  * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:

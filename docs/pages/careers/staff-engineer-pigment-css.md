@@ -1,6 +1,6 @@
 # Staff Engineer — Pigment CSS
 
-<p class="description">Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.</p>
+<p class="description">You will research, document, and help build our next-gen zero-runtime CSS-in-JS library, with a focus on performance and great developer experience.</p>
 
 ## Details of the role
 
@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of early 2024, and we're growing.
+We're a company of 40 people as of 2025, and we're growing steadily.
 
 ## The products
 
@@ -94,7 +94,7 @@ We're looking for someone with strong core JavaScript skills. More important tha
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Willingness to ask and answer questions**.
-  You're comfortable saying you're unsure and asking for help. You'll also reach out out to assist others. We thrive through continuous learning—first-time mistakes are celebrated, not blamed.
+  You're comfortable saying you're unsure and asking for help. You'll also reach out to assist others. We thrive through continuous learning—first-time mistakes are celebrated, not blamed.
 - **Leadership skills**.
   You will guide and mentor contributors, steering the community in the right direction.
 

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, supportsTouch } from '@mui/internal-test-utils';
 import StepButton, { stepButtonClasses as classes } from '@mui/material/StepButton';
 import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
@@ -82,56 +82,55 @@ describe('<StepButton />', () => {
   });
 
   describe('event handlers', () => {
-    it('should forward mouseenter, mouseleave and touchstart', function touchTests() {
-      // only run in supported browsers
-      if (typeof Touch === 'undefined') {
-        this.skip();
-      }
+    // only run in supported browsers
+    it.skipIf(!supportsTouch())(
+      'should forward mouseenter, mouseleave and touchstart',
+      function touchTests() {
+        const handleMouseEnter = spy();
+        const handleMouseLeave = spy();
+        const handleTouchStart = spy();
 
-      const handleMouseEnter = spy();
-      const handleMouseLeave = spy();
-      const handleTouchStart = spy();
+        render(
+          <StepButton
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+          >
+            Step One
+          </StepButton>,
+        );
 
-      render(
-        <StepButton
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onTouchStart={handleTouchStart}
-        >
-          Step One
-        </StepButton>,
-      );
+        const button = screen.getByRole('button');
 
-      const button = screen.getByRole('button');
+        fireEvent.mouseOver(button);
 
-      fireEvent.mouseOver(button);
+        expect(handleMouseEnter).to.have.property('callCount', 1);
+        expect(handleMouseLeave).to.have.property('callCount', 0);
+        expect(handleTouchStart).to.have.property('callCount', 0);
 
-      expect(handleMouseEnter).to.have.property('callCount', 1);
-      expect(handleMouseLeave).to.have.property('callCount', 0);
-      expect(handleTouchStart).to.have.property('callCount', 0);
+        fireEvent.mouseOut(button);
 
-      fireEvent.mouseOut(button);
+        expect(handleMouseEnter).to.have.property('callCount', 1);
+        expect(handleMouseLeave).to.have.property('callCount', 1);
+        expect(handleTouchStart).to.have.property('callCount', 0);
 
-      expect(handleMouseEnter).to.have.property('callCount', 1);
-      expect(handleMouseLeave).to.have.property('callCount', 1);
-      expect(handleTouchStart).to.have.property('callCount', 0);
+        // fake touch
+        const firstTouch = new Touch({ identifier: 0, target: button });
+        fireEvent.touchStart(button, { touches: [firstTouch] });
 
-      // fake touch
-      const firstTouch = new Touch({ identifier: 0, target: button });
-      fireEvent.touchStart(button, { touches: [firstTouch] });
+        expect(handleMouseEnter).to.have.property('callCount', 1);
+        expect(handleMouseLeave).to.have.property('callCount', 1);
+        expect(handleTouchStart).to.have.property('callCount', 1);
 
-      expect(handleMouseEnter).to.have.property('callCount', 1);
-      expect(handleMouseLeave).to.have.property('callCount', 1);
-      expect(handleTouchStart).to.have.property('callCount', 1);
+        fireEvent.mouseOver(button);
+        const secondTouch = new Touch({ identifier: 1, target: button });
+        fireEvent.touchStart(button, { touches: [firstTouch, secondTouch] });
 
-      fireEvent.mouseOver(button);
-      const secondTouch = new Touch({ identifier: 1, target: button });
-      fireEvent.touchStart(button, { touches: [firstTouch, secondTouch] });
-
-      expect(handleMouseEnter).to.have.property('callCount', 2);
-      expect(handleMouseLeave).to.have.property('callCount', 1);
-      expect(handleTouchStart).to.have.property('callCount', 2);
-    });
+        expect(handleMouseEnter).to.have.property('callCount', 2);
+        expect(handleMouseLeave).to.have.property('callCount', 1);
+        expect(handleTouchStart).to.have.property('callCount', 2);
+      },
+    );
   });
 
   it('can be used as a child of `Step`', () => {

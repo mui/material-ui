@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -211,11 +210,7 @@ describe('<Rating />', () => {
     expect(view.container.querySelector('.customized')).to.have.tagName('label');
   });
 
-  it('should apply labelEmptyValueActive styles from theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply labelEmptyValueActive styles from theme', function test() {
     const theme = createTheme({
       components: {
         MuiRating: {
@@ -304,7 +299,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('<form> integration', () => {
+  describe.skipIf(isJsdom())('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },

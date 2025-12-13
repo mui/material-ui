@@ -9,8 +9,8 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
@@ -22,6 +22,16 @@ async function focusVisible(element) {
   });
   fireEvent.keyDown(document.body, { key: 'Tab' });
   await act(async () => {
+    element.focus();
+  });
+}
+
+function focusVisibleSync(element) {
+  act(() => {
+    element.blur();
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  act(() => {
     element.focus();
   });
 }
@@ -485,12 +495,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('should handle autoFocus + onFocus forwarding', async function test() {
       const handleFocus = spy();
       function AutoFocus(props) {
         return (
@@ -518,7 +524,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: delay', () => {
+  describe.skipIf(isJsdom())('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
       render(
         <Tooltip title="Hello World" enterDelay={111}>
@@ -537,7 +543,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', async () => {
+    it('should use hysteresis with the enterDelay', () => {
       render(
         <Tooltip
           title="Hello World"
@@ -552,7 +558,8 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = screen.getByRole('button');
-      await focusVisible(children);
+
+      focusVisibleSync(children);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -560,21 +567,22 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      act(() => {
         document.activeElement.blur();
       });
+
       clock.tick(5);
+
       clock.tick(6);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await focusVisible(children);
+      focusVisibleSync(children);
+
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
-        clock.tick(30);
-      });
+      clock.tick(30);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
@@ -639,37 +647,36 @@ describe('<Tooltip />', () => {
       });
     });
 
-    it(`should be transparent for the focus and blur event`, async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())(
+      `should be transparent for the focus and blur event`,
+      async function test() {
+        const handleBlur = spy();
+        const handleFocus = spy();
+        render(
+          <Tooltip title="Hello World">
+            <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+        const button = screen.getByRole('button');
 
-      const handleBlur = spy();
-      const handleFocus = spy();
-      render(
-        <Tooltip title="Hello World">
-          <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      const button = screen.getByRole('button');
+        await act(async () => {
+          button.focus();
+        });
 
-      await act(async () => {
-        button.focus();
-      });
+        expect(handleBlur.callCount).to.equal(0);
+        expect(handleFocus.callCount).to.equal(1);
 
-      expect(handleBlur.callCount).to.equal(0);
-      expect(handleFocus.callCount).to.equal(1);
+        await act(async () => {
+          button.blur();
+        });
 
-      await act(async () => {
-        button.blur();
-      });
-
-      expect(handleBlur.callCount).to.equal(1);
-      expect(handleFocus.callCount).to.equal(1);
-    });
+        expect(handleBlur.callCount).to.equal(1);
+        expect(handleFocus.callCount).to.equal(1);
+      },
+    );
 
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
@@ -967,7 +974,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('focus', () => {
+  describe.skipIf(isJsdom())('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">
@@ -1135,12 +1142,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should warn when children is a string', function test() {
-      if (reactMajor >= 19) {
-        // React 19 removed prop types support
-        this.skip();
-      }
-
+    // React 19 removed prop types support
+    it.skipIf(reactMajor >= 19)('should warn when children is a string', function test() {
       expect(() => {
         render(<Tooltip title="Hello World">Hello World</Tooltip>);
       }).toErrorDev('Invalid prop `children` of type `string` supplied');
