@@ -138,7 +138,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   return (
-    // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
     <SlotRoot {...rootProps}>
       <TabsProvider value={contextValue}>
         <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
