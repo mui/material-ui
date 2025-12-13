@@ -148,7 +148,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     disableGutters = false,
     expanded: expandedProp,
     onChange,
-    square = false,
     slots = {},
     slotProps = {},
     TransitionComponent: TransitionComponentProp,
@@ -182,7 +181,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const ownerState = {
     ...props,
-    square,
     disabled,
     disableGutters,
     expanded,
@@ -208,9 +206,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     shouldForwardComponentProp: true,
     ownerState,
     ref,
-    additionalProps: {
-      square,
-    },
   });
 
   const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
@@ -328,11 +323,6 @@ Accordion.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
-  /**
-   * If `true`, rounded corners are disabled.
-   * @default false
-   */
-  square: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
