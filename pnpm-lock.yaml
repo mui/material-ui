@@ -506,8 +506,8 @@ importers:
         specifier: ^6.1.19
         version: 6.1.19(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       stylis:
-        specifier: 4.2.0
-        version: 4.2.0
+        specifier: 4.3.6
+        version: 4.3.6
       use-count-up:
         specifier: ^3.0.1
         version: 3.0.1(react@19.2.3)
