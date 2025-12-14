@@ -160,9 +160,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.22.0",
+  "packageManager": "pnpm@10.25.0",
   "engines": {
-    "pnpm": "10.22.0",
+    "pnpm": "10.25.0",
     "node": ">=22.12.0"
   },
   "resolutions": {
