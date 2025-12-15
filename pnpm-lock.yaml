@@ -72,7 +72,7 @@ importers:
         version: 1.0.9-canary.56(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
         specifier: ^0.0.3-canary.56
-        version: 0.0.3-canary.56(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)
+        version: 0.0.3-canary.56(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -204,10 +204,10 @@ importers:
         version: 1.56.1
       prettier:
         specifier: ^3.6.2
-        version: 3.6.2
+        version: 3.7.4
       pretty-quick:
         specifier: ^4.2.2
-        version: 4.2.2(prettier@3.6.2)
+        version: 4.2.2(prettier@3.7.4)
       process:
         specifier: ^0.11.10
         version: 0.11.10
@@ -592,7 +592,7 @@ importers:
         version: 1.25.1
       prettier:
         specifier: ^3.6.2
-        version: 3.6.2
+        version: 3.7.4
       tailwindcss:
         specifier: ^4.1.17
         version: 4.1.17
@@ -668,7 +668,7 @@ importers:
         version: 3.3.3
       prettier:
         specifier: ^3.6.2
-        version: 3.6.2
+        version: 3.7.4
       rimraf:
         specifier: ^6.0.1
         version: 6.1.2
@@ -789,8 +789,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prettier:
-        specifier: ^3.6.2
-        version: 3.6.2
+        specifier: ^3.7.4
+        version: 3.7.4
       react-docgen:
         specifier: ^5.4.3
         version: 5.4.3
@@ -10484,8 +10484,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.6.2:
-    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+  prettier@3.7.4:
+    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -15043,7 +15043,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.3-canary.56(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)':
+  '@mui/internal-code-infra@0.0.3-canary.56(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.10)':
     dependencies:
       '@argos-ci/core': 4.5.0
       '@babel/cli': 7.28.3(@babel/core@7.28.5)
@@ -15098,7 +15098,7 @@ snapshots:
       node-html-parser: 7.0.1
       open: 10.2.0
       postcss-styled-syntax: 0.7.1(postcss@8.5.6)
-      prettier: 3.6.2
+      prettier: 3.7.4
       regexp.escape: 2.0.1
       resolve-pkg-maps: 1.0.0
       semver: 7.7.3
@@ -23036,7 +23036,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.6.2: {}
+  prettier@3.7.4: {}
 
   pretty-error@4.0.0:
     dependencies:
@@ -23067,14 +23067,14 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  pretty-quick@4.2.2(prettier@3.6.2):
+  pretty-quick@4.2.2(prettier@3.7.4):
     dependencies:
       '@pkgr/core': 0.2.7
       ignore: 7.0.5
       mri: 1.2.0
       picocolors: 1.1.1
       picomatch: 4.0.3
-      prettier: 3.6.2
+      prettier: 3.7.4
       tinyexec: 0.3.2
       tslib: 2.8.1
 
