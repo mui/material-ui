@@ -297,7 +297,7 @@ const AutocompletePaper = styled(Paper, {
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
-    overflow: 'auto',
+    overflow: 'hidden',
   })),
 );
 
