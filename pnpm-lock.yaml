@@ -479,8 +479,8 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-router:
-        specifier: ^7.9.6
-        version: 7.9.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^7.10.1
+        version: 7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-runner:
         specifier: ^1.0.5
         version: 1.0.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1330,8 +1330,8 @@ importers:
         specifier: ^19.2.1
         version: 19.2.3(react@19.2.3)
       react-router:
-        specifier: ^7.9.6
-        version: 7.9.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^7.10.1
+        version: 7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -1769,8 +1769,8 @@ importers:
         specifier: ^19.2.1
         version: 19.2.1
       react-router:
-        specifier: ^7.9.6
-        version: 7.9.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^7.10.1
+        version: 7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-window:
         specifier: ^2.2.2
         version: 2.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -10699,8 +10699,8 @@ packages:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
     engines: {node: '>=0.10.0'}
 
-  react-router@7.9.6:
-    resolution: {integrity: sha512-Y1tUp8clYRXpfPITyuifmSoE2vncSME18uVLgaqyxh9H35JWpIfzHo+9y3Fzh5odk/jxPW29IgLgzcdwxGqyNA==}
+  react-router@7.10.1:
+    resolution: {integrity: sha512-gHL89dRa3kwlUYtRQ+m8NmxGI6CgqN+k4XyGjwcFoQwwCWF6xXpOCUlDovkXClS0d0XJN/5q7kc5W3kiFEd0Yw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -23261,7 +23261,7 @@ snapshots:
 
   react-refresh@0.18.0: {}
 
-  react-router@7.9.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  react-router@7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       cookie: 1.0.2
       react: 19.2.3
