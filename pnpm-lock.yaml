@@ -131,10 +131,10 @@ importers:
         specifier: ^5.1.1
         version: 5.1.1(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))
       '@vitest/browser-playwright':
-        specifier: ^4.0.15
+        specifier: ^4.0.13
         version: 4.0.15(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(playwright@1.56.1)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.15)
       '@vitest/coverage-v8':
-        specifier: ^4.0.15
+        specifier: ^4.0.13
         version: 4.0.15(@vitest/browser@4.0.15(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.15))(vitest@4.0.15)
       '@vvago/vale':
         specifier: ^3.12.0
@@ -236,7 +236,7 @@ importers:
         specifier: ^7.2.2
         version: 7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       vitest:
-        specifier: ^4.0.15
+        specifier: ^4.0.13
         version: 4.0.15(@types/node@20.19.27)(@vitest/browser-playwright@4.0.15)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       vitest-fail-on-console:
         specifier: ^0.10.1
