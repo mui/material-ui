@@ -2,7 +2,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, waitFor } from '@mui/internal-test-utils';
+import { reactMinor } from '@mui/internal-test-utils/reactMajor';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
 
 describe('elementTypeAcceptingRef', () => {
@@ -31,7 +32,12 @@ describe('elementTypeAcceptingRef', () => {
       }
 
       if (failsOnMount) {
-        expect(testAct).toErrorDev('');
+        expect(testAct).toErrorDev([
+          'Did you accidentally provide a React.Fragment instead?',
+          reactMajor <= 19 &&
+            reactMinor < 3 &&
+            'Invalid prop `ref` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.',
+        ]);
       } else {
         expect(testAct).not.toErrorDev();
       }
