@@ -59,7 +59,7 @@
     "jsdom": "^26.1.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "react-router": "^7.9.6",
+    "react-router": "^7.10.1",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {

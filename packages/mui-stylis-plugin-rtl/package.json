@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/chai": "^5.2.3",
-    "@types/node": "^20.19.25",
+    "@types/node": "^20.19.26",
     "@types/sinon": "^17.0.4",
     "@types/stylis": "4.2.7",
     "chai": "^6.0.1",
