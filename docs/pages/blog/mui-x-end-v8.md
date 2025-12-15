@@ -3,7 +3,7 @@ title: MUI X v8 — Highlights since last major release
 description: Grid x Charts integration, Chart interactions, server-side Data Grid pivoting, Range Picker ergonomics, Tree View polish, and more.
 date: 2025-11-11T08:00:00.000Z
 authors: ['josefreitas', 'alelthomas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
@@ -27,7 +27,7 @@ manualCard: false
   />
 </a>
 
-We're happy to share the newest MUI X features shipped over the past months. As we gear up for the next major, here's a tour of what's new.
+We're happy to share the newest MUI X features shipped over the past months. As we gear up for the next major, here's a tour of what's new.
 
 ## Table of contents
 
@@ -202,7 +202,7 @@ Excel export now relies on our own internally vetted and private `ExcelJS` fork 
 
 ### Better range defaults [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Range components can use different reference dates for start and for end, so pickers open where users expect—e.g., next Monday through Friday for travel, or "this month" for reporting.
+Range components can use different reference dates for start and for end, so pickers open where users expect—for example, next Monday through Friday for travel, or "this month" for reporting.
 
 [Reference dates in ranges](/x/react-date-pickers/base-concepts/#reference-date)
 
@@ -232,7 +232,7 @@ Between refined editing, ordering, and selection behaviors, trees hold up better
 
 ## What's next
 
-We're targeting a v9 stable release by the end of March. After that, we'll invest heavily in **customization** and rewrite our components over Base UI to fully embrace composition, cleaner slots API, and a more modern **DevEx**. The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
+We're targeting a v9 stable release by the end of March. After that, we'll invest heavily in **customization** and rewrite our components over Base UI to fully embrace composition, cleaner slots API, and a more modern **DevEx**. The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
 
 If you rely on deep customization today, now is the perfect time to tell us what hurts—[your input](https://tally.so/forms/w8X8Po) will shape the plan.
 
