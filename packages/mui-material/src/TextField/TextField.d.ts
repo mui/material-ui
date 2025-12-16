@@ -112,12 +112,11 @@ export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps
   }
 >;
 
-export interface BaseTextFieldProps
-  extends StandardProps<
-    FormControlProps,
-    // event handlers are declared on derived interfaces
-    'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
-  > {
+export interface BaseTextFieldProps extends StandardProps<
+  FormControlProps,
+  // event handlers are declared on derived interfaces
+  'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
+> {
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -262,8 +261,7 @@ export interface BaseTextFieldProps
 }
 
 export interface StandardTextFieldProps
-  extends BaseTextFieldProps,
-    TextFieldSlotsAndSlotProps<StandardInputProps> {
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<StandardInputProps> {
   /**
    * Callback fired when the value is changed.
    *
@@ -287,8 +285,7 @@ export interface StandardTextFieldProps
 }
 
 export interface FilledTextFieldProps
-  extends BaseTextFieldProps,
-    TextFieldSlotsAndSlotProps<FilledInputProps> {
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<FilledInputProps> {
   /**
    * Callback fired when the value is changed.
    *
@@ -312,8 +309,7 @@ export interface FilledTextFieldProps
 }
 
 export interface OutlinedTextFieldProps
-  extends BaseTextFieldProps,
-    TextFieldSlotsAndSlotProps<OutlinedInputProps> {
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<OutlinedInputProps> {
   /**
    * Callback fired when the value is changed.
    *
