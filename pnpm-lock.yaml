@@ -667,92 +667,6 @@ importers:
         specifier: ^6.0.1
         version: 6.1.2
 
-  packages-internal/test-utils:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.28.4
-        version: 7.28.4
-      '@emotion/cache':
-        specifier: ^11.14.0
-        version: 11.14.0
-      '@emotion/react':
-        specifier: ^11.14.0
-        version: 11.14.0(@types/react@19.2.7)(react@19.2.3)
-      '@playwright/test':
-        specifier: ^1.53.1
-        version: 1.56.1
-      '@testing-library/dom':
-        specifier: ^10.4.1
-        version: 10.4.1
-      '@testing-library/react':
-        specifier: ^16.3.0
-        version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@testing-library/user-event':
-        specifier: ^14.6.1
-        version: 14.6.1(@testing-library/dom@10.4.1)
-      assertion-error:
-        specifier: ^2.0.1
-        version: 2.0.1
-      chai:
-        specifier: ^4.5.0 || ^5.0.0 || ^6.0.0
-        version: 6.2.1
-      chai-dom:
-        specifier: ^1.12.1
-        version: 1.12.1(chai@6.2.1)
-      dom-accessibility-api:
-        specifier: ^0.7.1
-        version: 0.7.1
-      es-toolkit:
-        specifier: ^1.42.0
-        version: 1.42.0
-      format-util:
-        specifier: ^1.0.5
-        version: 1.0.5
-      jsdom:
-        specifier: ^26.1.0
-        version: 26.1.0
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
-      react:
-        specifier: ^18.0.0 || ^19.0.0
-        version: 19.2.3
-      react-dom:
-        specifier: ^18.0.0 || ^19.0.0
-        version: 19.2.3(react@19.2.3)
-      sinon:
-        specifier: ^21.0.0
-        version: 21.0.0
-    devDependencies:
-      '@types/chai':
-        specifier: ^5.2.3
-        version: 5.2.3
-      '@types/chai-dom':
-        specifier: ^1.11.3
-        version: 1.11.3
-      '@types/format-util':
-        specifier: ^1.0.4
-        version: 1.0.4
-      '@types/jsdom':
-        specifier: ^21.1.7
-        version: 21.1.7
-      '@types/prop-types':
-        specifier: ^15.7.15
-        version: 15.7.15
-      '@types/react':
-        specifier: ^19.2.7
-        version: 19.2.7
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.7)
-      '@types/sinon':
-        specifier: ^17.0.4
-        version: 17.0.4
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
-    publishDirectory: build
-
   packages/api-docs-builder:
     dependencies:
       '@babel/core':
@@ -5363,9 +5277,6 @@ packages:
   '@types/fg-loadcss@3.1.3':
     resolution: {integrity: sha512-l9Cf3szP7MbYXRuWnnctz6BRRADeGIakbY7+FtZSvvV+Rg+Ytv961FcXBtwpQrdjCbd4lIyawBADayxKA2GiaA==}
 
-  '@types/format-util@1.0.4':
-    resolution: {integrity: sha512-xrCYOdHh5zA3LUrn6CvspYwlzSWxPso11Lx32WnAG6KvLCRecKZ/Rh21PLXUkzUFsQmrGcx/traJAFjR6dVS5Q==}
-
   '@types/gtag.js@0.0.20':
     resolution: {integrity: sha512-wwAbk3SA2QeU67unN7zPxjEHmPmlXwZXZvQEpbEUQuMCRGgKyE1m6XDuTUA9b6pCGb/GqJmdfMOY5LuDjJSbbg==}
 
@@ -5388,9 +5299,6 @@ packages:
 
   '@types/jscodeshift@0.12.0':
     resolution: {integrity: sha512-Jr2fQbEoDmjwEa92TreR/mX2t9iAaY/l5P/GKezvK4BodXahex60PDLXaQR0vAgP0KfCzc1CivHusQB9NhzX8w==}
-
-  '@types/jsdom@21.1.7':
-    resolution: {integrity: sha512-yOriVnggzrnQ3a9OKOCxaVuSug3w3/SbOj5i7VwXWZEyUNl3bLF9V3MfxGbZKuwqJOQyRfqXyROBB1CoZLFWzA==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -16550,8 +16458,6 @@ snapshots:
 
   '@types/fg-loadcss@3.1.3': {}
 
-  '@types/format-util@1.0.4': {}
-
   '@types/gtag.js@0.0.20': {}
 
   '@types/hoist-non-react-statics@3.3.7(@types/react@19.2.7)':
@@ -16573,12 +16479,6 @@ snapshots:
     dependencies:
       ast-types: 0.14.2
       recast: 0.20.5
-
-  '@types/jsdom@21.1.7':
-    dependencies:
-      '@types/node': 20.19.27
-      '@types/tough-cookie': 4.0.5
-      parse5: 7.3.0
 
   '@types/json-schema@7.0.15': {}
 
@@ -16664,7 +16564,8 @@ snapshots:
 
   '@types/stylis@4.2.7': {}
 
-  '@types/tough-cookie@4.0.5': {}
+  '@types/tough-cookie@4.0.5':
+    optional: true
 
   '@types/unist@2.0.11': {}
 
