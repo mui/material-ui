@@ -84,7 +84,7 @@ importers:
         version: link:packages-internal/scripts
       '@mui/internal-test-utils':
         specifier: 2.0.18-canary.0
-        version: 2.0.18-canary.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@playwright/test@1.56.1)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(@vitest/utils@4.0.15)(chai@6.2.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)
+        version: 2.0.18-canary.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@playwright/test@1.57.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(@vitest/utils@4.0.15)(chai@6.2.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)
       '@mui/joy':
         specifier: workspace:*
         version: link:packages/mui-joy/build
@@ -104,8 +104,8 @@ importers:
         specifier: 0.0.30
         version: 0.0.30(@types/react@19.2.7)(react@19.2.3)(typescript@5.9.3)
       '@playwright/test':
-        specifier: 1.56.1
-        version: 1.56.1
+        specifier: 1.57.0
+        version: 1.57.0
       '@pnpm/find-workspace-dir':
         specifier: ^1000.1.3
         version: 1000.1.3
@@ -132,7 +132,7 @@ importers:
         version: 5.1.1(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))
       '@vitest/browser-playwright':
         specifier: ^4.0.13
-        version: 4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(playwright@1.56.1)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)
+        version: 4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(playwright@1.57.0)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)
       '@vitest/coverage-v8':
         specifier: ^4.0.13
         version: 4.0.13(@vitest/browser@4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13))(vitest@4.0.13)
@@ -197,8 +197,8 @@ importers:
         specifier: ^20.8.3
         version: 20.8.3
       playwright:
-        specifier: 1.56.1
-        version: 1.56.1
+        specifier: 1.57.0
+        version: 1.57.0
       prettier:
         specifier: ^3.6.2
         version: 3.7.4
@@ -435,7 +435,7 @@ importers:
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.2.7)(react@19.2.3)
       next:
         specifier: ^15.5.7
-        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       notistack:
         specifier: 3.0.2
         version: 3.0.2(csstype@3.2.3)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -528,8 +528,8 @@ importers:
         specifier: workspace:^
         version: link:../packages-internal/scripts
       '@playwright/test':
-        specifier: ^1.56.1
-        version: 1.56.1
+        specifier: ^1.57.0
+        version: 1.57.0
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -904,7 +904,7 @@ importers:
         version: 19.2.7
       next:
         specifier: ^15.5.7
-        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: ^19.2.1
         version: 19.2.3
@@ -1070,7 +1070,7 @@ importers:
         version: 3.3.3
       next:
         specifier: ^15.5.7
-        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: ^19.2.1
         version: 19.2.3
@@ -1256,7 +1256,7 @@ importers:
         version: 19.2.7
       next:
         specifier: ^15.5.7
-        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: ^19.2.1
         version: 19.2.3
@@ -4592,8 +4592,8 @@ packages:
     resolution: {integrity: sha512-YLT9Zo3oNPJoBjBc4q8G2mjU4tqIbf5CEOORbUUr48dCD9q3umJ3IPlVqOqDakPfd2HuwccBaqlGhN4Gmr5OWg==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.56.1':
-    resolution: {integrity: sha512-vSMYtL/zOcFpvJCW71Q/OEGQb7KYBPAdKh35WNSkaZA75JlAO8ED8UN6GUNTm3drWomcbcqRPFqQbLae8yBTdg==}
+  '@playwright/test@1.57.0':
+    resolution: {integrity: sha512-6TyEnHgd6SArQO8UO2OMTxshln3QMWBtPGrOCgs3wVEmQmwyuNtB10IZMfmYDE0riwNR1cu4q+pPcxMVtaG3TA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -9976,13 +9976,13 @@ packages:
     resolution: {integrity: sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==}
     engines: {node: '>=8'}
 
-  playwright-core@1.56.1:
-    resolution: {integrity: sha512-hutraynyn31F+Bifme+Ps9Vq59hKuUCz7H1kDOcBs+2oGguKkWTU50bBWrtz34OUWmIwpBTWDxaRPXrIXkgvmQ==}
+  playwright-core@1.57.0:
+    resolution: {integrity: sha512-agTcKlMw/mjBWOnD6kFZttAAGHgi/Nw0CZ2o6JqWSbMlI219lAFLZZCyqByTsvVAJq5XA5H8cA6PrvBRpBWEuQ==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.56.1:
-    resolution: {integrity: sha512-aFi5B0WovBHTEvpM3DzXTUaeN6eN0qWnTkKx4NQaH4Wvcmc153PdaY2UBdSYKaGYw+UyWXSVyxDUg5DoPEttjw==}
+  playwright@1.57.0:
+    resolution: {integrity: sha512-ilYQj1s8sr2ppEJ2YVadYBN0Mb3mdo9J0wQ+UuDhzYqURwSoW4n1Xs5vs7ORwgDGmyEh33tRMeS8KhdkMoLXQw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -14586,10 +14586,10 @@ snapshots:
 
   '@mui/internal-netlify-cache@0.0.2-canary.1': {}
 
-  '@mui/internal-test-utils@2.0.18-canary.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@playwright/test@1.56.1)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(@vitest/utils@4.0.15)(chai@6.2.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)':
+  '@mui/internal-test-utils@2.0.18-canary.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@playwright/test@1.57.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(@vitest/utils@4.0.15)(chai@6.2.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)':
     dependencies:
       '@babel/runtime': 7.28.4
-      '@playwright/test': 1.56.1
+      '@playwright/test': 1.57.0
       '@testing-library/dom': 10.4.1
       '@testing-library/react': 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@testing-library/user-event': 14.6.1(@testing-library/dom@10.4.1)
@@ -15649,9 +15649,9 @@ snapshots:
 
   '@pkgr/core@0.2.7': {}
 
-  '@playwright/test@1.56.1':
+  '@playwright/test@1.57.0':
     dependencies:
-      playwright: 1.56.1
+      playwright: 1.57.0
 
   '@pnpm/constants@1001.3.1': {}
 
@@ -16747,11 +16747,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/browser-playwright@4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(playwright@1.56.1)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)':
+  '@vitest/browser-playwright@4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(playwright@1.57.0)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)':
     dependencies:
       '@vitest/browser': 4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)
       '@vitest/mocker': 4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))
-      playwright: 1.56.1
+      playwright: 1.57.0
       tinyrainbow: 3.0.3
       vitest: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.27)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
     transitivePeerDependencies:
@@ -21218,7 +21218,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@next/env': 15.5.9
       '@swc/helpers': 0.5.15
@@ -21237,7 +21237,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 15.5.7
       '@next/swc-win32-x64-msvc': 15.5.7
       '@opentelemetry/api': 1.8.0
-      '@playwright/test': 1.56.1
+      '@playwright/test': 1.57.0
       babel-plugin-react-compiler: 1.0.0
       sharp: 0.34.5
     transitivePeerDependencies:
@@ -21944,11 +21944,11 @@ snapshots:
     dependencies:
       find-up: 3.0.0
 
-  playwright-core@1.56.1: {}
+  playwright-core@1.57.0: {}
 
-  playwright@1.56.1:
+  playwright@1.57.0:
     dependencies:
-      playwright-core: 1.56.1
+      playwright-core: 1.57.0
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -23818,7 +23818,7 @@ snapshots:
     optionalDependencies:
       '@types/debug': 4.1.12
       '@types/node': 20.19.27
-      '@vitest/browser-playwright': 4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(playwright@1.56.1)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)
+      '@vitest/browser-playwright': 4.0.13(msw@2.7.3(@types/node@20.19.27)(typescript@5.9.3))(playwright@1.57.0)(vite@7.2.2(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0))(vitest@4.0.13)
       happy-dom: 15.11.6
       jsdom: 26.1.0
     transitivePeerDependencies:
