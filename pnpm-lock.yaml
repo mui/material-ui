@@ -533,9 +533,6 @@ importers:
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../packages-internal/test-utils/build
-      '@playwright/test':
-        specifier: ^1.56.1
-        version: 1.56.1
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -684,6 +681,9 @@ importers:
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.2.7)(react@19.2.3)
+      '@playwright/test':
+        specifier: ^1.53.1
+        version: 1.56.1
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
@@ -727,9 +727,6 @@ importers:
         specifier: ^21.0.0
         version: 21.0.0
     devDependencies:
-      '@playwright/test':
-        specifier: ^1.56.1
-        version: 1.56.1
       '@types/chai':
         specifier: ^5.2.3
         version: 5.2.3
@@ -1723,9 +1720,6 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../packages/mui-utils/build
-      '@playwright/test':
-        specifier: 1.56.1
-        version: 1.56.1
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1

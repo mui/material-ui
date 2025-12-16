@@ -17,7 +17,6 @@
     "@mui/stylis-plugin-rtl": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@playwright/test": "1.56.1",
     "@testing-library/dom": "^10.4.1",
     "@types/chai": "^5.2.3",
     "@types/react": "^19.2.7",
