@@ -641,11 +641,10 @@ export function getPropTypesFromFile({
   return components;
 }
 
-export interface GetPropTypesFromFileOptions
-  extends Pick<
-    GetPropsFromComponentDeclarationOptions,
-    'shouldInclude' | 'project' | 'checkDeclarations'
-  > {
+export interface GetPropTypesFromFileOptions extends Pick<
+  GetPropsFromComponentDeclarationOptions,
+  'shouldInclude' | 'project' | 'checkDeclarations'
+> {
   filePath: string;
   /**
    * Called before the shape of an object is resolved

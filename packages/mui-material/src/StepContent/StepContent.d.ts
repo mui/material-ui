@@ -32,8 +32,7 @@ export type StepContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface StepContentOwnerState extends StepContentProps {}
 
 export interface StepContentProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
-    StepContentSlotsAndSlotProps {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, StepContentSlotsAndSlotProps {
   /**
    * The content of the component.
    */
