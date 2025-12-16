@@ -1601,9 +1601,6 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../packages/mui-utils/build
-      '@playwright/test':
-        specifier: 1.56.1
-        version: 1.56.1
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
