@@ -1,4 +1,3 @@
-// @ts-ignore
 import LZString from 'lz-string';
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
