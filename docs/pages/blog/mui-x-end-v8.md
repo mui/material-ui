@@ -1,6 +1,6 @@
 ---
-title: MUI X v8 — Highlights since last major release
-description: Grid x Charts integration, Chart interactions, server-side Data Grid pivoting, Range Picker ergonomics, Tree View polish, and more.
+title: MUI X v8: Highlights since the last major release
+description: Grid x Charts integration, Chart interactions, server-side Data Grid pivoting, Range Picker ergonomics, Tree View improvements, and more.
 date: 2025-11-11T08:00:00.000Z
 authors: ['josefreitas', 'alelthomas']
 tags: ['MUI X', 'Product']
@@ -27,7 +27,7 @@ manualCard: false
   />
 </a>
 
-We're happy to share the newest MUI X features shipped over the past months. As we gear up for the next major, here's a tour of what's new.
+We're happy to share the newest MUI X features shipped over the last several months. As we gear up for the next major version, here's a tour of the latest improvements we've made to the Charts, Data Grid, Date Pickers, and Tree View—all available now in v8.
 
 ## Table of contents
 
@@ -58,7 +58,7 @@ We're happy to share the newest MUI X features shipped over the past months. As
 
 ### Brush selection
 
-Drag a brush across any cartesian chart to focus the conversation. Zoom a busy week on a time series, isolate a cluster in scatter, or feed the selected window to your own logic. The brush overlay gives a crisp visual cue while you work:
+Drag a brush across any Cartesian chart to focus the conversation. Zoom a busy week on a time series, isolate a cluster in a scatter, or feed the selected window to your own logic. The brush overlay gives a crisp visual cue while you work:
 
 <figure style="margin:16px 0;">
   <video src="https://github.com/user-attachments/assets/4aea6f6e-b269-47b7-a733-06c21851239b" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -71,7 +71,7 @@ Drag a brush across any cartesian chart to focus the conversation. Zoom a busy w
 
 Zooming and panning now match expected interactions. Wheel or pinch to zoom, press-and-drag to pan, and tap-and-drag on touch to zoom without fiddly gestures.
 
-Tune the interaction config (for example, require CTRL to zoom and SHIFT to pan) so charts play nicely with your page shortcuts.
+Tune the interaction config (for example, require <kbd class="key">Ctrl</kbd> to zoom and <kbd class="key">Shift</kbd> to pan) so charts play nicely with your page shortcuts.
 
 <figure style="margin:16px 0;">
   <video src="https://github.com/user-attachments/assets/ba212d3d-b5df-48a4-827d-6a42fd82f493" autoplay muted loop playsinline style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -93,7 +93,7 @@ A compact slider under the axis makes long ranges effortless to navigate, and th
 
 ### Keyboard navigation and a11y improvements
 
-Charts are more comfortable to explore from the keyboard. Focus highlights stay in sync as you move and tooltips and axes cooperate so you can read values without a mouse:
+Charts are now more comfortable to explore from the keyboard. Focus highlights stay in sync as you move, and tooltips and axes cooperate so you can read values without a mouse:
 
 <figure style="margin:16px 0;">
   <video src="https://github.com/user-attachments/assets/b7564569-19df-40c7-8053-91107f52f4a2" autoplay muted loop playsinline alt="Keyboard navigation in charts" style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -104,7 +104,7 @@ Charts are more comfortable to explore from the keyboard. Focus highlights stay 
 
 ### Sankey and upgraded charts [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-A **Sankey** diagram joins the lineup for flow visualization, while **Funnel** charts gain polished presets (including pyramid/step-pyramid) so conversion stories read at a glance:
+A **Sankey** diagram joins the lineup for flow visualization, while **Funnel** charts gain polished presets (including pyramid/step-pyramid) so conversion stories read clearly at a glance:
 
 <figure style="margin:16px 0;">
   <img src="https://github.com/user-attachments/assets/ea2c6dc9-1f91-4d8d-8d05-fbce905421d1" alt="Sankey Chart" style="width:100%;max-width:960px;border-radius:12px;">
@@ -139,7 +139,7 @@ Heavy dashboards feel lighter thanks to faster string measurement, tuned bar ren
 
 ### Server-side pivoting [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Pivot at scale without locking the browser. The Grid coordinates with your back-end to compute pivots and aggregates, so the UI stays snappy while you slice by any model you can dream up:
+Pivot at scale without locking the browser. The Grid coordinates with your back end to compute pivots and aggregates, so the UI stays snappy while you slice by any model you can dream up:
 
 [Pivoting docs](/x/react-data-grid/pivoting/)
 
@@ -167,7 +167,7 @@ Turn selections into visuals in seconds. An integrated panel renders the right c
 
 ### Smoother reordering with clear affordances [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Drag-and-drop row reordering now shows a precise drop indicator, so teams can reprioritize with confidence—perfect for backlogs and ranked lists:
+Drag-and-drop row reordering now shows a precise drop indicator so users can reorganize with confidence—perfect for backlogs and ranked lists:
 
 <figure style="margin:16px 0;">
   <video src="https://github.com/user-attachments/assets/7b6d7de3-70e9-4754-93c8-d7963d4b464a" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -178,7 +178,7 @@ Drag-and-drop row reordering now shows a precise drop indicator, so teams can re
 
 ### Pinned areas and scrolling polish
 
-Pinned rows and aggregates cooperate with the scrollbar and scroll shadows making wide, tall tables easier to parse at a glance:
+Pinned rows and aggregates cooperate with the scrollbar and scroll shadows, making wide and tall tables easier to parse at a glance:
 
 <figure style="margin:16px 0;">
   <video src="https://github.com/user-attachments/assets/6aa59911-d247-48c5-b576-e3fb15092e7a" autoplay muted loop playsinline alt="Pinned rows and scroll shadows" style="width:100%;max-width:960px;border-radius:12px;">
@@ -189,7 +189,7 @@ Pinned rows and aggregates cooperate with the scrollbar and scroll shadows makin
 
 ### Export resilience [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Excel export now relies on our own internally vetted and private `ExcelJS` fork to avoid transitive vulnerabilities and keep exports reliable at scale:
+Excel export now relies on our own internally vetted and private ExcelJS fork to avoid transitive vulnerabilities and keep exports reliable at scale:
 
 <figure style="margin:16px 0;">
   <img src="https://github.com/user-attachments/assets/81ad75a6-5769-4a74-88f3-da45e2d2c598" alt="Export to Excel from the Data Grid" style="width:100%;max-width:960px;border-radius:12px;">
@@ -202,7 +202,7 @@ Excel export now relies on our own internally vetted and private `ExcelJS` fork 
 
 ### Better range defaults [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-Range components can use different reference dates for start and for end, so pickers open where users expect—for example, next Monday through Friday for travel, or "this month" for reporting.
+Range components can use different reference dates for starting and ending values, so pickers open where users expect—for example, next Monday through Friday for travel, or "this month" for reporting.
 
 [Reference dates in ranges](/x/react-date-pickers/base-concepts/#reference-date)
 
@@ -221,7 +221,7 @@ Edits feel steadier. Compact one-column time layouts keep the intended format, v
 
 ### Drag-and-drop support and other improvements
 
-Between refined editing, ordering, and selection behaviors, trees hold up better as they grow. Reorder with drag-and-drop, wire up inline renaming, and keep identifiers flexible so you can mirror your domain model precisely:
+Between refined editing, ordering, and selection behaviors, trees hold up better as they grow. Reorder by dragging and dropping, wire up inline renaming, and keep identifiers flexible so you can mirror your domain model precisely:
 
 <figure style="margin:16px 0;">
   <video src="https://github.com/user-attachments/assets/a91aa903-611d-43be-a361-9f933d518f55" autoplay muted loop playsinline controls style="width:100%;max-width:960px;border-radius:12px;"></video>
@@ -232,9 +232,9 @@ Between refined editing, ordering, and selection behaviors, trees hold up better
 
 ## What's next
 
-We're targeting a v9 stable release by the end of March. After that, we'll invest heavily in **customization** and rewrite our components over Base UI to fully embrace composition, cleaner slots API, and a more modern **DevEx**. The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
+We're targeting a v9 stable release by the end of March. After that, we'll invest heavily in customization and rewrite our components on top of [Base UI](https://www.base-ui.com/) to fully embrace composition, a cleaner slots API, and a more modern developer experience The aim is to make it easier to swap parts without forking, line up with your design tokens, and build complex UIs with less prop-surface ceremony.
 
-If you rely on deep customization today, now is the perfect time to tell us what hurts—[your input](https://tally.so/forms/w8X8Po) will shape the plan.
+If you rely on deep customization today, now is the perfect time to tell us about your pain points—[your input](https://tally.so/forms/w8X8Po) will shape the plan.
 
 ## Feedback
 
