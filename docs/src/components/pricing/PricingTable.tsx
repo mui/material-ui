@@ -285,7 +285,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'Base UI': (
     <ColumnHead
       label="Base UI"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui-components/react."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui/react."
     />
   ),
   'MUI System': (
