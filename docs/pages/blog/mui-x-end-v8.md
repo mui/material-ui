@@ -96,7 +96,7 @@ A compact slider under the axis makes long ranges effortless to navigate, and th
 Charts are now more comfortable to explore from the keyboard. Focus highlights stay in sync as you move, and tooltips and axes cooperate so you can read values without a mouse:
 
 <figure style="margin:16px 0;">
-  <video src="https://github.com/user-attachments/assets/b7564569-19df-40c7-8053-91107f52f4a2" autoplay muted loop playsinline alt="Keyboard navigation in charts" style="width:100%;max-width:960px;border-radius:12px;"></video>
+  <video src="https://github.com/user-attachments/assets/21e9e07e-1161-4601-bb39-7b9f1f532da7" autoplay muted loop playsinline alt="Keyboard navigation in charts" style="width:100%;max-width:960px;border-radius:12px;"></video>
   <figcaption style="text-align:center;margin-top:8px;">Keyboard-first exploration of series and points.</figcaption>
 </figure>
 
