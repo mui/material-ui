@@ -84,12 +84,14 @@ export default function CustomersLogoSlider({
               },
               width: `${totalWidth}px`,
               flexShrink: 0,
+              willChange: 'transform',
             }}
           >
             {logos.map((logo, index) => (
               <Box
                 key={`first-${logo.name}-${index}`}
                 component="img"
+                loading="eager"
                 alt={`${logo.name} logo`}
                 src={logo.lightLogo}
                 sx={(theme) => ({
@@ -101,6 +103,7 @@ export default function CustomersLogoSlider({
                   flexShrink: 0,
                   marginRight: 3,
                   filter: 'none',
+                  backfaceVisibility: 'hidden',
                   ...theme.applyDarkStyles({
                     filter:
                       'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
@@ -124,12 +127,14 @@ export default function CustomersLogoSlider({
               },
               width: `${totalWidth}px`,
               flexShrink: 0,
+              willChange: 'transform',
             }}
           >
             {logos.map((logo, index) => (
               <Box
                 key={`second-${logo.name}-${index}`}
                 component="img"
+                loading="eager"
                 alt={`${logo.name} logo`}
                 src={logo.lightLogo}
                 sx={(theme) => ({
@@ -141,6 +146,7 @@ export default function CustomersLogoSlider({
                   flexShrink: 0,
                   marginRight: 3,
                   filter: 'none',
+                  backfaceVisibility: 'hidden',
                   ...theme.applyDarkStyles({
                     filter:
                       'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',

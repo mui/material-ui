@@ -7,6 +7,8 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface SpotlightProps {
   posts: BlogPost[];
@@ -157,6 +159,9 @@ interface CustomersSpotlightProps {
 }
 
 export default function CustomersSpotlight({ customers }: CustomersSpotlightProps) {
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+
   // Sort customers by rank and split into first 3 and the rest
   const sortedCustomers = [...customers].sort((a, b) => {
     const rankA = parseInt(a.rank || '99', 10);
@@ -165,7 +170,7 @@ export default function CustomersSpotlight({ customers }: CustomersSpotlightProp
   });
   const firstPosts = sortedCustomers.slice(0, 2);
   const secondPosts = sortedCustomers.slice(2, 4);
-  const restPosts = sortedCustomers.slice(4, 8);
+  const restPosts = sortedCustomers.slice(4, isTablet ? 7 : 8);
 
   return (
     <React.Fragment>
