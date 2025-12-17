@@ -4,7 +4,6 @@ import {
   createRenderer,
   act,
   fireEvent,
-  fireDiscreteEvent,
   screen,
   flushEffects,
   isJsdom,
@@ -242,9 +241,8 @@ describe('<SpeedDial />', () => {
         clock.runAll();
         expect(screen.queryByRole('tooltip')).not.to.equal(null);
 
-        await act(async () => {
-          fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
-        });
+        fireEvent.keyDown(actions[0], { key: 'Escape' });
+
         clock.runAll();
 
         expect(screen.queryByRole('tooltip')).to.equal(null);
