@@ -47,8 +47,7 @@ export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface StepLabelOwnerState extends StepLabelProps {}
 
 export interface StepLabelProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
-    StepLabelSlotsAndSlotProps {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, StepLabelSlotsAndSlotProps {
   /**
    * In most cases will simply be a string containing a title for the label.
    */

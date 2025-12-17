@@ -114,9 +114,7 @@ export interface CSSOthersObjectForCSSObject {
 
 // Omit variants as a key, because we have a special handling for it
 export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos,
-    Omit<CSSOthersObject, 'variants'> {}
+  extends CSSPropertiesWithMultiValues, CSSPseudos, Omit<CSSOthersObject, 'variants'> {}
 
 interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
   variants: Array<{
@@ -362,8 +360,8 @@ export interface ThemedBaseStyledInterface<
 
   <
     Tag extends keyof React.JSX.IntrinsicElements,
-    ForwardedProps extends
-      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
+    ForwardedProps extends keyof React.JSX.IntrinsicElements[Tag] =
+      keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
     options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &
