@@ -3,7 +3,7 @@ title: 'MUI X v8: Highlights since the last major release'
 description: Grid x Charts integration, Chart interactions, server-side Data Grid pivoting, Range Picker ergonomics, Tree View improvements, and more.
 date: 2025-12-20T08:00:00.000Z
 authors: ['josefreitas', 'alelthomas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
