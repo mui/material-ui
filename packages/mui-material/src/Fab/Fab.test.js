@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
@@ -103,12 +102,8 @@ describe('<Fab />', () => {
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple', async function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
-
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())('should have a focusRipple', async function test() {
     render(
       <Fab
         TouchRippleProps={{
@@ -162,7 +157,7 @@ describe('<Fab />', () => {
     expect(renderedIconChild).to.have.class(childClassName);
   });
 
-  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
+  describe.skipIf(!isJsdom())('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');

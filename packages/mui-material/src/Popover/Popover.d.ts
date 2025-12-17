@@ -91,7 +91,8 @@ interface PopoverVirtualElement {
 }
 
 export interface PopoverProps
-  extends StandardProps<
+  extends
+    StandardProps<
       Omit<ModalProps, 'slots' | 'slotProps' | 'BackdropProps' | 'BackdropComponent'>,
       'children'
     >,

@@ -69,7 +69,7 @@ Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
 via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p>
-  <a href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
+  <a href="https://tidelift.com/" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   &nbsp;
@@ -168,17 +168,6 @@ These great services sponsor MUI's core infrastructure:
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
-
-</div>
-
-<div>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/browserstack-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/browserstack-lightmode.svg">
-  <img alt="BrowserStack logo" src="https://mui.com/static/readme/browserstack-lightmode.svg" width="140" height="25">
-</picture>
-
-[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
 </div>
 

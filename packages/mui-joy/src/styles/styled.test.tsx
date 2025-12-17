@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { CssVarsProvider, ThemeProvider, styled, extendTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
@@ -8,10 +8,7 @@ const toPixel = (val: string | number | undefined) => (typeof val === 'number' ?
 describe('[Joy] styled', () => {
   const { render } = createRenderer();
 
-  it('use defaultTheme given no ThemeProvider', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(isJsdom())('use defaultTheme given no ThemeProvider', function test() {
     const Text = styled('div')(({ theme }) => ({
       borderRadius: theme.vars.radius.md,
     }));
@@ -26,10 +23,7 @@ describe('[Joy] styled', () => {
     });
   });
 
-  it('use theme from ThemeProvider', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(isJsdom())('use theme from ThemeProvider', function test() {
     const Text = styled('div')(({ theme }) => ({
       borderRadius: theme.vars.radius.md,
     }));
@@ -48,10 +42,7 @@ describe('[Joy] styled', () => {
     });
   });
 
-  it('supports unstable_sx in the theme callback', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
+  it.skipIf(isJsdom())('supports unstable_sx in the theme callback', function test() {
     const customTheme = extendTheme({
       colorSchemes: {
         light: {

@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
   "main": "./src/index.js",
@@ -36,7 +36,7 @@
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
     "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/icons-material\"",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
   },
@@ -55,7 +55,7 @@
     "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
     "mustache": "^4.2.0",
-    "react": "^19.2.0",
+    "react": "^19.2.1",
     "rimraf": "^6.0.1",
     "shx": "^0.4.0",
     "svgo": "^4.0.0",

@@ -2,13 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  act,
-  createRenderer,
-  fireEvent,
-  fireDiscreteEvent,
-  screen,
-} from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Portal from '@mui/material/Portal';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
@@ -183,7 +177,7 @@ describe('<ClickAwayListener />', () => {
         }
         render(<Test />);
 
-        fireDiscreteEvent.click(screen.getByTestId('trigger'));
+        fireEvent.click(screen.getByTestId('trigger'));
 
         expect(screen.getByTestId('child')).not.to.equal(null);
       });
@@ -247,12 +241,12 @@ describe('<ClickAwayListener />', () => {
       render(<ClickAwayListenerMouseDownPortal />);
       const mouseDownTarget = screen.getByTestId('trigger');
 
-      fireDiscreteEvent.mouseDown(mouseDownTarget);
+      fireEvent.mouseDown(mouseDownTarget);
       const mouseUpTarget = screen.getByTestId('interleaved-element');
       // https://w3c.github.io/uievents/#events-mouseevent-event-order
       const clickTarget = findNearestCommonAncestor(mouseDownTarget, mouseUpTarget);
-      fireDiscreteEvent.mouseUp(mouseUpTarget);
-      fireDiscreteEvent.click(clickTarget);
+      fireEvent.mouseUp(mouseUpTarget);
+      fireEvent.click(clickTarget);
 
       expect(onClickAway.callCount).to.equal(1);
     });
@@ -390,56 +384,54 @@ describe('<ClickAwayListener />', () => {
     ['onClickCapture', false],
     ['onClickCapture', true],
   ].forEach(([eventName, disableReactTree]) => {
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, function test() {
-      if (!new Event('click').composedPath) {
-        this.skip();
-      }
+    it.skipIf(!new Event('click').composedPath)(
+      `when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`,
+      function test() {
+        const handleClickAway = spy();
+        function Test() {
+          const [buttonShown, hideButton] = React.useReducer(() => false, true);
 
-      const handleClickAway = spy();
-      function Test() {
-        const [buttonShown, hideButton] = React.useReducer(() => false, true);
+          return (
+            <React.Fragment>
+              {buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}
+              <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
+                <div />
+              </ClickAwayListener>
+            </React.Fragment>
+          );
+        }
+        render(<Test />);
 
-        return (
-          <React.Fragment>
-            {buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}
+        act(() => {
+          screen.getByRole('button').click();
+        });
+
+        expect(handleClickAway.callCount).to.equal(1);
+      },
+    );
+
+    it.skipIf(!new Event('click').composedPath)(
+      `when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`,
+      function test() {
+        const handleClickAway = spy();
+
+        function Test() {
+          const [buttonShown, hideButton] = React.useReducer(() => false, true);
+
+          return (
             <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
-              <div />
+              <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
             </ClickAwayListener>
-          </React.Fragment>
-        );
-      }
-      render(<Test />);
+          );
+        }
+        render(<Test />);
 
-      act(() => {
-        screen.getByRole('button').click();
-      });
+        act(() => {
+          screen.getByRole('button').click();
+        });
 
-      expect(handleClickAway.callCount).to.equal(1);
-    });
-
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`, function test() {
-      if (!new Event('click').composedPath) {
-        this.skip();
-      }
-
-      const handleClickAway = spy();
-
-      function Test() {
-        const [buttonShown, hideButton] = React.useReducer(() => false, true);
-
-        return (
-          <ClickAwayListener onClickAway={handleClickAway} disableReactTree={disableReactTree}>
-            <div>{buttonShown && <button {...{ [eventName]: hideButton }} type="button" />}</div>
-          </ClickAwayListener>
-        );
-      }
-      render(<Test />);
-
-      act(() => {
-        screen.getByRole('button').click();
-      });
-
-      expect(handleClickAway.callCount).to.equal(0);
-    });
+        expect(handleClickAway.callCount).to.equal(0);
+      },
+    );
   });
 });
