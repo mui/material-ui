@@ -33,8 +33,8 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
         component="ul"
         sx={{
           display: 'grid',
-          mt: variant === 'secondary' ? 2 : 0,
-          mb: variant === 'primary' ? -2 : 0,
+          mt: variant === 'secondary' ? 1 : 0,
+          mb: variant === 'primary' ? 0 : 0,
           p: 0,
           gap: 2,
           gridTemplateColumns:
@@ -51,9 +51,11 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             href={`/customers/${post.slug}`}
             variant="outlined"
             sx={(t) => ({
-              p: variant === 'primary' ? 3 : 2,
-              minHeight: variant === 'primary' ? '250px' : '180px',
+              py: variant === 'primary' ? 3 : 2,
+              px: variant === 'primary' ? 4 : 2,
+              minHeight: variant === 'primary' ? '200px' : '150px',
               display: 'flex',
+              alignItems: 'start',
               flexDirection: 'column',
               position: 'relative',
               backgroundImage: (t.vars || t).palette.gradients.linearSubtle,
@@ -78,7 +80,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   top: variant === 'primary' ? 30 : 'auto',
                   left: variant === 'primary' ? 30 : 'auto',
                   alignSelf: variant === 'secondary' ? 'center' : 'auto',
-                  mt: variant === 'secondary' ? 5 : 0,
+                  mt: variant === 'secondary' ? 3 : 0,
                   mb: variant === 'secondary' ? 'auto' : 0,
                   maxWidth: '100%',
                   maxHeight: '50px',
@@ -163,12 +165,14 @@ export default function CustomersSpotlight({ customers }: CustomersSpotlightProp
     const rankB = parseInt(b.rank || '99', 10);
     return rankA - rankB;
   });
-  const firstPosts = sortedCustomers.slice(0, 3);
-  const restPosts = sortedCustomers.slice(3, 7);
+  const firstPosts = sortedCustomers.slice(0, 2);
+  const secondPosts = sortedCustomers.slice(2, 4);
+  const restPosts = sortedCustomers.slice(4, 8);
 
   return (
     <React.Fragment>
-      <Spotlight posts={firstPosts} />
+      <Spotlight posts={firstPosts} variant="primary" />
+      <Spotlight posts={secondPosts} variant="primary" />
       <Spotlight posts={restPosts} variant="secondary" />
     </React.Fragment>
   );

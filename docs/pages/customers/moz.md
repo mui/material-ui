@@ -1,7 +1,7 @@
 ---
 title: Moz
 description: How Moz optimized large-scale keyword analysis with MUI X.
-image: '/static/branding/companies/moz.svg'
+image: '/static/branding/companies/moz_spotlight.svg'
 tags: ['MUI X']
 rank: '8'
 manualCard: true
@@ -21,12 +21,10 @@ manualCard: true
 
 <img
     id="blog-responsive-image"
-    src="/static/branding/companies/moz.svg"
-    alt=""
-    style="width: 30%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+    src="/static/branding/companies/headers/moz-header.png"
+    alt="MOZ logo"
+    style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
-
-**Partner Since: 2021**
 
 ## Overview
 
