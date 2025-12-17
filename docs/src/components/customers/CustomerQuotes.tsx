@@ -22,7 +22,11 @@ const QUOTES = [
           height="16"
           alt="Particl logo"
           loading="lazy"
-          style={{ filter: 'invert(50%)' }}
+          style={{
+            marginLeft: '-12px',
+            filter:
+              'brightness(0) saturate(100%) invert(71%) sepia(5%) saturate(5550%) hue-rotate(182deg) brightness(102%) contrast(102%)',
+          }}
         />
       ),
       gridArea: 'one',
@@ -30,7 +34,7 @@ const QUOTES = [
   },
   {
     quote:
-      '"Material UI looks great and lets us deliver fast, thanks to their solid API design and documentation - it\'s refreshing to use a component library where you get everything you need from their site rather than Stack Overflow. We\'re extremely grateful to the team for the time and effort spent maintaining the project."',
+      '"Material UI looks great and lets us deliver fast, thanks to their solid API design and documentation - it\'s refreshing to use a component library where you get everything you need from their site. We\'re extremely grateful to the team for the time and effort spent maintaining the project."',
     profile: {
       avatarSrc: 'https://avatars.githubusercontent.com/u/197016?s=58',
       avatarSrcSet: 'https://avatars.githubusercontent.com/u/197016?s=116 2x',
@@ -114,7 +118,7 @@ function Data({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'end',
         color: 'text.primary',
         border: '1px solid',
         borderColor: 'divider',
@@ -168,9 +172,6 @@ function Data({
             src={profile.avatarSrc}
             srcSet={profile.avatarSrcSet}
             sx={{
-              border: '3px solid #004d99',
-              outline: '1px solid',
-              outlineColor: 'primary.main',
               boxShadow: 1,
               width: { xs: 40, md: isFirstColumn || isLastColumn ? 48 : 40 },
               height: { xs: 40, md: isFirstColumn || isLastColumn ? 48 : 40 },
