@@ -25,7 +25,8 @@ type SwipeableDrawerSlotsAndSlotProps = DrawerSlotsAndSlotProps &
   >;
 
 export interface SwipeableDrawerProps
-  extends Omit<DrawerProps, 'onClose' | 'open' | 'slots' | 'slotProps'>,
+  extends
+    Omit<DrawerProps, 'onClose' | 'open' | 'slots' | 'slotProps'>,
     SwipeableDrawerSlotsAndSlotProps {
   /**
    * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.

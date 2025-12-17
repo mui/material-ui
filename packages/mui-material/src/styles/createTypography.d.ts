@@ -42,12 +42,11 @@ export interface TypographyUtils {
 }
 
 export interface TypographyVariants
-  extends Record<TypographyVariant, TypographyStyle>,
-    FontStyle,
-    TypographyUtils {}
+  extends Record<TypographyVariant, TypographyStyle>, FontStyle, TypographyUtils {}
 
-export interface TypographyVariantsOptions
-  extends Partial<Record<TypographyVariant, TypographyStyleOptions> & FontStyleOptions> {}
+export interface TypographyVariantsOptions extends Partial<
+  Record<TypographyVariant, TypographyStyleOptions> & FontStyleOptions
+> {}
 
 export default function createTypography(
   palette: Palette,
