@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { useColorScheme, keyframes } from '@mui/material/styles';
+import { keyframes } from '@mui/material/styles';
 
 interface CustomerLogo {
   name: string;
@@ -36,9 +36,6 @@ const defaultCustomerLogos: CustomerLogo[] = [
 export default function CustomersLogoSlider({
   logos = defaultCustomerLogos,
 }: CustomersLogoSliderProps) {
-  const { mode } = useColorScheme();
-  const isLight = mode === 'light' || mode === undefined;
-
   React.useEffect(() => {
     logos.forEach((logo) => {
       const img = new Image();
@@ -95,7 +92,7 @@ export default function CustomersLogoSlider({
                 component="img"
                 alt={`${logo.name} logo`}
                 src={logo.lightLogo}
-                sx={{
+                sx={(theme) => ({
                   height: { xs: 42, sm: 50, md: 70 },
                   width: '150px',
                   objectFit: 'contain',
@@ -103,13 +100,15 @@ export default function CustomersLogoSlider({
                   transition: 'opacity 0.3s ease-in-out, filter 0.3s ease-in-out',
                   flexShrink: 0,
                   marginRight: 3,
-                  filter: isLight
-                    ? 'none'
-                    : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  filter: 'none',
+                  ...theme.applyDarkStyles({
+                    filter:
+                      'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  }),
                   '&:hover': {
                     opacity: 1,
                   },
-                }}
+                })}
               />
             ))}
           </Box>
@@ -133,7 +132,7 @@ export default function CustomersLogoSlider({
                 component="img"
                 alt={`${logo.name} logo`}
                 src={logo.lightLogo}
-                sx={{
+                sx={(theme) => ({
                   height: { xs: 42, sm: 50, md: 70 },
                   width: '150px',
                   objectFit: 'contain',
@@ -141,13 +140,15 @@ export default function CustomersLogoSlider({
                   transition: 'opacity 0.3s ease-in-out, filter 0.3s ease-in-out',
                   flexShrink: 0,
                   marginRight: 3,
-                  filter: isLight
-                    ? 'none'
-                    : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  filter: 'none',
+                  ...theme.applyDarkStyles({
+                    filter:
+                      'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  }),
                   '&:hover': {
                     opacity: 1,
                   },
-                }}
+                })}
               />
             ))}
           </Box>

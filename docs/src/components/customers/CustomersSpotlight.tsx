@@ -5,7 +5,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from '@mui/docs/Link';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -15,9 +14,6 @@ interface SpotlightProps {
 }
 
 function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
-  const { mode } = useColorScheme();
-  const isLight = mode === 'light' || mode === undefined;
-
   React.useEffect(() => {
     posts.forEach((post) => {
       if (post.image) {
@@ -75,7 +71,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                 component="img"
                 alt="Company Logo"
                 src={post.image}
-                sx={{
+                sx={(theme) => ({
                   position: variant === 'primary' ? 'absolute' : 'relative',
                   top: variant === 'primary' ? 30 : 'auto',
                   left: variant === 'primary' ? 30 : 'auto',
@@ -86,10 +82,12 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   maxHeight: '50px',
                   width: 'auto',
                   zIndex: 1,
-                  filter: isLight
-                    ? 'brightness(0) saturate(100%)'
-                    : 'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
-                }}
+                  filter: 'brightness(0) saturate(100%)',
+                  ...theme.applyDarkStyles({
+                    filter:
+                      'brightness(0) saturate(100%) invert(93%) sepia(7%) saturate(0%) hue-rotate(84deg) brightness(104%) contrast(111%)',
+                  }),
+                })}
               />
             )}
             {variant === 'primary' && (
