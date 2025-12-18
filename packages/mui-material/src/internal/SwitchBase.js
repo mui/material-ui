@@ -142,6 +142,16 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       return;
     }
 
+    // readOnly attribute is ignored for checkbox/radio inputs,
+    // so we need to prevent the change manually.
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
+    if (readOnly) {
+      // Revert the native input's checked state since the browser toggles it
+      // even though `readOnly` should prevent changes.
+      event.target.checked = !event.target.checked;
+      return;
+    }
+
     const newChecked = event.target.checked;
 
     setCheckedState(newChecked);

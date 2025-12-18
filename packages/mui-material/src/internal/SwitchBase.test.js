@@ -299,6 +299,67 @@ describe('<SwitchBase />', () => {
         expect(screen.getByRole('radio')).to.have.attribute('id', 'foo');
       });
     });
+
+    describe('prop: readOnly', () => {
+      it('should not change checkbox state when readOnly is true', () => {
+        const handleChange = spy();
+        const { container } = render(
+          <SwitchBase
+            icon="unchecked"
+            checkedIcon="checked"
+            type="checkbox"
+            readOnly
+            onChange={handleChange}
+          />,
+        );
+        const checkbox = screen.getByRole('checkbox');
+
+        expect(checkbox).to.have.property('checked', false);
+        expect(container.firstChild).not.to.have.class(classes.checked);
+
+        act(() => {
+          checkbox.click();
+        });
+
+        expect(handleChange.callCount).to.equal(0);
+        expect(checkbox).to.have.property('checked', false);
+        expect(container.firstChild).not.to.have.class(classes.checked);
+      });
+
+      it('should not change checked checkbox state when readOnly is true', () => {
+        const handleChange = spy();
+        const { container } = render(
+          <SwitchBase
+            icon="unchecked"
+            checkedIcon="checked"
+            type="checkbox"
+            readOnly
+            defaultChecked
+            onChange={handleChange}
+          />,
+        );
+        const checkbox = screen.getByRole('checkbox');
+
+        expect(checkbox).to.have.property('checked', true);
+        expect(container.firstChild).to.have.class(classes.checked);
+
+        act(() => {
+          checkbox.click();
+        });
+
+        expect(handleChange.callCount).to.equal(0);
+        expect(checkbox).to.have.property('checked', true);
+        expect(container.firstChild).to.have.class(classes.checked);
+      });
+
+      it('should pass readOnly attribute to the input', () => {
+        render(
+          <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" readOnly />,
+        );
+
+        expect(screen.getByRole('checkbox')).to.have.attribute('readonly');
+      });
+    });
   });
 
   describe('with FormControl', () => {

@@ -225,4 +225,30 @@ describe('<Checkbox />', () => {
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
   });
+
+  describe('prop: readOnly', () => {
+    it('should not toggle the checkbox when clicked', () => {
+      const handleChange = spy();
+      render(<Checkbox readOnly onChange={handleChange} />);
+
+      act(() => {
+        screen.getByRole('checkbox').click();
+      });
+
+      expect(screen.getByRole('checkbox')).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('should not toggle the checked checkbox when clicked', () => {
+      const handleChange = spy();
+      render(<Checkbox readOnly defaultChecked onChange={handleChange} />);
+
+      act(() => {
+        screen.getByRole('checkbox').click();
+      });
+
+      expect(screen.getByRole('checkbox')).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(0);
+    });
+  });
 });
