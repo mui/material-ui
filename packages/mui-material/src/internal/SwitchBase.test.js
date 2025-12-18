@@ -353,9 +353,7 @@ describe('<SwitchBase />', () => {
       });
 
       it('should pass readOnly attribute to the input', () => {
-        render(
-          <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" readOnly />,
-        );
+        render(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" readOnly />);
 
         expect(screen.getByRole('checkbox')).to.have.attribute('readonly');
       });
