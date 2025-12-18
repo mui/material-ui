@@ -51,7 +51,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             sx={(t) => ({
               py: variant === 'primary' ? 3 : 2,
               px: variant === 'primary' ? 4 : 2,
-              minHeight: variant === 'primary' ? '200px' : '150px',
+              minHeight: variant === 'primary' ? '230px' : '150px',
               display: 'flex',
               alignItems: 'start',
               flexDirection: 'column',
@@ -118,8 +118,10 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   endIcon={<ArrowForwardIcon />}
                   size="small"
                   sx={{
+                    position: 'absolute',
+                    bottom: 20,
                     ml: -1,
-                    mt: 1,
+                    pt: 2,
                     pointerEvents: 'none',
                     color: 'primary.main',
                     alignSelf: 'flex-start',

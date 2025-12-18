@@ -19,6 +19,8 @@ manualCard: true
   }
 </style>
 
+# How Moz optimized large-scale keyword analysis with MUI X
+
 <img
     id="blog-responsive-image"
     src="/static/branding/companies/headers/moz-header.png"

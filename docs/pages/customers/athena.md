@@ -23,7 +23,7 @@ manualCard: true
 <img
   id="blog-responsive-image-light"
   src="/static/branding/companies/athena-light.png"
-  alt=""
+  alt="Athena logo"
   style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
 />
 </span>
@@ -31,7 +31,7 @@ manualCard: true
 <img
     id="blog-responsive-image-dark"
     src="/static/branding/companies/athena-dark.png"
-    alt=""
+    alt="Athena logo"
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 </span>
