@@ -2,9 +2,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor, waitFor } from '@mui/internal-test-utils';
-import { reactMinor } from '@mui/internal-test-utils/reactMajor';
+import { createRenderer, waitFor } from '@mui/internal-test-utils';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
+
+const [reactMajor, reactMinor] = React.version.split('.').map(Number);
 
 describe('elementTypeAcceptingRef', () => {
   const { render } = createRenderer();
