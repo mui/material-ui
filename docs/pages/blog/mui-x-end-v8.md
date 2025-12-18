@@ -236,8 +236,4 @@ We're targeting a v9 stable release by the end of March. After that, we'll inves
 
 If you rely on deep customization today, now is the perfect time to tell us about your pain points—[your input](https://tally.so/forms/w8X8Po) will shape the plan.
 
-## Feedback
-
-We're excited to hear from you about how we can keep improving MUI X! Please share requests, pain points, and use cases through [this short form](https://tally.so/forms/w8X8Po).
-
 Cheers!
