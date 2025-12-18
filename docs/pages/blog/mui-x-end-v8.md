@@ -100,7 +100,7 @@ Charts are now more comfortable to explore from the keyboard. Focus highlights s
   <figcaption style="text-align:center;margin-top:8px;">Keyboard-first exploration of series and points.</figcaption>
 </figure>
 
-[Accessibility and keyboard navigation](/x/react-charts/accessibility/)
+While these features are a work in progress, we are currently increasing our efforts to improve accessibility across all Charts components.
 
 ### Sankey and upgraded charts [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
