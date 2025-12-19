@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { NoSsr } from '@mui/base/NoSsr';
 import Box from '@mui/material/Box';
 

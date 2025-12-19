@@ -549,3 +549,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /figma/getting-started/ /material-ui/design-resources/material-ui-for-figma/ 302
 /r/material-ui-figma-* https://mui-store.netlify.app/r/material-ui-figma-:splat 200
 /r/joy-ui-figma-* https://mui-store.netlify.app/r/joy-ui-figma-:splat 200
+
+### Deploy Previews
+/pr/:id https://deploy-preview-:id--material-ui.netlify.app/ 301
+/x/pr/:id https://deploy-preview-:id--material-ui-x.netlify.app/ 301

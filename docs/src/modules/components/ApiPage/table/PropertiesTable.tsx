@@ -257,11 +257,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   {signature && (
                     <div className="prop-table-signature">
                       <span className="prop-table-title">{t('api-docs.signature')}:</span>
-                      <code
-                        dangerouslySetInnerHTML={{
-                          __html: signature,
-                        }}
-                      />
+                      <code>{signature}</code>
                       {signatureArgs && (
                         <div>
                           <ul>

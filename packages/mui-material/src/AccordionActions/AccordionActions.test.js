@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import AccordionActions, {
   accordionActionsClasses as classes,
 } from '@mui/material/AccordionActions';
@@ -20,11 +19,7 @@ describe('<AccordionActions />', () => {
     skip: ['componentProp', 'componentsProp'],
   }));
 
-  it('should apply margin to all children but the first one', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply margin to all children but the first one', function test() {
     const { container } = render(
       <AccordionActions>
         <Button data-testid="child-1">Agree</Button>

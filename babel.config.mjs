@@ -12,7 +12,6 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 const errorCodesPath = path.resolve(dirname, './docs/public/static/error-codes.json');
-const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
 /**
  * @param {string} relativeToBabelConf
@@ -43,7 +42,6 @@ export default function getBabelConfig(api) {
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
-    '@mui/internal-test-utils': resolveAliasPath('./packages-internal/test-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
   };
@@ -53,7 +51,7 @@ export default function getBabelConfig(api) {
     [
       '@mui/internal-babel-plugin-minify-errors',
       {
-        missingError,
+        missingError: 'annotate',
         errorCodesPath,
         runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },

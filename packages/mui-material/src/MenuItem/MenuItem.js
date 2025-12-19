@@ -291,7 +291,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * If `true`, the component is selected.
    * @default false

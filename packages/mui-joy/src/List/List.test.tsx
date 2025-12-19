@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -57,17 +56,18 @@ describe('Joy <List />', () => {
   });
 
   it('should have `nesting` classes', () => {
-    const { getByRole } = render(
+    render(
       <ListItem nested>
         <List />
       </ListItem>,
     );
-    expect(getByRole('list')).to.have.class(classes.nesting);
+
+    expect(screen.getByRole('list')).to.have.class(classes.nesting);
   });
 
   it('should have `orientation` classes', () => {
-    const { getByRole } = render(<List orientation="horizontal" />);
-    expect(getByRole('list')).to.have.class(classes.horizontal);
+    render(<List orientation="horizontal" />);
+    expect(screen.getByRole('list')).to.have.class(classes.horizontal);
   });
 
   describe('MenuList - integration', () => {

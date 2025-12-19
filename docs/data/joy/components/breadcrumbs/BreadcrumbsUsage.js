@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';

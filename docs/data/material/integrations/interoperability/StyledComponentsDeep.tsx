@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
@@ -6,7 +5,7 @@ import Box from '@mui/material/Box';
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
 
-  :hover {
+  &:hover {
     color: #2e8b57;
   }
 

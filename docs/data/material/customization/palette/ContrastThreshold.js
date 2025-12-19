@@ -1,6 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { Stack } from '@mui/system';
 

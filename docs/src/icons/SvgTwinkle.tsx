@@ -1,4 +1,3 @@
-import * as React from 'react';
 import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
 function SvgTwinkle(props: RootSvgProps) {

@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import Table, { tableClasses as classes } from '@mui/joy/Table';
@@ -36,16 +35,16 @@ describe('<Table />', () => {
 
   describe('prop: variant', () => {
     it('plain by default', () => {
-      const { getByRole } = render(<Table />);
+      render(<Table />);
 
-      expect(getByRole('table')).to.have.class(classes.variantPlain);
+      expect(screen.getByRole('table')).to.have.class(classes.variantPlain);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByRole } = render(<Table variant={variant} />);
+        render(<Table variant={variant} />);
 
-        expect(getByRole('table')).to.have.class(
+        expect(screen.getByRole('table')).to.have.class(
           classes[`variant${capitalize(variant)}` as keyof typeof classes],
         );
       });
@@ -54,16 +53,16 @@ describe('<Table />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByRole } = render(<Table />);
+      render(<Table />);
 
-      expect(getByRole('table')).to.have.class(classes.colorNeutral);
+      expect(screen.getByRole('table')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByRole } = render(<Table color={color} />);
+        render(<Table color={color} />);
 
-        expect(getByRole('table')).to.have.class(
+        expect(screen.getByRole('table')).to.have.class(
           classes[`color${capitalize(color)}` as keyof typeof classes],
         );
       });
@@ -72,16 +71,16 @@ describe('<Table />', () => {
 
   describe('prop: size', () => {
     it('adds a md class by default', () => {
-      const { getByRole } = render(<Table />);
+      render(<Table />);
 
-      expect(getByRole('table')).to.have.class(classes.sizeMd);
+      expect(screen.getByRole('table')).to.have.class(classes.sizeMd);
     });
 
     (['sm', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
-        const { getByRole } = render(<Table size={size} />);
+        render(<Table size={size} />);
 
-        expect(getByRole('table')).to.have.class(
+        expect(screen.getByRole('table')).to.have.class(
           classes[`size${capitalize(size)}` as keyof typeof classes],
         );
       });
@@ -90,16 +89,16 @@ describe('<Table />', () => {
 
   describe('prop: borderAxis', () => {
     it('adds `xBetween` by default', () => {
-      const { getByRole } = render(<Table />);
+      render(<Table />);
 
-      expect(getByRole('table')).to.have.class(classes.borderAxisXBetween);
+      expect(screen.getByRole('table')).to.have.class(classes.borderAxisXBetween);
     });
 
     (['none', 'x', 'xBetween', 'y', 'yBetween', 'both', 'bothBetween'] as const).forEach((axis) => {
       it(`should render border-axis ${axis}`, () => {
-        const { getByRole } = render(<Table borderAxis={axis} />);
+        render(<Table borderAxis={axis} />);
 
-        expect(getByRole('table')).to.have.class(
+        expect(screen.getByRole('table')).to.have.class(
           classes[`borderAxis${capitalize(axis)}` as keyof typeof classes],
         );
       });
@@ -107,26 +106,26 @@ describe('<Table />', () => {
   });
 
   it('adds `hoverRow` class', () => {
-    const { getByRole } = render(<Table hoverRow />);
+    render(<Table hoverRow />);
 
-    expect(getByRole('table')).to.have.class(classes.hoverRow);
+    expect(screen.getByRole('table')).to.have.class(classes.hoverRow);
   });
 
   it('adds `noWrap` class', () => {
-    const { getByRole } = render(<Table noWrap />);
+    render(<Table noWrap />);
 
-    expect(getByRole('table')).to.have.class(classes.noWrap);
+    expect(screen.getByRole('table')).to.have.class(classes.noWrap);
   });
 
   it('adds `stickyHeader` class', () => {
-    const { getByRole } = render(<Table stickyHeader />);
+    render(<Table stickyHeader />);
 
-    expect(getByRole('table')).to.have.class(classes.stickyHeader);
+    expect(screen.getByRole('table')).to.have.class(classes.stickyHeader);
   });
 
   it('adds `stickyFooter` class', () => {
-    const { getByRole } = render(<Table stickyFooter />);
+    render(<Table stickyFooter />);
 
-    expect(getByRole('table')).to.have.class(classes.stickyFooter);
+    expect(screen.getByRole('table')).to.have.class(classes.stickyFooter);
   });
 });

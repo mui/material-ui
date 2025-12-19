@@ -1,4 +1,3 @@
-import * as React from 'react';
 // import of a small, pure module in a private demo
 // bundle size and module duplication is negligible
 

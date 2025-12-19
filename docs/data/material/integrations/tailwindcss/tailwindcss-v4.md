@@ -105,7 +105,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 ## Tailwind CSS IntelliSense for VS Code
 
 The official [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension requires extra configuration to work properly when customizing the interior slots of Material UI components.
-After installing the extension, add the following line to your [VS Code `settings.json`](https://code.visualstudio.com/docs/editor/settings#_settings-json-file) file:
+After installing the extension, add the following line to your [VS Code `settings.json`](https://code.visualstudio.com/docs/configure/settings#_settings-json-file) file:
 
 ```json
 {

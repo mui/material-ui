@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
@@ -14,6 +13,8 @@ import createPalette from './createPalette';
 
 const lightPalette = createPalette({ mode: 'light' });
 const darkPalette = createPalette({ mode: 'dark' });
+
+const isJSDOM = isJsdom();
 
 describe('createTheme', () => {
   const { render } = createRenderer();
@@ -170,7 +171,7 @@ describe('createTheme', () => {
   });
 
   describe('CSS variables', () => {
-    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided ', () => {
+    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
       const theme = createTheme({
         cssVariables: true,
         colorSchemes: { dark: true },
@@ -212,8 +213,8 @@ describe('createTheme', () => {
         cssVariables: true,
         colorSchemes: { dark: true },
       });
-      expect(theme.colorSchemes.light).to.not.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.light).not.to.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should not have light if default color scheme is set to dark', () => {
@@ -223,7 +224,7 @@ describe('createTheme', () => {
         defaultColorScheme: 'dark',
       });
       expect(theme.colorSchemes.light).to.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should be able to customize tonal offset', () => {
@@ -475,32 +476,29 @@ describe('createTheme', () => {
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
 
-  it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+  it.skipIf(isJSDOM)(
+    'should apply the correct borderRadius styles via sx prop if theme values are 0',
+    function test() {
+      const theme = createTheme({
+        shape: {
+          borderRadius: 0,
+        },
+      });
 
-    if (isJSDOM) {
-      this.skip();
-    }
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
+        </ThemeProvider>,
+      );
 
-    const theme = createTheme({
-      shape: {
-        borderRadius: 0,
-      },
-    });
-
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
-      </ThemeProvider>,
-    );
-
-    expect(container.firstChild).toHaveComputedStyle({
-      borderTopLeftRadius: '0px',
-      borderBottomLeftRadius: '0px',
-      borderTopRightRadius: '0px',
-      borderBottomRightRadius: '0px',
-    });
-  });
+      expect(container.firstChild).toHaveComputedStyle({
+        borderTopLeftRadius: '0px',
+        borderBottomLeftRadius: '0px',
+        borderTopRightRadius: '0px',
+        borderBottomRightRadius: '0px',
+      });
+    },
+  );
 
   it('should apply dark styles when using applyStyles if mode="dark"', function test() {
     const darkTheme = createTheme({

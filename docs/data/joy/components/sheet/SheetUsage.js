@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Sheet from '@mui/joy/Sheet';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 

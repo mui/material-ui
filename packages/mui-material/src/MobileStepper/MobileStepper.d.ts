@@ -70,8 +70,7 @@ export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface MobileStepperProps
-  extends StandardProps<PaperProps, 'children' | 'variant'>,
-    MobileStepperSlotsAndSlotProps {
+  extends StandardProps<PaperProps, 'children' | 'variant'>, MobileStepperSlotsAndSlotProps {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.

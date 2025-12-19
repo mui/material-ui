@@ -17,9 +17,9 @@ export default function createEmotionCache(
     insertionPoint = emotionInsertionPoint ?? undefined;
   }
 
-  const { enableCssLayer, ...rest } = options ?? {};
+  const { enableCssLayer, ...other } = options ?? {};
 
-  const emotionCache = createCache({ key: 'mui', insertionPoint, ...rest });
+  const emotionCache = createCache({ key: 'mui', insertionPoint, ...other });
   if (enableCssLayer) {
     const prevInsert = emotionCache.insert;
     emotionCache.insert = (...args) => {

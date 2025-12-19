@@ -33,6 +33,7 @@ export interface AdParameters {
   name: string;
   link: string;
   img?: string;
+  descriptionHeader: string;
   description: string;
   poweredby: string;
   label: string;
@@ -65,7 +66,6 @@ export default function AdDisplay(props: AdDisplayProps) {
 
   const Root = shape === 'image' ? ImageShape : InlineShape;
 
-  /* eslint-disable react/no-danger */
   return (
     <Root className={className}>
       <a
@@ -83,15 +83,13 @@ export default function AdDisplay(props: AdDisplayProps) {
         <span className="AdDisplay-imageWrapper">
           <img height="100" width="130" src={ad.img} alt={ad.name} />
         </span>
-        <span
-          className="AdDisplay-description"
-          dangerouslySetInnerHTML={{ __html: ad.description }}
-        />
+        <span className="AdDisplay-description">
+          <strong>{ad.descriptionHeader}</strong> - {ad.description}
+        </span>
       </a>
       <span className="AdDisplay-poweredby">
         {t('adPublisher').replace('{{publisher}}', ad.poweredby)}
       </span>
     </Root>
   );
-  /* eslint-enable react/no-danger */
 }

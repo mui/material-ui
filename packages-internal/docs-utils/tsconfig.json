@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "noEmit": true,
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "types": ["node"],
     "strict": true,
     "esModuleInterop": true,

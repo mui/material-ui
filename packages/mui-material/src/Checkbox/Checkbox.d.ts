@@ -49,7 +49,8 @@ export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface CheckboxProps
-  extends StandardProps<
+  extends
+    StandardProps<
       SwitchBaseProps,
       'checkedIcon' | 'color' | 'icon' | 'type' | 'slots' | 'slotProps'
     >,

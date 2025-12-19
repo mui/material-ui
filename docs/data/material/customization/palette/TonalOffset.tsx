@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Box from '@mui/material/Box';

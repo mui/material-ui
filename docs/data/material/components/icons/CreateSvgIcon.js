@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { createSvgIcon } from '@mui/material/utils';
 

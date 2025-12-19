@@ -89,7 +89,7 @@ The demo below shows the result of the `theme.palette.getContrastText()` functio
 :::info
 The CSS variables `--__l` and `--__a` are internal variables set globally by Material UI.
 
-To learn more about the formulas used, see [this article on color contrast from Lea Verou](https://lea.verou.me/blog/2024/contrast-color).
+To learn more about the formulas used, see [this article on color contrast from Lea Verou](https://lea.verou.me/blog/2024/contrast-color/).
 :::
 
 ## Caveats

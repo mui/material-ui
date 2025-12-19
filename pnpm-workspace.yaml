@@ -5,10 +5,11 @@ packages:
   - docs
   - test
   - test/*
-  - apps/*
 
 patchedDependencies:
   styled-components: patches/styled-components.patch
 
 onlyBuiltDependencies:
   - '@vvago/vale'
+
+engineStrict: true

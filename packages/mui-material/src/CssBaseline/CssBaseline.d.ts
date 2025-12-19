@@ -8,7 +8,7 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
   children?: React.ReactNode;
   /**
    * Enable `color-scheme` CSS property to use `theme.palette.mode`.
-   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false
    */

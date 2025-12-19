@@ -241,17 +241,28 @@ AppBar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 4
+   */
+  elevation: PropTypes.number,
+  /**
    * If true, the `color` prop is applied in dark mode.
    * @default false
    */
   enableColorOnDark: PropTypes.bool,
   /**
    * The positioning type. The behavior of the different options is described
-   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Web/CSS/position).
+   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position).
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    * @default 'fixed'
    */
   position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
+  /**
+   * If `false`, rounded corners are enabled.
+   * @default true
+   */
+  square: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

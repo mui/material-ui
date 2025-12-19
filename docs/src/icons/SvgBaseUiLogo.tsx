@@ -1,4 +1,3 @@
-import * as React from 'react';
 import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
 export default function SvgBaseUiLogo(props: RootSvgProps) {

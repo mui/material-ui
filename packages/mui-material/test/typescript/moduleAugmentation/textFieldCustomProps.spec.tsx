@@ -61,3 +61,41 @@ const theme = createTheme({
 <TextField variant="filled" size="extraLarge">
   Custom Size TextField
 </TextField>;
+
+declare module '@mui/material/TextField' {
+  interface TextFieldFormHelperTextSlotPropsOverrides {
+    'data-cy'?: string;
+  }
+  interface TextFieldRootSlotPropsOverrides {
+    customRootProp?: string;
+  }
+  interface TextFieldInputSlotPropsOverrides {
+    customInputProp?: string;
+  }
+  interface TextFieldInputLabelSlotPropsOverrides {
+    customInputLabelProp?: string;
+  }
+  interface TextFieldSelectSlotPropsOverrides {
+    customSelectProp?: string;
+  }
+}
+
+<TextField
+  slotProps={{
+    formHelperText: { 'data-cy': 'email-error' },
+    root: {
+      customRootProp: 'abc',
+    },
+    input: {
+      customInputProp: 'abc',
+    },
+    inputLabel: {
+      customInputLabelProp: 'abc',
+    },
+    select: {
+      customSelectProp: 'abc',
+    },
+  }}
+>
+  Custom TextField
+</TextField>;
