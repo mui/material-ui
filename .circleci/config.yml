@@ -190,7 +190,7 @@ jobs:
       - code-infra/install-pnpm
       - run:
           name: Configure pnpm engine-strict
-          command:  pnpm config set --location project engine-strict false
+          command: pnpm config set --location project engine-strict false
       - install-deps:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
