@@ -89,6 +89,12 @@ const ButtonGroupRoot = styled('div', {
         props: { variant: 'contained' },
         style: {
           boxShadow: (theme.vars || theme).shadows[2],
+          [`& .${buttonGroupClasses.grouped}`]: {
+            boxShadow: 'none',
+            '&:hover': {
+              boxShadow: 'none',
+            },
+          },
         },
       },
       {
@@ -239,13 +245,6 @@ const ButtonGroupRoot = styled('div', {
     ],
     [`& .${buttonGroupClasses.grouped}`]: {
       minWidth: 40,
-      boxShadow: 'none',
-      props: { variant: 'contained' },
-      style: {
-        '&:hover': {
-          boxShadow: 'none',
-        },
-      },
     },
   })),
 );
