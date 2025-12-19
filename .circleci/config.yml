@@ -188,8 +188,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Configure npm engine-strict
-          command: echo "engine-strict=false" >> .npmrc
+          name: Configure pnpm engine-strict
+          command: 'echo "engineStrict: false" >> pnpm-workspace.yaml'
       - install-deps:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
