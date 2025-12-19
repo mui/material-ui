@@ -26,7 +26,7 @@
   },
   {
     "id": 89,
-    "title": "Meet MUI Chat",
-    "text": "Open any advanced component demo and click the new <strong>Edit&nbsp;in&nbsp;Chat</strong> button, or jump straight into <a style=\"color: inherit;\" href=\"https://chat.mui.com/?utm_source=mui-docs&utm_medium=notification&utm_campaign=alpha-launch\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-chat-alpha\" rel=\"noopener\">MUI&nbsp;Chat</a> and get a tailored example for your use case."
+    "title": "Get custom examples",
+    "text": "Good news: you can now customize examples for your use case from any example in the docs. Click <strong>Edit&nbsp;in&nbsp;Chat</strong> on an example, or go straight to <a style=\"color: inherit;\" href=\"https://chat.mui.com/?utm_source=mui-docs&utm_medium=notification&utm_campaign=public-alpha-launch\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-chat-alpha\" rel=\"noopener\">MUI&nbsp;Chat</a>."
   }
 ]
