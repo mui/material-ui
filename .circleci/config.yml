@@ -187,9 +187,10 @@ jobs:
       playwright-img-version: v1.49.1-noble
     steps:
       - checkout
+      - code-infra/install-pnpm
       - run:
           name: Configure pnpm engine-strict
-          command: 'echo "engineStrict: false" >> pnpm-workspace.yaml'
+          command:  pnpm config set engine-strict false
       - install-deps:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
