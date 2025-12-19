@@ -160,7 +160,7 @@
   "packageManager": "pnpm@10.25.0",
   "engines": {
     "pnpm": "10.25.0",
-    "node": ">=22.12.0"
+    "node": ">=22.18.0"
   },
   "resolutions": {
     "@babel/core": "^7.28.5",
