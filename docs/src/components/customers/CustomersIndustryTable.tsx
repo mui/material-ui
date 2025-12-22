@@ -255,7 +255,7 @@ export default function CustomersIndustryTable() {
                         whiteSpace: 'nowrap',
                         fontSize: { xs: '0.75rem', sm: '0.875rem' },
                         '&:hover': {
-                          color: 'primary.700',
+                          color: 'primary.400',
                         },
                       }}
                     >

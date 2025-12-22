@@ -36,4 +36,10 @@ export const COMPANIES: Company[] = [
     website: 'https://www.cgi.com/',
     caseStudySlug: 'cgi',
   },
+  {
+    name: 'NASA',
+    logo: '/static/branding/companies/slider/nasa.png',
+    industries: ['Enterprise'],
+    website: 'https://www.nasa.gov/',
+  },
 ];
