@@ -59,7 +59,7 @@ jobs:
           # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
           # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
           NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
-          GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_AUTH: Bearer ${{ secrets.GITHUB_TOKEN }}
       # - run: pnpm release:changelog
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

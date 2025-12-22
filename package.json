@@ -95,10 +95,10 @@
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.13",
-    "@mui/internal-bundle-size-checker": "1.0.9-canary.56",
-    "@mui/internal-code-infra": "0.0.3-canary.56",
+    "@mui/internal-bundle-size-checker": "1.0.9-canary.57",
+    "@mui/internal-code-infra": "0.0.3-canary.62",
     "@mui/internal-docs-utils": "workspace:^",
-    "@mui/internal-netlify-cache": "^0.0.2-canary.1",
+    "@mui/internal-netlify-cache": "0.0.2-canary.1",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "2.0.18-canary.0",
     "@mui/joy": "workspace:*",
@@ -160,7 +160,7 @@
   "packageManager": "pnpm@10.25.0",
   "engines": {
     "pnpm": "10.25.0",
-    "node": ">=22.12.0"
+    "node": ">=22.18.0"
   },
   "resolutions": {
     "@babel/core": "^7.28.5",
