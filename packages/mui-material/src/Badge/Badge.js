@@ -253,7 +253,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const {
     anchorOrigin: anchorOriginProp,
     className,
-    classes: classesProp,
     component,
     components = {},
     componentsProps = {},
