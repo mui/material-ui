@@ -34,7 +34,7 @@ export default function AppFrameBanner() {
   const pageContext = React.useContext(PageContext);
   const productName = convertProductIdToName(pageContext) || 'MUI';
 
-    // Only show banner on MUI X product pages
+  // Only show banner on MUI X product pages
   if (productName !== 'MUI X') {
     return null;
   }
