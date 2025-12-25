@@ -101,6 +101,7 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
     elementType: CardActionAreaFocusHighlight,
     externalForwardedProps,
     ownerState,
+    ref,
     className: classes.focusHighlight,
   });
 
