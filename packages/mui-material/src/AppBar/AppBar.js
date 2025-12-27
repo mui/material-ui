@@ -95,6 +95,7 @@ const AppBarRoot = styled(Paper, {
         props: { color: 'inherit' },
         style: {
           '--AppBar-color': 'inherit',
+          color: 'var(--AppBar-color)',
         },
       },
       {
