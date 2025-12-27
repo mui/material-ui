@@ -187,20 +187,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return undefined;
     }
 
-    // let active = true;
-
     const observer = new ResizeObserver(() => {
-      // if (!active) {
-      //   return;
-      // }
-
-      setMenuMinWidthState(anchorElement.getBoundingClientRect().width);
+      setMenuMinWidthState(anchorElement.clientWidth);
     });
 
     observer.observe(anchorElement);
 
     return () => {
-      // active = false;
       observer.disconnect();
     };
   }, [openState, anchorElement]);
