@@ -257,10 +257,10 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {select ? (
         <SelectSlot
           aria-describedby={helperTextId}
-          id={id}
           labelId={inputLabelId}
           value={value}
           input={InputElement}
+          inputProps={{ id }}
           {...selectProps}
         >
           {children}
