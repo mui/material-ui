@@ -45,7 +45,7 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/react-is": "^19.2.0",
-    "@types/sinon": "^17.0.4",
+    "@types/sinon": "^21.0.0",
     "chai": "^6.0.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
