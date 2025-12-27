@@ -21,9 +21,9 @@
     "@types/react": "^19.2.7",
     "@types/react-is": "^19.2.0",
     "@types/sinon": "^17.0.4",
-    "chai": "^6.0.1",
+    "chai": "^6.2.1",
     "docs": "workspace:^",
-    "es-toolkit": "^1.39.10",
+    "es-toolkit": "^1.42.0",
     "fast-glob": "^3.3.3",
     "html-webpack-plugin": "^5.6.3",
     "prop-types": "^15.8.1",
@@ -34,9 +34,9 @@
     "react-window": "^2.2.2",
     "sinon": "^21.0.0",
     "styled-components": "^6.1.19",
-    "stylis": "4.2.0",
+    "stylis": "4.3.6",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.101.0",
+    "webpack": "^5.104.1",
     "yargs": "^17.7.2"
   },
   "dependencies": {

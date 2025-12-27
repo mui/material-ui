@@ -39,7 +39,7 @@
     "@types/node": "^20.19.26",
     "@types/sinon": "^17.0.4",
     "@types/stylis": "4.2.7",
-    "chai": "^6.0.1",
+    "chai": "^6.2.1",
     "sinon": "^21.0.0",
     "stylis": "4.3.6"
   },

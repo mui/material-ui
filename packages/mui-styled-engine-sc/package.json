@@ -39,7 +39,7 @@
   "devDependencies": {
     "@types/chai": "^5.2.3",
     "@types/react": "^19.2.7",
-    "chai": "^6.0.1",
+    "chai": "^6.2.1",
     "react": "^19.2.1",
     "styled-components": "^6.1.19"
   },

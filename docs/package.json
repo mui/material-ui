@@ -126,7 +126,7 @@
     "@types/react-swipeable-views": "^0.13.6",
     "@types/react-transition-group": "^4.4.12",
     "@types/stylis": "^4.2.7",
-    "chai": "^6.0.1",
+    "chai": "^6.2.1",
     "cross-fetch": "^4.1.0",
     "gm": "^1.25.1",
     "prettier": "^3.6.2",
