@@ -75,6 +75,20 @@ describe('<Checkbox />', () => {
     expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
+  describe('prop: readOnly', () => {
+    it('prevents interaction', async () => {
+      const changeSpy = spy();
+      const { user } = render(<Checkbox readOnly defaultChecked onChange={changeSpy} />);
+
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).to.have.attribute('readonly');
+      expect(checkbox).to.have.attribute('checked');
+      await user.click(checkbox);
+      expect(checkbox).to.have.attribute('checked');
+      expect(changeSpy.callCount).to.equal(0);
+    });
+  });
+
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       render(<Checkbox indeterminate />);
