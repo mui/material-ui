@@ -56,7 +56,7 @@
     "css-mediaquery": "^0.1.2",
     "es-toolkit": "^1.39.10",
     "fast-glob": "^3.3.3",
-    "jsdom": "^26.1.0",
+    "jsdom": "^27.0.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-router": "^7.10.1",
