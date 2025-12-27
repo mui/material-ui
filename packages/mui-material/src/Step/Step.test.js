@@ -121,4 +121,45 @@ describe('<Step />', () => {
       expect(stepLabels[1]).to.have.class(stepLabelClasses.disabled);
     });
   });
+
+  describe('accessibility', () => {
+    it('should not have aria-label by default (relies on StepLabel visually hidden text)', () => {
+      const { container } = render(
+        <Stepper activeStep={0}>
+          <Step>
+            <StepLabel>Step 1</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 2</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 3</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const steps = container.querySelectorAll(`.${classes.root}`);
+      // No aria-label by default to avoid redundancy with visually hidden text
+      expect(steps[0]).not.to.have.attribute('aria-label');
+      expect(steps[1]).not.to.have.attribute('aria-label');
+      expect(steps[2]).not.to.have.attribute('aria-label');
+    });
+
+    it('should use custom getAriaLabel when provided', () => {
+      const { container } = render(
+        <Stepper activeStep={0}>
+          <Step getAriaLabel={(index, totalSteps) => `Item ${index + 1} of ${totalSteps}`}>
+            <StepLabel>First</StepLabel>
+          </Step>
+          <Step getAriaLabel={(index, totalSteps) => `Item ${index + 1} of ${totalSteps}`}>
+            <StepLabel>Second</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const steps = container.querySelectorAll(`.${classes.root}`);
+      expect(steps[0]).to.have.attribute('aria-label', 'Item 1 of 2');
+      expect(steps[1]).to.have.attribute('aria-label', 'Item 2 of 2');
+    });
+  });
 });

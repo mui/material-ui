@@ -15,6 +15,14 @@ export interface StepButtonOwnProps {
    */
   classes?: Partial<StepButtonClasses>;
   /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the step button.
+   * This is important for screen reader users.
+   * @param {number} index The step's index.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {string}
+   */
+  getAriaLabel?: (index: number, totalSteps: number) => string;
+  /**
    * The icon displayed by the step label.
    */
   icon?: React.ReactNode;
