@@ -37,7 +37,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
     "@types/react": "^19.2.7",
-    "next": "^15.5.7",
+    "next": "^16.0.0",
     "react": "^19.2.1"
   },
   "peerDependencies": {
