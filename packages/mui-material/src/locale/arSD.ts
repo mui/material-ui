@@ -37,7 +37,7 @@ export const arSD: Localization = {
       defaultProps: {
         clearText: 'مسح',
         closeText: 'إغلاق',
-        loadingText: 'جار التحميل...',
+        loadingText: 'جار التحميل…',
         noOptionsText: 'لا يوجد خيارات',
         openText: 'فتح',
       },
