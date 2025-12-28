@@ -37,7 +37,7 @@ export const arSA: Localization = {
       defaultProps: {
         clearText: 'مسح',
         closeText: 'إغلاق',
-        loadingText: 'جار التحميل...',
+        loadingText: 'جار التحميل…',
         noOptionsText: 'لا توجد خيارات',
         openText: 'فتح',
       },

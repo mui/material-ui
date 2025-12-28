@@ -41,7 +41,7 @@ export const neNP: Localization = {
       defaultProps: {
         clearText: 'खाली गर्नुहोस्',
         closeText: 'बन्द गर्नुहोस्',
-        loadingText: 'लोड हुँदै...',
+        loadingText: 'लोड हुँदै…',
         noOptionsText: 'कुनै विकल्प छैन',
         openText: 'खोल्नुहोस्',
       },
