@@ -1944,4 +1944,46 @@ describe('<Select />', () => {
       }
     });
   });
+
+  it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
+    if (typeof ResizeObserver === 'undefined') {
+      // Some browser environments could still lack RO; keep the test stable.
+      return;
+    }
+
+    render(
+      <Select
+        value=""
+        MenuProps={{
+          disablePortal: true,
+          transitionDuration: 0,
+        }}
+      >
+        <MenuItem value="">None</MenuItem>
+        <MenuItem value={10}>Ten</MenuItem>
+      </Select>,
+    );
+
+    const combobox = screen.getByRole('combobox');
+    const anchor = combobox.parentElement;
+
+    // Give the anchor a deterministic width that will affect clientWidth in a real browser.
+    anchor.style.width = '320px';
+
+    fireEvent.mouseDown(combobox);
+
+    const width1 = anchor.clientWidth;
+
+    const listbox = screen.getByRole('listbox');
+    const paper = listbox.parentElement;
+    expect(paper.style.minWidth).to.equal(`${width1}px`);
+
+    // Simulate a "window resize" effect by changing the anchor's width while open.
+    anchor.style.width = '180px';
+
+    const width2 = anchor.clientWidth;
+
+    // This is the actual regression assertion:
+    expect(paper.style.minWidth).to.equal(`${width2}px`);
+  });
 });
