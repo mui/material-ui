@@ -178,8 +178,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     [value],
   );
 
+  const open = displayNode !== null && openState;
+
   React.useEffect(() => {
-    if (!openState || !anchorElement) {
+    if (!open || !anchorElement || autoWidth) {
       return undefined;
     }
 
@@ -196,7 +198,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return () => {
       observer.disconnect();
     };
-  }, [openState, anchorElement]);
+  }, [open, anchorElement, autoWidth]);
 
   // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
@@ -234,8 +236,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = (open, event) => {
-    if (open) {
+  const update = (openParam, event) => {
+    if (openParam) {
       if (onOpen) {
         onOpen(event);
       }
@@ -245,7 +247,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (!isOpenControlled) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
-      setOpenState(open);
+      setOpenState(openParam);
     }
   };
 
@@ -349,8 +351,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       onKeyDown?.(event);
     }
   };
-
-  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
