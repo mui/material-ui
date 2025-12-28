@@ -19,7 +19,6 @@ import useSlot from '../utils/useSlot';
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
   slot: 'Backdrop',
-  overrides: (props, styles) => styles.backdrop,
 })({
   // Improve scrollable dialog support.
   zIndex: -1,
@@ -310,6 +309,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
+    className: classes.backdrop,
   });
 
   const [PaperSlot, paperSlotProps] = useSlot('paper', {
