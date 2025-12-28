@@ -29,6 +29,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root'],
+    backdrop: ['backdrop'],
     container: ['container', `scroll${capitalize(scroll)}`],
     paper: [
       'paper',
