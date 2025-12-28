@@ -476,8 +476,8 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-router:
-        specifier: ^7.10.1
-        version: 7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^7.11.0
+        version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-runner:
         specifier: ^1.0.5
         version: 1.0.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1229,8 +1229,8 @@ importers:
         specifier: ^19.2.1
         version: 19.2.3(react@19.2.3)
       react-router:
-        specifier: ^7.10.1
-        version: 7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^7.11.0
+        version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       sinon:
         specifier: ^21.0.0
         version: 21.0.0
@@ -1644,8 +1644,8 @@ importers:
         specifier: ^19.2.1
         version: 19.2.1
       react-router:
-        specifier: ^7.10.1
-        version: 7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^7.11.0
+        version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-window:
         specifier: ^2.2.2
         version: 2.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -3557,7 +3557,7 @@ packages:
   '@mui/base@5.0.0-beta.30':
     resolution: {integrity: sha512-dc38W4W3K42atE9nSaOeoJ7/x9wGIfawdwC/UmMxMLlZ1iSsITQ8dQJaTATCbn98YvYPINK/EH541YA5enQIPQ==}
     engines: {node: '>=12.0.0'}
-    deprecated: This package has been replaced by @base-ui-components/react
+    deprecated: This package has been replaced by @base-ui/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -3569,7 +3569,7 @@ packages:
   '@mui/base@5.0.0-beta.31':
     resolution: {integrity: sha512-+uNbP3OHJuZVI00WyMg7xfLZotaEY7LgvYXDfONVJbrS+K9wyjCIPNfjy8r9XJn4fbHo/5ibiZqjWnU9LMNv+A==}
     engines: {node: '>=12.0.0'}
-    deprecated: This package has been replaced by @base-ui-components/react
+    deprecated: This package has been replaced by @base-ui/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -3581,7 +3581,7 @@ packages:
   '@mui/base@5.0.0-beta.70':
     resolution: {integrity: sha512-Tb/BIhJzb0pa5zv/wu7OdokY9ZKEDqcu1BDFnohyvGCoHuSXbEr90rPq1qeNW3XvTBIbNWHEF7gqge+xpUo6tQ==}
     engines: {node: '>=14.0.0'}
-    deprecated: This package has been replaced by @base-ui-components/react
+    deprecated: This package has been replaced by @base-ui/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -3593,7 +3593,7 @@ packages:
   '@mui/base@7.0.0-beta.4':
     resolution: {integrity: sha512-WzFMFK9dy66fy941u/N0cmA1Yz4LfdNbkBtDK0GBV5ewBvQhSL2Z1+Xcf+lJB0yX6Xg9QvjDDgGcqBqEstyFAg==}
     engines: {node: '>=14.0.0'}
-    deprecated: This package has been replaced by @base-ui-components/react
+    deprecated: This package has been replaced by @base-ui/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -10311,8 +10311,8 @@ packages:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
     engines: {node: '>=0.10.0'}
 
-  react-router@7.10.1:
-    resolution: {integrity: sha512-gHL89dRa3kwlUYtRQ+m8NmxGI6CgqN+k4XyGjwcFoQwwCWF6xXpOCUlDovkXClS0d0XJN/5q7kc5W3kiFEd0Yw==}
+  react-router@7.11.0:
+    resolution: {integrity: sha512-uI4JkMmjbWCZc01WVP2cH7ZfSzH91JAZUDd7/nIprDgWxBV1TkkmLToFh7EbMTcMak8URFRa2YoBL/W8GWnCTQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -22323,7 +22323,7 @@ snapshots:
 
   react-refresh@0.18.0: {}
 
-  react-router@7.10.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  react-router@7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       cookie: 1.0.2
       react: 19.2.3
