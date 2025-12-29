@@ -12,7 +12,7 @@ components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperTe
 
 A number field is an input with increment and decrement buttons for capturing numeric input from users.
 
-Material UI does not include a number field component out of the box, but this doc provides components composed with the [Base UI `NumberField`](https://base-ui.com/react/components/number-field) and styled to align with Material Design (MD2) specifications, so they can be used with Material UI.
+Material UI does not include a number field component out of the box, but this page provides components composed with the [Base UI `NumberField`](https://base-ui.com/react/components/number-field) and styled to align with Material Design (MD2) specifications, so they can be used with Material UI.
 
 As such, you must install Base UI before proceeding.
 The examples that follow can then be copied and pasted directly into your app.
