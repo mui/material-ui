@@ -1947,6 +1947,9 @@ describe('<Select />', () => {
   });
 
   it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
+    // reset fake timers
+    clock.restore();
+
     if (typeof ResizeObserver === 'undefined') {
       // Some browser environments could still lack RO; keep the test stable.
       return;
