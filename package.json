@@ -83,7 +83,7 @@
   "dependencies": {
     "@netlify/functions": "^5.1.1",
     "@slack/bolt": "^4.6.0",
-    "@vitest/eslint-plugin": "^1.5.2",
+    "@vitest/eslint-plugin": "^1.6.4",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.1"
   },
