@@ -180,25 +180,25 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const open = displayNode !== null && openState;
 
-  // React.useEffect(() => {
-  //   if (!open || !anchorElement || autoWidth) {
-  //     return undefined;
-  //   }
+  React.useEffect(() => {
+    if (!open || !anchorElement || autoWidth) {
+      return undefined;
+    }
 
-  //   if (typeof ResizeObserver === 'undefined') {
-  //     return undefined;
-  //   }
+    if (typeof ResizeObserver === 'undefined') {
+      return undefined;
+    }
 
-  //   const observer = new ResizeObserver(() => {
-  //     setMenuMinWidthState(anchorElement.clientWidth);
-  //   });
+    const observer = new ResizeObserver(() => {
+      setMenuMinWidthState(anchorElement.clientWidth);
+    });
 
-  //   observer.observe(anchorElement);
+    observer.observe(anchorElement);
 
-  //   return () => {
-  //     observer.disconnect();
-  //   };
-  // }, [open, anchorElement, autoWidth]);
+    return () => {
+      observer.disconnect();
+    };
+  }, [open, anchorElement, autoWidth]);
 
   // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
