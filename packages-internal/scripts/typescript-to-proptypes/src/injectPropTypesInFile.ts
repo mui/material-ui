@@ -4,16 +4,15 @@ import { randomUUID } from 'node:crypto';
 import { generatePropTypes, GeneratePropTypesOptions } from './generatePropTypes';
 import { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
 
-export interface InjectPropTypesInFileOptions
-  extends Pick<
-    GeneratePropTypesOptions,
-    | 'sortProptypes'
-    | 'includeJSDoc'
-    | 'comment'
-    | 'disablePropTypesTypeChecking'
-    | 'reconcilePropTypes'
-    | 'ensureBabelPluginTransformReactRemovePropTypesIntegration'
-  > {
+export interface InjectPropTypesInFileOptions extends Pick<
+  GeneratePropTypesOptions,
+  | 'sortProptypes'
+  | 'includeJSDoc'
+  | 'comment'
+  | 'disablePropTypesTypeChecking'
+  | 'reconcilePropTypes'
+  | 'ensureBabelPluginTransformReactRemovePropTypesIntegration'
+> {
   /**
    * By default, all unused props are omitted from the result.
    * Set this to true to include them instead.

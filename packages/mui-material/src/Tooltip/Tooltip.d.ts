@@ -74,8 +74,7 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface TooltipProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'>,
-    TooltipSlotsAndSlotProps {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'>, TooltipSlotsAndSlotProps {
   /**
    * If `true`, adds an arrow to the tooltip.
    * @default false

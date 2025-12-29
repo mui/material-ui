@@ -83,7 +83,8 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface SwitchOwnerState extends Omit<SwitchProps, 'slots' | 'slotProps'> {}
 
 export interface SwitchProps
-  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'slots' | 'slotProps'>,
+  extends
+    StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'slots' | 'slotProps'>,
     SwitchSlotsAndSlotProps {
   /**
    * The icon to display when the component is checked.
