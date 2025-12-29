@@ -8,7 +8,7 @@ import {
   fireEvent,
   screen,
   reactMajor,
-  waitFor,
+  // waitFor,
 } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
@@ -1950,11 +1950,6 @@ describe('<Select />', () => {
     // reset fake timers
     clock.restore();
 
-    if (typeof ResizeObserver === 'undefined') {
-      // Some browser environments could still lack RO; keep the test stable.
-      return;
-    }
-
     render(
       <Select
         value=""
@@ -1977,22 +1972,22 @@ describe('<Select />', () => {
 
     const width1 = anchor.clientWidth;
 
-    await waitFor(() => {
+    // await waitFor(() => {
       const listbox = screen.getByRole('listbox');
       const paper = listbox.parentElement;
       expect(paper.style.minWidth).to.equal(`${width1}px`);
-    });
+    // });
 
     // Simulate a "window resize" effect by changing the anchor's width while open.
     anchor.style.width = '180px';
 
-    await waitFor(() => {
+    // await waitFor(() => {
       const width2 = anchor.clientWidth;
-      const listbox = screen.getByRole('listbox');
-      const paper = listbox.parentElement;
+      // const listbox = screen.getByRole('listbox');
+      // const paper = listbox.parentElement;
 
       // This is the actual regression assertion:
       expect(paper.style.minWidth).to.equal(`${width2}px`);
-    });
+    // });
   });
 });
