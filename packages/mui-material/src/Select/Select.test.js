@@ -8,6 +8,7 @@ import {
   fireEvent,
   screen,
   reactMajor,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
@@ -1945,7 +1946,7 @@ describe('<Select />', () => {
     });
   });
 
-  it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', () => {
+  it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
     if (typeof ResizeObserver === 'undefined') {
       // Some browser environments could still lack RO; keep the test stable.
       return;
@@ -1973,16 +1974,22 @@ describe('<Select />', () => {
 
     const width1 = anchor.clientWidth;
 
-    const listbox = screen.getByRole('listbox');
-    const paper = listbox.parentElement;
-    expect(paper.style.minWidth).to.equal(`${width1}px`);
+    await waitFor(() => {
+      const listbox = screen.getByRole('listbox');
+      const paper = listbox.parentElement;
+      expect(paper.style.minWidth).to.equal(`${width1}px`);
+    });
 
     // Simulate a "window resize" effect by changing the anchor's width while open.
     anchor.style.width = '180px';
 
-    const width2 = anchor.clientWidth;
+    await waitFor(() => {
+      const width2 = anchor.clientWidth;
+      const listbox = screen.getByRole('listbox');
+      const paper = listbox.parentElement;
 
-    // This is the actual regression assertion:
-    expect(paper.style.minWidth).to.equal(`${width2}px`);
+      // This is the actual regression assertion:
+      expect(paper.style.minWidth).to.equal(`${width2}px`);
+    });
   });
 });
