@@ -81,7 +81,7 @@ describe('Joy <IconButton />', () => {
 
   describe('prop: loadingIndicator', () => {
     const content = 'Test';
-    const loadingText = 'loading...';
+    const loadingText = 'loading…';
 
     it('is not rendered by default', () => {
       render(
