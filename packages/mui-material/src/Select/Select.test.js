@@ -1945,7 +1945,7 @@ describe('<Select />', () => {
     });
   });
 
-  it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
+  it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', () => {
     if (typeof ResizeObserver === 'undefined') {
       // Some browser environments could still lack RO; keep the test stable.
       return;
@@ -1955,7 +1955,6 @@ describe('<Select />', () => {
       <Select
         value=""
         MenuProps={{
-          disablePortal: true,
           transitionDuration: 0,
         }}
       >
