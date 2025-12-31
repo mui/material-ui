@@ -43,6 +43,7 @@
       "@mui/icons-material": ["./packages/mui-icons-material/lib/esm/index.js"],
       "@mui/icons-material/*": ["./packages/mui-icons-material/lib/esm/*"],
       "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
+      "@mui/internal-scripts/check-links": ["./packages-internal/scripts/check-links/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
       ],

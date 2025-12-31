@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "noImplicitAny": false,
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "include": ["./src/**/*", "./test/**/*"]
+}
