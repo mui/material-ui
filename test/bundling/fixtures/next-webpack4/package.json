@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
     "@mui/material": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/lab": "workspace:*",
@@ -22,8 +22,8 @@
     "react-is": "^17.0.2"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
-    "@playwright/test": "1.54.1"
+    "concurrently": "7.6.0",
+    "@playwright/test": "1.57.0"
   },
   "pnpm": {
     "overrides": {
