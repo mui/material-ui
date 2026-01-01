@@ -17,12 +17,12 @@
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
     "gatsby": "5.13.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-is": "18.2.0"
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-is": "19.2.3"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "9.2.1",
     "@playwright/test": "1.54.1"
   },
   "pnpm": {

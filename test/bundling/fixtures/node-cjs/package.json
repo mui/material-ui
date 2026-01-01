@@ -17,7 +17,7 @@
     "@mui/styled-engine": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "react-is": "18.2.0"
+    "react-is": "19.2.3"
   },
   "pnpm": {
     "overrides": {

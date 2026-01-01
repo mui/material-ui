@@ -14,13 +14,13 @@
     "@mui/lab": "workspace:*",
     "@mui/styled-engine": "workspace:*",
     "@mui/utils": "workspace:*",
-    "next": "14.2.35",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-is": "18.2.0"
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-is": "19.2.3"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "9.2.1",
     "@playwright/test": "1.54.1"
   },
   "pnpm": {
