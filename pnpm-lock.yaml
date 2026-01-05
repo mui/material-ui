@@ -14,7 +14,7 @@ overrides:
   '@definitelytyped/header-parser': ^0.2.20
   '@definitelytyped/typescript-versions': ^0.1.9
   '@definitelytyped/utils': ^0.1.8
-  '@types/node': ^20.19.26
+  '@types/node': 20.19.27
   cross-fetch: ^4.1.0
   '@pigment-css/react': 0.0.30
   '@pigment-css/unplugin': 0.0.30
@@ -119,7 +119,7 @@ importers:
         specifier: ^1.1.3
         version: 1.1.3
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/react':
         specifier: ^19.2.7
@@ -552,7 +552,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/nprogress':
         specifier: ^0.2.3
@@ -646,7 +646,7 @@ importers:
         specifier: ^0.0.9
         version: 0.0.9
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/react':
         specifier: ^19.2.7
@@ -731,7 +731,7 @@ importers:
         specifier: 4.0.4
         version: 4.0.4
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/react-docgen':
         specifier: workspace:*
@@ -765,7 +765,7 @@ importers:
         specifier: ^5.2.3
         version: 5.2.3
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/sinon':
         specifier: ^17.0.4
@@ -894,7 +894,7 @@ importers:
         specifier: ^0.0.20
         version: 0.0.20
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/prop-types':
         specifier: ^15.7.15
@@ -1400,7 +1400,7 @@ importers:
         specifier: ^5.2.3
         version: 5.2.3
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/sinon':
         specifier: ^17.0.4
@@ -1526,7 +1526,7 @@ importers:
         specifier: ^5.2.3
         version: 5.2.3
       '@types/node':
-        specifier: ^20.19.26
+        specifier: 20.19.27
         version: 20.19.27
       '@types/react':
         specifier: ^19.2.7
@@ -3257,7 +3257,7 @@ packages:
     resolution: {integrity: sha512-5+Q3PKH35YsnoPTh75LucALdAxom6xh5D1oeY561x4cqBuH24ZFVyFREPe14xgnrtmGu3EEt1dIi60wRVSnGCw==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3266,7 +3266,7 @@ packages:
     resolution: {integrity: sha512-KR8edRkIsUayMXV+o3Gv+q4jlhENF9nMYUZs9PA2HzrXeHI8M5uDag70U7RJn9yyiMZSbtF5/UexBtAVtZGSbQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3275,7 +3275,7 @@ packages:
     resolution: {integrity: sha512-lyEvibDFL+NA5R4xl8FUmNhmu81B+LDL9L/MpKkZlQDJZXzG8InxiqYxiAlQYa9cqLLhYqKLQwZqXmSTqCLjyw==}
     engines: {node: '>=23.5.0 || ^22.13.0 || ^21.7.0 || ^20.12.0'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3284,7 +3284,7 @@ packages:
     resolution: {integrity: sha512-43RTuEbfP8MbKzedNqBrlhhNKVwoK//vUFNW3Q3vZ88BLcrs4kYpGg+B2mm5p2K/HfygoCxuKwJJiv8PbGmE0A==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3293,7 +3293,7 @@ packages:
     resolution: {integrity: sha512-+jD/34T1pK8M5QmZD/ENhOfXdl9Zr+BrQAUc5h2anWgi7gggRq15ZbiBeLoObj0TLbdgW7TAIQRU2boMc9uOKQ==}
     engines: {node: '>=23.5.0 || ^22.13.0 || ^21.7.0 || ^20.12.0'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3302,7 +3302,7 @@ packages:
     resolution: {integrity: sha512-MjtjOGjr0Kh4BciaFShYpZ1s9400idOdvQ5D7u7lE6VztPFoyLcVNE5dXBmEEIQq5zi4B9h2kU+q7AVBxJMAkQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3311,7 +3311,7 @@ packages:
     resolution: {integrity: sha512-+mScLhIcbPFmuvU3tAGBed78XvYHSvCl6dBiYMlzCLhpr0bzGzd8tfivMMeqND6XZiaZ1tgusbUHJEfc6YzOdA==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3320,7 +3320,7 @@ packages:
     resolution: {integrity: sha512-yy9cOoBnx58TlsPrIxauKIFQTiyH+0MK4e97y4sV9ERbI+zDxw7i2hxHLCIEGIE/8PPvDxGhgzIOTSOWcs6/MQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3337,7 +3337,7 @@ packages:
     resolution: {integrity: sha512-7GoWev7P6s7t0oJbenH0eQ0ThNdDJbEAEtVt9vsrYZ9FulIokvd823yLyhQlWHJPGce1wzP53ttfdCZmonMHyA==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3346,7 +3346,7 @@ packages:
     resolution: {integrity: sha512-5QWs0KGaNMlhbdhOSCFfKsW+/dcAVC2g4wT/z2MCiZM47uLgatC5N20kpkDQf7dHx+XFct/MJvvNGy6aYJn4Pw==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3355,7 +3355,7 @@ packages:
     resolution: {integrity: sha512-xxeW1V5SbNFNig2pLfetsDb0svWlKuhmr7MPJZMYuDnCTkpVBI+X/doudg4pznc1/U+yYmWFFOi4hNvGgUo7EA==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3364,7 +3364,7 @@ packages:
     resolution: {integrity: sha512-X7/+dG9SLpSzRkwgG5/xiIzW0oMrV3C0HOa7YHG1WnrLK+vCQHfte4k/T80059YBdei29RBC3s+pSMvPJDU9/A==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3373,7 +3373,7 @@ packages:
     resolution: {integrity: sha512-AWpxB7MuJrRiSfTKGJ7Y68imYt8P9N3Gaa7ySdkFj1iWjr6WfbGAhdZvw/UnhFXTHITJzxGUI9k8IX7akAEBCg==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3382,7 +3382,7 @@ packages:
     resolution: {integrity: sha512-a5SzB/qrXafDX1Z4AZW3CsVoiNxcIYCzYP7r9RzrfMpaLpB+yWi5U8BWagZyLmwR0pKbbL5umnGRd0RzGVI8bQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3391,7 +3391,7 @@ packages:
     resolution: {integrity: sha512-l4xMuJo55MAe+N7Qr4rX90vypFwCajSakx59qe/tMaC1aEHWLyw68wF4o0A4SLAY4E0nd+Vt+EyskeDIqu1M6w==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3400,7 +3400,7 @@ packages:
     resolution: {integrity: sha512-M+ynbwS0ecQFDYMFrQrybA0qL8DV0snpc4kKevCCNaTpfghsRowRY7SlQBeIYNzHqXtiiz4RG9vTOeb/udew7w==}
     engines: {node: '>=23.5.0 || ^22.13.0 || ^21.7.0 || ^20.12.0'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3409,7 +3409,7 @@ packages:
     resolution: {integrity: sha512-BvziSRxfz5Ov8ch0z/n3oijRSEcEsHnhggm4xFZe93DHcUCTlutlq9Ox4SVENAfcRD22UQq7T/atg9Wr3k09eA==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -3418,7 +3418,7 @@ packages:
     resolution: {integrity: sha512-cae7mzluplsjSdgFA6ACLygb5jC8alO0UUnFPyu0E7tNRPrL+q/f8VcSXp+cjZQ7l5CMpDpi2G1+IQvkOiL1Lw==}
     engines: {node: '>=23.5.0 || ^22.13.0 || ^21.7.0 || ^20.12.0'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -8168,7 +8168,7 @@ packages:
     resolution: {integrity: sha512-603xXOgyfxhuis4nfnWaZrMaotNT0Km9XwwBNWUKbIDqeCY89jGr2F9YPEMiNhU6XjIP4VoWISMBFfcc5NgrTw==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -11597,7 +11597,7 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
       jiti: '>=1.21.0'
       less: ^4.0.0
       lightningcss: ^1.21.0
@@ -11647,7 +11647,7 @@ packages:
       '@edge-runtime/vm': '*'
       '@opentelemetry/api': ^1.9.0
       '@types/debug': ^4.1.12
-      '@types/node': ^20.19.26
+      '@types/node': 20.19.27
       '@vitest/browser-playwright': 4.0.13
       '@vitest/browser-preview': 4.0.13
       '@vitest/browser-webdriverio': 4.0.13
