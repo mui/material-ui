@@ -81,9 +81,9 @@
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
-    "@netlify/functions": "^5.1.1",
+    "@netlify/functions": "^5.1.2",
     "@slack/bolt": "^4.6.0",
-    "@vitest/eslint-plugin": "^1.5.2",
+    "@vitest/eslint-plugin": "^1.6.4",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.1"
   },
@@ -96,7 +96,7 @@
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.13",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.57",
-    "@mui/internal-code-infra": "0.0.3-canary.62",
+    "@mui/internal-code-infra": "0.0.3-canary.64",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.2-canary.1",
     "@mui/internal-scripts": "workspace:^",
@@ -157,9 +157,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.26.2",
   "engines": {
-    "pnpm": "10.25.0",
+    "pnpm": "10.26.2",
     "node": ">=22.18.0"
   },
   "resolutions": {
