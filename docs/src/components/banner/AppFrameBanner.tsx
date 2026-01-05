@@ -2,8 +2,6 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import { Link } from '@mui/docs/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
-// import PageContext from 'docs/src/modules/components/PageContext';
-// import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const showSurveyMessage = true;
 
@@ -28,11 +26,6 @@ export default function AppFrameBanner() {
     hadHydrated = true;
     setMounted(true);
   }, []);
-
-  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-  // eslint-disable-next-line react-hooks/rules-of-hooks -- FEATURE_TOGGLE never changes
-  // const pageContext = React.useContext(PageContext);
-  // const productName = convertProductIdToName(pageContext) || 'MUI';
 
   let message = '';
   let href = '';
