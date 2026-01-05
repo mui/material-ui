@@ -48,18 +48,18 @@ Then follow these steps:
 
 1. Create a shared Emotion cache (required for SSR + hydration)
 
-Material UI relies on Emotion for styling.
-To avoid hydration mismatches, the same Emotion cache instance and configuration must be used on both the server and the client.
+   Material UI relies on Emotion for styling.
+   To avoid hydration mismatches, the same Emotion cache instance and configuration must be used on both the server and the client.
 
-Create a shared cache:
+   Create a shared cache:
 
-```tsx title="src/createEmotionCache.js"
-import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
+   ```tsx title="src/createEmotionCache.js"
+   import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
 
-export const emotionCache = createEmotionCache({ enableCssLayer: true });
-```
+   export const emotionCache = createEmotionCache({ enableCssLayer: true });
+   ```
 
-> `enableCssLayer: true` ensures Material UI styles are wrapped in `@layer mui`, which allows Tailwind CSS v4 utilities to override them predictably.
+   > `enableCssLayer: true` ensures Material UI styles are wrapped in `@layer mui`, which allows Tailwind CSS v4 utilities to override them predictably.
 
 2. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#configuration-2) in a custom `_document`:
 
