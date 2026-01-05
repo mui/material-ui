@@ -78,7 +78,8 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface SpeedDialActionProps
-  extends Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
+  extends
+    Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
     SpeedDialActionSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
@@ -140,5 +141,7 @@ export interface SpeedDialActionProps
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.Element;
 
-export interface SpeedDialActionOwnerState
-  extends Omit<SpeedDialActionProps, 'slots' | 'slotProps'> {}
+export interface SpeedDialActionOwnerState extends Omit<
+  SpeedDialActionProps,
+  'slots' | 'slotProps'
+> {}

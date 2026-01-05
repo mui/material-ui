@@ -41,7 +41,6 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^5.2.3",
     "@types/prop-types": "^15.7.15",
@@ -49,8 +48,8 @@
     "@types/react-dom": "^19.2.3",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {

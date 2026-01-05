@@ -190,9 +190,7 @@ export default withDocsInfra({
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
-    GITHUB_AUTH: process.env.GITHUB_AUTH
-      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
-      : '',
+    GITHUB_AUTH: process.env.GITHUB_AUTH,
     MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',
     MUI_CHAT_SCOPES: process.env.DEPLOY_ENV === 'production' ? '' : 'material-ui', // Use comma separated list of `productId` (see `_app.js`) to enable MUI Chat on demos
   },
