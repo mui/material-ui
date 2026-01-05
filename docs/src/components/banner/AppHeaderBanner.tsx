@@ -22,7 +22,7 @@ const linkStyleOverrides = (theme: Theme) => ({
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      {`🚀 Influence MUI X's 2026 roadmap! Participate in the latest`}
+      {`🚀 Influence MUI's 2026 roadmap! Take our latest`}
       &nbsp;
       <Link
         href="https://tally.so/r/3jOKG1?source=website"
@@ -72,13 +72,11 @@ export default function AppHeaderBanner() {
           alignItems: { xs: 'start', sm: 'center' },
           justifyContent: 'center',
           fontSize: theme.typography.pxToRem(13),
-          background: `linear-gradient(-90deg, ${(theme.vars || theme).palette.primary[700]}, ${
-            (theme.vars || theme).palette.primary[500]
-          } 120%)`,
-          ...theme.applyDarkStyles({
-            background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[900]}, ${
-              (theme.vars || theme).palette.primary[600]
+          background: `linear-gradient(-90deg, ${(theme.vars || theme).palette.primary[700]}, ${(theme.vars || theme).palette.primary[500]
             } 120%)`,
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[900]}, ${(theme.vars || theme).palette.primary[600]
+              } 120%)`,
           }),
         }),
       ]}
