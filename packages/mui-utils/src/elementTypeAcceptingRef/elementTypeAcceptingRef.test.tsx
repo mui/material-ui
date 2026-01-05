@@ -35,7 +35,8 @@ describe('elementTypeAcceptingRef', () => {
       if (failsOnMount) {
         expect(testAct).toErrorDev([
           'Did you accidentally provide a React.Fragment instead?',
-          reactMajor <= 19 &&
+          reactMajor < 19 && 'Invalid attribute `ref` supplied to `React.Fragment`.',
+          reactMajor === 19 &&
             reactMinor < 3 &&
             'Invalid prop `ref` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.',
         ]);
