@@ -36,7 +36,7 @@ export default function RootLayout() {
 
 2. Configure the layer order in the Tailwind CSS file:
 
-```css title="src/app/globals.css"
+```css title="src/app/global.css"
 @layer theme, base, mui, components, utilities;
 @import 'tailwindcss';
 ```

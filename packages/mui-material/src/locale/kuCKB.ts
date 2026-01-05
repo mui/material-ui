@@ -37,7 +37,7 @@ export const kuCKB: Localization = {
       defaultProps: {
         clearText: 'سڕینەوە',
         closeText: 'داخستن',
-        loadingText: 'لە بارکردندایە...',
+        loadingText: 'لە بارکردندایە…',
         noOptionsText: 'هیچ بژاردەیەک نیە',
         openText: 'کردنەوە',
       },
