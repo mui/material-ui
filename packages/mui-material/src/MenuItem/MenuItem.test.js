@@ -106,12 +106,8 @@ describe('<MenuItem />', () => {
       expect(handleKeyDown.callCount).to.equal(1);
     });
 
-    it('should fire onTouchStart', function touchStartTest() {
-      // only run in supported browsers
-      if (!supportsTouch()) {
-        this.skip();
-      }
-
+    // only run in supported browsers
+    it.skipIf(!supportsTouch())('should fire onTouchStart', function touchStartTest() {
       const handleTouchStart = spy();
       render(<MenuItem onTouchStart={handleTouchStart} />);
       const menuitem = screen.getByRole('menuitem');

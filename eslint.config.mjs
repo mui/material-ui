@@ -10,6 +10,7 @@ import {
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
+import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
@@ -121,12 +122,20 @@ export default defineConfig(
   {
     files: [`**/*${EXTENSION_TEST_FILE}`],
     extends: createTestConfig({
-      useMocha: true,
+      useMocha: false,
+      useVitest: true,
     }),
+    languageOptions: {
+      globals: {
+        ...vitestPlugin.environments.env.globals,
+      },
+    },
     rules: {
       'material-ui/no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
+      // TODO: investigate and fix
+      'vitest/expect-expect': 'off',
     },
   },
   // Test end
@@ -307,6 +316,15 @@ export default defineConfig(
       // Otherwise, running docs:typescript:formatted rearranges the imports and also removes the eslint-disable comment
       // if added.
       'import/order': 'off',
+    },
+  },
+  {
+    files: [`test/**/*${EXTENSION_TS}`],
+    rules: {
+      'guard-for-in': 'off',
+      'testing-library/prefer-screen-queries': 'off', // Enable usage of playwright queries
+      'testing-library/no-await-sync-queries': 'off',
+      'testing-library/render-result-naming-convention': 'off', // inconsequential in regression tests
     },
   },
 );

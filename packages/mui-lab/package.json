@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "7.0.1-beta.19",
+  "version": "7.0.1-beta.20",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "keywords": [
@@ -29,7 +29,7 @@
   "scripts": {
     "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/lab\"",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
@@ -41,16 +41,15 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
-    "@types/chai": "^5.2.2",
+    "@types/chai": "^5.2.3",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {

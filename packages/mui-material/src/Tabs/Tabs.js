@@ -384,7 +384,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     slots,
     slotProps: {
       indicator: TabIndicatorProps,
-      scrollButton: TabScrollButtonProps,
+      scrollButtons: TabScrollButtonProps,
       ...slotProps,
     },
   };

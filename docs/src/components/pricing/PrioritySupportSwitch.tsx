@@ -58,7 +58,7 @@ export default function PrioritySupportSwitch() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Priority support
+                Priority Support
               </Typography>
               <Tooltip title={prioritySupportDescription} {...tooltipProps}>
                 <InfoOutlinedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
@@ -119,7 +119,7 @@ export function PrioritySupportSwitchTable() {
               variant="body1"
               sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.875rem' }}
             >
-              Priority support
+              Priority Support
             </Typography>
           </Tooltip>
         }
