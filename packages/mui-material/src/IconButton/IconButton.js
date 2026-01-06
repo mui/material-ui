@@ -49,12 +49,17 @@ const IconButtonRoot = styled(ButtonBase, {
   },
 })(
   memoTheme(({ theme }) => ({
+    '--IconButton-padding': '8px',
+    '--IconButton-fontSize': theme.typography.pxToRem(24),
+    '--IconButton-color': (theme.vars || theme).palette.action.active,
+    '--IconButton-disabledColor': (theme.vars || theme).palette.action.disabled,
+
     textAlign: 'center',
     flex: '0 0 auto',
-    fontSize: theme.typography.pxToRem(24),
-    padding: 8,
+    fontSize: 'var(--IconButton-fontSize)',
+    padding: 'var(--IconButton-padding)',
     borderRadius: '50%',
-    color: (theme.vars || theme).palette.action.active,
+    color: 'var(--IconButton-color)',
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -131,21 +136,21 @@ const IconButtonRoot = styled(ButtonBase, {
       {
         props: { size: 'small' },
         style: {
-          padding: 5,
-          fontSize: theme.typography.pxToRem(18),
+          '--IconButton-padding': '5px',
+          '--IconButton-fontSize': theme.typography.pxToRem(18),
         },
       },
       {
         props: { size: 'large' },
         style: {
-          padding: 12,
-          fontSize: theme.typography.pxToRem(28),
+          '--IconButton-padding': '12px',
+          '--IconButton-fontSize': theme.typography.pxToRem(28),
         },
       },
     ],
     [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
-      color: (theme.vars || theme).palette.action.disabled,
+      color: 'var(--IconButton-disabledColor)',
     },
     [`&.${iconButtonClasses.loading}`]: {
       color: 'transparent',
