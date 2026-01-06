@@ -39,17 +39,17 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@babel/register": "^7.28.3",
+    "@babel/register": "7.28.3",
     "@types/babel__core": "7.20.5",
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/node": "20.19.27",
     "@types/react": "19.2.7",
     "@types/uuid": "10.0.0",
-    "chai": "^6.0.1",
-    "fast-glob": "^3.3.3",
-    "prettier": "^3.6.2",
-    "rimraf": "^6.0.1"
+    "chai": "6.2.1",
+    "fast-glob": "3.3.3",
+    "prettier": "3.7.4",
+    "rimraf": "6.1.2"
   },
   "publishConfig": {
     "access": "public"

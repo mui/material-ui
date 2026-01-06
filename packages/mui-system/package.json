@@ -42,19 +42,19 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
     "@mui/system": "workspace:*",
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.7",
     "@types/sinon": "17.0.4",
-    "chai": "^6.0.1",
-    "es-toolkit": "^1.39.10",
-    "fast-glob": "^3.3.3",
-    "react": "^19.2.1",
-    "sinon": "^21.0.0",
-    "styled-components": "^6.1.19"
+    "chai": "6.2.1",
+    "es-toolkit": "1.43.0",
+    "fast-glob": "3.3.3",
+    "react": "19.2.3",
+    "sinon": "21.0.0",
+    "styled-components": "6.1.19"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
