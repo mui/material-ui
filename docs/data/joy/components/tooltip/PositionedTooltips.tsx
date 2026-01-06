@@ -35,7 +35,7 @@ export default function PositionedTooltips() {
           </Tooltip>
         </Grid>
         <Grid container sx={{ justifyContent: 'flex-end' }} size={6}>
-          <Stack>
+          <Stack sx={{ alignItems: 'end' }}>
             <Grid>
               <Tooltip title="Add" placement="right-start">
                 <Button variant="plain">right-start</Button>
