@@ -53,7 +53,6 @@ const IconButtonRoot = styled(ButtonBase, {
     '--IconButton-fontSize': theme.typography.pxToRem(24),
     '--IconButton-color': (theme.vars || theme).palette.action.active,
     '--IconButton-disabledColor': (theme.vars || theme).palette.action.disabled,
-
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: 'var(--IconButton-fontSize)',
