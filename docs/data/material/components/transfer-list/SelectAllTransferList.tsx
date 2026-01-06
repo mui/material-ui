@@ -133,7 +133,7 @@ export default function SelectAllTransferList() {
     >
       <Grid>{customList('Choices', left)}</Grid>
       <Grid>
-        <Grid container direction="column" sx={{ alignItems: 'center' }}>
+        <Grid container sx={{ alignItems: 'center' }}>
           <Button
             sx={{ my: 0.5 }}
             variant="outlined"
