@@ -194,7 +194,7 @@ importers:
         specifier: ^0.18.1
         version: 0.18.1
       nx:
-        specifier: ^20.8.3
+        specifier: 20.8.3
         version: 20.8.3
       playwright:
         specifier: 1.57.0
