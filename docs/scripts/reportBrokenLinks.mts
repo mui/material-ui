@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { getBlogSeedUrls, crawlSeedUrlsOnHost } from '@mui/internal-scripts/check-links';
+import { getBlogSeedUrls, crawlSeedUrlsOnHost } from '@mui/internal-link-checker';
 
 async function main() {
   const workingDir = import.meta.dirname;

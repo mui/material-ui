@@ -1,0 +1,9 @@
+{
+  "name": "@mui/internal-link-checker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Link checking utilities for MUI docs",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts"
+}

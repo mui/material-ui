@@ -1,7 +1,7 @@
 import { crawl, Issue } from '@mui/internal-code-infra/brokenLinksChecker';
 import { globby } from 'globby';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { crawlSeedUrlsOnHost, getBlogSeedUrls } from '../src/index';
+import { crawlSeedUrlsOnHost, getBlogSeedUrls } from './checkLinks';
 
 // Mock external dependencies to control their behavior in tests
 

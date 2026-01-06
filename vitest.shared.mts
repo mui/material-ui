@@ -118,6 +118,10 @@ export default async function create(
           MONOREPO_ROOT,
           './packages-internal/docs-utils/src',
         ),
+        '@mui/internal-link-checker': path.resolve(
+          MONOREPO_ROOT,
+          './packages-internal/link-checker/src',
+        ),
         '@mui/material': path.resolve(MONOREPO_ROOT, './packages/mui-material/src'),
         '@mui/system': path.resolve(MONOREPO_ROOT, './packages/mui-system/src'),
         '@mui/types': path.resolve(MONOREPO_ROOT, './packages/mui-types/src'),
