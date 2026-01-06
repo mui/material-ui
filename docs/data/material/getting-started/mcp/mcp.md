@@ -96,7 +96,7 @@ By default, this installs the MCP server to local-scope of the project you are w
 If you want the MCP server to always be available to all projects on your machine, you would install it to user-scope:
 
 ```bash
-claude mcp add mui-mcp -s user -- npx -y @mui/mcp@latest
+claude mcp add mui-mcp --scope user -- npx -y @mui/mcp@latest
 ```
 
 To better understand MCP server scope hierarchy and precedence in Claude Code, see their [official documentation](https://docs.claude.com/en/docs/claude-code/mcp#mcp-installation-scopes).
