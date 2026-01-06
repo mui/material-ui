@@ -37,7 +37,7 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@types/chai": "^5.2.3",
+    "@types/chai": "5.2.3",
     "@types/react": "^19.2.7",
     "chai": "^6.0.1",
     "react": "^19.2.1",
