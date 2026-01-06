@@ -37,11 +37,17 @@
     "divider": { "type": { "name": "bool" }, "default": "false" },
     "secondaryAction": { "type": { "name": "node" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: object, secondaryAction?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: elementType, secondaryAction?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {

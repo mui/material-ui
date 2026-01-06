@@ -15,7 +15,7 @@ const GOLDs = [
     src: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://tidelift.com/',
   },
   {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
@@ -26,7 +26,6 @@ const GOLDs = [
   },
   {
     src: '/static/sponsors/wispr-square-light.svg',
-    srcSet: '/static/sponsors/wispr-square-light.svg 3x',
     srcDark: '/static/sponsors/wispr-square-dark.svg',
     name: 'Wispr Flow',
     description: 'AI Dictation: from speech to clear, polished text.',
@@ -43,11 +42,6 @@ const BACKLINKs = [
   {
     name: 'Buzzoid',
     description: 'Instant delivery Instagram followers.',
-    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'Buzzoid',
-    description: 'Instant delivery YouTube Views.',
     href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {

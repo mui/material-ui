@@ -1,4 +1,4 @@
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { expect } from 'chai';
@@ -17,11 +17,7 @@ describe('<DialogActions />', () => {
     skip: ['componentProp', 'componentsProp'],
   }));
 
-  it('should apply margin to all children but the first one', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply margin to all children but the first one', function test() {
     const { container } = render(
       <DialogActions>
         <Button data-testid="child-1">Agree</Button>

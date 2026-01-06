@@ -1,9 +1,11 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 import describeConformance from '../../test/describeConformance';
+
+const isJSDOM = isJsdom();
 
 describe('<Box />', () => {
   const { render } = createRenderer();
@@ -22,13 +24,7 @@ describe('<Box />', () => {
     refInstanceof: window.HTMLDivElement,
   }));
 
-  it('respects theme from context', function test() {
-    const isJSDOM = window.navigator.userAgent.includes('jsdom');
-
-    if (isJSDOM) {
-      this.skip();
-    }
-
+  it.skipIf(isJSDOM)('respects theme from context', function test() {
     const theme = createTheme({
       palette: {
         primary: {

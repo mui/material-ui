@@ -85,8 +85,10 @@ export type AccordionSummaryTypeMap<
   defaultComponent: RootComponent;
 }>;
 
-export interface AccordionSummaryOwnerState
-  extends Omit<AccordionSummaryProps, 'slots' | 'slotProps'> {}
+export interface AccordionSummaryOwnerState extends Omit<
+  AccordionSummaryProps,
+  'slots' | 'slotProps'
+> {}
 
 /**
  *

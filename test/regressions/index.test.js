@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/render-result-naming-convention, testing-library/prefer-screen-queries */
 import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';
@@ -103,7 +102,7 @@ async function main() {
       });
     });
 
-    after(async () => {
+    afterAll(async () => {
       await browser.close();
     });
 
@@ -186,13 +185,6 @@ async function main() {
       });
     });
   });
-
-  run();
 }
 
-main().catch((error) => {
-  // error during setup.
-  // Throwing lets mocha hang.
-  console.error(error);
-  process.exit(1);
-});
+await main();
