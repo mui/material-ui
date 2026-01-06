@@ -71,8 +71,8 @@ importers:
         specifier: 1.0.9-canary.58
         version: 1.0.9-canary.58(@types/node@20.19.27)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: 0.0.3-canary.65
-        version: 0.0.3-canary.65(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
+        specifier: 0.0.3-canary.66
+        version: 0.0.3-canary.66(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -606,8 +606,8 @@ importers:
   packages-internal/link-checker:
     dependencies:
       '@mui/internal-code-infra':
-        specifier: 0.0.3-canary.65
-        version: 0.0.3-canary.65(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
+        specifier: 0.0.3-canary.66
+        version: 0.0.3-canary.66(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
       globby:
         specifier: 16.1.0
         version: 16.1.0
@@ -3641,13 +3641,13 @@ packages:
     resolution: {integrity: sha512-d6jcFls69LPppKa7n1GGUO5PK8ckW0iKCBb2qSHAijZesSYwjs7zuYMTEN2ivz5Oe/F370dJRYWKmn/f3q4owQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.3-canary.65':
-    resolution: {integrity: sha512-zkulKIZ+v6aZ2qkRsnCvEZDxduK03cgu1CfaWRAQOAyhhwZo02MWE3EEE43MLRN4mro8u5LfZMu4wM95h/hfwA==}
+  '@mui/internal-code-infra@0.0.3-canary.66':
+    resolution: {integrity: sha512-HE64SGbX5Bz5L+87SMN48IDYC48y0iGVvbuDagE1aVRRI7O4+zgTkDOvUwz8Mlrw+Fv2K1Pp8IIeYxEonQrL4A==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
       eslint: ^9.0.0
-      prettier: ~3.5.3
+      prettier: ^3.0.0
       typescript: ^5.0.0
 
   '@mui/internal-netlify-cache@0.0.2-canary.1':
@@ -14607,7 +14607,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.3-canary.65(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
+  '@mui/internal-code-infra@0.0.3-canary.66(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(@typescript-eslint/parser@8.51.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
     dependencies:
       '@argos-ci/core': 4.5.0
       '@babel/cli': 7.28.3(@babel/core@7.28.5)
@@ -14681,7 +14681,7 @@ snapshots:
       - supports-color
       - vitest
 
-  '@mui/internal-code-infra@0.0.3-canary.65(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
+  '@mui/internal-code-infra@0.0.3-canary.66(@next/eslint-plugin-next@15.5.7)(@types/node@20.19.27)(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.1(jiti@2.6.1))(postcss@8.5.6)(prettier@3.7.4)(stylelint@16.23.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
     dependencies:
       '@argos-ci/core': 4.5.0
       '@babel/cli': 7.28.3(@babel/core@7.28.5)
