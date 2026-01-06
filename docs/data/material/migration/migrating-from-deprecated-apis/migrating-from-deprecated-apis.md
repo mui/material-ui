@@ -287,18 +287,18 @@ All of the Autocomplete's slot (`*Component`) props were deprecated in favor of 
 
 ```diff
  <Autocomplete
--    PaperComponent={CustomPaperComponent}
--    PopperComponent={CustomPopperComponent}
--    ListboxComponent={CustomListboxComponent}
-+    slots={{
-+        paper: CustomPaperComponent,
-+        popper: CustomPopperComponent,
-+    }}
-+    slotProps={{
-+        listbox: {
-+            component: CustomListboxComponent,
-+        },
-+    }}
+-  PaperComponent={CustomPaperComponent}
+-  PopperComponent={CustomPopperComponent}
+-  ListboxComponent={CustomListboxComponent}
++  slots={{
++    paper: CustomPaperComponent,
++    popper: CustomPopperComponent,
++  }}
++  slotProps={{
++    listbox: {
++      component: CustomListboxComponent,
++    },
++  }}
  />
 ```
 
@@ -313,12 +313,12 @@ All of the Autocomplete's slot props (`*Props`) props were deprecated in favor o
 
 ```diff
  <Autocomplete
--    ChipProps={CustomChipProps}
--    ListboxProps={CustomListboxProps}
-+    slotProps={{
-+        chip: CustomChipProps,
-+        listbox: CustomListboxProps,
-+    }}
+-  ChipProps={CustomChipProps}
+-  ListboxProps={CustomListboxProps}
++  slotProps={{
++    chip: CustomChipProps,
++    listbox: CustomListboxProps,
++  }}
  />
 ```
 
