@@ -122,7 +122,7 @@ importers:
         specifier: 20.19.27
         version: 20.19.27
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/yargs':
         specifier: 17.0.35
@@ -452,10 +452,10 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react:
-        specifier: ^19.2.1
+        specifier: ^19.2.3
         version: 19.2.3
       react-dom:
-        specifier: ^19.2.1
+        specifier: ^19.2.3
         version: 19.2.3(react@19.2.3)
       react-draggable:
         specifier: ^4.5.0
@@ -470,8 +470,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-is:
-        specifier: ^19.2.1
-        version: 19.2.1
+        specifier: ^19.2.3
+        version: 19.2.3
       react-number-format:
         specifier: ^5.4.4
         version: 5.4.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -561,10 +561,10 @@ importers:
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.7)
       '@types/react-swipeable-views':
         specifier: 0.13.6
@@ -649,7 +649,7 @@ importers:
         specifier: 20.19.27
         version: 20.19.27
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/uuid':
         specifier: 10.0.0
@@ -900,7 +900,7 @@ importers:
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       next:
         specifier: ^15.5.7
@@ -942,14 +942,14 @@ importers:
         specifier: 5.15.4
         version: 5.15.4(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@types/react@19.2.7)(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
-        specifier: ^19.2.1
+        specifier: ^19.2.3
         version: 19.2.3
       react-dom:
-        specifier: ^19.2.1
+        specifier: ^19.2.3
         version: 19.2.3(react@19.2.3)
     devDependencies:
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
 
   packages/mui-icons-material:
@@ -971,7 +971,7 @@ importers:
         specifier: 5.2.3
         version: 5.2.3
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1051,10 +1051,10 @@ importers:
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.7)
       '@types/sinon':
         specifier: 17.0.4
@@ -1122,10 +1122,10 @@ importers:
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.7)
       '@types/sinon':
         specifier: 17.0.4
@@ -1186,8 +1186,8 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react-is:
-        specifier: ^19.2.1
-        version: 19.2.1
+        specifier: ^19.2.3
+        version: 19.2.3
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1199,10 +1199,10 @@ importers:
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.7)
       '@types/sinon':
         specifier: 17.0.4
@@ -1252,7 +1252,7 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0(@emotion/css@11.13.4)
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       next:
         specifier: ^15.5.7
@@ -1298,7 +1298,7 @@ importers:
         specifier: 5.2.3
         version: 5.2.3
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1342,7 +1342,7 @@ importers:
         specifier: 5.2.3
         version: 5.2.3
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1374,7 +1374,7 @@ importers:
         specifier: 5.2.3
         version: 5.2.3
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       chai:
         specifier: ^6.0.1
@@ -1462,7 +1462,7 @@ importers:
         specifier: 15.7.15
         version: 15.7.15
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/sinon':
         specifier: 17.0.4
@@ -1497,7 +1497,7 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
     publishDirectory: build
 
@@ -1519,8 +1519,8 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react-is:
-        specifier: ^19.2.1
-        version: 19.2.1
+        specifier: ^19.2.3
+        version: 19.2.3
     devDependencies:
       '@types/chai':
         specifier: 5.2.3
@@ -1529,13 +1529,13 @@ importers:
         specifier: 20.19.27
         version: 20.19.27
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.7)
       '@types/react-is':
-        specifier: ^19.2.0
+        specifier: 19.2.0
         version: 19.2.0
       '@types/sinon':
         specifier: 17.0.4
@@ -1608,10 +1608,10 @@ importers:
         specifier: 5.2.3
         version: 5.2.3
       '@types/react':
-        specifier: ^19.2.7
+        specifier: 19.2.7
         version: 19.2.7
       '@types/react-is':
-        specifier: ^19.2.0
+        specifier: 19.2.0
         version: 19.2.0
       '@types/sinon':
         specifier: 17.0.4
@@ -1642,7 +1642,7 @@ importers:
         version: 19.2.3(react@19.2.3)
       react-is:
         specifier: ^19.2.1
-        version: 19.2.1
+        version: 19.2.3
       react-router:
         specifier: ^7.11.0
         version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -10293,8 +10293,8 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-is@19.2.1:
-    resolution: {integrity: sha512-L7BnWgRbMwzMAubQcS7sXdPdNLmKlucPlopgAzx7FtYbksWZgEWiuYM5x9T6UqS2Ne0rsgQTq5kY2SGqpzUkYA==}
+  react-is@19.2.3:
+    resolution: {integrity: sha512-qJNJfu81ByyabuG7hPFEbXqNcWSU3+eVus+KJs+0ncpGfMyYdvSmxiJxbWR65lYi1I+/0HBcliO029gc4F+PnA==}
 
   react-number-format@5.4.4:
     resolution: {integrity: sha512-wOmoNZoOpvMminhifQYiYSTCLUDOiUbBunrMrMjA+dV52sY+vck1S4UhR6PkgnoCquvvMSeJjErXZ4qSaWCliA==}
@@ -14760,7 +14760,7 @@ snapshots:
       prop-types: 15.8.1
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      react-is: 19.2.1
+      react-is: 19.2.3
       react-transition-group: 4.4.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     optionalDependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.7)(react@19.2.3)
@@ -14860,7 +14860,7 @@ snapshots:
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.2.3
-      react-is: 19.2.1
+      react-is: 19.2.3
     optionalDependencies:
       '@types/react': 19.2.7
 
@@ -14872,7 +14872,7 @@ snapshots:
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.2.3
-      react-is: 19.2.1
+      react-is: 19.2.3
     optionalDependencies:
       '@types/react': 19.2.7
 
@@ -14884,7 +14884,7 @@ snapshots:
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.2.3
-      react-is: 19.2.1
+      react-is: 19.2.3
     optionalDependencies:
       '@types/react': 19.2.7
 
@@ -22296,7 +22296,7 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-is@19.2.1: {}
+  react-is@19.2.3: {}
 
   react-number-format@5.4.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:

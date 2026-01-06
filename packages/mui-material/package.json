@@ -43,14 +43,14 @@
     "clsx": "^2.1.1",
     "csstype": "^3.2.3",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.1",
+    "react-is": "^19.2.3",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
     "chai": "^6.0.1",
     "css-mediaquery": "^0.1.2",
