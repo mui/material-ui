@@ -1,5 +1,55 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.7
+
+<!-- generated comparing v7.3.6..master -->
+
+_Jan 6, 2026_
+
+A big thanks to the 16 contributors who made this release possible.
+
+### `@mui/material@7.3.7`
+
+- [accordion] Remove unnecessary handling of `square` prop on Accordion Root (#47457) @ZeeshanTamboli
+- [alert] Remove unnecessary default icon mapping fallback (#47460) @ZeeshanTamboli
+- [autocomplete] Fix `ArrowLeft`, `Backspace` & `Delete` behavior for multiple and single-value rendering with proper caret handling (#47411) @jnbain
+- [autocomplete] Revert changes to fix page scrolls instead of listbox when software keyboard is open on Android (#47471) @bricefrisco
+- [autocomplete] Fix page scrolls instead of listbox when software keyboard is open on Android (#47449) @bricefrisco
+- [backdrop] Remove unnecessary passing of `classes` from root slot (#47519) @ZeeshanTamboli
+- [button-group] Fix styles when variant is `contained` (#47499) @ZeeshanTamboli
+- [card action area] Remove incorrect root ref being forwarded to focus highlight component (#47523) @ZeeshanTamboli
+- [checkbox] Fix readonly checkboxes (#47503) @mj12albert
+- [click-away-listener] Tighten the parameter type of createHandleSynthetic method (#47525) @ZeeshanTamboli
+- [dialog] Fix backdrop theme style overrides (#47544) @ZeeshanTamboli
+- [modal] Take non-integer padding-right into consideration when scroll locking (#47420) @Zache
+- [number field] Use stable Base UI package (#47504) @siriwatknp
+- [select] Fix dropdown width does not match trigger width on window resize (#47526) @AarishMansur
+- [tabs] Fix passing incorrect slot name props (scrollButton → scrollButtons) (#47215) @rithik56
+
+### Docs
+
+- [docs][card] Fix key warning (#47524) @ZeeshanTamboli
+- [docs] Add docs and website banner for Dev survey'25 (#47521) @prakhargupta1
+- [docs] Update Tailwind CSS v4 + Next.js Pages Router docs (#47546) @atharva3333
+- [docs] Add warning callout to Sync plugin doc (#47511) @mapache-salvaje
+- [docs] Update typo in TailwindCSS v4 integration with Next.js docs (#47512) @TimKraemer
+- [docs] Fix link to contributing guide (#47473) @oliviertassinari
+- [docs] Improve description of Accordion props (#47459) @ZeeshanTamboli
+
+### Core
+
+- [blog] Whats new since MUI X v8 [DX-51] (#47140) @joserodolfofreitas
+- [code-infra] Fix CI for React 18 (#47560) @Janpot
+- [code-infra] Prevent legacy browsers tests from updating (#47496) @Janpot
+- [code-infra] Move `@mui/internal-test-utils` to code infra repo (#47422) @Janpot
+- [code-infra] Fix React@next CI job (#47493) @Janpot
+- [examples] Update Next.js versions to v16 in Next.js examples (DX-57) (#47453) @alelthomas
+- [internal] Bump Next.js & React version to avoid security vulnerability (#47427) @oliviertassinari
+- [test] Use plain playwright for e2e (#47410) @mj12albert
+- [test] Fix react-18 tests (#47407) @Janpot
+
+All contributors of this release in alphabetical order: @AarishMansur, @alelthomas, @atharva3333, @bricefrisco, @Janpot, @jnbain, @joserodolfofreitas, @mapache-salvaje, @mj12albert, @oliviertassinari, @prakhargupta1, @rithik56, @siriwatknp, @TimKraemer, @Zache, @ZeeshanTamboli
+
 ## 7.3.6
 
 <!-- generated comparing v7.3.5..master -->
