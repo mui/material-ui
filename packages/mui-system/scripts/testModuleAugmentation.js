@@ -25,9 +25,6 @@ async function test(tsconfigPath) {
  * We can't run them with a single `tsc` run since these apply globally.
  * Running them all would mean they're not isolated.
  * Each test case represents a section in our docs.
- *
- * We're not using mocha since mocha is used for runtime tests.
- * This script also allows us to test in parallel which we can't do with our mocha tests.
  */
 async function main() {
   const tsconfigPaths = await glob('test/typescript/moduleAugmentation/*.tsconfig.json', {

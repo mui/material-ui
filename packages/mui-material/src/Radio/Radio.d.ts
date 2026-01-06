@@ -49,7 +49,8 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface RadioProps
-  extends StandardProps<
+  extends
+    StandardProps<
       SwitchBaseProps,
       'checkedIcon' | 'color' | 'icon' | 'type' | 'slots' | 'slotProps'
     >,

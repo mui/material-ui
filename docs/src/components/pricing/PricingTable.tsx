@@ -285,7 +285,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'Base UI': (
     <ColumnHead
       label="Base UI"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui-components/react."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui/react."
     />
   ),
   'MUI System': (
@@ -534,7 +534,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'priority-support': (
     <ColumnHead
       {...{
-        label: 'Priority support',
+        label: 'Priority Support',
         tooltip: (
           <React.Fragment>
             At $399/year/dev, get the highest level of support with a 24h SLA response time,

@@ -78,7 +78,7 @@ describe('<TableRow> integration', () => {
     expect(screen.getByTestId('cell')).not.to.have.attribute('role');
   });
 
-  it('does not set `role` when `component` prop is set and used in the context of table body ', () => {
+  it('does not set `role` when `component` prop is set and used in the context of table body', () => {
     render(
       <TableBody component="div">
         <TableCell component="div" data-testid="cell" />,
@@ -88,7 +88,7 @@ describe('<TableRow> integration', () => {
     expect(screen.getByTestId('cell')).not.to.have.attribute('role');
   });
 
-  it('does not set `role` when `component` prop is set and used in the context of table footer ', () => {
+  it('does not set `role` when `component` prop is set and used in the context of table footer', () => {
     render(
       <TableFooter component="div">
         <TableCell component="div" data-testid="cell" />,

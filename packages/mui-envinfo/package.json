@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.43",
+  "version": "2.0.44",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
   "bin": "./envinfo.js",
@@ -19,11 +19,11 @@
     "build": "code-infra build --bundle cjs --buildTypes false --skipBabelRuntimeCheck"
   },
   "dependencies": {
-    "envinfo": "^7.20.0"
+    "envinfo": "^7.21.0"
   },
   "devDependencies": {
-    "@types/chai": "^5.2.3",
-    "chai": "^6.0.1"
+    "@types/chai": "5.2.3",
+    "chai": "6.2.1"
   },
   "publishConfig": {
     "access": "public",

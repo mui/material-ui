@@ -4,8 +4,9 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { ListItemSecondaryActionClasses } from './listItemSecondaryActionClasses';
 
-export interface ListItemSecondaryActionProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface ListItemSecondaryActionProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */

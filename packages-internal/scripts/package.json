@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "exports": {
@@ -24,7 +24,7 @@
     "build": "tsc -b tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages-internal/scripts/typescript-to-proptypes/test/.mocharc.js 'packages-internal/scripts/typescript-to-proptypes/**/*.test.?(c|m)[jt]s?(x)' 'packages-internal/scripts/generate-llms-txt/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-scripts\"",
     "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
@@ -35,21 +35,21 @@
     "@babel/types": "^7.28.5",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.41.0",
+    "es-toolkit": "^1.43.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@babel/register": "^7.28.3",
-    "@types/babel__core": "^7.20.5",
-    "@types/chai": "^5.2.3",
-    "@types/doctrine": "^0.0.9",
-    "@types/node": "^20.19.25",
-    "@types/react": "^19.2.7",
-    "@types/uuid": "^10.0.0",
-    "chai": "^6.0.1",
-    "fast-glob": "^3.3.3",
-    "prettier": "^3.6.2",
-    "rimraf": "^6.0.1"
+    "@babel/register": "7.28.3",
+    "@types/babel__core": "7.20.5",
+    "@types/chai": "5.2.3",
+    "@types/doctrine": "0.0.9",
+    "@types/node": "20.19.27",
+    "@types/react": "19.2.7",
+    "@types/uuid": "10.0.0",
+    "chai": "6.2.1",
+    "fast-glob": "3.3.3",
+    "prettier": "3.7.4",
+    "rimraf": "6.1.2"
   },
   "publishConfig": {
     "access": "public"

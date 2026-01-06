@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "author": "MUI Team",
   "description": "Codemod scripts for Material UI.",
   "bin": "./codemod.js",
@@ -12,7 +12,7 @@
     "jscodeshift"
   ],
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/codemod\"",
     "build": "code-infra build --bundle cjs --buildTypes false --copy codemod.js",
     "release": "pnpm build && pnpm publish"
   },
@@ -40,9 +40,9 @@
   "devDependencies": {
     "@material-ui/core": "^4.12.4",
     "@mui/material-v5": "npm:@mui/material@5.18.0",
-    "@types/chai": "^5.2.3",
+    "@types/chai": "5.2.3",
     "@types/jscodeshift": "0.12.0",
-    "chai": "^6.0.1"
+    "chai": "6.2.1"
   },
   "sideEffects": false,
   "publishConfig": {

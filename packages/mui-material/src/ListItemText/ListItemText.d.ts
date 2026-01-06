@@ -50,8 +50,8 @@ export interface ListItemTextOwnerState extends ListItemTextProps {}
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',
-> extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
-    ListItemTextSlotsAndSlotProps {
+>
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, ListItemTextSlotsAndSlotProps {
   /**
    * Alias for the `primary` prop.
    */

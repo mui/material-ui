@@ -215,8 +215,8 @@ export interface CreateMUIStyled<
 
   <
     Tag extends keyof React.JSX.IntrinsicElements,
-    ForwardedProps extends
-      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
+    ForwardedProps extends keyof React.JSX.IntrinsicElements[Tag] =
+      keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
     options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &
