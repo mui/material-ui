@@ -29,7 +29,7 @@ describe('useCurrentColorScheme', () => {
     removeEventListener: () => {},
   });
 
-  before(() => {
+  beforeAll(() => {
     originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
       if (eventHandlers.has(key)) {
@@ -47,7 +47,7 @@ describe('useCurrentColorScheme', () => {
     };
   });
 
-  after(() => {
+  afterAll(() => {
     window.addEventListener = originalAddEventListener;
   });
 

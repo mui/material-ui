@@ -2,10 +2,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  supportsTouch,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import describeConformance from '../../test/describeConformance';
 
 function createTouches(touches) {
@@ -20,7 +26,7 @@ function createTouches(touches) {
   };
 }
 
-describeSkipIf(!supportsTouch())('<Slider />', () => {
+describe.skipIf(!supportsTouch())('<Slider />', () => {
   const { render } = createRenderer();
 
   describeConformance(
@@ -589,49 +595,44 @@ describeSkipIf(!supportsTouch())('<Slider />', () => {
       expect(screen.getByRole('slider')).not.to.have.attribute('tabIndex');
     });
 
-    it('should not respond to drag events after becoming disabled', function test() {
-      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+    it.skipIf(isJsdom())(
+      'should not respond to drag events after becoming disabled',
+      function test() {
+        const { setProps, container } = render(<Slider defaultValue={0} />);
 
-      const { setProps, container } = render(<Slider defaultValue={0} />);
+        stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+          width: 100,
+          height: 10,
+          bottom: 10,
+          left: 0,
+        }));
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        height: 10,
-        bottom: 10,
-        left: 0,
-      }));
+        fireEvent.touchStart(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+        );
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+        const thumb = screen.getByRole('slider');
 
-      const thumb = screen.getByRole('slider');
+        expect(thumb).to.have.attribute('aria-valuenow', '21');
+        expect(thumb).toHaveFocus();
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
-      expect(thumb).toHaveFocus();
+        setProps({ disabled: true });
+        expect(thumb).not.toHaveFocus();
+        expect(thumb).not.to.have.class(classes.active);
 
-      setProps({ disabled: true });
-      expect(thumb).not.toHaveFocus();
-      expect(thumb).not.to.have.class(classes.active);
+        fireEvent.touchMove(
+          container.firstChild,
+          createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
+        );
 
-      fireEvent.touchMove(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
-      );
+        expect(thumb).to.have.attribute('aria-valuenow', '21');
+      },
+    );
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
-    });
-
-    it('is not focused (visibly) after becoming disabled', function test() {
-      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+    it.skipIf(isJsdom())('is not focused (visibly) after becoming disabled', function test() {
       const { setProps } = render(<Slider defaultValue={0} />);
 
       const thumb = screen.getByRole('slider');
@@ -990,7 +991,7 @@ describeSkipIf(!supportsTouch())('<Slider />', () => {
     ].forEach((entry) => {
       const [direction, orientation, decrementKeys, incrementKeys] = entry;
 
-      describe(direction, () => {
+      describe(`${direction}`, () => {
         describe(`orientation: ${orientation}`, () => {
           decrementKeys.forEach((key) => {
             it(`key: ${key} decrements the value`, () => {
@@ -1637,11 +1638,7 @@ describeSkipIf(!supportsTouch())('<Slider />', () => {
     });
   });
 
-  it('marked slider should be customizable in the theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('marked slider should be customizable in the theme', function test() {
     const theme = createTheme({
       components: {
         MuiSlider: {
@@ -1673,11 +1670,7 @@ describeSkipIf(!supportsTouch())('<Slider />', () => {
     });
   });
 
-  it('active marks should be customizable in theme', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('active marks should be customizable in theme', function test() {
     const theme = createTheme({
       components: {
         MuiSlider: {

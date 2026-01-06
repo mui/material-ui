@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { act, screen, waitFor, createRenderer, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 function getStyleValue(value: string) {
@@ -97,12 +96,8 @@ describe('<TextareaAutosize />', () => {
   });
 
   // For https://github.com/mui/material-ui/pull/37135
-  it('should update height without delay', async function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      // It depends on ResizeObserver
-      this.skip();
-    }
-
+  // It depends on ResizeObserver
+  it.skipIf(isJsdom())('should update height without delay', async function test() {
     function App() {
       const ref = React.useRef<HTMLTextAreaElement>(null);
       return (
@@ -142,7 +137,7 @@ describe('<TextareaAutosize />', () => {
     expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
   });
 
-  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('layout', () => {
+  describe.skipIf(!isJsdom())('layout', () => {
     const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
     function setLayout(
       input: HTMLTextAreaElement,
@@ -170,13 +165,13 @@ describe('<TextareaAutosize />', () => {
       });
     }
 
-    before(function beforeHook() {
+    beforeAll(function beforeHook() {
       stub(window, 'getComputedStyle').value(
         (node: Element) => getComputedStyleStub.get(node) || {},
       );
     });
 
-    after(() => {
+    afterAll(() => {
       sinon.restore();
     });
 
@@ -473,11 +468,7 @@ describe('<TextareaAutosize />', () => {
     });
   });
 
-  it('should apply the inline styles using the "style" prop', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply the inline styles using the "style" prop', function test() {
     render(<TextareaAutosize style={{ backgroundColor: 'yellow' }} />);
     const input = screen.getByRole<HTMLTextAreaElement>('textbox', {
       hidden: false,
@@ -489,12 +480,8 @@ describe('<TextareaAutosize />', () => {
   });
 
   // edge case: https://github.com/mui/material-ui/issues/45307
-  it('should not infinite loop document selectionchange', async function test() {
-    // document selectionchange event doesn't fire in JSDOM
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  // document selectionchange event doesn't fire in JSDOM
+  it.skipIf(isJsdom())('should not infinite loop document selectionchange', async function test() {
     const handleSelectionChange = spy();
 
     function App() {

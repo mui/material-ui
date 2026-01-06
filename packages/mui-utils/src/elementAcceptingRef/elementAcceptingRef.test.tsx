@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createRenderer, waitFor, reactMajor } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import elementAcceptingRef from './elementAcceptingRef';
 
 describe('elementAcceptingRef', () => {
@@ -22,7 +21,7 @@ describe('elementAcceptingRef', () => {
     PropTypes.resetWarningCache();
   });
 
-  describeSkipIf(reactMajor >= 19)('acceptance when not required', () => {
+  describe.skipIf(reactMajor >= 19)('acceptance when not required', () => {
     function assertPass(element: any, { shouldMount = true } = {}) {
       function testAct() {
         checkPropType(element);
@@ -107,7 +106,7 @@ describe('elementAcceptingRef', () => {
     });
   });
 
-  describeSkipIf(reactMajor >= 19)('rejections', () => {
+  describe.skipIf(reactMajor >= 19)('rejections', () => {
     function assertFail(Component: any, hint: string) {
       expect(() => {
         checkPropType(Component);
