@@ -17,12 +17,12 @@ A big thanks to the 16 contributors who made this release possible.
 - [autocomplete] Fix page scrolls instead of listbox when software keyboard is open on Android (#47449) @bricefrisco
 - [backdrop] Remove unnecessary passing of `classes` from root slot (#47519) @ZeeshanTamboli
 - [button-group] Fix styles when variant is `contained` (#47499) @ZeeshanTamboli
-- [card action area] Remove incorrect root ref being forwarded to focus highlight component (#47523) @ZeeshanTamboli
+- [card-action-area] Remove incorrect root ref being forwarded to focus highlight component (#47523) @ZeeshanTamboli
 - [checkbox] Fix readonly checkboxes (#47503) @mj12albert
 - [click-away-listener] Tighten the parameter type of createHandleSynthetic method (#47525) @ZeeshanTamboli
 - [dialog] Fix backdrop theme style overrides (#47544) @ZeeshanTamboli
 - [modal] Take non-integer padding-right into consideration when scroll locking (#47420) @Zache
-- [number field] Use stable Base UI package (#47504) @siriwatknp
+- [number-field] Use stable Base UI package (#47504) @siriwatknp
 - [select] Fix dropdown width does not match trigger width on window resize (#47526) @AarishMansur
 - [tabs] Fix passing incorrect slot name props (scrollButton → scrollButtons) (#47215) @rithik56
 
