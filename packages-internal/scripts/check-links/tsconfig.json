@@ -1,9 +1,14 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "moduleResolution": "bundler",
+    "module": "preserve",
     "noEmit": true,
-    "noImplicitAny": false,
-    "strict": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
   "include": ["./src/**/*", "./test/**/*"]
