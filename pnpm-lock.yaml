@@ -170,13 +170,13 @@ importers:
         specifier: ^1.39.10
         version: 1.43.0
       eslint:
-        specifier: ^9.39.1
+        specifier: 9.39.1
         version: 9.39.1(jiti@2.6.1)
       eslint-import-resolver-webpack:
         specifier: ^0.13.10
         version: 0.13.10(eslint-plugin-import@2.32.0)(webpack@5.101.3)
       eslint-plugin-consistent-default-export-name:
-        specifier: ^0.0.15
+        specifier: 0.0.15
         version: 0.0.15
       fast-glob:
         specifier: ^3.3.3
