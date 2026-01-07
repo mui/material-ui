@@ -211,7 +211,6 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
-    const activeElement = getActiveElement(doc);
 
     const loopFocus = (nativeEvent: KeyboardEvent) => {
       lastKeydown.current = nativeEvent;
@@ -219,6 +218,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
         return;
       }
+
+      const activeElement = getActiveElement(doc);
 
       // Make sure the next tab starts from the right place.
       // activeElement refers to the origin.
