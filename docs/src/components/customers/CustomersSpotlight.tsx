@@ -70,7 +70,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             {post.image && (
               <Box
                 component="img"
-                alt="Company Logo"
+                alt="Company logo"
                 src={post.image}
                 sx={(theme) => ({
                   position: variant === 'primary' ? 'absolute' : 'relative',
@@ -97,7 +97,6 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  textAlign: 'left',
                   mt: 10,
                   gap: 2,
                 }}
@@ -134,7 +133,6 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
             )}
             {variant === 'secondary' && (
               <Button
-                endIcon={<ArrowForwardIcon />}
                 size="small"
                 sx={{
                   ml: -1,
