@@ -237,11 +237,17 @@ describe('<SpeedDial />', () => {
 
         expect(fab).to.have.attribute('aria-expanded', 'true');
 
-        fireEvent.keyDown(fab, { key: 'ArrowUp' });
+        // eslint-disable-next-line testing-library/no-unnecessary-act
+        await act(async () => {
+          fireEvent.keyDown(fab, { key: 'ArrowUp' });
+        });
         clock.runAll();
         expect(screen.queryByRole('tooltip')).not.to.equal(null);
 
-        fireEvent.keyDown(actions[0], { key: 'Escape' });
+        // eslint-disable-next-line testing-library/no-unnecessary-act
+        await act(async () => {
+          fireEvent.keyDown(actions[0], { key: 'Escape' });
+        });
 
         clock.runAll();
 
