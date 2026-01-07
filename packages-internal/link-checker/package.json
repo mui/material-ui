@@ -7,7 +7,7 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
-    "@mui/internal-code-infra": "0.0.3-canary.66",
+    "@mui/internal-code-infra": "0.0.3-canary.67",
     "globby": "16.1.0"
   }
 }
