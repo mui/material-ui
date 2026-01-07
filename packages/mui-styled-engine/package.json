@@ -39,13 +39,13 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
     "@mui/styled-engine": "workspace:*",
-    "@types/chai": "^5.2.3",
-    "@types/react": "^19.2.7",
-    "chai": "^6.0.1",
-    "react": "^19.2.1"
+    "@types/chai": "5.2.3",
+    "@types/react": "19.2.7",
+    "chai": "6.2.1",
+    "react": "19.2.3"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

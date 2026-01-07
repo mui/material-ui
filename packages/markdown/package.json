@@ -26,13 +26,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
-    "es-toolkit": "^1.42.0",
+    "es-toolkit": "^1.43.0",
     "marked": "^17.0.1",
     "prismjs": "^1.30.0"
   },
   "devDependencies": {
-    "@types/chai": "^5.2.3",
-    "chai": "^6.0.1"
+    "@types/chai": "5.2.3",
+    "chai": "6.2.1"
   },
   "publishConfig": {
     "access": "public"
