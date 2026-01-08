@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.mjs",
@@ -31,8 +31,8 @@
     "prismjs": "^1.30.0"
   },
   "devDependencies": {
-    "@types/chai": "^5.2.3",
-    "chai": "^6.0.1"
+    "@types/chai": "5.2.3",
+    "chai": "6.2.1"
   },
   "publishConfig": {
     "access": "public"
