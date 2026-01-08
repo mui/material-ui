@@ -281,6 +281,33 @@ describe('<Drawer />', () => {
       expect(handleEntered.callCount).to.equal(1);
       expect(container.firstChild.firstChild).to.have.class(classes.paper);
     });
+
+    it.skipIf(isJsdom())('should not apply modal styles from theme styleOverrides', () => {
+      const theme = createTheme({
+        components: {
+          MuiDrawer: {
+            styleOverrides: {
+              modal: {
+                backgroundColor: '#32a852',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Drawer variant="persistent">
+            <div />
+          </Drawer>
+        </ThemeProvider>,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+      expect(root).not.toHaveComputedStyle({
+        backgroundColor: '#32a852',
+      });
+    });
   });
 
   describe('prop: variant=permanent', () => {
