@@ -352,6 +352,7 @@ FormControl.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
   /**
    * If `true`, the label is displayed in a warning state.
+   * @default false
    */
   warning: PropTypes.bool,
 };
