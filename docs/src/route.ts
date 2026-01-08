@@ -26,9 +26,9 @@ const ROUTES = {
   support: '/material-ui/getting-started/support/',
   goldSponsor: '/material-ui/discover-more/backers/#gold-sponsors',
   // Base UI doc pages
-  baseDocs: '/base-ui/getting-started/',
-  baseComponents: '/base-ui/all-components/',
-  baseQuickstart: '/base-ui/getting-started/quickstart/',
+  baseDocs: 'https://v6.mui.com/base-ui/getting-started/',
+  baseComponents: 'https://v6.mui.com/base-ui/all-components/',
+  baseQuickstart: 'https://v6.mui.com/base-ui/getting-started/quickstart/',
   // Joy UI doc pages
   joyDocs: '/joy-ui/getting-started/',
   // System pages
