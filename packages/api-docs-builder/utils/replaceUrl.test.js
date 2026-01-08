@@ -205,7 +205,7 @@ describe('replaceUrl', () => {
       `/material-ui/about-the-lab/`,
     );
 
-    expect(replaceComponentLinks(`/components/data-grid/demo/`)).to.equal(
+    expect(replaceComponentLinks(`/components/data-grid/features/`)).to.equal(
       `/x/react-data-grid/features/`,
     );
   });

@@ -75,7 +75,7 @@ describe('replaceMarkdownLinks', () => {
       [text](/components/progress/#main-content)
       -
       [Tree view](/components/tree-view/)
-      [Demo](/components/data-grid/demo/)
+      [Demo](/components/data-grid/features/)
     `),
     ).to.equal(`
       [ButtonGroup](/material-ui/react-button-group/)
