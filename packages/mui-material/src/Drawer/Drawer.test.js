@@ -288,7 +288,7 @@ describe('<Drawer />', () => {
           MuiDrawer: {
             styleOverrides: {
               modal: {
-                backgroundColor: '#32a852',
+                backgroundColor: 'rgb(0, 0, 255)',
               },
             },
           },
@@ -305,7 +305,7 @@ describe('<Drawer />', () => {
 
       const root = container.querySelector(`.${classes.root}`);
       expect(root).not.toHaveComputedStyle({
-        backgroundColor: '#32a852',
+        backgroundColor: 'rgb(0, 0, 255)',
       });
     });
   });
