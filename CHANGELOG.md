@@ -20,6 +20,7 @@ A big thanks to the 16 contributors who made this release possible.
 - [checkbox] Fix readonly checkboxes (#47503) @mj12albert
 - [click-away-listener] Tighten the parameter type of createHandleSynthetic method (#47525) @ZeeshanTamboli
 - [dialog] Fix backdrop theme style overrides (#47544) @ZeeshanTamboli
+- [focus-trap] Compute `activeElement` inside `loopFocus` on every keydown (#47566) @ZeeshanTamboli
 - [modal] Take non-integer padding-right into consideration when scroll locking (#47420) @Zache
 - [select] Fix dropdown width does not match trigger width on window resize (#47526) @AarishMansur
 - [tabs] Fix passing incorrect slot name props (scrollButton → scrollButtons) (#47215) @rithik56
