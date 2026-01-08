@@ -12,6 +12,7 @@ A big thanks to the 16 contributors who made this release possible.
 
 - [accordion] Remove unnecessary handling of `square` prop on Accordion Root (#47457) @ZeeshanTamboli
 - [alert] Remove unnecessary default icon mapping fallback (#47460) @ZeeshanTamboli
+- [appbar] Fix inherit color CSS variable not getting applied (#47518) @ZeeshanTamboli
 - [autocomplete] Fix `ArrowLeft`, `Backspace` & `Delete` behavior for multiple and single-value rendering with proper caret handling (#47411) @jnbain
 - [backdrop] Remove unnecessary passing of `classes` from root slot (#47519) @ZeeshanTamboli
 - [button-group] Fix styles when variant is `contained` (#47499) @ZeeshanTamboli
@@ -26,18 +27,23 @@ A big thanks to the 16 contributors who made this release possible.
 ### Docs
 
 - [card] Fix key warning (#47524) @ZeeshanTamboli
+- [dialog] Replace TranstionProps with slotProps.transition (#47569) @sai6855
 - [number-field] Use stable Base UI package (#47504) @siriwatknp
+- [snackbar] Replace TransitionComponent with slots.transition (#47570) @sai6855
+- Fix incorrect indentation in migration guide (#47571) @sai6855
+- Enable MUI chat on Material UI demos (#46837) @siriwatknp
 - Add docs and website banner for Dev survey'25 (#47521) @prakhargupta1
 - Update Tailwind CSS v4 + Next.js Pages Router docs (#47546) @atharva3333
 - Add warning callout to Sync plugin doc (#47511) @mapache-salvaje
 - Update typo in TailwindCSS v4 integration with Next.js docs (#47512) @TimKraemer
 - Fix link to contributing guide (#47473) @oliviertassinari
 - Improve description of Accordion props (#47459) @ZeeshanTamboli
-- Enable MUI chat on Material UI demos (#46837) @siriwatknp
 
 ### Core
 
 - [blog] Whats new since MUI X v8 [DX-51] (#47140) @joserodolfofreitas
+- [code-infra] Fix React@next CI job (#47493) @Janpot
+- [code-infra] Move font loading to @mui/docs (#47385) @Janpot
 - [code-infra] Fix CI for React 18 (#47560) @Janpot
 - [code-infra] Prevent legacy browsers tests from updating (#47496) @Janpot
 - [code-infra] Move `@mui/internal-test-utils` to code infra repo (#47422) @Janpot
@@ -802,7 +808,7 @@ A big thanks to the 7 contributors who made this release possible.
 - Fix `Grid`, `GridLegacy`, `Stack`, `Badge`, `Select`, `Autocomplete` demos CSS variables (#45693) @DiegoAndai
 - Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
 - Fix `Breadcrumbs`, `List`, `Divider`, and `Typography` dark mode demos (#45692) @siriwatknp
-- Fix Material Icons page in dark mode (#45691) @mnajdova
+- Fix Material Icons page in dark mode (#45691) @mnajdova
 
 All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @eduter, @Janpot, @micttyoid, @mnajdova, @siriwatknp
 
