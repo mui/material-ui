@@ -172,6 +172,12 @@
       "className": "MuiOutlinedInput-sizeSmall",
       "description": "Styles applied to the input element if `size=\"small\"`.",
       "isGlobal": false
+    },
+    {
+      "key": "warning",
+      "className": "MuiOutlinedInput-warning",
+      "description": "State class applied to the root element if `warning={true}`.",
+      "isGlobal": false
     }
   ],
   "spread": true,

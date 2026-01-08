@@ -22,7 +22,8 @@
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
-    }
+    },
+    "warning": { "description": "If <code>true</code>, the label is displayed in a warning state." }
   },
   "classDescriptions": {
     "asterisk": {
@@ -59,6 +60,11 @@
       "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
     },
-    "root": { "description": "Styles applied to the root element." }
+    "root": { "description": "Styles applied to the root element." },
+    "warning": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>warning={true}</code>"
+    }
   }
 }

@@ -159,6 +159,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "warning": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>warning={true}</code>"
     }
   }
 }

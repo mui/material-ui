@@ -32,7 +32,8 @@
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
-    "variant": { "description": "The variant to use." }
+    "variant": { "description": "The variant to use." },
+    "warning": { "description": "If <code>true</code>, the label is displayed in a warning state." }
   },
   "classDescriptions": {
     "fullWidth": {

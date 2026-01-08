@@ -98,7 +98,8 @@
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
       "default": "'outlined'"
-    }
+    },
+    "warning": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "TextField",
   "imports": [

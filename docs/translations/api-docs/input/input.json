@@ -164,6 +164,9 @@
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disableUnderline={true}</code>"
+    },
+    "warning": {
+      "description": "State class applied to the root element if <code>warning={true}</code>"
     }
   }
 }

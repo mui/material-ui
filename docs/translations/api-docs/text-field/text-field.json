@@ -84,7 +84,10 @@
     "value": {
       "description": "The value of the <code>input</code> element, required for a controlled component."
     },
-    "variant": { "description": "The variant to use." }
+    "variant": { "description": "The variant to use." },
+    "warning": {
+      "description": "If <code>false</code>, the label is displayed in a warning state."
+    }
   },
   "classDescriptions": {},
   "slotDescriptions": {

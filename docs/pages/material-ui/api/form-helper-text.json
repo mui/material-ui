@@ -21,7 +21,8 @@
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       }
-    }
+    },
+    "warning": { "type": { "name": "bool" } }
   },
   "name": "FormHelperText",
   "imports": [
@@ -75,6 +76,12 @@
       "key": "sizeSmall",
       "className": "MuiFormHelperText-sizeSmall",
       "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "warning",
+      "className": "MuiFormHelperText-warning",
+      "description": "State class applied to the root element if `warning={true}`",
       "isGlobal": false
     }
   ],

@@ -94,6 +94,9 @@
     },
     "value": {
       "description": "The value of the <code>input</code> element, required for a controlled component."
+    },
+    "warning": {
+      "description": "If <code>true</code>, the <code>input</code> will indicate a warning. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     }
   },
   "classDescriptions": {
@@ -189,6 +192,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "warning": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}. However <code>error</code> gets higher precedence",
+      "nodeName": "the root element",
+      "conditions": "<code>warning={true}</code>"
     }
   }
 }

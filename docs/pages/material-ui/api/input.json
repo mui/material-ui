@@ -168,6 +168,12 @@
       "className": "MuiInput-underline",
       "description": "Styles applied to the root element unless `disableUnderline={true}`.",
       "isGlobal": false
+    },
+    {
+      "key": "warning",
+      "className": "MuiInput-warning",
+      "description": "State class applied to the root element if `warning={true}`",
+      "isGlobal": false
     }
   ],
   "spread": true,

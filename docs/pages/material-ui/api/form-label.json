@@ -20,7 +20,8 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       },
       "additionalInfo": { "sx": true }
-    }
+    },
+    "warning": { "type": { "name": "bool" } }
   },
   "name": "FormLabel",
   "imports": [
@@ -74,6 +75,12 @@
       "key": "root",
       "className": "MuiFormLabel-root",
       "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "warning",
+      "className": "MuiFormLabel-warning",
+      "description": "State class applied to the root element if `warning={true}`.",
       "isGlobal": false
     }
   ],

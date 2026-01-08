@@ -34,7 +34,8 @@
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       }
-    }
+    },
+    "warning": { "type": { "name": "bool" } }
   },
   "name": "InputLabel",
   "imports": [
@@ -118,6 +119,12 @@
       "key": "standard",
       "className": "MuiInputLabel-standard",
       "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "warning",
+      "className": "MuiInputLabel-warning",
+      "description": "State class applied to the root element if `warning={true}`.",
       "isGlobal": false
     }
   ],

@@ -75,7 +75,8 @@
       "additionalInfo": { "sx": true }
     },
     "type": { "type": { "name": "string" }, "default": "'text'" },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "any" } },
+    "warning": { "type": { "name": "bool" } }
   },
   "name": "InputBase",
   "imports": [
@@ -206,6 +207,12 @@
       "key": "sizeSmall",
       "className": "MuiInputBase-sizeSmall",
       "description": "Styles applied to the input element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "warning",
+      "className": "MuiInputBase-warning",
+      "description": "State class applied to the root element if `warning={true}`. However `error` gets higher precedence",
       "isGlobal": false
     }
   ],
