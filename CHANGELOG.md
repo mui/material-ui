@@ -37,7 +37,7 @@ A big thanks to the 16 contributors who made this release possible.
 
 ### Core
 
-- [blog] Whats new since MUI X v8 [DX-51] (#47140) @joserodolfofreitas
+- [blog] Whats new since MUI X v8 [DX-51] (#47140) @joserodolfofreitas
 - [code-infra] Fix CI for React 18 (#47560) @Janpot
 - [code-infra] Prevent legacy browsers tests from updating (#47496) @Janpot
 - [code-infra] Move `@mui/internal-test-utils` to code infra repo (#47422) @Janpot
