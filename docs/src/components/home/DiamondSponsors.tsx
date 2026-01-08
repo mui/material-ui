@@ -14,6 +14,13 @@ const DIAMONDs = [
     description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: '/static/sponsors/kombai-square-light.svg',
+    srcDark: '/static/sponsors/kombai-square-dark.svg',
+    name: 'Kombai',
+    description: 'The first AI agent built for frontend development.',
+    href: 'https://kombai.com?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function DiamondSponsors() {
