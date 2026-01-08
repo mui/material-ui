@@ -33,6 +33,7 @@ A big thanks to the 16 contributors who made this release possible.
 - Update typo in TailwindCSS v4 integration with Next.js docs (#47512) @TimKraemer
 - Fix link to contributing guide (#47473) @oliviertassinari
 - Improve description of Accordion props (#47459) @ZeeshanTamboli
+- Enable MUI chat on Material UI demos (#46837) @siriwatknp
 
 ### Core
 
