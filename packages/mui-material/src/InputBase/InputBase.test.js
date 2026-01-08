@@ -343,14 +343,62 @@ describe('<InputBase />', () => {
           );
         }
 
-        const { setProps } = render(<InputBaseInErrorForm />);
+        const { setProps, container } = render(<InputBaseInErrorForm />);
         expect(screen.getByTestId('root')).to.have.class(classes.error);
+        expect(container.querySelector('input')).to.have.attribute('aria-invalid', 'true');
 
         setProps({ error: false });
         expect(screen.getByTestId('root')).not.to.have.class(classes.error);
+        expect(container.querySelector('input')).to.have.attribute('aria-invalid', 'false');
 
         setProps({ error: true });
         expect(screen.getByTestId('root')).to.have.class(classes.error);
+        expect(container.querySelector('input')).to.have.attribute('aria-invalid', 'true');
+      });
+    });
+
+    describe('warning', () => {
+      it('should be overridden by props', () => {
+        function InputBaseInWarningForm(props) {
+          return (
+            <FormControl warning>
+              <InputBase data-testid="root" {...props} />
+            </FormControl>
+          );
+        }
+
+        const { setProps } = render(<InputBaseInWarningForm />);
+        expect(screen.getByTestId('root')).to.have.class(classes.warning);
+
+        setProps({ warning: false });
+        expect(screen.getByTestId('root')).not.to.have.class(classes.warning);
+
+        setProps({ warning: true });
+        expect(screen.getByTestId('root')).to.have.class(classes.warning);
+      });
+    });
+
+    describe('error and warning together', () => {
+      it('should consider error with higher precedence', () => {
+        function InputBaseInWarningForm(props) {
+          return (
+            <FormControl error warning>
+              <InputBase data-testid="root" {...props} />
+            </FormControl>
+          );
+        }
+
+        const { setProps } = render(<InputBaseInWarningForm />);
+        expect(screen.getByTestId('root')).to.have.class(classes.error);
+        expect(screen.getByTestId('root')).not.to.have.class(classes.warning);
+
+        setProps({ error: false, warning: true });
+        expect(screen.getByTestId('root')).not.to.have.class(classes.error);
+        expect(screen.getByTestId('root')).have.class(classes.warning);
+
+        setProps({ warning: true, error: true });
+        expect(screen.getByTestId('root')).to.have.class(classes.error);
+        expect(screen.getByTestId('root')).not.to.have.class(classes.warning);
       });
     });
 

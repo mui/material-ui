@@ -80,6 +80,9 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
             },
+            [`&.${outlinedInputClasses.warning} .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: (theme.vars || theme).palette.warning.main,
+            },
             [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.action.disabled,
             },
@@ -208,13 +211,14 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
+    states: ['color', 'disabled', 'warning', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
   });
 
   const ownerState = {
     ...props,
     color: fcs.color || 'primary',
     disabled: fcs.disabled,
+    warning: fcs.warning && !fcs.error,
     error: fcs.error,
     focused: fcs.focused,
     formControl: muiFormControl,

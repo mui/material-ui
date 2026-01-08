@@ -24,6 +24,10 @@ export interface InputLabelOwnProps extends Pick<FormLabelProps, 'children'> {
    */
   disabled?: boolean;
   /**
+   * If `true`, the label is displayed in a warning state.
+   */
+  warning?: boolean;
+  /**
    * If `true`, the label is displayed in an error state.
    */
   error?: boolean;

@@ -206,6 +206,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     variant: fcs.variant,
     required: fcs.required,
     focused: fcs.focused,
+    warning: fcs.warning && !fcs.error, // Since error gets precedence over warning
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -298,6 +299,10 @@ InputLabel.propTypes /* remove-proptypes */ = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  /**
+   * If `true`, the label is displayed in a warning state.
+   */
+  warning: PropTypes.bool,
 };
 
 export default InputLabel;

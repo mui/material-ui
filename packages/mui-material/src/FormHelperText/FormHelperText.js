@@ -12,12 +12,14 @@ import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;
+  const { classes, contained, size, disabled, error, warning, filled, focused, required } =
+    ownerState;
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       error && 'error',
+      warning && 'warning',
       size && `size${capitalize(size)}`,
       contained && 'contained',
       focused && 'focused',
@@ -57,6 +59,9 @@ const FormHelperTextRoot = styled('p', {
     [`&.${formHelperTextClasses.error}`]: {
       color: (theme.vars || theme).palette.error.main,
     },
+    [`&.${formHelperTextClasses.warning}`]: {
+      color: (theme.vars || theme).palette.warning.main,
+    },
     variants: [
       {
         props: {
@@ -84,6 +89,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     className,
     component = 'p',
     disabled,
+    warning,
     error,
     filled,
     focused,
@@ -97,7 +103,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant', 'size', 'disabled', 'error', 'filled', 'focused', 'required'],
+    states: ['variant', 'size', 'disabled', 'warning', 'error', 'filled', 'focused', 'required'],
   });
 
   const ownerState = {
@@ -107,6 +113,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     variant: fcs.variant,
     size: fcs.size,
     disabled: fcs.disabled,
+    warning: fcs.warning && !fcs.error, // Since error gets precedence over warning
     error: fcs.error,
     filled: fcs.filled,
     focused: fcs.focused,
@@ -202,6 +209,10 @@ FormHelperText.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['filled', 'outlined', 'standard']),
     PropTypes.string,
   ]),
+  /**
+   * If `true`, helper text should be displayed in an warning state.
+   */
+  warning: PropTypes.bool,
 };
 
 export default FormHelperText;

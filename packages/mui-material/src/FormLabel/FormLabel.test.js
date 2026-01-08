@@ -50,6 +50,17 @@ describe('<FormLabel />', () => {
     });
   });
 
+  describe('prop: warning', () => {
+    it('should have an warning class', () => {
+      const { container } = render(<FormLabel required warning />);
+
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
+      expect(container.querySelector(`.${classes.asterisk}`)).to.have.class(classes.warning);
+      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeInaccessible();
+      expect(container.firstChild).to.have.class(classes.warning);
+    });
+  });
+
   describe('with FormControl', () => {
     describe('error', () => {
       function Wrapper(props) {
@@ -76,6 +87,33 @@ describe('<FormLabel />', () => {
 
         setProps({ error: true });
         expect(container.querySelector('label')).to.have.class(classes.error);
+      });
+    });
+    describe('warning', () => {
+      function Wrapper(props) {
+        return <FormControl warning {...props} />;
+      }
+
+      it(`should have the warning class`, () => {
+        const { container } = render(<FormLabel />, {
+          wrapper: Wrapper,
+        });
+
+        expect(container.querySelector('label')).to.have.class(classes.warning);
+      });
+
+      it('should be overridden by props', () => {
+        const { container, setProps } = render(
+          <FormLabel data-testid="FormLabel" warning={false} />,
+          {
+            wrapper: Wrapper,
+          },
+        );
+
+        expect(container.querySelector('label')).not.to.have.class(classes.warning);
+
+        setProps({ warning: true });
+        expect(container.querySelector('label')).to.have.class(classes.warning);
       });
     });
 

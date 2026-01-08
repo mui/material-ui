@@ -80,6 +80,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     color = 'primary',
     defaultValue,
     disabled = false,
+    warning = false,
     error = false,
     FormHelperTextProps: FormHelperTextPropsProp,
     fullWidth = false,
@@ -115,6 +116,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     autoFocus,
     color,
     disabled,
+    warning,
     error,
     fullWidth,
     multiline,
@@ -179,6 +181,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ref,
     additionalProps: {
       disabled,
+      warning,
       error,
       fullWidth,
       required,
@@ -489,6 +492,11 @@ TextField.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  /**
+   * If `false`, the label is displayed in a warning state.
+   * @default false
+   */
+  warning: PropTypes.bool,
 };
 
 export default TextField;

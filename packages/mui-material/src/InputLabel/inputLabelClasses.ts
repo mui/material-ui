@@ -8,6 +8,8 @@ export interface InputLabelClasses {
   focused: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** State class applied to the root element if `warning={true}`. */
+  warning: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
   /** State class applied to the root element if `required={true}`. */
@@ -40,6 +42,7 @@ const inputLabelClasses: InputLabelClasses = generateUtilityClasses('MuiInputLab
   'root',
   'focused',
   'disabled',
+  'warning',
   'error',
   'required',
   'asterisk',

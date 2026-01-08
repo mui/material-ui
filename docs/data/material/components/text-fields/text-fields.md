@@ -61,10 +61,29 @@ The rendered HTML input will look like this:
 
 ## Validation
 
-The `error` prop toggles the error state.
+### Error (blocking)
+
+When an input is invalid, the `error` prop can be used to toggle the error state.
 The `helperText` prop can then be used to provide feedback to the user about the error.
 
-{{"demo": "ValidationTextFields.js"}}
+{{"demo": "ValidationErrorTextFields.js"}}
+
+### Warning (non-blocking)
+
+When an input is valid but might produce non-ideal result, then the `warning` prop can be used to toggle the warning state.
+The `helperText` prop can then be used to provide feedback to the user about the warning.
+
+{{"demo": "ValidationWarningTextFields.js"}}
+
+### Error (blocking) vs Warning (non-blocking)
+
+To decide when to choose between the `error` and `warning`. When an input isnt compliant with the specification of the field, for example given an invalid email in an email text-input then the `error` state can be set to true to hightlight that the input is unacceptable.
+
+On the other hand if an input is valid but might lead to unexpected behavior, for example if you want to take an rgba input and the input is given as `rgba(100, 100, 100, 0)` the input is valid but since the alpha value is 0 then the `warning` state can be set to true to highlight that this type of value can lead to unexpected behavior.
+
+:::info
+If the `error` and `warning` state are set to true. Then the `error` state gets higher precedence and the `warning` state will not be considered.
+:::
 
 ## Multiline
 

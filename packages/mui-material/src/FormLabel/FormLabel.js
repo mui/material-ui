@@ -13,18 +13,19 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, color, focused, disabled, error, filled, required } = ownerState;
+  const { classes, color, focused, disabled, error, warning, filled, required } = ownerState;
   const slots = {
     root: [
       'root',
       `color${capitalize(color)}`,
       disabled && 'disabled',
+      warning && 'warning',
       error && 'error',
       filled && 'filled',
       focused && 'focused',
       required && 'required',
     ],
-    asterisk: ['asterisk', error && 'error'],
+    asterisk: ['asterisk', error && 'error', warning && 'warning'],
   };
 
   return composeClasses(slots, getFormLabelUtilityClasses, classes);
@@ -65,6 +66,9 @@ export const FormLabelRoot = styled('label', {
           [`&.${formLabelClasses.disabled}`]: {
             color: (theme.vars || theme).palette.text.disabled,
           },
+          [`&.${formLabelClasses.warning}`]: {
+            color: (theme.vars || theme).palette.warning.main,
+          },
           [`&.${formLabelClasses.error}`]: {
             color: (theme.vars || theme).palette.error.main,
           },
@@ -79,6 +83,9 @@ const AsteriskComponent = styled('span', {
   slot: 'Asterisk',
 })(
   memoTheme(({ theme }) => ({
+    [`&.${formLabelClasses.warning}`]: {
+      color: (theme.vars || theme).palette.warning.main,
+    },
     [`&.${formLabelClasses.error}`]: {
       color: (theme.vars || theme).palette.error.main,
     },
@@ -93,6 +100,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     color,
     component = 'label',
     disabled,
+    warning,
     error,
     filled,
     focused,
@@ -104,7 +112,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
+    states: ['color', 'required', 'warning', 'focused', 'disabled', 'error', 'filled'],
   });
 
   const ownerState = {
@@ -112,6 +120,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     color: fcs.color || 'primary',
     component,
     disabled: fcs.disabled,
+    warning: fcs.warning && !fcs.error, // Since error has higher precedence than warning
     error: fcs.error,
     filled: fcs.filled,
     focused: fcs.focused,
@@ -197,6 +206,10 @@ FormLabel.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * If `true`, the label is displayed in a warning state.
+   */
+  warning: PropTypes.bool,
 };
 
 export default FormLabel;

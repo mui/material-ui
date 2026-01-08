@@ -108,6 +108,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
               // See https://github.com/mui/material-ui/issues/31766
               transform: 'scaleX(1) translateX(0)',
             },
+            [`&.${filledInputClasses.warning}`]: {
+              '&::before, &::after': {
+                borderBottomColor: (theme.vars || theme).palette.warning.main,
+              },
+            },
             [`&.${filledInputClasses.error}`]: {
               '&::before, &::after': {
                 borderBottomColor: (theme.vars || theme).palette.error.main,

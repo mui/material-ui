@@ -95,6 +95,11 @@ export interface InputBaseProps extends StandardProps<
    */
   endAdornment?: React.ReactNode;
   /**
+   * If `true`, the `input` will indicate a warning.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  warning?: boolean;
+  /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
@@ -174,6 +179,7 @@ export interface InputBaseProps extends StandardProps<
   required?: boolean;
   renderSuffix?: (state: {
     disabled?: boolean;
+    warning?: boolean;
     error?: boolean;
     filled?: boolean;
     focused?: boolean;

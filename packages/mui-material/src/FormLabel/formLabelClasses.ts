@@ -10,6 +10,8 @@ export interface FormLabelClasses {
   focused: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** State class applied to the root element if `warning={true}`. */
+  warning: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
   /** State class applied to the root element if `filled={true}`. */
@@ -31,6 +33,7 @@ const formLabelClasses: FormLabelClasses = generateUtilityClasses('MuiFormLabel'
   'colorSecondary',
   'focused',
   'disabled',
+  'warning',
   'error',
   'filled',
   'required',

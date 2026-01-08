@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function ValidationTextFields() {
+export default function ValidationErrorTextFields() {
   return (
     <Box
       component="form"

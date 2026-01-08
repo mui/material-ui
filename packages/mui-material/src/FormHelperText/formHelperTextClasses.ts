@@ -4,6 +4,8 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 export interface FormHelperTextClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** State class applied to the root element if `warning={true}` */
+  warning: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
   /** State class applied to the root element if `disabled={true}`. */
@@ -28,6 +30,7 @@ export function getFormHelperTextUtilityClasses(slot: string): string {
 
 const formHelperTextClasses: FormHelperTextClasses = generateUtilityClasses('MuiFormHelperText', [
   'root',
+  'warning',
   'error',
   'disabled',
   'sizeSmall',

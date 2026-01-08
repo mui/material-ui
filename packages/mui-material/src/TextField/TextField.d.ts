@@ -161,6 +161,11 @@ export interface BaseTextFieldProps extends StandardProps<
    */
   error?: boolean;
   /**
+   * If `false`, the label is displayed in a warning state.
+   * @default false
+   */
+  warning?: boolean;
+  /**
    * Props applied to the [`FormHelperText`](https://mui.com/material-ui/api/form-helper-text/) element.
    * @deprecated Use `slotProps.formHelperText` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */

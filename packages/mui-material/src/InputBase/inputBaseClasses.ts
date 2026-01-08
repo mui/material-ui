@@ -16,6 +16,8 @@ export interface InputBaseClasses {
   adornedEnd: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
+  /** State class applied to the root element if `warning={true}`. However `error` gets higher precedence */
+  warning: string;
   /** Styles applied to the input element if `size="small"`. */
   sizeSmall: string;
   /** Styles applied to the root element if `multiline={true}`. */
@@ -67,6 +69,7 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'adornedStart',
   'adornedEnd',
   'error',
+  'warning',
   'sizeSmall',
   'multiline',
   'colorSecondary',

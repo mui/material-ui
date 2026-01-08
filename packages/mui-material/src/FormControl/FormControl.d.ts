@@ -33,6 +33,11 @@ export interface FormControlOwnProps {
    */
   disabled?: boolean;
   /**
+   * If `true`, the label is displayed in a warning state.
+   * @default false
+   */
+  warning?: boolean;
+  /**
    * If `true`, the label is displayed in an error state.
    * @default false
    */

@@ -5,6 +5,7 @@ import type { FormControlProps } from './FormControl';
 type ContextFromPropsKey =
   | 'color'
   | 'disabled'
+  | 'warning'
   | 'error'
   | 'fullWidth'
   | 'hiddenLabel'

@@ -5,6 +5,7 @@ export interface NotchedOutlineProps extends StandardProps<
   React.FieldsetHTMLAttributes<HTMLFieldSetElement>
 > {
   disabled?: boolean;
+  warning?: boolean;
   error?: boolean;
   focused?: boolean;
   label?: React.ReactNode;

@@ -88,6 +88,11 @@ const InputRoot = styled(InputBaseRoot, {
               // See https://github.com/mui/material-ui/issues/31766
               transform: 'scaleX(1) translateX(0)',
             },
+            [`&.${inputClasses.warning}`]: {
+              '&::before, &::after': {
+                borderBottomColor: (theme.vars || theme).palette.warning.main,
+              },
+            },
             [`&.${inputClasses.error}`]: {
               '&::before, &::after': {
                 borderBottomColor: (theme.vars || theme).palette.error.main,
@@ -105,13 +110,14 @@ const InputRoot = styled(InputBaseRoot, {
               }),
               pointerEvents: 'none', // Transparent to the hover style.
             },
-            [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
-              borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                borderBottom: `1px solid ${bottomLineColor}`,
+            [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}, ${inputClasses.warning}):before`]:
+              {
+                borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
+                // Reset on touch devices, it doesn't add specificity
+                '@media (hover: none)': {
+                  borderBottom: `1px solid ${bottomLineColor}`,
+                },
               },
-            },
             [`&.${inputClasses.disabled}:before`]: {
               borderBottomStyle: 'dotted',
             },

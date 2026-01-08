@@ -98,6 +98,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     color = 'primary',
     component = 'div',
     disabled = false,
+    warning = false,
     error = false,
     focused: visuallyFocused,
     fullWidth = false,
@@ -114,6 +115,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     color,
     component,
     disabled,
+    warning: warning && !error, // Since error has higher precedence than warning
     error,
     fullWidth,
     hiddenLabel,
@@ -207,6 +209,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       setAdornedStart,
       color,
       disabled,
+      warning,
       error,
       filled,
       focused,
@@ -229,6 +232,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     adornedStart,
     color,
     disabled,
+    warning,
     error,
     filled,
     focused,
@@ -346,6 +350,10 @@ FormControl.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  /**
+   * If `true`, the label is displayed in a warning state.
+   */
+  warning: PropTypes.bool,
 };
 
 export default FormControl;

@@ -15,6 +15,8 @@ export interface OutlinedInputClasses {
   adornedStart: string;
   /** Styles applied to the root element if `endAdornment` is provided. */
   adornedEnd: string;
+  /** State class applied to the root element if `warning={true}`. */
+  warning: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
   /** Styles applied to the input element if `size="small"`. */

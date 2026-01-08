@@ -23,6 +23,10 @@ export interface FormHelperTextOwnProps {
    */
   disabled?: boolean;
   /**
+   * If `true`, helper text should be displayed in an warning state.
+   */
+  warning?: boolean;
+  /**
    * If `true`, helper text should be displayed in an error state.
    */
   error?: boolean;

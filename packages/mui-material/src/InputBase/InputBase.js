@@ -27,6 +27,7 @@ export const rootOverridesResolver = (props, styles) => {
     ownerState.formControl && styles.formControl,
     ownerState.startAdornment && styles.adornedStart,
     ownerState.endAdornment && styles.adornedEnd,
+    ownerState.warning && styles.warning,
     ownerState.error && styles.error,
     ownerState.size === 'small' && styles.sizeSmall,
     ownerState.multiline && styles.multiline,
@@ -56,6 +57,7 @@ const useUtilityClasses = (ownerState) => {
     color,
     disabled,
     error,
+    warning,
     endAdornment,
     focused,
     formControl,
@@ -72,6 +74,7 @@ const useUtilityClasses = (ownerState) => {
       'root',
       `color${capitalize(color)}`,
       disabled && 'disabled',
+      warning && 'warning',
       error && 'error',
       fullWidth && 'fullWidth',
       focused && 'focused',
@@ -279,6 +282,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     disabled,
     disableInjectingGlobalStyles,
     endAdornment,
+    warning,
     error,
     fullWidth = false,
     id,
@@ -314,16 +318,19 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const inputRef = React.useRef();
   const handleInputRefWarning = React.useCallback((instance) => {
-    if (process.env.NODE_ENV !== 'production') {
-      if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
-        console.error(
-          [
-            'MUI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `ref` prop.',
-            'Make sure the `ref` prop is called with a HTMLInputElement.',
-          ].join('\n'),
-        );
-      }
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      instance &&
+      instance.nodeName !== 'INPUT' &&
+      !instance.focus
+    ) {
+      console.error(
+        [
+          'MUI: You have provided a `inputComponent` to the input component',
+          'that does not correctly handle the `ref` prop.',
+          'Make sure the `ref` prop is called with a HTMLInputElement.',
+        ].join('\n'),
+      );
     }
   }, []);
 
@@ -352,7 +359,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
+    states: ['color', 'disabled', 'warning', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
   });
 
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
@@ -468,12 +475,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   if (multiline && InputComponent === 'input') {
     if (rows) {
-      if (process.env.NODE_ENV !== 'production') {
-        if (minRows || maxRows) {
-          console.warn(
-            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
-          );
-        }
+      if (process.env.NODE_ENV !== 'production' && (minRows || maxRows)) {
+        console.warn(
+          'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+        );
       }
       inputProps = {
         type: undefined,
@@ -509,6 +514,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     color: fcs.color || 'primary',
     disabled: fcs.disabled,
     endAdornment,
+    warning: fcs.warning && !fcs.error, // Since error gets precedence over warning
     error: fcs.error,
     focused: fcs.focused,
     formControl: muiFormControl,
@@ -842,6 +848,11 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The value of the `input` element, required for a controlled component.
    */
   value: PropTypes.any,
+  /**
+   * If `true`, the `input` will indicate a warning.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  warning: PropTypes.bool,
 };
 
 export default InputBase;
