@@ -9,6 +9,7 @@ import { TabsClasses } from './tabsClasses';
 import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
+export interface TabsPropsVariantOverrides {}
 
 export interface TabsRootSlotPropsOverrides {}
 export interface TabsScrollerSlotPropsOverrides {}
@@ -145,8 +146,6 @@ export interface TabsOwnerState extends Omit<TabsProps, 'slots' | 'slotProps'> {
   scrollButtonsHideMobile: boolean;
 }
 
-export interface TabPropsVariantOverrides {}
-
 export interface TabsOwnProps extends TabsSlotsAndSlotProps {
   /**
    * Callback fired when the component mounts.
@@ -264,7 +263,7 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
    */
   variant?: OverridableStringUnion<
     'standard' | 'scrollable' | 'fullWidth',
-    TabPropsVariantOverrides
+    TabsPropsVariantOverrides
   >;
   /**
    * If `true`, the scrollbar is visible. It can be useful when displaying
