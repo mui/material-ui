@@ -145,6 +145,8 @@ export interface TabsOwnerState extends Omit<TabsProps, 'slots' | 'slotProps'> {
   scrollButtonsHideMobile: boolean;
 }
 
+export interface TabPropsVariantOverrides {}
+
 export interface TabsOwnProps extends TabsSlotsAndSlotProps {
   /**
    * Callback fired when the component mounts.
@@ -260,7 +262,7 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
    *  - `standard` will render the default state.
    * @default 'standard'
    */
-  variant?: 'standard' | 'scrollable' | 'fullWidth';
+  variant?: OverridableStringUnion<'standard' | 'scrollable' | 'fullWidth', TabPropsVariantOverrides>;
   /**
    * If `true`, the scrollbar is visible. It can be useful when displaying
    * a long vertical list of tabs.

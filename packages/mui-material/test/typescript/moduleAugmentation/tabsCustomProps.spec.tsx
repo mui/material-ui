@@ -7,6 +7,9 @@ declare module '@mui/material/Tabs' {
   interface TabsPropsIndicatorColorOverrides {
     success: true;
   }
+  interface TabPropsVariantOverrides {
+    halfWidth: true
+  }
 }
 
 // theme typings should work as expected
@@ -20,12 +23,23 @@ const theme = createTheme({
             backgroundColor: '#e70000',
           },
         },
+        {
+          props: { variant: 'halfWidth' },
+          style: {
+            width: '50%'
+          }
+        }
       ],
     },
   },
 });
 
 <Tabs indicatorColor="success">
+  <Tab label="Item One" />
+  <Tab label="Item Two" />
+</Tabs>;
+
+<Tabs variant="standard">
   <Tab label="Item One" />
   <Tab label="Item Two" />
 </Tabs>;
