@@ -620,8 +620,6 @@ describe('<Tooltip />', () => {
       clock.tick(leaveDelay);
       clock.tick(transitionTimeout);
 
-      await flushMicrotasks();
-
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
   });
