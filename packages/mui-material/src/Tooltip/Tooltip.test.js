@@ -622,7 +622,7 @@ describe('<Tooltip />', () => {
 
       await flushMicrotasks();
 
-      expect(screen.queryByRole('tooltip')).not.toBeVisible();
+      expect(screen.getByRole('tooltip')).not.toBeVisible();
     });
   });
 
