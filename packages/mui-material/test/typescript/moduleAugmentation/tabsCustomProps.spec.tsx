@@ -39,7 +39,7 @@ const theme = createTheme({
   <Tab label="Item Two" />
 </Tabs>;
 
-<Tabs variant="standard">
+<Tabs variant="halfWidth">
   <Tab label="Item One" />
   <Tab label="Item Two" />
 </Tabs>;
