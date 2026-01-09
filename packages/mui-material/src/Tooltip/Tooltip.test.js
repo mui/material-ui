@@ -597,7 +597,7 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          slotProps={{ transition: { timeout: transitionTimeout }, popper: { keepMounted: false } }}
+          TransitionProps={{ timeout: transitionTimeout }}
         >
           <button id="testChild" type="submit">
             Hello World
