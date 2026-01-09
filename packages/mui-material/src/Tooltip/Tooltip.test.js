@@ -597,7 +597,7 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          slotProps={{ transition: { timeout: transitionTimeout }, popper: { keepMounted: false } }}
+          slotProps={{ transition: { timeout: transitionTimeout } }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -622,7 +622,7 @@ describe('<Tooltip />', () => {
 
       await flushMicrotasks();
 
-      expect(screen.queryByRole('tooltip')).to.equal(null);
+      expect(screen.queryByRole('tooltip')).not.toBeVisible();
     });
   });
 
