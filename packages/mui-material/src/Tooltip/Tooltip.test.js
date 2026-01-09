@@ -11,7 +11,6 @@ import {
   reactMajor,
   isJsdom,
   flushMicrotasks,
-  focusVisible
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
