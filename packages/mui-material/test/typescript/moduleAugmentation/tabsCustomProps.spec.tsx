@@ -7,7 +7,7 @@ declare module '@mui/material/Tabs' {
   interface TabsPropsIndicatorColorOverrides {
     success: true;
   }
-  interface TabPropsVariantOverrides {
+  interface TabsPropsVariantOverrides {
     halfWidth: true;
   }
 }
