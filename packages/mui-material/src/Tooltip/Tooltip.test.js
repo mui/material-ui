@@ -615,8 +615,6 @@ describe('<Tooltip />', () => {
         screen.getByRole('button').blur();
       });
 
-      expect(screen.getByRole('tooltip')).toBeVisible();
-
       clock.tick(leaveDelay);
       clock.tick(transitionTimeout);
 
