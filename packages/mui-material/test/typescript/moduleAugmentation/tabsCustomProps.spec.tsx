@@ -8,7 +8,7 @@ declare module '@mui/material/Tabs' {
     success: true;
   }
   interface TabPropsVariantOverrides {
-    halfWidth: true
+    halfWidth: true;
   }
 }
 
@@ -26,9 +26,9 @@ const theme = createTheme({
         {
           props: { variant: 'halfWidth' },
           style: {
-            width: '50%'
-          }
-        }
+            width: '50%',
+          },
+        },
       ],
     },
   },
