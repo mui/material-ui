@@ -11,7 +11,6 @@ import {
   reactMajor,
   isJsdom,
   flushMicrotasks,
-  waitFor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -614,18 +613,15 @@ describe('<Tooltip />', () => {
 
       await act(async () => {
         screen.getByRole('button').blur();
+        clock.tick(leaveDelay);
+        clock.tick(transitionTimeout);
       });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
-
       await flushMicrotasks();
 
-      await waitFor(() => {
-        expect(screen.queryByRole('tooltip')).to.equal(null);
-      });
+      expect(screen.queryByRole('tooltip')).to.equal(null);
     });
   });
 
