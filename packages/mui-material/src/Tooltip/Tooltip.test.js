@@ -11,6 +11,7 @@ import {
   reactMajor,
   isJsdom,
   flushMicrotasks,
+  focusVisible
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -619,7 +620,6 @@ describe('<Tooltip />', () => {
 
       clock.tick(leaveDelay);
       clock.tick(transitionTimeout);
-      clock.tick(1000);
 
       await flushMicrotasks();
 
