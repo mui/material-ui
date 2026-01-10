@@ -23,7 +23,7 @@ const overridesResolver = (props, styles) => {
   return [
     styles.root,
     (ownerState.variant === 'permanent' || ownerState.variant === 'persistent') && styles.docked,
-    styles.modal,
+    ownerState.variant === 'temporary' && styles.modal,
   ];
 };
 
