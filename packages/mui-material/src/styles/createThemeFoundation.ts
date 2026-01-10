@@ -155,6 +155,10 @@ export interface PaletteFilledInput {
   disabledBg: string;
 }
 
+export interface PaletteInput {
+  autofillWebkitShadowBox: string;
+}
+
 export interface PaletteLinearProgress {
   primaryBg: string;
   secondaryBg: string;
@@ -236,6 +240,7 @@ export interface ColorSystemOptions {
     Button?: Partial<PaletteButton>;
     Chip?: Partial<PaletteChip>;
     FilledInput?: Partial<PaletteFilledInput>;
+    Input?: Partial<PaletteInput>;
     LinearProgress?: Partial<PaletteLinearProgress>;
     Skeleton?: Partial<PaletteSkeleton>;
     Slider?: Partial<PaletteSlider>;
@@ -269,6 +274,7 @@ export interface CssVarsPalette {
   Button: PaletteButton;
   Chip: PaletteChip;
   FilledInput: PaletteFilledInput;
+  Input: Partial<PaletteInput>;
   LinearProgress: PaletteLinearProgress;
   Skeleton: PaletteSkeleton;
   Slider: PaletteSlider;
