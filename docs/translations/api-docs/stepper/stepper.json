@@ -13,6 +13,12 @@
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
     "connector": { "description": "An element to be placed between each step." },
+    "getAriaLabel": {
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the stepper navigation. This is important for screen reader users when the stepper contains interactive steps.",
+      "typeDescriptions": {
+        "totalSteps": { "name": "totalSteps", "description": "The total number of steps." }
+      }
+    },
     "nonLinear": {
       "description": "If set the <code>Stepper</code> will not assist in controlling steps for linear flow."
     },
