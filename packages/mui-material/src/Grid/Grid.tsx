@@ -10,7 +10,7 @@ import useTheme from '../styles/useTheme';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type GridDirection = 'row' | 'row-reverse';
 
 export type GridSpacing = number | string;
 
@@ -178,8 +178,8 @@ Grid.propTypes /* remove-proptypes */ = {
    * @default 'row'
    */
   direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.oneOf(['row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['row-reverse', 'row'])),
     PropTypes.object,
   ]),
   /**
