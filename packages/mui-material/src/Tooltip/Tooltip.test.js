@@ -619,7 +619,6 @@ describe('<Tooltip />', () => {
 
       clock.tick(leaveDelay);
       clock.tick(transitionTimeout);
-      clock.tick(800);
 
       await flushMicrotasks();
 
