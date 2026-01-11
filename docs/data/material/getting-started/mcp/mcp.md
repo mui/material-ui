@@ -23,6 +23,16 @@ MCP solves these problems by:
 
 The sections below detail how to set up the Material UI MCP in popular agentic coding environments.
 
+> ⚠️ **Security note**
+>
+> Using `npx -y` with `@latest` will always download and execute the latest version of the package.
+> In privileged execution environments (for example, when used with tools like GitHub Copilot or Claude),
+> this can increase the risk if the package is ever compromised.
+>
+> For improved safety and reproducibility, consider installing the MCP package locally
+> and relying on your project's lockfile to control the exact version being executed.
+
+
 ### VS Code, Cursor, Windsurf
 
 Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add the following:
