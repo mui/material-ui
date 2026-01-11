@@ -221,17 +221,19 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
-  const [AccordionRegionSlot, accordionRegionProps] = useSlot('region', {
-    elementType: AccordionRegion,
-    externalForwardedProps,
-    ownerState,
-    className: classes.region,
-    additionalProps: {
-      'aria-labelledby': summary.props.id,
-      id: summary.props['aria-controls'],
-      role: 'region',
-    },
-  });
+const regionAdditionalProps = {
+  role: 'region',
+        ...(summary?.props?.id ? { 'aria-labelledby': summary.props.id } : {}),
+       ...(summary?.props?.['aria-controls'] ? { id: summary.props['aria-controls'] } : {}),
+};
+
+const [AccordionRegionSlot, accordionRegionProps] = useSlot('region', {
+  elementType: AccordionRegion,
+  externalForwardedProps,
+  ownerState,
+  className: classes.region,
+  additionalProps: regionAdditionalProps,
+});
 
   return (
     <RootSlot {...rootProps}>
