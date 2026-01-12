@@ -129,7 +129,7 @@
     "danger": "13.0.4",
     "dotenv": "17.2.3",
     "es-toolkit": "1.43.0",
-    "eslint": "9.39.1",
+    "eslint": "9.39.2",
     "eslint-import-resolver-webpack": "0.13.10",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
