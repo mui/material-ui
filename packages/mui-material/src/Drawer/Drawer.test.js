@@ -450,4 +450,36 @@ describe('<Drawer />', () => {
       expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorBottom);
     });
   });
+
+  ['permanent', 'persistent'].forEach((variant) => {
+    it.skipIf(isJsdom())(
+      `should not apply modal styles from theme styleOverrides for variant=${variant}`,
+      () => {
+        const theme = createTheme({
+          components: {
+            MuiDrawer: {
+              styleOverrides: {
+                modal: {
+                  backgroundColor: 'rgb(0, 0, 255)',
+                },
+              },
+            },
+          },
+        });
+
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Drawer variant={variant}>
+              <div />
+            </Drawer>
+          </ThemeProvider>,
+        );
+
+        const root = container.querySelector(`.${classes.root}`);
+        expect(root).not.toHaveComputedStyle({
+          backgroundColor: 'rgb(0, 0, 255)',
+        });
+      },
+    );
+  });
 });
