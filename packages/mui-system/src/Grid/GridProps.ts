@@ -6,7 +6,7 @@ import { SystemProps } from '../Box';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type GridDirection = 'row' | 'row-reverse';
 
 export type GridSpacing = number | string;
 

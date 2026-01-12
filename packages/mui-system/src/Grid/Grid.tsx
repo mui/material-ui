@@ -54,8 +54,8 @@ Grid.propTypes /* remove-proptypes */ = {
    * @default 'row'
    */
   direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.oneOf(['row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['row-reverse', 'row'])),
     PropTypes.object,
   ]),
   /**
