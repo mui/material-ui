@@ -38,8 +38,13 @@ export interface GridBaseProps {
    */
   container?: boolean;
   /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
+   * Defines the `flex-direction` style property for the container.
+   *
+   * ⚠️ Only `row` and `row-reverse` are supported. `column` and `column-reverse` are not supported,
+   * because the Grid component is designed to subdivide layouts into **columns**, not rows.
+   *
+   * For vertical layouts, use `Stack` (optionally inside a Grid item).
+   *
    * @default 'row'
    */
   direction?: ResponsiveStyleValue<GridDirection>;
