@@ -9,8 +9,10 @@ export interface ToggleButtonGroupPropsSizeOverrides {}
 
 export interface ToggleButtonGroupPropsColorOverrides {}
 
-export interface ToggleButtonGroupProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
+export interface ToggleButtonGroupProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  'onChange' | 'children'
+> {
   /**
    * The content of the component.
    */

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { NumberField as BaseNumberField } from '@base-ui-components/react/number-field';
+import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import IconButton from '@mui/material/IconButton';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -25,7 +25,6 @@ function NumberField({ id: idProp, label, error, size = 'medium', ...other }) {
   }
   return (
     <BaseNumberField.Root
-      allowWheelScrub
       {...other}
       render={(props, state) => (
         <FormControl

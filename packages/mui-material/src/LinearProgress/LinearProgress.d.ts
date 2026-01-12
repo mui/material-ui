@@ -8,8 +8,10 @@ import { LinearProgressClasses } from './linearProgressClasses';
 export interface LinearProgressPropsColorOverrides {}
 export interface LinearProgressPropsVariantOverrides {}
 
-export interface LinearProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+export interface LinearProgressProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>,
+  'children'
+> {
   /**
    * Override or extend the styles applied to the component.
    */

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
+import { act, createRenderer, RenderCounter, screen, isJsdom } from '@mui/internal-test-utils';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -69,7 +68,7 @@ describe('useScrollTrigger', () => {
     });
   });
 
-  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('scroll', () => {
+  describe.skipIf(!isJsdom())('scroll', () => {
     const triggerRef = React.createRef();
     const containerRef = React.createRef(); // Get the scroll container's parent
     const getContainer = () => containerRef.current.children[0]; // Get the scroll container

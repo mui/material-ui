@@ -7,6 +7,8 @@ import {
   act,
   fireEvent,
   reactMajor,
+  isJsdom,
+  flushEffects,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import useAutocomplete, { createFilterOptions } from '@mui/material/useAutocomplete';
@@ -240,14 +242,10 @@ describe('useAutocomplete', () => {
     });
   });
 
-  it('should warn if the input is not binded', function test() {
-    // TODO is this fixed?
-    if (!window.navigator.userAgent.includes('jsdom')) {
-      // can't catch render errors in the browser for unknown reason
-      // tried try-catch + error boundary + window onError preventDefault
-      this.skip();
-    }
-
+  // can't catch render errors in the browser for unknown reason
+  // tried try-catch + error boundary + window onError preventDefault
+  // TODO is this fixed?
+  it.skipIf(!isJsdom())('should warn if the input is not bound', async () => {
     function Test(props) {
       const { options } = props;
       const {
@@ -332,6 +330,8 @@ describe('useAutocomplete', () => {
         </ErrorBoundary>,
       );
     }).toErrorDev(devErrorMessages);
+
+    await flushEffects();
   });
 
   describe('prop: freeSolo', () => {

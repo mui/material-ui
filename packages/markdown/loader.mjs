@@ -1,3 +1,5 @@
+// @ts-check
+
 import { promises as fs, readdirSync, statSync } from 'fs';
 import path from 'path';
 import prepareMarkdown from './prepareMarkdown.mjs';
@@ -28,9 +30,24 @@ function moduleIDToJSIdentifier(moduleID) {
     .join('');
 }
 
+/**
+ * @typedef {Record<string, Record<string, string>> } ComponentPackageMapping
+ */
+
+/** @type {ComponentPackageMapping | null} */
 let componentPackageMapping = null;
 
+/**
+ * @typedef {Object} Package
+ * @property {string[]} paths
+ * @property {string} productId
+ */
+
+/**
+ * @param {Package[]} packages
+ */
 function findComponents(packages) {
+  /** @type {ComponentPackageMapping} */
   const mapping = {};
 
   packages.forEach((pkg) => {
@@ -57,7 +74,48 @@ function findComponents(packages) {
 }
 
 /**
- * @type {import('webpack').loader.Loader}
+ * @typedef {Object} LoaderOptions
+ * @property {Package[]} packages
+ * @property {string[]} languagesInProgress
+ * @property {string} workspaceRoot
+ */
+
+/**
+ * @typedef {Object} ModuleData
+ * @property {string} module
+ * @property {string} raw
+ */
+
+/**
+ * @typedef {Object} Translation
+ * @property {string} filename
+ * @property {string} userLanguage
+ * @property {string} [markdown]
+ */
+
+/**
+ * @typedef {Object} Demo
+ * @property {string} module
+ * @property {string} [moduleTS]
+ * @property {string} [moduleTailwind]
+ * @property {string} [moduleTSTailwind]
+ * @property {string} [moduleCSS]
+ * @property {string} [moduleTSCSS]
+ * @property {string} raw
+ * @property {string} [rawTS]
+ * @property {string} [rawTailwind]
+ * @property {string} [rawTailwindTS]
+ * @property {string} [rawCSS]
+ * @property {string} [rawCSSTS]
+ * @property {string} [jsxPreview]
+ * @property {string} [tailwindJsxPreview]
+ * @property {string} [cssJsxPreview]
+ * @property {Object.<string, ModuleData[]>} [relativeModules]
+ */
+
+/**
+ * @type {import('webpack').LoaderDefinitionFunction<LoaderOptions>}
+ * @this {import('webpack').LoaderContext<LoaderOptions>}
  */
 export default async function demoLoader() {
   const englishFilepath = this.resourcePath;
@@ -71,41 +129,42 @@ export default async function demoLoader() {
 
   const files = await fs.readdir(path.dirname(englishFilepath));
   const translations = await Promise.all(
-    files
-      .map((filename) => {
-        if (filename === `${englishFilename}.md`) {
-          return {
-            filename,
-            userLanguage: 'en',
-          };
-        }
+    /** @type {Translation[]} */ (
+      files
+        .map((filename) => {
+          if (filename === `${englishFilename}.md`) {
+            return {
+              filename,
+              userLanguage: 'en',
+            };
+          }
 
-        const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
+          const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
 
-        if (
-          filename.startsWith(englishFilename) &&
-          matchNotEnglishMarkdown !== null &&
-          options.languagesInProgress.includes(matchNotEnglishMarkdown[1])
-        ) {
-          return {
-            filename,
-            userLanguage: matchNotEnglishMarkdown[1],
-          };
-        }
+          if (
+            filename.startsWith(englishFilename) &&
+            matchNotEnglishMarkdown !== null &&
+            options.languagesInProgress.includes(matchNotEnglishMarkdown[1])
+          ) {
+            return {
+              filename,
+              userLanguage: matchNotEnglishMarkdown[1],
+            };
+          }
 
-        return null;
-      })
-      .filter((translation) => translation)
-      .map(async (translation) => {
-        const filepath = path.join(path.dirname(englishFilepath), translation.filename);
-        this.addDependency(filepath);
-        const markdown = await fs.readFile(filepath, { encoding: 'utf8' });
+          return null;
+        })
+        .filter((translation) => translation)
+    ).map(async (translation) => {
+      const filepath = path.join(path.dirname(englishFilepath), translation.filename);
+      this.addDependency(filepath);
+      const markdown = await fs.readFile(filepath, { encoding: 'utf8' });
 
-        return {
-          ...translation,
-          markdown,
-        };
-      }),
+      return {
+        ...translation,
+        markdown,
+      };
+    }),
   );
 
   // Use .. as the docs runs from the /docs folder
@@ -121,25 +180,33 @@ export default async function demoLoader() {
     options,
   });
 
+  /** @type {Record<string, Demo>} */
   const demos = {};
+  /** @type {Set<string>} */
   const importedModuleIDs = new Set();
+  /** @type {Record<string, string>} */
   const components = {};
+  /** @type {Set<string>} */
   const demoModuleIDs = new Set();
+  /** @type {Set<string>} */
   const componentModuleIDs = new Set();
+  /** @type {Set<string>} */
   const nonEditableDemos = new Set();
+  /** @type {Map<string, Map<string, string[]>>} */
   const relativeModules = new Map();
+  /** @type {string[]} */
   const demoNames = Array.from(
     new Set(
-      docs.en.rendered
-        .filter((markdownOrComponentConfig) => {
+      /** @type {import('./prepareMarkdown.mjs').DemoEntry[]} */ (
+        docs.en.rendered.filter((markdownOrComponentConfig) => {
           return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
         })
-        .map((demoConfig) => {
-          if (demoConfig.hideToolbar) {
-            nonEditableDemos.add(demoConfig.demo);
-          }
-          return demoConfig.demo;
-        }),
+      ).map((demoConfig) => {
+        if (demoConfig.hideToolbar) {
+          nonEditableDemos.add(demoConfig.demo);
+        }
+        return demoConfig.demo;
+      }),
     ),
   );
 
@@ -204,21 +271,21 @@ export default async function demoLoader() {
 
   /**
    * Inserts the moduleData into the relativeModules object
-   * @param string demoName
-   * @param {*} moduleData
-   * @param string variant
-   * @example updateRelativeModules(demoName, {module: 'constants.js', raw: ... }, 'JS') => demos[demoName].relativeModules[variant].push(moduleData)
+   * @param {string} demoName
+   * @param {ModuleData} moduleData
+   * @param {string} variant
    */
   function updateRelativeModules(demoName, moduleData, variant) {
-    if (demos[demoName].relativeModules[variant]) {
+    const variantModule = /** @type {Object.<string, ModuleData[]>} */ (
+      demos[demoName].relativeModules
+    );
+    if (variantModule[variant]) {
       // Avoid duplicates
-      if (
-        !demos[demoName].relativeModules[variant].some((elem) => elem.module === moduleData.module)
-      ) {
-        demos[demoName].relativeModules[variant].push(moduleData);
+      if (!variantModule[variant].some((elem) => elem.module === moduleData.module)) {
+        variantModule[variant].push(moduleData);
       }
     } else {
-      demos[demoName].relativeModules[variant] = [moduleData];
+      variantModule[variant] = [moduleData];
     }
   }
 
@@ -460,10 +527,15 @@ export default async function demoLoader() {
           demos[demoName].relativeModules = {};
         }
 
+        /** @type {Record<string, Set<string>>} */
         const addedModulesRelativeToModulePathPerVariant = {};
 
+        const demoRelativeModules = /** @type {Map<string, string[]>} */ (
+          relativeModules.get(demoName)
+        );
+
         await Promise.all(
-          Array.from(relativeModules.get(demoName)).map(async ([relativeModuleID, variants]) => {
+          Array.from(demoRelativeModules).map(async ([relativeModuleID, variants]) => {
             for (const variant of variants) {
               addedModulesRelativeToModulePathPerVariant[variant] ??= new Set();
               const addedModulesRelativeToModulePath =
@@ -523,7 +595,9 @@ export default async function demoLoader() {
                       // We are only iterating through an array that looks
                       // like this: ['JS', 'TS'], so  it is safe to await
                       // eslint-disable-next-line no-await-in-loop
-                      const rawEntry = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
+                      const rawEntry = await fs.readFile(entryModuleFilePath, {
+                        encoding: 'utf8',
+                      });
 
                       extractImports(rawEntry).forEach((importModuleID) => {
                         // detect relative import
@@ -570,17 +644,18 @@ export default async function demoLoader() {
     }),
   );
 
+  /** @type {string[]} */
   const componentNames = Array.from(
     new Set(
-      docs.en.rendered
-        .filter((markdownOrComponentConfig) => {
+      /** @type {import('./prepareMarkdown.mjs').ComponentEntry[]} */ (
+        docs.en.rendered.filter((markdownOrComponentConfig) => {
           return (
             typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.component
           );
         })
-        .map((componentConfig) => {
-          return componentConfig.component;
-        }),
+      ).map((componentConfig) => {
+        return componentConfig.component;
+      }),
     ),
   );
 

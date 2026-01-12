@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -11,16 +11,17 @@ import describeConformance from '../../test/describeConformance';
 describe('<ListItem />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItem />, () => ({
+  describeConformance(<ListItem secondaryAction="foo" />, () => ({
     classes,
     inheritComponent: 'li',
     render,
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
-    testLegacyComponentsProp: true,
+    testLegacyComponentsProp: ['root'],
     slots: {
       root: {},
+      secondaryAction: { expectedClassName: classes.secondaryAction },
     },
     skip: [
       'componentsProp',
@@ -128,35 +129,30 @@ describe('<ListItem />', () => {
         PropTypes.resetWarningCache();
       });
 
-      it('warns if it cant detect the secondary action properly', function test() {
-        if (reactMajor >= 19) {
-          // React 19 removed prop types support
-          this.skip();
-        }
-
-        expect(() => {
-          PropTypes.checkPropTypes(
-            ListItem.propTypes,
-            {
-              classes: {},
-              children: [
-                <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
-                <ListItemText>My position does not matter.</ListItemText>,
-              ],
-            },
-            'prop',
-            'MockedName',
-          );
-        }).toErrorDev('Warning: Failed prop type: MUI: You used an element');
-      });
+      // React 19 removed prop types support
+      it.skipIf(reactMajor >= 19)(
+        'warns if it cant detect the secondary action properly',
+        function test() {
+          expect(() => {
+            PropTypes.checkPropTypes(
+              ListItem.propTypes,
+              {
+                classes: {},
+                children: [
+                  <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
+                  <ListItemText>My position does not matter.</ListItemText>,
+                ],
+              },
+              'prop',
+              'MockedName',
+            );
+          }).toErrorDev('Warning: Failed prop type: MUI: You used an element');
+        },
+      );
     });
   });
 
-  it('container overrides should work', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('container overrides should work', function test() {
     const testStyle = {
       marginTop: '13px',
     };
