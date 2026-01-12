@@ -52,8 +52,8 @@ export default function PositionedPopper() {
           <br />
           <Button onClick={handleClick('left-end')}>left-end</Button>
         </Grid>
-        <Grid container sx={{ alignItems: 'flex-end' }} size={6}>
-          <Stack>
+        <Grid container sx={{ justifyContent: 'flex-end' }} size={6}>
+          <Stack sx={{ alignItems: 'end' }}>
             <Grid>
               <Button onClick={handleClick('right-start')}>right-start</Button>
             </Grid>
