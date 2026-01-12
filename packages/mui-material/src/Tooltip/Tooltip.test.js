@@ -608,8 +608,12 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
+      await act(async () => {
+        clock.tick(leaveDelay);
+      });
+      await act(async () => {
+        clock.tick(transitionTimeout);
+      });
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
