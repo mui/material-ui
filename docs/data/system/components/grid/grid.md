@@ -80,7 +80,7 @@ Responsive values is supported by:
 - `rowSpacing`
 - `spacing`
 - `offset`
-- all the [other props](#system-props) of MUI System
+- all the [other props](/system/properties/) of MUI System
 
 ## Auto-layout
 
