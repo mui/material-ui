@@ -33,7 +33,7 @@ We're happy to share the newest MUI X features shipped over the last several mo
 
 - [Charts](#charts)
   - [Brush selection](#brush-selection)
-  - [Intuitive zooming and panning](#zoom-and-pan-that-feel-right)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Intuitive zooming and panning](#intuitive-zooming-and-panning)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Zoom slider with preview](#zoom-slider-with-preview)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Keyboard navigation and a11y improvements](#keyboard-navigation-and-a11y-improvements)
   - [Sankey and upgraded charts](#sankey-and-upgraded-charts)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
@@ -52,7 +52,7 @@ We're happy to share the newest MUI X features shipped over the last several mo
 - [Tree View](#tree-view)
   - [Drag-and-drop support and other improvements](#drag-and-drop-support-and-other-improvements)
 - [What's next](#whats-next)
-- [Feedback](#feedback)
+- [Feedback](#whats-next)
 
 ## Charts
 

@@ -10,7 +10,7 @@ manualCard: true
 Continuing the tradition from last year, we launched a Developer Survey a few months ago, to which we received 1488 responses. This is twice as many as last year (734), so we thank you all for your participation!
 The survey is closed and we can now give a detailed summary of the results.
 
-Like last year, the survey was again broken into three sections: ["Introduction"](#Introduction), ["About you"](#about-you) and ["Your product"](#your-product).
+Like last year, the survey was again broken into three sections: ["Introduction"](#introduction), ["About you"](#about-you) and ["Your product"](#your-product).
 
 ## Introduction
 

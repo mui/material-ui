@@ -58,7 +58,7 @@ via [Open Collective](https://opencollective.com/mui-org)
   <object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
 </p>
 
-Bronze sponsors are those who've pledged $100/month to $250/month to the MUI organization. [Tier benefits](#sliver).
+Bronze sponsors are those who've pledged $100/month to $250/month to the MUI organization. [Tier benefits](#bronze).
 
 ## Backers
 
