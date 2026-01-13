@@ -590,27 +590,14 @@ describe('<Tooltip />', () => {
     it('should take the leaveDelay into account', async () => {
       const leaveDelay = 111;
       const enterDelay = 0;
-
-      function InstantTransition(props) {
-        const { in: inProp, onExited, onEnter } = props;
-
-        React.useEffect(() => {
-          if (!inProp) {
-            onExited?.();
-          } else {
-            onEnter?.();
-          }
-        }, [inProp, onExited, onEnter]);
-
-        return props.children;
-      }
+      const transitionTimeout = 10;
 
       render(
         <Tooltip
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          slots={{ transition: InstantTransition }}
+          slotProps={{ transition: { timeout: transitionTimeout } }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -630,7 +617,15 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      clock.tick(leaveDelay);
+      clock.tick(leaveDelay - 1);
+
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
+
+      clock.tick(1);
+      clock.tick(transitionTimeout);
+
+      // move forward for some time to make sure the component unmounts fully, supposedly due to some tasks in react-transition-group.
+      clock.tick(10);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
