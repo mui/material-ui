@@ -55,7 +55,7 @@ This release features some major highlights:
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
-  - [Design Kits](#design-kits-1)
+  - [Design Kits](#design-kits-2)
 - [Thank you](#thank-you)
 
 ## High-level goals for v5
