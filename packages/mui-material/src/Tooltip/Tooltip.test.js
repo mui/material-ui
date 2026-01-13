@@ -10,7 +10,6 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
   isJsdom,
-  flushMicrotasks,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -613,14 +612,13 @@ describe('<Tooltip />', () => {
 
       await act(async () => {
         screen.getByRole('button').blur();
+        clock.tick(leaveDelay);
       });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       await act(async () => {
-        clock.tick(leaveDelay);
         clock.tick(transitionTimeout);
-        clock.tick(150); // theme.transitions.duration.shortest
       });
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
