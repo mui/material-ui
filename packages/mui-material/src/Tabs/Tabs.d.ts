@@ -9,6 +9,7 @@ import { TabsClasses } from './tabsClasses';
 import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
+export interface TabsPropsVariantOverrides {}
 
 export interface TabsRootSlotPropsOverrides {}
 export interface TabsScrollerSlotPropsOverrides {}
@@ -95,7 +96,7 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     indicator: SlotProps<'span', TabsIndicatorSlotPropsOverrides, TabsOwnerState>;
     /**
-     * Props forwarded to the scrollButton slot.
+     * Props forwarded to the scrollButtons slot.
      * By default, the available props are based on the [TabScrollButton](https://mui.com/material-ui/api/tab-scroll-button/#props) component.
      */
     scrollButtons: SlotProps<
@@ -260,7 +261,10 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
    *  - `standard` will render the default state.
    * @default 'standard'
    */
-  variant?: 'standard' | 'scrollable' | 'fullWidth';
+  variant?: OverridableStringUnion<
+    'standard' | 'scrollable' | 'fullWidth',
+    TabsPropsVariantOverrides
+  >;
   /**
    * If `true`, the scrollbar is visible. It can be useful when displaying
    * a long vertical list of tabs.

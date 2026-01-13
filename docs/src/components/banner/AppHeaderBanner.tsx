@@ -22,10 +22,10 @@ const linkStyleOverrides = (theme: Theme) => ({
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      {`🚀 Influence MUI's 2025 roadmap! Participate in the latest`}
+      {`🚀 Influence MUI's 2026 roadmap! Take our latest`}
       &nbsp;
       <Link
-        href="https://tally.so/r/mObbvk?source=website"
+        href="https://tally.so/r/3jOKG1?source=website"
         target="_blank"
         underline="always"
         sx={linkStyleOverrides}
@@ -55,7 +55,7 @@ function getDefaultHiringMessage() {
 }
 
 export default function AppHeaderBanner() {
-  const showSurveyMessage = false;
+  const showSurveyMessage = true;
   const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (
