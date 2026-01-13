@@ -627,7 +627,7 @@ describe('<Tooltip />', () => {
       // Advance a little extra time to let the exit transition finish and for Popper to flip `exited`,
       // so it can return `null` (unmount). In browser runs, react-transition-group may schedule the
       // `onExited` callback in a later tick beyond the configured timeout.
-      clock.tick(100);
+      clock.tick(200);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
