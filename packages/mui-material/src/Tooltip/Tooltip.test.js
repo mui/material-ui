@@ -590,7 +590,6 @@ describe('<Tooltip />', () => {
     it('should take the leaveDelay into account', async () => {
       const leaveDelay = 111;
       const enterDelay = 0;
-      const transitionTimeout = 10;
 
       function InstantTransition(props) {
         const { in: inProp, onExited, onEnter } = props;
@@ -632,7 +631,6 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
