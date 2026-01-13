@@ -13,6 +13,7 @@ describe('textToHash', () => {
         'creategenerateclassname-options-class-name-generator',
       ],
       ['@mui/material/styles vs @mui/styles', 'mui-material-styles-vs-mui-styles'],
+      ['Inputs &amp; Labels', 'inputs-labels'],
       ['Blog 📝', 'blog'],
     ];
     table.forEach((entry, index) => {
