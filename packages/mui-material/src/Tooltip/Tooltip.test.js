@@ -605,7 +605,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      await focusVisible(screen.getByRole('button'));
+      focusVisibleSync(screen.getByRole('button'));
       clock.tick(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
