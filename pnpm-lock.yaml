@@ -509,8 +509,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1(react@19.2.3)
       webpack-bundle-analyzer:
-        specifier: ^5.1.0
-        version: 5.1.0
+        specifier: ^5.1.1
+        version: 5.1.1
     devDependencies:
       '@babel/plugin-transform-react-constant-elements':
         specifier: 7.27.1
@@ -11878,8 +11878,8 @@ packages:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
     engines: {node: '>=12'}
 
-  webpack-bundle-analyzer@5.1.0:
-    resolution: {integrity: sha512-WAWwIoIUx4yC2AEBqXbDkcmh/LzAaenv0+nISBflP5l+XIXO9/x6poWarGA3RTrfavk9H3oWQ64Wm0z26/UGKA==}
+  webpack-bundle-analyzer@5.1.1:
+    resolution: {integrity: sha512-UzoaIA0Aigo5lUvoUkIkSoHtUK5rBJh9e2vW3Eqct0jc/L8hcruBCz/jsXEvB1hDU1G3V94jo2EJqPcFKeSSeQ==}
     engines: {node: '>= 20.9.0'}
     hasBin: true
 
@@ -24222,7 +24222,7 @@ snapshots:
 
   webidl-conversions@7.0.0: {}
 
-  webpack-bundle-analyzer@5.1.0:
+  webpack-bundle-analyzer@5.1.1:
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       acorn: 8.15.0
