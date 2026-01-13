@@ -591,12 +591,27 @@ describe('<Tooltip />', () => {
       const leaveDelay = 111;
       const enterDelay = 0;
       const transitionTimeout = 10;
+
+      function InstantTransition(props) {
+        const { in: inProp, onExited, onEnter } = props;
+
+        React.useEffect(() => {
+          if (!inProp) {
+            onExited?.();
+          } else {
+            onEnter?.();
+          }
+        }, [inProp, onExited, onEnter]);
+
+        return props.children;
+      }
+
       render(
         <Tooltip
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          slotProps={{ transition: { timeout: transitionTimeout } }}
+          slots={{ transition: InstantTransition }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -605,7 +620,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisibleSync(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
       clock.tick(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
