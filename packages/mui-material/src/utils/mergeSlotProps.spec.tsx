@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Box from '@mui/material/Box';
+import Dialog, { DialogProps } from '@mui/material/Dialog';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 import { mergeSlotProps, SlotComponentProps } from '@mui/material/utils';
 
@@ -62,3 +63,27 @@ export const CustomTooltip2 = (props: TooltipProps) => {
     </Tooltip>
   );
 };
+
+type SimpleDialogProps = Omit<DialogProps, 'children' | 'onClose'> & {
+  onClose: () => void;
+};
+function UserDetailsDialog(props: SimpleDialogProps) {
+  const { onClose, slotProps: dialogSlotProps, ...dialogProps } = props;
+
+  return (
+    <Dialog
+      onClose={() => onClose()}
+      slotProps={{
+        ...dialogSlotProps,
+        transition: mergeSlotProps(dialogSlotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...dialogProps}
+    >
+      content
+    </Dialog>
+  );
+}

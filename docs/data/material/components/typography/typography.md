@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Typography component
 components: Typography
-githubLabel: 'component: Typography'
+githubLabel: 'scope: typography'
 materialDesign: https://m2.material.io/design/typography/the-type-system.html
 githubSource: packages/mui-material/src/Typography
 ---

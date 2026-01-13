@@ -149,13 +149,13 @@ function moveDefaultPropsPropIntoslotProps(
  * @example <Component tooltipClasses={classes} /> => <Component slotProps={{ tooltip: { classes: classes } }} />
  */
 export default function movePropIntoSlotProps(j, options) {
-  const { root, componentName, propName, slotName, slotPropName } = options;
+  const { propName, slotName, slotPropName } = options;
 
-  findComponentJSX(j, { root, componentName }, (elementPath) => {
+  findComponentJSX(j, options, (elementPath) => {
     moveJsxPropIntoSlotProps(j, elementPath.node, propName, slotName, slotPropName);
   });
 
-  const defaultPropsPathCollection = findComponentDefaultProps(j, { root, componentName });
+  const defaultPropsPathCollection = findComponentDefaultProps(j, options);
 
   moveDefaultPropsPropIntoslotProps(
     j,

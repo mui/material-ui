@@ -4,7 +4,7 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-pigment-css-vite-ts
@@ -20,7 +20,7 @@ npm run dev
 
 or:
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-pigment-css-vite-ts)
 
@@ -36,4 +36,4 @@ It includes `@mui/material` and [Pigment CSS](https://github.com/mui/pigment-cs
 <!-- #host-reference -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.

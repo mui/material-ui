@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "../build/generate-llms-txt",
+    "tsBuildInfoFile": "../build/generate-llms-txt/.tsbuildinfo",
+    "noImplicitAny": false,
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "include": ["./src/*"]
+}

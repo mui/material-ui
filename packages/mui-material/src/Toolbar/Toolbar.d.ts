@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ToolbarClasses } from './toolbarClasses';
 
@@ -44,11 +44,11 @@ export interface ToolbarTypeMap<
  *
  * Demos:
  *
- * - [App Bar](https://next.mui.com/material-ui/react-app-bar/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
  *
  * API:
  *
- * - [Toolbar API](https://next.mui.com/material-ui/api/toolbar/)
+ * - [Toolbar API](https://mui.com/material-ui/api/toolbar/)
  */
 declare const Toolbar: OverridableComponent<ToolbarTypeMap>;
 

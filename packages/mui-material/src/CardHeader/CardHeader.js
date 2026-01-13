@@ -42,7 +42,6 @@ const CardHeaderRoot = styled('div', {
 const CardHeaderAvatar = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Avatar',
-  overridesResolver: (props, styles) => styles.avatar,
 })({
   display: 'flex',
   flex: '0 0 auto',
@@ -52,7 +51,6 @@ const CardHeaderAvatar = styled('div', {
 const CardHeaderAction = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
 })({
   flex: '0 0 auto',
   alignSelf: 'flex-start',
@@ -64,7 +62,6 @@ const CardHeaderAction = styled('div', {
 const CardHeaderContent = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
 })({
   flex: '1 1 auto',
   [`.${typographyClasses.root}:where(& .${cardHeaderClasses.title})`]: {
@@ -249,7 +246,7 @@ CardHeader.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the subheader
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.subheader` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.subheader` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   subheaderTypographyProps: PropTypes.object,
   /**
@@ -267,7 +264,7 @@ CardHeader.propTypes /* remove-proptypes */ = {
   /**
    * These props will be forwarded to the title
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.title` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   titleTypographyProps: PropTypes.object,
 };

@@ -9,10 +9,6 @@ export default {
     rootPath: path.join(process.cwd(), 'packages/mui-lab'),
     entryPointPath: 'src/index.d.ts',
   },
-  base: {
-    rootPath: path.join(process.cwd(), 'packages/mui-base'),
-    entryPointPath: 'src/index.d.ts',
-  },
   joy: {
     rootPath: path.join(process.cwd(), 'packages/mui-joy'),
     entryPointPath: 'src/index.ts',

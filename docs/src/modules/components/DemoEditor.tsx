@@ -16,7 +16,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       overflow: 'auto',
       marginTop: -1,
       backgroundColor: 'hsl(210, 25%, 9%)', // a special, one-off, color tailored for the code blocks using MUI's branding theme blue palette as the starting point. It has a less saturaded color but still maintaining a bit of the blue tint.
-      border: 0,
+      border: '1px solid transparent',
       colorScheme: 'dark',
       '&:hover': {
         boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
@@ -69,10 +69,11 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   language: string;
   onChange: () => {};
   value: string;
+  sx?: React.CSSProperties;
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
+  const { language, value, onChange, copyButtonProps, children, id, sx, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
   const wrapperRef = React.useRef<HTMLElement>(null);
@@ -105,6 +106,7 @@ export default function DemoEditor(props: DemoEditorProps) {
           }
         }
       }}
+      sx={sx}
       {...other}
     >
       <div className="MuiCode-root" {...handlers}>

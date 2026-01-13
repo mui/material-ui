@@ -9,7 +9,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import FacebookIcon from '@mui/icons-material/GitHub';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/X';
 import SitemarkIcon from './SitemarkIcon';
@@ -200,7 +200,7 @@ export default function Footer() {
               aria-label="GitHub"
               sx={{ alignSelf: 'center' }}
             >
-              <FacebookIcon />
+              <GitHubIcon />
             </IconButton>
             <IconButton
               color="inherit"

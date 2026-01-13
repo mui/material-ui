@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputBaseClasses } from './inputBaseClasses';
 
 export interface InputBasePropsSizeOverrides {}
@@ -11,23 +11,22 @@ export interface InputBasePropsColorOverrides {}
 
 export interface InputBaseComponentsPropsOverrides {}
 
-export interface InputBaseProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    /*
-     * `onBlur`, `onChange`, `onFocus`, `onInvalid`, `onKeyDown`, `onKeyUp` are applied to the inner `InputComponent`,
-     * which by default is an input or textarea. Since these handlers differ from the
-     * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
-     */
-    | 'children'
-    | 'defaultValue'
-    | 'onBlur'
-    | 'onChange'
-    | 'onFocus'
-    | 'onInvalid'
-    | 'onKeyDown'
-    | 'onKeyUp'
-  > {
+export interface InputBaseProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  /*
+   * `onBlur`, `onChange`, `onFocus`, `onInvalid`, `onKeyDown`, `onKeyUp` are applied to the inner `InputComponent`,
+   * which by default is an input or textarea. Since these handlers differ from the
+   * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
+   */
+  | 'children'
+  | 'defaultValue'
+  | 'onBlur'
+  | 'onChange'
+  | 'onFocus'
+  | 'onInvalid'
+  | 'onKeyDown'
+  | 'onKeyUp'
+> {
   'aria-describedby'?: string;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
@@ -56,7 +55,7 @@ export interface InputBaseProps
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -68,7 +67,7 @@ export interface InputBaseProps
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -116,7 +115,7 @@ export interface InputBaseProps
    */
   inputComponent?: React.ElementType<InputBaseComponentProps>;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @default {}
    */
   inputProps?: InputBaseComponentProps;
@@ -232,7 +231,7 @@ export interface InputBaseProps
    */
   sx?: SxProps<Theme>;
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    * @default 'text'
    */
   type?: string;
@@ -242,8 +241,9 @@ export interface InputBaseProps
   value?: unknown;
 }
 
-export interface InputBaseComponentProps
-  extends React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+export interface InputBaseComponentProps extends React.HTMLAttributes<
+  HTMLInputElement | HTMLTextAreaElement
+> {
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
@@ -255,10 +255,10 @@ export interface InputBaseComponentProps
  *
  * Demos:
  *
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputBase API](https://next.mui.com/material-ui/api/input-base/)
+ * - [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): React.JSX.Element;

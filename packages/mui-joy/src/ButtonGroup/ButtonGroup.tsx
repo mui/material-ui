@@ -5,10 +5,8 @@ import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { unstable_traverseBreakpoints as traverseBreakpoints } from '@mui/system/Grid';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isMuiElement as isMuiElement,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isMuiElement from '@mui/utils/isMuiElement';
 import { useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
 import styled from '../styles/styled';

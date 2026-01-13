@@ -19,7 +19,7 @@ function SimpleMenu({ selectedItem, ...props }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   return (
-    <Grid item>
+    <Grid>
       <Button
         style={{
           // give the anchor enough space so that the menu can align the selected item

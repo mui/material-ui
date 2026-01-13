@@ -6,7 +6,12 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "disableAutoFocusItem": { "type": { "name": "bool" }, "default": "false" },
-    "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
+    "MenuListProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps.list</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "onClose": {
       "type": { "name": "func" },
       "signature": {
@@ -18,14 +23,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
+        "description": "{ backdrop?: elementType, list?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
       },
       "default": "{}"
     },
@@ -43,7 +48,12 @@
       },
       "default": "'auto'"
     },
-    "TransitionProps": { "type": { "name": "object" }, "default": "{}" },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps.transition</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "variant": {
       "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
       "default": "'selectedMenu'"
@@ -51,26 +61,39 @@
   },
   "name": "Menu",
   "imports": ["import Menu from '@mui/material/Menu';", "import { Menu } from '@mui/material';"],
-  "classes": [
+  "slots": [
     {
-      "key": "list",
-      "className": "MuiMenu-list",
-      "description": "Styles applied to the List component via `MenuList`.",
-      "isGlobal": false
+      "name": "root",
+      "description": "The component used for the popper.",
+      "default": "Modal",
+      "class": "MuiMenu-root"
     },
     {
-      "key": "paper",
-      "className": "MuiMenu-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
+      "name": "paper",
+      "description": "The component used for the paper.",
+      "default": "PopoverPaper",
+      "class": "MuiMenu-paper"
     },
     {
-      "key": "root",
-      "className": "MuiMenu-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
+      "name": "list",
+      "description": "The component used for the list.",
+      "default": "MenuList",
+      "class": "MuiMenu-list"
+    },
+    {
+      "name": "transition",
+      "description": "The component used for the transition slot.",
+      "default": "Grow",
+      "class": null
+    },
+    {
+      "name": "backdrop",
+      "description": "The component used for the backdrop slot.",
+      "default": "Backdrop",
+      "class": null
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiMenu",

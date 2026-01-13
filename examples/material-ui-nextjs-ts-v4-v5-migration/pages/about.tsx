@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
-import Link from '../src/Link';
+import { Link } from '../src/Link';
 import ProTip from '../src/ProTip';
 import Copyright from '../src/Copyright';
 

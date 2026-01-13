@@ -1,0 +1,9 @@
+<NumberSpinner label="Number Spinner" min={10} max={40} />
+<NumberSpinner
+  label="Small and Error"
+  min={10}
+  max={40}
+  size="small"
+  defaultValue={100}
+  error
+/>

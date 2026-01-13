@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -104,7 +103,7 @@ export default function StatCard({
           </Stack>
           <Box sx={{ width: '100%', height: 50 }}>
             <SparkLineChart
-              colors={[chartColor]}
+              color={chartColor}
               data={data}
               area
               showHighlight

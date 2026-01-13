@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
 import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 // So we can write code like:
 //
@@ -116,8 +115,8 @@ function GoogleAnalytics() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
   const colorSchemeOS = prefersDarkMode ? 'dark' : 'light';
 
-  const theme = useTheme();
-  const colorScheme = theme.palette.mode;
+  const themeOptions = React.useContext(ThemeOptionsContext);
+  const colorScheme = themeOptions.paletteMode;
 
   React.useEffect(() => {
     window.gtag('set', 'user_properties', {
@@ -130,13 +129,6 @@ function GoogleAnalytics() {
       colorScheme,
     });
   }, [colorScheme]);
-
-  const codeStylingVariant = useNoSsrCodeStyling();
-  React.useEffect(() => {
-    window.gtag('set', 'user_properties', {
-      codeStylingVariant,
-    });
-  }, [codeStylingVariant]);
 
   return null;
 }

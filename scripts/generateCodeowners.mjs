@@ -1,4 +1,4 @@
-/* eslint-disable no-console, no-restricted-syntax, no-continue */
+/* eslint-disable no-console */
 import * as fs from 'fs';
 import * as path from 'path';
 import * as url from 'url';
@@ -56,8 +56,8 @@ const componentAreas = {
   formhelpertext: 'inputs',
   formlabel: 'inputs',
   globalstyles: 'utils',
+  gridlegacy: 'layout',
   grid: 'layout',
-  grid2: 'layout',
   grow: 'utils',
   hidden: 'layout',
   icon: 'dataDisplay',

@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-restricted-imports -- importing types
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineClasses } from './timelineClasses';

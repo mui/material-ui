@@ -21,12 +21,15 @@
       "description": "The icon to display when the component is indeterminate."
     },
     "inputProps": {
-      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element."
+      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes\">Attributes</a> applied to the <code>input</code> element."
     },
     "onChange": {
       "description": "Callback fired when the state is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback. You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean)."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean)."
+        }
       }
     },
     "required": {

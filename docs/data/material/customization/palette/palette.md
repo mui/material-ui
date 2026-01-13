@@ -149,7 +149,12 @@ const theme = createTheme({
 
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
-<!-- #repo-reference -->
+:::info
+The supported color formats are `hex`, `rgb`, and `hsl`.
+If you want to use other formats, such as `oklch`, you need to enable the [native color](/material-ui/customization/css-theme-variables/native-color/) feature.
+:::
+
+<!-- #target-branch-reference -->
 
 If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this.
 The following example uses the `alpha()` and `getContrastRatio()` utilities to define tokens using opacity:

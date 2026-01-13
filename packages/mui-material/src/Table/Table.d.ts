@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableClasses } from './tableClasses';
 
@@ -48,11 +48,11 @@ export interface TableTypeMap<
  *
  * Demos:
  *
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [Table API](https://next.mui.com/material-ui/api/table/)
+ * - [Table API](https://mui.com/material-ui/api/table/)
  */
 declare const Table: OverridableComponent<TableTypeMap>;
 

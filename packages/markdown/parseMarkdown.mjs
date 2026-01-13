@@ -145,8 +145,8 @@ function getHeaders(markdown) {
         value = value.replace(/,\s+\]$/g, ']');
         headers[key] = JSON.parse(value);
       } else {
-        // Remove trailing single quote yml escaping.
-        headers[key] = value.replace(/^'|'$/g, '');
+        // Remove quote YAML escaping.
+        headers[key] = value.replace(/^"|"$|^'|'$/g, '');
       }
     }
 
@@ -468,7 +468,7 @@ function createRender(context) {
 
             return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${[
               '<div class="MuiCallout-icon-container">',
-              '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+              '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24">',
               `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
               '</svg>',
               '</div>',

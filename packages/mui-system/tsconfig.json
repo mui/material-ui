@@ -1,8 +1,5 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src/**/*", "test/**/*"],
-  "exclude": ["test/typescript/moduleAugmentation"],
-  "compilerOptions": {
-    "skipLibCheck": true
-  }
+  "exclude": ["test/typescript/moduleAugmentation"]
 }

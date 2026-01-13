@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
@@ -53,12 +54,12 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
+     * By default, the available props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
      */
     root: SlotProps<React.ElementType<ModalProps>, DrawerRootSlotPropsOverrides, DrawerOwnerState>;
     /**
      * Props forwarded to the backdrop slot.
-     * By default, the avaible props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
+     * By default, the available props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
      */
     backdrop: SlotProps<
       React.ElementType<BackdropProps>,
@@ -67,12 +68,12 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the docked slot.
-     * By default, the avaible props are based on a div element.
+     * By default, the available props are based on a div element.
      */
     docked: SlotProps<'div', DrawerDockedSlotPropsOverrides, DrawerOwnerState>;
     /**
      * Props forwarded to the paper slot.
-     * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
+     * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
     paper: SlotProps<
       React.ElementType<PaperProps>,
@@ -81,7 +82,7 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
+     * By default, the available props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
      */
     transition: SlotProps<
       React.ElementType,
@@ -92,7 +93,8 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface DrawerProps
-  extends StandardProps<ModalProps, 'open' | 'children' | 'slots' | 'slotProps'>,
+  extends
+    StandardProps<ModalProps, 'open' | 'children' | 'slots' | 'slotProps'>,
     DrawerSlotsAndSlotProps {
   /**
    * Side from which the drawer will appear.
@@ -132,13 +134,13 @@ export interface DrawerProps
   open?: boolean;
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
-   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SlideProps?: Partial<SlideProps>;
   /**
@@ -161,19 +163,19 @@ export interface DrawerProps
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
 
-// omit `slots` and `slotProps` to prevent recusion
+// omit `slots` and `slotProps` to prevent recursion
 export interface DrawerOwnerState extends Omit<DrawerProps, 'slots' | 'slotProps'> {}
 
 /**
- * The props of the [Modal](https://next.mui.com/material-ui/api/modal/) component are available
+ * The props of the [Modal](https://mui.com/material-ui/api/modal/) component are available
  * when `variant="temporary"` is set.
  *
  * Demos:
  *
- * - [Drawer](https://next.mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [Drawer API](https://next.mui.com/material-ui/api/drawer/)
+ * - [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): React.JSX.Element;

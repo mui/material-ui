@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { ListItemIconClasses } from './listItemIconClasses';
 
 export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -24,10 +25,10 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
  *
  * Demos:
  *
- * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemIcon API](https://next.mui.com/material-ui/api/list-item-icon/)
+ * - [ListItemIcon API](https://mui.com/material-ui/api/list-item-icon/)
  */
 export default function ListItemIcon(props: ListItemIconProps): React.JSX.Element;

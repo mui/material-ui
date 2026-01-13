@@ -1,4 +1,3 @@
-import * as React from 'react';
 import MuiPaper, { PaperProps } from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
@@ -12,7 +11,7 @@ const PaperRoot = styled(MuiPaper, {
 })<ExtraPaperProps>(({ theme }) => ({
   variants: [
     {
-      props: ({ padding }) => padding,
+      props: ({ padding }) => !!padding,
       style: {
         padding: theme.spacing(1),
       },

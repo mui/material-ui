@@ -5,12 +5,13 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import isHostComponent from '../utils/isHostComponent';
+import isHostComponent from '@mui/utils/isHostComponent';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
+import useSlot from '../utils/useSlot';
 import ListContext from '../List/ListContext';
 import { getListItemUtilityClass } from './listItemClasses';
 import { listItemButtonClasses } from '../ListItemButton';
@@ -52,6 +53,7 @@ const useUtilityClasses = (ownerState) => {
       hasSecondaryAction && 'secondaryAction',
     ],
     container: ['container'],
+    secondaryAction: ['secondaryAction'],
   };
 
   return composeClasses(slots, getListItemUtilityClass, classes);
@@ -155,7 +157,6 @@ export const ListItemRoot = styled('div', {
 const ListItemContainer = styled('li', {
   name: 'MuiListItem',
   slot: 'Container',
-  overridesResolver: (props, styles) => styles.container,
 })({
   position: 'relative',
 });
@@ -198,7 +199,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const children = React.Children.toArray(childrenProp);
 
-  // v4 implementation, deprecated in v6, will be removed in v7
+  // v4 implementation, deprecated in v6, will be removed in a future major release
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
@@ -216,6 +217,18 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const handleRef = useForkRef(listItemRef, ref);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [SecondaryActionSlot, secondaryActionSlotProps] = useSlot('secondaryAction', {
+    elementType: ListItemSecondaryAction,
+    externalForwardedProps,
+    ownerState,
+    className: classes.secondaryAction,
+  });
+
   const Root = slots.root || components.Root || ListItemRoot;
   const rootProps = slotProps.root || componentsProps.root || {};
 
@@ -226,7 +239,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   let Component = componentProp || 'li';
 
-  // v4 implementation, deprecated in v6, will be removed in v7
+  // v4 implementation, deprecated in v6, will be removed in a future major release
   if (hasSecondaryAction) {
     // Use div by default.
     Component = !componentProps.component && !componentProp ? 'div' : Component;
@@ -277,7 +290,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         {...componentProps}
       >
         {children}
-        {secondaryAction && <ListItemSecondaryAction>{secondaryAction}</ListItemSecondaryAction>}
+        {secondaryAction && (
+          <SecondaryActionSlot {...secondaryActionSlotProps}>{secondaryAction}</SecondaryActionSlot>
+        )}
       </Root>
     </ListContext.Provider>
   );
@@ -337,7 +352,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   components: PropTypes.shape({
@@ -347,7 +362,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -356,13 +371,13 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
-   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `component` or `slots.root` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    * @default {}
-   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps.root` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContainerProps: PropTypes.object,
   /**
@@ -398,6 +413,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     root: PropTypes.object,
+    secondaryAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -406,6 +422,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,
+    secondaryAction: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

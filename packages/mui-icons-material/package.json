@@ -1,7 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "7.0.0-alpha.1",
-  "private": false,
+  "version": "7.3.7",
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
   "main": "./src/index.js",
@@ -28,47 +27,42 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:esm-pkg",
+    "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
     "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
-    "build:lib": "pnpm build:node && pnpm build:stable && pnpm build:typings",
-    "build:lib:clean": "rimraf lib/ && pnpm build:lib",
-    "build:modern": "echo 'Skip modern build'",
-    "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
-    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib --skipEsmPkg",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:lib": "code-infra build --hasLargeFiles --skipPackageJson --skipBundlePackageJson --skipMainCheck --buildTypes false",
+    "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib",
+    "build:copy-files": "shx cp package.json README.md ../../CHANGELOG.md ../../LICENSE build",
     "build:typings": "node ./scripts/create-typings.mjs",
-    "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
     "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.?(c|m)[jt]s?(x)'",
-    "test:built-typings": "tsc -p test/generated-types/tsconfig.json",
-    "typescript": "tsc -p tsconfig.json"
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/icons-material\"",
+    "typescript": "tsc -p tsconfig.json",
+    "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.7"
+    "@babel/runtime": "^7.28.4"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/internal-waterfall": "workspace:^",
-    "@mui/material": "workspace:*",
-    "@types/chai": "^4.3.20",
-    "@types/react": "^19.0.8",
-    "chai": "^4.5.0",
-    "chalk": "^5.4.1",
-    "cross-fetch": "^4.1.0",
-    "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.0",
-    "lodash": "^4.17.21",
-    "mustache": "^4.2.0",
-    "react": "^19.0.0",
-    "rimraf": "^6.0.1",
-    "shx": "^0.3.4",
-    "svgo": "^3.3.2",
-    "yargs": "^17.7.2"
+    "@mui/material": "workspace:^",
+    "@types/chai": "5.2.3",
+    "@types/react": "19.2.7",
+    "chai": "6.2.1",
+    "chalk": "5.6.2",
+    "cross-fetch": "4.1.0",
+    "es-toolkit": "1.43.0",
+    "fast-glob": "3.3.3",
+    "mustache": "4.2.0",
+    "react": "19.2.3",
+    "rimraf": "6.1.2",
+    "shx": "0.4.0",
+    "svgo": "4.0.0",
+    "yargs": "18.0.0"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:*",
+    "@mui/material": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
@@ -87,24 +81,26 @@
   },
   "exports": {
     ".": {
-      "import": {
-        "types": "./esm/index.d.ts",
-        "default": "./esm/index.js"
-      },
       "require": {
         "types": "./index.d.ts",
         "default": "./index.js"
+      },
+      "default": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
       }
     },
     "./*": {
-      "import": {
-        "types": "./esm/icon.d.ts",
-        "default": "./esm/*.js"
-      },
       "require": {
-        "types": "./icon.d.ts",
+        "types": "./*.d.ts",
         "default": "./*.js"
+      },
+      "default": {
+        "types": "./esm/*.d.ts",
+        "default": "./esm/*.js"
       }
-    }
+    },
+    "./esm": null,
+    "./utils/*": null
   }
 }

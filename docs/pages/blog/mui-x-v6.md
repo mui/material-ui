@@ -151,7 +151,7 @@ See it in action:
 </video>
 </a>
 
-This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date) UIs provided by platforms like macOS and Windows on the web.
+This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date) UIs provided by platforms like macOS and Windows on the web.
 
 ### Birthday picker
 
@@ -239,10 +239,10 @@ End-users can more easily change the start and end dates.
 
 ## Installation and migration
 
-If this is your first try with MUI X, you can jump in the getting started section:
+If this is your first time using MUI X, you can jump in the getting started section:
 
-- [Data Grid](/x/react-data-grid/getting-started/)
-- [Date Pickers](/x/react-date-pickers/getting-started/)
+- [Data Grid](/x/react-data-grid/)
+- [Date Pickers](/x/react-date-pickers/)
 
 If you're coming from previous versions, we recommend you check our migration guide from MUI X v5 with the complete list of breaking changes:
 

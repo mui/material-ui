@@ -17,6 +17,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/experiments/docs/codeblock' },
       { pathname: '/experiments/docs/custom-components' },
       { pathname: '/experiments/docs/demos' },
+      { pathname: '/experiments/docs/pro-feature', title: 'Pro feature', plan: 'pro' },
       { pathname: '/experiments/docs/data-grid-premium', title: 'API DataGridPremium' },
     ],
   },
@@ -95,7 +96,7 @@ const pages: readonly MuiPage[] = [
     title: 'Test: Data Grid e2e',
     children: [
       { pathname: '/x/react-data-grid', title: 'Overview' },
-      { pathname: '/x/react-data-grid/demo' },
+      { pathname: '/x/react-data-grid/features' },
       { pathname: '/x/react-data-grid/getting-started' },
       { pathname: '/x/react-data-grid/layout' },
       {

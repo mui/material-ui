@@ -2,9 +2,8 @@
 productId: joy-ui
 title: React Modal component
 components: Modal, ModalClose, ModalDialog, ModalOverflow, DialogTitle, DialogContent, DialogActions
-githubLabel: 'component: modal'
+githubLabel: 'scope: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-unstyled: https://base-ui.com/react/components/dialog
 ---
 
 # Modal
@@ -145,7 +144,7 @@ declare module '@mui/joy/ModalDialog' {
 
 By default, content within the Modal Dialog won't overflow the screen when its height is bigger than the viewport.
 
-To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) with either `scroll` or `auto` values.
+To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow) with either `scroll` or `auto` values.
 
 {{"demo": "DialogVerticalScroll.js"}}
 
@@ -237,7 +236,7 @@ If the user needs to interact with another part of the page－for example, to in
 
 See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices. Here are a couple of highlights:
 
-- All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
+- All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
 
   ```jsx

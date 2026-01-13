@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -6,8 +5,8 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid2';
-import { useTheme } from '@mui/system';
+import Grid from '@mui/material/Grid';
+import { useColorScheme } from '@mui/material/styles';
 
 const userTestimonials = [
   {
@@ -54,7 +53,7 @@ const userTestimonials = [
   },
 ];
 
-const whiteLogos = [
+const darkModeLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d520d0517ae8e8ddf13_Bern-white.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f46794c159024c1af6d44_Montreal-white.svg',
@@ -63,7 +62,7 @@ const whiteLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f5caa77bf7d69fb78792e_Ankara-white.svg',
 ];
 
-const darkLogos = [
+const lightModeLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628889c3bdf1129952dc_Sydney-black.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d4d8b829a89976a419c_Bern-black.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f467502f091ccb929529d_Montreal-black.svg',
@@ -78,8 +77,20 @@ const logoStyle = {
 };
 
 export default function Testimonials() {
-  const theme = useTheme();
-  const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
+  const { mode, systemMode } = useColorScheme();
+
+  let logos;
+  if (mode === 'system') {
+    if (systemMode === 'light') {
+      logos = lightModeLogos;
+    } else {
+      logos = darkModeLogos;
+    }
+  } else if (mode === 'light') {
+    logos = lightModeLogos;
+  } else {
+    logos = darkModeLogos;
+  }
 
   return (
     <Container

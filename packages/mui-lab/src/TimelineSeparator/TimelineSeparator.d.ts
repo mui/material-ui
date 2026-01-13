@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineSeparatorClasses } from './timelineSeparatorClasses';
 
-export interface TimelineSeparatorProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TimelineSeparatorProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
   /**
    * The content of the component.
    */
@@ -24,10 +25,10 @@ export interface TimelineSeparatorProps
  *
  * Demos:
  *
- * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineSeparator API](https://next.mui.com/material-ui/api/timeline-separator/)
+ * - [TimelineSeparator API](https://mui.com/material-ui/api/timeline-separator/)
  */
 export default function TimelineSeparator(props: TimelineSeparatorProps): React.JSX.Element;

@@ -9,7 +9,7 @@ function PositionedTooltips() {
   return (
     <Box sx={{ width: 400, padding: '50px 70px' }}>
       <Grid container justifyContent="center">
-        <Grid item>
+        <Grid>
           <Tooltip open arrow title="Add" placement="top-start">
             <Button>top-start</Button>
           </Tooltip>
@@ -22,7 +22,7 @@ function PositionedTooltips() {
         </Grid>
       </Grid>
       <Grid container justifyContent="center">
-        <Grid item xs={6}>
+        <Grid size={6}>
           <Tooltip open arrow title="Add" placement="left-start">
             <Button>left-start</Button>
           </Tooltip>
@@ -35,18 +35,18 @@ function PositionedTooltips() {
             <Button>left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid item container xs={6} alignItems="flex-end" direction="column">
-          <Grid item>
+        <Grid container alignItems="flex-end" direction="column" size={6}>
+          <Grid>
             <Tooltip open arrow title="Add" placement="right-start">
               <Button>right-start</Button>
             </Tooltip>
           </Grid>
-          <Grid item>
+          <Grid>
             <Tooltip open arrow title="Add" placement="right">
               <Button>right</Button>
             </Tooltip>
           </Grid>
-          <Grid item>
+          <Grid>
             <Tooltip open arrow title="Add" placement="right-end">
               <Button>right-end</Button>
             </Tooltip>
@@ -54,7 +54,7 @@ function PositionedTooltips() {
         </Grid>
       </Grid>
       <Grid container justifyContent="center">
-        <Grid item>
+        <Grid>
           <Tooltip open arrow title="Add" placement="bottom-start">
             <Button>bottom-start</Button>
           </Tooltip>

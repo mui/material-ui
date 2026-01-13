@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Select from '@mui/joy/Select';
 import Stack from '@mui/joy/Stack';
 import Option from '@mui/joy/Option';

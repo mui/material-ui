@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TabPanelClasses } from './tabPanelClasses';
@@ -33,10 +33,10 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
  *
  * Demos:
  *
- * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [TabPanel API](https://next.mui.com/material-ui/api/tab-panel/)
+ * - [TabPanel API](https://mui.com/material-ui/api/tab-panel/)
  */
 export default function TabPanel(props: TabPanelProps): React.JSX.Element;

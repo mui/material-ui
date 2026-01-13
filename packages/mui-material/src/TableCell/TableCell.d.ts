@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { TableCellClasses } from './tableCellClasses';
 
 export interface TableCellPropsSizeOverrides {}
@@ -77,10 +78,10 @@ export type SortDirection = 'asc' | 'desc' | false;
  *
  * Demos:
  *
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableCell API](https://next.mui.com/material-ui/api/table-cell/)
+ * - [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 export default function TableCell(props: TableCellProps): React.JSX.Element;

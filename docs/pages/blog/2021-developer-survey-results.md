@@ -1,5 +1,5 @@
 ---
-title: 'The 2021 MUI Developer Survey: here's what we discovered'
+title: "The 2021 MUI Developer Survey: here's what we discovered"
 description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
 date: 2022-03-15T00:00:00.000Z
 authors: ['danilo-leal', 'samuelsycamore', 'oliviertassinari']
@@ -163,7 +163,7 @@ It's a good thing to have a general sense of agreement with most of the statemen
 
 <img src="/static/blog/2021-developer-survey-results/5.png" width="2400" height="1256" loading="lazy" alt="Ranked list: 1. The design - look and feel; 2. Customizability; 3. Documentation quality; 4. Comprehensiveness; 5. Performance; 6. Popularity; 7. Accessibility; 8. Offered support and help; 9. Bundle size" />
 
-<p class="blog-description">1500 out of 1589 answered - Check <a href="https://www.typeform.com/help/a/ranking-question-360052767651/">Typeform's documentation</a> to understand ranking average calculations.</p>
+<p class="blog-description">1500 out of 1589 answered - Check <a href="https://help.typeform.com/hc/en-us/articles/360052767651-Ranking-question">Typeform's documentation</a> to understand ranking average calculations.</p>
 
 This year we experimented with using Typeform to run the survey, which allows respondents to rank their choices.
 This might have given us a richer perspective than we've been able to capture in the past, but in the end the results weren't too different from last year.
@@ -802,7 +802,13 @@ Your feedback from this survey helped us to better understand the areas where we
   This is especially [important for mobile experiences](https://www.youtube.com/watch?v=mLjxXPHuIJo&t=76s).
   We welcome your suggestions!
 
-If you want to continue to influence our roadmap, you can visit the [MUI Core](https://github.com/mui/material-ui) and [MUI X](https://github.com/mui/mui-x) repositories, open issues, upvote the ones you're most interested in, or leave your thoughts about anything else you want to be improved. We'd love to hear from you.
+If you want to continue to influence our roadmap, you can visit the [Material UI](https://github.com/mui/material-ui) and [MUI X](https://github.com/mui/mui-x) repositories, open issues, upvote the ones you're most interested in, or leave your thoughts about anything else you want to be improved. We'd love to hear from you.
+
+<video autoplay muted loop playsinline width="2914" height="1440">
+  <source src="/static/blog/2019-developer-survey-results/vote.mp4" type="video/mp4" />
+</video>
+
+<p class="blog-description">Help us prioritize by upvoting.</p>
 
 Thanks again and until the next survey!
 

@@ -20,7 +20,6 @@ const useUtilityClasses = (ownerState) => {
 const CardContentRoot = styled('div', {
   name: 'MuiCardContent',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   padding: 16,
   '&:last-child': {

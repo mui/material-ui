@@ -23,15 +23,15 @@ Use one of the following commands to install it:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+yarn add @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 </codeblock>
@@ -39,7 +39,7 @@ yarn add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/re
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
 
 :::info
-Google also offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as the successor of Material Icons. `@mui/icons-material` only covers Icons at this time, there are no support for Symbols yet.
+Google offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as the successor to Material Icons. However, `@mui/icons-material` currently supports only Icons, with no support for Symbols yet.
 :::
 
 <hr/>

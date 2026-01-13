@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineConnectorClasses } from './timelineConnectorClasses';
 
-export interface TimelineConnectorProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
+export interface TimelineConnectorProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>
+> {
   /**
    * The content of the component.
    */
@@ -24,10 +25,10 @@ export interface TimelineConnectorProps
  *
  * Demos:
  *
- * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineConnector API](https://next.mui.com/material-ui/api/timeline-connector/)
+ * - [TimelineConnector API](https://mui.com/material-ui/api/timeline-connector/)
  */
 export default function TimelineConnector(props: TimelineConnectorProps): React.JSX.Element;

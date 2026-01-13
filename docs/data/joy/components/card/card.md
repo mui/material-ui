@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Card component
 components: Card, CardActions, CardContent, CardCover, CardOverflow
-githubLabel: 'component: card'
+githubLabel: 'scope: card'
 ---
 
 # Card
@@ -103,7 +103,7 @@ Hover your mouse on the demo below to see how the layers are stacked:
 #### Images and videos
 
 Use an image or a video element inside the Card Cover to display media.
-The component uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) to fill the whole Card by default.
+The component uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/object-fit) to fill the whole Card by default.
 
 {{"demo": "MediaCover.js"}}
 
@@ -145,7 +145,7 @@ In some cases, you might have to adjust the z-index to bring these elements to t
 {{"demo": "MultipleInteractionCard.js"}}
 
 :::success
-You can use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to apply styles to the Card when any of its children receive focus.
+You can use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-within) to apply styles to the Card when any of its children receive focus.
 :::
 
 #### Whole Card actions

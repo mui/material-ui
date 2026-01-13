@@ -1,6 +1,6 @@
 export interface UseScrollTriggerOptions {
   disableHysteresis?: boolean;
-  target?: Node | Window;
+  target?: Node | Window | null;
   threshold?: number;
 }
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import fetch from 'cross-fetch';
-import fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import path from 'path';
 import yargs from 'yargs';
 import { fileURLToPath } from 'url';
@@ -18,33 +18,16 @@ const ignoredIconNames = new Set([
   '123',
   '6_ft_apart',
   'add_chart', // Leads to inconsistent casing with `Addchart`
-  'compost',
-  'cruelty_free',
-  'data_exploration',
-  'disabled_visible',
-  'drive_file_move_rtl',
   'exposure_neg_1', // Google product
   'exposure_neg_2', // Google product
   'exposure_plus_1', // Google product
   'exposure_plus_2', // Google product
   'exposure_zero', // Google product
-  'free_cancellation',
-  'front_hand',
-  'generating_tokens',
-  'group_off',
   'horizontal_distribute', // Advanced text editor
-  'hotel_class',
-  'incomplete_circle',
   'motion_photos_on', // Google product
   'motion_photos_pause', // Google product
   'motion_photos_paused', // Google product
-  'new_label',
-  'personal_injury',
-  'pin_end',
-  'pin_invoke',
   'polymer', // Legacy brand
-  'private_connectivity',
-  'real_estate_agent',
   'vertical_distribute', // Advanced text editor
 ]);
 
@@ -156,7 +139,7 @@ function downloadIcon(icon) {
         throw new Error(`status ${response.status}`);
       }
       const SVG = await response.text();
-      await fse.writeFile(
+      await fs.writeFile(
         path.join(
           currentDirectory,
           `../material-icons/${icon.name}${themeFileMap[theme]}_24px.svg`,
@@ -173,7 +156,9 @@ async function run() {
       .usage('Download the SVG from material.io/resources/icons')
       .describe('start-after', 'Resume at the following index').argv;
     console.log('run', argv);
-    await fse.emptyDir(path.join(currentDirectory, '../material-icons'));
+    const iconDir = path.join(currentDirectory, '../material-icons');
+    await fs.rm(iconDir, { recursive: true, force: true });
+    await fs.mkdir(iconDir, { recursive: true });
     const response = await fetch(
       'https://fonts.google.com/metadata/icons?key=material_symbols&incomplete=true',
     );

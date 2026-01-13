@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '.';
 import { ButtonBaseProps } from '../ButtonBase';
 import { SwitchBaseClasses } from './switchBaseClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -22,7 +22,7 @@ type SwitchBaseSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
+     * By default, the available props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
      */
     root: SlotProps<React.ElementType<ButtonBaseProps>, {}, SwitchBaseOwnerState>;
     /**
@@ -33,7 +33,8 @@ type SwitchBaseSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface SwitchBaseProps
-  extends StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'>,
+  extends
+    StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'>,
     SwitchBaseSlotsAndSlotProps {
   autoFocus?: boolean;
   /**
@@ -77,13 +78,13 @@ export interface SwitchBaseProps
    */
   id?: string;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   /**
    * Pass a ref to the `input` element.
-   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputRef?: React.Ref<any>;
   /**

@@ -1,0 +1,7 @@
+.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper {
+  color: red;
+}
+
+.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper {
+  color: red;
+}

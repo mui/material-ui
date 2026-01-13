@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListClasses } from './imageListClasses';
 
@@ -56,11 +56,11 @@ export interface ImageListTypeMap<
  *
  * Demos:
  *
- * - [Image List](https://next.mui.com/material-ui/react-image-list/)
+ * - [Image List](https://mui.com/material-ui/react-image-list/)
  *
  * API:
  *
- * - [ImageList API](https://next.mui.com/material-ui/api/image-list/)
+ * - [ImageList API](https://mui.com/material-ui/api/image-list/)
  */
 declare const ImageList: OverridableComponent<ImageListTypeMap>;
 

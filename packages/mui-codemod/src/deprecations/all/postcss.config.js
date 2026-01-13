@@ -16,6 +16,7 @@ const {
 const {
   plugin: circularProgressClassesPlugin,
 } = require('../circular-progress-classes/postcss-plugin');
+const { plugin: inputBaseClassesPlugin } = require('../input-base-classes/postcss-plugin');
 const {
   plugin: linearProgressClassesPlugin,
 } = require('../linear-progress-classes/postcss-plugin');
@@ -34,6 +35,7 @@ module.exports = {
     buttonGroupClassesPlugin,
     chipClassesPlugin,
     circularProgressClassesPlugin,
+    inputBaseClassesPlugin,
     linearProgressClassesPlugin,
     drawerClassesPlugin,
     paginationItemClassesPlugin,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { InputAdornmentClasses } from './inputAdornmentClasses';
 
 export interface InputAdornmentOwnProps {
@@ -51,11 +51,11 @@ export interface InputAdornmentTypeMap<
  *
  * Demos:
  *
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputAdornment API](https://next.mui.com/material-ui/api/input-adornment/)
+ * - [InputAdornment API](https://mui.com/material-ui/api/input-adornment/)
  */
 declare const InputAdornment: OverridableComponent<InputAdornmentTypeMap>;
 

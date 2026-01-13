@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ButtonGroupClasses } from './buttonGroupClasses';
 
 export interface ButtonGroupPropsColorOverrides {}
@@ -90,11 +90,11 @@ export interface ButtonGroupTypeMap<
  *
  * Demos:
  *
- * - [Button Group](https://next.mui.com/material-ui/react-button-group/)
+ * - [Button Group](https://mui.com/material-ui/react-button-group/)
  *
  * API:
  *
- * - [ButtonGroup API](https://next.mui.com/material-ui/api/button-group/)
+ * - [ButtonGroup API](https://mui.com/material-ui/api/button-group/)
  */
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 

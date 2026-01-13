@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import { getTimelineDotUtilityClass } from './timelineDotClasses';
 
 const useUtilityClasses = (ownerState) => {

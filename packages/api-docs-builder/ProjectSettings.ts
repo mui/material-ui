@@ -15,7 +15,7 @@ export type SortingStrategiesType = {
   classesSort?: null | ((a: ComponentClassDefinition, b: ComponentClassDefinition) => number);
   /**
    * Sort slots items. Setting null result in no sorting (respect the order provided by TS).
-   * @default required props first and alphabetcal order otherwise.
+   * @default required props first and alphabetical order otherwise.
    */
   slotsSort?: null | ((a: Slot, b: Slot) => number);
 };
@@ -40,7 +40,7 @@ export interface ProjectSettings {
   getComponentInfo: (filename: string) => ComponentInfo;
   getHookInfo?: (filename: string) => HookInfo;
   /**
-   * Allows to force sorting startegies for listed properties.
+   * Allows to force sorting strategies for listed properties.
    */
   sortingStrategies?: SortingStrategiesType;
   /**
@@ -59,11 +59,11 @@ export interface ProjectSettings {
    */
   translationLanguages: string[];
   /**
-   * Fuction called to detemine whether to skip the generation of a particular component's API docs
+   * Function called to determine whether to skip the generation of a particular component's API docs
    */
   skipComponent: (filename: string) => boolean;
   /**
-   * Fuction called to detemine whether to skip the generation of a particular hook's API docs
+   * Function called to determine whether to skip the generation of a particular hook's API docs
    */
   skipHook?: (filename: string) => boolean;
   /**
@@ -80,7 +80,7 @@ export interface ProjectSettings {
   translationPagesDirectory: string;
   /**
    * The path to import the translation directory.
-   * @default the `translationPagesDirectory` alue
+   * @default the `translationPagesDirectory` value
    */
   importTranslationPagesDirectory?: string;
   /**
@@ -113,4 +113,13 @@ export interface ProjectSettings {
    * Determines the base API URL for generated JSDocs
    */
   baseApiUrl?: string;
+  /**
+   * The path to the `pages.ts` manifest file for public markdown generation.
+   */
+  pagesManifestPath?: string;
+  /**
+   * Determines the non-component folders for ordering in the llms.txt file.
+   * The folders are relative to the `docs/data` directory.
+   */
+  nonComponentFolders?: string[];
 }

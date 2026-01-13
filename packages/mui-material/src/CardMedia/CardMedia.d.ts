@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { CardMediaClasses } from './cardMediaClasses';
 
@@ -40,11 +40,11 @@ export interface CardMediaTypeMap<AdditionalProps, RootComponent extends React.E
  *
  * Demos:
  *
- * - [Card](https://next.mui.com/material-ui/react-card/)
+ * - [Card](https://mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardMedia API](https://next.mui.com/material-ui/api/card-media/)
+ * - [CardMedia API](https://mui.com/material-ui/api/card-media/)
  */
 declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
 

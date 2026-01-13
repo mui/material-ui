@@ -42,7 +42,7 @@ const data = [
     avatar2x: 'https://i.pravatar.cc/80?img=7',
     date: '10 May 2022',
     title: 'Exciting News!',
-    body: 'Hello there! I have some exciting news to share with you...',
+    body: 'Hello there! I have some exciting news to share with you…',
     color: 'danger.500',
   },
   {
@@ -51,7 +51,7 @@ const data = [
     avatar2x: 'https://i.pravatar.cc/80?img=8',
     date: '13 Apr 2022',
     title: 'Upcoming Product Launch',
-    body: 'Dear customers and supporters, I am thrilled to announc...',
+    body: 'Dear customers and supporters, I am thrilled to announc…',
     color: 'danger.500',
   },
 ];

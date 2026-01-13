@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Slider from '@mui/joy/Slider';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 

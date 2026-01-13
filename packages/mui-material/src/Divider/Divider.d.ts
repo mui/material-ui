@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { DividerClasses } from './dividerClasses';
 
@@ -66,12 +66,12 @@ export interface DividerTypeMap<
  *
  * Demos:
  *
- * - [Divider](https://next.mui.com/material-ui/react-divider/)
- * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Divider](https://mui.com/material-ui/react-divider/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [Divider API](https://next.mui.com/material-ui/api/divider/)
+ * - [Divider API](https://mui.com/material-ui/api/divider/)
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 

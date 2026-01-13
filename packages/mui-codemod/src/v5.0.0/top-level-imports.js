@@ -2,20 +2,18 @@ import { dirname } from 'path';
 import addImports from 'jscodeshift-add-imports';
 import getJSExports from '../util/getJSExports';
 
-// istanbul ignore next
-if (process.env.NODE_ENV === 'test') {
-  const resolve = require.resolve;
-  require.resolve = (source) =>
-    resolve(source.replace(/^@mui\/material\/modern/, '../../../mui-material/src'));
-}
-
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
   const importModule = options.importModule || '@mui/material';
   const targetModule = options.targetModule || '@mui/material';
 
+  let resolveModule = importModule;
+  if (process.env.NODE_ENV === 'test') {
+    resolveModule = resolveModule.replace(/^@mui\/material/, '@mui/material-v5');
+  }
+
   const whitelist = getJSExports(
-    require.resolve(`${importModule}/modern`, {
+    require.resolve(`${resolveModule}/modern`, {
       paths: [dirname(fileInfo.path)],
     }),
   );
@@ -69,10 +67,7 @@ export default function transformer(fileInfo, api, options) {
           break;
         }
         case 'ImportSpecifier':
-          if (
-            !whitelist.has(specifier.imported.name) == null &&
-            specifier.imported.name !== 'withStyles'
-          ) {
+          if (!whitelist.has(specifier.imported.name) && specifier.imported.name !== 'withStyles') {
             return;
           }
           resultSpecifiers.push(specifier);

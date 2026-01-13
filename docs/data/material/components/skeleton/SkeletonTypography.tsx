@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
@@ -27,10 +26,10 @@ function TypographyDemo(props: { loading?: boolean }) {
 export default function SkeletonTypography() {
   return (
     <Grid container spacing={8}>
-      <Grid item xs>
+      <Grid size="grow">
         <TypographyDemo loading />
       </Grid>
-      <Grid item xs>
+      <Grid size="grow">
         <TypographyDemo />
       </Grid>
     </Grid>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BottomNavigationClasses } from './bottomNavigationClasses';
 
@@ -47,11 +47,11 @@ export interface BottomNavigationTypeMap<
  *
  * Demos:
  *
- * - [Bottom Navigation](https://next.mui.com/material-ui/react-bottom-navigation/)
+ * - [Bottom Navigation](https://mui.com/material-ui/react-bottom-navigation/)
  *
  * API:
  *
- * - [BottomNavigation API](https://next.mui.com/material-ui/api/bottom-navigation/)
+ * - [BottomNavigation API](https://mui.com/material-ui/api/bottom-navigation/)
  */
 declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 

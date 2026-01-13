@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -14,17 +14,17 @@ import ROUTES from 'docs/src/route';
 const companyInfo = [
   {
     title: 'About us',
-    description: 'Meet the team and a little bit of our history.',
+    description: 'Learn about the team and our history.',
     routeUrl: ROUTES.about,
   },
   {
     title: 'Handbook',
-    description: 'Learn everything about how MUI as a company.',
+    description: 'Find out how we function as a company.',
     routeUrl: ROUTES.handbook,
   },
   {
     title: 'Blog',
-    description: 'Learn about our products and team.',
+    description: 'Check out the latest product updates.',
     routeUrl: ROUTES.blog,
   },
 ];
@@ -44,7 +44,7 @@ function CardContentBlock({ title, description }: CardContentBlockProps) {
         {description}
       </Typography>
       <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold', mt: 'auto' }}>
-        Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+        Read more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
       </Typography>
     </React.Fragment>
   );

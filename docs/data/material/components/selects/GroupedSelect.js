@@ -1,4 +1,3 @@
-import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -23,8 +22,17 @@ export default function GroupedSelect() {
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel htmlFor="grouped-select">Grouping</InputLabel>
-        <Select defaultValue="" id="grouped-select" label="Grouping">
+        <InputLabel id="grouped-select-label" htmlFor="grouped-select">
+          Grouping
+        </InputLabel>
+        <Select
+          defaultValue=""
+          id="grouped-select"
+          label="Grouping"
+          SelectDisplayProps={{
+            'aria-labelledby': 'grouped-select-label',
+          }}
+        >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>

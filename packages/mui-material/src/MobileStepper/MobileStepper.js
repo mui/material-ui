@@ -69,7 +69,6 @@ const MobileStepperRoot = styled(Paper, {
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
-  overridesResolver: (props, styles) => styles.dots,
 })({
   variants: [
     {
@@ -120,7 +119,6 @@ const MobileStepperDot = styled('div', {
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
-  overridesResolver: (props, styles) => styles.progress,
 })({
   variants: [
     {
@@ -273,7 +271,7 @@ MobileStepper.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `LinearProgress` element.
-   * @deprecated Use `slotProps.progress` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.progress` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   LinearProgressProps: PropTypes.object,
   /**

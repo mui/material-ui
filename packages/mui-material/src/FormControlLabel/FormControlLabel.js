@@ -97,7 +97,6 @@ export const FormControlLabelRoot = styled('label', {
 const AsteriskComponent = styled('span', {
   name: 'MuiFormControlLabel',
   slot: 'Asterisk',
-  overridesResolver: (props, styles) => styles.asterisk,
 })(
   memoTheme(({ theme }) => ({
     [`&.${formControlLabelClasses.error}`]: {
@@ -232,7 +231,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     typography: PropTypes.object,

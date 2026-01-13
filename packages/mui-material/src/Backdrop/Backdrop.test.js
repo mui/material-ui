@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
@@ -24,7 +23,7 @@ describe('<Backdrop />', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should render a backdrop div with content of nested children', () => {

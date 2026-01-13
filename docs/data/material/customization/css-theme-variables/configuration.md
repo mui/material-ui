@@ -26,49 +26,51 @@ createTheme({ cssVariables: { cssVarPrefix: '' } });
 
 To toggle between modes manually, set the `colorSchemeSelector` with one of the following selectors:
 
-<codeblock>
+- `class`: adds a class to the `<html>` element.
 
-```js class
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'class'
-  }
-});
+  ```js class
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'class'
+    }
+  });
 
-// CSS Result
-.light { ... }
-.dark { ... }
-```
+  // CSS Result
+  .light { ... }
+  .dark { ... }
+  ```
 
-```js data
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'data'
-  }
-});
+- `data`: adds a data attribute to the `<html>` element.
 
-// CSS Result
-[data-light] { ... }
-[data-dark] { ... }
-```
+  ```js data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'data'
+    }
+  });
 
-```js string
-// The value must start with dot (.) for class or square brackets ([]) for data
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: '.theme-%s'
-  }
-});
+  // CSS Result
+  [data-light] { ... }
+  [data-dark] { ... }
+  ```
 
-// CSS Result
-.theme-light { ... }
-.theme-dark { ... }
-```
+- `string`: adds a custom selector to the `<html>` element.
 
-</codeblock>
+  ```js string
+  // The value must start with dot (.) for class or square brackets ([]) for data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: '.theme-%s'
+    }
+  });
+
+  // CSS Result
+  .theme-light { ... }
+  .theme-dark { ... }
+  ```
 
 Then, use `useColorScheme` hook to switch between modes:
 
@@ -162,7 +164,7 @@ If you have such a condition, replace it with the [`theme.applyStyles()` functio
  }
 ```
 
-Next, if you have a custom selector that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
+Next, if you have a custom selector that is **not** `media`, add the [`InitColorSchemeScript`](/material-ui/react-init-color-scheme-script/) component based on the framework that you are using:
 
 :::success
 The `attribute` has to be the same as the one you set in the `colorSchemeSelector` property:
@@ -277,7 +279,7 @@ In the example below, all the components inside the `div` will always be dark:
 
 ## Disabling CSS color scheme
 
-By default, `createTheme()` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) based on the palette mode.
+By default, `createTheme()` attaches a [CSS `color-scheme` property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme) based on the palette mode.
 You can disable this by setting `disableCssColorScheme` to `true`:
 
 ```js
@@ -307,3 +309,13 @@ To disable CSS transitions when switching between modes, apply the `disableTrans
 ```
 
 {{"demo": "DisableTransitionOnChange.js"}}
+
+## Force theme recalculation between modes
+
+By default, the `ThemeProvider` does not re-render when switching between light and dark modes when `cssVariables: true` is set in the theme.
+
+If you want to opt-out from this behavior, use the `forceThemeRerender` prop in the ThemeProvider:
+
+```js
+<ThemeProvider forceThemeRerender />
+```

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { FabProps } from '../Fab';
 import { TooltipProps } from '../Tooltip';
 import { SpeedDialActionClasses } from './speedDialActionClasses';
@@ -40,7 +40,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the fab slot.
-     * By default, the avaible props are based on the [Fab](https://mui.com/material-ui/api/fab/#props) component.
+     * By default, the available props are based on the [Fab](https://mui.com/material-ui/api/fab/#props) component.
      */
     fab: SlotProps<
       React.ElementType<FabProps>,
@@ -49,7 +49,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the tooltip slot.
-     * By default, the avaible props are based on the [Tooltip](https://mui.com/material-ui/api/tooltip/#props) component.
+     * By default, the available props are based on the [Tooltip](https://mui.com/material-ui/api/tooltip/#props) component.
      */
     tooltip: SlotProps<
       React.ElementType<TooltipProps>,
@@ -58,7 +58,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the static tooltip slot.
-     * By default, the avaible props are based on a span element.
+     * By default, the available props are based on a span element.
      */
     staticTooltip: SlotProps<
       'span',
@@ -67,7 +67,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the static tooltip label slot.
-     * By default, the avaible props are based on a span element.
+     * By default, the available props are based on a span element.
      */
     staticTooltipLabel: SlotProps<
       'span',
@@ -78,7 +78,8 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface SpeedDialActionProps
-  extends Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
+  extends
+    Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
     SpeedDialActionSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
@@ -87,7 +88,7 @@ export interface SpeedDialActionProps
   /**
    * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) component.
    * @default {}
-   * @deprecated Use `slotProps.fab` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.fab` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   FabProps?: Partial<FabProps>;
   /**
@@ -105,24 +106,24 @@ export interface SpeedDialActionProps
   sx?: SxProps<Theme>;
   /**
    * `classes` prop applied to the [`Tooltip`](https://mui.com/material-ui/api/tooltip/) element.
-   * @deprecated Use `slotProps.tooltip.classes` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.classes` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TooltipClasses?: TooltipProps['classes'];
   /**
    * Placement of the tooltip.
    * @default 'left'
-   * @deprecated Use `slotProps.tooltip.placement` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.placement` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipPlacement?: TooltipProps['placement'];
   /**
    * Label to display in the tooltip.
-   * @deprecated Use `slotProps.tooltip.title` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipTitle?: React.ReactNode;
   /**
    * Make the tooltip always visible when the SpeedDial is open.
    * @default false
-   * @deprecated Use `slotProps.tooltip.open` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.open` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipOpen?: boolean;
 }
@@ -131,14 +132,16 @@ export interface SpeedDialActionProps
  *
  * Demos:
  *
- * - [Speed Dial](https://next.mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDialAction API](https://next.mui.com/material-ui/api/speed-dial-action/)
- * - inherits [Tooltip API](https://next.mui.com/material-ui/api/tooltip/)
+ * - [SpeedDialAction API](https://mui.com/material-ui/api/speed-dial-action/)
+ * - inherits [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.Element;
 
-export interface SpeedDialActionOwnerState
-  extends Omit<SpeedDialActionProps, 'slots' | 'slotProps'> {}
+export interface SpeedDialActionOwnerState extends Omit<
+  SpeedDialActionProps,
+  'slots' | 'slotProps'
+> {}

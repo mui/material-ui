@@ -234,7 +234,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
         rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
       }
 
-      // Touche devices
+      // Touch devices
       if (event?.touches) {
         // check that this isn't another touchstart due to multitouch
         // otherwise we will only clear a single timer when unmounting while two

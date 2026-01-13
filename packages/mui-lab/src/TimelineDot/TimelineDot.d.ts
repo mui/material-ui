@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { TimelineDotClasses } from './timelineDotClasses';
 
 export interface TimelineDotPropsVariantOverrides {}
@@ -41,10 +41,10 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
  *
  * Demos:
  *
- * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineDot API](https://next.mui.com/material-ui/api/timeline-dot/)
+ * - [TimelineDot API](https://mui.com/material-ui/api/timeline-dot/)
  */
 export default function TimelineDot(props: TimelineDotProps): React.JSX.Element;

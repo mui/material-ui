@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import ButtonBase from '../ButtonBase';
@@ -139,24 +138,20 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.selected}`]: {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.action.selected,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+        ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: (theme.vars || theme).palette.action.selected,
         },
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.action.selected,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+        ),
       },
       [`&.${paginationItemClasses.disabled}`]: {
         opacity: 1,
@@ -195,7 +190,7 @@ const PaginationItemPage = styled(ButtonBase, {
         props: { variant: 'outlined' },
         style: {
           border: theme.vars
-            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
             : `1px solid ${
                 theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
               }`,
@@ -248,33 +243,26 @@ const PaginationItemPage = styled(ButtonBase, {
           style: {
             [`&.${paginationItemClasses.selected}`]: {
               color: (theme.vars || theme).palette[color].main,
-              border: `1px solid ${
-                theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                  : alpha(theme.palette[color].main, 0.5)
-              }`,
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.activatedOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.activatedOpacity),
+              border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.5)}`,
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                (theme.vars || theme).palette.action.activatedOpacity,
+              ),
               '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                ),
                 // Reset on touch devices, it doesn't add specificity
                 '@media (hover: none)': {
                   backgroundColor: 'transparent',
                 },
               },
               [`&.${paginationItemClasses.focusVisible}`]: {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                ),
               },
             },
           },
@@ -286,7 +274,6 @@ const PaginationItemPage = styled(ButtonBase, {
 const PaginationItemPageIcon = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })(
   memoTheme(({ theme }) => ({
     fontSize: theme.typography.pxToRem(20),
@@ -462,7 +449,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,

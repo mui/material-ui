@@ -76,11 +76,11 @@ const useUtilityClasses = (ownerState: PigmentContainerOwnProps) => {
  *
  * Demos:
  *
- * - [Container](https://next.mui.com/material-ui/react-container/)
+ * - [Container](https://mui.com/material-ui/react-container/)
  *
  * API:
  *
- * - [PigmentContainer API](https://next.mui.com/material-ui/api/pigment-container/)
+ * - [PigmentContainer API](https://mui.com/material-ui/api/pigment-container/)
  */
 const PigmentContainer = React.forwardRef(function PigmentContainer(
   { className, disableGutters = false, fixed = false, maxWidth = 'lg', ...props },

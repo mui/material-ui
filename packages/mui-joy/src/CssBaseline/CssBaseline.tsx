@@ -92,7 +92,7 @@ CssBaseline.propTypes /* remove-proptypes */ = {
   /**
    * Disable `color-scheme` CSS property.
    *
-   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false
    */

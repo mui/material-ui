@@ -1,14 +1,14 @@
 import { Breakpoint } from '@mui/system';
-import { Typography } from './createTypography';
+import { TypographyVariants } from './createTypography';
 
 export interface ResponsiveFontSizesOptions {
   breakpoints?: Breakpoint[];
   disableAlign?: boolean;
   factor?: number;
-  variants?: Array<keyof Typography>;
+  variants?: Array<keyof TypographyVariants>;
 }
 
-export default function responsiveFontSizes<T extends { typography: Typography }>(
+export default function responsiveFontSizes<T extends { typography: TypographyVariants }>(
   theme: T,
   options?: ResponsiveFontSizesOptions,
 ): T;

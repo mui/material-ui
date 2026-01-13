@@ -61,9 +61,9 @@ Check out [the Bar Chart layout documentation](/x/react-charts/bars/#layout) for
 Customize the legend text to your heart's content, making your charts more readable and visually
 appealing.
 
-👉 [Get started with MUI X Charts now](/x/react-charts/getting-started/)!
+👉 [Get started with MUI X Charts now](/x/react-charts/)!
 
-### Tree view
+### Tree View
 
 After an extensive period of development and refinement in the lab and pre-release packages, and with the invaluable feedback we've received from you and the community, we're happy to share that the package is now officially stable!
 
@@ -71,7 +71,7 @@ After an extensive period of development and refinement in the lab and pre-relea
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
-👉 [Get started with MUI X Tree View now](/x/react-tree-view/getting-started/)!
+👉 [Get started with MUI X Tree View now](/x/react-tree-view/)!
 
 ## Date Pickers
 
@@ -144,7 +144,7 @@ Most notably:
   - Improved accessibility on date and time fields
 - [Data Grid](/x/react-data-grid/) iterations:
   - New UI for column management
-  - Pivoting for the [Premium](/x/react-data-grid/#premium-plan) version
+  - Pivoting for the Premium version
 
 We'll continue to expand our portfolio of Charts, including [Heatmap](/x/react-charts/heatmap/), [Funnel](/x/react-charts/funnel/), and [Gantt](/x/react-charts/gantt/); and explore virtualization and other advanced use cases for the Tree View component.
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeContext } from '@mui/styled-engine';
 import * as material from '@mui/material';
 import * as joy from '@mui/joy';
@@ -20,7 +20,7 @@ function LibThemeProvider({ children }: React.PropsWithChildren<{}>) {
 }
 
 function LibComponent() {
-  const theme = React.useContext(ThemeContext as React.Context<LibTheme>);
+  const theme = React.useContext(ThemeContext as unknown as React.Context<LibTheme>);
   return <div style={{ color: theme.palette.brand }} />;
 }
 
@@ -79,7 +79,7 @@ describe('Multiple nested theme providers', () => {
     originalMatchmedia = window.matchMedia;
 
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: spy((key) => storage[key]),
         setItem: spy((key, value) => {
@@ -99,7 +99,7 @@ describe('Multiple nested theme providers', () => {
   });
 
   it('[docs] Material UI + Joy UI', () => {
-    const { getByText } = render(
+    render(
       <joy.CssVarsProvider theme={{ [joy.THEME_ID]: joyTheme }}>
         <material.ThemeProvider theme={materialTheme}>
           <joy.Button
@@ -120,15 +120,16 @@ describe('Multiple nested theme providers', () => {
         </material.ThemeProvider>
       </joy.CssVarsProvider>,
     );
+
     // these test if `useThemeProps` works with theme scoping
-    expect(getByText('Joy')).to.have.class(joy.buttonClasses.variantOutlined);
-    expect(getByText('Joy')).toHaveComputedStyle({ mixBlendMode: 'darken' });
-    expect(getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
-    expect(getByText('Material')).toHaveComputedStyle({ mixBlendMode: 'darken' });
+    expect(screen.getByText('Joy')).to.have.class(joy.buttonClasses.variantOutlined);
+    expect(screen.getByText('Joy')).toHaveComputedStyle({ mixBlendMode: 'darken' });
+    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
+    expect(screen.getByText('Material')).toHaveComputedStyle({ mixBlendMode: 'darken' });
   });
 
   it('Material UI works with 3rd-party lib', () => {
-    const { getByText } = render(
+    render(
       <LibThemeProvider>
         <material.ThemeProvider theme={{ [material.THEME_ID]: materialTheme }}>
           <material.Button>Material</material.Button>
@@ -138,11 +139,12 @@ describe('Multiple nested theme providers', () => {
         </material.ThemeProvider>
       </LibThemeProvider>,
     );
-    expect(getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
+
+    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
   });
 
   it('Joy UI works with 3rd-party lib', () => {
-    const { getByText } = render(
+    render(
       <LibThemeProvider>
         <joy.ThemeProvider theme={{ [joy.THEME_ID]: joyTheme }}>
           <joy.Button>Joy</joy.Button>
@@ -152,6 +154,7 @@ describe('Multiple nested theme providers', () => {
         </joy.ThemeProvider>
       </LibThemeProvider>,
     );
-    expect(getByText('Joy')).to.have.class(joy.buttonClasses.variantOutlined);
+
+    expect(screen.getByText('Joy')).to.have.class(joy.buttonClasses.variantOutlined);
   });
 });

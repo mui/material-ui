@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { CardContentClasses } from './cardContentClasses';
 
 export interface CardContentOwnProps {
@@ -30,11 +30,11 @@ export interface CardContentTypeMap<
  *
  * Demos:
  *
- * - [Card](https://next.mui.com/material-ui/react-card/)
+ * - [Card](https://mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardContent API](https://next.mui.com/material-ui/api/card-content/)
+ * - [CardContent API](https://mui.com/material-ui/api/card-content/)
  */
 declare const CardContent: OverridableComponent<CardContentTypeMap>;
 

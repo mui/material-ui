@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableFooterClasses } from './tableFooterClasses';
 
@@ -30,11 +30,11 @@ export interface TableFooterTypeMap<
  *
  * Demos:
  *
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableFooter API](https://next.mui.com/material-ui/api/table-footer/)
+ * - [TableFooter API](https://mui.com/material-ui/api/table-footer/)
  */
 declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 

@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Button component
 components: Button, IconButton
-githubLabel: 'component: button'
+githubLabel: 'scope: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
 
@@ -138,7 +138,7 @@ You can use these to customize the components with both the `sx` prop and the th
 
 ## Accessibility
 
-All Buttons must have a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) so their purpose can be understood by users who require assistive technology.
+All Buttons must have a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) so their purpose can be understood by users who require assistive technology.
 
 This is especially important for [Icon Buttons](#icon-button) because they don't contain any text.
 For example, an Icon Button that displays a `<FavoriteBorder />` icon might have a label that looks like this:

@@ -19,7 +19,6 @@ import useSlot from '../utils/useSlot';
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
   slot: 'Backdrop',
-  overrides: (props, styles) => styles.backdrop,
 })({
   // Improve scrollable dialog support.
   zIndex: -1,
@@ -30,6 +29,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root'],
+    backdrop: ['backdrop'],
     container: ['container', `scroll${capitalize(scroll)}`],
     paper: [
       'paper',
@@ -46,7 +46,6 @@ const useUtilityClasses = (ownerState) => {
 const DialogRoot = styled(Modal, {
   name: 'MuiDialog',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   '@media print': {
     // Use !important to override the Modal inline-style.
@@ -227,7 +226,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     fullScreen = false,
     fullWidth = false,
     maxWidth = 'sm',
-    onBackdropClick,
     onClick,
     onClose,
     open,
@@ -271,10 +269,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
     backdropClick.current = null;
 
-    if (onBackdropClick) {
-      onBackdropClick(event);
-    }
-
     if (onClose) {
       onClose(event, 'backdropClick');
     }
@@ -316,6 +310,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
+    className: classes.backdrop,
   });
 
   const [PaperSlot, paperSlotProps] = useSlot('paper', {
@@ -330,7 +325,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     elementType: DialogContainer,
     externalForwardedProps,
     ownerState,
-    className: clsx(classes.container),
+    className: classes.container,
   });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
@@ -410,9 +405,6 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })
@@ -462,11 +454,6 @@ Dialog.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
-  /**
    * @ignore
    */
   onClick: PropTypes.func,
@@ -489,7 +476,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
-   * @deprecated Use `slotProps.paper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperProps: PropTypes.object,
   /**
@@ -531,7 +518,7 @@ Dialog.propTypes /* remove-proptypes */ = {
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -553,7 +540,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionProps: PropTypes.object,
 };

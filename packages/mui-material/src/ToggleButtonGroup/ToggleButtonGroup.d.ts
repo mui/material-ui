@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
 
 export interface ToggleButtonGroupPropsSizeOverrides {}
 
 export interface ToggleButtonGroupPropsColorOverrides {}
 
-export interface ToggleButtonGroupProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
+export interface ToggleButtonGroupProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  'onChange' | 'children'
+> {
   /**
    * The content of the component.
    */
@@ -80,10 +82,10 @@ export interface ToggleButtonGroupProps
  *
  * Demos:
  *
- * - [Toggle Button](https://next.mui.com/material-ui/react-toggle-button/)
+ * - [Toggle Button](https://mui.com/material-ui/react-toggle-button/)
  *
  * API:
  *
- * - [ToggleButtonGroup API](https://next.mui.com/material-ui/api/toggle-button-group/)
+ * - [ToggleButtonGroup API](https://mui.com/material-ui/api/toggle-button-group/)
  */
 export default function ToggleButtonGroup(props: ToggleButtonGroupProps): React.JSX.Element;

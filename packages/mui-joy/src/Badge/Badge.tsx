@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import usePreviousProps from '@mui/utils/usePreviousProps';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -253,7 +254,7 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   badgeContent: PropTypes.node,
   /**
-   * The inset of the badge. Support shorthand syntax as described in https://developer.mozilla.org/en-US/docs/Web/CSS/inset.
+   * The inset of the badge. Support shorthand syntax as described in https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset.
    * @default 0
    */
   badgeInset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

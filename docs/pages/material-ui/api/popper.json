@@ -13,13 +13,13 @@
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in a future major release. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>."
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },

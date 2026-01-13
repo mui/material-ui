@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { PropTypes, Theme } from '..';
+import { PropTypes, Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { FabClasses } from './fabClasses';
@@ -79,12 +79,12 @@ export type FabTypeMap<
  *
  * Demos:
  *
- * - [Floating Action Button](https://next.mui.com/material-ui/react-floating-action-button/)
+ * - [Floating Action Button](https://mui.com/material-ui/react-floating-action-button/)
  *
  * API:
  *
- * - [Fab API](https://next.mui.com/material-ui/api/fab/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [Fab API](https://mui.com/material-ui/api/fab/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const Fab: ExtendButtonBase<FabTypeMap>;
 
