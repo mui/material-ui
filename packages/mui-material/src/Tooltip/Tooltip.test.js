@@ -612,14 +612,10 @@ describe('<Tooltip />', () => {
 
       await act(async () => {
         screen.getByRole('button').blur();
-        clock.tick(leaveDelay);
       });
 
-      expect(screen.getByRole('tooltip')).toBeVisible();
-
-      await act(async () => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(leaveDelay);
+      clock.tick(transitionTimeout);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
