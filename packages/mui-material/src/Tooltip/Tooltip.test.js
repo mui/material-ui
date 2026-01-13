@@ -10,8 +10,6 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
   isJsdom,
-  flushMicrotasks,
-  waitFor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -621,12 +619,7 @@ describe('<Tooltip />', () => {
       clock.tick(leaveDelay);
       clock.tick(transitionTimeout);
 
-      await flushMicrotasks();
-
-      await waitFor(() => {
-        clock.tick(50); // pump pending timers
-        expect(screen.queryByRole('tooltip')).to.equal(null);
-      });
+      expect(screen.queryByRole('tooltip')).to.equal(null);
     });
   });
 
