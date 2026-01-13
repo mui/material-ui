@@ -619,12 +619,9 @@ describe('<Tooltip />', () => {
 
       await act(async () => {
         clock.tick(leaveDelay);
-      });
-      await act(async () => {
         clock.tick(transitionTimeout);
+        clock.tick(150); // theme.transitions.duration.shortest
       });
-
-      await flushMicrotasks();
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
