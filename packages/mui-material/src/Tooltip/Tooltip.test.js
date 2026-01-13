@@ -624,6 +624,7 @@ describe('<Tooltip />', () => {
       await flushMicrotasks();
 
       await waitFor(() => {
+        clock.tick(50); // pump pending timers
         expect(screen.queryByRole('tooltip')).to.equal(null);
       });
     });
