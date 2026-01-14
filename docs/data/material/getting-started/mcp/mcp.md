@@ -32,7 +32,6 @@ The sections below detail how to set up the Material UI MCP in popular agentic 
 > For improved safety and reproducibility, consider installing the MCP package locally
 > and relying on your project's lockfile to control the exact version being executed.
 
-
 ### VS Code, Cursor, Windsurf
 
 Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add the following:
