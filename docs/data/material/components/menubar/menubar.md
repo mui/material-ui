@@ -10,11 +10,11 @@ components: Box, Button, Divider, List, ListItemButton, ListItemIcon, ListItemTe
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
-Menubar is _not_ a built-in `@mui/material` component—it's composed of a [Base UI Menubar](https://base-ui.com/react/components/menubar) and styled to align with Material UI specs.
+Menubar is _not_ a built-in `@mui/material` component—it's composed of a [Base UI Menubar](https://base-ui.com/react/components/menubar) and styled to align with Material UI specs.
 
-As such, you must install Base UI before proceeding.
+As such, you must install Base UI before proceeding.
 The examples that follow can then be copied and pasted directly into your app.
-Note that Base UI is tree-shakeable, so the final bundle will only include the components used in your project.
+Note that Base UI is tree-shakeable, so the final bundle will only include the components used in your project.
 
 <!-- #npm-tag-reference -->
 
@@ -77,7 +77,7 @@ For sidebar-style navigation where menus open to the side.
 
 {{"demo": "VerticalMenubar.js"}}
 
-## Base UI API
+## Base UI API
 
 See the documentation below for a complete reference to all of the props.
 
