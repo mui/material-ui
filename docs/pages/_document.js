@@ -15,7 +15,7 @@ const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
 const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
-const APOLLO_TRACKING_ID = PRODUCTION_GA ? '68efaf63a6b6a4001571da4a' : 'dev-id';
+const APOLLO_TRACKING_ID = PRODUCTION_GA ? '691c2e920c5e20000d7801b6' : 'dev-id';
 
 export default class MyDocument extends Document {
   render() {
