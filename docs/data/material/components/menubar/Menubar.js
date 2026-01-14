@@ -1,22 +1,23 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Menu } from '@base-ui/react/menu';
 import { Menubar as BaseMenubar } from '@base-ui/react/menubar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
-import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ListSubheader, { ListSubheaderProps } from '@mui/material/ListSubheader';
+import ListSubheader from '@mui/material/ListSubheader';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CheckIcon from '@mui/icons-material/Check';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import Divider, { DividerProps } from '@mui/material/Divider';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-export function Menubar(props: React.ComponentProps<typeof BaseMenubar>) {
+export function Menubar(props) {
   return (
     <BaseMenubar
       render={
@@ -36,11 +37,11 @@ export function Menubar(props: React.ComponentProps<typeof BaseMenubar>) {
   );
 }
 
-export function MenuRoot(props: React.ComponentProps<typeof Menu.Root>) {
+export function MenuRoot(props) {
   return <Menu.Root {...props} />;
 }
 
-export function MenuTrigger(props: React.ComponentProps<typeof Menu.Trigger>) {
+export function MenuTrigger(props) {
   return (
     <Menu.Trigger
       render={
@@ -69,15 +70,15 @@ export function MenuTrigger(props: React.ComponentProps<typeof Menu.Trigger>) {
   );
 }
 
-export function MenuPortal(props: React.ComponentProps<typeof Menu.Portal>) {
+export function MenuPortal(props) {
   return <Menu.Portal {...props} />;
 }
 
-export function MenuPositioner(props: React.ComponentProps<typeof Menu.Positioner>) {
+export function MenuPositioner(props) {
   return <Menu.Positioner {...props} />;
 }
 
-export function MenuPopup(props: React.ComponentProps<typeof Menu.Popup>) {
+function MenuPopup(props) {
   return (
     <Menu.Popup
       render={(renderProps) => (
@@ -108,17 +109,13 @@ export function MenuPopup(props: React.ComponentProps<typeof Menu.Popup>) {
   );
 }
 
-interface MenuItemExtendedProps {
-  icon?: React.ReactNode;
-  secondary?: React.ReactNode;
-  hint?: React.ReactNode;
-}
+MenuPopup.propTypes = {
+  children: PropTypes.node,
+};
 
-export function MenuItem(
-  props: React.ComponentProps<typeof Menu.Item> &
-    Pick<ListItemButtonProps, 'sx'> &
-    MenuItemExtendedProps,
-) {
+export { MenuPopup };
+
+function MenuItem(props) {
   const { sx, icon, hint, children, secondary, ...other } = props;
   return (
     <Menu.Item
@@ -143,17 +140,30 @@ export function MenuItem(
   );
 }
 
-export function MenuSubmenuRoot(
-  props: React.ComponentProps<typeof Menu.SubmenuRoot>,
-) {
+MenuItem.propTypes = {
+  children: PropTypes.node,
+  hint: PropTypes.node,
+  icon: PropTypes.node,
+  secondary: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
+export { MenuItem };
+
+export function MenuSubmenuRoot(props) {
   return <Menu.SubmenuRoot {...props} />;
 }
 
-export function MenuSubmenuTrigger(
-  props: React.ComponentProps<typeof Menu.SubmenuTrigger> &
-    Pick<ListItemButtonProps, 'sx'> &
-    Pick<MenuItemExtendedProps, 'icon' | 'hint'>,
-) {
+function MenuSubmenuTrigger(props) {
   const { sx, icon, hint, children, ...other } = props;
   return (
     <Menu.SubmenuTrigger render={<ListItemButton dense sx={sx} />} {...other}>
@@ -171,9 +181,25 @@ export function MenuSubmenuTrigger(
   );
 }
 
-export function MenuSeparator(
-  props: React.ComponentProps<typeof Menu.Separator> & Pick<DividerProps, 'sx'>,
-) {
+MenuSubmenuTrigger.propTypes = {
+  children: PropTypes.node,
+  hint: PropTypes.node,
+  icon: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
+export { MenuSubmenuTrigger };
+
+function MenuSeparator(props) {
   const { sx, ...other } = props;
   return (
     <Menu.Separator
@@ -183,10 +209,22 @@ export function MenuSeparator(
   );
 }
 
-export function MenuCheckboxItem(
-  props: React.ComponentProps<typeof Menu.CheckboxItem> &
-    Pick<MenuItemExtendedProps, 'hint'>,
-) {
+MenuSeparator.propTypes = {
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
+export { MenuSeparator };
+
+function MenuCheckboxItem(props) {
   const { hint, children, ...other } = props;
   return (
     <Menu.CheckboxItem render={<ListItemButton dense />} {...other}>
@@ -205,14 +243,18 @@ export function MenuCheckboxItem(
   );
 }
 
-export function MenuRadioGroup(props: React.ComponentProps<typeof Menu.RadioGroup>) {
+MenuCheckboxItem.propTypes = {
+  children: PropTypes.node,
+  hint: PropTypes.node,
+};
+
+export { MenuCheckboxItem };
+
+export function MenuRadioGroup(props) {
   return <Menu.RadioGroup {...props} />;
 }
 
-export function MenuRadioItem(
-  props: React.ComponentProps<typeof Menu.RadioItem> &
-    Pick<MenuItemExtendedProps, 'hint'>,
-) {
+function MenuRadioItem(props) {
   const { hint, children, ...other } = props;
   return (
     <Menu.RadioItem render={<ListItemButton dense />} {...other}>
@@ -239,14 +281,18 @@ export function MenuRadioItem(
   );
 }
 
-export function MenuGroup(props: React.ComponentProps<typeof Menu.Group>) {
+MenuRadioItem.propTypes = {
+  children: PropTypes.node,
+  hint: PropTypes.node,
+};
+
+export { MenuRadioItem };
+
+export function MenuGroup(props) {
   return <Menu.Group render={<Box sx={{ position: 'relative' }} />} {...props} />;
 }
 
-export function MenuGroupLabel(
-  props: React.ComponentProps<typeof Menu.GroupLabel> &
-    Pick<ListSubheaderProps, 'sx'>,
-) {
+function MenuGroupLabel(props) {
   const { sx, ...other } = props;
   return (
     <Menu.GroupLabel
@@ -263,3 +309,18 @@ export function MenuGroupLabel(
     />
   );
 }
+
+MenuGroupLabel.propTypes = {
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
+export { MenuGroupLabel };

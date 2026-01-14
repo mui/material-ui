@@ -1,5 +1,4 @@
 import * as React from 'react';
-import ListItemText from '@mui/material/ListItemText';
 import {
   Menubar,
   MenuRoot,
@@ -21,60 +20,38 @@ export default function BasicMenubar() {
         <MenuPortal>
           <MenuPositioner sideOffset={4} alignOffset={-2}>
             <MenuPopup>
-              <MenuItem>
-                <ListItemText>New</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemText>Open...</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemText>Save</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemText>Save as...</ListItemText>
-              </MenuItem>
+              <MenuItem>New</MenuItem>
+              <MenuItem>Open...</MenuItem>
+              <MenuItem>Save</MenuItem>
+              <MenuItem>Save as...</MenuItem>
               <MenuSeparator />
               <MenuSubmenuRoot>
-                <MenuSubmenuTrigger>
-                  <ListItemText>Share</ListItemText>
-                </MenuSubmenuTrigger>
+                <MenuSubmenuTrigger>Share</MenuSubmenuTrigger>
                 <MenuPortal>
                   <MenuPositioner alignOffset={-4}>
                     <MenuPopup>
-                      <MenuItem>
-                        <ListItemText>Email link</ListItemText>
-                      </MenuItem>
-                      <MenuItem>
-                        <ListItemText>Copy link</ListItemText>
-                      </MenuItem>
+                      <MenuItem>Email link</MenuItem>
+                      <MenuItem>Copy link</MenuItem>
                     </MenuPopup>
                   </MenuPositioner>
                 </MenuPortal>
               </MenuSubmenuRoot>
               <MenuSeparator />
-              <MenuItem>
-                <ListItemText>Close</ListItemText>
-              </MenuItem>
+              <MenuItem>Close</MenuItem>
             </MenuPopup>
           </MenuPositioner>
         </MenuPortal>
       </MenuRoot>
 
       <MenuRoot>
-        <MenuTrigger disabled>Help</MenuTrigger>
+        <MenuTrigger>Help</MenuTrigger>
         <MenuPortal>
           <MenuPositioner sideOffset={4}>
             <MenuPopup>
-              <MenuItem>
-                <ListItemText>Documentation</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemText>Release notes</ListItemText>
-              </MenuItem>
+              <MenuItem>Documentation</MenuItem>
+              <MenuItem>Release notes</MenuItem>
               <MenuSeparator />
-              <MenuItem>
-                <ListItemText>About</ListItemText>
-              </MenuItem>
+              <MenuItem>About</MenuItem>
             </MenuPopup>
           </MenuPositioner>
         </MenuPortal>
