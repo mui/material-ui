@@ -324,5 +324,14 @@
     "locationCountry": "es",
     "about": "Builder & software crafter by day; yoga 🧘🏻‍♀️, good food 🥘, video games 🎮 and cats 🐈‍⬛ by sunset.",
     "github": "aemartos"
+  },
+  {
+    "name": "Silviu Alexandru Avram",
+    "title": "Software Engineer — Material UI",
+    "location": "București, Romania",
+    "locationCountry": "ro",
+    "about": "Coding, Traveling and Experimenting Hobbies",
+    "twitter": "silviuaavram",
+    "github": "silviuaavram"
   }
 ]
