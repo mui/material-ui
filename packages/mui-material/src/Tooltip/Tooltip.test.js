@@ -614,8 +614,12 @@ describe('<Tooltip />', () => {
         screen.getByRole('button').blur();
       });
 
-      clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
+      await act(async () => {
+        clock.tick(leaveDelay);
+      });
+      await act(async () => {
+        clock.tick(transitionTimeout);
+      });
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
