@@ -32,6 +32,12 @@ async function main() {
       '[id^="demo-"] a[href^="/trash"]',
       '[id^="demo-"] a[href^="/spam"]',
       '[id^="demo-"] a[href^="/drafts"]',
+      '[id^="demo-"] a[href^="#simple-list"]',
+      '[id^="demo-"] a[href^="#customized-list"]',
+      '[id^="demo-"] a[href^="#text-buttons"]',
+      '[id^="demo-"] a[href^="#contained-buttons"]',
+      '[id^="demo-"] a[href^="#outlined-buttons"]',
+      '[id^="demo-"] a[href^="#foo"]',
     ],
   });
 
