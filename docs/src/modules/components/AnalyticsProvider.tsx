@@ -60,44 +60,76 @@ function CookieConsentDialog({
   }
 
   return (
-    <Dialog
-      open={open}
-      hideBackdrop
-      disableScrollLock
-      disableEscapeKeyDown
-      sx={{
-        pointerEvents: 'none',
-        '& .MuiDialog-container': {
-          justifyContent: 'flex-end',
-          alignItems: 'flex-end',
-        },
-        '& .MuiPaper-root': {
-          pointerEvents: 'auto',
-          m: 2,
-          maxWidth: 340,
-        },
-      }}
-      aria-labelledby="cookie-consent-dialog-title"
-      aria-describedby="cookie-consent-dialog-description"
-    >
-      <DialogTitle id="cookie-consent-dialog-title" sx={{ pb: 1 }}>
-        Cookie Preferences
-      </DialogTitle>
-      <DialogContent sx={{ pb: 1 }}>
-        <DialogContentText id="cookie-consent-dialog-description" variant="body2">
-          We use cookies to understand site usage and improve our content. This includes third-party
-          analytics.
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onEssential} color="inherit" size="small">
-          Essential only
-        </Button>
-        <Button onClick={onAnalytics} variant="contained" size="small">
-          Allow analytics
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <TrapFocus open disableAutoFocus disableEnforceFocus>
+      <Fade appear={false} in={open}>
+        <Paper
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="cookie-consent-dialog-title"
+          aria-describedby="cookie-consent-dialog-description"
+          variant="outlined"
+          tabIndex={-1}
+          sx={{
+            position: 'fixed',
+            bottom: 0,
+            right: 0,
+            p: 2,
+            borderWidth: 0,
+            borderTopWidth: 1,
+            m: 2,
+            maxWidth: 340,
+            pointerEvents: 'auto',
+          }}
+        >
+          <Stack direction="column" spacing={3} sx={{ justifyContent: 'flex-start' }}>
+            <Stack
+              spacing={1}
+              sx={{ flexShrink: 1, alignSelf: { xs: 'flex-start', sm: 'center' } }}
+            >
+              <Box
+                sx={(theme) => ({
+                  borderRadius: '50%',
+                  bgcolor: alpha(theme.palette.primary.main, 0.1),
+                  p: 1,
+                  display: 'inline-block',
+                  width: 40,
+                  height: 40,
+                  mb: -1,
+                  alignSelf: { xs: 'center', sm: 'flex-start' },
+                })}
+              >
+                <CookieOutlinedIcon color="primary" strokeWidth={1.5} />
+              </Box>
+              <Stack spacing={0.5}>
+                <Typography
+                  variant="subtitle2"
+                  id="cookie-consent-dialog-title"
+                  textAlign={{ xs: 'center', sm: 'start' }}
+                >
+                  Cookie Preferences
+                </Typography>
+                <Typography
+                  id="cookie-consent-dialog-description"
+                  variant="body2"
+                  textAlign={{ xs: 'center', sm: 'start' }}
+                >
+                  example.com relies on cookies to improve your experience.
+                </Typography>
+              </Stack>
+            </Stack>
+
+            <Stack direction="row" spacing={1} sx={{ justifyContent: 'flex-start' }}>
+              <Button onClick={onAnalytics} variant="contained" size="small">
+                Allow analytics
+              </Button>
+              <Button onClick={onEssential} size="small">
+                Essential only
+              </Button>
+            </Stack>
+          </Stack>
+        </Paper>
+      </Fade>
+    </TrapFocus>
   );
 }
 
