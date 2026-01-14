@@ -23,7 +23,8 @@ export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface FormControlLabelProps
-  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'>,
+  extends
+    StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'>,
     FormControlLabelSlotsAndSlotProps {
   /**
    * If `true`, the component appears selected.

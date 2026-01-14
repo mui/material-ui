@@ -46,11 +46,11 @@ const faqData = [
     ),
   },
   {
-    summary: 'Is the Material UI Sync plugin paid?',
+    summary: 'Can I still use the Material UI Sync plugin?',
     detail: (
       <React.Fragment>
-        No. We&apos;re still in alpha mode and rolling out more features progressively, as per your
-        feedback. We might introduce paid tiers in the future, though.
+        Development on the Material UI Sync plugin was suspended in 2024. We do not recommend using
+        it in new projects.
       </React.Fragment>
     ),
   },
