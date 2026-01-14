@@ -79,7 +79,7 @@ Hopefully, you might be able to take advantage of the [`typography`](/material-u
 
 ### Adding & disabling variants
 
-In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/material-ui/customization/typography/#adding-amp-disabling-variants) page for more info.
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/material-ui/customization/typography/#adding-disabling-variants) page for more info.
 
 ### Changing the semantic element
 
@@ -94,7 +94,7 @@ To change the underlying element for a one-off situation, like avoiding two `h1`
 </Typography>
 ```
 
-To change the typography element mapping globally, [use the theme](/material-ui/customization/typography/#adding-amp-disabling-variants):
+To change the typography element mapping globally, [use the theme](/material-ui/customization/typography/#adding-disabling-variants):
 
 ```js
 const theme = createTheme({
