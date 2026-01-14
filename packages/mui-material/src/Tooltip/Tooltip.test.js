@@ -10,7 +10,6 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
   isJsdom,
-  flushMicrotasks,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -623,8 +622,6 @@ describe('<Tooltip />', () => {
       await act(async () => {
         clock.tick(transitionTimeout);
       });
-
-      await flushMicrotasks();
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
