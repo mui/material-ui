@@ -25,7 +25,7 @@ The sections below detail how to set up the Material UI MCP in popular agentic 
 
 > ⚠️ **Security note**
 >
-> Using `npx -y` with `@latest` will always download and execute the latest version of the package.
+> Using `npx -y` with `@latest` always download and execute the latest version of the package.
 > In privileged execution environments (for example, when used with tools like GitHub Copilot or Claude),
 > this can increase the risk if the package is ever compromised.
 >
