@@ -10,7 +10,6 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
   isJsdom,
-  flushMicrotasks,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
