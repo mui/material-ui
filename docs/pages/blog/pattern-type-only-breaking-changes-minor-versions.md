@@ -3,7 +3,7 @@ title: A pattern for opt-in type-only breaking changes in minor versions
 description: Discover how MUI prevents type breaking changes in minor versions using TypeScript's interface merging and module augmentation.
 date: 2026-01-15
 authors: ['bernardobelchior']
-tags: ['MUI', 'TypeScript']
+tags: ['MUI X', 'Tech']
 manualCard: false
 ---
 
