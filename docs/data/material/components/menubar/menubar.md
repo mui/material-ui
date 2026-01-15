@@ -71,6 +71,12 @@ Add icons to menu items using the `icon` prop for faster visual recognition.
 
 {{"demo": "IconItemsMenubar.js"}}
 
+## Group labels
+
+Organize menu items into logical sections with labeled groups.
+
+{{"demo": "GroupLabelMenubar.js"}}
+
 ## Vertical menubar
 
 For sidebar-style navigation where menus open to the side.

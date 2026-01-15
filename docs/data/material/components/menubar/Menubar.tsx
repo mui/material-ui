@@ -254,7 +254,12 @@ export function MenuGroupLabel(
         <ListSubheader
           component="div"
           sx={[
-            { position: 'initial', lineHeight: 'unset', py: 1 },
+            (theme) => ({
+              position: 'initial',
+              py: 1,
+              ...theme.typography.overline,
+              lineHeight: '1.5',
+            }),
             ...(Array.isArray(sx) ? sx : [sx]),
           ]}
         />
