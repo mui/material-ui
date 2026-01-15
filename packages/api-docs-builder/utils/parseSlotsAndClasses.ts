@@ -38,8 +38,7 @@ function getComponentDeclaration(
   componentName: string,
 ): ts.Node | null {
   const unstableName = `Unstable_${componentName}`;
-  const componentSymbol =
-    project.exports[componentName] ?? project.exports[unstableName];
+  const componentSymbol = project.exports[componentName] ?? project.exports[unstableName];
 
   if (!componentSymbol) {
     return null;
@@ -74,13 +73,7 @@ export default function parseSlotsAndClasses({
     componentName,
     muiName,
   );
-  const slots = extractSlots(
-    typescriptProject,
-    componentName,
-    classDefinitions,
-    slotInterfaceName,
-    projectSettings.slotsMismatchIsError,
-  );
+  const slots = extractSlots(typescriptProject, componentName, classDefinitions, slotInterfaceName);
 
   const nonSlotClassDefinitions = classDefinitions.filter(
     (classDefinition) => !Object.keys(slots).includes(classDefinition.key),
@@ -203,7 +196,6 @@ function extractSlots(
   componentName: string,
   classDefinitions: ComponentClassDefinition[],
   slotsInterfaceNameParams?: string,
-  slotsMismatchIsError?: boolean,
 ): Record<string, Slot> {
   const defaultSlotsInterfaceName = `${componentName}Slots`;
   const slotsInterfaceName = slotsInterfaceNameParams ?? defaultSlotsInterfaceName;
@@ -227,21 +219,17 @@ function extractSlots(
 
   if (!exportedSymbol) {
     if (hasSlotsProp()) {
-      const message = `Component "${componentName}" has a "slots" prop but is missing the "${slotsInterfaceName}" export.`;
-      if (slotsMismatchIsError) {
-        throw new Error(message);
-      }
-      console.warn(message);
+      console.warn(
+        `Component "${componentName}" has a "slots" prop but is missing the "${slotsInterfaceName}" export.`,
+      );
     }
     return {};
   }
 
   if (!hasSlotsProp()) {
-    const message = `"${slotsInterfaceName}" is exported but component "${componentName}" has no "slots" prop.`;
-    if (slotsMismatchIsError) {
-      throw new Error(message);
-    }
-    console.warn(message);
+    console.warn(
+      `"${slotsInterfaceName}" is exported but component "${componentName}" has no "slots" prop.`,
+    );
   }
 
   const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
