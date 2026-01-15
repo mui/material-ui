@@ -88,7 +88,7 @@ The maintainers are currently focused on other projects, and we may not be able 
 
 For new projects, we don't recommend adopting Toolpad Core at this time.
 
-As an alternative, you can use the CRUD dashboard template from the Material UI React templates page. It provdes an easy-to-customize, copy-pastable setup that covers many of the same dashboard and CRUD use cases without having to rely on Toolpad Core.
+As an alternative, you can use the CRUD dashboard template from the Material UI React templates page. It provides an easy-to-customize, copy-pastable setup that covers many of the same dashboard and CRUD use cases without having to rely on Toolpad Core.
 
 ### MUI Sync
 
