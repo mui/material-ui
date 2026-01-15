@@ -75,6 +75,12 @@ export interface ProjectSettings {
    */
   skipSlotsAndClasses?: boolean;
   /**
+   * If `true`, throws an error when there's a mismatch between a component's `slots` prop
+   * and its corresponding `XyzSlots` export. When `false`, only warnings are logged.
+   * @default false
+   */
+  slotsMismatchIsError?: boolean;
+  /**
    * The path to the translation directory.
    */
   translationPagesDirectory: string;
