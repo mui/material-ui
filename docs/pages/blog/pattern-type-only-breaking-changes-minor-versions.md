@@ -29,7 +29,7 @@ If you want to add a range bar chart, you need to use a bar chart from the Premi
   xAxis={[{ data: months }]}
   series={[
     {
-      type: "rangeBar",
+      type: 'rangeBar',
       data: [
         [13, 21],
         [17, 25],
@@ -79,7 +79,7 @@ function RangeBarChart() {
       xAxis={[{ data: months }]}
       series={[
         {
-          type: "rangeBar",
+          type: 'rangeBar',
           data: [
             [13, 21],
             [17, 25],
@@ -128,7 +128,7 @@ interface ChartsAxisData {
 interface ChartsAxisData {
   seriesValues: Record<string, RangeBarValueType | number | null | undefined>;
   // ^^^^^^^^^
-  // TS2717: Subsequent property declarations must have the same type. 
+  // TS2717: Subsequent property declarations must have the same type.
   // Property seriesValues must be of type Record<string, number | null | undefined>,
   // but here has type Record<string, number | RangeBarValueType | null | undefined>
 }
@@ -163,7 +163,7 @@ Now, we just need to find a way to set `seriesValuesOverride` in `ChartsTypeFeat
 As mentioned before, we can use interface merging to add more properties to an interface, so we leverage that plus module augmentation to add the property from a separate file that users can import if they need it:
 
 ```tsx
-declare module "@mui/x-charts/models" {
+declare module '@mui/x-charts/models' {
   interface ChartsTypeFeatureFlags {
     seriesValuesOverride: RangeBarValueType | number | null | undefined;
   }
@@ -183,7 +183,9 @@ import type {} from '@mui/x-charts-premium/moduleAugmentation/rangeBarOnClick';
 // ^^ Import the module augmentation
 
 function RangeBarChart() {
-  const [seriesValues, setSeriesValues] = useState<RangeBarValueType | number | null | undefined>();
+  const [seriesValues, setSeriesValues] = useState<
+    RangeBarValueType | number | null | undefined
+  >();
   //                                               ^^^^^^^^^^^^^^^^^
   //                                               Correct the type
 
@@ -192,7 +194,7 @@ function RangeBarChart() {
       xAxis={[{ data: months }]}
       series={[
         {
-          type: "rangeBar",
+          type: 'rangeBar',
           data: [
             [13, 21],
             [17, 25],
