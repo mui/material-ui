@@ -7,11 +7,11 @@ tags: ['MUI', 'TypeScript']
 manualCard: false
 ---
 
-At MUI, type errors across non-major versions are considered breaking changes. This article demonstrates how we use TypeScript’s interface merging and module augmentation features to allow users to opt in to breaking changes in types, so we can keep shipping new functionality in minor releases.
+At MUI, type errors across non-major versions are considered breaking changes. This article demonstrates how we use TypeScript's interface merging and module augmentation features to allow users to opt in to breaking changes in types, so we can keep shipping new functionality in minor releases.
 
-While the introduction of the new range bar chart didn’t change any existing behavior, some existing TypeScript types had to be changed, which we consider a breaking change.
+While the introduction of the new range bar chart didn't change any existing behavior, some existing TypeScript types had to be changed, which we consider a breaking change.
 
-This article demonstrates how to leverage TypeScript’s interface merging and module augmentation features to allow users to opt in to breaking changes in types.
+This article demonstrates how to leverage TypeScript's interface merging and module augmentation features to allow users to opt in to breaking changes in types.
 
 ### Context
 
@@ -100,7 +100,7 @@ function RangeBarChart() {
 
 ### Solution
 
-The solution we found for this issue relies on TypeScript’s module augmentation and interface merging features.
+The solution we found for this issue relies on TypeScript's module augmentation and interface merging features.
 
 We can leverage the latter to add more properties or widen the type of a property in an interface.
 
@@ -117,7 +117,7 @@ An initial approach could look like this:
 + }
 ```
 
-However, this doesn’t work because we’re changing the type of `seriesValues`. We can only widen the type or add more properties to the interface.
+However, this doesn't work because we're changing the type of `seriesValues`. We can only widen the type or add more properties to the interface.
 
 ```tsx
 interface ChartsAxisData {
@@ -156,7 +156,7 @@ export interface ChartsAxisData {
 }
 ```
 
-The original `ChartsAxisData` now depends on `ChartsTypeFeatureFlags` having a `seriesValuesOverride` property. If this property is present, `seriesValues` becomes `Record<string, ChartsTypeFeatureFlags['seriesValuesOverride']>`. However, if it’s missing, it defaults to `Record<string, number | null | undefined>`.
+The original `ChartsAxisData` now depends on `ChartsTypeFeatureFlags` having a `seriesValuesOverride` property. If this property is present, `seriesValues` becomes `Record<string, ChartsTypeFeatureFlags['seriesValuesOverride']>`. However, if it's missing, it defaults to `Record<string, number | null | undefined>`.
 
 Now, we just need to find a way to set `seriesValuesOverride` in `ChartsTypeFeatureFlags`.
 
@@ -172,9 +172,9 @@ declare module '@mui/x-charts/models' {
 export default {};
 ```
 
-Users just need to import the file above (e.g., `import type {} from '@mui/x-charts-premium/moduleAugmentation/rangeBarOnClick`) and the `seriesValues` type will be correct! If the file isn’t imported, the types remain unchanged.
+Users just need to import the file above (e.g., `import type {} from '@mui/x-charts-premium/moduleAugmentation/rangeBarOnClick`) and the `seriesValues` type will be correct! If the file isn't imported, the types remain unchanged.
 
-Users that opt in to using the range bar chart and import the file will now experience a type error, but developers who don’t use a range bar chart don’t have to do anything and their application will continue to function and type-check.
+Users that opt in to using the range bar chart and import the file will now experience a type error, but developers who don't use a range bar chart don't have to do anything and their application will continue to function and type-check.
 
 Borrowing a previous example, this is how it would look like after importing the module augmentation file:
 
@@ -209,11 +209,11 @@ function RangeBarChart() {
 }
 ```
 
-Unfortunately, this solution isn’t perfect, and comes with the following trade-offs:
+Unfortunately, this solution isn't perfect, and comes with the following trade-offs:
 
-- **Type soundness**: if the library consumer uses the range bar chart’s `onAxisClick` but doesn’t import the module augmentation, the type will wrongly be displayed as `number | null | undefined`, which might cause a runtime error. This drawback is mitigated by clear callout in the bar range docs to import module augmentation
-- **Global module augmentation**: module augmentation is global; once you import it, then all other usages of the augmented types are affected. This means that if you import it to fix a range bar chart’s `onAxisClick` type, then all other usages of `onAxisClick` will have this new type, potentially causing type errors.
+- **Type soundness**: if the library consumer uses the range bar chart's `onAxisClick` but doesn't import the module augmentation, the type will wrongly be displayed as `number | null | undefined`, which might cause a runtime error. This drawback is mitigated by clear callout in the bar range docs to import module augmentation
+- **Global module augmentation**: module augmentation is global; once you import it, then all other usages of the augmented types are affected. This means that if you import it to fix a range bar chart's `onAxisClick` type, then all other usages of `onAxisClick` will have this new type, potentially causing type errors.
 
-For us, these trade-offs are acceptable since we’d rather release features earlier so our users can benefit from them. In the next major version, we will have the opportunity to clean up this tech debt and become leaner once more.
+For us, these trade-offs are acceptable since we'd rather release features earlier so our users can benefit from them. In the next major version, we will have the opportunity to clean up this tech debt and become leaner once more.
 
 Hope you liked it!
