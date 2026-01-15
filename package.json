@@ -100,7 +100,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.2-canary.1",
     "@mui/internal-scripts": "workspace:^",
-    "@mui/internal-test-utils": "2.0.18-canary.0",
+    "@mui/internal-test-utils": "2.0.18-canary.4",
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",

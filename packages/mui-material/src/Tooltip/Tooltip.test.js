@@ -607,7 +607,7 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       await focusVisible(screen.getByRole('button'));
-      clock.tick(enterDelay);
+      await clock.tickAsync(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
@@ -617,10 +617,12 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
+      await clock.tickAsync(leaveDelay);
+      await clock.tickAsync(transitionTimeout - 1);
 
-      await flushMicrotasks();
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      await clock.tickAsync(2);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
