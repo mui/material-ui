@@ -82,3 +82,4 @@ For sidebar-style navigation where menus open to the side.
 See the documentation below for a complete reference to all of the props.
 
 - [`<Menubar />`](https://base-ui.com/react/components/menubar#api-reference)
+- [`<Menu />`](https://base-ui.com/react/components/menu#api-reference)
