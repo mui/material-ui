@@ -56,6 +56,7 @@ const ALLOWED_TAGS = [
   'Developer Survey',
   'Guide',
   'Product',
+  'Tech',
   // Product tags
   'Material UI',
   'Base UI',
