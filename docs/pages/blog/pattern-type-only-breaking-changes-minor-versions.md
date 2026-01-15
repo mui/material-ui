@@ -172,7 +172,7 @@ declare module '@mui/x-charts/models' {
 export default {};
 ```
 
-Users just need to import the file above (e.g., `import type {} from '@mui/x-charts-premium/moduleAugmentation/rangeBarOnClick`) and the `seriesValues` type will be correct! If the file isn't imported, the types remain unchanged.
+Users just need to import the file above (for example, `import type {} from '@mui/x-charts-premium/moduleAugmentation/rangeBarOnClick`) and the `seriesValues` type will be correct! If the file isn't imported, the types remain unchanged.
 
 Users that opt in to using the range bar chart and import the file will now experience a type error, but developers who don't use a range bar chart don't have to do anything and their application will continue to function and type-check.
 
