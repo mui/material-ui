@@ -10,6 +10,62 @@ const caseAllCaps = {
 const defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 /**
+ * Detects if the fontFamily is intended to be standard Roboto (not variants).
+ * Handles CSS variables, Next.js next/font patterns, and standard font stacks.
+ * Rejects Roboto variants (Slab, Mono, Condensed, Serif, Flex) which have different metrics.
+ *
+ * @see https://github.com/mui/material-ui/issues/47575
+ * @see https://github.com/mui/material-ui/issues/14541
+ */
+function isRobotoFont(fontFamily) {
+  if (!fontFamily || typeof fontFamily !== 'string') {
+    return false;
+  }
+
+  // Normalize whitespace
+  const normalized = fontFamily.trim();
+  if (normalized === '') {
+    return false;
+  }
+
+  // Reject Roboto variants first - they have different metrics and kerning
+  // This must come before permissive checks to avoid matching "__Roboto_Slab_"
+  if (/Roboto[._-]?\s*(Slab|Mono|Condensed|Serif|Flex)/i.test(normalized)) {
+    return false;
+  }
+
+  // Fast path: exact match with default (backwards compatibility)
+  if (normalized === defaultFontFamily) {
+    return true;
+  }
+
+  // MUI's documented Next.js integration pattern
+  if (normalized === 'var(--font-roboto)') {
+    return true;
+  }
+
+  // Next.js next/font hashed class names (e.g., "__Roboto_e0ab1e")
+  // Hex constraint [a-f0-9] is intentional to avoid matching user-defined fonts
+  // that might contain "__Roboto_" substrings (e.g., "My__Roboto_Custom")
+  if (/\b__Roboto_[a-f0-9]+\b/i.test(normalized)) {
+    return true;
+  }
+
+  // Next.js next/font with fallback (e.g., '"Roboto", "Roboto Fallback"')
+  if (/"Roboto"/.test(normalized) && /Roboto\s+Fallback/i.test(normalized)) {
+    return true;
+  }
+
+  // Standard Roboto at the start of a font stack (primary font position)
+  // Handles: "Roboto", 'Roboto', Roboto (with or without quotes)
+  if (/^["']?Roboto["']?(?:[,\s]|$)/i.test(normalized)) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
  * @see @link{https://m2.material.io/design/typography/the-type-system.html}
  * @see @link{https://m2.material.io/design/typography/understanding-typography.html}
  */
@@ -51,9 +107,7 @@ export default function createTypography(palette, typography) {
     lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
-    ...(fontFamily === defaultFontFamily
-      ? { letterSpacing: `${round(letterSpacing / size)}em` }
-      : {}),
+    ...(isRobotoFont(fontFamily) ? { letterSpacing: `${round(letterSpacing / size)}em` } : {}),
     ...casing,
     ...allVariants,
   });
