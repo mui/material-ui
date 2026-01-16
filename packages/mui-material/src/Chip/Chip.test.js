@@ -292,6 +292,26 @@ describe('<Chip />', () => {
       expect(handleClick.callCount).to.equal(0);
     });
 
+    it('should not stop propagation when clicking the delete icon if there is no onClick handler', () => {
+      const handleParentClick = spy();
+      const { getByTestId } = render(
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+        <div onClick={handleParentClick}>
+          <Chip
+            avatar={<Avatar id="avatar">MB</Avatar>}
+            label="Text Avatar Chip"
+            onDelete={() => {}}
+            deleteIcon={<div data-testid="delete-icon" />}
+          />
+        </div>,
+      );
+      const deleteIcon = getByTestId('delete-icon');
+
+      fireEvent.click(deleteIcon);
+
+      expect(handleParentClick.callCount).to.equal(1);
+    });
+
     it('should render with the root, deletable classes', () => {
       const { container } = render(
         <Chip
