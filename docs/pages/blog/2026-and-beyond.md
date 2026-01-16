@@ -30,11 +30,11 @@ We'd like to provide clarity on what we're actively investing in today, what we'
 
 Material UI continues to be a core focus for us.
 
-We're actively maintaining the library and continuing to ship new components and improvements. Most recently, we released [NumberField](https://mui.com/material-ui/react-number-field/) (one of our most requested components), designed to fully integrate with Base UI primitives.
+We're currently maintaining the library and continuing to ship new components and improvements. Most recently, we released [NumberField](https://mui.com/material-ui/react-number-field/) (one of our most requested components), designed to fully integrate with Base UI primitives.
 
-We're actively working on additional components built on top of Base UI, with examples like MenuBar and PreviewCard that are currently in progress.
+We're working on additional components built on top of Base UI, with examples like MenuBar and PreviewCard that are currently in progress.
 
-Alongside this, we're drafting and shaping the feature set that will define the next major version of Material UI (v8). While it's still early to share specifics, this work is actively underway and will be communicated as it solidifies.
+Alongside this, we're drafting and shaping the feature set that will define the next major version of Material UI (Material UI v8). While it's still early to share specifics, this work is underway and will be communicated as it solidifies.
 
 ### Base UI
 
@@ -50,9 +50,9 @@ Base UI is where we are concentrating our foundational work going forward.
 
 ### MUI X
 
-We're also actively investing in our MUI X advanced components: Data Grid, Charts, Tree View, and Date and Time Pickers.
+We're also investing in our MUI X advanced components: Data Grid, Charts, Tree View, and Date and Time Pickers.
 
-As we prepare for the next major version, we've been continuously shipping new features and improvements since v8.
+As we prepare for the next major version, we've been continuously shipping new features and improvements since MUI X v8.
 
 These updates have been covered in our [What's New](https://mui.com/x/whats-new/) section and our [most recent blog post](https://mui.com/blog/mui-x-end-v8/) outlining what's shipped since v8.
 
@@ -68,7 +68,7 @@ At that point, we made the decision to prioritize our roadmap and focus on one f
 
 That prioritization led us to concentrate our efforts on Base UI—a project we've now successfully brought to stability after a long period of iteration.
 
-Pigment CSS is not actively developed at the moment. While we still believe in the potential of the ideas behind it, progressing further would require a different approach.
+Pigment CSS is not being developed at the moment. While we still believe in the potential of the ideas behind it, progressing further would require a different approach.
 
 So for now, development is paused.
 
