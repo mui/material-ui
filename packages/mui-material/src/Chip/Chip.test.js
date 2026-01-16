@@ -294,9 +294,8 @@ describe('<Chip />', () => {
 
     it('should not stop propagation when clicking the delete icon if there is no onClick handler', () => {
       const handleParentClick = spy();
-      const { getByTestId } = render(
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-        <div onClick={handleParentClick}>
+      render(
+        <div role="button" tabIndex={0} onClick={handleParentClick} onKeyDown={() => {}}>
           <Chip
             avatar={<Avatar id="avatar">MB</Avatar>}
             label="Text Avatar Chip"
@@ -305,7 +304,7 @@ describe('<Chip />', () => {
           />
         </div>,
       );
-      const deleteIcon = getByTestId('delete-icon');
+      const deleteIcon = screen.getByTestId('delete-icon');
 
       fireEvent.click(deleteIcon);
 
