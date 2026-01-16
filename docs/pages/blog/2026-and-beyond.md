@@ -28,6 +28,8 @@ We'd like to provide clarity on what we're actively investing in today, what we'
 
 ### Material UI
 
+<img width="692" height="390" loading="lazy" alt="NumberField component is now available." src="https://github.com/user-attachments/assets/ca08c54f-ca30-4c34-8688-32617660144e" />
+
 Material UI continues to be a core focus for us.
 
 We're currently maintaining the library and continuing to ship new components and improvements. Most recently, we released [NumberField](https://mui.com/material-ui/react-number-field/) (one of our most requested components), designed to fully integrate with Base UI primitives.
@@ -37,6 +39,8 @@ We're working on additional components built on top of Base UI, with examples li
 Alongside this, we're drafting and shaping the feature set that will define the next major version of Material UI (Material UI v8). While it's still early to share specifics, this work is underway and will be communicated as it solidifies.
 
 ### Base UI
+
+<img width="692" height="390" alt="Base UI v1.1.0 announcement tweet" src="https://github.com/user-attachments/assets/d49f7faa-12d5-4b1b-80fd-48f4d8e56f33" />
 
 Base UI is a major area of focus this year.
 
