@@ -1232,7 +1232,7 @@ function useAutocomplete(props) {
       role: 'listbox',
       id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
-      'aria-multiselectable': multiple ?? undefined,
+      'aria-multiselectable': multiple || undefined,
       ref: handleListboxRef,
       onMouseDown: (event) => {
         // Prevent blur
