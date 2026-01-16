@@ -13,7 +13,7 @@ While the introduction of the new range bar chart didn't change any existing beh
 
 This article demonstrates how to leverage TypeScript's interface merging and module augmentation features to allow users to opt in to breaking changes in types.
 
-# Context
+## Context
 
 Recently, we introduced our new range bar chart which has a new type to represent its data points:
 
@@ -98,7 +98,7 @@ function RangeBarChart() {
 }
 ```
 
-# Solution
+## Solution
 
 The solution we found for this issue relies on TypeScript's module augmentation and interface merging features.
 
