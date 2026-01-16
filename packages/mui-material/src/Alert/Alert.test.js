@@ -239,7 +239,7 @@ describe('<Alert />', () => {
       // overriden icon in theme
       expect(screen.queryByTestId('AlarmIcon')).not.to.equal(null);
       expect(screen.queryByTestId('ErrorOutlineIcon')).not.to.equal(null);
-      // default info icon
+      // default warning icon
       expect(screen.queryByTestId('ReportProblemOutlinedIcon')).to.equal(null);
     });
   });
