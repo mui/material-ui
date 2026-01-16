@@ -444,4 +444,44 @@ describe('useAutocomplete', () => {
       expect(onInputChange.callCount).to.equal(0);
     });
   });
+
+  describe('prop: multiple', () => {
+    it('should set aria-multiselectable on the listbox when multiple prop is true', () => {
+      function Test(props) {
+        const { options } = props;
+        const { getInputProps } = useAutocomplete({
+          options,
+          open: true,
+          multiple: true,
+        });
+        return <input {...getInputProps()} />;
+      }
+
+      render(<Test options={['foo', 'bar']} />);
+      const input = screen.getByRole('combobox');
+      fireEvent.focus(input);
+      const listbox = screen.getByRole('listbox');
+
+      expect(listbox).to.have.attribute('aria-multiselectable', 'true');
+    });
+
+    it('should not set aria-multiselectable on the listbox when multiple prop is false', () => {
+      function Test(props) {
+        const { options } = props;
+        const { getInputProps } = useAutocomplete({
+          options,
+          open: true,
+          multiple: false,
+        });
+        return <input {...getInputProps()} />;
+      }
+
+      render(<Test options={['foo', 'bar']} />);
+      const input = screen.getByRole('combobox');
+      fireEvent.focus(input);
+      const listbox = screen.getByRole('listbox');
+
+      expect(listbox).to.not.have.attribute('aria-multiselectable');
+    });
+  });
 });
