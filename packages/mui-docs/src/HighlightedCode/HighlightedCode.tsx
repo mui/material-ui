@@ -4,7 +4,7 @@ import { NoSsr } from '@mui/base/NoSsr';
 import { ButtonProps } from '@mui/material/Button';
 import { SxProps, styled } from '@mui/material/styles';
 import { useCodeCopy, CodeCopyButton } from '../CodeCopy';
-import { MarkdownElement } from '../MarkdownElement';
+import { MarkdownElement, MarkdownElementProps } from '../MarkdownElement';
 
 const Pre = styled('pre')(({ theme }) => ({
   margin: 0,
@@ -21,7 +21,7 @@ const Pre = styled('pre')(({ theme }) => ({
   },
 }));
 
-export interface HighlightedCodeProps {
+export interface HighlightedCodeProps extends MarkdownElementProps {
   code: string;
   copyButtonHidden?: boolean;
   copyButtonProps?: ButtonProps;
