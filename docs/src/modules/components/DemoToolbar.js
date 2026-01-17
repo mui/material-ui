@@ -23,6 +23,7 @@ import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from '@mui/docs/i18n';
 import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
+import { useDemoContext } from 'docs/src/modules/components/DemoContext';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
@@ -291,6 +292,7 @@ export default function DemoToolbar(props) {
 
   const setCodeVariant = useSetCodeVariant();
   const t = useTranslate();
+  const { csb } = useDemoContext();
 
   const hasTSVariant = demo.rawTS;
   const renderedCodeVariant = () => {
@@ -498,7 +500,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
+                  onClick={() => stackBlitz.createReactApp(demoData, csb).openSandbox()}
                   {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
@@ -512,7 +514,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
+                  onClick={() => codeSandbox.createReactApp(demoData, csb).openSandbox()}
                   {...getControlProps(5)}
                   sx={{ borderRadius: 1 }}
                 >
