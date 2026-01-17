@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
 
 export default function PositionedTooltips() {
   return (
@@ -33,22 +34,24 @@ export default function PositionedTooltips() {
             <Button>left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid container direction="column" sx={{ alignItems: 'flex-end' }} size={6}>
-          <Grid>
-            <Tooltip title="Add" placement="right-start">
-              <Button>right-start</Button>
-            </Tooltip>
-          </Grid>
-          <Grid>
-            <Tooltip title="Add" placement="right">
-              <Button>right</Button>
-            </Tooltip>
-          </Grid>
-          <Grid>
-            <Tooltip title="Add" placement="right-end">
-              <Button>right-end</Button>
-            </Tooltip>
-          </Grid>
+        <Grid container sx={{ justifyContent: 'flex-end' }} size={6}>
+          <Stack sx={{ alignItems: 'end' }}>
+            <Grid>
+              <Tooltip title="Add" placement="right-start">
+                <Button>right-start</Button>
+              </Tooltip>
+            </Grid>
+            <Grid>
+              <Tooltip title="Add" placement="right">
+                <Button>right</Button>
+              </Tooltip>
+            </Grid>
+            <Grid>
+              <Tooltip title="Add" placement="right-end">
+                <Button>right-end</Button>
+              </Tooltip>
+            </Grid>
+          </Stack>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>

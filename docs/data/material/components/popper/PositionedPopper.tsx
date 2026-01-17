@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
 
 export default function PositionedPopper() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -53,16 +54,18 @@ export default function PositionedPopper() {
           <br />
           <Button onClick={handleClick('left-end')}>left-end</Button>
         </Grid>
-        <Grid container direction="column" sx={{ alignItems: 'flex-end' }} size={6}>
-          <Grid>
-            <Button onClick={handleClick('right-start')}>right-start</Button>
-          </Grid>
-          <Grid>
-            <Button onClick={handleClick('right')}>right</Button>
-          </Grid>
-          <Grid>
-            <Button onClick={handleClick('right-end')}>right-end</Button>
-          </Grid>
+        <Grid container sx={{ justifyContent: 'flex-end' }} size={6}>
+          <Stack sx={{ alignItems: 'end' }}>
+            <Grid>
+              <Button onClick={handleClick('right-start')}>right-start</Button>
+            </Grid>
+            <Grid>
+              <Button onClick={handleClick('right')}>right</Button>
+            </Grid>
+            <Grid>
+              <Button onClick={handleClick('right-end')}>right-end</Button>
+            </Grid>
+          </Stack>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>

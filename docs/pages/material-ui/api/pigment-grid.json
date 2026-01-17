@@ -18,7 +18,7 @@
     "direction": {
       "type": {
         "name": "union",
-        "description": "'column'<br>&#124;&nbsp;'column-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;Array&lt;'column'<br>&#124;&nbsp;'column-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;'row-reverse'&gt;<br>&#124;&nbsp;object"
+        "description": "'row'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;Array&lt;'row'<br>&#124;&nbsp;'row-reverse'&gt;<br>&#124;&nbsp;object"
       },
       "default": "'row'"
     },

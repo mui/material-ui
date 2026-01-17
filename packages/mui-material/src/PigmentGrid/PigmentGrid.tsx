@@ -16,7 +16,7 @@ import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type GridDirection = 'row' | 'row-reverse';
 
 export type GridSpacing = number | string;
 
@@ -180,8 +180,8 @@ PigmentGrid.propTypes /* remove-proptypes */ = {
    * @default 'row'
    */
   direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['column', 'column-reverse', 'row', 'row-reverse']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column', 'column-reverse', 'row', 'row-reverse'])),
+    PropTypes.oneOf(['row', 'row-reverse']),
+    PropTypes.arrayOf(PropTypes.oneOf(['row', 'row-reverse'])),
     PropTypes.object,
   ]),
   /**
