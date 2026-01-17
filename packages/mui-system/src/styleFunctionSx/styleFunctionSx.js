@@ -106,24 +106,33 @@ export function unstable_createStyleFunctionSx() {
       let css = emptyBreakpoints;
 
       Object.keys(sxObject).forEach((styleKey) => {
+
+        let resolvedStyleKey = styleKey;
+       if(styleKey.startsWith('@') && theme?.breakpoints?.values){
+        const breakpointKey = styleKey.slice(1);
+        const breakPointValue  = theme.breakpoints.values[breakpointKey];
+         if(breakPointValue !==undefined){
+          resolvedStyleKey = `@${breakPointValue}`
+         }
+       }
         const value = callIfFn(sxObject[styleKey], theme);
         if (value !== null && value !== undefined) {
           if (typeof value === 'object') {
-            if (config[styleKey]) {
-              css = merge(css, getThemeValue(styleKey, value, theme, config));
+            if (config[resolvedStyleKey]) {
+              css = merge(css, getThemeValue(resolvedStyleKey, value, theme, config));
             } else {
               const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
-                [styleKey]: x,
+                [resolvedStyleKey]: x,
               }));
 
               if (objectsHaveSameKeys(breakpointsValues, value)) {
-                css[styleKey] = styleFunctionSx({ sx: value, theme, nested: true });
+                css[resolvedStyleKey] = styleFunctionSx({ sx: value, theme, nested: true });
               } else {
                 css = merge(css, breakpointsValues);
               }
             }
           } else {
-            css = merge(css, getThemeValue(styleKey, value, theme, config));
+            css = merge(css, getThemeValue(resolvedStyleKey, value, theme, config));
           }
         }
       });
