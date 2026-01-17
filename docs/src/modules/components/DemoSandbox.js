@@ -45,7 +45,6 @@ function MaterialIframeWrapper({ children, isolated }) {
 }
 MaterialIframeWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  document: PropTypes.object.isRequired,
   isolated: PropTypes.bool,
 };
 
