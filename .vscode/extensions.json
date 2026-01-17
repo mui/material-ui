@@ -1,9 +1,20 @@
 {
   "recommendations": [
-    "editorconfig.editorconfig",
-    "dbaeumer.vscode-eslint",
-    "davidanson.vscode-markdownlint",
-    "esbenp.prettier-vscode",
-    "yoavbls.pretty-ts-errors"
+    // Formating
+    "esbenp.prettier-vscode", // Prettier
+    "editorconfig.editorconfig", // EditorConfig
+
+    // Highlighting
+    "bradlc.vscode-tailwindcss", // Tailwind CSS
+    "unifiedjs.vscode-mdx", // MDX
+    "shardulm94.trailing-spaces", // Trailing spaces
+    "styled-components.vscode-styled-components", // styled()
+
+    // Lint
+    "dbaeumer.vscode-eslint", // ESLint
+    "yoavbls.pretty-ts-errors", // TypeScript
+    "stylelint.vscode-stylelint", // Stylelint
+    "davidanson.vscode-markdownlint", // markdownlint
+    "chrischinchilla.vale-vscode" // Vale
   ]
 }
