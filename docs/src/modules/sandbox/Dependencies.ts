@@ -50,13 +50,13 @@ export default function SandboxDependencies(
    * @return string - A valid version for a dependency entry in a package.json
    */
   function getMuiPackageVersion(packageName: string): string {
+    if (packageName === 'joy' || packageName === 'base') {
+      return 'latest';
+    }
     if (
       commitRef === undefined ||
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
-      if (['joy', 'base'].includes(packageName)) {
-        return 'latest';
-      }
       // #npm-tag-reference
       return 'latest';
     }
