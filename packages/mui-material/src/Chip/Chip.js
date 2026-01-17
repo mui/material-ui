@@ -394,8 +394,12 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const handleRef = useForkRef(chipRef, ref);
 
   const handleDeleteIconClick = (event) => {
-    // Stop the event from bubbling up to the `Chip`
-    event.stopPropagation();
+    // Stop the event from bubbling up to the `Chip` only when the chip
+    // itself is clickable. This allows events to propagate to parent
+    // listeners like ClickAwayListener when there's no onClick handler.
+    if (onClick) {
+      event.stopPropagation();
+    }
     if (onDelete) {
       onDelete(event);
     }
