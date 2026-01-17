@@ -97,6 +97,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-drawer' },
           { pathname: '/material-ui/react-link' },
           { pathname: '/material-ui/react-menu' },
+          { pathname: '/material-ui/react-menubar', newFeature: true },
           { pathname: '/material-ui/react-pagination' },
           { pathname: '/material-ui/react-speed-dial', title: 'Speed Dial' },
           { pathname: '/material-ui/react-stepper' },

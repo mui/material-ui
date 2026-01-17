@@ -111,6 +111,7 @@ export interface ListItemTextProps<
  * Demos:
  *
  * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Menubar](https://mui.com/material-ui/react-menubar/)
  *
  * API:
  *

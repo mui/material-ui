@@ -51,6 +51,7 @@ export interface PaperTypeMap<
  * Demos:
  *
  * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Menubar](https://mui.com/material-ui/react-menubar/)
  * - [Paper](https://mui.com/material-ui/react-paper/)
  *
  * API:
