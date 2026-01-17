@@ -331,4 +331,32 @@ describe('<Accordion />', () => {
 
     expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
   });
+
+  it('should set aria-labelledby and id on the region when summary provides id and aria-controls', () => {
+    render(
+      <Accordion defaultExpanded>
+        <AccordionSummary id="acc-summary" aria-controls="acc-region">
+          Summary
+        </AccordionSummary>
+        <div>Details</div>
+      </Accordion>,
+    );
+
+    const region = screen.getByRole('region');
+    expect(region).to.have.attribute('aria-labelledby', 'acc-summary');
+    expect(region).to.have.attribute('id', 'acc-region');
+  });
+
+  it('should not set aria-labelledby or id on the region when summary does not provide them', () => {
+    render(
+      <Accordion defaultExpanded>
+        <AccordionSummary>Summary</AccordionSummary>
+        <div>Details</div>
+      </Accordion>,
+    );
+
+    const region = screen.getByRole('region');
+    expect(region).not.to.have.attribute('aria-labelledby');
+    expect(region).not.to.have.attribute('id');
+  });
 });
