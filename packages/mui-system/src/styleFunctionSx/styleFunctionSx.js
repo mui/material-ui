@@ -106,15 +106,14 @@ export function unstable_createStyleFunctionSx() {
       let css = emptyBreakpoints;
 
       Object.keys(sxObject).forEach((styleKey) => {
-
         let resolvedStyleKey = styleKey;
-       if(styleKey.startsWith('@') && theme?.breakpoints?.values){
-        const breakpointKey = styleKey.slice(1);
-        const breakPointValue  = theme.breakpoints.values[breakpointKey];
-         if(breakPointValue !==undefined){
-          resolvedStyleKey = `@${breakPointValue}`
-         }
-       }
+        if (styleKey.startsWith('@') && theme?.breakpoints?.values) {
+          const breakpointKey = styleKey.slice(1);
+          const breakPointValue = theme.breakpoints.values[breakpointKey];
+          if (breakPointValue !== undefined) {
+            resolvedStyleKey = `@${breakPointValue}`;
+          }
+        }
         const value = callIfFn(sxObject[styleKey], theme);
         if (value !== null && value !== undefined) {
           if (typeof value === 'object') {
