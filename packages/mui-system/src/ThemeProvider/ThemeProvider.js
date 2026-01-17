@@ -11,6 +11,7 @@ import useThemeWithoutDefault from '../useThemeWithoutDefault';
 import RtlProvider from '../RtlProvider';
 import DefaultPropsProvider from '../DefaultPropsProvider';
 import useLayerOrder from './useLayerOrder';
+import { registerThemeShouldForwardProp } from '../createStyled';
 
 const EMPTY_THEME = {};
 
@@ -67,6 +68,19 @@ function ThemeProvider(props) {
   const rtlValue = (themeId ? engineTheme[themeId] : engineTheme).direction === 'rtl';
 
   const layerOrder = useLayerOrder(engineTheme);
+
+  // Register theme shouldForwardProp configurations before rendering
+  React.useMemo(() => {
+    const resolvedTheme = themeId ? engineTheme[themeId] : engineTheme;
+    if (resolvedTheme?.components) {
+      Object.keys(resolvedTheme.components).forEach((componentName) => {
+        const componentConfig = resolvedTheme.components[componentName];
+        if (componentConfig?.shouldForwardProp) {
+          registerThemeShouldForwardProp(componentName, componentConfig.shouldForwardProp);
+        }
+      });
+    }
+  }, [engineTheme, themeId]);
 
   return (
     <MuiThemeProvider theme={privateTheme}>
