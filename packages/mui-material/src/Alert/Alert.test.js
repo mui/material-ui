@@ -5,6 +5,7 @@ import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
+import AlarmIcon from '@mui/icons-material/Alarm';
 import describeConformance from '../../test/describeConformance';
 import capitalize from '../utils/capitalize';
 
@@ -208,6 +209,38 @@ describe('<Alert />', () => {
 
         expect(screen.getByTestId(`${severity}-icon`)).toBeVisible();
       });
+    });
+
+    // https://github.com/mui/material-ui/pull/47460#issuecomment-3744629811
+    it('should apply the default icons to the different severity alerts if overriding one of the severity icon in theme', () => {
+      const theme = createTheme({
+        components: {
+          MuiAlert: {
+            defaultProps: {
+              iconMapping: {
+                warning: <AlarmIcon fontSize="inherit" />,
+              },
+            },
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Alert severity="success">This is a success Alert.</Alert>
+          <Alert severity="info">This is an info Alert.</Alert>
+          <Alert severity="warning">This is a warning Alert.</Alert>
+          <Alert severity="error">This is an error Alert.</Alert>
+        </ThemeProvider>,
+      );
+
+      expect(screen.queryByTestId('SuccessOutlinedIcon')).not.to.equal(null);
+      expect(screen.queryByTestId('InfoOutlinedIcon')).not.to.equal(null);
+      // overriden icon in theme
+      expect(screen.queryByTestId('AlarmIcon')).not.to.equal(null);
+      expect(screen.queryByTestId('ErrorOutlineIcon')).not.to.equal(null);
+      // default warning icon
+      expect(screen.queryByTestId('ReportProblemOutlinedIcon')).to.equal(null);
     });
   });
 
