@@ -40,6 +40,7 @@ function createData(name, calories, fat, carbs, protein, price) {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [exited, setExited] = React.useState(true);
 
   return (
     <React.Fragment>
@@ -47,6 +48,7 @@ function Row(props) {
         <TableCell>
           <IconButton
             aria-label="expand row"
+            aria-expanded={open}
             size="small"
             onClick={() => setOpen(!open)}
           >
@@ -61,9 +63,15 @@ function Row(props) {
         <TableCell align="right">{row.carbs}</TableCell>
         <TableCell align="right">{row.protein}</TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow sx={{ display: open || !exited ? 'table-row' : 'none' }}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse
+            in={open}
+            timeout="auto"
+            unmountOnExit
+            onEnter={() => setExited(false)}
+            onExited={() => setExited(true)}
+          >
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
                 History
