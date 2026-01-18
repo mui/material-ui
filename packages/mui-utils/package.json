@@ -41,7 +41,7 @@
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.27",
+    "@types/node": "20.19.30",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@types/react-is": "19.2.0",
