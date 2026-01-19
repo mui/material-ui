@@ -5,7 +5,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "7.28.4",
+    "@babel/runtime": "7.28.6",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@mui/base": "5.0.0-beta.70",
@@ -18,7 +18,7 @@
     "@mui/utils": "workspace:^",
     "@testing-library/dom": "10.4.1",
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.7",
+    "@types/react": "19.2.8",
     "@types/react-is": "19.2.0",
     "@types/sinon": "17.0.4",
     "chai": "6.2.1",
