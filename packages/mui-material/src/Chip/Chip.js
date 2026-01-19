@@ -521,11 +521,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onClick: (event) => {
         handlers.onClick?.(event);
         // Skip onClick if the click was on the delete icon
-        if (
-          onDelete &&
-          deleteIconRef.current &&
-          deleteIconRef.current.contains(event.target)
-        ) {
+        if (onDelete && deleteIconRef.current && deleteIconRef.current.contains(event.target)) {
           return;
         }
         onClick?.(event);
