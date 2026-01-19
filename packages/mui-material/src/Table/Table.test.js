@@ -49,7 +49,6 @@ describe('<Table />', () => {
   it('should define table in the child context', () => {
     let context;
 
-    // TODO test integration with TableCell
     render(
       <Table>
         <TableContext.Consumer>

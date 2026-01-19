@@ -34,7 +34,6 @@ describe('<TableBody />', () => {
 
   it('should define table.body in the child context', () => {
     let context;
-    // TODO test integration with TableCell
     renderInTable(
       <TableBody>
         <Tablelvl2Context.Consumer>

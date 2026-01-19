@@ -33,7 +33,6 @@ describe('<TableFooter />', () => {
 
   it('should define table.footer in the child context', () => {
     let context;
-    // TODO test integration with TableCell
     renderInTable(
       <TableFooter>
         <Tablelvl2Context.Consumer>
