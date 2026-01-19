@@ -30,7 +30,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@types/hoist-non-react-statics": "^3.3.7",
     "csstype": "^3.2.3",
     "hoist-non-react-statics": "^3.3.2",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.7",
+    "@types/react": "19.2.8",
     "chai": "6.2.1",
     "react": "19.2.3",
     "styled-components": "6.1.19"
