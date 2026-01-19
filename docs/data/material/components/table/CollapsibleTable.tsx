@@ -69,7 +69,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
         <TableCell align="right">{row.carbs}</TableCell>
         <TableCell align="right">{row.protein}</TableCell>
       </TableRow>
-      <TableRow sx={{ display: open || !exited ? 'table-row' : 'none' }}>
+      <TableRow aria-hidden={!open && exited ? true : undefined}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse
             in={open}
