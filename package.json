@@ -89,8 +89,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@babel/core": "7.28.5",
-    "@babel/node": "7.28.0",
+    "@babel/core": "7.28.6",
+    "@babel/node": "7.28.6",
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
@@ -164,12 +164,12 @@
     "node": ">=22.18.0"
   },
   "resolutions": {
-    "@babel/core": "7.28.5",
+    "@babel/core": "7.28.6",
     "@babel/plugin-transform-runtime": "^7.28.5",
-    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-env": "^7.28.6",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@definitelytyped/header-parser": "^0.2.20",
     "@definitelytyped/typescript-versions": "^0.1.9",
     "@definitelytyped/utils": "^0.1.8",
