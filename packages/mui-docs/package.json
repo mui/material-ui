@@ -41,7 +41,7 @@
     "@types/gtag.js": "0.0.20",
     "@types/node": "20.19.30",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.7",
+    "@types/react": "19.2.8",
     "next": "15.5.9",
     "react": "19.2.3"
   },
