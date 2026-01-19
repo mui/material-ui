@@ -107,11 +107,32 @@ export function unstable_createStyleFunctionSx() {
 
       Object.keys(sxObject).forEach((styleKey) => {
         let resolvedStyleKey = styleKey;
-        if (styleKey.startsWith('@') && theme?.breakpoints?.values) {
-          const breakpointKey = styleKey.slice(1);
-          const breakPointValue = theme.breakpoints.values[breakpointKey];
-          if (breakPointValue !== undefined) {
-            resolvedStyleKey = `@${breakPointValue}`;
+        if (styleKey.startsWith('@')) {
+          const match = styleKey.match(/^@([^/]*)(?:\/(.+))?$/);
+
+          if (match) {
+            const [, rawSize, container] = match;
+
+            let size = rawSize;
+            let finalContainer = container;
+
+            if (!finalContainer) {
+              const siblingWithContainer = Object.keys(sxObject).find(
+                (key) => key.startsWith('@') && key.includes('/'),
+              );
+
+              if (siblingWithContainer) {
+                finalContainer = siblingWithContainer.split('/')[1];
+              }
+            }
+
+            if (rawSize === '') {
+              size = '0';
+            } else if (theme?.breakpoints?.values?.[rawSize] !== undefined) {
+              size = String(theme.breakpoints.values[rawSize]);
+            }
+
+            resolvedStyleKey = `@${size}${finalContainer ? `/${finalContainer}` : ''}`;
           }
         }
         const value = callIfFn(sxObject[styleKey], theme);

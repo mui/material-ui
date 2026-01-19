@@ -315,6 +315,27 @@ describe('styleFunctionSx', () => {
         '@container (min-width:1280px)': { margin: '20px' },
       });
     });
+
+    it('supports breakpoint aliases with named containers', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          padding: {
+            '@sm/sidebar': 2,
+            '@md/sidebar': 3,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@container sidebar (min-width:600px)': {
+          padding: '20px',
+        },
+        '@container sidebar (min-width:960px)': {
+          padding: '30px',
+        },
+      });
+    });
   });
 
   describe('theme callback', () => {
