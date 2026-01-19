@@ -272,43 +272,56 @@ describe('<Chip />', () => {
       expect(handleDelete.callCount).to.equal(1);
     });
 
-    it('should stop propagation when clicking the delete icon', () => {
+    it('should not stop propagation when clicking the delete icon', () => {
       const handleClick = spy();
-
-      render(
-        <Chip
-          avatar={<Avatar id="avatar">MB</Avatar>}
-          label="Text Avatar Chip"
-          onClick={handleClick}
-          onDelete={() => {}}
-          deleteIcon={<div data-testid="delete-icon" />}
-        />,
-      );
-
-      const deleteIcon = screen.getByTestId('delete-icon');
-
-      fireEvent.click(deleteIcon);
-
-      expect(handleClick.callCount).to.equal(0);
-    });
-
-    it('should not stop propagation when clicking the delete icon if there is no onClick handler', () => {
       const handleParentClick = spy();
+
       render(
         <div role="button" tabIndex={0} onClick={handleParentClick} onKeyDown={() => {}}>
           <Chip
             avatar={<Avatar id="avatar">MB</Avatar>}
             label="Text Avatar Chip"
+            onClick={handleClick}
             onDelete={() => {}}
             deleteIcon={<div data-testid="delete-icon" />}
           />
         </div>,
       );
+
       const deleteIcon = screen.getByTestId('delete-icon');
 
       fireEvent.click(deleteIcon);
 
+      // Click propagates to both the Chip's onClick and parent handlers
+      expect(handleClick.callCount).to.equal(1);
       expect(handleParentClick.callCount).to.equal(1);
+    });
+
+    it('should allow stopping propagation in onDelete handler', () => {
+      const handleClick = spy();
+      const handleParentClick = spy();
+
+      render(
+        <div role="button" tabIndex={0} onClick={handleParentClick} onKeyDown={() => {}}>
+          <Chip
+            avatar={<Avatar id="avatar">MB</Avatar>}
+            label="Text Avatar Chip"
+            onClick={handleClick}
+            onDelete={(event) => {
+              event.stopPropagation();
+            }}
+            deleteIcon={<div data-testid="delete-icon" />}
+          />
+        </div>,
+      );
+
+      const deleteIcon = screen.getByTestId('delete-icon');
+
+      fireEvent.click(deleteIcon);
+
+      // stopPropagation in onDelete prevents both Chip onClick and parent from firing
+      expect(handleClick.callCount).to.equal(0);
+      expect(handleParentClick.callCount).to.equal(0);
     });
 
     it('should render with the root, deletable classes', () => {
