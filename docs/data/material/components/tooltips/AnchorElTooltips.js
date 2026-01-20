@@ -20,6 +20,7 @@ export default function AnchorElTooltips() {
 
   return (
     <Tooltip
+      describeChild
       title="Add"
       placement="top"
       arrow
