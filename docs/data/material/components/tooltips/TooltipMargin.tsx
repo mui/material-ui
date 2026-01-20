@@ -5,6 +5,7 @@ export default function TooltipMargin() {
   return (
     <Tooltip
       title="Add"
+      describeChild
       slotProps={{
         popper: {
           sx: {
