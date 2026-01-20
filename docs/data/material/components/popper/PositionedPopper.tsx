@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 
 export default function PositionedPopper() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
