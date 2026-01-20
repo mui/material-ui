@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Popper from '@mui/material/Popper';
+import Popper, { PopperPlacementType } from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -9,15 +9,17 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 
 export default function PositionedPopper() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [open, setOpen] = React.useState(false);
-  const [placement, setPlacement] = React.useState();
+  const [placement, setPlacement] = React.useState<PopperPlacementType>();
 
-  const handleClick = (newPlacement) => (event) => {
-    setAnchorEl(event.currentTarget);
-    setOpen((prev) => placement !== newPlacement || !prev);
-    setPlacement(newPlacement);
-  };
+  const handleClick =
+    (newPlacement: PopperPlacementType) =>
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+      setOpen((prev) => placement !== newPlacement || !prev);
+      setPlacement(newPlacement);
+    };
 
   return (
     <Box sx={{ width: 500 }}>
@@ -53,17 +55,13 @@ export default function PositionedPopper() {
           <Button onClick={handleClick('left-end')}>left-end</Button>
         </Grid>
         <Grid container sx={{ justifyContent: 'flex-end' }} size={6}>
-          <Stack sx={{ alignItems: 'end' }}>
-            <Grid>
-              <Button onClick={handleClick('right-start')}>right-start</Button>
-            </Grid>
-            <Grid>
-              <Button onClick={handleClick('right')}>right</Button>
-            </Grid>
-            <Grid>
-              <Button onClick={handleClick('right-end')}>right-end</Button>
-            </Grid>
-          </Stack>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'end' }}>
+            <Button onClick={handleClick('right-start')}>right-start</Button>
+
+            <Button onClick={handleClick('right')}>right</Button>
+
+            <Button onClick={handleClick('right-end')}>right-end</Button>
+          </Box>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>
