@@ -54,7 +54,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * ⚠️ Only `row` and `row-reverse` are supported. `column` and `column-reverse` are not supported,
    * because the Grid component is designed to subdivide layouts into **columns**, not rows.
    *
-   * For vertical layouts, use `Stack` (optionally inside a Grid item).
+   * For vertical layouts, use `Stack` instead.
    *
    * @default 'row'
    */
