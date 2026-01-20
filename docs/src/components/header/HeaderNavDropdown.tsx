@@ -88,8 +88,8 @@ const DOCS = [
     href: ROUTES.joyDocs,
   },
   {
-    name: 'MUI Base',
-    description: 'Unstyled React components and low-level hooks.',
+    name: 'Base UI',
+    description: 'Unstyled components for building accessible UIs.',
     href: ROUTES.baseDocs,
   },
   {

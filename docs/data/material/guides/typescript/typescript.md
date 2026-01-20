@@ -1,6 +1,6 @@
 # TypeScript
 
-<p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
+<p class="description">You can add static typing to JavaScript to improve developer productivity and code quality, thanks to TypeScript.</p>
 
 ## Minimum configuration
 

@@ -12200,7 +12200,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
   We're confident that its API shouldn't receive any major changes until the stable release of v5 (#26558) @mnajdova.
 - 📦 `@material-ui/icons` only ships ES modules and no longer CommonJS modules.
   This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB (#26310) @eps1lon.
-- 💄 Add support for [row and column spacing](https://mui.com/components/grid/#row-amp-column-spacing) in the Grid component (#26559) @likitarai1.
+- 💄 Add support for [row and column spacing](https://mui.com/components/grid/#row-column-spacing) in the Grid component (#26559) @likitarai1.
   <img width="549" alt="grid spacing demo" src="https://user-images.githubusercontent.com/3165635/121089288-383fa500-c7e7-11eb-8c43-53457b7430f1.png">
 
   Note that this feature was already available for [CSS grid users](https://mui.com/components/grid/#css-grid-layout) with the `rowGap` and `columnGap` props.
