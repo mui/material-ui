@@ -13,9 +13,9 @@
     "directory": "packages/api-docs-builder"
   },
   "dependencies": {
-    "@babel/core": "^7.28.5",
+    "@babel/core": "^7.28.6",
     "@babel/preset-typescript": "^7.28.5",
-    "@babel/traverse": "^7.28.5",
+    "@babel/traverse": "^7.28.6",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
@@ -35,7 +35,7 @@
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/node": "20.19.27",
+    "@types/node": "20.19.30",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "17.0.4",
     "chai": "6.2.1",

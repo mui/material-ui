@@ -31,7 +31,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
@@ -41,8 +41,8 @@
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.27",
-    "@types/react": "19.2.7",
+    "@types/node": "20.19.30",
+    "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
     "@types/react-is": "19.2.0",
     "@types/sinon": "17.0.4",
