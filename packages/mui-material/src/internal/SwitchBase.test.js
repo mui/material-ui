@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor, screen, fireEvent } from '@mui/internal-test-utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import ButtonBase from '../ButtonBase';
@@ -102,7 +102,7 @@ describe('<SwitchBase />', () => {
     expect(screen.getByRole('checkbox')).to.have.attribute('tabIndex', '-1');
   });
 
-  it('should pass value, disabled, checked, and name to the input', () => {
+  it('should pass value, and name to the input', () => {
     render(
       <SwitchBase
         icon="unchecked"
@@ -117,17 +117,45 @@ describe('<SwitchBase />', () => {
     const input = screen.getByRole('checkbox');
 
     expect(input).to.have.attribute('name', 'gender');
-    expect(input).to.have.attribute('disabled');
     expect(input).to.have.attribute('value', 'male');
   });
 
-  it('can disable the components, and render the ButtonBase with the disabled className', () => {
-    const { container } = render(
-      <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" disabled />,
-    );
+  describe('prop: disabled', () => {
+    it('disables the component', () => {
+      render(
+        <SwitchBase
+          data-testid="test"
+          icon="unchecked"
+          checkedIcon="checked"
+          type="checkbox"
+          disabled
+        />,
+      );
 
-    // to.be.disabled
-    expect(container.firstChild).to.have.class(classes.disabled);
+      const inputEl = screen.getByRole('checkbox');
+      expect(inputEl).to.not.have.attribute('checked');
+
+      fireEvent.click(inputEl);
+      expect(inputEl).to.not.have.attribute('checked');
+
+      fireEvent.click(screen.getByTestId('test'));
+      expect(inputEl).to.not.have.attribute('checked');
+    });
+
+    it('sets the disabled attribute and className', () => {
+      render(
+        <SwitchBase
+          data-testid="test"
+          icon="unchecked"
+          checkedIcon="checked"
+          type="checkbox"
+          disabled
+        />,
+      );
+
+      expect(screen.getByRole('checkbox')).to.have.attribute('disabled');
+      expect(screen.getByTestId('test')).to.have.class(classes.disabled);
+    });
   });
 
   describe('controlled', () => {
