@@ -31,10 +31,10 @@ For example, in:
 ```
 
 the `title` acts as an accessible description.
-If you want the tooltip to act as an accessible description you can pass `describeChild`.
+If you want the tooltip to act as an accessible description, you can pass `describeChild`.
 Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
 
-Consequently, if the trigger already has either visible text or an `aria-label`, use the tooltip as a description and pass the `describeChild` prop. Otherwise, use the default behaviour and let the tooltip label the trigger.
+Consequently, if the trigger already has either visible text or an `aria-label`, use the tooltip as a description and pass the `describeChild` prop. Otherwise, use the default behavior and let the tooltip label the trigger.
 
 {{"demo": "AccessibilityTooltips.js"}}
 
