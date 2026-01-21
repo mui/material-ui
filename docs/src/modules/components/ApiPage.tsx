@@ -348,6 +348,8 @@ export default function ApiPage(props: ApiPageProps) {
               />
             </React.Fragment>
           )}
+          {/* Fallback anchor for #classes link when there's no classes section */}
+          {classesDef.length === 0 && <span id="classes" />}
           <SlotsSection
             slots={slotsDef}
             spreadHint={

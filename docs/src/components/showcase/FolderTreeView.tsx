@@ -159,7 +159,8 @@ const isExpandable = (reactChildren: React.ReactNode): boolean => {
 };
 
 interface CustomTreeItemProps
-  extends Omit<UseTreeItemParameters, 'rootRef'>,
+  extends
+    Omit<UseTreeItemParameters, 'rootRef'>,
     Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {}
 
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(

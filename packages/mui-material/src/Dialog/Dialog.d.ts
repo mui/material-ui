@@ -85,7 +85,8 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface DialogProps
-  extends Omit<StandardProps<ModalProps, 'children'>, 'slots' | 'slotProps'>,
+  extends
+    Omit<StandardProps<ModalProps, 'children'>, 'slots' | 'slotProps'>,
     DialogSlotsAndSlotProps {
   /**
    * The id(s) of the element(s) that describe the dialog.

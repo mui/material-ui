@@ -7,6 +7,7 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Box from '@mui/system/Box';
@@ -292,37 +293,36 @@ describe('<Autocomplete />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/34998
-    it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted',
+      function test() {
+        render(
+          <Autocomplete
+            open
+            options={['one', 'two', 'three', 'four', 'five']}
+            renderInput={(params) => <TextField {...params} />}
+            ListboxProps={{ style: { padding: 0, maxHeight: '100px' } }}
+            PopperComponent={(props) => {
+              const { disablePortal, anchorEl, open, ...other } = props;
+              return <Box {...other} />;
+            }}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+        act(() => {
+          textbox.focus();
+        });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
-      render(
-        <Autocomplete
-          open
-          options={['one', 'two', 'three', 'four', 'five']}
-          renderInput={(params) => <TextField {...params} />}
-          ListboxProps={{ style: { padding: 0, maxHeight: '100px' } }}
-          PopperComponent={(props) => {
-            const { disablePortal, anchorEl, open, ...other } = props;
-            return <Box {...other} />;
-          }}
-        />,
-      );
-      const textbox = screen.getByRole('combobox');
-      act(() => {
-        textbox.focus();
-      });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
-      checkHighlightIs(screen.getByRole('listbox'), 'one');
-      expect(screen.getByRole('listbox')).to.have.property('scrollTop', 0);
-    });
+        checkHighlightIs(screen.getByRole('listbox'), 'one');
+        expect(screen.getByRole('listbox')).to.have.property('scrollTop', 0);
+      },
+    );
 
     it('should keep the current highlight if possible', () => {
       render(
@@ -460,7 +460,7 @@ describe('<Autocomplete />', () => {
       });
       expect(view.container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!window.navigator.userAgent.includes('jsdom')) {
+      if (!isJsdom()) {
         expect(screen.getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -485,7 +485,7 @@ describe('<Autocomplete />', () => {
       });
       expect(view.container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!window.navigator.userAgent.includes('jsdom')) {
+      if (!isJsdom()) {
         expect(screen.getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -824,54 +824,117 @@ describe('<Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    it('should fail validation if a required field has no value', async function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
-        this.skip();
-      }
+    // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+    it.skipIf(isJsdom())(
+      'should fail validation if a required field has no value',
+      async function test() {
+        const handleSubmit = spy((event) => event.preventDefault());
+        const view = render(
+          <form onSubmit={handleSubmit}>
+            <Autocomplete
+              multiple
+              options={['one', 'two']}
+              renderInput={(params) => <TextField {...params} required />}
+              value={[]}
+            />
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-      const handleSubmit = spy((event) => event.preventDefault());
-      const view = render(
-        <form onSubmit={handleSubmit}>
-          <Autocomplete
-            multiple
-            options={['one', 'two']}
-            renderInput={(params) => <TextField {...params} required />}
-            value={[]}
-          />
-          <button type="submit">Submit</button>
-        </form>,
+        await view.user.click(screen.getByRole('button', { name: 'Submit' }));
+
+        expect(handleSubmit.callCount).to.equal(0);
+      },
+    );
+
+    // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+    // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
+    // Unclear how native Constraint validation can be enabled for `multiple`
+    it.skipIf(isJsdom())(
+      'should fail validation if a required field has a value',
+      async function test() {
+        const handleSubmit = spy((event) => event.preventDefault());
+        const view = render(
+          <form onSubmit={handleSubmit}>
+            <Autocomplete
+              multiple
+              options={['one', 'two']}
+              renderInput={(params) => <TextField {...params} required />}
+              value={['one']}
+            />
+            <button type="submit">Submit</button>
+          </form>,
+        );
+
+        await view.user.click(screen.getByRole('button', { name: 'Submit' }));
+
+        expect(handleSubmit.callCount).to.equal(0);
+      },
+    );
+
+    it('should move focus to the last chip with ArrowLeft only when caret is at the start when multiple', () => {
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          multiple
+          options={options}
+          defaultValue={[options[0], options[1]]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
       );
 
-      await view.user.click(screen.getByRole('button', { name: 'Submit' }));
+      const textbox = screen.getByRole('combobox');
+      const [chipOne, chipTwo] = screen.getAllByRole('button');
 
-      expect(handleSubmit.callCount).to.equal(0);
+      // Type something so the input has content.
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+
+      // Caret not at start: ArrowLeft should just move the caret, not focus the chip.
+      textbox.setSelectionRange(2, 2);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(textbox).toHaveFocus();
+
+      // Caret at start: ArrowLeft should now move focus to the second chip.
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chipTwo).toHaveFocus();
+
+      // ArrowLeft should now move focus to the first chip.
+      fireEvent.keyDown(chipTwo, { key: 'ArrowLeft' });
+      expect(chipOne).toHaveFocus();
     });
 
-    it('should fail validation if a required field has a value', async function test() {
-      // Unclear how native Constraint validation can be enabled for `multiple`
-      if (window.navigator.userAgent.includes('jsdom')) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
-        // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
-        this.skip();
-      }
-
-      const handleSubmit = spy((event) => event.preventDefault());
-      const view = render(
-        <form onSubmit={handleSubmit}>
-          <Autocomplete
-            multiple
-            options={['one', 'two']}
-            renderInput={(params) => <TextField {...params} required />}
-            value={['one']}
-          />
-          <button type="submit">Submit</button>
-        </form>,
+    it('should clear freeSolo input when moving focus from input to chip with ArrowLeft and not restore it on ArrowRight', () => {
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          multiple
+          freeSolo
+          options={options}
+          defaultValue={options}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
       );
 
-      await view.user.click(screen.getByRole('button', { name: 'Submit' }));
+      const textbox = screen.getByRole('combobox');
+      const lastChip = screen.getByRole('button', { name: 'two' });
 
-      expect(handleSubmit.callCount).to.equal(0);
+      // Type some freeSolo text
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+      expect(textbox).to.have.property('value', 'foo');
+
+      // Caret at start: ArrowLeft should move focus to the last chip
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(lastChip).toHaveFocus();
+
+      // Input text should be cleared and stay cleared
+      expect(textbox).to.have.property('value', '');
+
+      // ArrowRight should move focus back to the input, without restoring the old text
+      fireEvent.keyDown(lastChip, { key: 'ArrowRight' });
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.property('value', '');
     });
   });
 
@@ -1095,7 +1158,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('WAI-ARIA conforming markup', () => {
-    specify('when closed', () => {
+    it('when closed', () => {
       render(<Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />);
 
       const textbox = screen.getByRole('combobox');
@@ -1123,7 +1186,7 @@ describe('<Autocomplete />', () => {
       expect(buttons[0], 'button is not in tab order').to.have.property('tabIndex', -1);
     });
 
-    specify('when open', () => {
+    it('when open', () => {
       render(
         <Autocomplete
           open
@@ -1368,7 +1431,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('when popup open', () => {
-    it('closes the popup if Escape is pressed ', () => {
+    it('closes the popup if Escape is pressed', () => {
       const handleClose = spy();
       render(
         <Autocomplete
@@ -3513,37 +3576,37 @@ describe('<Autocomplete />', () => {
   });
 
   // https://github.com/mui/material-ui/issues/36212
-  it('should preserve scrollTop position of the listbox when adding new options on mobile', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-    function getOptions(count) {
-      return Array(count)
-        .fill('item')
-        .map((value, i) => value + i);
-    }
+  it.skipIf(isJsdom())(
+    'should preserve scrollTop position of the listbox when adding new options on mobile',
+    function test() {
+      function getOptions(count) {
+        return Array(count)
+          .fill('item')
+          .map((value, i) => value + i);
+      }
 
-    const view = render(
-      <Autocomplete
-        open
-        options={getOptions(5)}
-        renderInput={(params) => <TextField {...params} />}
-        ListboxProps={{ style: { maxHeight: '100px' } }}
-      />,
-    );
-    const listbox = screen.getByRole('listbox');
+      const view = render(
+        <Autocomplete
+          open
+          options={getOptions(5)}
+          renderInput={(params) => <TextField {...params} />}
+          ListboxProps={{ style: { maxHeight: '100px' } }}
+        />,
+      );
+      const listbox = screen.getByRole('listbox');
 
-    expect(listbox).to.have.property('scrollTop', 0);
+      expect(listbox).to.have.property('scrollTop', 0);
 
-    const options = screen.getAllByRole('option');
-    fireEvent.touchStart(options[1]);
-    act(() => {
-      listbox.scrollBy(0, 60);
-      view.setProps({ options: getOptions(10) });
-    });
+      const options = screen.getAllByRole('option');
+      fireEvent.touchStart(options[1]);
+      act(() => {
+        listbox.scrollBy(0, 60);
+        view.setProps({ options: getOptions(10) });
+      });
 
-    expect(listbox).to.have.property('scrollTop', 60);
-  });
+      expect(listbox).to.have.property('scrollTop', 60);
+    },
+  );
 
   describe('prop: renderValue (single selection)', () => {
     it('should render only a single value, given that options are primitive values', () => {
@@ -3602,11 +3665,13 @@ describe('<Autocomplete />', () => {
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
     });
 
-    it('should delete using Backspace key', () => {
+    it('should delete using Backspace key with empty input text', () => {
+      const handleChange = spy();
       const view = render(
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
+          onChange={handleChange}
           renderValue={(value, getItemProps) => {
             return <Chip label={value} {...getItemProps()} />;
           }}
@@ -3620,14 +3685,21 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'Backspace' });
 
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(null);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'one' });
+
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
 
-    it('should delete using Delete key', () => {
+    it('should delete using Delete key with empty input text', () => {
+      const handleChange = spy();
       const view = render(
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
+          onChange={handleChange}
           renderValue={(value, getItemProps) => {
             return <Chip label={value} {...getItemProps()} />;
           }}
@@ -3640,6 +3712,11 @@ describe('<Autocomplete />', () => {
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
       fireEvent.keyDown(textbox, { key: 'Delete' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(null);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'one' });
 
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
@@ -3668,6 +3745,32 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
+    // https://github.com/mui/material-ui/issues/47244
+    it('should show input caret when focusing input after chip navigation', () => {
+      const view = render(
+        <Autocomplete
+          defaultValue="two"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = view.container.querySelector(`.${chipClasses.root}`);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+
+      fireEvent.click(textbox);
+
+      expect(textbox).toHaveFocus();
+      expect(chip).not.toHaveFocus();
+      expect(textbox).toHaveComputedStyle({ opacity: '1' });
+    });
+
     it('should allow zero number (0) as a value to render', () => {
       const view = render(
         <Autocomplete
@@ -3682,6 +3785,110 @@ describe('<Autocomplete />', () => {
       );
 
       expect(view.container.querySelector(`.${chipClasses.root}`)).to.have.text('0');
+    });
+
+    it('should not throw error on pressing ArrowLeft key with no value in single value rendering', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderValue={(value, getItemProps) => {
+            return value ? <Chip label={value} {...getItemProps()} /> : null;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      }).not.to.throw();
+
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should not throw error on pressing ArrowLeft key with input text but no value in single value rendering', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderValue={(value, getItemProps) => {
+            return value ? <Chip label={value} {...getItemProps()} /> : null;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.change(textbox, { target: { value: 'on' } });
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      }).not.to.throw();
+
+      expect(textbox).to.have.property('value', 'on');
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should move focus to the rendered value with ArrowLeft only when caret is at the start', () => {
+      const options = ['one', 'two'];
+      const view = render(
+        <Autocomplete
+          options={options}
+          defaultValue={options[0]}
+          renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = view.container.querySelector(`.${chipClasses.root}`);
+
+      // Type something so the input has content.
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+
+      // Caret not at start: ArrowLeft should just move the caret, not focus the chip.
+      textbox.setSelectionRange(2, 2);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(textbox).toHaveFocus();
+
+      // Caret at start: ArrowLeft should now move focus to the rendered value.
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+    });
+
+    it('should clear freeSolo input when moving focus to the rendered value with ArrowLeft and not restore it on ArrowRight', () => {
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          freeSolo
+          options={options}
+          defaultValue={options[0]}
+          renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = screen.getByRole('button', { name: 'one' });
+
+      // Type some freeSolo text
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+      expect(textbox).to.have.property('value', 'foo');
+
+      // Caret at start: ArrowLeft should move focus to the rendered value
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+
+      // Input text should be cleared
+      expect(textbox).to.have.property('value', '');
+
+      // ArrowRight should move focus back to input without restoring text
+      fireEvent.keyDown(chip, { key: 'ArrowRight' });
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.property('value', '');
     });
   });
 

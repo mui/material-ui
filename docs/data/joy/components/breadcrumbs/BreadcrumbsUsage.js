@@ -21,7 +21,7 @@ export default function BreadcrumbsUsage() {
         },
         {
           propName: 'children',
-          defaultValue: '<Link />\n  ...',
+          defaultValue: '<Link />\n  …',
         },
       ]}
       renderDemo={(props) => (

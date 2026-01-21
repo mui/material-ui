@@ -73,8 +73,10 @@ const styles = ({ theme }: { theme: Theme }) => ({
   },
 });
 
-export interface OnePirateTextFieldProps
-  extends Omit<FilledTextFieldProps | StandardTextFieldProps, 'size'> {
+export interface OnePirateTextFieldProps extends Omit<
+  FilledTextFieldProps | StandardTextFieldProps,
+  'size'
+> {
   noBorder?: boolean;
   size?: 'small' | 'medium' | 'large' | 'xlarge';
 }

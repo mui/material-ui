@@ -57,6 +57,7 @@
     "/material-ui/react-button-group": "Button Group",
     "/material-ui/react-checkbox": "Checkbox",
     "/material-ui/react-floating-action-button": "Floating Action Button",
+    "/material-ui/react-number-field": "Number Field",
     "/material-ui/react-radio-button": "Radio Group",
     "/material-ui/react-rating": "Rating",
     "/material-ui/react-select": "Select",

@@ -26,12 +26,13 @@ A nonce is a randomly generated string that is only used once, therefore you nee
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 
 ```js
-import uuidv4 from 'uuid/v4';
+import crypto from 'node:crypto';
 
-const nonce = new Buffer(uuidv4()).toString('base64');
+const nonce = crypto.randomBytes(16).toString('base64'); // 128 bits of entropy
 ```
 
-You must use UUID version 4, as it generates an **unpredictable** string.
+This generates a value that satisfies the [W3C CSP specification](https://w3c.github.io/webappsec-csp/#security-nonces) guidelines.
+
 You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
 
 ```js

@@ -13,7 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
-    "baseUrl": ".",
     "paths": {
       "@mui/material": ["./packages/mui-material/src"],
       "@mui/material/package.json": ["./packages/mui-material/package.json"],
@@ -50,14 +49,12 @@
       "@mui/internal-scripts/generate-llms-txt": [
         "./packages-internal/scripts/generate-llms-txt/src"
       ],
-      "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
-      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"],
       "@mui/stylis-plugin-rtl": ["./packages/mui-stylis-plugin-rtl/src"],
       "@mui/stylis-plugin-rtl/*": ["./packages/mui-stylis-plugin-rtl/src/*"],
       "docs/*": ["./docs/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
-    "types": ["node", "react", "mocha"]
+    "types": ["node", "react", "vitest/globals"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }

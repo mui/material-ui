@@ -4,6 +4,8 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 export interface DialogClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the backdrop element. */
+  backdrop: string;
   /** Styles applied to the container element if `scroll="paper"`. */
   scrollPaper: string;
   /** Styles applied to the container element if `scroll="body"`. */
@@ -46,6 +48,7 @@ export function getDialogUtilityClass(slot: string): string {
 
 const dialogClasses: DialogClasses = generateUtilityClasses('MuiDialog', [
   'root',
+  'backdrop',
   'scrollPaper',
   'scrollBody',
   'container',

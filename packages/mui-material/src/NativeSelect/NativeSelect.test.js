@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import NativeSelect, { nativeSelectClasses as classes } from '@mui/material/NativeSelect';
 import Input, { inputClasses } from '@mui/material/Input';
@@ -63,11 +63,7 @@ describe('<NativeSelect />', () => {
     expect(screen.getByRole('combobox')).to.have.class(classes.select);
   });
 
-  it('slots overrides should work', function test() {
-    if (window.navigator.userAgent.includes('jsdom')) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('slots overrides should work', function test() {
     const iconStyle = {
       marginTop: '13px',
     };

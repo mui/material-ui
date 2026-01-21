@@ -93,7 +93,8 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface DrawerProps
-  extends StandardProps<ModalProps, 'open' | 'children' | 'slots' | 'slotProps'>,
+  extends
+    StandardProps<ModalProps, 'open' | 'children' | 'slots' | 'slotProps'>,
     DrawerSlotsAndSlotProps {
   /**
    * Side from which the drawer will appear.

@@ -57,9 +57,7 @@ describe('@mui/codemod', () => {
         const actual = transform(
           {
             source: read('./emotion-prepend-cache.test/replace-existing-prepend.actual.js'),
-            path: require.resolve(
-              './emotion-prepend-cache.test/replace-existing-prepend.actual.js',
-            ),
+            path: require.resolve('./emotion-prepend-cache.test/replace-existing-prepend.actual.js'),
           },
           { jscodeshift },
           {},
