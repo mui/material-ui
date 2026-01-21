@@ -97,7 +97,9 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "MultipleSelect.js"}}
 
-### Checkmarks
+### Selection indicators
+
+This example demonstrates how icons are used to indicate the selection state of each item in the listbox.
 
 {{"demo": "MultipleSelectCheckmarks.js"}}
 
