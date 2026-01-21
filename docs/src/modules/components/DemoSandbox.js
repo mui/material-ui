@@ -132,7 +132,19 @@ function DemoIframe(props) {
   const document = frameRef.current?.contentDocument;
   return (
     <React.Fragment>
-      <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
+      <Iframe
+        onLoad={onLoad}
+        ref={frameRef}
+        title={`${name} demo`}
+        srcDoc={`<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  </head>
+  <body></body>
+</html>`}
+        {...other}
+      />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document} isJoy={isJoy} isolated={isolated}>
