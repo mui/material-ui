@@ -88,7 +88,7 @@ Internal packages (not published): `@mui-internal/*`, `@mui/internal-*`
 
 ### Errors
 
-For user-facing errors, in our public packages, we use the following writing style
+For user-facing errors, in our public packages, we use the following writing style:
 
 > What makes a good error message:
 >
