@@ -16,6 +16,15 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { DemoInstanceThemeProvider } from 'docs/src/theming';
 import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
+const SRC_DOC = `<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  </head>
+  <body></body>
+</html>`;
+
 let globalInjectThemeCache;
 
 function JoyIframeObserver({ document, isolated }) {
@@ -132,19 +141,7 @@ function DemoIframe(props) {
   const document = frameRef.current?.contentDocument;
   return (
     <React.Fragment>
-      <Iframe
-        onLoad={onLoad}
-        ref={frameRef}
-        title={`${name} demo`}
-        srcDoc={`<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
-  </head>
-  <body></body>
-</html>`}
-        {...other}
-      />
+      <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} srcDoc={SRC_DOC} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document} isJoy={isJoy} isolated={isolated}>
