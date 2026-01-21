@@ -58,7 +58,7 @@ pnpm proptypes && pnpm docs:api
 
 ### Docs demos
 
-Always author the typescript version of the demos. To generate the javascript variant, run:
+Always author the TypeScript version of the demos. To generate the JavaScript variant, run:
 
 ```bash
 pnpm docs:typescript:formatted
@@ -68,7 +68,7 @@ pnpm docs:typescript:formatted
 
 This is a monorepo managed by Lerna with Nx for caching. Key packages:
 
-- `@mui/material` - Core Material UI components
+- `@mui/material` - Core Material UI components
 - `@mui/system` - Styling system (sx prop, styled, theme)
 - `@mui/lab` - Experimental components (new components go here first)
 - `@mui/joy` - Joy UI design system (beta, development on hold)
