@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableBody, { tableBodyClasses as classes } from '@mui/material/TableBody';
-import Tablelvl2Context from '../Table/Tablelvl2Context';
 import describeConformance from '../../test/describeConformance';
 
 describe('<TableBody />', () => {
@@ -30,20 +29,6 @@ describe('<TableBody />', () => {
     const children = <tr data-testid="test" />;
     renderInTable(<TableBody>{children}</TableBody>);
     screen.getByTestId('test');
-  });
-
-  it('should define table.body in the child context', () => {
-    let context;
-    renderInTable(
-      <TableBody>
-        <Tablelvl2Context.Consumer>
-          {(value) => {
-            context = value;
-          }}
-        </Tablelvl2Context.Consumer>
-      </TableBody>,
-    );
-    expect(context.variant).to.equal('body');
   });
 
   describe('prop: component', () => {

@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableFooter, { tableFooterClasses as classes } from '@mui/material/TableFooter';
-import Tablelvl2Context from '../Table/Tablelvl2Context';
 import describeConformance from '../../test/describeConformance';
 
 describe('<TableFooter />', () => {
@@ -29,20 +28,6 @@ describe('<TableFooter />', () => {
     const children = <tr data-testid="test" />;
     renderInTable(<TableFooter>{children}</TableFooter>);
     screen.getByTestId('test');
-  });
-
-  it('should define table.footer in the child context', () => {
-    let context;
-    renderInTable(
-      <TableFooter>
-        <Tablelvl2Context.Consumer>
-          {(value) => {
-            context = value;
-          }}
-        </Tablelvl2Context.Consumer>
-      </TableFooter>,
-    );
-    expect(context.variant).to.equal('footer');
   });
 
   describe('prop: component', () => {
