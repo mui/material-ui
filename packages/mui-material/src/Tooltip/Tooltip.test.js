@@ -624,9 +624,7 @@ describe('<Tooltip />', () => {
 
       await clock.tickAsync(2);
 
-      await waitFor(() => {
-        expect(screen.queryByRole('tooltip')).to.equal(null);
-      });
+      expect(screen.queryByRole('tooltip')).to.equal(null);
     });
   });
 
