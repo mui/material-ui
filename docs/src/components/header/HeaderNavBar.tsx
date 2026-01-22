@@ -82,6 +82,9 @@ type ProductSubMenuProps = {
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   function ProductSubMenu({ icon, name, description, chip, href, ...props }, ref) {
+    if (!href) {
+      throw new Error('Soemthing went wrong.');
+    }
     return (
       <Box
         component={Link}
