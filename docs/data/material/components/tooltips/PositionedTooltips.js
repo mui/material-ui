@@ -53,13 +53,13 @@ export default function PositionedTooltips() {
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>
         <Grid>
-          <Tooltip describeChild title="Add" placement="bottom-start">
+          <Tooltip title="Add" placement="bottom-start">
             <Button>bottom-start</Button>
           </Tooltip>
-          <Tooltip describeChild title="Add" placement="bottom">
+          <Tooltip title="Add" placement="bottom">
             <Button>bottom</Button>
           </Tooltip>
-          <Tooltip describeChild title="Add" placement="bottom-end">
+          <Tooltip title="Add" placement="bottom-end">
             <Button>bottom-end</Button>
           </Tooltip>
         </Grid>
