@@ -29,7 +29,12 @@ export default function TriggersTooltips() {
           </Tooltip>
         </Grid>
         <Grid>
-          <Tooltip describeChild disableFocusListener disableTouchListener title="Add">
+          <Tooltip
+            describeChild
+            disableFocusListener
+            disableTouchListener
+            title="Add"
+          >
             <Button>Hover</Button>
           </Tooltip>
         </Grid>
