@@ -8,7 +8,12 @@ const TabList = React.forwardRef(function TabList(props, ref) {
   const { children: childrenProp, ...other } = props;
   const context = useTabContext();
   if (context === null) {
-    throw new TypeError('No TabContext provided');
+    throw /* minify-error */ new Error(
+      'MUI: No TabContext provided. ' +
+        'TabList must be used within a TabContext. ' +
+        'Wrap your Tabs with <TabContext value={...}>. ' +
+        'See https://mui.com/material-ui/react-tabs/#experimental-api for more info.',
+    );
   }
   const children = React.Children.map(childrenProp, (child) => {
     if (!React.isValidElement(child)) {
