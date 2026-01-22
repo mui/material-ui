@@ -80,7 +80,7 @@ Internal packages (not published): `@mui-internal/*`, `@mui/internal-*`
 
 ## Code Conventions
 
-When authoring, or reviewing code. Always be on the lookout for applying thse code conventions.
+When authoring, or reviewing code. Always be on the lookout for applying these code conventions.
 
 ### TypeScript
 
