@@ -37,7 +37,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
 
   const context = useTabContext();
   if (context === null) {
-    throw /* minify-error */ new Error(
+    throw /* minify-error */ new TypeError(
       'MUI: No TabContext provided. ' +
         'TabPanel must be used within a TabContext. ' +
         'Wrap your TabPanel with <TabContext value={...}>. ' +
