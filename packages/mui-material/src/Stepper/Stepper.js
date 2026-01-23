@@ -8,7 +8,7 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
-import StepperContext from './StepperContext';
+import { StepperContextProvider } from './StepperContext';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -98,7 +98,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   );
 
   return (
-    <StepperContext.Provider value={contextValue}>
+    <StepperContextProvider value={contextValue}>
       <StepperRoot
         as={component}
         ownerState={ownerState}
@@ -109,7 +109,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       >
         {steps}
       </StepperRoot>
-    </StepperContext.Provider>
+    </StepperContextProvider>
   );
 });
 
