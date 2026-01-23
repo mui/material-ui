@@ -31,6 +31,7 @@
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
+    "fg-loadcss": "^3.1.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"
   },
@@ -49,6 +50,7 @@
     "@mui/icons-material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@mui/material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@mui/system": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
+    "@mui/utils": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "chai": "^6.0.1",
     "csstype": "^3.1.3",

@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createTheme as createMdTheme } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import { getMetaThemeColor } from '@mui/docs/branding';
+import { getMetaThemeColor } from '../branding';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
+import useLazyCSS from '../useLazyCSS';
 
 const themeInitialOptions = {
   dense: false,
@@ -100,6 +100,8 @@ if (process.env.NODE_ENV !== 'production') {
 export function ThemeProvider(props: React.PropsWithChildren) {
   const { children } = props;
 
+  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
+
   const [themeOptions, dispatch] = React.useReducer((state, action) => {
     switch (action.type) {
       case 'SET_DENSE':
@@ -132,8 +134,6 @@ export function ThemeProvider(props: React.PropsWithChildren) {
   }, themeInitialOptions);
 
   const { direction, paletteMode } = themeOptions;
-
-  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
   // TODO replace with useColorScheme once all pages support css vars
   const { mode, systemMode } = useColorSchemeShim();

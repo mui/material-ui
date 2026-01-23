@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-interface SectionHeadlineProps {
+export interface SectionHeadlineProps {
   alwaysCenter?: boolean;
   description?: React.ReactNode;
   id?: string;

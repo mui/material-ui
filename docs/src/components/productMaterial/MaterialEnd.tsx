@@ -10,7 +10,7 @@ import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import { GlowingIconContainer } from '@mui/docs/InfoCard';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';

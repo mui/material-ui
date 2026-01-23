@@ -9,7 +9,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import { PrefetchStoreTemplateImages } from 'docs/src/components/home/StoreTemplatesBanner';
 import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 
 function createLoading(sx: BoxProps['sx']) {
   return function Loading() {

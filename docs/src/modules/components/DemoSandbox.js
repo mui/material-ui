@@ -14,7 +14,7 @@ import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { DemoInstanceThemeProvider } from 'docs/src/theming';
-import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
+import { ThemeOptionsContext } from '@mui/docs/ThemeContext';
 
 let globalInjectThemeCache;
 

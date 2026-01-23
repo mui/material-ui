@@ -27,7 +27,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import { Link } from '@mui/docs/Link';
 import generateRssFeed from 'docs/scripts/generateRSSFeed';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
 
 export const getStaticProps = () => {

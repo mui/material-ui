@@ -23,7 +23,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import { Link } from '@mui/docs/Link';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import useLazyCSS from '@mui/docs/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SearchButton from './SearchButton';
 

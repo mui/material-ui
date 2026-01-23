@@ -11,7 +11,7 @@ import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
 import {
   DispatchContext,
   ThemeOptionsContext,
-} from 'docs/src/modules/components/ThemeContext';
+} from '@mui/docs/ThemeContext';
 import { useTranslate } from '@mui/docs/i18n';
 import { setDocsSpacing, resetDocsSpacing } from 'docs/src/BrandingCssVarsProvider';
 

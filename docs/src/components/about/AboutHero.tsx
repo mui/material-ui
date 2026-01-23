@@ -5,7 +5,7 @@ import { styled, keyframes } from '@mui/material/styles';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 import TeamStatistics from 'docs/src/components/about/TeamStatistics';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 
 const teamPhotos = [
   {
