@@ -27,10 +27,10 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
+    "build": "rimraf build && shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
     "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
-    "build:lib": "code-infra build --hasLargeFiles --skipPackageJson --skipBundlePackageJson --skipMainCheck --buildTypes false",
-    "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib",
+    "build:lib": "code-infra build --flat --hasLargeFiles --skipMainCheck --buildTypes false",
+    "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib && rimraf build",
     "build:copy-files": "shx cp package.json README.md ../../CHANGELOG.md ../../LICENSE build",
     "build:typings": "node ./scripts/create-typings.mjs",
     "release": "pnpm build && pnpm publish",
@@ -80,27 +80,8 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    ".": {
-      "require": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      },
-      "default": {
-        "types": "./esm/index.d.ts",
-        "default": "./esm/index.js"
-      }
-    },
-    "./*": {
-      "require": {
-        "types": "./*.d.ts",
-        "default": "./*.js"
-      },
-      "default": {
-        "types": "./esm/*.d.ts",
-        "default": "./esm/*.js"
-      }
-    },
-    "./esm": null,
+    ".": "./src/index.js",
+    "./*": "./src/*.js",
     "./utils/*": null
   }
 }
