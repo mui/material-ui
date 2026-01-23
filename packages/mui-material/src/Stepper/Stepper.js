@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getStepperUtilityClass, classes);
 };
 
-const StepperRoot = styled('div', {
+const StepperRoot = styled('ol', {
   name: 'MuiStepper',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -33,6 +33,7 @@ const StepperRoot = styled('div', {
   },
 })({
   display: 'flex',
+  listStyle: 'none',
   variants: [
     {
       props: { orientation: 'horizontal' },
@@ -65,7 +66,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     alternativeLabel = false,
     children,
     className,
-    component = 'div',
+    component = 'ol',
     connector = defaultConnector,
     nonLinear = false,
     orientation = 'horizontal',
@@ -83,16 +84,17 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const totalSteps = childrenArray.length;
   const steps = childrenArray.map((step, index) => {
     return React.cloneElement(step, {
       index,
-      last: index + 1 === childrenArray.length,
+      last: index + 1 === totalSteps,
       ...step.props,
     });
   });
   const contextValue = React.useMemo(
-    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation }),
-    [activeStep, alternativeLabel, connector, nonLinear, orientation],
+    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation, totalSteps }),
+    [activeStep, alternativeLabel, connector, nonLinear, orientation, totalSteps],
   );
 
   return (
@@ -102,6 +104,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
+        aria-orientation={orientation}
         {...other}
       >
         {steps}

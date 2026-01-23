@@ -59,8 +59,8 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
   const { children, className, icon, optional, ...other } = props;
 
-  const { disabled, active } = React.useContext(StepContext);
-  const { orientation } = React.useContext(StepperContext);
+  const { disabled, active, index } = React.useContext(StepContext);
+  const { orientation, totalSteps } = React.useContext(StepperContext);
 
   const ownerState = { ...props, orientation };
 
@@ -86,6 +86,8 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       aria-current={active ? 'step' : undefined}
+      aria-posinset={index + 1}
+      aria-setsize={totalSteps}
       {...other}
     >
       {child}

@@ -7,6 +7,7 @@ export interface StepperContextType {
   connector: React.ReactNode;
   nonLinear: boolean;
   orientation: 'horizontal' | 'vertical';
+  totalSteps: number;
 }
 
 /**

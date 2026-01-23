@@ -20,7 +20,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getStepUtilityClass, classes);
 };
 
-const StepRoot = styled('div', {
+const StepRoot = styled('li', {
   name: 'MuiStep',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -58,7 +58,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     active: activeProp,
     children,
     className,
-    component = 'div',
+    component = 'li',
     completed: completedProp,
     disabled: disabledProp,
     expanded = false,
