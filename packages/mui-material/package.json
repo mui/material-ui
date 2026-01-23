@@ -25,12 +25,12 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
+    "attw": "attw --pack ./build"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
@@ -94,7 +94,25 @@
   "exports": {
     ".": "./src/index.js",
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
-    "./*": "./src/*/index.ts"
+    "./zero-styled": "./src/zero-styled/index.tsx",
+    "./className": "./src/className/index.ts",
+    "./ClickAwayListener": "./src/ClickAwayListener/index.ts",
+    "./darkScrollbar": "./src/darkScrollbar/index.ts",
+    "./DefaultPropsProvider": "./src/DefaultPropsProvider/index.ts",
+    "./generateUtilityClass": "./src/generateUtilityClass/index.ts",
+    "./generateUtilityClasses": "./src/generateUtilityClasses/index.ts",
+    "./Grid": "./src/Grid/index.ts",
+    "./InitColorSchemeScript": "./src/InitColorSchemeScript/index.ts",
+    "./internal": "./src/internal/index.ts",
+    "./locale": "./src/locale/index.ts",
+    "./OverridableComponent": "./src/OverridableComponent/index.ts",
+    "./PigmentContainer": "./src/PigmentContainer/index.ts",
+    "./PigmentGrid": "./src/PigmentGrid/index.ts",
+    "./PigmentStack": "./src/PigmentStack/index.ts",
+    "./transitions": "./src/transitions/index.ts",
+    "./useLazyRipple": "./src/useLazyRipple/index.ts",
+    "./version": "./src/version/index.ts",
+    "./*": "./src/*/index.js"
   },
   "pigment-css": {
     "vite": {
