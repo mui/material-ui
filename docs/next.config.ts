@@ -122,7 +122,7 @@ export default withDocsInfra({
           '.mjs',
           // @ts-ignore
           ...config.resolve.extensions.filter(
-            (extension) => extension !== '.tsx' && extension !== '.mjs',
+            (extension: string) => extension !== '.tsx' && extension !== '.mjs',
           ),
         ],
       },
