@@ -8,7 +8,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
 
@@ -60,7 +60,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const { children, className, icon, optional, ...other } = props;
 
   const { disabled, active, index } = React.useContext(StepContext);
-  const { orientation, totalSteps } = React.useContext(StepperContext);
+  const { orientation, totalSteps } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 

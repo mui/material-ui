@@ -7,7 +7,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepContentUtilityClass } from './stepContentClasses';
 import useSlot from '../utils/useSlot';
@@ -67,7 +67,7 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     ...other
   } = props;
 
-  const { orientation } = React.useContext(StepperContext);
+  const { orientation } = useStepperContext();
   const { active, last, expanded } = React.useContext(StepContext);
 
   const ownerState = { ...props, last };
