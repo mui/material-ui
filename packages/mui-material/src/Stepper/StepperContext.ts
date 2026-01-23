@@ -12,6 +12,7 @@ export interface StepperContextType {
 
 /**
  * Provides information about the current step in Stepper.
+ * @internal
  */
 const StepperContext = React.createContext<StepperContextType | {}>({});
 
@@ -24,7 +25,13 @@ if (process.env.NODE_ENV !== 'production') {
  * has been defined in the component tree.
  */
 export function useStepperContext(): StepperContextType | {} {
-  return React.useContext(StepperContext);
+  const stepperContext = React.useContext(StepperContext);
+
+  if (!stepperContext) {
+    console.error('useStepperContext() called outside of a StepperContext provider.');
+  }
+
+  return stepperContext;
 }
 
-export default StepperContext;
+export const StepperContextProvider = StepperContext.Provider;

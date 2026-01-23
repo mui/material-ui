@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from './StepContext';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -68,7 +68,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
   } = props;
 
   const { activeStep, connector, alternativeLabel, orientation, nonLinear } =
-    React.useContext(StepperContext);
+    useStepperContext();
 
   let [active = false, completed = false, disabled = false] = [
     activeProp,
