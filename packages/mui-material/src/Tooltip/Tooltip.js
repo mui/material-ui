@@ -473,15 +473,19 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleMouseLeave = (event) => {
+    console.log('handleMouseLeave');
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
+      console.log('leaveTimer expired, handleCLose');
       handleClose(event);
     });
   };
 
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
-    if (!isFocusVisible(event.target)) {
+    const focused = isFocusVisible(event.target);
+    console.log('handleBlur', focused);
+    if (!focused) {
       setChildIsFocusVisible(false);
       handleMouseLeave(event);
     }
