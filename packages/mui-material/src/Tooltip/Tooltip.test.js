@@ -628,6 +628,7 @@ describe('<Tooltip />', () => {
       console.log('before transition timeout ends');
 
       expect(screen.getByRole('tooltip')).toBeVisible();
+      expect(screen.queryByRole('tooltip')).not.to.equal(null);
 
       await clock.tickAsync(2);
 
