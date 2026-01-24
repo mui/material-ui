@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -296,7 +295,6 @@ const hystersisTimer = new Timeout();
 let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
-  console.log('testReset called');
   hystersisOpen = false;
   hystersisTimer.clear();
 }
@@ -431,9 +429,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
      * @param {React.SyntheticEvent | Event} event
      */
     (event) => {
-      console.log('handleClose');
       hystersisTimer.start(800 + leaveDelay, () => {
-        console.log('hysteresisTimer expired');
         hystersisOpen = false;
       });
       setOpenState(false);
@@ -443,7 +439,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       }
 
       closeTimer.start(theme.transitions.duration.shortest, () => {
-        console.log('closeTimer expired');
         ignoreNonTouchEvents.current = false;
       });
     },
@@ -473,10 +468,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleMouseLeave = (event) => {
-    console.log('handleMouseLeave');
     enterTimer.clear();
     leaveTimer.start(leaveDelay, () => {
-      console.log('leaveTimer expired, handleCLose');
       handleClose(event);
     });
   };
@@ -484,7 +477,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
     const focused = isFocusVisible(event.target);
-    console.log('handleBlur', focused);
     if (!focused) {
       setChildIsFocusVisible(false);
       handleMouseLeave(event);
@@ -750,8 +742,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
     ref: setArrowRef,
   });
-
-  console.log('Tooltip render', { open, title });
 
   return (
     <React.Fragment>
