@@ -476,6 +476,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
+    // Needed for https://github.com/mui/material-ui/issues/45373
     const target = event?.target ?? childNode;
     if (!target || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
