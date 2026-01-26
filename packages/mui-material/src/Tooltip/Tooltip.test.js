@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -616,14 +617,22 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
+      console.log('before leaveDelay');
+
       await clock.tickAsync(leaveDelay);
 
+      console.log('after leaveDelay');
+
       await clock.tickAsync(transitionTimeout - 1);
+
+      console.log('before transition timeout ends');
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(screen.queryByRole('tooltip')).not.to.equal(null);
 
       await clock.tickAsync(2);
+
+      console.log('after transition timeout ends');
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
