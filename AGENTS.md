@@ -120,7 +120,7 @@ The minifier works with both `Error` and `TypeError` constructors.
 
 #### After Adding/Updating Errors
 
-Run `pnpm extract-errors` to update `docs/public/static/error-codes.json`.
+Run `pnpm extract-error-codes` to update `docs/public/static/error-codes.json`.
 
 **Important:** If the update created a new error code, but the new and original message have the same number of arguments and semantics haven't changed, update the original error in `error-codes.json` instead of creating a new code.
 
