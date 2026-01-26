@@ -7,12 +7,12 @@ import Input from '@mui/material/Input';
 describe('<Tooltip> integration', () => {
   const { render, clock } = createRenderer({ clock: 'fake' });
 
-  it.skipIf(isJsdom())(
+  it.skipIf(isJsdom()).only(
     'does not throw error and closes Tooltip when Input becomes disabled while focused',
     async () => {
       function TestCase({ disabled }) {
         return (
-          <Tooltip title="Test" enterDelay={0} slotProps={{ transition: { timeout: 0 } }}>
+          <Tooltip title="Test" slotProps={{ transition: { timeout: 0 } }}>
             <Input disabled={disabled} placeholder="click here and wait" />
           </Tooltip>
         );
