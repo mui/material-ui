@@ -7,7 +7,7 @@ import Input from '@mui/material/Input';
 describe('<Tooltip> integration', () => {
   const { render, clock } = createRenderer({ clock: 'fake' });
 
-  it.skipIf(isJsdom()).only(
+  it.skipIf(isJsdom())(
     'does not throw error and closes Tooltip when Input becomes disabled while focused',
     async () => {
       function TestCase({ disabled }) {
