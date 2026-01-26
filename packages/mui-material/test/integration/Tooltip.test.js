@@ -33,6 +33,8 @@ describe('<Tooltip> integration', () => {
       expect(() => {
         setProps({ disabled: true });
       }).not.to.throw();
+
+      expect(tooltip).to.equal(null);
     },
   );
 });
