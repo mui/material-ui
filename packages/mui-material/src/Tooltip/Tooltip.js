@@ -476,9 +476,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
-    if (!isFocusVisible(event.target)) {
+    const target = event?.target ?? childNode;
+    if (!target || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
-      handleMouseLeave(event);
+      // InputBase can call onBlur() without an event when the input becomes disabled.
+      // Tooltip must not assume an event object exists.
+      handleMouseLeave(event ?? new Event('blur'));
     }
   };
 
