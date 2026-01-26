@@ -23,6 +23,44 @@ function isImportedIdentifier(path: NodePath): boolean {
   );
 }
 
+function getMemberExpressionString(node: t.MemberExpression): string {
+  const parts: string[] = [];
+  let current: t.Expression = node;
+
+  while (t.isMemberExpression(current)) {
+    if (t.isIdentifier(current.property)) {
+      parts.unshift(current.property.name);
+    }
+    current = current.object;
+  }
+
+  if (t.isIdentifier(current)) {
+    parts.unshift(current.name);
+  }
+
+  return parts.join('.');
+}
+
+function isMemberExpressionWithImportedObject(path: NodePath): boolean {
+  if (!path.isMemberExpression()) {
+    return false;
+  }
+  const object = path.get('object');
+  if (Array.isArray(object)) {
+    return false;
+  }
+  // Check if the object (or root of nested member expression) is an imported identifier
+  let current = object;
+  while (current.isMemberExpression()) {
+    const innerObject = current.get('object');
+    if (Array.isArray(innerObject)) {
+      return false;
+    }
+    current = innerObject;
+  }
+  return isImportedIdentifier(current);
+}
+
 function getDefaultValue(propertyPath: NodePath) {
   const valueNode = propertyPath.get('value');
   if (!Array.isArray(valueNode) && !valueNode.isAssignmentPattern()) {
@@ -46,6 +84,9 @@ function getDefaultValue(propertyPath: NodePath) {
 
     if (isImportedIdentifier(originalPath)) {
       defaultValue = (originalPath.node as t.Identifier).name;
+    } else if (isMemberExpressionWithImportedObject(originalPath)) {
+      // For member expressions like `duration.standard`, preserve the original expression
+      defaultValue = getMemberExpressionString(originalPath.node as t.MemberExpression);
     } else {
       // For non-imports and non-member expressions, resolve and print the value
       if (path.isAssignmentPattern()) {
