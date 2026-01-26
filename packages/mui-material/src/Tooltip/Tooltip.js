@@ -475,7 +475,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const handleMouseLeave = (event) => {
     enterTimer.clear();
-    console.log(`handleMouseLeave, start leaveTimer with delay ${leaveDelay}`);
+    console.log(`handleMouseLeave, start leaveTimer with delay ${leaveDelay}ms`);
     leaveTimer.start(leaveDelay, () => {
       console.log('leaveTimer expired, handleCLose');
       handleClose(event);
