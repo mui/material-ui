@@ -736,7 +736,7 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
-  const handlers = [...Object.values(builtinHandlers), muiDefaultPropsHandler];
+  const handlers = [...Object.values(builtinHandlers ?? {}), muiDefaultPropsHandler];
   try {
     const results = docgenParse(src, {
       handlers,

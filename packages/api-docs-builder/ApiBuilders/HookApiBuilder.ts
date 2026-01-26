@@ -439,7 +439,7 @@ export default async function generateHookApi(
         return foundPaths;
       },
     },
-    handlers: Object.values(builtinHandlers),
+    handlers: Object.values(builtinHandlers ?? {}),
     filename,
   });
   const reactApi: HookReactApi = results[0] as HookReactApi;
