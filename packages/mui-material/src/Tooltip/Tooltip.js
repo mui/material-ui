@@ -462,6 +462,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     enterTimer.clear();
+    console.log('handleMouseOver, clear leaveTimer');
     leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
       enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
@@ -473,8 +474,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleMouseLeave = (event) => {
-    console.log('handleMouseLeave');
     enterTimer.clear();
+    console.log(`handleMouseLeave, start leaveTimer with delay ${leaveDelay}`);
     leaveTimer.start(leaveDelay, () => {
       console.log('leaveTimer expired, handleCLose');
       handleClose(event);
@@ -516,6 +517,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const handleTouchStart = (event) => {
     detectTouchStart(event);
+    console.log('handleTouchStart, clear timers');
     leaveTimer.clear();
     closeTimer.clear();
     stopTouchInteraction();
