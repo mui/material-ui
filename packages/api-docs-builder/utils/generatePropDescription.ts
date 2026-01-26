@@ -1,6 +1,6 @@
 import * as doctrine from 'doctrine';
 import * as recast from 'recast';
-import { PropTypeDescriptor } from 'react-docgen';
+import type { PropTypeDescriptor } from 'react-docgen';
 import { escapeCell, removeNewLines } from '../buildApi';
 import {
   isElementTypeAcceptingRefProp,
@@ -57,6 +57,9 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
 }
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
+  if (!type.raw) {
+    return false;
+  }
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
   const match = type.raw.match(marker);
   const startIndex = type.raw.search(marker);

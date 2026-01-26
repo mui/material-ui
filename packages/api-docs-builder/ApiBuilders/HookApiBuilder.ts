@@ -3,7 +3,7 @@ import path from 'path';
 import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import { builtinHandlers, parse as docgenParse } from 'react-docgen';
 import { kebabCase, upperFirst, escapeRegExp } from 'es-toolkit/string';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { escapeEntities, renderMarkdown } from '../buildApi';
@@ -426,23 +426,25 @@ export default async function generateHookApi(
     return null;
   }
 
-  const reactApi: HookReactApi = docgenParse(
-    src,
-    (ast) => {
-      let node;
-      astTypes.visit(ast, {
-        visitFunctionDeclaration: (functionPath) => {
-          if (functionPath.node?.id?.name === name) {
-            node = functionPath;
-          }
-          return false;
-        },
-      });
-      return node;
+  const results = docgenParse(src, {
+    resolver: {
+      resolve({ ast }) {
+        let node: any;
+        astTypes.visit(ast, {
+          visitFunctionDeclaration: (functionPath) => {
+            if (functionPath.node?.id?.name === name) {
+              node = functionPath;
+            }
+            return false;
+          },
+        });
+        return node ? [node] : [];
+      },
     },
-    defaultHandlers,
-    { filename },
-  );
+    handlers: Object.values(builtinHandlers),
+    filename,
+  });
+  const reactApi: HookReactApi = results[0] as HookReactApi;
 
   const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
   const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);

@@ -7,7 +7,7 @@ import { kebabCase, escapeRegExp } from 'es-toolkit/string';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import { builtinHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
@@ -539,7 +539,8 @@ const attachPropsTable = (
         signatureReturn,
         seeMore,
       } = generatePropDescription(prop, propName);
-      const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
+      const propType = propDescriptor.type;
+      const propTypeDescription = propType ? generatePropTypeDescription(propType) : undefined;
       const chainedPropType = getChained(prop.type);
 
       const requiredProp =
@@ -586,9 +587,8 @@ const attachPropsTable = (
         propName,
         {
           type: {
-            name: propDescriptor.type.name,
-            description:
-              propTypeDescription !== propDescriptor.type.name ? propTypeDescription : undefined,
+            name: propType?.name ?? 'unknown',
+            description: propTypeDescription !== propType?.name ? propTypeDescription : undefined,
           },
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
@@ -737,56 +737,57 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
+  const handlers = [...Object.values(builtinHandlers), muiDefaultPropsHandler];
   try {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+    const results = docgenParse(src, {
+      handlers,
       filename,
     });
+    reactApi = results[0] as ComponentReactApi;
   } catch (error) {
     // fallback to default logic if there is no `create*` definition.
     if ((error as Error).message === 'No suitable component definition found.') {
-      reactApi = docgenParse(
-        src,
-        (ast) => {
-          let node;
-          // TODO migrate to react-docgen v6, using Babel AST now
-          astTypes.visit(ast, {
-            visitFunctionDeclaration: (functionPath) => {
-              // @ts-ignore
-              if (functionPath.node.params[0].name === 'props') {
-                node = functionPath;
-              }
-              return false;
-            },
-            visitVariableDeclaration: (variablePath) => {
-              const definitions: any[] = [];
-              if (variablePath.node.declarations) {
-                variablePath
-                  .get('declarations')
-                  .each((declarator: any) => definitions.push(declarator.get('init')));
-              }
-              definitions.forEach((definition) => {
-                // definition.value.expression is defined when the source is in TypeScript.
-                const expression = definition.value?.expression
-                  ? definition.get('expression')
-                  : definition;
-                if (expression.value?.callee) {
-                  const definitionName = expression.value.callee.name;
-                  if (definitionName === `create${componentInfo.name}`) {
-                    node = expression;
-                  }
+      const results = docgenParse(src, {
+        resolver: {
+          resolve({ ast }) {
+            let node: any;
+            astTypes.visit(ast, {
+              visitFunctionDeclaration: (functionPath) => {
+                // @ts-ignore
+                if (functionPath.node.params[0]?.name === 'props') {
+                  node = functionPath;
                 }
-              });
-              return false;
-            },
-          });
-
-          return node;
+                return false;
+              },
+              visitVariableDeclaration: (variablePath) => {
+                const definitions: any[] = [];
+                if (variablePath.node.declarations) {
+                  variablePath
+                    .get('declarations')
+                    .each((declarator: any) => definitions.push(declarator.get('init')));
+                }
+                definitions.forEach((definition) => {
+                  // definition.value.expression is defined when the source is in TypeScript.
+                  const expression = definition.value?.expression
+                    ? definition.get('expression')
+                    : definition;
+                  if (expression.value?.callee) {
+                    const definitionName = expression.value.callee.name;
+                    if (definitionName === `create${componentInfo.name}`) {
+                      node = expression;
+                    }
+                  }
+                });
+                return false;
+              },
+            });
+            return node ? [node] : [];
+          },
         },
-        defaultHandlers.concat(muiDefaultPropsHandler),
-        {
-          filename,
-        },
-      );
+        handlers,
+        filename,
+      });
+      reactApi = results[0] as ComponentReactApi;
     } else {
       throw error;
     }

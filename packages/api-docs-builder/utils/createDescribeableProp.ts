@@ -1,5 +1,5 @@
 import * as doctrine from 'doctrine';
-import { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
+import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
 
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
@@ -30,7 +30,7 @@ export default function createDescribeableProp(
 
   const { propsWithoutDefaultVerification = [] } = settings;
 
-  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+  const renderedDefaultValue = (defaultValue?.value as string | undefined)?.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
     renderedDefaultValue &&
     // Ignore "large" default values that would break the table layout.
@@ -80,6 +80,10 @@ export default function createDescribeableProp(
         `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
       );
     }
+  }
+
+  if (!type) {
+    throw new Error(`The "${propName}" prop is missing a type.`);
   }
 
   return {
