@@ -66,7 +66,9 @@ export function isElementAcceptingRefProp(type: PropTypeDescriptor | undefined):
   return type?.raw ? /^elementAcceptingRef/.test(type.raw) : false;
 }
 
-export default function generatePropTypeDescription(type: PropTypeDescriptor | undefined): string | undefined {
+export default function generatePropTypeDescription(
+  type: PropTypeDescriptor | undefined,
+): string | undefined {
   if (!type) {
     return undefined;
   }
