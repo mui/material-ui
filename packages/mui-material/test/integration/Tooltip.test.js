@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, isJsdom, act, flushMicrotasks } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom, act } from '@mui/internal-test-utils';
 import Tooltip from '@mui/material/Tooltip';
 import Input from '@mui/material/Input';
 
 describe('<Tooltip> integration', () => {
-  const { render } = createRenderer();
+  const { render, clock } = createRenderer({clock: 'fake'});
 
   it.skipIf(isJsdom())(
     'does not throw error and closes Tooltip when Input becomes disabled while focused',
@@ -15,7 +15,6 @@ describe('<Tooltip> integration', () => {
           <Tooltip
             title="Test"
             enterDelay={0}
-            leaveDelay={0}
             slotProps={{ transition: { timeout: 0 } }}
           >
             <Input disabled={disabled} placeholder="click here and wait" />
@@ -39,7 +38,7 @@ describe('<Tooltip> integration', () => {
         setProps({ disabled: true });
       }).not.to.throw();
 
-      await flushMicrotasks();
+      clock.tick(100)
       expect(tooltip).to.equal(null);
     },
   );
