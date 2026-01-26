@@ -39,7 +39,6 @@
       },
       "additionalInfo": { "joy-size": true }
     },
-    "slotProps": { "type": { "name": "unknown" }, "default": "{}" },
     "slots": {
       "type": {
         "name": "shape",
