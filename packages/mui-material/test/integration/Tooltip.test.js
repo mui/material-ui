@@ -12,7 +12,12 @@ describe('<Tooltip> integration', () => {
     async () => {
       function TestCase({ disabled }) {
         return (
-          <Tooltip title="Test" enterDelay={0} leaveDelay={0} slotProps={{ transition: { timeout: 0 } }}>
+          <Tooltip
+            title="Test"
+            enterDelay={0}
+            leaveDelay={0}
+            slotProps={{ transition: { timeout: 0 } }}
+          >
             <Input disabled={disabled} placeholder="click here and wait" />
           </Tooltip>
         );
