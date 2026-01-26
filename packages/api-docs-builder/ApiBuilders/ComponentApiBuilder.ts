@@ -582,12 +582,17 @@ const attachPropsTable = (
           returned: signatureReturn?.name,
         };
       }
+      // Skip props with unknown/undefined types
+      if (!propType?.name) {
+        return [] as any;
+      }
+
       return [
         propName,
         {
           type: {
-            name: propType?.name ?? 'unknown',
-            description: propTypeDescription !== propType?.name ? propTypeDescription : undefined,
+            name: propType.name,
+            description: propTypeDescription !== propType.name ? propTypeDescription : undefined,
           },
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
@@ -736,7 +741,7 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
-  const handlers = [...Object.values(builtinHandlers ?? {}), muiDefaultPropsHandler];
+  const handlers = [...Object.values(builtinHandlers), muiDefaultPropsHandler];
   try {
     const results = docgenParse(src, {
       handlers,
