@@ -26,7 +26,8 @@ export default function createDescribeableProp(
   propName: string,
   settings: CreateDescribeablePropSettings = {},
 ): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+  const { defaultValue, description, required, type } = prop;
+  const jsdocDefaultValue = (prop as any).jsdocDefaultValue as { value: string } | undefined;
 
   const { propsWithoutDefaultVerification = [] } = settings;
 
@@ -82,14 +83,10 @@ export default function createDescribeableProp(
     }
   }
 
-  if (!type) {
-    throw new Error(`The "${propName}" prop is missing a type.`);
-  }
-
   return {
     annotation,
     defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
     required: Boolean(required),
-    type,
+    type: type!,
   };
 }

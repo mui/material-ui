@@ -8,6 +8,21 @@ const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = u
 // based on https://github.com/reactjs/react-docgen/blob/735f39ef784312f4c0e740d4bfb812f0a7acd3d5/src/handlers/defaultPropsHandler.js#L1-L112
 // adjusted for material-ui getThemedProps
 
+function isImportedIdentifier(path: NodePath): boolean {
+  if (!path.isIdentifier()) {
+    return false;
+  }
+  const binding = path.scope.getBinding(path.node.name);
+  if (!binding) {
+    return false;
+  }
+  return (
+    binding.path.isImportSpecifier() ||
+    binding.path.isImportDefaultSpecifier() ||
+    binding.path.isImportNamespaceSpecifier()
+  );
+}
+
 function getDefaultValue(propertyPath: NodePath) {
   const valueNode = propertyPath.get('value');
   if (!Array.isArray(valueNode) && !valueNode.isAssignmentPattern()) {
@@ -25,26 +40,37 @@ function getDefaultValue(propertyPath: NodePath) {
   if (path.isLiteral() && 'raw' in path.node) {
     defaultValue = (path.node as any).raw;
   } else {
-    if (path.isAssignmentPattern()) {
-      path = resolveToValue(path.get('right') as NodePath);
+    // Check if the original value is an identifier that refers to an import
+    // In that case, use just the identifier name instead of resolving
+    const originalPath = path.isAssignmentPattern() ? (path.get('right') as NodePath) : path;
+
+    if (isImportedIdentifier(originalPath)) {
+      defaultValue = (originalPath.node as t.Identifier).name;
     } else {
-      path = resolveToValue(path);
-    }
-    if (path.parentPath?.isImportDeclaration()) {
-      if (t.isTSAsExpression(node)) {
-        node = node.expression;
+      // For non-imports and non-member expressions, resolve and print the value
+      if (path.isAssignmentPattern()) {
+        path = resolveToValue(path.get('right') as NodePath);
+      } else {
+        path = resolveToValue(path);
       }
-      if (!t.isIdentifier(node)) {
-        const locationHint =
-          node.loc != null ? `${node.loc.start.line}:${node.loc.start.column}` : 'unknown location';
-        throw new TypeError(
-          `Unable to follow data flow. Expected an 'Identifier' resolve to an 'ImportDeclaration'. Instead attempted to resolve a '${node.type}' at ${locationHint}.`,
-        );
+      // Double-check if resolved to an import specifier (v6+ behavior)
+      if (
+        path.isImportSpecifier() ||
+        path.isImportDefaultSpecifier() ||
+        path.isImportNamespaceSpecifier()
+      ) {
+        // Get the local name from the original identifier
+        if (t.isTSAsExpression(node)) {
+          node = node.expression;
+        }
+        if (t.isIdentifier(node)) {
+          defaultValue = node.name;
+        }
       }
-      defaultValue = node.name;
-    } else {
-      node = path.node;
-      defaultValue = printValue(path);
+      if (defaultValue === undefined) {
+        node = path.node;
+        defaultValue = printValue(path);
+      }
     }
   }
   if (defaultValue !== undefined) {
@@ -79,26 +105,8 @@ function getDefaultValuesFromProps(properties: NodePath, documentedProps: Record
     });
   }
 
-  // Sometimes we list props in .propTypes even though they're implemented by another component
-  // These props are spread so they won't appear in the component implementation.
+  // Extract runtime default values from the destructuring pattern
   Object.entries(documentedProps || []).forEach(([propName, propDescriptor]: [string, any]) => {
-    if (propDescriptor.description === undefined) {
-      // private props have no propsType validator and therefore
-      // not description.
-      // They are either not subject to eslint react/prop-types
-      // or are and then we catch these issues during linting.
-      return;
-    }
-
-    const jsdocDefaultValue = getJsdocDefaultValue(
-      parseDoctrine(propDescriptor.description, {
-        sloppy: true,
-      }),
-    );
-    if (jsdocDefaultValue) {
-      propDescriptor.jsdocDefaultValue = jsdocDefaultValue;
-    }
-
     const propertyPath = implementedProps[propName];
     if (propertyPath !== undefined) {
       const defaultValue = getDefaultValue(propertyPath);
@@ -212,6 +220,22 @@ const defaultPropsHandler: Handler = (documentation, componentDefinition) => {
   const docObject = documentation.build();
   const documentedProps = docObject.props || {};
 
+  // Always extract jsdocDefaultValue from prop descriptions
+  Object.entries(documentedProps).forEach(([, propDescriptor]: [string, any]) => {
+    if (propDescriptor.description === undefined) {
+      return;
+    }
+    const jsdocDefaultValue = getJsdocDefaultValue(
+      parseDoctrine(propDescriptor.description, {
+        sloppy: true,
+      }),
+    );
+    if (jsdocDefaultValue) {
+      propDescriptor.jsdocDefaultValue = jsdocDefaultValue;
+    }
+  });
+
+  // Extract runtime default values if we can find the props declaration
   if (props && props.isObjectPattern()) {
     getDefaultValuesFromProps(props, documentedProps);
   }

@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { builtinHandlers, parse as docgenParse } from 'react-docgen';
@@ -428,17 +427,16 @@ export default async function generateHookApi(
 
   const results = docgenParse(src, {
     resolver: {
-      resolve({ ast }) {
-        let node: any;
-        astTypes.visit(ast, {
-          visitFunctionDeclaration: (functionPath) => {
-            if (functionPath.node?.id?.name === name) {
-              node = functionPath;
+      resolve(file) {
+        const foundPaths: any[] = [];
+        file.traverse({
+          FunctionDeclaration(funcPath) {
+            if (funcPath.node.id?.name === name) {
+              foundPaths.push(funcPath);
             }
-            return false;
           },
         });
-        return node ? [node] : [];
+        return foundPaths;
       },
     },
     handlers: Object.values(builtinHandlers),

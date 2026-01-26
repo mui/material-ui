@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { kebabCase, escapeRegExp } from 'es-toolkit/string';
@@ -531,7 +530,7 @@ const attachPropsTable = (
         return [] as any;
       }
 
-      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
+      const defaultValue = (propDescriptor as any).jsdocDefaultValue?.value;
 
       const {
         signature: signatureType,
@@ -545,7 +544,7 @@ const attachPropsTable = (
 
       const requiredProp =
         prop.required ||
-        prop.type.raw?.includes('.isRequired') ||
+        prop.type?.raw?.includes('.isRequired') ||
         (chainedPropType !== false && chainedPropType.required);
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
@@ -749,39 +748,50 @@ export default async function generateComponentApi(
     if ((error as Error).message === 'No suitable component definition found.') {
       const results = docgenParse(src, {
         resolver: {
-          resolve({ ast }) {
-            let node: any;
-            astTypes.visit(ast, {
-              visitFunctionDeclaration: (functionPath) => {
-                // @ts-ignore
-                if (functionPath.node.params[0]?.name === 'props') {
-                  node = functionPath;
+          resolve(file) {
+            const foundPaths: any[] = [];
+            file.traverse({
+              FunctionDeclaration(funcPath) {
+                const params = funcPath.node.params;
+                if (
+                  params.length > 0 &&
+                  params[0].type === 'Identifier' &&
+                  params[0].name === 'props'
+                ) {
+                  foundPaths.push(funcPath);
                 }
-                return false;
               },
-              visitVariableDeclaration: (variablePath) => {
-                const definitions: any[] = [];
-                if (variablePath.node.declarations) {
-                  variablePath
-                    .get('declarations')
-                    .each((declarator: any) => definitions.push(declarator.get('init')));
-                }
-                definitions.forEach((definition) => {
-                  // definition.value.expression is defined when the source is in TypeScript.
-                  const expression = definition.value?.expression
-                    ? definition.get('expression')
-                    : definition;
-                  if (expression.value?.callee) {
-                    const definitionName = expression.value.callee.name;
-                    if (definitionName === `create${componentInfo.name}`) {
-                      node = expression;
+              VariableDeclaration(varPath) {
+                for (const declarator of varPath.node.declarations) {
+                  if (declarator.init) {
+                    let initNode = declarator.init;
+                    // Handle TSAsExpression wrapper
+                    if (initNode.type === 'TSAsExpression') {
+                      initNode = initNode.expression;
+                    }
+                    if (
+                      initNode.type === 'CallExpression' &&
+                      initNode.callee.type === 'Identifier' &&
+                      initNode.callee.name === `create${componentInfo.name}`
+                    ) {
+                      // Get the path to the init (call expression)
+                      const declarators = varPath.get('declarations');
+                      if (Array.isArray(declarators) && declarators.length > 0) {
+                        let initPath = declarators[0].get('init');
+                        if (!Array.isArray(initPath)) {
+                          // Unwrap TSAsExpression if present
+                          if (initPath.isTSAsExpression()) {
+                            initPath = initPath.get('expression') as typeof initPath;
+                          }
+                          foundPaths.push(initPath);
+                        }
+                      }
                     }
                   }
-                });
-                return false;
+                }
               },
             });
-            return node ? [node] : [];
+            return foundPaths;
           },
         },
         handlers,

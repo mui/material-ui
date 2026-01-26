@@ -690,9 +690,6 @@ importers:
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
-      ast-types:
-        specifier: ^0.14.2
-        version: 0.14.2
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
@@ -1553,12 +1550,6 @@ importers:
         specifier: 21.0.0
         version: 21.0.0
     publishDirectory: build
-
-  packages/react-docgen-types:
-    devDependencies:
-      ast-types:
-        specifier: 0.14.2
-        version: 0.14.2
 
   packages/waterfall: {}
 

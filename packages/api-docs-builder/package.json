@@ -19,7 +19,6 @@
     "@babel/types": "^7.28.6",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
-    "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",
     "es-toolkit": "^1.43.0",
     "fast-glob": "^3.3.3",
