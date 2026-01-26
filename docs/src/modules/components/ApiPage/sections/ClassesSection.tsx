@@ -26,7 +26,7 @@ export type GetCssToCParams = {
 /**
  * @deprecated Use the function from ApiPage/definitions
  */
-export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
+export const getClassesToc = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
   !componentClasses || componentClasses.length === 0
     ? []
     : [

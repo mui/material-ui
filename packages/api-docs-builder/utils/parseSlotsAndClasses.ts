@@ -33,6 +33,21 @@ function getClassDeprecationObject(symbol: ts.Symbol): {
   return {};
 }
 
+function getComponentDeclaration(
+  project: TypeScriptProject,
+  componentName: string,
+): ts.Node | null {
+  const unstableName = `Unstable_${componentName}`;
+  const componentSymbol = project.exports[componentName] ?? project.exports[unstableName];
+
+  if (!componentSymbol) {
+    return null;
+  }
+
+  const localeSymbol = resolveExportSpecifier(componentSymbol, project);
+  return localeSymbol.valueDeclaration ?? null;
+}
+
 interface ParseSlotsAndClassesParameters {
   typescriptProject: TypeScriptProject;
   projectSettings: ProjectSettings;
@@ -129,18 +144,13 @@ function extractClassesFromProps(
   componentName: string,
   muiName: string,
 ): ComponentClassDefinition[] | null {
-  const unstableName = `Unstable_${componentName}`;
-  const exportedSymbol =
-    typescriptProject.exports[componentName] ?? typescriptProject.exports[unstableName];
+  const declaration = getComponentDeclaration(typescriptProject, componentName);
 
-  if (!exportedSymbol) {
+  if (!declaration) {
     throw new Error(
-      `No export found in "${typescriptProject.rootPath}" for component "${componentName}" or "${unstableName}".`,
+      `No export found in "${typescriptProject.rootPath}" for component "${componentName}" or "Unstable_${componentName}".`,
     );
   }
-
-  const localeSymbol = resolveExportSpecifier(exportedSymbol, typescriptProject);
-  const declaration = localeSymbol.valueDeclaration!;
 
   const classesProp = getPropsFromComponentNode({
     node: declaration,
@@ -190,10 +200,38 @@ function extractSlots(
   const defaultSlotsInterfaceName = `${componentName}Slots`;
   const slotsInterfaceName = slotsInterfaceNameParams ?? defaultSlotsInterfaceName;
   const exportedSymbol = project.exports[slotsInterfaceName];
+
+  const hasSlotsProp = (): boolean => {
+    const declaration = getComponentDeclaration(project, componentName);
+    if (!declaration) {
+      return false;
+    }
+
+    const slotsProp = getPropsFromComponentNode({
+      node: declaration,
+      project,
+      shouldInclude: ({ name }) => name === 'slots',
+      checkDeclarations: true,
+    })?.props.slots;
+
+    return slotsProp != null;
+  };
+
   if (!exportedSymbol) {
-    console.warn(`No declaration for ${slotsInterfaceName}`);
+    if (hasSlotsProp()) {
+      console.warn(
+        `Component "${componentName}" has a "slots" prop but is missing the "${slotsInterfaceName}" export.`,
+      );
+    }
     return {};
   }
+
+  if (!hasSlotsProp()) {
+    console.warn(
+      `"${slotsInterfaceName}" is exported but component "${componentName}" has no "slots" prop.`,
+    );
+  }
+
   const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
   const typeDeclaration = type?.symbol?.declarations?.[0];
 
@@ -203,6 +241,7 @@ function extractSlots(
 
   const slots: Record<string, Slot> = {};
   const propertiesOnProject = type.getProperties();
+  const classDefMap = new Map(classDefinitions.map((classDef) => [classDef.key, classDef]));
 
   propertiesOnProject.forEach((propertySymbol) => {
     const tags = getSymbolJSDocTags(propertySymbol);
@@ -210,10 +249,7 @@ function extractSlots(
       return;
     }
     const slotName = propertySymbol.name;
-
-    const slotClassDefinition = classDefinitions.find(
-      (classDefinition) => classDefinition.key === slotName,
-    );
+    const slotClassDefinition = classDefMap.get(slotName);
 
     slots[slotName] = {
       name: slotName,

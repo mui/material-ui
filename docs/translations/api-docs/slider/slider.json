@@ -183,43 +183,43 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"error\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-colorError\">.MuiSlider-colorError</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-colorError\">.MuiSlider-colorError</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "thumbColorInfo": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"info\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-colorInfo\">.MuiSlider-colorInfo</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-colorInfo\">.MuiSlider-colorInfo</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "thumbColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"primary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-colorPrimary\">.MuiSlider-colorPrimary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-colorPrimary\">.MuiSlider-colorPrimary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "thumbColorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"secondary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-colorSecondary\">.MuiSlider-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-colorSecondary\">.MuiSlider-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "thumbColorSuccess": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"success\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-colorSuccess\">.MuiSlider-colorSuccess</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-colorSuccess\">.MuiSlider-colorSuccess</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "thumbColorWarning": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"warning\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-colorWarning\">.MuiSlider-colorWarning</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-colorWarning\">.MuiSlider-colorWarning</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "thumbSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>size=\"small\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-sizeSmall\">.MuiSlider-sizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-thumb\">.MuiSlider-thumb</a> and <a href=\"/material-ui/api/slider/#slider-classes-MuiSlider-sizeSmall\">.MuiSlider-sizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "track": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the track element" },
     "trackFalse": {

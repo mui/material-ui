@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Link from '@mui/joy/Link';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 

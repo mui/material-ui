@@ -33,7 +33,8 @@ type SwitchBaseSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface SwitchBaseProps
-  extends StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'>,
+  extends
+    StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'>,
     SwitchBaseSlotsAndSlotProps {
   autoFocus?: boolean;
   /**

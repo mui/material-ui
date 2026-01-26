@@ -98,7 +98,7 @@ If used, it will automatically change the semantic element from the default `<li
 
 ### Marker
 
-Use the `marker` prop with any valid [list-style-type](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type) value to add a marker to the list items.
+Use the `marker` prop with any valid [list-style-type](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/list-style-type) value to add a marker to the list items.
 
 {{"demo": "MarkerList.js"}}
 

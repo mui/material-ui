@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box, handleBreakpoints } from '@mui/system';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 

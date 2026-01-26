@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "7.3.4",
+  "version": "7.3.7",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "keywords": [
@@ -21,13 +21,13 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "code-infra build --copy \"src/translations/translations.json\" --copy \"src/translations/translations.json:esm\"",
+    "build": "code-infra build --copy \"src/translations/translations.json\" --copy \"src/translations/translations.json:esm\" --copy \"src/nextFonts/fonts\" --copy \"src/nextFonts/fonts:esm\"",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -38,12 +38,13 @@
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
-    "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.19.19",
-    "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.13",
-    "next": "^15.5.4",
-    "react": "^19.1.1"
+    "@types/chai": "5.2.3",
+    "@types/gtag.js": "0.0.20",
+    "@types/node": "20.19.30",
+    "@types/prop-types": "15.7.15",
+    "@types/react": "19.2.8",
+    "next": "15.5.9",
+    "react": "19.2.3"
   },
   "peerDependencies": {
     "@mui/base": "^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta",

@@ -33,6 +33,8 @@ export interface SelectInputProps<Value = unknown> {
   onChange?: (event: SelectChangeEvent<Value>, child: React.ReactNode) => void;
   onClose?: (event: React.SyntheticEvent) => void;
   onFocus?: React.FocusEventHandler<any>;
+  onKeyDown?: React.KeyboardEventHandler;
+  onMouseDown?: React.MouseEventHandler;
   onOpen?: (event: React.SyntheticEvent) => void;
   open?: boolean;
   readOnly?: boolean;

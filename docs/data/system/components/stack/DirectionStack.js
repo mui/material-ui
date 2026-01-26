@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Stack from '@mui/system/Stack';
 import { styled } from '@mui/system';
 

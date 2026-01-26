@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme, type ThemeOptions } from '@mui/material/styles';

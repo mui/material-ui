@@ -138,7 +138,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const handleInputChange = (event) => {
     // Workaround for https://github.com/facebook/react/issues/9023
-    if (event.nativeEvent.defaultPrevented) {
+    if (event.nativeEvent.defaultPrevented || readOnly) {
       return;
     }
 
@@ -205,7 +205,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     additionalProps: {
       centerRipple: true,
       focusRipple: !disableFocusRipple,
-      disabled,
       role: undefined,
       tabIndex: null,
     },

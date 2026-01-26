@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-import * as React from 'react';
 import { useTranslate } from '@mui/docs/i18n';
 import { styled, alpha } from '@mui/material/styles';
 import {
@@ -103,6 +101,7 @@ export default function SlotsTable(props: SlotsTableProps) {
                 {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <td className="description-column">
                   <span
+                    // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{
                       __html: description || '',
                     }}

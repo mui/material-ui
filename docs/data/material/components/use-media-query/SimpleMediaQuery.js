@@ -1,4 +1,3 @@
-import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function SimpleMediaQuery() {

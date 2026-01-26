@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
@@ -16,14 +15,7 @@ const GOLDs = [
     src: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
-  },
-  {
-    src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=120 3x',
-    name: 'Text-em-all',
-    description: 'Mass text messaging and automated calling.',
-    href: 'https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+    href: 'https://tidelift.com/',
   },
   {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
@@ -31,14 +23,6 @@ const GOLDs = [
     name: 'DialMyCalls',
     description: 'Send text messages, calls, and emails.',
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: '/static/sponsors/wispr-square-light.svg',
-    srcSet: '/static/sponsors/wispr-square-light.svg 3x',
-    srcDark: '/static/sponsors/wispr-square-dark.svg',
-    name: 'Wispr Flow',
-    description: 'AI Dictation: from speech to clear, polished text.',
-    href: 'https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -51,11 +35,6 @@ const BACKLINKs = [
   {
     name: 'Buzzoid',
     description: 'Instant delivery Instagram followers.',
-    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'Buzzoid',
-    description: 'Instant delivery YouTube Views.',
     href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -82,16 +61,6 @@ const BACKLINKs = [
     name: 'Follower24',
     description: 'Social media success.',
     href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'TikTokFame',
-    description: 'The ultimate TikTok growth platform.',
-    href: 'https://tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'Reputation Manage',
-    description: 'Instant Delivery Google Reviews.',
-    href: 'https://reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 

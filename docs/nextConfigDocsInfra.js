@@ -1,3 +1,5 @@
+const os = require('os');
+
 /**
  * See the docs of the Netlify environment variables:
  * https://docs.netlify.com/configure-builds/environment-variables/#build-metadata.
@@ -50,6 +52,7 @@ function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
     reactStrictMode: true,
+    productionBrowserSourceMaps: true,
     ...nextConfig,
     env: {
       BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
@@ -74,7 +77,13 @@ function withDocsInfra(nextConfig) {
     experimental: {
       scrollRestoration: true,
       workerThreads: false,
-      ...(process.env.CI ? { cpus: 2 } : {}),
+      ...(process.env.CI
+        ? {
+            cpus: process.env.NEXT_PARALLELISM
+              ? parseInt(process.env.NEXT_PARALLELISM, 10)
+              : os.availableParallelism(),
+          }
+        : {}),
       ...nextConfig.experimental,
     },
     eslint: {

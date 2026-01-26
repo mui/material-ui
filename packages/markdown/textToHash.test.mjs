@@ -13,10 +13,14 @@ describe('textToHash', () => {
         'creategenerateclassname-options-class-name-generator',
       ],
       ['@mui/material/styles vs @mui/styles', 'mui-material-styles-vs-mui-styles'],
+      ['Inputs &amp; Labels', 'inputs-labels'],
+      ['Inputs &#x26; Labels', 'inputs-labels'],
+      ['Inputs &#38; Labels', 'inputs-labels'],
       ['Blog 📝', 'blog'],
     ];
     table.forEach((entry, index) => {
       const [markdown, expected] = entry;
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const text = renderInlineMarkdown(markdown, { mangle: false, headerIds: false });
       const actual = textToHash(text);
 

@@ -4,8 +4,10 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { SpeedDialIconClasses } from './speedDialIconClasses';
 
-export interface SpeedDialIconProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+export interface SpeedDialIconProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>,
+  'children'
+> {
   /**
    * Override or extend the styles applied to the component.
    */

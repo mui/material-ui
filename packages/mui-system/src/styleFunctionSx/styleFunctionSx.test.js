@@ -53,7 +53,7 @@ describe('styleFunctionSx', () => {
   });
 
   describe('system', () => {
-    it('resolves system ', () => {
+    it('resolves system', () => {
       const result = styleFunctionSx({
         theme,
         sx: {

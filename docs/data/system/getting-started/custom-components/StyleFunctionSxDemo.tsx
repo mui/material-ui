@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled, { ThemeProvider, StyleFunction } from 'styled-components';
 import { unstable_styleFunctionSx, SxProps } from '@mui/system';
 import { createTheme } from '@mui/material/styles';

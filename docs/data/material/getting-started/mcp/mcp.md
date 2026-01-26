@@ -28,13 +28,11 @@ The sections below detail how to set up the Material UI MCP in popular agentic 
 Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add the following:
 
 ```json
-"mcp": {
-  "servers": {
-    "mui-mcp": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@mui/mcp@latest"]
-    }
+"mcpServers": {
+  "mui-mcp": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@mui/mcp@latest"]
   }
 }
 ```
