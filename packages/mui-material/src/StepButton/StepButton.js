@@ -79,7 +79,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
 
   React.useLayoutEffect(() => {
     registerElementRef?.(index, nodeRef, Boolean(disabled));
-  }, [index, nodeRef, registerElementRef, disabled]);
+  }, [index, registerElementRef, disabled]);
 
   const childProps = {
     icon,
