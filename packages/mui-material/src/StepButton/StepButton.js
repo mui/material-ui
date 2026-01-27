@@ -78,7 +78,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const handleRef = useForkRef(ref, nodeRef);
 
   React.useLayoutEffect(() => {
-    registerElementRef(index, nodeRef, Boolean(disabled));
+    registerElementRef?.(index, nodeRef, Boolean(disabled));
   }, [index, nodeRef, registerElementRef, disabled]);
 
   const childProps = {
@@ -93,14 +93,14 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   );
 
   const handleClick = React.useCallback(() => {
-    setFocusableIndex(index);
+    setFocusableIndex?.(index);
     onClick?.();
   }, [index, setFocusableIndex, onClick]);
 
   const handleKeyDown = React.useCallback(
     (event) => {
       onKeyDown?.(event);
-      handleElementKeyDown(event);
+      handleElementKeyDown?.(event);
     },
     [onKeyDown, handleElementKeyDown],
   );
