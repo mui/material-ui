@@ -3,7 +3,7 @@
 <p class="description">The shape is a design token that helps control the border radius of components.</p>
 
 The `shape` contains a single property, `borderRadius`, with the default value of `4px`.
-Several components use this value to set consistent border radii across the library.
+Several components use this value to set consistent border radius across the library.
 
 ## Custom shape
 
