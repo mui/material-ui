@@ -260,8 +260,7 @@ export interface BaseTextFieldProps extends StandardProps<
   value?: unknown;
 }
 
-export interface StandardTextFieldProps
-  extends BaseTextFieldProps {
+export interface StandardTextFieldProps extends BaseTextFieldProps {
   onChange?: StandardInputProps['onChange'];
   variant?: 'standard';
   InputProps?: Partial<StandardInputProps>;
@@ -269,8 +268,7 @@ export interface StandardTextFieldProps
   slotProps?: TextFieldSlotsAndSlotProps<StandardInputProps>['slotProps'];
 }
 
-export interface FilledTextFieldProps
-  extends BaseTextFieldProps {
+export interface FilledTextFieldProps extends BaseTextFieldProps {
   onChange?: FilledInputProps['onChange'];
   variant: 'filled';
   InputProps?: Partial<FilledInputProps>;
