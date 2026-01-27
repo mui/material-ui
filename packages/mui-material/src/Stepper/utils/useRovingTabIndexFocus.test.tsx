@@ -5,7 +5,7 @@ import useRovingTabIndexFocus from './useRovingTabIndexFocus';
 
 function TestComponent({ initialIndex }: { initialIndex: number }) {
   const { handleElementKeyDown, focusableIndex, registerElementRef, setFocusableIndex } =
-    useRovingTabIndexFocus({ initialFocusableIndex: initialIndex });
+    useRovingTabIndexFocus({ initialFocusableIndex: initialIndex, elementCount: 4 });
 
   const button1Ref = React.useRef<HTMLButtonElement>(null);
   const button2Ref = React.useRef<HTMLButtonElement>(null);
@@ -65,7 +65,7 @@ function TestComponent({ initialIndex }: { initialIndex: number }) {
 describe('useRovingTabIndexFocus', () => {
   const { render } = createRenderer();
 
-  it('inital focusable index is set correctly', () => {
+  it('initial focusable index is set correctly', () => {
     const initialIndex = 1;
 
     render(<TestComponent initialIndex={initialIndex} />);
@@ -74,6 +74,39 @@ describe('useRovingTabIndexFocus', () => {
     expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('0');
     expect(screen.getByTestId('button-3').getAttribute('tabindex')).to.equal('-1');
     expect(screen.getByTestId('button-4').getAttribute('tabindex')).to.equal('-1');
+  });
+
+  it('initial focusable index defaults to 0 if out of bounds', () => {
+    const initialIndex = 10;
+
+    render(<TestComponent initialIndex={initialIndex} />);
+
+    expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('0');
+    expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-3').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-4').getAttribute('tabindex')).to.equal('-1');
+  });
+
+  it('sets focusable index to 0 if initial index is negative', () => {
+    const initialIndex = -5;
+
+    render(<TestComponent initialIndex={initialIndex} />);
+
+    expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('0');
+    expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-3').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-4').getAttribute('tabindex')).to.equal('-1');
+  });
+
+  it('sets focusable index to next enabled element if initial index is on a disabled element', () => {
+    const initialIndex = 2;
+
+    render(<TestComponent initialIndex={initialIndex} />);
+
+    expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-3').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-4').getAttribute('tabindex')).to.equal('0');
   });
 
   it('setter function updates focusable index correctly', async () => {

@@ -83,10 +83,6 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const { registerElementRef, handleElementKeyDown, setFocusableIndex, focusableIndex } =
-    useRovingTabIndexFocus({
-      initialFocusableIndex: activeStep,
-    });
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
   const totalSteps = childrenArray.length;
@@ -97,6 +93,12 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       ...step.props,
     });
   });
+
+  const { registerElementRef, handleElementKeyDown, setFocusableIndex, focusableIndex } =
+    useRovingTabIndexFocus({
+      initialFocusableIndex: activeStep,
+      elementCount: totalSteps,
+    });
 
   const contextValue = React.useMemo(
     () => ({
