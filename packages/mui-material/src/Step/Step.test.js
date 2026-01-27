@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { stepClasses as classes } from '@mui/material/Step';
-import Stepper from '@mui/material/Stepper';
+import Stepper, { StepperContextProvider } from '@mui/material/Stepper';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import StepButton, { stepButtonClasses } from '@mui/material/StepButton';
 import describeConformance from '../../test/describeConformance';
@@ -11,11 +11,11 @@ describe('<Step />', () => {
 
   describeConformance(<Step />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'li',
     render,
     muiName: 'MuiStep',
     testVariantProps: { variant: 'foo' },
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLLIElement,
     skip: ['componentsProp'],
   }));
 
@@ -38,10 +38,12 @@ describe('<Step />', () => {
   describe('rendering children', () => {
     it('renders children', () => {
       const { container } = render(
-        <Step>
-          <StepButton />
-          <StepLabel />
-        </Step>,
+        <StepperContextProvider value={{ registerElementRef: () => {} }}>
+          <Step>
+            <StepButton />
+            <StepLabel />
+          </Step>
+        </StepperContextProvider>,
       );
 
       const stepLabel = container.querySelector(`.${stepLabelClasses.root}`);
@@ -52,10 +54,12 @@ describe('<Step />', () => {
 
     it('should handle null children', () => {
       const { container } = render(
-        <Step>
-          <StepButton />
-          {null}
-        </Step>,
+        <StepperContextProvider value={{ registerElementRef: () => {} }}>
+          <Step>
+            <StepButton />
+            {null}
+          </Step>
+        </StepperContextProvider>,
       );
 
       const stepButton = container.querySelector(`.${stepButtonClasses.root}`);
