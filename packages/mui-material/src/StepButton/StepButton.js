@@ -11,6 +11,7 @@ import isMuiElement from '../utils/isMuiElement';
 import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
+import { useForkRef } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation } = ownerState;
@@ -57,14 +58,28 @@ const StepButtonRoot = styled(ButtonBase, {
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
-  const { children, className, icon, optional, ...other } = props;
+  const { children, className, icon, optional, onClick, onKeyDown, ...other } = props;
 
   const { disabled, active, index } = React.useContext(StepContext);
-  const { orientation, totalSteps } = useStepperContext();
+  const {
+    orientation,
+    totalSteps,
+    focusableIndex,
+    registerElementRef,
+    handleElementKeyDown,
+    setFocusableIndex,
+  } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 
   const classes = useUtilityClasses(ownerState);
+
+  const nodeRef = React.useRef(null);
+  const handleRef = useForkRef(ref, nodeRef);
+
+  React.useLayoutEffect(() => {
+    registerElementRef(index, nodeRef, Boolean(disabled));
+  }, [index, nodeRef, registerElementRef, disabled]);
 
   const childProps = {
     icon,
@@ -77,17 +92,33 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
+  const handleClick = React.useCallback(() => {
+    setFocusableIndex(index);
+    onClick?.();
+  }, [index, setFocusableIndex, onClick]);
+
+  const handleKeyDown = React.useCallback(
+    (event) => {
+      onKeyDown?.(event);
+      handleElementKeyDown(event);
+    },
+    [onKeyDown, handleElementKeyDown],
+  );
+
   return (
     <StepButtonRoot
       focusRipple
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, className)}
-      ref={ref}
+      ref={handleRef}
       ownerState={ownerState}
       aria-current={active ? 'step' : undefined}
       aria-posinset={index + 1}
       aria-setsize={totalSteps}
+      tabIndex={focusableIndex === index ? 0 : -1}
+      onKeyDown={handleKeyDown}
+      onClick={handleClick}
       {...other}
     >
       {child}
@@ -116,6 +147,14 @@ StepButton.propTypes /* remove-proptypes */ = {
    * The icon displayed by the step label.
    */
   icon: PropTypes.node,
+  /**
+   * Callback fired when the component is clicked.
+   */
+  onClick: PropTypes.func,
+  /**
+   * Callback fired when a key is pressed down.
+   */
+  onKeyDown: PropTypes.func,
   /**
    * The optional node to display.
    */
