@@ -44,7 +44,7 @@ export interface ListTypeMap<AdditionalProps = {}, RootComponent extends React.E
  * utility to create component types that inherit props from List.
  */
 export interface ExtendListTypeMap<TypeMap extends OverridableTypeMap> {
-  props: TypeMap['props'] & ListTypeMap['props'];
+  props: TypeMap['props'] & Omit<ListTypeMap['props'], keyof TypeMap['props']>;
   defaultComponent: TypeMap['defaultComponent'];
 }
 

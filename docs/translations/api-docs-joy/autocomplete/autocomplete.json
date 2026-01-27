@@ -187,7 +187,7 @@
     "placeholder": { "description": "The input placeholder" },
     "popupIcon": { "description": "The icon to display in place of the default popup icon." },
     "readOnly": {
-      "description": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted."
+      "description": "If <code>true</code>, the component becomes read-only. It is also supported in multiple tags where the tag cannot be deleted."
     },
     "renderGroup": {
       "description": "Render the group.",

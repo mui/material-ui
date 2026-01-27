@@ -118,7 +118,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color context for the avatar children.
+   * It has no effect on the AvatarGroup.
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -131,8 +132,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
+   * The size of the component and the avatar children.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -162,7 +162,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * The variant context for the avatar children.
+   * It has no effect on the AvatarGroup.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

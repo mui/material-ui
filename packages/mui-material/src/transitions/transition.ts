@@ -23,10 +23,16 @@ export type TransitionKeys =
   | 'unmountOnExit'
   | 'timeout'
   | 'easing'
-  | 'addEndListener'
   | TransitionHandlerKeys;
 export interface TransitionProps
   extends
-    TransitionActions,
+    Omit<TransitionActions, 'addEndListener'>,
     Partial<Pick<_TransitionProps & EasingProps, TransitionKeys>>,
-    React.HTMLAttributes<HTMLElement> {}
+    React.HTMLAttributes<HTMLElement> {
+  /**
+   * Add a custom transition end trigger. Called with the transitioning DOM
+   * node and a done callback. Allows for more fine grained transition end
+   * logic. Note: Timeouts are still used as a fallback if provided.
+   */
+  addEndListener?: (node: HTMLElement, done: () => void) => void;
+}
