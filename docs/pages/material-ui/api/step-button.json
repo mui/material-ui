@@ -3,6 +3,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "icon": { "type": { "name": "node" } },
+    "onClick": { "type": { "name": "func" } },
+    "onKeyDown": { "type": { "name": "func" } },
     "optional": { "type": { "name": "node" } },
     "sx": {
       "type": {
