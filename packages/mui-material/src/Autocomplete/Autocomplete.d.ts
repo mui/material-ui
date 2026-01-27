@@ -360,7 +360,7 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
+    props: React.HTMLAttributes<HTMLLIElement> & { key: React.Key },
     option: Value,
     state: AutocompleteRenderOptionState,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
