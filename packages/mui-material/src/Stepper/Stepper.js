@@ -9,6 +9,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import { StepperContextProvider } from './StepperContext';
+import useRovingTabIndexFocus from './utils/useRovingTabIndexFocus';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -82,6 +83,10 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const { registerElementRef, handleElementKeyDown, setFocusableIndex, focusableIndex } =
+    useRovingTabIndexFocus({
+      initialFocusableIndex: activeStep,
+    });
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
   const totalSteps = childrenArray.length;
@@ -92,9 +97,32 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       ...step.props,
     });
   });
+
   const contextValue = React.useMemo(
-    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation, totalSteps }),
-    [activeStep, alternativeLabel, connector, nonLinear, orientation, totalSteps],
+    () => ({
+      activeStep,
+      alternativeLabel,
+      connector,
+      nonLinear,
+      orientation,
+      totalSteps,
+      handleElementKeyDown,
+      setFocusableIndex,
+      registerElementRef,
+      focusableIndex,
+    }),
+    [
+      activeStep,
+      alternativeLabel,
+      connector,
+      nonLinear,
+      orientation,
+      totalSteps,
+      handleElementKeyDown,
+      setFocusableIndex,
+      registerElementRef,
+      focusableIndex,
+    ],
   );
 
   return (
