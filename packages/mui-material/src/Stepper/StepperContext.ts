@@ -8,19 +8,18 @@ export interface StepperContextType {
   nonLinear: boolean;
   orientation: 'horizontal' | 'vertical';
   totalSteps: number;
-  focusableStep: number;
-  registerStep: (
-    stepIndex: number,
-    stepRef: React.RefObject<HTMLElement>,
+  focusableIndex: number;
+  registerElementRef: (
+    index: number,
+    elementRef: React.RefObject<HTMLElement>,
     disabled: boolean,
   ) => void;
-  onStepClick: (stepIndex: number) => void;
-  onStepKeyDown: (event: React.KeyboardEvent<HTMLElement>) => void;
+  setFocusableIndex: (index: number) => void;
+  handleElementKeyDown: (event: React.KeyboardEvent<HTMLElement>) => void;
 }
 
 /**
  * Provides information about the current step in Stepper.
- * @internal
  */
 const StepperContext = React.createContext<StepperContextType | {}>({});
 
