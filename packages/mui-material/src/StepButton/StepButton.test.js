@@ -6,6 +6,7 @@ import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
+import { StepperContextProvider } from '../Stepper';
 
 describe('<StepButton />', () => {
   const { render } = createRenderer();
@@ -22,9 +23,11 @@ describe('<StepButton />', () => {
 
     it('passes active, completed, disabled to StepLabel', () => {
       const { container } = render(
-        <Step active completed disabled>
-          <StepButton>Step One</StepButton>
-        </Step>,
+        <StepperContextProvider value={{ registerElementRef: () => {} }}>
+          <Step active completed disabled>
+            <StepButton>Step One</StepButton>
+          </Step>
+        </StepperContextProvider>,
       );
 
       const stepLabelRoot = container.querySelector(`.${stepLabelClasses.root}`);
@@ -38,11 +41,13 @@ describe('<StepButton />', () => {
 
     it('should pass props to a provided StepLabel', () => {
       const { container } = render(
-        <Step active completed disabled>
-          <StepButton label="Step One">
-            <StepLabel>Step One</StepLabel>
-          </StepButton>
-        </Step>,
+        <StepperContextProvider value={{ registerElementRef: () => {} }}>
+          <Step active completed disabled>
+            <StepButton label="Step One">
+              <StepLabel>Step One</StepLabel>
+            </StepButton>
+          </Step>
+        </StepperContextProvider>,
       );
 
       const stepLabelRoot = container.querySelector(`.${stepLabelClasses.root}`);
@@ -56,16 +61,22 @@ describe('<StepButton />', () => {
   });
 
   it('should disable the button', () => {
-    render(<StepButton disabled>Step One</StepButton>);
+    render(
+      <StepperContextProvider value={{ registerElementRef: () => {} }}>
+        <StepButton disabled>Step One</StepButton>
+      </StepperContextProvider>,
+    );
 
     expect(screen.getByRole('button')).to.have.property('disabled', true);
   });
 
   it('should have `aria-current=step` when active', () => {
     render(
-      <Step active>
-        <StepButton>Step One</StepButton>
-      </Step>,
+      <StepperContextProvider value={{ registerElementRef: () => {} }}>
+        <Step active>
+          <StepButton>Step One</StepButton>
+        </Step>
+      </StepperContextProvider>,
     );
 
     expect(screen.getByRole('button')).to.have.attribute('aria-current', 'step');
@@ -73,9 +84,11 @@ describe('<StepButton />', () => {
 
   it('should not have `aria-current` when non-active', () => {
     render(
-      <Step active={false}>
-        <StepButton>Step One</StepButton>
-      </Step>,
+      <StepperContextProvider value={{ registerElementRef: () => {} }}>
+        <Step active={false}>
+          <StepButton>Step One</StepButton>
+        </Step>
+      </StepperContextProvider>,
     );
 
     expect(screen.getByRole('button')).not.to.have.attribute('aria-current', 'step');
@@ -91,13 +104,15 @@ describe('<StepButton />', () => {
         const handleTouchStart = spy();
 
         render(
-          <StepButton
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={handleTouchStart}
-          >
-            Step One
-          </StepButton>,
+          <StepperContextProvider value={{ registerElementRef: () => {} }}>
+            <StepButton
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+            >
+              Step One
+            </StepButton>
+          </StepperContextProvider>,
         );
 
         const button = screen.getByRole('button');
@@ -135,9 +150,11 @@ describe('<StepButton />', () => {
 
   it('can be used as a child of `Step`', () => {
     render(
-      <Step>
-        <StepButton>Next</StepButton>
-      </Step>,
+      <StepperContextProvider value={{ registerElementRef: () => {} }}>
+        <Step>
+          <StepButton>Next</StepButton>
+        </Step>
+      </StepperContextProvider>,
     );
 
     expect(screen.getByRole('button')).not.to.equal(null);
