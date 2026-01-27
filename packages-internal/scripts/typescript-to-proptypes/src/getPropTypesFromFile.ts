@@ -42,16 +42,17 @@ function getSymbolDocumentation({
   const decl = symbol.getDeclarations();
   if (decl && decl.length > 0) {
     // For intersection types (A & B), the symbol may have multiple declarations.
-    // Use the last declaration's JSDoc so that the last type's documentation wins.
-    for (let i = decl.length - 1; i >= 0; i -= 1) {
-      // @ts-ignore
-      const comments = ts.getJSDocCommentsAndTags(decl[i]) as readonly any[];
-      if (comments && comments.length === 1) {
-        const commentNode = comments[0];
-        if (ts.isJSDoc(commentNode)) {
-          return doctrine.unwrapComment(commentNode.getText()).trim();
-        }
-      }
+    // Merge the JSDoc comments from all declarations like TypeScript does.
+    const comments = decl
+      .map((d) => ts.getJSDocCommentsAndTags(d) as readonly any[])
+      .flat()
+      .filter((commentNode) => ts.isJSDoc(commentNode)) as ts.JSDoc[];
+
+    if (comments.length > 0) {
+      const fullComment = comments
+        .map((commentNode) => doctrine.unwrapComment(commentNode.getText()).trim())
+        .join('\n');
+      return fullComment;
     }
   }
 
