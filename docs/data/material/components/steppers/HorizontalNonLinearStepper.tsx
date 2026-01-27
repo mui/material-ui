@@ -66,7 +66,11 @@ export default function HorizontalNonLinearStepper() {
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
-            <StepButton aria-controls='stepper-content' color="inherit" onClick={handleStep(index)}>
+            <StepButton
+              aria-controls="stepper-content"
+              color="inherit"
+              onClick={handleStep(index)}
+            >
               {label}
             </StepButton>
           </Step>
