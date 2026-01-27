@@ -93,8 +93,8 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   );
 
   const handleClick = React.useCallback(() => {
-    setFocusableIndex?.(index);
     onClick?.();
+    setFocusableIndex?.(index);
   }, [index, setFocusableIndex, onClick]);
 
   const handleKeyDown = React.useCallback(
@@ -104,6 +104,14 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     },
     [onKeyDown, handleElementKeyDown],
   );
+
+  let tabIndex;
+
+  if (focusableIndex == null) {
+    tabIndex = undefined;
+  } else {
+    tabIndex = focusableIndex === index ? 0 : -1;
+  }
 
   return (
     <StepButtonRoot
@@ -116,7 +124,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       aria-current={active ? 'step' : undefined}
       aria-posinset={index + 1}
       aria-setsize={totalSteps}
-      tabIndex={focusableIndex === index ? 0 : -1}
+      tabIndex={tabIndex}
       onKeyDown={handleKeyDown}
       onClick={handleClick}
       {...other}
