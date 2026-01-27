@@ -26,6 +26,14 @@ export interface StepButtonOwnProps {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
+  /**
+   * Callback fired when the component is clicked.
+   */
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  /**
+   * Callback fired when a key is pressed down.
+   */
+  onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement> | undefined;
 }
 
 export type StepButtonTypeMap<

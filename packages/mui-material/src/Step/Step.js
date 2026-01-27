@@ -67,8 +67,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     ...other
   } = props;
 
-  const { activeStep, connector, alternativeLabel, orientation, nonLinear } =
-    useStepperContext();
+  const { activeStep, connector, alternativeLabel, orientation, nonLinear } = useStepperContext();
 
   let [active = false, completed = false, disabled = false] = [
     activeProp,
