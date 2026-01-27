@@ -40,13 +40,17 @@ function getSymbolDocumentation({
   }
 
   const decl = symbol.getDeclarations();
-  if (decl) {
-    // @ts-ignore
-    const comments = ts.getJSDocCommentsAndTags(decl[0]) as readonly any[];
-    if (comments && comments.length === 1) {
-      const commentNode = comments[0];
-      if (ts.isJSDoc(commentNode)) {
-        return doctrine.unwrapComment(commentNode.getText()).trim();
+  if (decl && decl.length > 0) {
+    // For intersection types (A & B), the symbol may have multiple declarations.
+    // Use the last declaration's JSDoc so that the last type's documentation wins.
+    for (let i = decl.length - 1; i >= 0; i -= 1) {
+      // @ts-ignore
+      const comments = ts.getJSDocCommentsAndTags(decl[i]) as readonly any[];
+      if (comments && comments.length === 1) {
+        const commentNode = comments[0];
+        if (ts.isJSDoc(commentNode)) {
+          return doctrine.unwrapComment(commentNode.getText()).trim();
+        }
       }
     }
   }
@@ -498,9 +502,9 @@ function squashPropTypeDefinitions({
 }): PropTypeDefinition {
   const distinctDefinitions = new Map<number, PropTypeDefinition>();
   propTypeDefinitions.forEach((definition) => {
-    if (!distinctDefinitions.has(definition.$$id)) {
-      distinctDefinitions.set(definition.$$id, definition);
-    }
+    // Always update so that the last definition's jsDoc wins
+    // This ensures that when types are intersected (A & B), the last type's documentation is used
+    distinctDefinitions.set(definition.$$id, definition);
   });
 
   if (distinctDefinitions.size === 1 && !onlyUsedInSomeSignatures) {
@@ -513,16 +517,20 @@ function squashPropTypeDefinitions({
     types.push(createUndefinedType({ jsDoc: undefined }));
   }
 
+  // Use the last definition's jsDoc so that when types are intersected (A & B),
+  // the last type's documentation wins
+  const lastDefinition = definitions[definitions.length - 1];
+
   return {
-    name: definitions[0].name,
-    jsDoc: definitions[0].jsDoc,
+    name: lastDefinition.name,
+    jsDoc: lastDefinition.jsDoc,
     propType: createUnionType({
       // TODO: jsDoc from squashing is dropped
       jsDoc: undefined,
       types,
     }),
     filenames: new Set(definitions.flatMap((definition) => Array.from(definition.filenames))),
-    $$id: definitions[0].$$id,
+    $$id: lastDefinition.$$id,
   };
 }
 
