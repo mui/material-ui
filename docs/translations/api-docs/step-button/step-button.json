@@ -6,6 +6,8 @@
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "icon": { "description": "The icon displayed by the step label." },
+    "onClick": { "description": "Callback fired when the component is clicked." },
+    "onKeyDown": { "description": "Callback fired when a key is pressed down." },
     "optional": { "description": "The optional node to display." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
