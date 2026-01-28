@@ -177,10 +177,7 @@ type AutocompleteOwnProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> = Omit<
-  UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-  'defaultValue' | 'disabled' | 'readOnly'
-> &
+> = UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> &
   AutocompleteSlotsAndSlotProps & {
     /**
      * If `true`, the `input` element is focused during the first mount.

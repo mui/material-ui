@@ -260,20 +260,52 @@ export interface BaseTextFieldProps extends StandardProps<
   value?: unknown;
 }
 
-export interface StandardTextFieldProps extends BaseTextFieldProps {
+export interface StandardTextFieldProps
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<StandardInputProps> {
+  /**
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
   onChange?: StandardInputProps['onChange'];
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
   variant?: 'standard';
+  /**
+   * Props applied to the Input element.
+   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
+   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
+   * component depending on the `variant` prop value.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   InputProps?: Partial<StandardInputProps>;
-  slots?: TextFieldSlotsAndSlotProps<StandardInputProps>['slots'];
-  slotProps?: TextFieldSlotsAndSlotProps<StandardInputProps>['slotProps'];
 }
 
-export interface FilledTextFieldProps extends BaseTextFieldProps {
+export interface FilledTextFieldProps
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<FilledInputProps> {
+  /**
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
   onChange?: FilledInputProps['onChange'];
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
   variant: 'filled';
+  /**
+   * Props applied to the Input element.
+   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
+   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
+   * component depending on the `variant` prop value.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
   InputProps?: Partial<FilledInputProps>;
-  slots?: TextFieldSlotsAndSlotProps<FilledInputProps>['slots'];
-  slotProps?: TextFieldSlotsAndSlotProps<FilledInputProps>['slotProps'];
 }
 
 export interface OutlinedTextFieldProps

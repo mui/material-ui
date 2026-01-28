@@ -78,7 +78,7 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     variant?: OverridableStringUnion<VariantProp, MenuPropsVariantOverrides>;
   } & MenuSlotsAndSlotProps &
-    Omit<PopperProps, 'children' | 'open' | 'slots' | 'slotProps'>;
+    Omit<PopperProps, 'children' | 'open'>;
   defaultComponent: D;
 }
 
