@@ -6,7 +6,7 @@ import { SystemProps } from '../Box';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type GridDirection = 'row' | 'row-reverse';
 
 export type GridSpacing = number | string;
 
@@ -38,8 +38,13 @@ export interface GridBaseProps {
    */
   container?: boolean;
   /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
+   * Defines the `flex-direction` style property for the container.
+   *
+   * ⚠️ Only `row` and `row-reverse` are supported. `column` and `column-reverse` are not supported,
+   * because the Grid component is designed to subdivide layouts into **columns**, not rows.
+   *
+   * For vertical layouts, use `Stack` instead.
+   *
    * @default 'row'
    */
   direction?: ResponsiveStyleValue<GridDirection>;

@@ -33,22 +33,20 @@ export default function PositionedTooltips() {
             <Button>left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid container direction="column" sx={{ alignItems: 'flex-end' }} size={6}>
-          <Grid>
+        <Grid container sx={{ justifyContent: 'flex-end' }} size={6}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'end' }}>
             <Tooltip title="Add" placement="right-start">
               <Button>right-start</Button>
             </Tooltip>
-          </Grid>
-          <Grid>
+
             <Tooltip title="Add" placement="right">
               <Button>right</Button>
             </Tooltip>
-          </Grid>
-          <Grid>
+
             <Tooltip title="Add" placement="right-end">
               <Button>right-end</Button>
             </Tooltip>
-          </Grid>
+          </Box>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>
