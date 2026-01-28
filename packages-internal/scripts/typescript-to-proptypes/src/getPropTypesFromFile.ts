@@ -31,7 +31,6 @@ function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
 function getSymbolDocumentation({
   symbol,
   project,
-  parentType,
 }: {
   symbol: ts.Symbol | undefined;
   project: TypeScriptProject;
