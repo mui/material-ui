@@ -8,7 +8,7 @@ export default function transformer(fileInfo, api, options) {
   const targetModule = options.targetModule || '@mui/material';
 
   let resolveModule = importModule;
-  if ((globalThis as any).MUI_TEST_ENV) {
+  if (globalThis.MUI_TEST_ENV) {
     resolveModule = resolveModule.replace(/^@mui\/material/, '@mui/material-v5');
   }
 
