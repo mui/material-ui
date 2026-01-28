@@ -47,7 +47,7 @@
     "@mui/system": "workspace:*",
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.8",
+    "@types/react": "19.2.9",
     "@types/sinon": "17.0.4",
     "chai": "6.2.1",
     "es-toolkit": "1.43.0",
