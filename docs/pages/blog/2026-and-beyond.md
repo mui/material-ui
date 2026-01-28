@@ -1,5 +1,5 @@
 ---
-title: "MUI update: what we've been working on (and why)"
+title: "MUI Update: What we've been working on (and why)"
 description: An update on active projects, maintenance, and our focus areas in 2026.
 date: 2026-01-01T08:00:00.000Z
 authors: ['alelthomas']
