@@ -393,9 +393,9 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
 
+  const deleteIconRef = React.useRef(null);
+
   const handleDeleteIconClick = (event) => {
-    // Stop the event from bubbling up to the `Chip`
-    event.stopPropagation();
     if (onDelete) {
       onDelete(event);
     }
@@ -461,9 +461,14 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
         React.cloneElement(deleteIconProp, {
           className: clsx(deleteIconProp.props.className, classes.deleteIcon),
           onClick: handleDeleteIconClick,
+          ref: deleteIconRef,
         })
       ) : (
-        <CancelIcon className={classes.deleteIcon} onClick={handleDeleteIconClick} />
+        <CancelIcon
+          className={classes.deleteIcon}
+          onClick={handleDeleteIconClick}
+          ref={deleteIconRef}
+        />
       );
   }
 
@@ -515,6 +520,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       ...handlers,
       onClick: (event) => {
         handlers.onClick?.(event);
+        // Skip onClick if the click was on the delete icon
+        if (onDelete && deleteIconRef.current && deleteIconRef.current.contains(event.target)) {
+          return;
+        }
         onClick?.(event);
       },
       onKeyDown: (event) => {
