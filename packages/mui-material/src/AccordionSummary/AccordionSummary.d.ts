@@ -62,7 +62,6 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface AccordionSummaryOwnProps extends AccordionSummarySlotsAndSlotProps {
-  children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */

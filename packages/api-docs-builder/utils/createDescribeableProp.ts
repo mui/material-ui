@@ -1,5 +1,5 @@
 import * as doctrine from 'doctrine';
-import { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
+import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
 
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
@@ -26,11 +26,12 @@ export default function createDescribeableProp(
   propName: string,
   settings: CreateDescribeablePropSettings = {},
 ): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+  const { defaultValue, description, required, type } = prop;
+  const jsdocDefaultValue = (prop as any).jsdocDefaultValue as { value: string } | undefined;
 
   const { propsWithoutDefaultVerification = [] } = settings;
 
-  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+  const renderedDefaultValue = (defaultValue?.value as string | undefined)?.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
     renderedDefaultValue &&
     // Ignore "large" default values that would break the table layout.
@@ -86,6 +87,6 @@ export default function createDescribeableProp(
     annotation,
     defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
     required: Boolean(required),
-    type,
+    type: type!,
   };
 }

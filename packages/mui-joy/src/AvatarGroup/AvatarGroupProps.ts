@@ -22,35 +22,34 @@ export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface AvatarGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    Pick<AvatarProps, 'color' | 'size' | 'variant'> & {
-      /**
-       * The color context for the avatar children.
-       * It has no effect on the AvatarGroup.
-       * @default 'neutral'
-       */
-      color?: AvatarProps['color'];
-      /**
-       * Used to render icon or text elements inside the AvatarGroup if `src` is not set.
-       * This can be an element, or just a string.
-       */
-      children?: React.ReactNode;
-      /**
-       * The size of the component and the avatar children.
-       * @default 'md'
-       */
-      size?: AvatarProps['size'];
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-      /**
-       * The variant context for the avatar children.
-       * It has no effect on the AvatarGroup.
-       * @default 'soft'
-       */
-      variant?: AvatarProps['variant'];
-    } & AvatarGroupSlotsAndSlotProps;
+  props: P & {
+    /**
+     * The color context for the avatar children.
+     * It has no effect on the AvatarGroup.
+     * @default 'neutral'
+     */
+    color?: AvatarProps['color'];
+    /**
+     * Used to render icon or text elements inside the AvatarGroup if `src` is not set.
+     * This can be an element, or just a string.
+     */
+    children?: React.ReactNode;
+    /**
+     * The size of the component and the avatar children.
+     * @default 'md'
+     */
+    size?: AvatarProps['size'];
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+    /**
+     * The variant context for the avatar children.
+     * It has no effect on the AvatarGroup.
+     * @default 'soft'
+     */
+    variant?: AvatarProps['variant'];
+  } & AvatarGroupSlotsAndSlotProps;
   defaultComponent: D;
 }
 

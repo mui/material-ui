@@ -24,7 +24,7 @@
     "indicator": { "type": { "name": "node" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
-    "multiple": { "type": { "name": "bool" } },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },

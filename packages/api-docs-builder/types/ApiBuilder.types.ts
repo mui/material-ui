@@ -1,4 +1,4 @@
-import { ReactDocgenApi } from 'react-docgen';
+import type { Documentation } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
 import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
@@ -14,7 +14,7 @@ export type AdditionalPropsInfo = {
 /**
  * Common interface for both Component and Hook API builders.
  */
-interface CommonReactApi extends ReactDocgenApi {
+interface CommonReactApi extends Documentation {
   demos: ReturnType<HookInfo['getDemos']>;
   EOL: string;
   filename: string;

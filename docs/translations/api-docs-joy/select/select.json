@@ -50,6 +50,7 @@
       "description": "If <code>true</code>, the Select cannot be empty when submitting form."
     },
     "size": { "description": "The size of the component." },
+    "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "startDecorator": { "description": "Leading adornment for the select." },
     "sx": {
