@@ -137,6 +137,7 @@ export default function generatePropDescription(
   const generics = annotation.tags
     .filter((tag) => tag.title === 'template')
     .map((template) => {
+      // eslint-disable-next-line compat/compat
       const [key, description] = template.description?.split(/(?<=^\S+)\s/) || [];
       if (!description) {
         return null;

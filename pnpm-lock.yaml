@@ -865,6 +865,9 @@ importers:
       '@mui/system':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
         version: 6.4.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(@types/react@19.2.8)(react@19.2.3))(@types/react@19.2.8)(react@19.2.3)
+      '@mui/utils':
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
+        version: 7.3.6(@types/react@19.2.8)(react@19.2.3)
       chai:
         specifier: ^6.0.1
         version: 6.2.1
@@ -877,6 +880,9 @@ importers:
       csstype:
         specifier: ^3.1.3
         version: 3.2.3
+      fg-loadcss:
+        specifier: ^3.1.0
+        version: 3.1.0
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -893,6 +899,9 @@ importers:
       '@types/chai':
         specifier: 5.2.3
         version: 5.2.3
+      '@types/fg-loadcss':
+        specifier: 3.1.3
+        version: 3.1.3
       '@types/gtag.js':
         specifier: 0.0.20
         version: 0.0.20

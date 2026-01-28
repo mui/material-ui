@@ -1,7 +1,7 @@
 import Section from 'docs/src/layouts/Section';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import SectionHeadline from '../typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import GradientText from '../typography/GradientText';
 
 export default function CustomersHero() {

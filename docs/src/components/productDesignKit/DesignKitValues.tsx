@@ -6,7 +6,7 @@ import { InfoCard } from '@mui/docs/InfoCard';
 import CodeRounded from '@mui/icons-material/CodeRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 
 const content = [
   {

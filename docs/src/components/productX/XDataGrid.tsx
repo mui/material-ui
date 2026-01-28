@@ -12,7 +12,7 @@ import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { Link } from '@mui/docs/Link';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';

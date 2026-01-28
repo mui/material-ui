@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { SxProps } from '@mui/system';
-import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
+import { ThemeOptionsContext } from '../ThemeContext';
 
 export type IconImageProps = {
   name:
