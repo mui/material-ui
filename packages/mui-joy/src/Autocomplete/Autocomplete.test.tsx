@@ -487,7 +487,7 @@ describe('Joy <Autocomplete />', () => {
                 const { key, ...tagProps } = getTagProps({ index });
                 return (
                   <Chip key={index} endDecorator={<ChipDelete key={key} {...tagProps} />}>
-                    {option.title}
+                    {option}
                   </Chip>
                 );
               })
@@ -1159,9 +1159,9 @@ describe('Joy <Autocomplete />', () => {
       }).toErrorDev([
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         !strictModeDoubleLoggingSuppressed &&
-          'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         !strictModeDoubleLoggingSuppressed &&
-          'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
