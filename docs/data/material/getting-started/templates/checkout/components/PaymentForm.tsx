@@ -12,7 +12,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { styled, type Theme } from '@mui/material/styles';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
@@ -147,7 +147,7 @@ export default function PaymentForm() {
                 <CreditCardRoundedIcon
                   fontSize="small"
                   sx={[
-                    (theme) => ({
+                    (theme: Theme) => ({
                       color: 'grey.400',
                       ...theme.applyStyles('dark', {
                         color: 'grey.600',
@@ -178,7 +178,7 @@ export default function PaymentForm() {
                 <AccountBalanceRoundedIcon
                   fontSize="small"
                   sx={[
-                    (theme) => ({
+                    (theme: Theme) => ({
                       color: 'grey.400',
                       ...theme.applyStyles('dark', {
                         color: 'grey.600',
