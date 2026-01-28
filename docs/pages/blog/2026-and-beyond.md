@@ -40,7 +40,7 @@ While it's still early to share specifics, this work is under way and will be co
 
 ### Base UI
 
-<img width="692" height="390" alt="Base UI v1.1.0 announcement tweet" src="https://github.com/user-attachments/assets/d49f7faa-12d5-4b1b-80fd-48f4d8e56f33" />
+<img width="692" height="390" alt="Base UI v1.1.0 announcement tweet" src="https://github.com/user-attachments/assets/1e699941-f38f-4275-a7c5-7179ecd251f3" />
 
 Base UI is a major area of focus this year.
 
