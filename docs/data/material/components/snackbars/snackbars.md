@@ -122,6 +122,10 @@ Note that notistack prevents Snackbars from being [closed by pressing <kbd class
 
 ## Accessibility
 
+### Keyboard navigation
+
+Users can quickly focus the Snackbar by pressing <kbd class="key">F6</kbd>. This allows keyboard users to access the Snackbar and its interactive elements without having to tab through the entire page.
+
 The user should be able to dismiss Snackbars by pressing <kbd class="key">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class="key">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault` in the `onClose` prop.
 
 ```jsx
