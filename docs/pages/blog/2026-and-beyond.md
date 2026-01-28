@@ -13,11 +13,11 @@ We'd like to provide clarity on what we're actively investing in today, what we'
 ## Table of contents
 
 - [Where our focus is in 2026](#where-our-focus-is-in-2026)
-  - [Material UI](#material-ui)
-  - [Base UI](#base-ui)
-  - [MUI X](#mui-x)
+  - [Material UI](#material-ui)
+  - [Base UI](#base-ui)
+  - [MUI X](#mui-x)
 - [Projects currently on hold or in limited maintenace](#projects-currently-on-hold-or-in-limited-maintenance)
-  - [Pigment CSS](#pigment-css)
+  - [Pigment CSS](#pigment-css)
   - [Joy UI](#joy-ui)
   - [Toolpad](#toolpad)
   - [MUI Sync](#mui-sync)
@@ -25,49 +25,49 @@ We'd like to provide clarity on what we're actively investing in today, what we'
 
 ## Where our focus is in 2026
 
-### Material UI
+### Material UI
 
 <img width="692" height="390" loading="lazy" alt="NumberField component is now available." src="https://github.com/user-attachments/assets/ca08c54f-ca30-4c34-8688-32617660144e" />
 
-Material UI continues to be a core focus for us.
+Material UI continues to be a core focus for us.
 
 We're currently maintaining the library and continuing to ship new components and improvements.
-Most recently, we released [NumberField](https://mui.com/material-ui/react-number-field/) (one of our most requested components), designed to fully integrate with Base UI primitives.
+Most recently, we released [NumberField](https://mui.com/material-ui/react-number-field/) (one of our most requested components), designed to fully integrate with Base UI primitives.
 
-We're working on additional components built on top of Base UI, with examples like MenuBar and PreviewCard that are currently in progress.
-Alongside this, we're drafting and shaping the feature set that will define the next major version of Material UI (v8).
+We're working on additional components built on top of Base UI, with examples like MenuBar and PreviewCard that are currently in progress.
+Alongside this, we're drafting and shaping the feature set that will define the next major version of Material UI (v8).
 While it's still early to share specifics, this work is under way and will be communicated as it solidifies.
 
-### Base UI
+### Base UI
 
-<img width="692" height="390" alt="Base UI v1.1.0 announcement tweet" src="https://github.com/user-attachments/assets/d49f7faa-12d5-4b1b-80fd-48f4d8e56f33" />
+<img width="692" height="390" alt="Base UI v1.1.0 announcement tweet" src="https://github.com/user-attachments/assets/d49f7faa-12d5-4b1b-80fd-48f4d8e56f33" />
 
-Base UI is a major area of focus this year.
+Base UI is a major area of focus this year.
 
-[MUI Base](https://v6.mui.com/base-ui/getting-started/) has been deprecated and replaced by Base UI, which represents our long-term direction for foundational, unstyled components.
+[MUI Base](https://v6.mui.com/base-ui/getting-started/) has been deprecated and replaced by Base UI, which represents our long-term direction for foundational, unstyled components.
 
-We recently reached a major milestone by [releasing Base UI as stable](https://base-ui.com/react/overview/releases), followed by the v1.1 release earlier this month.
+We recently reached a major milestone by [releasing Base UI as stable](https://base-ui.com/react/overview/releases), followed by the v1.1 release earlier this month.
 With stability in place, our focus is now on expanding the component set, improving documentation and guidance, and making adoption and migration easier for teams building their custom design systems.
 
-Base UI is where we are concentrating our foundational work going forward.
+Base UI is where we are concentrating our foundational work going forward.
 
-### MUI X
+### MUI X
 
-We're also investing in our MUI X advanced components: Data Grid, Charts, Tree View, and Date and Time Pickers.
-As we prepare for the next major version, we've been continuously shipping new features and improvements since MUI X v8.
+We're also investing in our MUI X advanced components: Data Grid, Charts, Tree View, and Date and Time Pickers.
+As we prepare for the next major version, we've been continuously shipping new features and improvements since MUI X v8.
 These updates have been covered in our [What's New](https://mui.com/x/whats-new/) section and our [most recent blog post](https://mui.com/blog/mui-x-end-v8/) outlining what's shipped since v8.
 
 ## Projects currently on hold or in limited maintenance
 
-### Pigment CSS
+### Pigment CSS
 
-Pigment CSS remains in alpha phase and is currently on hold.
+Pigment CSS remains in alpha phase and is currently on hold.
 
 We made fast progress early on, but it became clear that the underlying problems were not fully solved yet.
 At that point, we made the decision to prioritize our roadmap and focus on one foundational problem at a time.
 
-That prioritization led us to concentrate our efforts on Base UI—a project we've now successfully brought to stability after a long period of iteration.
-Pigment CSS is not being developed at the moment.
+That prioritization led us to concentrate our efforts on Base UI—a project we've now successfully brought to stability after a long period of iteration.
+Pigment CSS is not being developed at the moment.
 While we still believe in the potential of the ideas behind it, progressing further would require a different approach.
 So for now, development is paused.
 
@@ -85,7 +85,7 @@ Toolpad is not actively maintained.
 The maintainers are currently focused on other projects, and we may not be able to respond promptly to issues or pull requests.
 For new projects, we don't recommend adopting Toolpad Core at this time.
 
-As an alternative, you can use the CRUD dashboard template from the Material UI React templates page.
+As an alternative, you can use the CRUD dashboard template from the Material UI React templates page.
 It provides an easy-to-customize, copy-pastable setup that covers many of the same dashboard and CRUD use cases without having to rely on Toolpad Core.
 
 ### MUI Sync
