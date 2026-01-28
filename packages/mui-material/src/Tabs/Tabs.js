@@ -432,7 +432,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
         if (process.env.NODE_ENV !== 'production') {
           if (
-            !globalThis.MUI_TEST_ENV &&
+            !(globalThis as any).MUI_TEST_ENV &&
             !warnedOnceTabPresent &&
             tabMeta &&
             tabMeta.width === 0 &&

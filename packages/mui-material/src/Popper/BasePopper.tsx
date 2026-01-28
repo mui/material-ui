@@ -147,7 +147,7 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
         const box = resolvedAnchorElement.getBoundingClientRect();
 
         if (
-          !globalThis.MUI_TEST_ENV &&
+          !(globalThis as any).MUI_TEST_ENV &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&
@@ -352,7 +352,7 @@ Popper.propTypes /* remove-proptypes */ = {
           const box = resolvedAnchorEl.getBoundingClientRect();
           if (
             process.env.NODE_ENV !== 'production' &&
-            !globalThis.MUI_TEST_ENV &&
+            !(globalThis as any).MUI_TEST_ENV &&
             box.top === 0 &&
             box.left === 0 &&
             box.right === 0 &&

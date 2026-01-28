@@ -302,7 +302,7 @@ Slide.propTypes /* remove-proptypes */ = {
 
         if (
           process.env.NODE_ENV !== 'production' &&
-          !globalThis.MUI_TEST_ENV &&
+          !(globalThis as any).MUI_TEST_ENV &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&

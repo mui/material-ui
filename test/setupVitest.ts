@@ -1,5 +1,5 @@
 import setupVitest from '@mui/internal-test-utils/setupVitest';
 
-globalThis.MUI_TEST_ENV = true;
+(globalThis as any).MUI_TEST_ENV = true;
 
 setupVitest({ emotion: true });
