@@ -58,15 +58,6 @@ export default function getBabelConfig(api) {
     ],
   ];
 
-  if (process.env.NODE_ENV === 'test') {
-    plugins.push([
-      'babel-plugin-module-resolver',
-      {
-        alias: defaultAlias,
-        root: ['./'],
-      },
-    ]);
-  }
   const basePlugins = (baseConfig.plugins || []).filter(
     (/** @type {[unknown, unknown, string]} */ [, , pluginName]) =>
       pluginName !== '@mui/internal-babel-plugin-display-name',

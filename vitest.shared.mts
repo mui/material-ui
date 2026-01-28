@@ -71,7 +71,7 @@ export default async function create(
   return defineProject({
     plugins: [react(), forceJsxForJsFiles()],
     define: {
-      'process.env.NODE_ENV': JSON.stringify('test'),
+      'process.env.NODE_ENV': JSON.stringify('development'),
     },
     test: {
       name,
@@ -109,6 +109,7 @@ export default async function create(
       },
       env: {
         VITEST: 'true',
+        NODE_ENV: 'test',
       },
     },
     resolve: {

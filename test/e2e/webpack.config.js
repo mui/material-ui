@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/consistent-production-guard */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackBaseConfig = require('../../webpackBaseConfig');

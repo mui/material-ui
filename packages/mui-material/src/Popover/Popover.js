@@ -167,7 +167,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const box = anchorElement.getBoundingClientRect();
 
       if (
-        process.env.NODE_ENV !== 'test' &&
+        globalThis.MUI_TEST_ENV &&
         box.top === 0 &&
         box.left === 0 &&
         box.right === 0 &&
@@ -480,7 +480,8 @@ Popover.propTypes /* remove-proptypes */ = {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
-          process.env.NODE_ENV !== 'test' &&
+          process.env.NODE_ENV !== 'production' &&
+          globalThis.MUI_TEST_ENV &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&

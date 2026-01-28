@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/consistent-production-guard */
 const path = require('path');
 
 module.exports = {
