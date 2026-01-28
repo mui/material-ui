@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.44",
+  "version": "2.0.45",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
   "bin": "./envinfo.js",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
-    "chai": "^6.0.1"
+    "chai": "6.2.1"
   },
   "publishConfig": {
     "access": "public",

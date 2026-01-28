@@ -17,14 +17,14 @@
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "docs": "workspace:^",
-    "es-toolkit": "^1.43.0"
+    "es-toolkit": "^1.44.0"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.27",
+    "@types/node": "20.19.30",
     "@types/sinon": "17.0.4",
-    "chai": "^6.0.1",
-    "sinon": "^21.0.0",
-    "typescript": "^5.9.2"
+    "chai": "6.2.1",
+    "sinon": "21.0.0",
+    "typescript": "5.9.3"
   }
 }

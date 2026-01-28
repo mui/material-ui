@@ -545,7 +545,7 @@ Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 Remove the `withMobileDialog` higher-order component.
 
 :::warning
-This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required.
+This is handled in the [preset-safe codemod](/material-ui/migration/migration-v4/#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required.
 :::
 
 The hook API allows a simpler and more flexible solution:
@@ -731,7 +731,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::success
-This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](/material-ui/migration/migration-v4/#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -858,7 +858,7 @@ Use CSS `object-fit`. For IE 11 support either use a polyfill such as
 This component is deprecated because its functionality can be created with the [`sx`](/system/getting-started/the-sx-prop/) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
 :::success
-This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
+This is handled in the [preset-safe codemod](/material-ui/migration/migration-v4/#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
 :::
 
 Use the `sx` prop to replace `implementation="css"`:
@@ -936,7 +936,7 @@ The default `underline` prop is changed from `"hover"` to `"always"`.
 To recreate the behavior from v4, apply `defaultProps` in the theme.
 
 :::success
-This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
+This is handled in [link-underline-hover codemod](/material-ui/migration/migration-v4/#link-underline-hover)—read the details before running this codemod.
 :::
 
 ```js
@@ -1286,7 +1286,7 @@ You can get a reference to the underlying DOM node of our components via `ref` p
 The component relied on [`ReactDOM.findDOMNode`](https://legacy.reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
 
 :::success
-This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
+This is handled in the [preset-safe codemod](/material-ui/migration/migration-v4/#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
 :::
 
 ```diff
@@ -1307,7 +1307,7 @@ Change the default variant from `standard` to `outlined`.
 If you are composing the `Select` with a form control component, you only need to update `FormControl`—the select inherits the variant from its context.
 
 :::success
-This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](/material-ui/migration/migration-v4/#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
@@ -1710,7 +1710,7 @@ Change the default variant from `standard` to `outlined`.
 `standard` has been removed from the Material Design guidelines.
 
 :::success
-This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+This is handled in [variant-prop codemod](/material-ui/migration/migration-v4/#variant-prop)—read the details before running this codemod.
 :::
 
 ```diff
