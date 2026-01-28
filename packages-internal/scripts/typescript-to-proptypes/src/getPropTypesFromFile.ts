@@ -31,9 +31,11 @@ function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
 function getSymbolDocumentation({
   symbol,
   project,
+  parentType,
 }: {
   symbol: ts.Symbol | undefined;
   project: TypeScriptProject;
+  parentType?: ts.Type;
 }): string | undefined {
   if (symbol === undefined) {
     return undefined;
@@ -42,17 +44,39 @@ function getSymbolDocumentation({
   const decl = symbol.getDeclarations();
   if (decl && decl.length > 0) {
     // For intersection types (A & B), the symbol may have multiple declarations.
-    // Merge the JSDoc comments from all declarations like TypeScript does.
-    const comments = decl
-      .map((d) => ts.getJSDocCommentsAndTags(d))
-      .flat()
-      .filter((commentNode) => ts.isJSDoc(commentNode));
+    // We need to handle three cases:
+    // 1. Intersection (type C = A & B): merge JSDoc from all declarations (deduplicated)
+    // 2. Interface extends (interface Z extends X, Y): use the (only) declaration's JSDoc
+    // 3. Interface override (interface W extends X { prop }): use the override's JSDoc (which is the only declaration)
+    //
+    // Note: TypeScript gives us:
+    // - Multiple declarations for intersection types (one from each constituent type)
+    // - Single declaration for interface extends (from the original interface)
+    // - Single declaration for interface override (from the overriding interface)
 
-    if (comments.length > 0) {
-      const fullComment = comments
-        .map((commentNode) => doctrine.unwrapComment(commentNode.getText()).trim())
-        .join('\n');
-      return fullComment;
+    // Get JSDoc comments paired with their declarations
+    const declarationsWithComments = decl
+      .map((d) => {
+        const jsDocNodes = ts.getJSDocCommentsAndTags(d).filter((node) => ts.isJSDoc(node));
+        const comment =
+          jsDocNodes.length > 0
+            ? doctrine.unwrapComment(jsDocNodes[0].getText()).trim()
+            : undefined;
+        return { declaration: d, comment };
+      })
+      .filter((item) => item.comment !== undefined);
+
+    if (declarationsWithComments.length > 0) {
+      // If there's only one declaration with a comment, use it
+      // This handles both interface extends and interface override cases
+      if (declarationsWithComments.length === 1) {
+        return declarationsWithComments[0].comment;
+      }
+
+      // Multiple declarations with comments - this is the intersection case (type C = A & B)
+      // Merge JSDoc comments, deduplicating identical ones
+      const uniqueComments = [...new Set(declarationsWithComments.map((d) => d.comment))];
+      return uniqueComments.join('\n');
     }
   }
 
@@ -401,16 +425,18 @@ function checkSymbol({
   symbol,
   location,
   typeStack,
+  parentType,
 }: {
   project: PropTypesProject;
   symbol: ts.Symbol;
   location: ts.Node;
   typeStack: readonly number[];
+  parentType?: ts.Type;
 }): PropTypeDefinition {
   const declarations = symbol.getDeclarations();
   const declaration = declarations && declarations[0];
   const symbolFilenames = getSymbolFileNames(symbol);
-  const jsDoc = getSymbolDocumentation({ symbol, project });
+  const jsDoc = getSymbolDocumentation({ symbol, project, parentType });
 
   // TypeChecker keeps the name for
   // { a: React.ElementType, b: React.ReactElement | boolean }
@@ -553,6 +579,7 @@ function generatePropTypesFromNode(
         project: params.project,
         location: parsedComponent.location,
         typeStack: [(componentType as any).id],
+        parentType: componentType,
       }),
     );
 
