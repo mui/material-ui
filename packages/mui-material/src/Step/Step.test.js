@@ -11,11 +11,11 @@ describe('<Step />', () => {
 
   describeConformance(<Step />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'li',
     render,
     muiName: 'MuiStep',
     testVariantProps: { variant: 'foo' },
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLLIElement,
     skip: ['componentsProp'],
   }));
 

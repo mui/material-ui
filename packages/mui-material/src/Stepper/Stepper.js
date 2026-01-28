@@ -8,7 +8,8 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
-import StepperContext from './StepperContext';
+import { StepperContextProvider } from './StepperContext';
+import useRovingTabIndexFocus from './utils/useRovingTabIndexFocus';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -19,7 +20,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getStepperUtilityClass, classes);
 };
 
-const StepperRoot = styled('div', {
+const StepperRoot = styled('ol', {
   name: 'MuiStepper',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -33,6 +34,9 @@ const StepperRoot = styled('div', {
   },
 })({
   display: 'flex',
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
   variants: [
     {
       props: { orientation: 'horizontal' },
@@ -65,7 +69,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     alternativeLabel = false,
     children,
     className,
-    component = 'div',
+    component = 'ol',
     connector = defaultConnector,
     nonLinear = false,
     orientation = 'horizontal',
@@ -83,30 +87,61 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const totalSteps = childrenArray.length;
   const steps = childrenArray.map((step, index) => {
     return React.cloneElement(step, {
       index,
-      last: index + 1 === childrenArray.length,
+      last: index + 1 === totalSteps,
       ...step.props,
     });
   });
+
+  const { registerElementRef, handleElementKeyDown, setFocusableIndex, focusableIndex } =
+    useRovingTabIndexFocus({
+      initialFocusableIndex: activeStep,
+      elementCount: totalSteps,
+    });
+
   const contextValue = React.useMemo(
-    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation }),
-    [activeStep, alternativeLabel, connector, nonLinear, orientation],
+    () => ({
+      activeStep,
+      alternativeLabel,
+      connector,
+      nonLinear,
+      orientation,
+      totalSteps,
+      handleElementKeyDown,
+      setFocusableIndex,
+      registerElementRef,
+      focusableIndex,
+    }),
+    [
+      activeStep,
+      alternativeLabel,
+      connector,
+      nonLinear,
+      orientation,
+      totalSteps,
+      handleElementKeyDown,
+      setFocusableIndex,
+      registerElementRef,
+      focusableIndex,
+    ],
   );
 
   return (
-    <StepperContext.Provider value={contextValue}>
+    <StepperContextProvider value={contextValue}>
       <StepperRoot
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
+        aria-orientation={orientation}
         {...other}
       >
         {steps}
       </StepperRoot>
-    </StepperContext.Provider>
+    </StepperContextProvider>
   );
 });
 

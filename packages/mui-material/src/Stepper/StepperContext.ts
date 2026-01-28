@@ -7,6 +7,15 @@ export interface StepperContextType {
   connector: React.ReactNode;
   nonLinear: boolean;
   orientation: 'horizontal' | 'vertical';
+  totalSteps: number;
+  focusableIndex: number;
+  registerElementRef: (
+    index: number,
+    elementRef: React.RefObject<HTMLElement>,
+    disabled: boolean,
+  ) => void;
+  setFocusableIndex: (index: number) => void;
+  handleElementKeyDown: (event: React.KeyboardEvent<HTMLElement>) => void;
 }
 
 /**
@@ -26,4 +35,4 @@ export function useStepperContext(): StepperContextType | {} {
   return React.useContext(StepperContext);
 }
 
-export default StepperContext;
+export const StepperContextProvider = StepperContext.Provider;
