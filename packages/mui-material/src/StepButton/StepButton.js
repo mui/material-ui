@@ -57,9 +57,10 @@ const StepButtonRoot = styled(ButtonBase, {
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
-  const { children, className, icon, optional, ...other } = props;
+  const { children, className, getAriaLabel, icon, optional, ...other } = props;
 
-  const { disabled, active } = React.useContext(StepContext);
+  const stepContext = React.useContext(StepContext);
+  const { disabled, active, index, totalSteps = 0 } = stepContext;
   const { orientation } = React.useContext(StepperContext);
 
   const ownerState = { ...props, orientation };
@@ -77,6 +78,14 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
+  // Add aria-label with step position
+  let ariaLabel;
+  if (getAriaLabel) {
+    ariaLabel = getAriaLabel(index, totalSteps);
+  } else if (totalSteps > 0 && index !== undefined) {
+    ariaLabel = `Step ${index + 1} of ${totalSteps}`;
+  }
+
   return (
     <StepButtonRoot
       focusRipple
@@ -86,6 +95,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       aria-current={active ? 'step' : undefined}
+      aria-label={ariaLabel}
       {...other}
     >
       {child}
@@ -111,6 +121,14 @@ StepButton.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the step button.
+   * This is important for screen reader users.
+   * @param {number} index The step's index.
+   * @param {number} totalSteps The total number of steps.
+   * @returns {string}
+   */
+  getAriaLabel: PropTypes.func,
+  /**
    * The icon displayed by the step label.
    */
   icon: PropTypes.node,
@@ -127,5 +145,7 @@ StepButton.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
 };
+
+StepButton.muiName = 'StepButton';
 
 export default StepButton;
