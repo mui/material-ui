@@ -4,6 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 export default function TooltipOffset() {
   return (
     <Tooltip
+      describeChild
       title="Add"
       slotProps={{
         popper: {
