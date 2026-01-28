@@ -38,7 +38,7 @@
     "@types/node": "20.19.30",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "17.0.4",
-    "chai": "6.2.1",
-    "sinon": "21.0.0"
+    "chai": "6.2.2",
+    "sinon": "21.0.1"
   }
 }
