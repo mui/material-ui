@@ -517,7 +517,7 @@ const attachPropsTable = (
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
   const componentProps: ComponentReactApi['propsTable'] = Object.fromEntries(
-    Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
+    Object.entries(reactApi.props!).flatMap(([propName, propDescriptor]): Pair[] => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName, settings);
@@ -526,8 +526,7 @@ const attachPropsTable = (
         prop = null;
       }
       if (prop === null) {
-        // have to delete `componentProps.undefined` later
-        return [] as any;
+        return [];
       }
 
       const defaultValue = (propDescriptor as any).jsdocDefaultValue?.value;
@@ -584,26 +583,28 @@ const attachPropsTable = (
       }
       // Skip props with unknown/undefined types
       if (!propType?.name) {
-        return [] as any;
+        return [];
       }
 
       return [
-        propName,
-        {
-          type: {
-            name: propType.name,
-            description: propTypeDescription !== propType.name ? propTypeDescription : undefined,
+        [
+          propName,
+          {
+            type: {
+              name: propType.name,
+              description: propTypeDescription !== propType.name ? propTypeDescription : undefined,
+            },
+            default: defaultValue,
+            // undefined values are not serialized => saving some bytes
+            required: requiredProp || undefined,
+            deprecated: !!deprecation || undefined,
+            deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
+            signature,
+            additionalInfo:
+              Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
+            seeMoreLink: seeMore?.link,
           },
-          default: defaultValue,
-          // undefined values are not serialized => saving some bytes
-          required: requiredProp || undefined,
-          deprecated: !!deprecation || undefined,
-          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
-          signature,
-          additionalInfo:
-            Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
-          seeMoreLink: seeMore?.link,
-        },
+        ],
       ];
     }),
   );
@@ -616,9 +617,6 @@ const attachPropsTable = (
         .join('\n')}`,
     );
   }
-
-  // created by returning the `[]` entry
-  delete componentProps.undefined;
 
   reactApi.propsTable = componentProps;
 };
@@ -667,7 +665,7 @@ const attachTable = (
 ) => {
   const errors: Array<[propName: string, error: Error]> = [];
   const data: { [key: string]: ApiItemDescription } = params
-    .map((p) => {
+    .flatMap((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
       try {
@@ -677,8 +675,7 @@ const attachTable = (
         prop = null;
       }
       if (prop === null) {
-        // have to delete `componentProps.undefined` later
-        return [] as any;
+        return [];
       }
 
       const deprecationTag = propDescriptor.tags?.deprecated;
@@ -691,13 +688,15 @@ const attachTable = (
         type = type.replace(/{|}/g, '');
       }
 
-      return {
-        name: propName,
-        description: propDescriptor.description,
-        type,
-        deprecated: !!deprecation || undefined,
-        deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
-      };
+      return [
+        {
+          name: propName,
+          description: propDescriptor.description,
+          type,
+          deprecated: !!deprecation || undefined,
+          deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
+        },
+      ];
     })
     .reduce((acc, cssVarDefinition) => {
       const { name, ...other } = cssVarDefinition;

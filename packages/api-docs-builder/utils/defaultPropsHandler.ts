@@ -76,7 +76,7 @@ function getDefaultValue(propertyPath: NodePath) {
 
   let defaultValue: string | undefined;
   if (path.isLiteral() && 'raw' in path.node) {
-    defaultValue = (path.node as any).raw;
+    defaultValue = path.node.raw as string | undefined;
   } else {
     // Check if the original value is an identifier that refers to an import
     // In that case, use just the identifier name instead of resolving
@@ -208,7 +208,7 @@ function getExplicitPropsDeclaration(componentDefinition: NodePath): NodePath | 
   // eslint-disable-next-line no-nested-ternary
   const statements = Array.isArray(functionNode)
     ? functionNode
-    : (functionNode as any).node
+    : functionNode.node
       ? [functionNode]
       : [];
 

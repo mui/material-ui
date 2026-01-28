@@ -44,9 +44,9 @@ function getSymbolDocumentation({
     // For intersection types (A & B), the symbol may have multiple declarations.
     // Merge the JSDoc comments from all declarations like TypeScript does.
     const comments = decl
-      .map((d) => ts.getJSDocCommentsAndTags(d) as readonly any[])
+      .map((d) => ts.getJSDocCommentsAndTags(d))
       .flat()
-      .filter((commentNode) => ts.isJSDoc(commentNode)) as ts.JSDoc[];
+      .filter((commentNode) => ts.isJSDoc(commentNode));
 
     if (comments.length > 0) {
       const fullComment = comments
@@ -121,7 +121,7 @@ function checkType({
     return createObjectType({ jsDoc: undefined });
   }
 
-  const typeNode = type as any;
+  const typeNode = type;
   const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
   const jsDoc = getSymbolDocumentation({ symbol, project });
 
