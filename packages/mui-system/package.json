@@ -49,12 +49,12 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.9",
     "@types/sinon": "17.0.4",
-    "chai": "6.2.1",
-    "es-toolkit": "1.43.0",
+    "chai": "6.2.2",
+    "es-toolkit": "1.44.0",
     "fast-glob": "3.3.3",
     "react": "19.2.3",
-    "sinon": "21.0.0",
-    "styled-components": "6.1.19"
+    "sinon": "21.0.1",
+    "styled-components": "6.3.8"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

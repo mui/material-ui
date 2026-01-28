@@ -39,9 +39,9 @@
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/react": "19.2.9",
-    "chai": "6.2.1",
+    "chai": "6.2.2",
     "react": "19.2.3",
-    "styled-components": "6.1.19"
+    "styled-components": "6.3.8"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

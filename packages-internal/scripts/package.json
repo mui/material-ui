@@ -46,9 +46,9 @@
     "@types/node": "20.19.30",
     "@types/react": "19.2.9",
     "@types/uuid": "10.0.0",
-    "chai": "6.2.1",
+    "chai": "6.2.2",
     "fast-glob": "3.3.3",
-    "prettier": "3.7.4",
+    "prettier": "3.8.1",
     "rimraf": "6.1.2"
   },
   "publishConfig": {
