@@ -16,7 +16,7 @@ import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import { PrioritySupportSwitchTable } from 'docs/src/components/pricing/PrioritySupportSwitch';
+import { MultiAppSwitchTable } from 'docs/src/components/pricing/MultiAppSwitch';
 import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
 import { PlanName, planInfo } from './PricingCards';
 
@@ -840,7 +840,7 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': <Info value="Available from 10+ devs" />,
+  'security-questionnaire': <Info value="Available for orders from $12,000 and above" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
@@ -938,13 +938,13 @@ const premiumData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
-  'priority-support': <PrioritySupportSwitchTable />,
+  'multi-app': <MultiAppSwitchTable />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <InfoPrioritySupport value={yes} metadata="1 business day" value2={no} />,
   'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
   'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
-  'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'security-questionnaire': <Info value="Available for orders from $12,000 and above" />,
   'customer-success': no,
 };
 
@@ -1050,7 +1050,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'response-time': <Info value={yes} metadata="1 business day" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
-  'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'security-questionnaire': yes,
 };
 
 function RowCategory(props: BoxProps) {
