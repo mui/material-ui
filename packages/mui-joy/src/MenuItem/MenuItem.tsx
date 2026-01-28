@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenuItem, useMenuItemContextStabilizer } from '@mui/base/useMenuItem';
 import { ListContext } from '@mui/base/useList';

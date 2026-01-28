@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/joy/styles';
 import { applySoftInversion, applySolidInversion } from '@mui/joy/colorInversion';
 import Box from '@mui/joy/Box';

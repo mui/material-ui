@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { ClassValue } from 'clsx';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
 import { ApplyColorInversion } from '../styles/types';
 

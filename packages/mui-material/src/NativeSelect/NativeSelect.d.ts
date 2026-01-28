@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 import { NativeSelectClasses } from './nativeSelectClasses';
 
-export interface NativeSelectProps
-  extends StandardProps<InputProps, 'inputProps' | 'value' | 'onChange'> {
+export interface NativeSelectProps extends StandardProps<
+  InputProps,
+  'inputProps' | 'value' | 'onChange'
+> {
   /**
    * The option elements to populate the select with.
    * Can be some `<option>` elements.
@@ -28,7 +31,7 @@ export interface NativeSelectProps
    */
   input?: React.ReactElement<unknown, any>;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select#attributes) applied to the `select` element.
    */
   inputProps?: Partial<NativeSelectInputProps>;
   /**

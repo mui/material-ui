@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box, styled } from '@mui/system';
 
 interface TestProps {

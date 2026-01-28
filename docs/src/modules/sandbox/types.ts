@@ -1,6 +1,5 @@
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
-export type CodeStyling = 'Tailwind' | 'MUI System';
 export type CodeVariant = 'TS' | 'JS';
 
 type RelativeModule = {
@@ -14,6 +13,5 @@ export interface DemoData {
   codeVariant: CodeVariant;
   githubLocation: string;
   productId?: Exclude<MuiProductId, 'null'>;
-  codeStyling: CodeStyling;
   relativeModules?: RelativeModule[];
 }

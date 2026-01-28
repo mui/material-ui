@@ -4,7 +4,7 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-nextjs-pages-router-ts
@@ -20,7 +20,7 @@ npm run dev
 
 or:
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router-ts)
 
@@ -40,7 +40,7 @@ If you prefer, you can [use styled-components instead](https://mui.com/material-
 
 ## The link component
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 <!-- #host-reference -->
 
 The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-ui-nextjs-pages-router-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/pages/api-reference/components/link) with Material UI.

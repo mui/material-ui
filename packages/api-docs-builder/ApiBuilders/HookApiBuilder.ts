@@ -1,14 +1,11 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as astTypes from 'ast-types';
-import * as _ from 'lodash';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
-import kebabCase from 'lodash/kebabCase';
-import upperFirst from 'lodash/upperFirst';
+import { kebabCase, upperFirst, escapeRegExp } from 'es-toolkit/string';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import escapeRegExp from 'lodash/escapeRegExp';
 import { escapeEntities, renderMarkdown } from '../buildApi';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
@@ -53,11 +50,6 @@ async function annotateHookDefinition(
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
-      if (api.filename.includes('mui-base')) {
-        // Base UI does not use default exports.
-        return;
-      }
-
       /**
        * export default function Menu() {}
        */
@@ -111,10 +103,6 @@ async function annotateHookDefinition(
     },
 
     ExportNamedDeclaration(babelPath) {
-      if (!api.filename.includes('mui-base')) {
-        return;
-      }
-
       let node: babel.Node = babelPath.node;
 
       if (babel.types.isTSDeclareFunction(node.declaration)) {
@@ -343,7 +331,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
    */
   const pageContent: HookApiContent = {
     // Sorted by required DESC, name ASC
-    parameters: _.fromPairs(
+    parameters: Object.fromEntries(
       Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
@@ -354,7 +342,7 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
         return 1;
       }),
     ),
-    returnValue: _.fromPairs(
+    returnValue: Object.fromEntries(
       Object.entries(reactApi.returnValueTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);

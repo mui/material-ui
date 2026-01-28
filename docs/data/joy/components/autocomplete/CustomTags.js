@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Chip from '@mui/joy/Chip';
 import Close from '@mui/icons-material/Close';

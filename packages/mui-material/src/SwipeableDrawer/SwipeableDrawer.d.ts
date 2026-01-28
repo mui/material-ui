@@ -18,14 +18,15 @@ type SwipeableDrawerSlotsAndSlotProps = DrawerSlotsAndSlotProps &
     {
       /**
        * Props forwarded to the docked slot.
-       * By default, the avaible props are based on a div element.
+       * By default, the available props are based on a div element.
        */
       swipeArea: SlotProps<'div', SwipeableDrawerSwipeAreaSlotPropsOverrides, DrawerOwnerState>;
     }
   >;
 
 export interface SwipeableDrawerProps
-  extends Omit<DrawerProps, 'onClose' | 'open' | 'slots' | 'slotProps'>,
+  extends
+    Omit<DrawerProps, 'onClose' | 'open' | 'slots' | 'slotProps'>,
     SwipeableDrawerSlotsAndSlotProps {
   /**
    * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.

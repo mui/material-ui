@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/joy/styles';
 
 const StatRoot = styled('div')(({ theme }) => ({

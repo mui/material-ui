@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Table, { tableClasses as classes } from '@mui/material/Table';
 import TableContext from './TableContext';
 import describeConformance from '../../test/describeConformance';
@@ -38,13 +37,13 @@ describe('<Table />', () => {
   });
 
   it('should render children', () => {
-    const { getByTestId } = render(
+    render(
       <Table>
         <tbody data-testid="children" />
       </Table>,
     );
 
-    expect(getByTestId('children')).not.to.equal(null);
+    expect(screen.getByTestId('children')).not.to.equal(null);
   });
 
   it('should define table in the child context', () => {

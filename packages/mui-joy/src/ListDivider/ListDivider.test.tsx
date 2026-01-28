@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -79,13 +78,13 @@ describe('Joy <ListDivider />', () => {
     });
 
     it('should be `div` if `List` is not one of `ol, ul, menu`', () => {
-      const { container } = render(
+      const view = render(
         <List component="div" role="menu">
           <ListDivider />
         </List>,
       );
       expect(screen.queryByRole('separator')).to.equal(null);
-      expect(container.firstChild?.firstChild).to.have.tagName('div');
+      expect(view.container.firstChild?.firstChild).to.have.tagName('div');
     });
   });
 });

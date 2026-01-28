@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Snackbar component
 components: Snackbar
-githubLabel: 'component: snackbar'
+githubLabel: 'scope: snackbar'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, MuiRenderResult, screen } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, MuiRenderResult, screen } from '@mui/internal-test-utils';
 import useForkRef from './useForkRef';
 import getReactElementRef from '../getReactElementRef';
 
@@ -48,9 +48,8 @@ describe('useForkRef', () => {
 
     expect(() => {
       render(<Component />);
+      expect(screen.getByTestId('hasRef')).to.have.text('true');
     }).not.toErrorDev();
-
-    expect(screen.getByTestId('hasRef')).to.have.text('true');
   });
 
   it('does nothing if none of the forked branches requires a ref', () => {
@@ -156,20 +155,20 @@ describe('useForkRef', () => {
     const { unmount } = render(<App />);
 
     expect(setup.args[0][0]).to.equal('test');
-    expect(setup.callCount).to.equal(1);
-    expect(cleanUp.callCount).to.equal(0);
+    expect(setup.callCount).to.equal(reactMajor >= 19 ? 2 : 1);
+    expect(cleanUp.callCount).to.equal(reactMajor >= 19 ? 1 : 0);
 
     expect(setup2.args[0][0]).to.equal('test');
-    expect(setup2.callCount).to.equal(1);
+    expect(setup2.callCount).to.equal(reactMajor >= 19 ? 2 : 1);
 
     unmount();
 
-    expect(setup.callCount).to.equal(1);
-    expect(cleanUp.callCount).to.equal(1);
+    expect(setup.callCount).to.equal(reactMajor >= 19 ? 2 : 1);
+    expect(cleanUp.callCount).to.equal(reactMajor >= 19 ? 2 : 1);
 
     // Setup was not called again
-    expect(setup2.callCount).to.equal(1);
+    expect(setup2.callCount).to.equal(reactMajor >= 19 ? 2 : 1);
     // Null handler hit because no cleanup is returned
-    expect(nullHandler.callCount).to.equal(1);
+    expect(nullHandler.callCount).to.equal(reactMajor >= 19 ? 2 : 1);
   });
 });

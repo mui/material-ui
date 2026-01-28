@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, within } from '@mui/internal-test-utils';
+import { createRenderer, within, screen } from '@mui/internal-test-utils';
 import BottomNavigationAction, {
   bottomNavigationActionClasses as classes,
 } from '@mui/material/BottomNavigationAction';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
+
+const CustomButtonBase = React.forwardRef(({ focusRipple, ...props }, ref) => (
+  <ButtonBase ref={ref} {...props} />
+));
 
 describe('<BottomNavigationAction />', () => {
   const { render } = createRenderer();
@@ -20,12 +24,21 @@ describe('<BottomNavigationAction />', () => {
     testVariantProps: { showLabel: true },
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     skip: ['componentProp', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomButtonBase,
+      },
+      label: {
+        expectedClassName: classes.label,
+      },
+    },
   }));
 
   it('adds a `selected` class when selected', () => {
-    const { getByRole } = render(<BottomNavigationAction selected />);
+    render(<BottomNavigationAction selected />);
 
-    expect(getByRole('button')).to.have.class(classes.selected);
+    expect(screen.getByRole('button')).to.have.class(classes.selected);
   });
 
   it('should render label with the selected class when selected', () => {
@@ -35,9 +48,9 @@ describe('<BottomNavigationAction />', () => {
   });
 
   it('adds a `iconOnly` class by default', () => {
-    const { getByRole } = render(<BottomNavigationAction />);
+    render(<BottomNavigationAction />);
 
-    expect(getByRole('button')).to.have.class(classes.iconOnly);
+    expect(screen.getByRole('button')).to.have.class(classes.iconOnly);
   });
 
   it('should render label with the `iconOnly` class', () => {
@@ -47,29 +60,29 @@ describe('<BottomNavigationAction />', () => {
   });
 
   it('removes the `iconOnly` class when `selected`', () => {
-    const { getByRole } = render(<BottomNavigationAction selected />);
+    render(<BottomNavigationAction selected />);
 
-    expect(getByRole('button')).not.to.have.class(classes.iconOnly);
+    expect(screen.getByRole('button')).not.to.have.class(classes.iconOnly);
   });
 
   it('removes the `iconOnly` class when `showLabel`', () => {
-    const { getByRole } = render(<BottomNavigationAction showLabel />);
+    render(<BottomNavigationAction showLabel />);
 
-    expect(getByRole('button')).not.to.have.class(classes.iconOnly);
+    expect(screen.getByRole('button')).not.to.have.class(classes.iconOnly);
   });
 
   it('should render the passed `icon`', () => {
-    const { getByRole } = render(<BottomNavigationAction icon={<div data-testid="icon" />} />);
+    render(<BottomNavigationAction icon={<div data-testid="icon" />} />);
 
-    expect(within(getByRole('button')).getByTestId('icon')).not.to.equal(null);
+    expect(within(screen.getByRole('button')).getByTestId('icon')).not.to.equal(null);
   });
 
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const { getByRole } = render(<BottomNavigationAction onClick={handleClick} />);
+      render(<BottomNavigationAction onClick={handleClick} />);
 
-      getByRole('button').click();
+      screen.getByRole('button').click();
 
       expect(handleClick.callCount).to.equal(1);
     });

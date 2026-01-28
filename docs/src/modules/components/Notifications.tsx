@@ -21,7 +21,7 @@ async function fetchNotifications() {
     const items = (await import('../../../notifications.json')).default;
     return items;
   }
-  // #repo-reference
+  // #target-branch-reference
   const response = await fetch(
     'https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json',
   );

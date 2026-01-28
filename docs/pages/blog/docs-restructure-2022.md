@@ -1,5 +1,5 @@
 ---
-title: 'Our docs just got a major upgrade—here's what that means for you'
+title: "Our docs just got a major upgrade—here's what that means for you"
 description: Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need.
 date: 2022-04-06T00:00:00.000Z
 authors: ['danilo-leal']
@@ -34,7 +34,7 @@ As for the URLs, this is how they look now:
 
 - MUI Core:
   - Material UI: [https://mui.com/material-ui/](https://mui.com/material-ui/getting-started/)
-  - Base UI: [https://mui.com/base-ui/](https://mui.com/base-ui/getting-started/)
+  - Base UI: [https://mui.com/base-ui/](https://v6.mui.com/base-ui/getting-started/)
   - MUI System: [https://mui.com/system/](https://mui.com/system/getting-started/)
 - MUI X:
   - Data Grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)

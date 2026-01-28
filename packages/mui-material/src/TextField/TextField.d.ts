@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputBaseProps } from '../InputBase';
@@ -10,7 +11,6 @@ import { FilledInputProps } from '../FilledInput';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
-import { Theme } from '../styles';
 import { TextFieldClasses } from './textFieldClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -50,48 +50,73 @@ export interface TextFieldSlots {
   select: React.ElementType;
 }
 
+export interface TextFieldRootSlotPropsOverrides {}
+export interface TextFieldInputSlotPropsOverrides {}
+export interface TextFieldInputLabelSlotPropsOverrides {}
+export interface TextFieldFormHelperTextSlotPropsOverrides {}
+export interface TextFieldSelectSlotPropsOverrides {}
+
 export type TextFieldSlotsAndSlotProps<InputPropsType> = CreateSlotsAndSlotProps<
   TextFieldSlots,
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [FormControl](https://mui.com/material-ui/api/form-control/#props) component.
+     * By default, the available props are based on the [FormControl](https://mui.com/material-ui/api/form-control/#props) component.
      */
-    root: SlotProps<React.ElementType<FormControlProps>, {}, TextFieldOwnerState>;
+    root: SlotProps<
+      React.ElementType<FormControlProps>,
+      TextFieldRootSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the input slot.
-     * By default, the avaible props are based on the [Input](https://mui.com/material-ui/api/input/#props) component.
+     * By default, the available props are based on the [Input](https://mui.com/material-ui/api/input/#props) component.
      */
-    input: SlotProps<React.ElementType<InputPropsType>, {}, TextFieldOwnerState>;
+    input: SlotProps<
+      React.ElementType<InputPropsType>,
+      TextFieldInputSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the input label slot.
-     * By default, the avaible props are based on the [InputLabel](https://mui.com/material-ui/api/input-label/#props) component.
+     * By default, the available props are based on the [InputLabel](https://mui.com/material-ui/api/input-label/#props) component.
      */
-    inputLabel: SlotProps<React.ElementType<InputLabelProps>, {}, TextFieldOwnerState>;
+    inputLabel: SlotProps<
+      React.ElementType<InputLabelProps>,
+      TextFieldInputLabelSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the html input slot.
-     * By default, the avaible props are based on the html input element.
+     * By default, the available props are based on the html input element.
      */
     htmlInput: SlotProps<React.ElementType<InputBaseProps['inputProps']>, {}, TextFieldOwnerState>;
     /**
      * Props forwarded to the form helper text slot.
-     * By default, the avaible props are based on the [FormHelperText](https://mui.com/material-ui/api/form-helper-text/#props) component.
+     * By default, the available props are based on the [FormHelperText](https://mui.com/material-ui/api/form-helper-text/#props) component.
      */
-    formHelperText: SlotProps<React.ElementType<FormHelperTextProps>, {}, TextFieldOwnerState>;
+    formHelperText: SlotProps<
+      React.ElementType<FormHelperTextProps>,
+      TextFieldFormHelperTextSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
     /**
      * Props forwarded to the select slot.
-     * By default, the avaible props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
+     * By default, the available props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
      */
-    select: SlotProps<React.ElementType<SelectProps>, {}, TextFieldOwnerState>;
+    select: SlotProps<
+      React.ElementType<SelectProps>,
+      TextFieldSelectSlotPropsOverrides,
+      TextFieldOwnerState
+    >;
   }
 >;
 
-export interface BaseTextFieldProps
-  extends StandardProps<
-    FormControlProps,
-    // event handlers are declared on derived interfaces
-    'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
-  > {
+export interface BaseTextFieldProps extends StandardProps<
+  FormControlProps,
+  // event handlers are declared on derived interfaces
+  'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
+> {
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -161,7 +186,7 @@ export interface BaseTextFieldProps
    */
   InputLabelProps?: Partial<InputLabelProps>;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @deprecated Use `slotProps.htmlInput` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps?: InputBaseProps['inputProps'];
@@ -226,7 +251,7 @@ export interface BaseTextFieldProps
    */
   sx?: SxProps<Theme>;
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    */
   type?: React.InputHTMLAttributes<unknown>['type'];
   /**
@@ -236,8 +261,7 @@ export interface BaseTextFieldProps
 }
 
 export interface StandardTextFieldProps
-  extends BaseTextFieldProps,
-    TextFieldSlotsAndSlotProps<StandardInputProps> {
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<StandardInputProps> {
   /**
    * Callback fired when the value is changed.
    *
@@ -261,8 +285,7 @@ export interface StandardTextFieldProps
 }
 
 export interface FilledTextFieldProps
-  extends BaseTextFieldProps,
-    TextFieldSlotsAndSlotProps<FilledInputProps> {
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<FilledInputProps> {
   /**
    * Callback fired when the value is changed.
    *
@@ -286,8 +309,7 @@ export interface FilledTextFieldProps
 }
 
 export interface OutlinedTextFieldProps
-  extends BaseTextFieldProps,
-    TextFieldSlotsAndSlotProps<OutlinedInputProps> {
+  extends BaseTextFieldProps, TextFieldSlotsAndSlotProps<OutlinedInputProps> {
   /**
    * Callback fired when the value is changed.
    *

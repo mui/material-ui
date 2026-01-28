@@ -1,7 +1,7 @@
 ---
 productId: joy-ui
 title: React Skeleton component
-githubLabel: 'component: skeleton'
+githubLabel: 'scope: skeleton'
 components: Skeleton, AspectRatio, Avatar, Typography
 ---
 

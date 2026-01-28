@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, screen, reactMajor, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import GridLegacy, { gridLegacyClasses as classes } from '@mui/material/GridLegacy';
@@ -33,7 +32,7 @@ describe('Material UI <GridLegacy />', () => {
     });
 
     it('should apply the correct number of columns for nested containers', () => {
-      const { getByTestId } = render(
+      render(
         <GridLegacy container columns={16}>
           <GridLegacy item xs={8}>
             <GridLegacy container columns={8} data-testid="nested-container-in-item">
@@ -42,7 +41,8 @@ describe('Material UI <GridLegacy />', () => {
           </GridLegacy>
         </GridLegacy>,
       );
-      const container = getByTestId('nested-container-in-item');
+
+      const container = screen.getByTestId('nested-container-in-item');
 
       // test whether the class of the child of the container is correct or not
       expect(container.firstChild).to.have.class(classes.item);
@@ -53,7 +53,7 @@ describe('Material UI <GridLegacy />', () => {
     });
 
     it('should apply the correct number of columns for nested containers with undefined prop columns', () => {
-      const { getByTestId } = render(
+      render(
         <GridLegacy container columns={16}>
           <GridLegacy item xs={8}>
             <GridLegacy container data-testid="nested-container-in-item">
@@ -63,12 +63,12 @@ describe('Material UI <GridLegacy />', () => {
         </GridLegacy>,
       );
 
-      const container = getByTestId('nested-container-in-item');
+      const container = screen.getByTestId('nested-container-in-item');
       expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
 
     it('should apply the correct number of columns for nested containers with columns=12 (default)', () => {
-      const { getByTestId } = render(
+      render(
         <GridLegacy container columns={16}>
           <GridLegacy item xs={8}>
             <GridLegacy container columns={12} data-testid="nested-container-in-item">
@@ -78,7 +78,7 @@ describe('Material UI <GridLegacy />', () => {
         </GridLegacy>,
       );
 
-      const container = getByTestId('nested-container-in-item');
+      const container = screen.getByTestId('nested-container-in-item');
       expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
   });
@@ -106,28 +106,27 @@ describe('Material UI <GridLegacy />', () => {
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
 
-    it('should apply the styles necessary for variable width nested item when set to auto', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // Need full CSS resolution
-        this.skip();
-      }
-
-      render(
-        <GridLegacy container>
-          <GridLegacy container item xs="auto" data-testid="auto">
-            <div style={{ width: '300px' }} />
-          </GridLegacy>
-          <GridLegacy item xs={11} />
-        </GridLegacy>,
-      );
-      expect(screen.getByTestId('auto')).toHaveComputedStyle({
-        flexBasis: 'auto',
-        flexGrow: '0',
-        flexShrink: '0',
-        maxWidth: 'none',
-        width: '300px',
-      });
-    });
+    // Need full CSS resolution
+    it.skipIf(isJsdom())(
+      'should apply the styles necessary for variable width nested item when set to auto',
+      function test() {
+        render(
+          <GridLegacy container>
+            <GridLegacy container item xs="auto" data-testid="auto">
+              <div style={{ width: '300px' }} />
+            </GridLegacy>
+            <GridLegacy item xs={11} />
+          </GridLegacy>,
+        );
+        expect(screen.getByTestId('auto')).toHaveComputedStyle({
+          flexBasis: 'auto',
+          flexGrow: '0',
+          flexShrink: '0',
+          maxWidth: 'none',
+          width: '300px',
+        });
+      },
+    );
   });
 
   describe('prop: direction', () => {
@@ -652,12 +651,8 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should ignore grid item with spacing object', function test() {
-      if (reactMajor < 19) {
-        // React 19 removed prop types support
-        this.skip();
-      }
-
+    // React 19 removed prop types support
+    it.skipIf(reactMajor < 19)('should ignore grid item with spacing object', function test() {
       const theme = createTheme({
         breakpoints: {
           keys: ['mobile', 'desktop'],
@@ -697,32 +692,31 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should warn of failed prop types when providing spacing object without the `container` prop', function test() {
-      if (reactMajor >= 19) {
-        // React 19 removed prop types support
-        this.skip();
-      }
-
-      const theme = createTheme({
-        breakpoints: {
-          keys: ['mobile', 'desktop'],
-          values: {
-            mobile: 0,
-            desktop: 1200,
+    // React 19 removed prop types support
+    it.skipIf(reactMajor >= 19)(
+      'should warn of failed prop types when providing spacing object without the `container` prop',
+      function test() {
+        const theme = createTheme({
+          breakpoints: {
+            keys: ['mobile', 'desktop'],
+            values: {
+              mobile: 0,
+              desktop: 1200,
+            },
           },
-        },
-      });
+        });
 
-      expect(() => {
-        render(
-          <ThemeProvider theme={theme}>
-            <GridLegacy item spacing={{ mobile: 1, desktop: 3 }} />
-          </ThemeProvider>,
+        expect(() => {
+          render(
+            <ThemeProvider theme={theme}>
+              <GridLegacy item spacing={{ mobile: 1, desktop: 3 }} />
+            </ThemeProvider>,
+          );
+        }).toErrorDev(
+          'Warning: Failed prop type: The prop `spacing` of `GridLegacy` can only be used together with the `container` prop.',
         );
-      }).toErrorDev(
-        'Warning: Failed prop type: The prop `spacing` of `GridLegacy` can only be used together with the `container` prop.',
-      );
-    });
+      },
+    );
 
     it('should not throw error for setting zero spacing in theme', () => {
       const theme = createTheme({ spacing: 0 });
@@ -1008,7 +1002,7 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should generate correct responsive styles regardless of breakpoints order ', () => {
+    it('should generate correct responsive styles regardless of breakpoints order', () => {
       const theme = createTheme();
       expect(
         generateRowGap({
@@ -1059,7 +1053,7 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should generate correct responsive styles regardless of custom breakpoints order ', () => {
+    it('should generate correct responsive styles regardless of custom breakpoints order', () => {
       const theme = createTheme({
         breakpoints: {
           keys: ['mobile', 'desktop'],
@@ -1645,7 +1639,7 @@ describe('Material UI <GridLegacy />', () => {
       });
     });
 
-    it('should generate responsive grid when grid item has a custom breakpoints and grid container columns are responsive ', () => {
+    it('should generate responsive grid when grid item has a custom breakpoints and grid container columns are responsive', () => {
       const theme = createTheme({
         breakpoints: {
           keys: ['mobile', 'tablet', 'desktop'],
@@ -1757,18 +1751,14 @@ describe('Material UI <GridLegacy />', () => {
   });
 
   describe('spacing', () => {
-    it('should generate the right values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should generate the right values', function test() {
       const parentWidth = 500;
       const remValue = 16;
       const remTheme = createTheme({
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 
-      const { rerender } = render(
+      const view = render(
         <div style={{ width: parentWidth }}>
           <ThemeProvider theme={remTheme}>
             <GridLegacy data-testid="grid" container spacing={2}>
@@ -1790,7 +1780,7 @@ describe('Material UI <GridLegacy />', () => {
         paddingLeft: `${0.5 * remValue}px`, // 0.5rem
       });
 
-      rerender(
+      view.rerender(
         <div style={{ width: parentWidth }}>
           <GridLegacy data-testid="grid" container spacing={2}>
             <GridLegacy item data-testid="first-default-theme" />
@@ -1831,16 +1821,16 @@ describe('Material UI <GridLegacy />', () => {
     });
 
     it('should apply nowrap class and style', () => {
-      const { container } = render(<GridLegacy container wrap="nowrap" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-nowrap');
+      const view = render(<GridLegacy container wrap="nowrap" data-testid="wrap" />);
+      expect(view.container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-nowrap');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'nowrap',
       });
     });
 
     it('should apply wrap-reverse class and style', () => {
-      const { container } = render(<GridLegacy container wrap="wrap-reverse" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-wrap-reverse');
+      const view = render(<GridLegacy container wrap="wrap-reverse" data-testid="wrap" />);
+      expect(view.container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-wrap-reverse');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap-reverse',
       });

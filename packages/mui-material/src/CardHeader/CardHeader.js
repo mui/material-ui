@@ -42,7 +42,6 @@ const CardHeaderRoot = styled('div', {
 const CardHeaderAvatar = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Avatar',
-  overridesResolver: (props, styles) => styles.avatar,
 })({
   display: 'flex',
   flex: '0 0 auto',
@@ -52,7 +51,6 @@ const CardHeaderAvatar = styled('div', {
 const CardHeaderAction = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
 })({
   flex: '0 0 auto',
   alignSelf: 'flex-start',
@@ -64,7 +62,6 @@ const CardHeaderAction = styled('div', {
 const CardHeaderContent = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
 })({
   flex: '1 1 auto',
   [`.${typographyClasses.root}:where(& .${cardHeaderClasses.title})`]: {

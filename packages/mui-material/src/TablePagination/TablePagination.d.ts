@@ -2,7 +2,10 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TablePaginationActionsProps, TablePaginationActionsSlots } from './TablePaginationActions';
+import {
+  TablePaginationActionsProps,
+  TablePaginationActionsSlots,
+} from '../TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
@@ -85,7 +88,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [TableCell](https://mui.com/material-ui/api/table-cell/#props) component.
+     * By default, the available props are based on the [TableCell](https://mui.com/material-ui/api/table-cell/#props) component.
      */
     root: SlotProps<
       React.ElementType<TableCellProps>,
@@ -94,7 +97,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the toolbar slot.
-     * By default, the avaible props are based on the [Toolbar](https://mui.com/material-ui/api/toolbar/#props) component.
+     * By default, the available props are based on the [Toolbar](https://mui.com/material-ui/api/toolbar/#props) component.
      */
     toolbar: SlotProps<
       React.ElementType<ToolbarProps>,
@@ -103,12 +106,12 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the spacer slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     spacer: SlotProps<'div', TablePaginationSpacerSlotPropsOverrides, TablePaginationOwnerState>;
     /**
      * Props forwarded to the selectLabel slot.
-     * By default, the avaible props are based on the paragraph element.
+     * By default, the available props are based on the paragraph element.
      */
     selectLabel: SlotProps<
       'p',
@@ -117,12 +120,12 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the select slot.
-     * By default, the avaible props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
+     * By default, the available props are based on the [Select](https://mui.com/material-ui/api/select/#props) component.
      */
     select: Partial<SelectProps> & TablePaginationSelectSlotPropsOverrides;
     /**
      * Props forwarded to the menuItem slot.
-     * By default, the avaible props are based on the [MenuItem](https://mui.com/material-ui/api/menu-item/#props) component.
+     * By default, the available props are based on the [MenuItem](https://mui.com/material-ui/api/menu-item/#props) component.
      */
     menuItem: SlotProps<
       React.ElementType<MenuItemProps>,
@@ -131,7 +134,7 @@ export type TablePaginationSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the displayedRows slot.
-     * By default, the avaible props are based on the paragraph element.
+     * By default, the available props are based on the paragraph element.
      */
     displayedRows: SlotProps<
       'p',
@@ -160,7 +163,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   /**
    * Props applied to the back arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) component.
    *
-   * This prop is an alias for `slotProps.actions.previousButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.actions.previousButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.actions.previousButton` instead.
    */
   backIconButtonProps?: Partial<IconButtonProps>;
@@ -211,7 +214,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   /**
    * Props applied to the next arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) element.
    *
-   * This prop is an alias for `slotProps.actions.nextButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.actions.nextButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.actions.nextButton` instead.
    */
   nextIconButtonProps?: Partial<IconButtonProps>;
@@ -248,7 +251,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   /**
    * Props applied to the rows per page [`Select`](https://mui.com/material-ui/api/select/) element.
    *
-   * This prop is an alias for `slotProps.select` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.select` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.select` instead.
    *
    * @default {}

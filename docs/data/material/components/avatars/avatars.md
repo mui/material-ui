@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, Badge
-githubLabel: 'component: avatar'
+githubLabel: 'scope: avatar'
 githubSource: packages/mui-material/src/Avatar
 ---
 
@@ -86,3 +86,7 @@ You can change the spacing between avatars using the `spacing` prop. You can use
 ## With badge
 
 {{"demo": "BadgeAvatars.js"}}
+
+## Avatar upload
+
+{{"demo": "UploadAvatars.js"}}

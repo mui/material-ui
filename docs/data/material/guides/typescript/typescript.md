@@ -1,10 +1,10 @@
 # TypeScript
 
-<p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
+<p class="description">You can add static typing to JavaScript to improve developer productivity and code quality, thanks to TypeScript.</p>
 
 ## Minimum configuration
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 Material UI requires a minimum version of TypeScript 4.9. Have a look at the [Vite.js with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts) example.
 

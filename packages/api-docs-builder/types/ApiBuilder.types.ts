@@ -61,11 +61,22 @@ export interface PropsTranslations {
   dataAttributesDescriptions?: { [key: string]: string };
 }
 
+export interface TypeDescription {
+  name: string;
+  description: string;
+  argType?: string;
+  argTypeDescription?: string;
+}
+
+export interface TypeDescriptions {
+  [t: string]: TypeDescription;
+}
+
 interface PropDescription {
   description: string;
   requiresRef?: boolean;
   deprecated?: string;
-  typeDescriptions?: { [t: string]: string };
+  typeDescriptions?: { [t: string]: TypeDescription };
   seeMoreText?: string;
 }
 
@@ -96,7 +107,7 @@ export interface ComponentReactApi extends CommonReactApi {
   slots: Slot[];
   cssVariables: { [key: string]: ApiItemDescription };
   dataAttributes: { [key: string]: ApiItemDescription };
-  propsTable: _.Dictionary<PropsTableItem>;
+  propsTable: { [key: string]: PropsTableItem };
   translations: PropsTranslations;
 }
 
@@ -169,8 +180,8 @@ export interface HookReactApi extends CommonReactApi {
    * @example 'useButton'
    */
   name: string;
-  parametersTable: _.Dictionary<AttributeDefinition>;
-  returnValueTable: _.Dictionary<AttributeDefinition>;
+  parametersTable: { [key: string]: AttributeDefinition };
+  returnValueTable: { [key: string]: AttributeDefinition };
   translations: HooksTranslations;
 }
 

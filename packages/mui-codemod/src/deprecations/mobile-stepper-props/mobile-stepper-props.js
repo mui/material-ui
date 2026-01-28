@@ -11,6 +11,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'MobileStepper',
     propName: 'LinearProgressProps',
     slotName: 'progress',

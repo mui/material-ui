@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
@@ -30,77 +29,78 @@ describe('<ModalClose />', () => {
 
   describe('prop: variant', () => {
     it('plain by default', () => {
-      const { getByRole } = render(<ModalClose />);
+      render(<ModalClose />);
 
-      expect(getByRole('button')).to.have.class(classes.variantPlain);
+      expect(screen.getByRole('button')).to.have.class(classes.variantPlain);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByRole } = render(<ModalClose variant={variant} />);
+        render(<ModalClose variant={variant} />);
 
         // @ts-ignore
-        expect(getByRole('button')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(screen.getByRole('button')).to.have.class(classes[`variant${capitalize(variant)}`]);
       });
     });
   });
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByRole } = render(<ModalClose />);
+      render(<ModalClose />);
 
-      expect(getByRole('button')).to.have.class(classes.colorNeutral);
+      expect(screen.getByRole('button')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByRole } = render(<ModalClose color={color}>Hello World</ModalClose>);
+        render(<ModalClose color={color}>Hello World</ModalClose>);
 
         // @ts-ignore
-        expect(getByRole('button')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(screen.getByRole('button')).to.have.class(classes[`color${capitalize(color)}`]);
       });
     });
   });
 
   it('inherit `size` from the context', () => {
-    const { getByRole } = render(
+    render(
       <ModalDialog size="sm">
         <ModalClose />
       </ModalDialog>,
     );
 
-    expect(getByRole('button')).to.have.class(classes.sizeSm);
+    expect(screen.getByRole('button')).to.have.class(classes.sizeSm);
   });
 
   it('inherit `variant` from the context', () => {
-    const { getByRole } = render(
+    render(
       <ModalDialog variant="solid">
         <ModalClose />
       </ModalDialog>,
     );
 
-    expect(getByRole('button')).to.have.class(classes.variantSolid);
+    expect(screen.getByRole('button')).to.have.class(classes.variantSolid);
   });
 
   it('inherit `color` from the context', () => {
-    const { getByRole } = render(
+    render(
       <ModalDialog color="danger">
         <ModalClose />
       </ModalDialog>,
     );
 
-    expect(getByRole('button')).to.have.class(classes.colorDanger);
+    expect(screen.getByRole('button')).to.have.class(classes.colorDanger);
   });
 
   it('call `onClick` together with close context from Modal', () => {
     const onClose = spy();
-    const { getByRole } = render(
+
+    render(
       <Modal open onClose={onClose}>
         <ModalClose />
       </Modal>,
     );
 
-    fireEvent.click(getByRole('button'));
+    fireEvent.click(screen.getByRole('button'));
 
     expect(onClose.callCount).to.equal(1);
   });

@@ -98,6 +98,21 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
   }
 }
 
+function mixLightOrDark(colorSpace, intent, direction, shade, tonalOffset) {
+  const tonalOffsetLight = tonalOffset.light || tonalOffset;
+  const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+
+  if (!intent[direction]) {
+    if (intent.hasOwnProperty(shade)) {
+      intent[direction] = intent[shade];
+    } else if (direction === 'light') {
+      intent.light = `color-mix(in ${colorSpace}, ${intent.main}, #fff ${(tonalOffsetLight * 100).toFixed(0)}%)`;
+    } else if (direction === 'dark') {
+      intent.dark = `color-mix(in ${colorSpace}, ${intent.main}, #000 ${(tonalOffsetDark * 100).toFixed(0)}%)`;
+    }
+  }
+}
+
 function getDefaultPrimary(mode = 'light') {
   if (mode === 'dark') {
     return {
@@ -188,8 +203,19 @@ function getDefaultWarning(mode = 'light') {
   };
 }
 
+// Use the same name as the experimental CSS `contrast-color` function.
+export function contrastColor(background) {
+  return `oklch(from ${background} var(--__l) 0 h / var(--__a))`;
+}
+
 export default function createPalette(palette) {
-  const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
+  const {
+    mode = 'light',
+    contrastThreshold = 3,
+    tonalOffset = 0.2,
+    colorSpace,
+    ...other
+  } = palette;
 
   const primary = palette.primary || getDefaultPrimary(mode);
   const secondary = palette.secondary || getDefaultSecondary(mode);
@@ -202,6 +228,9 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
+    if (colorSpace) {
+      return contrastColor(background);
+    }
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold
         ? dark.text.primary
@@ -255,8 +284,13 @@ export default function createPalette(palette) {
       );
     }
 
-    addLightOrDark(color, 'light', lightShade, tonalOffset);
-    addLightOrDark(color, 'dark', darkShade, tonalOffset);
+    if (colorSpace) {
+      mixLightOrDark(colorSpace, color, 'light', lightShade, tonalOffset);
+      mixLightOrDark(colorSpace, color, 'dark', darkShade, tonalOffset);
+    } else {
+      addLightOrDark(color, 'light', lightShade, tonalOffset);
+      addLightOrDark(color, 'dark', darkShade, tonalOffset);
+    }
     if (!color.contrastText) {
       color.contrastText = getContrastText(color.main);
     }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 
 export default function Slide({

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { NoSsr } from '@mui/base/NoSsr';
 import Slider from '@mui/material/Slider';
 

@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { darken, lighten } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -51,8 +50,8 @@ const AlertRoot = styled(Paper, {
   },
 })(
   memoTheme(({ theme }) => {
-    const getColor = theme.palette.mode === 'light' ? darken : lighten;
-    const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
+    const getColor = theme.palette.mode === 'light' ? theme.darken : theme.lighten;
+    const getBackgroundColor = theme.palette.mode === 'light' ? theme.lighten : theme.darken;
     return {
       ...theme.typography.body2,
       backgroundColor: 'transparent',
@@ -121,7 +120,6 @@ const AlertRoot = styled(Paper, {
 const AlertIcon = styled('div', {
   name: 'MuiAlert',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })({
   marginRight: 12,
   padding: '7px 0',
@@ -133,7 +131,6 @@ const AlertIcon = styled('div', {
 const AlertMessage = styled('div', {
   name: 'MuiAlert',
   slot: 'Message',
-  overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
   minWidth: 0,
@@ -143,7 +140,6 @@ const AlertMessage = styled('div', {
 const AlertAction = styled('div', {
   name: 'MuiAlert',
   slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
 })({
   display: 'flex',
   alignItems: 'flex-start',
