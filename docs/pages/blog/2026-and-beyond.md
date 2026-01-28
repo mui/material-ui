@@ -7,6 +7,8 @@ tags: ['Product']
 manualCard: false
 ---
 
+<img width="692" height="297" alt="Blog banner: what we've been building at MUI" src="https://github.com/user-attachments/assets/6a3510a3-9915-4eaf-b485-fd9b69d5b68f" />
+
 Over the last few months, we've seen more questions from the community about the status of different MUI projects and what we're focusing on.
 We'd like to provide clarity on what we're actively investing in today, what we're maintaining, and what's currently on hold.
 
@@ -52,6 +54,8 @@ With stability in place, our focus is now on expanding the component set, improv
 Base UI is where we are concentrating our foundational work going forward.
 
 ### MUI X
+
+<img width="692" height="390" alt="MUI X Data Grid updates since MUI X v8" src="https://github.com/user-attachments/assets/3f0bf173-1fdd-4efe-85a8-aed90a72549d" />
 
 We're also investing in our MUI X advanced components: Data Grid, Charts, Tree View, and Date and Time Pickers.
 As we prepare for the next major version, we've been continuously shipping new features and improvements since MUI X v8.
