@@ -1159,9 +1159,9 @@ describe('Joy <Autocomplete />', () => {
       }).toErrorDev([
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         !strictModeDoubleLoggingSuppressed &&
-        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+          'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         !strictModeDoubleLoggingSuppressed &&
-        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+          'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
