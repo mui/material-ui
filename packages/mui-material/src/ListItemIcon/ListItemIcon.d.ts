@@ -26,6 +26,7 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
  * Demos:
  *
  * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Menubar](https://mui.com/material-ui/react-menubar/)
  *
  * API:
  *
