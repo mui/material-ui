@@ -78,15 +78,6 @@
     "github": "Janpot"
   },
   {
-    "name": "Prakhar Gupta",
-    "title": "Product Manager — X",
-    "location": "New Delhi, India",
-    "locationCountry": "in",
-    "about": "Into sports and hiking!",
-    "twitter": "gprakhar123",
-    "github": "prakhargupta1"
-  },
-  {
     "name": "José Freitas",
     "title": "Technical Product Manager",
     "location": "Augsburg, Germany",
@@ -109,8 +100,7 @@
     "title": "Head of Documentation",
     "location": "Washington state, US",
     "locationCountry": "us",
-    "about": "Musician and edible wild plant enthusiast 🌱.",
-    "github": "mapache-salvaje"
+    "about": "Musician and edible wild plant enthusiast 🌱."
   },
   {
     "name": "Lukas Tyla",
@@ -199,15 +189,6 @@
     "github": "michelengelen"
   },
   {
-    "name": "Vadym Raksha",
-    "title": "Software Engineer — Services",
-    "location": "Prague, Czech Republic",
-    "locationCountry": "cz",
-    "about": "Product experience geek 🛋, Mediterranean vibes 🍊.",
-    "twitter": "vadym_raksha",
-    "github": "hasdfa"
-  },
-  {
     "name": "Greg Abaoag",
     "title": "Executive Assistant",
     "location": "Baguio, Philippines",
@@ -215,6 +196,14 @@
     "about": "Loves DIY, singing and learning.",
     "twitter": "gzraenga",
     "github": "zannager"
+  },
+  {
+    "name": "Vadym Raksha",
+    "title": "Software Engineer — Services",
+    "location": "Prague, Czechia",
+    "about": "Product experience geek 🛋, Mediterranean vibes 🍊.",
+    "twitter": "vadym_raksha",
+    "github": "hasdfa"
   },
   {
     "name": "Colm Tuite",
@@ -227,7 +216,7 @@
   },
   {
     "name": "Nadja Kovacev",
-    "title": "Talent & Culture Partner",
+    "title": "People Partner",
     "location": "Novi Sad, Serbia",
     "locationCountry": "rs",
     "about": "🧠 Psychology geek, 🏂 amateur snowboarder, and 𐃡 pottery enthusiast.",
@@ -327,5 +316,30 @@
     "locationCountry": "gb",
     "about": "Loves drums 🥁, food 🍖 and books 📚.",
     "github": "LuisHVasallo"
+  },
+  {
+    "name": "Miguel Follana Ugarte",
+    "title": "Technical Recruiter — People",
+    "location": "Alicante, Spain",
+    "locationCountry": "es",
+    "about": "Big fan of sports and learning! Definitely a lifelong generalist 🙃",
+    "github": "MiguelFollana4"
+  },
+  {
+    "name": "Ana Estrada",
+    "title": "Software Engineer",
+    "location": "Madrid, Spain",
+    "locationCountry": "es",
+    "about": "Builder & software crafter by day; yoga 🧘🏻‍♀️, good food 🥘, video games 🎮 and cats 🐈‍⬛ by sunset.",
+    "github": "aemartos"
+  },
+  {
+    "name": "Silviu Alexandru Avram",
+    "title": "Software Engineer — Material UI",
+    "location": "București, Romania",
+    "locationCountry": "ro",
+    "about": "Coding, Traveling and Experimenting Hobbies",
+    "twitter": "silviuaavram",
+    "github": "silviuaavram"
   }
 ]

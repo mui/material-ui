@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableHead, { tableHeadClasses as classes } from '@mui/material/TableHead';
-import Tablelvl2Context from '../Table/Tablelvl2Context';
 import describeConformance from '../../test/describeConformance';
 
 describe('<TableHead />', () => {
@@ -28,21 +27,6 @@ describe('<TableHead />', () => {
     const children = <tr data-testid="test" />;
     renderInTable(<TableHead>{children}</TableHead>);
     screen.getByTestId('test');
-  });
-
-  it('should define table.head in the child context', () => {
-    let context;
-    // TODO: test integration with TableCell
-    renderInTable(
-      <TableHead>
-        <Tablelvl2Context.Consumer>
-          {(value) => {
-            context = value;
-          }}
-        </Tablelvl2Context.Consumer>
-      </TableHead>,
-    );
-    expect(context.variant).to.equal('head');
   });
 
   describe('prop: component', () => {

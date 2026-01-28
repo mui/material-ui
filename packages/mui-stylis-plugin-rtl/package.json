@@ -31,12 +31,12 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "cssjanus": "^2.3.0"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.27",
+    "@types/node": "20.19.30",
     "@types/sinon": "17.0.4",
     "@types/stylis": "4.2.7",
     "chai": "6.2.1",
