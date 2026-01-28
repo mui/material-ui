@@ -109,7 +109,7 @@ export default async function create(
       },
       env: {
         VITEST: 'true',
-        NODE_ENV: 'test',
+        NODE_ENV: 'developmen',
       },
     },
     resolve: {
