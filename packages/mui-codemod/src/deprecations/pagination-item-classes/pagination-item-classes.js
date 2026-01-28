@@ -11,7 +11,11 @@ export default function transformer(file, api, options) {
   classes.forEach(({ deprecatedClass, replacementSelector }) => {
     root
       .find(j.ImportDeclaration)
-      .filter((path) => path.node.source.value.match(/^@mui\/material\/PaginationItem$/))
+      .filter((path) =>
+        path.node.source.value.match(
+          new RegExp(`^${options.packageName || '@mui/material'}(/PaginationItem)?$`),
+        ),
+      )
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
           if (

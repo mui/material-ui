@@ -103,6 +103,7 @@ import { TableCellProps } from '../TableCell';
 import { TableContainerProps } from '../TableContainer';
 import { TableHeadProps } from '../TableHead';
 import { TablePaginationProps } from '../TablePagination';
+import { TablePaginationActionsProps } from '../TablePaginationActions';
 import { TableProps } from '../Table';
 import { TableRowProps } from '../TableRow';
 import { TableSortLabelProps } from '../TableSortLabel';
@@ -231,6 +232,7 @@ export interface ComponentsPropsList {
   MuiTableFooter: TableFooterProps;
   MuiTableHead: TableHeadProps;
   MuiTablePagination: TablePaginationProps;
+  MuiTablePaginationActions: TablePaginationActionsProps;
   MuiTableRow: TableRowProps;
   MuiTableSortLabel: TableSortLabelProps;
   MuiTabs: TabsProps;

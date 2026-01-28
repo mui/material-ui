@@ -76,7 +76,6 @@ const StepLabelRoot = styled('span', {
 const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
@@ -104,7 +103,6 @@ const StepLabelLabel = styled('span', {
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
-  overridesResolver: (props, styles) => styles.iconContainer,
 })({
   flexShrink: 0,
   display: 'flex',
@@ -117,7 +115,6 @@ const StepLabelIconContainer = styled('span', {
 const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
-  overridesResolver: (props, styles) => styles.labelContainer,
 })(
   memoTheme(({ theme }) => ({
     width: '100%',

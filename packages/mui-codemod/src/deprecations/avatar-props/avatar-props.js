@@ -14,6 +14,7 @@ export default function transformer(file, api, options) {
     componentName: 'Avatar',
     propName: 'imgProps',
     slotName: 'img',
+    packageName: options.packageName,
   });
 
   return root.toSource(printOptions);

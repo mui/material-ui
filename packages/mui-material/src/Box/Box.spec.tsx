@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box as SystemBox, BoxProps as SystemBoxProps, createBox } from '@mui/system';
 import { expectType } from '@mui/types';
 import Box, { BoxProps as MaterialBoxProps } from '@mui/material/Box';

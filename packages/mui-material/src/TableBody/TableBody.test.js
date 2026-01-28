@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableBody, { tableBodyClasses as classes } from '@mui/material/TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import describeConformance from '../../test/describeConformance';
@@ -29,8 +28,8 @@ describe('<TableBody />', () => {
 
   it('should render children', () => {
     const children = <tr data-testid="test" />;
-    const { getByTestId } = renderInTable(<TableBody>{children}</TableBody>);
-    getByTestId('test');
+    renderInTable(<TableBody>{children}</TableBody>);
+    screen.getByTestId('test');
   });
 
   it('should define table.body in the child context', () => {

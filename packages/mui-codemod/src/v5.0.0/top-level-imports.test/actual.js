@@ -1,7 +1,7 @@
-import * as React from 'react';
+
 import { withStyles } from '@mui/styles';
 
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Tab from '@mui/material/Tab';
@@ -57,3 +57,6 @@ import TableFooter from '@mui/material/TableFooter';
 import Zoom from '@mui/material/Zoom';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import ListSubheader from '@mui/material/ListSubheader';
+import { grey, blue } from '@mui/material/colors';
+import { grey as grey2 } from '@mui/material/colors';
+import { blue as blue2 } from '@mui/material/colors';

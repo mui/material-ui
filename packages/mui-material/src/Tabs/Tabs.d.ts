@@ -9,6 +9,7 @@ import { TabsClasses } from './tabsClasses';
 import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
+export interface TabsPropsVariantOverrides {}
 
 export interface TabsRootSlotPropsOverrides {}
 export interface TabsScrollerSlotPropsOverrides {}
@@ -67,22 +68,22 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     root: SlotProps<'div', TabsRootSlotPropsOverrides, TabsOwnerState>;
     /**
      * Props forwarded to the scroller slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     scroller: SlotProps<'div', TabsScrollerSlotPropsOverrides, TabsOwnerState>;
     /**
      * Props forwarded to the list slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     list: SlotProps<'div', TabsListSlotPropsOverrides, TabsOwnerState>;
     /**
      * Props forwarded to the scrollbar slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     scrollbar: SlotProps<
       'div',
@@ -91,12 +92,12 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the indicator slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     indicator: SlotProps<'span', TabsIndicatorSlotPropsOverrides, TabsOwnerState>;
     /**
-     * Props forwarded to the scrollButton slot.
-     * By default, the avaible props are based on the [TabScrollButton](https://mui.com/material-ui/api/tab-scroll-button/#props) component.
+     * Props forwarded to the scrollButtons slot.
+     * By default, the available props are based on the [TabScrollButton](https://mui.com/material-ui/api/tab-scroll-button/#props) component.
      */
     scrollButtons: SlotProps<
       typeof TabScrollButton,
@@ -105,7 +106,7 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the startScrollButtonIcon slot.
-     * By default, the avaible props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
+     * By default, the available props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
      */
     startScrollButtonIcon: SlotProps<
       typeof SvgIcon,
@@ -114,7 +115,7 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the endScrollButtonIcon slot.
-     * By default, the avaible props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
+     * By default, the available props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
      */
     endScrollButtonIcon: SlotProps<
       typeof SvgIcon,
@@ -260,7 +261,10 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
    *  - `standard` will render the default state.
    * @default 'standard'
    */
-  variant?: 'standard' | 'scrollable' | 'fullWidth';
+  variant?: OverridableStringUnion<
+    'standard' | 'scrollable' | 'fullWidth',
+    TabsPropsVariantOverrides
+  >;
   /**
    * If `true`, the scrollbar is visible. It can be useful when displaying
    * a long vertical list of tabs.

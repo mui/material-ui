@@ -1,59 +1,46 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
+import { useForkRef } from '@mui/material/utils';
 import Button from '@mui/material/Button';
 import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { UseDateFieldProps } from '@mui/x-date-pickers/DateField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker, DatePickerFieldProps } from '@mui/x-date-pickers/DatePicker';
 import {
-  BaseSingleInputFieldProps,
-  DateValidationError,
-  FieldSection,
-} from '@mui/x-date-pickers/models';
+  useParsedFormat,
+  usePickerContext,
+  useSplitFieldProps,
+} from '@mui/x-date-pickers';
 
-interface ButtonFieldProps
-  extends UseDateFieldProps<Dayjs, false>,
-    BaseSingleInputFieldProps<
-      Dayjs | null,
-      Dayjs,
-      FieldSection,
-      false,
-      DateValidationError
-    > {
-  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface ButtonFieldProps extends DatePickerFieldProps {}
 
 function ButtonField(props: ButtonFieldProps) {
-  const {
-    setOpen,
-    label,
-    id,
-    disabled,
-    InputProps: { ref } = {},
-    inputProps: { 'aria-label': ariaLabel } = {},
-  } = props;
+  const { forwardedProps } = useSplitFieldProps(props, 'date');
+  const pickerContext = usePickerContext();
+  const handleRef = useForkRef(pickerContext.triggerRef, pickerContext.rootRef);
+  const parsedFormat = useParsedFormat();
+  const valueStr =
+    pickerContext.value == null
+      ? parsedFormat
+      : pickerContext.value.format(pickerContext.fieldFormat);
 
   return (
     <Button
+      {...forwardedProps}
       variant="outlined"
-      id={id}
-      disabled={disabled}
-      ref={ref}
-      aria-label={ariaLabel}
+      ref={handleRef}
       size="small"
-      onClick={() => setOpen?.((prev) => !prev)}
       startIcon={<CalendarTodayRoundedIcon fontSize="small" />}
       sx={{ minWidth: 'fit-content' }}
+      onClick={() => pickerContext.setOpen((prev) => !prev)}
     >
-      {label ? `${label}` : 'Pick a date'}
+      {pickerContext.label ?? valueStr}
     </Button>
   );
 }
 
 export default function CustomDatePicker() {
   const [value, setValue] = React.useState<Dayjs | null>(dayjs('2023-04-17'));
-  const [open, setOpen] = React.useState(false);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -63,13 +50,9 @@ export default function CustomDatePicker() {
         onChange={(newValue) => setValue(newValue)}
         slots={{ field: ButtonField }}
         slotProps={{
-          field: { setOpen } as any,
           nextIconButton: { size: 'small' },
           previousIconButton: { size: 'small' },
         }}
-        open={open}
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
         views={['day', 'month', 'year']}
       />
     </LocalizationProvider>

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { IconButtonProps } from '../IconButton';
 import { ChipProps, ChipTypeMap } from '../Chip';
 import { PaperProps } from '../Paper';
 import { PopperProps } from '../Popper';
@@ -184,7 +186,9 @@ export interface AutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-> extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
+>
+  extends
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
     AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
@@ -335,6 +339,13 @@ export interface AutocompleteProps<
   /**
    * Render the input.
    *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
+   *
    * @param {object} params
    * @returns {ReactNode}
    */
@@ -349,7 +360,7 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
+    props: React.HTMLAttributes<HTMLLIElement> & { key: React.Key },
     option: Value,
     state: AutocompleteRenderOptionState,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,

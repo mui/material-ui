@@ -52,7 +52,6 @@ const StepContentRoot = styled('div', {
 const StepContentTransition = styled(Collapse, {
   name: 'MuiStepContent',
   slot: 'Transition',
-  overridesResolver: (props, styles) => styles.transition,
 })({});
 
 const StepContent = React.forwardRef(function StepContent(inProps, ref) {

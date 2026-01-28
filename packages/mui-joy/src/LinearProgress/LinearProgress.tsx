@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';

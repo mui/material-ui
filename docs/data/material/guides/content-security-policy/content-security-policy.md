@@ -26,12 +26,13 @@ A nonce is a randomly generated string that is only used once, therefore you nee
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 
 ```js
-import uuidv4 from 'uuid/v4';
+import crypto from 'node:crypto';
 
-const nonce = new Buffer(uuidv4()).toString('base64');
+const nonce = crypto.randomBytes(16).toString('base64'); // 128 bits of entropy
 ```
 
-You must use UUID version 4, as it generates an **unpredictable** string.
+This generates a value that satisfies the [W3C CSP specification](https://w3c.github.io/webappsec-csp/#security-nonces) guidelines.
+
 You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
 
 ```js
@@ -72,13 +73,10 @@ function App(props) {
 }
 ```
 
-### Create React App (CRA)
+### CSP in Vite
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default.
-This will require a new hash to be set in your CSP during each deployment.
-
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build.
-This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+When deploying a CSP using Vite, there are specific configurations you must set up due to Vite's internal handling of assets and modules.
+See [Vite Features—Content Security Policy](https://vite.dev/guide/features.html#content-security-policy-csp) for complete details.
 
 ### Next.js Pages Router
 

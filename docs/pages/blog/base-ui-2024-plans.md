@@ -16,7 +16,7 @@ Let's walk through some of the things we're cooking up.
 
 ## A larger set of components
 
-Base UI today offers a modest set of components and hooks, including some slightly more complex ones such as [Autocomplete](/base-ui/react-autocomplete/) and [Number Input](/base-ui/react-number-input/).
+Base UI today offers a modest set of components and hooks, including some slightly more complex ones such as [Autocomplete](https://v6.mui.com/base-ui/react-autocomplete/) and [Number Input](https://v6.mui.com/base-ui/react-number-input/).
 However, we're aware that the package is still missing many primitive components that developers would need in order to adopt it for real-world applications.
 Fear not, because we're working hard to ship more components with the stable release, including:
 
@@ -36,7 +36,7 @@ We'd love for you to chime in and help us prioritize, so keep an eye on [the ope
 ## Improved customization API
 
 Currently, Base UI components can be customized to your heart's content using the `slots` and `slotProps` props.
-(Read more about them in the "[Overriding component structure](/base-ui/guides/overriding-component-structure/)" guide.)
+(Read more about them in the "[Overriding component structure](https://v6.mui.com/base-ui/guides/overriding-component-structure/)" guide.)
 
 ```tsx
 // Example of the slots prop
@@ -64,7 +64,7 @@ We know that a significant number of projects depend on the existing API, and we
 ## More thorough animation support
 
 Animation is a key element for adding delight to any application.
-We've already kicked off work on animation support by releasing the [CSS Transition](/base-ui/react-transitions/#css-transition) and [CSS Animation](/base-ui/react-transitions/#css-animation) components, as well as the `useTransitionTrigger` and `useTransitionStateManager` hooks.
+We've already kicked off work on animation support by releasing the [CSS Transition](https://v6.mui.com/base-ui/react-transitions/#css-transition) and [CSS Animation](https://v6.mui.com/base-ui/react-transitions/#css-animation) components, as well as the `useTransitionTrigger` and `useTransitionStateManager` hooks.
 They're currently available for use with the Popup, Menu, and Select, and the plan is to extend support to more components while also adding more features.
 
 <iframe src="https://codesandbox.io/embed/3pdm56?view=preview&module=%2Fdemo.tsx&hidenavigation=1"

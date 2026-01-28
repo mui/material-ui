@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Sheet from '@mui/joy/Sheet';
 import Tooltip from '@mui/joy/Tooltip';

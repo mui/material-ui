@@ -33,8 +33,8 @@ export default function createDescribeableProp(
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
     renderedDefaultValue &&
-      // Ignore "large" default values that would break the table layout.
-      renderedDefaultValue.length <= 150,
+    // Ignore "large" default values that would break the table layout.
+    renderedDefaultValue.length <= 150,
   );
 
   if (description === undefined) {

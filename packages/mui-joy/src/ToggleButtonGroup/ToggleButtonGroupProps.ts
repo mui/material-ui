@@ -79,8 +79,9 @@ export interface ToggleButtonGroupStaticProps {
   variant?: OverridableStringUnion<VariantProp, ToggleButtonGroupPropsVariantOverrides>;
 }
 
-export interface ToggleButtonGroupOwnProps<TValue extends SupportedValue>
-  extends ToggleButtonGroupStaticProps {
+export interface ToggleButtonGroupOwnProps<
+  TValue extends SupportedValue,
+> extends ToggleButtonGroupStaticProps {
   /**
    * The currently selected value within the group or an array of selected values.
    *
@@ -116,5 +117,6 @@ export type ToggleButtonGroupProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ToggleButtonGroupTypeMap<TValue, P, D>, D>;
 
-export interface ToggleButtonGroupOwnerState<TValue extends SupportedValue = SupportedValue>
-  extends ApplyColorInversion<ToggleButtonGroupProps<TValue>> {}
+export interface ToggleButtonGroupOwnerState<
+  TValue extends SupportedValue = SupportedValue,
+> extends ApplyColorInversion<ToggleButtonGroupProps<TValue>> {}

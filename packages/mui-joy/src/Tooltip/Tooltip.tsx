@@ -2,17 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useControlled as useControlled,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useForkRef as useForkRef,
-  unstable_isFocusVisible as isFocusVisible,
-  unstable_useId as useId,
-  unstable_useTimeout as useTimeout,
-  unstable_Timeout as Timeout,
-  unstable_getReactElementRef as getReactElementRef,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useControlled from '@mui/utils/useControlled';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useForkRef from '@mui/utils/useForkRef';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import useId from '@mui/utils/useId';
+import useTimeout, { Timeout } from '@mui/utils/useTimeout';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';

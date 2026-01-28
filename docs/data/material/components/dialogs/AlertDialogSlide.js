@@ -29,7 +29,9 @@ export default function AlertDialogSlide() {
       </Button>
       <Dialog
         open={open}
-        TransitionComponent={Transition}
+        slots={{
+          transition: Transition,
+        }}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"

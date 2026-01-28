@@ -10,6 +10,14 @@ const getTextDecoration = <T extends Theme>({
   ownerState: { color: string };
 }) => {
   const transformedColor = ownerState.color;
+
+  if ('colorSpace' in theme && theme.colorSpace) {
+    const color = (getPath(theme, `palette.${transformedColor}.main`) ||
+      getPath(theme, `palette.${transformedColor}`) ||
+      ownerState.color) as string;
+    return theme.alpha(color, 0.4);
+  }
+
   // check the `main` color first for a custom palette, then fallback to the color itself
   const color = (getPath(theme, `palette.${transformedColor}.main`, false) ||
     getPath(theme, `palette.${transformedColor}`, false) ||

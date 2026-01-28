@@ -25,7 +25,7 @@ The grid system is implemented with the `Grid` component:
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
 - You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
-- It uses [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) to add spacing between items.
+- It uses [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) to add spacing between items.
 - It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) if you need this functionality.
 - It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.
 
@@ -71,7 +71,7 @@ The following demo illustrates the use of the `spacing` prop:
 ### Row and column spacing
 
 The `rowSpacing` and `columnSpacing` props let you specify row and column gaps independently of one another.
-They behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+They behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-column-gap).
 
 {{"demo": "RowAndColumnSpacing.js", "bg": true}}
 

@@ -1,7 +1,6 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import TypeScriptIcon from '@mui/docs/svgIcons/TypeScript';
-import startCase from 'lodash/startCase';
+import { startCase } from 'es-toolkit/string';
 import { deepmerge } from '@mui/utils';
 import { decomposeColor, ThemeProvider as SystemThemeProvider } from '@mui/system';
 import * as mdColors from '@mui/material/colors';
@@ -1318,7 +1317,6 @@ function TemplatesDialog({
           }}
         >
           <div>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link
               component="button"
               color="neutral"
@@ -1393,7 +1391,6 @@ function TemplatesDialog({
                 alignItems: 'center',
               }}
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 component="button"
                 color="neutral"

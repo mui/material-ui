@@ -2,7 +2,6 @@ import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
 import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useNoSsrCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useUserLanguage } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
@@ -130,13 +129,6 @@ function GoogleAnalytics() {
       colorScheme,
     });
   }, [colorScheme]);
-
-  const codeStylingVariant = useNoSsrCodeStyling();
-  React.useEffect(() => {
-    window.gtag('set', 'user_properties', {
-      codeStylingVariant,
-    });
-  }, [codeStylingVariant]);
 
   return null;
 }

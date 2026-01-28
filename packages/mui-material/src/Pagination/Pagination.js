@@ -34,7 +34,6 @@ const PaginationRoot = styled('nav', {
 const PaginationUl = styled('ul', {
   name: 'MuiPagination',
   slot: 'Ul',
-  overridesResolver: (props, styles) => styles.ul,
 })({
   display: 'flex',
   flexWrap: 'wrap',

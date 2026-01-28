@@ -4,7 +4,7 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-via-cdn
@@ -26,7 +26,7 @@ You can start using Material UI with minimal front-end infrastructure, which is
 We discourage using this approach in production, though.
 The client has to download the entire library, regardless of which components are used, affecting performance and bandwidth usage.
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 [The live preview.](https://raw.githack.com/mui/material-ui/master/examples/material-ui-via-cdn/index.html)
 

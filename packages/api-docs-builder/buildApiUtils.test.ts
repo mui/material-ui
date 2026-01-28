@@ -23,15 +23,6 @@ describe('buildApiUtils', () => {
       });
     });
 
-    it('return info if path is a package (base)', () => {
-      const result = extractPackageFile('/material-ui/packages/mui-base/src/Tab/Tab.tsx');
-      sinon.assert.match(result, {
-        packagePath: 'mui-base',
-        muiPackage: 'mui-base',
-        name: 'Tab',
-      });
-    });
-
     it('return info if path is a package (data-grid)', () => {
       const result = extractPackageFile('/material-ui/packages/grid/x-data-grid/src/DataGrid.tsx');
       sinon.assert.match(result, {

@@ -8,7 +8,7 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import isHostComponent from '../utils/isHostComponent';
+import isHostComponent from '@mui/utils/isHostComponent';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
@@ -73,13 +73,11 @@ const useUtilityClasses = (ownerState) => {
 export const PopoverRoot = styled(Modal, {
   name: 'MuiPopover',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 export const PopoverPaper = styled(PaperBase, {
   name: 'MuiPopover',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({
   position: 'absolute',
   overflowY: 'auto',
@@ -613,7 +611,7 @@ Popover.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    *
-   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.paper` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.paper` instead.
    *
    * @default {}

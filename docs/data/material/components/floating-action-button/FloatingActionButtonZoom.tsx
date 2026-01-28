@@ -73,19 +73,19 @@ export default function FloatingActionButtonZoom() {
 
   const fabs = [
     {
-      color: 'primary' as 'primary',
+      color: 'primary' as const,
       sx: fabStyle as SxProps,
       icon: <AddIcon />,
       label: 'Add',
     },
     {
-      color: 'secondary' as 'secondary',
+      color: 'secondary' as const,
       sx: fabStyle as SxProps,
       icon: <EditIcon />,
       label: 'Edit',
     },
     {
-      color: 'inherit' as 'inherit',
+      color: 'inherit' as const,
       sx: { ...fabStyle, ...fabGreenStyle } as SxProps,
       icon: <UpIcon />,
       label: 'Expand',

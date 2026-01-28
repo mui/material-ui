@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Divider from '@mui/joy/Divider';

@@ -26,7 +26,6 @@ Here are the most significant improvements since March 2021.
 ### Core components
 
 - 🔥 We've made enough progress to ship [v5.0.0-beta.0](https://github.com/mui/material-ui/releases/tag/v5.0.0-beta.0). Here are a few statistics to give an idea of the effort that went into it:
-
   - [12 months](/blog/2020-q2-update/#product) of dedicated focus.
     We stopped work on v4 early on to fully dedicate to v5.
   - 3,475 pull requests.
@@ -49,7 +48,7 @@ Here are the most significant improvements since March 2021.
 
 - ✨ The new style engine has unlocked problems on the `Grid` component that we couldn't solve before with JSS:
 
-  We have added support for [row & column](https://mui.com/material-ui/react-grid-legacy/#row-amp-column-spacing) spacing:
+  We have added support for [row & column](https://mui.com/material-ui/react-grid-legacy/#row-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
@@ -218,7 +217,7 @@ We have the following objectives:
   We want to make the upgrade feel painless.
 - ⚛️ Support [React 18](https://legacy.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most demanding users to feel empowered by Material UI, not slowed down by a third-party library.
-- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/base-ui/react-switch/).
+- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://v6.mui.com/base-ui/react-switch/).
   You can follow our progress in the [umbrella issue](https://github.com/mui/base-ui/issues/10).
 - 🌈 Do a proof of concept on supporting a second design system.
   Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!

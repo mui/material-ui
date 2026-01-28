@@ -7,6 +7,7 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
@@ -333,6 +334,7 @@ describe('<Menu />', () => {
         {null}
         <span role="menuitem">hello</span>
         {/* testing conditional rendering */}
+        {/* eslint-disable-next-line no-constant-binary-expression */}
         {false && <span role="menuitem">hello</span>}
         {undefined}
         foo
@@ -360,77 +362,75 @@ describe('<Menu />', () => {
   });
 
   describe('theme customization', () => {
-    it('should override Menu Paper styles following correct precedence', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should override Menu Paper styles following correct precedence',
+      function test() {
+        const menuPaperOverrides = { borderRadius: 4 };
+        const popoverPaperOverrides = { borderRadius: 8, height: 100 };
+        const rootPaperOverrides = { borderRadius: 16, height: 200, width: 200 };
 
-      const menuPaperOverrides = { borderRadius: 4 };
-      const popoverPaperOverrides = { borderRadius: 8, height: 100 };
-      const rootPaperOverrides = { borderRadius: 16, height: 200, width: 200 };
+        const theme = createTheme({
+          components: {
+            MuiMenu: { styleOverrides: { paper: menuPaperOverrides } },
+            MuiPopover: { styleOverrides: { paper: popoverPaperOverrides } },
+            MuiPaper: { styleOverrides: { root: rootPaperOverrides } },
+          },
+        });
 
-      const theme = createTheme({
-        components: {
-          MuiMenu: { styleOverrides: { paper: menuPaperOverrides } },
-          MuiPopover: { styleOverrides: { paper: popoverPaperOverrides } },
-          MuiPaper: { styleOverrides: { root: rootPaperOverrides } },
-        },
-      });
+        render(
+          <ThemeProvider theme={theme}>
+            <Menu
+              anchorEl={document.createElement('div')}
+              open
+              PaperProps={{
+                'data-testid': 'paper',
+              }}
+            />
+          </ThemeProvider>,
+        );
 
-      render(
-        <ThemeProvider theme={theme}>
-          <Menu
-            anchorEl={document.createElement('div')}
-            open
-            PaperProps={{
-              'data-testid': 'paper',
-            }}
-          />
-        </ThemeProvider>,
-      );
+        const paper = screen.getByTestId('paper');
+        expect(paper).toHaveComputedStyle({
+          borderTopLeftRadius: `${menuPaperOverrides.borderRadius}px`,
+          borderBottomLeftRadius: `${menuPaperOverrides.borderRadius}px`,
+          borderTopRightRadius: `${menuPaperOverrides.borderRadius}px`,
+          borderBottomRightRadius: `${menuPaperOverrides.borderRadius}px`,
+          height: `${popoverPaperOverrides.height}px`,
+          width: `${rootPaperOverrides.width}px`,
+        });
+      },
+    );
 
-      const paper = screen.getByTestId('paper');
-      expect(paper).toHaveComputedStyle({
-        borderTopLeftRadius: `${menuPaperOverrides.borderRadius}px`,
-        borderBottomLeftRadius: `${menuPaperOverrides.borderRadius}px`,
-        borderTopRightRadius: `${menuPaperOverrides.borderRadius}px`,
-        borderBottomRightRadius: `${menuPaperOverrides.borderRadius}px`,
-        height: `${popoverPaperOverrides.height}px`,
-        width: `${rootPaperOverrides.width}px`,
-      });
-    });
+    it.skipIf(isJsdom())(
+      'should override Menu Paper styles using styles in MuiPaper slot',
+      function test() {
+        const theme = createTheme({
+          components: {
+            MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
+          },
+        });
 
-    it('should override Menu Paper styles using styles in MuiPaper slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+        render(
+          <ThemeProvider theme={theme}>
+            <Menu
+              anchorEl={document.createElement('div')}
+              open
+              PaperProps={{
+                'data-testid': 'paper',
+              }}
+            />
+          </ThemeProvider>,
+        );
 
-      const theme = createTheme({
-        components: {
-          MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
-          <Menu
-            anchorEl={document.createElement('div')}
-            open
-            PaperProps={{
-              'data-testid': 'paper',
-            }}
-          />
-        </ThemeProvider>,
-      );
-
-      const paper = screen.getByTestId('paper');
-      expect(paper).toHaveComputedStyle({
-        borderTopLeftRadius: '90px',
-        borderBottomLeftRadius: '90px',
-        borderTopRightRadius: '90px',
-        borderBottomRightRadius: '90px',
-      });
-    });
+        const paper = screen.getByTestId('paper');
+        expect(paper).toHaveComputedStyle({
+          borderTopLeftRadius: '90px',
+          borderBottomLeftRadius: '90px',
+          borderTopRightRadius: '90px',
+          borderBottomRightRadius: '90px',
+        });
+      },
+    );
   });
 
   describe('slots', () => {

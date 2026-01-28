@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';

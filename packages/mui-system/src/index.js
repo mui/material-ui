@@ -43,6 +43,7 @@ export function experimental_sx() {
 }
 export { default as unstable_getThemeValue } from './getThemeValue';
 export { default as Box } from './Box';
+export * from './Box';
 export { default as createBox } from './createBox';
 export { default as createStyled } from './createStyled';
 export * from './createStyled';

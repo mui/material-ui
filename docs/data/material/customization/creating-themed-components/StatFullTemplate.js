@@ -27,6 +27,9 @@ const StatRoot = styled('div', {
       },
     },
   ],
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'inherit',
+  }),
 }));
 
 const StatValue = styled('div', {
@@ -42,6 +45,9 @@ const StatUnit = styled('div', {
 })(({ theme }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    color: 'inherit',
+  }),
 }));
 
 const Stat = React.forwardRef(function Stat(inProps, ref) {

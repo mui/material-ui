@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { useRouter } from 'next/router';
 import exactProp from '@mui/utils/exactProp';
 import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
@@ -113,15 +113,12 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
       descriptions[key][userLanguage];
 
     const isJoyComponent = filename.includes('mui-joy');
-    const isBaseComponent = filename.includes('mui-base');
     const defaultPropsLink = isJoyComponent
       ? '/joy-ui/customization/themed-components/#theme-default-props'
       : '/material-ui/customization/theme-components/#theme-default-props';
     let slotGuideLink = '';
     if (isJoyComponent) {
       slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-    } else if (isBaseComponent) {
-      slotGuideLink = '/base-ui/guides/overriding-component-structure/';
     }
 
     // The `ref` is forwarded to the root element.

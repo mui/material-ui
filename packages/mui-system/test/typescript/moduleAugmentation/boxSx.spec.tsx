@@ -4,6 +4,7 @@ import Box from '@mui/system/Box';
 // https://github.com/mui/material-ui/issues/34068
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
       test1: number;

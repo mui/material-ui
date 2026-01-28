@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isMuiElement as isMuiElement,
-  unstable_useId as useId,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isMuiElement from '@mui/utils/isMuiElement';
+import useId from '@mui/utils/useId';
 import { Breakpoint } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
 import { Theme } from '../styles/types/theme';

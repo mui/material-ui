@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useForkRef from '@mui/utils/useForkRef';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';

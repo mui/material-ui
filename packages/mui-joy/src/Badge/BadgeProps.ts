@@ -54,7 +54,7 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
        */
       badgeContent?: React.ReactNode;
       /**
-       * The inset of the badge. Support shorthand syntax as described in https://developer.mozilla.org/en-US/docs/Web/CSS/inset.
+       * The inset of the badge. Support shorthand syntax as described in https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset.
        * @default 0
        */
       badgeInset?: number | string;

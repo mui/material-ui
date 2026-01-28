@@ -1,4 +1,3 @@
-import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 function TypeScript(props: SvgIconProps) {

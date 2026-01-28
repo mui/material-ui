@@ -15,8 +15,11 @@
     "onChange": {
       "description": "Callback fired when the value changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "of the selected buttons. When <code>exclusive</code> is true this is a single value; when false an array of selected values. If no value is selected and <code>exclusive</code> is true the value is null; when false an empty array."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": {
+          "name": "value",
+          "description": "of the selected buttons. When <code>exclusive</code> is true this is a single value; when false an array of selected values. If no value is selected and <code>exclusive</code> is true the value is null; when false an empty array."
+        }
       }
     },
     "orientation": { "description": "The component orientation." },

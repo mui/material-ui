@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
@@ -42,9 +41,9 @@ describe('<Link />', () => {
   );
 
   it('should render children', () => {
-    const { queryByText } = render(<Link href="/">Home</Link>);
+    render(<Link href="/">Home</Link>);
 
-    expect(queryByText('Home')).not.to.equal(null);
+    expect(screen.queryByText('Home')).not.to.equal(null);
   });
 
   describe('event callbacks', () => {
@@ -75,12 +74,8 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('should add the focusVisible class when focused', function test() {
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 
@@ -100,27 +95,27 @@ describe('<Link />', () => {
 
   describe('prop: variant', () => {
     it('undefined by default', () => {
-      const { getByTestId } = render(
+      render(
         <Link href="/" data-testid="root">
           Hello World
         </Link>,
       );
 
-      expect(getByTestId('root')).not.to.have.class(classes.variantPlain);
-      expect(getByTestId('root')).not.to.have.class(classes.variantOutlined);
-      expect(getByTestId('root')).not.to.have.class(classes.variantSoft);
-      expect(getByTestId('root')).not.to.have.class(classes.variantSolid);
+      expect(screen.getByTestId('root')).not.to.have.class(classes.variantPlain);
+      expect(screen.getByTestId('root')).not.to.have.class(classes.variantOutlined);
+      expect(screen.getByTestId('root')).not.to.have.class(classes.variantSoft);
+      expect(screen.getByTestId('root')).not.to.have.class(classes.variantSolid);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByTestId } = render(
+        render(
           <Link href="/" data-testid="root" variant={variant}>
             Hello World
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`variant${capitalize(variant)}` as LinkClassKey],
         );
       });
@@ -129,24 +124,24 @@ describe('<Link />', () => {
 
   describe('prop: color', () => {
     it('adds a primary class by default', () => {
-      const { getByTestId } = render(
+      render(
         <Link href="/" data-testid="root">
           Hello World
         </Link>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
+      expect(screen.getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByTestId } = render(
+        render(
           <Link href="/" data-testid="root" color={color}>
             Hello World
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`color${capitalize(color)}` as LinkClassKey],
         );
       });
@@ -155,13 +150,13 @@ describe('<Link />', () => {
 
   describe('prop: level', () => {
     it('body1 by default', () => {
-      const { getByTestId } = render(
+      render(
         <Link href="/" data-testid="root">
           Hello World
         </Link>,
       );
 
-      expect(getByTestId('root')).have.class(classes['body-md']);
+      expect(screen.getByTestId('root')).have.class(classes['body-md']);
     });
 
     (
@@ -180,37 +175,37 @@ describe('<Link />', () => {
       ] as const
     ).forEach((level) => {
       it(`should render ${level}`, () => {
-        const { getByTestId } = render(
+        render(
           <Link href="/" data-testid="root" level={level as keyof TypographySystem}>
             Hello World
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[level] as LinkClassKey);
+        expect(screen.getByTestId('root')).to.have.class(classes[level] as LinkClassKey);
       });
     });
   });
 
   describe('prop: underline', () => {
     it('hover by default', () => {
-      const { getByTestId } = render(
+      render(
         <Link href="/" data-testid="root">
           Hello World
         </Link>,
       );
 
-      expect(getByTestId('root')).have.class(classes.underlineHover);
+      expect(screen.getByTestId('root')).have.class(classes.underlineHover);
     });
 
     (['none', 'always', 'hover'] as const).forEach((underline) => {
       it(`should render ${underline}`, () => {
-        const { getByTestId } = render(
+        render(
           <Link href="/" data-testid="root" underline={underline}>
             Hello World
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`underline${capitalize(underline)}` as LinkClassKey],
         );
       });

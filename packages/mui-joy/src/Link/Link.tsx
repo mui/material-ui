@@ -3,11 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isFocusVisible as isFocusVisible,
-  unstable_isMuiElement as isMuiElement,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import isMuiElement from '@mui/utils/isMuiElement';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

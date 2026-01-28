@@ -1,4 +1,3 @@
-import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';

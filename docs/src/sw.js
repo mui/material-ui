@@ -1,6 +1,5 @@
 /* eslint-env serviceworker */
 // https://github.com/airbnb/javascript/issues/1632
-/* eslint-disable no-restricted-globals */
 
 // See https://developer.chrome.com/docs/workbox/remove-buggy-service-workers/
 self.addEventListener('install', () => {

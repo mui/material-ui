@@ -111,7 +111,7 @@ The `light` and `dark` tokens are calculated using the `tonalOffset` value, to s
 A higher tonal offset value will make `light` tokens lighter, and `dark` tokens darker.
 
 :::warning
-This only applies when working with custom colors—it won't have any effect on the [default values](#default-values).
+This only applies when working with custom colors—it won't have any effect on the [default values](#default-colors).
 :::
 
 For example, the tonal offset default value `0.2` shifts the luminance by approximately two indexes, so if the `main` token is `blue[500]`, then the `light` token would be `blue[300]` and `dark` would be `blue[700]`.
@@ -149,7 +149,12 @@ const theme = createTheme({
 
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
-<!-- #repo-reference -->
+:::info
+The supported color formats are `hex`, `rgb`, and `hsl`.
+If you want to use other formats, such as `oklch`, you need to enable the [native color](/material-ui/customization/css-theme-variables/native-color/) feature.
+:::
+
+<!-- #target-branch-reference -->
 
 If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this.
 The following example uses the `alpha()` and `getContrastRatio()` utilities to define tokens using opacity:

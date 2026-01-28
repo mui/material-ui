@@ -1,4 +1,3 @@
-import * as React from 'react';
 import colors from '@mui/joy/colors';
 import Box from '@mui/joy/Box';
 import AspectRatio from '@mui/joy/AspectRatio';

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import DialogContent, { dialogContentClasses as classes } from '@mui/material/DialogContent';
 import describeConformance from '../../test/describeConformance';
 
@@ -18,8 +17,8 @@ describe('<DialogContent />', () => {
 
   it('should render children', () => {
     const children = <p data-testid="test-children" />;
-    const { getByTestId } = render(<DialogContent>{children}</DialogContent>);
+    render(<DialogContent>{children}</DialogContent>);
 
-    getByTestId('test-children');
+    screen.getByTestId('test-children');
   });
 });

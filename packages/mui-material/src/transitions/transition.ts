@@ -26,6 +26,7 @@ export type TransitionKeys =
   | 'addEndListener'
   | TransitionHandlerKeys;
 export interface TransitionProps
-  extends TransitionActions,
+  extends
+    TransitionActions,
     Partial<Pick<_TransitionProps & EasingProps, TransitionKeys>>,
     React.HTMLAttributes<HTMLElement> {}

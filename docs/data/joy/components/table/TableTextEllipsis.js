@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Table from '@mui/joy/Table';

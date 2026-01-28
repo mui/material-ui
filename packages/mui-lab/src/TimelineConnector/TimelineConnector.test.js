@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import TimelineConnector, { timelineConnectorClasses as classes } from '@mui/lab/TimelineConnector';
 import describeConformance from '../../test/describeConformance';

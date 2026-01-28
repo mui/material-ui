@@ -19,15 +19,15 @@
     "onChange": {
       "description": "Callback fired when the state changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "of the selected button."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "of the selected button." }
       }
     },
     "onClick": {
       "description": "Callback fired when the button is clicked.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "of the selected button."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "of the selected button." }
       }
     },
     "selected": {

@@ -1,6 +1,7 @@
-import { unstable_generateUtilityClass, unstable_generateUtilityClasses } from '@mui/utils';
+import unstable_generateUtilityClass from '@mui/utils/generateUtilityClass';
+import unstable_generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 
-export { unstable_ClassNameGenerator } from '@mui/utils';
+export { default as unstable_ClassNameGenerator } from '@mui/utils/ClassNameGenerator';
 
 export const generateUtilityClass = (componentName: string, slot: string) =>
   unstable_generateUtilityClass(componentName, slot, 'Mui');

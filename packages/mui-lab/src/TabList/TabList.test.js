@@ -1,7 +1,5 @@
-// @ts-check
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import TabList from './TabList';
@@ -32,7 +30,7 @@ describe('<TabList />', () => {
   // outside of TabContext pass every test in Tabs
 
   it('provides the active value to Tab so that they can be indicated as selected', () => {
-    const { getAllByRole } = render(
+    render(
       <TabContext value="0">
         <TabList>
           <Tab value="0" />
@@ -40,7 +38,8 @@ describe('<TabList />', () => {
         </TabList>
       </TabContext>,
     );
-    const [tabOne, tabTwo] = getAllByRole('tab');
+
+    const [tabOne, tabTwo] = screen.getAllByRole('tab');
 
     expect(tabOne).to.have.attribute('aria-selected', 'true');
     expect(tabTwo).to.have.attribute('aria-selected', 'false');

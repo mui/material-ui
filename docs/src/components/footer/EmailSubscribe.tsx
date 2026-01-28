@@ -100,6 +100,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           name="email"
           type="email"
           placeholder="example@email.com"
+          autoComplete="email"
           value={form.email}
           onChange={(event) => setForm({ email: event.target.value, status: 'initial' })}
           inputProps={{ required: true }}

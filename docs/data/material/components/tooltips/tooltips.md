@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Tooltip component
 components: Tooltip
-githubLabel: 'component: tooltip'
+githubLabel: 'scope: tooltip'
 materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 githubSource: packages/mui-material/src/Tooltip

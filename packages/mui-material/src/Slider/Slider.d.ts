@@ -125,7 +125,7 @@ export interface SliderOwnProps<Value extends number | number[]> {
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
-  marks?: boolean | Mark[];
+  marks?: boolean | readonly Mark[];
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.

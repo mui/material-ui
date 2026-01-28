@@ -1,18 +1,16 @@
 import fs from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
   extractPackageFile,
   fixPathname,
-  getApiPath,
   getMuiName,
   getSystemComponents,
   parseFile,
 } from '@mui-internal/api-docs-builder/buildApiUtils';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
-import { getBaseUiDemos } from '@mui-internal/api-docs-builder-core/baseUi/getBaseUiComponentInfo';
 
 export function getJoyUiComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
@@ -32,25 +30,8 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
       return srcInfo;
     },
     getInheritance: (inheritedComponent = srcInfo?.inheritedComponent) => {
-      if (!inheritedComponent) {
+      if (!inheritedComponent || inheritedComponent.match(/unstyled/i)) {
         return null;
-      }
-
-      const isBaseUi = inheritedComponent.match(/unstyled/i);
-
-      if (isBaseUi) {
-        const inheritedComponentName = inheritedComponent.replace(/unstyled/i, '');
-        const demos = getBaseUiDemos(inheritedComponentName);
-        const apiPath = getApiPath(demos, inheritedComponentName);
-
-        if (!apiPath) {
-          throw new Error(`Could not find API path for component: ${name}`);
-        }
-
-        return {
-          name: inheritedComponentName,
-          apiPathname: apiPath,
-        };
       }
 
       const urlComponentName = kebabCase(inheritedComponent.replace(/unstyled/i, ''));
@@ -79,6 +60,7 @@ export function getJoyUiComponentInfo(filename: string): ComponentInfo {
       return allMarkdowns
         .filter((page) => page.pathname.startsWith('/joy') && page.components.includes(name))
         .map((page) => ({
+          filePath: page.filename, // pathname of the markdown file
           demoPageTitle: getTitle(page.markdownContent),
           demoPathname: fixPathname(page.pathname),
         }));

@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineSeparatorClasses } from './timelineSeparatorClasses';
 
-export interface TimelineSeparatorProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TimelineSeparatorProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
   /**
    * The content of the component.
    */

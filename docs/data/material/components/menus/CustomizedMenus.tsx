@@ -39,6 +39,9 @@ const StyledMenu = styled((props: MenuProps) => (
         fontSize: 18,
         color: theme.palette.text.secondary,
         marginRight: theme.spacing(1.5),
+        ...theme.applyStyles('dark', {
+          color: 'inherit',
+        }),
       },
       '&:active': {
         backgroundColor: alpha(
@@ -79,8 +82,10 @@ export default function CustomizedMenus() {
       </Button>
       <StyledMenu
         id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'demo-customized-button',
+          },
         }}
         anchorEl={anchorEl}
         open={open}

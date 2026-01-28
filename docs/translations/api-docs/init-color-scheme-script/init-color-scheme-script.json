@@ -1,0 +1,24 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "attribute": { "description": "DOM attribute for applying a color scheme." },
+    "colorSchemeNode": {
+      "description": "The node (provided as string) used to attach the color-scheme attribute."
+    },
+    "colorSchemeStorageKey": {
+      "description": "localStorage key used to store <code>colorScheme</code>."
+    },
+    "defaultDarkColorScheme": {
+      "description": "The default color scheme to be used in dark mode."
+    },
+    "defaultLightColorScheme": {
+      "description": "The default color scheme to be used in light mode."
+    },
+    "defaultMode": {
+      "description": "The default mode when the storage is empty (user&#39;s first visit)."
+    },
+    "modeStorageKey": { "description": "localStorage key used to store <code>mode</code>." },
+    "nonce": { "description": "Nonce string to pass to the inline script for CSP headers." }
+  },
+  "classDescriptions": {}
+}

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import AlertTitle, { alertTitleClasses as classes } from '@mui/material/AlertTitle';
 import Typography from '@mui/material/Typography';

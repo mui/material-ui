@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/joy/styles';
 import Grid from '@mui/joy/Grid';
 import Sheet from '@mui/joy/Sheet';

@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabsList, TabsListProvider } from '@mui/base/useTabsList';
@@ -214,7 +214,7 @@ TabList.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * If provided, the TabList will have postion `sticky`.
+   * If provided, the TabList will have position `sticky`.
    */
   sticky: PropTypes.oneOf(['bottom', 'top']),
   /**

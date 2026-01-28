@@ -231,7 +231,7 @@ export interface UseSliderReturnValue {
   /**
    * The marks of the slider. Marks indicate predetermined values to which the user can move the slider.
    */
-  marks: Mark[];
+  marks: readonly Mark[];
   /**
    * The thumb index for the current value when in hover state.
    */

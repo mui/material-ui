@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import { act, createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
@@ -102,6 +101,7 @@ describe('Joy <Menu />', () => {
         {null}
         <span role="menuitem">hello</span>
         {/* testing conditional rendering */}
+        {/* eslint-disable-next-line no-constant-binary-expression */}
         {false && <span role="menuitem">hello</span>}
         {undefined}
         foo

@@ -58,9 +58,11 @@ export default function SimpleListMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'lock-button',
-          role: 'listbox',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'lock-button',
+            role: 'listbox',
+          },
         }}
       >
         {options.map((option, index) => (

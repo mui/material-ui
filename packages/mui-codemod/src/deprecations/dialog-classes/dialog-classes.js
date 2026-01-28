@@ -12,7 +12,11 @@ export default function transformer(file, api, options) {
     const replacementSelectorPrefix = '&';
     root
       .find(j.ImportDeclaration)
-      .filter((path) => path.node.source.value.match(/^@mui\/material\/Dialog$/))
+      .filter((path) =>
+        path.node.source.value.match(
+          new RegExp(`^${options.packageName || '@mui/material'}(/Dialog)?$`),
+        ),
+      )
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
           if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'dialogClasses') {

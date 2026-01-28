@@ -1,7 +1,0 @@
-<PopupWithTrigger>
-  <MaterialUITransitionAdapter>
-    <Fade timeout={250}>
-      <PopupBody>This is an animated popup</PopupBody>
-    </Fade>
-  </MaterialUITransitionAdapter>
-</PopupWithTrigger>

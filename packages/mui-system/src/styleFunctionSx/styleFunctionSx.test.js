@@ -53,7 +53,7 @@ describe('styleFunctionSx', () => {
   });
 
   describe('system', () => {
-    it('resolves system ', () => {
+    it('resolves system', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
@@ -475,6 +475,142 @@ describe('styleFunctionSx', () => {
           sx: [(t) => t.typography.unknown],
         }),
       ).not.to.throw();
+    });
+  });
+
+  describe('Modular CSS layers', () => {
+    it('should wrapped in @layer', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: {
+          color: 'primary.main',
+          bgcolor: 'secondary.main',
+          outline: 1,
+          outlineColor: 'secondary.main',
+          m: 2,
+          p: 1,
+          fontFamily: 'default',
+          fontWeight: 'light',
+          fontSize: 'fontSize',
+          maxWidth: 'sm',
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          backgroundColor: 'rgb(0, 255, 0)',
+          outline: '1px solid',
+          outlineColor: 'rgb(0, 255, 0)',
+          margin: '20px',
+          padding: '10px',
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontWeight: 300,
+          fontSize: 14,
+          maxWidth: 600,
+        },
+      });
+    });
+
+    it('should work with array type', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: [
+          {
+            bgcolor: 'secondary.main',
+          },
+          {
+            color: 'primary.main',
+          },
+        ],
+      });
+
+      expect(result).to.deep.equal([
+        {
+          '@layer sx': {
+            backgroundColor: 'rgb(0, 255, 0)',
+          },
+        },
+        {
+          '@layer sx': {
+            color: 'rgb(0, 0, 255)',
+          },
+        },
+      ]);
+    });
+
+    it('should work with function type', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: (t) => ({
+          color: t.palette.primary.main,
+          bgcolor: t.palette.secondary.main,
+        }),
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          backgroundColor: 'rgb(0, 255, 0)',
+        },
+      });
+    });
+
+    it('should work with nested sx', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: {
+          color: 'primary.main',
+          '&:hover': {
+            bgcolor: 'secondary.main',
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          '&:hover': {
+            backgroundColor: 'rgb(0, 255, 0)',
+          },
+        },
+      });
+    });
+
+    it('should work with nested sx and function', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: {
+          color: 'primary.main',
+          '&:hover': (t) => ({
+            bgcolor: t.palette.secondary.main,
+          }),
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          '&:hover': {
+            backgroundColor: 'rgb(0, 255, 0)',
+          },
+        },
+      });
     });
   });
 });

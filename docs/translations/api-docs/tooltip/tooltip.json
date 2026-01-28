@@ -40,11 +40,15 @@
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
-      "typeDescriptions": { "event": "The event source of the callback." }
+      "typeDescriptions": {
+        "event": { "name": "event", "description": "The event source of the callback." }
+      }
     },
     "onOpen": {
       "description": "Callback fired when the component requests to be open.",
-      "typeDescriptions": { "event": "The event source of the callback." }
+      "typeDescriptions": {
+        "event": { "name": "event", "description": "The event source of the callback." }
+      }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "placement": { "description": "Tooltip placement." },

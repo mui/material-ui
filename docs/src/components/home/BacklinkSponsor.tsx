@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Link } from '@mui/docs/Link';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 
@@ -26,10 +25,10 @@ export default function BacklinkSponsor(props: {
       title={item.description}
       target="_blank"
       rel="sponsored noopener"
-      sx={{ mr: { xs: 2, md: 3 }, mt: { xs: 2, md: 3 } }}
+      sx={{ mr: { xs: 1, md: 2 }, mt: 1.5, fontSize: { xs: 13, md: 14 } }}
     >
       {item.name}
-      <OpenInNewRoundedIcon sx={{ fontSize: 16, ml: 1, verticalAlign: 'middle' }} />
+      <OpenInNewRoundedIcon sx={{ fontSize: 14 }} />
     </Link>
   );
 }

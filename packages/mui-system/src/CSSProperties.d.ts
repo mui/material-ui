@@ -5,5 +5,4 @@ import * as CSS from 'csstype';
  * since they are converted to `px`.)
  */
 export interface CSSProperties
-  extends CSS.StandardProperties<number | string>,
-    CSS.SvgProperties<number | string> {}
+  extends CSS.StandardProperties<number | string>, CSS.SvgProperties<number | string> {}

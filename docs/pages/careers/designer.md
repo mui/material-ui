@@ -6,7 +6,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of early 2024, and we're growing.
+We're a company of 40 people as of 2025, and we're growing steadily.
 
 ## The products
 
@@ -15,8 +15,6 @@ Base UI is our headless component library, and Joy UI is a sister library to M
 We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
-
-We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
@@ -38,7 +36,7 @@ The new brand was fundamental to set the stage for MUI to become larger than Mat
 Currently, we have five main projects that are not at all related to MD:
 
 - [MUI Core](https://mui.com/core/):
-  - [Base UI](https://mui.com/base-ui/getting-started/): the unstyled version of the components.
+  - [Base UI](https://v6.mui.com/base-ui/getting-started/): the unstyled version of the components.
   - [MUI System](https://mui.com/system/getting-started/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](https://mui.com/x/): as mentioned, a growing set of advanced components.

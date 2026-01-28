@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme, TypographyProps } from '..';
+import { Theme } from '../styles';
+import { TypographyProps } from '../Typography';
 import { AlertTitleClasses } from './alertTitleClasses';
 
 export interface AlertTitleProps extends TypographyProps<'div'> {

@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
@@ -90,6 +89,12 @@ const ButtonGroupRoot = styled('div', {
         props: { variant: 'contained' },
         style: {
           boxShadow: (theme.vars || theme).shadows[2],
+          [`& .${buttonGroupClasses.grouped}`]: {
+            boxShadow: 'none',
+            '&:hover': {
+              boxShadow: 'none',
+            },
+          },
         },
       },
       {
@@ -136,7 +141,7 @@ const ButtonGroupRoot = styled('div', {
         style: {
           [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
             borderRight: theme.vars
-              ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
               : `1px solid ${
                   theme.palette.mode === 'light'
                     ? 'rgba(0, 0, 0, 0.23)'
@@ -153,7 +158,7 @@ const ButtonGroupRoot = styled('div', {
         style: {
           [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
             borderBottom: theme.vars
-              ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
               : `1px solid ${
                   theme.palette.mode === 'light'
                     ? 'rgba(0, 0, 0, 0.23)'
@@ -172,9 +177,7 @@ const ButtonGroupRoot = styled('div', {
             props: { variant: 'text', color },
             style: {
               [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-                borderColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                  : alpha(theme.palette[color].main, 0.5),
+                borderColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
               },
             },
           },
@@ -242,13 +245,6 @@ const ButtonGroupRoot = styled('div', {
     ],
     [`& .${buttonGroupClasses.grouped}`]: {
       minWidth: 40,
-      boxShadow: 'none',
-      props: { variant: 'contained' },
-      style: {
-        '&:hover': {
-          boxShadow: 'none',
-        },
-      },
     },
   })),
 );

@@ -27,13 +27,15 @@ export default function FadeMenu() {
       </Button>
       <Menu
         id="fade-menu"
-        MenuListProps={{
-          'aria-labelledby': 'fade-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'fade-button',
+          },
         }}
+        slots={{ transition: Fade }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        TransitionComponent={Fade}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>

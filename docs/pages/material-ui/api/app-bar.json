@@ -9,6 +9,7 @@
       },
       "default": "'primary'"
     },
+    "elevation": { "type": { "name": "number" }, "default": "4" },
     "enableColorOnDark": { "type": { "name": "bool" }, "default": "false" },
     "position": {
       "type": {
@@ -17,6 +18,7 @@
       },
       "default": "'fixed'"
     },
+    "square": { "type": { "name": "bool" }, "default": "true" },
     "sx": {
       "type": {
         "name": "union",

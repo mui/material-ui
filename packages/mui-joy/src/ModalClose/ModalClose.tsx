@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { useButton } from '@mui/base/useButton';
 import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
@@ -13,6 +13,7 @@ import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './Moda
 import CloseIcon from '../internal/svg-icons/Close';
 import CloseModalContext from '../Modal/CloseModalContext';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
+import { ModalDialogProps } from '../ModalDialog/ModalDialogProps';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
 
 const useUtilityClasses = (ownerState: ModalCloseOwnerState) => {
@@ -94,7 +95,11 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const closeModalContext = React.useContext(CloseModalContext);
   const modalDialogVariantColor = React.useContext(ModalDialogVariantColorContext);
   const variant =
-    inProps.variant ?? modalDialogVariantMapping[modalDialogVariantColor?.variant!] ?? variantProp;
+    inProps.variant ??
+    modalDialogVariantMapping[
+      modalDialogVariantColor?.variant as Exclude<ModalDialogProps['variant'], undefined>
+    ] ??
+    variantProp;
   const color = inProps.color ?? modalDialogVariantColor?.color ?? colorProp;
 
   const modalDialogSize = React.useContext(ModalDialogSizeContext);

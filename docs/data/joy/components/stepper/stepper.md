@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Stepper component
 components: Stepper, Step, StepButton, StepIndicator
-githubLabel: 'component: stepper'
+githubLabel: 'scope: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
 ---
 

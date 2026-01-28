@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -228,7 +227,6 @@ const AutocompleteRoot = styled('div', {
 const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'EndAdornment',
-  overridesResolver: (props, styles) => styles.endAdornment,
 })({
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
@@ -240,7 +238,6 @@ const AutocompleteEndAdornment = styled('div', {
 const AutocompleteClearIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'ClearIndicator',
-  overridesResolver: (props, styles) => styles.clearIndicator,
 })({
   marginRight: -2,
   padding: 4,
@@ -297,7 +294,6 @@ const AutocompletePopper = styled(Popper, {
 const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
@@ -308,7 +304,6 @@ const AutocompletePaper = styled(Paper, {
 const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Loading',
-  overridesResolver: (props, styles) => styles.loading,
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
@@ -319,7 +314,6 @@ const AutocompleteLoading = styled('div', {
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
-  overridesResolver: (props, styles) => styles.noOptions,
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
@@ -330,7 +324,6 @@ const AutocompleteNoOptions = styled('div', {
 const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
-  overridesResolver: (props, styles) => styles.listbox,
 })(
   memoTheme(({ theme }) => ({
     listStyle: 'none',
@@ -371,28 +364,25 @@ const AutocompleteListbox = styled('ul', {
         backgroundColor: (theme.vars || theme).palette.action.focus,
       },
       '&[aria-selected="true"]': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          (theme.vars || theme).palette.action.selectedOpacity,
+        ),
         [`&.${autocompleteClasses.focused}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-              ),
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+          ),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
             backgroundColor: (theme.vars || theme).palette.action.selected,
           },
         },
         [`&.${autocompleteClasses.focusVisible}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-              ),
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          ),
         },
       },
     },
@@ -402,7 +392,6 @@ const AutocompleteListbox = styled('ul', {
 const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
   slot: 'GroupLabel',
-  overridesResolver: (props, styles) => styles.groupLabel,
 })(
   memoTheme(({ theme }) => ({
     backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -413,7 +402,6 @@ const AutocompleteGroupLabel = styled(ListSubheader, {
 const AutocompleteGroupUl = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'GroupUl',
-  overridesResolver: (props, styles) => styles.groupUl,
 })({
   padding: 0,
   [`& .${autocompleteClasses.option}`]: {
@@ -596,23 +584,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     ...getItemProps(params),
   });
 
-  if (renderTags && multiple && value.length > 0) {
-    startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
-  } else if (renderValue && value) {
+  if (multiple) {
+    if (value.length > 0) {
+      if (renderTags) {
+        startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
+      } else if (renderValue) {
+        startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
+      } else {
+        startAdornment = value.map((option, index) => {
+          const { key, ...customItemProps } = getCustomizedItemProps({ index });
+          return (
+            <Chip
+              key={key}
+              label={getOptionLabel(option)}
+              size={size}
+              {...customItemProps}
+              {...externalForwardedProps.slotProps.chip}
+            />
+          );
+        });
+      }
+    }
+  } else if (renderValue && value != null) {
     startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
-  } else if (multiple && value.length > 0) {
-    startAdornment = value.map((option, index) => {
-      const { key, ...customItemProps } = getCustomizedItemProps({ index });
-      return (
-        <Chip
-          key={key}
-          label={getOptionLabel(option)}
-          size={size}
-          {...customItemProps}
-          {...externalForwardedProps.slotProps.chip}
-        />
-      );
-    });
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
@@ -683,7 +677,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         {renderInput({
           id,
           disabled,
-          fullWidth: true,
+          fullWidth: props.fullWidth ?? true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
@@ -958,6 +952,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Used to determine the disabled state for a given option.
    *
    * @param {Value} option The option to test.
+   * @template Value The option shape. Will be the same shape as an item of the options.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
@@ -1155,6 +1150,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   renderGroup: PropTypes.func,
   /**
    * Render the input.
+   *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
    *
    * @param {object} params
    * @returns {ReactNode}

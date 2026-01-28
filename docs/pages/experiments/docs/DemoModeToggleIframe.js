@@ -1,4 +1,3 @@
-import * as React from 'react';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
 import DvrIcon from '@mui/icons-material/Dvr';

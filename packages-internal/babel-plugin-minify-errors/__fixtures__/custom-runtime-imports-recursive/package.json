@@ -1,7 +1,0 @@
-{
-  "imports": {
-    "#error-formatter": "#error-formatter-2",
-    "#error-formatter-2": "#error-formatter-3",
-    "#error-formatter-3": "@custom/error-formatter"
-  }
-}

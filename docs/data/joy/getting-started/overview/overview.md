@@ -55,7 +55,7 @@ For example, observe how each element of the [Input](/joy-ui/react-input/) compo
 
 ### Accessibility
 
-Joy UI components are built on top of [MUI Base's unstyled components and low-level hooks](/base-ui/getting-started/), giving you many accessibility features out of the box.
+Joy UI components are built on top of [MUI Base's unstyled components and low-level hooks](https://v6.mui.com/base-ui/getting-started/), giving you many accessibility features out of the box.
 We strive to make all components accessible to end users who require assistive technology, and offer suggestions for optimizing accessibility throughout our documentation.
 
 Joy UI's Form Control component automatically generates a unique ID that links the Input that it wraps with the Form Label and Form Helper Text components, ensuring that your app complies with this guideline:

@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
-githubLabel: 'component: table'
+githubLabel: 'scope: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://m2.material.io/components/data-tables
 githubSource: packages/mui-material/src/Table
@@ -31,8 +31,8 @@ Tables are implemented using a collection of related components:
 - `<TableRow />`: A row in a table. Can be used in `<TableHead />`, `<TableBody />`, or `<TableFooter />`. Renders as a `<tr>` by default.
 - `<TableCell />`: A cell in a table. Can be used in `<TableRow />` . Renders as a `<th>` in `<TableHead />` and `<td>` in `<TableBody />` by default.
 - `<TableFooter />`: An optional container for the footer row(s) of the table. Renders as a `<tfoot>` by default.
-- `<TablePagination />`: A component that provides controls for paginating table data. See the ['Sorting & selecting' example](#sorting-amp-selecting) and ['Custom Table Pagination Action' example](#custom-pagination-actions).
-- `<TableSortLabel />`: A component used to display sorting controls for column headers, allowing users to sort data in ascending or descending order. See the ['Sorting & selecting' example](#sorting-amp-selecting).
+- `<TablePagination />`: A component that provides controls for paginating table data. See the ['Sorting & selecting' example](#sorting-selecting) and ['Custom Table Pagination Action' example](#custom-pagination-actions).
+- `<TableSortLabel />`: A component used to display sorting controls for column headers, allowing users to sort data in ascending or descending order. See the ['Sorting & selecting' example](#sorting-selecting).
 
 ## Basic table
 
@@ -144,8 +144,3 @@ Virtualization helps with performance issues.
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "AccessibleTable.js", "bg": true}}
-
-## Unstyled
-
-If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.
-See the demos in the [unstyled table pagination docs](/base-ui/react-table-pagination/)

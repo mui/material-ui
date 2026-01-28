@@ -30,9 +30,7 @@ describe('@mui/codemod', () => {
         const actual = transform(
           {
             source: read('./jss-to-tss-react.test/expected-from-material-ui-core-styles.js'),
-            path: require.resolve(
-              './jss-to-tss-react.test/expected-from-material-ui-core-styles.js',
-            ),
+            path: require.resolve('./jss-to-tss-react.test/expected-from-material-ui-core-styles.js'),
           },
           { jscodeshift },
           {},
@@ -144,9 +142,7 @@ describe('@mui/codemod', () => {
         const actual = transform(
           {
             source: read('./jss-to-tss-react.test/actual-typescript-docs-example-params.tsx'),
-            path: require.resolve(
-              './jss-to-tss-react.test/actual-typescript-docs-example-params.tsx',
-            ),
+            path: require.resolve('./jss-to-tss-react.test/actual-typescript-docs-example-params.tsx'),
           },
           { jscodeshift },
           {},

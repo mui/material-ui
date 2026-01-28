@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import Breadcrumbs, {
   BreadcrumbsClassKey,
@@ -30,15 +29,15 @@ describe('<Breadcrumbs />', () => {
 
   describe('prop: size', () => {
     it('md by default', () => {
-      const { getByRole } = render(<Breadcrumbs />);
+      render(<Breadcrumbs />);
 
-      expect(getByRole('navigation')).to.have.class(classes.sizeMd);
+      expect(screen.getByRole('navigation')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
-        const { getByRole } = render(<Breadcrumbs size={size} />);
+        render(<Breadcrumbs size={size} />);
 
-        expect(getByRole('navigation')).to.have.class(
+        expect(screen.getByRole('navigation')).to.have.class(
           classes[`size${capitalize(size)}` as BreadcrumbsClassKey],
         );
       });

@@ -14,7 +14,7 @@ import {
   getClassApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 
 export type GetCssToCParams = {
   componentName: string;
@@ -26,7 +26,7 @@ export type GetCssToCParams = {
 /**
  * @deprecated Use the function from ApiPage/definitions
  */
-export const getClassesToC = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
+export const getClassesToc = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
   !componentClasses || componentClasses.length === 0
     ? []
     : [

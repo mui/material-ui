@@ -24,14 +24,17 @@ import {
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {
-  getPropertiesToC,
   getPropsApiDefinitions,
+  getPropertiesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import {
   getClassApiDefinitions,
-  getClassesToC,
+  getClassesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
+import {
+  getSlotsApiDefinitions,
+  getSlotsToc,
+} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
 export interface TableOfContentsParams {
@@ -139,7 +142,6 @@ export default function ApiPage(props: ApiPageProps) {
     : [];
 
   const isJoyComponent = filename.includes('mui-joy');
-  const isBaseComponent = filename.includes('mui-base');
   const defaultPropsLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#theme-default-props'
     : '/material-ui/customization/theme-components/#theme-default-props';
@@ -149,8 +151,6 @@ export default function ApiPage(props: ApiPageProps) {
   let slotGuideLink = '';
   if (isJoyComponent) {
     slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-  } else if (isBaseComponent) {
-    slotGuideLink = '/base-ui/guides/overriding-component-structure/';
   }
 
   const {
@@ -202,9 +202,9 @@ export default function ApiPage(props: ApiPageProps) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
-    ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
-    ...getClassesToC({ classes: classesDef, t }),
+    getPropertiesToc({ properties: propertiesDef, hash: 'props', t }),
+    ...getSlotsToc({ slots: slotsDef, t }),
+    ...getClassesToc({ classes: classesDef, t }),
     pageContent.filename ? createTocEntry('source-code') : null,
   ].filter((item): item is TableOfContentsParams => Boolean(item));
 
@@ -348,6 +348,8 @@ export default function ApiPage(props: ApiPageProps) {
               />
             </React.Fragment>
           )}
+          {/* Fallback anchor for #classes link when there's no classes section */}
+          {classesDef.length === 0 && <span id="classes" />}
           <SlotsSection
             slots={slotsDef}
             spreadHint={

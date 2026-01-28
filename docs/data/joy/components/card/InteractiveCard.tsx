@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Link from '@mui/joy/Link';
 import Card from '@mui/joy/Card';

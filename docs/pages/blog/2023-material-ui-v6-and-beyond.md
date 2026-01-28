@@ -45,7 +45,7 @@ It's tentatively planned for Q4 of 2024.
 In addition to the updates to the React library, we've also been working on a long-requested Figma plug-in to help bridge the gap between designers and developers using Material UI.
 We're getting super close to a first release, which is custom-tailored to work nicely with the [Material UI Design Kits](/material-ui/getting-started/design-resources/).
 
-<img alt="A screenshot of Figma together with the MUI Connect plug-in running on the side, doing customziations to the Material UI Switch component." src="/static/blog/2023-material-ui-v6-and-beyond/connect.jpg" width="2400" height="1200" loading="lazy" />
+<img alt="A screenshot of Figma together with the MUI Connect plug-in running on the side, doing customizations to the Material UI Switch component." src="/static/blog/2023-material-ui-v6-and-beyond/connect.jpg" width="2400" height="1200" loading="lazy" />
 
 We're calling it MUI Connect, and it generates a theme file with all the customizations done on Figma.
 You'll be able to export it and paste it into your codebase, as well as visualize it in a Storybook instance.

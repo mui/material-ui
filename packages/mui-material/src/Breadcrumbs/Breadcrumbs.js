@@ -36,7 +36,6 @@ const BreadcrumbsRoot = styled(Typography, {
 const BreadcrumbsOl = styled('ol', {
   name: 'MuiBreadcrumbs',
   slot: 'Ol',
-  overridesResolver: (props, styles) => styles.ol,
 })({
   display: 'flex',
   flexWrap: 'wrap',
@@ -49,7 +48,6 @@ const BreadcrumbsOl = styled('ol', {
 const BreadcrumbsSeparator = styled('li', {
   name: 'MuiBreadcrumbs',
   slot: 'Separator',
-  overridesResolver: (props, styles) => styles.separator,
 })({
   display: 'flex',
   userSelect: 'none',

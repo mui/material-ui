@@ -30,7 +30,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          configFile: path.resolve(__dirname, '../../babel.config.js'),
+          configFile: path.resolve(__dirname, '../../babel.config.mjs'),
           envName: 'regressions',
         },
       },

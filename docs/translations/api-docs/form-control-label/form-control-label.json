@@ -17,7 +17,10 @@
     "onChange": {
       "description": "Callback fired when the state is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback. You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean)."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean)."
+        }
       }
     },
     "required": {

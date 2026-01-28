@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/system';
 import Box from '@mui/system/Box';
 import Grid from '@mui/system/Grid';

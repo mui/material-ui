@@ -12,12 +12,14 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Drawer',
     propName: 'BackdropComponent',
     slotName: 'backdrop',
   });
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SwipeableDrawer',
     propName: 'BackdropComponent',
     slotName: 'backdrop',
@@ -25,12 +27,14 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Drawer',
     propName: 'BackdropProps',
     slotName: 'backdrop',
   });
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SwipeableDrawer',
     propName: 'BackdropProps',
     slotName: 'backdrop',
@@ -38,12 +42,14 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Drawer',
     propName: 'PaperProps',
     slotName: 'paper',
   });
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SwipeableDrawer',
     propName: 'PaperProps',
     slotName: 'paper',
@@ -51,12 +57,14 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Drawer',
     propName: 'SlideProps',
     slotName: 'transition',
   });
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SwipeableDrawer',
     propName: 'SlideProps',
     slotName: 'transition',

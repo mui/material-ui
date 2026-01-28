@@ -1,5 +1,4 @@
 /* eslint-disable prefer-template */
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-console */
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';

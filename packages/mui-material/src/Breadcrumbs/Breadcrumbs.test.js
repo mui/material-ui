@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import {
   act,
@@ -26,19 +25,19 @@ describe('<Breadcrumbs />', () => {
   }));
 
   it('should render inaccessible separators between each listitem', () => {
-    const { getAllByRole, getByRole } = render(
+    render(
       <Breadcrumbs>
         <span>first</span>
         <span>second</span>
       </Breadcrumbs>,
     );
 
-    expect(getAllByRole('listitem', { hidden: false })).to.have.length(2);
-    expect(getByRole('list')).to.have.text('first/second');
+    expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(2);
+    expect(screen.getByRole('list')).to.have.text('first/second');
   });
 
   it('should render an ellipsis between `itemsAfterCollapse` and `itemsBeforeCollapse`', () => {
-    const { getAllByRole, getByRole } = render(
+    render(
       <Breadcrumbs>
         <span>first</span>
         <span>second</span>
@@ -52,15 +51,17 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    const listitems = getAllByRole('listitem', { hidden: false });
+    const listitems = screen.getAllByRole('listitem', { hidden: false });
 
     expect(listitems).to.have.length(3);
-    expect(getByRole('list')).to.have.text('first//ninth');
-    expect(getByRole('button').querySelector('[data-testid="MoreHorizIcon"]')).not.to.equal(null);
+    expect(screen.getByRole('list')).to.have.text('first//ninth');
+    expect(screen.getByRole('button').querySelector('[data-testid="MoreHorizIcon"]')).not.to.equal(
+      null,
+    );
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
-    const { getAllByRole, getByRole, getByText } = render(
+    render(
       <Breadcrumbs>
         <span tabIndex={-1}>first</span>
         <span>second</span>
@@ -75,11 +76,11 @@ describe('<Breadcrumbs />', () => {
     );
 
     act(() => {
-      getByRole('button').click();
+      screen.getByRole('button').click();
     });
 
-    expect(document.activeElement).to.equal(getByText('first'));
-    expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);
+    expect(document.activeElement).to.equal(screen.getByText('first'));
+    expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(9);
   });
 
   it('should warn about invalid input', () => {

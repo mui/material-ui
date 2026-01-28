@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -79,9 +78,6 @@ export default function AppFooter(props: AppFooterProps) {
             <Link href="https://base-ui.com">Base UI</Link>
             <Link prefetch={false} href={ROUTES.productAdvanced}>
               MUI X
-            </Link>
-            <Link prefetch={false} href={ROUTES.productToolpad}>
-              Toolpad
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>

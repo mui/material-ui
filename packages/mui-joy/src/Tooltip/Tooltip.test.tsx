@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, act } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { createRenderer, act, screen } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { PopperProps } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
@@ -62,22 +62,24 @@ describe('<Tooltip />', () => {
 
   describe('prop: variant', () => {
     it('solid by default', () => {
-      const { getByRole } = render(
+      render(
         <Tooltip title="Add" open>
           <button>button</button>
         </Tooltip>,
       );
-      expect(getByRole('tooltip')).to.have.class(classes.variantSolid);
+
+      expect(screen.getByRole('tooltip')).to.have.class(classes.variantSolid);
     });
 
     (['outlined', 'soft', 'plain', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByRole } = render(
+        render(
           <Tooltip title="Add" variant={variant} open>
             <button>button</button>
           </Tooltip>,
         );
-        expect(getByRole('tooltip')).to.have.class(
+
+        expect(screen.getByRole('tooltip')).to.have.class(
           classes[`variant${capitalize(variant)}` as TooltipClassKey],
         );
       });
@@ -86,24 +88,24 @@ describe('<Tooltip />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByRole } = render(
+      render(
         <Tooltip title="Add" open>
           <button>button</button>
         </Tooltip>,
       );
 
-      expect(getByRole('tooltip')).to.have.class(classes.colorNeutral);
+      expect(screen.getByRole('tooltip')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByRole } = render(
+        render(
           <Tooltip title="Add" color={color} open>
             <button>button</button>
           </Tooltip>,
         );
 
-        expect(getByRole('tooltip')).to.have.class(
+        expect(screen.getByRole('tooltip')).to.have.class(
           classes[`color${capitalize(color)}` as TooltipClassKey],
         );
       });
@@ -112,24 +114,24 @@ describe('<Tooltip />', () => {
 
   describe('prop: size', () => {
     it('md by default', () => {
-      const { getByRole } = render(
+      render(
         <Tooltip title="Add" open>
           <button>button</button>
         </Tooltip>,
       );
 
-      expect(getByRole('tooltip')).to.have.class(classes.sizeMd);
+      expect(screen.getByRole('tooltip')).to.have.class(classes.sizeMd);
     });
 
     (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
-        const { getByRole } = render(
+        render(
           <Tooltip title="Add" size={size} open>
             <button>button</button>
           </Tooltip>,
         );
 
-        expect(getByRole('tooltip')).to.have.class(
+        expect(screen.getByRole('tooltip')).to.have.class(
           classes[`size${capitalize(size)}` as TooltipClassKey],
         );
       });
@@ -160,12 +162,14 @@ describe('<Tooltip />', () => {
           </div>
         );
       });
-      const { getByRole } = render(
+
+      render(
         <Tooltip open title="test">
           <TextField onFocus={handleFocus} onBlur={handleBlur} />
         </Tooltip>,
       );
-      const input = getByRole('textbox');
+
+      const input = screen.getByRole('textbox');
 
       act(() => {
         input.focus();

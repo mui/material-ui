@@ -11,43 +11,52 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  replaceComponentsWithSlots(j, { root, componentName: 'AvatarGroup' });
+  replaceComponentsWithSlots(j, {
+    root,
+    componentName: 'AvatarGroup',
+    packageName: options.packageName,
+  });
 
   // replace `slotProps.additionalAvatar` with `slotProps.surplus` in JSX
-  findComponentJSX(j, { root, componentName: 'AvatarGroup' }, (elementPath) => {
-    const slotPropsIndex = elementPath.node.openingElement.attributes.findIndex(
-      (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'slotProps',
-    );
-    if (slotPropsIndex !== -1) {
-      const slotProps = elementPath.node.openingElement.attributes[slotPropsIndex].value.expression;
-      const additionalAvatarIndex = slotProps.properties.findIndex(
-        (prop) => prop?.key?.name === 'additionalAvatar',
+  findComponentJSX(
+    j,
+    { root, componentName: 'AvatarGroup', packageName: options.packageName },
+    (elementPath) => {
+      const slotPropsIndex = elementPath.node.openingElement.attributes.findIndex(
+        (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'slotProps',
       );
-      if (additionalAvatarIndex !== -1) {
-        const surplusIndex = slotProps.properties.findIndex(
-          (prop) => prop?.key?.name === 'surplus',
+      if (slotPropsIndex !== -1) {
+        const slotProps =
+          elementPath.node.openingElement.attributes[slotPropsIndex].value.expression;
+        const additionalAvatarIndex = slotProps.properties.findIndex(
+          (prop) => prop?.key?.name === 'additionalAvatar',
         );
-        const removedValue = slotProps.properties.splice(additionalAvatarIndex, 1)[0].value;
-        if (surplusIndex === -1) {
-          assignObject(j, {
-            target: elementPath.node.openingElement.attributes[slotPropsIndex],
-            key: 'surplus',
-            expression: removedValue,
-          });
-        } else {
-          const slotPropsSlotValue = slotProps.properties.splice(surplusIndex, 1)[0].value;
-          assignObject(j, {
-            target: elementPath.node.openingElement.attributes[slotPropsIndex],
-            key: 'surplus',
-            expression: j.objectExpression([
-              j.spreadElement(removedValue),
-              j.spreadElement(slotPropsSlotValue),
-            ]),
-          });
+        if (additionalAvatarIndex !== -1) {
+          const surplusIndex = slotProps.properties.findIndex(
+            (prop) => prop?.key?.name === 'surplus',
+          );
+          const removedValue = slotProps.properties.splice(additionalAvatarIndex, 1)[0].value;
+          if (surplusIndex === -1) {
+            assignObject(j, {
+              target: elementPath.node.openingElement.attributes[slotPropsIndex],
+              key: 'surplus',
+              expression: removedValue,
+            });
+          } else {
+            const slotPropsSlotValue = slotProps.properties.splice(surplusIndex, 1)[0].value;
+            assignObject(j, {
+              target: elementPath.node.openingElement.attributes[slotPropsIndex],
+              key: 'surplus',
+              expression: j.objectExpression([
+                j.spreadElement(removedValue),
+                j.spreadElement(slotPropsSlotValue),
+              ]),
+            });
+          }
         }
       }
-    }
-  });
+    },
+  );
 
   // replace `slotProps.additionalAvatar` with `slotProps.surplus` in theme
   root.find(j.ObjectProperty, { key: { name: 'MuiAvatarGroup' } }).forEach((path) => {

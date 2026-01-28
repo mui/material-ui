@@ -23,7 +23,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase)({
+const SwitchBaseRoot = styled(ButtonBase, {
+  name: 'MuiSwitchBase',
+})({
   padding: 9,
   borderRadius: '50%',
   variants: [
@@ -60,7 +62,10 @@ const SwitchBaseRoot = styled(ButtonBase)({
   ],
 });
 
-const SwitchBaseInput = styled('input', { shouldForwardProp: rootShouldForwardProp })({
+const SwitchBaseInput = styled('input', {
+  name: 'MuiSwitchBase',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,
@@ -133,7 +138,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const handleInputChange = (event) => {
     // Workaround for https://github.com/facebook/react/issues/9023
-    if (event.nativeEvent.defaultPrevented) {
+    if (event.nativeEvent.defaultPrevented || readOnly) {
       return;
     }
 
@@ -200,7 +205,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     additionalProps: {
       centerRipple: true,
       focusRipple: !disableFocusRipple,
-      disabled,
       role: undefined,
       tabIndex: null,
     },
@@ -295,7 +299,7 @@ SwitchBase.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**

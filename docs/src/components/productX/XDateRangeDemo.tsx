@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
@@ -6,7 +5,13 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
-import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
+import {
+  PickersShortcutsItem,
+  PickersShortcutsProps,
+  DateRange,
+  useIsValidValue,
+  usePickerActionsContext,
+} from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
@@ -19,26 +24,28 @@ const endDate = dayjs();
 endDate.date(endDate.date() + 28);
 
 function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
-  const { items, onChange, isValid, changeImportance = 'accept' } = props;
+  const { items, changeImportance = 'accept' } = props;
+  const isValid = useIsValidValue<DateRange<Dayjs>>();
+  const { setValue } = usePickerActionsContext<DateRange<Dayjs>>();
 
   if (items == null || items.length === 0) {
     return null;
   }
 
-  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Dayjs>>) => {
+  const resolvedItems = items.map((item) => {
     const newValue = item.getValue({ isValid });
 
     return {
       label: item.label,
       onClick: () => {
-        onChange(newValue, changeImportance, item);
+        setValue(newValue, { changeImportance, shortcut: item });
       },
       disabled: !isValid(newValue),
     };
   });
 
   return (
-    <Box sx={{ gridRow: 1, gridColumn: 2 }}>
+    <Box sx={{ gridRow: 1, gridColumn: '2 / 4' }}>
       <List
         sx={{
           display: 'flex',
@@ -111,8 +118,9 @@ export default function XDateRangeDemo() {
           variant="outlined"
           sx={[
             {
+              borderRadius: '8px',
+              overflow: 'hidden',
               '& > div': {
-                borderRadius: 1,
                 overflow: 'auto',
                 bgcolor: '#FFF',
               },
@@ -152,6 +160,10 @@ export default function XDateRangeDemo() {
               '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
                 borderColor: 'primary.300',
               },
+              '& .MuiPickersLayout-actionBar': {
+                borderTop: '1px solid',
+                borderColor: 'divider',
+              },
             },
             (theme) =>
               theme.applyDarkStyles({
@@ -167,7 +179,7 @@ export default function XDateRangeDemo() {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
-              value={[startDate, endDate]}
+              defaultValue={[startDate, endDate]}
               slots={{
                 shortcuts: CustomRangeShortcuts,
               }}

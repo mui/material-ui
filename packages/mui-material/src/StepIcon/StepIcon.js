@@ -25,7 +25,6 @@ const useUtilityClasses = (ownerState) => {
 const StepIconRoot = styled(SvgIcon, {
   name: 'MuiStepIcon',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => ({
     display: 'block',
@@ -48,7 +47,6 @@ const StepIconRoot = styled(SvgIcon, {
 const StepIconText = styled('text', {
   name: 'MuiStepIcon',
   slot: 'Text',
-  overridesResolver: (props, styles) => styles.text,
 })(
   memoTheme(({ theme }) => ({
     fill: (theme.vars || theme).palette.primary.contrastText,

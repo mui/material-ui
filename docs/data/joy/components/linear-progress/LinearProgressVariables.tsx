@@ -1,4 +1,3 @@
-import * as React from 'react';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Box from '@mui/joy/Box';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';

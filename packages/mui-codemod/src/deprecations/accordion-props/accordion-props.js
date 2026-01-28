@@ -12,6 +12,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Accordion',
     propName: 'TransitionComponent',
     slotName: 'transition',
@@ -19,6 +20,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Accordion',
     propName: 'TransitionProps',
     slotName: 'transition',

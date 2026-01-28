@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expectType } from '@mui/types';
 import { mergeSlotProps } from '@mui/material/utils';
 import StepContent, { StepContentProps } from '@mui/material/StepContent';

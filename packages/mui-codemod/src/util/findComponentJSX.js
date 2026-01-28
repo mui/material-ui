@@ -2,12 +2,12 @@
  * Find all the JSXElements of a given component name.
  *
  * @param {import('jscodeshift')} j
- * @param {{ root: import('jscodeshift').Collection; componentName: string }} options
+ * @param {{ root: import('jscodeshift').Collection; componentName: string; packageName?: string }} options
  * @param {(path: import('jscodeshift').ASTPath<import('jscodeshift').JSXElement>) => void} callback
  *
  */
 export default function findComponentJSX(j, options, callback) {
-  const { root, componentName } = options;
+  const { root, componentName, packageName = '@mui/material' } = options;
 
   // case 1: import ComponentName from '@mui/material/ComponentName';
   // case 2: import { ComponentName } from '@mui/material';
@@ -18,7 +18,7 @@ export default function findComponentJSX(j, options, callback) {
   root
     .find(j.ImportDeclaration)
     .filter((path) =>
-      path.node.source.value.match(new RegExp(`^@mui/material(/${componentName})?$`)),
+      path.node.source.value.match(new RegExp(`^${packageName}(/${componentName})?$`)),
     )
     .forEach((path) => {
       path.node.specifiers.forEach((specifier) => {

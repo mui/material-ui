@@ -5,13 +5,13 @@ import Button from '../components/Button';
 import defer from './defer';
 
 function FormButton(props) {
-  const { disabled, mounted, ...others } = props;
+  const { disabled, mounted, ...other } = props;
   return (
     <Button
       disabled={!mounted || !!disabled}
       type="submit"
       variant="contained"
-      {...others}
+      {...other}
     />
   );
 }

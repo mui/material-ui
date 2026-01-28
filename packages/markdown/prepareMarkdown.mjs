@@ -1,7 +1,6 @@
-/* eslint-disable no-irregular-whitespace */
 import fs from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase.js';
+import { kebabCase } from 'es-toolkit/string';
 import {
   createRender,
   getContents,
@@ -12,7 +11,10 @@ import {
   getTitle,
 } from './parseMarkdown.mjs';
 
-const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
+/**
+ * @type {string | string[]}
+ */
+const BaseUIReexportedComponents = [];
 
 /**
  * @param {string} productId
@@ -49,16 +51,29 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
 }
 
 /**
+ * @typedef  {{ component: string, demo?: undefined }} ComponentEntry
+ * @typedef  {{ component?: undefined, demo: string, hideToolbar?: boolean }} DemoEntry
+ */
+
+/**
+ * @typedef {{ rendered: Array<string | ComponentEntry | DemoEntry> }} TranslatedDoc
+ */
+
+/**
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
  * @param {string} config.fileRelativeContext - posix filename relative to repository root directory
  * @param {object} config.options - provided to the webpack loader
+ * @param {string} config.options.workspaceRoot - The absolute path of the repository root directory
+ * @param {object} [config.componentPackageMapping] - Mapping of productId to mapping of component name to package name
+ * @example { 'material': { 'Button': 'mui-material' } }
+ * @returns {{ docs: Record<string, TranslatedDoc> }} - Mapping of locale to its prepared markdown
  */
 function prepareMarkdown(config) {
   const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
 
   /**
-   * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
+   * @type {Record<string, TranslatedDoc>}
    */
   const docs = {};
   const headingHashes = {};
@@ -112,15 +127,6 @@ function prepareMarkdown(config) {
       }
 
       const contents = getContents(markdown);
-
-      if (headers.unstyled) {
-        contents.push(`
-## Unstyled
-
-Use the [Base UI ${markdownH1}](${headers.unstyled}) for complete ownership of the component's design, with no Material UI or Joy UI styles to override.
-This unstyled version of the component is the ideal choice for heavy customization with a smaller bundle size.
-        `);
-      }
 
       if (headers.components.length > 0 && headers.productId !== 'base-ui') {
         contents.push(`

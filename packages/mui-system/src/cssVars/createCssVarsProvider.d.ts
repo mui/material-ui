@@ -3,8 +3,9 @@ import InitColorSchemeScript from '../InitColorSchemeScript';
 import { Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 
-export interface ColorSchemeContextValue<SupportedColorScheme extends string>
-  extends Result<SupportedColorScheme> {
+export interface ColorSchemeContextValue<
+  SupportedColorScheme extends string,
+> extends Result<SupportedColorScheme> {
   allColorSchemes: SupportedColorScheme[];
 }
 

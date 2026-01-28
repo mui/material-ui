@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import { pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {
-  before(() => {
+  beforeAll(() => {
     process.env.SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
   });
 
-  after(() => {
+  afterAll(() => {
     delete process.env.SOURCE_CODE_REPO;
   });
 

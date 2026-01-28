@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -29,7 +29,7 @@ describe('useCurrentColorScheme', () => {
     removeEventListener: () => {},
   });
 
-  before(() => {
+  beforeAll(() => {
     originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
       if (eventHandlers.has(key)) {
@@ -47,7 +47,7 @@ describe('useCurrentColorScheme', () => {
     };
   });
 
-  after(() => {
+  afterAll(() => {
     window.addEventListener = originalAddEventListener;
   });
 
@@ -111,7 +111,7 @@ describe('useCurrentColorScheme', () => {
     const { container } = render(<Data />);
 
     expect(container.firstChild.textContent).to.equal('light');
-    expect(effectRunCount).to.equal(reactMajor >= 19 ? 2 : 3);
+    expect(effectRunCount).to.equal(3);
   });
 
   it('[noSsr] does not trigger a re-render', () => {
@@ -421,20 +421,20 @@ describe('useCurrentColorScheme', () => {
           </div>
         );
       }
-      const { getByText, getByTestId } = render(<Data />);
+      render(<Data />);
 
-      fireEvent.click(getByText('first'));
+      fireEvent.click(screen.getByText('first'));
 
-      expect(JSON.parse(getByTestId('data').textContent)).to.deep.equal({
+      expect(JSON.parse(screen.getByTestId('data').textContent)).to.deep.equal({
         mode: 'light',
         lightColorScheme: 'paper',
         darkColorScheme: 'dark',
         colorScheme: 'paper',
       });
 
-      fireEvent.click(getByText('second'));
+      fireEvent.click(screen.getByText('second'));
 
-      expect(JSON.parse(getByTestId('data').textContent)).to.deep.equal({
+      expect(JSON.parse(screen.getByTestId('data').textContent)).to.deep.equal({
         mode: 'light',
         lightColorScheme: 'paper',
         darkColorScheme: 'dim',

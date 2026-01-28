@@ -34,9 +34,6 @@ export interface ModalOwnProps {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })

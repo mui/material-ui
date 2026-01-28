@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Stepper from '@mui/joy/Stepper';
 import Step from '@mui/joy/Step';

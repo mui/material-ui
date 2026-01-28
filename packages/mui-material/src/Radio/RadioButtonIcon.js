@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
@@ -7,17 +6,24 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 
-const RadioButtonIconRoot = styled('span', { shouldForwardProp: rootShouldForwardProp })({
+const RadioButtonIconRoot = styled('span', {
+  name: 'MuiRadioButtonIcon',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   position: 'relative',
   display: 'flex',
 });
 
-const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon)({
+const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, {
+  name: 'MuiRadioButtonIcon',
+})({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
 });
 
-const RadioButtonIconDot = styled(RadioButtonCheckedIcon)(
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon, {
+  name: 'MuiRadioButtonIcon',
+})(
   memoTheme(({ theme }) => ({
     left: 0,
     position: 'absolute',

@@ -108,6 +108,17 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
+    '& .signature-type': {
+      textDecoration: 'underline',
+      textDecorationStyle: 'dotted',
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+      fontWeight: theme.typography.fontWeightMedium,
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
+      cursor: 'help',
+    },
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -145,6 +156,10 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
+      },
+      '& .signature-type': {
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+        textDecorationColor: alpha(darkTheme.palette.primary.main, 0.6),
       },
     },
   }),

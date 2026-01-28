@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { red } from '@mui/material/colors';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';

@@ -38,7 +38,6 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 const ReplacementPaper = styled(Paper, {
   name: 'ReplacementPaper',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({
   backgroundColor: 'red',
 });
@@ -797,7 +796,7 @@ describe('<Popover />', () => {
       expect(beforeStyle).to.deep.equal(afterStyle);
     });
 
-    it('should be able to manually recalculate position', () => {
+    it('should be able to manually recalculate position', async () => {
       let element;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
@@ -834,7 +833,7 @@ describe('<Popover />', () => {
 
       expect(typeof popoverActions.updatePosition === 'function').to.equal(true);
 
-      act(() => {
+      await act(async () => {
         popoverActions.updatePosition();
       });
       clock.tick(166);
@@ -871,7 +870,7 @@ describe('<Popover />', () => {
       }
 
       describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
-        specify('when no movement is needed', () => {
+        it('when no movement is needed', () => {
           const negative = marginThreshold === 0 ? '' : '-';
           const positioningStyle = getElementStyleOfOpenPopover();
 
@@ -882,7 +881,7 @@ describe('<Popover />', () => {
           );
         });
 
-        specify('top < marginThreshold', () => {
+        it('top < marginThreshold', () => {
           const mockedAnchor = document.createElement('div');
           stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
             left: marginThreshold,
@@ -898,16 +897,16 @@ describe('<Popover />', () => {
         describe('bottom > heightThreshold', () => {
           let windowInnerHeight;
 
-          before(() => {
+          beforeAll(() => {
             windowInnerHeight = window.innerHeight;
             window.innerHeight = marginThreshold * 2;
           });
 
-          after(() => {
+          afterAll(() => {
             window.innerHeight = windowInnerHeight;
           });
 
-          specify('test', () => {
+          it('test', () => {
             const mockedAnchor = document.createElement('div');
             stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
               left: marginThreshold,
@@ -922,7 +921,7 @@ describe('<Popover />', () => {
           });
         });
 
-        specify('left < marginThreshold', () => {
+        it('left < marginThreshold', () => {
           const mockedAnchor = document.createElement('div');
           stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
             left: marginThreshold - 1,
@@ -941,16 +940,16 @@ describe('<Popover />', () => {
         describe('right > widthThreshold', () => {
           let innerWidthContainer;
 
-          before(() => {
+          beforeAll(() => {
             innerWidthContainer = window.innerWidth;
             window.innerWidth = marginThreshold * 2;
           });
 
-          after(() => {
+          afterAll(() => {
             window.innerWidth = innerWidthContainer;
           });
 
-          specify('test', () => {
+          it('test', () => {
             const mockedAnchor = document.createElement('div');
             stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
               left: marginThreshold + 1,

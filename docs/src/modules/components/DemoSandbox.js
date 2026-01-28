@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { prefixer } from 'stylis';
-import rtlPlugin from 'stylis-plugin-rtl';
+import rtlPlugin from '@mui/stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
@@ -15,6 +15,15 @@ import { useTranslate } from '@mui/docs/i18n';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { DemoInstanceThemeProvider } from 'docs/src/theming';
 import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
+
+const SRC_DOC = `<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  </head>
+  <body></body>
+</html>`;
 
 let globalInjectThemeCache;
 
@@ -132,7 +141,7 @@ function DemoIframe(props) {
   const document = frameRef.current?.contentDocument;
   return (
     <React.Fragment>
-      <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
+      <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} srcDoc={SRC_DOC} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document} isJoy={isJoy} isolated={isolated}>

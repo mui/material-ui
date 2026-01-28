@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';

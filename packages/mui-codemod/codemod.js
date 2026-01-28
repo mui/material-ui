@@ -73,6 +73,9 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
   if (flags.jscodeshift) {
     args.push(flags.jscodeshift);
   }
+  if (flags.packageName) {
+    args.push(`--packageName=${flags.packageName}`);
+  }
 
   args.push(...files);
 
@@ -195,6 +198,11 @@ yargs
         .option('jscodeshift', {
           description: '(Advanced) Pass options directly to jscodeshift',
           default: false,
+          type: 'string',
+        })
+        .option('packageName', {
+          description: 'The package name to look for in the import statements',
+          default: '@mui/material',
           type: 'string',
         });
     },

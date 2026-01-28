@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box, IconButton } from '@mui/joy';
 import Typography from '@mui/joy/Typography';
 import Avatar from '@mui/joy/Avatar';

@@ -1,7 +1,9 @@
 import * as React from 'react';
 
-export interface TextareaAutosizeProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'rows'> {
+export interface TextareaAutosizeProps extends Omit<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+  'children' | 'rows'
+> {
   ref?: React.Ref<HTMLTextAreaElement>;
   /**
    * Maximum number of rows to display.

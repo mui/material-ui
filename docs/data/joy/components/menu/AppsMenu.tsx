@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import IconButton from '@mui/joy/IconButton';

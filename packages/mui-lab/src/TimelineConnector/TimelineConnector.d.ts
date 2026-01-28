@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineConnectorClasses } from './timelineConnectorClasses';
 
-export interface TimelineConnectorProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
+export interface TimelineConnectorProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>
+> {
   /**
    * The content of the component.
    */

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AccordionGroup from '@mui/joy/AccordionGroup';
 import Accordion from '@mui/joy/Accordion';
 import AccordionDetails, {

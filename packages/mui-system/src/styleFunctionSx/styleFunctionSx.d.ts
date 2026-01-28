@@ -43,7 +43,8 @@ export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
  * theme function or nested) in `SystemCssProperties`.
  */
 export interface AllSystemCSSProperties
-  extends Omit<StandardCSSProperties, keyof OverwriteCSSProperties>,
+  extends
+    Omit<StandardCSSProperties, keyof OverwriteCSSProperties>,
     OverwriteCSSProperties,
     AliasesCSSProperties {}
 

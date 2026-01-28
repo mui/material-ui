@@ -1,13 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  elementAcceptingRef,
-  exactProp,
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-  unstable_useEventCallback as useEventCallback,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useForkRef from '@mui/utils/useForkRef';
+import useEventCallback from '@mui/utils/useEventCallback';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import exactProp from '@mui/utils/exactProp';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
@@ -152,14 +150,16 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   });
 
   // Keep track of mouse/touch events that bubbled up through the portal.
-  const createHandleSynthetic = (handlerName: string) => (event: React.SyntheticEvent) => {
-    syntheticEventRef.current = true;
+  const createHandleSynthetic =
+    (handlerName: ClickAwayMouseEventHandler | ClickAwayTouchEventHandler) =>
+    (event: React.SyntheticEvent) => {
+      syntheticEventRef.current = true;
 
-    const childrenPropsHandler = children.props[handlerName];
-    if (childrenPropsHandler) {
-      childrenPropsHandler(event);
-    }
-  };
+      const childrenPropsHandler = children.props[handlerName];
+      if (childrenPropsHandler) {
+        childrenPropsHandler(event);
+      }
+    };
 
   const childrenProps: { ref: React.Ref<Element> } & Pick<
     React.DOMAttributes<Element>,

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Modal, { ModalProps } from '@mui/material/Modal';
 
 const backdropProps: ModalProps['BackdropProps'] = {

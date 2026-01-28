@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';

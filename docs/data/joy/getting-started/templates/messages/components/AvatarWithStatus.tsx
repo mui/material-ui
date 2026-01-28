@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Badge from '@mui/joy/Badge';
 import Avatar, { AvatarProps } from '@mui/joy/Avatar';
 

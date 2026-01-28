@@ -21,11 +21,11 @@ export default function SnackbarHideDuration() {
       setLeft(duration);
       countdown();
     } else {
-      window.clearInterval(timer.current);
+      clearInterval(timer.current);
     }
   }, [open, duration]);
   const handlePause = () => {
-    window.clearInterval(timer.current);
+    clearInterval(timer.current);
   };
   const handleResume = () => {
     countdown();

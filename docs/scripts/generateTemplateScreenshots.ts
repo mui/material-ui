@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { chromium } from 'playwright';
+import { chromium } from '@playwright/test';
 
 /**
  * README

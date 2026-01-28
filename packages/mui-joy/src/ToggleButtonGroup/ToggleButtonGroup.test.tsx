@@ -29,9 +29,9 @@ describe('<ToggleButtonGroup />', () => {
   }));
 
   it('renders a `group`', () => {
-    const { queryByRole } = render(<ToggleButtonGroup aria-label="my group" />);
+    render(<ToggleButtonGroup aria-label="my group" />);
 
-    expect(queryByRole('group', { name: 'my group' })).not.to.equal(null);
+    expect(screen.queryByRole('group', { name: 'my group' })).not.to.equal(null);
   });
 
   it('should disable all ToggleButton if disabled prop is passed', () => {
@@ -77,9 +77,9 @@ describe('<ToggleButtonGroup />', () => {
       );
     }
 
-    const { getAllByRole } = render(<ToggleGroup />);
+    render(<ToggleGroup />);
 
-    const [firstButton, secondButton, thirdButton, fourthButton] = getAllByRole('button');
+    const [firstButton, secondButton, thirdButton, fourthButton] = screen.getAllByRole('button');
     act(() => {
       firstButton.click();
     });
@@ -113,26 +113,26 @@ describe('<ToggleButtonGroup />', () => {
   });
 
   it('[exclusive] should render a selected ToggleButton if value is selected', () => {
-    const { getAllByRole } = render(
+    render(
       <ToggleButtonGroup value="one">
         <Button value="one">1</Button>
         <IconButton value="two">1</IconButton>
       </ToggleButtonGroup>,
     );
 
-    expect(getAllByRole('button')[0]).to.have.attribute('aria-pressed', 'true');
-    expect(getAllByRole('button')[1]).to.have.attribute('aria-pressed', 'false');
+    expect(screen.getAllByRole('button')[0]).to.have.attribute('aria-pressed', 'true');
+    expect(screen.getAllByRole('button')[1]).to.have.attribute('aria-pressed', 'false');
   });
 
   it('[non-exclusive] should render a selected ToggleButton if value is selected', () => {
-    const { getAllByRole } = render(
+    render(
       <ToggleButtonGroup value={['one', 'two']}>
         <Button value="one">1</Button>
         <IconButton value="two">1</IconButton>
       </ToggleButtonGroup>,
     );
 
-    const buttons = getAllByRole('button');
+    const buttons = screen.getAllByRole('button');
     expect(buttons[0]).to.have.attribute('aria-pressed', 'true');
     expect(buttons[1]).to.have.attribute('aria-pressed', 'true');
   });
@@ -141,14 +141,15 @@ describe('<ToggleButtonGroup />', () => {
     describe('exclusive', () => {
       it('passed value should be null when current value is toggled off', () => {
         const handleChange = spy();
-        const { getAllByRole } = render(
+
+        render(
           <ToggleButtonGroup value="one" onChange={handleChange}>
             <Button value="one">One</Button>
             <IconButton value="two">Two</IconButton>
           </ToggleButtonGroup>,
         );
 
-        getAllByRole('button')[0].click();
+        screen.getAllByRole('button')[0].click();
 
         expect(handleChange.callCount).to.equal(1);
         expect(handleChange.args[0][1]).to.equal(null);
@@ -156,14 +157,15 @@ describe('<ToggleButtonGroup />', () => {
 
       it('should be a single value when value is toggled on', () => {
         const handleChange = spy();
-        const { getAllByRole } = render(
+
+        render(
           <ToggleButtonGroup onChange={handleChange}>
             <Button value="one">One</Button>
             <IconButton value="two">Two</IconButton>
           </ToggleButtonGroup>,
         );
 
-        getAllByRole('button')[0].click();
+        screen.getAllByRole('button')[0].click();
 
         expect(handleChange.callCount).to.equal(1);
         expect(handleChange.args[0][1]).to.equal('one');
@@ -171,14 +173,15 @@ describe('<ToggleButtonGroup />', () => {
 
       it('should be a single value when a new value is toggled on', () => {
         const handleChange = spy();
-        const { getAllByRole } = render(
+
+        render(
           <ToggleButtonGroup value="one" onChange={handleChange}>
             <Button value="one">One</Button>
             <IconButton value="two">Two</IconButton>
           </ToggleButtonGroup>,
         );
 
-        getAllByRole('button')[1].click();
+        screen.getAllByRole('button')[1].click();
 
         expect(handleChange.callCount).to.equal(1);
         expect(handleChange.args[0][1]).to.equal('two');
@@ -188,14 +191,15 @@ describe('<ToggleButtonGroup />', () => {
     describe('non exclusive', () => {
       it('should be an empty array when current value is toggled off', () => {
         const handleChange = spy();
-        const { getAllByRole } = render(
+
+        render(
           <ToggleButtonGroup value={['one']} onChange={handleChange}>
             <Button value="one">One</Button>
             <IconButton value="two">Two</IconButton>
           </ToggleButtonGroup>,
         );
 
-        getAllByRole('button')[0].click();
+        screen.getAllByRole('button')[0].click();
 
         expect(handleChange.callCount).to.equal(1);
         expect(handleChange.args[0][1]).to.deep.equal([]);
@@ -203,14 +207,15 @@ describe('<ToggleButtonGroup />', () => {
 
       it('should be an array with a single value when value is toggled on', () => {
         const handleChange = spy();
-        const { getAllByRole } = render(
+
+        render(
           <ToggleButtonGroup value={[]} onChange={handleChange}>
             <Button value="one">One</Button>
             <IconButton value="two">Two</IconButton>
           </ToggleButtonGroup>,
         );
 
-        getAllByRole('button')[0].click();
+        screen.getAllByRole('button')[0].click();
 
         expect(handleChange.callCount).to.equal(1);
         expect(handleChange.args[0][1]).to.have.members(['one']);
@@ -218,14 +223,15 @@ describe('<ToggleButtonGroup />', () => {
 
       it('should be an array with a single value when a secondary value is toggled off', () => {
         const handleChange = spy();
-        const { getAllByRole } = render(
+
+        render(
           <ToggleButtonGroup value={['one', 'two']} onChange={handleChange}>
             <Button value="one">One</Button>
             <IconButton value="two">Two</IconButton>
           </ToggleButtonGroup>,
         );
 
-        getAllByRole('button')[0].click();
+        screen.getAllByRole('button')[0].click();
 
         expect(handleChange.callCount).to.equal(1);
         expect(handleChange.args[0][1]).to.have.members(['two']);
@@ -233,14 +239,15 @@ describe('<ToggleButtonGroup />', () => {
 
       it('should be an array of all selected values when a second value is toggled on', () => {
         const handleChange = spy();
-        const { getAllByRole } = render(
+
+        render(
           <ToggleButtonGroup value={['one']} onChange={handleChange}>
             <Button value="one">One</Button>
             <IconButton value="two">Two</IconButton>
           </ToggleButtonGroup>,
         );
 
-        getAllByRole('button')[1].click();
+        screen.getAllByRole('button')[1].click();
 
         expect(handleChange.callCount).to.equal(1);
         expect(handleChange.args[0][1]).to.have.members(['one', 'two']);

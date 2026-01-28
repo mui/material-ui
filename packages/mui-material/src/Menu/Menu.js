@@ -41,13 +41,11 @@ const MenuRoot = styled(Popover, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenu',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
   // height. This ensures a tappable area outside of the simple menu with which to dismiss
@@ -60,7 +58,6 @@ export const MenuPaper = styled(PopoverPaper, {
 const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
   slot: 'List',
-  overridesResolver: (props, styles) => styles.list,
 })({
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,

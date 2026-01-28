@@ -1,5 +1,5 @@
 import * as React from 'react';
-import startCase from 'lodash/startCase';
+import { startCase } from 'es-toolkit/string';
 import NextLink from 'next/link';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';

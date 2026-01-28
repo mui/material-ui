@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';

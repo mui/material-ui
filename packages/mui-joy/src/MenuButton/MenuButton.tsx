@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useMenuButton } from '@mui/base/useMenuButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import {
   type MenuButtonProps,
   type MenuButtonOwnerState,

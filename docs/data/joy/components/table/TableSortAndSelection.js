@@ -130,7 +130,6 @@ function EnhancedTableHead(props) {
                 active ? { asc: 'ascending', desc: 'descending' }[order] : undefined
               }
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 underline="none"
                 color="neutral"

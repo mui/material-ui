@@ -1,4 +1,3 @@
-import * as React from 'react';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';

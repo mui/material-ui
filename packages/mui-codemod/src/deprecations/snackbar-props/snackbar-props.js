@@ -12,6 +12,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Snackbar',
     propName: 'TransitionComponent',
     slotName: 'transition',
@@ -19,6 +20,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Snackbar',
     propName: 'TransitionProps',
     slotName: 'transition',
@@ -26,6 +28,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Snackbar',
     propName: 'ContentProps',
     slotName: 'content',
@@ -33,6 +36,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Snackbar',
     propName: 'ClickAwayListenerProps',
     slotName: 'clickAwayListener',
