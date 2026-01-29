@@ -597,7 +597,6 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          disableHoverListener
           TransitionProps={{ timeout: transitionTimeout }}
         >
           <button id="testChild" type="submit">
@@ -605,7 +604,6 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      simulatePointerDevice();
 
       await focusVisible(screen.getByRole('button'));
       await clock.tickAsync(enterDelay);
