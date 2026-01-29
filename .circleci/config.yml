@@ -69,9 +69,6 @@ commands:
       - code-infra/install-deps:
           package-overrides: react@<< parameters.react-version >> typescript@<< parameters.typescript-version >> @playwright/test@<< parameters.playwright-version >> playwright@<< parameters.playwright-version >>
           ignore-workspace: << parameters.ignore-workspace >>
-      - run:
-          name: Clear Vite cache
-          command: rm -rf node_modules/.vite
 
 jobs:
   test_unit:
