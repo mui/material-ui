@@ -593,20 +593,19 @@ describe('<Tooltip />', () => {
       const enterDelay = 0;
       const transitionTimeout = 10;
       render(
-        <Tooltip
-          leaveDelay={leaveDelay}
-          enterDelay={enterDelay}
-          title="tooltip"
-          TransitionProps={{ timeout: transitionTimeout }}
-        >
-          <button
-            id="testChild"
-            type="submit"
-            style={{ position: 'absolute', left: 500, top: 500 }}
+        <div style={{ margin: 2 }}>
+          <Tooltip
+            leaveDelay={leaveDelay}
+            enterDelay={enterDelay}
+            title="tooltip"
+            // disableHoverListener
+            TransitionProps={{ timeout: transitionTimeout }}
           >
-            Hello World
-          </button>
-        </Tooltip>,
+            <button id="testChild" type="submit">
+              Hello World
+            </button>
+          </Tooltip>
+        </div>,
       );
       simulatePointerDevice();
 
