@@ -13,6 +13,9 @@ describe('textToHash', () => {
         'creategenerateclassname-options-class-name-generator',
       ],
       ['@mui/material/styles vs @mui/styles', 'mui-material-styles-vs-mui-styles'],
+      ['Inputs &amp; Labels', 'inputs-labels'],
+      ['Inputs &#x26; Labels', 'inputs-labels'],
+      ['Inputs &#38; Labels', 'inputs-labels'],
       ['Blog 📝', 'blog'],
     ];
     table.forEach((entry, index) => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor, screen, fireEvent } from '@mui/internal-test-utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import ButtonBase from '../ButtonBase';
@@ -80,7 +80,7 @@ describe('<SwitchBase />', () => {
     expect(container.firstChild).to.have.class(classes.edgeStart);
   });
 
-  it('can disable the ripple ', async () => {
+  it('can disable the ripple', async () => {
     const { container } = render(
       <SwitchBase
         checkedIcon="checked"
@@ -102,7 +102,7 @@ describe('<SwitchBase />', () => {
     expect(screen.getByRole('checkbox')).to.have.attribute('tabIndex', '-1');
   });
 
-  it('should pass value, disabled, checked, and name to the input', () => {
+  it('should pass value, and name to the input', () => {
     render(
       <SwitchBase
         icon="unchecked"
@@ -117,18 +117,45 @@ describe('<SwitchBase />', () => {
     const input = screen.getByRole('checkbox');
 
     expect(input).to.have.attribute('name', 'gender');
-    expect(input).to.have.attribute('disabled');
     expect(input).to.have.attribute('value', 'male');
   });
 
-  it('can disable the components, and render the ButtonBase with the disabled className', () => {
-    const { container } = render(
-      <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" disabled />,
-    );
+  describe('prop: disabled', () => {
+    it('disables the component', () => {
+      render(
+        <SwitchBase
+          data-testid="test"
+          icon="unchecked"
+          checkedIcon="checked"
+          type="checkbox"
+          disabled
+        />,
+      );
 
-    // to.be.disabled
-    expect(container.firstChild).to.have.attribute('aria-disabled', 'true');
-    expect(container.firstChild).to.have.class(classes.disabled);
+      const inputEl = screen.getByRole('checkbox');
+      expect(inputEl).to.not.have.attribute('checked');
+
+      fireEvent.click(inputEl);
+      expect(inputEl).to.not.have.attribute('checked');
+
+      fireEvent.click(screen.getByTestId('test'));
+      expect(inputEl).to.not.have.attribute('checked');
+    });
+
+    it('sets the disabled attribute and className', () => {
+      render(
+        <SwitchBase
+          data-testid="test"
+          icon="unchecked"
+          checkedIcon="checked"
+          type="checkbox"
+          disabled
+        />,
+      );
+
+      expect(screen.getByRole('checkbox')).to.have.attribute('disabled');
+      expect(screen.getByTestId('test')).to.have.class(classes.disabled);
+    });
   });
 
   describe('controlled', () => {
@@ -406,10 +433,6 @@ describe('<SwitchBase />', () => {
 
   describe('check transitioning between controlled states throws errors', () => {
     it('should error when uncontrolled and changed to controlled', function test() {
-      if (globalThis.didWarnControlledToUncontrolled) {
-        this.skip();
-      }
-
       let setProps;
       expect(() => {
         ({ setProps } = render(
@@ -419,7 +442,6 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: true });
-        globalThis.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         reactMajor === 16 &&
           'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
@@ -432,10 +454,6 @@ describe('<SwitchBase />', () => {
     });
 
     it('should error when controlled and changed to uncontrolled', function test() {
-      if (globalThis.didWarnControlledToUncontrolled) {
-        this.skip();
-      }
-
       let setProps;
       expect(() => {
         ({ setProps } = render(
@@ -445,14 +463,13 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: undefined });
-        globalThis.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         reactMajor === 16 &&
           'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
-        reactMajor >= 19 && 'A component is changing an uncontrolled input to be controlled.',
+        reactMajor >= 19 && 'A component is changing a controlled input to be uncontrolled.',
         reactMajor < 19 &&
           reactMajor !== 16 &&
-          'Warning: A component is changing an uncontrolled input to be controlled.',
+          'Warning: A component is changing a controlled input to be uncontrolled.',
         'MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
     });

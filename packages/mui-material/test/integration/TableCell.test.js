@@ -33,7 +33,7 @@ describe('<TableRow> integration', () => {
     expect(screen.getByTestId('cell')).to.have.attribute('scope', 'row');
   });
 
-  it('should render a th with the footer class when in the context of a table footer', () => {
+  it('should render a td with the footer class when in the context of a table footer', () => {
     renderInTable(<TableCell data-testid="cell" />, TableFooter);
     expect(screen.getByTestId('cell')).to.have.tagName('td');
     expect(screen.getByTestId('cell')).to.have.class(classes.root);
@@ -78,7 +78,7 @@ describe('<TableRow> integration', () => {
     expect(screen.getByTestId('cell')).not.to.have.attribute('role');
   });
 
-  it('does not set `role` when `component` prop is set and used in the context of table body ', () => {
+  it('does not set `role` when `component` prop is set and used in the context of table body', () => {
     render(
       <TableBody component="div">
         <TableCell component="div" data-testid="cell" />,
@@ -88,7 +88,7 @@ describe('<TableRow> integration', () => {
     expect(screen.getByTestId('cell')).not.to.have.attribute('role');
   });
 
-  it('does not set `role` when `component` prop is set and used in the context of table footer ', () => {
+  it('does not set `role` when `component` prop is set and used in the context of table footer', () => {
     render(
       <TableFooter component="div">
         <TableCell component="div" data-testid="cell" />,

@@ -119,6 +119,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     onChange,
     onClose,
     onFocus,
+    // eslint-disable-next-line react/prop-types
+    onKeyDown,
+    // eslint-disable-next-line react/prop-types
+    onMouseDown,
     onOpen,
     open: openProp,
     readOnly,
@@ -174,6 +178,28 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     [value],
   );
 
+  const open = displayNode !== null && openState;
+
+  React.useEffect(() => {
+    if (!open || !anchorElement || autoWidth) {
+      return undefined;
+    }
+
+    if (typeof ResizeObserver === 'undefined') {
+      return undefined;
+    }
+
+    const observer = new ResizeObserver(() => {
+      setMenuMinWidthState(anchorElement.clientWidth);
+    });
+
+    observer.observe(anchorElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [open, anchorElement, autoWidth]);
+
   // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
     if (defaultOpen && openState && displayNode && !isOpenControlled) {
@@ -210,8 +236,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = (open, event) => {
-    if (open) {
+  const update = (openParam, event) => {
+    if (openParam) {
       if (onOpen) {
         onOpen(event);
       }
@@ -221,11 +247,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (!isOpenControlled) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
-      setOpenState(open);
+      setOpenState(openParam);
     }
   };
 
   const handleMouseDown = (event) => {
+    onMouseDown?.(event);
     // Ignore everything but left-click
     if (event.button !== 0) {
       return;
@@ -321,10 +348,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         event.preventDefault();
         update(true, event);
       }
+      onKeyDown?.(event);
     }
   };
-
-  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation

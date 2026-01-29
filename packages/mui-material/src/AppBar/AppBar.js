@@ -95,6 +95,7 @@ const AppBarRoot = styled(Paper, {
         props: { color: 'inherit' },
         style: {
           '--AppBar-color': 'inherit',
+          color: 'var(--AppBar-color)',
         },
       },
       {
@@ -241,6 +242,12 @@ AppBar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 4
+   */
+  elevation: PropTypes.number,
+  /**
    * If true, the `color` prop is applied in dark mode.
    * @default false
    */
@@ -252,6 +259,11 @@ AppBar.propTypes /* remove-proptypes */ = {
    * @default 'fixed'
    */
   position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
+  /**
+   * If `false`, rounded corners are enabled.
+   * @default true
+   */
+  square: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

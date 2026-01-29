@@ -3,8 +3,11 @@ import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
+import { SlotProps } from '../utils/types';
 
 export interface ListItemComponentsPropsOverrides {}
+
+export interface ListItemSecondaryActionSlotPropsOverrides {}
 
 /**
  * This type is kept for compatibility. Use `ListItemOwnProps` instead.
@@ -67,6 +70,8 @@ export interface ListItemBaseProps {
   sx?: SxProps<Theme>;
 }
 
+export interface ListItemOwnerState extends Omit<ListItemProps, 'slots' | 'slotProps'> {}
+
 export interface ListItemOwnProps extends ListItemBaseProps {
   /**
    * The components used for each slot inside.
@@ -95,6 +100,11 @@ export interface ListItemOwnProps extends ListItemBaseProps {
    */
   slotProps?: {
     root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
+    secondaryAction?: SlotProps<
+      React.ElementType<React.HTMLAttributes<HTMLDivElement>>,
+      ListItemSecondaryActionSlotPropsOverrides,
+      ListItemOwnerState
+    >;
   };
   /**
    * The components used for each slot inside.
@@ -103,6 +113,7 @@ export interface ListItemOwnProps extends ListItemBaseProps {
    */
   slots?: {
     root?: React.ElementType;
+    secondaryAction?: React.ElementType;
   };
 }
 

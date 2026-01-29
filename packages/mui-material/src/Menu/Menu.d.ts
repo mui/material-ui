@@ -90,8 +90,7 @@ export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface MenuProps
-  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>>,
-    MenuSlotsAndSlotProps {
+  extends StandardProps<Omit<PopoverProps, 'slots' | 'slotProps'>>, MenuSlotsAndSlotProps {
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.

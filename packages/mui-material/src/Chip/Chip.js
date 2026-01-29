@@ -70,7 +70,7 @@ const ChipRoot = styled('div', {
       styles[`size${capitalize(size)}`],
       styles[`color${capitalize(color)}`],
       clickable && styles.clickable,
-      clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`],
+      clickable && color !== 'default' && styles[`clickableColor${capitalize(color)}`],
       onDelete && styles.deletable,
       onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`],
       styles[variant],

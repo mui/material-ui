@@ -52,7 +52,7 @@ const inHouseAds = [
   },
   {
     name: 'tidelift',
-    link: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+    link: 'https://tidelift.com/',
     img: '/static/ads-in-house/tidelift.png',
     descriptionHeader: 'MUI for enterprise',
     description: 'Save time and reduce risk. Managed open source — backed by maintainers.',

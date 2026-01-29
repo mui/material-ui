@@ -25,12 +25,12 @@
   "scripts": {
     "build": "code-infra build",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-joy/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/joy\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@mui/base": "7.0.0-beta.4",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
@@ -40,20 +40,19 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
-    "@types/chai": "^4.3.20",
-    "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "@types/sinon": "^17.0.4",
-    "chai": "^6.0.1",
-    "es-toolkit": "^1.39.10",
-    "fast-glob": "^3.3.3",
-    "next": "^15.5.6",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "sinon": "^21.0.0"
+    "@types/chai": "5.2.3",
+    "@types/prop-types": "15.7.15",
+    "@types/react": "19.2.9",
+    "@types/react-dom": "19.2.3",
+    "@types/sinon": "17.0.4",
+    "chai": "6.2.2",
+    "es-toolkit": "1.44.0",
+    "fast-glob": "3.3.3",
+    "next": "15.5.9",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "sinon": "21.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

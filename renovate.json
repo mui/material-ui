@@ -55,17 +55,17 @@
     },
     {
       "groupName": "bundling fixtures",
-      "matchPaths": ["test/bundling/fixtures/**/package.json"],
+      "matchFileNames": ["test/bundling/fixtures/**/package.json"],
       "schedule": "* * 1 1,7 *"
     },
     {
       "groupName": "examples",
-      "matchPaths": ["examples/**/package.json"],
+      "matchFileNames": ["examples/**/package.json"],
       "enabled": false
     },
     {
       "groupName": "envinfo tests",
-      "matchPaths": ["packages/mui-envinfo/test/package.json"],
+      "matchFileNames": ["packages/mui-envinfo/test/package.json"],
       "matchPackageNames": ["@mui/*"],
       "enabled": false
     },
@@ -74,6 +74,11 @@
       "description": "Prevent renovate from renaming @material-ui/core to @mui/material in the codemod tests.",
       "matchFileNames": ["packages/mui-codemod/package.json"],
       "matchPackageNames": ["@material-ui/core"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["mcr.microsoft.com/playwright"],
+      "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false
     }
   ]

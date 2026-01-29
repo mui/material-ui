@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 import { snackbarContentClasses } from '@mui/material/SnackbarContent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -564,11 +564,7 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    it('should render the default theme values by default', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
       const theme = createTheme();
       const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
@@ -584,11 +580,7 @@ describe('<Snackbar />', () => {
       });
     });
 
-    it('should render the custom theme values', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the custom theme values', function test() {
       const theme = createTheme({
         transitions: {
           duration: {
@@ -609,11 +601,7 @@ describe('<Snackbar />', () => {
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
     });
 
-    it('should render the values provided via prop', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
+    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
       render(
         <Snackbar open message="Hello, World!" transitionDuration={1}>
           <div data-testid="child">Foo</div>

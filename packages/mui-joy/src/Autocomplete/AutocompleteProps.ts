@@ -362,7 +362,9 @@ export interface AutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>,
+>
+  extends
+    AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children' | 'color'> {
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
