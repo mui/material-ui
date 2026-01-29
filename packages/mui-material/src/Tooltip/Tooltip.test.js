@@ -598,7 +598,12 @@ describe('<Tooltip />', () => {
           title="tooltip"
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button id="testChild" type="submit">
+          <button
+            id="testChild"
+            type="submit"
+            // Moving the button away from 0,0 to avoid interference with initial mouse position
+            style={{ margin: 1 }}
+          >
             Hello World
           </button>
         </Tooltip>,
