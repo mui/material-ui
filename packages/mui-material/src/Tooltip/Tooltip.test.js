@@ -599,13 +599,16 @@ describe('<Tooltip />', () => {
           title="tooltip"
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button id="testChild" type="submit">
+          <button
+            id="testChild"
+            type="submit"
+            style={{ position: 'absolute', left: 500, top: 500 }}
+          >
             Hello World
           </button>
         </Tooltip>,
       );
       simulatePointerDevice();
-      fireEvent.mouseMove(document.body, { clientX: 9999, clientY: 9999 });
 
       await focusVisible(screen.getByRole('button'));
       await clock.tickAsync(enterDelay);
