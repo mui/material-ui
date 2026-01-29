@@ -598,9 +598,8 @@ describe('<Tooltip />', () => {
           title="tooltip"
           // disableHoverListener
           TransitionProps={{ timeout: transitionTimeout }}
-          sx={{ m: 1 }}
         >
-          <button id="testChild" type="submit">
+          <button id="testChild" type="submit" style={{ margin: 1 }}>
             Hello World
           </button>
         </Tooltip>,
