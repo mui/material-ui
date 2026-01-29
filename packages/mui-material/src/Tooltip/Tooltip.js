@@ -445,8 +445,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   );
 
   const handleMouseOver = (event) => {
-    // eslint-disable-next-line no-console
-    console.log('handleMouseOver, event.type:', event.type, 'target:', event.target?.tagName);
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }

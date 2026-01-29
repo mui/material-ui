@@ -596,10 +596,14 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          // disableHoverListener
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button id="testChild" type="submit" style={{ margin: 1 }}>
+          <button
+            id="testChild"
+            type="submit"
+            // Moving the button away from 0,0 to avoid interference with initial mouse position
+            style={{ margin: 1 }}
+          >
             Hello World
           </button>
         </Tooltip>,
