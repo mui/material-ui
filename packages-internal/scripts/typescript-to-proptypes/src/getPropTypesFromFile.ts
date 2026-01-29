@@ -42,6 +42,10 @@ function getSymbolDocumentation({
 
   const decl = symbol.getDeclarations();
   if (decl && decl.length > 0) {
+    // This behavior tries to replicate how TypeScript itself merges JSDoc comments
+    // It is a complex logic that changes based on the kind of declarations
+    // There is an open issue for it in: https://github.com/microsoft/TypeScript/issues/30901
+    //
     // For intersection types (A & B), the symbol may have multiple declarations.
     // We need to handle three cases:
     // 1. Intersection (type C = A & B): merge JSDoc from all declarations (deduplicated)
