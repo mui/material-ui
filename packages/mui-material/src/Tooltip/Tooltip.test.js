@@ -596,9 +596,8 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
+          disableHoverListener
           TransitionProps={{ timeout: transitionTimeout }}
-          // Avoid interference from hover events from initial mouse position
-          sx={{ m: 1 }}
         >
           <button id="testChild" type="submit">
             Hello World
