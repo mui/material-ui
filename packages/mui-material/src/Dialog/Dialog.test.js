@@ -171,7 +171,7 @@ describe('<Dialog />', () => {
     function DialogWithBackdropClickDisabled(props) {
       const { onClose, ...other } = props;
       function handleClose(event, reason) {
-        if (reason !== 'backdropClick') {
+        if (!['backdropClick', 'escapeKeyDown'].includes(reason)) {
           onClose(event, reason);
         }
       }
@@ -182,7 +182,6 @@ describe('<Dialog />', () => {
     render(
       <DialogWithBackdropClickDisabled
         open
-        disableEscapeKeyDown
         onClose={onClose}
         transitionDuration={0}
       >

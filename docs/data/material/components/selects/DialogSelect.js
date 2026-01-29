@@ -23,8 +23,8 @@ export default function DialogSelect() {
     setOpen(true);
   };
 
-  const handleClose = (event, reason) => {
-    if (reason !== 'backdropClick') {
+  const handleClose = (_event, reason) => {
+    if (!reason || !['backdropClick', 'escapeKeyDown'].includes(reason)) {
       setOpen(false);
     }
   };
@@ -32,7 +32,7 @@ export default function DialogSelect() {
   return (
     <div>
       <Button onClick={handleClickOpen}>Open select dialog</Button>
-      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Fill the form</DialogTitle>
         <DialogContent>
           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>

@@ -122,11 +122,6 @@ export interface ModalOwnProps {
    */
   disableEnforceFocus?: boolean | undefined;
   /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   * @default false
-   */
-  disableEscapeKeyDown?: boolean | undefined;
-  /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
