@@ -604,6 +604,8 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
+      simulatePointerDevice();
+      fireEvent.mouseMove(document.body, { clientX: 9999, clientY: 9999 });
 
       await focusVisible(screen.getByRole('button'));
       await clock.tickAsync(enterDelay);
