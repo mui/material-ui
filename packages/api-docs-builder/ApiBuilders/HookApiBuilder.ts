@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import { builtinHandlers, parse as docgenParse } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { kebabCase, upperFirst, escapeRegExp } from 'es-toolkit/string';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { escapeEntities, renderMarkdown } from '../buildApi';
@@ -439,7 +439,7 @@ export default async function generateHookApi(
         return foundPaths;
       },
     },
-    handlers: Object.values(builtinHandlers ?? {}),
+    handlers: defaultHandlers,
     filename,
   });
   const reactApi: HookReactApi = results[0] as HookReactApi;

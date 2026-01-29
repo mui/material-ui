@@ -6,7 +6,7 @@ import { kebabCase, escapeRegExp } from 'es-toolkit/string';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
-import { builtinHandlers, parse as docgenParse } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
@@ -740,7 +740,7 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
-  const handlers = [...Object.values(builtinHandlers), muiDefaultPropsHandler];
+  const handlers = [...defaultHandlers, muiDefaultPropsHandler];
   try {
     const results = docgenParse(src, {
       handlers,
