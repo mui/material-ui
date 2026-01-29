@@ -292,7 +292,7 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should let the user disable backdrop click triggering onClose', () => {
+    it('should let the user disable escape key down triggering onClose', () => {
       function ModalWithDisabledEscapeKeyDown(props) {
         const { onClose, ...other } = props;
         function handleClose(event, reason) {

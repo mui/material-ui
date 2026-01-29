@@ -180,11 +180,7 @@ describe('<Dialog />', () => {
     }
     const onClose = spy();
     render(
-      <DialogWithBackdropClickDisabled
-        open
-        onClose={onClose}
-        transitionDuration={0}
-      >
+      <DialogWithBackdropClickDisabled open onClose={onClose} transitionDuration={0}>
         foo
       </DialogWithBackdropClickDisabled>,
     );
