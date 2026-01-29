@@ -597,6 +597,7 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
+          disableInteractive
           TransitionProps={{ timeout: transitionTimeout }}
         >
           <button id="testChild" type="submit">
