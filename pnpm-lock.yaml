@@ -438,7 +438,7 @@ importers:
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.2.9)(react@19.2.3)
       next:
         specifier: ^15.5.7
-        version: 15.5.9(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.5.11(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       notistack:
         specifier: 3.0.2
         version: 3.0.2(csstype@3.2.3)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -906,8 +906,8 @@ importers:
         specifier: 19.2.9
         version: 19.2.9
       next:
-        specifier: 15.5.9
-        version: 15.5.9(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 15.5.11
+        version: 15.5.11(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -1072,8 +1072,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       next:
-        specifier: 15.5.9
-        version: 15.5.9(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 15.5.11
+        version: 15.5.11(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -1255,8 +1255,8 @@ importers:
         specifier: 19.2.9
         version: 19.2.9
       next:
-        specifier: 15.5.9
-        version: 15.5.9(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 15.5.11
+        version: 15.5.11(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -4250,8 +4250,8 @@ packages:
     resolution: {integrity: sha512-5gxMWh/S7wr0uHKSTbMv4bjWmWSpwpeLYvErWeVNAPll5/QNFo9aWimMAUuh8ReLY3/fg92XAroVVu7+z27Snw==}
     engines: {node: ^18.14.0 || >=20}
 
-  '@next/env@15.5.9':
-    resolution: {integrity: sha512-4GlTZ+EJM7WaW2HEZcyU317tIQDjkQIyENDLxYJfSWlfqguN+dHkZgyQTV/7ykvobU7yEH5gKvreNrH4B6QgIg==}
+  '@next/env@15.5.11':
+    resolution: {integrity: sha512-g9s5SS9gC7GJCEOR3OV3zqs7C5VddqxP9X+/6BpMbdXRkqsWfFf2CJPBZNvNEtAkKTNuRgRXAgNxSAXzfLdaTg==}
 
   '@next/eslint-plugin-next@15.5.9':
     resolution: {integrity: sha512-kUzXx0iFiXw27cQAViE1yKWnz/nF8JzRmwgMRTMh8qMY90crNsdXJRh2e+R0vBpFR3kk1yvAR7wev7+fCCb79Q==}
@@ -9528,8 +9528,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  next@15.5.9:
-    resolution: {integrity: sha512-agNLK89seZEtC5zUHwtut0+tNrc0Xw4FT/Dg+B/VLEo9pAcS9rtTKpek3V6kVcVwsB2YlqMaHdfZL4eLEVYuCg==}
+  next@15.5.11:
+    resolution: {integrity: sha512-L2KPiKmqTDpRdeVDdPjhf43g2/VPe0NCNndq7OKDCgOLWtxe1kbr/zXGIZtYY7kZEAjRf7Bj/mwUFSr+tYC2Yg==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -15485,7 +15485,7 @@ snapshots:
 
   '@netlify/types@2.3.0': {}
 
-  '@next/env@15.5.9': {}
+  '@next/env@15.5.11': {}
 
   '@next/eslint-plugin-next@15.5.9':
     dependencies:
@@ -21686,9 +21686,9 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@15.5.9(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  next@15.5.11(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.57.0)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
-      '@next/env': 15.5.9
+      '@next/env': 15.5.11
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001760
       postcss: 8.4.31
