@@ -462,7 +462,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     enterTimer.clear();
-    console.log('handleMouseOver, clear leaveTimer');
+    console.log(
+      'handleMouseOver, clear leaveTimer, event.type:',
+      event.type,
+      'target:',
+      event.target?.tagName,
+    );
     leaveTimer.clear();
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
       enterTimer.start(hystersisOpen ? enterNextDelay : enterDelay, () => {
