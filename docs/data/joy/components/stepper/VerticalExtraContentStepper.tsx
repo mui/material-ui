@@ -1,4 +1,3 @@
-import * as React from 'react';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Chip from '@mui/joy/Chip';
 import Stepper from '@mui/joy/Stepper';

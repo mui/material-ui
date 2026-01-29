@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Alert from '@mui/joy/Alert';
 import AspectRatio from '@mui/joy/AspectRatio';
 import IconButton from '@mui/joy/IconButton';

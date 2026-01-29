@@ -4,6 +4,7 @@ import {
   SxProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
@@ -12,7 +13,14 @@ import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
-import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
+import {
+  CssVarsTheme,
+  CssVarsPalette,
+  ColorSystemOptions,
+  Shape,
+  ShapeOptions,
+  SupportedColorScheme,
+} from './createThemeFoundation';
 
 /**
  * To disable custom properties, use module augmentation
@@ -37,6 +45,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
+  shape?: ShapeOptions;
   transitions?: TransitionsOptions;
   typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
   zIndex?: ZIndexOptions;
@@ -49,10 +58,12 @@ export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
+  shape: Shape;
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
+  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
@@ -61,7 +72,6 @@ export {};
 type CssVarsProperties = CssThemeVariables extends { enabled: true }
   ? Pick<
       CssVarsTheme,
-      | 'applyStyles'
       | 'colorSchemes'
       | 'colorSchemeSelector'
       | 'rootSelector'

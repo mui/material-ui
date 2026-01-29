@@ -10,6 +10,7 @@ const ROUTES = {
   pricing: '/pricing/',
   about: '/about/',
   blog: '/blog/',
+  customers: '/customers/',
   // Material UI doc pages
   materialDocs: '/material-ui/getting-started/',
   materialIcons: '/material-ui/material-icons/',
@@ -22,12 +23,12 @@ const ROUTES = {
   showcase: '/material-ui/discover-more/showcase/',
   coreRoadmap: '/material-ui/discover-more/roadmap/',
   vision: '/material-ui/discover-more/vision/',
-  support: '/material-ui/getting-started/support/#professional-support-premium',
+  support: '/material-ui/getting-started/support/',
   goldSponsor: '/material-ui/discover-more/backers/#gold-sponsors',
   // Base UI doc pages
-  baseDocs: '/base-ui/getting-started/',
-  baseComponents: '/base-ui/all-components/',
-  baseQuickstart: '/base-ui/getting-started/quickstart/',
+  baseDocs: 'https://base-ui.com/',
+  baseComponents: 'https://base-ui.com/react/components',
+  baseQuickstart: 'https://base-ui.com/react/overview/quick-start',
   // Joy UI doc pages
   joyDocs: '/joy-ui/getting-started/',
   // System pages

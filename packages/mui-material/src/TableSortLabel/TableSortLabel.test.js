@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import TableSortLabel, { tableSortLabelClasses as classes } from '@mui/material/TableSortLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import { createSvgIcon } from '@mui/material/utils';
@@ -69,8 +68,8 @@ describe('<TableSortLabel />', () => {
     });
 
     it('should accept a custom icon for the sort icon', () => {
-      const { getAllByTestId } = render(<TableSortLabel IconComponent={SortIcon} />);
-      expect(getAllByTestId('SortIcon')).not.to.equal(null);
+      render(<TableSortLabel IconComponent={SortIcon} />);
+      expect(screen.getAllByTestId('SortIcon')).not.to.equal(null);
     });
   });
 

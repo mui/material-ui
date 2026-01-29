@@ -102,7 +102,7 @@ async function main() {
       });
     });
 
-    after(async () => {
+    afterAll(async () => {
       await browser.close();
     });
 
@@ -185,13 +185,6 @@ async function main() {
       });
     });
   });
-
-  run();
 }
 
-main().catch((error) => {
-  // error during setup.
-  // Throwing lets mocha hang.
-  console.error(error);
-  process.exit(1);
-});
+await main();

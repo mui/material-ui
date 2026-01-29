@@ -114,7 +114,11 @@ export interface ProjectSettings {
    */
   baseApiUrl?: string;
   /**
-   * Determines the non-component folders to be included in the llms.txt file.
+   * The path to the `pages.ts` manifest file for public markdown generation.
+   */
+  pagesManifestPath?: string;
+  /**
+   * Determines the non-component folders for ordering in the llms.txt file.
    * The folders are relative to the `docs/data` directory.
    */
   nonComponentFolders?: string[];

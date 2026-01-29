@@ -107,7 +107,7 @@ export interface ComponentReactApi extends CommonReactApi {
   slots: Slot[];
   cssVariables: { [key: string]: ApiItemDescription };
   dataAttributes: { [key: string]: ApiItemDescription };
-  propsTable: _.Dictionary<PropsTableItem>;
+  propsTable: { [key: string]: PropsTableItem };
   translations: PropsTranslations;
 }
 
@@ -180,8 +180,8 @@ export interface HookReactApi extends CommonReactApi {
    * @example 'useButton'
    */
   name: string;
-  parametersTable: _.Dictionary<AttributeDefinition>;
-  returnValueTable: _.Dictionary<AttributeDefinition>;
+  parametersTable: { [key: string]: AttributeDefinition };
+  returnValueTable: { [key: string]: AttributeDefinition };
   translations: HooksTranslations;
 }
 

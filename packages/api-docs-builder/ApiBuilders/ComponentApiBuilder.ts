@@ -3,14 +3,12 @@ import path from 'path';
 import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import * as _ from 'lodash';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase, escapeRegExp } from 'es-toolkit/string';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import escapeRegExp from 'lodash/escapeRegExp';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
 import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
@@ -36,7 +34,7 @@ import {
 import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
-const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
+const cssComponents = new Set(['Box', 'Grid', 'Typography', 'Stack']);
 
 /**
  * Produces markdown of the description that can be hosted anywhere.
@@ -321,7 +319,7 @@ const generateApiPage = async (
    */
   const pageContent: ComponentApiContent = {
     // Sorted by required DESC, name ASC
-    props: _.fromPairs(
+    props: Object.fromEntries(
       Object.entries(reactApi.propsTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
@@ -356,7 +354,7 @@ const generateApiPage = async (
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
-    cssComponent: cssComponents.includes(reactApi.name),
+    cssComponent: cssComponents.has(reactApi.name),
     deprecated: reactApi.deprecated,
   };
 
@@ -390,23 +388,20 @@ const generateApiPage = async (
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
   export default function Page(props) {
-    const { descriptions, pageContent } = props;
-    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
+    const { descriptions } = props;
+    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={jsonPageContent} />;
   }
 
-  Page.getInitialProps = () => {
+  export async function getStaticProps() {
     const req = require.context(
       '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
       false,
-      /\\.\\/${kebabCase(reactApi.name)}.*.json$/,
+      /\\.\\/${kebabCase(reactApi.name)}.*\\.json$/,
     );
     const descriptions = mapApiPageTranslations(req);
 
-    return {
-      descriptions,
-      pageContent: jsonPageContent,
-    };
-  };
+    return { props: { descriptions } };
+  }
   `.replace(/\r?\n/g, reactApi.EOL),
     );
   }
@@ -522,7 +517,7 @@ const attachPropsTable = (
 ) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
-  const componentProps: ComponentReactApi['propsTable'] = _.fromPairs(
+  const componentProps: ComponentReactApi['propsTable'] = Object.fromEntries(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {

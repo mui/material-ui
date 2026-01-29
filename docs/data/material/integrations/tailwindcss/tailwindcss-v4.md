@@ -36,7 +36,7 @@ export default function RootLayout() {
 
 2. Configure the layer order in the Tailwind CSS file:
 
-```css title="src/app/globals.css"
+```css title="src/app/global.css"
 @layer theme, base, mui, components, utilities;
 @import 'tailwindcss';
 ```
@@ -46,34 +46,54 @@ export default function RootLayout() {
 To integrate Tailwind CSS v4 with Material UI in a Next.js Pages Router project, start by configuring Material UI with Next.js in the [Pages Router integration guide](/material-ui/integrations/nextjs/#pages-router).
 Then follow these steps:
 
-1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#configuration-2) in a custom `_document`:
+1. Create a shared Emotion cache (required for SSR + hydration)
+
+   Material UI relies on Emotion for styling.
+   To avoid hydration mismatches, the same Emotion cache instance and configuration must be used on both the server and the client.
+
+   Create a shared cache:
+
+   ```tsx title="src/createEmotionCache.js"
+   import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
+
+   export const emotionCache = createEmotionCache({ enableCssLayer: true });
+   ```
+
+   > `enableCssLayer: true` ensures Material UI styles are wrapped in `@layer mui`, which allows Tailwind CSS v4 utilities to override them predictably.
+
+2. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#configuration-2) in a custom `_document`:
 
 ```tsx title="pages/_document.tsx"
-import {
-  createCache,
-  documentGetInitialProps,
-} from '@mui/material-nextjs/v15-pagesRouter';
-
+import { documentGetInitialProps } from '@mui/material-nextjs/v15-pagesRouter';
+import { emotionCache } from '../src/createEmotionCache';
 // ...
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const finalProps = await documentGetInitialProps(ctx, {
-    emotionCache: createCache({ enableCssLayer: true }),
+    emotionCache,
   });
   return finalProps;
 };
 ```
 
-2. Configure the layer order with the `GlobalStyles` component—it must be the first child of the `AppCacheProvider`:
+3. Configure the global Tailwind CSS file:
+
+```css title="styles/global.css"
+@import 'tailwindcss';
+```
+
+4. Configure the layer order with the `GlobalStyles` component—it must be the first child of the `AppCacheProvider`:
 
 ```tsx title="pages/_app.tsx"
+import '../styles/global.css';
 import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { emotionCache } from '../src/createEmotionCache';
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
-    <AppCacheProvider {...props}>
+    <AppCacheProvider emotionCache={emotionCache}>
       <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
       {/* Your app */}
     </AppCacheProvider>
@@ -105,7 +125,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 ## Tailwind CSS IntelliSense for VS Code
 
 The official [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension requires extra configuration to work properly when customizing the interior slots of Material UI components.
-After installing the extension, add the following line to your [VS Code `settings.json`](https://code.visualstudio.com/docs/editor/settings#_settings-json-file) file:
+After installing the extension, add the following line to your [VS Code `settings.json`](https://code.visualstudio.com/docs/configure/settings#_settings-json-file) file:
 
 ```json
 {

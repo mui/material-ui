@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Badge from '@mui/joy/Badge';
 import MailIcon from '@mui/icons-material/Mail';

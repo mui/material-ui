@@ -283,6 +283,7 @@ title: "Our docs just got a major upgrade—here's what that means for you"
   describe('createRender', () => {
     it('should collect headers correctly', () => {
       const context = { toc: [], headingHashes: {} };
+      // eslint-disable-next-line testing-library/render-result-naming-convention
       const render = createRender(context);
 
       expect(

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TopLayoutCareers from 'docs/src/modules/components/TopLayoutCareers';
 import * as pageProps from '../../pages/careers/product-engineer-store.md?muiMarkdown';
 

@@ -45,8 +45,7 @@ export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface BackdropOwnProps
-  extends Partial<Omit<FadeProps, 'children'>>,
-    BackdropSlotsAndSlotProps {
+  extends Partial<Omit<FadeProps, 'children'>>, BackdropSlotsAndSlotProps {
   /**
    * The content of the component.
    */
