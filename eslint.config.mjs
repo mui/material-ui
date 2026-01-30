@@ -57,6 +57,7 @@ export default defineConfig(
   createBaseConfig({
     enableReactCompiler: ENABLE_REACT_COMPILER_PLUGIN,
     baseDirectory: dirname,
+    materialUi: true,
   }),
   {
     name: 'Material UI overrides',
@@ -70,7 +71,7 @@ export default defineConfig(
     },
     rules: {
       'import/prefer-default-export': 'error',
-      'material-ui/straight-quotes': 'error',
+      'mui/straight-quotes': 'error',
       'no-restricted-imports': [
         'error',
         {
@@ -98,7 +99,7 @@ export default defineConfig(
       files: [`packages/${packageName}/src/**/*${EXTENSION_TEST_FILE}`],
       ignores: ['**/*.test.*', '**/*.spec.*'],
       rules: {
-        'material-ui/no-restricted-resolved-imports': [
+        'mui/no-restricted-resolved-imports': [
           'error',
           [
             {
@@ -131,7 +132,7 @@ export default defineConfig(
       },
     },
     rules: {
-      'material-ui/no-empty-box': 'off',
+      'mui/material-ui-no-empty-box': 'off',
       // Disabled temporarily. Enable one by one.
       'testing-library/no-container': 'off',
       // TODO: investigate and fix
@@ -218,7 +219,7 @@ export default defineConfig(
       '**/mui-docs/**/*',
     ],
     rules: {
-      'material-ui/disallow-react-api-in-server-components': 'error',
+      'mui/disallow-react-api-in-server-components': 'error',
     },
   },
   {
@@ -256,7 +257,7 @@ export default defineConfig(
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
     ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
     rules: {
-      'material-ui/mui-name-matches-component-name': 'error',
+      'mui/material-ui-name-matches-component-name': 'error',
     },
   },
   {
