@@ -3,11 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useControlled as useControlled,
-  unstable_useId as useId,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useControlled from '@mui/utils/useControlled';
+import useId from '@mui/utils/useId';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAccordionUtilityClass } from './accordionClasses';

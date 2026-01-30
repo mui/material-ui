@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Alert from '@mui/joy/Alert';
 import AspectRatio from '@mui/joy/AspectRatio';
 import IconButton from '@mui/joy/IconButton';
@@ -51,7 +50,7 @@ export default function AlertInvertedColors() {
         <div>
           <Typography level="title-lg">Success</Typography>
           <Typography level="body-sm">
-            Success is walking from failure to failure with no loss of enthusiam.
+            Success is walking from failure to failure with no loss of enthusiasm.
           </Typography>
         </div>
         <LinearProgress

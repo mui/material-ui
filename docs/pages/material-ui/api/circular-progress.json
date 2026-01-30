@@ -9,6 +9,7 @@
       "default": "'primary'"
     },
     "disableShrink": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
+    "enableTrackSlot": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "40"
@@ -93,6 +94,12 @@
       "key": "svg",
       "className": "MuiCircularProgress-svg",
       "description": "Styles applied to the svg element.",
+      "isGlobal": false
+    },
+    {
+      "key": "track",
+      "className": "MuiCircularProgress-track",
+      "description": "Styles applied to the track slot if `enableTrackSlot={true}`.",
       "isGlobal": false
     }
   ],

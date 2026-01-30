@@ -1,5 +1,6 @@
 /* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
+import MuiPaper from '@mui/material/Paper';
 import { styled, css, ThemeProvider, createTheme } from '@mui/material/styles';
 
 const Box = styled('div')(({ theme }) => ({
@@ -73,13 +74,11 @@ interface ButtonProps {
 const ButtonRoot = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonProps }>({});
 
 const ButtonIcon = styled('span', {
   name: 'MuiButton',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: ButtonProps }>({});
 
 function Button({
@@ -185,3 +184,97 @@ function variantsAPI() {
     ],
   });
 }
+
+type PickerOrientation = 'portrait' | 'landscape';
+
+type PickerVariant = 'mobile' | 'desktop';
+
+interface PickerOwnerState {
+  isPickerValueEmpty: boolean;
+  isPickerOpen: boolean;
+  isPickerDisabled: boolean;
+  isPickerReadOnly: boolean;
+  pickerVariant: PickerVariant;
+  pickerOrientation: PickerOrientation;
+}
+
+interface PickerToolbarOwnerState extends PickerOwnerState {
+  toolbarDirection: 'ltr' | 'rtl';
+}
+
+const DateTimePickerToolbarTimeContainer = styled('div', {
+  name: 'MuiDateTimePickerToolbar',
+  slot: 'TimeContainer',
+})<{ ownerState: PickerToolbarOwnerState; toolbarVariant: PickerVariant }>({
+  display: 'flex',
+  flexDirection: 'row',
+  variants: [
+    {
+      props: { toolbarDirection: 'rtl' },
+      style: {
+        flexDirection: 'row-reverse',
+      },
+    },
+    {
+      props: { toolbarVariant: 'desktop', pickerOrientation: 'portrait' },
+      style: {
+        gap: 9,
+        marginRight: 4,
+        alignSelf: 'flex-end',
+      },
+    },
+    {
+      props: ({ pickerOrientation, toolbarVariant }) =>
+        pickerOrientation === 'landscape' && toolbarVariant !== 'desktop',
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: ({ pickerOrientation, toolbarVariant, toolbarDirection }) =>
+        pickerOrientation === 'landscape' &&
+        toolbarVariant !== 'desktop' &&
+        toolbarDirection === 'rtl',
+      style: {
+        flexDirection: 'column-reverse',
+      },
+    },
+  ],
+});
+
+interface PickerPopperOwnerState extends PickerOwnerState {
+  popperPlacement:
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left-start'
+    | 'left-end'
+    | 'right-start'
+    | 'right-end'
+    | 'auto'
+    | 'auto-start'
+    | 'auto-end';
+}
+
+const PickerPopperPaper = styled(MuiPaper, {
+  name: 'MuiPickerPopper',
+  slot: 'Paper',
+})<{
+  ownerState: PickerPopperOwnerState;
+}>({
+  outline: 0,
+  transformOrigin: 'top center',
+  variants: [
+    {
+      props: ({ popperPlacement }) => new Set(['top', 'top-start', 'top-end']).has(popperPlacement),
+      style: {
+        transformOrigin: 'bottom center',
+      },
+    },
+  ],
+});

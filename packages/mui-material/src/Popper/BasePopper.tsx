@@ -1,13 +1,11 @@
 'use client';
 import * as React from 'react';
-import {
-  chainPropTypes,
-  HTMLElementType,
-  refType,
-  unstable_ownerDocument as ownerDocument,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useForkRef as useForkRef,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useForkRef from '@mui/utils/useForkRef';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import refType from '@mui/utils/refType';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';

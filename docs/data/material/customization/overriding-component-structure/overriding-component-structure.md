@@ -91,6 +91,34 @@ If both `slotProps.root` and additional props have the same keys but different v
 This does not apply to classes or the `style` prop—they will be merged instead.
 :::
 
+### Type safety
+
+The `slotProps` prop is not dynamically typed based on the custom `slots` prop, so if the custom slot has a different type than the default slot, you have to cast the type to avoid TypeScript errors and use `satisfies` (available in TypeScript 4.9) to ensure type safety for the custom slot.
+
+The example below shows how to customize the `img` slot of the [Avatar](/material-ui/react-avatar/) component using [Next.js Image](https://nextjs.org/docs/app/api-reference/components/image) component:
+
+```tsx
+import Image, { ImageProps } from 'next/image';
+import Avatar, { AvatarProps } from '@mui/material/Avatar';
+
+<Avatar
+  slots={{
+    img: Image,
+  }}
+  slotProps={
+    {
+      img: {
+        src: 'https://example.com/image.jpg',
+        alt: 'Image',
+        width: 40,
+        height: 40,
+        blurDataURL: 'data:image/png;base64',
+      } satisfies ImageProps,
+    } as AvatarProps['slotProps']
+  }
+/>;
+```
+
 ## Best practices
 
 Use the `component` or `slotProps.{slot}.component` prop when you need to override the element while preserving the styles of the slot.

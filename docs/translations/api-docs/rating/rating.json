@@ -13,7 +13,9 @@
     "emptyLabelText": { "description": "The label read when the rating input is empty." },
     "getLabelText": {
       "description": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
-      "typeDescriptions": { "value": "The rating label&#39;s value to format." }
+      "typeDescriptions": {
+        "value": { "name": "value", "description": "The rating label&#39;s value to format." }
+      }
     },
     "highlightSelectedOnly": {
       "description": "If <code>true</code>, only the selected icon will be highlighted."
@@ -27,15 +29,15 @@
     "onChange": {
       "description": "Callback fired when the value changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "The new value."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "The new value." }
       }
     },
     "onChangeActive": {
       "description": "Callback function that is fired when the hover state changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "The new value."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "The new value." }
       }
     },
     "precision": { "description": "The minimum increment value change allowed." },
@@ -112,7 +114,7 @@
     "visuallyHidden": { "description": "Visually hide an element." }
   },
   "slotDescriptions": {
-    "decimal": "The component used fo r the decimal slot.",
+    "decimal": "The component used for the decimal slot.",
     "icon": "The component used for the icon slot.",
     "label": "The component used for the label slot.",
     "root": "The component used for the root slot."

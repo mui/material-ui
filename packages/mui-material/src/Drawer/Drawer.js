@@ -23,7 +23,7 @@ const overridesResolver = (props, styles) => {
   return [
     styles.root,
     (ownerState.variant === 'permanent' || ownerState.variant === 'persistent') && styles.docked,
-    styles.modal,
+    ownerState.variant === 'temporary' && styles.modal,
   ];
 };
 
@@ -287,6 +287,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     additionalProps: {
       elevation: variant === 'temporary' ? elevation : 0,
       square: true,
+      ...(variant === 'temporary' && {
+        role: 'dialog',
+        'aria-modal': 'true',
+      }),
     },
   });
 

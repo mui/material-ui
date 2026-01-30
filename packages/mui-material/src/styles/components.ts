@@ -3,6 +3,11 @@ import { ComponentsOverrides } from './overrides';
 import { ComponentsVariants } from './variants';
 
 export interface Components<Theme = unknown> {
+  /**
+   * Whether to merge the className and style coming from the component props with the default props.
+   * @default false
+   */
+  mergeClassNameAndStyle?: boolean;
   MuiAlert?: {
     defaultProps?: ComponentsProps['MuiAlert'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiAlert'];
@@ -539,6 +544,11 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiTablePagination'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTablePagination'];
     variants?: ComponentsVariants<Theme>['MuiTablePagination'];
+  };
+  MuiTablePaginationActions?: {
+    defaultProps?: ComponentsProps['MuiTablePaginationActions'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiTablePaginationActions'];
+    variants?: ComponentsVariants<Theme>['MuiTablePaginationActions'];
   };
   MuiTableRow?: {
     defaultProps?: ComponentsProps['MuiTableRow'];

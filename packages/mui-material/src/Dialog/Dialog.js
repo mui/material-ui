@@ -19,7 +19,6 @@ import useSlot from '../utils/useSlot';
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
   slot: 'Backdrop',
-  overrides: (props, styles) => styles.backdrop,
 })({
   // Improve scrollable dialog support.
   zIndex: -1,
@@ -30,6 +29,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root'],
+    backdrop: ['backdrop'],
     container: ['container', `scroll${capitalize(scroll)}`],
     paper: [
       'paper',
@@ -46,7 +46,6 @@ const useUtilityClasses = (ownerState) => {
 const DialogRoot = styled(Modal, {
   name: 'MuiDialog',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   '@media print': {
     // Use !important to override the Modal inline-style.
@@ -311,6 +310,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
+    className: classes.backdrop,
   });
 
   const [PaperSlot, paperSlotProps] = useSlot('paper', {
@@ -325,7 +325,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     elementType: DialogContainer,
     externalForwardedProps,
     ownerState,
-    className: clsx(classes.container),
+    className: classes.container,
   });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
@@ -405,9 +405,6 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })

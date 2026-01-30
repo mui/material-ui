@@ -13,7 +13,7 @@ import MenuItem from '../MenuItem';
 import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
-import TablePaginationActions from './TablePaginationActions';
+import TablePaginationActions from '../TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 import useSlot from '../utils/useSlot';
@@ -21,7 +21,6 @@ import useSlot from '../utils/useSlot';
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => ({
     overflow: 'auto',
@@ -62,7 +61,6 @@ const TablePaginationToolbar = styled(Toolbar, {
 const TablePaginationSpacer = styled('div', {
   name: 'MuiTablePagination',
   slot: 'Spacer',
-  overridesResolver: (props, styles) => styles.spacer,
 })({
   flex: '1 1 100%',
 });
@@ -70,7 +68,6 @@ const TablePaginationSpacer = styled('div', {
 const TablePaginationSelectLabel = styled('p', {
   name: 'MuiTablePagination',
   slot: 'SelectLabel',
-  overridesResolver: (props, styles) => styles.selectLabel,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
@@ -104,13 +101,11 @@ const TablePaginationSelect = styled(Select, {
 const TablePaginationMenuItem = styled(MenuItem, {
   name: 'MuiTablePagination',
   slot: 'MenuItem',
-  overridesResolver: (props, styles) => styles.menuItem,
 })({});
 
 const TablePaginationDisplayedRows = styled('p', {
   name: 'MuiTablePagination',
   slot: 'DisplayedRows',
-  overridesResolver: (props, styles) => styles.displayedRows,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
@@ -339,7 +334,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the back arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) component.
    *
-   * This prop is an alias for `slotProps.actions.previousButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.actions.previousButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.actions.previousButton` instead.
    */
   backIconButtonProps: PropTypes.object,
@@ -399,7 +394,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the next arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) element.
    *
-   * This prop is an alias for `slotProps.actions.nextButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.actions.nextButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.actions.nextButton` instead.
    */
   nextIconButtonProps: PropTypes.object,
@@ -459,7 +454,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the rows per page [`Select`](https://mui.com/material-ui/api/select/) element.
    *
-   * This prop is an alias for `slotProps.select` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.select` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.select` instead.
    *
    * @default {}

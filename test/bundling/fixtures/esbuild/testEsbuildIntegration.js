@@ -1,4 +1,4 @@
-const playwright = require('playwright');
+const { chromium } = require('@playwright/test');
 
 /**
  * @param {number} timeoutMS
@@ -15,7 +15,7 @@ function sleep(duration) {
  * Attempts page.goto with retries
  *
  * @remarks The server and runner can be started up simultaneously
- * @param {import('playwright').PAge} page
+ * @param {import('@playwright/test').Page} page
  * @param {string} url
  * @returns {boolean}
  */
@@ -39,7 +39,7 @@ async function attemptGoto(page, url) {
 }
 
 async function main() {
-  const browser = await playwright.chromium.launch();
+  const browser = await chromium.launch();
   const page = await browser.newPage();
 
   page.on('console', (consoleMessage) => {

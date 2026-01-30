@@ -156,6 +156,17 @@ export function unstable_createUseMediaQuery(params: { themeId?: string } = {}) 
     let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
     query = query.replace(/^@media( ?)/m, '');
 
+    if (query.includes('print')) {
+      console.warn(
+        [
+          `MUI: You have provided a \`print\` query to the \`useMediaQuery\` hook.`,
+          'Using the print media query to modify print styles can lead to unexpected results.',
+          'Consider using the `displayPrint` field in the `sx` prop instead.',
+          'More information about `displayPrint` on our docs: https://mui.com/system/display/#display-in-print.',
+        ].join('\n'),
+      );
+    }
+
     const useMediaQueryImplementation =
       maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
     const match = useMediaQueryImplementation(

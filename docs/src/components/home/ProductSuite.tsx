@@ -38,10 +38,6 @@ const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
   loading: createLoading({ height: 630 }),
 });
 
-const ToolpadShowcase = dynamic(() => import('./ToolpadShowcase'), {
-  loading: createLoading({ height: 625 }),
-});
-
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
@@ -82,9 +78,8 @@ export default function ProductSuite() {
               <PrefetchDesignKitImages />
               {productIndex === 0 && <CoreShowcase />}
               {productIndex === 1 && <AdvancedShowcase />}
-              {productIndex === 2 && <ToolpadShowcase />}
-              {productIndex === 3 && <StoreTemplatesBanner />}
-              {productIndex === 4 && <DesignKits />}
+              {productIndex === 2 && <StoreTemplatesBanner />}
+              {productIndex === 3 && <DesignKits />}
             </React.Fragment>
           ) : (
             <Box sx={{ height: { xs: 0, md: 690 } }} />

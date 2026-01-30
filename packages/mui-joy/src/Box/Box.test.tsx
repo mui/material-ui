@@ -1,11 +1,11 @@
-/* eslint-disable material-ui/no-empty-box */
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, CssVarsProvider, extendTheme, PalettePrimary } from '@mui/joy/styles';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/joy/className';
 import Box from '@mui/joy/Box';
 import describeConformance from '../../test/describeConformance';
+
+const isJSDOM = isJsdom();
 
 describe('Joy <Box />', () => {
   const { render } = createRenderer();
@@ -27,13 +27,7 @@ describe('Joy <Box />', () => {
     refInstanceof: window.HTMLDivElement,
   }));
 
-  it('respects theme from context', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-    if (isJSDOM) {
-      this.skip();
-    }
-
+  it.skipIf(isJSDOM)('respects theme from context', function test() {
     const theme = extendTheme({
       colorSchemes: {
         light: {
@@ -92,13 +86,7 @@ describe('Joy <Box />', () => {
       },
     });
 
-    it('color', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('color', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ color: 'primary.500' }} />
@@ -110,13 +98,7 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('bgcolor', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('bgcolor', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ bgcolor: 'primary.500' }} />
@@ -128,13 +110,7 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('backgroundColor', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('backgroundColor', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ backgroundColor: 'primary.500' }} />
@@ -146,13 +122,7 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('borderRadius', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('borderRadius', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ borderRadius: 'md' }} />
@@ -167,13 +137,7 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('boxShadow', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('boxShadow', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ boxShadow: 'md' }} />
@@ -185,13 +149,7 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('fontSize', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('fontSize', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ fontSize: 'md' }} />
@@ -203,13 +161,7 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('fontWeight', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('fontWeight', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ fontWeight: 'md' }} />
@@ -221,13 +173,7 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('lineHeight', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
+    it.skipIf(isJSDOM)('lineHeight', function test() {
       const { container } = render(
         <CssVarsProvider theme={theme}>
           <Box sx={{ lineHeight: 'md' }} />

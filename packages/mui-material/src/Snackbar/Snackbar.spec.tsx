@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { mergeSlotProps } from '@mui/material/utils';
 import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
 import { expectType } from '@mui/types';

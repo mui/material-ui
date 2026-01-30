@@ -47,7 +47,7 @@ export type ComponentInfo = {
      */
     apiPathname: string;
   };
-  getDemos: () => Array<{ demoPageTitle: string; demoPathname: string }>;
+  getDemos: () => Array<{ demoPageTitle: string; demoPathname: string; filePath: string }>;
   apiPagesDirectory: string;
   /**
    * The path to import specific layout config of the page if needed.

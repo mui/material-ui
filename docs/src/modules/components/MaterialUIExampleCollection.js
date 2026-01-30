@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
 
-// #repo-reference
+// #target-branch-reference
 const examples = [
   {
     name: 'Next.js App Router',
@@ -42,27 +42,10 @@ const examples = [
     src: '/static/images/examples/remix.svg',
   },
   {
-    name: 'Create React App',
-    label: 'View JavaScript',
-    tsLabel: 'View TypeScript',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra',
-    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts',
-    src: '/static/images/examples/cra.svg',
-  },
-  {
-    name: 'Tailwind CSS + Create React App',
+    name: 'Tailwind CSS + Vite',
     label: 'View TypeScript',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts',
+    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts',
     src: '/static/images/examples/tailwindcss.svg',
-  },
-  {
-    name: 'styled-components',
-    label: 'View JavaScript',
-    tsLabel: 'View TypeScript',
-    link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components',
-    tsLink:
-      'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts',
-    src: '/static/images/examples/styled.png',
   },
   {
     name: 'Preact',

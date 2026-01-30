@@ -1,6 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
 

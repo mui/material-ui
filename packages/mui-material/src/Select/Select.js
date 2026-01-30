@@ -33,9 +33,8 @@ const useUtilityClasses = (ownerState) => {
 
 const styledRootConfig = {
   name: 'MuiSelect',
-  overridesResolver: (props, styles) => styles.root,
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'variant',
   slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'variant',
 };
 
 const StyledInput = styled(Input, styledRootConfig)('');
@@ -202,7 +201,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   input: PropTypes.element,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps: PropTypes.object,

@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React List component
 components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
-githubLabel: 'component: list'
+githubLabel: 'scope: list'
 ---
 
 # Lists
@@ -98,12 +98,12 @@ If used, it will automatically change the semantic element from the default `<li
 
 ### Marker
 
-Use the `marker` prop with any valid [list-style-type](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type) value to add a marker to the list items.
+Use the `marker` prop with any valid [list-style-type](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/list-style-type) value to add a marker to the list items.
 
 {{"demo": "MarkerList.js"}}
 
 :::success
-For [numbered lists](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol), change the List component to `component="ol"`.
+For [numbered lists](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ol), change the List component to `component="ol"`.
 
 ```js
 <List component="ol" marker="decimal">

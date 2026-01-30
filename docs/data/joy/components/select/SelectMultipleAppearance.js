@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import { Box, Chip } from '@mui/joy';

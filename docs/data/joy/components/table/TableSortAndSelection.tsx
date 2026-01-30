@@ -178,7 +178,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                   : undefined
               }
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 underline="none"
                 color="neutral"

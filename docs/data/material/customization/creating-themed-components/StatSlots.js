@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 
 const StatRoot = styled('div')(({ theme }) => ({
@@ -11,6 +10,9 @@ const StatRoot = styled('div')(({ theme }) => ({
   boxShadow: theme.shadows[2],
   letterSpacing: '-0.025em',
   fontWeight: 600,
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'inherit',
+  }),
 }));
 
 const StatValue = styled('div')(({ theme }) => ({
@@ -20,6 +22,9 @@ const StatValue = styled('div')(({ theme }) => ({
 const StatUnit = styled('div')(({ theme }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    color: 'inherit',
+  }),
 }));
 
 const Label = styled('div')(({ theme }) => ({

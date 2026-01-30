@@ -52,9 +52,7 @@ export default function useControlled<T = unknown>(
     const { current: defaultValue } = React.useRef(defaultProp);
 
     React.useEffect(() => {
-      // Object.is() is not equivalent to the === operator.
-      // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is for more details.
-      if (!isControlled && !Object.is(defaultValue, defaultProp)) {
+      if (!isControlled && JSON.stringify(defaultProp) !== JSON.stringify(defaultValue)) {
         console.error(
           [
             `MUI: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
@@ -73,7 +71,7 @@ export default function useControlled<T = unknown>(
     }, []);
 
   // TODO: provide overloads for the useControlled function to account for the case where either
-  // controlled or default is not undefiend.
+  // controlled or default is not undefined.
   // In that case the return type should be [T, React.Dispatch<React.SetStateAction<T>>]
   // otherwise it should be [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>]
   return [value as T, setValueIfUncontrolled];

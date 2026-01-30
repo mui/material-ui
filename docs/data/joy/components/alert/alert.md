@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Alert component
 components: Alert
-githubLabel: 'component: alert'
+githubLabel: 'scope: alert'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 

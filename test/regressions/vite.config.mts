@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      // Unfortunatelly necessary as we opted to write our jsx in js files
+      // Unfortunately necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {
@@ -50,10 +50,13 @@ export default defineConfig({
       '@mui/styles': path.resolve(WORKSPACE_ROOT, './packages/mui-styles/src'),
       '@mui/system': path.resolve(WORKSPACE_ROOT, './packages/mui-system/src'),
       '@mui/private-theming': path.resolve(WORKSPACE_ROOT, './packages/mui-private-theming/src'),
-      '@mui/base': path.resolve(WORKSPACE_ROOT, './packages/mui-base/src'),
       '@mui/utils': path.resolve(WORKSPACE_ROOT, './packages/mui-utils/src'),
       '@mui/material-nextjs': path.resolve(WORKSPACE_ROOT, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(WORKSPACE_ROOT, './packages/mui-joy/src'),
+      '@mui/stylis-plugin-rtl': path.resolve(
+        WORKSPACE_ROOT,
+        './packages/mui-stylis-plugin-rtl/src',
+      ),
       '@mui/internal-docs-utils': path.resolve(
         WORKSPACE_ROOT,
         './packages-internal/docs-utils/src',
@@ -61,10 +64,6 @@ export default defineConfig({
       '@mui/internal-scripts/typescript-to-proptypes': path.resolve(
         WORKSPACE_ROOT,
         './packages-internal/scripts/typescript-to-proptypes/src',
-      ),
-      '@mui/internal-test-utils': path.resolve(
-        WORKSPACE_ROOT,
-        './packages-internal/test-utils/src',
       ),
       docs: path.resolve(WORKSPACE_ROOT, './docs'),
     },

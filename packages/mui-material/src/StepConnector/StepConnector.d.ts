@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { StepConnectorClasses } from './stepConnectorClasses';
 
 export type StepConnectorIcon = React.ReactElement<unknown> | string | number;
 
-export interface StepConnectorProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface StepConnectorProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  'children'
+> {
   /**
    * Override or extend the styles applied to the component.
    */

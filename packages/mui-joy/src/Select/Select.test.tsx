@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -67,14 +67,14 @@ describe('Joy <Select />', () => {
     expect(screen.getByRole('combobox')).to.have.text('Ten');
   });
 
-  specify('the trigger is in tab order', () => {
-    const { getByRole } = render(
+  it('the trigger is in tab order', () => {
+    render(
       <Select value="">
         <Option value="">None</Option>
       </Select>,
     );
 
-    expect(getByRole('combobox')).to.have.property('tabIndex', 0);
+    expect(screen.getByRole('combobox')).to.have.property('tabIndex', 0);
   });
 
   it('should accept null child', () => {
@@ -88,7 +88,8 @@ describe('Joy <Select />', () => {
 
   it('should pass "name" as part of the event.target for onBlur', () => {
     const handleBlur = stub().callsFake((event) => event.target.name);
-    const { getByRole } = render(
+
+    render(
       <Select
         name="blur-testing"
         slotProps={{
@@ -101,7 +102,8 @@ describe('Joy <Select />', () => {
         <Option value="">none</Option>
       </Select>,
     );
-    const select = getByRole('combobox');
+
+    const select = screen.getByRole('combobox');
     act(() => {
       select.focus();
     });
@@ -133,26 +135,28 @@ describe('Joy <Select />', () => {
   });
 
   it('should focus the trigger button if no selection', () => {
-    const { getByRole } = render(<Select value="" autoFocus />);
+    render(<Select value="" autoFocus />);
 
-    fireEvent.keyDown(getByRole('combobox'), { key: 'ArrowDown' });
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
 
-    expect(getByRole('combobox')).toHaveFocus();
+    expect(screen.getByRole('combobox')).toHaveFocus();
   });
 
   describe('prop: onChange', () => {
     it('should get selected value from the 2nd argument', () => {
       const onChangeHandler = spy();
-      const { getAllByRole, getByRole } = render(
+
+      render(
         <Select onChange={onChangeHandler} value="0">
           <Option value="0" />
           <Option value="1" />
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('combobox'));
+
+      fireEvent.click(screen.getByRole('combobox'));
       act(() => {
-        getAllByRole('option')[1].click();
+        screen.getAllByRole('option')[1].click();
       });
 
       expect(onChangeHandler.calledOnce).to.equal(true);
@@ -161,16 +165,18 @@ describe('Joy <Select />', () => {
 
     it('should not be called if selected element has the current value (value did not change)', () => {
       const onChangeHandler = spy();
-      const { getAllByRole, getByRole } = render(
+
+      render(
         <Select onChange={onChangeHandler} value="1">
           <Option value="0" />
           <Option value="1" />
           <Option value="2" />
         </Select>,
       );
-      fireEvent.click(getByRole('combobox'));
+
+      fireEvent.click(screen.getByRole('combobox'));
       act(() => {
-        getAllByRole('option')[1].click();
+        screen.getAllByRole('option')[1].click();
       });
 
       expect(onChangeHandler.callCount).to.equal(0);
@@ -179,8 +185,11 @@ describe('Joy <Select />', () => {
 
   describe('prop: defaultOpen', () => {
     it('should be open on mount', () => {
-      const { getByRole } = render(<Select defaultListboxOpen value="" />);
-      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      render(<Select defaultListboxOpen value="" />);
+      expect(screen.getByRole('combobox', { hidden: true })).to.have.attribute(
+        'aria-expanded',
+        'true',
+      );
     });
   });
 
@@ -232,7 +241,8 @@ describe('Joy <Select />', () => {
 
     it('should be able to use an object', () => {
       const value = {};
-      const { getByRole } = render(
+
+      render(
         <Select value={value}>
           <Option value="">
             <em>None</em>
@@ -243,7 +253,7 @@ describe('Joy <Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('combobox')).to.have.text('Twenty');
+      expect(screen.getByRole('combobox')).to.have.text('Twenty');
     });
   });
 
@@ -295,65 +305,66 @@ describe('Joy <Select />', () => {
     });
 
     it('sets aria-expanded="true" when the listbox is displayed', () => {
-      // since we make the rest of the UI inaccessible when open this doesn't
-      // technically matter. This is only here in case we keep the rest accessible
-      const { getByRole } = render(<Select defaultListboxOpen value="" />);
+      render(<Select defaultListboxOpen value="" />);
 
-      expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+      expect(screen.getByRole('combobox', { hidden: true })).to.have.attribute(
+        'aria-expanded',
+        'true',
+      );
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
-      const { getByRole } = render(<Select value="" />);
+    it('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
+      render(<Select value="" />);
 
-      expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
     });
 
     // TODO: need to make this work
     // aria-disabled is better then disabled. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-disabled
-    // it('sets aria-disabled="true" when component is disabled', () => {
-    //   const { getByRole } = render(<Select disabled value="" />);
-    //   expect(getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
-    // });
+    it.todo('sets aria-disabled="true" when component is disabled', () => {
+      render(<Select disabled value="" />);
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-disabled', 'true');
+    });
 
-    specify('aria-disabled is not present if component is not disabled', () => {
-      const { getByRole } = render(<Select disabled={false} value="" />);
+    it('aria-disabled is not present if component is not disabled', () => {
+      render(<Select disabled={false} value="" />);
 
-      expect(getByRole('combobox')).not.to.have.attribute('aria-disabled');
+      expect(screen.getByRole('combobox')).not.to.have.attribute('aria-disabled');
     });
 
     it('renders an element with listbox behavior', () => {
-      const { getByRole } = render(<Select defaultListboxOpen value="" />);
+      render(<Select defaultListboxOpen value="" />);
 
-      expect(getByRole('listbox')).toBeVisible();
+      expect(screen.getByRole('listbox')).toBeVisible();
     });
 
     it('identifies each selectable element containing an option', () => {
-      const { getAllByRole } = render(
+      render(
         <Select defaultListboxOpen value="">
           <Option value="1">First</Option>
           <Option value="2">Second</Option>
         </Select>,
       );
 
-      const options = getAllByRole('option');
+      const options = screen.getAllByRole('option');
       expect(options[0]).to.have.text('First');
       expect(options[1]).to.have.text('Second');
     });
 
     it('indicates the selected option', () => {
-      const { getAllByRole } = render(
+      render(
         <Select defaultListboxOpen value="2">
           <Option value="1">First</Option>
           <Option value="2">Second</Option>
         </Select>,
       );
 
-      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
+      expect(screen.getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
     });
 
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
-        const { getByRole, getAllByRole } = render(
+        render(
           <Select autoFocus defaultValue="" slotProps={{ listbox: { component: 'div' } }}>
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
@@ -368,10 +379,10 @@ describe('Joy <Select />', () => {
           </Select>,
         );
 
-        const combobox = getByRole('combobox');
+        const combobox = screen.getByRole('combobox');
         fireEvent.keyDown(combobox, { key: 'ArrowDown' }); // open listbox
 
-        const options = getAllByRole('option');
+        const options = screen.getAllByRole('option');
         fireEvent.keyDown(options[0], { key: 'ArrowDown' }); // move focus to Option 2
         fireEvent.keyDown(options[1], { key: 'Enter' }); // select Option 2
 
@@ -379,27 +390,27 @@ describe('Joy <Select />', () => {
       });
     });
 
-    it('it will fallback to its content for the accessible name when it has no name', () => {
-      const { getByRole } = render(<Select value="" />);
+    it('will fallback to its content for the accessible name when it has no name', () => {
+      render(<Select value="" />);
 
-      expect(getByRole('combobox')).not.to.have.attribute('aria-labelledby');
+      expect(screen.getByRole('combobox')).not.to.have.attribute('aria-labelledby');
     });
 
-    specify('the list of options is not labelled by default', () => {
-      const { getByRole } = render(<Select defaultListboxOpen value="" />);
+    it('the list of options is not labelled by default', () => {
+      render(<Select defaultListboxOpen value="" />);
 
-      expect(getByRole('listbox')).not.to.have.attribute('aria-labelledby');
+      expect(screen.getByRole('listbox')).not.to.have.attribute('aria-labelledby');
     });
 
     it('should have appropriate accessible description when provided in props', () => {
-      const { getByRole } = render(
+      render(
         <React.Fragment>
           <Select value="" aria-describedby="select-helper-text" />
           <span id="select-helper-text">Helper text content</span>
         </React.Fragment>,
       );
 
-      const target = getByRole('combobox');
+      const target = screen.getByRole('combobox');
       expect(target).to.have.attribute('aria-describedby', 'select-helper-text');
       expect(target).toHaveAccessibleDescription('Helper text content');
     });
@@ -408,28 +419,30 @@ describe('Joy <Select />', () => {
   describe('prop: renderValue', () => {
     it('should use the prop to render the value', () => {
       const renderValue = (x: { value: number } | null) => `0b${x?.value.toString(2)}`;
-      const { getByRole } = render(
+
+      render(
         <Select renderValue={renderValue} value={4}>
           <Option value={2}>2</Option>
           <Option value={4}>4</Option>
         </Select>,
       );
 
-      expect(getByRole('combobox')).to.have.text('0b100');
+      expect(screen.getByRole('combobox')).to.have.text('0b100');
     });
   });
 
   describe('prop: name', () => {
     it('should have no id when name is not provided', () => {
-      const { getByRole } = render(<Select value="" />);
+      render(<Select value="" />);
 
-      expect(getByRole('combobox')).not.to.have.attribute('id');
+      expect(screen.getByRole('combobox')).not.to.have.attribute('id');
     });
   });
 
   it('should pass onClick prop to Option', () => {
     const onClick = spy();
-    const { getAllByRole } = render(
+
+    render(
       <Select defaultListboxOpen value="30">
         <Option onClick={onClick} value={30}>
           Thirty
@@ -437,7 +450,7 @@ describe('Joy <Select />', () => {
       </Select>,
     );
 
-    const options = getAllByRole('option');
+    const options = screen.getAllByRole('option');
     fireEvent.click(options[0]);
 
     expect(onClick.callCount).to.equal(1);
@@ -483,94 +496,92 @@ describe('Joy <Select />', () => {
   });
 
   it('should not focus select when clicking an arbitrary element with id="undefined"', () => {
-    const { getByRole, getByTestId } = render(
+    render(
       <React.Fragment>
         <div id="undefined" data-testid="test-element" />
         <Select value="" />
       </React.Fragment>,
     );
 
-    fireEvent.click(getByTestId('test-element'));
+    fireEvent.click(screen.getByTestId('test-element'));
 
-    expect(getByRole('combobox')).not.toHaveFocus();
+    expect(screen.getByRole('combobox')).not.toHaveFocus();
   });
 
   describe('form submission', () => {
-    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // FormData is not available in JSDOM
-        this.skip();
-      }
+    // FormData is not available in JSDOM
+    it.skipIf(isJsdom())(
+      'includes the Select value in the submitted form data when the `name` attribute is provided',
+      function test() {
+        let isEventHandled = false;
 
-      let isEventHandled = false;
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+          const formData = new FormData(event.currentTarget);
+          expect(formData.get('test-select')).to.equal('2');
+          isEventHandled = true;
+        };
 
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        expect(formData.get('test-select')).to.equal('2');
-        isEventHandled = true;
-      };
+        render(
+          <form onSubmit={handleSubmit}>
+            <Select defaultValue={2} name="test-select">
+              <Option value={1}>1</Option>
+              <Option value={2}>2</Option>
+            </Select>
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-      const { getByText } = render(
-        <form onSubmit={handleSubmit}>
-          <Select defaultValue={2} name="test-select">
-            <Option value={1}>1</Option>
-            <Option value={2}>2</Option>
-          </Select>
-          <button type="submit">Submit</button>
-        </form>,
-      );
+        const button = screen.getByText('Submit');
+        act(() => {
+          button.click();
+        });
 
-      const button = getByText('Submit');
-      act(() => {
-        button.click();
-      });
+        expect(isEventHandled).to.equal(true);
+      },
+    );
 
-      expect(isEventHandled).to.equal(true);
-    });
+    // FormData is not available in JSDOM
+    it.skipIf(isJsdom())(
+      'transforms the selected value before posting using the getSerializedValue prop, if provided',
+      function test() {
+        let isEventHandled = false;
 
-    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // FormData is not available in JSDOM
-        this.skip();
-      }
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+          const formData = new FormData(event.currentTarget);
+          expect(formData.get('test-select')).to.equal('option 2');
+          isEventHandled = true;
+        };
 
-      let isEventHandled = false;
+        const customFormValueProvider = (option: SelectOption<number> | null) =>
+          option != null ? `option ${option.value}` : '';
 
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        expect(formData.get('test-select')).to.equal('option 2');
-        isEventHandled = true;
-      };
+        render(
+          <form onSubmit={handleSubmit}>
+            <Select
+              defaultValue={2}
+              name="test-select"
+              getSerializedValue={customFormValueProvider}
+            >
+              <Option value={1}>1</Option>
+              <Option value={2}>2</Option>
+            </Select>
+            <button type="submit">Submit</button>
+          </form>,
+        );
 
-      const customFormValueProvider = (option: SelectOption<number> | null) =>
-        option != null ? `option ${option.value}` : '';
+        const button = screen.getByText('Submit');
+        act(() => {
+          button.click();
+        });
 
-      const { getByText } = render(
-        <form onSubmit={handleSubmit}>
-          <Select defaultValue={2} name="test-select" getSerializedValue={customFormValueProvider}>
-            <Option value={1}>1</Option>
-            <Option value={2}>2</Option>
-          </Select>
-          <button type="submit">Submit</button>
-        </form>,
-      );
+        expect(isEventHandled).to.equal(true);
+      },
+    );
 
-      const button = getByText('Submit');
-      act(() => {
-        button.click();
-      });
-
-      expect(isEventHandled).to.equal(true);
-    });
-
-    it('formats the object values as JSON before posting', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // FormData is not available in JSDOM
-        this.skip();
-      }
-
+    // FormData is not available in JSDOM
+    it.skipIf(isJsdom())('formats the object values as JSON before posting', function test() {
       let isEventHandled = false;
 
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -585,7 +596,7 @@ describe('Joy <Select />', () => {
         { value: { firstName: 'Olivia' }, label: 'Olivia' },
       ];
 
-      const { getByText } = render(
+      render(
         <form onSubmit={handleSubmit}>
           <Select defaultValue={options[1].value} name="test-select">
             {options.map((o) => (
@@ -598,7 +609,7 @@ describe('Joy <Select />', () => {
         </form>,
       );
 
-      const button = getByText('Submit');
+      const button = screen.getByText('Submit');
       act(() => {
         button.click();
       });
@@ -608,7 +619,7 @@ describe('Joy <Select />', () => {
   });
 
   it('should show dropdown if the children of the select button is clicked', () => {
-    const { getByTestId, getByRole } = render(
+    render(
       <Select
         defaultValue="1"
         renderValue={(option) => <span data-testid="test-element">{option?.label}</span>}
@@ -616,23 +627,26 @@ describe('Joy <Select />', () => {
         <Option value="1">Eric</Option>
       </Select>,
     );
-    // Fire Click of the avatar
-    act(() => {
-      fireEvent.click(getByTestId('test-element'));
-    });
 
-    expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+    // Fire Click of the avatar
+    fireEvent.click(screen.getByTestId('test-element'));
+
+    expect(screen.getByRole('combobox', { hidden: true })).to.have.attribute(
+      'aria-expanded',
+      'true',
+    );
 
     // click again should close
-    act(() => {
-      fireEvent.click(getByTestId('test-element'));
-    });
-    expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
+    fireEvent.click(screen.getByTestId('test-element'));
+    expect(screen.getByRole('combobox', { hidden: true })).to.have.attribute(
+      'aria-expanded',
+      'false',
+    );
   });
 
   describe('prop: multiple', () => {
     it('renders the selected values (multiple) using the renderValue prop', () => {
-      const { getByRole } = render(
+      render(
         <Select
           multiple
           defaultValue={[1, 2]}
@@ -643,41 +657,41 @@ describe('Joy <Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
+      expect(screen.getByRole('combobox')).to.have.text('One (1), Two (2)');
     });
 
     it('renders the selected values (multiple) as comma-separated list of labels if renderValue is not provided', () => {
-      const { getByRole } = render(
+      render(
         <Select multiple defaultValue={[1, 2]}>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
         </Select>,
       );
 
-      expect(getByRole('combobox')).to.have.text('One, Two');
+      expect(screen.getByRole('combobox')).to.have.text('One, Two');
     });
 
     it('should render placeholder when options are not selected', () => {
-      const { getByRole } = render(
+      render(
         <Select multiple defaultValue={[]} placeholder="hello">
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
         </Select>,
       );
 
-      expect(getByRole('combobox')).to.have.text('hello');
+      expect(screen.getByRole('combobox')).to.have.text('hello');
     });
 
     it('renders the selected values inplace of placeholder', () => {
-      const { getByRole } = render(
+      render(
         <Select multiple defaultValue={[1, 2]} placeholder="hello">
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
         </Select>,
       );
 
-      expect(getByRole('combobox')).to.have.text('One, Two');
-      expect(getByRole('combobox')).not.to.have.text('hello');
+      expect(screen.getByRole('combobox')).to.have.text('One, Two');
+      expect(screen.getByRole('combobox')).not.to.have.text('hello');
     });
   });
 });

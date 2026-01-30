@@ -113,6 +113,7 @@ export default {
     'TableFooter',
     'TableHead',
     'TablePagination',
+    'TablePaginationActions',
     'TableRow',
     'TableSortLabel',
     'Tabs',

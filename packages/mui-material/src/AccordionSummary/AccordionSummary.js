@@ -29,7 +29,6 @@ const useUtilityClasses = (ownerState) => {
 const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => {
     const transition = {
@@ -68,7 +67,6 @@ const AccordionSummaryRoot = styled(ButtonBase, {
 const AccordionSummaryContent = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
@@ -94,7 +92,6 @@ const AccordionSummaryContent = styled('span', {
 const AccordionSummaryExpandIconWrapper = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
-  overridesResolver: (props, styles) => styles.expandIconWrapper,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -7,6 +6,7 @@ import { Link } from '@mui/docs/Link';
 export default function SponsorCard(props: {
   item: {
     src: string;
+    srcDark?: string;
     srcSet?: string;
     name: string;
     description: string;
@@ -43,7 +43,15 @@ export default function SponsorCard(props: {
     >
       <Avatar
         {...(inView && { src: item.src, srcSet: item.srcSet, alt: `${item.name} logo` })}
-        sx={{ borderRadius: '4px', width: logoSize, height: logoSize }}
+        sx={[
+          { borderRadius: '4px', width: logoSize, height: logoSize },
+          (theme) =>
+            item.srcDark
+              ? theme.applyDarkStyles({
+                  content: `url(${item.srcDark})`,
+                })
+              : null,
+        ]}
         slotProps={{ img: { loading: 'lazy' } }}
       />
       <div>

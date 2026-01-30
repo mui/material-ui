@@ -13,6 +13,7 @@ import transformCircularProgressClasses from '../circular-progress-classes';
 import transformDividerProps from '../divider-props';
 import transformDrawerClasses from '../drawer-classes';
 import transformDialogClasses from '../dialog-classes';
+import transformDialogProps from '../dialog-props';
 import transformFilledInputProps from '../filled-input-props';
 import transformFormControlLabelProps from '../form-control-label-props';
 import transformImageListItemBarClasses from '../image-list-item-bar-classes';
@@ -70,6 +71,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformDividerProps(file, api, options);
   file.source = transformDrawerClasses(file, api, options);
   file.source = transformDialogClasses(file, api, options);
+  file.source = transformDialogProps(file, api, options);
   file.source = transformFilledInputProps(file, api, options);
   file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformImageListItemBarClasses(file, api, options);

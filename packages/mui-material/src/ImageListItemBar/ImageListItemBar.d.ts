@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { ImageListItemBarClasses } from './imageListItemBarClasses';
 
-export interface ImageListItemBarProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface ImageListItemBarProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  'title'
+> {
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the item itself).

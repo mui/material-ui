@@ -13,22 +13,67 @@ export interface PaginationItemPropsSizeOverrides {}
 
 export interface PaginationItemPropsColorOverrides {}
 
+export interface PaginationItemFirstSlotPropsOverrides {}
+export interface PaginationItemLastSlotPropsOverrides {}
+export interface PaginationItemNextSlotPropsOverrides {}
+export interface PaginationItemPreviousSlotPropsOverrides {}
+
 export interface PaginationItemSlots {
+  /**
+   * The component that renders the first page slot.
+   * @default FirstPageIcon
+   */
   first: React.ElementType;
+  /**
+   * The component that renders the last page slot.
+   * @default LastPageIcon
+   */
   last: React.ElementType;
+  /**
+   * The component that renders the next page slot.
+   * @default NavigateNextIcon
+   */
   next: React.ElementType;
+  /**
+   * The component that renders the previous page slot.
+   * @default NavigateBeforeIcon
+   */
   previous: React.ElementType;
 }
 
 export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
   PaginationItemSlots,
   {
-    first: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
-    last: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
-    next: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
+    /**
+     * Props forwarded to the first page slot.
+     */
+    first: SlotProps<
+      React.ElementType<React.HTMLProps<HTMLElement>>,
+      PaginationItemFirstSlotPropsOverrides,
+      PaginationItemOwnerState
+    >;
+    /**
+     * Props forwarded to the last page slot.
+     */
+    last: SlotProps<
+      React.ElementType<React.HTMLProps<HTMLElement>>,
+      PaginationItemLastSlotPropsOverrides,
+      PaginationItemOwnerState
+    >;
+    /**
+     * Props forwarded to the next page slot.
+     */
+    next: SlotProps<
+      React.ElementType<React.HTMLProps<HTMLElement>>,
+      PaginationItemNextSlotPropsOverrides,
+      PaginationItemOwnerState
+    >;
+    /**
+     * Props forwarded to the previous page slot.
+     */
     previous: SlotProps<
       React.ElementType<React.HTMLProps<HTMLElement>>,
-      {},
+      PaginationItemPreviousSlotPropsOverrides,
       PaginationItemOwnerState
     >;
   }
@@ -123,6 +168,7 @@ export interface PaginationItemTypeMap<
  * API:
  *
  * - [PaginationItem API](https://mui.com/material-ui/api/pagination-item/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 

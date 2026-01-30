@@ -1,7 +1,7 @@
 import * as url from 'url';
 import * as path from 'path';
-import * as fse from 'fs-extra';
-import * as playwright from 'playwright';
+import * as fs from 'node:fs/promises';
+import { chromium } from '@playwright/test';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -9,7 +9,7 @@ async function main() {
   const baseUrl = 'http://localhost:5001';
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
-  const browser = await playwright.chromium.launch({
+  const browser = await chromium.launch({
     args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
@@ -79,7 +79,7 @@ async function main() {
 
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
-    await fse.ensureDir(path.dirname(screenshotPath));
+    await fs.mkdir(path.dirname(screenshotPath), { recursive: true });
 
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
     const screenshotTarget = explicitScreenshotTarget || testcase;
@@ -92,7 +92,8 @@ async function main() {
   }
 
   // prepare screenshots
-  await fse.emptyDir(screenshotDir);
+  await fs.rm(screenshotDir, { recursive: true, force: true });
+  await fs.mkdir(screenshotDir, { recursive: true });
 
   describe('visual regressions', () => {
     beforeEach(async () => {
@@ -101,7 +102,7 @@ async function main() {
       });
     });
 
-    after(async () => {
+    afterAll(async () => {
       await browser.close();
     });
 
@@ -109,7 +110,7 @@ async function main() {
       it(`creates screenshots of ${route}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
-          this.timeout(0);
+          this?.timeout?.(0);
         }
 
         const testcase = await renderFixture(route);
@@ -158,14 +159,32 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Autocomplete/Virtualize4' });
       });
     });
-  });
 
-  run();
+    describe('Textarea', () => {
+      it('should keep input caret position at the end when adding a newline', async () => {
+        await renderFixture('/regression-Textarea/TextareaAutosize');
+        await page.getByTestId('input').focus();
+
+        const textWithEndline = `abc def abc def abc def\n`;
+        await page.evaluate((text) => {
+          navigator.clipboard.writeText(text);
+        }, textWithEndline);
+
+        const pasteCommand = process.platform === 'darwin' ? 'Meta+V' : 'Control+V';
+
+        await page.keyboard.press(pasteCommand);
+        await page.keyboard.press(pasteCommand);
+        await page.keyboard.press(pasteCommand);
+
+        await page.evaluate(() => {
+          const textarea = document.querySelector('textarea');
+          if (textarea.selectionStart !== textarea.value.length) {
+            throw new Error('The caret is not at the end of the textarea');
+          }
+        });
+      });
+    });
+  });
 }
 
-main().catch((error) => {
-  // error during setup.
-  // Throwing lets mocha hang.
-  console.error(error);
-  process.exit(1);
-});
+await main();
