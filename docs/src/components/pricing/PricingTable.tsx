@@ -1287,7 +1287,7 @@ export default function PricingTable({
 
   return (
     <ThemeProvider theme={transitionTheme}>
-      <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', ...props.sx }}>
+      <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', contain: 'paint', ...props.sx }}>
         <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
         {!columnHeaderHidden && (
           <Box sx={gridSx}>

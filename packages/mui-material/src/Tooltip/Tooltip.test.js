@@ -10,7 +10,6 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
   isJsdom,
-  flushMicrotasks,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -599,7 +598,12 @@ describe('<Tooltip />', () => {
           title="tooltip"
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button id="testChild" type="submit">
+          <button
+            id="testChild"
+            type="submit"
+            // Moving the button away from 0,0 to avoid interference with initial mouse position
+            style={{ margin: 1 }}
+          >
             Hello World
           </button>
         </Tooltip>,
@@ -607,7 +611,7 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       await focusVisible(screen.getByRole('button'));
-      clock.tick(enterDelay);
+      await clock.tickAsync(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
@@ -617,10 +621,12 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
+      await clock.tickAsync(leaveDelay);
+      await clock.tickAsync(transitionTimeout - 1);
 
-      await flushMicrotasks();
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      await clock.tickAsync(2);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });

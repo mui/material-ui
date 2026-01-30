@@ -30,15 +30,15 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.7",
-    "chai": "6.2.1",
+    "@types/react": "19.2.9",
+    "chai": "6.2.2",
     "react": "19.2.3"
   },
   "peerDependencies": {
