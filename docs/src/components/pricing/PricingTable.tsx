@@ -840,7 +840,7 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': <Info value="Available for orders from $12,000 and above" />,
+  'security-questionnaire': <Info value="Available for orders of $12,000 and above" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
