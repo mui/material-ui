@@ -70,9 +70,7 @@ export const planInfo: Record<
     features: [
       { text: 'All Pro', text2: 'features', icon: 'check' },
       { text: 'Access new features first', icon: 'check' },
-      { text: 'MUI X', highlight: 'Premium', text2: 'access', icon: 'check' },
       { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
-      { text: 'Self served up to 15 seats', icon: 'check' },
       { highlight: 'Premium', text2: 'support', icon: 'support', supportType: 'premium' },
     ],
   },

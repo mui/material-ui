@@ -537,8 +537,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
         label: 'Priority Support',
         tooltip: (
           <React.Fragment>
-            At $399/year/dev, get the highest level of support with a 24h SLA response time,
-            pre-screening and issue escalation. More details in the{' '}
+            The highest level of support with 1 business day response time, pre-screening and issue
+            escalation. More details in the{' '}
             <Link
               href="https://mui.com/legal/technical-support-sla/#priority-support"
               target="_blank"
