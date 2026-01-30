@@ -104,7 +104,7 @@ function TestFillPropCallback() {
   />;
 }
 
-// eslint-disable-next-line material-ui/no-styled-box
+// eslint-disable-next-line mui/material-ui-no-styled-box
 const StyledBox = styled(Box)`
   color: white;
 ` as typeof Box;
