@@ -371,7 +371,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'enterprise') {
     const enterpriseAnnualValue = 1399;
-    const enterprisePerpetualValue = 3078;
+    const enterprisePerpetualValue = 2798;
     const enterpriseMonthlyValueForAnnual = enterpriseAnnualValue / 12;
 
     const priceExplanation = getPriceExplanation(enterpriseMonthlyValueForAnnual);
