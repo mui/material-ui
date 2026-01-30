@@ -101,9 +101,7 @@ function RangeBarChart() {
 ## Solution
 
 The solution we found for this issue relies on TypeScript's module augmentation and interface merging features.
-
 We can leverage the latter to add more properties or widen the type of a property in an interface.
-
 An initial approach could look like this:
 
 ```diff
