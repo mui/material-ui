@@ -98,7 +98,7 @@ export const planInfo: Record<
 export const multiAppPlanInfo: Partial<Record<PlanName, Feature[]>> = {
   pro: [
     { text: 'Multi-app license included', icon: 'check' },
-    { text: 'All Community features and…', icon: 'check' },
+    { text: 'All Community features', icon: 'check' },
     { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
     { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
     { highlight: 'Pro', text2: 'support', icon: 'support', supportType: 'pro' },
