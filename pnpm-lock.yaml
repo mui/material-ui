@@ -65,8 +65,8 @@ importers:
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
-        specifier: 2.0.8-canary.16
-        version: 2.0.8-canary.16(@babel/core@7.28.6)
+        specifier: 2.0.8-canary.20
+        version: 2.0.8-canary.20(@babel/core@7.28.6)
       '@mui/internal-bundle-size-checker':
         specifier: 1.0.9-canary.60
         version: 1.0.9-canary.60(@types/node@20.19.30)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
@@ -3640,12 +3640,6 @@ packages:
     peerDependencies:
       '@babel/core': 7.28.6
       '@babel/preset-react': ^7.28.5
-
-  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.16':
-    resolution: {integrity: sha512-c11GlIeo4AVKl8TgQSvRgVi1lUCq+rRrWqBxIJz1PbbXtlp8yVnUl8Ve6WzreaFSEyijemXdI5otnnlslU34Sw==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      '@babel/core': 7.28.6
 
   '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.20':
     resolution: {integrity: sha512-c1p/39GF0fAJs/w5CCPESkw2drzQ8fy/Ldlvu0z5MpyGrLeIG9pNNSjS8DxFvAEsFmUO6IF/XBfV7gYZ7sYcVA==}
@@ -14752,14 +14746,6 @@ snapshots:
       '@babel/helper-module-imports': 7.28.6
       '@babel/helper-plugin-utils': 7.28.6
       '@babel/preset-react': 7.28.5(@babel/core@7.28.6)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.16(@babel/core@7.28.6)':
-    dependencies:
-      '@babel/core': 7.28.6
-      '@babel/helper-module-imports': 7.28.6
-      find-package-json: 1.2.0
     transitivePeerDependencies:
       - supports-color
 
