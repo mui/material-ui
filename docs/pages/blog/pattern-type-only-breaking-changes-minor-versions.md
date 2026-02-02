@@ -9,7 +9,6 @@ manualCard: false
 
 At MUI, type errors across non-major versions are considered breaking changes. This article demonstrates how we use TypeScript's interface merging and module augmentation features to allow users to opt in to breaking changes in types, so we can keep shipping new functionality in minor releases.
 
-
 ## Context
 
 Recently, we introduced our new [Range Bar chart](https://mui.com/x/react-charts/range-bar/) which has a new type to represent its data points:
