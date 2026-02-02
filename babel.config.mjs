@@ -13,15 +13,6 @@ const dirname = path.dirname(filename);
 
 const errorCodesPath = path.resolve(dirname, './docs/public/static/error-codes.json');
 
-/**
- * @param {string} relativeToBabelConf
- * @returns {string}
- */
-function resolveAliasPath(relativeToBabelConf) {
-  const resolvedPath = path.relative(process.cwd(), path.resolve(dirname, relativeToBabelConf));
-  return `./${resolvedPath.replace('\\', '/')}`;
-}
-
 /** @type {babel.ConfigFunction} */
 export default function getBabelConfig(api) {
   const baseConfig = getBaseConfig(api);
