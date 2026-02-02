@@ -214,4 +214,4 @@ Unfortunately, this solution isn't perfect, and comes with the following trade-o
 
 For us, these trade-offs are acceptable since we'd rather release features earlier so our users can benefit from them. In the next major version, we will have the opportunity to clean up this tech debt and become leaner once more.
 
-If you find any problems with this solution or if you would like to provide any feedback, open an issue in the [MUI X](https://github.com/mui/mui-x) repo.
+If you find any problems with this solution or if you would like to provide any feedback, open an issue in the [MUI X](https://github.com/mui/mui-x) repo.
