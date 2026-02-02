@@ -145,9 +145,6 @@ importers:
       babel-plugin-istanbul:
         specifier: 7.0.1
         version: 7.0.1
-      babel-plugin-module-resolver:
-        specifier: 5.0.2
-        version: 5.0.2
       chalk:
         specifier: 5.6.2
         version: 5.6.2
