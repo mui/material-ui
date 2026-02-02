@@ -71,7 +71,7 @@ The following demo illustrates the use of the `spacing` prop:
 ### Row and column spacing
 
 The `rowSpacing` and `columnSpacing` props let you specify row and column gaps independently of one another.
-They behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+They behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-column-gap).
 
 {{"demo": "RowAndColumnSpacing.js", "bg": true}}
 

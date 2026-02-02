@@ -30,7 +30,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@mui/base": "7.0.0-beta.4",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
@@ -41,18 +41,18 @@
   },
   "devDependencies": {
     "@mui/material": "workspace:^",
-    "@types/chai": "^5.2.3",
-    "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "@types/sinon": "^17.0.4",
-    "chai": "^6.0.1",
-    "es-toolkit": "^1.39.10",
-    "fast-glob": "^3.3.3",
-    "next": "^15.5.7",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "sinon": "^21.0.0"
+    "@types/chai": "5.2.3",
+    "@types/prop-types": "15.7.15",
+    "@types/react": "19.2.9",
+    "@types/react-dom": "19.2.3",
+    "@types/sinon": "17.0.4",
+    "chai": "6.2.2",
+    "es-toolkit": "1.44.0",
+    "fast-glob": "3.3.3",
+    "next": "15.5.11",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "sinon": "21.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

@@ -871,6 +871,71 @@ describe('<Autocomplete />', () => {
         expect(handleSubmit.callCount).to.equal(0);
       },
     );
+
+    it('should move focus to the last chip with ArrowLeft only when caret is at the start when multiple', () => {
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          multiple
+          options={options}
+          defaultValue={[options[0], options[1]]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const [chipOne, chipTwo] = screen.getAllByRole('button');
+
+      // Type something so the input has content.
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+
+      // Caret not at start: ArrowLeft should just move the caret, not focus the chip.
+      textbox.setSelectionRange(2, 2);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(textbox).toHaveFocus();
+
+      // Caret at start: ArrowLeft should now move focus to the second chip.
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chipTwo).toHaveFocus();
+
+      // ArrowLeft should now move focus to the first chip.
+      fireEvent.keyDown(chipTwo, { key: 'ArrowLeft' });
+      expect(chipOne).toHaveFocus();
+    });
+
+    it('should clear freeSolo input when moving focus from input to chip with ArrowLeft and not restore it on ArrowRight', () => {
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          multiple
+          freeSolo
+          options={options}
+          defaultValue={options}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const lastChip = screen.getByRole('button', { name: 'two' });
+
+      // Type some freeSolo text
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+      expect(textbox).to.have.property('value', 'foo');
+
+      // Caret at start: ArrowLeft should move focus to the last chip
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(lastChip).toHaveFocus();
+
+      // Input text should be cleared and stay cleared
+      expect(textbox).to.have.property('value', '');
+
+      // ArrowRight should move focus back to the input, without restoring the old text
+      fireEvent.keyDown(lastChip, { key: 'ArrowRight' });
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.property('value', '');
+    });
   });
 
   it('should trigger a form expectedly', () => {
@@ -2954,16 +3019,35 @@ describe('<Autocomplete />', () => {
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const view = render(
+      const renderInput = spy((params) => <TextField {...params} />);
+      const { container, rerender } = render(
+        <Autocomplete fullWidth options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
+
+      rerender(
         <Autocomplete
-          fullWidth
+          fullWidth={false}
           options={[0, 10, 20]}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={renderInput}
           value={null}
         />,
       );
 
-      expect(view.container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(false);
+    });
+
+    it('should pass fullWidth as true to renderInput if not provided', () => {
+      const renderInput = spy((params) => <TextField {...params} />);
+      const view = render(
+        <Autocomplete options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(view.container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
     });
   });
 
@@ -3600,11 +3684,13 @@ describe('<Autocomplete />', () => {
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
     });
 
-    it('should delete using Backspace key', () => {
+    it('should delete using Backspace key with empty input text', () => {
+      const handleChange = spy();
       const view = render(
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
+          onChange={handleChange}
           renderValue={(value, getItemProps) => {
             return <Chip label={value} {...getItemProps()} />;
           }}
@@ -3618,14 +3704,21 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'Backspace' });
 
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(null);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'one' });
+
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
 
-    it('should delete using Delete key', () => {
+    it('should delete using Delete key with empty input text', () => {
+      const handleChange = spy();
       const view = render(
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
+          onChange={handleChange}
           renderValue={(value, getItemProps) => {
             return <Chip label={value} {...getItemProps()} />;
           }}
@@ -3638,6 +3731,11 @@ describe('<Autocomplete />', () => {
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
       fireEvent.keyDown(textbox, { key: 'Delete' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(null);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'one' });
 
       expect(view.container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
@@ -3749,6 +3847,67 @@ describe('<Autocomplete />', () => {
 
       expect(textbox).to.have.property('value', 'on');
       expect(textbox).toHaveFocus();
+    });
+
+    it('should move focus to the rendered value with ArrowLeft only when caret is at the start', () => {
+      const options = ['one', 'two'];
+      const view = render(
+        <Autocomplete
+          options={options}
+          defaultValue={options[0]}
+          renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = view.container.querySelector(`.${chipClasses.root}`);
+
+      // Type something so the input has content.
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+
+      // Caret not at start: ArrowLeft should just move the caret, not focus the chip.
+      textbox.setSelectionRange(2, 2);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(textbox).toHaveFocus();
+
+      // Caret at start: ArrowLeft should now move focus to the rendered value.
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+    });
+
+    it('should clear freeSolo input when moving focus to the rendered value with ArrowLeft and not restore it on ArrowRight', () => {
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          freeSolo
+          options={options}
+          defaultValue={options[0]}
+          renderValue={(value, getItemProps) => <Chip label={value} {...getItemProps()} />}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = screen.getByRole('button', { name: 'one' });
+
+      // Type some freeSolo text
+      fireEvent.change(textbox, { target: { value: 'foo' } });
+      expect(textbox).to.have.property('value', 'foo');
+
+      // Caret at start: ArrowLeft should move focus to the rendered value
+      textbox.setSelectionRange(0, 0);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(chip).toHaveFocus();
+
+      // Input text should be cleared
+      expect(textbox).to.have.property('value', '');
+
+      // ArrowRight should move focus back to input without restoring text
+      fireEvent.keyDown(chip, { key: 'ArrowRight' });
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.property('value', '');
     });
   });
 
