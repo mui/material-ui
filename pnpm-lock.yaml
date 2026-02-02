@@ -706,7 +706,7 @@ importers:
         specifier: ^5.4.3
         version: 5.4.3
       recast:
-        specifier: ^0.23.9
+        specifier: ^0.23.11
         version: 0.23.11
       remark:
         specifier: ^15.0.1
