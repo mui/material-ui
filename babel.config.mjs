@@ -100,18 +100,6 @@ export default function getBabelConfig(api) {
           ],
         ],
       },
-      test: {
-        sourceMaps: 'both',
-        plugins: [
-          [
-            'babel-plugin-module-resolver',
-            {
-              root: ['./'],
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
     },
   };
 }
