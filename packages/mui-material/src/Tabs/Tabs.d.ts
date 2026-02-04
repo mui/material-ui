@@ -9,6 +9,7 @@ import { TabsClasses } from './tabsClasses';
 import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
+export interface TabsPropsVariantOverrides {}
 
 export interface TabsRootSlotPropsOverrides {}
 export interface TabsScrollerSlotPropsOverrides {}
@@ -260,7 +261,10 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
    *  - `standard` will render the default state.
    * @default 'standard'
    */
-  variant?: 'standard' | 'scrollable' | 'fullWidth';
+  variant?: OverridableStringUnion<
+    'standard' | 'scrollable' | 'fullWidth',
+    TabsPropsVariantOverrides
+  >;
   /**
    * If `true`, the scrollbar is visible. It can be useful when displaying
    * a long vertical list of tabs.

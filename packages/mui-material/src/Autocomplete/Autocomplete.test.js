@@ -3019,16 +3019,35 @@ describe('<Autocomplete />', () => {
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const view = render(
+      const renderInput = spy((params) => <TextField {...params} />);
+      const { container, rerender } = render(
+        <Autocomplete fullWidth options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
+
+      rerender(
         <Autocomplete
-          fullWidth
+          fullWidth={false}
           options={[0, 10, 20]}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={renderInput}
           value={null}
         />,
       );
 
-      expect(view.container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(false);
+    });
+
+    it('should pass fullWidth as true to renderInput if not provided', () => {
+      const renderInput = spy((params) => <TextField {...params} />);
+      const view = render(
+        <Autocomplete options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(view.container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
     });
   });
 

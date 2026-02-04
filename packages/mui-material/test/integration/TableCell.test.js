@@ -33,7 +33,7 @@ describe('<TableRow> integration', () => {
     expect(screen.getByTestId('cell')).to.have.attribute('scope', 'row');
   });
 
-  it('should render a th with the footer class when in the context of a table footer', () => {
+  it('should render a td with the footer class when in the context of a table footer', () => {
     renderInTable(<TableCell data-testid="cell" />, TableFooter);
     expect(screen.getByTestId('cell')).to.have.tagName('td');
     expect(screen.getByTestId('cell')).to.have.class(classes.root);

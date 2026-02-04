@@ -122,7 +122,7 @@ Skip this step if you're using Material UI v5.
 </codeblock>
 
 :::warning
-The codemod requires [updating the imports](#update-the-import) beforehand.
+The codemod requires [updating the imports](#1-update-the-import) beforehand.
 :::
 
 ### 4. Opt in to legacy negative margins

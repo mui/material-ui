@@ -26,7 +26,7 @@ Menus are implemented using a collection of related components:
 
 ## Basic menu
 
-A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
+A basic menu opens over the anchor element by default (this option can be [changed](#positioned-menu) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 You should configure the component so that selecting an option immediately confirms it and closes the menu, as shown in the demo below.
 

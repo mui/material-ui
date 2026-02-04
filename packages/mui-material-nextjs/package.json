@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "7.3.6",
+  "version": "7.3.7",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
@@ -30,14 +30,14 @@
     "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4"
+    "@babel/runtime": "^7.28.6"
   },
   "devDependencies": {
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
-    "@types/react": "19.2.7",
-    "next": "15.5.9",
+    "@types/react": "19.2.9",
+    "next": "15.5.11",
     "react": "19.2.3"
   },
   "peerDependencies": {

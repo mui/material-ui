@@ -1,5 +1,61 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.7
+
+<!-- generated comparing v7.3.6..master -->
+
+_Jan 8, 2026_
+
+A big thanks to the 16 contributors who made this release possible.
+
+### `@mui/material@7.3.7`
+
+- [accordion] Remove unnecessary handling of `square` prop on Accordion Root (#47457) @ZeeshanTamboli
+- [alert] Remove unnecessary default icon mapping fallback (#47460) @ZeeshanTamboli
+- [appbar] Fix inherit color CSS variable not getting applied (#47518) @ZeeshanTamboli
+- [autocomplete] Fix `ArrowLeft`, `Backspace` & `Delete` behavior for multiple and single-value rendering with proper caret handling (#47411) @jnbain
+- [backdrop] Remove unnecessary passing of `classes` from root slot (#47519) @ZeeshanTamboli
+- [button-group] Fix styles when variant is `contained` (#47499) @ZeeshanTamboli
+- [card-action-area] Remove incorrect root ref being forwarded to focus highlight component (#47523) @ZeeshanTamboli
+- [checkbox] Fix readonly checkboxes (#47503) @mj12albert
+- [click-away-listener] Tighten the parameter type of createHandleSynthetic method (#47525) @ZeeshanTamboli
+- [dialog] Fix backdrop theme style overrides (#47544) @ZeeshanTamboli
+- [focus-trap] Compute `activeElement` inside `loopFocus` on every keydown (#47566) @ZeeshanTamboli
+- [modal] Take non-integer padding-right into consideration when scroll locking (#47420) @Zache
+- [select] Fix dropdown width does not match trigger width on window resize (#47526) @AarishMansur
+- [tabs] Fix passing incorrect slot name props (scrollButton → scrollButtons) (#47215) @rithik56
+
+### Docs
+
+- [card] Fix key warning (#47524) @ZeeshanTamboli
+- [dialog] Replace TranstionProps with slotProps.transition (#47569) @sai6855
+- [number-field] Use stable Base UI package (#47504) @siriwatknp
+- [snackbar] Replace TransitionComponent with slots.transition (#47570) @sai6855
+- Fix incorrect indentation in migration guide (#47571) @sai6855
+- Enable MUI chat on Material UI demos (#46837) @siriwatknp
+- Add docs and website banner for Dev survey'25 (#47521) @prakhargupta1
+- Update Tailwind CSS v4 + Next.js Pages Router docs (#47546) @atharva3333
+- Add warning callout to Sync plugin doc (#47511) @mapache-salvaje
+- Update typo in TailwindCSS v4 integration with Next.js docs (#47512) @TimKraemer
+- Fix link to contributing guide (#47473) @oliviertassinari
+- Improve description of Accordion props (#47459) @ZeeshanTamboli
+
+### Core
+
+- [blog] Whats new since MUI X v8 [DX-51] (#47140) @joserodolfofreitas
+- [code-infra] Fix React@next CI job (#47493) @Janpot
+- [code-infra] Move font loading to @mui/docs (#47385) @Janpot
+- [code-infra] Fix CI for React 18 (#47560) @Janpot
+- [code-infra] Prevent legacy browsers tests from updating (#47496) @Janpot
+- [code-infra] Move `@mui/internal-test-utils` to code infra repo (#47422) @Janpot
+- [code-infra] Fix React@next CI job (#47493) @Janpot
+- [examples] Update Next.js versions to v16 in Next.js examples (DX-57) (#47453) @alelthomas
+- [internal] Bump Next.js & React version to avoid security vulnerability (#47427) @oliviertassinari
+- [test] Use plain playwright for e2e (#47410) @mj12albert
+- [test] Fix react-18 tests (#47407) @Janpot
+
+All contributors of this release in alphabetical order: @AarishMansur, @alelthomas, @atharva3333, @bricefrisco, @Janpot, @jnbain, @joserodolfofreitas, @mapache-salvaje, @mj12albert, @oliviertassinari, @prakhargupta1, @rithik56, @siriwatknp, @TimKraemer, @Zache, @ZeeshanTamboli
+
 ## 7.3.6
 
 <!-- generated comparing v7.3.5..master -->
@@ -753,7 +809,7 @@ A big thanks to the 7 contributors who made this release possible.
 - Fix `Grid`, `GridLegacy`, `Stack`, `Badge`, `Select`, `Autocomplete` demos CSS variables (#45693) @DiegoAndai
 - Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
 - Fix `Breadcrumbs`, `List`, `Divider`, and `Typography` dark mode demos (#45692) @siriwatknp
-- Fix Material Icons page in dark mode (#45691) @mnajdova
+- Fix Material Icons page in dark mode (#45691) @mnajdova
 
 All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @eduter, @Janpot, @micttyoid, @mnajdova, @siriwatknp
 
