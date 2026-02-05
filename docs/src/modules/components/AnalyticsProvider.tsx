@@ -1,11 +1,14 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
+import { alpha } from '@mui/system';
+import TrapFocus from '@mui/material/Unstable_TrapFocus';
+import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
 
 const COOKIE_CONSENT_KEY = 'docs-cookie-consent';
 

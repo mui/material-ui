@@ -313,20 +313,20 @@ function AppWrapper(props) {
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >
-        <AnalyticsProvider>
-          <CodeCopyProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <ThemeProvider>
+        <CodeCopyProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={pageContextValue}>
+              <ThemeProvider>
+                <AnalyticsProvider>
                   <DocsStyledEngineProvider cacheLtr={emotionCache}>
                     {children}
                     <GoogleAnalytics />
                   </DocsStyledEngineProvider>
-                </ThemeProvider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeCopyProvider>
-        </AnalyticsProvider>
+                </AnalyticsProvider>
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
+        </CodeCopyProvider>
       </DocsProvider>
     </React.Fragment>
   );
