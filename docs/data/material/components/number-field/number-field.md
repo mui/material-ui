@@ -47,7 +47,7 @@ yarn add @base-ui/react
 
 ## Outlined field
 
-The outlined field uses the same building-block components as Material UI's outlined `TextField`—`FormControl`, `OutlinedInput`, `InputLabel`, and `FormHelperText`—with end adornments for the increment and decrement buttons.
+The outlined field uses the same building-block components as Material UI's outlined `TextField`—`FormControl`, `OutlinedInput`, `InputLabel`, and `FormHelperText`—with end adornments for the increment and decrement buttons.
 See [Text Field—Compononents](/material-ui/react-text-field/#components) for more details.
 
 {{"demo": "FieldDemo.js"}}
