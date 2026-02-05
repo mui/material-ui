@@ -25,15 +25,15 @@ Note that Base UI is tree-shakeable, so the final bundle will only include the 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @base-ui-components/react
+npm install @base-ui/react
 ```
 
 ```bash pnpm
-pnpm add @base-ui-components/react
+pnpm add @base-ui/react
 ```
 
 ```bash yarn
-yarn add @base-ui-components/react
+yarn add @base-ui/react
 ```
 
 </codeblock>

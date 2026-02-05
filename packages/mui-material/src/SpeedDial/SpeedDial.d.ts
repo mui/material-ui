@@ -41,10 +41,8 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface SpeedDialProps
-  extends Omit<
-      StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-      'slots' | 'slotProps'
-    >,
+  extends
+    Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>, 'slots' | 'slotProps'>,
     SpeedDialSlotsAndSlotProps {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.

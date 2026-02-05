@@ -753,9 +753,16 @@ function useAutocomplete(props) {
 
     let nextItem = focusedItem;
 
-    if (focusedItem === -1) {
-      if (inputValue === '' && direction === 'previous') {
-        nextItem = value.length - 1;
+    // When moving focus from the input to tags with ArrowLeft,
+    // always jump to the last tag (if any) from the input.
+    if (focusedItem === -1 && direction === 'previous') {
+      nextItem = value.length - 1;
+      // In freeSolo, clear any draft text so it doesn't "come back" later.
+      if (freeSolo && inputValue !== '') {
+        setInputValueState('');
+        if (onInputChange) {
+          onInputChange(event, '', 'reset');
+        }
       }
     } else {
       nextItem += direction === 'next' ? 1 : -1;
@@ -851,14 +858,35 @@ function useAutocomplete(props) {
           changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
           handleOpen(event);
           break;
-        case 'ArrowLeft':
+        case 'ArrowLeft': {
+          const input = inputRef.current;
+          // Only handle ArrowLeft when the caret is at the start of the input.
+          // Otherwise let the browser move the caret normally.
+          const caretAtStart = input && input.selectionStart === 0 && input.selectionEnd === 0;
+
+          if (!caretAtStart) {
+            // Let the browser handle normal cursor movement
+            return;
+          }
+
+          // Single-value rendering: move focus from input to the single tag.
           if (!multiple && renderValue && value != null) {
+            // Moving from input to single tag; clear freeSolo draft text,
+            // so it doesn't reappear when we move back.
+            if (freeSolo && inputValue !== '') {
+              setInputValueState('');
+              if (onInputChange) {
+                onInputChange(event, '', 'reset');
+              }
+            }
             setFocusedItem(0);
             focusItem(0);
           } else {
+            // Multi-value: delegate to tag navigation helper.
             handleFocusItem(event, 'previous');
           }
           break;
+        }
         case 'ArrowRight':
           if (!multiple && renderValue) {
             setFocusedItem(-1);
@@ -924,10 +952,8 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderValue && !readOnly) {
-            setValueState(null);
-            setFocusedItem(-1);
-            focusItem(-1);
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
+            handleValue(event, null, 'removeOption', { option: value });
           }
           break;
         case 'Delete':
@@ -946,10 +972,10 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderValue && !readOnly) {
-            setValueState(null);
-            setFocusedItem(-1);
-            focusItem(-1);
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
+            // Single-value rendering: Delete on empty input removes
+            // the single rendered option, same "removeOption" reason as multiple.
+            handleValue(event, null, 'removeOption', { option: value });
           }
           break;
         default:
@@ -1009,7 +1035,9 @@ function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (!disableClearable && !multiple) {
+      // For normal single-select, clearing the input clears the value.
+      // For renderValue (chip-style single), only Backspace/Delete clear the value.
+      if (!disableClearable && !multiple && !renderValue) {
         handleValue(event, null, 'clear');
       }
     } else {
@@ -1204,6 +1232,7 @@ function useAutocomplete(props) {
       role: 'listbox',
       id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
+      'aria-multiselectable': multiple || undefined,
       ref: handleListboxRef,
       onMouseDown: (event) => {
         // Prevent blur

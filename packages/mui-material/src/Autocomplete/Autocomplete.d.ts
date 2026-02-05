@@ -186,7 +186,9 @@ export interface AutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
-> extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
+>
+  extends
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
     AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
@@ -358,7 +360,7 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
+    props: React.HTMLAttributes<HTMLLIElement> & { key: React.Key },
     option: Value,
     state: AutocompleteRenderOptionState,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,

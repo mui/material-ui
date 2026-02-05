@@ -27,7 +27,6 @@
       },
       "default": "{}"
     },
-    "square": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

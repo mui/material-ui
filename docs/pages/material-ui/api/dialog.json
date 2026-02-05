@@ -112,7 +112,7 @@
     {
       "name": "backdrop",
       "description": "The component that renders the backdrop.",
-      "class": null
+      "class": "MuiDialog-backdrop"
     },
     {
       "name": "root",

@@ -65,10 +65,6 @@ export default defineConfig({
         WORKSPACE_ROOT,
         './packages-internal/scripts/typescript-to-proptypes/src',
       ),
-      '@mui/internal-test-utils': path.resolve(
-        WORKSPACE_ROOT,
-        './packages-internal/test-utils/src',
-      ),
       docs: path.resolve(WORKSPACE_ROOT, './docs'),
     },
   },
