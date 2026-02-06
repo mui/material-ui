@@ -82,7 +82,6 @@ function CookieConsentDialog({
             m: 2,
             maxWidth: 340,
             pointerEvents: 'auto',
-            zIndex: 99999,
           }}
         >
           <Stack direction="column" spacing={3} sx={{ justifyContent: 'flex-start' }}>
@@ -117,7 +116,7 @@ function CookieConsentDialog({
                   variant="body2"
                   textAlign={{ xs: 'center', sm: 'start' }}
                 >
-                  mui.com relies on cookies to improve your experience.
+                  example.com relies on cookies to improve your experience.
                 </Typography>
               </Stack>
             </Stack>

@@ -317,12 +317,12 @@ function AppWrapper(props) {
           <CodeVariantProvider>
             <PageContext.Provider value={pageContextValue}>
               <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  <AnalyticsProvider>
+                <AnalyticsProvider>
+                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
                     {children}
                     <GoogleAnalytics />
-                  </AnalyticsProvider>
-                </DocsStyledEngineProvider>
+                  </DocsStyledEngineProvider>
+                </AnalyticsProvider>
               </ThemeProvider>
             </PageContext.Provider>
           </CodeVariantProvider>
