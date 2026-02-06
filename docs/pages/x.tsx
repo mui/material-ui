@@ -1,6 +1,6 @@
+import * as React from 'react';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
@@ -14,7 +14,7 @@ import XRoadmap from 'docs/src/components/productX/XRoadmap';
 
 export default function X() {
   return (
-    <BrandingCssVarsProvider>
+    <React.Fragment>
       <Head
         title="MUI X: Advanced React components for complex use cases"
         description="Build complex and data-rich applications using a growing list of advanced React
@@ -39,6 +39,6 @@ export default function X() {
         <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/mui-x-charts+or+mui-x-data-grid+or+mui-x-date-picker+or+mui-x-tree-view" />
-    </BrandingCssVarsProvider>
+    </React.Fragment>
   );
 }

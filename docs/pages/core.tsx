@@ -1,6 +1,6 @@
+import * as React from 'react';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import CoreHero from 'docs/src/components/productCore/CoreHero';
 import CoreProducts from 'docs/src/components/productCore/CoreProducts';
@@ -10,7 +10,7 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 
 export default function Core() {
   return (
-    <BrandingCssVarsProvider>
+    <React.Fragment>
       <Head
         title="MUI Core: Ready-to-use React components, free forever"
         description="Get a growing list of React components, ready-to-use, free forever and with accessibility always in mind."
@@ -26,6 +26,6 @@ export default function Core() {
         <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
-    </BrandingCssVarsProvider>
+    </React.Fragment>
   );
 }

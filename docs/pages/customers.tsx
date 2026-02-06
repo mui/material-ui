@@ -1,5 +1,4 @@
 import * as React from 'react';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import CustomersHero from 'docs/src/components/customers/CustomersHero';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -25,7 +24,7 @@ export const getStaticProps = () => {
 
 export default function Customers(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <BrandingCssVarsProvider>
+    <React.Fragment>
       <Head title="Customers - MUI" description="Meet the teams powered by MUI" />
       <AppHeaderBanner />
       <AppHeader />
@@ -50,6 +49,6 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
         <Divider />
       </main>
       <AppFooter />
-    </BrandingCssVarsProvider>
+    </React.Fragment>
   );
 }

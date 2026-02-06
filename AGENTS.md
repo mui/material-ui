@@ -154,6 +154,10 @@ describe('Button', () => {
 });
 ```
 
+### JSX Fragments
+
+Prefer the short syntax `<>...</>` over `<React.Fragment>...</React.Fragment>`. This avoids needing an explicit React import solely for fragments.
+
 ### Imports
 
 Use one-level deep imports to avoid bundling entire packages:

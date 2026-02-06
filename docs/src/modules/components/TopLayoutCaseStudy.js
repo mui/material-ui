@@ -6,7 +6,6 @@ import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -180,7 +179,7 @@ export default function TopLayoutCaseStudy(props) {
   }
 
   return (
-    <BrandingCssVarsProvider>
+    <React.Fragment>
       <AppHeader />
       <Head
         title={`${finalTitle} - MUI`}
@@ -258,7 +257,7 @@ export default function TopLayoutCaseStudy(props) {
         <Divider />
         <AppFooter />
       </Root>
-    </BrandingCssVarsProvider>
+    </React.Fragment>
   );
 }
 

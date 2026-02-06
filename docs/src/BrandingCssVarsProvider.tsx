@@ -12,6 +12,7 @@ import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 // @ts-ignore to bypass type checking in MUI X repo
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
@@ -127,11 +128,9 @@ export function resetDocsSpacing() {
   }
 }
 
-export default function BrandingCssVarsProvider(props: {
-  children: React.ReactNode;
-  direction?: 'ltr' | 'rtl';
-}) {
-  const { direction = 'ltr', children } = props;
+export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
+  const { children } = props;
+  const { direction } = React.useContext(ThemeOptionsContext);
   const { asPath } = useRouter();
   const { canonicalAs } = pathnameToLanguage(asPath);
   const theme = React.useMemo(() => {
