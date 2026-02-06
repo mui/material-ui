@@ -147,7 +147,7 @@
     "react-dom": "19.2.3",
     "rimraf": "6.1.2",
     "serve": "14.2.5",
-    "stylelint": "16.26.1",
+    "stylelint": "17.1.1",
     "tsconfig-paths-webpack-plugin": "4.2.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
