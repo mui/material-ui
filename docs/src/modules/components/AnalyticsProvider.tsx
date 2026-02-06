@@ -79,9 +79,5 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     [consentStatus, doNotTrack],
   );
 
-  return (
-    <AnalyticsContext.Provider value={contextValue}>
-      {children}
-    </AnalyticsContext.Provider>
-  );
+  return <AnalyticsContext.Provider value={contextValue}>{children}</AnalyticsContext.Provider>;
 }
