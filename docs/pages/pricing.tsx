@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
@@ -11,6 +10,7 @@ import PricingWhatToExpect from 'docs/src/components/pricing/PricingWhatToExpect
 import PricingFAQ from 'docs/src/components/pricing/PricingFAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import { PrioritySupportProvider } from 'docs/src/components/pricing/PrioritySupportContext';
 import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
@@ -18,7 +18,7 @@ import PricingCards from 'docs/src/components/pricing/PricingCards';
 
 export default function Pricing() {
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head
         title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
@@ -54,6 +54,6 @@ export default function Pricing() {
         <Divider />
       </main>
       <AppFooter />
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }

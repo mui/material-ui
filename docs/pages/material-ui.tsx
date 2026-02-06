@@ -1,6 +1,6 @@
-import * as React from 'react';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import MaterialHero from 'docs/src/components/productMaterial/MaterialHero';
 import MaterialComponents from 'docs/src/components/productMaterial/MaterialComponents';
@@ -15,7 +15,7 @@ import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function MaterialUI() {
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head
         title="Material UI: React components that implement Material Design"
         description="Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box."
@@ -41,6 +41,6 @@ export default function MaterialUI() {
         <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }

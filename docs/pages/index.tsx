@@ -1,4 +1,3 @@
-import * as React from 'react';
 import NoSsr from '@mui/material/NoSsr';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
@@ -12,12 +11,13 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import Sponsors from 'docs/src/components/home/Sponsors';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import NewsletterToast from 'docs/src/components/home/NewsletterToast';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function Home() {
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head
         title="MUI: The React component library you always wanted"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
@@ -65,6 +65,6 @@ export default function Home() {
         <Divider />
       </main>
       <AppFooter />
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }

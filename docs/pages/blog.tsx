@@ -21,6 +21,7 @@ import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import { Link } from '@mui/docs/Link';
@@ -229,7 +230,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   };
 
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head
         title="Blog - MUI"
         description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
@@ -471,6 +472,6 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       <HeroEnd />
       <Divider />
       <AppFooter />
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }

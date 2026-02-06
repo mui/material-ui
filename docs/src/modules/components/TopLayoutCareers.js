@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
@@ -7,6 +6,7 @@ import Head from 'docs/src/modules/components/Head';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
@@ -37,7 +37,7 @@ export default function TopLayoutCareers(props) {
   const t = useTranslate();
 
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <AppHeader />
       <Head
         title={`${title} - MUI`}
@@ -64,7 +64,7 @@ export default function TopLayoutCareers(props) {
         <Divider />
         <AppFooter />
       </StyledDiv>
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }
 

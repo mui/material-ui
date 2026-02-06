@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Section from 'docs/src/layouts/Section';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -30,7 +31,7 @@ export default function BrandingThemeTest() {
     setAge(event.target.value as string);
   };
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head title="MUI Branding Theme Test" description="" />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
@@ -218,6 +219,6 @@ export default function BrandingThemeTest() {
         <Divider />
       </main>
       <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/material-ui" />
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }

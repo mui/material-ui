@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,6 +8,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import Section from 'docs/src/layouts/Section';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from '@mui/docs/i18n';
@@ -44,7 +44,7 @@ export default function Components() {
     );
   }
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head
         title="Components - MUI"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
@@ -95,6 +95,6 @@ export default function Components() {
       </main>
       <Divider />
       <AppFooter />
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }

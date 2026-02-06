@@ -8,6 +8,7 @@ import {
 } from '@mui/joy/styles';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from 'docs/src/modules/components/ThemeContext';
+import BrandingCssVarsProvider from './BrandingCssVarsProvider';
 
 const defaultTheme = createTheme({
   colorSchemes: { light: true, dark: true },
@@ -37,9 +38,10 @@ export function DemoPageThemeProvider({
    */
   hasJoy?: boolean;
 }>) {
+  const themeOptions = React.useContext(ThemeOptionsContext);
   const joyTheme = React.useMemo(() => (hasJoy ? extendTheme() : undefined), [hasJoy]);
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider {...themeOptions}>
       {/* The ThemeProvider below generate default Material UI CSS variables and attach to html for all the demo on the page */}
       {/* This is more performant than generating variables in each demo. */}
       <ThemeProvider theme={defaultTheme} />
@@ -51,7 +53,7 @@ export function DemoPageThemeProvider({
       ) : (
         children
       )}
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }
 

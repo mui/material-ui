@@ -12,6 +12,7 @@ import RoleEntry from 'docs/src/components/careers/RoleEntry';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Head from 'docs/src/modules/components/Head';
@@ -118,7 +119,7 @@ const nextRolesData = [
 
 export default function Careers() {
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <Head
         title="Careers - MUI"
         description="Interested in joining MUI? Learn about the roles we're hiring for."
@@ -237,6 +238,6 @@ export default function Careers() {
       </main>
       <Divider />
       <AppFooter />
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }
