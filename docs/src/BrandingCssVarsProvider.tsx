@@ -12,6 +12,8 @@ import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 // @ts-ignore to bypass type checking in MUI X repo
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
+// @ts-ignore to bypass type checking in MUI X repo
+import CookieConsentDialog from 'docs/src/modules/components/CookieConsentDialog';
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
@@ -174,6 +176,7 @@ export default function BrandingCssVarsProvider(props: {
       <CssBaseline />
       <SkipLink />
       <MarkdownLinks />
+      <CookieConsentDialog />
       {children}
     </ThemeProvider>
   );
