@@ -154,9 +154,11 @@ describe('Button', () => {
 });
 ```
 
-### JSX Fragments
+### React
 
-Prefer the short syntax `<>...</>` over `<React.Fragment>...</React.Fragment>`. This avoids needing an explicit React import solely for fragments.
+- Always import React as `import * as React from 'react';` (not `import React from 'react'`)
+- Access React methods via the namespace (e.g. `React.useState`, `React.useEffect`), do not use named imports like `import { useState } from 'react'`
+- Use `<React.Fragment>` instead of the `<>...</>` shorthand (enforced by ESLint)
 
 ### Imports
 
