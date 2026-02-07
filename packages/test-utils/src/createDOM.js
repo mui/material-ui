@@ -54,9 +54,13 @@ function createDOM() {
   }
   global.window.Touch = Touch;
 
-  global.navigator = {
-    userAgent: 'node.js',
-  };
+  Object.defineProperty(global, 'navigator', {
+    value: {
+      userAgent: 'node.js',
+    },
+    configurable: true,
+    writable: true,
+  });
 
   Object.keys(dom.window)
     .filter((key) => !blacklist.includes(key))
