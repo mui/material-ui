@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -27,7 +27,7 @@ const navItems = [
 ];
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   return (
     <>

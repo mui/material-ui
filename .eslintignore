@@ -36,3 +36,6 @@ node_modules
 # If we want to format these files we'd need to do it in crowdin
 docs/**/*-pt.md
 docs/**/*-zh.md
+
+# Standalone demo apps
+/apps/profplotnik-mui

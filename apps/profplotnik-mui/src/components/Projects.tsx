@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -139,7 +139,8 @@ export default function Projects() {
           color="text.secondary"
           sx={{ mb: 5, maxWidth: 600, mx: 'auto' }}
         >
-          Готовые проекты деревянных домов из бруса. Возможна доработка любого проекта под ваши пожелания.
+          Готовые проекты деревянных домов из бруса. Возможна доработка любого проекта под ваши
+          пожелания.
         </Typography>
 
         <Grid container spacing={3}>

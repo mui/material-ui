@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -18,7 +18,8 @@ const services = [
   {
     icon: <HomeIcon sx={{ fontSize: 48 }} />,
     title: 'Дома из бруса',
-    description: 'Строительство домов из профилированного бруса камерной сушки и естественной влажности.',
+    description:
+      'Строительство домов из профилированного бруса камерной сушки и естественной влажности.',
     color: '#5d4037',
   },
   {

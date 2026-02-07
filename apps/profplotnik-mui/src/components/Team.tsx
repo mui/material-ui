@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -92,7 +92,13 @@ export default function Team() {
                   <Typography variant="body2" color="text.secondary" gutterBottom>
                     {member.role}
                   </Typography>
-                  <Rating value={member.rating} precision={0.5} size="small" readOnly sx={{ mb: 1 }} />
+                  <Rating
+                    value={member.rating}
+                    precision={0.5}
+                    size="small"
+                    readOnly
+                    sx={{ mb: 1 }}
+                  />
                   <Box sx={{ mt: 1 }}>
                     <Chip
                       label={`Стаж ${member.experience}`}

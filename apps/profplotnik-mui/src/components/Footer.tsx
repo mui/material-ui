@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -13,9 +13,9 @@ import EmailIcon from '@mui/icons-material/Email';
 import TelegramIcon from '@mui/icons-material/Telegram';
 
 const footerLinks = {
-  'Проекты': ['Дома из бруса', 'Каркасные дома', 'Бани из бруса', 'Все проекты'],
-  'Услуги': ['Фундаменты', 'Кровельные работы', 'Отделка', 'Строительство под ключ'],
-  'Компания': ['О компании', 'Наши бригады', 'Фотоотчёты', 'Отзывы'],
+  Проекты: ['Дома из бруса', 'Каркасные дома', 'Бани из бруса', 'Все проекты'],
+  Услуги: ['Фундаменты', 'Кровельные работы', 'Отделка', 'Строительство под ключ'],
+  Компания: ['О компании', 'Наши бригады', 'Фотоотчёты', 'Отзывы'],
 };
 
 export default function Footer() {
@@ -40,7 +40,8 @@ export default function Footer() {
               </Typography>
             </Stack>
             <Typography variant="body2" sx={{ mb: 2, opacity: 0.7, lineHeight: 1.6 }}>
-              Строительство деревянных домов и бань из Костромы. Работаем по всей России с 2011 года.
+              Строительство деревянных домов и бань из Костромы. Работаем по всей России с 2011
+              года.
             </Typography>
             <Stack direction="row" spacing={0.5} alignItems="center">
               <PhoneIcon sx={{ fontSize: 18 }} />
@@ -90,7 +91,8 @@ export default function Footer() {
               </IconButton>
             </Stack>
             <Typography variant="body2" sx={{ mt: 2, opacity: 0.6, lineHeight: 1.6 }}>
-              Подписывайтесь на наши каналы, чтобы следить за ходом строительства и новыми проектами.
+              Подписывайтесь на наши каналы, чтобы следить за ходом строительства и новыми
+              проектами.
             </Typography>
           </Grid>
         </Grid>
@@ -107,10 +109,18 @@ export default function Footer() {
             &copy; 2011–2024 СК «Профплотник». Все права защищены.
           </Typography>
           <Stack direction="row" spacing={2}>
-            <Link href="#" underline="hover" sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem' }}>
+            <Link
+              href="#"
+              underline="hover"
+              sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem' }}
+            >
               Политика конфиденциальности
             </Link>
-            <Link href="#" underline="hover" sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem' }}>
+            <Link
+              href="#"
+              underline="hover"
+              sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem' }}
+            >
               Договор оферты
             </Link>
           </Stack>

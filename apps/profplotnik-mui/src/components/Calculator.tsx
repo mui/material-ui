@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -19,7 +19,7 @@ import CalculateIcon from '@mui/icons-material/Calculate';
 const steps = ['Тип дома', 'Параметры', 'Контакты'];
 
 export default function Calculator() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
   const [houseType, setHouseType] = useState<string>('brus');
   const [area, setArea] = useState<number>(100);
 
@@ -38,7 +38,13 @@ export default function Calculator() {
       id="calculator"
     >
       <Container maxWidth="md">
-        <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 1 }}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          spacing={1}
+          sx={{ mb: 1 }}
+        >
           <CalculateIcon sx={{ fontSize: 36 }} />
           <Typography variant="h2" align="center" sx={{ color: 'white' }}>
             Калькулятор стоимости

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -75,7 +75,9 @@ export default function Reviews() {
                   </Typography>
                   <Rating value={review.rating} size="small" readOnly sx={{ mb: 2 }} />
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                    <Avatar sx={{ bgcolor: 'primary.main', width: 36, height: 36, fontSize: '0.85rem' }}>
+                    <Avatar
+                      sx={{ bgcolor: 'primary.main', width: 36, height: 36, fontSize: '0.85rem' }}
+                    >
                       {review.initials}
                     </Avatar>
                     <Box>
