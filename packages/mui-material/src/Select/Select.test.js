@@ -1947,34 +1947,58 @@ describe('<Select />', () => {
   });
 
   it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
-    // reset fake timers
     clock.restore();
 
-    // --- Instrumentation: wrap ResizeObserver to track callbacks ---
+    // --- Instrumentation: wrap ResizeObserver to track full lifecycle ---
     let anchor;
-    const roCallbacks = [];
+    const roLog = [];
     const OriginalRO = window.ResizeObserver;
+    let instanceCount = 0;
+
     window.ResizeObserver = class extends OriginalRO {
       constructor(callback) {
+        const id = instanceCount;
+        instanceCount += 1;
         super((...args) => {
-          roCallbacks.push({
+          roLog.push({
+            type: 'callback',
+            instance: id,
             clientWidth: anchor?.clientWidth,
             contentRectWidth: args[0]?.[0]?.contentRect?.width,
             time: performance.now(),
           });
           callback(...args);
         });
+        roLog.push({ type: 'construct', instance: id, time: performance.now() });
+      }
+
+      observe(target, options) {
+        roLog.push({
+          type: 'observe',
+          target: target === anchor ? 'anchor' : target?.className || target?.tagName,
+          time: performance.now(),
+        });
+        return super.observe(target, options);
+      }
+
+      unobserve(target) {
+        roLog.push({
+          type: 'unobserve',
+          target: target === anchor ? 'anchor' : target?.className || target?.tagName,
+          time: performance.now(),
+        });
+        return super.unobserve(target);
+      }
+
+      disconnect() {
+        roLog.push({ type: 'disconnect', time: performance.now() });
+        return super.disconnect();
       }
     };
     // --- End instrumentation setup ---
 
     render(
-      <Select
-        value=""
-        MenuProps={{
-          transitionDuration: 0,
-        }}
-      >
+      <Select value="" MenuProps={{ transitionDuration: 0 }}>
         <MenuItem value="">None</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
@@ -1982,8 +2006,6 @@ describe('<Select />', () => {
 
     const combobox = screen.getByRole('combobox');
     anchor = combobox.parentElement;
-
-    // Give the anchor a deterministic width that will affect clientWidth in a real browser.
     anchor.style.width = '320px';
 
     fireEvent.mouseDown(combobox);
@@ -1994,16 +2016,23 @@ describe('<Select />', () => {
       expect(paper.style.minWidth).to.equal('320px');
     });
 
-    const callbackCountBeforeResize = roCallbacks.length;
+    const logCountBeforeResize = roLog.length;
 
-    // Simulate a "window resize" effect by changing the anchor's width while open.
     anchor.style.width = '180px';
+
+    // ResizeObserver callbacks are delivered during the browser's rendering pipeline.
+    // Force at least one complete frame so the RO can detect the size change,
+    // and wrap in act() since the RO callback triggers a React state update.
+    await act(async () => {
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
 
     await waitFor(() => {
       const listbox = screen.getByRole('listbox');
       const paper = listbox.parentElement;
 
-      // Log diagnostics before the assertion so CI captures them on failure
       // eslint-disable-next-line no-console
       console.log(
         'Select resize diagnostics (in waitFor):',
@@ -2012,8 +2041,8 @@ describe('<Select />', () => {
             minWidth: paper.style.minWidth,
             anchorClientWidth: anchor.clientWidth,
             anchorStyleWidth: anchor.style.width,
-            callbackCountBeforeResize,
-            roCallbacks,
+            logCountBeforeResize,
+            roLog,
           },
           null,
           2,
@@ -2023,14 +2052,9 @@ describe('<Select />', () => {
       expect(paper.style.minWidth).to.equal('180px');
     });
 
-    // --- Log diagnostics even on success for local verification ---
     // eslint-disable-next-line no-console
-    console.log(
-      'Select resize diagnostics (after pass):',
-      JSON.stringify({ callbackCountBeforeResize, roCallbacks }, null, 2),
-    );
+    console.log('Select resize diagnostics (after pass):', JSON.stringify({ roLog }, null, 2));
 
-    // --- Cleanup instrumentation ---
     window.ResizeObserver = OriginalRO;
   });
 });
