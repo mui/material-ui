@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/cf91f1f4fa54651c2c100f6a84f9201675adf0fb/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/fb263291390f4a491f6f8902923de709c5336d5c/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
