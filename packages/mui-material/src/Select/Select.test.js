@@ -1949,54 +1949,6 @@ describe('<Select />', () => {
   it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
     clock.restore();
 
-    // --- Instrumentation: wrap ResizeObserver to track full lifecycle ---
-    let anchor;
-    const roLog = [];
-    const OriginalRO = window.ResizeObserver;
-    let instanceCount = 0;
-
-    window.ResizeObserver = class extends OriginalRO {
-      constructor(callback) {
-        const id = instanceCount;
-        instanceCount += 1;
-        super((...args) => {
-          roLog.push({
-            type: 'callback',
-            instance: id,
-            clientWidth: anchor?.clientWidth,
-            contentRectWidth: args[0]?.[0]?.contentRect?.width,
-            time: performance.now(),
-          });
-          callback(...args);
-        });
-        roLog.push({ type: 'construct', instance: id, time: performance.now() });
-      }
-
-      observe(target, options) {
-        roLog.push({
-          type: 'observe',
-          target: target === anchor ? 'anchor' : target?.className || target?.tagName,
-          time: performance.now(),
-        });
-        return super.observe(target, options);
-      }
-
-      unobserve(target) {
-        roLog.push({
-          type: 'unobserve',
-          target: target === anchor ? 'anchor' : target?.className || target?.tagName,
-          time: performance.now(),
-        });
-        return super.unobserve(target);
-      }
-
-      disconnect() {
-        roLog.push({ type: 'disconnect', time: performance.now() });
-        return super.disconnect();
-      }
-    };
-    // --- End instrumentation setup ---
-
     render(
       <Select value="" MenuProps={{ transitionDuration: 0 }}>
         <MenuItem value="">None</MenuItem>
@@ -2005,7 +1957,7 @@ describe('<Select />', () => {
     );
 
     const combobox = screen.getByRole('combobox');
-    anchor = combobox.parentElement;
+    const anchor = combobox.parentElement;
     anchor.style.width = '320px';
 
     fireEvent.mouseDown(combobox);
@@ -2016,44 +1968,20 @@ describe('<Select />', () => {
       expect(paper.style.minWidth).to.equal('320px');
     });
 
-    const logCountBeforeResize = roLog.length;
-
     anchor.style.width = '180px';
 
     // ResizeObserver callbacks are delivered during the browser's rendering pipeline.
-    // Force at least one complete frame so the RO can detect the size change.
-    //    await act(async () => {
-    //      await new Promise((resolve) => {
-    //        requestAnimationFrame(() => requestAnimationFrame(resolve));
-    //      });
-    //    });
+    // Force at least one complete frame so the RO can detect the size change,
+    await act(async () => {
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
 
     await waitFor(() => {
       const listbox = screen.getByRole('listbox');
       const paper = listbox.parentElement;
-
-      // eslint-disable-next-line no-console
-      console.log(
-        'Select resize diagnostics (in waitFor):',
-        JSON.stringify(
-          {
-            minWidth: paper.style.minWidth,
-            anchorClientWidth: anchor.clientWidth,
-            anchorStyleWidth: anchor.style.width,
-            logCountBeforeResize,
-            roLog,
-          },
-          null,
-          2,
-        ),
-      );
-
       expect(paper.style.minWidth).to.equal('180px');
     });
-
-    // eslint-disable-next-line no-console
-    console.log('Select resize diagnostics (after pass):', JSON.stringify({ roLog }, null, 2));
-
-    window.ResizeObserver = OriginalRO;
   });
 });
