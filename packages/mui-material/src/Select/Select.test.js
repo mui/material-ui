@@ -2021,13 +2021,12 @@ describe('<Select />', () => {
     anchor.style.width = '180px';
 
     // ResizeObserver callbacks are delivered during the browser's rendering pipeline.
-    // Force at least one complete frame so the RO can detect the size change,
-    // and wrap in act() since the RO callback triggers a React state update.
-    await act(async () => {
-      await new Promise((resolve) => {
-        requestAnimationFrame(() => requestAnimationFrame(resolve));
-      });
-    });
+    // Force at least one complete frame so the RO can detect the size change.
+    //    await act(async () => {
+    //      await new Promise((resolve) => {
+    //        requestAnimationFrame(() => requestAnimationFrame(resolve));
+    //      });
+    //    });
 
     await waitFor(() => {
       const listbox = screen.getByRole('listbox');
