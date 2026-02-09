@@ -2004,6 +2004,7 @@ describe('<Select />', () => {
       const paper = listbox.parentElement;
 
       // Log diagnostics before the assertion so CI captures them on failure
+      // eslint-disable-next-line no-console
       console.log(
         'Select resize diagnostics (in waitFor):',
         JSON.stringify(
@@ -2023,6 +2024,7 @@ describe('<Select />', () => {
     });
 
     // --- Log diagnostics even on success for local verification ---
+    // eslint-disable-next-line no-console
     console.log(
       'Select resize diagnostics (after pass):',
       JSON.stringify({ callbackCountBeforeResize, roCallbacks }, null, 2),
