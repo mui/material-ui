@@ -13,7 +13,7 @@ interface DemoReplaceOptions {
  */
 export function removeComponentSyntax(markdownContent: string): string {
   // Regular expression to match {{"component": "ComponentName"}} pattern
-  const componentRegex = /\{\{"component":\s*"[^"]+"\}\}/g;
+  const componentRegex = /\{\{\s*"component":\s*"[^"]+"\s*\}\}/g;
   return markdownContent.replace(componentRegex, '');
 }
 
@@ -39,10 +39,10 @@ export function replaceDemoWithSnippet(
   markdownPath: string,
   options: DemoReplaceOptions = {},
 ): string {
-  const { basePath = '', includeTypeScript = true } = options;
+  const { basePath = '' } = options;
 
   // Regular expression to match {{"demo": "filename.js"}} pattern
-  const demoRegex = /\{\{"demo":\s*"([^"]+)"(?:,\s*[^}]+)?\}\}/g;
+  const demoRegex = /\{\{\s*"demo":\s*"([^"]+)"(?:,\s*[^}]+)?\s*\}\}/g;
 
   return markdownContent.replace(demoRegex, (match, filename) => {
     try {
@@ -54,28 +54,26 @@ export function replaceDemoWithSnippet(
 
       let codeSnippet = '';
 
-      // Try to read JavaScript file
-      const jsPath = basePath
-        ? path.join(basePath, `${baseFilename}.js`)
-        : path.join(markdownDir, `${baseFilename}.js`);
+      // Try to read TypeScript file before JavaScript file
+      const tsPath = basePath
+        ? path.join(basePath, `${baseFilename}.tsx`)
+        : path.join(markdownDir, `${baseFilename}.tsx`);
 
-      if (fs.existsSync(jsPath)) {
-        const jsContent = fs.readFileSync(jsPath, 'utf-8');
-        codeSnippet += `\`\`\`jsx\n${jsContent}\n\`\`\``;
-      }
+      if (fs.existsSync(tsPath)) {
+        const tsContent = fs.readFileSync(tsPath, 'utf-8');
+        if (codeSnippet) {
+          codeSnippet += '\n\n';
+        }
+        codeSnippet += `\`\`\`tsx\n${tsContent}\n\`\`\``;
+      } else {
+        // Try to read JavaScript file
+        const jsPath = basePath
+          ? path.join(basePath, `${baseFilename}.js`)
+          : path.join(markdownDir, `${baseFilename}.js`);
 
-      // Try to read TypeScript file if includeTypeScript is true
-      if (includeTypeScript) {
-        const tsPath = basePath
-          ? path.join(basePath, `${baseFilename}.tsx`)
-          : path.join(markdownDir, `${baseFilename}.tsx`);
-
-        if (fs.existsSync(tsPath)) {
-          const tsContent = fs.readFileSync(tsPath, 'utf-8');
-          if (codeSnippet) {
-            codeSnippet += '\n\n';
-          }
-          codeSnippet += `\`\`\`tsx\n${tsContent}\n\`\`\``;
+        if (fs.existsSync(jsPath)) {
+          const jsContent = fs.readFileSync(jsPath, 'utf-8');
+          codeSnippet += `\`\`\`jsx\n${jsContent}\n\`\`\``;
         }
       }
 

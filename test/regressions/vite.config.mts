@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      // Unfortunatelly necessary as we opted to write our jsx in js files
+      // Unfortunately necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {
@@ -64,10 +64,6 @@ export default defineConfig({
       '@mui/internal-scripts/typescript-to-proptypes': path.resolve(
         WORKSPACE_ROOT,
         './packages-internal/scripts/typescript-to-proptypes/src',
-      ),
-      '@mui/internal-test-utils': path.resolve(
-        WORKSPACE_ROOT,
-        './packages-internal/test-utils/src',
       ),
       docs: path.resolve(WORKSPACE_ROOT, './docs'),
     },

@@ -40,7 +40,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the fab slot.
-     * By default, the avaible props are based on the [Fab](https://mui.com/material-ui/api/fab/#props) component.
+     * By default, the available props are based on the [Fab](https://mui.com/material-ui/api/fab/#props) component.
      */
     fab: SlotProps<
       React.ElementType<FabProps>,
@@ -49,7 +49,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the tooltip slot.
-     * By default, the avaible props are based on the [Tooltip](https://mui.com/material-ui/api/tooltip/#props) component.
+     * By default, the available props are based on the [Tooltip](https://mui.com/material-ui/api/tooltip/#props) component.
      */
     tooltip: SlotProps<
       React.ElementType<TooltipProps>,
@@ -58,7 +58,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the static tooltip slot.
-     * By default, the avaible props are based on a span element.
+     * By default, the available props are based on a span element.
      */
     staticTooltip: SlotProps<
       'span',
@@ -67,7 +67,7 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the static tooltip label slot.
-     * By default, the avaible props are based on a span element.
+     * By default, the available props are based on a span element.
      */
     staticTooltipLabel: SlotProps<
       'span',
@@ -78,7 +78,8 @@ export type SpeedDialActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface SpeedDialActionProps
-  extends Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
+  extends
+    Omit<StandardProps<Partial<TooltipProps>, 'children'>, 'slotProps' | 'slots'>,
     SpeedDialActionSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
@@ -140,5 +141,7 @@ export interface SpeedDialActionProps
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.Element;
 
-export interface SpeedDialActionOwnerState
-  extends Omit<SpeedDialActionProps, 'slots' | 'slotProps'> {}
+export interface SpeedDialActionOwnerState extends Omit<
+  SpeedDialActionProps,
+  'slots' | 'slotProps'
+> {}

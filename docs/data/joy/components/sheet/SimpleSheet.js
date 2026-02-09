@@ -1,5 +1,4 @@
 import Sheet from '@mui/joy/Sheet';
-import * as React from 'react';
 
 export default function SimpleSheet() {
   return (

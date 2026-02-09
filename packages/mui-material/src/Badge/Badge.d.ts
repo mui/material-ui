@@ -29,12 +29,12 @@ export type BadgeSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<'span', BadgeRootSlotPropsOverrides, BadgeOwnerState>;
     /**
      * Props forwarded to the label slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     badge: SlotProps<'span', BadgeBadgeSlotPropsOverrides, BadgeOwnerState>;
   }

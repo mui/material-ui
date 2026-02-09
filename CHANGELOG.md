@@ -1,5 +1,468 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.7
+
+<!-- generated comparing v7.3.6..master -->
+
+_Jan 8, 2026_
+
+A big thanks to the 16 contributors who made this release possible.
+
+### `@mui/material@7.3.7`
+
+- [accordion] Remove unnecessary handling of `square` prop on Accordion Root (#47457) @ZeeshanTamboli
+- [alert] Remove unnecessary default icon mapping fallback (#47460) @ZeeshanTamboli
+- [appbar] Fix inherit color CSS variable not getting applied (#47518) @ZeeshanTamboli
+- [autocomplete] Fix `ArrowLeft`, `Backspace` & `Delete` behavior for multiple and single-value rendering with proper caret handling (#47411) @jnbain
+- [backdrop] Remove unnecessary passing of `classes` from root slot (#47519) @ZeeshanTamboli
+- [button-group] Fix styles when variant is `contained` (#47499) @ZeeshanTamboli
+- [card-action-area] Remove incorrect root ref being forwarded to focus highlight component (#47523) @ZeeshanTamboli
+- [checkbox] Fix readonly checkboxes (#47503) @mj12albert
+- [click-away-listener] Tighten the parameter type of createHandleSynthetic method (#47525) @ZeeshanTamboli
+- [dialog] Fix backdrop theme style overrides (#47544) @ZeeshanTamboli
+- [focus-trap] Compute `activeElement` inside `loopFocus` on every keydown (#47566) @ZeeshanTamboli
+- [modal] Take non-integer padding-right into consideration when scroll locking (#47420) @Zache
+- [select] Fix dropdown width does not match trigger width on window resize (#47526) @AarishMansur
+- [tabs] Fix passing incorrect slot name props (scrollButton → scrollButtons) (#47215) @rithik56
+
+### Docs
+
+- [card] Fix key warning (#47524) @ZeeshanTamboli
+- [dialog] Replace TranstionProps with slotProps.transition (#47569) @sai6855
+- [number-field] Use stable Base UI package (#47504) @siriwatknp
+- [snackbar] Replace TransitionComponent with slots.transition (#47570) @sai6855
+- Fix incorrect indentation in migration guide (#47571) @sai6855
+- Enable MUI chat on Material UI demos (#46837) @siriwatknp
+- Add docs and website banner for Dev survey'25 (#47521) @prakhargupta1
+- Update Tailwind CSS v4 + Next.js Pages Router docs (#47546) @atharva3333
+- Add warning callout to Sync plugin doc (#47511) @mapache-salvaje
+- Update typo in TailwindCSS v4 integration with Next.js docs (#47512) @TimKraemer
+- Fix link to contributing guide (#47473) @oliviertassinari
+- Improve description of Accordion props (#47459) @ZeeshanTamboli
+
+### Core
+
+- [blog] Whats new since MUI X v8 [DX-51] (#47140) @joserodolfofreitas
+- [code-infra] Fix React@next CI job (#47493) @Janpot
+- [code-infra] Move font loading to @mui/docs (#47385) @Janpot
+- [code-infra] Fix CI for React 18 (#47560) @Janpot
+- [code-infra] Prevent legacy browsers tests from updating (#47496) @Janpot
+- [code-infra] Move `@mui/internal-test-utils` to code infra repo (#47422) @Janpot
+- [code-infra] Fix React@next CI job (#47493) @Janpot
+- [examples] Update Next.js versions to v16 in Next.js examples (DX-57) (#47453) @alelthomas
+- [internal] Bump Next.js & React version to avoid security vulnerability (#47427) @oliviertassinari
+- [test] Use plain playwright for e2e (#47410) @mj12albert
+- [test] Fix react-18 tests (#47407) @Janpot
+
+All contributors of this release in alphabetical order: @AarishMansur, @alelthomas, @atharva3333, @bricefrisco, @Janpot, @jnbain, @joserodolfofreitas, @mapache-salvaje, @mj12albert, @oliviertassinari, @prakhargupta1, @rithik56, @siriwatknp, @TimKraemer, @Zache, @ZeeshanTamboli
+
+## 7.3.6
+
+<!-- generated comparing v7.3.5..master -->
+
+_Dec 3, 2025_
+
+A big thanks to the 22 contributors who made this release possible.
+
+### @mui/material@7.3.6
+
+- [Accordion] Move properties to the AccordionOwnProps interface (#47348) @Aleksan4e3
+- [Autocomplete] Remove unnecessary `filterSelectedOptions` dependency from `syncHighlightedIndex` useCallback (#47378) @ZeeshanTamboli
+- [Autocomplete] Fix input caret not showing when focusing after chip navigation (#47249) @vrachuri28
+- [Autocomplete] Fix ArrowLeft crash when value is not set with single-value rendering (#47214) @rithik56
+- [Button] Fix running formAction when passed (#47185) @sai6855
+- [Chip] Remove leftover closing parenthesis in CSS class key (#47345) @ZeeshanTamboli
+- [ListItem] Add `secondaryAction` slot to `ListItem` (#47399) @sai6855
+- [NumberField] Fix scroll behavior (#47397) @oliviertassinari
+- [Select] Fix keyboard navigation while rendering in shadow DOM (#47380) @xBlizZer
+- [Select] Fix cannot pass certain event handlers (#47366) @ZeeshanTamboli
+- [Slider] Accept readonly array for `marks` prop (#47370) @pcorpet
+- [Snackbar] Avoid unnecessary `ownerState` spread into `useSnackbar` (#47373) @ZeeshanTamboli
+- [TextField] Allow custom props in slot props via TS module augmentation (#47367) @kumarvishwajeettrivedi
+- [Tabs] Fix Arrow key navigation failing when component is rendered in shadow DOM (#47178) @sai6855
+- Fix typings for theme `applyStyles` with custom color schemes (#47242) @akankshahu
+
+### @mui/system@7.3.6
+
+- Fix unwanted attribute on DOM from InitColorSchemeScript `class` attribute (#47200) @siriwatknp
+
+### @mui/lab@7.3.6
+
+- [Masonry] Fix layout flicker and single column issue (#43903) @Fanzzzd
+
+### Docs
+
+- Fix default theme viewer styling (#47400) @sai6855
+- Remove repetitive words (#47384) @rifeplight
+- Fix link to Portal API docs (#47383) @ZeeshanTamboli
+- Remove mentions of MUI Base from Material UI docs (#47324) @mapache-salvaje
+- Update CSP guidance (#47342) @rossdakin
+- Fix pathname collision in LLMs docs generator (#47209) @siriwatknp
+- Resolve redirected urls to their final location (#47193) @Janpot
+- Document correct default values for `elevation` and `square` props (#47261) @Ad1tya-007
+- Fix display of colors in dark mode in palette customization page (#47403) @sai6855
+- Add Number Field component page (#47165) @siriwatknp
+- Fix mcp schema change (#47171) @sai6855
+
+### Core
+
+- [code-infra] Add types for markdown loader (#47075) @Janpot
+- [code-infra] Build test utils with code-infra pipeline (#47405) @Janpot
+- [code-infra] Vitest test migration (#44325) @JCQuintas
+- [code-infra] Revive docs bundle analyzer (#47401) @Janpot
+- [code-infra] Update tests from vitest PR (#47344) @Janpot
+- [code-infra] Use util from code-infra to fetch changelogs (#47350) @brijeshb42
+- [code-infra] Enable production sourcemaps (#47352) @Janpot
+- [code-infra] Use code-infra orb utils in circle ci (#47179) @brijeshb42
+- [code-infra] Use `next/font` for local fonts (#47351) @Janpot
+- [code-infra] New broken links checker (#47113) @Janpot
+- [code-infra] Remove profiler (#47258) @Janpot
+- [code-infra] Api doc optimizations (#47188) @Janpot
+- [code-infra] Increase type check parallelism (#47192) @Janpot
+- [code-infra] Remove deprecated baseUrl (#47210) @Janpot
+- [code-infra] Disable next.js cache (#47233) @Janpot
+- [code-infra] release:build for bundle checker (#47207) @Janpot
+- [code-infra] Parallelize module augmentation tests (#47208) @Janpot
+- [code-infra] Fix next.js parallelism at 2 for macos runner (#47201) @Janpot
+- [code-infra] Fix bash escape (#46969) @oliviertassinari
+- [code-infra] Utilise eslint cache in CI (#47194) @Janpot
+- [code-infra] Enable Next.js build cache to improve CI performance (#47176) @Copilot
+- [code-infra] Remove `apps` folder (#47183) @Janpot
+- [code-infra] Migrate everything to getStaticProps (#47152) @Janpot
+- [docs-infra] Migrate to `next/font` (#47347) @Janpot
+- [docs-infra] Add some `ComponentLinkHeader` bottom margin (#47328) @Janpot
+- [docs-infra] Exclude a few pages from llms-txt (#47111) @Janpot
+- [examples] Add missing .gitignore to NextJS App Router example (#47251) @shamblonaut
+- [examples] Migrate Next.js `next.config.js` to `next.config.mjs` (#44040) @albarv340
+- [internal] Remove leftover testing-library libraries from `mui-material` package (#47392) @ZeeshanTamboli
+- [internal] Remove unnecessary `clean-css` package from docs (#47314) @ZeeshanTamboli
+- [internal] Fix typo `buidApiDocs` -> `buildApiDocs` (#47235) @Ad1tya-007
+- [internal] Remove unused `@vitest/browser` and `@vitest/coverage-v8` (#47189) @ZeeshanTamboli
+- [test] Update e2e test app (#47252) @Ad1tya-007
+- [test] Fix flaky Virtualize Autocomplete regression test (#47199) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @Ad1tya-007, @akankshahu, @albarv340, @Aleksan4e3, @brijeshb42, @Copilot, @Fanzzzd, @Janpot, @JCQuintas, @kumarvishwajeettrivedi, @mapache-salvaje, @oliviertassinari, @pcorpet, @rifeplight, @rithik56, @rossdakin, @sai6855, @shamblonaut, @siriwatknp, @vrachuri28, @xBlizZer, @ZeeshanTamboli
+
+## 7.3.5
+
+<!-- generated comparing v7.3.4..master -->
+
+_Nov 4, 2025_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@7.3.5`
+
+- [Collapse] Add slots and slotProps props (#47168) @sai6855
+- [l10n] Add missing Catalan (ca-ES) locale (#47156) @frncesc
+- Fix regression on `theme.vars.shape` module augmentation (#47164) @siriwatknp
+
+### `@mui/material-nextjs@7.3.5`
+
+- Support Next.js 16 (#47134) @siriwatknp
+
+### Docs
+
+- [Autocomplete] Update virtualization example to use react-window v2 (#47054) @sai6855
+- [autocomplete] Add note about unique key extraction for duplicate labels (#47010) @PossiblyAShrub
+- [Snackbar] Fix typo in docs (#47038) @sai6855
+- [Transition] Fix horizontal scroll in SimpleFade demo in mobile screens (#47169) @sai6855
+- Replace deprecated `inputProps` with `slotProps.input` in checkbox demos (#47083) @CODEKRUNCH
+
+### Core
+
+- [code-infra] gitignore next-env.d.ts (#47167) @Janpot
+- [code-infra] Migrate versions page to getStaticProps (#47151) @Janpot
+- [code-infra] Fix breaking change for ci publish (#47147) @brijeshb42
+- [code-infra] Remove React import requirement for jsx (#47146) @brijeshb42
+- [code-infra] Update vitest usage detection in `@mui/internal-test-utils` (#47141) @bernardobelchior
+- [code-infra] Setup eslint-plugin-compat (#47133) @brijeshb42
+- [code-infra] Filter out @mui/joy and @mui/base from search results (#47076) @Janpot
+- [code-infra] Fix hotfix instructions (#47015) @Janpot
+- [code-infra] Disable pigment regression tests (#47045) @Janpot
+- [code-infra] Fix moderate dependabot issue (#46946) @Janpot
+- [code-infra] Enable testing-library eslint rules (#47074) @brijeshb42
+- [code-infra] Lint json through eslint (#47056) @Janpot
+- [code-infra] Support custom npm dist tags during release (#47021) @Janpot
+- [code-infra] Remove tsconfig `baseUrl` (#47044) @Janpot
+- [code-infra] Centralize stylelint (#46955) @Janpot
+- [code-infra] Remove legacy feedback (#46981) @Janpot
+- [code-infra] Remove repo build scripts (#47036) @brijeshb42
+- [code-infra] Publish docs from upstream (#47018) @Janpot
+- [code-infra] Migrate `lodash` to `es-toolkit` (#46974) @sukvvon
+- [docs-infra] Do not escape pipes (`|`) inside code blocks (#47139) @ZeeshanTamboli
+- [docs-infra] Fix broken link targets (#47104) @Janpot
+- [docs-infra] Fix broken link for DOMRect docs (#47106) @Janpot
+- [docs-infra] Use published netlify cache plugin package (#47071) @brijeshb42
+- [examples] Remove Next.js text from React Router example (#47055) @HeinrichFilter
+
+All contributors of this release in alphabetical order: @bernardobelchior, @brijeshb42, @CODEKRUNCH, @frncesc, @HeinrichFilter, @Janpot, @PossiblyAShrub, @sai6855, @siriwatknp, @sukvvon, @ZeeshanTamboli
+
+## 7.3.4
+
+<!-- generated comparing v7.3.3..master -->
+
+_Oct 2, 2025_
+
+A big thanks to the 3 contributors who made this release possible. Here are some highlights ✨:
+
+Small update to revert a change that broke the `<Tabs>` component. Also publishing a beta version of `@mui/lab` which was accidentally published as a stable release.
+
+### `@mui/material@7.3.4`
+
+- [Tabs] Revert "Fix not scrolling to correct tab after refresh when auto scrollable (#46869)" (#47014) @ZeeshanTamboli
+
+### Docs
+
+- Sort package manager automatically (#46897) @Janpot
+
+### Core
+
+- Bring @mui/lab back to unstable version (#47012) @Janpot
+- Fix `ThemeOptions` and `createTheme*` cyclic dependency (#47007) @siriwatknp
+
+All contributors of this release in alphabetical order: @Janpot, @siriwatknp, @ZeeshanTamboli
+
+## 7.3.3
+
+<!-- generated comparing v7.3.2..master -->
+
+_Sep 30, 2025_
+
+A big thanks to the 14 contributors who made this release possible.
+
+### `@mui/material@7.3.3`
+
+- [Autocomplete] Sync highlighted index when popup is opened (#46894) @ZeeshanTamboli
+- [CircularProgress] Add track slot via enableTrackSlot (#46907) @monam2
+- [locale] Split locales into separate files (#46933) @christopherschroer
+- [Tabs] Fix not scrolling to correct tab after refresh when auto scrollable (#46869) @Jayesh-11
+
+### Docs
+
+- Add a guide for building extensible themes (#46896) @siriwatknp
+- Add v7 community course to resources page (#46944) @alelthomas
+- Improve performance of Default Theme Viewer (#46841) @sai6855
+- Fix typo in blog component MainContent (#46868) @jonyen
+- [Steppers] Replace TransitionProps with slotProps.transition (#46898) @sai6855
+
+### Core
+
+- [blog] Fix year in Punta Cana retreat post (#46943) @mapache-salvaje
+- [blog] Punta Cana retreat post (#46892) @mapache-salvaje
+- [code-infra] Publish from CI (#46851) @Janpot
+- [code-infra] Convert reportBrokenLink script to ts (#47002) @brijeshb42
+- [code-infra] Update module resolution for typescript@next (#46940) @Janpot
+- [code-infra] Run continuous releases during ci-check (#46948) @Janpot
+- [code-infra] Fix github actions check for continuous release (#46941) @Janpot
+- [code-infra] Address high/critical dependabot reports (#46937) @Janpot
+- [code-infra] Update ci.yml triggers (#46860) @Janpot
+- [code-infra] Exact match for renovate file name (#46916) @Janpot
+- [code-infra] Disable dependency update for `@material-ui/core` in codemod (#46899) @Janpot
+- [code-infra] Transpile `assertion-error` in karma tests (#46909) @Janpot
+- [code-infra] Disable browserstack on circleci cron jobs (#46905) @Janpot
+- [code-infra] Remove `copy-files` command usage from packages (#46902) @brijeshb42
+- [code-infra] Low-hanging ts conversion (#46903) @Janpot
+- [code-infra] Bring batch of changes from vitest PR (#46795) @Janpot
+- [code-infra] Remove dependency on `fs-extra` (#46755) @bernardobelchior
+- [code-infra] Make error code extraction independent of build (#46865) @brijeshb42
+- [docs-infra] Fix markdown generation script to find correct files (#46954) @siriwatknp
+- [docs-infra] Fix unnecessary redirects (#46951) @Janpot
+- [docs-infra] Remove `dangerouslySetInnerHTML` for ad description (#46936) @Janpot
+- [docs-infra] Display "View as Markdown" only on Material UI (#46861) @siriwatknp
+- [infra] Fix JSON files not being imported in TS demos (#47000) @bernardobelchior
+- [infra] Turn `literal | (string & {})` to `PropTypes.string` (#46934) @siriwatknp
+- [infra] Bump node.js version and make local usage strict (#46834) @brijeshb42
+- [infra] Remove "main" fields from publishable packages (#46856) @brijeshb42
+- [internal] Refactor `useForkRef` TS types: tighten `cleanupRef` and simplify ref typing (#46967) @wo-o29
+- [internal] Fix naming to match convention (2099cb0) @oliviertassinari
+- [internal] Fix naming to match convention (29aad62) @oliviertassinari
+- [internal] Use same option as other repositories (eabda77) @oliviertassinari
+- [internal] Normalize <meta name='viewport' (9d1922a) @oliviertassinari
+- [internal] Normalize charset='utf-8' (f1aae00) @oliviertassinari
+- [test] Split infinitive (0237fda) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alelthomas, @bernardobelchior, @brijeshb42, @christopherschroer, @Janpot, @Jayesh-11, @jonyen, @mapache-salvaje, @monam2, @oliviertassinari, @sai6855, @siriwatknp, @wo-o29, @ZeeshanTamboli
+
+## 7.3.2
+
+<!-- generated comparing v7.3.1..master -->
+
+_Sep 1, 2025_
+
+A big thanks to the 16 contributors who made this release possible.
+
+### `@mui/material@7.3.2`
+
+- [Chip] Remove unnecessary optional chaining from key event handlers (#46752) @ZeeshanTamboli
+- [Drawer] Add dialog role and aria-modal for `temporary` variant (#46690) @Yashkanekar
+- [PaginationItem] Add slot descriptions and default components in API documentation (#46677) @sai6855
+- [utils] Remove duplicate isHostComponent function (#46721) @frontman-git
+
+### `@mui/codemod@7.3.2`
+
+- Add codemod to convert top-level to path imports (#46657) @neemski
+
+### Docs
+
+- Remove outdated Next.js lint command (#46847) @oliviertassinari
+- Add `View as Markdown` to component link header (#46835) @siriwatknp
+- Add a link to open `llms.txt` (#46832) @siriwatknp
+- Fix typos in Material UI API docs (#46787) @noritaka1166
+- Fix typo extra "to" word (#46783) @danpeleg4
+- Remove past employees from about page (#46780) @Janpot
+- Fix typos in `docs/pages` folder (#46761) @noritaka1166
+- Add clarification on `react-is` resolution with Material UI v6 and v7 for React 18 and below (#46633) @alisasanib
+- Fix typos in `joy` and `utils` package (#46713) @noritaka1166
+- [autocomplete] Fix console in unstyled demo (#46804) @oliviertassinari
+- [autocomplete] Fix Google Maps brand attribution (#46803) @oliviertassinari
+- [autocomplete] Fix header sentence case (#46805) @oliviertassinari
+- [autocomplete] Fix Google Maps demo (#46793) @oliviertassinari
+- [Select] Fix labeling issues in grouped select demo (#46722) @mj12albert
+- [table] Remove outdated unstyled section (#46786) @mj12albert
+- [TextField] Add note about removal of `sizeMedium` class from InputLabel in v7 upgrade guide (#46693) @checcoux
+
+### Core
+
+- Update `cipher-base` transitive dependency (#46800) @Janpot
+- [charts] Marked Treemap chart as Pro (#46691) @prakhargupta1
+- [code-infra] Remove some csbci references (#46797) @Janpot
+- [code-infra] update build tool (#46801) @Janpot
+- [code-infra] Align pkg.pr.new with other projects (#46467) @Janpot
+- [code-infra] Prepare for incoming `execa` update (#46781) @Janpot
+- [code-infra] Remove `@mui/internal-babel-plugin-resolve-imports` override config (#46754) @ZeeshanTamboli
+- [core] Fix typo in `docs/mui-vale` folder (#46760) @noritaka1166
+- [core] Fix typos in `docs/data/material` folder (#46757) @noritaka1166
+- [core] Fix typos in `netlify` folder (#46756) @noritaka1166
+- [core] Upgrade brace-expansion (#46747) @oliviertassinari
+- [core] Fix typos in Joy UI docs and `test` folder (#46738) @noritaka1166
+- [core] Upgrade KaTeX (#46731) @oliviertassinari
+- [core] Avoid Polynomial regex backtracking (#46732) @oliviertassinari
+- [core] Remove dead @toolpad/core dependency (#46730) @oliviertassinari
+- [core] Fix typos in `markdown` and `system` packages (#46720) @noritaka1166
+- [core] Fix typos in `api-docs-builder` package (#46719) @noritaka1166
+- [core] Fix typos in `codemod` package (#46715) @noritaka1166
+- [core] pnpm prettier:all (#46685) @oliviertassinari
+- [docs-infra] Set origin to generated `llms.txt` (#46833) @siriwatknp
+- [docs-infra] Fix AbortController error (#46408) @oliviertassinari
+- [docs-infra] Block than more feedback submissions (#46824) @oliviertassinari
+- [docs-infra] Fix ESLint references (#46680) @oliviertassinari
+- [infra] Migrate away from airbnb's eslint config (#46794) @brijeshb42
+- [infra] Remove `fs-extra` from docs scripts (#46749) @bernardobelchior
+- [infra] Remove dependency on `react-spring` (but keep `@react-spring/web`) (#46748) @bernardobelchior
+- [infra] Remove `fs-extra` from `mui-icons-material` (#46745) @bernardobelchior
+- [infra] Remove `api-docs-builder` dependency on `fs-extra` (#46742) @bernardobelchior
+- [infra] Migrate build command to code-infra (#46614) @brijeshb42
+- [infra] move testBuiltTypes step (#46735) @Janpot
+- [infra] Remove `fs-extra` from `netlify-plugin-cache-docs` (#46740) @bernardobelchior
+- [infra] Supply `document` to `userEvent.setup()` (#46714) @Janpot
+- [infra] Remove useless test step (#46679) @Janpot
+- [infra] Stagger daily cron jobs to avoid browserstack timeouts (#46676) @Janpot
+- [internal] Improve useControlled() strict mode handling (#46807) @oliviertassinari
+- [internal] Sentence case (55a9d8f) @oliviertassinari
+- [internal] Fix typos in code comments (#46784) @noritaka1166
+- [internal] Fix console regression in dev mode (925f02b) @oliviertassinari
+- [internal] Prettier all if dependencies changes (1f63b03) @oliviertassinari
+- [internal] Fix renovate.json (84be632) @oliviertassinari
+- [internal] Polish renovate schedule (#46727) @oliviertassinari
+- [internal] Update link to GitHub labels (8ab4813) @oliviertassinari
+- [internal] Bump brace-expansion (06de338) @oliviertassinari
+- [internal] Normalize Action description (4a2fbcb) @oliviertassinari
+- [toolpad] Remove it from website and docs (#46595) @prakhargupta1
+
+All contributors of this release in alphabetical order: @alisasanib, @bernardobelchior, @brijeshb42, @checcoux, @danpeleg4, @frontman-git, @Janpot, @mj12albert, @neemski, @noritaka1166, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @Yashkanekar, @ZeeshanTamboli
+
+## 7.3.1
+
+<!-- generated comparing v7.3.0..master -->
+
+_Aug 6, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material@7.3.1`
+
+- [PaginationItem] Fix inheritance of component (#46666) @sai6855
+- [Select] Revert - Implement pointer cancellation PR 45789 (#46672) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @sai6855, @ZeeshanTamboli
+
+## 7.3.0
+
+<!-- generated comparing v7.2.0..master -->
+
+_Aug 5, 2025_
+
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Shipped `nativeColor` feature that eliminates JS color manipulation and unlocks support for all modern color spaces (#43942) @siriwatknp!
+
+  To learn more, check out the [Native Color](https://mui.com/material-ui/customization/css-theme-variables/native-color/) guide.
+
+### `@mui/material@7.3.0`
+
+- Support native color without JS manipulation (#43942) @siriwatknp
+- [Accordion] Add `region` slot (#46659) @sai6855
+- [SpeedDial] Fix navigation with arrow keys when slotProps.fab is defined (#46508) @sai6855
+- [Select] Improve `MenuProps.slotProps` implementation (#46612) @ZeeshanTamboli
+- [Select] Implement pointer cancellation (#45789) @Kartik-Murthy
+- [Switch] Add role="switch" (#46482) @ZeeshanTamboli
+- [Autocomplete] Fix auto highlight when options change but not the length (#46489) @yafeng-c
+
+### `@mui/codemod@7.3.0`
+
+- Fix `v5.0.0/top-level-imports` codemod changing color imports (#46405) @AidanLDev
+
+### Docs
+
+- Add JetBrains IDEs MCP configuration (#46470) @bernardobelchior
+- Add warning to array spacing section (#46542) @cherniavskii
+- Add MCP server installation details for Claude Code (#46621) @saschabratton
+- Fix incorrect command for MCP Inspector in mcp.md (#46630) @EndiM
+- Fix incorrect Typography override example for responsive styles (#46558) @aditi291soni
+- Improve MCP docs (#46557) @siriwatknp
+- Fix displaying of components in dark mode (#46544) @sai6855
+- Generate `template` entries about documented generics (#46540) @LukasTy
+- Use fixed dates for stable CRUD dashboard screenshots (#46546) @apedroferreira
+- Add "Edit in Mui Chat" button on demos (#46480) @siriwatknp
+- Fix Menu customization demo (#46535) @siriwatknp
+- Add dashboard with CRUD template based on Toolpad Core (#46376) @apedroferreira
+- Clarify `createTheme` warning for future compatibility (#46476) @satendra03
+- Remove typo in `_redirects` (#46463) @bharatkashyap
+- Change API docs to stay inside Material UI (#46414) @bharatkashyap
+- [Dialog] Fix Form dialog demo's actions button padding (#46506) @frontman-git
+- [SpeedDial] Remove deprecated props from demos (#46485) @sai6855
+- [Switch] Use `slotProps.input` instead of deprecated `inputProps` for accessible controlled switch (#46625) @adiitxa
+
+### Core
+
+- Fix ESLint reference name (80d32a2) @oliviertassinari
+- Fix ESLint reference name (5fc166e) @oliviertassinari
+- Add `@base-ui-components/*` to env info (#46539) @Janpot
+- Remove dead property from routes (#46534) @oliviertassinari
+- Fix unpinned version regression (#46438) @oliviertassinari
+- [code-infra] Accomodate build requirements from mui-x (#46551) @brijeshb42
+- [code-infra] Extend renovate preset from infra repo (#46483) @brijeshb42
+- [code-infra] Use flat ESLint config (#46258) @brijeshb42
+- [docs-infra] Remove comment saving in G-sheet option (#46617) @alexfauquette
+- [docs-infra] Move `Open in MUI Chat` to Demo toolbar and adjust styles (#46579) @siriwatknp
+- [docs-infra] Fix codeblock issues (#46323) @atharva3333
+- [docs-infra] Handle white spaces and generate either TS or JS demo for llms files (#46494) @siriwatknp
+- [examples] Rename PopOverMenu.tsx file to match its usage (#46532) @rjray
+- [infra] Fix `test_types_next`, `test_react_18`, `test_react_next` jobs (#46182) @Janpot
+- [infra] Remove package.json `module` field (#46620) @Janpot
+- [infra] Upgrade form-data to >4.0.4 (#46618) @Janpot
+- [infra] Use cpu option only in CI (#46588) @Janpot
+- [infra] Update scripts to delete publishConfig.directory (#46563) @brijeshb42
+- [infra] Remove `transform-runtime` from `next/babel` (#46552) @Janpot
+- [infra] Revert nx update (#46538) @Janpot
+- [infra] Replace Argos script with code-infra CLI and update deps (#46475) @Janpot
+- [infra] Update node group in renovate config (#46474) @Janpot
+- [infra] Move @playwright/test to peer deps in @mui/internal-test-utils (#46459) @Janpot
+- [infra] Add instructions for patch release (#46382) @mnajdova
+
+All contributors of this release in alphabetical order: @adiitxa, @aditi291soni, @AidanLDev, @alexfauquette, @apedroferreira, @atharva3333, @bernardobelchior, @bharatkashyap, @brijeshb42, @cherniavskii, @EndiM, @frontman-git, @Janpot, @Kartik-Murthy, @LukasTy, @mnajdova, @oliviertassinari, @rjray, @sai6855, @saschabratton, @satendra03, @siriwatknp, @yafeng-c, @ZeeshanTamboli
+
 ## 7.2.0
 
 <!-- generated comparing v7.1.1..master -->
@@ -52,11 +515,11 @@ A big thanks to the 17 contributors who made this release possible. Here are the
 ### Core
 
 - pnpm docs:sync-team (3641a0b) @oliviertassinari
-- Add cross-env to eslint script (#46358) @ZeeshanTamboli
+- Add cross-env to ESLint script (#46358) @ZeeshanTamboli
 - Support merging of className and style from theme (#45975) @sai6855
 - [code-infra] Create bundle size package (#45911) @Janpot
 - [docs-infra] Add a script to generate Material UI `llms.txt` and docs markdown. (#46308) @siriwatknp
-- [docs-infra] Fix stackblitz for js projects (#46220) @Janpot
+- [docs-infra] Fix StackBlitz for js projects (#46220) @Janpot
 - [infra] Add emotion as external for bundle monitor (#46372) @Janpot
 - [infra] Create update PR on every canary publish for internal packages (#46367) @Janpot
 - [infra] Remove deprecated esmExternals (#46365) @Janpot
@@ -134,7 +597,7 @@ A big thanks to the 15 contributors who made this release possible.
 ### Core
 
 - [code-infra] Add plugin to check for index file access (#46178) @Janpot
-- [code-infra] Bump eslint to v9 (#46222) @brijeshb42
+- [code-infra] Bump ESLint to v9 (#46222) @brijeshb42
 - [code-infra] Move packages to mui/mui-public (#46155) @Janpot
 - [code-infra] Move `chai` to peerDep (#46227) @JCQuintas
 - [code-infra] Avoid loading barrel file during type checking (#46177) @Janpot
@@ -346,7 +809,7 @@ A big thanks to the 7 contributors who made this release possible.
 - Fix `Grid`, `GridLegacy`, `Stack`, `Badge`, `Select`, `Autocomplete` demos CSS variables (#45693) @DiegoAndai
 - Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
 - Fix `Breadcrumbs`, `List`, `Divider`, and `Typography` dark mode demos (#45692) @siriwatknp
-- Fix Material Icons page in dark mode (#45691) @mnajdova
+- Fix Material Icons page in dark mode (#45691) @mnajdova
 
 All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @eduter, @Janpot, @micttyoid, @mnajdova, @siriwatknp
 

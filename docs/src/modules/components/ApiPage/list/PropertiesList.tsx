@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
@@ -157,13 +158,11 @@ export default function PropertiesList(props: PropertiesListProps) {
               <React.Fragment>
                 {propName}
                 {isProPlan && (
-                  // eslint-disable-next-line material-ui/no-hardcoded-labels
                   <a href="/x/introduction/licensing/#pro-plan" aria-label="Pro plan">
                     <span className="plan-pro" />
                   </a>
                 )}
                 {isPremiumPlan && (
-                  // eslint-disable-next-line material-ui/no-hardcoded-labels
                   <a href="/x/introduction/licensing/#premium-plan" aria-label="Premium plan">
                     <span className="plan-premium" />
                   </a>
@@ -225,14 +224,32 @@ export default function PropertiesList(props: PropertiesListProps) {
                     {signatureArgs && (
                       <div>
                         <ul>
-                          {signatureArgs.map(({ argName, argDescription }) => (
-                            <li
-                              key={argName}
-                              dangerouslySetInnerHTML={{
-                                __html: `<code>${argName}</code> ${argDescription}`,
-                              }}
-                            />
-                          ))}
+                          {signatureArgs.map(
+                            ({ argName, argDescription, argType, argTypeDescription }) => (
+                              <li key={argName}>
+                                <code>
+                                  {argName}
+                                  {argType && argTypeDescription && (
+                                    <span>
+                                      :{' '}
+                                      <Tooltip
+                                        title={
+                                          <span
+                                            dangerouslySetInnerHTML={{ __html: argTypeDescription }}
+                                          />
+                                        }
+                                      >
+                                        <span className="signature-type">{argType}</span>
+                                      </Tooltip>
+                                    </span>
+                                  )}
+                                </code>{' '}
+                                {argDescription && (
+                                  <span dangerouslySetInnerHTML={{ __html: argDescription }} />
+                                )}
+                              </li>
+                            ),
+                          )}
                         </ul>
                       </div>
                     )}

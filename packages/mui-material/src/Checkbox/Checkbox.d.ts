@@ -33,7 +33,7 @@ export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     root: SlotProps<
       React.ElementType<SwitchBaseProps>,
@@ -42,14 +42,15 @@ export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the input slot.
-     * By default, the avaible props are based on the input element.
+     * By default, the available props are based on the input element.
      */
     input: SlotProps<'input', CheckboxInputSlotPropsOverrides, CheckboxOwnerState>;
   }
 >;
 
 export interface CheckboxProps
-  extends StandardProps<
+  extends
+    StandardProps<
       SwitchBaseProps,
       'checkedIcon' | 'color' | 'icon' | 'type' | 'slots' | 'slotProps'
     >,

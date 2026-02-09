@@ -153,6 +153,7 @@ export interface UseAutocompleteProps<
    * Used to determine the disabled state for a given option.
    *
    * @param {Value} option The option to test.
+   * @template Value The option shape. Will be the same shape as an item of the options.
    * @returns {boolean}
    */
   getOptionDisabled?: (option: Value) => boolean;
@@ -440,7 +441,7 @@ export interface UseAutocompleteReturnValue<
    */
   getOptionProps: (
     renderedOption: UseAutocompleteRenderedOption<Value>,
-  ) => React.HTMLAttributes<HTMLLIElement> & { key: any };
+  ) => React.HTMLAttributes<HTMLLIElement> & { key: React.Key };
   /**
    * Id for the Autocomplete.
    */

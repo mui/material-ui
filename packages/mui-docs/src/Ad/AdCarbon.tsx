@@ -136,7 +136,8 @@ export function AdCarbonInline() {
           link: ad.statlink,
           img: ad.image,
           name: ad.company,
-          description: `<strong>${ad.company}</strong> - ${ad.description}`,
+          descriptionHeader: ad.company,
+          description: ad.description,
           poweredby: 'Carbon',
           label: 'carbon-demo-inline',
         }}

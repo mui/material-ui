@@ -56,7 +56,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       '@media (hover: none)': {
         [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
           borderColor: theme.vars
-            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
             : borderColor,
         },
       },
@@ -75,7 +75,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             },
           })),
         {
-          props: {}, // to overide the above style
+          props: {}, // to override the above style
           style: {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
@@ -123,7 +123,7 @@ const NotchedOutlineRoot = styled(NotchedOutline, {
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return {
       borderColor: theme.vars
-        ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+        ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
         : borderColor,
     };
   }),

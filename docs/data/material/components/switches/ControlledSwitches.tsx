@@ -12,7 +12,7 @@ export default function ControlledSwitches() {
     <Switch
       checked={checked}
       onChange={handleChange}
-      inputProps={{ 'aria-label': 'controlled' }}
+      slotProps={{ input: { 'aria-label': 'controlled' } }}
     />
   );
 }

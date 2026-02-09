@@ -114,10 +114,10 @@ That means less time grappling with esoteric open-source trivia, and more time b
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+  href="https://tidelift.com/">
 Learn more about Tidelift</a>
 and
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://www.sonarsource.com/tidelift-request-demo/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">request a demo today</a>.
+  href="https://www.sonarsource.com/tidelift-request-demo/">request a demo today</a>.

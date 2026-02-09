@@ -45,27 +45,22 @@ export default function BasicButton() {
       expect(result).to.not.include('{{"demo": "BasicButton.js"}}');
     });
 
-    it('should include both JS and TS files when includeTypeScript is true', () => {
-      const markdown = `{{"demo": "Component.js"}}`;
+    it('should handle white spaces in demo syntax', () => {
+      const markdown = `{{ "demo": "Component.js"  }}`;
 
       const jsContent = `// JavaScript version`;
-      const tsContent = `// TypeScript version`;
 
       fs.writeFileSync(path.join(tempDir, 'Component.js'), jsContent);
-      fs.writeFileSync(path.join(tempDir, 'Component.tsx'), tsContent);
 
       const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
         basePath: tempDir,
-        includeTypeScript: true,
       });
 
       expect(result).to.include('```jsx');
       expect(result).to.include(jsContent);
-      expect(result).to.include('```tsx');
-      expect(result).to.include(tsContent);
     });
 
-    it('should only include JS file when includeTypeScript is false', () => {
+    it('should include only TS files', () => {
       const markdown = `{{"demo": "Component.js"}}`;
 
       const jsContent = `// JavaScript version`;
@@ -76,13 +71,28 @@ export default function BasicButton() {
 
       const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
         basePath: tempDir,
-        includeTypeScript: false,
+      });
+
+      expect(result).to.include('```tsx');
+      expect(result).to.include(tsContent);
+      expect(result).to.not.include('```jsx');
+      expect(result).to.not.include(jsContent);
+    });
+
+    it('should only include JS file when TS file does not exist', () => {
+      const markdown = `{{"demo": "Component.js"}}`;
+
+      const jsContent = `// JavaScript version`;
+
+      fs.writeFileSync(path.join(tempDir, 'Component.js'), jsContent);
+
+      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
+        basePath: tempDir,
       });
 
       expect(result).to.include('```jsx');
       expect(result).to.include(jsContent);
       expect(result).to.not.include('```tsx');
-      expect(result).to.not.include(tsContent);
     });
 
     it('should handle multiple demos in the same markdown', () => {

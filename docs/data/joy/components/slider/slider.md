@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Slider component
 components: Slider
-githubLabel: 'component: slider'
+githubLabel: 'scope: slider'
 ---
 
 # Slider

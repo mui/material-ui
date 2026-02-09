@@ -1,5 +1,5 @@
 {
-  "componentDescription": "The Zoom transition can be used for the floating variant of the\n[Button](/material-ui/react-button/#floating-action-buttons) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "componentDescription": "The Zoom transition can be used for the floating variant of the\n[Button](/material-ui/react-floating-action-button/#animation) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "propDescriptions": {
     "addEndListener": {
       "description": "Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided."

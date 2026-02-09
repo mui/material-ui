@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
@@ -22,7 +21,7 @@ export default function BreadcrumbsUsage() {
         },
         {
           propName: 'children',
-          defaultValue: '<Link />\n  ...',
+          defaultValue: '<Link />\n  …',
         },
       ]}
       renderDemo={(props) => (

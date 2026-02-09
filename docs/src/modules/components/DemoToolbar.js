@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from '@mui/docs/i18n';
+import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
@@ -369,7 +370,6 @@ export default function DemoToolbar(props) {
 
   const devMenuItems = [];
   if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
-    /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable rules of hooks
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
@@ -433,12 +433,17 @@ export default function DemoToolbar(props) {
         demo on&#160;<code>master</code>
       </MenuItem>,
     );
-    /* eslint-enable material-ui/no-hardcoded-labels */
   }
 
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
+        <OpenMuiChat
+          data-ga-event-category="mui-chat"
+          data-ga-event-label={demo.gaLabel}
+          data-ga-event-action="open-in-mui-chat"
+          demoData={demoData}
+        />
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (
@@ -457,7 +462,6 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-js"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(1)}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
                 JS
               </ToggleButton>
@@ -469,7 +473,6 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-ts"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(2)}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
                 TS
               </ToggleButton>

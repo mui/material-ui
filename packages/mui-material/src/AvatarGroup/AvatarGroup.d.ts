@@ -122,7 +122,9 @@ export type AvatarGroupProps<
   component?: React.ElementType;
 };
 
-export interface AvatarGroupOwnerState
-  extends PartiallyRequired<AvatarGroupProps, 'max' | 'spacing' | 'component' | 'variant'> {}
+export interface AvatarGroupOwnerState extends PartiallyRequired<
+  AvatarGroupProps,
+  'max' | 'spacing' | 'component' | 'variant'
+> {}
 
 export default AvatarGroup;

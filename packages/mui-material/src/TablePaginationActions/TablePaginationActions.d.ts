@@ -4,7 +4,7 @@ import { SvgIconProps } from '../SvgIcon';
 
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * This prop is an alias for `slotProps.previousButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.previousButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.previousButton` instead.
    */
   backIconButtonProps?: Partial<IconButtonProps>;
@@ -29,7 +29,7 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    */
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
   /**
-   * This prop is an alias for `slotProps.nextButton` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.nextButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.nextButton` instead.
    */
   nextIconButtonProps?: Partial<IconButtonProps>;

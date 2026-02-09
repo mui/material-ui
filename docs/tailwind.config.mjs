@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss/plugin')} */
-// eslint-disable-next-line import/no-import-module-exports
 import plugin from 'tailwindcss/plugin';
 
 import defaultTheme from 'tailwindcss/defaultTheme';
