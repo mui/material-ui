@@ -122,7 +122,7 @@ export default defineConfig(
       `packages/api-docs-builder-core/**/*${EXTENSION_TS}`,
     ],
     rules: {
-      // Only applies to our pulic packages
+      // Only applies to our public packages
       'compat/compat': 'off',
     },
   },
