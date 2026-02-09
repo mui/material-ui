@@ -19,7 +19,12 @@
     },
     "htmlColor": { "type": { "name": "string" } },
     "inheritViewBox": { "type": { "name": "bool" }, "default": "false" },
-    "legacyTestId": { "type": { "name": "bool" }, "default": "true" },
+    "legacyTestId": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "Provide your own data-testid when rendering icons <code>&lt;AddIcon data-testid=&quot;my-test-id&quot; /&gt;</code>."
+    },
     "shapeRendering": { "type": { "name": "string" } },
     "sx": {
       "type": {

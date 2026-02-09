@@ -105,8 +105,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
-    // TODO(v8): make `legacyTestId = false` the default.
-    legacyTestId = true,
+    legacyTestId = false,
     // eslint-disable-next-line @typescript-eslint/naming-convention, react/prop-types
     _builtinTestId,
     ...other
@@ -220,7 +219,8 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   /**
    * For @mui/icons-material, enable the legacy behavior of adding a data-testid property to the
    * root element containing the icon name.
-   * @default true
+   * @deprecated Provide your own data-testid when rendering icons `<AddIcon data-testid="my-test-id" />`.
+   * @default false
    */
   legacyTestId: PropTypes.bool,
   /**

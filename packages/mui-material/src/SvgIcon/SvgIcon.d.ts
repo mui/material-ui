@@ -84,7 +84,8 @@ export interface SvgIconOwnProps {
   /**
    * For @mui/icons-material, enable the legacy behavior of adding a data-testid property to the
    * root element containing the icon name.
-   * @default true
+   * @deprecated Provide your own data-testid when rendering icons `<AddIcon data-testid="my-test-id" />`.
+   * @default false
    */
   legacyTestId?: boolean;
 }
