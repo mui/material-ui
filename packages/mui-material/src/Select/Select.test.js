@@ -1950,6 +1950,24 @@ describe('<Select />', () => {
     // reset fake timers
     clock.restore();
 
+    // --- Instrumentation: wrap ResizeObserver to track callbacks ---
+    let anchor;
+    const roCallbacks = [];
+    const OriginalRO = window.ResizeObserver;
+    window.ResizeObserver = class extends OriginalRO {
+      constructor(callback) {
+        super((...args) => {
+          roCallbacks.push({
+            clientWidth: anchor?.clientWidth,
+            contentRectWidth: args[0]?.[0]?.contentRect?.width,
+            time: performance.now(),
+          });
+          callback(...args);
+        });
+      }
+    };
+    // --- End instrumentation setup ---
+
     render(
       <Select
         value=""
@@ -1963,31 +1981,54 @@ describe('<Select />', () => {
     );
 
     const combobox = screen.getByRole('combobox');
-    const anchor = combobox.parentElement;
+    anchor = combobox.parentElement;
 
     // Give the anchor a deterministic width that will affect clientWidth in a real browser.
     anchor.style.width = '320px';
 
     fireEvent.mouseDown(combobox);
 
-    const width1 = anchor.clientWidth;
-
     await waitFor(() => {
       const listbox = screen.getByRole('listbox');
       const paper = listbox.parentElement;
-      expect(paper.style.minWidth).to.equal(`${width1}px`);
+      expect(paper.style.minWidth).to.equal('320px');
     });
+
+    const callbackCountBeforeResize = roCallbacks.length;
 
     // Simulate a "window resize" effect by changing the anchor's width while open.
     anchor.style.width = '180px';
 
     await waitFor(() => {
-      const width2 = anchor.clientWidth;
       const listbox = screen.getByRole('listbox');
       const paper = listbox.parentElement;
 
-      // This is the actual regression assertion:
-      expect(paper.style.minWidth).to.equal(`${width2}px`);
+      // Log diagnostics before the assertion so CI captures them on failure
+      console.log(
+        'Select resize diagnostics (in waitFor):',
+        JSON.stringify(
+          {
+            minWidth: paper.style.minWidth,
+            anchorClientWidth: anchor.clientWidth,
+            anchorStyleWidth: anchor.style.width,
+            callbackCountBeforeResize,
+            roCallbacks,
+          },
+          null,
+          2,
+        ),
+      );
+
+      expect(paper.style.minWidth).to.equal('180px');
     });
+
+    // --- Log diagnostics even on success for local verification ---
+    console.log(
+      'Select resize diagnostics (after pass):',
+      JSON.stringify({ callbackCountBeforeResize, roCallbacks }, null, 2),
+    );
+
+    // --- Cleanup instrumentation ---
+    window.ResizeObserver = OriginalRO;
   });
 });
