@@ -116,6 +116,17 @@ export default defineConfig(
     }),
   ),
   {
+    files: [
+      `packages-internal/**/*${EXTENSION_TS}`,
+      `packages/api-docs-builder/**/*${EXTENSION_TS}`,
+      `packages/api-docs-builder-core/**/*${EXTENSION_TS}`,
+    ],
+    rules: {
+      // Only applies to our pulic packages
+      'compat/compat': 'off',
+    },
+  },
+  {
     files: [`packages/**/*${EXTENSION_TS}`],
     rules: {
       // Our packages write .js + .d.ts files manually.
