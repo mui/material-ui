@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState) => {
 
 // var2 is the fallback.
 // Ex. var1: 'var(--a)', var2: 'var(--b)'; return: 'var(--a, var(--b))'
-const joinVars = (var1, var2) => (var1 ? `${var1?.replace(')', '')}, ${var2})` : var2);
+const joinVars = (var1, var2) => (var1 ? `${var1.replace(')', '')}, ${var2})` : var2);
 
 const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',
@@ -95,7 +95,6 @@ const AppBarRoot = styled(Paper, {
         props: { color: 'inherit' },
         style: {
           '--AppBar-color': 'inherit',
-          color: 'var(--AppBar-color)',
         },
       },
       {
