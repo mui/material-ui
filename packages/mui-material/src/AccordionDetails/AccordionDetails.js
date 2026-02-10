@@ -29,16 +29,14 @@ const AccordionDetailsRoot = styled('div', {
 
 const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordionDetails' });
-  const { className, ...other } = props;
-  const ownerState = props;
-  const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses(props);
 
   return (
     <AccordionDetailsRoot
-      className={clsx(classes.root, className)}
+      {...props}
+      className={clsx(classes.root, props.className)}
       ref={ref}
-      ownerState={ownerState}
-      {...other}
+      ownerState={props}
     />
   );
 });
