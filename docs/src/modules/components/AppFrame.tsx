@@ -24,6 +24,7 @@ import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import SearchButton from './SearchButton';
+import { CookieConsentDialog } from './AnalyticsProvider';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -245,6 +246,7 @@ export default function AppFrame(props: AppFrameProps) {
         {children}
         <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
       </RootDiv>
+      <CookieConsentDialog />
     </DemoPageThemeProvider>
   );
 }
