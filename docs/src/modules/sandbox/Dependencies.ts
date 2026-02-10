@@ -42,12 +42,9 @@ type Demo = Pick<DemoData, 'productId' | 'raw' | 'codeVariant' | 'relativeModule
 
 export default function SandboxDependencies(
   demo: Demo,
-  options?: { commitRef?: string; devDeps?: Record<string, string> },
-  csbConfig?: SandboxConfig,
+  options: { commitRef?: string; devDeps?: Record<string, string>; csbConfig?: SandboxConfig } = {},
 ) {
-  const { commitRef, devDeps = {} } = options || {};
-  // Fallback to window.muiDocConfig for backward compatibility
-  const muiDocConfig = csbConfig ?? (window as any).muiDocConfig;
+  const { commitRef, devDeps = {}, csbConfig } = options;
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -89,8 +86,8 @@ export default function SandboxDependencies(
       }
 
       // Allow product-specific peer dependencies via context config
-      if (muiDocConfig?.includePeerDependencies) {
-        newDeps = muiDocConfig.includePeerDependencies(newDeps, {
+      if (csbConfig?.includePeerDependencies) {
+        newDeps = csbConfig.includePeerDependencies(newDeps, {
           versions,
         });
       }
@@ -117,8 +114,8 @@ export default function SandboxDependencies(
     };
 
     // Allow product-specific version overrides via context config
-    if (muiDocConfig?.getVersions) {
-      versions = muiDocConfig.getVersions(versions, { muiCommitRef: commitRef });
+    if (csbConfig?.getVersions) {
+      versions = csbConfig.getVersions(versions, { muiCommitRef: commitRef });
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
@@ -135,8 +132,8 @@ export default function SandboxDependencies(
           deps[name] = versions[name] ?? 'latest';
         }
 
-        if (muiDocConfig?.postProcessImport) {
-          const resolvedDep = muiDocConfig.postProcessImport(fullName);
+        if (csbConfig?.postProcessImport) {
+          const resolvedDep = csbConfig.postProcessImport(fullName);
           if (resolvedDep) {
             deps = { ...deps, ...resolvedDep };
           }
@@ -154,14 +151,8 @@ export default function SandboxDependencies(
 
   const dependencies = extractDependencies();
 
-  // Add fallback dependency if needed (e.g., @mui/material for StyledEngineProvider in root index)
-  const fallbackDep = muiDocConfig?.fallbackDependency;
-  if (fallbackDep && !dependencies[fallbackDep.name]) {
-    dependencies[fallbackDep.name] = fallbackDep.version;
-  } else if (!muiDocConfig && !demo.productId && !dependencies['@mui/material']) {
-    // Legacy fallback: add @mui/material when no config provided and no productId
-    const name = '@mui/material';
-    dependencies[name] = getMuiPackageVersion('material') || 'latest';
+  if (csbConfig?.fallbackDependency && !dependencies[csbConfig.fallbackDependency.name]) {
+    dependencies[csbConfig.fallbackDependency.name] = csbConfig.fallbackDependency.version;
   }
 
   const devDependencies: Record<string, string> = { ...devDeps };

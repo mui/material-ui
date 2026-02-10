@@ -19,13 +19,10 @@ export function createMuiChat(demoData: DemoData, csbConfig?: SandboxConfig) {
   const ext = getFileExtension(demoData.codeVariant);
 
   // Get dependencies like StackBlitz
-  const { dependencies } = SandboxDependencies(
-    demoData,
-    {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-    },
+  const { dependencies } = SandboxDependencies(demoData, {
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     csbConfig,
-  );
+  });
 
   return {
     title,
