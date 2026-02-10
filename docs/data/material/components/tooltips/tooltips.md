@@ -20,21 +20,21 @@ When activated, Tooltips display a text label identifying an element, such as a 
 
 {{"demo": "BasicTooltip.js"}}
 
-## Relationship: label vs description
+## Labels and descriptions
 
 By default, the tooltip only labels its child element.
-This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label.
-For example, in:
+This is notably different from `title` which can either label or describe its child depending on whether the child already has a label.
+For example, in the element below, the `title` acts as an accessible description:
 
 ```html
 <button title="some more information">A button</button>
 ```
 
-the `title` acts as an accessible description.
-If you want the tooltip to act as an accessible description, you can pass `describeChild`.
-Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
-
-Consequently, if the trigger already has either visible text or an `aria-label`, use the tooltip as a description and pass the `describeChild` prop. Otherwise, use the default behavior and let the tooltip label the trigger.
+If you want the tooltip to act as an accessible description, you can pass the `describeChild` prop.
+You shouldn't use `describeChild` if the tooltip provides the only visual label.
+In that case, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+If the trigger already has either visible text or an `aria-label`, use the tooltip as a description and pass the `describeChild` prop.
+Otherwise, you can use the default behavior and let the tooltip label the trigger.
 
 {{"demo": "AccessibilityTooltips.js"}}
 
