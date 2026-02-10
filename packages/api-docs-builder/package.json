@@ -13,21 +13,21 @@
     "directory": "packages/api-docs-builder"
   },
   "dependencies": {
-    "@babel/core": "^7.28.5",
+    "@babel/core": "^7.28.6",
     "@babel/preset-typescript": "^7.28.5",
-    "@babel/traverse": "^7.28.5",
+    "@babel/traverse": "^7.28.6",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.43.0",
+    "es-toolkit": "^1.44.0",
     "fast-glob": "^3.3.3",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.1",
     "react-docgen": "^5.4.3",
     "recast": "^0.23.9",
     "remark": "^15.0.1",
     "typescript": "^5.9.3",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@types/babel__core": "7.20.5",
@@ -35,10 +35,10 @@
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/node": "20.19.27",
+    "@types/node": "20.19.30",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "17.0.4",
-    "chai": "6.2.1",
-    "sinon": "21.0.0"
+    "chai": "6.2.2",
+    "sinon": "21.0.1"
   }
 }

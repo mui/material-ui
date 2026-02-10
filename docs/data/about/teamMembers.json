@@ -318,11 +318,28 @@
     "github": "LuisHVasallo"
   },
   {
+    "name": "Miguel Follana Ugarte",
+    "title": "Technical Recruiter — People",
+    "location": "Alicante, Spain",
+    "locationCountry": "es",
+    "about": "Big fan of sports and learning! Definitely a lifelong generalist 🙃",
+    "github": "MiguelFollana4"
+  },
+  {
     "name": "Ana Estrada",
     "title": "Software Engineer",
     "location": "Madrid, Spain",
     "locationCountry": "es",
     "about": "Builder & software crafter by day; yoga 🧘🏻‍♀️, good food 🥘, video games 🎮 and cats 🐈‍⬛ by sunset.",
     "github": "aemartos"
+  },
+  {
+    "name": "Silviu Alexandru Avram",
+    "title": "Software Engineer — Material UI",
+    "location": "București, Romania",
+    "locationCountry": "ro",
+    "about": "Coding, Traveling and Experimenting Hobbies",
+    "twitter": "silviuaavram",
+    "github": "silviuaavram"
   }
 ]
