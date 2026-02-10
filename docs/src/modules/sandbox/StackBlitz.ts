@@ -291,14 +291,11 @@ function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   const { title, githubLocation: description } = demoData;
 
   // Get dependencies
-  const { dependencies, devDependencies } = SandboxDependencies(
-    demoData,
-    {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-      devDeps: VITE_DEV_DEPENDENCIES,
-    },
+  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    devDeps: VITE_DEV_DEPENDENCIES,
     csbConfig,
-  );
+  });
 
   const viteFiles = createViteFiles(demoData, dependencies, devDependencies, description);
 

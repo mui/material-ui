@@ -22,7 +22,6 @@ export interface SandboxConfig {
 
   /**
    * Hook to add extra peer dependencies to sandbox.
-   * Replaces muiDocConfig.csbIncludePeerDependencies
    */
   includePeerDependencies?: (
     deps: Record<string, string>,
@@ -31,7 +30,6 @@ export interface SandboxConfig {
 
   /**
    * Hook to override default package versions.
-   * Replaces muiDocConfig.csbGetVersions
    */
   getVersions?: (
     versions: Record<string, string>,
@@ -40,7 +38,6 @@ export interface SandboxConfig {
 
   /**
    * Hook to resolve custom imports to dependencies.
-   * Replaces muiDocConfig.postProcessImport
    */
   postProcessImport?: (importName: string) => Record<string, string> | null;
 }
@@ -76,7 +73,6 @@ export interface DemoContextValue {
 
   /**
    * Configuration for CodeSandbox/StackBlitz sandbox generation.
-   * Groups all sandbox-related config (replaces window.muiDocConfig).
    */
   csb: SandboxConfig;
 }
