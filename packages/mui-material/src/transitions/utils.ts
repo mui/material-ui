@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const reflow = (node: Element) => node.scrollTop;
+export const reflow = (node?: Element) => node?.scrollTop || 0;
 
 interface ComponentProps {
   easing: string | { enter?: string; exit?: string } | undefined;
