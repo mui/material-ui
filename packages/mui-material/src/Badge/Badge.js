@@ -53,10 +53,10 @@ const generateVariantStyles = () => {
             ownerState.anchorOrigin.horizontal === horizontalValue &&
             ownerState.overlap === overlapValue,
           style: {
-            top: overlapPercent,
-            right: horizontalValue === 'right' ? overlapPercent : 'auto',
-            bottom: verticalValue === 'bottom' ? overlapPercent : 'auto',
-            left: horizontalValue === 'left' ? overlapPercent : 'auto',
+            top: verticalValue === 'top' ? overlapPercent : 'initial',
+            right: horizontalValue === 'right' ? overlapPercent : 'initial',
+            bottom: verticalValue === 'bottom' ? overlapPercent : 'initial',
+            left: horizontalValue === 'left' ? overlapPercent : 'initial',
             transform: `scale(1) translate(${horizontalValue === 'right' ? '50%' : '-50%'}, ${
               verticalValue === 'top' ? '-50%' : '50%'
             })`,
@@ -64,9 +64,9 @@ const generateVariantStyles = () => {
               verticalValue === 'top' ? '0%' : '100%'
             }`,
             [`&.${badgeClasses.invisible}`]: {
-              transform: `scale(0) translate(${
-                horizontalValue === 'right' ? '50%' : '-50%'
-              }, ${verticalValue === 'top' ? '-50%' : '50%'})`,
+              transform: `scale(0) translate(${horizontalValue === 'right' ? '50%' : '-50%'}, ${
+                verticalValue === 'top' ? '-50%' : '50%'
+              })`,
             },
           },
         });
