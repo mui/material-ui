@@ -5,6 +5,7 @@ import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
+import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
 import { DemoData, CodeVariant } from 'docs/src/modules/sandbox/types';
 
 const CSB_DEV_DEPENDENCIES = {
@@ -39,7 +40,7 @@ function openSandbox({ files, codeVariant, initialFile }: any) {
   document.body.removeChild(form);
 }
 
-function createReactApp(demoData: DemoData) {
+function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   const ext = getFileExtension(demoData.codeVariant);
   const { title, githubLocation: description } = demoData;
 
@@ -48,7 +49,7 @@ function createReactApp(demoData: DemoData) {
       content: CRA.getHtml(demoData),
     },
     [`src/index.${ext}`]: {
-      content: CRA.getRootIndex(demoData),
+      content: CRA.getRootIndex(demoData, csbConfig),
     },
     [`src/Demo.${ext}`]: {
       content: flattenRelativeImports(demoData.raw),
@@ -73,10 +74,14 @@ function createReactApp(demoData: DemoData) {
     }),
   };
 
-  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
-    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-    devDeps: CSB_DEV_DEPENDENCIES,
-  });
+  const { dependencies, devDependencies } = SandboxDependencies(
+    demoData,
+    {
+      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      devDeps: CSB_DEV_DEPENDENCIES,
+    },
+    csbConfig,
+  );
 
   files['package.json'] = {
     content: {
