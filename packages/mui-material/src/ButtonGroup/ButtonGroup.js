@@ -7,7 +7,7 @@ import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { getPaletteColorsByValueKeys } from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
@@ -164,18 +164,16 @@ const ButtonGroupRoot = styled('div', {
           },
         },
       },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter())
-        .flatMap(([color]) => [
-          {
-            props: { variant: 'text', color },
-            style: {
-              [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-                borderColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
-              },
+      ...getPaletteColorsByValueKeys(theme.palette).flatMap(([color]) => [
+        {
+          props: { variant: 'text', color },
+          style: {
+            [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
+              borderColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
             },
           },
-        ]),
+        },
+      ]),
       {
         props: { variant: 'outlined', orientation: 'horizontal' },
         style: {
@@ -226,16 +224,14 @@ const ButtonGroupRoot = styled('div', {
           },
         },
       },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter(['dark']))
-        .map(([color]) => ({
-          props: { variant: 'contained', color },
-          style: {
-            [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
-              borderColor: (theme.vars || theme).palette[color].dark,
-            },
+      ...getPaletteColorsByValueKeys(theme.palette, ['dark']).map(([color]) => ({
+        props: { variant: 'contained', color },
+        style: {
+          [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
+            borderColor: (theme.vars || theme).palette[color].dark,
           },
-        })),
+        },
+      })),
     ],
     [`& .${buttonGroupClasses.grouped}`]: {
       minWidth: 40,
