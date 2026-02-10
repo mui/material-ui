@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import useBadge from './useBadge';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { getPaletteColorsByValueKeys } from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
@@ -90,15 +90,13 @@ const BadgeBadge = styled('span', {
       duration: theme.transitions.duration.enteringScreen,
     }),
     variants: [
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter(['contrastText']))
-        .map(([color]) => ({
-          props: { color },
-          style: {
-            backgroundColor: (theme.vars || theme).palette[color].main,
-            color: (theme.vars || theme).palette[color].contrastText,
-          },
-        })),
+      ...getPaletteColorsByValueKeys(theme.palette, ['contrastText']).map(([color]) => ({
+        props: { color },
+        style: {
+          backgroundColor: (theme.vars || theme).palette[color].main,
+          color: (theme.vars || theme).palette[color].contrastText,
+        },
+      })),
       {
         props: { variant: 'dot' },
         style: {
