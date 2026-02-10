@@ -63,6 +63,7 @@ const StepperRoot = styled('ol', {
 const defaultConnector = <StepConnector />;
 
 const Stepper = React.forwardRef(function Stepper(inProps, ref) {
+  const [isTabList, setIsTabList] = React.useState(false);
   const props = useDefaultProps({ props: inProps, name: 'MuiStepper' });
   const {
     activeStep = 0,
@@ -96,11 +97,23 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     });
   });
 
-  const { registerElementRef, handleElementKeyDown, setFocusableIndex, focusableIndex } =
-    useRovingTabIndexFocus({
-      initialFocusableIndex: activeStep,
-      elementCount: totalSteps,
-    });
+  const {
+    registerElementRef: registerElementRefInternal,
+    handleElementKeyDown,
+    setFocusableIndex,
+    focusableIndex,
+  } = useRovingTabIndexFocus({
+    initialFocusableIndex: activeStep,
+    elementCount: totalSteps,
+  });
+
+  const registerElementRef = React.useCallback(
+    (index, node, disabled) => {
+      setIsTabList(true);
+      registerElementRefInternal(index, node, disabled);
+    },
+    [registerElementRefInternal],
+  );
 
   const contextValue = React.useMemo(
     () => ({
@@ -137,6 +150,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
         className={clsx(classes.root, className)}
         ref={ref}
         aria-orientation={orientation}
+        role={isTabList ? 'tablist' : undefined}
         {...other}
       >
         {steps}

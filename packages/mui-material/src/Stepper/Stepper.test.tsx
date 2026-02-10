@@ -6,6 +6,7 @@ import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector
 import StepContent, { stepContentClasses } from '@mui/material/StepContent';
 import Stepper, { stepperClasses as classes } from '@mui/material/Stepper';
 import describeConformance from '../../test/describeConformance';
+import StepButton from '../StepButton';
 
 describe('<Stepper />', () => {
   const { render } = createRenderer();
@@ -269,5 +270,18 @@ describe('<Stepper />', () => {
 
     const stepper = container.querySelector(`.${classes.root}`);
     expect(stepper).to.have.class(classes.nonLinear);
+  });
+
+  it('should render a tablist when at least one step is a StepButton', () => {
+    const { container } = render(
+      <Stepper activeStep={0}>
+        <Step>
+          <StepButton>one</StepButton>
+        </Step>
+      </Stepper>,
+    );
+
+    const stepper = container.querySelector(`.${classes.root}`);
+    expect(stepper).to.have.attribute('role', 'tablist');
   });
 });
