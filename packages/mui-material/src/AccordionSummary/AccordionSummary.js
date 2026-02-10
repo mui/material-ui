@@ -121,12 +121,8 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
-    if (toggle) {
-      toggle(event);
-    }
-    if (onClick) {
-      onClick(event);
-    }
+    toggle?.(event);
+    onClick?.(event);
   };
 
   const ownerState = {
