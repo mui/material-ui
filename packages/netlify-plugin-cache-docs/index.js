@@ -11,7 +11,7 @@ function generateAbsolutePaths(context) {
   const docsWorkspacePath = path.join(workspaceRoot, 'docs');
 
   const nextjsBuildDir = path.join(docsWorkspacePath, '.next');
-  const digests = [path.join(workspaceRoot, 'yarn.lock')];
+  const digests = [path.join(workspaceRoot, 'pnpm-lock.yaml')];
 
   return { digests, nextjsBuildDir };
 }

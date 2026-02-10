@@ -13,7 +13,6 @@
     "slots": { "description": "The props used for each slot inside the MenuButton." }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

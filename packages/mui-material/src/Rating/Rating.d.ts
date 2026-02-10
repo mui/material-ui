@@ -124,4 +124,4 @@ export interface RatingProps
  *
  * - [Rating API](https://mui.com/material-ui/api/rating/)
  */
-export default function Rating(props: RatingProps): JSX.Element;
+export default function Rating(props: RatingProps): React.JSX.Element;

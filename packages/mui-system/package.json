@@ -1,9 +1,9 @@
 {
   "name": "@mui/system",
-  "version": "5.14.18",
+  "version": "5.18.0",
   "private": false,
   "author": "MUI Team",
-  "description": "CSS utilities for rapidly laying out custom designs.",
+  "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -20,13 +20,13 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/system/getting-started/",
+  "homepage": "https://v5.mui.com/system/getting-started/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
+    "build": "pnpm build:legacy && pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
@@ -34,44 +34,43 @@
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2",
-    "@mui/private-theming": "^5.14.18",
-    "@mui/styled-engine": "^5.14.18",
-    "@mui/types": "^7.2.9",
-    "@mui/utils": "^5.14.18",
-    "clsx": "^2.0.0",
-    "csstype": "^3.1.2",
+    "@babel/runtime": "^7.23.9",
+    "@mui/private-theming": "workspace:^",
+    "@mui/styled-engine": "workspace:^",
+    "@mui/types": "workspace:~",
+    "@mui/utils": "workspace:^",
+    "clsx": "^2.1.0",
+    "csstype": "^3.1.3",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui-internal/test-utils": "^1.0.0",
-    "@mui/joy": "5.0.0-beta.15",
-    "@mui/material": "^5.14.18",
-    "@mui/material-next": "6.0.0-alpha.110",
-    "@types/chai": "^4.3.10",
-    "@types/prop-types": "^15.7.10",
-    "@types/react": "^18.2.37",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui-internal/test-utils": "workspace:^",
+    "@mui/internal-babel-macros": "workspace:^",
+    "@mui/system": "workspace:*",
+    "@types/chai": "^4.3.12",
+    "@types/prop-types": "^15.7.12",
+    "@types/react": "^19.0.0",
     "@types/sinon": "^10.0.20",
-    "chai": "^4.3.10",
+    "chai": "^4.4.1",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "react": "^18.2.0",
+    "react": "^19.0.0",
     "sinon": "^15.2.0",
-    "styled-components": "^6.1.1"
+    "styled-components": "^6.1.8"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -86,7 +85,8 @@
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

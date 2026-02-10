@@ -93,46 +93,137 @@
   },
   "name": "Tooltip",
   "imports": ["import Tooltip from '@mui/joy/Tooltip';", "import { Tooltip } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiTooltip" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiTooltip-root"
+      "class": "MuiTooltip-root"
     },
     {
       "name": "arrow",
       "description": "The component that renders the arrow.",
       "default": "'span'",
-      "class": ".MuiTooltip-arrow"
+      "class": "MuiTooltip-arrow"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "placementBottom",
-      "placementLeft",
-      "placementRight",
-      "placementTop",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "tooltipArrow",
-      "touch",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
-  "spread": true,
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiTooltip-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiTooltip-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiTooltip-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiTooltip-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiTooltip-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiTooltip-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "placementBottom",
+      "className": "MuiTooltip-placementBottom",
+      "description": "Class name applied to the root element if `placement` contains \"bottom\".",
+      "isGlobal": false
+    },
+    {
+      "key": "placementLeft",
+      "className": "MuiTooltip-placementLeft",
+      "description": "Class name applied to the root element if `placement` contains \"left\".",
+      "isGlobal": false
+    },
+    {
+      "key": "placementRight",
+      "className": "MuiTooltip-placementRight",
+      "description": "Class name applied to the root element if `placement` contains \"right\".",
+      "isGlobal": false
+    },
+    {
+      "key": "placementTop",
+      "className": "MuiTooltip-placementTop",
+      "description": "Class name applied to the root element if `placement` contains \"top\".",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiTooltip-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiTooltip-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiTooltip-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "tooltipArrow",
+      "className": "MuiTooltip-tooltipArrow",
+      "description": "Class name applied to the root element if `arrow={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "touch",
+      "className": "MuiTooltip-touch",
+      "description": "Class name applied to the root element if the tooltip is opened by touch.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiTooltip-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiTooltip-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiTooltip-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiTooltip-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyTooltip",
   "forwardsRefTo": "HTMLButtonElement",

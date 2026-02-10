@@ -14,7 +14,21 @@
     "title": { "description": "Title to be displayed." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "actionIcon": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the actionIcon",
+      "conditions": "supplied"
+    },
+    "actionIconActionPosLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the actionIcon",
+      "conditions": "<code>actionPosition=\"left\"</code>"
+    },
+    "positionBelow": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"below\"</code>"
+    },
     "positionBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -25,19 +39,18 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"top\"</code>"
     },
-    "positionBelow": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"below\"</code>"
+    "root": { "description": "Styles applied to the root element." },
+    "subtitle": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the subtitle container element"
+    },
+    "title": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the title container element"
     },
     "titleWrap": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the title and subtitle container element"
-    },
-    "titleWrapBelow": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the title and subtitle container element",
-      "conditions": "<code>position=\"below\"</code>"
     },
     "titleWrapActionPosLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -49,23 +62,10 @@
       "nodeName": "the container element",
       "conditions": "<code>actionPosition=\"right\"</code>"
     },
-    "title": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the title container element"
-    },
-    "subtitle": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the subtitle container element"
-    },
-    "actionIcon": {
+    "titleWrapBelow": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the actionIcon",
-      "conditions": "supplied"
-    },
-    "actionIconActionPosLeft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the actionIcon",
-      "conditions": "<code>actionPosition=\"left\"</code>"
+      "nodeName": "the title and subtitle container element",
+      "conditions": "<code>position=\"below\"</code>"
     }
   }
 }

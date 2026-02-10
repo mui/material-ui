@@ -4,6 +4,7 @@ import { createRenderer } from '@mui-internal/test-utils';
 import { useTheme as usePrivateTheme } from '@mui/private-theming';
 import { ThemeContext } from '@mui/styled-engine';
 import { ThemeProvider } from '@mui/system';
+import { useRtl } from '@mui/system/RtlProvider';
 
 const useEngineTheme = () => React.useContext(ThemeContext);
 
@@ -276,5 +277,26 @@ describe('ThemeProvider', () => {
       'MUI: You are providing a theme function prop to the ThemeProvider component:',
       '<ThemeProvider theme={outerTheme => outerTheme} />',
     ]);
+  });
+
+  it('sets the correct value for the RtlProvider based on the theme.direction', () => {
+    let rtlValue = null;
+    function Test() {
+      rtlValue = useRtl();
+      return null;
+    }
+    render(
+      <ThemeProvider theme={{ direction: 'rtl' }}>
+        <Test />
+      </ThemeProvider>,
+    );
+    expect(rtlValue).to.equal(true);
+
+    render(
+      <ThemeProvider theme={{ direction: 'ltr' }}>
+        <Test />
+      </ThemeProvider>,
+    );
+    expect(rtlValue).to.equal(false);
   });
 });

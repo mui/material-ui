@@ -21,21 +21,12 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "button": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the button element"
-    },
-    "indicator": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the indicator element"
-    },
     "disabled": { "description": "Class name applied when the accordion is disabled." },
     "expanded": { "description": "Class name applied when the accordion is expanded." }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "button": "The component that renders the button.",
-    "indicator": "The component that renders the indicator."
+    "indicator": "The component that renders the indicator.",
+    "root": "The component that renders the root."
   }
 }

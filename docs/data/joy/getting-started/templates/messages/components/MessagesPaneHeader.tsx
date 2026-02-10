@@ -16,7 +16,8 @@ type MessagesPaneHeaderProps = {
   sender: UserProps;
 };
 
-export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) {
+export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
+  const { sender } = props;
   return (
     <Stack
       direction="row"
@@ -69,7 +70,6 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
           >
             {sender.name}
           </Typography>
-
           <Typography level="body-sm">{sender.username}</Typography>
         </div>
       </Stack>
@@ -95,7 +95,6 @@ export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) 
         >
           View profile
         </Button>
-
         <IconButton size="sm" variant="plain" color="neutral">
           <MoreVertRoundedIcon />
         </IconButton>

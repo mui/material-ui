@@ -20,24 +20,30 @@
   },
   "name": "Badge",
   "imports": ["import { Badge } from '@mui/base/Badge';", "import { Badge } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiBadge-root"
+      "class": "base-Badge-root"
     },
     {
       "name": "badge",
       "description": "The component that renders the badge.",
       "default": "'span'",
-      "class": ".MuiBadge-badge"
+      "class": "base-Badge-badge"
     }
   ],
-  "classes": { "classes": ["invisible"], "globalClasses": {} },
+  "classes": [
+    {
+      "key": "invisible",
+      "className": "base-Badge-invisible",
+      "description": "State class applied to the badge `span` element if `invisible={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
-  "muiName": "MuiBadge",
+  "muiName": "Badge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/Badge/Badge.tsx",
   "inheritance": null,

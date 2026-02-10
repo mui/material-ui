@@ -87,6 +87,7 @@ function Styles() {
     <style>
       {`
       .CustomSwitchIntroduction {
+        box-sizing: border-box;
         font-size: 0;
         position: relative;
         display: inline-block;
@@ -102,6 +103,7 @@ function Styles() {
       }
 
       .CustomSwitchIntroduction-track {
+        box-sizing: border-box;
         background: ${isDarkMode ? grey[900] : grey[50]};
         border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
         border-radius: 24px;
@@ -120,6 +122,7 @@ function Styles() {
       }
 
       .CustomSwitchIntroduction-thumb {
+        box-sizing: border-box;
         border: 1px solid ${isDarkMode ? grey[800] : grey[200]};
         display: block;
         width: 16px;

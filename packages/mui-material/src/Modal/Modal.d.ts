@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base';
+import { SlotComponentProps } from '../utils/types';
 import { PortalProps } from '../Portal';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
@@ -50,7 +50,7 @@ export interface ModalOwnProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -92,6 +92,9 @@ export interface ModalOwnProps {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.

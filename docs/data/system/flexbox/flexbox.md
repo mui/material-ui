@@ -18,7 +18,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 ### flex-direction
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction" target="_blank" rel="noopener noreferrer">flex-direction</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction" target="_blank" rel="noopener">flex-direction</a>
 on MDN.
 
 {{"demo": "FlexDirection.js", "defaultCodeOpen": false, "bg": true}}
@@ -33,7 +33,7 @@ on MDN.
 ### flex-wrap
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap" target="_blank" rel="noopener noreferrer">flex-wrap</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap" target="_blank" rel="noopener">flex-wrap</a>
 on MDN.
 
 {{"demo": "FlexWrap.js", "defaultCodeOpen": false, "bg": true}}
@@ -47,7 +47,7 @@ on MDN.
 ### justify-content
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content" target="_blank" rel="noopener noreferrer">justify-content</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content" target="_blank" rel="noopener">justify-content</a>
 on MDN.
 
 {{"demo": "JustifyContent.js", "defaultCodeOpen": false, "bg": true}}
@@ -64,7 +64,7 @@ on MDN.
 ### align-items
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items" target="_blank" rel="noopener noreferrer">align-items</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items" target="_blank" rel="noopener">align-items</a>
 on MDN.
 
 {{"demo": "AlignItems.js", "defaultCodeOpen": false, "bg": true}}
@@ -80,7 +80,7 @@ on MDN.
 ### align-content
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content" target="_blank" rel="noopener noreferrer">align-content</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content" target="_blank" rel="noopener">align-content</a>
 on MDN.
 
 {{"demo": "AlignContent.js", "defaultCodeOpen": false, "bg": true}}
@@ -99,7 +99,7 @@ on MDN.
 ### order
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order" target="_blank" rel="noopener noreferrer">order</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order" target="_blank" rel="noopener">order</a>
 on MDN.
 
 {{"demo": "Order.js", "defaultCodeOpen": false, "bg": true}}
@@ -113,7 +113,7 @@ on MDN.
 ### flex-grow
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow" target="_blank" rel="noopener noreferrer">flex-grow</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow" target="_blank" rel="noopener">flex-grow</a>
 on MDN.
 
 {{"demo": "FlexGrow.js", "defaultCodeOpen": false, "bg": true}}
@@ -127,7 +127,7 @@ on MDN.
 ### flex-shrink
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink" target="_blank" rel="noopener noreferrer">flex-shrink</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink" target="_blank" rel="noopener">flex-shrink</a>
 on MDN.
 
 {{"demo": "FlexShrink.js", "defaultCodeOpen": false, "bg": true}}
@@ -141,7 +141,7 @@ on MDN.
 ### align-self
 
 For more information please see
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self" target="_blank" rel="noopener noreferrer">align-self</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self" target="_blank" rel="noopener">align-self</a>
 on MDN.
 
 {{"demo": "AlignSelf.js", "defaultCodeOpen": false, "bg": true}}

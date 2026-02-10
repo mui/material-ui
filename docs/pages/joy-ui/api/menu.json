@@ -57,41 +57,115 @@
   },
   "name": "Menu",
   "imports": ["import Menu from '@mui/joy/Menu';", "import { Menu } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiMenu" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'ul'",
-      "class": ".MuiMenu-root"
+      "class": "MuiMenu-root"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "expanded",
-      "listbox",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": { "expanded": "Mui-expanded" }
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiMenu-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiMenu-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiMenu-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiMenu-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiMenu-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiMenu-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "Class name applied to the root element when the menu open.",
+      "isGlobal": true
+    },
+    {
+      "key": "listbox",
+      "className": "MuiMenu-listbox",
+      "description": "Class name applied to the listbox element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiMenu-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiMenu-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiMenu-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiMenu-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiMenu-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiMenu-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiMenu-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyMenu",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/Menu/Menu.tsx",
-  "inheritance": { "component": "Popper", "pathname": "/base-ui/api/popper/" },
+  "inheritance": {
+    "component": "Popper",
+    "pathname": "/base-ui/react-popper/components-api/#popper"
+  },
   "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false
 }

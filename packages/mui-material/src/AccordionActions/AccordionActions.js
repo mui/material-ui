@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -25,20 +25,25 @@ const AccordionActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})(({ ownerState }) => ({
+})({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
   justifyContent: 'flex-end',
-  ...(!ownerState.disableSpacing && {
-    '& > :not(:first-of-type)': {
-      marginLeft: 8,
+  variants: [
+    {
+      props: (props) => !props.disableSpacing,
+      style: {
+        '& > :not(style) ~ :not(style)': {
+          marginLeft: 8,
+        },
+      },
     },
-  }),
-}));
+  ],
+});
 
 const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordionActions' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAccordionActions' });
   const { className, disableSpacing = false, ...other } = props;
   const ownerState = { ...props, disableSpacing };
 
@@ -55,10 +60,10 @@ const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref
 });
 
 AccordionActions.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

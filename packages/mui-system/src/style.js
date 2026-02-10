@@ -1,4 +1,4 @@
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 

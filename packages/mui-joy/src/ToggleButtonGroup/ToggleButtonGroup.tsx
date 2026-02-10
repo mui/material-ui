@@ -21,6 +21,7 @@ import useSlot from '../utils/useSlot';
 import { StyledButtonGroup } from '../ButtonGroup/ButtonGroup';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
+import { DividerProps } from '../Divider';
 
 interface InternalChangeEventHandler<Value> {
   (event: React.MouseEvent, value: Value | Array<Value> | null): void;
@@ -161,11 +162,11 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
             }
             const extraProps: Record<string, any> = {};
             if (isMuiElement(child, ['Divider'])) {
-              extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+              const childProps = child.props as DividerProps;
+              extraProps.inset = childProps?.inset ?? 'context';
 
               const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-              extraProps.orientation =
-                'orientation' in child.props ? child.props.orientation : dividerOrientation;
+              extraProps.orientation = childProps?.orientation ?? dividerOrientation;
               extraProps.role = 'presentation';
               extraProps.component = 'span';
             }
@@ -193,18 +194,18 @@ interface ToggleButtonGroupComponent {
        */
       component: C;
     } & OverrideProps<ToggleButtonGroupTypeMap<TValue>, C>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   <TValue extends SupportedValue>(
     props: DefaultComponentProps<ToggleButtonGroupTypeMap<TValue>>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 
 ToggleButtonGroup.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The flex value of the button.
    * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).

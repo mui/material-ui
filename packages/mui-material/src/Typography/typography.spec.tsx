@@ -11,7 +11,7 @@ const typographyTest = () => {
     ...props
   }: TypographyProps & {
     maxLines?: number;
-  }): JSX.Element => {
+  }): React.JSX.Element => {
     return (
       <Typography
         {...props}

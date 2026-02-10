@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuProvider } from '@mui/base/useMenu';
+import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 const dummyGetItemState = () => ({
   disabled: false,
@@ -22,7 +23,6 @@ const testContext = {
 };
 
 describe('<MenuItem />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
 
   describeConformanceUnstyled(<MenuItem />, () => ({
@@ -30,21 +30,13 @@ describe('<MenuItem />', () => {
     render: (node) => {
       return render(<MenuProvider value={testContext}>{node}</MenuProvider>);
     },
-    mount: (node: React.ReactNode) => {
-      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
-      return wrapper.childAt(0);
-    },
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiMenuItem',
     slots: {
       root: {
         expectedClassName: menuItemClasses.root,
       },
     },
-    skip: [
-      'componentProp',
-      'reactTestRenderer', // Need to be wrapped in MenuContext
-    ],
+    skip: ['componentProp'],
   }));
 });

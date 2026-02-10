@@ -16,7 +16,20 @@
     "import DialogActions from '@mui/material/DialogActions';",
     "import { DialogActions } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiDialogActions" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiDialogActions-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing",
+      "className": "MuiDialogActions-spacing",
+      "description": "Styles applied to the root element unless `disableSpacing={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiDialogActions",

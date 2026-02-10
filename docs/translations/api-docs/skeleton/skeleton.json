@@ -21,43 +21,43 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "text": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code>"
-    },
-    "rectangular": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"rectangular\"</code>"
-    },
-    "rounded": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"rounded\"</code>"
-    },
     "circular": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"circular\"</code>"
+    },
+    "fitContent": {
+      "description": "Styles applied when the component is passed children and no width."
+    },
+    "heightAuto": {
+      "description": "Styles applied when the component is passed children and no height."
     },
     "pulse": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>animation=\"pulse\"</code>"
     },
+    "rectangular": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"rectangular\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "rounded": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"rounded\"</code>"
+    },
+    "text": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
     "wave": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>animation=\"wave\"</code>"
     },
-    "withChildren": { "description": "Styles applied when the component is passed children." },
-    "fitContent": {
-      "description": "Styles applied when the component is passed children and no width."
-    },
-    "heightAuto": {
-      "description": "Styles applied when the component is passed children and no height."
-    }
+    "withChildren": { "description": "Styles applied when the component is passed children." }
   }
 }

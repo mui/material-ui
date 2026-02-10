@@ -30,7 +30,7 @@ export default function InstagramPost() {
         <Box
           sx={{
             position: 'relative',
-            '&:before': {
+            '&::before': {
               content: '""',
               position: 'absolute',
               top: 0,

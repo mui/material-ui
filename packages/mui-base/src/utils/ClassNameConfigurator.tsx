@@ -15,6 +15,10 @@ const defaultContextValue: ClassNameConfiguration = {
 const ClassNameConfiguratorContext =
   React.createContext<ClassNameConfiguration>(defaultContextValue);
 
+if (process.env.NODE_ENV !== 'production') {
+  ClassNameConfiguratorContext.displayName = 'ClassNameConfiguratorContext';
+}
+
 export interface ClassNameConfiguratorProps extends Partial<ClassNameConfiguration> {
   children?: React.ReactNode;
 }

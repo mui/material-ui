@@ -4,7 +4,7 @@ import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { StepConnectorClasses } from './stepConnectorClasses';
 
-export type StepConnectorIcon = React.ReactElement | string | number;
+export type StepConnectorIcon = React.ReactElement<any> | string | number;
 
 export interface StepConnectorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -30,4 +30,4 @@ export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classe
  *
  * - [StepConnector API](https://mui.com/material-ui/api/step-connector/)
  */
-export default function StepConnector(props: StepConnectorProps): JSX.Element;
+export default function StepConnector(props: StepConnectorProps): React.JSX.Element;

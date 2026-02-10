@@ -16,7 +16,7 @@
     },
     "endAdornment": { "description": "Trailing adornment for this input." },
     "error": {
-      "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute on the input and the <code>Mui-error</code> class on the root element. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
+      "description": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute on the input and the <code>baseui--error</code> class on the root element. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     },
     "id": { "description": "The id of the <code>input</code> element." },
     "maxRows": {
@@ -52,26 +52,15 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "formControl": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "the component is a descendant of <code>FormControl</code>"
-    },
-    "adornedStart": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>startAdornment</code> is provided"
-    },
     "adornedEnd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>endAdornment</code> is provided"
     },
-    "focused": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+    "adornedStart": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the component is focused"
+      "conditions": "<code>startAdornment</code> is provided"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -83,14 +72,15 @@
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },
-    "multiline": {
+    "focused": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is focused"
+    },
+    "formControl": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>multiline={true}</code>"
-    },
-    "input": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the input element"
+      "conditions": "the component is a descendant of <code>FormControl</code>"
     },
     "inputMultiline": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -101,11 +91,16 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "<code>type=\"search\"</code>"
+    },
+    "multiline": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>multiline={true}</code>"
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
     "input": "The component that renders the input.",
+    "root": "The component that renders the root.",
     "textarea": "The component that renders the textarea."
   }
 }

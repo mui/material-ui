@@ -8,7 +8,7 @@ import { getMenuUtilityClass } from './menuClasses';
 import { useMenu } from '../useMenu';
 import { MenuProvider } from '../useMenu/MenuProvider';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { Popper } from '../Popper';
+import { Unstable_Popup as Popup } from '../Unstable_Popup';
 import { useSlotProps } from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { WithOptionalOwnerState } from '../utils';
@@ -50,6 +50,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 
   const { contextValue, getListboxProps, dispatch, open, triggerElement } = useMenu({
     onItemsChange,
+    componentName: 'Menu',
   });
 
   const anchor = anchorProp ?? triggerElement;
@@ -100,19 +101,19 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   }
 
   return (
-    <Popper {...rootProps} open={open} anchorEl={anchor} slots={{ root: Root }}>
+    <Popup keepMounted {...rootProps} open={open} anchor={anchor} slots={{ root: Root }}>
       <Listbox {...listboxProps}>
         <MenuProvider value={contextValue}>{children}</MenuProvider>
       </Listbox>
-    </Popper>
+    </Popup>
   );
 }) as PolymorphicComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions that can be performed on the menu.
    */

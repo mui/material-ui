@@ -7,7 +7,9 @@ import fs from 'fs';
  * result in an import from a local file.
  */
 function validateFiles() {
-  const declarationFiles = globbySync(['packages/*/build/**/*.d.ts']);
+  const declarationFiles = globbySync(['packages/*/build/**/*.d.ts'], {
+    followSymbolicLinks: false,
+  });
   const invalidFiles = declarationFiles.filter((file) => {
     const content = fs.readFileSync(file, 'utf8');
     const regex = /import\(["']packages\//gm;

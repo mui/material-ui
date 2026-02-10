@@ -107,16 +107,16 @@ function Main(props: BoxProps) {
   );
 }
 
-function SideDrawer({
-  onClose,
-  ...props
-}: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> }) {
+function SideDrawer(
+  props: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> },
+) {
+  const { onClose, ...other } = props;
   return (
     <Box
-      {...props}
+      {...other}
       sx={[
         { position: 'fixed', zIndex: 1200, width: '100%', height: '100%' },
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+        ...(Array.isArray(other.sx) ? other.sx : [other.sx]),
       ]}
     >
       <Box
@@ -139,7 +139,7 @@ function SideDrawer({
           bgcolor: 'background.surface',
         }}
       >
-        {props.children}
+        {other.children}
       </Sheet>
     </Box>
   );

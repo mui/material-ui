@@ -1,5 +1,5 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface TabClasses {
   /** Styles applied to the root element. */
@@ -20,7 +20,7 @@ export interface TabClasses {
   fullWidth: string;
   /** Styles applied to the root element if `wrapped={true}`. */
   wrapped: string;
-  /** Styles applied to the wrapper element of `icon` if `icon` is provided. */
+  /** Styles applied to the `icon` HTML element if both `icon` and `label` are provided. */
   iconWrapper: string;
 }
 

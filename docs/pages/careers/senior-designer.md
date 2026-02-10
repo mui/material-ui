@@ -11,17 +11,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -34,31 +34,31 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
-
 We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
 [According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 
 Our products empower React developers to build amazing applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
-However, despite Material UI – our biggest library – being [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, its adoption is only at 25%.
+However, despite Material UI – our biggest library – being [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, its adoption is only at 25%.
 More importantly, our challenges go way beyond the ones of design systems.
 
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we've been expanding our offering with Joy UI, Base UI, and MUI Toolpad.
+It's why we've been expanding our offering with Joy UI, Base UI, and Toolpad.
 Design is foundational to achieving this goal.
 
 ## The role
 
 Designers at MUI are essentially _team leaders_.
-That means you'll be working closely with your engineering lead counterpart to shape work and scope targeting a set of problems revolving around our component area, either on MUI Core or MUI X (to be further defined).
+That means you'll be working closely with your engineering lead counterpart to shape work and scope targeting a set of problems revolving around our component area, either on MUI Core or MUI X (to be further defined).
 
 As our [design philosophy](https://mui-org.notion.site/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc) states, you'll be conducting and guiding the whole team, making sure everything we do is adding a special design spice that only you can add.
 We imagine a world where design execution is a definitive product differentiator.
@@ -67,19 +67,19 @@ We imagine a world where design execution is a definitive product differentiator
 
 - Understand how your role fits into the organization and get acquainted with team members and processes
 - Learn about MUI's products, business, goals, and how users experience the MUI ecosystem
-- Make your first contribution to either MUI Core or MUI X on an approachable, simple problem
+- Make your first contribution to either MUI Core or MUI X on an approachable, simple problem
 
 ### What you'll do in your first 3 months
 
 - Conduct one-on-one user interviews with community members
 - Review and give feedback to work from other designers on the team
-- Understand the MUI Core and MUI X library patterns to improve existing components' UX & UI
+- Understand the MUI Core and MUI X library patterns to improve existing components' UX & UI
 - Open your first PR improving documentation or demos
 
 ### What you'll do in your first 6 months
 
-- Design a new component for one of the MUI Core libraries from scratch in partnership with a developer
-- Design new templates for either Joy UI or Material UI and support their implementation
+- Design a new component for one of the MUI Core libraries from scratch in partnership with a developer
+- Design new templates for either Joy UI or Material UI and support their implementation
 - Review new Figma Design kit versions and coordinate their next release
 
 ### What you'll have done in your first year
@@ -91,7 +91,7 @@ Aside from all of the above, by the time you complete your first year, you shoul
 - Foster an even more design-oriented, user-centered culture at MUI
 - Contribute in a code capacity more confidently, with the ability to tweak and improve your own designs
 
-## About you
+## Who we're looking for
 
 If you get excited by thinking about design systems, high-level of craftsmanship, accessible components, and joyful experiences, then we're looking for you!
 
@@ -137,5 +137,5 @@ It's highly encouraged to bring whatever questions you see fit to make sure we a
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/4ea9d324-3350-48d5-bfab-706ebfc23ed2/application?utm_source=ZNRrPGBkqO)
 
-Don't tick every bullet? **Apply anyway!** Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Don't tick every bullet? **Apply anyway!** Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

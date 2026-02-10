@@ -5,6 +5,13 @@ import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
   /**
+   * If `true` (Default) will focus the highligted item. If you set this prop to `false`
+   * the focus will not be moved inside the Menu component. This has severe accessibility implications
+   * and should only be considered if you manage focus otherwise.
+   * @default true
+   */
+  autoFocus?: boolean;
+  /**
    * The id of the menu. If not provided, it will be generated.
    */
   id?: string;
@@ -26,6 +33,12 @@ export interface UseMenuParameters {
    * The ref to the menu's listbox node.
    */
   listboxRef?: React.Ref<Element>;
+  /**
+   * The name of the component using useMenu.
+   * For debugging purposes.
+   * @default 'useMenu'
+   */
+  componentName?: string;
 }
 
 export interface UseMenuReturnValue {
@@ -76,7 +89,7 @@ interface UseMenuListboxSlotEventHandlers {
 export type UseMenuListboxSlotProps<ExternalProps = {}> = UseListRootSlotProps<
   Omit<ExternalProps, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
 > & {
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
   role: React.AriaRole;
 };
 

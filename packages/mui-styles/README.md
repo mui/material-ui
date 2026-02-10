@@ -12,4 +12,4 @@ npm install @mui/styles
 
 ## Documentation
 
-Visit [https://mui.com/system/styles/basics/](https://mui.com/system/styles/basics/) to view the full documentation.
+Visit [https://v5.mui.com/system/styles/basics/](https://v5.mui.com/system/styles/basics/) to view the full documentation.

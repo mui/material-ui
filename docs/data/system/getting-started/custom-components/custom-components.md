@@ -1,6 +1,6 @@
 # Custom components
 
-<p class="description">Learn how to use MUI System with custom components.</p>
+<p class="description">Learn how to use MUI System with custom components.</p>
 
 ## Using sx with custom components
 

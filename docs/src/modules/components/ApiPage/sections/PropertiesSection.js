@@ -2,46 +2,47 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from '@mui/docs/i18n';
 import ToggleDisplayOption, {
-  API_LAYOUT_STORAGE_KEYS,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import PropertiesList, { getHash } from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 
-export const getPropsToC = ({
+export function getPropsToC({
   componentName,
   componentProps,
   inheritance,
   themeDefaultProps,
   t,
   hash,
-}) => ({
-  text: t('api-docs.props'),
-  hash: hash ?? 'props',
-  children: [
-    ...Object.entries(componentProps)
-      .filter(([, propData]) => propData.description !== '@ignore')
-      .map(([propName]) => ({
-        text: propName,
-        hash: getHash({ propName, targetName: componentName }),
-        children: [],
-      })),
-    ...(inheritance
-      ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-      : []),
-    ...(themeDefaultProps
-      ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-      : []),
-  ],
-});
+}) {
+  return {
+    text: t('api-docs.props'),
+    hash: hash ?? 'props',
+    children: [
+      ...Object.entries(componentProps)
+        .filter(([, propData]) => propData.description !== '@ignore')
+        .map(([propName]) => ({
+          text: propName,
+          hash: getHash({ propName, componentName }),
+          children: [],
+        })),
+      ...(inheritance
+        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+        : []),
+      ...(themeDefaultProps
+        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+        : []),
+    ],
+  };
+}
 
 export default function PropertiesSection(props) {
   const {
     properties,
     propertiesDescriptions,
-    targetName = '',
+    componentName = '',
     showOptionalAbbr = false,
     title = 'api-docs.props',
     titleHash = 'props',
@@ -49,10 +50,12 @@ export default function PropertiesSection(props) {
     spreadHint,
     hooksParameters = false,
     hooksReturnValue = false,
+    defaultLayout,
+    layoutStorageKey,
   } = props;
   const t = useTranslate();
 
-  const [displayOption, setDisplayOption] = useApiPageOption(API_LAYOUT_STORAGE_KEYS.props);
+  const [displayOption, setDisplayOption] = useApiPageOption(layoutStorageKey, defaultLayout);
   const formatedProperties = Object.entries(properties)
     .filter(([, propData]) => propData.description !== '@ignore')
     .map(([propName, propData]) => {
@@ -75,6 +78,14 @@ export default function PropertiesSection(props) {
         'joy-variant',
       ].filter((key) => propData.additionalInfo?.[key]);
 
+      const seeMoreDescription =
+        propDescription?.seeMoreText &&
+        propData.seeMoreLink &&
+        propDescription.seeMoreText.replace(
+          '{{link}}',
+          `<a href="${propData.seeMoreLink.url}">${propData.seeMoreLink.text}</a>`,
+        );
+
       const signature = propData.signature?.type;
       const signatureArgs = propData.signature?.describedArgs?.map((argName) => ({
         argName,
@@ -85,12 +96,15 @@ export default function PropertiesSection(props) {
         propertiesDescriptions[propName].typeDescriptions[propData.signature.returned];
 
       return {
-        targetName,
+        componentName,
         propName,
+        seeMoreDescription,
         description: propDescription?.description,
         requiresRef: propDescription?.requiresRef,
         isOptional,
         isRequired,
+        isProPlan: propData.isProPlan,
+        isPremiumPlan: propData.isPremiumPlan,
         isDeprecated,
         hooksParameters,
         hooksReturnValue,
@@ -120,11 +134,13 @@ export default function PropertiesSection(props) {
             </svg>
           </a>
         </Level>
-        <ToggleDisplayOption displayOption={displayOption} setDisplayOption={setDisplayOption} />
+        <ToggleDisplayOption
+          displayOption={displayOption}
+          setDisplayOption={setDisplayOption}
+          sectionType="props"
+        />
       </Box>
-
       {spreadHint && <p dangerouslySetInnerHTML={{ __html: spreadHint }} />}
-
       {displayOption === 'table' ? (
         <PropertiesTable properties={formatedProperties} />
       ) : (
@@ -135,14 +151,16 @@ export default function PropertiesSection(props) {
 }
 
 PropertiesSection.propTypes = {
+  componentName: PropTypes.string,
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']).isRequired,
   hooksParameters: PropTypes.bool,
   hooksReturnValue: PropTypes.bool,
+  layoutStorageKey: PropTypes.string.isRequired,
   level: PropTypes.string,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,
   showOptionalAbbr: PropTypes.bool,
   spreadHint: PropTypes.string,
-  targetName: PropTypes.string,
   title: PropTypes.string,
   titleHash: PropTypes.string,
 };

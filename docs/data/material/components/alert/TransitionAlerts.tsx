@@ -27,7 +27,7 @@ export default function TransitionAlerts() {
           }
           sx={{ mb: 2 }}
         >
-          Close me!
+          Click the close icon to see the Collapse transition in action!
         </Alert>
       </Collapse>
       <Button

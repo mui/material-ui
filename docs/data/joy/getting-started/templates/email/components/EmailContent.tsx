@@ -12,7 +12,6 @@ import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 import Tooltip from '@mui/joy/Tooltip';
 
-// Icons import
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -164,14 +163,13 @@ export default function EmailContent() {
           level="title-lg"
           textColor="text.primary"
           endDecorator={
-            <Chip size="sm" variant="outlined" color="warning">
+            <Chip component="span" size="sm" variant="outlined" color="warning">
               Personal
             </Chip>
           }
         >
           Details for our Yosemite Park hike
         </Typography>
-
         <Box
           sx={{
             mt: 1,
@@ -203,7 +201,6 @@ export default function EmailContent() {
             >
               to
             </Typography>
-
             <Tooltip size="sm" title="Copy email" variant="outlined">
               <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
                 steve@mail.com

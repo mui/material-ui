@@ -54,10 +54,6 @@ function createDOM() {
   }
   global.window.Touch = Touch;
 
-  global.navigator = {
-    userAgent: 'node.js',
-  };
-
   Object.keys(dom.window)
     .filter((key) => !blacklist.includes(key))
     .concat(whitelist)

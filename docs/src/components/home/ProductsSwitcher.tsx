@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });

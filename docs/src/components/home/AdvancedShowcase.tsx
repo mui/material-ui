@@ -3,6 +3,7 @@ import { DataGrid, GridCellParams, GridRenderEditCellParams, GridColDef } from '
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -1680,10 +1681,6 @@ const rows = [
 export default function DataTable() {
   return (
     <ShowcaseContainer
-      sx={{ mt: { md: 2 } }}
-      previewSx={{
-        py: 2,
-      }}
       preview={
         <Paper
           variant="outlined"
@@ -1701,22 +1698,15 @@ export default function DataTable() {
           })}
         >
           <XGridGlobalStyles />
-          <Box
-            sx={(theme) => ({
-              textAlign: 'center',
-              py: 1,
-              position: 'relative',
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.600',
-              }),
-            })}
+          <Typography
+            variant="body2"
+            color="text.primary"
+            fontWeight="semiBold"
+            sx={{ position: 'relative', textAlign: 'center', py: 1.5 }}
           >
-            <Typography color="primary.main" fontWeight={700}>
-              Trades, October 2020
-            </Typography>
-          </Box>
+            Trades, October 2020
+          </Typography>
+          <Divider />
           <Box sx={{ height: 200 }}>
             <DataGrid rows={rows} columns={columns} hideFooter density="compact" />
           </Box>
@@ -1725,7 +1715,6 @@ export default function DataTable() {
       code={
         <Box
           sx={{
-            p: 2,
             overflow: 'auto',
             flexGrow: 1,
             '&::-webkit-scrollbar': {

@@ -52,7 +52,7 @@ const grey = {
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -94,7 +94,7 @@ const TriggerButton = styled('button')(
 
 const StyledPopperDiv = styled('div')(
   ({ theme }) => css`
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'

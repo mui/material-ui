@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/css-baseline',
     false,
-    /css-baseline.*.json$/,
+    /\.\/css-baseline.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

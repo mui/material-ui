@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, Simplify } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
+import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';

@@ -21,6 +21,7 @@ export default function Pricing() {
       <Head
         title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
+        card="/static/social-previews/pricing-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader />

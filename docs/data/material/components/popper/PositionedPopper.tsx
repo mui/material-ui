@@ -22,7 +22,14 @@ export default function PositionedPopper() {
 
   return (
     <Box sx={{ width: 500 }}>
-      <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+      <Popper
+        // Note: The following zIndex style is specifically for documentation purposes and may not be necessary in your application.
+        sx={{ zIndex: 1200 }}
+        open={open}
+        anchorEl={anchorEl}
+        placement={placement}
+        transition
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>

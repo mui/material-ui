@@ -1,18 +1,19 @@
 ---
-title: A major update is coming for MUI X—and you can get involved
-description: Let us know what you want to see in MUI X v6 as we begin the alpha phase of development.
+title: A major update is coming for MUI X—and you can get involved
+description: Let us know what you want to see in MUI X v6 as we begin the alpha phase of development.
 date: 2022-09-30T00:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
-We're kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0).
+We're kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0).
 Both the Data Grid and the Date and Time Pickers will get a new major version.
 We want to share our plans and invite you to join us on this next step.
 
 :::warning
-It's important to note that only MUI X is getting a new version—MUI Core (including Material UI) will remain in v5 for now.
-You can rest assured that all MUI X v6 components will be fully compatible with MUI Core v5.
+It's important to note that only MUI X is getting a new version—MUI Core (including Material UI) will remain in v5 for now.
+You can rest assured that all MUI X v6 components will be fully compatible with MUI Core v5.
 ::::
 
 ## What's the plan to get to a stable release?
@@ -43,7 +44,7 @@ We're establishing a one-year cycle for major versions, meaning the next major w
 During v6 pre-releases, v5 will continue to be the official current major, and it will remain supported during this time.
 However, we will only release new v5 versions as needed to patch bugs or add community contributions.
 
-All new features and enhancements will go to v6, and after its first stable release, v5 will officially transition to [long-term support](https://mui.com/versions/#long-term-support-lts) status.
+All new features and enhancements will go to v6, and after its first stable release, v5 will officially transition to [long-term support](https://mui.com/x/introduction/support/#long-term-support-lts) status.
 
 ## Where's the v6 documentation?
 
@@ -95,7 +96,7 @@ It contains the highlights that will be included in the first versions.
   - [Enable customization through component slots on every component](https://github.com/mui/mui-x/issues/4466).
 
 :::info
-You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the full live list.
+You can check our [roadmap](https://github.com/orgs/mui/projects/35) for the full live list.
 :::
 
 ## How to migrate?

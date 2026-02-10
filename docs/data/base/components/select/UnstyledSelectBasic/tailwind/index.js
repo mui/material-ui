@@ -20,6 +20,8 @@ const getOptionColorClasses = ({ selected, highlighted, disabled }) => {
     }
     classes +=
       ' hover:dark:bg-neutral-800 hover:bg-slate-100 hover:dark:text-slate-300 hover:text-slate-900';
+    classes +=
+      ' focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:dark:outline-purple-300';
   }
   return classes;
 };
@@ -121,9 +123,9 @@ const Select = React.forwardRef(function CustomSelect(props, ref) {
             ),
           };
         },
-        popper: (ownerState) => {
+        popup: (ownerState) => {
           const resolvedSlotProps = resolveSlotProps(
-            props.slotProps?.popper,
+            props.slotProps?.popup,
             ownerState,
           );
           return {
@@ -147,7 +149,7 @@ Select.propTypes = {
    */
   slotProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
 };

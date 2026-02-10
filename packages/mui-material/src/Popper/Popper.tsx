@@ -1,12 +1,16 @@
 'use client';
-import { Popper as BasePopper, PopperProps as BasePopperProps } from '@mui/base/Popper';
-import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
-import { HTMLElementType, refType } from '@mui/utils';
+import { Direction, SxProps } from '@mui/system';
+import useTheme from '@mui/system/useThemeWithoutDefault';
+import refType from '@mui/utils/refType';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, Theme, useThemeProps } from '../styles';
+import BasePopper from './BasePopper';
+import { PopperProps as BasePopperProps } from './BasePopper.types';
+import { styled, Theme } from '../styles';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
-export type PopperProps = Omit<BasePopperProps, 'direction'> & {
+export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -29,7 +33,7 @@ export type PopperProps = Omit<BasePopperProps, 'direction'> & {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-};
+}
 
 const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',
@@ -54,7 +58,7 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const theme = useTheme<{ direction?: Direction }>();
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiPopper',
   });
@@ -105,10 +109,10 @@ const Popper = React.forwardRef(function Popper(
 }) as React.ForwardRefExoticComponent<PopperProps & React.RefAttributes<HTMLDivElement>>;
 
 Popper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
@@ -150,6 +154,9 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.

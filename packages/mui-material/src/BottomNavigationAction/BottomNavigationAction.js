@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 import bottomNavigationActionClasses, {
@@ -75,7 +75,7 @@ const BottomNavigationActionLabel = styled('span', {
 }));
 
 const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBottomNavigationAction' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBottomNavigationAction' });
   const {
     className,
     icon,
@@ -120,10 +120,10 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
 });
 
 BottomNavigationAction.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.

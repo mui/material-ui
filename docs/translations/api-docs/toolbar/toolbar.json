@@ -15,7 +15,11 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "dense": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"dense\"</code>"
+    },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
@@ -26,10 +30,6 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"regular\"</code>"
     },
-    "dense": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"dense\"</code>"
-    }
+    "root": { "description": "Styles applied to the root element." }
   }
 }

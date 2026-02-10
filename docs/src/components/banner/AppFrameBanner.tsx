@@ -1,28 +1,48 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import PageContext from 'docs/src/modules/components/PageContext';
+import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 export default function AppFrameBanner() {
-  return FEATURE_TOGGLE.enable_docsnav_banner ? (
+  if (!FEATURE_TOGGLE.enable_docsnav_banner) {
+    return null;
+  }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const pageContext = React.useContext(PageContext);
+  const productName = convertProductIdToName(pageContext) || 'MUI';
+  if (pageContext.productId !== 'material-ui' && pageContext.productId !== 'system') {
+    return null;
+  }
+  const message = `🎉 ${productName} v6 is out now! Check out the announcement blog post →.`;
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (message.length > 100) {
+      throw new Error(
+        `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
+      );
+    }
+  }
+
+  return (
     <Link
-      href="https://mui.com/blog/mui-x-v6/"
+      href="https://mui.com/blog/material-ui-v6-is-out/"
       target="_blank"
       variant="caption"
       sx={[
         (theme) => ({
-          display: { xs: 'none', lg: 'block' },
-          p: 1,
-          maxHeight: '34px',
-          backgroundColor: (theme.vars || theme).palette.primary[50],
-          border: '1px solid',
-          borderColor: (theme.vars || theme).palette.grey[200],
-          borderRadius: 1,
-          transitionProperty: 'all',
-          transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          transitionDuration: '150ms',
-          color: (theme.vars || theme).palette.primary[600],
+          padding: theme.spacing('7px', 1.5, '8px', 1.5),
+          display: { xs: 'none', md: 'block' },
           fontWeight: 'medium',
+          textWrap: 'nowrap',
+          maxHeight: '34px',
+          backgroundColor: alpha(theme.palette.primary[50], 0.8),
+          border: '1px solid',
+          borderColor: (theme.vars || theme).palette.divider,
+          borderRadius: 1,
+          transition: 'all 150ms ease',
           '&:hover, &:focus-visible': {
             backgroundColor: alpha(theme.palette.primary[100], 0.4),
             borderColor: (theme.vars || theme).palette.primary[200],
@@ -30,18 +50,15 @@ export default function AppFrameBanner() {
         }),
         (theme) =>
           theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primary[900], 0.3),
-            borderColor: (theme.vars || theme).palette.primaryDark[700],
-            color: (theme.vars || theme).palette.primary[100],
+            backgroundColor: alpha(theme.palette.primary[900], 0.15),
             '&:hover, &:focus-visible': {
-              backgroundColor: alpha(theme.palette.primary[900], 0.6),
-              borderColor: (theme.vars || theme).palette.primaryDark[500],
+              backgroundColor: alpha(theme.palette.primary[900], 0.4),
+              borderColor: (theme.vars || theme).palette.primary[900],
             },
           }),
       ]}
     >
-      🚀 MUI X v6 is out! Discover what&apos;s new and get started now!
-      <br />
+      {message}
     </Link>
-  ) : null;
+  );
 }

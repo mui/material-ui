@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui-internal/test-utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
 import ToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
+import Tooltip from '@mui/material/Tooltip';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ToggleButtonGroup />', () => {
   const { render } = createRenderer();
@@ -222,5 +224,61 @@ describe('<ToggleButtonGroup />', () => {
     const button = getAllByRole('button')[1];
     expect(buttonGroup).to.have.class(classes.fullWidth);
     expect(button).to.have.class(toggleButtonClasses.fullWidth);
+  });
+
+  describe('position classes', () => {
+    it('correctly applies position classes to buttons', () => {
+      render(
+        <ToggleButtonGroup value="one">
+          <Tooltip title="tooltip">
+            <ToggleButton value="one">One</ToggleButton>
+          </Tooltip>
+          <Tooltip title="tooltip">
+            <span>
+              <ToggleButton value="two" disabled>
+                Two
+              </ToggleButton>
+            </span>
+          </Tooltip>
+          <Tooltip title="tooltip">
+            <span>
+              <ToggleButton value="three" disabled>
+                Three
+              </ToggleButton>
+            </span>
+          </Tooltip>
+        </ToggleButtonGroup>,
+      );
+
+      const firstButton = screen.getAllByRole('button')[0];
+      const middleButton = screen.getAllByRole('button')[1];
+      const lastButton = screen.getAllByRole('button')[2];
+
+      expect(firstButton).to.have.class(classes.firstButton);
+      expect(firstButton).not.to.have.class(classes.middleButton);
+      expect(firstButton).not.to.have.class(classes.lastButton);
+
+      expect(middleButton).to.have.class(classes.middleButton);
+      expect(middleButton).not.to.have.class(classes.firstButton);
+      expect(middleButton).not.to.have.class(classes.lastButton);
+
+      expect(lastButton).to.have.class(classes.lastButton);
+      expect(lastButton).not.to.have.class(classes.middleButton);
+      expect(lastButton).not.to.have.class(classes.firstButton);
+    });
+
+    it('does not apply any position classes to a single button', () => {
+      render(
+        <ToggleButtonGroup>
+          <ToggleButton value="one">One</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.class(classes.firstButton);
+      expect(button).not.to.have.class(classes.middleButton);
+      expect(button).not.to.have.class(classes.lastButton);
+    });
   });
 });

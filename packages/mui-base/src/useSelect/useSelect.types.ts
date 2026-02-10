@@ -3,6 +3,7 @@ import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { SelectProviderValue } from './SelectProvider';
 import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
+import { UseButtonRootSlotProps } from '../useButton';
 
 export type SelectChangeEventType =
   | React.MouseEvent<Element, MouseEvent>
@@ -101,7 +102,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * An alternative way to specify the options.
    * If this parameter is set, options defined as JSX children are ignored.
    */
-  options?: SelectOptionDefinition<OptionValue>[];
+  options?: ReadonlyArray<SelectOptionDefinition<OptionValue>>;
   /**
    * A function to convert the currently selected value to a string.
    * Used to set a value of a hidden input associated with the select,
@@ -123,20 +124,26 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Set to `null` to deselect all options.
    */
   value?: SelectValue<OptionValue, Multiple>;
+  /**
+   * The name of the component using useSelect.
+   * For debugging purposes.
+   * @default 'useSelect'
+   */
+  componentName?: string;
 }
 
 interface UseSelectButtonSlotEventHandlers {
   onMouseDown: MuiCancellableEventHandler<React.MouseEvent>;
 }
 
-export type UseSelectButtonSlotProps<TOther = {}> = UseListRootSlotProps<
+export type UseSelectButtonSlotProps<TOther = {}> = UseButtonRootSlotProps<
   Omit<TOther, keyof UseSelectButtonSlotEventHandlers>
 > &
   UseSelectButtonSlotEventHandlers & {
     'aria-expanded': React.AriaAttributes['aria-expanded'];
     'aria-controls': React.AriaAttributes['aria-controls'];
     role: React.HTMLAttributes<Element>['role'];
-    ref: React.RefCallback<Element> | null;
+    ref?: React.RefCallback<Element> | null;
   };
 
 interface UseSelectHiddenInputSlotEventHandlers {
@@ -148,17 +155,15 @@ export type UseSelectHiddenInputSlotProps<TOther = {}> = UseSelectHiddenInputSlo
   TOther;
 
 interface UseSelectListboxSlotEventHandlers {
-  onMouseDown: React.MouseEventHandler;
+  onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
 }
 
-export type UseSelectListboxSlotProps<TOther = {}> = Omit<
-  TOther,
-  keyof UseSelectListboxSlotEventHandlers
+export type UseSelectListboxSlotProps<TOther = {}> = UseListRootSlotProps<
+  Omit<TOther, keyof UseSelectListboxSlotEventHandlers>
 > &
   UseSelectListboxSlotEventHandlers & {
     'aria-multiselectable': React.AriaAttributes['aria-multiselectable'];
     id: string | undefined;
-    ref: React.RefCallback<Element> | null;
     role: React.HTMLAttributes<Element>['role'];
   };
 
@@ -258,7 +263,6 @@ export interface BrowserAutofillAction<OptionValue> {
 }
 
 export type SelectAction<OptionValue> = ButtonClickAction | BrowserAutofillAction<OptionValue>;
-
 export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;
 }

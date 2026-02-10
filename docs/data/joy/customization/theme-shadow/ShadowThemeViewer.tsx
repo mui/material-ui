@@ -48,13 +48,9 @@ export default function ShadowThemeViewer() {
     React.Children.toArray(
       shadow
         .split(', ')
-        .reduce<Array<React.ReactNode>>(
-          (result, curr, index, array) =>
-            array.length - 1 !== index
-              ? [...result, `${curr},`, <br />]
-              : [...result, curr],
-          [],
-        ),
+        .reduce<
+          Array<React.ReactNode>
+        >((result, curr, index, array) => (array.length - 1 !== index ? [...result, `${curr},`, <br />] : [...result, curr]), []),
     );
   return (
     <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>

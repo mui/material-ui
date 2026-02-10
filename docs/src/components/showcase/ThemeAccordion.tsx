@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Accordion, { accordionClasses } from '@mui/material/Accordion';
 import AccordionSummary, { accordionSummaryClasses } from '@mui/material/AccordionSummary';
 import AccordionDetails, { accordionDetailsClasses } from '@mui/material/AccordionDetails';
@@ -23,6 +24,9 @@ export default function ThemeAccordion() {
           {
             [`& .${accordionClasses.root}`]: {
               bgcolor: '#fff',
+              borderColor: 'grey.200',
+              boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
+
               [`&.${accordionClasses.expanded}`]: {
                 margin: 0,
               },
@@ -56,6 +60,7 @@ export default function ThemeAccordion() {
               [`& .${accordionClasses.root}`]: {
                 bgcolor: 'primaryDark.900',
                 borderColor: 'primaryDark.700',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
               },
               [`& .${accordionSummaryClasses.root}`]: {
                 [`& .${accordionSummaryClasses.content}`]: {

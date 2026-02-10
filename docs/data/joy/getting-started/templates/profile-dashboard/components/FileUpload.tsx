@@ -11,24 +11,20 @@ import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRound
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
 
-export default function FileUpload({
-  icon,
-  fileName,
-  fileSize,
-  progress,
-  sx,
-  ...props
-}: CardProps & {
-  icon?: React.ReactElement;
-  fileName: string;
-  fileSize: string;
-  progress: number;
-}) {
+export default function FileUpload(
+  props: CardProps & {
+    icon?: React.ReactElement<any>;
+    fileName: string;
+    fileSize: string;
+    progress: number;
+  },
+) {
+  const { icon, fileName, fileSize, progress, sx, ...other } = props;
   return (
     <Card
       variant="outlined"
       orientation="horizontal"
-      {...props}
+      {...other}
       sx={[
         {
           gap: 1.5,

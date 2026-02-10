@@ -1,6 +1,7 @@
 'use client';
 /* eslint-disable no-underscore-dangle */
 import emStyled from '@emotion/styled';
+import { serializeStyles as emSerializeStyles } from '@emotion/serialize';
 
 export default function styled(tag, options) {
   const stylesFactory = emStyled(tag, options);
@@ -35,6 +36,14 @@ export const internal_processStyles = (tag, processor) => {
     tag.__emotion_styles = processor(tag.__emotion_styles);
   }
 };
+
+// Emotion only accepts an array, but we want to avoid allocations
+const wrapper = [];
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles(styles) {
+  wrapper[0] = styles;
+  return emSerializeStyles(wrapper);
+}
 
 export { ThemeContext, keyframes, css } from '@emotion/react';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

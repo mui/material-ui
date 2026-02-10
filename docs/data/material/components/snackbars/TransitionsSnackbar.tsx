@@ -60,6 +60,7 @@ export default function TransitionsSnackbar() {
         TransitionComponent={state.Transition}
         message="I love snacks"
         key={state.Transition.name}
+        autoHideDuration={1200}
       />
     </div>
   );

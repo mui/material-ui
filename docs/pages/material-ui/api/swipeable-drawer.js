@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/swipeable-drawer',
     false,
-    /swipeable-drawer.*.json$/,
+    /\.\/swipeable-drawer.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

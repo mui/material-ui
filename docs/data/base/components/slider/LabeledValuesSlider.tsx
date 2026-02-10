@@ -11,7 +11,7 @@ export default function LabeledValuesSlider() {
 }
 
 interface SliderValueLabelProps {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
 }
 
 function SliderValueLabel({ children }: SliderValueLabelProps) {
@@ -52,7 +52,8 @@ const Slider = styled(BaseSlider)(
   height: 6px;
   width: 100%;
   padding: 16px 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
   touch-action: none;
@@ -62,83 +63,97 @@ const Slider = styled(BaseSlider)(
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
-    opacity: 0.5;
+    opacity: 0.4;
   }
+
   & .${sliderClasses.rail} {
     display: block;
     position: absolute;
     width: 100%;
     height: 4px;
-    border-radius: 2px;
-    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
+    border-radius: 6px;
+    background-color: currentColor;
+    opacity: 0.3;
   }
+
   & .${sliderClasses.track} {
     display: block;
     position: absolute;
     height: 4px;
-    border-radius: 2px;
+    border-radius: 6px;
     background-color: currentColor;
   }
+
   & .${sliderClasses.thumb} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    width: 16px;
-    height: 16px;
     margin-left: -6px;
-    margin-top: -6px;
+    width: 20px;
+    height: 20px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 3px solid currentColor;
-    background-color: #fff;
-    &:hover{
-      box-shadow: 0 0 0 4px ${alpha(
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 120ms;
+    transform-origin: center;
+
+    &:hover {
+      box-shadow: 0 0 0 6px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
     }
-    
-    &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
-      outline: none;
-    }
 
-    &.${sliderClasses.active} {
-      box-shadow: 0 0 0 5px ${alpha(
-        theme.palette.mode === 'light' ? blue[200] : blue[300],
+    &.${sliderClasses.focusVisible} {
+      box-shadow: 0 0 0 8px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
         0.5,
       )};
       outline: none;
     }
-    & .label {
-        font-family: IBM Plex Sans;
-        font-weight: 600;
-        font-size: 14px;
-        background: unset;
-        background-color: ${theme.palette.mode === 'light' ? blue[600] : blue[900]};
-        width: 32px;
-        height: 32px;
-        padding: 0px;
-        visibility: hidden;
-        color: #fff;
-        border-radius: 50% 50% 50% 0;
-        position: absolute;
-        transform: translate(-35%, -140%) rotate(-45deg) scale(0);
-        transition: transform 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    :hover .label {
-        visibility: visible;
-        transform: translate(-35%, -140%) rotate(-45deg) scale(1);
-    }
-    :hover .value {
-        transform: rotate(45deg);
-        text-align: center;
-    }
+
     &.${sliderClasses.active} {
-      box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? blue[600] : blue[300]};
+      box-shadow: 0 0 0 8px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
+        0.5,
+      )};
       outline: none;
+      transform: scale(1.2);
+    }
+  }
+
+    & .label {
+      font-family: IBM Plex Sans;
+      font-weight: 600;
+      font-size: 14px;
+      background: unset;
+      background-color: ${theme.palette.mode === 'light' ? blue[600] : blue[900]};
+      width: 32px;
+      height: 32px;
+      padding: 0px;
+      visibility: hidden;
+      color: #fff;
+      border-radius: 50% 50% 50% 0;
+      position: absolute;
+      transform: translate(0%, -140%) rotate(-45deg) scale(0);
+      transition: transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    :hover .label {
+      visibility: visible;
+      transform: translate(0%, -140%) rotate(-45deg) scale(1);
+    }
+
+    :hover .value {
+      transform: rotate(45deg);
+      text-align: center;
     }
   }
 `,

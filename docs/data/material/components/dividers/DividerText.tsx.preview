@@ -7,7 +7,7 @@
   <Divider textAlign="right">RIGHT</Divider>
   {content}
   <Divider>
-    <Chip label="CHIP" />
+    <Chip label="Chip" size="small" />
   </Divider>
   {content}
 </Root>

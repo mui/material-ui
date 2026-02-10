@@ -2,21 +2,17 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
-import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
+import RadioGroup, { useRadioGroup, radioGroupClasses as classes } from '@mui/material/RadioGroup';
+import describeConformance from '../../test/describeConformance';
 
 describe('<RadioGroup />', () => {
   const { render } = createRenderer();
 
   describeConformance(<RadioGroup value="" />, () => ({
+    render,
     classes: {},
     inheritComponent: FormGroup,
     refInstanceof: window.HTMLDivElement,
@@ -365,6 +361,7 @@ describe('<RadioGroup />', () => {
           </RadioGroup>
         );
       });
+
       describe('onChange', () => {
         it('should set the value state', () => {
           const radioGroupRef = React.createRef();
@@ -416,5 +413,19 @@ describe('<RadioGroup />', () => {
         'MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.',
       );
     });
+  });
+
+  it('should apply the classnames', () => {
+    render(
+      <RadioGroup name="group" row>
+        <Radio value={1} />
+        <Radio value={2} />
+      </RadioGroup>,
+    );
+
+    const radiogroup = screen.getByRole('radiogroup');
+    expect(radiogroup).to.have.class(classes.root);
+    expect(radiogroup).to.have.class(classes.row);
+    expect(radiogroup).not.to.have.class(classes.error);
   });
 });

@@ -16,7 +16,20 @@
     "import AccordionActions from '@mui/material/AccordionActions';",
     "import { AccordionActions } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiAccordionActions" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiAccordionActions-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing",
+      "className": "MuiAccordionActions-spacing",
+      "description": "Styles applied to the root element unless `disableSpacing={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAccordionActions",

@@ -24,15 +24,15 @@
     "import CardCover from '@mui/joy/CardCover';",
     "import { CardCover } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardCover" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiCardCover-root"
+      "class": "MuiCardCover-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyCardCover",

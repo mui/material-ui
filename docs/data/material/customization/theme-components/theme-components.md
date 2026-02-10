@@ -7,7 +7,7 @@ However, the theme isn't tree-shakable, prefer creating new components for heavy
 
 ## Theme default props
 
-Every Material UI component has default values for each of its props.
+Every Material UI component has default values for each of its props.
 To change these default values, use the `defaultProps` key exposed in the theme's `components` key:
 
 ```js
@@ -30,8 +30,8 @@ If you're using TypeScript and [lab components](/material-ui/about-the-lab/), ch
 
 ## Theme style overrides
 
-The theme's `styleOverrides` key makes it possible to potentially change every single style injected by Material UI into the DOM.
-This is useful if you want to apply a fully custom design system to Material UI's components.
+The theme's `styleOverrides` key makes it possible to potentially change every single style injected by Material UI into the DOM.
+This is useful if you want to apply a fully custom design system to Material UI's components.
 
 ```js
 const theme = createTheme({
@@ -109,7 +109,7 @@ You can use the `sx` prop inside the `styleOverrides` key to modify styles withi
 This is especially handy if you're already using the `sx` prop with your components, because you can use the same syntax in your theme and quickly transfer styles between the two.
 
 :::info
-The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
+The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
 :::
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
@@ -145,7 +145,7 @@ If you use the theming approach to customize the components, you'll still be abl
 
 ## Creating new component variants
 
-You can use the `variants` key in the theme's `components` section to create new variants to Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
+You can use the `variants` key in the theme's `components` section to create new variants to Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
 
 The definitions are specified in an array, under the component's name. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 
@@ -186,6 +186,33 @@ declare module '@mui/material/Button' {
 ```
 
 {{"demo": "GlobalThemeVariants.js"}}
+
+The variant `props` can also be defined as a callback.
+This is useful if you want to apply styles when using negation in the condition.
+In other words, applying a different style if a particular property doesn't have a specific value.
+
+:::info
+This feature is available from version 5.15.2.
+:::
+
+```js
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: (props) =>
+            props.variant === 'dashed' && props.color !== 'secondary',
+          style: {
+            textTransform: 'none',
+            border: `2px dashed ${blue[500]}`,
+          },
+        },
+      ],
+    },
+  },
+});
+```
 
 ## Theme variables
 

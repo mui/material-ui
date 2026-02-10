@@ -1,12 +1,33 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
 
-type RegExpMatchArrayWithGroupsOnly<T> = {
-  groups?: {
-    [key in keyof T]: string;
-  };
-};
-type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGroupsOnly<T>) | null;
+const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
+
+/**
+ * WARNING: Always uses `latest` typings.
+ *
+ * Adds dependencies to @types packages only for packages that are not listed
+ * in packagesWithBundledTypes
+ *
+ * @param deps - list of dependency as `name => version`
+ */
+function addTypeDeps(deps: Record<string, string>): void {
+  const packagesWithDTPackage = Object.keys(deps)
+    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    // All the MUI packages come with bundled types
+    .filter((name) => name.indexOf('@mui/') !== 0);
+
+  packagesWithDTPackage.forEach((name) => {
+    let resolvedName = name;
+    // scoped package?
+    if (name.startsWith('@')) {
+      // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
+      resolvedName = name.slice(1).replace('/', '__');
+    }
+
+    deps[`@types/${resolvedName}`] = 'latest';
+  });
+}
 
 export default function SandboxDependencies(
   demo: {
@@ -17,33 +38,6 @@ export default function SandboxDependencies(
   options?: { commitRef?: string },
 ) {
   const { commitRef } = options || {};
-
-  /**
-   * WARNING: Always uses `latest` typings.
-   *
-   * Adds dependencies to @types packages only for packages that are not listed
-   * in packagesWithBundledTypes
-   *
-   * @param deps - list of dependency as `name => version`
-   */
-  function addTypeDeps(deps: Record<string, string>): void {
-    const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
-    const packagesWithDTPackage = Object.keys(deps)
-      .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-      // All the MUI packages come with bundled types
-      .filter((name) => name.indexOf('@mui/') !== 0);
-
-    packagesWithDTPackage.forEach((name) => {
-      let resolvedName = name;
-      // scoped package?
-      if (name.startsWith('@')) {
-        // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
-        resolvedName = name.slice(1).replace('/', '__');
-      }
-
-      deps[`@types/${resolvedName}`] = 'latest';
-    });
-  }
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -62,6 +56,8 @@ export default function SandboxDependencies(
   }
 
   function extractDependencies(raw: string) {
+    const muiDocConfig = (window as any).muiDocConfig;
+
     function includePeerDependencies(
       deps: Record<string, string>,
       versions: Record<string, string>,
@@ -83,8 +79,10 @@ export default function SandboxDependencies(
       }
 
       // TODO: consider if this configuration could be injected in a "cleaner" way.
-      if ((window as any).muiDocConfig) {
-        newDeps = (window as any).muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
+      if (muiDocConfig) {
+        newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
+          versions,
+        });
       }
 
       return newDeps;
@@ -105,14 +103,13 @@ export default function SandboxDependencies(
       '@mui/private-classnames': getMuiPackageVersion('classnames'),
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
-      '@mui/material-next': getMuiPackageVersion('material-next'),
+      '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
       '@mui/joy': getMuiPackageVersion('joy'),
     };
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if ((window as any).muiDocConfig) {
-      const muiCommitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
-      versions = (window as any).muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+    if (muiDocConfig) {
+      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef: commitRef });
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
@@ -125,35 +122,14 @@ export default function SandboxDependencies(
         fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
       if (!deps[name] && !name.startsWith('.')) {
-        deps[name] = versions[name] ? versions[name] : 'latest';
+        deps[name] = versions[name] ?? 'latest';
       }
 
-      // e.g. date-fns
-      const dateAdapterMatch = fullName.match(
-        /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
-      ) as RegExpMatchArrayWithGroups<{ adapterName: string }>;
-      if (dateAdapterMatch !== null) {
-        /**
-         * Mapping from the date adapter sub-packages to the npm packages they require.
-         * @example `@mui/x-date-pickers/AdapterDayjs` has a peer dependency on `dayjs`.
-         */
-        const packageName = (
-          {
-            AdapterDateFns: 'date-fns',
-            AdapterDateFnsJalali: 'date-fns-jalali',
-            AdapterDayjs: 'dayjs',
-            AdapterLuxon: 'luxon',
-            AdapterMoment: 'moment',
-            AdapterMomentHijri: 'moment-hijri',
-            AdapterMomentJalaali: 'moment-jalaali',
-          } as Record<string, string>
-        )[dateAdapterMatch.groups?.adapterName || ''];
-        if (packageName === undefined) {
-          throw new TypeError(
-            `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
-          );
+      if (muiDocConfig) {
+        const resolvedDep = muiDocConfig?.postProcessImport(fullName);
+        if (resolvedDep) {
+          deps = { ...deps, ...resolvedDep };
         }
-        deps[packageName] = 'latest';
       }
     }
 

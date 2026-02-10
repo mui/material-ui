@@ -41,6 +41,12 @@ describe('CodeSandbox', () => {
           devDependencies: {
             'react-scripts': 'latest',
           },
+          scripts: {
+            start: 'react-scripts start',
+            build: 'react-scripts build',
+            test: 'react-scripts test',
+            eject: 'react-scripts eject',
+          },
         },
       },
       'public/index.html': {
@@ -55,7 +61,7 @@ describe('CodeSandbox', () => {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -130,7 +136,10 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
           },
           main: 'index.tsx',
           scripts: {
+            build: 'react-scripts build',
+            eject: 'react-scripts eject',
             start: 'react-scripts start',
+            test: 'react-scripts test',
           },
         },
       },
@@ -146,7 +155,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link

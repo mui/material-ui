@@ -1,0 +1,11 @@
+<style>{styles}</style>
+<PopupWithTrigger>
+  <CssAnimation
+    enterClassName="anim-open"
+    exitClassName="anim-close"
+    enterAnimationName="open-animation"
+    exitAnimationName="close-animation"
+  >
+    <PopupBody>This is an animated popup</PopupBody>
+  </CssAnimation>
+</PopupWithTrigger>

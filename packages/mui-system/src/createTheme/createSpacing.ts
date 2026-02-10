@@ -11,10 +11,9 @@ export type SpacingArgument = number | string;
 
 // The different signatures imply different meaning for their arguments that can't be expressed structurally.
 // We express the difference with variable names.
-/* tslint:disable:unified-signatures */
 export interface Spacing {
   (): string;
-  (value: number): string;
+  (value: SpacingArgument): string;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
   (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (
@@ -24,7 +23,6 @@ export interface Spacing {
     left: SpacingArgument,
   ): string;
 }
-/* tslint:enable:unified-signatures */
 
 export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing {
   // Already transformed.

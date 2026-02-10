@@ -246,7 +246,7 @@ const SelectListbox = styled(StyledList, {
     outline: 0,
     boxShadow: theme.shadow.md,
     borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
-    // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+    // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
     zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
@@ -396,7 +396,6 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const rootRef = React.useRef<HTMLElement>(null);
   const buttonRef = React.useRef<HTMLElement>(null);
-  const listboxRef = React.useRef<HTMLElement>(null);
 
   const handleRef = useForkRef(ref, rootRef);
 
@@ -520,7 +519,6 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     additionalProps: {
-      ref: listboxRef,
       anchorEl,
       open: listboxOpen,
       placement: 'bottom' as const,
@@ -628,20 +626,20 @@ interface SelectComponent {
       component: C;
       multiple?: Multiple;
     } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: {
       multiple?: Multiple;
     } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 
 Select.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -727,7 +725,6 @@ Select.propTypes /* remove-proptypes */ = {
   multiple: PropTypes.bool,
   /**
    * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
    */
   name: PropTypes.string,
   /**

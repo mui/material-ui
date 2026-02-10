@@ -1,3 +1,3 @@
-import { unstable_deprecatedPropType as deprecatedPropType } from '@mui/utils';
+import deprecatedPropType from '@mui/utils/deprecatedPropType';
 
 export default deprecatedPropType;

@@ -6,4 +6,8 @@ const ModalDialogVariantColorContext = React.createContext<
   | (Pick<ModalDialogProps, 'variant' | 'color'> & { labelledBy?: string; describedBy?: string })
 >(undefined);
 
+if (process.env.NODE_ENV !== 'production') {
+  ModalDialogVariantColorContext.displayName = 'ModalDialogVariantColorContext';
+}
+
 export default ModalDialogVariantColorContext;

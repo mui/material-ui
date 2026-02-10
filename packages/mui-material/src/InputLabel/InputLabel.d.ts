@@ -8,11 +8,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface InputLabelPropsSizeOverrides {}
 
-export interface InputLabelOwnProps {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
+export interface InputLabelOwnProps extends Pick<FormLabelProps, 'children'> {
   /**
    * Override or extend the styles applied to the component.
    */

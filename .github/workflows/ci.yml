@@ -25,22 +25,24 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-          # fetch all tags which are required for `yarn release:changelog`
+          # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
       - name: Use Node.js 18.x
-        uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3.8.2
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
           node-version: 18
-          cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: yarn install
-      - run: yarn release:build
-      - run: yarn release:changelog
+          cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
+      - run: pnpm install
+      - run: pnpm build:ci
+      - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: yarn validate-declarations
-      - name: yarn release:tag
+      - run: pnpm validate-declarations
+      - name: pnpm release:tag
         run: |
           git remote -v
-          yarn release:tag --dryRun
+          pnpm release:tag --dryRun

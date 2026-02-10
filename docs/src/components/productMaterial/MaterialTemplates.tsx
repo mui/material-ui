@@ -16,7 +16,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import More from 'docs/src/components/action/More';
 
 export const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
@@ -129,20 +129,18 @@ export default function MaterialTemplates() {
 
   return (
     <Section bg="gradient" cozy>
-      <Box sx={{ maxWidth: 550, m: 'auto' }}>
-        <SectionHeadline
-          alwaysCenter
-          overline="Templates"
-          title={
-            <Typography variant="h2">
-              The right template for your
-              <br /> <GradientText>specific use case</GradientText>
-            </Typography>
-          }
-          description="A collection of 4.5 average rating templates, for multiple use cases, all powered by Material UI components and carefully curated by MUI's team."
-        />
-      </Box>
-      <Group rowLayout desktopColumns={2} sx={{ mt: 3 }}>
+      <SectionHeadline
+        alwaysCenter
+        overline="Templates"
+        title={
+          <Typography variant="h2">
+            The right template for your
+            <br /> <GradientText>specific use case</GradientText>
+          </Typography>
+        }
+        description="A carefully curated collection of gorgeous, fully functional templates, all powered by Material UI."
+      />
+      <Group rowLayout desktopColumns={2} sx={{ p: 2 }}>
         {DEMOS.map((name) => (
           <Highlighter
             key={name}
@@ -155,6 +153,7 @@ export default function MaterialTemplates() {
             <Item
               icon={React.cloneElement(icons[name], name === demo ? { color: 'primary' } : {})}
               title={name}
+              smallerIconDistance
             />
           </Highlighter>
         ))}

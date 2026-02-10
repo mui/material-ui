@@ -12,60 +12,37 @@ export function borderTransform(value) {
   return `${value}px solid`;
 }
 
-export const border = style({
-  prop: 'border',
-  themeKey: 'borders',
-  transform: borderTransform,
-});
+function createBorderStyle(prop, transform) {
+  return style({
+    prop,
+    themeKey: 'borders',
+    transform,
+  });
+}
 
-export const borderTop = style({
-  prop: 'borderTop',
-  themeKey: 'borders',
-  transform: borderTransform,
-});
+export const border = createBorderStyle('border', borderTransform);
 
-export const borderRight = style({
-  prop: 'borderRight',
-  themeKey: 'borders',
-  transform: borderTransform,
-});
+export const borderTop = createBorderStyle('borderTop', borderTransform);
 
-export const borderBottom = style({
-  prop: 'borderBottom',
-  themeKey: 'borders',
-  transform: borderTransform,
-});
+export const borderRight = createBorderStyle('borderRight', borderTransform);
 
-export const borderLeft = style({
-  prop: 'borderLeft',
-  themeKey: 'borders',
-  transform: borderTransform,
-});
+export const borderBottom = createBorderStyle('borderBottom', borderTransform);
 
-export const borderColor = style({
-  prop: 'borderColor',
-  themeKey: 'palette',
-});
+export const borderLeft = createBorderStyle('borderLeft', borderTransform);
 
-export const borderTopColor = style({
-  prop: 'borderTopColor',
-  themeKey: 'palette',
-});
+export const borderColor = createBorderStyle('borderColor');
 
-export const borderRightColor = style({
-  prop: 'borderRightColor',
-  themeKey: 'palette',
-});
+export const borderTopColor = createBorderStyle('borderTopColor');
 
-export const borderBottomColor = style({
-  prop: 'borderBottomColor',
-  themeKey: 'palette',
-});
+export const borderRightColor = createBorderStyle('borderRightColor');
 
-export const borderLeftColor = style({
-  prop: 'borderLeftColor',
-  themeKey: 'palette',
-});
+export const borderBottomColor = createBorderStyle('borderBottomColor');
+
+export const borderLeftColor = createBorderStyle('borderLeftColor');
+
+export const outline = createBorderStyle('outline', borderTransform);
+
+export const outlineColor = createBorderStyle('outlineColor');
 
 // false positive
 // eslint-disable-next-line react/function-component-definition
@@ -98,6 +75,8 @@ const borders = compose(
   borderBottomColor,
   borderLeftColor,
   borderRadius,
+  outline,
+  outlineColor,
 );
 
 export default borders;

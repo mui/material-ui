@@ -33,11 +33,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
 
-function Toggler({
-  defaultExpanded = false,
-  renderToggle,
-  children,
-}: {
+function Toggler(props: {
   defaultExpanded?: boolean;
   children: React.ReactNode;
   renderToggle: (params: {
@@ -45,6 +41,7 @@ function Toggler({
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   }) => React.ReactNode;
 }) {
+  const { defaultExpanded = false, renderToggle, children } = props;
   const [open, setOpen] = React.useState(defaultExpanded);
   return (
     <React.Fragment>
@@ -70,10 +67,7 @@ export default function Sidebar() {
     <Sheet
       className="Sidebar"
       sx={{
-        position: {
-          xs: 'fixed',
-          md: 'sticky',
-        },
+        position: { xs: 'fixed', md: 'sticky' },
         transform: {
           xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1)))',
           md: 'none',
@@ -157,7 +151,6 @@ export default function Sidebar() {
               </ListItemContent>
             </ListItemButton>
           </ListItem>
-
           <ListItem>
             <ListItemButton>
               <DashboardRoundedIcon />
@@ -166,7 +159,6 @@ export default function Sidebar() {
               </ListItemContent>
             </ListItemButton>
           </ListItem>
-
           <ListItem>
             <ListItemButton
               role="menuitem"
@@ -179,7 +171,6 @@ export default function Sidebar() {
               </ListItemContent>
             </ListItemButton>
           </ListItem>
-
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
@@ -210,7 +201,6 @@ export default function Sidebar() {
               </List>
             </Toggler>
           </ListItem>
-
           <ListItem>
             <ListItemButton selected>
               <QuestionAnswerRoundedIcon />
@@ -222,7 +212,6 @@ export default function Sidebar() {
               </Chip>
             </ListItemButton>
           </ListItem>
-
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
@@ -257,7 +246,6 @@ export default function Sidebar() {
             </Toggler>
           </ListItem>
         </List>
-
         <List
           size="sm"
           sx={{

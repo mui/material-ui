@@ -56,7 +56,14 @@ export default function FreeSoloCreateOption() {
         // Regular option
         return option.title;
       }}
-      renderOption={(props, option) => <li {...props}>{option.title}</li>}
+      renderOption={(props, option) => {
+        const { key, ...optionProps } = props;
+        return (
+          <li key={key} {...optionProps}>
+            {option.title}
+          </li>
+        );
+      }}
       sx={{ width: 300 }}
       freeSolo
       renderInput={(params) => (

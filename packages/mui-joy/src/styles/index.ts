@@ -33,6 +33,7 @@ export type {
 export type { Focus } from './types/focus';
 export type { Radius, RadiusOverrides } from './types/radius';
 export type { Shadow, ShadowOverrides } from './types/shadow';
+export type { ZIndex, ZIndexOverrides } from './types/zIndex';
 export type {
   FontFamily,
   FontFamilyOverrides,

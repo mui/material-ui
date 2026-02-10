@@ -58,7 +58,7 @@ const grey = {
 
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
   display: flex;
@@ -105,7 +105,7 @@ const StyledInput = styled('input')(
 
 const StyledButton = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   line-height: 1.5;

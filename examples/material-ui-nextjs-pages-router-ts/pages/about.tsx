@@ -19,7 +19,7 @@ export default function About() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           Material UI - Next.js example in TypeScript
         </Typography>
         <Box sx={{ maxWidth: 'sm' }}>

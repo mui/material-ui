@@ -17,11 +17,8 @@ type ChatsPaneProps = {
   selectedChatId: string;
 };
 
-export default function ChatsPane({
-  chats,
-  setSelectedChat,
-  selectedChatId,
-}: ChatsPaneProps) {
+export default function ChatsPane(props: ChatsPaneProps) {
+  const { chats, setSelectedChat, selectedChatId } = props;
   return (
     <Sheet
       sx={{
@@ -57,7 +54,6 @@ export default function ChatsPane({
         >
           Messages
         </Typography>
-
         <IconButton
           variant="plain"
           aria-label="edit"
@@ -67,7 +63,6 @@ export default function ChatsPane({
         >
           <EditNoteRoundedIcon />
         </IconButton>
-
         <IconButton
           variant="plain"
           aria-label="edit"

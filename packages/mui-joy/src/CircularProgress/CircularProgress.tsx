@@ -116,7 +116,7 @@ const CircularProgressRoot = styled('span', {
     }),
     ...rest,
     ...(ownerState.variant === 'outlined' && {
-      '&:before': {
+      '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',
@@ -302,10 +302,10 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
 }) as OverridableComponent<CircularProgressTypeMap>;
 
 CircularProgress.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

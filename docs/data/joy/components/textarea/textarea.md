@@ -14,7 +14,7 @@ unstyled: /base-ui/react-textarea-autosize/
 
 ## Introduction
 
-Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base-ui/react-textarea-autosize/) component.
+Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base-ui/react-textarea-autosize/) component.
 
 {{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -50,7 +50,7 @@ Toggle the palette that's being used to color the by text field by using the `co
 
 ### Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, etc.
+Standard form attributes are supported for example `required`, `disabled`, etc.
 
 {{"demo": "TextareaFormProps.js"}}
 

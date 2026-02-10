@@ -1,15 +1,15 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
+import { Link } from '@mui/docs/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      🚀&nbsp;Influence the future of MUI!&nbsp;&nbsp;Please take a few minutes for the&nbsp;
+      {`🚀 Influence MUI's 2024 roadmap! Participate in the latest`}
+      &nbsp;
       <Link
-        href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website"
+        href="https://tally.so/r/3Ex4PN?source=website"
         target="_blank"
         color="inherit"
         underline="always"
@@ -19,7 +19,7 @@ function getSurveyMessage() {
           },
         }}
       >
-        MUI Developer survey 2022 →
+        Developer Survey →
       </Link>
     </React.Fragment>
   );
@@ -28,10 +28,9 @@ function getSurveyMessage() {
 function getDefaultHiringMessage() {
   return (
     <React.Fragment>
-      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Community Engineer, and
-      more!&nbsp;&#160;
+      🎉&#160;Material UI v6 is out now! Check out the&#160;
       <Link
-        href={ROUTES.careers} // Fix me!
+        href="https://mui.com/blog/material-ui-v6-is-out/"
         target="_blank"
         color="inherit"
         underline="always"
@@ -41,7 +40,7 @@ function getDefaultHiringMessage() {
           },
         }}
       >
-        Check the careers page →
+        announcement blog post →
       </Link>
     </React.Fragment>
   );

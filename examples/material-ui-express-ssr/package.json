@@ -11,11 +11,11 @@
     "@babel/node": "latest",
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@emotion/server": "latest",
-    "@mui/material": "latest",
+    "@emotion/cache": "^11.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@emotion/server": "^11.0.0",
+    "@mui/material": "^5.0.0",
     "babel-loader": "latest",
     "cross-env": "latest",
     "express": "latest",
@@ -31,6 +31,6 @@
     "build": "webpack -w",
     "serve": "nodemon --ignore ./build --exec babel-node -- server.js",
     "production": "cross-env NODE_ENV=production npm start",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   }
 }

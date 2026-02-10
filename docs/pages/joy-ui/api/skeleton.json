@@ -57,36 +57,112 @@
   },
   "name": "Skeleton",
   "imports": ["import Skeleton from '@mui/joy/Skeleton';", "import { Skeleton } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSkeleton" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiSkeleton-root"
+      "class": "MuiSkeleton-root"
     }
   ],
-  "classes": {
-    "classes": [
-      "body-lg",
-      "body-md",
-      "body-sm",
-      "body-xs",
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "title-lg",
-      "title-md",
-      "title-sm",
-      "variantCircular",
-      "variantInline",
-      "variantOverlay",
-      "variantRectangular",
-      "variantText"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "body-lg",
+      "className": "MuiSkeleton-body-lg",
+      "description": "Class name applied to the root element if `level=\"body-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-md",
+      "className": "MuiSkeleton-body-md",
+      "description": "Class name applied to the root element if `level=\"body-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-sm",
+      "className": "MuiSkeleton-body-sm",
+      "description": "Class name applied to the root element if `level=\"body-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-xs",
+      "className": "MuiSkeleton-body-xs",
+      "description": "Class name applied to the root element if `level=\"body-xs\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h1",
+      "className": "MuiSkeleton-h1",
+      "description": "Class name applied to the root element if `level=\"h1\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h2",
+      "className": "MuiSkeleton-h2",
+      "description": "Class name applied to the root element if `level=\"h2\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h3",
+      "className": "MuiSkeleton-h3",
+      "description": "Class name applied to the root element if `level=\"h3\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h4",
+      "className": "MuiSkeleton-h4",
+      "description": "Class name applied to the root element if `level=\"h4\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-lg",
+      "className": "MuiSkeleton-title-lg",
+      "description": "Class name applied to the root element if `level=\"title-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-md",
+      "className": "MuiSkeleton-title-md",
+      "description": "Class name applied to the root element if `level=\"title-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-sm",
+      "className": "MuiSkeleton-title-sm",
+      "description": "Class name applied to the root element if `level=\"title-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantCircular",
+      "className": "MuiSkeleton-variantCircular",
+      "description": "Class name applied to the root element if `variant=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantInline",
+      "className": "MuiSkeleton-variantInline",
+      "description": "Class name applied to the root element if `variant=\"inline\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOverlay",
+      "className": "MuiSkeleton-variantOverlay",
+      "description": "Class name applied to the root element if `variant=\"overlay\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantRectangular",
+      "className": "MuiSkeleton-variantRectangular",
+      "description": "Class name applied to the root element if `variant=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantText",
+      "className": "MuiSkeleton-variantText",
+      "description": "Class name applied to the root element if `variant=\"text\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoySkeleton",

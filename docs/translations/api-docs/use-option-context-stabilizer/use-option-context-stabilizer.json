@@ -1,5 +1,5 @@
 {
-  "hookDescription": "Stabilizes the ListContext value for the Option component, so it doesn't change when sibling Options update.\n\n@param value The value of the Option.\n@returns The stable ListContext value.",
+  "hookDescription": "Stabilizes the ListContext value for the Option component, so it doesn't change when sibling Options update.",
   "parametersDescriptions": {},
   "returnValueDescriptions": {}
 }

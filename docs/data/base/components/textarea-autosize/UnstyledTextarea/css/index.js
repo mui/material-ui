@@ -53,8 +53,9 @@ function Styles() {
     <style>
       {`
       .CustomTextarea {
+        box-sizing: border-box;
         width: 320px;
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         font-weight: 400;
         line-height: 1.5;
@@ -73,7 +74,7 @@ function Styles() {
      .CustomTextarea:focus {
         outline: 0;
         border-color: ${cyan[400]};
-        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};        
+        box-shadow: 0 0 0 3px ${isDarkMode ? cyan[500] : cyan[200]};
       }
 
       // firefox

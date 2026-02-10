@@ -54,7 +54,7 @@ const Badge = styled(BaseBadge)(
   font-size: 14px;
   font-variant: tabular-nums;
   list-style: none;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   position: relative;
   display: inline-block;
   line-height: 1;

@@ -3,10 +3,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import { emphasize } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { emphasize } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
@@ -110,7 +110,7 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
 }));
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialAction' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });
   const {
     className,
     delay = 0,
@@ -203,10 +203,10 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 });
 
 SpeedDialAction.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Override or extend the styles applied to the component.
    */

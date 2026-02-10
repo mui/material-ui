@@ -16,7 +16,20 @@
     "import CardActions from '@mui/material/CardActions';",
     "import { CardActions } from '@mui/material';"
   ],
-  "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiCardActions" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiCardActions-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "spacing",
+      "className": "MuiCardActions-spacing",
+      "description": "Styles applied to the root element unless `disableSpacing={true}`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCardActions",

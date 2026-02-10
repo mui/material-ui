@@ -431,6 +431,16 @@ function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
   };
 }
 
+function handleHighlightLast<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
+  context: ListActionContext<ItemValue>,
+) {
+  return {
+    ...state,
+    highlightedValue: moveHighlight(null, 'end', context),
+  };
+}
+
 function handleClearSelection<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   context: ListActionContext<ItemValue>,
@@ -461,6 +471,8 @@ export function listReducer<ItemValue, State extends ListState<ItemValue>>(
       return handleItemsChange(action.items, action.previousItems, state, context);
     case ListActionTypes.resetHighlight:
       return handleResetHighlight(state, context);
+    case ListActionTypes.highlightLast:
+      return handleHighlightLast(state, context);
     case ListActionTypes.clearSelection:
       return handleClearSelection(state, context);
     default:

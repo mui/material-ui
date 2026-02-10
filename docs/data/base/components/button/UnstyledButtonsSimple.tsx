@@ -36,7 +36,7 @@ const grey = {
 
 const Button = styled(BaseButton)(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -66,7 +66,7 @@ const Button = styled(BaseButton)(
     outline: none;
   }
 
-  &.Mui-disabled {
+  &.base--disabled {
     background-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
     border: 0;

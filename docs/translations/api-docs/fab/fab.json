@@ -26,51 +26,51 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "primary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "secondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
-    "extended": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"extended\"</code>"
-    },
     "circular": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"circular\"</code>"
-    },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the ButtonBase root element",
-      "conditions": "the button is keyboard focused"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>disabled={true}</code>"
     },
     "colorInherit": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"inherit\"</code>"
     },
-    "sizeSmall": {
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "extended": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>`"
+      "conditions": "<code>variant=\"extended\"</code>"
+    },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the ButtonBase root element",
+      "conditions": "the button is keyboard focused"
+    },
+    "primary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "secondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"secondary\"</code>"
     },
     "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>`"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"small\"</code>`"
     }
   }
 }

@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 
@@ -22,7 +23,7 @@ const warn = () => {
 
 type TreeViewComponent<Multiple extends boolean | undefined = undefined> = ((
   props: TreeViewProps<Multiple> & React.RefAttributes<HTMLDivElement>,
-) => JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any };
 
 /**
  * @deprecated The TreeView component was moved from `@mui/lab` to `@mui/x-tree-view`. More information about this migration on our blog: https://mui.com/blog/lab-tree-view-to-mui-x/.

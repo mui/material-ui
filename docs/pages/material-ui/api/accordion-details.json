@@ -15,7 +15,14 @@
     "import AccordionDetails from '@mui/material/AccordionDetails';",
     "import { AccordionDetails } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAccordionDetails" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiAccordionDetails-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAccordionDetails",

@@ -68,8 +68,18 @@ const rule = {
 
     return {
       CallExpression(node) {
+        const isCreateUseThemePropsCall = node.callee.name === 'createUseThemeProps';
+        if (isCreateUseThemePropsCall) {
+          if (!node.arguments.length) {
+            context.report({ node, messageId: 'noNameValue' });
+          } else if (node.arguments[0].type !== 'Literal' || !node.arguments[0].value) {
+            context.report({ node: node.arguments[0], messageId: 'noNameValue' });
+          }
+        }
+
         let nameLiteral = null;
-        const isUseThemePropsCall = node.callee.name === 'useThemeProps';
+        const isUseThemePropsCall =
+          node.callee.name === 'useThemeProps' || node.callee.name === 'useDefaultProps';
         if (isUseThemePropsCall) {
           let isCalledFromCustomHook = false;
           let parent = node.parent;
@@ -107,7 +117,7 @@ const rule = {
                   ? parent.init.expression.callee
                   : parent.init.callee;
               if (callee.name.includes(parent.id.name)) {
-                // For component factory, e.g. const Container = createContainer({ ... })
+                // For component factory, for example const Container = createContainer({ ... })
                 componentName = parent.id.name;
               }
             }

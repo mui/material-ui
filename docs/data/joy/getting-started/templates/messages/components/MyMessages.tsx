@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Sheet from '@mui/joy/Sheet';
+
 import MessagesPane from './MessagesPane';
 import ChatsPane from './ChatsPane';
 import { ChatProps } from '../types';
@@ -23,10 +24,7 @@ export default function MyProfile() {
     >
       <Sheet
         sx={{
-          position: {
-            xs: 'fixed',
-            sm: 'sticky',
-          },
+          position: { xs: 'fixed', sm: 'sticky' },
           transform: {
             xs: 'translateX(calc(100% * (var(--MessagesPane-slideIn, 0) - 1)))',
             sm: 'none',

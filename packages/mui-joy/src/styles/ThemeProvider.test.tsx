@@ -6,6 +6,7 @@ import defaultTheme from './defaultTheme';
 
 describe('[Joy] ThemeProvider', () => {
   const { render } = createRenderer();
+
   it('can render component without ThemeProvider', () => {
     function Text() {
       const theme = useTheme();

@@ -67,7 +67,7 @@ function Styles() {
   return (
     <style>{`
       .Button {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-weight: 600;
         font-size: 0.875rem;
         line-height: 1.5;
@@ -81,7 +81,7 @@ function Styles() {
         box-shadow: 0 2px 1px ${
           isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
         }, inset 0 1.5px 1px ${cyan[400]}, inset 0 -2px 1px ${cyan[600]};
-  
+
         &:hover {
           background-color: ${cyan[600]};
         }
@@ -90,7 +90,7 @@ function Styles() {
           background-color: ${cyan[700]};
           box-shadow: none;
         }
-  
+
         &:focus-visible {
           box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
           outline: none;

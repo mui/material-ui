@@ -1,4 +1,4 @@
-# React Engineer - xCharts
+# React Engineer — xCharts (future role)
 
 <p class="description">You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
@@ -6,22 +6,22 @@
 
 - **Location**: Remote (strong preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -34,34 +34,36 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-The charts team (part of MUI X) needs your help.
+The charts team (part of MUI X) needs your help.
 The component is off to [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-charts&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
 
 To be more specific in what we are aiming to achieve in the short to mid-term:
 
-- A tighter integration with the rest of the MUI libraries including Material UI and MUI X Data Grid
+- A tighter integration with the rest of the MUI libraries including Material UI and MUI X Data Grid
 - Faster iteration cycles compared to popular open-source alternatives such as chart.js and Recharts
 
 This should allow us to reach 30% of the downloads of alternative React charting libraries, considering benchmark data in the short term. Developers value having a single touch point, but also one they trust, and one that integrates well into the rest of their application.
 
-In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library.
+In the mid-term, we aspired for this charting library to become a standard in the React ecosystem, outgrowing Material UI or any other UI library.
 We believe we can achieve this with an open-core model.
-We will at least match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts.
+We will at least match the features available in the alternative open-source projects, licensed as MIT in MUI X Charts.
 We will then provide extra paid features so developers can use a single charting library, without the need to juggle with paid alternatives as they do today.
 
 In the long term, we envision using the pro-code charting API as a distribution channel for building more abstract charting primitives, using low-code and AI.
 
-## The role
+Overall both our open-source community and our premium products are growing fast (x2 YoY). We need talented people to keep that going!
 
 ### Why this is interesting
 
 The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+
+## The role
 
 ### What you'll do on a day-to-day basis
 
@@ -88,7 +90,7 @@ Depending on the day, you'll:
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making MUI the go-to UI framework** for building applications, websites, and design systems with React.
+- **Your role will be key to making MUI the go-to UI solution** for building applications, websites, and design systems with React.
 
 ### The worst parts of this job
 
@@ -98,18 +100,18 @@ Depending on the day, you'll:
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly but don't sacrifice quality**.
   We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
+- **MUI has a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
-## About you
+## Who we're looking for
 
 We're looking for someone with strong front-end skills. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
 
-### Skills you should have
+### Required
 
 - **Expertise in the modern JavaScript ecosystem**.
-  MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+  MUI's open-source projects are built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
@@ -126,7 +128,7 @@ We're looking for someone with strong front-end skills. More important than spec
   Perhaps you've created your company's design system, written a Babel plugin, or written complex React components.
   It would be great if you could address this in your cover letter!
 
-### What it would be nice if you had, but isn't required
+### Nice to have (but not required)
 
 - **You've experience with charts**.
   You have contributed to building chart libraries, integrated charts in a design system, or contributed to chart intensive applications.
@@ -137,12 +139,12 @@ We're looking for someone with strong front-end skills. More important than spec
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
+- **You have contributed code**. A history of contributing to MUI's open-source projects is a plus.
 
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
@@ -151,6 +153,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

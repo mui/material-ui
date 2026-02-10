@@ -138,10 +138,10 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 }) as OverridableComponent<StepperTypeMap>;
 
 Stepper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used to render icon or text elements inside the Stepper if `src` is not set.
    * This can be an element, or just a string.

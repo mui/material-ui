@@ -8,18 +8,20 @@ import AdGuest from 'docs/src/modules/components/AdGuest';
 import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import { alpha } from '@mui/material/styles';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 import PropertiesSection, {
   getPropsToC,
 } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import CSSSection, { getCssToC } from 'docs/src/modules/components/ApiPage/sections/CssSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import ClassesSection, {
+  getClassesToC,
+} from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
+import { DEFAULT_API_LAYOUT_STORAGE_KEYS } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 
 export function getTranslatedHeader(t, header) {
   const translations = {
@@ -67,7 +69,13 @@ Heading.propTypes = {
 };
 
 export default function ApiPage(props) {
-  const { descriptions, disableAd = false, pageContent } = props;
+  const {
+    descriptions,
+    disableAd = false,
+    pageContent,
+    defaultLayout = 'table',
+    layoutStorageKey = DEFAULT_API_LAYOUT_STORAGE_KEYS,
+  } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -79,10 +87,13 @@ export default function ApiPage(props) {
     inheritance,
     props: componentProps,
     spread,
-    styles: componentStyles,
     slots: componentSlots,
-    classes: componentClasses,
+    classes,
   } = pageContent;
+
+  const componentClasses = Array.isArray(classes)
+    ? [...classes].sort((c1, c2) => c1.className.localeCompare(c2.className))
+    : [];
 
   const isJoyComponent = filename.includes('mui-joy');
   const isBaseComponent = filename.includes('mui-base');
@@ -111,10 +122,6 @@ export default function ApiPage(props) {
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
-  const hasClasses =
-    componentClasses?.classes?.length ||
-    Object.keys(componentClasses?.classes?.globalClasses || {}).length;
-
   function createTocEntry(sectionName) {
     return {
       text: getTranslatedHeader(t, sectionName),
@@ -141,13 +148,12 @@ export default function ApiPage(props) {
       inheritance,
       themeDefaultProps: pageContent.themeDefaultProps,
     }),
-    ...getCssToC({
+    componentSlots?.length > 0 && createTocEntry('slots'),
+    ...getClassesToC({
       t,
       componentName: pageContent.name,
-      componentStyles,
+      componentClasses,
     }),
-    componentSlots?.length > 0 && createTocEntry('slots'),
-    hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -241,7 +247,7 @@ export default function ApiPage(props) {
 `)}
           language="jsx"
         />
-        <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
+        <p dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
         {componentDescription ? (
           <React.Fragment>
             <br />
@@ -253,14 +259,14 @@ export default function ApiPage(props) {
             />
           </React.Fragment>
         ) : null}
-
         <PropertiesSection
           properties={componentProps}
           propertiesDescriptions={propDescriptions}
-          targetName={pageContent.name}
+          componentName={pageContent.name}
           spreadHint={spreadHint}
+          defaultLayout={defaultLayout}
+          layoutStorageKey={layoutStorageKey.props}
         />
-
         {cssComponent && (
           <React.Fragment>
             <span
@@ -272,7 +278,6 @@ export default function ApiPage(props) {
             <br />
           </React.Fragment>
         )}
-
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{ __html: refHint }}
@@ -282,7 +287,6 @@ export default function ApiPage(props) {
             marginTop: 0,
           }}
         />
-
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
@@ -298,7 +302,6 @@ export default function ApiPage(props) {
             <Divider />
           </React.Fragment>
         )}
-
         {pageContent.themeDefaultProps && (
           <React.Fragment>
             <Heading hash="theme-default-props" level="h3" />
@@ -312,15 +315,6 @@ export default function ApiPage(props) {
             <Divider sx={{ 'hr&&': { mb: 0 } }} />
           </React.Fragment>
         )}
-
-        <CSSSection
-          componentStyles={componentStyles}
-          classDescriptions={classDescriptions}
-          componentName={pageContent.name}
-          spreadHint={t('api-docs.cssDescription')}
-          styleOverridesLink={styleOverridesLink}
-        />
-
         <SlotsSection
           componentSlots={componentSlots}
           slotDescriptions={slotDescriptions}
@@ -329,13 +323,18 @@ export default function ApiPage(props) {
             slotGuideLink &&
             t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
           }
+          defaultLayout={defaultLayout}
+          layoutStorageKey={layoutStorageKey.slots}
         />
-
         <ClassesSection
           componentClasses={componentClasses}
           componentName={pageContent.name}
           classDescriptions={classDescriptions}
           spreadHint={t('api-docs.classesDescription')}
+          styleOverridesLink={styleOverridesLink}
+          defaultLayout={defaultLayout}
+          layoutStorageKey={layoutStorageKey.classes}
+          displayClassKeys
         />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
@@ -348,8 +347,14 @@ export default function ApiPage(props) {
 }
 
 ApiPage.propTypes = {
+  defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
   descriptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
+  layoutStorageKey: PropTypes.shape({
+    classes: PropTypes.string,
+    props: PropTypes.string,
+    slots: PropTypes.string,
+  }),
   pageContent: PropTypes.object.isRequired,
 };
 

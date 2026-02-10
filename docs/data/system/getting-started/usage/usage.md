@@ -1,10 +1,10 @@
 # Usage
 
-<p class="description">Learn the basics of working with MUI System and its utilities.</p>
+<p class="description">Learn the basics of working with MUI System and its utilities.</p>
 
-## Why use MUI System?
+## Why use MUI System?
 
-MUI System's `sx` prop lets you avoid writing unnecessary styled-component code, and instead define styles directly within the component itself.
+MUI System's `sx` prop lets you avoid writing unnecessary styled-component code, and instead define styles directly within the component itself.
 This is especially useful for one-off components with custom designs.
 
 The following code samples illustrate the difference between styled-components and `sx`:
@@ -75,7 +75,7 @@ return (
 );
 ```
 
-2. Using MUI System:
+2. Using MUI System:
 
 ```jsx
 <Box
@@ -113,9 +113,9 @@ return (
 
 ### The sx prop
 
-MUI System's core utility is the `sx` prop, which gives you a quick and efficient way to apply the correct design tokens directly to a React element.
+MUI System's core utility is the `sx` prop, which gives you a quick and efficient way to apply the correct design tokens directly to a React element.
 
-This prop provides a superset of CSS (i.e. it contains all CSS properties and selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
+This prop provides a superset of CSS (that is it contains all CSS properties and selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
 It also simplifies the process of defining responsive values by referring to the breakpoints defined in the theme.
 
 Visit [the `sx` prop page](/system/getting-started/the-sx-prop/) for complete details.
@@ -127,7 +127,7 @@ Resize the window to see the responsive breakpoints:
 
 {{"demo": "Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-## When to use MUI System
+## When to use MUI System
 
 The `sx` prop is best suited for applying one-off styles to custom components.
 
@@ -136,7 +136,7 @@ These components are used in many different parts of the application and support
 
 ### Performance tradeoffs
 
-MUI System relies on CSS-in-JS.
+MUI System relies on CSS-in-JS.
 It works with both Emotion and styled-components.
 
 #### Pros
@@ -148,51 +148,51 @@ It works with both Emotion and styled-components.
   The initial bundle size cost is fixed—it doesn't get any larger as you add more CSS properties.
   You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system).
   The total size is ~15 kB gzipped.
-  But if you are already using an MUI Core component library like Material UI, then it comes with no extra overhead.
+  But if you are already using an MUI Core component library like Material UI, then it comes with no extra overhead.
 
 #### Cons
 
-- Runtime performance takes a hit.
+Runtime performance takes a hit.
 
-  | Benchmark case                    | Code snippet          | Time normalized |
-  | :-------------------------------- | :-------------------- | --------------: |
-  | a. Render 1,000 primitives        | `<div className="…">` |           100ms |
-  | b. Render 1,000 components        | `<Div>`               |           112ms |
-  | c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
-  | d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
+| Benchmark case                    | Code snippet          | Time normalized |
+| :-------------------------------- | :-------------------- | --------------: |
+| a. Render 1,000 primitives        | `<div className="…">` |           100ms |
+| b. Render 1,000 components        | `<Div>`               |           112ms |
+| c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
+| d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+Visit the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of the metrics above.
 
 We believe that for most use cases it's fast enough, but there are simple workarounds when performance becomes critical.
 For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
 ### API tradeoff
 
-MUI System's unifying `sx` prop helps to maintain the separation of concerns between CSS utilities and component business logic.
+MUI System's unifying `sx` prop helps to maintain the separation of concerns between CSS utilities and component business logic.
 
 For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), and is distinct from the CSS `color` property.
 
-Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as props for this reason.
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept MUI System properties as props for this reason.
 These components are designed to solve CSS problems—they are CSS component utilities.
 
-## Where to use MUI System
+## Where to use MUI System
 
 The `sx` prop can be used in four different locations:
 
 ### Core components
 
-All core MUI components support the `sx` prop.
+All Material UI and Joy UI components support the `sx` prop.
 
 ### Box
 
-[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
+[`Box`](/system/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
 It renders a `<div>` element by default.
 
 ### Custom components
 
-In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
+In addition to MUI System components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
 import { styled } from '@mui/material/styles';
@@ -202,9 +202,9 @@ const Div = styled('div')``;
 
 ### Any element with the babel plugin
 
-TODO [#23220](https://github.com/mui/material-ui/issues/23220).
+Visit [the open GitHub issue](https://github.com/mui/material-ui/issues/23220) regarding this topic to learn more.
 
-## How to use MUI System
+## How to use MUI System
 
 ### Design tokens in the theme
 
@@ -299,7 +299,7 @@ Here's what that looks like:
 {{"demo": "BreakpointsAsArray.js"}}
 
 :::success
-This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
+This option should only be considered when the theme has a limited number of breakpoints, for example 3.
 
 We recommend using the object API instead if you need to define more than a few breakpoints.
 :::
@@ -368,7 +368,7 @@ declare module '@mui/material/styles' {
 
 #### Theme getter
 
-If you wish to use the theme for a CSS property that is not supported natively by the system, then you can use a function as the value, in which you can access the theme object.
+If you wish to use the theme for a CSS property that is not supported natively by MUI System, then you can use a function as the value, in which you can access the theme object.
 The following demo shows how this works:
 
 {{"demo": "ValueAsFunction.js"}}

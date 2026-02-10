@@ -2,13 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;
@@ -65,7 +65,7 @@ const FormHelperTextRoot = styled('p', {
 }));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormHelperText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormHelperText' });
   const {
     children,
     className,
@@ -121,10 +121,10 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
 });
 
 FormHelperText.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    *

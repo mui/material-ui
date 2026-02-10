@@ -2,15 +2,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
-import { useSlotProps } from '@mui/base';
-import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import HTMLElementType from '@mui/utils/HTMLElementType';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import composeClasses from '@mui/utils/composeClasses';
+import useSlotProps from '@mui/utils/useSlotProps';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
+import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -69,7 +70,7 @@ const ModalBackdrop = styled(Backdrop, {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiModal', props: inProps });
+  const props = useDefaultProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
@@ -220,10 +221,10 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 });
 
 Modal.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
    * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
@@ -294,6 +295,9 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.

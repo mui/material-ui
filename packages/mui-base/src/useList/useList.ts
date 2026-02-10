@@ -90,6 +90,7 @@ function useList<
     reducerActionContext = EMPTY_OBJECT as CustomActionContext,
     selectionMode = 'single',
     stateReducer: externalReducer,
+    componentName = 'useList',
   } = params;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -136,7 +137,7 @@ function useList<
         highlightedValue: itemComparer,
         selectedValues: (valuesArray1, valuesArray2) =>
           areArraysEqual(valuesArray1, valuesArray2, itemComparer),
-      } as StateComparers<State>),
+      }) as StateComparers<State>,
     [itemComparer],
   );
 
@@ -221,6 +222,7 @@ function useList<
     controlledProps,
     stateComparers,
     onStateChange: handleStateChange,
+    componentName,
   });
 
   const { highlightedValue, selectedValues } = state;

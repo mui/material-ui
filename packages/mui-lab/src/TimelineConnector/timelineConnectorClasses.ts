@@ -1,5 +1,5 @@
-import generateUtilityClass from '@mui/material/generateUtilityClass';
-import generateUtilityClasses from '@mui/material/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 
 export interface TimelineConnectorClasses {
   /** Styles applied to the root element. */

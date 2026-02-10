@@ -124,7 +124,7 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => [
     },
     '& .MuiTreeItem-root': {
       position: 'relative',
-      '&:before': {
+      '&::before': {
         content: '""',
         display: 'block',
         position: 'absolute',
@@ -141,13 +141,13 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => [
   },
   theme.applyDarkStyles({
     '& .MuiTreeItem-root': {
-      '&:before': {
+      '&::before': {
         backgroundColor: (theme.vars || theme).palette.primaryDark[600],
       },
     },
     '& .MuiTreeItem-group': {
       '& .MuiTreeItem-content': {
-        '&:before': {
+        '&::before': {
           backgroundColor: (theme.vars || theme).palette.primaryDark[600],
         },
       },
@@ -168,7 +168,7 @@ export default function FolderTreeView() {
   return (
     <TreeView
       aria-label="folder"
-      defaultExpanded={['1', '2', '5']}
+      defaultExpanded={['1', '2', '5', '7']}
       defaultCollapseIcon={<KeyboardArrowUpRounded sx={{ fontSize: 16, color: 'primary.main' }} />}
       defaultExpandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 16, color: 'grey.600' }} />}
       defaultEndIcon={<div style={{ width: 24 }} />}

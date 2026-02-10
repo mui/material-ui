@@ -105,7 +105,7 @@ const BadgeBadge = styled('span', {
     theme.typography[`body-${({ sm: 'xs', md: 'sm', lg: 'md' } as const)[ownerState.size!]}`];
   return {
     '--Icon-color': 'currentColor',
-    '--Icon-fontSize': `calc(1em * ${typography.lineHeight ?? '1'})`,
+    '--Icon-fontSize': `calc(1em * ${typography?.lineHeight ?? '1'})`,
     display: 'inline-flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -232,10 +232,10 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 }) as OverridableComponent<BadgeTypeMap>;
 
 Badge.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The anchor of the badge.
    * @default {

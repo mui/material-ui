@@ -15,7 +15,14 @@
     "import DialogTitle from '@mui/material/DialogTitle';",
     "import { DialogTitle } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogTitle" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiDialogTitle-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiDialogTitle",

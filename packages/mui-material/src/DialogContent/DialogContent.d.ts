@@ -33,4 +33,4 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
  *
  * - [DialogContent API](https://mui.com/material-ui/api/dialog-content/)
  */
-export default function DialogContent(props: DialogContentProps): JSX.Element;
+export default function DialogContent(props: DialogContentProps): React.JSX.Element;

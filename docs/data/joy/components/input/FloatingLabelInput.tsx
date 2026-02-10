@@ -56,7 +56,7 @@ const StyledLabel = styled('label')(({ theme }) => ({
 
 const InnerInput = React.forwardRef<
   HTMLInputElement,
-  JSX.IntrinsicElements['input']
+  React.JSX.IntrinsicElements['input']
 >(function InnerInput(props, ref) {
   const id = React.useId();
   return (

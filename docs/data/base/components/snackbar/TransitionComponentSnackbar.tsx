@@ -10,7 +10,7 @@ export default function TransitionComponentSnackbar() {
   const [exited, setExited] = React.useState(true);
   const nodeRef = React.useRef(null);
 
-  const handleClose = (_: any, reason: SnackbarCloseReason) => {
+  const handleClose = (_: any, reason?: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -92,7 +92,7 @@ const grey = {
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -141,7 +141,7 @@ const SnackbarContent = styled('div')(
   justify-content: space-between;
   max-width: 560px;
   min-width: 300px;
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border-radius: 8px;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   box-shadow: ${

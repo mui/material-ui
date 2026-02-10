@@ -3,7 +3,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import InstallDesktopRoundedIcon from '@mui/icons-material/InstallDesktopRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
-import InfoCard from 'docs/src/components/action/InfoCard';
+import { InfoCard } from '@mui/docs/InfoCard';
 
 const content = [
   {

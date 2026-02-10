@@ -56,16 +56,16 @@ export default function MenuUsage() {
     variant="${props.menuButtonVariant}"`
       : ''
   }${
-          props.color !== 'neutral'
-            ? `
+    props.color !== 'neutral'
+      ? `
     color="${props.color}"`
-            : ''
-        }${
-          props.size !== 'md'
-            ? `
+      : ''
+  }${
+    props.size !== 'md'
+      ? `
     size="${props.size}"`
-            : ''
-        }>
+      : ''
+  }>
     Format
   </MenuButton>
   <Menu${
@@ -74,21 +74,21 @@ export default function MenuUsage() {
     invertedColors`
       : ''
   }${
-          props.menuVariant !== 'outlined'
-            ? `
+    props.menuVariant !== 'outlined'
+      ? `
     variant="${props.menuVariant}"`
-            : ''
-        }${
-          props.color !== 'neutral'
-            ? `
+      : ''
+  }${
+    props.color !== 'neutral'
+      ? `
     color="${props.color}"`
-            : ''
-        }${
-          props.size !== 'md'
-            ? `
+      : ''
+  }${
+    props.size !== 'md'
+      ? `
     size="${props.size}"`
-            : ''
-        }>
+      : ''
+  }>
     <MenuItem>…</MenuItem>
     …
   </Menu>

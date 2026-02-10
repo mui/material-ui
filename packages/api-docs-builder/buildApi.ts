@@ -1,7 +1,6 @@
 import { mkdirSync } from 'fs';
 import path from 'path';
 import * as fse from 'fs-extra';
-import kebabCase from 'lodash/kebabCase';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { writePrettifiedFile } from './buildApiUtils';
@@ -16,27 +15,42 @@ import {
 } from './utils/createTypeScriptProject';
 import { ProjectSettings } from './ProjectSettings';
 
-const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
-
 async function removeOutdatedApiDocsTranslations(
   components: readonly ComponentReactApi[],
+  apiDocsTranslationsDirectories: string[],
 ): Promise<void> {
   const componentDirectories = new Set<string>();
-  const files = await fse.readdir(apiDocsTranslationsDirectory);
+  const projectFiles = await Promise.all(
+    apiDocsTranslationsDirectories.map(async (directory) => ({
+      directory: path.resolve(directory),
+      files: await fse.readdir(directory),
+    })),
+  );
+
   await Promise.all(
-    files.map(async (filename) => {
-      const filepath = path.join(apiDocsTranslationsDirectory, filename);
-      const stats = await fse.stat(filepath);
-      if (stats.isDirectory()) {
-        componentDirectories.add(filepath);
-      }
+    projectFiles.map(async ({ directory, files }) => {
+      await Promise.all(
+        files.map(async (filename) => {
+          const filepath = path.join(directory, filename);
+          const stats = await fse.stat(filepath);
+          if (stats.isDirectory()) {
+            componentDirectories.add(filepath);
+          }
+        }),
+      );
     }),
   );
 
   const currentComponentDirectories = new Set(
-    components.map((component) => {
-      return path.resolve(apiDocsTranslationsDirectory, kebabCase(component.name));
-    }),
+    components
+      .map((component) => {
+        if (component.apiDocsTranslationFolder) {
+          return path.resolve(component.apiDocsTranslationFolder);
+        }
+        console.warn(`Component ${component.name} did not generate an API translation file.`);
+        return null;
+      })
+      .filter((filename): filename is string => filename !== null),
   );
 
   const outdatedComponentDirectories = new Set(componentDirectories);
@@ -54,14 +68,17 @@ async function removeOutdatedApiDocsTranslations(
 export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp | null = null) {
   const allTypeScriptProjects = projectsSettings
     .flatMap((setting) => setting.typeScriptProjects)
-    .reduce((acc, project) => {
-      acc[project.name] = project;
-      return acc;
-    }, {} as Record<string, CreateTypeScriptProjectOptions>);
+    .reduce(
+      (acc, project) => {
+        acc[project.name] = project;
+        return acc;
+      },
+      {} as Record<string, CreateTypeScriptProjectOptions>,
+    );
 
   const buildTypeScriptProject = createTypeScriptProjectBuilder(allTypeScriptProjects);
 
-  let allBuilds: Array<PromiseSettledResult<ComponentReactApi | null>> = [];
+  let allBuilds: Array<PromiseSettledResult<ComponentReactApi | null | never[]>> = [];
   for (let i = 0; i < projectsSettings.length; i += 1) {
     const setting = projectsSettings[i];
     // eslint-disable-next-line no-await-in-loop
@@ -74,13 +91,16 @@ export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp
   if (grep === null) {
     const componentApis = allBuilds
       .filter((build): build is PromiseFulfilledResult<ComponentReactApi> => {
-        return build.status === 'fulfilled' && build.value !== null;
+        return build.status === 'fulfilled' && build.value !== null && !Array.isArray(build.value);
       })
       .map((build) => {
         return build.value;
       });
 
-    await removeOutdatedApiDocsTranslations(componentApis);
+    const apiTranslationFolders = projectsSettings.map(
+      (setting) => setting.translationPagesDirectory,
+    );
+    await removeOutdatedApiDocsTranslations(componentApis, apiTranslationFolders);
   }
 }
 
@@ -115,6 +135,9 @@ async function buildSingleProject(
     );
 
     const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+      if (projectSettings.skipHook?.(hook.filename)) {
+        return false;
+      }
       if (grep === null) {
         return true;
       }
@@ -172,8 +195,8 @@ async function buildSingleProject(
     source = projectSettings.onWritingManifestFile(builds, source);
   }
 
-  writePrettifiedFile(apiPagesManifestPath, source);
+  await writePrettifiedFile(apiPagesManifestPath, source);
 
-  projectSettings.onCompleted?.();
+  await projectSettings.onCompleted?.();
   return builds;
 }

@@ -1,9 +1,9 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-beta.15",
+  "version": "5.0.0-beta.52",
   "private": false,
   "author": "MUI Team",
-  "description": "A library of beautifully designed React UI components.",
+  "description": "Joy UI is an open-source React component library that implements MUI's own design principles. It's comprehensive and can be used in production out of the box.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
@@ -19,56 +19,56 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/joy-ui/getting-started/",
+  "homepage": "https://v5.mui.com/joy-ui/getting-started/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
+    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "yarn build && npm publish build",
+    "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-joy/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.2",
-    "@mui/base": "5.0.0-beta.24",
-    "@mui/core-downloads-tracker": "^5.14.18",
-    "@mui/system": "^5.14.18",
-    "@mui/types": "^7.2.9",
-    "@mui/utils": "^5.14.18",
-    "clsx": "^2.0.0",
+    "@babel/runtime": "^7.23.9",
+    "@mui/base": "workspace:*",
+    "@mui/core-downloads-tracker": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/types": "workspace:~",
+    "@mui/utils": "workspace:^",
+    "clsx": "^2.1.0",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui-internal/test-utils": "^1.0.0",
-    "@mui/material": "^5.14.18",
-    "@types/chai": "^4.3.10",
-    "@types/prop-types": "^15.7.10",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
+    "@mui-internal/test-utils": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@types/chai": "^4.3.12",
+    "@types/prop-types": "^15.7.12",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@types/sinon": "^10.0.20",
-    "chai": "^4.3.10",
+    "chai": "^4.4.1",
     "fast-glob": "^3.3.2",
     "lodash": "^4.17.21",
-    "next": "^13.4.19",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "^15.0.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "sinon": "^15.2.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -83,7 +83,8 @@
   },
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "engines": {
     "node": ">=12.0.0"

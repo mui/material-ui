@@ -1,9 +1,13 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface ToggleButtonGroupClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** State class applied to the root element if `selected={true}`. */
+  selected: string;
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
   /** State class applied to the root element if `disabled={true}`. */
@@ -16,6 +20,12 @@ export interface ToggleButtonGroupClasses {
   groupedVertical: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** Styles applied to the first button in the toggle button group. */
+  firstButton: string;
+  /** Styles applied to the last button in the toggle button group. */
+  lastButton: string;
+  /** Styles applied to buttons in the middle of the toggle button group. */
+  middleButton: string;
 }
 
 export type ToggleButtonGroupClassKey = keyof ToggleButtonGroupClasses;
@@ -29,12 +39,16 @@ const toggleButtonGroupClasses: ToggleButtonGroupClasses = generateUtilityClasse
   [
     'root',
     'selected',
+    'horizontal',
     'vertical',
     'disabled',
     'grouped',
     'groupedHorizontal',
     'groupedVertical',
     'fullWidth',
+    'firstButton',
+    'lastButton',
+    'middleButton',
   ],
 );
 

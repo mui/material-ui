@@ -337,10 +337,10 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
 }) as OverridableComponent<SkeletonTypeMap>;
 
 Skeleton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The animation.
    * If `false` the animation effect is disabled.

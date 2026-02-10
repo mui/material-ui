@@ -33,6 +33,19 @@ if (
 
 process.env.DEPLOY_ENV = DEPLOY_ENV;
 
+/**
+ * @typedef {import('next').NextConfig} NextConfig
+ * @typedef {NextConfig['env']} NextConfigEnv
+ * @typedef {{env : {
+ *  LIB_VERSION: string;
+ *  SOURCE_CODE_REPO: string;
+ *  SOURCE_GITHUB_BRANCH: string;
+ *  GITHUB_TEMPLATE_DOCS_FEEDBACK: string;
+ * }} & NextConfig} NextConfigInput
+
+ * @param {NextConfigInput} nextConfig
+ * @returns {NextConfig}
+ */
 function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
@@ -41,9 +54,10 @@ function withDocsInfra(nextConfig) {
     reactStrictMode: true,
     ...nextConfig,
     env: {
-      BUILD_ONLY_ENGLISH_LOCALE: true, // disable translations by default
+      BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
+      FEEDBACK_URL: process.env.FEEDBACK_URL,
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
       // reference ID (also known as "SHA" or "hash") of the commit we're building.
@@ -61,6 +75,8 @@ function withDocsInfra(nextConfig) {
     experimental: {
       scrollRestoration: true,
       esmExternals: false,
+      workerThreads: false,
+      cpus: 3,
       ...nextConfig.experimental,
     },
     eslint: {

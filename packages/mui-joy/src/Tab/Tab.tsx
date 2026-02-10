@@ -150,7 +150,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...other
   } = props;
 
-  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
   const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
 
   const { active, focusVisible, setFocusVisible, selected, getRootProps } = useTab({
@@ -205,10 +205,10 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 }) as OverridableComponent<TabTypeMap>;
 
 Tab.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */

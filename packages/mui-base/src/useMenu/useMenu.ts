@@ -8,7 +8,7 @@ import {
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import { menuReducer } from './menuReducer';
 import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
-import { useList } from '../useList';
+import { ListActionTypes, useList } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
 import { EventHandlers } from '../utils/types';
@@ -22,7 +22,7 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
   popupId: '',
   registerPopup: () => {},
   registerTrigger: () => {},
-  state: { open: true },
+  state: { open: true, changeReason: null },
   triggerElement: null,
 };
 
@@ -43,7 +43,8 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     id: idParam,
     disabledItemsFocusable = true,
     disableListWrap = false,
-    // autoFocus = true,
+    autoFocus = true,
+    componentName = 'useMenu',
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement>(null);
@@ -52,7 +53,7 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
   const listboxId = useId(idParam) ?? '';
 
   const {
-    state: { open },
+    state: { open, changeReason },
     dispatch: menuDispatch,
     triggerElement,
     registerPopup,
@@ -115,18 +116,31 @@ export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue 
     reducerActionContext,
     selectionMode: 'none',
     stateReducer: menuReducer,
+    componentName,
   });
 
   useEnhancedEffect(() => {
     registerPopup(listboxId);
   }, [listboxId, registerPopup]);
 
-  React.useEffect(() => {
-    if (open && highlightedValue === subitemKeys[0] && !isInitiallyOpen.current) {
-      // TODO v6: focus only if autoFocus is true
-      subitems.get(subitemKeys[0])?.ref?.current?.focus();
+  useEnhancedEffect(() => {
+    if (
+      open &&
+      changeReason?.type === 'keydown' &&
+      (changeReason as React.KeyboardEvent).key === 'ArrowUp'
+    ) {
+      listDispatch({
+        type: ListActionTypes.highlightLast,
+        event: changeReason as React.KeyboardEvent,
+      });
     }
-  }, [open, highlightedValue, subitems, subitemKeys]);
+  }, [open, changeReason, listDispatch]);
+
+  React.useEffect(() => {
+    if (open && autoFocus && highlightedValue && !isInitiallyOpen.current) {
+      subitems.get(highlightedValue)?.ref?.current?.focus();
+    }
+  }, [open, autoFocus, highlightedValue, subitems, subitemKeys]);
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)

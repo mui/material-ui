@@ -18,11 +18,44 @@
     "import ImageListItem from '@mui/material/ImageListItem';",
     "import { ImageListItem } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "img", "standard", "woven", "masonry", "quilted"],
-    "globalClasses": {},
-    "name": "MuiImageListItem"
-  },
+  "classes": [
+    {
+      "key": "img",
+      "className": "MuiImageListItem-img",
+      "description": "Styles applied to an `img` element to ensure it covers the item.",
+      "isGlobal": false
+    },
+    {
+      "key": "masonry",
+      "className": "MuiImageListItem-masonry",
+      "description": "Styles applied to the root element if `variant=\"masonry\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "quilted",
+      "className": "MuiImageListItem-quilted",
+      "description": "Styles applied to the root element if `variant=\"quilted\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiImageListItem-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiImageListItem-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "woven",
+      "className": "MuiImageListItem-woven",
+      "description": "Styles applied to the root element if `variant=\"woven\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiImageListItem",

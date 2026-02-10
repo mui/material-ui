@@ -1,3 +1,3 @@
-import { unstable_debounce as debounce } from '@mui/utils';
+import debounce from '@mui/utils/debounce';
 
 export default debounce;

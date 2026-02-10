@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Select as BaseSelect, selectClasses } from '@mui/base/Select';
 
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -12,13 +11,13 @@ export default function UnstyledSelectCustomRenderValue() {
     <Select
       defaultValue={10}
       renderValue={(option) => {
-        if (option == null || option.value === null) {
+        if (option == null || option.value === 0) {
           return 'Select an option…';
         }
         return `${option.label} (${option.value})`;
       }}
     >
-      <Option value={null}>None</Option>
+      <Option value={0}>None</Option>
       <Option value={10}>Ten</Option>
       <Option value={20}>Twenty</Option>
       <Option value={30}>Thirty</Option>
@@ -30,7 +29,7 @@ function Select(props) {
   const slots = {
     root: Button,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
@@ -45,7 +44,7 @@ Select.propTypes = {
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
-    popper: PropTypes.func,
+    popup: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
 };
@@ -90,7 +89,7 @@ Button.propTypes = {
 
 const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -133,7 +132,7 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -177,6 +176,10 @@ const Option = styled(BaseOption)(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+
   &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
@@ -188,6 +191,6 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;

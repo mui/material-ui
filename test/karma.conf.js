@@ -119,7 +119,7 @@ module.exports = function setKarmaConfig(config) {
           'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
         }),
         new webpack.ProvidePlugin({
-          // required by enzyme > cheerio > parse5 > util
+          // required by code accessing `process.env` in the browser
           process: 'process/browser.js',
         }),
       ],
@@ -142,7 +142,7 @@ module.exports = function setKarmaConfig(config) {
               loader: 'babel-loader',
               options: {
                 // We have to apply `babel-plugin-module-resolve` to the files in `@mui/x-date-pickers`.
-                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `yarn test:karma`.
+                // Otherwise we can't import `@mui/material` from `@mui/x-date-pickers` in `pnpm test:karma`.
                 sourceType: 'unambiguous',
                 plugins: [
                   [
@@ -160,7 +160,7 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/private-theming': './packages/mui-private-theming/src',
                         '@mui/utils': './packages/mui-utils/src',
                         '@mui/base': './packages/mui-base/src',
-                        '@mui/material-next': './packages/mui-material-next/src',
+                        '@mui/material-nextjs': './packages/mui-material-nextjs/src',
                         '@mui/joy': './packages/mui-joy/src',
                       },
                       transformFunctions: ['require'],
@@ -189,10 +189,9 @@ module.exports = function setKarmaConfig(config) {
           // needed by sourcemap
           fs: false,
           path: false,
-          // needed by enzyme > cheerio
+          // Exclude polyfill and treat 'stream' as an empty module since it is not required. next -> gzip-size relies on it.
           stream: false,
-          // required by enzyme > cheerio > parse5
-          util: require.resolve('util/'),
+          vm: false,
         },
       },
       // TODO: 'browserslist:modern'

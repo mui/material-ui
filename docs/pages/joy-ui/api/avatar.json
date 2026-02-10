@@ -54,44 +54,100 @@
   },
   "name": "Avatar",
   "imports": ["import Avatar from '@mui/joy/Avatar';", "import { Avatar } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiAvatar" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiAvatar-root"
+      "class": "MuiAvatar-root"
     },
     {
       "name": "img",
       "description": "The component that renders the img.",
       "default": "'img'",
-      "class": ".MuiAvatar-img"
+      "class": "MuiAvatar-img"
     },
     {
       "name": "fallback",
       "description": "The component that renders the fallback.",
       "default": "'svg'",
-      "class": ".MuiAvatar-fallback"
+      "class": "MuiAvatar-fallback"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiAvatar-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiAvatar-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiAvatar-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiAvatar-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiAvatar-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiAvatar-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiAvatar-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiAvatar-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiAvatar-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiAvatar-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiAvatar-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiAvatar-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAvatar",

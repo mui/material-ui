@@ -15,7 +15,7 @@ export default function UnstyledSelectBasic() {
         }}
         slotProps={{
           listbox: { className: 'CustomSelect-listbox' },
-          popper: { className: 'CustomSelect-popper' },
+          popup: { className: 'CustomSelect-popup' },
         }}
         defaultValue={10}
       >
@@ -89,7 +89,7 @@ function Styles() {
       {`
       .CustomSelect {
         position: relative;
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         min-width: 320px;
@@ -117,7 +117,7 @@ function Styles() {
           border-color: ${cyan[400]};
           box-shadow: 0 0 0 3px ${isDarkMode ? cyan[600] : cyan[200]};
         }
-        
+
         & > svg {
           font-size: 1rem;
           position: absolute;
@@ -127,7 +127,7 @@ function Styles() {
         }
       }
       .CustomSelect-listbox {
-        font-family: IBM Plex Sans, sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
         font-size: 0.875rem;
         box-sizing: border-box;
         padding: 6px;
@@ -143,7 +143,7 @@ function Styles() {
           isDarkMode ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
         };
       }
-      .CustomSelect-popper {
+      .CustomSelect-popup {
         z-index: 1;
       }
       .CustomSelect-option {
@@ -169,6 +169,10 @@ function Styles() {
         &.${optionClasses.highlighted}.${optionClasses.selected} {
           background-color: ${isDarkMode ? cyan[700] : cyan[100]};
           color: ${isDarkMode ? cyan[50] : cyan[900]};
+        }
+
+        &:focus-visible {
+          outline: 3px solid ${isDarkMode ? cyan[400] : cyan[300]};
         }
 
         &.${optionClasses.disabled} {

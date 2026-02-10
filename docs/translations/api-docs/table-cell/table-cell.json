@@ -25,11 +25,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "head": {
+    "alignCenter": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"head\"</code> or <code>context.table.head</code>"
+      "conditions": "<code>align=\"center\"</code>"
+    },
+    "alignJustify": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"justify\"</code>"
+    },
+    "alignLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>align=\"right\"</code>"
     },
     "body": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -41,15 +55,10 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"footer\"</code> or <code>context.table.footer</code>"
     },
-    "sizeSmall": {
+    "head": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "sizeMedium": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code>"
+      "conditions": "<code>variant=\"head\"</code> or <code>context.table.head</code>"
     },
     "paddingCheckbox": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -61,25 +70,16 @@
       "nodeName": "the root element",
       "conditions": "<code>padding=\"none\"</code>"
     },
-    "alignLeft": {
+    "root": { "description": "Styles applied to the root element." },
+    "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>align=\"left\"</code>"
+      "conditions": "<code>size=\"medium\"</code>"
     },
-    "alignCenter": {
+    "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>align=\"center\"</code>"
-    },
-    "alignRight": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>align=\"right\"</code>"
-    },
-    "alignJustify": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>align=\"justify\"</code>"
+      "conditions": "<code>size=\"small\"</code>"
     },
     "stickyHeader": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

@@ -22,7 +22,7 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
@@ -118,7 +118,7 @@ export default function XDataGrid() {
     }
   }, [demo, loading, firstRowId, gridApiRef]);
   return (
-    <Section>
+    <Section cozy>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <SectionHeadline
@@ -133,12 +133,7 @@ export default function XDataGrid() {
           />
           <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
-              <Highlighter
-                selectedBg="comfort"
-                key={name}
-                selected={name === demo}
-                onClick={() => setDemo(name)}
-              >
+              <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
@@ -155,7 +150,7 @@ export default function XDataGrid() {
                 zIndex: 1,
                 height: 240,
                 borderRadius: '10px 10px 0 0',
-                borderColor: 'grey.200',
+                borderColor: 'divider',
                 '& .MuiDataGrid-root': {
                   '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                   '& .MuiDataGrid-footerContainer': {
@@ -176,7 +171,7 @@ export default function XDataGrid() {
               },
               (theme) =>
                 theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600',
+                  borderColor: 'divider',
                   '& .MuiDataGrid-root': {
                     '& .MuiDataGrid-footerContainer': {
                       borderColor: 'primaryDark.600',
@@ -232,13 +227,10 @@ export default function XDataGrid() {
                       {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
                       {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
                     </Typography>
-                    <Typography color="grey.400" variant="body2">
+                    <Typography color="grey.300" variant="body2">
                       The Data Grid and all other MUI X components are available on free and paid
-                      versions. More details about each plan and its features are on{' '}
-                      <Link href={ROUTES.pricing} sx={{ color: 'primary.300' }}>
-                        the pricing page
-                      </Link>
-                      .
+                      plans. Find more details about each plan and its features are on{' '}
+                      <Link href={ROUTES.pricing}>the pricing page</Link>.
                     </Typography>
                   </React.Fragment>
                 }

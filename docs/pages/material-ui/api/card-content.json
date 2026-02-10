@@ -16,7 +16,14 @@
     "import CardContent from '@mui/material/CardContent';",
     "import { CardContent } from '@mui/material';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardContent" },
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiCardContent-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiCardContent",

@@ -16,7 +16,7 @@ export interface FormLabelOwnProps {
   /**
    * The content of the component.
    */
-  children?: React.ReactNode;
+  children?: React.LabelHTMLAttributes<HTMLLabelElement>['children'];
   /**
    * Override or extend the styles applied to the component.
    */

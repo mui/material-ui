@@ -71,10 +71,10 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
 }) as OverridableComponent<DialogActionsTypeMap>;
 
 DialogActions.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The CSS `flex` for the Button and its wrapper.
    */

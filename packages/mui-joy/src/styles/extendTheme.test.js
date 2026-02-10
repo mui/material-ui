@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui-internal/test-utils';
-import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
+import { extendTheme, useTheme, CssVarsProvider, styled } from '@mui/joy/styles';
 
 describe('extendTheme', () => {
   it('the output contains required fields', () => {
@@ -31,6 +31,7 @@ describe('extendTheme', () => {
         'unstable_sx',
         'shouldSkipGeneratingVar',
         'generateCssVars',
+        'applyStyles',
       ]).to.includes(field);
     });
   });
@@ -103,6 +104,7 @@ describe('extendTheme', () => {
 
     let originalMatchmedia;
     const storage = {};
+
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
       // Create mocks of localStorage getItem and setItem functions
@@ -120,6 +122,7 @@ describe('extendTheme', () => {
         removeListener: () => {},
       });
     });
+
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });
@@ -174,6 +177,29 @@ describe('extendTheme', () => {
       expect(styles).to.deep.equal({
         // No default value as the CssVarsProvider is used
         borderRadius: 'var(--joy-radius-md)',
+      });
+    });
+
+    it('applyStyles', () => {
+      const attribute = 'data-custom-color-scheme';
+      let darkStyles = {};
+      const Test = styled('div')(({ theme }) => {
+        darkStyles = theme.applyStyles('dark', {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        });
+        return null;
+      });
+
+      render(
+        <CssVarsProvider attribute={attribute}>
+          <Test />
+        </CssVarsProvider>,
+      );
+
+      expect(darkStyles).to.deep.equal({
+        [`*:where([${attribute}="dark"]) &`]: {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+        },
       });
     });
   });

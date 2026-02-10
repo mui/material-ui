@@ -9,7 +9,7 @@ import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import Section from 'docs/src/layouts/Section';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 

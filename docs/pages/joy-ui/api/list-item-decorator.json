@@ -24,15 +24,15 @@
     "import ListItemDecorator from '@mui/joy/ListItemDecorator';",
     "import { ListItemDecorator } from '@mui/joy';"
   ],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiListItemDecorator" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiListItemDecorator-root"
+      "class": "MuiListItemDecorator-root"
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItemDecorator",

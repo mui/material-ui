@@ -16,4 +16,8 @@ export type FormControlContextValue =
 
 const FormControlContext = React.createContext<FormControlContextValue>(undefined);
 
+if (process.env.NODE_ENV !== 'production') {
+  FormControlContext.displayName = 'FormControlContext';
+}
+
 export default FormControlContext;

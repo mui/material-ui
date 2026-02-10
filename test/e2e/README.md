@@ -15,16 +15,16 @@ If you're adding a new test prefer a new component instead of editing existing f
 
 We're using [`playwright`](https://playwright.dev) to replay user actions.
 Each test tests only a single fixture.
-A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('FocusTrap/OpenFocusTrap')`.
+A fixture can be loaded with `await renderFixture(fixturePath)`, for example `renderFixture('FocusTrap/OpenFocusTrap')`.
 
 ## Commands
 
-For development `yarn test:e2e:dev` and `yarn test:e2e:run --watch` in separate terminals is recommended.
+For development `pnpm test:e2e:dev` and `pnpm test:e2e:run --watch` in separate terminals is recommended.
 
 | command                | description                                                                                   |
 | :--------------------- | :-------------------------------------------------------------------------------------------- |
-| `yarn test:e2e`        | Full run                                                                                      |
-| `yarn test:e2e:dev`    | Prepares the fixtures to be able to test in watchmode                                         |
-| `yarn test:e2e:run`    | Runs the tests (requires `yarn test:e2e:dev` or `yarn test:e2e:build`+`yarn test:e2e:server`) |
-| `yarn test:e2e:build`  | Builds the webpack bundle for viewing the fixtures                                            |
-| `yarn test:e2e:server` | Serves the fixture bundle.                                                                    |
+| `pnpm test:e2e`        | Full run                                                                                      |
+| `pnpm test:e2e:dev`    | Prepares the fixtures to be able to test in watchmode                                         |
+| `pnpm test:e2e:run`    | Runs the tests (requires `pnpm test:e2e:dev` or `pnpm test:e2e:build`+`pnpm test:e2e:server`) |
+| `pnpm test:e2e:build`  | Builds the Webpack bundle for viewing the fixtures                                            |
+| `pnpm test:e2e:server` | Serves the fixture bundle.                                                                    |

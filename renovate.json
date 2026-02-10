@@ -26,6 +26,10 @@
       "matchPackagePatterns": "@emotion/*"
     },
     {
+      "groupName": "WyW-in-JS",
+      "matchPackagePatterns": ["@wyw-in-js/*"]
+    },
+    {
       "groupName": "Font awesome SVG icons",
       "matchPackagePatterns": "@fortawesome/*"
     },
@@ -64,12 +68,7 @@
     },
     {
       "groupName": "React",
-      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
-    },
-    {
-      "groupName": "tslint",
-      "matchPackageNames": ["tslint"],
-      "allowedVersions": "<= 5.14.0"
+      "matchPackageNames": ["react", "react-dom", "react-is"]
     },
     {
       "groupName": "typescript-eslint",
@@ -110,9 +109,15 @@
     {
       "groupName": "@definitelytyped tools",
       "matchPackagePatterns": ["@definitelytyped/*"]
+    },
+    {
+      "groupName": "envinfo tests",
+      "matchPaths": ["packages/mui-envinfo/test/package.json"],
+      "matchPackagePatterns": ["@mui/*"],
+      "enabled": false
     }
   ],
-  "postUpdateOptions": ["yarnDedupeHighest"],
+  "postUpdateOptions": ["pnpmDedupe"],
   "prConcurrentLimit": 30,
   "prHourlyLimit": 0,
   "rangeStrategy": "bump",

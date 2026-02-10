@@ -48,6 +48,7 @@ export default function VirtualElementPopover() {
         anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         onClose={handleClose}
+        disableAutoFocus
       >
         <Paper>
           <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>

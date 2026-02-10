@@ -35,7 +35,7 @@ export default function MultipleSelectNative() {
         <InputLabel shrink htmlFor="select-multiple-native">
           Native
         </InputLabel>
-        <Select
+        <Select<string[]>
           multiple
           native
           value={personName}

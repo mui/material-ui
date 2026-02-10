@@ -65,13 +65,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: [
-          '@mui/*/*/*',
-          // Macros are fine since their import path is transpiled away
-          '!@mui/utils/macros',
-          '@mui/utils/macros/*',
-          '!@mui/utils/macros/*.macro',
-        ],
+        patterns: ['@mui/*/*/*'],
       },
     ],
     'no-continue': 'off',
@@ -130,6 +124,7 @@ module.exports = {
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
     'material-ui/no-empty-box': 'error',
+    'material-ui/no-styled-box': 'error',
     'material-ui/straight-quotes': 'error',
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
@@ -169,6 +164,9 @@ module.exports = {
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
+    // noopener is enough, no IE 11 support
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md#rule-options
+    'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
 
     'no-restricted-syntax': [
       // See https://github.com/eslint/eslint/issues/9192 for why it's needed
@@ -215,7 +213,6 @@ module.exports = {
         // matching the pattern of the test runner
         '*.test.mjs',
         '*.test.js',
-        '*.test.mjs',
         '*.test.ts',
         '*.test.tsx',
       ],
@@ -269,7 +266,7 @@ module.exports = {
       rules: {
         'material-ui/no-hardcoded-labels': [
           'error',
-          { allow: ['MUI', 'Twitter', 'GitHub', 'Stack Overflow'] },
+          { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
         ],
       },
     },
@@ -345,8 +342,6 @@ module.exports = {
             patterns: [
               // Allow deeper imports for TypeScript types. TODO remove
               '@mui/*/*/*/*',
-              // Macros are fine since they're transpiled into something else
-              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -379,8 +374,6 @@ module.exports = {
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
               '@mui/*/*/*/*',
-              // Macros are fine since they're transpiled into something else
-              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -420,7 +413,7 @@ module.exports = {
       },
     },
     {
-      files: ['packages/typescript-to-proptypes/src/**/*.ts'],
+      files: ['packages-internal/scripts/typescript-to-proptypes/src/**/*.ts'],
       rules: {
         // Working with flags is common in TypeScript compiler
         'no-bitwise': 'off',
@@ -472,7 +465,7 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
+      files: ['**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
       },

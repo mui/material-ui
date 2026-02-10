@@ -18,6 +18,7 @@ export default function About() {
         title="About us - MUI"
         description="MUI is a 100% remote globally distributed team, supported by a community of thousands
         of developers all across the world."
+        card="/static/social-previews/about-preview.jpg"
       />
       <AppHeaderBanner />
       <AppHeader />

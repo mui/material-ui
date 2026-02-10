@@ -31,19 +31,40 @@
   },
   "name": "Divider",
   "imports": ["import Divider from '@mui/joy/Divider';", "import { Divider } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDivider" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'hr'",
-      "class": ".MuiDivider-root"
+      "class": "MuiDivider-root"
     }
   ],
-  "classes": {
-    "classes": ["horizontal", "insetContext", "insetNone", "vertical"],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "MuiDivider-horizontal",
+      "description": "Class name applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "insetContext",
+      "className": "MuiDivider-insetContext",
+      "description": "Class name applied to the root element if `inset=\"context\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "insetNone",
+      "className": "MuiDivider-insetNone",
+      "description": "Class name applied to the root element if `inset=\"none\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiDivider-vertical",
+      "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyDivider",

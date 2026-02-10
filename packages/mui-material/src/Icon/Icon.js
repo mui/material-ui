@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getIconUtilityClass } from './iconClasses';
 
@@ -65,7 +65,7 @@ const IconRoot = styled('span', {
 }));
 
 const Icon = React.forwardRef(function Icon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiIcon' });
   const {
     baseClassName = 'material-icons',
     className,
@@ -105,13 +105,13 @@ const Icon = React.forwardRef(function Icon(inProps, ref) {
 });
 
 Icon.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
-   * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+   * other base class that suits the icon font you're using (for example material-icons-rounded, fas, etc).
    * @default 'material-icons'
    */
   baseClassName: PropTypes.string,

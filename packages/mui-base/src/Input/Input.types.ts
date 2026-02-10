@@ -81,7 +81,7 @@ export type InputOwnProps = (SingleLineInputProps | MultiLineInputProps) &
      */
     endAdornment?: React.ReactNode;
     /**
-     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `baseui--error` class on the root element.
      * The prop defaults to the value (`false`) inherited from the parent FormControl component.
      */
     error?: boolean;
@@ -190,7 +190,7 @@ export type InputInputSlotProps = Simplify<
     ownerState: InputOwnerState;
     placeholder: string | undefined;
     readOnly: boolean | undefined;
-    ref: React.Ref<HTMLInputElement>;
+    ref?: React.Ref<HTMLInputElement>;
     type: React.HTMLInputTypeAttribute | undefined;
   }
 >;

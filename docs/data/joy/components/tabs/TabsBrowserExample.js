@@ -42,9 +42,9 @@ export default function TabsBrowserExample() {
         </Tab>
         <Tab indicatorPlacement="top">
           <ListItemDecorator>
-            <TwitterIcon />
+            <XIcon />
           </ListItemDecorator>
-          Twitter
+          X
         </Tab>
         <Tab indicatorPlacement="top">
           <ListItemDecorator>
@@ -103,13 +103,27 @@ function GoogleIcon() {
     </SvgIcon>
   );
 }
-function TwitterIcon() {
+function XIcon() {
   return (
     <SvgIcon>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 204">
+      <svg
+        width="350"
+        height="321"
+        viewBox="0 0 350 321"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
-          fill="#1d9bf0"
-          d="M221.95 51.29c.15 2.17.15 4.34.15 6.53 0 66.73-50.8 143.69-143.69 143.69v-.04c-27.44.04-54.31-7.82-77.41-22.64 3.99.48 8 .72 12.02.73 22.74.02 44.83-7.61 62.72-21.66-21.61-.41-40.56-14.5-47.18-35.07 7.57 1.46 15.37 1.16 22.8-.87-23.56-4.76-40.51-25.46-40.51-49.5v-.64c7.02 3.91 14.88 6.08 22.92 6.32C11.58 63.31 4.74 33.79 18.14 10.71c25.64 31.55 63.47 50.73 104.08 52.76-4.07-17.54 1.49-35.92 14.61-48.25 20.34-19.12 52.33-18.14 71.45 2.19 11.31-2.23 22.15-6.38 32.07-12.26-3.77 11.69-11.66 21.62-22.2 27.93 10.01-1.18 19.79-3.86 29-7.95-6.78 10.16-15.32 19.01-25.2 26.16z"
+          id="Rectangle"
+          fill="#000000"
+          fillRule="evenodd"
+          stroke="none"
+          d="M 0 321 L 350 321 L 350 0 L 0 0 Z"
+        />
+        <path
+          id="Path"
+          fill="#ffffff"
+          stroke="none"
+          d="M 261 25 L 307 25 L 206 140 L 324 296 L 231.399994 296 L 158.899994 201.199997 L 75.900002 296 L 29.9 296 L 136.900009 173 L 23.9 25 L 118.800003 25 L 184.300003 111.600006 Z M 244.899994 269 L 270.399994 269 L 105.400002 51 L 78 51 Z"
         />
       </svg>
     </SvgIcon>

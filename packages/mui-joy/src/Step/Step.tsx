@@ -217,10 +217,10 @@ const Step = React.forwardRef(function Step(inProps, ref) {
 }) as OverridableComponent<StepTypeMap>;
 
 Step.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the active className is appended.
    * You can customize the active state from the Stepper's `sx` prop.

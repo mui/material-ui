@@ -8,7 +8,7 @@
     "import CssBaseline from '@mui/material/CssBaseline';",
     "import { CssBaseline } from '@mui/material';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "MuiCssBaseline",

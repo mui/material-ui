@@ -4,6 +4,7 @@ description: Here are the most significant improvements in October.
 date: 2019-11-08T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Here are the most significant improvements in October:
@@ -29,7 +30,7 @@ But this summary is just scratching the surface. We have accepted 182 commits fr
 _(We'll do our best, no guarantee!)_
 
 - 💅 We will initiate an update of our styling solution.
-  It should cover styled-component [#6115](https://github.com/mui/material-ui/pull/#6115), the system [#15561](https://github.com/mui/material-ui/issues/15561), dynamic props [#15573](https://github.com/mui/material-ui/issues/15573) and an unstyled version [#6218](https://github.com/mui/material-ui/pull/6218).
+  It should cover styled-component [#6115](https://github.com/mui/material-ui/pull/#6115), MUI System [#15561](https://github.com/mui/material-ui/issues/15561), dynamic props [#15573](https://github.com/mui/material-ui/issues/15573) and an unstyled version [#6218](https://github.com/mui/material-ui/pull/6218).
 
 - 📅 We will start to work on a [major upgrade](https://github.com/mui/material-ui-pickers/issues/1293) of the date/time picker components.
 

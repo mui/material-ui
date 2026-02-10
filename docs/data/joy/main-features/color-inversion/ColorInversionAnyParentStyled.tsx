@@ -5,7 +5,7 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 
-const StyledBox = styled(Box)(
+const StyledBox = styled('div')(
   ({ theme }) => ({
     padding: 32,
     display: 'grid',
@@ -61,7 +61,7 @@ export default function ColorInversionAnyParentStyled() {
         <Stat value="4M" description="Weekly downloads" />
         <Stat value="87k" description="Stars on GitHub" />
         <Stat value="2.7k" description="Open source contributors" />
-        <Stat value="18.4k" description="Followers on Twitter" />
+        <Stat value="18.4k" description="Followers on X" />
       </Box>
     </StyledBox>
   );

@@ -94,7 +94,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 ## Delaying appearance
 
 There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time.
-The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously.
+The ripple effect of the `ButtonBase` component ensures that the user feels that the UI is reacting instantaneously.
 Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second.
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 

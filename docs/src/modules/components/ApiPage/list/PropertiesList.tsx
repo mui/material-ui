@@ -1,19 +1,18 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import Alert from '@mui/material/Alert';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import kebabCase from 'lodash/kebabCase';
+import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
-} from 'docs/src/modules/brandingTheme';
-import ExpendableApiItem, {
+} from '@mui/docs/branding';
+import ExpandableApiItem, {
   ApiItemContaier,
-} from 'docs/src/modules/components/ApiPage/list/ExpendableApiItem';
+} from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
+import ApiWarning from 'docs/src/modules/components/ApiPage/ApiWarning';
 
-const StyledApiItem = styled(ExpendableApiItem)(
+const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
     '& .prop-list-description': {
       marginBottom: 10,
@@ -22,7 +21,7 @@ const StyledApiItem = styled(ExpendableApiItem)(
       display: 'flex',
       flexDirection: 'column',
       gap: 8,
-      '&>p': {
+      '& > p': {
         margin: 0,
       },
       '& .prop-list-title': {
@@ -37,8 +36,14 @@ const StyledApiItem = styled(ExpendableApiItem)(
         fontSize: theme.typography.pxToRem(12),
       },
     },
-    '& .prop-list-deprecated': {
-      '& code ': { all: 'unset' },
+    '&.prop-list-deprecated-item': {
+      '& .MuiApi-item-note': {
+        color: `var(--muidocs-palette-warning-700, ${lightTheme.palette.warning[700]})`,
+      },
+    },
+    '& .prop-list-alert': {
+      marginTop: 12,
+      marginBottom: 16,
     },
     '& .prop-list-default-props': {
       ...theme.typography.body2,
@@ -55,7 +60,7 @@ const StyledApiItem = styled(ExpendableApiItem)(
         marginTop: 2,
         marginBottom: 0,
       },
-      '&>code': {
+      '& > code': {
         borderRadius: 8,
         padding: 12,
         width: '100%',
@@ -76,15 +81,20 @@ const StyledApiItem = styled(ExpendableApiItem)(
           },
         },
       },
-
       '& .prop-list-default-props': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
+      },
+      '&.prop-list-deprecated-item': {
+        '& .MuiApi-item-note': {
+          color: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
+        },
       },
     },
   }),
 );
 
-function PropDescription({ description }: { description: string }) {
+function PropDescription(props: { description: string }) {
+  const { description } = props;
   const isUlPresent = description.includes('<ul>');
 
   const ComponentToRender = isUlPresent ? 'div' : 'p';
@@ -99,52 +109,51 @@ function PropDescription({ description }: { description: string }) {
   );
 }
 
-PropDescription.propTypes = {
-  description: PropTypes.string.isRequired,
-};
-
-export const getHash = ({
-  targetName,
+export function getHash({
+  componentName,
   propName,
   hooksParameters,
   hooksReturnValue,
 }: {
-  targetName: string;
+  componentName: string;
   propName: string;
   hooksParameters?: boolean;
   hooksReturnValue?: boolean;
-}) => {
+}) {
   let sectionName = 'prop';
   if (hooksParameters) {
     sectionName = 'parameters';
   } else if (hooksReturnValue) {
     sectionName = 'return-value';
   }
-  return `${targetName ? `${targetName}-` : ''}${sectionName}-${propName}`;
-};
+  return `${kebabCase(componentName)}-${sectionName}-${propName}`;
+}
 
-export interface PropDescriptionParams {
-  targetName: string;
-  propName: string;
+export interface Properties {
+  additionalInfo: string[];
+  componentName: string;
+  deprecationInfo?: string;
   description?: string;
-  requiresRef?: string;
-  isOptional?: boolean;
-  isRequired?: boolean;
-  isDeprecated?: boolean;
   hooksParameters?: boolean;
   hooksReturnValue?: boolean;
-  deprecationInfo?: string;
-  typeName: string;
+  isDeprecated?: boolean;
+  isOptional?: boolean;
+  isRequired?: boolean;
+  isProPlan?: boolean;
+  isPremiumPlan?: boolean;
   propDefault?: string;
-  additionalInfo: string[];
+  propName: string;
+  requiresRef?: string;
+  seeMoreDescription?: string;
   signature?: string;
   signatureArgs?: { argName: string; argDescription?: string }[];
   signatureReturnDescription?: string;
+  typeName: string;
 }
 
 interface PropertiesListProps {
-  properties: PropDescriptionParams[];
-  displayOption: 'collapsed' | 'expended';
+  properties: Properties[];
+  displayOption: 'collapsed' | 'expanded';
 }
 
 export default function PropertiesList(props: PropertiesListProps) {
@@ -154,13 +163,16 @@ export default function PropertiesList(props: PropertiesListProps) {
     <ApiItemContaier>
       {properties.map((params) => {
         const {
-          targetName,
+          componentName,
           propName,
+          seeMoreDescription,
           description,
           requiresRef,
           isOptional,
           isRequired,
           isDeprecated,
+          isProPlan,
+          isPremiumPlan,
           hooksParameters,
           hooksReturnValue,
           deprecationInfo,
@@ -171,36 +183,49 @@ export default function PropertiesList(props: PropertiesListProps) {
           signatureArgs,
           signatureReturnDescription,
         } = params;
+
+        let note =
+          (isOptional && t('api-docs.optional')) || (isRequired && t('api-docs.required')) || '';
+
+        if (isDeprecated) {
+          note = [note, t('api-docs.deprecated')].filter(Boolean).join(' - ');
+        }
+
         return (
           <StyledApiItem
             key={propName}
-            id={getHash({ targetName, propName, hooksParameters, hooksReturnValue })}
-            title={propName}
-            note={(isOptional && 'Optional') || (isRequired && 'Required') || ''}
+            id={getHash({ componentName, propName, hooksParameters, hooksReturnValue })}
+            title={
+              <React.Fragment>
+                {propName}
+                {isProPlan && (
+                  <a href="/x/introduction/licensing/#pro-plan">
+                    <span className="plan-pro" />
+                  </a>
+                )}
+                {isPremiumPlan && (
+                  <a href="/x/introduction/licensing/#premium-plan">
+                    <span className="plan-premium" />
+                  </a>
+                )}
+              </React.Fragment>
+            }
+            note={note}
             type="props"
             displayOption={displayOption}
+            className={isDeprecated ? 'prop-list-deprecated-item' : ''}
           >
             {description && <PropDescription description={description} />}
-
+            {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
             {requiresRef && (
-              <Alert
-                severity="warning"
-                icon={<WarningRoundedIcon fontSize="small" />}
-                sx={{
-                  '& .MuiAlert-icon': {
-                    height: 'fit-content',
-                    py: '8px',
-                  },
-                }}
-              >
+              <ApiWarning className="MuiApi-collapsible prop-list-alert">
                 <span
                   dangerouslySetInnerHTML={{
                     __html: t('api-docs.requires-ref'),
                   }}
                 />
-              </Alert>
+              </ApiWarning>
             )}
-
             {additionalInfo.map((key) => (
               <p
                 className="prop-list-additional-description  MuiApi-collapsible"
@@ -211,17 +236,7 @@ export default function PropertiesList(props: PropertiesListProps) {
               />
             ))}
             {isDeprecated && (
-              <Alert
-                className="MuiApi-collapsible prop-list-deprecated"
-                severity="warning"
-                icon={<WarningRoundedIcon fontSize="small" />}
-                sx={{
-                  '& .MuiAlert-icon': {
-                    height: 'fit-content',
-                    py: '8px',
-                  },
-                }}
-              >
+              <ApiWarning className="MuiApi-collapsible prop-list-alert">
                 {t('api-docs.deprecated')}
                 {deprecationInfo && (
                   <React.Fragment>
@@ -233,7 +248,7 @@ export default function PropertiesList(props: PropertiesListProps) {
                     />
                   </React.Fragment>
                 )}
-              </Alert>
+              </ApiWarning>
             )}
             <div className="prop-list-additional-info">
               {typeName && (
@@ -256,14 +271,12 @@ export default function PropertiesList(props: PropertiesListProps) {
               {signature && (
                 <div className="prop-list-signature MuiApi-collapsible">
                   <span className="prop-list-title">{t('api-docs.signature')}:</span>
-
                   <div className="prop-list-content">
                     <code
                       dangerouslySetInnerHTML={{
                         __html: signature,
                       }}
                     />
-
                     {signatureArgs && (
                       <div>
                         <ul>

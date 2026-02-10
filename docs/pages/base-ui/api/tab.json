@@ -21,21 +21,30 @@
   },
   "name": "Tab",
   "imports": ["import { Tab } from '@mui/base/Tab';", "import { Tab } from '@mui/base';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'button'",
-      "class": ".MuiTab-root"
+      "class": "base-Tab-root"
     }
   ],
-  "classes": {
-    "classes": ["disabled", "selected"],
-    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" }
-  },
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root `button` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "selected",
+      "className": "base--selected",
+      "description": "State class applied to the root `button` element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
-  "muiName": "MuiTab",
+  "muiName": "Tab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/Tab/Tab.tsx",
   "inheritance": null,

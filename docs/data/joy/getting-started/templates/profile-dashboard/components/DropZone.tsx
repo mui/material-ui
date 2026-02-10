@@ -7,17 +7,14 @@ import AspectRatio from '@mui/joy/AspectRatio';
 
 import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
 
-export default function DropZone({
-  icon,
-  sx,
-  ...props
-}: CardProps & {
-  icon?: React.ReactElement;
-}) {
+export default function DropZone(
+  props: CardProps & { icon?: React.ReactElement<any> },
+) {
+  const { icon, sx, ...other } = props;
   return (
     <Card
       variant="soft"
-      {...props}
+      {...other}
       sx={[
         {
           borderRadius: 'sm',
@@ -44,7 +41,6 @@ export default function DropZone({
       >
         <div>{icon ?? <FileUploadRoundedIcon />}</div>
       </AspectRatio>
-
       <Typography level="body-sm" textAlign="center">
         <Link component="button" overlay>
           Click to upload

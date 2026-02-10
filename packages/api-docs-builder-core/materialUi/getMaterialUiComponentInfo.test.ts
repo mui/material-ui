@@ -6,10 +6,10 @@ import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
 describe('getMaterialUiComponentInfo', () => {
   it('return correct info for material component file', () => {
-    const info = getMaterialUiComponentInfo(
+    const componentInfo = getMaterialUiComponentInfo(
       path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
     );
-    sinon.assert.match(info, {
+    sinon.assert.match(componentInfo, {
       name: 'Button',
       apiPathname: '/material-ui/api/button/',
       muiName: 'MuiButton',
@@ -18,7 +18,7 @@ describe('getMaterialUiComponentInfo', () => {
       ),
     });
 
-    expect(info.getInheritance('ButtonBase')).to.deep.equal({
+    expect(componentInfo.getInheritance('ButtonBase')).to.deep.equal({
       name: 'ButtonBase',
       apiPathname: '/material-ui/api/button-base/',
     });
@@ -30,7 +30,7 @@ describe('getMaterialUiComponentInfo', () => {
       // eslint-disable-next-line no-empty
     } catch (error) {}
     if (existed) {
-      expect(info.getDemos()).to.deep.equal([
+      expect(componentInfo.getDemos()).to.deep.equal([
         {
           demoPageTitle: 'Button Group',
           demoPathname: '/material-ui/react-button-group/',

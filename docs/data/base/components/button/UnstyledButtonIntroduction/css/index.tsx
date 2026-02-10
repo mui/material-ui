@@ -55,7 +55,7 @@ function Styles() {
   return (
     <style>{`
   .IntroductionButton {
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.5;
@@ -73,16 +73,16 @@ function Styles() {
   .IntroductionButton:hover {
     background-color: ${cyan[600]};
   }
-  .IntroductionButton.Mui-active {
+  .IntroductionButton.base--active {
     background-color: ${cyan[700]};
     box-shadow: none;
     transform: scale(0.99);
   }
-  .IntroductionButton.Mui-focusVisible {
+  .IntroductionButton.base--focusVisible {
     box-shadow: 0 0 0 4px ${isDarkMode ? cyan[300] : cyan[200]};
     outline: none;
   }
-  .IntroductionButton.Mui-disabled {
+  .IntroductionButton.base--disabled {
     background-color: ${isDarkMode ? grey[700] : grey[200]};
     color: ${isDarkMode ? grey[200] : grey[700]};
     border: 0;

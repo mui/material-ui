@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
+import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -54,14 +49,7 @@ describe('Joy <Select />', () => {
       startDecorator: { expectedClassName: classes.startDecorator },
       endDecorator: { expectedClassName: classes.endDecorator },
     },
-    skip: [
-      'classesRoot',
-      'propsSpread',
-      'componentProp',
-      'componentsProp',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
-    ],
+    skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
 
   it('should be able to mount the component', () => {
@@ -162,7 +150,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -180,7 +168,7 @@ describe('Joy <Select />', () => {
           <Option value="2" />
         </Select>,
       );
-      fireEvent.mouseDown(getByRole('combobox'));
+      fireEvent.click(getByRole('combobox'));
       act(() => {
         getAllByRole('option')[1].click();
       });
@@ -302,7 +290,7 @@ describe('Joy <Select />', () => {
           <Select id="foo-bar" />
         </div>,
       );
-      fireEvent.mouseDown(screen.getByLabelText('label'));
+      fireEvent.click(screen.getByLabelText('label'));
       expect(screen.getByRole('listbox')).toBeVisible();
     });
 
@@ -366,12 +354,7 @@ describe('Joy <Select />', () => {
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
-          <Select
-            autoFocus
-            defaultValue=""
-            defaultListboxOpen
-            slotProps={{ listbox: { component: 'div' } }}
-          >
+          <Select autoFocus defaultValue="" slotProps={{ listbox: { component: 'div' } }}>
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
               <Option value={1}>Option 1</Option>
@@ -386,11 +369,11 @@ describe('Joy <Select />', () => {
         );
 
         const combobox = getByRole('combobox');
-        const options = getAllByRole('option');
+        fireEvent.keyDown(combobox, { key: 'ArrowDown' }); // open listbox
 
-        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
-        fireEvent.keyDown(combobox, { key: 'ArrowDown' });
-        fireEvent.keyDown(combobox, { key: 'Enter' });
+        const options = getAllByRole('option');
+        fireEvent.keyDown(options[0], { key: 'ArrowDown' }); // move focus to Option 2
+        fireEvent.keyDown(options[1], { key: 'Enter' }); // select Option 2
 
         expect(options[1]).to.have.attribute('aria-selected', 'true');
       });
@@ -635,14 +618,14 @@ describe('Joy <Select />', () => {
     );
     // Fire Click of the avatar
     act(() => {
-      fireEvent.mouseDown(getByTestId('test-element'));
+      fireEvent.click(getByTestId('test-element'));
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
 
     // click again should close
     act(() => {
-      fireEvent.mouseDown(getByTestId('test-element'));
+      fireEvent.click(getByTestId('test-element'));
     });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
   });

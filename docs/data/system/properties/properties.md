@@ -1,8 +1,8 @@
 # Properties
 
-<p class="description">This API page lists all the custom MUI System properties, how they are linked with the theme, and which CSS properties they compute.</p>
+<p class="description">This API page lists all the custom MUI System properties, how they are linked with the theme, and which CSS properties they compute.</p>
 
-While this page documents the custom properties, MUI System was designed to be a superset of CSS, so all other regular CSS properties and selectors are supported too.
+While this page documents the custom properties, MUI System was designed to be a superset of CSS, so all other regular CSS properties and selectors are supported too.
 
 ## Properties reference table
 

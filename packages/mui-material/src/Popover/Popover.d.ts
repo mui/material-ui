@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
+import { SlotComponentProps } from '@mui/utils';
 import { InternalStandardProps as StandardProps } from '..';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalOwnerState, ModalProps } from '../Modal';
@@ -160,7 +160,7 @@ export interface PopoverProps
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -195,4 +195,4 @@ export declare const PopoverPaper: React.FC<PopoverPaperProps>;
  * - [Popover API](https://mui.com/material-ui/api/popover/)
  * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
-export default function Popover(props: PopoverProps): JSX.Element;
+export default function Popover(props: PopoverProps): React.JSX.Element;

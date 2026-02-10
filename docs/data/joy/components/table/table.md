@@ -14,13 +14,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 ## Introduction
 
-The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
+The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
 
 {{"demo": "TableUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Basics
 
-Joy UI Table will apply the styles based on a table structure using `<thead>`, `<tbody>`, and `<tfoot>` elements.
+Joy UI Table will apply the styles based on a table structure using `<thead>`, `<tbody>`, and `<tfoot>` elements.
 
 ```jsx
 import Table from '@mui/joy/Table';
@@ -74,7 +74,7 @@ Use the `sx` prop to target columns with the appropriate CSS selector and apply 
 
 ### Variants
 
-Table supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
+Table supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
 
 {{"demo": "TableVariants.js"}}
 

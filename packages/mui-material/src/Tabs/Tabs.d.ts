@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/base';
 import { OverridableStringUnion } from '@mui/types';
+import { SlotComponentProps } from '../utils/types';
 import { Theme } from '../styles';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';

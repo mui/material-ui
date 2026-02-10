@@ -30,21 +30,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "colorPrimary": {
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -56,34 +60,20 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
-    "fallback": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the fallback icon"
-    },
-    "sizeSm": {
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
-    },
-    "img": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the img element",
-      "conditions": "either <code>src</code> or <code>srcSet</code> is defined"
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -102,8 +92,8 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
+    "fallback": "The component that renders the fallback.",
     "img": "The component that renders the img.",
-    "fallback": "The component that renders the fallback."
+    "root": "The component that renders the root."
   }
 }

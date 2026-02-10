@@ -10,11 +10,11 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "alignItemsFlexStart": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the parent <code>ListItem</code> uses <code>alignItems=\"flex-start\"</code>"
-    }
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

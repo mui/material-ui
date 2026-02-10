@@ -114,7 +114,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * Use -1 for the value with a custom label to show all the rows.
    * @default [10, 25, 50, 100]
    */
-  rowsPerPageOptions?: Array<number | { value: number; label: string }>;
+  rowsPerPageOptions?: ReadonlyArray<number | { value: number; label: string }>;
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
    *
@@ -141,6 +141,14 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   slotProps?: {
     actions?: TablePaginationActionsProps['slotProps'];
     select?: Partial<SelectProps>;
+  };
+  /**
+   * The components used for each slot inside the TablePagination.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    actions?: TablePaginationActionsProps['slots'];
   };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

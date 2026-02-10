@@ -26,59 +26,70 @@ const Slider = styled(BaseSlider)(
   height: 6px;
   width: 100%;
   padding: 16px 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    opacity: 1;
-  }
 
   & .${sliderClasses.rail} {
     display: block;
     position: absolute;
     width: 100%;
     height: 4px;
-    border-radius: 2px;
+    border-radius: 6px;
     background-color: currentColor;
-    opacity: 0.4;
+    opacity: 0.3;
   }
 
   & .${sliderClasses.track} {
     display: block;
     position: absolute;
     height: 4px;
-    border-radius: 2px;
+    border-radius: 6px;
     background-color: currentColor;
   }
 
   & .${sliderClasses.thumb} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    width: 16px;
-    height: 16px;
     margin-left: -6px;
-    margin-top: -6px;
+    width: 20px;
+    height: 20px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 3px solid currentColor;
-    background-color: #fff;
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 120ms;
+    transform-origin: center;
 
-    :hover,
-    &.${sliderClasses.focusVisible} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
-        theme.palette.mode === 'light' ? blue[400] : blue[300],
-        0.15,
-      )};
-    }
-
-    &.${sliderClasses.active} {
-      box-shadow: 0 0 0 0.25rem ${alpha(
+    &:hover {
+      box-shadow: 0 0 0 6px ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
+    }
+
+    &.${sliderClasses.focusVisible} {
+      box-shadow: 0 0 0 8px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
+        0.5,
+      )};
+      outline: none;
+    }
+
+    &.${sliderClasses.active} {
+      box-shadow: 0 0 0 8px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
+        0.5,
+      )};
+      outline: none;
+      transform: scale(1.2);
     }
   }
 `,

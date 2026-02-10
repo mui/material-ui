@@ -10,17 +10,17 @@
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -33,18 +33,18 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
-
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
 
 We have found market fit but we increasingly don't have the tools (in the broad sense) necessary to keep up with the requests from our users.
 Up to recently, the founders of MUI were the only ones to work on business operations.
 There is now a tiny team of two people working to support the operations needs.
 But this isn't enough, the department is increasingly a bottleneck in growing the company.
 We are looking for a Head of Operations to take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 
@@ -74,9 +74,9 @@ Depending on the day, you'll:
 - Develop and implement strategies to support the growth and success of the company
 - Create new [Toolpad apps](https://mui.com/toolpad/) to streamline the operations (could require some SQL & JavaScript skills).
 
-## About you
+## Who we're looking for
 
-### Skills you should have
+### Required
 
 - Obsessive over the details, aiming for inbox zero.
 - JavaScript & SQL code proficiency as a lot of our operations rely on it.
@@ -85,17 +85,17 @@ Depending on the day, you'll:
 - Strong analytical, and problem-solving skills, with the ability to make data-driven decisions.
 - A high sense of curiosity, enjoying self-learning to get things done. You are [versatile](https://review.firstround.com/the-adaptable-leader-is-the-new-holy-grail-become-one-hire-one).
 - Excited about the ambiguity of an entrepreneurial, growing company, and able to juggle many projects and responsibilities.
-- Bachelor's degree in a related field (e.g. computer science, business management).
+- Bachelor's degree in a related field (for example computer science, business management).
 - 1+ year of experience in a similar role.
 
-### What would be nice if you had, but isn't required
+### Nice to have (but not required)
 
 - 3+ years of experience in a similar role.
 
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
@@ -104,6 +104,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

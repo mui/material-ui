@@ -6,32 +6,30 @@ import {
   SelectRootSlotProps,
 } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
-import { styled, Box } from '@mui/system';
+import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function UnstyledSelectForm() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    alert(new URLSearchParams(formData as any).toString());
+  };
+
   return (
-    <div>
-      <Box sx={{ mb: 2 }}>
-        <Label htmlFor="unnamed-select">Default</Label>
-        <Select defaultValue={10} id="unnamed-select">
-          <Option value={10}>Ten</Option>
-          <Option value={20}>Twenty</Option>
-          <Option value={30}>Thirty</Option>
-        </Select>
-      </Box>
-      <div>
-        <Label htmlFor="named-select">
-          With the <code>name</code> prop
-        </Label>
-        <Select defaultValue={10} id="named-select" name="demo-select">
-          <Option value={10}>Ten</Option>
-          <Option value={20}>Twenty</Option>
-          <Option value={30}>Thirty</Option>
-        </Select>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <Label htmlFor="named-select">
+        With the <code>name</code> prop set to <code>&quot;demo-select&quot;</code>
+      </Label>
+      <Select defaultValue={10} id="named-select" name="demo-select">
+        <Option value={10}>Ten</Option>
+        <Option value={20}>Twenty</Option>
+        <Option value={30}>Thirty</Option>
+      </Select>
+      <SubmitButton sx={{ ml: 1 }} type="submit">
+        Submit
+      </SubmitButton>
+    </form>
   );
 }
 
@@ -42,21 +40,23 @@ const Select = React.forwardRef(function CustomSelect<
   const slots: SelectProps<TValue, Multiple>['slots'] = {
     root: Button,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
   return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
+  300: '#66B2FF',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  700: '#0066CC',
   900: '#003A75',
 };
 
@@ -92,7 +92,7 @@ const Button = React.forwardRef(function Button<
 const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
   position: relative;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -134,7 +134,7 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -178,6 +178,10 @@ const Option = styled(BaseOption)(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+
   &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
@@ -189,17 +193,50 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;
 
 const Label = styled('label')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.85rem;
   display: block;
   margin-bottom: 4px;
   font-weight: 400;
   color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
   `,
+);
+
+const SubmitButton = styled('button')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: ${blue[500]};
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: 1px solid ${blue[500]};
+  box-shadow: 0 2px 1px ${
+    theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+  }, inset 0 1.5px 1px ${blue[400]}, inset 0 -2px 1px ${blue[600]};
+
+  &:hover {
+    background-color: ${blue[600]};
+  }
+
+  &:active {
+    background-color: ${blue[700]};
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[300] : blue[200]};
+    outline: none;
+  }
+`,
 );

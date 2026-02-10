@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import {
-  useAutocomplete,
+import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PaperProps } from '@mui/material/Paper';
+import { PopperProps } from '@mui/material/Popper';
+import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -11,11 +14,7 @@ import {
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
-} from '@mui/base';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
-import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
-import { PaperProps } from '@mui/material/Paper';
-import { PopperProps } from '@mui/material/Popper';
+} from '../useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 
 export {
@@ -171,7 +170,7 @@ export interface AutocompleteProps<
   };
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
    */
   loading?: boolean;
@@ -249,7 +248,7 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement>,
+    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
     option: Value,
     state: AutocompleteRenderOptionState,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
@@ -306,4 +305,4 @@ export default function Autocomplete<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(
   props: AutocompleteProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-): JSX.Element;
+): React.JSX.Element;

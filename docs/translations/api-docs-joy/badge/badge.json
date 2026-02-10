@@ -29,15 +29,10 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "badge": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the badge <code>span</code> element"
-    },
-    "anchorOriginTopRight": {
+    "anchorOriginBottomLeft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
     },
     "anchorOriginBottomRight": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -49,15 +44,15 @@
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
     },
-    "anchorOriginBottomLeft": {
+    "anchorOriginTopRight": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
     },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge <code>span</code> element",
-      "conditions": "<code>color=\"primary\"</code>"
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
     },
     "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -69,6 +64,11 @@
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge <code>span</code> element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
@@ -78,11 +78,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>color=\"warning\"</code>"
-    },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
     },
     "invisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -99,30 +94,30 @@
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>location=\"outside\"</code>"
     },
-    "sizeSm": {
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
-      "conditions": "<code>size=\"lg\"</code>"
-    },
-    "variantPlain": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"plain\"</code>"
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
     },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -136,7 +131,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "badge": "The component that renders the badge."
+    "badge": "The component that renders the badge.",
+    "root": "The component that renders the root."
   }
 }

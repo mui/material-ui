@@ -13,7 +13,7 @@ import Input, { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 
 interface DataItem {
   var: string;
@@ -33,7 +33,7 @@ function formatSx(sx: { [k: string]: string | number }) {
 interface SlotVariablesProps {
   slot: string;
   data: Array<DataItem>;
-  renderField: (item: DataItem) => React.ReactElement;
+  renderField: (item: DataItem) => React.ReactElement<unknown>;
   defaultOpen?: boolean;
 }
 
@@ -88,7 +88,7 @@ export default function JoyVariablesDemo(props: {
   componentName: string;
   childrenAccepted?: boolean;
   data: Array<DataItem | [string, Array<DataItem>, { defaultOpen?: boolean } | undefined]>;
-  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement;
+  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement<unknown>;
   renderCode?: (formattedSx: string) => string;
 }) {
   const { componentName, data = [], childrenAccepted = false, renderCode } = props;

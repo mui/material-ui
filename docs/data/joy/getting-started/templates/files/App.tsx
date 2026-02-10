@@ -30,7 +30,6 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 
-// Icons import
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -41,7 +40,6 @@ import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRound
 import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-// custom
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -384,7 +382,12 @@ export default function FilesExample() {
                       borderRadius: '9999999px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -423,7 +426,8 @@ export default function FilesExample() {
                 <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?auto=format&fit=crop&q=80&w=3024&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=400&auto=format"
+                    srcSet="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=400&auto=format&dpr=2 2x"
                   />
                 </AspectRatio>
               </CardOverflow>
@@ -444,7 +448,12 @@ export default function FilesExample() {
                       maxHeight: '32px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -531,7 +540,12 @@ export default function FilesExample() {
                       maxHeight: '32px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -563,7 +577,8 @@ export default function FilesExample() {
               <CardCover>
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format&dpr=2 2x"
                 />
               </CardCover>
               <CardCover
@@ -606,7 +621,12 @@ export default function FilesExample() {
                       maxHeight: '32px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -638,7 +658,8 @@ export default function FilesExample() {
               <CardCover>
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1599593752325-ffa41031056e?auto=format&fit=crop&q=80&w=3570&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="https://images.unsplash.com/photo-1599593752325-ffa41031056e?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1599593752325-ffa41031056e?w=400&h=400&auto=format&dpr=2 2x"
                 />
               </CardCover>
               <CardCover
@@ -664,7 +685,12 @@ export default function FilesExample() {
                       borderRadius: '9999999px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -703,7 +729,8 @@ export default function FilesExample() {
                 <AspectRatio ratio="16/9" color="primary" sx={{ borderRadius: 0 }}>
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&q=80&w=3024&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=400&h=400&auto=format"
+                    srcSet="https://images.unsplash.com/photo-1572445271230-a78b5944a659?w=400&h=400&auto=format&dpr=2 2x"
                   />
                 </AspectRatio>
               </CardOverflow>
@@ -725,7 +752,12 @@ export default function FilesExample() {
                       borderRadius: '9999999px',
                     }}
                   >
-                    <IconButton variant="plain" color="neutral" size="sm">
+                    <IconButton
+                      component="span"
+                      variant="plain"
+                      color="neutral"
+                      size="sm"
+                    >
                       <MoreVertRoundedIcon />
                     </IconButton>
                   </MenuButton>
@@ -792,7 +824,7 @@ export default function FilesExample() {
             <Typography level="title-md" sx={{ flex: 1 }}>
               torres-del-paine.png
             </Typography>
-            <IconButton variant="plain" color="neutral" size="sm">
+            <IconButton component="span" variant="plain" color="neutral" size="sm">
               <CloseRoundedIcon />
             </IconButton>
           </Box>
@@ -810,7 +842,8 @@ export default function FilesExample() {
               <AspectRatio ratio="21/9">
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format"
+                  srcSet="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=400&h=400&auto=format&dpr=2 2x"
                 />
               </AspectRatio>
               <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
@@ -850,27 +883,22 @@ export default function FilesExample() {
                 <Typography level="body-sm" textColor="text.primary">
                   Image
                 </Typography>
-
                 <Typography level="title-sm">Size</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   3,6 MB (3,258,385 bytes)
                 </Typography>
-
                 <Typography level="title-sm">Location</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   Travel pictures
                 </Typography>
-
                 <Typography level="title-sm">Owner</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   Michael Scott
                 </Typography>
-
                 <Typography level="title-sm">Modified</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   26 October 2016
                 </Typography>
-
                 <Typography level="title-sm">Created</Typography>
                 <Typography level="body-sm" textColor="text.primary">
                   5 August 2016

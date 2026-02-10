@@ -11,11 +11,14 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const Navigation = styled('nav')(({ theme }) => [
   {
+    '& > div': {
+      cursor: 'default',
+    },
     '& ul': {
       padding: 0,
       margin: 0,
@@ -23,32 +26,30 @@ const Navigation = styled('nav')(({ theme }) => [
       display: 'flex',
     },
     '& li': {
-      color: (theme.vars || theme).palette.text.primary,
       ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightBold,
+      color: (theme.vars || theme).palette.text.secondary,
+      fontWeight: theme.typography.fontWeightSemiBold,
       '& > a, & > button': {
         display: 'inline-block',
         color: 'inherit',
         font: 'inherit',
         textDecoration: 'none',
-        padding: theme.spacing('8px', 1),
+        padding: theme.spacing('6px', '8px'),
         borderRadius: (theme.vars || theme).shape.borderRadius,
+        border: '1px solid transparent',
         '&:hover': {
-          color: (theme.vars || theme).palette.grey[700],
+          color: (theme.vars || theme).palette.text.primary,
           backgroundColor: (theme.vars || theme).palette.grey[50],
-          // Reset on touch devices, it doesn't add specificity
+          borderColor: (theme.vars || theme).palette.grey[100],
           '@media (hover: none)': {
             backgroundColor: 'initial',
+            // Reset on touch devices, it doesn't add specificity
           },
         },
         '&:focus-visible': {
-          color: (theme.vars || theme).palette.grey[700],
-          outline: 0,
-          backgroundColor: (theme.vars || theme).palette.grey[100],
+          outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+          outlineOffset: '2px',
         },
-      },
-      '& > div': {
-        cursor: 'default',
       },
     },
   },
@@ -56,12 +57,9 @@ const Navigation = styled('nav')(({ theme }) => [
     '& li': {
       '& > a, & > button': {
         '&:hover': {
-          backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-          color: (theme.vars || theme).palette.primaryDark[200],
-        },
-        '&:focus-visible': {
-          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
-          color: (theme.vars || theme).palette.primaryDark[100],
+          color: (theme.vars || theme).palette.primary[50],
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.8),
+          borderColor: (theme.vars || theme).palette.divider,
         },
       },
     },
@@ -71,18 +69,18 @@ const Navigation = styled('nav')(({ theme }) => [
 const PRODUCT_IDS = [
   'product-core',
   'product-advanced',
+  'product-toolpad',
   'product-templates',
   'product-design',
-  'product-toolpad',
 ];
 
 type ProductSubMenuProps = {
-  icon: React.ReactElement;
+  icon: React.ReactElement<unknown>;
   name: React.ReactNode;
   description: React.ReactNode;
   chip?: React.ReactNode;
   href: string;
-} & Omit<JSX.IntrinsicElements['a'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['a'], 'ref'>;
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   function ProductSubMenu({ icon, name, description, chip, href, ...props }, ref) {
@@ -91,48 +89,28 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         component={Link}
         href={href}
         ref={ref}
-        sx={[
-          (theme) => ({
-            display: 'flex',
-            alignItems: 'center',
-            py: 2,
-            pr: 3,
+        sx={(theme) => ({
+          display: 'flex',
+          alignItems: 'center',
+          py: 2,
+          pr: 3,
+          '&:hover, &:focus': {
+            backgroundColor: (theme.vars || theme).palette.grey[50],
+            outline: 0,
+            '@media (hover: none)': {
+              backgroundColor: 'initial',
+              outline: 'initial',
+            },
+          },
+          ...theme.applyDarkStyles({
             '&:hover, &:focus': {
-              backgroundColor: (theme.vars || theme).palette.grey[50],
-              outline: 0,
-              '@media (hover: none)': {
-                backgroundColor: 'initial',
-                outline: 'initial',
-              },
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
             },
           }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '&:hover, &:focus': {
-                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-              },
-            }),
-        ]}
+        })}
         {...props}
       >
-        <Box
-          sx={[
-            (theme) => ({
-              px: 2,
-              '& circle': {
-                fill: (theme.vars || theme).palette.grey[100],
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
-                '& circle': {
-                  fill: (theme.vars || theme).palette.primaryDark[700],
-                },
-              }),
-          ]}
-        >
-          {icon}
-        </Box>
+        <Box sx={{ px: 2 }}>{icon}</Box>
         <Box sx={{ flexGrow: 1 }}>
           <Typography color="text.primary" variant="body2" fontWeight="bold">
             {name}
@@ -252,39 +230,35 @@ export default function HeaderNavBar() {
             }}
           >
             {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={350}>
+              <Fade {...TransitionProps} timeout={250}>
                 <Paper
                   variant="outlined"
-                  sx={[
-                    (theme) => ({
-                      minWidth: 498,
-                      overflow: 'hidden',
-                      borderColor: 'grey.200',
-                      bgcolor: 'background.paper',
-                      boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                      ...theme.applyDarkStyles({
-                        borderColor: 'primaryDark.700',
-                        bgcolor: 'primaryDark.900',
-                        boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.72)}`,
-                      }),
-                      '& ul': {
-                        margin: 0,
-                        padding: 0,
-                        listStyle: 'none',
-                      },
+                  sx={(theme) => ({
+                    mt: 1,
+                    minWidth: 498,
+                    overflow: 'hidden',
+                    borderColor: 'grey.200',
+                    bgcolor: 'background.paper',
+                    boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
+                    '& ul': {
+                      margin: 0,
+                      padding: 0,
+                      listStyle: 'none',
+                    },
+                    '& li:not(:last-of-type)': {
+                      borderBottom: '1px solid',
+                      borderColor: 'grey.100',
+                    },
+                    '& a': { textDecoration: 'none' },
+                    ...theme.applyDarkStyles({
+                      borderColor: 'primaryDark.700',
+                      bgcolor: 'primaryDark.900',
+                      boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
                       '& li:not(:last-of-type)': {
-                        borderBottom: '1px solid',
-                        borderColor: 'grey.100',
+                        borderColor: 'primaryDark.700',
                       },
-                      '& a': { textDecoration: 'none' },
                     }),
-                    (theme) =>
-                      theme.applyDarkStyles({
-                        '& li:not(:last-of-type)': {
-                          borderColor: 'primaryDark.700',
-                        },
-                      }),
-                  ]}
+                  })}
                 >
                   <ul>
                     <li>
@@ -308,6 +282,16 @@ export default function HeaderNavBar() {
                     <li>
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
+                        href={ROUTES.productToolpad}
+                        icon={<IconImage name="product-toolpad" />}
+                        name="Toolpad"
+                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
+                        description="Low-code admin builder."
+                      />
+                    </li>
+                    <li>
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[3]}
                         href={ROUTES.productTemplates}
                         icon={<IconImage name="product-templates" />}
                         name="Templates"
@@ -316,21 +300,11 @@ export default function HeaderNavBar() {
                     </li>
                     <li>
                       <ProductSubMenu
-                        id={PRODUCT_IDS[3]}
+                        id={PRODUCT_IDS[4]}
                         href={ROUTES.productDesignKits}
                         icon={<IconImage name="product-designkits" />}
-                        name="Design kits"
-                        description="Our components available in your favorite design tool."
-                      />
-                    </li>
-                    <li>
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name="product-toolpad" />}
-                        name="MUI Toolpad"
-                        chip={<Chip label="Beta" size="small" color="primary" variant="outlined" />}
-                        description="Low-code admin builder."
+                        name="Design Kits"
+                        description="Material UI components in your favorite design tool."
                       />
                     </li>
                   </ul>
@@ -363,25 +337,26 @@ export default function HeaderNavBar() {
             style={{ zIndex: 1200, pointerEvents: subMenuOpen === 'docs' ? undefined : 'none' }}
           >
             {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={350}>
+              <Fade {...TransitionProps} timeout={250}>
                 <Paper
                   variant="outlined"
                   sx={(theme) => ({
+                    mt: 1,
                     minWidth: 498,
                     overflow: 'hidden',
                     borderColor: 'grey.200',
                     bgcolor: 'background.paper',
-                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                    ...theme.applyDarkStyles({
-                      borderColor: 'primaryDark.700',
-                      bgcolor: 'primaryDark.900',
-                      boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.72)}`,
-                    }),
+                    boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
                     '& ul': {
                       margin: 0,
                       padding: 0,
                       listStyle: 'none',
                     },
+                    ...theme.applyDarkStyles({
+                      borderColor: 'primaryDark.700',
+                      bgcolor: 'primaryDark.900',
+                      boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
+                    }),
                   })}
                 >
                   <ul>

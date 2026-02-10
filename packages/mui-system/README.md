@@ -1,6 +1,6 @@
-# MUI System
+# MUI System
 
-MUI System is a collection of CSS utilities to help you rapidly lay out custom designs.
+MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.
 
 ## Installation
 
@@ -16,4 +16,4 @@ npm install @mui/system @emotion/react @emotion/styled
 
 <!-- #default-branch-switch -->
 
-Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
+Visit [https://v5.mui.com/system/getting-started/](https://v5.mui.com/system/getting-started/) to view the full documentation.

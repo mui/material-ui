@@ -30,31 +30,20 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "contained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code>"
     },
-    "outlined": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
-    "text": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code>"
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the child elements",
+      "conditions": "<code>disabled={true}</code>"
     },
     "disableElevation": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disableElevation={true}</code>"
-    },
-    "disabled": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the child elements",
-      "conditions": "<code>disabled={true}</code>"
     },
     "firstButton": {
       "description": "Styles applied to {{nodeName}}.",
@@ -65,72 +54,7 @@
       "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     },
-    "vertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
-    },
     "grouped": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the children" },
-    "groupedHorizontal": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
-    },
-    "groupedVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>orientation=\"vertical\"</code>"
-    },
-    "groupedText": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code>"
-    },
-    "groupedTextHorizontal": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"horizontal\"</code>"
-    },
-    "groupedTextVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"vertical\"</code>"
-    },
-    "groupedTextPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
-    },
-    "groupedTextSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
-    },
-    "groupedOutlined": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
-    "groupedOutlinedHorizontal": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"horizontal\"</code>"
-    },
-    "groupedOutlinedVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"vertical\"</code>"
-    },
-    "groupedOutlinedPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
-    },
-    "groupedOutlinedSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
-    },
     "groupedContained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
@@ -140,11 +64,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"horizontal\"</code>"
-    },
-    "groupedContainedVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the children",
-      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"vertical\"</code>"
     },
     "groupedContainedPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -156,6 +75,71 @@
       "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
     },
+    "groupedContainedVertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "groupedHorizontal": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "groupedOutlined": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "groupedOutlinedHorizontal": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"horizontal\"</code>"
+    },
+    "groupedOutlinedPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+    },
+    "groupedOutlinedSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "groupedOutlinedVertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "groupedText": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "groupedTextHorizontal": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"horizontal\"</code>"
+    },
+    "groupedTextPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
+    },
+    "groupedTextSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "groupedTextVertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "groupedVertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
     "lastButton": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the last button in the button group"
@@ -163,6 +147,22 @@
     "middleButton": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "buttons in the middle of the button group"
+    },
+    "outlined": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "text": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
     }
   }
 }

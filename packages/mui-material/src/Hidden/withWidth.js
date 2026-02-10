@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getDisplayName } from '@mui/utils';
-import { getThemeProps } from '@mui/system';
+import getDisplayName from '@mui/utils/getDisplayName';
+import { getThemeProps } from '@mui/system/useThemeProps';
 import useTheme from '../styles/useTheme';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useMediaQuery from '../useMediaQuery';

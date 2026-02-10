@@ -948,6 +948,7 @@ describe('listReducer', () => {
 
     describe('using custom item comparer', () => {
       type ItemType = { v: string };
+
       it('keeps the highlighted value if it is present among the new items', () => {
         const state: ListState<ItemType> = {
           highlightedValue: { v: '1' },
@@ -1130,6 +1131,62 @@ describe('listReducer', () => {
           disabledItemsFocusable: false,
           focusManagement: 'DOM',
           isItemDisabled: (item) => item === 'one',
+          itemComparer: (o, v) => o === v,
+          getItemAsString: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'none',
+        },
+      };
+
+      const result = listReducer(state, action);
+      expect(result.highlightedValue).to.equal('two');
+    });
+  });
+
+  describe('action: highlightLast', () => {
+    it('highlights the last item', () => {
+      const state: ListState<string> = {
+        highlightedValue: 'one',
+        selectedValues: [],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.highlightLast,
+        event: null,
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'DOM',
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          getItemAsString: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'none',
+        },
+      };
+
+      const result = listReducer(state, action);
+      expect(result.highlightedValue).to.equal('three');
+    });
+
+    it('highlights the last non-disabled item', () => {
+      const state: ListState<string> = {
+        highlightedValue: 'one',
+        selectedValues: [],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.highlightLast,
+        event: null,
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'DOM',
+          isItemDisabled: (item) => item === 'three',
           itemComparer: (o, v) => o === v,
           getItemAsString: (option) => option,
           orientation: 'vertical',

@@ -19,21 +19,25 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "absolute": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>absolute={true}</code>"
     },
-    "inset": {
+    "flexItem": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"inset\"</code>"
+      "conditions": "<code>flexItem={true}</code>"
     },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"fullWidth\"</code>"
+    },
+    "inset": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"inset\"</code>"
     },
     "light": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -45,15 +49,21 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"middle\"</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
+    "textAlignLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>textAlign=\"left\" orientation=\"horizontal\"</code>"
+    },
+    "textAlignRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>textAlign=\"right\" orientation=\"horizontal\"</code>"
+    },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
-    },
-    "flexItem": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>flexItem={true}</code>"
     },
     "withChildren": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -63,17 +73,8 @@
     "withChildrenVertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "divider have text and <code>orientation=\"vertical\"</code>"
-    },
-    "textAlignRight": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>textAlign=\"right\" orientation=\"horizontal\"</code>"
-    },
-    "textAlignLeft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>textAlign=\"left\" orientation=\"horizontal\"</code>"
+      "conditions": "divider have text and <code>orientation=\"vertical\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/divider/#divider-classes-withChildren\">.MuiDivider-withChildren</a> and <a href=\"/material-ui/api/divider/#divider-classes-vertical\">.MuiDivider-vertical</a> classes instead."
     },
     "wrapper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

@@ -71,25 +71,24 @@
   },
   "name": "Snackbar",
   "imports": ["import Snackbar from '@mui/joy/Snackbar';", "import { Snackbar } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSnackbar" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiSnackbar-root"
+      "class": "MuiSnackbar-root"
     },
     {
       "name": "startDecorator",
       "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiSnackbar-startDecorator"
+      "class": "MuiSnackbar-startDecorator"
     },
     {
       "name": "endDecorator",
       "description": "The component that renders the end decorator.",
       "default": "'span'",
-      "class": ".MuiSnackbar-endDecorator"
+      "class": "MuiSnackbar-endDecorator"
     },
     {
       "name": "clickAway",
@@ -98,29 +97,116 @@
       "class": null
     }
   ],
-  "classes": {
-    "classes": [
-      "anchorOriginBottomCenter",
-      "anchorOriginBottomLeft",
-      "anchorOriginBottomRight",
-      "anchorOriginTopCenter",
-      "anchorOriginTopLeft",
-      "anchorOriginTopRight",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "anchorOriginBottomCenter",
+      "className": "MuiSnackbar-anchorOriginBottomCenter",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomLeft",
+      "className": "MuiSnackbar-anchorOriginBottomLeft",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomRight",
+      "className": "MuiSnackbar-anchorOriginBottomRight",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopCenter",
+      "className": "MuiSnackbar-anchorOriginTopCenter",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopLeft",
+      "className": "MuiSnackbar-anchorOriginTopLeft",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopRight",
+      "className": "MuiSnackbar-anchorOriginTopRight",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiSnackbar-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiSnackbar-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiSnackbar-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiSnackbar-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiSnackbar-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiSnackbar-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiSnackbar-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiSnackbar-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiSnackbar-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiSnackbar-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiSnackbar-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiSnackbar-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoySnackbar",

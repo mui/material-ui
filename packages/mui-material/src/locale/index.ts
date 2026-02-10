@@ -1864,7 +1864,7 @@ export const isIS: Localization = {
         },
         labelRowsPerPage: 'Raðir á síðu:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} af ${count !== -1 ? count : `fleiri enn ${to}`}`,
+          `${from}–${to} af ${count !== -1 ? count : `fleiri en ${to}`}`,
       },
     },
     MuiRating: {

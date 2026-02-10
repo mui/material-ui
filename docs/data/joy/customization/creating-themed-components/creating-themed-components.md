@@ -4,9 +4,9 @@
 
 ## Introduction
 
-Joy UI provides a powerful theming feature that lets you add your own components to the theme and treat them as if they're built-in components.
+Joy UI provides a powerful theming feature that lets you add your own components to the theme and treat them as if they're built-in components.
 
-If you are building a component library on top of Joy UI, you can follow the step-by-step guide below to create a custom component that is themeable across multiple projects.
+If you are building a component library on top of Joy UI, you can follow the step-by-step guide below to create a custom component that is themeable across multiple projects.
 
 Alternatively, you can use the provided [template](#template) as a starting point for your component.
 
@@ -16,7 +16,7 @@ You don't need to connect your component to the theme if you are only using it i
 
 ## Step-by-step guide
 
-This guide will walk you through how to build this statistics component, which accepts the app's theme as though it were a built-in Joy UI component:
+This guide will walk you through how to build this statistics component, which accepts the app's theme as though it were a built-in Joy UI component:
 
 {{"demo": "StatComponent.js", "hideToolbar": true}}
 

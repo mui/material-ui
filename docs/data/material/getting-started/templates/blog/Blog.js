@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
@@ -33,7 +33,7 @@ const mainFeaturedPost = {
   title: 'Title of a longer featured blog post',
   description:
     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random?wallpapers',
+  image: 'https://picsum.photos/1100/350',
   imageText: 'main image description',
   linkText: 'Continue reading…',
 };
@@ -44,7 +44,7 @@ const featuredPosts = [
     date: 'Nov 12',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random?wallpapers',
+    image: 'https://picsum.photos/200/300',
     imageLabel: 'Image Text',
   },
   {
@@ -52,7 +52,7 @@ const featuredPosts = [
     date: 'Nov 11',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random?wallpapers',
+    image: 'https://picsum.photos/200/300',
     imageLabel: 'Image Text',
   },
 ];
@@ -78,7 +78,7 @@ const sidebar = {
   ],
   social: [
     { name: 'GitHub', icon: GitHubIcon },
-    { name: 'Twitter', icon: TwitterIcon },
+    { name: 'X', icon: XIcon },
     { name: 'Facebook', icon: FacebookIcon },
   ],
 };

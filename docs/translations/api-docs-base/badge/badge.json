@@ -14,11 +14,6 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "badge": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the badge <code>span</code> element"
-    },
     "invisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge <code>span</code> element",
@@ -26,7 +21,7 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "badge": "The component that renders the badge."
+    "badge": "The component that renders the badge.",
+    "root": "The component that renders the root."
   }
 }

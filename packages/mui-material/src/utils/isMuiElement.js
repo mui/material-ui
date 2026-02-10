@@ -1,3 +1,3 @@
-import { unstable_isMuiElement as isMuiElement } from '@mui/utils';
+import isMuiElement from '@mui/utils/isMuiElement';
 
 export default isMuiElement;

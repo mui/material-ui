@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/speed-dial-action',
     false,
-    /speed-dial-action.*.json$/,
+    /\.\/speed-dial-action.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

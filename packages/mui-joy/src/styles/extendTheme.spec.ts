@@ -72,6 +72,7 @@ import { TabPanelOwnerState } from '@mui/joy/TabPanel';
 import { TabsOwnerState } from '@mui/joy/Tabs';
 import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
+import { ToggleButtonGroupOwnerState } from '@mui/joy/ToggleButtonGroup';
 import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
 
@@ -700,6 +701,10 @@ extendTheme({
           expectType<IconButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
+        loadingIndicator: ({ ownerState }) => {
+          expectType<IconButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
       },
     },
     JoyInput: {
@@ -1303,6 +1308,21 @@ extendTheme({
         },
         endDecorator: ({ ownerState }) => {
           expectType<TextareaOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyToggleButtonGroup: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ToggleButtonGroupOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },

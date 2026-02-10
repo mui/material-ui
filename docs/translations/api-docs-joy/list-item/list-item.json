@@ -24,16 +24,35 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "startAction": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the component element",
-      "conditions": "<code>startAction</code> element is provided"
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
     },
-    "endAction": {
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the component element",
-      "conditions": "<code>endAction</code> element is provided"
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
     "nested": {
       "description": "Class name applied to {{nodeName}}, {{conditions}}.",
@@ -50,35 +69,10 @@
       "nodeName": "the root element",
       "conditions": "if sticky={true}"
     },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "variantOutlined": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorNeutral": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"neutral\"</code>"
-    },
-    "colorDanger": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorSuccess": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"success\"</code>"
-    },
-    "colorWarning": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"warning\"</code>"
-    },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantPlain": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -90,11 +84,6 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"soft\"</code>"
     },
-    "variantOutlined": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
-    },
     "variantSolid": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -102,8 +91,8 @@
     }
   },
   "slotDescriptions": {
+    "endAction": "The component that renders the end action.",
     "root": "The component that renders the root.",
-    "startAction": "The component that renders the start action.",
-    "endAction": "The component that renders the end action."
+    "startAction": "The component that renders the start action."
   }
 }

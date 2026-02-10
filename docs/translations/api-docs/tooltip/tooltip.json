@@ -70,18 +70,14 @@
       "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "TransitionProps": {
-      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
     }
   },
   "classDescriptions": {
+    "arrow": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the arrow element" },
     "popper": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Popper component"
-    },
-    "popperInteractive": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the Popper component",
-      "conditions": "<code>disableInteractive={true}</code>"
     },
     "popperArrow": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -93,6 +89,11 @@
       "nodeName": "the Popper component",
       "conditions": "the tooltip is open"
     },
+    "popperInteractive": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the Popper component",
+      "conditions": "<code>disableInteractive={true}</code>"
+    },
     "tooltip": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the tooltip (label wrapper) element"
@@ -102,11 +103,10 @@
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>arrow={true}</code>"
     },
-    "arrow": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the arrow element" },
-    "touch": {
+    "tooltipPlacementBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
-      "conditions": "the tooltip is opened by touch"
+      "conditions": "<code>placement</code> contains &quot;bottom&quot;"
     },
     "tooltipPlacementLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -123,10 +123,10 @@
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains &quot;top&quot;"
     },
-    "tooltipPlacementBottom": {
+    "touch": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains &quot;bottom&quot;"
+      "conditions": "the tooltip is opened by touch"
     }
   }
 }

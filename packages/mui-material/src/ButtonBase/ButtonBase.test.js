@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformance,
   act,
   createRenderer,
   fireEvent,
@@ -15,6 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonBase />', () => {
   const { render } = createRenderer();
@@ -467,7 +467,7 @@ describe('<ButtonBase />', () => {
 
       it('should not crash when changes enableRipple from false to true', () => {
         function App() {
-          /** @type {React.MutableRefObject<import('./ButtonBase').ButtonBaseActions | null>} */
+          /** @type {React.RefObject<import('./ButtonBase').ButtonBaseActions | null>} */
           const buttonRef = React.useRef(null);
           const [enableRipple, setRipple] = React.useState(false);
 
@@ -1127,7 +1127,7 @@ describe('<ButtonBase />', () => {
   describe('prop: action', () => {
     it('should be able to focus visible the button', () => {
       /**
-       * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}
+       * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions | null>}
        */
       const buttonActionsRef = React.createRef();
       const { getByText } = render(

@@ -19,15 +19,15 @@
     "@types/react-dom": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "@vitejs/plugin-react": "latest",
+    "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
     "postcss": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest",
-    "vite": "latest"
+    "tailwindcss": "^3.0.0",
+    "typescript": "~5.5.0",
+    "vite": "v5.0.0"
   },
   "browserslist": {
     "production": [

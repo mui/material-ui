@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
+import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
@@ -111,7 +111,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
   transitionDuration?: TransitionProps['timeout'];
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -127,4 +127,4 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
  *
  * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
  */
-export default function Snackbar(props: SnackbarProps): JSX.Element;
+export default function Snackbar(props: SnackbarProps): React.JSX.Element;

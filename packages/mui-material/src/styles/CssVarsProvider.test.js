@@ -8,6 +8,7 @@ describe('[Material UI] CssVarsProvider', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
   const storage = {};
+
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
@@ -25,6 +26,7 @@ describe('[Material UI] CssVarsProvider', () => {
       removeListener: () => {},
     });
   });
+
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
@@ -151,6 +153,7 @@ describe('[Material UI] CssVarsProvider', () => {
           paper: 'var(--mui-palette-background-paper)',
           default: 'var(--mui-palette-background-default)',
           defaultChannel: 'var(--mui-palette-background-defaultChannel)',
+          paperChannel: 'var(--mui-palette-background-paperChannel)',
         }),
       );
       expect(screen.getByTestId('palette-action').textContent).to.equal(

@@ -45,44 +45,15 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "radio": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the radio element"
-    },
-    "icon": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the icon element"
-    },
-    "action": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the action element"
-    },
-    "input": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
-    "label": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the label element"
-    },
     "checked": {
       "description": "State class applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the root",
       "conditions": "action slots if <code>checked</code>"
     },
-    "disabled": {
-      "description": "State class applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the root",
-      "conditions": "action slots if <code>disabled</code>"
-    },
-    "focusVisible": {
-      "description": "Class name applied to the root element if the switch has visible focus"
-    },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "color inversion is triggered"
     },
     "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -94,6 +65,11 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -104,25 +80,28 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+    "disabled": {
+      "description": "State class applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root",
+      "conditions": "action slots if <code>disabled</code>"
     },
-    "sizeSm": {
+    "focusVisible": {
+      "description": "Class name applied to the root element if the switch has visible focus"
+    },
+    "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "sizeLg": {
+    "sizeSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -141,11 +120,11 @@
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "radio": "The component that renders the radio.",
-    "icon": "The component that renders the icon.",
     "action": "The component that renders the action.",
+    "icon": "The component that renders the icon.",
     "input": "The component that renders the input.",
-    "label": "The component that renders the label."
+    "label": "The component that renders the label.",
+    "radio": "The component that renders the radio.",
+    "root": "The component that renders the root."
   }
 }

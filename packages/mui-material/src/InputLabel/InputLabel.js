@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
@@ -119,15 +119,10 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
   }),
-  ...(ownerState.variant === 'standard' && {
-    '&:not(label) + div': {
-      marginTop: 16,
-    },
-  }),
 }));
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
+  const props = useDefaultProps({ name: 'MuiInputLabel', props: inProps });
   const {
     disableAnimation = false,
     margin,
@@ -176,10 +171,10 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
 });
 
 InputLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

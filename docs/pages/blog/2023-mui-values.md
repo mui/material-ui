@@ -3,13 +3,13 @@ title: Evolving MUI's core values and behaviors
 description: After significant growth, we united as a team to rediscover the values that underpin our shared success.
 date: 2023-09-26T00:00:00.000Z
 authors: ['mikailaread']
-card: true
 tags: ['Company']
+manualCard: true
 ---
 
 ## Why we chose to revise our core values
 
-MUI was founded in 2014 to grow and serve a community—from developers to designers, our core mission has always been to enable others to create incredible user experiences with unrivaled speed and ease.
+Material UI was created in 2014 to grow and serve a community—from developers to designers, then MUI was founded in 2019, our core mission has always been to enable others to create incredible user experiences with unrivaled speed and ease.
 
 Along the way, we embraced certain core principles that guided our ways of working—how we think, act, and innovate have always been grounded in fulfilling the best interests of our community.
 
@@ -114,7 +114,7 @@ Fortunately, this helped us find the ones that **\***are.**\*** 👏
 
 I presented a video presentation to our team, pitching this set of values and providing another opportunity for feedback and shaping.
 
-You can <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4#09dc19a420504a3090dc4fbe6a68a543">watch the "reveal" video for yourself here</a>! 🎬👀
+You can <a href="https://mui-org.notion.site/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd#09dc19a420504a3090dc4fbe6a68a543">watch the "reveal" video for yourself here</a>! 🎬👀
 
 ## Stage five: revising and finalizing
 
@@ -140,7 +140,7 @@ Our core four are:
 
 **T** — Trust and deliver together. "We cultivate unity as the core of achievement." 🚀
 
-To delve deeper into the meaning of each value and what it looks like in practice, you can also check out our handbook: <a href="https://www.notion.so/mui-org/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd?pvs=4">Values & Behaviors.</a>
+To delve deeper into the meaning of each value and what it looks like in practice, you can also check out our handbook: <a href="https://mui-org.notion.site/Values-behaviors-d3a1e1c60e2a4c0782f770cceada54bd">Values & Behaviors.</a>
 
 In it, we offer concrete examples of each core value and explicitly address tensions folks may encounter in trying to live them out.
 

@@ -54,6 +54,7 @@ describe('<NotchedOutline />', () => {
       paddingRight: '8px',
     });
   });
+
   it('should not set padding (notch) for empty, null or undefined label props', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();

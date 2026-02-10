@@ -1,27 +1,27 @@
-# Design Engineer - xGrid
+# Design Engineer — xGrid
 
-<p class="description">You will design and implement a great user and developer experience for the MUI X Data Grid.</p>
+<p class="description">You will design and implement a great user and developer experience for the MUI X Data Grid.</p>
 
 ## Details of the role
 
 - **Location**: Remote (strong preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -34,22 +34,26 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criterion used by developers & designers to choose a component UI library.
 
-We are aiming to make high-end design accessible to the many, empowering developers who lack access to a designer as well as saving time for designers with a source they can trust.
-[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criterion used by developers & designers to pick their next UI library.
+It's an even bigger problem when developers work on projects around a single major component, like the Data Grid. It's not just the interaction that needs to feel great but the developer experience of working with that component also needs to be excellent, to allow a smooth integration with the rest of their app.
+
+Up until now, we're solving a subset of these problems by smoothly integrating the MUI X Data Grid with Material UI.
+But the time has come to take a step further and double down on design by expanding the Data Grid capacities to integrate nicely with _any_ React project rather than just a Material UI-based one.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 
 Developing and designing components for advanced use cases is not an easy feat.
 It's an intricate challenge to craft customizable, feature-rich, and performative components while having them look great out of the box.
 
-Within the MUI X team, you'll be facing this challenge head-on!
+Within the MUI X team, you'll be facing this challenge head-on!
 We want to serve demanding customers by making their experience building data-heavy and complex applications much smoother with reliable, advanced React components.
 
 There aren't a lot of benchmarks out there.
@@ -62,12 +66,12 @@ So, by combining top-notch engineering with sleek product design, you'll be pion
 The Design Engineer role sits right at the intersection between product design and software engineering. So, depending on the initiative, your day can be entirely different! Here's what you'll be able to do:
 
 - **Contribute to feature releases and deep refactors**.
-  MUI X is a complex codebase. Components we've shipped recently, such as the Data Grid and Date and Time Pickers, require months of dedicated, careful work.
+  MUI X is a complex codebase. Components we've shipped recently, such as the Data Grid and Date and Time Pickers, require months of dedicated, careful work.
 - **Design for engineers and their end users**.
   As an engineer yourself, you can understand the problems developers face, and you will help them overcome those problems by delivering amazing DX and enabling them to create powerful UX for their end users.
   This might involve careful API design, identifying and fixing top bugs, creating easy-to-understand error messages, and writing documentation and blog posts about features you and your team ship.
 - **Collaborate with the open-source community**.
-  The community contributes with many meaningful features and fixes. You'll guide and support them helping MUI X's growth while inspiring many others to join the ride, too.
+  The community contributes with many meaningful features and fixes. You'll guide and support them helping MUI X's growth while inspiring many others to join the ride, too.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration from adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
 - **Take ownership of features from idea/mockup to live deployment**.
   You'll shape and guide the direction of crucial new features, including new components.
@@ -88,10 +92,11 @@ The Design Engineer role sits right at the intersection between product design a
 ### Required
 
 - 3+ years of web front-end development at product-driven companies
+- Advanced knowledge of modern React, HTML, and CSS
 - Great understanding and taste in product design
 - Experience with design systems
 - You're highly empathetic
-- Fluent written and spoken English skills
+- Strong written and verbal communication skills
 
 ### Nice to have (but not required)
 
@@ -101,8 +106,8 @@ The Design Engineer role sits right at the intersection between product design a
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
-You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
+You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 
@@ -110,6 +115,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

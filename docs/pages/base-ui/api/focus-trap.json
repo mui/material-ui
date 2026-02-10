@@ -19,10 +19,10 @@
     "import { FocusTrap } from '@mui/base/FocusTrap';",
     "import { FocusTrap } from '@mui/base';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "classes": [],
   "spread": false,
   "themeDefaultProps": null,
-  "muiName": "MuiFocusTrap",
+  "muiName": "FocusTrap",
   "filename": "/packages/mui-base/src/FocusTrap/FocusTrap.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-focus-trap/\">Focus Trap</a></li></ul>",

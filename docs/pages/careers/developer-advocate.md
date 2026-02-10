@@ -1,111 +1,115 @@
-# Developer Advocate
+# Developer Advocate / Content Engineer
 
-<p class="description">You will build a thriving and connected developer community around our suite of products.</p>
+<p class="description">You will strategize and implement educational initiatives from end to end to help developers build better UIs, faster.</p>
 
-## Details of the Role
+## Details of the role
 
-- **Location**: Remote (strong requirement for UTC-8 to UTC+2).
+- **Location**: Remote (strong preference for UTC-5 to UTC+2 in North America or Europe).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
-## About the company
+## The company
 
-MUI started with Material UI, the most successful React implementation of Google's Material Design.
-We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX.
-Today, countless teams and organizations rely on our open-source libraries to build their design system.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
-A couple of years ago, we started to expand our suite of products.
-We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
-We've seen rapid growth with all of them (2x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
+## The products
 
-We are a fully distributed team, spread across multiple time zones.
-We work mainly asynchronously, relying mostly on written collaboration.
-Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+We also host Design Kits and pre-built Templates.
+
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+
+We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
+
+Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/). (This is also the kind of content you might create!)
+
+## The culture
+
+MUI is a fully remote company with a team that spans the globe.
+The majority of our work is asynchronous, and we rely on written communication to collaborate.
+We're radically transparent: nearly all of our work happens in public.
+Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
+
+Learn more about what we value as an organization: [Evolving MUI's core values and behaviors](https://mui.com/blog/2023-mui-values/).
 
 ## Why we're hiring
 
-In our [last developer survey](https://mui.com/blog/2021-developer-survey-results/#what-else-can-we-do-to-improve-mui-for-you), we learned that we have a long way to go in helping developers to be successful with our technology.
-We have underinvested in this area for too long.
-Your mission will be to be the voice of the developers of the community inside the company.
-We are looking for someone that can contribute to the following outcomes:
+MUI's DevEx program is currently maintained by a "team" of one, and that one person devotes the majority of their time to documentation and written technical content.
 
-- Create momentum in the React community and drive adoption of the library.
-- Improve the overall developer experience, resulting in better NPS & CSAT scores, e.g., through educational content.
-- Amplify the need of the community so the product direction aims at what people need the most.
+Our users [consistently rank documentation](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library) as one of the most important factors in deciding whether or not to build with our products, and many users express dissatisfaction with the rather steep learning curve that they face when onboarding.
 
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+With that in mind, we're looking to grow the DevEx team, with a second individual who can dig deep into improving the documentation experience and expand our output of educational materials, to ease the learning curve, improve the product, and inspire users with great examples of what's possible with our libraries.
 
-## About the role
+## The role
 
-We are looking for a experienced developer to join us as a Developer Advocate to help the developers get familiar with and use MUI most effectively.
+MUI's Developer Experience program consists of three key pillars—Education, Documentation, and Community—which all contribute to the company's primary goal: to help developers build beautiful user interfaces quickly and efficiently.
 
-### Why this is interesting
+As our next Developer Advocate, you will focus your efforts on the creation of educational content and documentation initiatives.
+You may also need to work on projects related to product DX and documentation engineering depending on where the biggest improvement opportunities are.
+This role isn't centered on public speaking or community relations but this might be needed from time to time.
 
-Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+You will also have frequent opportunities to shape the DevEx roadmap and contribute to product roadmaps by gathering feedback from the community and voicing the needs of users.
 
-### What you'll do on a day-to-day basis
+Check out [The Radiating Circles of DX](https://dx.tips/circles) to better understand how we think about this role.
+From the perspective of that framework, you would pioneer the Content layer while contributing to the Docs and Product layers depending on where the problem is best solved (the closer to the root the better).
 
-Depending on the day, you'll:
+### Key responsibilities
 
-- **Content**.
-  - Produce high-quality technical "how-to" content (blogs, webinars, demos, talks) addressing common user needs, latest technology advances, and emerging best practices. Videos might go to [our YouTube channel](https://www.youtube.com/@MUI_hq).
-  - Distribute content and leverage pieces to broaden awareness of the MUI brand, via existing connections.
-  - Rework the pages of the documentation that are confusing, base on feedback.
-- **Community**.
-  - Built our developer-focused community.
-  - Deliver presentations at meetups, conferences, and other ecosystem events.
-  - Create & produce events (podcasts, roundtables, hackathons).
-  - Manage the sponsorships of events, newsletters, etc.
-  - Help other team members grow at engaging with the community. For instance by encouraging and providing critical feedback on the blog posts they create, or by keeping track of the health of community contributions.
-- **Relationship-building**.
-  - Create relationships with fellow ecosystem influencers and open-source leaders.
-  - Nurture ongoing connections with user group members to build personal relationships and deeply understand their needs, usage, journeys, and barriers to adoption.
-- **Technical**.
-  - Write code where required to support how-to content, blog posts, and presentations.
-  - Create inspiring sample applications, documentation, and tutorials.
-  - Give feedback to product management, to influence the product roadmaps based on developers' needs.
-  - Follow GitHub issues to understand where developers face frustration and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
+- Create inspiring educational materials (demo apps, how-to guides, integration examples, tutorials) for devs of all skill levels
+- Seek out and implement improvements to the documentation
+- Contribute to the docs infrastructure, docs UX, or directly to the product depending on where the problem is best solved (the closer to the root the better).
+- Engage with the community and gather feedback for product teams
+- Serve as the "voice" of the company through social media, conferences, and events
 
 For the right candidate:
 
-- Working with the Leadership to construct and execute on a hiring plan to grow the Developer Experience team.
+- Lead the Developer Experience team; work with the company leadership to construct and execute a hiring plan to grow the team
 
-### Here are a few initiatives you might work on
+### Tasks and initiatives you might take on
 
-- Create a learning section in the documentation for hybrid written and video tutorials.
-- Own the Algolia search experience, improving the content on the most frequent search queries.
-- Take ownership of the company's Twitter account.
-- Level up the showcase, cherry-picking the best websites and apps of the community.
-- Revamp the blog post infrastructure to empower the rest of the team to create more content.
-- Start a monthly newsletter to engage with the community.
-- Organize a MUIConf (once we go >50 people)
-- Think about creative ways to promote Base UI, Joy UI, MUI X, MUI X Pro, and new products.
+- Create tutorials to ease the migration from competitor products
+- Improve the Algolia search experience
+- Own community GitHub issues or PRs related to developer experience
+- Build example apps with MUI products and create how-to content around them
+- Research and write case studies
+- Overhaul the [Showcase](https://mui.com/material-ui/discover-more/showcase/)
+- Revamp the company blog infrastructure to empower less technical teammates to contribute (for example HR)
+- Contribute to integrations with other popular libraries and frameworks
+- Create a learning section in the documentation for hybrid written and video tutorials
 
-## About you
+## Who we're looking for
 
-### Skills you should have
+### Required
 
-- You are fluent in English (both written and spoken). You'll be the face of MUI in the world, and make everyone in the company proud of the Developer Experience team.
-- You are a highly empathic person.
-- You are passionate about helping other developers solve problems and have an educational mindset.
-- You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
-- Hands-on developer who is comfortable with full-stack development.
-- You are passionate about UI development.
+- You're passionate about UI development
+- You're excited about helping engineers build amazing UIs
+- You're highly empathetic
+- Fluent written and spoken English skills—native speakers preferred
+- Hands-on developer and skilled React engineer
+- Experience as a teacher, tutor, or mentor
+- Experience as a technical writer or content creator
+- Good product design sensibilities
+- Basic design skills
 
-### What would be nice if you had, but isn't required
+### Nice to have (but not required)
 
-- Experience in building community across some of the following channels: Twitter, YouTube, Twitch, Discord, blogs, meetups, public speaking & events
-- Experience working with open-source and/or with the open-source community.
-- Experience working with/editing video.
-- Experience using MUI.
+- Great product design sensibilities
+- Good design skills
+- Experience in open-source
+- Experience with design systems
+- Experience with MUI products
+- Experience with public speaking
+- Experience creating video content
+- Experience in community building (online or in person)
 
-## Benefits & Compensation
+## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
@@ -114,6 +118,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

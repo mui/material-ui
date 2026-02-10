@@ -75,7 +75,7 @@ const useUtilityClasses = () => {
 
 const defaultPopperOptions = {};
 
-const PopperTooltip = React.forwardRef(function PopperTooltip<
+const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(function PopperTooltip<
   RootComponentType extends React.ElementType,
 >(props: PopperTooltipProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLDivElement>) {
   const {
@@ -245,10 +245,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
  *
  * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
-const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
-  props: PopperProps<RootComponentType>,
-  forwardedRef: React.ForwardedRef<HTMLDivElement>,
-) {
+const Popper = React.forwardRef<HTMLDivElement, PopperProps>(function Popper<
+  RootComponentType extends React.ElementType,
+>(props: PopperProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLDivElement>) {
   const {
     anchorEl,
     children,
@@ -337,10 +336,10 @@ const Popper = React.forwardRef(function Popper<RootComponentType extends React.
 }) as PolymorphicComponent<PopperTypeMap>;
 
 Popper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
@@ -405,6 +404,9 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.

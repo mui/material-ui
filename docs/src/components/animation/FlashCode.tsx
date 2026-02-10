@@ -20,7 +20,7 @@ const FlashCode = styled('div', {
       : alpha(theme.palette.primary.main, 0.1),
     border: '1px solid',
     borderColor: (theme.vars || theme).palette.primary.dark,
-    zIndex: 1,
+    zIndex: 2,
   }),
 );
 

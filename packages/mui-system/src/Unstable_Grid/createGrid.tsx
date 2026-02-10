@@ -2,11 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_composeClasses as composeClasses,
-  unstable_generateUtilityClass as generateUtilityClass,
-  unstable_isMuiElement as isMuiElement,
-} from '@mui/utils';
+import isMuiElement from '@mui/utils/isMuiElement';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import useTheme from '../useTheme';
@@ -59,7 +57,11 @@ export default function createGrid(
     componentName = 'MuiGrid',
   } = options;
 
-  const OverflowContext = React.createContext<boolean | undefined>(undefined);
+  const GridOverflowContext = React.createContext<boolean | undefined>(undefined);
+
+  if (process.env.NODE_ENV !== 'production') {
+    GridOverflowContext.displayName = 'GridOverflowContext';
+  }
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
@@ -93,7 +95,7 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
-    const overflow = React.useContext(OverflowContext);
+    const overflow = React.useContext(GridOverflowContext);
     const {
       className,
       children,
@@ -162,9 +164,12 @@ export default function createGrid(
         {...other}
       >
         {React.Children.map(children, (child) => {
-          if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
+          if (
+            React.isValidElement<{ container?: unknown }>(child) &&
+            isMuiElement(child, ['Grid'])
+          ) {
             return React.cloneElement(child, {
-              unstable_level: child.props.unstable_level ?? level + 1,
+              unstable_level: (child.props as GridProps)?.unstable_level ?? level + 1,
             } as GridProps);
           }
           return child;
@@ -173,11 +178,13 @@ export default function createGrid(
     );
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
-      // There are 2 possibilities that should wrap with the OverflowContext to communicate with the nested grids:
+      // There are 2 possibilities that should wrap with the GridOverflowContext to communicate with the nested grids:
       // 1. It is the root grid with `disableEqualOverflow`.
       // 2. It is a nested grid with different `disableEqualOverflow` from the context.
       result = (
-        <OverflowContext.Provider value={disableEqualOverflow}>{result}</OverflowContext.Provider>
+        <GridOverflowContext.Provider value={disableEqualOverflow}>
+          {result}
+        </GridOverflowContext.Provider>
       );
     }
 

@@ -20,25 +20,35 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "textarea": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the textarea element"
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
     },
-    "startDecorator": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the startDecorator element",
-      "conditions": "supplied"
-    },
-    "endDecorator": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the endDecorator element",
-      "conditions": "supplied"
-    },
-    "formControl": {
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "the component is a descendant of <code>FormControl</code>"
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
     },
     "disabled": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -55,60 +65,35 @@
       "nodeName": "the root element",
       "conditions": "the component is focused"
     },
-    "colorPrimary": {
+    "formControl": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorNeutral": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"neutral\"</code>"
-    },
-    "colorDanger": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
-    },
-    "colorSuccess": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"success\"</code>"
-    },
-    "colorWarning": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"warning\"</code>"
-    },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
-    },
-    "sizeMd": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"md\"</code>"
+      "conditions": "the component is a descendant of <code>FormControl</code>"
     },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"lg\"</code>"
     },
-    "variantPlain": {
+    "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"plain\"</code>"
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
     },
     "variantOutlined": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
     },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -117,9 +102,9 @@
     }
   },
   "slotDescriptions": {
+    "endDecorator": "The component that renders the end decorator.",
     "root": "The component that renders the root.",
-    "textarea": "The component that renders the textarea.",
     "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "textarea": "The component that renders the textarea."
   }
 }

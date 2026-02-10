@@ -20,21 +20,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "colorPrimary": {
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -46,20 +50,15 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantPlain": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"plain\"</code>"
-    },
-    "variantOutlined": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",

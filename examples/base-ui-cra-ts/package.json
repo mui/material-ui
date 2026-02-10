@@ -8,8 +8,8 @@
     "@types/react-dom": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest",
-    "typescript": "latest"
+    "react-scripts": "^5.0.0",
+    "typescript": "~5.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

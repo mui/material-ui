@@ -304,13 +304,13 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
 
   const radioChecked =
-    typeof checkedProp === 'undefined' && !!value
+    typeof checkedProp === 'undefined' && value != null
       ? areEqualValues(radioGroup?.value, value)
       : checkedProp;
   const useRadioProps = {
     checked: radioChecked,
     defaultChecked,
-    disabled: disabledProp ?? formControl?.disabled,
+    disabled: inProps.disabled || formControl?.disabled || disabledProp,
     onBlur,
     onChange,
     onFocus,
@@ -369,6 +369,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     additionalProps: {
       type: 'radio',
+      role: undefined,
       id,
       name,
       readOnly,
@@ -414,10 +415,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 }) as OverridableComponent<RadioTypeMap>;
 
 Radio.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */

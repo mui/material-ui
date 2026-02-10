@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import {
-  act,
-  describeConformance,
-  createRenderer,
-  fireEvent,
-  screen,
-} from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Rating />', () => {
   const { render } = createRenderer();

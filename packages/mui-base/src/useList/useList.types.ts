@@ -215,6 +215,12 @@ export interface UseListParameters<
       ListActionContext<ItemValue> & CustomActionContext
     >,
   ) => State;
+  /**
+   * The name of the component using useList.
+   * For debugging purposes.
+   * @default 'useList'
+   */
+  componentName?: string;
 }
 
 export interface ListItemState {
@@ -237,7 +243,7 @@ interface UseListRootSlotOwnProps {
   onBlur: MuiCancellableEventHandler<React.FocusEvent<HTMLElement>>;
   onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent<HTMLElement>>;
   tabIndex: number;
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
 }
 
 export type UseListRootSlotProps<ExternalProps = {}> = ExternalProps & UseListRootSlotOwnProps;

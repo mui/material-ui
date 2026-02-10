@@ -6,6 +6,8 @@ import HiddenCss from './HiddenCss';
 
 /**
  * Responsively hides children based on the selected implementation.
+ *
+ * @deprecated The Hidden component was deprecated in Material UI v5. To learn more, see [the Hidden section](/material-ui/migration/v5-component-changes/#hidden) of the migration docs.
  */
 function Hidden(props) {
   const {
@@ -59,10 +61,10 @@ function Hidden(props) {
 }
 
 Hidden.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

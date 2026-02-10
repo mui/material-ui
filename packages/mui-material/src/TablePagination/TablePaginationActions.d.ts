@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IconButtonProps } from '../IconButton/IconButton';
+import { SvgIconProps } from '../SvgIcon';
 
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -41,7 +42,55 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
     lastButton?: Partial<IconButtonProps>;
     nextButton?: Partial<IconButtonProps>;
     previousButton?: Partial<IconButtonProps>;
+    firstButtonIcon?: Partial<SvgIconProps>;
+    lastButtonIcon?: Partial<SvgIconProps>;
+    nextButtonIcon?: Partial<SvgIconProps>;
+    previousButtonIcon?: Partial<SvgIconProps>;
   };
+  slots?: TablePaginationActionsSlots;
+}
+
+export interface TablePaginationActionsSlots {
+  /**
+   * The component that renders the first button.
+   * @default IconButton
+   */
+  firstButton?: React.ElementType;
+  /**
+   * The component that renders the last button.
+   * @default IconButton
+   */
+  lastButton?: React.ElementType;
+  /**
+   * The component that renders the next button.
+   * @default IconButton
+   */
+  nextButton?: React.ElementType;
+  /**
+   * The component that renders the previous button.
+   * @default IconButton
+   */
+  previousButton?: React.ElementType;
+  /**
+   * The component that renders the first button icon.
+   * @default FirstPageIcon
+   */
+  firstButtonIcon?: React.ElementType;
+  /**
+   * The component that renders the last button icon.
+   * @default LastPageIcon
+   */
+  lastButtonIcon?: React.ElementType;
+  /**
+   * The component that renders the next button icon.
+   * @default KeyboardArrowRight
+   */
+  nextButtonIcon?: React.ElementType;
+  /**
+   * The component that renders the previous button icon.
+   * @default KeyboardArrowLeft
+   */
+  previousButtonIcon?: React.ElementType;
 }
 
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;

@@ -47,7 +47,7 @@ function CustomLink({
   children,
   to,
   ...props
-}: React.PropsWithChildren<{ to: string } & Omit<JSX.IntrinsicElements['a'], 'href'>>) {
+}: React.PropsWithChildren<{ to: string } & Omit<React.JSX.IntrinsicElements['a'], 'href'>>) {
   return (
     <a href={to} {...props}>
       {children}

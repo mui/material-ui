@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 const fs = require('fs');
 const path = require('path');
 const kebabCase = require('lodash/kebabCase');
@@ -6,6 +7,7 @@ const {
   getContents,
   getDescription,
   getCodeblock,
+  getFeatureList,
   getHeaders,
   getTitle,
 } = require('./parseMarkdown');
@@ -49,7 +51,6 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
 function prepareMarkdown(config) {
   const { fileRelativeContext, translations, componentPackageMapping = {}, options } = config;
 
-  const demos = {};
   /**
    * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
    */
@@ -64,7 +65,8 @@ function prepareMarkdown(config) {
       const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
       const location = headers.filename || `/${fileRelativeContext}/${filename}`;
-      const title = headers.title || getTitle(markdown);
+      const markdownH1 = getTitle(markdown);
+      const title = headers.title || markdownH1;
       const description = headers.description || getDescription(markdown);
 
       if (title == null || title === '') {
@@ -103,9 +105,8 @@ function prepareMarkdown(config) {
         contents.push(`
 ## Unstyled
 
-:::success
-[Base UI](/base-ui/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
-:::
+Use the [Base UI ${markdownH1}](${headers.unstyled}) for complete ownership of the component's design, with no Material UI or Joy UI styles to override.
+This unstyled version of the component is the ideal choice for heavy customization with a smaller bundle size.
         `);
       }
 
@@ -155,11 +156,16 @@ ${headers.hooks
             return null;
           }
         }
-
         const codeblock = getCodeblock(content);
 
         if (codeblock) {
           return codeblock;
+        }
+
+        const featureList = getFeatureList(content);
+
+        if (featureList) {
+          return featureList;
         }
 
         return render(content);
@@ -169,7 +175,7 @@ ${headers.hooks
       rendered.unshift(
         `<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
       <symbol id="comment-link-icon" viewBox="0 0 24 24">
-      <path d="M5.025 14H6.95c.183 0 .35-.029.5-.087a1.24 1.24 0 0 0 .425-.288L13.65 7.9a.622.622 0 0 0 .2-.45.622.622 0 0 0-.2-.45l-2.3-2.3a.622.622 0 0 0-.45-.2.622.622 0 0 0-.45.2l-5.725 5.775a1.24 1.24 0 0 0-.287.425 1.37 1.37 0 0 0-.088.5v1.925c0 .184.067.342.2.475a.65.65 0 0 0 .475.2Zm5.325 0h5.725c.367 0 .68-.129.938-.387.258-.258.387-.57.387-.938 0-.366-.13-.679-.387-.937a1.277 1.277 0 0 0-.938-.388H13L10.35 14Zm-5.5 4.4-2.4 2.4c-.417.417-.896.509-1.437.275C.47 20.842.2 20.434.2 19.85V3.55c0-.733.258-1.358.775-1.875A2.554 2.554 0 0 1 2.85.9h16.3c.733 0 1.358.259 1.875.775.517.517.775 1.142.775 1.875v12.2c0 .734-.258 1.359-.775 1.875a2.554 2.554 0 0 1-1.875.775H4.85Z"/>
+      <path d="M22.8481 4C22.8481 2.9 21.9481 2 20.8481 2H4.84814C3.74814 2 2.84814 2.9 2.84814 4V16C2.84814 17.1 3.74814 18 4.84814 18H18.8481L22.8481 22V4ZM16.8481 11H13.8481V14C13.8481 14.55 13.3981 15 12.8481 15C12.2981 15 11.8481 14.55 11.8481 14V11H8.84814C8.29814 11 7.84814 10.55 7.84814 10C7.84814 9.45 8.29814 9 8.84814 9H11.8481V6C11.8481 5.45 12.2981 5 12.8481 5C13.3981 5 13.8481 5.45 13.8481 6V9H16.8481C17.3981 9 17.8481 9.45 17.8481 10C17.8481 10.55 17.3981 11 16.8481 11Z" />
       </symbol>
       </svg>`,
       );
@@ -240,7 +246,7 @@ ${headers.hooks
   if (docs.en.headers.card === 'true') {
     const slug = docs.en.location.replace(/(.*)\/(.*)\.md/, '$2');
     const exists = fs.existsSync(
-      path.resolve(__dirname, `../../docs/public/static/blog/${slug}/card.png`),
+      path.resolve(config.options.workspaceRoot, `docs/public/static/blog/${slug}/card.png`),
     );
 
     if (!exists) {
@@ -253,7 +259,7 @@ ${headers.hooks
     }
   }
 
-  return { demos, docs };
+  return { docs };
 }
 
 module.exports = prepareMarkdown;

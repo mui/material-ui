@@ -154,7 +154,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const allItems = (
     React.Children.toArray(children).filter((child) => {
       return React.isValidElement(child);
-    }) as Array<React.ReactElement>
+    }) as Array<React.ReactElement<any>>
   ).map((child, index) => (
     <SlotLi key={`child-${index}`} {...liProps}>
       {isMuiElement(child, ['Typography'])
@@ -187,10 +187,10 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 }) as OverridableComponent<BreadcrumbsTypeMap>;
 
 Breadcrumbs.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

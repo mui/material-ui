@@ -1,0 +1,8 @@
+<Select placeholder="Choose a character…">
+  <Option value="Geralt">Geralt</Option>
+  <Option value="Ciri">Ciri</Option>
+  <Option value="Jaskier">Jaskier</Option>
+  <Option value="Zoltan">Zoltan Chivay</Option>
+  <Option value="Regis">Regis</Option>
+  <Option value="Milva">Milva</Option>
+</Select>

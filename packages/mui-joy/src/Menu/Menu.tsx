@@ -52,7 +52,7 @@ const MenuRoot = styled(StyledList, {
       borderRadius: `var(--List-radius, ${theme.vars.radius.sm})`,
       boxShadow: theme.shadow.md,
       overflow: 'auto',
-      // `unstable_popup-zIndex` is a private variable that lets other component, e.g. Modal, to override the z-index so that the listbox can be displayed above the Modal.
+      // `unstable_popup-zIndex` is a private variable that lets other component, for example Modal, to override the z-index so that the listbox can be displayed above the Modal.
       zIndex: `var(--unstable_popup-zIndex, ${theme.vars.zIndex.popup})`,
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.popup,
@@ -79,7 +79,7 @@ const MenuRoot = styled(StyledList, {
  * API:
  *
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
- * - inherits [Popper API](https://mui.com/base-ui/api/popper/)
+ * - inherits [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
 const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
@@ -187,10 +187,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
 }) as OverridableComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * A ref with imperative actions.
    * It allows to select the first or last menu item.

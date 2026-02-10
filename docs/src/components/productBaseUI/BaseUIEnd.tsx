@@ -6,7 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import { GlowingIconContainer } from 'docs/src/components/action/InfoCard';
+import { GlowingIconContainer } from '@mui/docs/InfoCard';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -20,9 +20,9 @@ export default function BaseUIEnd() {
       sx={{
         color: 'text.secondary',
         background: (theme) =>
-          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[800]} 50%, 
+          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[900]} 50%, 
           ${alpha(theme.palette.primary[800], 0.2)} 100%), ${
-            (theme.vars || theme).palette.primaryDark[800]
+            (theme.vars || theme).palette.primaryDark[900]
           }`,
       }}
     >

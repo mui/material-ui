@@ -72,7 +72,7 @@ const slots = { root: Root, thumb: Thumb, input: Input };
 export default function DisabledDefaultClasses() {
   return (
     <div>
-      {/* The built-in classes (MuiSwitch-root, Mui-checked, etc.) are enabled by default,
+      {/* The built-in classes (base-Switch-root, base--checked, etc.) are enabled by default,
            even though they are not used */}
       <Switch
         slots={slots}

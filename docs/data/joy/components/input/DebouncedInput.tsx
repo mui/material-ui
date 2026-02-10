@@ -11,14 +11,13 @@ type DebounceProps = {
 function DebounceInput(props: InputProps & DebounceProps) {
   const { handleDebounce, debounceTimeout, ...rest } = props;
 
-  const timerRef = React.useRef<number>();
+  const timerRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-
-    timerRef.current = window.setTimeout(() => {
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
       handleDebounce(event.target.value);
     }, debounceTimeout);
   };

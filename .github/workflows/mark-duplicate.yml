@@ -14,10 +14,10 @@ jobs:
       issues: write
     steps:
       - name: mark-duplicate
-        uses: actions-cool/issues-helper@5457ae8d7c1dc20597a753501d30183ed8043c8b # v3.5.2
+        uses: actions-cool/issues-helper@a610082f8ac0cf03e357eb8dd0d5e2ba075e017e # v3.6.0
         with:
           actions: 'mark-duplicate'
           token: ${{ secrets.GITHUB_TOKEN }}
           duplicate-labels: 'duplicate'
-          remove-labels: 'status: incomplete,status: needs triage'
+          remove-labels: 'status: incomplete,status: waiting for maintainer'
           close-issue: true

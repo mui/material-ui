@@ -3,7 +3,7 @@ import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
-import { Popper, PopperProps } from '../Popper';
+import { PopupProps } from '../Unstable_Popup';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
@@ -27,7 +27,7 @@ export interface MenuOwnProps {
   /**
    * The element based on which the menu is positioned.
    */
-  anchor?: PopperProps['anchorEl'];
+  anchor?: PopupProps['anchor'];
   children?: React.ReactNode;
   className?: string;
   /**
@@ -39,8 +39,7 @@ export interface MenuOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', MenuRootSlotPropsOverrides, MenuOwnerState> &
-      Partial<React.ComponentPropsWithoutRef<typeof Popper>>;
+    root?: SlotComponentProps<'div', MenuRootSlotPropsOverrides & PopupProps, MenuOwnerState>;
     listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
   };
   /**
@@ -89,7 +88,7 @@ export type MenuRootSlotProps = {
   ref: React.Ref<any>;
 };
 
-export type MenuPopupSlotProps = UseMenuListboxSlotProps & {
+export type MenuListboxSlotProps = UseMenuListboxSlotProps & {
   children?: React.ReactNode;
   className?: string;
   ownerState: MenuOwnerState;

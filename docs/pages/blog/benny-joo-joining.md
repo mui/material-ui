@@ -4,6 +4,7 @@ description: We are excited to share that Benny Joo has joined MUI. He has start
 date: 2021-11-16T00:00:00.000Z
 authors: ['mnajdova']
 tags: ['Company']
+manualCard: true
 ---
 
 We are excited to share that [Benny Joo](https://github.com/hbjORbj) has joined MUI.
@@ -16,6 +17,6 @@ He had a great start with his internship, implementing the [Masonry component](h
 As part of the Core team, he will help with the community support, as well as work on some of the new features we plan for the community version of the library, like the unstyled components and the second design system.
 I am excited to see what other valuable contributions he will make in the future.
 
-The Core team will continue developing the foundations on which to build great design systems. Here's a quick view of [the community roadmap](https://github.com/orgs/mui/projects/18/views/1).
+The Core team will continue developing the foundations on which to build great design systems.
 
 We couldn't be more excited to have Benny on the team!

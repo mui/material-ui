@@ -27,24 +27,56 @@
     "import ListItemButton from '@mui/material/ListItemButton';",
     "import { ListItemButton } from '@mui/material';"
   ],
-  "styles": {
-    "classes": [
-      "root",
-      "focusVisible",
-      "dense",
-      "alignItemsFlexStart",
-      "disabled",
-      "divider",
-      "gutters",
-      "selected"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
+  "classes": [
+    {
+      "key": "alignItemsFlexStart",
+      "className": "MuiListItemButton-alignItemsFlexStart",
+      "description": "Styles applied to the component element if `alignItems=\"flex-start\"`.",
+      "isGlobal": false
     },
-    "name": "MuiListItemButton"
-  },
+    {
+      "key": "dense",
+      "className": "MuiListItemButton-dense",
+      "description": "Styles applied to the component element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the inner `component` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "divider",
+      "className": "MuiListItemButton-divider",
+      "description": "Styles applied to the inner `component` element if `divider={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the `component`'s `focusVisibleClassName` prop.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiListItemButton-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemButton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiListItemButton",

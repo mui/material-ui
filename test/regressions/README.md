@@ -27,9 +27,9 @@ If you're adding a new test prefer a new component instead of editing existing f
 
 ### Manual
 
-`yarn test:regressions:dev` will build all fixtures and render an overview page that lists all fixtures.
+`pnpm test:regressions:dev` will build all fixtures and render an overview page that lists all fixtures.
 This can be used to debug individual fixtures.
-By default, a devtools-like view is shown that can be disabled by appending `#no-dev` to the URL e.g. `http://localhost:5001/docs-customization-typography/CustomResponsiveFontSizes#no-dev` or forced by appending `#dev` to the URL e.g. `http://localhost:5001/docs-customization-typography/CustomResponsiveFontSizes#dev`.
+By default, a devtools-like view is shown that can be disabled by appending `#no-dev` to the URL, for example `http://localhost:5001/docs-customization-typography/CustomResponsiveFontSizes#no-dev` or forced by appending `#dev` to the URL, for example `http://localhost:5001/docs-customization-typography/CustomResponsiveFontSizes#dev`.
 
 ### Automatic
 
@@ -41,16 +41,16 @@ It allows catching regressions like this one:
 
 Screenshots are saved in `./screenshots/$BROWSER_NAME/`.
 Each test tests only a single fixture.
-A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('FocusTrap/OpenFocusTrap')`.
+A fixture can be loaded with `await renderFixture(fixturePath)`, for example `renderFixture('FocusTrap/OpenFocusTrap')`.
 
 ## Commands
 
-For development `yarn test:regressions:dev` and `yarn test:regressions:run --watch` in separate terminals is recommended.
+For development `pnpm test:regressions:dev` and `pnpm test:regressions:run --watch` in separate terminals is recommended.
 
 | command                        | description                                                                                                           |
 | :----------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
-| `yarn test:regressions`        | Full run                                                                                                              |
-| `yarn test:regressions:dev`    | Prepares the fixtures to be able to test in watchmode                                                                 |
-| `yarn test:regressions:run`    | Runs the tests (requires `yarn test:regressions:dev` or `yarn test:regressions:build`+`yarn test:regressions:server`) |
-| `yarn test:regressions:build`  | Builds the webpack bundle for viewing the fixtures                                                                    |
-| `yarn test:regressions:server` | Serves the fixture bundle.                                                                                            |
+| `pnpm test:regressions`        | Full run                                                                                                              |
+| `pnpm test:regressions:dev`    | Prepares the fixtures to be able to test in watchmode                                                                 |
+| `pnpm test:regressions:run`    | Runs the tests (requires `pnpm test:regressions:dev` or `pnpm test:regressions:build`+`pnpm test:regressions:server`) |
+| `pnpm test:regressions:build`  | Builds the Webpack bundle for viewing the fixtures                                                                    |
+| `pnpm test:regressions:server` | Serves the fixture bundle.                                                                                            |

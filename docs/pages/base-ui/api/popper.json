@@ -49,9 +49,16 @@
   },
   "name": "Popper",
   "imports": ["import { Popper } from '@mui/base/Popper';", "import { Popper } from '@mui/base';"],
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": null },
+  "classes": [
+    {
+      "key": "root",
+      "className": "base-Popper-root",
+      "description": "Class name applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
-  "muiName": "MuiPopper",
+  "muiName": "Popper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Popper/Popper.tsx",
   "inheritance": null,

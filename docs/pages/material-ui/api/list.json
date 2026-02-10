@@ -16,11 +16,32 @@
   },
   "name": "List",
   "imports": ["import List from '@mui/material/List';", "import { List } from '@mui/material';"],
-  "styles": {
-    "classes": ["root", "padding", "dense", "subheader"],
-    "globalClasses": {},
-    "name": "MuiList"
-  },
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiList-dense",
+      "description": "Styles applied to the root element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "padding",
+      "className": "MuiList-padding",
+      "description": "Styles applied to the root element unless `disablePadding={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiList-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "subheader",
+      "className": "MuiList-subheader",
+      "description": "Styles applied to the root element if a `subheader` is provided.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiList",

@@ -1,27 +1,27 @@
-# Developer Experience Engineer - Core
+# Developer Experience Engineer — Core
 
-<p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
+<p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
 
 ## Details of the role
 
 - **Location**: Remote (preference for UTC-6 to UTC+2).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC4 or above](https://mui-org.notion.site/Levelling-at-MUI-5c30f9bfe65149d697f346447cef9db1).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
 
-MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
-Today, Material UI stands as one of the most popular open-source libraries on GitHub, and has paved the way for the fully fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 35+ people as of late 2023, and we're growing.
+MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
+Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
+We're a company of 31+ people as of late 2023, and we're growing.
 
 ## The products
 
-MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
-Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
+MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain.
+Base UI is our headless component library, and Joy UI is a sister library to Material UI that implements our own in-house Joy Design system.
 We also host Design Kits and pre-built Templates.
 
-Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
+Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
 We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
 
@@ -34,12 +34,9 @@ The majority of our work is asynchronous, and we rely on written communication t
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
-For additional details about the culture you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
-
-Both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
 
 Developer Experience matters, [a lot](https://future.com/the-case-for-developer-experience/).
 We are looking for somebody to build the best developer experience ever created around a component library, earning the love of developers everywhere.
@@ -50,6 +47,9 @@ We are looking for someone that can contribute to the following outcomes:
 - Amplify the need of the community so the product direction aims at what people need the most.
 - Improve the overall developer experience, resulting in better NPS & CSAT scores.
 - Create momentum in the React community and drive adoption of the library.
+
+Overall, both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 
@@ -66,7 +66,7 @@ Depending on the day, you'll:
 - You will collaborate with Developer Advocates, Designers, Product Managers, Engineering Managers, Marketing, and other stakeholders to identify opportunities for improvement.
 - Inform the technical approach and architecture of MUI as it relates to developer experiences.
 - Help contribute to the MUI community by providing code review, mentorship, and support to MUI employees, community members, and partners.
-- Advocate and support improvements to MUI to improve development and integration of tools and plugins, e.g. Storybook, Tailwind CSS.
+- Advocate and support improvements to MUI to improve development and integration of tools and plugins, for example Storybook, Tailwind CSS.
 - Work on issues and improvements critical to the success of MUI users and the broader community.
 - Foster a culture of learning through iterative improvements and strong collaboration with UX research.
 
@@ -74,13 +74,13 @@ For the right candidate:
 
 - Working with the Leadership to construct and execute on a hiring plan to grow the Developer Experience team.
 
-## About you
+## Who we're looking for
 
-### Skills you should have
+### Required
 
 - **A track record of demonstrating an eye for product and solving real-world user problems.** If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Expertise in the modern JavaScript ecosystem**.
-  MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+  MUI's open-source projects are built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
 - **Strong written and verbal communication skills**.
   As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Ability to dive into complex problems**.
@@ -91,7 +91,7 @@ For the right candidate:
   Perhaps you've created your company's design system, written a Babel plugin, or written complex React components.
   It would be great if you could address this in your cover letter!
 
-### What it would be nice if you had, but isn't required
+### Nice to have (but not required)
 
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.
@@ -99,12 +99,12 @@ For the right candidate:
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
+- **You have contributed code**. A history of contributing to MUI's open-source projects is a plus.
 
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
@@ -113,6 +113,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 Don't meet every requirement?
 Apply anyway!
-Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+Research shows that certain folks are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
 If this role excites you, we want to hear from you.
 We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

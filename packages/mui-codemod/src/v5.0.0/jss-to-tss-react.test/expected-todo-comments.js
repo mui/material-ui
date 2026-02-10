@@ -29,7 +29,7 @@ export const useExportedStyles = makeStyles()({
 });
 
 // TODO jss-to-tss-react codemod: Unable to handle style definition reliably. Unsupported arrow function syntax.
-// Arrow function has parameter type of Identifier instead of ObjectPattern (e.g. `(props) => ({...})` instead of `({color}) => ({...})`).
+// Arrow function has parameter type of Identifier instead of ObjectPattern (for example `(props) => ({...})` instead of `({color}) => ({...})`).
 const useStyles2 = makeStyles()({
   test2: props => ({
     backgroundColor: "blue",

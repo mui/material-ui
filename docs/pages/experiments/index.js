@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 export default function Experiments({ experiments }) {
   const categories = {};

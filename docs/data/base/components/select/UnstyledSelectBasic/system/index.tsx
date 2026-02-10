@@ -6,7 +6,6 @@ import {
   SelectRootSlotProps,
 } from '@mui/base/Select';
 import { Option as BaseOption, optionClasses } from '@mui/base/Option';
-import { Popper as BasePopper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -17,14 +16,14 @@ const Select = React.forwardRef(function Select<
   const slots: SelectProps<TValue, Multiple>['slots'] = {
     root: CustomButton,
     listbox: Listbox,
-    popper: Popper,
+    popup: Popup,
     ...props.slots,
   };
 
   return <BaseSelect {...props} ref={ref} slots={slots} />;
 }) as <TValue extends {}, Multiple extends boolean>(
   props: SelectProps<TValue, Multiple> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
+) => React.JSX.Element;
 
 export default function UnstyledSelectBasic() {
   return (
@@ -78,7 +77,7 @@ const CustomButton = React.forwardRef(function CustomButton<
 const StyledButton = styled('button', { shouldForwardProp: () => true })(
   ({ theme }) => `
   position: relative;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-width: 320px;
@@ -120,7 +119,7 @@ const StyledButton = styled('button', { shouldForwardProp: () => true })(
 
 const Listbox = styled('ul')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 6px;
@@ -159,6 +158,10 @@ const Option = styled(BaseOption)(
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
+  &:focus-visible {
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+  }
+
   &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
@@ -175,6 +178,6 @@ const Option = styled(BaseOption)(
   `,
 );
 
-const Popper = styled(BasePopper)`
+const Popup = styled('div')`
   z-index: 1;
 `;

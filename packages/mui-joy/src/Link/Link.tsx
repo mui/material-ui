@@ -292,8 +292,8 @@ const Link = React.forwardRef(function Link(inProps, ref) {
         )}
 
         {isMuiElement(children, ['Skeleton'])
-          ? React.cloneElement(children as React.ReactElement, {
-              variant: (children as React.ReactElement).props.variant || 'inline',
+          ? React.cloneElement(children as React.ReactElement<any>, {
+              variant: (children as React.ReactElement<any>).props.variant || 'inline',
             })
           : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
@@ -303,10 +303,10 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 }) as OverridableComponent<LinkTypeMap>;
 
 Link.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

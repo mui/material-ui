@@ -25,21 +25,25 @@
     }
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "colorPrimary": {
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "colorDanger": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
     "colorNeutral": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
-    "colorDanger": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSuccess": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -51,91 +55,72 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
-    },
-    "endDecorator": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the endDecorator element",
-      "conditions": "supplied"
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
-    "label": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the label <code>span</code> element"
-    },
-    "labelSm": {
+    "labelLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the label <code>span</code> element",
-      "conditions": "<code>size=\"sm\"</code>"
+      "conditions": "<code>size=\"lg\"</code>"
     },
     "labelMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the label <code>span</code> element",
       "conditions": "<code>size=\"md\"</code>"
     },
-    "labelLg": {
+    "labelSm": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the label <code>span</code> element",
-      "conditions": "<code>size=\"lg\"</code>"
-    },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
       "conditions": "<code>size=\"sm\"</code>"
-    },
-    "sizeMd": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"md\"</code>"
     },
     "sizeLg": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"lg\"</code>"
     },
-    "startDecorator": {
+    "sizeMd": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the startDecorator element",
-      "conditions": "supplied"
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantPlain": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"plain\"</code>"
     },
-    "variantSolid": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"solid\"</code>"
-    },
     "variantSoft": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"soft\"</code>"
     },
-    "variantOutlined": {
+    "variantSolid": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
+      "conditions": "<code>variant=\"solid\"</code>"
     }
   },
   "slotDescriptions": {
-    "root": "The component that renders the root.",
-    "label": "The component that renders the label.",
     "action": "The component that renders the action.",
-    "startDecorator": "The component that renders the start decorator.",
-    "endDecorator": "The component that renders the end decorator."
+    "endDecorator": "The component that renders the end decorator.",
+    "label": "The component that renders the label.",
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator."
   }
 }

@@ -194,7 +194,7 @@ function addDeployPreviewUrls() {
     const fragments = url.split('/').reverse();
     if (fragments[0] === fragments[1]) {
       // check if the end of pathname is the same as the one before
-      // e.g. `/data/material/getting-started/overview/overview.md
+      // for example `/data/material/getting-started/overview/overview.md
       url = fragments.slice(1).reverse().join('/');
     }
 

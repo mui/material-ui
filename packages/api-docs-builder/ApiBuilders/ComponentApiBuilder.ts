@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
@@ -7,22 +7,25 @@ import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import { Link } from 'mdast';
+import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
-import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
-import { renderMarkdown } from '@mui/markdown';
-import { ProjectSettings } from '../ProjectSettings';
-import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { ComponentClassDefinition } from '@mui/internal-docs-utils';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
+import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
+import { ComponentInfo, toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
+  CreateDescribeablePropSettings,
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
+import generateApiTranslations from '../utils/generateApiTranslation';
+import { sortAlphabetical } from '../utils/sortObjects';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -32,6 +35,8 @@ export type AdditionalPropsInfo = {
   'joy-color'?: boolean;
   'joy-variant'?: boolean;
 };
+
+export type SeeMore = { description: string; link: { text: string; url: string } };
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -51,15 +56,14 @@ export interface ReactApi extends ReactDocgenApi {
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, e.g. Base UI components.
+   * If `undefined`, it's not applicable in this context, for example Base UI components.
    */
   themeDefaultProps: boolean | undefined | null;
   /**
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
-  styles: Styles;
-  classes: Classes;
+  classes: ComponentClassDefinition[];
   slots: Slot[];
   propsTable: _.Dictionary<{
     default: string | undefined;
@@ -69,6 +73,7 @@ export interface ReactApi extends ReactDocgenApi {
     deprecationInfo: string | undefined;
     signature: undefined | { type: string; describedArgs?: string[]; returned?: string };
     additionalInfo?: AdditionalPropsInfo;
+    seeMoreLink?: SeeMore['link'];
   }>;
   /**
    * Different ways to import components
@@ -82,11 +87,23 @@ export interface ReactApi extends ReactDocgenApi {
         requiresRef?: boolean;
         deprecated?: string;
         typeDescriptions?: { [t: string]: string };
+        seeMoreText?: string;
       };
     };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+    classDescriptions: {
+      [key: string]: {
+        description: string;
+        conditions?: string;
+        nodeName?: string;
+        deprecationInfo?: string;
+      };
+    };
     slotDescriptions?: { [key: string]: string };
   };
+  /**
+   * The folder used to store the API translation.
+   */
+  apiDocsTranslationFolder?: string;
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -106,9 +123,10 @@ export async function computeApiDescription(
   const file = await remark()
     .use(function docsLinksAttacher() {
       return function transformer(tree) {
-        remarkVisit(tree, 'link', (linkNode: Link) => {
-          if ((linkNode.url as string).startsWith('/')) {
-            linkNode.url = `${host}${linkNode.url}`;
+        remarkVisit(tree, 'link', (linkNode) => {
+          const link = linkNode as Link;
+          if ((link.url as string).startsWith('/')) {
+            link.url = `${host}${link.url}`;
           }
         });
       };
@@ -130,7 +148,7 @@ export async function computeApiDescription(
  *  *
  *  * - [Icon API](https://mui.com/api/icon/)
  */
-async function annotateComponentDefinition(api: ReactApi) {
+async function annotateComponentDefinition(api: ReactApi, componentJsdoc: Annotation) {
   const HOST = 'https://mui.com';
 
   const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
@@ -149,11 +167,6 @@ async function annotateComponentDefinition(api: ReactApi) {
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
-      if (api.filename.includes('mui-base')) {
-        // Base UI does not use default exports.
-        return;
-      }
-
       /**
        * export default function Menu() {}
        */
@@ -207,10 +220,6 @@ async function annotateComponentDefinition(api: ReactApi) {
     },
 
     ExportNamedDeclaration(babelPath) {
-      if (!api.filename.includes('mui-base')) {
-        return;
-      }
-
       let node: babel.Node = babelPath.node;
 
       if (node.declaration == null) {
@@ -310,6 +319,14 @@ async function annotateComponentDefinition(api: ReactApi) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
 
+  if (componentJsdoc.tags.length > 0) {
+    markdownLines.push('');
+  }
+
+  componentJsdoc.tags.forEach((tag) => {
+    markdownLines.push(`@${tag.title}${tag.name ? ` ${tag.name} -` : ''} ${tag.description}`);
+  });
+
   const jsdoc = `/**\n${markdownLines
     .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
     .join('\n')}\n */`;
@@ -320,93 +337,39 @@ async function annotateComponentDefinition(api: ReactApi) {
 /**
  * Substitute CSS class description conditions with placeholder
  */
-function extractClassConditions(descriptions: any) {
-  const classConditions: {
-    [key: string]: { description: string; conditions?: string; nodeName?: string };
-  } = {};
+function extractClassCondition(description: string) {
   const stylesRegex =
     /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
-  Object.entries(descriptions).forEach(([className, description]: any) => {
-    if (className) {
-      const conditions = description.match(stylesRegex);
+  const conditions = description.match(stylesRegex);
 
-      if (conditions && conditions[6]) {
-        classConditions[className] = {
-          description: renderMarkdown(
-            description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
-          ),
-          nodeName: renderMarkdown(conditions[3]),
-          conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
-        };
-      } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
-        classConditions[className] = {
-          description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
-          nodeName: renderMarkdown(conditions[3]),
-        };
-      } else {
-        classConditions[className] = { description: renderMarkdown(description) };
-      }
-    }
-  });
-  return classConditions;
-}
-
-/**
- * @param filepath - absolute path
- * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
- * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
- */
-export function toGitHubPath(filepath: string): string {
-  return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
-}
-
-const generateApiTranslations = (
-  outputDirectory: string,
-  reactApi: ReactApi,
-  languages: string[],
-) => {
-  const componentName = reactApi.name;
-  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof languages)[0],
-  ): string {
-    const languageSuffix = language === 'en' ? '' : `-${language}`;
-
-    return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
+  if (conditions && conditions[6]) {
+    return {
+      description: renderMarkdown(
+        description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
+      ),
+      nodeName: renderMarkdown(conditions[3]),
+      conditions: renderMarkdown(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
+    };
   }
 
-  mkdirSync(apiDocsTranslationPath, {
-    mode: 0o777,
-    recursive: true,
-  });
+  if (conditions && conditions[3] && conditions[3] !== 'the root element') {
+    return {
+      description: renderMarkdown(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+      nodeName: renderMarkdown(conditions[3]),
+    };
+  }
 
-  writePrettifiedFile(
-    resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(reactApi.translations),
-  );
+  return { description: renderMarkdown(description) };
+}
 
-  languages.forEach((language) => {
-    if (language !== 'en') {
-      try {
-        writePrettifiedFile(
-          resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(reactApi.translations),
-          undefined,
-          { flag: 'wx' },
-        );
-      } catch (error) {
-        // File exists
-      }
-    }
-  });
-};
-
-const generateApiPage = (
+const generateApiPage = async (
   apiPagesDirectory: string,
-  translationPagesDirectory: string,
+  importTranslationPagesDirectory: string,
   reactApi: ReactApi,
+  sortingStrategies?: SortingStrategiesType,
   onlyJsonFile: boolean = false,
+  layoutConfigPath: string = '',
 ) => {
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
@@ -427,25 +390,8 @@ const generateApiPage = (
     ),
     name: reactApi.name,
     imports: reactApi.imports,
-    styles: {
-      classes: reactApi.styles.classes,
-      globalClasses: _.fromPairs(
-        Object.entries(reactApi.styles.globalClasses).filter(([className, globalClassName]) => {
-          // Only keep "non-standard" global classnames
-          return globalClassName !== `Mui${reactApi.name}-${className}`;
-        }),
-      ),
-      name: reactApi.styles.name,
-    },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
-    ...((reactApi.classes?.classes.length > 0 ||
-      (reactApi.classes?.globalClasses &&
-        Object.keys(reactApi.classes.globalClasses).length > 0)) && {
-      classes: {
-        classes: reactApi.classes.classes,
-        globalClasses: reactApi.classes.globalClasses,
-      },
-    }),
+    classes: reactApi.classes,
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
     muiName: normalizedApiPathname.startsWith('/joy-ui')
@@ -465,29 +411,45 @@ const generateApiPage = (
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
-  writePrettifiedFile(
+  const { classesSort = sortAlphabetical('key'), slotsSort = null } = {
+    ...sortingStrategies,
+  };
+
+  if (classesSort) {
+    pageContent.classes = [...pageContent.classes].sort(classesSort);
+  }
+  if (slotsSort && pageContent.slots) {
+    pageContent.slots = [...pageContent.slots].sort(slotsSort);
+  }
+
+  await writePrettifiedFile(
     path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 
   if (!onlyJsonFile) {
-    writePrettifiedFile(
+    await writePrettifiedFile(
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
   import ApiPage from 'docs/src/modules/components/ApiPage';
-  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';${
+    layoutConfigPath === ''
+      ? ''
+      : `
+  import layoutConfig from '${layoutConfigPath}';`
+  }
   import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
   export default function Page(props) {
     const { descriptions, pageContent } = props;
-    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+    return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={pageContent} />;
   }
 
   Page.getInitialProps = () => {
     const req = require.context(
-      '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
+      '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}',
       false,
-      /${kebabCase(reactApi.name)}.*.json$/,
+      /\\.\\/${kebabCase(reactApi.name)}.*.json$/,
     );
     const descriptions = mapApiPageTranslations(req);
 
@@ -501,7 +463,7 @@ const generateApiPage = (
   }
 };
 
-const attachTranslations = (reactApi: ReactApi) => {
+const attachTranslations = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
   const translations: ReactApi['translations'] = {
     componentDescription: reactApi.description,
     propDescriptions: {},
@@ -510,12 +472,12 @@ const attachTranslations = (reactApi: ReactApi) => {
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
     try {
-      prop = createDescribeableProp(propDescriptor, propName);
+      prop = createDescribeableProp(propDescriptor, propName, settings);
     } catch (error) {
       prop = null;
     }
     if (prop) {
-      const { deprecated, jsDocText, signatureArgs, signatureReturn, requiresRef } =
+      const { deprecated, seeMore, jsDocText, signatureArgs, signatureReturn, requiresRef } =
         generatePropDescription(prop, propName);
       // description = renderMarkdownInline(`${description}`);
 
@@ -529,6 +491,7 @@ const attachTranslations = (reactApi: ReactApi) => {
         requiresRef: requiresRef || undefined,
         deprecated: renderMarkdown(deprecated) || undefined,
         typeDescriptions: Object.keys(typeDescriptions).length > 0 ? typeDescriptions : undefined,
+        seeMoreText: seeMore?.description,
       };
     }
   });
@@ -538,32 +501,40 @@ const attachTranslations = (reactApi: ReactApi) => {
    */
   if (reactApi.slots?.length > 0) {
     translations.slotDescriptions = {};
-    reactApi.slots.forEach((slot: Slot) => {
-      const { name, description } = slot;
-      translations.slotDescriptions![name] = description;
-    });
+    [...reactApi.slots]
+      .sort(sortAlphabetical('name')) // Sort to ensure consistency of object key order
+      .forEach((slot: Slot) => {
+        const { name, description } = slot;
+        translations.slotDescriptions![name] = renderMarkdown(description);
+      });
   }
 
   /**
-   * CSS class descriptions.
+   * CSS class descriptions and deprecations.
    */
-  translations.classDescriptions = extractClassConditions(
-    reactApi.styles.classes.length || Object.keys(reactApi.styles.globalClasses).length
-      ? reactApi.styles.descriptions
-      : reactApi.classes.descriptions,
-  );
+  [...reactApi.classes]
+    .sort(sortAlphabetical('key')) // Sort to ensure consistency of object key order
+    .forEach((classDefinition) => {
+      translations.classDescriptions[classDefinition.key] = {
+        ...extractClassCondition(classDefinition.description),
+        deprecationInfo: classDefinition.deprecationInfo,
+      };
+    });
+  reactApi.classes.forEach((classDefinition, index) => {
+    delete reactApi.classes[index].deprecationInfo; // store deprecation info in translations only
+  });
 
   reactApi.translations = translations;
 };
 
-const attachPropsTable = (reactApi: ReactApi) => {
+const attachPropsTable = (reactApi: ReactApi, settings?: CreateDescribeablePropSettings) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ReactApi['propsTable'][string]];
   const componentProps: ReactApi['propsTable'] = _.fromPairs(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {
-        prop = createDescribeableProp(propDescriptor, propName);
+        prop = createDescribeableProp(propDescriptor, propName, settings);
       } catch (error) {
         propErrors.push([`[${reactApi.name}] \`${propName}\``, error as Error]);
         prop = null;
@@ -579,6 +550,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         signature: signatureType,
         signatureArgs,
         signatureReturn,
+        seeMore,
       } = generatePropDescription(prop, propName);
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
@@ -639,6 +611,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
           signature,
           additionalInfo:
             Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
+          seeMoreLink: seeMore?.link,
         },
       ];
     }),
@@ -665,7 +638,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * @param filename The filename where its defined (to infer the package)
  * @returns an array of import command
  */
-const getComponentImports = (name: string, filename: string) => {
+const defaultGetComponentImports = (name: string, filename: string) => {
   const githubPath = toGitHubPath(filename);
   const rootImportPath = githubPath.replace(
     /\/packages\/mui(?:-(.+?))?\/src\/.*/,
@@ -707,28 +680,16 @@ export default async function generateComponentApi(
   project: TypeScriptProject,
   projectSettings: ProjectSettings,
 ) {
-  const {
-    filename,
-    name,
-    muiName,
-    apiPathname,
-    apiPagesDirectory,
-    getInheritance,
-    getDemos,
-    readFile,
-    skipApiGeneration,
-    isSystemComponent,
-  } = componentInfo;
-
-  const { shouldSkip, spread, EOL, src } = readFile();
+  const { shouldSkip, spread, EOL, src } = componentInfo.readFile();
 
   if (shouldSkip) {
     return null;
   }
 
+  const filename = componentInfo.filename;
   let reactApi: ReactApi;
 
-  if (isSystemComponent) {
+  if (componentInfo.isSystemComponent) {
     try {
       reactApi = docgenParse(
         src,
@@ -751,7 +712,7 @@ export default async function generateComponentApi(
                 if (expression.value?.callee) {
                   const definitionName = expression.value.callee.name;
 
-                  if (definitionName === `create${name}`) {
+                  if (definitionName === `create${componentInfo.name}`) {
                     node = expression;
                   }
                 }
@@ -782,98 +743,105 @@ export default async function generateComponentApi(
     });
   }
 
+  if (!reactApi.props) {
+    reactApi.props = {};
+  }
+
+  const { getComponentImports = defaultGetComponentImports } = projectSettings;
+  const componentJsdoc = parseDoctrine(reactApi.description);
+
+  // We override `reactApi.description` with `componentJsdoc.description` because
+  // the former can include JSDoc tags that we don't want to render in the docs.
+  reactApi.description = componentJsdoc.description;
+
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
+
   reactApi.filename = filename;
-  reactApi.name = name;
-  reactApi.imports = getComponentImports(name, filename);
-  reactApi.muiName = muiName;
-  reactApi.apiPathname = apiPathname;
+  reactApi.name = componentInfo.name;
+  reactApi.imports = getComponentImports(componentInfo.name, filename);
+  reactApi.muiName = componentInfo.muiName;
+  reactApi.apiPathname = componentInfo.apiPathname;
   reactApi.EOL = EOL;
-  reactApi.demos = getDemos();
+  reactApi.slots = [];
+  reactApi.classes = [];
+  reactApi.demos = componentInfo.getDemos();
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
         `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
-        'Every public component should have a demo. ',
+        'Every public component should have a demo.\nFor internal component, add the name of the component to the `skipComponent` method of the product.',
     );
   }
 
-  const testInfo = await parseTest(filename);
-  // no Object.assign to visually check for collisions
-  reactApi.forwardsRefTo = testInfo.forwardsRefTo;
-  reactApi.spread = testInfo.spread ?? spread;
-  reactApi.themeDefaultProps = testInfo.themeDefaultProps;
-  reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-
-  // Both `slots` and `classes` are empty if
-  // interface `${componentName}Slots` wasn't found.
-  // Currently, Base UI and Joy UI components support this interface
-  const { slots, classes } = parseSlotsAndClasses({
-    project,
-    componentName: reactApi.name,
-    muiName: reactApi.muiName,
-  });
-  reactApi.slots = slots;
-  reactApi.classes = classes;
-
-  reactApi.styles = parseStyles({ project, componentName: reactApi.name });
-
-  if (reactApi.styles.classes.length > 0 && !filename.includes('mui-base')) {
-    reactApi.styles.name = reactApi.muiName;
-  }
-  reactApi.styles.classes.forEach((key) => {
-    const globalClass = generateUtilityClass(reactApi.styles.name || reactApi.muiName, key);
-    reactApi.styles.globalClasses[key] = globalClass;
-  });
-
-  // if `reactApi.classes` and `reactApi.styles` both exist,
-  // API documentation includes both "CSS" Section and "State classes" Section;
-  // we either want (1) "Slots" section and "State classes" section, or (2) "CSS" section
-  if (
-    (reactApi.styles.classes?.length || Object.keys(reactApi.styles.globalClasses || {})?.length) &&
-    (reactApi.classes.classes?.length || Object.keys(reactApi.classes.globalClasses || {})?.length)
-  ) {
-    reactApi.styles.classes = [];
-    reactApi.styles.globalClasses = {};
+  try {
+    const testInfo = await parseTest(reactApi.filename);
+    // no Object.assign to visually check for collisions
+    reactApi.forwardsRefTo = testInfo.forwardsRefTo;
+    reactApi.spread = testInfo.spread ?? spread;
+    reactApi.themeDefaultProps = testInfo.themeDefaultProps;
+    reactApi.inheritance = componentInfo.getInheritance(testInfo.inheritComponent);
+  } catch (e) {
+    if (project.name.includes('grid')) {
+      // TODO: Use `describeConformance` for the DataGrid components
+      reactApi.forwardsRefTo = 'GridRoot';
+    }
   }
 
-  attachPropsTable(reactApi);
-  attachTranslations(reactApi);
+  if (!projectSettings.skipSlotsAndClasses) {
+    const { slots, classes } = parseSlotsAndClasses({
+      typescriptProject: project,
+      projectSettings,
+      componentName: reactApi.name,
+      muiName: reactApi.muiName,
+      slotInterfaceName: componentInfo.slotInterfaceName,
+    });
+
+    reactApi.slots = slots;
+    reactApi.classes = classes;
+  }
+
+  attachPropsTable(reactApi, projectSettings.propsSettings);
+  attachTranslations(reactApi, projectSettings.propsSettings);
 
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.apiPathname);
 
-  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
-  const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
+  if (!componentInfo.skipApiGeneration) {
+    const {
+      skipAnnotatingComponentDefinition,
+      translationPagesDirectory,
+      importTranslationPagesDirectory,
+      generateJsonFileOnly,
+    } = projectSettings;
 
-  if (!skipApiGeneration) {
-    // Generate pages, json and translations
-    let translationPagesDirectory = 'docs/translations/api-docs';
-    if (normalizedApiPathname.startsWith('/joy-ui') && normalizedFilename.includes('mui-joy/src')) {
-      translationPagesDirectory = 'docs/translations/api-docs-joy';
-    } else if (
-      normalizedApiPathname.startsWith('/base') &&
-      normalizedFilename.includes('mui-base/src')
-    ) {
-      translationPagesDirectory = 'docs/translations/api-docs-base';
-    }
-
-    generateApiTranslations(
+    await generateApiTranslations(
       path.join(process.cwd(), translationPagesDirectory),
       reactApi,
       projectSettings.translationLanguages,
     );
 
     // Once we have the tabs API in all projects, we can make this default
-    const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
-    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
+    await generateApiPage(
+      componentInfo.apiPagesDirectory,
+      importTranslationPagesDirectory ?? translationPagesDirectory,
+      reactApi,
+      projectSettings.sortingStrategies,
+      generateJsonFileOnly,
+      componentInfo.layoutConfigPath,
+    );
 
-    // Add comment about demo & api links (including inherited component) to the component file
-    await annotateComponentDefinition(reactApi);
+    if (
+      typeof skipAnnotatingComponentDefinition === 'function'
+        ? !skipAnnotatingComponentDefinition(reactApi.filename)
+        : !skipAnnotatingComponentDefinition
+    ) {
+      // Add comment about demo & api links (including inherited component) to the component file
+      await annotateComponentDefinition(reactApi, componentJsdoc);
+    }
   }
 
   return reactApi;

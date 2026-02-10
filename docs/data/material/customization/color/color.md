@@ -11,7 +11,7 @@ The Material Design [color system](https://m2.material.io/design/color/) can be 
 The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/inline-tools/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow">
+<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow" class="remove-link-arrow">
   <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" width=1148" height="610" />
 </a>
 <br />
@@ -42,7 +42,7 @@ const theme = createTheme({
 
 ### Playground
 
-To test a [material.io/design/color](https://m2.material.io/design/color/) color scheme with the MUI documentation, simply select colors using the palette and sliders below.
+To test a [material.io/design/color](https://m2.material.io/design/color/) color scheme with the Material UI documentation, simply select colors using the palette and sliders below.
 Alternatively, you can enter hex values in the Primary and Secondary text fields.
 
 {{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
@@ -71,7 +71,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### Tools by the community
 
-- [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## 2014 Material Design color palettes
@@ -80,7 +80,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 ### Important Terms
 
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material UI provides all colors from the Material Design guidelines.
+- **Palette**: A palette is a collection of colors, that is hues and their shades. Material UI provides all colors from the Material Design guidelines.
   [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 - **Hue & Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500".
   "red 50" is the lightest shade of red (_pink!_), while "red 900" is the darkest.
@@ -114,6 +114,6 @@ const accent = purple.A200; // #e040fb (alternative method)
 
 [WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) does recommend
 that you have a minimum of a 4.5:1 contrast ratio for the visual presentation of text and images of text.
-Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.1 AA compliance,
+Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.1 AA compliance,
 you can increase your minimum contrast ratio as described in the
 [Theme customization](/material-ui/customization/palette/#accessibility) section.

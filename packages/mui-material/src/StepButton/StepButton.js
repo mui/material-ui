@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
@@ -51,7 +51,7 @@ const StepButtonRoot = styled(ButtonBase, {
 }));
 
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
   const { children, className, icon, optional, ...other } = props;
 
   const { disabled, active } = React.useContext(StepContext);
@@ -89,10 +89,10 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
 });
 
 StepButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
    */

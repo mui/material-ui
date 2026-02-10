@@ -3,7 +3,12 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui-internal/test-utils';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  styled,
+  experimental_extendTheme as extendTheme,
+} from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
 describe('createTheme', () => {
@@ -251,6 +256,52 @@ describe('createTheme', () => {
     });
   });
 
+  it('should apply dark styles when using applyStyles if mode="dark"', function test() {
+    const darkTheme = createTheme({
+      palette: {
+        mode: 'dark',
+      },
+    });
+
+    const Test = styled('div')(({ theme }) => ({
+      backgroundColor: 'rgb(255, 255, 255)',
+      ...theme.applyStyles('dark', {
+        backgroundColor: 'rgb(0, 0, 0)',
+      }),
+    }));
+
+    const { container } = render(
+      <ThemeProvider theme={darkTheme}>
+        <Test />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      backgroundColor: 'rgb(0, 0, 0)',
+    });
+  });
+
+  it('should not apply dark styles when using applyStyles if mode="light"', function test() {
+    const lightTheme = createTheme();
+
+    const Test = styled('div')(({ theme }) => ({
+      backgroundColor: 'rgb(255, 255, 255)',
+      ...theme.applyStyles('dark', {
+        backgroundColor: 'rgb(0, 0, 0)',
+      }),
+    }));
+
+    const { container } = render(
+      <ThemeProvider theme={lightTheme}>
+        <Test />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      backgroundColor: 'rgb(255, 255, 255)',
+    });
+  });
+
   it('Throw an informative error when the key `vars` is passed as part of `options` passed', () => {
     try {
       createTheme({
@@ -264,5 +315,39 @@ describe('createTheme', () => {
           'Please use another name.',
       );
     }
+  });
+
+  it('should not throw for nested theme that includes `vars` node', () => {
+    const outerTheme = extendTheme({
+      colorSchemes: {
+        light: {
+          palette: {
+            secondary: {
+              main: deepOrange[500],
+            },
+          },
+        },
+      },
+    });
+
+    expect(() =>
+      render(
+        <ThemeProvider theme={outerTheme}>
+          <ThemeProvider
+            theme={(theme) => {
+              return createTheme({
+                ...theme,
+                palette: {
+                  ...theme.palette,
+                  primary: {
+                    main: green[500],
+                  },
+                },
+              });
+            }}
+          />
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 });

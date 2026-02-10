@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import { iconButtonClasses } from '@mui/material/IconButton';
@@ -17,6 +18,7 @@ export default function ThemeDatePicker() {
                 border: '1px solid',
                 borderColor: 'grey.200',
                 borderRadius: 1,
+                boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
               },
               '& > div > div > div': {
                 width: '100%',
@@ -41,7 +43,7 @@ export default function ThemeDatePicker() {
                   paddingLeft: '18px',
                 },
                 '& .MuiTypography-caption': {
-                  color: 'grey.500',
+                  color: 'text.tertiary',
                   height: 24,
                 },
                 '[role="presentation"]': {
@@ -92,12 +94,11 @@ export default function ThemeDatePicker() {
               theme.applyDarkStyles({
                 '& > div': {
                   borderColor: 'primaryDark.700',
+                  bgcolor: 'primaryDark.900',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 },
                 [`& .${iconButtonClasses.root}`]: {
                   color: 'primary.300',
-                },
-                '& .MuiPickerStaticWrapper-root': {
-                  bgcolor: 'primaryDark.800',
                 },
                 '& .MuiDateCalendar-root': {
                   '& .MuiPickersDay-root': {

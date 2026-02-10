@@ -5,7 +5,7 @@ import {
 } from '@mui/base/Unstable_Popup';
 import { styled, css, Theme } from '@mui/system';
 
-function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
+function Radio({ value, ...props }: React.JSX.IntrinsicElements['input']) {
   return (
     <span>
       <input
@@ -129,7 +129,7 @@ const PopupBody = styled('div')(
   ({ theme }: { theme: Theme }) => css`
     padding: 0.5rem 1rem;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#FFF'};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border-radius: 8px;
     box-shadow: ${theme.palette.mode === 'dark'
       ? `0px 4px 8px rgb(0 0 0 / 0.7)`

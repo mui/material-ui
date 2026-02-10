@@ -1,0 +1,5 @@
+<FormatAlignLeftIcon />
+<FormatAlignCenterIcon />
+<FormatAlignRightIcon />
+<Divider orientation="vertical" flexItem />
+<FormatBoldIcon />

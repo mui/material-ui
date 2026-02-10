@@ -2,12 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 
@@ -103,7 +103,7 @@ const MobileStepperProgress = styled(LinearProgress, {
 }));
 
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMobileStepper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMobileStepper' });
   const {
     activeStep = 0,
     backButton,
@@ -179,10 +179,10 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
 });
 
 MobileStepper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.

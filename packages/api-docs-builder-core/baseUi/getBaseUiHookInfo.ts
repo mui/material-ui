@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import { getHeaders, getTitle } from '@mui/markdown';
+import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
   HookInfo,
@@ -41,7 +41,7 @@ export function getBaseUiHookInfo(filename: string): HookInfo {
   const demos = findBaseHooksDemos(name, allMarkdowns);
   const apiPath = getApiPath(demos, name);
 
-  const result = {
+  return {
     filename,
     name,
     apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
@@ -52,7 +52,6 @@ export function getBaseUiHookInfo(filename: string): HookInfo {
     },
     getDemos: () => demos,
   };
-  return result;
 }
 
 function findBaseHooksDemos(

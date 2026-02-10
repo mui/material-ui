@@ -33,19 +33,46 @@
   },
   "name": "Stepper",
   "imports": ["import Stepper from '@mui/joy/Stepper';", "import { Stepper } from '@mui/joy';"],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiStepper" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'ol'",
-      "class": ".MuiStepper-root"
+      "class": "MuiStepper-root"
     }
   ],
-  "classes": {
-    "classes": ["horizontal", "sizeLg", "sizeMd", "sizeSm", "vertical"],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "MuiStepper-horizontal",
+      "description": "Class name applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiStepper-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiStepper-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiStepper-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStepper-vertical",
+      "description": "Class name applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyStepper",

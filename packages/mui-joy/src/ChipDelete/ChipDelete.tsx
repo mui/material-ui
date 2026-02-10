@@ -40,7 +40,7 @@ const ChipDeleteRoot = styled(StyledIconButton as unknown as 'button', {
   minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
   minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
   fontSize: theme.vars.fontSize.sm,
-  paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
+  paddingInline: '2px', // add a gap, in case the content is long, for example multiple icons
   pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
   borderRadius: 'var(--Chip-deleteRadius, 50%)',
   zIndex: 1, // overflow above sibling button or anchor
@@ -145,10 +145,10 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If provided, it will replace the default icon.
    */

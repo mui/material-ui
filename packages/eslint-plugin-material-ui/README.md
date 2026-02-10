@@ -14,7 +14,7 @@ Custom eslint rules for MUI.
 
 Prevent `fireEvent.keyDown(document.activeElement)`. The implementation
 we use already verifies that the passed target can be the target of a
-`keydown` event. Passing the target explicitly (e.g. `fireEvent.keyDown(getByRole('tab', { selected: true }))`) makes the test more readable.
+`keydown` event. Passing the target explicitly (for example `fireEvent.keyDown(getByRole('tab', { selected: true }))`) makes the test more readable.
 
 ### docgen-ignore-before-comment
 

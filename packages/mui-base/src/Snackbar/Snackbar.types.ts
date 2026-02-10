@@ -59,7 +59,7 @@ export type SnackbarRootSlotProps = {
   ownerState: SnackbarOwnerState;
   className?: string;
   children?: React.ReactNode;
-  ref: React.Ref<any>;
+  ref?: React.Ref<any>;
 };
 
 export interface SnackbarClickAwayListenerSlotProps extends ClickAwayListenerProps {

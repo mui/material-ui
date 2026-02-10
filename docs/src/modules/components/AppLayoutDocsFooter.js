@@ -21,18 +21,17 @@ import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import PanToolRoundedIcon from '@mui/icons-material/PanToolRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
 import DiscordIcon from 'docs/src/icons/DiscordIcon';
 // Other imports
-import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import EditPage from 'docs/src/modules/components/EditPage';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 
 const FooterLink = styled(Typography)(({ theme }) => {
@@ -42,7 +41,7 @@ const FooterLink = styled(Typography)(({ theme }) => {
     alignItems: 'center',
     gap: 4,
     fontWeight: (theme.vars || theme).typography.fontWeightSemiBold,
-    color: (theme.vars || theme).palette.primary.main,
+    color: (theme.vars || theme).palette.primary[600],
     '& > svg': { transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
     ...theme.applyDarkStyles({
@@ -397,7 +396,7 @@ export default function AppLayoutDocsFooter(props) {
           spacing={{ xs: 3, sm: 1 }}
         >
           <EditPage sourceLocation={location} />
-          <Stack direction="row" alignItems="center" spacing={1}>
+          <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
             <Typography
               id="feedback-message"
               variant="body2"
@@ -478,11 +477,15 @@ export default function AppLayoutDocsFooter(props) {
                     icon={<PanToolRoundedIcon fontSize="small" />}
                     sx={{ my: 1.5 }}
                   >
-                    <Typography id="feedback-description" color="text.secondary">
+                    <Typography id="feedback-description">
                       {t('feedbackMessageToGitHub.usecases')}{' '}
                       <Link
                         href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
                         target="_blank"
+                        underline="always"
+                        sx={{
+                          fontWeight: 'semiBold',
+                        }}
                       >
                         {t('feedbackMessageToGitHub.callToAction.link')}
                       </Link>{' '}
@@ -508,6 +511,7 @@ export default function AppLayoutDocsFooter(props) {
             {prevPage !== null ? (
               <Button
                 size="small"
+                variant="text"
                 component={Link}
                 noLinkStyle
                 prefetch={false}
@@ -541,14 +545,14 @@ export default function AppLayoutDocsFooter(props) {
           alignItems="center"
           spacing={{ xs: 3, sm: 1 }}
         >
-          <Stack direction="row" alignItems="center" spacing={1.2} sx={{ flexGrow: 1 }}>
-            <Link href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+          <Stack direction="row" alignItems="center" spacing={1.2} useFlexGap sx={{ flexGrow: 1 }}>
+            <Link href="https://mui.com/" aria-label="Go to homepage">
               <SvgMuiLogotype height={24} width={72} />
             </Link>
             <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
-            <Link href={ROUTES.blog} target="_blank" rel="noopener noreferrer">
+            <Link href="https://mui.com/blog/" target="_blank" rel="noopener">
               <FooterLink>
                 Blog <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
@@ -556,17 +560,17 @@ export default function AppLayoutDocsFooter(props) {
             <Typography color="grey.500" fontSize={13} sx={{ opacity: '70%' }}>
               &bull;
             </Typography>
-            <Link href={ROUTES.store} target="_blank" rel="noopener noreferrer">
+            <Link href="https://mui.com/store/" target="_blank" rel="noopener">
               <FooterLink>
                 Store <ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />
               </FooterLink>
             </Link>
           </Stack>
-          <Stack spacing={1} direction="row">
+          <Stack spacing={1} direction="row" useFlexGap>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
-              href={ROUTES.rssFeed}
+              rel="noopener"
+              href="https://mui.com/feed/blog/rss.xml"
               aria-label="RSS Feed"
               title="RSS Feed"
               size="small"
@@ -575,17 +579,17 @@ export default function AppLayoutDocsFooter(props) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
-              href="https://twitter.com/MUI_hq"
-              aria-label="twitter"
-              title="Twitter"
+              rel="noopener"
+              href="https://x.com/MUI_hq"
+              aria-label="X/twitter"
+              title="X"
               size="small"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
+              <XIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href="https://www.youtube.com/@MUI_hq"
               aria-label="YouTube"
               title="YouTube"
@@ -595,7 +599,7 @@ export default function AppLayoutDocsFooter(props) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               href="https://mui.com/r/discord/"
               aria-label="Discord"
               title="Discord"

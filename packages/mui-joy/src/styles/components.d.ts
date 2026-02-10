@@ -210,6 +210,11 @@ import {
 } from '../StepIndicator/StepIndicatorProps';
 import { SvgIconProps, SvgIconOwnerState, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchOwnerState, SwitchSlot } from '../Switch/SwitchProps';
+import {
+  ToggleButtonGroupProps,
+  ToggleButtonGroupOwnerState,
+  ToggleButtonGroupSlot,
+} from '../ToggleButtonGroup/ToggleButtonGroupProps';
 import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
 import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
 import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
@@ -523,6 +528,10 @@ export interface Components<Theme = unknown> {
   JoyTextarea?: {
     defaultProps?: Partial<TextareaProps>;
     styleOverrides?: StyleOverrides<TextareaSlot, TextareaOwnerState, Theme>;
+  };
+  JoyToggleButtonGroup?: {
+    defaultProps?: Partial<ToggleButtonGroupProps>;
+    styleOverrides?: StyleOverrides<ToggleButtonGroupSlot, ToggleButtonGroupOwnerState, Theme>;
   };
   JoyTooltip?: {
     defaultProps?: Partial<TooltipProps>;

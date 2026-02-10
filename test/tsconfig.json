@@ -2,12 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
-    "noUnusedLocals": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "moduleResolution": "node16",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "types": ["mocha"]
   },
-  "include": ["e2e/**/*", "regressions/**/*"],
-  "exclude": ["node_modules", "*/build"]
+  "include": ["e2e/**/*", "integration/**/*", "regressions/**/*"],
+  "exclude": ["node_modules", "regressions/build/**/*"]
 }

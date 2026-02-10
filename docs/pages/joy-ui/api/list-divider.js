@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs-joy/list-divider',
     false,
-    /list-divider.*.json$/,
+    /\.\/list-divider.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

@@ -56,52 +56,118 @@
     "import CircularProgress from '@mui/joy/CircularProgress';",
     "import { CircularProgress } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCircularProgress" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiCircularProgress-root"
+      "class": "MuiCircularProgress-root"
     },
     {
       "name": "svg",
       "description": "The component that renders the svg.",
       "default": "'svg'",
-      "class": ".MuiCircularProgress-svg"
+      "class": "MuiCircularProgress-svg"
     },
     {
       "name": "track",
       "description": "The component that renders the track.",
       "default": "'circle'",
-      "class": ".MuiCircularProgress-track"
+      "class": "MuiCircularProgress-track"
     },
     {
       "name": "progress",
       "description": "The component that renders the progress.",
       "default": "'circle'",
-      "class": ".MuiCircularProgress-progress"
+      "class": "MuiCircularProgress-progress"
     }
   ],
-  "classes": {
-    "classes": [
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "determinate",
-      "sizeLg",
-      "sizeMd",
-      "sizeSm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "colorContext",
+      "className": "MuiCircularProgress-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiCircularProgress-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiCircularProgress-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiCircularProgress-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiCircularProgress-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiCircularProgress-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "determinate",
+      "className": "MuiCircularProgress-determinate",
+      "description": "Class name applied to the root element if `determinate` is true.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeLg",
+      "className": "MuiCircularProgress-sizeLg",
+      "description": "Class name applied to the root element if `size=\"lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMd",
+      "className": "MuiCircularProgress-sizeMd",
+      "description": "Class name applied to the root element if `size=\"md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSm",
+      "className": "MuiCircularProgress-sizeSm",
+      "description": "Class name applied to the root element if `size=\"sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiCircularProgress-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiCircularProgress-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiCircularProgress-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiCircularProgress-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyCircularProgress",

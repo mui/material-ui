@@ -9,6 +9,10 @@
     "buttonRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
+    "componentName": {
+      "type": { "name": "string", "description": "string" },
+      "default": "'useSelect'"
+    },
     "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "defaultValue": {
       "type": {
@@ -54,8 +58,8 @@
     "open": { "type": { "name": "boolean", "description": "boolean" } },
     "options": {
       "type": {
-        "name": "SelectOptionDefinition&lt;OptionValue&gt;[]",
-        "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
+        "name": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;",
+        "description": "ReadonlyArray&lt;SelectOptionDefinition&lt;OptionValue&gt;&gt;"
       }
     },
     "required": { "type": { "name": "boolean", "description": "boolean" } },

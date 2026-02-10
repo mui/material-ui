@@ -17,11 +17,32 @@
     "import StepButton from '@mui/material/StepButton';",
     "import { StepButton } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "horizontal", "vertical", "touchRipple"],
-    "globalClasses": {},
-    "name": "MuiStepButton"
-  },
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "MuiStepButton-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepButton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "touchRipple",
+      "className": "MuiStepButton-touchRipple",
+      "description": "Styles applied to the `ButtonBase` touch-ripple.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStepButton-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepButton",

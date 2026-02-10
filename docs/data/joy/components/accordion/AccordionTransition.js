@@ -9,7 +9,7 @@ import Radio from '@mui/joy/Radio';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { BrandingProvider } from '@mui/docs/branding';
 
 export default function AccordionTransition() {
   const [transition, setTransition] = React.useState('0.2s ease');

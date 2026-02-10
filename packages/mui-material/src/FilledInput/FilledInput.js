@@ -1,11 +1,12 @@
 'use client';
 import * as React from 'react';
-import { refType, deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
+import refType from '@mui/utils/refType';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -70,7 +71,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
     ...(!ownerState.disableUnderline && {
-      '&:after': {
+      '&::after': {
         borderBottom: `2px solid ${
           (theme.vars || theme).palette[ownerState.color || 'primary']?.main
         }`,
@@ -93,11 +94,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
         transform: 'scaleX(1) translateX(0)',
       },
       [`&.${filledInputClasses.error}`]: {
-        '&:before, &:after': {
+        '&::before, &::after': {
           borderBottomColor: (theme.vars || theme).palette.error.main,
         },
       },
-      '&:before': {
+      '&::before': {
         borderBottom: `1px solid ${
           theme.vars
             ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
@@ -205,7 +206,7 @@ const FilledInputInput = styled(InputBaseInput, {
 }));
 
 const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFilledInput' });
 
   const {
     disableUnderline,
@@ -256,10 +257,10 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 });
 
 FilledInput.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

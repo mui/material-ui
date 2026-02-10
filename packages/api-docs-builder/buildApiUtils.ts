@@ -3,7 +3,7 @@ import path from 'path';
 import * as ts from 'typescript';
 import * as prettier from 'prettier';
 import kebabCase from 'lodash/kebabCase';
-import { getLineFeed } from '@mui-internal/docs-utilities';
+import { getLineFeed } from '@mui/internal-docs-utils';
 import { replaceComponentLinks } from './utils/replaceUrl';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
@@ -35,13 +35,13 @@ export function fixPathname(pathname: string): string {
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
-export function writePrettifiedFile(
+export async function writePrettifiedFile(
   filename: string,
   data: string,
   prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
   options: object = {},
 ) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
+  const prettierConfig = await prettier.resolveConfig(filename, {
     config: prettierConfigPath,
   });
   if (prettierConfig === null) {
@@ -50,7 +50,8 @@ export function writePrettifiedFile(
     );
   }
 
-  fs.writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+  const formatted = await prettier.format(data, { ...prettierConfig, filepath: filename });
+  fs.writeFileSync(filename, formatted, {
     encoding: 'utf8',
     ...options,
   });
@@ -117,6 +118,10 @@ export type ComponentInfo = {
    * Component name with `Mui` prefix, in the global HTML page namespace.
    */
   muiName: string;
+  /**
+   * The name of the slots interface. By default we consider `${componentName}Slots`.
+   */
+  slotInterfaceName?: string;
   apiPathname: string;
   readFile: () => {
     src: string;
@@ -137,9 +142,13 @@ export type ComponentInfo = {
   };
   getDemos: () => Array<{ demoPageTitle: string; demoPathname: string }>;
   apiPagesDirectory: string;
+  /**
+   * The path to import specific layout config of the page if needed.
+   */
+  layoutConfigPath?: string;
   skipApiGeneration?: boolean;
   /**
-   * If `true`, the component's name match one of the system components.
+   * If `true`, the component's name match one of the MUI System components.
    */
   isSystemComponent?: boolean;
 };
@@ -160,10 +169,10 @@ export type HookInfo = {
   skipApiGeneration?: boolean;
 };
 
-export const getApiPath = (
+export function getApiPath(
   demos: Array<{ demoPageTitle: string; demoPathname: string }>,
   name: string,
-) => {
+) {
   let apiPath = null;
 
   if (demos && demos.length > 0) {
@@ -175,9 +184,9 @@ export const getApiPath = (
   }
 
   return apiPath;
-};
+}
 
-export function formatType(rawType: string) {
+export async function formatType(rawType: string) {
   if (!rawType) {
     return '';
   }
@@ -185,7 +194,7 @@ export function formatType(rawType: string) {
   const prefix = 'type FakeType = ';
   const signatureWithTypeName = `${prefix}${rawType}`;
 
-  const prettifiedSignatureWithTypeName = prettier.format(signatureWithTypeName, {
+  const prettifiedSignatureWithTypeName = await prettier.format(signatureWithTypeName, {
     printWidth: 999,
     singleQuote: true,
     semi: false,
@@ -208,7 +217,7 @@ export function getSymbolJSDocTags(symbol: ts.Symbol) {
   return Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
 }
 
-export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
+export async function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
   let rawType: string;
 
   const declaration = symbol.declarations?.[0];
@@ -223,4 +232,13 @@ export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
   }
 
   return formatType(rawType);
+}
+
+/**
+ * @param filepath - absolute path
+ * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('C:\\Development\\material-ui\\packages\\Accordion') === '/packages/Accordion'
+ */
+export function toGitHubPath(filepath: string): string {
+  return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }

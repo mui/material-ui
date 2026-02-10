@@ -2,7 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
+import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
+import ContrastRoundedIcon from '@mui/icons-material/ContrastRounded';
+import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
 import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -19,13 +21,10 @@ const code = `
 <Card
   variant="outlined"
   sx={{
-    p: 1,
-    boxShadow: '0 1px 3px rgba(0, 127, 255, 0.1)',
+    p: 2,
     display: 'flex',
-    flexDirection: {
-      xs: 'column', // mobile
-      sm: 'row', // tablet and up
-    },
+    flexWrap: 'wrap',
+    zIndex: 1,
   }}
 >
   <CardMedia
@@ -33,50 +32,42 @@ const code = `
     width="100"
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
-    src="/static/images/cards/real-estate.png"
+    src="/images/real-estate.png"
     sx={{
-      borderRadius: 0.5,
+      borderRadius: '6px',
       width: { xs: '100%', sm: 100 },
-      mr: { sm: 1.5 },
-      mb: { xs: 1.5, sm: 0 },
     }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
-    <Typography variant="body2" color="text.secondary" fontWeight="medium">
-      123 Main St, Phoenix, AZ
+    <Typography variant="body2" color="text.secondary" fontWeight="regular">
+      123 Main St, Phoenix, AZ, USA
     </Typography>
-    <Typography fontWeight="bold" noWrap>
+    <Typography fontWeight="bold" noWrap gutterBottom>
       $280k - $310k
     </Typography>
-    <Box
+    <Chip
+      size="small"
+      variant="outlined"
+      icon={<InfoRounded />}
+      label="Confidence score: 85%"
       sx={(theme) => ({
-        mt: 1,
-        py: 0.4,
-        pl: 0.5,
-        pr: 1,
-        typography: 'caption',
-        borderRadius: 10,
-        display: 'flex',
-        bgcolor: 'primary.50',
-        border: '1px solid',
-        borderColor: 'primary.100',
-        color: 'primary.700',
+        '.MuiChip-icon': { fontSize: 16, ml: '4px', color: 'success.500' },
+        bgcolor: 'success.50',
+        borderColor: 'success.100',
+        color: 'success.900',
         ...theme.applyDarkStyles({
           bgcolor: 'primaryDark.700',
-          color: 'primary.200',
-          borderColor: 'primary.900',
+          color: 'success.200',
+          borderColor: 'success.900',
         }),
       })}
-    >
-      <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} />
-      Confidence score: 85%
-    </Box>
+    />
   </Box>
 </Card>`;
 
-const startLine = [34, 25, 6];
-const endLine = [48, 30, 8];
-const scrollTo = [540, 320, 0];
+const startLine = [32, 21, 17];
+const endLine = [42, 26, 17];
+const scrollTo = [540, 320, 200];
 
 export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
@@ -171,35 +162,33 @@ export default function MaterialStyling() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box sx={{ maxWidth: 500 }}>
-            <SectionHeadline
-              overline="Styling"
-              title={
-                <Typography variant="h2">
-                  Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
-                </Typography>
-              }
-              description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
-            />
-          </Box>
-          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+          <SectionHeadline
+            overline="Styling"
+            title={
+              <Typography variant="h2">
+                Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
+              </Typography>
+            }
+            description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
+          />
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<ContrastRoundedIcon color="primary" />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<SwitchAccessShortcutRoundedIcon color="primary" />}
                 title="No context switching"
                 description="The styling and component usage are both in the same place, right where you need them."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<AutoAwesomeRounded color="warning" />}
+                icon={<DevicesOtherRoundedIcon color="primary" />}
                 title="Responsive styles right inside system prop"
                 description="An elegant API for writing CSS media queries that match your theme breakpoints."
               />
@@ -262,10 +251,10 @@ export default function MaterialStyling() {
                         width: '1px',
                         bgcolor: 'grey.200',
                         position: 'absolute',
-                        left: 375,
+                        left: { xs: 335, sm: 375 },
                         height: '100%',
                         ...theme.applyDarkStyles({
-                          bgcolor: 'primaryDark.600',
+                          bgcolor: 'divider',
                         }),
                       })}
                     >

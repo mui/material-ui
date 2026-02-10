@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import TabPanel, { tabPanelClasses as classes } from '@mui/lab/TabPanel';
 import TabContext from '../TabContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TabPanel />', () => {
   const { render } = createRenderer();
@@ -11,16 +12,9 @@ describe('<TabPanel />', () => {
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
-    wrapMount: (mount) => (node) => mount(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiTabPanel',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'reactTestRenderer',
-      'themeDefaultProps',
-      'themeVariants',
-    ],
+    skip: ['componentProp', 'componentsProp', 'themeDefaultProps', 'themeVariants'],
   }));
 
   it('renders a [role="tabpanel"]', () => {

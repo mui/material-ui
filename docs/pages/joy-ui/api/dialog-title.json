@@ -45,41 +45,142 @@
     "import DialogTitle from '@mui/joy/DialogTitle';",
     "import { DialogTitle } from '@mui/joy';"
   ],
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiDialogTitle" },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiDialogTitle-root"
+      "class": "MuiDialogTitle-root"
     }
   ],
-  "classes": {
-    "classes": [
-      "body-lg",
-      "body-md",
-      "body-sm",
-      "body-xs",
-      "colorContext",
-      "colorDanger",
-      "colorNeutral",
-      "colorPrimary",
-      "colorSuccess",
-      "colorWarning",
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "title-lg",
-      "title-md",
-      "title-sm",
-      "variantOutlined",
-      "variantPlain",
-      "variantSoft",
-      "variantSolid"
-    ],
-    "globalClasses": {}
-  },
+  "classes": [
+    {
+      "key": "body-lg",
+      "className": "MuiDialogTitle-body-lg",
+      "description": "Class name applied to the root element if `level=\"body-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-md",
+      "className": "MuiDialogTitle-body-md",
+      "description": "Class name applied to the root element if `level=\"body-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-sm",
+      "className": "MuiDialogTitle-body-sm",
+      "description": "Class name applied to the root element if `level=\"body-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "body-xs",
+      "className": "MuiDialogTitle-body-xs",
+      "description": "Class name applied to the root element if `level=\"body-xs\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorContext",
+      "className": "MuiDialogTitle-colorContext",
+      "description": "Class name applied to the root element when color inversion is triggered.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDanger",
+      "className": "MuiDialogTitle-colorDanger",
+      "description": "Class name applied to the root element if `color=\"danger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorNeutral",
+      "className": "MuiDialogTitle-colorNeutral",
+      "description": "Class name applied to the root element if `color=\"neutral\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiDialogTitle-colorPrimary",
+      "description": "Class name applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiDialogTitle-colorSuccess",
+      "description": "Class name applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiDialogTitle-colorWarning",
+      "description": "Class name applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h1",
+      "className": "MuiDialogTitle-h1",
+      "description": "Class name applied to the root element if `level=\"h1\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h2",
+      "className": "MuiDialogTitle-h2",
+      "description": "Class name applied to the root element if `level=\"h2\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h3",
+      "className": "MuiDialogTitle-h3",
+      "description": "Class name applied to the root element if `level=\"h3\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "h4",
+      "className": "MuiDialogTitle-h4",
+      "description": "Class name applied to the root element if `level=\"h4\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-lg",
+      "className": "MuiDialogTitle-title-lg",
+      "description": "Class name applied to the root element if `level=\"title-lg\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-md",
+      "className": "MuiDialogTitle-title-md",
+      "description": "Class name applied to the root element if `level=\"title-md\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "title-sm",
+      "className": "MuiDialogTitle-title-sm",
+      "description": "Class name applied to the root element if `level=\"title-sm\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantOutlined",
+      "className": "MuiDialogTitle-variantOutlined",
+      "description": "Class name applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantPlain",
+      "className": "MuiDialogTitle-variantPlain",
+      "description": "Class name applied to the root element if `variant=\"plain\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSoft",
+      "className": "MuiDialogTitle-variantSoft",
+      "description": "Class name applied to the root element if `variant=\"soft\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "variantSolid",
+      "className": "MuiDialogTitle-variantSolid",
+      "description": "Class name applied to the root element if `variant=\"solid\"`.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyDialogTitle",

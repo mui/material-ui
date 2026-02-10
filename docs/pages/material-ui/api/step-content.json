@@ -24,11 +24,26 @@
     "import StepContent from '@mui/material/StepContent';",
     "import { StepContent } from '@mui/material';"
   ],
-  "styles": {
-    "classes": ["root", "last", "transition"],
-    "globalClasses": {},
-    "name": "MuiStepContent"
-  },
+  "classes": [
+    {
+      "key": "last",
+      "className": "MuiStepContent-last",
+      "description": "Styles applied to the root element if `last={true}` (controlled by `Step`).",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepContent-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "transition",
+      "className": "MuiStepContent-transition",
+      "description": "Styles applied to the Transition component.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiStepContent",

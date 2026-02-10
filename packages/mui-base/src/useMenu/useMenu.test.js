@@ -7,6 +7,7 @@ import { useMenu } from './useMenu';
 
 describe('useMenu', () => {
   const { render } = createRenderer();
+
   describe('getListboxProps', () => {
     it('returns props for root slot', () => {
       function TestMenu() {

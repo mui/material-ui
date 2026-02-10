@@ -2,9 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Fade from '../Fade';
 import { getBackdropUtilityClass } from './backdropClasses';
 
@@ -43,7 +43,7 @@ const BackdropRoot = styled('div', {
 }));
 
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
     className,
@@ -87,10 +87,10 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 });
 
 Backdrop.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
