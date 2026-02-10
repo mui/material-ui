@@ -121,12 +121,13 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={handleRef}
       ownerState={ownerState}
-      aria-current={active ? 'step' : undefined}
+      aria-selected={active}
       aria-posinset={index + 1}
       aria-setsize={totalSteps}
       tabIndex={tabIndex}
       onKeyDown={handleKeyDown}
       onClick={handleClick}
+      role={'tab'}
       {...other}
     >
       {child}
