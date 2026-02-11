@@ -6,12 +6,13 @@ export default function FieldDemo() {
   return (
     <Box sx={{ display: 'grid', gap: 4 }}>
       <NumberField label="Number Field" min={10} max={40} />
+      <NumberField label="Number Field (Small)" size="small" />
       <NumberField
-        label="Small and Error"
+        label="Number Field with Error"
         min={10}
         max={40}
-        size="small"
         defaultValue={100}
+        size="small"
         error
       />
     </Box>

@@ -415,7 +415,7 @@ describe('<Tooltip />', () => {
 
     fireEvent.keyDown(
       // We don't care about the target. Any Escape should dismiss the tooltip
-      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+      // eslint-disable-next-line mui/disallow-active-element-as-key-event-target
       document.activeElement,
       { key: 'Escape' },
     );
