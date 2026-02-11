@@ -1,3 +1,4 @@
+import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
 import { DemoData } from 'docs/src/modules/sandbox/types';
 
 export const getHtml = ({
@@ -39,10 +40,16 @@ export const getHtml = ({
 </html>`;
 };
 
-export function getRootIndex(demoData: DemoData) {
+export function getRootIndex(demoData: DemoData, csbConfig?: SandboxConfig) {
+  // If context provides a custom getRootIndex, use it
+  if (csbConfig?.getRootIndex) {
+    return csbConfig.getRootIndex(demoData.codeVariant);
+  }
+
   // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
   const type = demoData.codeVariant === 'TS' ? '!' : '';
 
+  // Legacy fallback based on productId
   if (demoData.productId === 'joy-ui') {
     return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';

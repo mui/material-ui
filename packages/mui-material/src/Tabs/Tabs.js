@@ -384,7 +384,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     slots,
     slotProps: {
       indicator: TabIndicatorProps,
-      scrollButton: TabScrollButtonProps,
+      scrollButtons: TabScrollButtonProps,
       ...slotProps,
     },
   };
@@ -432,7 +432,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
         if (process.env.NODE_ENV !== 'production') {
           if (
-            process.env.NODE_ENV !== 'test' &&
+            !globalThis.MUI_TEST_ENV &&
             !warnedOnceTabPresent &&
             tabMeta &&
             tabMeta.width === 0 &&

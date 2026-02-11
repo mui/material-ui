@@ -106,7 +106,9 @@ export type BottomNavigationActionProps<
   component?: React.ElementType;
 };
 
-export interface BottomNavigationActionOwnerState
-  extends Omit<BottomNavigationActionProps, 'slots' | 'slotProps'> {}
+export interface BottomNavigationActionOwnerState extends Omit<
+  BottomNavigationActionProps,
+  'slots' | 'slotProps'
+> {}
 
 export default BottomNavigationAction;

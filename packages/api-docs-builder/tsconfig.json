@@ -7,7 +7,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "types": ["node", "mocha"],
+    "types": ["node", "vitest/globals"],
     "target": "ES2020",
     "module": "nodenext",
     "moduleResolution": "nodenext",

@@ -4,8 +4,9 @@ import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineConnectorClasses } from './timelineConnectorClasses';
 
-export interface TimelineConnectorProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
+export interface TimelineConnectorProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>
+> {
   /**
    * The content of the component.
    */

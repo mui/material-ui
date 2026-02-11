@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -75,6 +75,20 @@ describe('<Checkbox />', () => {
     expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
+  describe('prop: readOnly', () => {
+    it('prevents interaction', async () => {
+      const changeSpy = spy();
+      const { user } = render(<Checkbox readOnly defaultChecked onChange={changeSpy} />);
+
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).to.have.attribute('readonly');
+      expect(checkbox).to.have.attribute('checked');
+      await user.click(checkbox);
+      expect(checkbox).to.have.attribute('checked');
+      expect(changeSpy.callCount).to.equal(0);
+    });
+  });
+
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       render(<Checkbox indeterminate />);
@@ -109,45 +123,44 @@ describe('<Checkbox />', () => {
   });
 
   describe('theme: customization', () => {
-    it('should be customizable in the theme using the size prop.', function test() {
-      if (window.navigator.userAgent.includes('jsdom')) {
-        this.skip();
-      }
-
-      const theme = createTheme({
-        components: {
-          MuiCheckbox: {
-            styleOverrides: {
-              sizeMedium: {
-                marginTop: 40,
-                paddingLeft: 20,
-              },
-              sizeSmall: {
-                marginLeft: -40,
-                paddingRight: 2,
+    it.skipIf(isJsdom())(
+      'should be customizable in the theme using the size prop.',
+      function test() {
+        const theme = createTheme({
+          components: {
+            MuiCheckbox: {
+              styleOverrides: {
+                sizeMedium: {
+                  marginTop: 40,
+                  paddingLeft: 20,
+                },
+                sizeSmall: {
+                  marginLeft: -40,
+                  paddingRight: 2,
+                },
               },
             },
           },
-        },
-      });
+        });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Checkbox />
-          <Checkbox size="small" />
-        </ThemeProvider>,
-      );
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Checkbox />
+            <Checkbox size="small" />
+          </ThemeProvider>,
+        );
 
-      expect(container.querySelector(`.${classes.sizeMedium}`)).toHaveComputedStyle({
-        marginTop: '40px',
-        paddingLeft: '20px',
-      });
+        expect(container.querySelector(`.${classes.sizeMedium}`)).toHaveComputedStyle({
+          marginTop: '40px',
+          paddingLeft: '20px',
+        });
 
-      expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
-        marginLeft: '-40px',
-        paddingRight: '2px',
-      });
-    });
+        expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
+          marginLeft: '-40px',
+          paddingRight: '2px',
+        });
+      },
+    );
   });
 
   describe('with FormControl', () => {
