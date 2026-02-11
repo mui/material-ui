@@ -7,7 +7,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { getPaletteColorsByValueKeys } from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
 
@@ -117,15 +117,13 @@ const AppBarRoot = styled(Paper, {
           }),
         },
       },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter(['contrastText']))
-        .map(([color]) => ({
-          props: { color },
-          style: {
-            '--AppBar-background': (theme.vars ?? theme).palette[color].main,
-            '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
-          },
-        })),
+      ...getPaletteColorsByValueKeys(theme.palette, ['contrastText']).map(([color]) => ({
+        props: { color },
+        style: {
+          '--AppBar-background': (theme.vars ?? theme).palette[color].main,
+          '--AppBar-color': (theme.vars ?? theme).palette[color].contrastText,
+        },
+      })),
       {
         props: (props) =>
           props.enableColorOnDark === true && !['inherit', 'transparent'].includes(props.color),

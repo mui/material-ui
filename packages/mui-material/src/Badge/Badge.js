@@ -37,6 +37,46 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getBadgeUtilityClass, classes);
 };
 
+const generateVariantStyles = () => {
+  const overlap = ['circular', 'rectangular'];
+  const anchorOriginVertical = ['top', 'bottom'];
+  const anchorOriginHorizontal = ['left', 'right'];
+  const styles = [];
+
+  overlap.forEach((overlapValue) => {
+    anchorOriginVertical.forEach((verticalValue) => {
+      anchorOriginHorizontal.forEach((horizontalValue) => {
+        const overlapPercent = overlapValue === 'circular' ? '14%' : 0;
+        styles.push({
+          props: ({ ownerState }) =>
+            ownerState.anchorOrigin.vertical === verticalValue &&
+            ownerState.anchorOrigin.horizontal === horizontalValue &&
+            ownerState.overlap === overlapValue,
+          style: {
+            top: overlapPercent,
+            right: horizontalValue === 'right' ? overlapPercent : 'auto',
+            bottom: verticalValue === 'bottom' ? overlapPercent : 'auto',
+            left: horizontalValue === 'left' ? overlapPercent : 'auto',
+            transform: `scale(1) translate(${horizontalValue === 'right' ? '50%' : '-50%'}, ${
+              verticalValue === 'top' ? '-50%' : '50%'
+            })`,
+            transformOrigin: `${horizontalValue === 'right' ? '100%' : '0%'} ${
+              verticalValue === 'top' ? '0%' : '100%'
+            }`,
+            [`&.${badgeClasses.invisible}`]: {
+              transform: `scale(0) translate(${
+                horizontalValue === 'right' ? '50%' : '-50%'
+              }, ${verticalValue === 'top' ? '-50%' : '50%'})`,
+            },
+          },
+        });
+      });
+    });
+  });
+
+  return styles;
+};
+
 const BadgeRoot = styled('span', {
   name: 'MuiBadge',
   slot: 'Root',
@@ -108,126 +148,7 @@ const BadgeBadge = styled('span', {
           padding: 0,
         },
       },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          top: 0,
-          right: 0,
-          transform: 'scale(1) translate(50%, -50%)',
-          transformOrigin: '100% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          bottom: 0,
-          right: 0,
-          transform: 'scale(1) translate(50%, 50%)',
-          transformOrigin: '100% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, 50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          top: 0,
-          left: 0,
-          transform: 'scale(1) translate(-50%, -50%)',
-          transformOrigin: '0% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'rectangular',
-        style: {
-          bottom: 0,
-          left: 0,
-          transform: 'scale(1) translate(-50%, 50%)',
-          transformOrigin: '0% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, 50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'circular',
-        style: {
-          top: '14%',
-          right: '14%',
-          transform: 'scale(1) translate(50%, -50%)',
-          transformOrigin: '100% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'right' &&
-          ownerState.overlap === 'circular',
-        style: {
-          bottom: '14%',
-          right: '14%',
-          transform: 'scale(1) translate(50%, 50%)',
-          transformOrigin: '100% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(50%, 50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'top' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'circular',
-        style: {
-          top: '14%',
-          left: '14%',
-          transform: 'scale(1) translate(-50%, -50%)',
-          transformOrigin: '0% 0%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, -50%)',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.anchorOrigin.vertical === 'bottom' &&
-          ownerState.anchorOrigin.horizontal === 'left' &&
-          ownerState.overlap === 'circular',
-        style: {
-          bottom: '14%',
-          left: '14%',
-          transform: 'scale(1) translate(-50%, 50%)',
-          transformOrigin: '0% 100%',
-          [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(-50%, 50%)',
-          },
-        },
-      },
+      ...generateVariantStyles(),
       {
         props: { invisible: true },
         style: {

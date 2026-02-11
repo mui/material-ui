@@ -12,7 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { getPaletteColorsByValueKeys } from '../utils/createSimplePaletteValueFilter';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
@@ -167,35 +167,30 @@ const ButtonRoot = styled(ButtonBase, {
             backgroundColor: `var(--variant-textBg)`,
           },
         },
-        ...Object.entries(theme.palette)
-          .filter(createSimplePaletteValueFilter())
-          .map(([color]) => ({
-            props: { color },
-            style: {
-              '--variant-textColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedBorder': theme.alpha(
-                (theme.vars || theme).palette[color].main,
-                0.5,
-              ),
-              '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
-              '--variant-containedBg': (theme.vars || theme).palette[color].main,
-              '@media (hover: hover)': {
-                '&:hover': {
-                  '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                  '--variant-textBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
-                  '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                  '--variant-outlinedBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
-                },
+        ...getPaletteColorsByValueKeys(theme.palette).map(([color]) => ({
+          props: { color },
+          style: {
+            '--variant-textColor': (theme.vars || theme).palette[color].main,
+            '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
+            '--variant-outlinedBorder': theme.alpha((theme.vars || theme).palette[color].main, 0.5),
+            '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
+            '--variant-containedBg': (theme.vars || theme).palette[color].main,
+            '@media (hover: hover)': {
+              '&:hover': {
+                '--variant-containedBg': (theme.vars || theme).palette[color].dark,
+                '--variant-textBg': theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
+                '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
+                '--variant-outlinedBg': theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
               },
             },
-          })),
+          },
+        })),
         {
           props: {
             color: 'inherit',

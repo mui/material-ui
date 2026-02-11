@@ -39,6 +39,21 @@ function checkSimplePaletteColorValues(
 }
 
 /**
+ * Filters the palette object and returns an array of entries that conform to the SimplePaletteColorOptions type.
+ * @param palette - The palette object to filter
+ * @param additionalPropertiesToCheck - Array containing "light", "dark", and/or "contrastText"
+ * @returns Array of entries that conform to the SimplePaletteColorOptions type
+ */
+export function getPaletteColorsByValueKeys(
+  palette: Record<string, PaletteColorOptions>,
+  additionalPropertiesToCheck: AdditionalPropertiesToCheck = [],
+) {
+  return Object.entries(palette).filter(
+    createSimplePaletteValueFilter(additionalPropertiesToCheck),
+  );
+}
+
+/**
  * Creates a filter function used to filter simple palette color options.
  * The minimum requirement is that the object has a "main" property of type string, this is always checked.
  * Optionally, you can pass additional properties to check.
