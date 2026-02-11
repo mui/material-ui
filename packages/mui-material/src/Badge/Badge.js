@@ -120,7 +120,7 @@ const BadgeBadge = styled('span', {
       {
         style: ({ ownerState }) => {
           const { vertical, horizontal } = ownerState.anchorOrigin;
-          const offset = ownerState.overlap === 'circular' ? '14%' : '0px';
+          const offset = ownerState.overlap === 'circular' ? '14%' : 0;
           return {
             '--Badge-translateX': horizontal === 'right' ? '50%' : '-50%',
             '--Badge-translateY': vertical === 'top' ? '-50%' : '50%',
