@@ -1947,16 +1947,10 @@ describe('<Select />', () => {
   });
 
   it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
-    // reset fake timers
     clock.restore();
 
     render(
-      <Select
-        value=""
-        MenuProps={{
-          transitionDuration: 0,
-        }}
-      >
+      <Select value="" MenuProps={{ transitionDuration: 0 }}>
         <MenuItem value="">None</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
@@ -1964,30 +1958,30 @@ describe('<Select />', () => {
 
     const combobox = screen.getByRole('combobox');
     const anchor = combobox.parentElement;
-
-    // Give the anchor a deterministic width that will affect clientWidth in a real browser.
     anchor.style.width = '320px';
 
     fireEvent.mouseDown(combobox);
 
-    const width1 = anchor.clientWidth;
-
     await waitFor(() => {
       const listbox = screen.getByRole('listbox');
       const paper = listbox.parentElement;
-      expect(paper.style.minWidth).to.equal(`${width1}px`);
+      expect(paper.style.minWidth).to.equal('320px');
     });
 
-    // Simulate a "window resize" effect by changing the anchor's width while open.
     anchor.style.width = '180px';
 
+    // ResizeObserver callbacks are delivered during the browser's rendering pipeline.
+    // Force at least one complete frame so the RO can detect the size change,
+    await act(async () => {
+      await new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      });
+    });
+
     await waitFor(() => {
-      const width2 = anchor.clientWidth;
       const listbox = screen.getByRole('listbox');
       const paper = listbox.parentElement;
-
-      // This is the actual regression assertion:
-      expect(paper.style.minWidth).to.equal(`${width2}px`);
+      expect(paper.style.minWidth).to.equal('180px');
     });
   });
 });

@@ -33,7 +33,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -44,13 +44,13 @@
     "@mui/material": "workspace:^",
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.7",
+    "@types/react": "19.2.9",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
-    "chai": "6.2.1",
+    "chai": "6.2.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sinon": "21.0.0"
+    "sinon": "21.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
