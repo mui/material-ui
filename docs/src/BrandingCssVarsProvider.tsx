@@ -130,7 +130,7 @@ export function resetDocsSpacing() {
 const themeCache: Map<string, ReturnType<typeof createTheme>> = new Map();
 function getTheme(direction: 'ltr' | 'rtl') {
   let cachedTheme = themeCache.get(direction);
-  if (!React.cache) {
+  if (!cachedTheme) {
     cachedTheme = createTheme({
       cssVariables: {
         cssVarPrefix: 'muidocs',
