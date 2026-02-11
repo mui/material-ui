@@ -272,7 +272,7 @@ describe('<Chip />', () => {
       expect(handleDelete.callCount).to.equal(1);
     });
 
-    it('should stop propagation when clicking the delete icon', () => {
+    it('should not call onClick when clicking the delete icon', () => {
       const handleClick = spy();
 
       render(
@@ -290,6 +290,52 @@ describe('<Chip />', () => {
       fireEvent.click(deleteIcon);
 
       expect(handleClick.callCount).to.equal(0);
+    });
+
+    it('should allow event to propagate to parent when clicking the delete icon', () => {
+      const handleParentClick = spy();
+
+      render(
+        <div role="button" tabIndex={0} onClick={handleParentClick} onKeyDown={() => {}}>
+          <Chip
+            avatar={<Avatar id="avatar">MB</Avatar>}
+            label="Text Avatar Chip"
+            onDelete={() => {}}
+            deleteIcon={<div data-testid="delete-icon" />}
+          />
+        </div>,
+      );
+
+      const deleteIcon = screen.getByTestId('delete-icon');
+
+      fireEvent.click(deleteIcon);
+
+      expect(handleParentClick.callCount).to.equal(1);
+    });
+
+    it('should allow event to propagate to parent when Chip is clickable and deletable', () => {
+      const handleClick = spy();
+      const handleParentClick = spy();
+
+      render(
+        <div role="button" tabIndex={0} onClick={handleParentClick} onKeyDown={() => {}}>
+          <Chip
+            avatar={<Avatar id="avatar">MB</Avatar>}
+            label="Text Avatar Chip"
+            onClick={handleClick}
+            onDelete={() => {}}
+            deleteIcon={<div data-testid="delete-icon" />}
+          />
+        </div>,
+      );
+
+      const deleteIcon = screen.getByTestId('delete-icon');
+
+      fireEvent.click(deleteIcon);
+
+      // onClick is not called, but event propagates to parent
+      expect(handleClick.callCount).to.equal(0);
+      expect(handleParentClick.callCount).to.equal(1);
     });
 
     it('should render with the root, deletable classes', () => {
