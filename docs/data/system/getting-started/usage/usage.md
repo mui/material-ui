@@ -283,15 +283,15 @@ The following demo shows how to define a set of breakpoints using the object syn
 {{"demo": "BreakpointsAsObject.js"}}
 
 :::info
-📣 Starting from v6, the object structure supports [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) shorthand with `@`.
+📣 Starting from v6, the object structure supports [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries) shorthand with `@`.
 
-We recommend you to check the [browser support](https://caniuse.com/?search=container%20que) before using CSS container queries.
+We recommend checking the [browser support](https://caniuse.com/?search=container%20que) before using CSS container queries.
 :::
 
 The shorthand syntax is `@{breakpoint}/{container}`:
 
 - **breakpoint**: a number for `px` unit or a breakpoint key (e.g. `sm`, `md`, `lg`, `xl` for default breakpoints) or a valid CSS value (e.g. `40em`).
-- **container** (optional): the name of the [containment context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#naming_containment_contexts).
+- **container** (optional): the name of the [containment context](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries#naming_containment_contexts).
 
 {{"demo": "ContainerQueries.js"}}
 
