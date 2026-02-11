@@ -4,6 +4,15 @@ import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
 import { maxWidth, sizingTransform } from '../sizing';
 
+const defaultStyles = {
+  padding: {
+    style: padding,
+  },
+  margin: {
+    style: margin,
+  },
+};
+
 const defaultSxConfig = {
   // borders
   border: {
@@ -142,66 +151,26 @@ const defaultSxConfig = {
     style: padding,
   },
 
-  m: {
-    style: margin,
-  },
-  mt: {
-    style: margin,
-  },
-  mr: {
-    style: margin,
-  },
-  mb: {
-    style: margin,
-  },
-  ml: {
-    style: margin,
-  },
-  mx: {
-    style: margin,
-  },
-  my: {
-    style: margin,
-  },
-  margin: {
-    style: margin,
-  },
-  marginTop: {
-    style: margin,
-  },
-  marginRight: {
-    style: margin,
-  },
-  marginBottom: {
-    style: margin,
-  },
-  marginLeft: {
-    style: margin,
-  },
-  marginX: {
-    style: margin,
-  },
-  marginY: {
-    style: margin,
-  },
-  marginInline: {
-    style: margin,
-  },
-  marginInlineStart: {
-    style: margin,
-  },
-  marginInlineEnd: {
-    style: margin,
-  },
-  marginBlock: {
-    style: margin,
-  },
-  marginBlockStart: {
-    style: margin,
-  },
-  marginBlockEnd: {
-    style: margin,
-  },
+  m: defaultStyles.margin,
+  mt: defaultStyles.margin,
+  mr: defaultStyles.margin,
+  mb: defaultStyles.margin,
+  ml: defaultStyles.margin,
+  mx: defaultStyles.margin,
+  my: defaultStyles.margin,
+  margin: defaultStyles.margin,
+  marginTop: defaultStyles.margin,
+  marginRight: defaultStyles.margin,
+  marginBottom: defaultStyles.margin,
+  marginLeft: defaultStyles.margin,
+  marginX: defaultStyles.margin,
+  marginY: defaultStyles.margin,
+  marginInline: defaultStyles.margin,
+  marginInlineStart: defaultStyles.margin,
+  marginInlineEnd: defaultStyles.margin,
+  marginBlock: defaultStyles.margin,
+  marginBlockStart: defaultStyles.margin,
+  marginBlockEnd: defaultStyles.margin,
 
   // display
   displayPrint: {
