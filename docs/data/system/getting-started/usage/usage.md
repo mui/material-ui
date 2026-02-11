@@ -285,7 +285,7 @@ The following demo shows how to define a set of breakpoints using the object syn
 :::info
 📣 Starting from v6, the object structure supports [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries) shorthand with `@`.
 
-We recommend you to check the [browser support](https://caniuse.com/?search=container%20que) before using CSS container queries.
+We recommend checking the [browser support](https://caniuse.com/?search=container%20que) before using CSS container queries.
 :::
 
 The shorthand syntax is `@{breakpoint}/{container}`:
