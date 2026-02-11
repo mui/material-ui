@@ -37,46 +37,6 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getBadgeUtilityClass, classes);
 };
 
-const generateVariantStyles = () => {
-  const overlap = ['circular', 'rectangular'];
-  const anchorOriginVertical = ['top', 'bottom'];
-  const anchorOriginHorizontal = ['left', 'right'];
-  const styles = [];
-
-  overlap.forEach((overlapValue) => {
-    anchorOriginVertical.forEach((verticalValue) => {
-      anchorOriginHorizontal.forEach((horizontalValue) => {
-        const overlapPercent = overlapValue === 'circular' ? '14%' : 0;
-        styles.push({
-          props: ({ ownerState }) =>
-            ownerState.anchorOrigin.vertical === verticalValue &&
-            ownerState.anchorOrigin.horizontal === horizontalValue &&
-            ownerState.overlap === overlapValue,
-          style: {
-            top: verticalValue === 'top' ? overlapPercent : 'initial',
-            right: horizontalValue === 'right' ? overlapPercent : 'initial',
-            bottom: verticalValue === 'bottom' ? overlapPercent : 'initial',
-            left: horizontalValue === 'left' ? overlapPercent : 'initial',
-            transform: `scale(1) translate(${horizontalValue === 'right' ? '50%' : '-50%'}, ${
-              verticalValue === 'top' ? '-50%' : '50%'
-            })`,
-            transformOrigin: `${horizontalValue === 'right' ? '100%' : '0%'} ${
-              verticalValue === 'top' ? '0%' : '100%'
-            }`,
-            [`&.${badgeClasses.invisible}`]: {
-              transform: `scale(0) translate(${horizontalValue === 'right' ? '50%' : '-50%'}, ${
-                verticalValue === 'top' ? '-50%' : '50%'
-              })`,
-            },
-          },
-        });
-      });
-    });
-  });
-
-  return styles;
-};
-
 const BadgeRoot = styled('span', {
   name: 'MuiBadge',
   slot: 'Root',
@@ -148,7 +108,6 @@ const BadgeBadge = styled('span', {
           padding: 0,
         },
       },
-      ...generateVariantStyles(),
       {
         props: { invisible: true },
         style: {
@@ -156,6 +115,25 @@ const BadgeBadge = styled('span', {
             easing: theme.transitions.easing.easeInOut,
             duration: theme.transitions.duration.leavingScreen,
           }),
+        },
+      },
+      {
+        style: ({ ownerState }) => {
+          const { vertical, horizontal } = ownerState.anchorOrigin;
+          const offset = ownerState.overlap === 'circular' ? '14%' : '0px';
+          return {
+            '--Badge-translateX': horizontal === 'right' ? '50%' : '-50%',
+            '--Badge-translateY': vertical === 'top' ? '-50%' : '50%',
+            top: vertical === 'top' ? offset : 'initial',
+            bottom: vertical === 'bottom' ? offset : 'initial',
+            right: horizontal === 'right' ? offset : 'initial',
+            left: horizontal === 'left' ? offset : 'initial',
+            transform: 'scale(1) translate(var(--Badge-translateX), var(--Badge-translateY))',
+            transformOrigin: `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
+            [`&.${badgeClasses.invisible}`]: {
+              transform: 'scale(0) translate(var(--Badge-translateX), var(--Badge-translateY))',
+            },
+          };
         },
       },
     ],
