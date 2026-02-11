@@ -96,6 +96,9 @@
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
     "./*": "./src/*/index.ts"
   },
+  "esm.sh": {
+    "bundle": "false"
+  },
   "pigment-css": {
     "vite": {
       "include": [
