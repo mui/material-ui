@@ -10,6 +10,7 @@ import { alpha } from '@mui/system';
 import Portal from '@mui/material/Portal';
 import TrapFocus from '@mui/material/Unstable_TrapFocus';
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
+import { BrandingCssThemeProvider } from 'docs/src/BrandingCssVarsProvider';
 
 const COOKIE_CONSENT_KEY = 'docs-cookie-consent';
 
@@ -205,5 +206,12 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     [consentStatus, doNotTrack, needsConsent, setAnalyticsConsent, setEssentialOnly],
   );
 
-  return <AnalyticsContext.Provider value={contextValue}>{children}</AnalyticsContext.Provider>;
+  return (
+    <AnalyticsContext.Provider value={contextValue}>
+      {children}
+      <BrandingCssThemeProvider>
+        <CookieConsentDialog />
+      </BrandingCssThemeProvider>
+    </AnalyticsContext.Provider>
+  );
 }

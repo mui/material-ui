@@ -11,7 +11,6 @@ import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
-import { CookieConsentDialog } from 'docs/src/modules/components/AnalyticsProvider';
 import { useTranslate } from '@mui/docs/i18n';
 
 const Header = styled('header')(({ theme }) => [
@@ -76,7 +75,6 @@ export default function AppHeader(props: AppHeaderProps) {
           <HeaderNavDropdown />
         </Box>
       </Container>
-      <CookieConsentDialog />
     </Header>
   );
 }
