@@ -150,7 +150,6 @@ jobs:
       - restore_cache:
           keys:
             - typescript-cache-v5-{{ checksum "pnpm-lock.yaml" }}
-            - typescript-cache-v5-
       - run:
           name: Extract TypeScript build cache
           command: tar -xzvf .tsbuildinfo-archive.tgz || true
