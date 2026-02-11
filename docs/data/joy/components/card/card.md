@@ -217,7 +217,7 @@ The example below shows a user card that stacks when the card's width is equal o
 {{"demo": "UserCard.js"}}
 
 :::info
-Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries) to achieve the similar result.
+Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries) to achieve a similar result.
 You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
 :::
 
