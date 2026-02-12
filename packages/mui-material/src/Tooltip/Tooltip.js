@@ -480,9 +480,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     const target = event?.target ?? childNode;
     if (!target || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
+
       // InputBase can call onBlur() without an event when the input becomes disabled.
       // Tooltip must not assume an event object exists.
-      handleMouseLeave(event ?? new Event('blur'));
+      const closeEvent = event ?? new Event('blur');
+
+      // `new Event('blur')` has `target/currentTarget === null`, but Tooltip's close logic
+      // (and user callbacks like onClose) may expect them to reference the anchor element.
+      if (!event && target) {
+        Object.defineProperty(closeEvent, 'target', { value: target });
+        Object.defineProperty(closeEvent, 'currentTarget', { value: target });
+      }
+      handleMouseLeave(closeEvent);
     }
   };
 
