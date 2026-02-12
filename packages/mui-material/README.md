@@ -20,7 +20,7 @@ npm install @mui/material@next @emotion/react @emotion/styled
 
 ## Documentation
 
-Visit [https://mui.com/material-ui/](https://mui.com/material-ui/) to view the full documentation.
+Visit [https://next.mui.com/material-ui/](https://next.mui.com/material-ui/) to view the full documentation.
 
 ## Questions
 
