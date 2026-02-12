@@ -16,7 +16,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [autocomplete] Pass fullWidth prop to input, with default as true (#47663) @silviuaavram
 - [badge] Refactor variant styles generation  (#47742) @sai6855
 - [chip] Remove unnecessary `onDelete` check (#47753) @ZeeshanTamboli
-- [switch][Checkbox][Radio] Remove `aria-disabled` from root span (#46318) @KirankumarAmbati
+- [switch][checkbox][radio] Remove `aria-disabled` from root span (#46318) @KirankumarAmbati
 - [collapse] Remove unnecessary string concatenation (#47745) @sai6855
 - [drawer] `persistent` and `permanent` variant Drawers should not override the styles via theme using `modal` class (#47581) @ZeeshanTamboli
 - [tabs] Add ability to extend Tabs variant  (#47590) @aditya1906
