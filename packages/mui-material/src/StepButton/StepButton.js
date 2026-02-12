@@ -66,8 +66,8 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     totalSteps,
     focusableIndex,
     registerElementRef,
-    handleElementKeyDown,
-    setFocusableIndex,
+    handleStepButtonKeyDown,
+    handleStepButtonClick,
   } = useStepperContext();
 
   const ownerState = { ...props, orientation };
@@ -92,17 +92,17 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
-  const handleClick = React.useCallback(() => {
-    onClick?.();
-    setFocusableIndex?.(index);
-  }, [index, setFocusableIndex, onClick]);
+  const handleClick = React.useCallback((event) => {
+    onClick?.(event);
+    handleStepButtonClick?.(event);
+  }, [index, handleStepButtonClick, onClick]);
 
   const handleKeyDown = React.useCallback(
     (event) => {
       onKeyDown?.(event);
-      handleElementKeyDown?.(event);
+      handleStepButtonKeyDown?.(event);
     },
-    [onKeyDown, handleElementKeyDown],
+    [onKeyDown, handleStepButtonKeyDown],
   );
 
   let tabIndex;
