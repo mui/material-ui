@@ -93,10 +93,16 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions) => {
 
       const [nextFocus, nextIndex] = getNextFocus(elementRefs.current, currentIndex, direction);
 
-      if (nextIndex !== -1) {
-        setFocusableIndex(nextIndex);
-        nextFocus?.focus?.();
+      if (
+        !nextFocus ||
+        nextIndex === -1 ||
+        !SUPPORTED_ROLES.includes(nextFocus.getAttribute('role') ?? '')
+      ) {
+        return;
       }
+
+      setFocusableIndex(nextIndex);
+      nextFocus.focus?.();
     },
     [focusableIndex, orientation, isRtl],
   );
@@ -114,6 +120,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions) => {
 };
 
 const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+const SUPPORTED_ROLES = ['button', 'tab', 'menuitem', 'option'];
 
 type ActionableElement = Element & { disabled?: boolean; focus?: () => void };
 
