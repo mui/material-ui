@@ -15,7 +15,7 @@ Install the package in your project directory with:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 ```
 
 ## Documentation

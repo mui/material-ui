@@ -9,7 +9,7 @@ Install the package in your project directory with:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/lab
+npm install @mui/lab@next
 ```
 
 The lab has peer dependencies on the Material Design components and on the Emotion library.
@@ -18,7 +18,7 @@ If you are not already using them in your project, you can install with:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 ```
 
 ## Documentation
