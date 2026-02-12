@@ -10,7 +10,7 @@
       "description": "If <code>true</code>, the component will have the flex <em>container</em> behavior. You should be wrapping <em>items</em> with a <em>container</em>."
     },
     "direction": {
-      "description": "Defines the <code>flex-direction</code> style property. It is applied for all screen sizes."
+      "description": "Defines the <code>flex-direction</code> style property for the container.<br>⚠️ Only <code>row</code> and <code>row-reverse</code> are supported. <code>column</code> and <code>column-reverse</code> are not supported, because the Grid component is designed to subdivide layouts into <strong>columns</strong>, not rows.<br>For vertical layouts, use <code>Stack</code> instead."
     },
     "offset": {
       "description": "Defines the offset value for the type <code>item</code> components."
