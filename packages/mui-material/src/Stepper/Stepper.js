@@ -9,7 +9,8 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import { StepperContextProvider } from './StepperContext';
-import useRovingTabIndexFocus from './utils/useRovingTabIndexFocus';
+import useRovingTabIndexFocus from './utils/useRovingTabIndex';
+import { useRtl } from '@mui/system/RtlProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -63,6 +64,7 @@ const StepperRoot = styled('ol', {
 const defaultConnector = <StepConnector />;
 
 const Stepper = React.forwardRef(function Stepper(inProps, ref) {
+  const isRtl = useRtl();
   const [isTabList, setIsTabList] = React.useState(false);
   const props = useDefaultProps({ props: inProps, name: 'MuiStepper' });
   const {
@@ -99,12 +101,13 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 
   const {
     registerElementRef: registerElementRefInternal,
-    handleElementKeyDown,
-    setFocusableIndex,
+    handleKeyDown: handleStepButtonKeyDown,
+    handleClick: handleStepButtonClick,
     focusableIndex,
   } = useRovingTabIndexFocus({
-    initialFocusableIndex: activeStep,
-    elementCount: totalSteps,
+    initialIndex: activeStep,
+    orientation,
+    isRtl,
   });
 
   const registerElementRef = React.useCallback(
@@ -123,8 +126,8 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       nonLinear,
       orientation,
       totalSteps,
-      handleElementKeyDown,
-      setFocusableIndex,
+      handleStepButtonKeyDown,
+      handleStepButtonClick,
       registerElementRef,
       focusableIndex,
     }),
@@ -135,8 +138,8 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       nonLinear,
       orientation,
       totalSteps,
-      handleElementKeyDown,
-      setFocusableIndex,
+      handleStepButtonKeyDown,
+      handleStepButtonClick,
       registerElementRef,
       focusableIndex,
     ],
