@@ -88,17 +88,25 @@ Internal packages (not published): `@mui-internal/*`, `@mui/internal-*`
 
 ### Errors
 
-For user-facing errors, in our public packages, we use the following writing style:
+These guidelines only apply for errors thrown from public packages.
 
-> What makes a good error message:
->
-> 1. Say what happened
-> 2. Say why it's a problem
-> 3. Point toward how to solve the problem
+Every error message must:
 
-For these errors, make use of the error minifier babel plugin which can be activated with the `/* minify-error */` comment.
+1. **Say what happened** - Describe the problem clearly
+2. **Say why it's a problem** - Explain the consequence
+3. **Point toward how to solve it** - Give actionable guidance
 
-Examples:
+Format:
+
+<!-- markdownlint-disable MD038 -->
+
+- Prefix with `MUI: `
+- Use string concatenation for readability
+- Include a documentation link when applicable (`https://mui.com/r/...`)
+
+#### Error Minifier
+
+Use the `/* minify-error */` comment to activate the babel plugin:
 
 ```tsx
 throw /* minify-error */ new Error(
@@ -107,6 +115,14 @@ throw /* minify-error */ new Error(
     'See https://mui.com/r/input-component-ref-interface for more info.',
 );
 ```
+
+The minifier works with both `Error` and `TypeError` constructors.
+
+#### After Adding/Updating Errors
+
+Run `pnpm extract-error-codes` to update `docs/public/static/error-codes.json`.
+
+**Important:** If the update created a new error code, but the new and original message have the same number of arguments and semantics haven't changed, update the original error in `error-codes.json` instead of creating a new code.
 
 ### Component Structure
 

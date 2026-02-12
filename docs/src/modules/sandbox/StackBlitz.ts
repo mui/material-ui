@@ -1,6 +1,7 @@
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
+import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
 import { CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 
@@ -285,7 +286,7 @@ ReactDOM.createRoot(document.getElementById('root')${templateData.codeVariant ==
  * Create a React App for StackBlitz using the SDK and Vite.
  * This maintains similar structure to the original createReactApp but uses Vite.
  */
-function createReactApp(demoData: DemoData) {
+function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   const ext = getFileExtension(demoData.codeVariant);
   const { title, githubLocation: description } = demoData;
 
@@ -293,6 +294,7 @@ function createReactApp(demoData: DemoData) {
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     devDeps: VITE_DEV_DEPENDENCIES,
+    csbConfig,
   });
 
   const viteFiles = createViteFiles(demoData, dependencies, devDependencies, description);
@@ -316,7 +318,7 @@ function createReactApp(demoData: DemoData) {
   // Combine all files
   const files = {
     ...viteFiles,
-    [`src/index.${ext}`]: CRA.getRootIndex(demoData),
+    [`src/index.${ext}`]: CRA.getRootIndex(demoData, csbConfig),
     ...demoFiles,
     ...relativeModuleFiles,
   };

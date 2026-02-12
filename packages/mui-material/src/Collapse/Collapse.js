@@ -19,11 +19,11 @@ const useUtilityClasses = (ownerState) => {
   const { orientation, classes } = ownerState;
 
   const slots = {
-    root: ['root', `${orientation}`],
+    root: ['root', orientation],
     entered: ['entered'],
     hidden: ['hidden'],
-    wrapper: ['wrapper', `${orientation}`],
-    wrapperInner: ['wrapperInner', `${orientation}`],
+    wrapper: ['wrapper', orientation],
+    wrapperInner: ['wrapperInner', orientation],
   };
 
   return composeClasses(slots, getCollapseUtilityClass, classes);

@@ -31,7 +31,7 @@ jobs:
       contents: read
     steps:
       - run: echo '${{ github.actor }}'
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
@@ -44,7 +44,7 @@ jobs:
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
           path: docs/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.js', 'docs/**/*.ts', 'docs/**/*.tsx', 'docs/**/*.jsx', 'docs/**/*.json', 'docs/**/*.md', 'docs/**/*.mdx') }}
