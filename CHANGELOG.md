@@ -14,12 +14,12 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [app-bar] Fix optional chaining in joinVars function (#47739) @sai6855
 - [autocomplete] Fix scroll position resetting on reopen with `disableCloseOnSelect` (#47248) @ZeeshanTamboli
 - [autocomplete] Pass fullWidth prop to input, with default as true (#47663) @silviuaavram
-- [badge] Refactor variant styles generation  (#47742) @sai6855
+- [badge] Refactor variant styles generation (#47742) @sai6855
 - [chip] Remove unnecessary `onDelete` check (#47753) @ZeeshanTamboli
 - [switch][checkbox][radio] Remove `aria-disabled` from root span (#46318) @KirankumarAmbati
 - [collapse] Remove unnecessary string concatenation (#47745) @sai6855
 - [drawer] `persistent` and `permanent` variant Drawers should not override the styles via theme using `modal` class (#47581) @ZeeshanTamboli
-- [tabs] Add ability to extend Tabs variant  (#47590) @aditya1906
+- [tabs] Add ability to extend Tabs variant (#47590) @aditya1906
 - [useAutocomplete] Add aria-multiselectable to listbox props when multiple is true (#47632) @silviuaavram
 - [useAutocomplete] Use `React.Key` instead of `any` for `key` prop (#47619) @sonixx02
 
