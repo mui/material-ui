@@ -25,4 +25,4 @@ npm install @mui/material@next @emotion/react @emotion/styled
 
 <!-- #host-reference -->
 
-Visit [https://mui.com/material-ui/about-the-lab/](https://next.mui.com/material-ui/about-the-lab/) to view the full documentation.
+Visit [https://next.mui.com/material-ui/about-the-lab/](https://next.mui.com/material-ui/about-the-lab/) to view the full documentation.

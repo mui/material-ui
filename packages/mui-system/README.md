@@ -16,4 +16,4 @@ npm install @mui/system@next @emotion/react @emotion/styled
 
 <!-- #host-reference -->
 
-Visit [https://next.mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
+Visit [https://next.mui.com/system/getting-started/](https://next.mui.com/system/getting-started/) to view the full documentation.
