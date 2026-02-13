@@ -400,7 +400,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.TableCell,
         'border',
-        colorMix(safeLighten, colorMix(safeAlpha, palette.divider, 1), 0.88),
+        colorMix(safeLighten, safeAlpha(palette.divider, 1), 0.88),
       );
       setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
@@ -545,7 +545,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.TableCell,
         'border',
-        colorMix(safeDarken, colorMix(safeAlpha, palette.divider, 1), 0.68),
+        colorMix(safeDarken, safeAlpha(palette.divider, 1), 0.68),
       );
       setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
