@@ -175,8 +175,6 @@ import 'exceljs';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest',
       typescript: 'latest',
     });
 

@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "7.3.7",
+  "version": "7.3.8",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
   "keywords": [
@@ -33,7 +33,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.28.6",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -49,18 +49,17 @@
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.7",
+    "@types/react": "19.2.9",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
-    "chai": "6.2.1",
+    "chai": "6.2.2",
     "css-mediaquery": "0.1.2",
-    "es-toolkit": "1.43.0",
+    "es-toolkit": "1.44.0",
     "fast-glob": "3.3.3",
-    "jsdom": "26.1.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-router": "7.12.0",
-    "sinon": "21.0.0"
+    "react-router": "7.13.0",
+    "sinon": "21.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

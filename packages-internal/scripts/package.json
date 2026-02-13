@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "2.0.17",
+  "version": "2.0.18",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "exports": {
@@ -28,27 +28,27 @@
     "typescript": "tsc -b tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^7.28.5",
+    "@babel/core": "^7.28.6",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.27.1",
-    "@babel/plugin-syntax-typescript": "^7.27.1",
-    "@babel/types": "^7.28.5",
+    "@babel/plugin-syntax-jsx": "^7.28.6",
+    "@babel/plugin-syntax-typescript": "^7.28.6",
+    "@babel/types": "^7.28.6",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.43.0",
+    "es-toolkit": "^1.44.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@babel/register": "7.28.3",
+    "@babel/register": "7.28.6",
     "@types/babel__core": "7.20.5",
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
-    "@types/node": "20.19.27",
-    "@types/react": "19.2.7",
+    "@types/node": "20.19.30",
+    "@types/react": "19.2.9",
     "@types/uuid": "10.0.0",
-    "chai": "6.2.1",
+    "chai": "6.2.2",
     "fast-glob": "3.3.3",
-    "prettier": "3.7.4",
+    "prettier": "3.8.1",
     "rimraf": "6.1.2"
   },
   "publishConfig": {

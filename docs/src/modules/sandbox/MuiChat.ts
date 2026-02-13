@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
 import { DemoData } from './types';
 import SandboxDependencies from './Dependencies';
 import flattenRelativeImports from './FlattenRelativeImports';
@@ -13,13 +14,14 @@ function getFileExtension(codeVariant: 'TS' | 'JS') {
   throw new Error(`Unsupported codeVariant: ${codeVariant}`);
 }
 
-export function createMuiChat(demoData: DemoData) {
+export function createMuiChat(demoData: DemoData, csbConfig?: SandboxConfig) {
   const { title, githubLocation: description } = demoData;
   const ext = getFileExtension(demoData.codeVariant);
 
   // Get dependencies like StackBlitz
   const { dependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    csbConfig,
   });
 
   return {
@@ -35,19 +37,19 @@ export function createMuiChat(demoData: DemoData) {
         );
       }
 
-      // Determine primary package from productId or fallback to dependencies
-      const productToPackage: Record<string, string> = {
-        'material-ui': '@mui/material',
-        'joy-ui': '@mui/joy',
-        'x-data-grid': '@mui/x-data-grid',
-        'x-date-pickers': '@mui/x-date-pickers',
-        'x-tree-view': '@mui/x-tree-view',
-        'x-charts': '@mui/x-charts',
-      };
-
-      let primaryPackage = '@mui/material'; // default fallback
-      if (demoData.productId && productToPackage[demoData.productId]) {
-        primaryPackage = productToPackage[demoData.productId];
+      // Use primaryPackage from context config, or fall back to legacy productId mapping
+      let primaryPackage = csbConfig?.primaryPackage;
+      if (!primaryPackage) {
+        const productToPackage: Record<string, string> = {
+          'material-ui': '@mui/material',
+          'joy-ui': '@mui/joy',
+          'x-data-grid': '@mui/x-data-grid',
+          'x-date-pickers': '@mui/x-date-pickers',
+          'x-tree-view': '@mui/x-tree-view',
+          'x-charts': '@mui/x-charts',
+        };
+        primaryPackage =
+          (demoData.productId && productToPackage[demoData.productId]) || '@mui/material';
       }
 
       // Process files from demoData similar to StackBlitz
