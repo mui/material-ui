@@ -6,6 +6,9 @@ type UseRovingTabIndexOptions = {
   isRtl: boolean;
 };
 
+const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+const SUPPORTED_ROLES = ['button', 'tab', 'menuitem', 'option'];
+
 /**
  * Implements roving tab index focus management on a set of focusable elements.
  * Focus can be moved between elements using the ArrowRight and ArrowLeft keys.
@@ -34,7 +37,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions) => {
 
   React.useEffect(() => {
     if (isDisabled(elementRefs.current[initialIndex]?.current)) {
-      const [_nextIndex, nextIndex] = getNextFocus(elementRefs.current, initialIndex, 'next');
+      const [, nextIndex] = getNextFocus(elementRefs.current, initialIndex, 'next');
 
       if (nextIndex !== -1) {
         setFocusableIndex(nextIndex);
@@ -43,7 +46,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions) => {
   }, [initialIndex]);
 
   const registerElementRef = React.useCallback(
-    (index: number, ref: React.RefObject<ActionableElement | null>, disabled: boolean) => {
+    (ref: React.RefObject<ActionableElement | null>, index: number) => {
       elementRefs.current[index] = ref;
     },
     [],
@@ -118,9 +121,6 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions) => {
 
   return { registerElementRef, handleKeyDown, handleClick, focusableIndex };
 };
-
-const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
-const SUPPORTED_ROLES = ['button', 'tab', 'menuitem', 'option'];
 
 type ActionableElement = Element & { disabled?: boolean; focus?: () => void };
 
