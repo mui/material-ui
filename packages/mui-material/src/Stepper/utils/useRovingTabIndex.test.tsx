@@ -27,10 +27,10 @@ function TestComponent(props: Partial<TestComponentProps>) {
   const button4Ref = React.useRef<HTMLButtonElement>(null);
 
   React.useLayoutEffect(() => {
-    registerElementRef(0, button1Ref, false);
-    registerElementRef(1, button2Ref, false);
-    registerElementRef(2, button3Ref, true);
-    registerElementRef(3, button4Ref, false);
+    registerElementRef(button1Ref, 0);
+    registerElementRef(button2Ref, 1);
+    registerElementRef(button3Ref, 2);
+    registerElementRef(button4Ref, 3);
   }, [registerElementRef]);
 
   return (
@@ -41,7 +41,7 @@ function TestComponent(props: Partial<TestComponentProps>) {
         onKeyDown={handleKeyDown}
         onClick={handleClick}
         data-testid="button-1"
-        role="button"
+        role="tab"
       >
         Button 1
       </button>
@@ -51,7 +51,7 @@ function TestComponent(props: Partial<TestComponentProps>) {
         onKeyDown={handleKeyDown}
         onClick={handleClick}
         data-testid="button-2"
-        role="button"
+        role="tab"
       >
         Button 2
       </button>
@@ -61,7 +61,7 @@ function TestComponent(props: Partial<TestComponentProps>) {
         onKeyDown={handleKeyDown}
         onClick={handleClick}
         data-testid="button-3"
-        role="button"
+        role="tab"
         disabled
       >
         Button 3
@@ -72,7 +72,7 @@ function TestComponent(props: Partial<TestComponentProps>) {
         onKeyDown={handleKeyDown}
         onClick={handleClick}
         data-testid="button-4"
-        role="button"
+        role="tab"
       >
         Button 4
       </button>
@@ -398,7 +398,7 @@ describe('useRovingTabIndexFocus', () => {
 
     expect(button1.getAttribute('tabindex')).to.equal('0');
     expect(button2.getAttribute('tabindex')).to.equal('-1');
-  })
+  });
 
   it('prevents default behavior of arrow keys when navigating', async () => {
     const initialIndex = 0;
@@ -415,5 +415,62 @@ describe('useRovingTabIndexFocus', () => {
     fireEvent(button1, event);
 
     expect(preventDefaultSpy.callCount).to.equal(1);
+  });
+
+  it('does not prevent default behavior of non-arrow keys', async () => {
+    const initialIndex = 0;
+
+    const { user } = render(<TestComponent initialIndex={initialIndex} />);
+
+    const button1 = screen.getByTestId('button-1');
+
+    await user.click(button1);
+
+    const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true });
+    const preventDefaultSpy = spy(event, 'preventDefault');
+
+    fireEvent(button1, event);
+
+    expect(preventDefaultSpy.callCount).to.equal(0);
+  });
+
+  it('supports RTL orientation by reversing the behavior of left and right arrow keys', async () => {
+    const { user } = render(<TestComponent orientation="horizontal" isRtl />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button4 = screen.getByTestId('button-4');
+
+    await user.click(button1);
+    await user.keyboard('{ArrowRight}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('-1');
+    expect(button4.getAttribute('tabindex')).to.equal('0');
+    expect(button4).toHaveFocus();
+
+    await user.keyboard('{ArrowLeft}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('0');
+    expect(button4.getAttribute('tabindex')).to.equal('-1');
+    expect(button1).toHaveFocus();
+  });
+
+  it('does not consider RTL direction for vertical orientation', async () => {
+    const { user } = render(<TestComponent orientation="vertical" isRtl />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button2 = screen.getByTestId('button-2');
+
+    await user.click(button1);
+    await user.keyboard('{ArrowDown}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('-1');
+    expect(button2.getAttribute('tabindex')).to.equal('0');
+    expect(button2).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('0');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button1).toHaveFocus();
   });
 });
