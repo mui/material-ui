@@ -92,9 +92,6 @@ export default defineConfig(
       'react-hooks/incompatible-library': 'off',
       'react-hooks/static-components': 'off',
       'react-hooks/purity': 'off',
-
-      // TODO (@Janpot) fix in https://github.com/mui/material-ui/pull/47692
-      'mui/consistent-production-guard': 'off',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
@@ -115,6 +112,17 @@ export default defineConfig(
       },
     }),
   ),
+  {
+    files: [
+      `packages-internal/**/*${EXTENSION_TS}`,
+      `packages/api-docs-builder/**/*${EXTENSION_TS}`,
+      `packages/api-docs-builder-core/**/*${EXTENSION_TS}`,
+    ],
+    rules: {
+      // Only applies to our public packages
+      'compat/compat': 'off',
+    },
+  },
   {
     files: [`packages/**/*${EXTENSION_TS}`],
     rules: {

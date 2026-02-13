@@ -396,9 +396,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const handleDeleteIconClick = (event) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
-    if (onDelete) {
-      onDelete(event);
-    }
+    onDelete(event);
   };
 
   const handleKeyDown = (event) => {
