@@ -19,11 +19,11 @@ export interface ModalSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root?: React.ElementType;
+  root?: React.ElementType | undefined;
   /**
    * The component that renders the backdrop.
    */
-  backdrop?: React.ElementType;
+  backdrop?: React.ElementType | undefined;
 }
 
 export interface ModalOwnProps {
@@ -38,12 +38,12 @@ export interface ModalOwnProps {
    *   zIndex: -1,
    * })
    */
-  BackdropComponent?: React.ElementType<BackdropProps>;
+  BackdropComponent?: React.ElementType<BackdropProps> | undefined;
   /**
    * Props applied to the [`Backdrop`](https://mui.com/material-ui/api/backdrop/) element.
    * @deprecated Use `slotProps.backdrop` instead.
    */
-  BackdropProps?: Partial<BackdropProps>;
+  BackdropProps?: Partial<BackdropProps> | undefined;
   /**
    * A single child content element.
    */
@@ -51,16 +51,16 @@ export interface ModalOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ModalClasses>;
+  classes?: Partial<ModalClasses> | undefined;
   /**
    * @ignore
    */
-  className?: string;
+  className?: string | undefined;
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
    */
-  closeAfterTransition?: boolean;
+  closeAfterTransition?: boolean | undefined;
   /**
    * The components used for each slot inside.
    *
@@ -68,10 +68,12 @@ export interface ModalOwnProps {
    *
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Backdrop?: React.ElementType;
-  };
+  components?:
+    | {
+        Root?: React.ElementType | undefined;
+        Backdrop?: React.ElementType | undefined;
+      }
+    | undefined;
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
@@ -80,10 +82,16 @@ export interface ModalOwnProps {
    *
    * @default {}
    */
-  componentsProps?: {
-    root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
-    backdrop?: SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
-  };
+  componentsProps?:
+    | {
+        root?:
+          | SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>
+          | undefined;
+        backdrop?:
+          | SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>
+          | undefined;
+      }
+    | undefined;
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -94,7 +102,7 @@ export interface ModalOwnProps {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container?: PortalProps['container'];
+  container?: PortalProps['container'] | undefined;
   /**
    * If `true`, the modal will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
@@ -104,7 +112,7 @@ export interface ModalOwnProps {
    * accessible to assistive technologies, like screen readers.
    * @default false
    */
-  disableAutoFocus?: boolean;
+  disableAutoFocus?: boolean | undefined;
   /**
    * If `true`, the modal will not prevent focus from leaving the modal while open.
    *
@@ -112,40 +120,40 @@ export interface ModalOwnProps {
    * accessible to assistive technologies, like screen readers.
    * @default false
    */
-  disableEnforceFocus?: boolean;
+  disableEnforceFocus?: boolean | undefined;
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
-  disableEscapeKeyDown?: boolean;
+  disableEscapeKeyDown?: boolean | undefined;
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
-  disablePortal?: PortalProps['disablePortal'];
+  disablePortal?: PortalProps['disablePortal'] | undefined;
   /**
    * If `true`, the modal will not restore focus to previously focused element once
    * modal is hidden or unmounted.
    * @default false
    */
-  disableRestoreFocus?: boolean;
+  disableRestoreFocus?: boolean | undefined;
   /**
    * Disable the scroll lock behavior.
    * @default false
    */
-  disableScrollLock?: boolean;
+  disableScrollLock?: boolean | undefined;
   /**
    * If `true`, the backdrop is not rendered.
    * @default false
    */
-  hideBackdrop?: boolean;
+  hideBackdrop?: boolean | undefined;
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    * @default false
    */
-  keepMounted?: boolean;
+  keepMounted?: boolean | undefined;
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -153,17 +161,19 @@ export interface ModalOwnProps {
    * @param {object} event The event source of the callback.
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
-  onClose?: {
-    bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
-  }['bivarianceHack'];
+  onClose?:
+    | {
+        bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
+      }['bivarianceHack']
+    | undefined;
   /**
    * A function called when a transition enters.
    */
-  onTransitionEnter?: () => void;
+  onTransitionEnter?: (() => void) | undefined;
   /**
    * A function called when a transition has exited.
    */
-  onTransitionExited?: () => void;
+  onTransitionExited?: (() => void) | undefined;
   /**
    * If `true`, the component is shown.
    */
@@ -173,19 +183,25 @@ export interface ModalOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: ModalSlots;
+  slots?: ModalSlots | undefined;
   /**
    * The props used for each slot inside the Modal.
    * @default {}
    */
-  slotProps?: {
-    root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
-    backdrop?: SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>;
-  };
+  slotProps?:
+    | {
+        root?:
+          | SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>
+          | undefined;
+        backdrop?:
+          | SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>
+          | undefined;
+      }
+    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface ModalTypeMap<
@@ -227,7 +243,7 @@ export type ModalProps<
   RootComponent extends React.ElementType = ModalTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<ModalTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Modal;

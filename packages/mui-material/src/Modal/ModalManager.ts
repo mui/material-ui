@@ -3,7 +3,7 @@ import ownerDocument from '@mui/utils/ownerDocument';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
 
 export interface ManagedModalProps {
-  disableScrollLock?: boolean;
+  disableScrollLock?: boolean | undefined;
 }
 
 // Is a vertical scrollbar displayed?

@@ -14,21 +14,21 @@ export interface StepIconProps
    * Whether this step is active.
    * @default false
    */
-  active?: boolean;
+  active?: boolean | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepIconClasses>;
+  classes?: Partial<StepIconClasses> | undefined;
   /**
    * Mark the step as completed. Is passed to child components.
    * @default false
    */
-  completed?: boolean;
+  completed?: boolean | undefined;
   /**
    * If `true`, the step is marked as failed.
    * @default false
    */
-  error?: boolean;
+  error?: boolean | undefined;
   /**
    * The label displayed in the step icon.
    */
@@ -36,7 +36,7 @@ export interface StepIconProps
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type StepIconClasskey = keyof NonNullable<StepIconProps['classes']>;

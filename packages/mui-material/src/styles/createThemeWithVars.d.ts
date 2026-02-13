@@ -92,29 +92,29 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * @example '[data-mode-%s]'
    * Generate CSS variables within a data attribute [data-mode-light], [data-mode-dark]
    */
-  colorSchemeSelector?: 'media' | 'class' | 'data' | string;
+  colorSchemeSelector?: 'media' | 'class' | 'data' | string | undefined;
   /**
    * Prefix of the generated CSS variables
    * @default 'mui'
    */
-  cssVarPrefix?: string;
+  cssVarPrefix?: string | undefined;
   /**
    * If `true`, the CSS color-scheme will not be set.
    * https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * @default false
    */
-  disableCssColorScheme?: boolean;
+  disableCssColorScheme?: boolean | undefined;
   /**
    * If `true`, the CSS relative color will be used.
    */
-  nativeColor?: boolean;
+  nativeColor?: boolean | undefined;
   /**
    * The selector to generate the global CSS variables (non-color-scheme related)
    * @default ':root'
    * @example ':host' // (for shadow DOM)
    * @see https://mui.com/material-ui/customization/shadow-dom/#3-css-theme-variables-optional
    */
-  rootSelector?: string;
+  rootSelector?: string | undefined;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
@@ -122,20 +122,22 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    *  then, keys = ['foo', 'bar']
    *        value = 'var(--test)'
    */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  shouldSkipGeneratingVar?: ((keys: string[], value: string | number) => boolean) | undefined;
   /**
    * @default 'light'
    */
-  defaultColorScheme?: SupportedColorScheme;
+  defaultColorScheme?: SupportedColorScheme | undefined;
   /**
    * Theme components
    */
-  components?: Components<Omit<Theme, 'components' | 'palette'> & CssVarsTheme>;
+  components?: Components<Omit<Theme, 'components' | 'palette'> & CssVarsTheme> | undefined;
   /**
    * Color schemes configuration
    */
-  colorSchemes?: Partial<Record<DefaultColorScheme, boolean | ColorSystemOptions>> &
-    (ExtendedColorScheme extends string ? Record<ExtendedColorScheme, ColorSystemOptions> : {});
+  colorSchemes?:
+    | (Partial<Record<DefaultColorScheme, boolean | ColorSystemOptions>> &
+        (ExtendedColorScheme extends string ? Record<ExtendedColorScheme, ColorSystemOptions> : {}))
+    | undefined;
 }
 
 /**

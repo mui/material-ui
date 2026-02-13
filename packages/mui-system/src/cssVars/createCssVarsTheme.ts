@@ -3,9 +3,11 @@ import { createGetColorSchemeSelector } from './getColorSchemeSelector';
 import { DEFAULT_ATTRIBUTE } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 interface Theme extends DefaultCssVarsTheme {
-  cssVarPrefix?: string;
-  colorSchemeSelector?: 'media' | string;
-  shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
+  cssVarPrefix?: string | undefined;
+  colorSchemeSelector?: 'media' | string | undefined;
+  shouldSkipGeneratingVar?:
+    | ((objectPathKeys: Array<string>, value: string | number) => boolean)
+    | undefined;
 }
 
 function createCssVarsTheme<T extends Theme, ThemeVars extends Record<string, any>>({

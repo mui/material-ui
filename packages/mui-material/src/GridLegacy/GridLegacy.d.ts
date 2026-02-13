@@ -29,7 +29,7 @@ export interface RegularBreakpoints {
    * The value is applied for the `lg` breakpoint and wider screens if not overridden.
    * @default false
    */
-  lg?: boolean | GridLegacySize;
+  lg?: boolean | GridLegacySize | undefined;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -39,7 +39,7 @@ export interface RegularBreakpoints {
    * The value is applied for the `md` breakpoint and wider screens if not overridden.
    * @default false
    */
-  md?: boolean | GridLegacySize;
+  md?: boolean | GridLegacySize | undefined;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -49,7 +49,7 @@ export interface RegularBreakpoints {
    * The value is applied for the `sm` breakpoint and wider screens if not overridden.
    * @default false
    */
-  sm?: boolean | GridLegacySize;
+  sm?: boolean | GridLegacySize | undefined;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -59,7 +59,7 @@ export interface RegularBreakpoints {
    * The value is applied for the `xl` breakpoint and wider screens if not overridden.
    * @default false
    */
-  xl?: boolean | GridLegacySize;
+  xl?: boolean | GridLegacySize | undefined;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -69,7 +69,7 @@ export interface RegularBreakpoints {
    * The value is applied for all the screen sizes with the lowest priority.
    * @default false
    */
-  xs?: boolean | GridLegacySize;
+  xs?: boolean | GridLegacySize | undefined;
 }
 
 type CustomBreakpoints = Partial<Record<Breakpoint, boolean | GridLegacySize>>;
@@ -91,62 +91,62 @@ export interface GridLegacyOwnProps extends SystemProps<Theme>, Breakpoints {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<GridLegacyClasses>;
+  classes?: Partial<GridLegacyClasses> | undefined;
   /**
    * The number of columns.
    * @default 12
    */
-  columns?: ResponsiveStyleValue<number>;
+  columns?: ResponsiveStyleValue<number> | undefined;
   /**
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing?: ResponsiveStyleValue<GridLegacySpacing>;
+  columnSpacing?: ResponsiveStyleValue<GridLegacySpacing> | undefined;
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    * @default false
    */
-  container?: boolean;
+  container?: boolean | undefined;
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction?: ResponsiveStyleValue<GridLegacyDirection>;
+  direction?: ResponsiveStyleValue<GridLegacyDirection> | undefined;
   /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    * @default false
    */
-  item?: boolean;
+  item?: boolean | undefined;
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing?: ResponsiveStyleValue<GridLegacySpacing>;
+  rowSpacing?: ResponsiveStyleValue<GridLegacySpacing> | undefined;
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing?: ResponsiveStyleValue<GridLegacySpacing>;
+  spacing?: ResponsiveStyleValue<GridLegacySpacing> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
    */
-  wrap?: GridLegacyWrap;
+  wrap?: GridLegacyWrap | undefined;
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.
    * @default false
    */
-  zeroMinWidth?: boolean;
+  zeroMinWidth?: boolean | undefined;
 }
 
 /**
@@ -181,7 +181,7 @@ export type GridLegacyProps<
   RootComponent extends React.ElementType = GridLegacyTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<GridLegacyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default GridLegacy;

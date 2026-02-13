@@ -12,16 +12,16 @@ export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<CardActionsClasses>;
+  classes?: Partial<CardActionsClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * If `true`, the actions do not have additional margin.
    * @default false
    */
-  disableSpacing?: boolean;
+  disableSpacing?: boolean | undefined;
 }
 
 /**
