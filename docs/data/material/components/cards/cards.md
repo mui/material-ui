@@ -84,4 +84,4 @@ To customize a Card's styles when it's in an active state, you can attach a `dat
 
 {{"demo": "SelectActionCard.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/card).

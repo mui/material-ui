@@ -84,7 +84,7 @@ Notice that the `"standard"` variant is easier to customize, since it does not w
 
 {{"demo": "CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/select-introduction--docs).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/select).
 
 ## Multiple select
 
