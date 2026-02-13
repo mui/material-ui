@@ -72,17 +72,17 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Supported versions
 
-| Material UI version | Release       | Supported                                                          |
-| ------------------: | :------------ | :----------------------------------------------------------------- |
+| Material UI version | Release    | Supported                                                          |
+| ------------------: | :--------- | :----------------------------------------------------------------- |
 |              ^9.0.0 | March 2026 | 🚧 Pre release (Continuous support)                                |
-|              ^7.0.0 | 2025-03-26    | ✅ Stable major (Continuous support)                               |
-|              ^6.0.0 | 2024-08-26    | ⚠️ Long-term support (Support for security issues and regressions) |
-|              ^5.0.0 | 2021-09-16    | ❌                                                                 |
-|              ^4.0.0 | 2019-06-23    | ❌                                                                 |
-|              ^3.0.0 | 2018-08-27    | ❌                                                                 |
-|              ^2.0.0 | /             | ❌                                                                 |
-|              ^1.0.0 | 2018-06-18    | ❌                                                                 |
-|             <=1.0.0 | 2014-10-05    | ❌                                                                 |
+|              ^7.0.0 | 2025-03-26 | ✅ Stable major (Continuous support)                               |
+|              ^6.0.0 | 2024-08-26 | ⚠️ Long-term support (Support for security issues and regressions) |
+|              ^5.0.0 | 2021-09-16 | ❌                                                                 |
+|              ^4.0.0 | 2019-06-23 | ❌                                                                 |
+|              ^3.0.0 | 2018-08-27 | ❌                                                                 |
+|              ^2.0.0 | /          | ❌                                                                 |
+|              ^1.0.0 | 2018-06-18 | ❌                                                                 |
+|             <=1.0.0 | 2014-10-05 | ❌                                                                 |
 
 ## Community
 
