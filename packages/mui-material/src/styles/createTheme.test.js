@@ -801,7 +801,7 @@ describe('createTheme', () => {
             <GlobalStyles
               styles={{
                 ':root': {
-                  '--mui-palette-info-main': '#d3b613 !important', // !important is to take precedence over the default one. This is just for test, in real world case CSS file should be used.
+                  '--mui-palette-info-main': '#d3b613 !important', // !important is to take precedence over the default one. This is just for test, in real world case global CSS file should be used.
                   '--mui-palette-info-light': '#dfc21f !important',
                 },
               }}
