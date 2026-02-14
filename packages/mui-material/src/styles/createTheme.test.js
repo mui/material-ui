@@ -781,5 +781,26 @@ describe('createTheme', () => {
         'color-mix(in oklch, hsl(0 0% 100%), #000 20%)',
       );
     });
+
+    it('[nativeColor] should resolve alpha before applying color-mix for TableCell border', () => {
+      const theme = createTheme({
+        cssVariables: {
+          nativeColor: true,
+        },
+      });
+
+      // palette.divider is rgba(0, 0, 0, 0.12) by default.
+      // The TableCell border should first resolve alpha to 1 (giving an
+      // opaque color) and then apply lighten via color-mix. Before the fix,
+      // safeAlpha was also routed through color-mix which produced
+      // color-mix(in srgb, rgba(0, 0, 0, 0.12), transparent 0%) - a no-op
+      // that kept the low alpha, resulting in a near-white border.
+      const border = theme.palette.TableCell.border;
+
+      // The border value should use the opaque version of the divider color
+      // (alpha set to 1) as the base for the lighten color-mix, not a
+      // color-mix with transparent that fails to adjust the alpha.
+      expect(border).to.equal('color-mix(in oklch, rgba(0, 0, 0, 1), #fff 88%)');
+    });
   });
 });

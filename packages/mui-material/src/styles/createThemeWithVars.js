@@ -223,10 +223,14 @@ export default function createThemeWithVars(options = {}, ...args) {
 
     function colorMix(method, color, coefficient) {
       if (colorSpace) {
-        let mixer;
+        // color-mix with transparent doesn't correctly set the alpha channel;
+        // it blends towards transparent instead of replacing the alpha value.
+        // For safeAlpha, apply it directly so the resulting concrete color can
+        // still be used as input to subsequent color-mix operations.
         if (method === safeAlpha) {
-          mixer = `transparent ${((1 - coefficient) * 100).toFixed(0)}%`;
+          return method(color, coefficient);
         }
+        let mixer;
         if (method === safeDarken) {
           mixer = `#000 ${(coefficient * 100).toFixed(0)}%`;
         }
