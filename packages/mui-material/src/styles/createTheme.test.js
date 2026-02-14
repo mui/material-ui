@@ -791,7 +791,7 @@ describe('createTheme', () => {
             background: {
               default: 'var(--mui-palette-background-default)',
               paper: 'var(--mui-palette-background-paper)',
-            }
+            },
           },
         }),
       ).not.toWarnDev();
