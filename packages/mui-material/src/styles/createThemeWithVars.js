@@ -550,23 +550,25 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
 
-    // MUI X - DataGrid needs this token.
-    setColorChannel(palette.background, 'default');
+    if (!nativeColor) {
+      // MUI X - DataGrid needs this token.
+      setColorChannel(palette.background, 'default');
 
-    // added for consistency with the `background.default` token
-    setColorChannel(palette.background, 'paper');
+      // added for consistency with the `background.default` token
+      setColorChannel(palette.background, 'paper');
 
-    setColorChannel(palette.common, 'background');
-    setColorChannel(palette.common, 'onBackground');
+      setColorChannel(palette.common, 'background');
+      setColorChannel(palette.common, 'onBackground');
 
-    setColorChannel(palette, 'divider');
+      setColorChannel(palette, 'divider');
+    }
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
 
       // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
 
-      if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
+      if (color !== 'tonalOffset' && !nativeColor && colors && typeof colors === 'object') {
         // Silent the error for custom palettes.
         if (colors.main) {
           setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
