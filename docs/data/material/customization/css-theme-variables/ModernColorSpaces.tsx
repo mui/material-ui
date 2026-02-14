@@ -10,14 +10,14 @@ import FormControl from '@mui/material/FormControl';
 
 export default function ModernColorSpaces() {
   const colorSpaces = [
-    { value: 'color(display-p3 0.7 0.5 0)', label: 'display-p3()' }, // Mud
-    { value: 'oklch(0.62 0.25 29)', label: 'oklch()' }, // Orange
-    { value: 'oklab(0.59 0.1 -0.14)', label: 'oklab()' }, // Purple
-    { value: 'hsl(141, 70%, 48%)', label: 'hsl()' }, // Green
-    { value: 'rgb(25, 118, 210)', label: 'rgb()' }, // Blue
+    'color(display-p3 0.7 0.5 0)', // Mud
+    'oklch(0.62 0.25 29)', // Orange
+    'oklab(0.59 0.1 -0.14)', // Purple
+    'hsl(141, 70%, 48%)', // Green
+    'rgb(25, 118, 210)', // Blue
   ];
 
-  const [selectedColor, setSelectedColor] = React.useState(colorSpaces[0].value);
+  const [selectedColor, setSelectedColor] = React.useState(colorSpaces[0]);
 
   const theme = React.useMemo(
     () =>
@@ -43,12 +43,12 @@ export default function ModernColorSpaces() {
           value={selectedColor}
           onChange={(event) => setSelectedColor(event.target.value)}
         >
-          {colorSpaces.map((colorSpace) => (
+          {colorSpaces.map((value) => (
             <FormControlLabel
-              key={colorSpace.value}
-              value={colorSpace.value}
+              key={value}
+              value={value}
               control={<Radio />}
-              label={colorSpace.value}
+              label={value}
             />
           ))}
         </RadioGroup>
