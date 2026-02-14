@@ -817,7 +817,7 @@ describe('createTheme', () => {
       render(<App />);
 
       expect(screen.getByTestId('alert')).toHaveComputedStyle({
-        backgroundColor: 'oklch(0.981465 0.01628 97.7526)',
+        backgroundColor: 'oklch(0.981465 0.01628 97.7526)', // browser converts color-mix to oklch in window.getComputedStyle()
       });
     },
   );
