@@ -550,6 +550,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
 
+    // Do not create channel tokens when nativeColor is used.
     if (!nativeColor) {
       // MUI X - DataGrid needs this token.
       setColorChannel(palette.background, 'default');
