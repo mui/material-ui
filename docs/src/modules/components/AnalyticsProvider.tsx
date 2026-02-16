@@ -133,7 +133,8 @@ export function CookieConsentDialog() {
                     variant="body2"
                     textAlign={{ xs: 'center', sm: 'start' }}
                   >
-                     We use cookies to understand site usage and improve our content. This includes third-party analytics.
+                    We use cookies to understand site usage and improve our content. This includes
+                    third-party analytics.
                   </Typography>
                 </Stack>
               </Stack>
