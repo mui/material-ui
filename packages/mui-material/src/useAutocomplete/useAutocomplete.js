@@ -147,6 +147,7 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedItem, setFocusedItem] = React.useState(-1);
@@ -995,9 +996,15 @@ function useAutocomplete(props) {
       focusItem(-1);
     }
 
-    if (openOnFocus && !ignoreFocus.current) {
+    // Prevent popup from reopening when window regains focus
+    // relatedTarget is null when focus comes from outside of document (window regain)
+    // For Tab/keyboard navigation, relatedTarget will be the previous element
+    const isWindowRegainingFocus = windowLostFocus.current && event?.relatedTarget === null;
+    if (openOnFocus && !ignoreFocus.current && !isWindowRegainingFocus) {
       handleOpen(event);
     }
+
+    windowLostFocus.current = false;
   };
 
   const handleBlur = (event) => {
@@ -1009,6 +1016,11 @@ function useAutocomplete(props) {
 
     setFocused(false);
     firstFocus.current = true;
+    // Track when window loses focus (relatedTarget is null)
+    if (event?.relatedTarget === null) {
+      windowLostFocus.current = true;
+    }
+
     ignoreFocus.current = false;
 
     if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
@@ -1111,6 +1123,7 @@ function useAutocomplete(props) {
     if (!event.currentTarget.contains(event.target)) {
       return;
     }
+    ignoreFocus.current = false;
     inputRef.current.focus();
 
     if (
