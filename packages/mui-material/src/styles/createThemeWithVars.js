@@ -258,10 +258,42 @@ export default function createThemeWithVars(options = {}, ...args) {
       'Tooltip',
     ]);
     if (palette.mode === 'light') {
-      setColor(palette.Alert, 'errorColor', colorMix(safeDarken, palette.error.light, 0.6));
-      setColor(palette.Alert, 'infoColor', colorMix(safeDarken, palette.info.light, 0.6));
-      setColor(palette.Alert, 'successColor', colorMix(safeDarken, palette.success.light, 0.6));
-      setColor(palette.Alert, 'warningColor', colorMix(safeDarken, palette.warning.light, 0.6));
+      setColor(
+        palette.Alert,
+        'errorColor',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-error-light') : palette.error.light,
+          0.6,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'infoColor',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-info-light') : palette.info.light,
+          0.6,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'successColor',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-success-light') : palette.success.light,
+          0.6,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'warningColor',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-warning-light') : palette.warning.light,
+          0.6,
+        ),
+      );
       setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-main'));
       setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-main'));
       setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-main'));
@@ -286,17 +318,41 @@ export default function createThemeWithVars(options = {}, ...args) {
         'warningFilledColor',
         silent(() => palette.getContrastText(palette.warning.main)),
       );
-      setColor(palette.Alert, 'errorStandardBg', colorMix(safeLighten, palette.error.light, 0.9));
-      setColor(palette.Alert, 'infoStandardBg', colorMix(safeLighten, palette.info.light, 0.9));
+      setColor(
+        palette.Alert,
+        'errorStandardBg',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-error-light') : palette.error.light,
+          0.9,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'infoStandardBg',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-info-light') : palette.info.light,
+          0.9,
+        ),
+      );
       setColor(
         palette.Alert,
         'successStandardBg',
-        colorMix(safeLighten, palette.success.light, 0.9),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-success-light') : palette.success.light,
+          0.9,
+        ),
       );
       setColor(
         palette.Alert,
         'warningStandardBg',
-        colorMix(safeLighten, palette.warning.light, 0.9),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-warning-light') : palette.warning.light,
+          0.9,
+        ),
       );
       setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
       setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
@@ -315,44 +371,128 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.LinearProgress,
         'primaryBg',
-        colorMix(safeLighten, palette.primary.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-primary-main') : palette.primary.main,
+          0.62,
+        ),
       );
       setColor(
         palette.LinearProgress,
         'secondaryBg',
-        colorMix(safeLighten, palette.secondary.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-secondary-main') : palette.secondary.main,
+          0.62,
+        ),
       );
-      setColor(palette.LinearProgress, 'errorBg', colorMix(safeLighten, palette.error.main, 0.62));
-      setColor(palette.LinearProgress, 'infoBg', colorMix(safeLighten, palette.info.main, 0.62));
+      setColor(
+        palette.LinearProgress,
+        'errorBg',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-error-main') : palette.error.main,
+          0.62,
+        ),
+      );
+      setColor(
+        palette.LinearProgress,
+        'infoBg',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-info-main') : palette.info.main,
+          0.62,
+        ),
+      );
       setColor(
         palette.LinearProgress,
         'successBg',
-        colorMix(safeLighten, palette.success.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-success-main') : palette.success.main,
+          0.62,
+        ),
       );
       setColor(
         palette.LinearProgress,
         'warningBg',
-        colorMix(safeLighten, palette.warning.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-warning-light') : palette.warning.main,
+          0.62,
+        ),
       );
       setColor(
         palette.Skeleton,
         'bg',
         colorSpace
-          ? colorMix(safeAlpha, palette.text.primary, 0.11)
+          ? colorMix(
+              safeAlpha,
+              nativeColor ? getCssVar('palette-text-primary') : palette.text.primary,
+              0.11,
+            )
           : `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
       );
-      setColor(palette.Slider, 'primaryTrack', colorMix(safeLighten, palette.primary.main, 0.62));
+      setColor(
+        palette.Slider,
+        'primaryTrack',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-primary-main') : palette.primary.main,
+          0.62,
+        ),
+      );
       setColor(
         palette.Slider,
         'secondaryTrack',
-        colorMix(safeLighten, palette.secondary.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-secondary-main') : palette.secondary.main,
+          0.62,
+        ),
       );
-      setColor(palette.Slider, 'errorTrack', colorMix(safeLighten, palette.error.main, 0.62));
-      setColor(palette.Slider, 'infoTrack', colorMix(safeLighten, palette.info.main, 0.62));
-      setColor(palette.Slider, 'successTrack', colorMix(safeLighten, palette.success.main, 0.62));
-      setColor(palette.Slider, 'warningTrack', colorMix(safeLighten, palette.warning.main, 0.62));
+      setColor(
+        palette.Slider,
+        'errorTrack',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-error-main') : palette.error.main,
+          0.62,
+        ),
+      );
+      setColor(
+        palette.Slider,
+        'infoTrack',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-info-main') : palette.info.main,
+          0.62,
+        ),
+      );
+      setColor(
+        palette.Slider,
+        'successTrack',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-success-main') : palette.success.main,
+          0.62,
+        ),
+      );
+      setColor(
+        palette.Slider,
+        'warningTrack',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-warning-main') : palette.warning.main,
+          0.62,
+        ),
+      );
       const snackbarContentBackground = colorSpace
-        ? colorMix(safeDarken, palette.background.default, 0.6825) // use `0.6825` instead of `0.8` to match the contrast ratio of JS implementation
+        ? colorMix(
+            safeDarken,
+            nativeColor ? getCssVar('palette-background-default') : palette.background.default,
+            0.6825,
+          ) // use `0.6825` instead of `0.8` to match the contrast ratio of JS implementation
         : safeEmphasize(palette.background.default, 0.8);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
@@ -374,41 +514,109 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.Switch,
         'primaryDisabledColor',
-        colorMix(safeLighten, palette.primary.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-primary-main') : palette.primary.main,
+          0.62,
+        ),
       );
       setColor(
         palette.Switch,
         'secondaryDisabledColor',
-        colorMix(safeLighten, palette.secondary.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-secondary-main') : palette.secondary.main,
+          0.62,
+        ),
       );
       setColor(
         palette.Switch,
         'errorDisabledColor',
-        colorMix(safeLighten, palette.error.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-error-main') : palette.error.main,
+          0.62,
+        ),
       );
-      setColor(palette.Switch, 'infoDisabledColor', colorMix(safeLighten, palette.info.main, 0.62));
+      setColor(
+        palette.Switch,
+        'infoDisabledColor',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-info-main') : palette.info.main,
+          0.62,
+        ),
+      );
       setColor(
         palette.Switch,
         'successDisabledColor',
-        colorMix(safeLighten, palette.success.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-success-main') : palette.success.main,
+          0.62,
+        ),
       );
       setColor(
         palette.Switch,
         'warningDisabledColor',
-        colorMix(safeLighten, palette.warning.main, 0.62),
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-warning-main') : palette.warning.main,
+          0.62,
+        ),
       );
       setColor(
         palette.TableCell,
         'border',
-        colorMix(safeLighten, safeAlpha(palette.divider, 1), 0.88),
+        colorMix(
+          safeLighten,
+          safeAlpha(nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
+          0.88,
+        ),
       );
-      setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
+      setColor(
+        palette.Tooltip,
+        'bg',
+        colorMix(safeAlpha, nativeColor ? getCssVar('palette-grey-700') : palette.grey[700], 0.92),
+      );
     }
     if (palette.mode === 'dark') {
-      setColor(palette.Alert, 'errorColor', colorMix(safeLighten, palette.error.light, 0.6));
-      setColor(palette.Alert, 'infoColor', colorMix(safeLighten, palette.info.light, 0.6));
-      setColor(palette.Alert, 'successColor', colorMix(safeLighten, palette.success.light, 0.6));
-      setColor(palette.Alert, 'warningColor', colorMix(safeLighten, palette.warning.light, 0.6));
+      setColor(
+        palette.Alert,
+        'errorColor',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-error-light') : palette.error.light,
+          0.6,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'infoColor',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-info-light') : palette.info.light,
+          0.6,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'successColor',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-success-light') : palette.success.light,
+          0.6,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'warningColor',
+        colorMix(
+          safeLighten,
+          nativeColor ? getCssVar('palette-warning-light') : palette.warning.light,
+          0.6,
+        ),
+      );
       setColor(palette.Alert, 'errorFilledBg', setCssVarColor('palette-error-dark'));
       setColor(palette.Alert, 'infoFilledBg', setCssVarColor('palette-info-dark'));
       setColor(palette.Alert, 'successFilledBg', setCssVarColor('palette-success-dark'));
@@ -433,17 +641,41 @@ export default function createThemeWithVars(options = {}, ...args) {
         'warningFilledColor',
         silent(() => palette.getContrastText(palette.warning.dark)),
       );
-      setColor(palette.Alert, 'errorStandardBg', colorMix(safeDarken, palette.error.light, 0.9));
-      setColor(palette.Alert, 'infoStandardBg', colorMix(safeDarken, palette.info.light, 0.9));
+      setColor(
+        palette.Alert,
+        'errorStandardBg',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-error-light') : palette.error.light,
+          0.9,
+        ),
+      );
+      setColor(
+        palette.Alert,
+        'infoStandardBg',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-info-light') : palette.info.light,
+          0.9,
+        ),
+      );
       setColor(
         palette.Alert,
         'successStandardBg',
-        colorMix(safeDarken, palette.success.light, 0.9),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-success-light') : palette.success.light,
+          0.9,
+        ),
       );
       setColor(
         palette.Alert,
         'warningStandardBg',
-        colorMix(safeDarken, palette.warning.light, 0.9),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-warning-light') : palette.warning.light,
+          0.9,
+        ),
       );
       setColor(palette.Alert, 'errorIconColor', setCssVarColor('palette-error-main'));
       setColor(palette.Alert, 'infoIconColor', setCssVarColor('palette-info-main'));
@@ -464,40 +696,120 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.LinearProgress,
         'primaryBg',
-        colorMix(safeDarken, palette.primary.main, 0.5),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-primary-main') : palette.primary.main,
+          0.5,
+        ),
       );
       setColor(
         palette.LinearProgress,
         'secondaryBg',
-        colorMix(safeDarken, palette.secondary.main, 0.5),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-secondary-main') : palette.secondary.main,
+          0.5,
+        ),
       );
-      setColor(palette.LinearProgress, 'errorBg', colorMix(safeDarken, palette.error.main, 0.5));
-      setColor(palette.LinearProgress, 'infoBg', colorMix(safeDarken, palette.info.main, 0.5));
+      setColor(
+        palette.LinearProgress,
+        'errorBg',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-error-main') : palette.error.main,
+          0.5,
+        ),
+      );
+      setColor(
+        palette.LinearProgress,
+        'infoBg',
+        colorMix(safeDarken, nativeColor ? getCssVar('palette-info-main') : palette.info.main, 0.5),
+      );
       setColor(
         palette.LinearProgress,
         'successBg',
-        colorMix(safeDarken, palette.success.main, 0.5),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-success-main') : palette.success.main,
+          0.5,
+        ),
       );
       setColor(
         palette.LinearProgress,
         'warningBg',
-        colorMix(safeDarken, palette.warning.main, 0.5),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-warning-main') : palette.warning.main,
+          0.5,
+        ),
       );
       setColor(
         palette.Skeleton,
         'bg',
         colorSpace
-          ? colorMix(safeAlpha, palette.text.primary, 0.13)
+          ? colorMix(
+              safeAlpha,
+              nativeColor ? getCssVar('palette-text-primary') : palette.text.primary,
+              0.13,
+            )
           : `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
       );
-      setColor(palette.Slider, 'primaryTrack', colorMix(safeDarken, palette.primary.main, 0.5));
-      setColor(palette.Slider, 'secondaryTrack', colorMix(safeDarken, palette.secondary.main, 0.5));
-      setColor(palette.Slider, 'errorTrack', colorMix(safeDarken, palette.error.main, 0.5));
-      setColor(palette.Slider, 'infoTrack', colorMix(safeDarken, palette.info.main, 0.5));
-      setColor(palette.Slider, 'successTrack', colorMix(safeDarken, palette.success.main, 0.5));
-      setColor(palette.Slider, 'warningTrack', colorMix(safeDarken, palette.warning.main, 0.5));
+      setColor(
+        palette.Slider,
+        'primaryTrack',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-primary-main') : palette.primary.main,
+          0.5,
+        ),
+      );
+      setColor(
+        palette.Slider,
+        'secondaryTrack',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-secondary-main') : palette.secondary.main,
+          0.5,
+        ),
+      );
+      setColor(
+        palette.Slider,
+        'errorTrack',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-error-main') : palette.error.main,
+          0.5,
+        ),
+      );
+      setColor(
+        palette.Slider,
+        'infoTrack',
+        colorMix(safeDarken, nativeColor ? getCssVar('palette-info-main') : palette.info.main, 0.5),
+      );
+      setColor(
+        palette.Slider,
+        'successTrack',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-success-main') : palette.success.main,
+          0.5,
+        ),
+      );
+      setColor(
+        palette.Slider,
+        'warningTrack',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-warning-light') : palette.warning.main,
+          0.5,
+        ),
+      );
       const snackbarContentBackground = colorSpace
-        ? colorMix(safeLighten, palette.background.default, 0.985) // use `0.985` instead of `0.98` to match the contrast ratio of JS implementation
+        ? colorMix(
+            safeLighten,
+            nativeColor ? getCssVar('palette-background-default') : palette.background.default,
+            0.985,
+          ) // use `0.985` instead of `0.98` to match the contrast ratio of JS implementation
         : safeEmphasize(palette.background.default, 0.98);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
@@ -519,35 +831,71 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.Switch,
         'primaryDisabledColor',
-        colorMix(safeDarken, palette.primary.main, 0.55),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-primary-main') : palette.primary.main,
+          0.55,
+        ),
       );
       setColor(
         palette.Switch,
         'secondaryDisabledColor',
-        colorMix(safeDarken, palette.secondary.main, 0.55),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-secondary-main') : palette.secondary.main,
+          0.55,
+        ),
       );
       setColor(
         palette.Switch,
         'errorDisabledColor',
-        colorMix(safeDarken, palette.error.main, 0.55),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-error-main') : palette.error.main,
+          0.55,
+        ),
       );
-      setColor(palette.Switch, 'infoDisabledColor', colorMix(safeDarken, palette.info.main, 0.55));
+      setColor(
+        palette.Switch,
+        'infoDisabledColor',
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-info-main') : palette.info.main,
+          0.55,
+        ),
+      );
       setColor(
         palette.Switch,
         'successDisabledColor',
-        colorMix(safeDarken, palette.success.main, 0.55),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-success-main') : palette.success.main,
+          0.55,
+        ),
       );
       setColor(
         palette.Switch,
         'warningDisabledColor',
-        colorMix(safeDarken, palette.warning.main, 0.55),
+        colorMix(
+          safeDarken,
+          nativeColor ? getCssVar('palette-warning-light') : palette.warning.main,
+          0.55,
+        ),
       );
       setColor(
         palette.TableCell,
         'border',
-        colorMix(safeDarken, safeAlpha(palette.divider, 1), 0.68),
+        colorMix(
+          safeDarken,
+          safeAlpha(nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
+          0.68,
+        ),
       );
-      setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
+      setColor(
+        palette.Tooltip,
+        'bg',
+        colorMix(safeAlpha, nativeColor ? getCssVar('palette-grey-700') : palette.grey[700], 0.92),
+      );
     }
 
     // MUI X - DataGrid needs this token.
