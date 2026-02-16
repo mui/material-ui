@@ -136,7 +136,7 @@
     "git-url-parse": "16.1.0",
     "globby": "16.1.0",
     "jsdom": "26.1.0",
-    "lerna": "9.0.3",
+    "lerna": "9.0.4",
     "markdownlint-cli2": "0.20.0",
     "nx": "20.8.4",
     "playwright": "1.58.0",
