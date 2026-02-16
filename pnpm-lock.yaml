@@ -11,9 +11,6 @@ overrides:
   '@babel/preset-react': ^7.28.5
   '@babel/preset-typescript': ^7.28.5
   '@babel/runtime': ^7.28.6
-  '@definitelytyped/header-parser': ^0.2.23
-  '@definitelytyped/typescript-versions': ^0.1.10
-  '@definitelytyped/utils': ^0.1.11
   '@types/node': 20.19.30
   cross-fetch: ^4.1.0
   '@pigment-css/react': 0.0.30
