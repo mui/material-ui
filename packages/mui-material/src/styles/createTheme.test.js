@@ -785,7 +785,8 @@ describe('createTheme', () => {
     });
   });
 
-  it.skipIf(isJSDOM)(
+  // Skip WebKit because it has a slightly different value in WebKit
+  it.skipIf(isJSDOM || !/WebKit/.test(window.navigator.userAgent))(
     'should build color-mix() on top of generated Material UI CSS variables',
     () => {
       function App() {
