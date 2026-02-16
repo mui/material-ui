@@ -94,9 +94,10 @@ export function CookieConsentDialog() {
               m: 2,
               maxWidth: 340,
               pointerEvents: 'auto',
+              boxShadow: theme.shadows[2],
               zIndex: theme.zIndex.snackbar,
               ...theme.applyDarkStyles({
-                bgcolor: 'primaryDark.800',
+                bgcolor: 'primaryDark.900',
               }),
             })}
           >
@@ -132,7 +133,7 @@ export function CookieConsentDialog() {
                     variant="body2"
                     textAlign={{ xs: 'center', sm: 'start' }}
                   >
-                    mui.com relies on cookies to improve your experience.
+                     We use cookies to understand site usage and improve our content. This includes third-party analytics.
                   </Typography>
                 </Stack>
               </Stack>
