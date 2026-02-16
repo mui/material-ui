@@ -9,25 +9,25 @@ manualCard: false
 
 Starting **March 31, 2026**, we're introducing updates to MUI X pricing and licensing. These changes are designed to give teams more flexibility as they scale, expand licensing options to suit a wider variety of customers, and ensure we can continue investing in the long-term future of the MUI ecosystem.
 
-## 🔄 Summary of Changes
+## 🔄 Summary of changes
 
-**Effective: March 31, 2026**
+Changes include:
 
-- Updated pricing for **MUI X Pro** and **MUI X Premium**
-- Introduction of **application-based licensing** for Pro and Premium
+- Updated pricing for MUI X Pro and MUI X Premium
+- Introduction of application-based licensing for Pro and Premium
 - Enterprise plan remains multi-application (minimum 15 seats)
 - Priority support available only to Enterprise customers
-- Security questionnaires and custom agreements available for orders **$12,000+**
+- Security questionnaires and custom agreements available for orders above $12,000 USD
 - Premium self-service purchases up to 15 seats
 - Grandfathering for existing **v8 license renewals**
 
 ## Why We're Updating Pricing
 
-MUI X has grown significantly since its early days. While the MUI X Pro plan has evolved over the years, its pricing per developer has not significantly changed since it was first introduced in 2020 - despite major feature additions, performance improvements, and ongoing maintenance.
+MUI X has grown significantly since its early days. While the MUI X Pro plan has evolved over the years, its pricing per developer has not significantly changed since it was first introduced in 2020—despite major feature additions, performance improvements, and ongoing maintenance.
 
 As a result, this update represents the largest percentage increase for Pro. It brings pricing closer in line with the value teams receive today and allows us to sustainably support its future development.
 
-This post breaks down everything you need to know about the changes and includes a link to our new pricing table for feature comparison. If you'd like to skip directly to the pricing table, you can find it **[here](https://deploy-preview-47606--material-ui.netlify.app/pricing/)**.
+This post breaks down everything you need to know about the changes. You can also head directly to [the updated pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/) for a thorough feature comparison.
 
 ## Grandfathering Current Customers
 
@@ -59,13 +59,13 @@ Alongside pricing changes, we're updating how support is structured:
 
 ## Pricing Breakdown
 
-For a detailed overview of the new pricing structure, please visit the updated **[pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/)**.
+For a detailed overview of the new pricing structure, please visit [the updated pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/).
 
 ## What's Next
 
-We'll be sharing exciting roadmap updates for **MUI X v9**, including the version alignment between Material-UI and MUI X, on our blog in the coming months.
+We'll be sharing exciting roadmap updates for **MUI X v9**, including version alignment between Material UI and MUI X, on our blog in the coming months.
 
-We're deeply thankful for the continued support from our community and customers. These pricing updates allow us to keep pushing MUI X - and the broader MUI ecosystem - in ambitious new directions, while staying true to our open-source roots.
+We're deeply thankful for the continued support from our community and customers. These pricing updates allow us to keep pushing MUI X—and the broader MUI ecosystem—in ambitious new directions, while staying true to our open-source roots.
 
 If you have questions about these changes or want help choosing the right plan, please reach out to our team at **sales@mui.com**.
 
