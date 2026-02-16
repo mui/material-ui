@@ -21,7 +21,7 @@ Changes include:
 - Premium self-service purchases up to 15 seats
 - Grandfathering for existing **v8 license renewals**
 
-## Why We're Updating Pricing
+## Why We're updating pricing
 
 MUI X has grown significantly since its early days. While the MUI X Pro plan has evolved over the years, its pricing per developer has not significantly changed since it was first introduced in 2020—despite major feature additions, performance improvements, and ongoing maintenance.
 
@@ -29,7 +29,7 @@ As a result, this update represents the largest percentage increase for Pro. It 
 
 This post breaks down everything you need to know about the changes. You can also head directly to [the updated pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/) for a thorough feature comparison.
 
-## Grandfathering Current Customers
+## Grandfathering current customers
 
 We value our loyal customers and want to ensure a smooth transition:
 
@@ -38,9 +38,9 @@ We value our loyal customers and want to ensure a smooth transition:
 
 If you're unsure how this applies to your team, please reach out to us at **sales@mui.com** and we'll be happy to clarify.
 
-## What's Changing in Licensing
+## What's changing in licensing
 
-### Application-Based Licensing for Pro and Premium
+### Application-Based licensing for Pro and Premium
 
 MUI X Pro and Premium are moving to an **application-based licensing model**, giving teams more control over how licenses are used across projects.
 
@@ -48,7 +48,7 @@ MUI X Pro and Premium are moving to an **application-based licensing model**, g
 - You can now choose between **single-application** and **multi-application** licenses.
 - The Enterprise plan is always multi-application and starts at a minimum of 15 seats.
 
-## Support Updates
+## Support updates
 
 Alongside pricing changes, we're updating how support is structured:
 
@@ -57,11 +57,11 @@ Alongside pricing changes, we're updating how support is structured:
 - MUI X Premium will be self-service for purchases up to 15 seats. Purchase orders or email-based requests will only be accepted starting at 15 seats of MUI X Premium.
 - All other purchases must be completed directly on our website.
 
-## Pricing Breakdown
+## Pricing breakdown
 
 For a detailed overview of the new pricing structure, please visit [the updated pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/).
 
-## What's Next
+## What's next
 
 We'll be sharing exciting roadmap updates for **MUI X v9**, including version alignment between Material UI and MUI X, on our blog in the coming months.
 
