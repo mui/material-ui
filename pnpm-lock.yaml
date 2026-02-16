@@ -11,9 +11,9 @@ overrides:
   '@babel/preset-react': ^7.28.5
   '@babel/preset-typescript': ^7.28.5
   '@babel/runtime': ^7.28.6
-  '@definitelytyped/header-parser': ^0.2.20
-  '@definitelytyped/typescript-versions': ^0.1.9
-  '@definitelytyped/utils': ^0.1.8
+  '@definitelytyped/header-parser': ^0.2.23
+  '@definitelytyped/typescript-versions': ^0.1.10
+  '@definitelytyped/utils': ^0.1.11
   '@types/node': 20.19.30
   cross-fetch: ^4.1.0
   '@pigment-css/react': 0.0.30
@@ -11415,6 +11415,7 @@ packages:
   tar@7.5.7:
     resolution: {integrity: sha512-fov56fJiRuThVFXD6o6/Q354S7pnWMJIVlDBYijsTNx6jKSE4pvrDTs6lUnmGvNyfJwFQQwWy3owKz1ucIhveQ==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   temp-dir@1.0.0:
     resolution: {integrity: sha512-xZFXEGbG7SNC3itwBzI3RYjq/cEhBkx2hJuKGIUOcEULmkQExXiHat2z/qkISYsuR+IKumhEfKKbV5qXmhICFQ==}
