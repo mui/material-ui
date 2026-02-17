@@ -1,5 +1,29 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-alpha.0
+
+<!-- generated comparing v7.3.8..master -->
+
+_Feb 17, 2026_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### @mui/material@9.0.0-alpha.0
+
+- [theme] Generate `color-mix` value on top of default generated Material UI CSS variables (#47767) @ZeeshanTamboli
+
+### Docs
+
+- [docs] Make tooltips describe their visible text triggers (#47658) @silviuaavram
+- [docs][theme] Fix `nativeColor` docs (#47759) @ZeeshanTamboli
+
+### Core
+
+- [blog] A pattern for opt-in type-only breaking changes in minor versions (#47622) @bernardobelchior
+- [internal] Prepare libraries for first v9 alpha release (#47756) @silviuaavram
+
+All contributors of this release in alphabetical order: @bernardobelchior, @silviuaavram, @ZeeshanTamboli
+
 ## 7.3.8
 
 <!-- generated comparing v7.3.7..master -->
