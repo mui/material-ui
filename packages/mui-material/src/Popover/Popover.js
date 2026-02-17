@@ -8,7 +8,7 @@ import refType from '@mui/utils/refType';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
-import isHostComponent from '../utils/isHostComponent';
+import isHostComponent from '@mui/utils/isHostComponent';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
@@ -167,7 +167,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const box = anchorElement.getBoundingClientRect();
 
       if (
-        process.env.NODE_ENV !== 'test' &&
+        !globalThis.MUI_TEST_ENV &&
         box.top === 0 &&
         box.left === 0 &&
         box.right === 0 &&
@@ -480,7 +480,8 @@ Popover.propTypes /* remove-proptypes */ = {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
-          process.env.NODE_ENV !== 'test' &&
+          process.env.NODE_ENV !== 'production' &&
+          !globalThis.MUI_TEST_ENV &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&
@@ -611,7 +612,7 @@ Popover.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    *
-   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.paper` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.paper` instead.
    *
    * @default {}

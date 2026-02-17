@@ -1,4 +1,3 @@
-import * as React from 'react';
 import MuiLink from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';

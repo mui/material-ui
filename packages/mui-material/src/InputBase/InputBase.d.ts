@@ -11,23 +11,22 @@ export interface InputBasePropsColorOverrides {}
 
 export interface InputBaseComponentsPropsOverrides {}
 
-export interface InputBaseProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    /*
-     * `onBlur`, `onChange`, `onFocus`, `onInvalid`, `onKeyDown`, `onKeyUp` are applied to the inner `InputComponent`,
-     * which by default is an input or textarea. Since these handlers differ from the
-     * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
-     */
-    | 'children'
-    | 'defaultValue'
-    | 'onBlur'
-    | 'onChange'
-    | 'onFocus'
-    | 'onInvalid'
-    | 'onKeyDown'
-    | 'onKeyUp'
-  > {
+export interface InputBaseProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  /*
+   * `onBlur`, `onChange`, `onFocus`, `onInvalid`, `onKeyDown`, `onKeyUp` are applied to the inner `InputComponent`,
+   * which by default is an input or textarea. Since these handlers differ from the
+   * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
+   */
+  | 'children'
+  | 'defaultValue'
+  | 'onBlur'
+  | 'onChange'
+  | 'onFocus'
+  | 'onInvalid'
+  | 'onKeyDown'
+  | 'onKeyUp'
+> {
   'aria-describedby'?: string;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
@@ -242,8 +241,9 @@ export interface InputBaseProps
   value?: unknown;
 }
 
-export interface InputBaseComponentProps
-  extends React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+export interface InputBaseComponentProps extends React.HTMLAttributes<
+  HTMLInputElement | HTMLTextAreaElement
+> {
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
@@ -255,10 +255,10 @@ export interface InputBaseComponentProps
  *
  * Demos:
  *
- * - [Text Field](https://mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputBase API](https://mui.com/material-ui/api/input-base/)
+ * - [InputBase API](https://next.mui.com/material-ui/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): React.JSX.Element;

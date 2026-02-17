@@ -50,5 +50,4 @@ export type AutocompleteOptionProps<
   },
 > = OverrideProps<AutocompleteOptionTypeMap<P, D>, D>;
 
-export interface AutocompleteOptionOwnerState
-  extends ApplyColorInversion<AutocompleteOptionProps> {}
+export interface AutocompleteOptionOwnerState extends ApplyColorInversion<AutocompleteOptionProps> {}

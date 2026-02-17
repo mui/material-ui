@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
 import describeConformance from '../../test/describeConformance';
 
@@ -9,7 +8,7 @@ describe('<SvgIcon />', () => {
 
   let path;
 
-  before(() => {
+  beforeAll(() => {
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
   });
 
@@ -39,9 +38,9 @@ describe('<SvgIcon />', () => {
   );
 
   it('renders children by default', () => {
-    const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
+    const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
-    expect(queryByTestId('test-path')).not.to.equal(null);
+    expect(screen.queryByTestId('test-path')).not.to.equal(null);
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
@@ -62,13 +61,13 @@ describe('<SvgIcon />', () => {
 
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
-      const { container, queryByText } = render(
+      const { container } = render(
         <SvgIcon title="Go to link" titleAccess="Network">
           {path}
         </SvgIcon>,
       );
 
-      expect(queryByText('Network')).not.to.equal(null);
+      expect(screen.queryByText('Network')).not.to.equal(null);
       expect(container.firstChild).not.to.have.attribute('aria-hidden');
     });
   });
@@ -138,19 +137,15 @@ describe('<SvgIcon />', () => {
     });
   });
 
-  it('should not override internal ownerState with the ownerState passed to the icon', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+  it.skipIf(isJsdom())(
+    'should not override internal ownerState with the ownerState passed to the icon',
+    function test() {
+      const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
+      expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
+    },
+  );
 
-    const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
-    expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
-  });
-
-  it('should have `fill="currentColor"`', function test() {
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+  it.skipIf(!isJsdom())('should have `fill="currentColor"`', function test() {
     const { container } = render(
       <SvgIcon>
         <path />
@@ -160,10 +155,7 @@ describe('<SvgIcon />', () => {
     expect(container.firstChild).toHaveComputedStyle({ fill: 'currentColor' });
   });
 
-  it('should not add `fill` if svg is a direct child', function test() {
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+  it.skipIf(!isJsdom())('should not add `fill` if svg is a direct child', function test() {
     const { container } = render(
       <SvgIcon>
         <svg>

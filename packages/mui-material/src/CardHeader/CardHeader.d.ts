@@ -58,27 +58,27 @@ export type CardHeaderSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     root: SlotProps<'div', CardHeaderRootSlotPropsOverrides, CardHeaderOwnerState>;
     /**
      * Props forwarded to the avatar slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     avatar: SlotProps<'div', CardHeaderAvatarSlotPropsOverrides, CardHeaderOwnerState>;
     /**
      * Props forwarded to the action slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     action: SlotProps<'div', CardHeaderActionSlotPropsOverrides, CardHeaderOwnerState>;
     /**
      * Props forwarded to the content slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     content: SlotProps<'div', CardHeaderContentSlotPropsOverrides, CardHeaderOwnerState>;
     /**
      * Props forwarded to the title slot (as long as disableTypography is not `true`).
-     * By default, the avaible props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component.
+     * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component.
      */
     title: SlotProps<
       React.ElementType<TypographyProps>,
@@ -87,7 +87,7 @@ export type CardHeaderSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the subheader slot (as long as disableTypography is not `true`).
-     * By default, the avaible props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component.
+     * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component.
      */
     subheader: SlotProps<
       React.ElementType<TypographyProps>,
@@ -174,11 +174,11 @@ export interface CardHeaderTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://next.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardHeader API](https://mui.com/material-ui/api/card-header/)
+ * - [CardHeader API](https://next.mui.com/material-ui/api/card-header/)
  */
 declare const CardHeader: OverridableCardHeader;
 

@@ -4,8 +4,10 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { ImageListItemBarClasses } from './imageListItemBarClasses';
 
-export interface ImageListItemBarProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface ImageListItemBarProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  'title'
+> {
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the item itself).
@@ -43,10 +45,10 @@ export interface ImageListItemBarProps
  *
  * Demos:
  *
- * - [Image List](https://mui.com/material-ui/react-image-list/)
+ * - [Image List](https://next.mui.com/material-ui/react-image-list/)
  *
  * API:
  *
- * - [ImageListItemBar API](https://mui.com/material-ui/api/image-list-item-bar/)
+ * - [ImageListItemBar API](https://next.mui.com/material-ui/api/image-list-item-bar/)
  */
 export default function ImageListItemBar(props: ImageListItemBarProps): React.JSX.Element;

@@ -7,6 +7,10 @@ import { Tab as TabBase } from '@mui/base/Tab';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 import { HighlightedCode } from '../HighlightedCode';
 
+const PACKAGE_MANAGER_ORDER = new Map(
+  ['npm', 'pnpm', 'yarn'].map((manager, index) => [manager, index]),
+);
+
 export const CodeTabList = styled(TabsListBase)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ theme }) => ({
@@ -294,7 +298,16 @@ export function HighlightedCodeWithTabs(
   } & Record<string, any>,
 ) {
   const { tabs, storageKey } = props;
-  const availableTabs = React.useMemo(() => tabs.map(({ tab }) => tab), [tabs]);
+  const availableTabs = React.useMemo(() => {
+    const result = tabs.map(({ tab }) => tab);
+    if (storageKey === 'package-manager') {
+      result.sort(
+        (a, b) =>
+          (PACKAGE_MANAGER_ORDER.get(a) ?? Infinity) - (PACKAGE_MANAGER_ORDER.get(b) ?? Infinity),
+      );
+    }
+    return result;
+  }, [storageKey, tabs]);
   const [activeTab, setActiveTab] = useLocalStorageState(storageKey ?? null, availableTabs[0]);
   // During hydration, activeTab is null, default to first value.
   const defaultizedActiveTab = activeTab ?? availableTabs[0];

@@ -2,9 +2,8 @@
 productId: joy-ui
 title: React Checkbox component
 components: Checkbox
-githubLabel: 'component: checkbox'
+githubLabel: 'scope: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
-unstyled: https://base-ui.com/react/components/checkbox
 ---
 
 # Checkbox
@@ -107,7 +106,7 @@ To set the focus outline so that it only wraps the input, target the `checkboxCl
 ### Clickable container
 
 Use the `overlay` prop to shift the focus outline from the Checkbox to its container, making the entire container clickable to toggle the state of the Checkbox.
-This works with any wrapper element with [positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/position#types_of_positioning)—the demo below uses [Sheet](/joy-ui/react-sheet/) (by default, it has `relative` position):
+This works with any wrapper element with [positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position#types_of_positioning)—the demo below uses [Sheet](/joy-ui/react-sheet/) (by default, it has `relative` position):
 
 {{"demo": "OverlayCheckbox.js"}}
 

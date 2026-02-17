@@ -119,6 +119,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     onChange,
     onClose,
     onFocus,
+    // eslint-disable-next-line react/prop-types
+    onKeyDown,
+    // eslint-disable-next-line react/prop-types
+    onMouseDown,
     onOpen,
     open: openProp,
     readOnly,
@@ -149,6 +153,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
+
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -172,6 +177,28 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }),
     [value],
   );
+
+  const open = displayNode !== null && openState;
+
+  React.useEffect(() => {
+    if (!open || !anchorElement || autoWidth) {
+      return undefined;
+    }
+
+    if (typeof ResizeObserver === 'undefined') {
+      return undefined;
+    }
+
+    const observer = new ResizeObserver(() => {
+      setMenuMinWidthState(anchorElement.clientWidth);
+    });
+
+    observer.observe(anchorElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [open, anchorElement, autoWidth]);
 
   // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
@@ -209,8 +236,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = (open, event) => {
-    if (open) {
+  const update = (openParam, event) => {
+    if (openParam) {
       if (onOpen) {
         onOpen(event);
       }
@@ -220,11 +247,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (!isOpenControlled) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
-      setOpenState(open);
+      setOpenState(openParam);
     }
   };
 
   const handleMouseDown = (event) => {
+    onMouseDown?.(event);
     // Ignore everything but left-click
     if (event.button !== 0) {
       return;
@@ -320,10 +348,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         event.preventDefault();
         update(true, event);
       }
+      onKeyDown?.(event);
     }
   };
-
-  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -484,7 +511,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const paperProps = {
     ...MenuProps.PaperProps,
-    ...MenuProps.slotProps?.paper,
+    ...(typeof MenuProps.slotProps?.paper === 'function'
+      ? MenuProps.slotProps.paper(ownerState)
+      : MenuProps.slotProps?.paper),
+  };
+
+  const listProps = {
+    ...MenuProps.MenuListProps,
+    ...(typeof MenuProps.slotProps?.list === 'function'
+      ? MenuProps.slotProps.list(ownerState)
+      : MenuProps.slotProps?.list),
   };
 
   const listboxId = useId();
@@ -563,7 +599,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             'aria-multiselectable': multiple ? 'true' : undefined,
             disableListWrap: true,
             id: listboxId,
-            ...MenuProps.MenuListProps,
+            ...listProps,
           },
           paper: {
             ...paperProps,

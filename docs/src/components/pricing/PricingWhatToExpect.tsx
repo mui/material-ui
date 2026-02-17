@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -8,6 +7,7 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import PriceChangeIcon from '@mui/icons-material/PriceChange';
 import Section from 'docs/src/layouts/Section';
 import { Link } from '@mui/docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -182,6 +182,22 @@ export default function PricingWhatToExpect() {
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             Have a team of 25 or more developers? Get in touch with our{' '}
             <Link href="mailto:sales@mui.com">sales team</Link> for a volume discount.
+          </Typography>
+        </Paper>
+        <Paper variant="outlined" sx={{ p: 2, height: 'fit-content' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+            <PriceChangeIcon fontSize="small" color="primary" />
+            <Typography
+              component="h3"
+              variant="body2"
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
+            >
+              Price increases
+            </Typography>
+          </Box>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            To continue providing the best service, MUI may implement an annual price increase of up
+            to 7% at the time of renewal.
           </Typography>
         </Paper>
       </Box>

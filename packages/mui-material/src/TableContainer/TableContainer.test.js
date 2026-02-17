@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import TableContainer, { tableContainerClasses as classes } from '@mui/material/TableContainer';
 import describeConformance from '../../test/describeConformance';

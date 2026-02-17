@@ -375,7 +375,7 @@ export default function createCssVarsProvider(options) {
     modeStorageKey: PropTypes.string,
     /**
      * If `true`, the mode will be the same value as the storage without an extra rerendering after the hydration.
-     * You should use this option in conjuction with `InitColorSchemeScript` component.
+     * You should use this option in conjunction with `InitColorSchemeScript` component.
      */
     noSsr: PropTypes.bool,
     /**

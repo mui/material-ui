@@ -47,7 +47,7 @@ export default function useLazyCSS(href: string, before: string, options: { laye
       })
       .catch((error) => {
         // Ignore abort errors, log others
-        if (error.name !== 'AbortError') {
+        if (error !== 'useEffect' && error.name !== 'AbortError') {
           if (process.env.NODE_ENV !== 'production') {
             console.error('Error loading CSS with layer:', error);
           }
@@ -60,7 +60,7 @@ export default function useLazyCSS(href: string, before: string, options: { laye
     // Cleanup function
     return () => {
       // Cancel any pending fetch
-      abortController.abort();
+      abortController.abort('useEffect');
 
       // Remove the style element if it was created
       if (styleElement && styleElement.parentElement) {

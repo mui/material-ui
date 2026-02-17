@@ -20,7 +20,10 @@
     "onChange": {
       "description": "Callback fired when a radio button is selected.",
       "typeDescriptions": {
-        "event": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        }
       }
     },
     "orientation": { "description": "The component orientation." },

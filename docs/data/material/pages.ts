@@ -10,6 +10,8 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
+      { pathname: '/material-ui/getting-started/mcp', newFeature: true, title: 'MCP' },
+      { pathname: '/material-ui/llms.txt', newFeature: true, title: 'llms.txt' },
       { pathname: '/material-ui/getting-started/example-projects' },
       { pathname: '/material-ui/getting-started/templates' },
       { pathname: '/material-ui/getting-started/learn' },
@@ -37,6 +39,7 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/react-floating-action-button',
             title: 'Floating Action Button',
           },
+          { pathname: '/material-ui/react-number-field', title: 'Number Field', newFeature: true },
           { pathname: '/material-ui/react-radio-button', title: 'Radio Group' },
           { pathname: '/material-ui/react-rating' },
           { pathname: '/material-ui/react-select' },
@@ -149,22 +152,6 @@ const pages: MuiPage[] = [
         ],
       },
       {
-        pathname: '/toolpad', // the pathname does not matter here because the links to Toolpad are outbound.
-        subheader: 'Toolpad Core',
-        children: [
-          {
-            pathname: '/toolpad/core/react-dashboard-layout/',
-            title: 'Dashboard Layout',
-            newFeature: true,
-          },
-          {
-            pathname: '/toolpad/core/react-sign-in-page/',
-            title: 'Sign-in Page',
-            newFeature: true,
-          },
-        ],
-      },
-      {
         pathname: '/material-ui',
         subheader: 'lab',
         children: [
@@ -209,6 +196,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/palette' },
           { pathname: '/material-ui/customization/typography' },
           { pathname: '/material-ui/customization/spacing' },
+          { pathname: '/material-ui/customization/shape' },
           { pathname: '/material-ui/customization/breakpoints' },
           {
             pathname: '/material-ui/customization/container-queries',
@@ -230,8 +218,24 @@ const pages: MuiPage[] = [
             title: 'Basic usage',
           },
           {
+            pathname: '/material-ui/customization/css-theme-variables/native-color',
+            title: 'Native color',
+          },
+          {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
             title: 'Advanced configuration',
+          },
+        ],
+      },
+      {
+        pathname: '/material-ui/customization/styles',
+        subheader: '/material-ui/customization/styles',
+        title: 'Styles',
+        children: [
+          {
+            pathname: '/material-ui/customization/css-layers',
+            title: 'Cascade layers',
+            newFeature: true,
           },
         ],
       },
@@ -241,6 +245,7 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/guides',
     title: 'How-to guides',
     children: [
+      { pathname: '/material-ui/guides/building-extensible-themes' },
       { pathname: '/material-ui/guides/minimizing-bundle-size' },
       { pathname: '/material-ui/guides/server-rendering' },
       { pathname: '/material-ui/guides/responsive-ui', title: 'Responsive UI' },
@@ -305,12 +310,26 @@ const pages: MuiPage[] = [
         title: 'Migration from @material-ui/pickers',
       },
       {
+        pathname: '/material-ui/migration/v9',
+        subheader: 'Upgrade to v9',
+        children: [
+          {
+            pathname: '/material-ui/migration/upgrade-to-v9',
+            title: 'Upgrade to v9: getting started',
+          },
+        ],
+      },
+      {
         pathname: '/material-ui/migration/v7',
         subheader: 'Upgrade to v7',
         children: [
           {
             pathname: '/material-ui/migration/upgrade-to-v7',
             title: 'Upgrade to v7: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/upgrade-to-native-color',
+            title: 'Native color',
           },
         ],
       },
@@ -390,7 +409,7 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/design-resources/material-ui-sync',
         title: 'Figma Sync plugin',
-        unstable: true,
+        deprecated: true,
       },
     ],
   },

@@ -43,12 +43,12 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     root: SlotProps<'div', SnackbarRootSlotPropsOverrides, SnackbarOwnerState>;
     /**
      * Props forwarded to the content slot.
-     * By default, the avaible props are based on the [SnackbarContent](https://mui.com/material-ui/api/snackbar-content/#props) component.
+     * By default, the available props are based on the [SnackbarContent](https://mui.com/material-ui/api/snackbar-content/#props) component.
      */
     content: SlotProps<
       React.ElementType<SnackbarContentProps>,
@@ -57,7 +57,7 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the clickAwayListener slot.
-     * By default, the avaible props are based on the [ClickAwayListener](https://mui.com/material-ui/api/click-away-listener/#props) component.
+     * By default, the available props are based on the [ClickAwayListener](https://mui.com/material-ui/api/click-away-listener/#props) component.
      */
     clickAwayListener: SlotComponentProps<
       typeof ClickAwayListener,
@@ -84,7 +84,8 @@ export interface SnackbarOrigin {
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
 export interface SnackbarProps
-  extends Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>>, 'slots' | 'slotProps'>,
+  extends
+    Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>>, 'slots' | 'slotProps'>,
     SnackbarSlotsAndSlotProps {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
@@ -196,11 +197,11 @@ export interface SnackbarProps
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://next.mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
+ * - [Snackbar API](https://next.mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
 

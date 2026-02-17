@@ -15,14 +15,16 @@ import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
+import DemoContext from 'docs/src/modules/components/DemoContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
@@ -33,6 +35,8 @@ import SvgMuiLogomark, {
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
 import * as config from '../config';
+
+export { fontClasses } from '@mui/docs/nextFonts';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -139,6 +143,75 @@ Tip: you can access the documentation \`theme\` object directly in the console.
     'font-family:monospace;color:#1976d2;font-size:12px;',
   );
 }
+/**
+ * Joy UI iframe wrapper for demos.
+ * Creates a Joy theme and syncs color scheme attribute.
+ */
+function JoyIframeWrapper({ children, document: iframeDocument, isolated }) {
+  const { mode, systemMode } = useJoyColorScheme();
+
+  const iframeTheme = React.useMemo(() => {
+    if (isolated) {
+      return null;
+    }
+    return extendTheme();
+  }, [isolated]);
+
+  // Joy-specific: sync color scheme attribute
+  React.useEffect(() => {
+    if (!isolated && iframeDocument) {
+      iframeDocument.documentElement.setAttribute('data-joy-color-scheme', systemMode || mode);
+    }
+  }, [iframeDocument, mode, systemMode, isolated]);
+
+  return (
+    <React.Fragment>
+      {iframeTheme && <GlobalStyles styles={iframeTheme.generateStyleSheets?.()} />}
+      {children}
+    </React.Fragment>
+  );
+}
+
+/**
+ * Generates root index template for Material UI demos.
+ */
+function getMaterialRootIndex(codeVariant) {
+  const type = codeVariant === 'TS' ? '!' : '';
+  return `import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider } from '@mui/material/styles';
+import Demo from './Demo';
+
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <Demo />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`;
+}
+
+/**
+ * Generates root index template for Joy UI demos.
+ */
+function getJoyRootIndex(codeVariant) {
+  const type = codeVariant === 'TS' ? '!' : '';
+  return `import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
+import Demo from './Demo';
+
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <CssVarsProvider>
+        <Demo />
+      </CssVarsProvider>
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`;
+}
+
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
@@ -171,6 +244,10 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'v7',
+            href: `https://v7.mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
           {
             text: 'v6',
             href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
@@ -211,6 +288,7 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v7', href: `https://v7.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
@@ -298,20 +376,43 @@ function AppWrapper(props) {
     };
   }, [productId, productCategoryId, productIdentifier, router.pathname]);
 
-  let fonts = [];
-  if (pathnameToLanguage(router.asPath).canonicalAs.match(/onepirate/)) {
-    fonts = [
-      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Work+Sans:wght@300;400&display=swap',
-    ];
-  }
+  // Demo context value - provides product-specific configuration for demos
+  const demoContextValue = React.useMemo(() => {
+    if (productId === 'joy-ui') {
+      return {
+        productDisplayName: 'Joy UI',
+        IframeWrapper: JoyIframeWrapper,
+        csb: {
+          primaryPackage: '@mui/joy',
+          getRootIndex: getJoyRootIndex,
+        },
+      };
+    }
+
+    // Determine display name based on productId
+    let productDisplayName = 'Material UI';
+    if (productId === 'system') {
+      productDisplayName = 'MUI System';
+    } else if (productId?.startsWith('x-')) {
+      productDisplayName = 'MUI X';
+    }
+
+    // Default: Material UI (and MUI X, System, etc.)
+    return {
+      productDisplayName,
+      // IframeWrapper: undefined means use default MaterialIframeWrapper
+      csb: {
+        primaryPackage: '@mui/material',
+        fallbackDependency: { name: '@mui/material', version: 'latest' },
+        getRootIndex: getMaterialRootIndex,
+      },
+    };
+  }, [productId]);
 
   return (
     <React.Fragment>
       <NextHead>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        {fonts.map((font) => (
-          <link rel="stylesheet" href={font} key={font} />
-        ))}
         <meta name="mui:productId" content={productId} />
         <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
@@ -324,12 +425,14 @@ function AppWrapper(props) {
         <CodeCopyProvider>
           <CodeVariantProvider>
             <PageContext.Provider value={pageContextValue}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  {children}
-                  <GoogleAnalytics />
-                </DocsStyledEngineProvider>
-              </ThemeProvider>
+              <DemoContext.Provider value={demoContextValue}>
+                <ThemeProvider>
+                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                    {children}
+                    <GoogleAnalytics />
+                  </DocsStyledEngineProvider>
+                </ThemeProvider>
+              </DemoContext.Provider>
             </PageContext.Provider>
           </CodeVariantProvider>
         </CodeCopyProvider>

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import throttle from 'lodash/throttle';
+import { throttle } from 'es-toolkit/function';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
@@ -301,7 +301,6 @@ export default function AppTableOfContents(props) {
               variant="caption"
               sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}
             </Typography>
           </Link>

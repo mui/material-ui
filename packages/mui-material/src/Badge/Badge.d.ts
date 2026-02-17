@@ -29,12 +29,12 @@ export type BadgeSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<'span', BadgeRootSlotPropsOverrides, BadgeOwnerState>;
     /**
      * Props forwarded to the label slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     badge: SlotProps<'span', BadgeBadgeSlotPropsOverrides, BadgeOwnerState>;
   }
@@ -166,12 +166,12 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
  *
  * Demos:
  *
- * - [Avatar](https://mui.com/material-ui/react-avatar/)
- * - [Badge](https://mui.com/material-ui/react-badge/)
+ * - [Avatar](https://next.mui.com/material-ui/react-avatar/)
+ * - [Badge](https://next.mui.com/material-ui/react-badge/)
  *
  * API:
  *
- * - [Badge API](https://mui.com/material-ui/api/badge/)
+ * - [Badge API](https://next.mui.com/material-ui/api/badge/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

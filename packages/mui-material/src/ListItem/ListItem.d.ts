@@ -3,8 +3,11 @@ import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
+import { SlotProps } from '../utils/types';
 
 export interface ListItemComponentsPropsOverrides {}
+
+export interface ListItemSecondaryActionSlotPropsOverrides {}
 
 /**
  * This type is kept for compatibility. Use `ListItemOwnProps` instead.
@@ -67,6 +70,8 @@ export interface ListItemBaseProps {
   sx?: SxProps<Theme>;
 }
 
+export interface ListItemOwnerState extends Omit<ListItemProps, 'slots' | 'slotProps'> {}
+
 export interface ListItemOwnProps extends ListItemBaseProps {
   /**
    * The components used for each slot inside.
@@ -95,6 +100,11 @@ export interface ListItemOwnProps extends ListItemBaseProps {
    */
   slotProps?: {
     root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
+    secondaryAction?: SlotProps<
+      React.ElementType<React.HTMLAttributes<HTMLDivElement>>,
+      ListItemSecondaryActionSlotPropsOverrides,
+      ListItemOwnerState
+    >;
   };
   /**
    * The components used for each slot inside.
@@ -103,6 +113,7 @@ export interface ListItemOwnProps extends ListItemBaseProps {
    */
   slots?: {
     root?: React.ElementType;
+    secondaryAction?: React.ElementType;
   };
 }
 
@@ -116,12 +127,12 @@ export interface ListItemTypeMap<AdditionalProps, RootComponent extends React.El
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
- * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [ListItem API](https://mui.com/material-ui/api/list-item/)
+ * - [ListItem API](https://next.mui.com/material-ui/api/list-item/)
  */
 declare const ListItem: OverridableComponent<ListItemTypeMap<{}, 'li'>>;
 

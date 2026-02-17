@@ -1,14 +1,22 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
+import {
+  alpha as systemAlpha,
+  lighten as systemLighten,
+  darken as systemDarken,
+} from '@mui/system/colorManipulator';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
 
 const lightPalette = createPalette({ mode: 'light' });
 const darkPalette = createPalette({ mode: 'dark' });
+
+const isJSDOM = isJsdom();
 
 describe('createTheme', () => {
   const { render } = createRenderer();
@@ -165,7 +173,7 @@ describe('createTheme', () => {
   });
 
   describe('CSS variables', () => {
-    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided ', () => {
+    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
       const theme = createTheme({
         cssVariables: true,
         colorSchemes: { dark: true },
@@ -207,8 +215,8 @@ describe('createTheme', () => {
         cssVariables: true,
         colorSchemes: { dark: true },
       });
-      expect(theme.colorSchemes.light).to.not.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.light).not.to.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should not have light if default color scheme is set to dark', () => {
@@ -218,7 +226,7 @@ describe('createTheme', () => {
         defaultColorScheme: 'dark',
       });
       expect(theme.colorSchemes.light).to.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should be able to customize tonal offset', () => {
@@ -470,32 +478,29 @@ describe('createTheme', () => {
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
 
-  it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+  it.skipIf(isJSDOM)(
+    'should apply the correct borderRadius styles via sx prop if theme values are 0',
+    function test() {
+      const theme = createTheme({
+        shape: {
+          borderRadius: 0,
+        },
+      });
 
-    if (isJSDOM) {
-      this.skip();
-    }
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
+        </ThemeProvider>,
+      );
 
-    const theme = createTheme({
-      shape: {
-        borderRadius: 0,
-      },
-    });
-
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
-      </ThemeProvider>,
-    );
-
-    expect(container.firstChild).toHaveComputedStyle({
-      borderTopLeftRadius: '0px',
-      borderBottomLeftRadius: '0px',
-      borderTopRightRadius: '0px',
-      borderBottomRightRadius: '0px',
-    });
-  });
+      expect(container.firstChild).toHaveComputedStyle({
+        borderTopLeftRadius: '0px',
+        borderBottomLeftRadius: '0px',
+        borderTopRightRadius: '0px',
+        borderBottomRightRadius: '0px',
+      });
+    },
+  );
 
   it('should apply dark styles when using applyStyles if mode="dark"', function test() {
     const darkTheme = createTheme({
@@ -559,7 +564,7 @@ describe('createTheme', () => {
     } catch (error) {
       expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
+          'Please use another name or follow the [docs](https://next.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
   });
@@ -640,4 +645,181 @@ describe('createTheme', () => {
     const themeCssVars = createTheme({ cssVariables: true });
     expect(typeof themeCssVars.toRuntimeSource).to.equal('function');
   });
+
+  describe('color manipulators', () => {
+    it('should have the color manipulators', () => {
+      const theme = createTheme();
+      expect(typeof theme.alpha).to.equal('function');
+      expect(typeof theme.lighten).to.equal('function');
+      expect(typeof theme.darken).to.equal('function');
+    });
+
+    it('should have the color manipulators with CSS variables', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(typeof theme.alpha).to.equal('function');
+      expect(typeof theme.lighten).to.equal('function');
+      expect(typeof theme.darken).to.equal('function');
+    });
+
+    it('[default] should use system color manipulators', () => {
+      const theme = createTheme();
+      expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
+        systemAlpha(theme.palette.primary.main, 0.5),
+      );
+      expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
+        systemLighten(theme.palette.primary.main, 0.5),
+      );
+      expect(theme.darken(theme.palette.primary.main, 0.5)).to.equal(
+        systemDarken(theme.palette.primary.main, 0.5),
+      );
+    });
+
+    it('[default] `alpha()` should work with coefficient as string', () => {
+      const theme = createTheme();
+      expect(theme.alpha(theme.palette.primary.main, '0.3+0.2')).to.equal(
+        systemAlpha(theme.palette.primary.main, 0.5),
+      );
+    });
+
+    it('[CSS variables] `alpha()` should work with string and number coefficient', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / 0.5)',
+      );
+      expect(theme.alpha(theme.vars.palette.primary.main, '0.5 + 0.3')).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / calc(0.5 + 0.3))',
+      );
+      expect(
+        theme.alpha(
+          theme.vars.palette.primary.main,
+          `${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}`,
+        ),
+      ).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / calc(var(--mui-palette-action-selectedOpacity, 0.08) + var(--mui-palette-action-hoverOpacity, 0.04)))',
+      );
+    });
+
+    it('[CSS variables] `alpha()` should work with fallbacks', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha('var(--mui-palette-text-primary, rgba(0 0 0 / 0.87))', 0.5)).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
+      );
+      expect(theme.alpha('var(--mui-palette-text-primary, var(--foo))', 0.5)).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
+      );
+      expect(
+        theme.alpha('var(--mui-palette-text-primary, var(--foo, hsl(0 0 0 / 100%)))', 0.5),
+      ).to.equal('rgba(var(--mui-palette-text-primaryChannel) / 0.5)');
+    });
+
+    it('[color space with CSS variables] should use CSS for manipulating colors', () => {
+      const theme = createTheme({
+        cssVariables: {
+          nativeColor: true,
+        },
+        palette: {
+          primary: {
+            main: 'oklch(0.65 0.3 28.95)',
+          },
+        },
+      });
+
+      expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
+        'oklch(from oklch(0.65 0.3 28.95) l c h / 0.5)',
+      );
+      expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
+        'color-mix(in oklch, oklch(0.65 0.3 28.95), #fff 50%)',
+      );
+      expect(theme.darken(theme.palette.primary.main, 0.5)).to.equal(
+        'color-mix(in oklch, oklch(0.65 0.3 28.95), #000 50%)',
+      );
+    });
+
+    it('[color space with CSS variables] should use CSS for manipulating vars', () => {
+      const theme = createTheme({
+        cssVariables: {
+          nativeColor: true,
+        },
+        palette: {
+          primary: {
+            main: 'oklch(0.65 0.3 28.95)',
+          },
+        },
+      });
+
+      expect(theme.alpha(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'oklch(from var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)) l c h / 0.3)',
+      );
+      expect(theme.lighten(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'color-mix(in oklch, var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #fff 30%)',
+      );
+      expect(theme.darken(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'color-mix(in oklch, var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #000 30%)',
+      );
+    });
+
+    it('mixing color space', () => {
+      const theme = createTheme({
+        cssVariables: {
+          nativeColor: true,
+        },
+        palette: {
+          primary: {
+            main: 'oklch(0.65 0.3 28.95)',
+          },
+          secondary: {
+            main: 'hsl(0 0% 100%)',
+          },
+        },
+      });
+
+      expect(theme.alpha(theme.palette.secondary.main, 0.2)).to.equal(
+        'oklch(from hsl(0 0% 100%) l c h / 0.2)',
+      );
+      expect(theme.lighten(theme.palette.secondary.main, 0.2)).to.equal(
+        'color-mix(in oklch, hsl(0 0% 100%), #fff 20%)',
+      );
+      expect(theme.darken(theme.palette.secondary.main, 0.2)).to.equal(
+        'color-mix(in oklch, hsl(0 0% 100%), #000 20%)',
+      );
+    });
+  });
+
+  // Skip WebKit and firefox because they have a slightly different value
+  it.skipIf(isJSDOM || !/chrome/.test(window.navigator.userAgent))(
+    'should build color-mix() on top of generated Material UI CSS variables',
+    () => {
+      function App() {
+        const theme = createTheme({
+          cssVariables: {
+            nativeColor: true,
+          },
+        });
+
+        return (
+          <ThemeProvider theme={theme}>
+            {/* This is just to replicate the global CSS file */}
+            <GlobalStyles
+              styles={{
+                ':root': {
+                  '--mui-palette-info-main': '#d3b613 !important', // !important is to take precedence over the default one. This is just for test, in real world case global CSS file should be used.
+                  '--mui-palette-info-light': '#dfc21f !important',
+                },
+              }}
+            />
+
+            <Alert variant="standard" severity="info" data-testid="alert">
+              Alert
+            </Alert>
+          </ThemeProvider>
+        );
+      }
+
+      render(<App />);
+
+      expect(screen.getByTestId('alert')).toHaveComputedStyle({
+        backgroundColor: 'oklch(0.981465 0.01628 97.7526)', // browser converts color-mix to oklch in window.getComputedStyle()
+      });
+    },
+  );
 });

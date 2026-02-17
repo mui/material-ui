@@ -29,22 +29,20 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on div element.
+     * By default, the available props are based on div element.
      */
     root: SlotComponentProps<'div', React.HTMLAttributes<HTMLDivElement>, SpeedDialOwnerState>;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
+     * By default, the available props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
      */
     transition: SlotComponentProps<React.ElementType, TransitionProps, SpeedDialOwnerState>;
   }
 >;
 
 export interface SpeedDialProps
-  extends Omit<
-      StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-      'slots' | 'slotProps'
-    >,
+  extends
+    Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'>, 'slots' | 'slotProps'>,
     SpeedDialSlotsAndSlotProps {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
@@ -135,10 +133,10 @@ export interface SpeedDialOwnerState extends SpeedDialProps {}
  *
  * Demos:
  *
- * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://next.mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
+ * - [SpeedDial API](https://next.mui.com/material-ui/api/speed-dial/)
  */
 export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;

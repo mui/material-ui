@@ -33,7 +33,7 @@ export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     root: SlotProps<
       React.ElementType<SwitchBaseProps>,
@@ -42,14 +42,15 @@ export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the input slot.
-     * By default, the avaible props are based on the input element.
+     * By default, the available props are based on the input element.
      */
     input: SlotProps<'input', CheckboxInputSlotPropsOverrides, CheckboxOwnerState>;
   }
 >;
 
 export interface CheckboxProps
-  extends StandardProps<
+  extends
+    StandardProps<
       SwitchBaseProps,
       'checkedIcon' | 'color' | 'icon' | 'type' | 'slots' | 'slotProps'
     >,
@@ -144,12 +145,12 @@ export interface CheckboxOwnerState extends Omit<CheckboxProps, 'slots' | 'slotP
  *
  * Demos:
  *
- * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
+ * - [Checkbox](https://next.mui.com/material-ui/react-checkbox/)
+ * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [Checkbox API](https://mui.com/material-ui/api/checkbox/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [Checkbox API](https://next.mui.com/material-ui/api/checkbox/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
 export default function Checkbox(props: CheckboxProps): React.JSX.Element;

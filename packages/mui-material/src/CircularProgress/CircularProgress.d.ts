@@ -8,8 +8,10 @@ import { CircularProgressClasses } from './circularProgressClasses';
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsVariantOverrides {}
 
-export interface CircularProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+export interface CircularProgressProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>,
+  'children'
+> {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -30,6 +32,12 @@ export interface CircularProgressProps
    * @default false
    */
   disableShrink?: boolean;
+  /**
+   * If `true`, a track circle slot is mounted to show a subtle background for the progress.
+   * The `size` and `thickness` apply to the track slot to be consistent with the progress circle.
+   * @default false
+   */
+  enableTrackSlot?: boolean;
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
@@ -72,10 +80,10 @@ export interface CircularProgressProps
  *
  * Demos:
  *
- * - [Progress](https://mui.com/material-ui/react-progress/)
+ * - [Progress](https://next.mui.com/material-ui/react-progress/)
  *
  * API:
  *
- * - [CircularProgress API](https://mui.com/material-ui/api/circular-progress/)
+ * - [CircularProgress API](https://next.mui.com/material-ui/api/circular-progress/)
  */
 export default function CircularProgress(props: CircularProgressProps): React.JSX.Element;

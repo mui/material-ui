@@ -33,7 +33,7 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<
       React.ElementType<SwitchBaseProps>,
@@ -42,14 +42,15 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the input slot.
-     * By default, the avaible props are based on the input element.
+     * By default, the available props are based on the input element.
      */
     input: SlotProps<'input', RadioInputSlotPropsOverrides, RadioOwnerState>;
   }
 >;
 
 export interface RadioProps
-  extends StandardProps<
+  extends
+    StandardProps<
       SwitchBaseProps,
       'checkedIcon' | 'color' | 'icon' | 'type' | 'slots' | 'slotProps'
     >,
@@ -100,11 +101,11 @@ export interface RadioOwnerState extends Omit<RadioProps, 'slots' | 'slotProps'>
  *
  * Demos:
  *
- * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
+ * - [Radio Group](https://next.mui.com/material-ui/react-radio-button/)
  *
  * API:
  *
- * - [Radio API](https://mui.com/material-ui/api/radio/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [Radio API](https://next.mui.com/material-ui/api/radio/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
 export default function Radio(props: RadioProps): React.JSX.Element;

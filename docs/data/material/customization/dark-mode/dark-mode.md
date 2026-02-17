@@ -96,7 +96,7 @@ To test the system preference feature, follow the guide on [emulating the CSS me
 
 ### Accessing media prefers-color-scheme
 
-You can make use of this preference with the [`useMediaQuery`](/material-ui/react-use-media-query/) hook and the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+You can make use of this preference with the [`useMediaQuery`](/material-ui/react-use-media-query/) hook and the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme) media query.
 
 The following demo shows how to check the user's preference in their OS or browser settings:
 

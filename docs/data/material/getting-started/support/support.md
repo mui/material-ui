@@ -74,6 +74,7 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 | Material UI version | Release    | Supported                                                          |
 | ------------------: | :--------- | :----------------------------------------------------------------- |
+|              ^9.0.0 | March 2026 | 🚧 Pre release (Continuous support)                                |
 |              ^7.0.0 | 2025-03-26 | ✅ Stable major (Continuous support)                               |
 |              ^6.0.0 | 2024-08-26 | ⚠️ Long-term support (Support for security issues and regressions) |
 |              ^5.0.0 | 2021-09-16 | ❌                                                                 |
@@ -123,10 +124,10 @@ That means less time grappling with esoteric open-source trivia, and more time b
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+  href="https://tidelift.com/">
 Learn more about Tidelift</a>
 and
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://www.sonarsource.com/tidelift-request-demo/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">request a demo today</a>.
+  href="https://www.sonarsource.com/tidelift-request-demo/">request a demo today</a>.

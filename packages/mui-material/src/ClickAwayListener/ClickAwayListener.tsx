@@ -63,12 +63,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Click-Away Listener](https://next.mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://next.mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
+ * - [ClickAwayListener API](https://next.mui.com/material-ui/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {
@@ -150,14 +150,16 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   });
 
   // Keep track of mouse/touch events that bubbled up through the portal.
-  const createHandleSynthetic = (handlerName: string) => (event: React.SyntheticEvent) => {
-    syntheticEventRef.current = true;
+  const createHandleSynthetic =
+    (handlerName: ClickAwayMouseEventHandler | ClickAwayTouchEventHandler) =>
+    (event: React.SyntheticEvent) => {
+      syntheticEventRef.current = true;
 
-    const childrenPropsHandler = children.props[handlerName];
-    if (childrenPropsHandler) {
-      childrenPropsHandler(event);
-    }
-  };
+      const childrenPropsHandler = children.props[handlerName];
+      if (childrenPropsHandler) {
+        childrenPropsHandler(event);
+      }
+    };
 
   const childrenProps: { ref: React.Ref<Element> } & Pick<
     React.DOMAttributes<Element>,

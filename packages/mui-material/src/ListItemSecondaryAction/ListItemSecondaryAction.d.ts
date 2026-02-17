@@ -4,8 +4,9 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { ListItemSecondaryActionClasses } from './listItemSecondaryActionClasses';
 
-export interface ListItemSecondaryActionProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface ListItemSecondaryActionProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */
@@ -25,11 +26,11 @@ export interface ListItemSecondaryActionProps
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemSecondaryAction API](https://mui.com/material-ui/api/list-item-secondary-action/)
+ * - [ListItemSecondaryAction API](https://next.mui.com/material-ui/api/list-item-secondary-action/)
  *
  * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
  */

@@ -4,12 +4,12 @@ packages:
   - packages-internal/*
   - docs
   - test
-  - test/moduleResolution
-  - apps/*
-  - scripts/sizeSnapshot
+  - test/*
 
 patchedDependencies:
   styled-components: patches/styled-components.patch
 
 onlyBuiltDependencies:
   - '@vvago/vale'
+
+engineStrict: true

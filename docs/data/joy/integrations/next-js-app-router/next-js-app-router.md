@@ -105,7 +105,7 @@ export default function RootLayout(props) {
 
 ## Props serialization
 
-Props passed from server components-for example `page.js` or other routing files-must be [serializable](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization).
+Props passed from server components-for example `page.js` or other routing files-must be [serializable](https://nextjs.org/docs/app/getting-started/server-and-client-components#passing-data-from-server-to-client-components).
 
 :::success
 This works without any additional directives:
@@ -150,5 +150,5 @@ export default function Page() {
 }
 ```
 
-Instead, the Next.js team recommend moving components like these ["down the tree"](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree) to avoid this issue and improve overall performance.
+Instead, the Next.js team recommend moving components like these ["down the tree"](https://nextjs.org/docs/app/getting-started/server-and-client-components#reducing-js-bundle-size) to avoid this issue and improve overall performance.
 :::

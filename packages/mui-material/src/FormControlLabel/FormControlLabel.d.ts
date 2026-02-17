@@ -23,7 +23,8 @@ export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface FormControlLabelProps
-  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'>,
+  extends
+    StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'>,
     FormControlLabelSlotsAndSlotProps {
   /**
    * If `true`, the component appears selected.
@@ -99,12 +100,12 @@ export interface FormControlLabelProps
  *
  * Demos:
  *
- * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
- * - [Switch](https://mui.com/material-ui/react-switch/)
+ * - [Checkbox](https://next.mui.com/material-ui/react-checkbox/)
+ * - [Radio Group](https://next.mui.com/material-ui/react-radio-button/)
+ * - [Switch](https://next.mui.com/material-ui/react-switch/)
  *
  * API:
  *
- * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
+ * - [FormControlLabel API](https://next.mui.com/material-ui/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;

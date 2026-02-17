@@ -28,12 +28,12 @@ export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
   ListItemTextSlots,
   {
     /**
-     * Props forwared to the root slot.
+     * Props forwarded to the root slot.
      * By default, the available props are based on `div` element.
      */
     root: SlotProps<'div', {}, ListItemTextOwnerState>;
     /**
-     * Props forwared to the primary slot (as long as disableTypography is not `true`)
+     * Props forwarded to the primary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
      */
     primary: SlotProps<React.ElementType<TypographyProps>, {}, ListItemTextOwnerState>;
@@ -50,8 +50,8 @@ export interface ListItemTextOwnerState extends ListItemTextProps {}
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',
-> extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
-    ListItemTextSlotsAndSlotProps {
+>
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, ListItemTextSlotsAndSlotProps {
   /**
    * Alias for the `primary` prop.
    */
@@ -110,11 +110,11 @@ export interface ListItemTextProps<
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemText API](https://mui.com/material-ui/api/list-item-text/)
+ * - [ListItemText API](https://next.mui.com/material-ui/api/list-item-text/)
  */
 export default function ListItemText<
   PrimaryTypographyComponent extends React.ElementType = 'span',

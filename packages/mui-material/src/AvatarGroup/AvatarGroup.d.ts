@@ -107,11 +107,11 @@ export interface AvatarGroupTypeMap<
  *
  * Demos:
  *
- * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://next.mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [AvatarGroup API](https://mui.com/material-ui/api/avatar-group/)
+ * - [AvatarGroup API](https://next.mui.com/material-ui/api/avatar-group/)
  */
 declare const AvatarGroup: OverridableComponent<AvatarGroupTypeMap>;
 
@@ -122,7 +122,9 @@ export type AvatarGroupProps<
   component?: React.ElementType;
 };
 
-export interface AvatarGroupOwnerState
-  extends PartiallyRequired<AvatarGroupProps, 'max' | 'spacing' | 'component' | 'variant'> {}
+export interface AvatarGroupOwnerState extends PartiallyRequired<
+  AvatarGroupProps,
+  'max' | 'spacing' | 'component' | 'variant'
+> {}
 
 export default AvatarGroup;

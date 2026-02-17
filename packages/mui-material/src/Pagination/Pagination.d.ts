@@ -20,7 +20,8 @@ export interface PaginationPropsSizeOverrides {}
 export interface PaginationPropsColorOverrides {}
 
 export interface PaginationProps
-  extends UsePaginationProps,
+  extends
+    UsePaginationProps,
     StandardProps<React.HTMLAttributes<HTMLElement>, 'children' | 'onChange'> {
   /**
    * Override or extend the styles applied to the component.
@@ -84,10 +85,10 @@ export interface PaginationProps
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
  *
  * API:
  *
- * - [Pagination API](https://mui.com/material-ui/api/pagination/)
+ * - [Pagination API](https://next.mui.com/material-ui/api/pagination/)
  */
 export default function Pagination(props: PaginationProps): React.JSX.Element;

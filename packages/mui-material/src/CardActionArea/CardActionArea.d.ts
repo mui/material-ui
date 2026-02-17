@@ -29,19 +29,21 @@ export type CardActionAreaSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<React.ElementType<ButtonBaseProps>, {}, CardActionAreaOwnerState>;
     /**
      * Props forwarded to the focusHighlight slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     focusHighlight: SlotProps<'span', {}, CardActionAreaOwnerState>;
   }
 >;
 
-export interface CardActionAreaOwnerState
-  extends Omit<CardActionAreaProps, 'slots' | 'slotProps'> {}
+export interface CardActionAreaOwnerState extends Omit<
+  CardActionAreaProps,
+  'slots' | 'slotProps'
+> {}
 
 export interface CardActionAreaOwnProps {
   /**
@@ -67,12 +69,12 @@ export type CardActionAreaTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://next.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardActionArea API](https://mui.com/material-ui/api/card-action-area/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [CardActionArea API](https://next.mui.com/material-ui/api/card-action-area/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
 declare const CardActionArea: ExtendButtonBase<
   CardActionAreaTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>

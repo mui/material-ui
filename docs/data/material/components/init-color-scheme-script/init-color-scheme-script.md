@@ -49,7 +49,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <InitColorSchemeScript />
+        <InitColorSchemeScript attribute="data" />
         {props.children}
       </body>
     </html>
@@ -70,7 +70,7 @@ export default function MyDocument(props) {
     <Html lang="en">
       <Head>{/* tags */}</Head>
       <body>
-        <InitColorSchemeScript />
+        <InitColorSchemeScript attribute="data" />
         <Main />
         <NextScript />
       </body>

@@ -106,7 +106,7 @@ const StepRoot = styled('li', {
               left: `calc(50% + var(--StepIndicator-size) / 2 + var(--Step-connectorInset))`,
               width: `calc(100% - var(--StepIndicator-size) - 2 * var(--Step-connectorInset))`,
             },
-            // Eventhough `:has` is <90% support, we can use it because this is an edge case for vertical step without an indicator.
+            // Even though `:has` is <90% support, we can use it because this is an edge case for vertical step without an indicator.
             [`&:has(.${stepClasses.indicator}:empty)::after`]: {
               '--StepIndicator-size': '0px',
               '--Step-connectorInset': '0px',

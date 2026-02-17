@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { useRouter } from 'next/router';
 import exactProp from '@mui/utils/exactProp';
 import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';

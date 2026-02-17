@@ -287,18 +287,18 @@ All of the Autocomplete's slot (`*Component`) props were deprecated in favor of 
 
 ```diff
  <Autocomplete
--    PaperComponent={CustomPaperComponent}
--    PopperComponent={CustomPopperComponent}
--    ListboxComponent={CustomListboxComponent}
-+    slots={{
-+        paper: CustomPaperComponent,
-+        popper: CustomPopperComponent,
-+    }}
-+    slotProps={{
-+        listbox: {
-+            component: CustomListboxComponent,
-+        },
-+    }}
+-  PaperComponent={CustomPaperComponent}
+-  PopperComponent={CustomPopperComponent}
+-  ListboxComponent={CustomListboxComponent}
++  slots={{
++    paper: CustomPaperComponent,
++    popper: CustomPopperComponent,
++  }}
++  slotProps={{
++    listbox: {
++      component: CustomListboxComponent,
++    },
++  }}
  />
 ```
 
@@ -313,12 +313,12 @@ All of the Autocomplete's slot props (`*Props`) props were deprecated in favor o
 
 ```diff
  <Autocomplete
--    ChipProps={CustomChipProps}
--    ListboxProps={CustomListboxProps}
-+    slotProps={{
-+        chip: CustomChipProps,
-+        listbox: CustomListboxProps,
-+    }}
+-  ChipProps={CustomChipProps}
+-  ListboxProps={CustomListboxProps}
++  slotProps={{
++    chip: CustomChipProps,
++    listbox: CustomListboxProps,
++  }}
  />
 ```
 
@@ -1136,10 +1136,11 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 
 ## Dialog
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#dialog-classes) below to migrate the code as described in the following sections:
+Use the [dialog-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#dialog-classes) and [dialog-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#dialog-props) below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/dialog-classes <path>
+npx @mui/codemod@latest deprecations/dialog-props <path>
 ```
 
 ### Composed CSS classes
@@ -1172,6 +1173,39 @@ Here's how to migrate:
      },
    },
  },
+
+```
+
+### TransitionComponent
+
+The Dialog's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Dialog
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The Dialog's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Dialog
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+### PaperProps
+
+The Dialog's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
+
+```diff
+ <Dialog
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+ />
 ```
 
 ## Drawer
@@ -1519,7 +1553,9 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
 +  }
    disablePadding
  >
-   <ListItemText primary="John Doe" />
+   <ListItemButton>
+     <ListItemText primary="John Doe" />
+   </ListItemButton>
 -  <ListItemSecondaryAction>
 -    <IconButton aria-label="Leave a comment">
 -      <CommentIcon />
@@ -2253,23 +2289,23 @@ Here's how to migrate:
 
 ### ScrollButtonComponent
 
-The Tabs's `ScrollButtonComponent` prop was deprecated in favor of `slots.scrollButton`:
+The Tabs's `ScrollButtonComponent` prop was deprecated in favor of `slots.scrollButtons`:
 
 ```diff
  <Tabs
 -  ScrollButtonComponent={ScrollButtonComponent}
-+  slots={{ scrollButton: ScrollButtonComponent }}
++  slots={{ scrollButtons: ScrollButtonComponent }}
  />
 ```
 
 ### TabScrollButtonProps
 
-The Tabs's `TabScrollButtonProps` prop was deprecated in favor of `slotProps.scrollButton`:
+The Tabs's `TabScrollButtonProps` prop was deprecated in favor of `slotProps.scrollButtons`:
 
 ```diff
  <Tabs
 -  TabScrollButtonProps={TabScrollButtonProps}
-+  slotProps={{ scrollButton: TabScrollButtonProps }}
++  slotProps={{ scrollButtons: TabScrollButtonProps }}
  />
 ```
 

@@ -8,8 +8,10 @@ import { LinearProgressClasses } from './linearProgressClasses';
 export interface LinearProgressPropsColorOverrides {}
 export interface LinearProgressPropsVariantOverrides {}
 
-export interface LinearProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
+export interface LinearProgressProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>,
+  'children'
+> {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -58,10 +60,10 @@ export interface LinearProgressProps
  *
  * Demos:
  *
- * - [Progress](https://mui.com/material-ui/react-progress/)
+ * - [Progress](https://next.mui.com/material-ui/react-progress/)
  *
  * API:
  *
- * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
+ * - [LinearProgress API](https://next.mui.com/material-ui/api/linear-progress/)
  */
 export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;

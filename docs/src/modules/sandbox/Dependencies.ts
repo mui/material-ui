@@ -1,4 +1,5 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
 import { DemoData } from './types';
 
 const packagesWithBundledTypes = [
@@ -9,7 +10,7 @@ const packagesWithBundledTypes = [
   'clsx',
   '@react-spring/web',
 ];
-const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
+const muiNpmOrgs = ['@mui', '@base-ui', '@pigment-css', '@toolpad'];
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -41,9 +42,9 @@ type Demo = Pick<DemoData, 'productId' | 'raw' | 'codeVariant' | 'relativeModule
 
 export default function SandboxDependencies(
   demo: Demo,
-  options?: { commitRef?: string; devDeps?: Record<string, string> },
+  options: { commitRef?: string; devDeps?: Record<string, string>; csbConfig?: SandboxConfig } = {},
 ) {
-  const { commitRef, devDeps = {} } = options || {};
+  const { commitRef, devDeps = {}, csbConfig } = options;
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -58,14 +59,12 @@ export default function SandboxDependencies(
         return 'latest';
       }
       // #npm-tag-reference
-      return 'latest';
+      return 'next';
     }
     return `https://pkg.pr.new/mui/material-ui/@mui/${packageName}@${commitRef}`;
   }
 
   function extractDependencies() {
-    const muiDocConfig = (window as any).muiDocConfig;
-
     function includePeerDependencies(
       deps: Record<string, string>,
       versions: Record<string, string>,
@@ -86,9 +85,9 @@ export default function SandboxDependencies(
         newDeps['@mui/material'] = versions['@mui/material'];
       }
 
-      // TODO: consider if this configuration could be injected in a "cleaner" way.
-      if (muiDocConfig && muiDocConfig.csbIncludePeerDependencies) {
-        newDeps = muiDocConfig.csbIncludePeerDependencies(newDeps, {
+      // Allow product-specific peer dependencies via context config
+      if (csbConfig?.includePeerDependencies) {
+        newDeps = csbConfig.includePeerDependencies(newDeps, {
           versions,
         });
       }
@@ -114,9 +113,9 @@ export default function SandboxDependencies(
       '@mui/joy': getMuiPackageVersion('joy'),
     };
 
-    // TODO: consider if this configuration could be injected in a "cleaner" way.
-    if (muiDocConfig && muiDocConfig.csbGetVersions) {
-      versions = muiDocConfig.csbGetVersions(versions, { muiCommitRef: commitRef });
+    // Allow product-specific version overrides via context config
+    if (csbConfig?.getVersions) {
+      versions = csbConfig.getVersions(versions, { muiCommitRef: commitRef });
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
@@ -133,8 +132,8 @@ export default function SandboxDependencies(
           deps[name] = versions[name] ?? 'latest';
         }
 
-        if (muiDocConfig && muiDocConfig.postProcessImport) {
-          const resolvedDep = muiDocConfig.postProcessImport(fullName);
+        if (csbConfig?.postProcessImport) {
+          const resolvedDep = csbConfig.postProcessImport(fullName);
           if (resolvedDep) {
             deps = { ...deps, ...resolvedDep };
           }
@@ -152,13 +151,8 @@ export default function SandboxDependencies(
 
   const dependencies = extractDependencies();
 
-  if (!demo.productId && !dependencies['@mui/material']) {
-    // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
-    const name = '@mui/material';
-    const versions = {
-      [name]: getMuiPackageVersion('material'),
-    };
-    dependencies[name] = versions[name] ? versions[name] : 'latest';
+  if (csbConfig?.fallbackDependency && !dependencies[csbConfig.fallbackDependency.name]) {
+    dependencies[csbConfig.fallbackDependency.name] = csbConfig.fallbackDependency.version;
   }
 
   const devDependencies: Record<string, string> = { ...devDeps };

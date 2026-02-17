@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Card component
 components: Card, CardActions, CardContent, CardCover, CardOverflow
-githubLabel: 'component: card'
+githubLabel: 'scope: card'
 ---
 
 # Card
@@ -103,7 +103,7 @@ Hover your mouse on the demo below to see how the layers are stacked:
 #### Images and videos
 
 Use an image or a video element inside the Card Cover to display media.
-The component uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) to fill the whole Card by default.
+The component uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/object-fit) to fill the whole Card by default.
 
 {{"demo": "MediaCover.js"}}
 
@@ -133,7 +133,7 @@ The following sections explain how to approach each of these scenarios.
 
 Cards often include buttons at the bottom section. Use `CardActions` component as a wrapper of those buttons to create proper spacing around them.
 
-The demo below also use `buttonFlex` prop to set the ideal width of the buttons to `120px` while allowing them to shrink if necessary. To learn more about CSS flex, visit [MDN's guide](https://developer.mozilla.org/en-US/docs/Web/CSS/flex).
+The demo below also uses the `buttonFlex` prop to set the ideal width of the buttons to `120px` while allowing them to shrink if necessary. To learn more about CSS flex, visit [MDN's guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex).
 
 {{"demo": "BottomActionsCard.js"}}
 
@@ -145,7 +145,7 @@ In some cases, you might have to adjust the z-index to bring these elements to t
 {{"demo": "MultipleInteractionCard.js"}}
 
 :::success
-You can use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to apply styles to the Card when any of its children receive focus.
+You can use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-within) to apply styles to the Card when any of its children receive focus.
 :::
 
 #### Whole Card actions
@@ -217,7 +217,7 @@ The example below shows a user card that stacks when the card's width is equal o
 {{"demo": "UserCard.js"}}
 
 :::info
-Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) to achieve the similar result.
+Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries) to achieve a similar result.
 You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
 :::
 

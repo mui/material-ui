@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import Fade from '@mui/material/Fade';
@@ -7,10 +6,11 @@ import Zoom from '@mui/material/Zoom';
 export default function TransitionsTooltips() {
   return (
     <div>
-      <Tooltip title="Add">
+      <Tooltip describeChild title="Add">
         <Button>Grow</Button>
       </Tooltip>
       <Tooltip
+        describeChild
         title="Add"
         slots={{
           transition: Fade,
@@ -22,6 +22,7 @@ export default function TransitionsTooltips() {
         <Button>Fade</Button>
       </Tooltip>
       <Tooltip
+        describeChild
         title="Add"
         slots={{
           transition: Zoom,

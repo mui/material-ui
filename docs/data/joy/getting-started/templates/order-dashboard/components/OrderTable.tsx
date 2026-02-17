@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { ColorPaletteProp } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
@@ -431,6 +430,7 @@ export default function OrderTable() {
               <th style={{ width: 140, padding: '12px 6px' }}>Date</th>
               <th style={{ width: 140, padding: '12px 6px' }}>Status</th>
               <th style={{ width: 240, padding: '12px 6px' }}>Customer</th>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <th style={{ width: 140, padding: '12px 6px' }}> </th>
             </tr>
           </thead>
