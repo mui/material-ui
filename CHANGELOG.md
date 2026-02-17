@@ -10,7 +10,7 @@ A big thanks to the 3 contributors who made this release possible.
 
 ### @mui/material@9.0.0-alpha.0
 
-- [theme] Generate `color-mix` value on top of default generated Material UI CSS variables (#47767) @ZeeshanTamboli
+- [theme] Generate `color-mix` value on top of default generated Material UI CSS variables (#47767) @ZeeshanTamboli
 
 ### Docs
 
@@ -26,7 +26,7 @@ All contributors of this release in alphabetical order: @bernardobelchior, @silv
 
 ## v8
 
-This version is skipped to align the release version with MUI X v9.
+This version is skipped to align the release version with MUI X v9.
 
 ## 7.3.8
 
