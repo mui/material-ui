@@ -5,75 +5,32 @@ import { spy } from 'sinon';
 import useRovingTabIndexFocus from './useRovingTabIndex';
 
 type TestComponentProps = {
-  initialIndex: number;
+  focusableIndex: number;
   orientation: 'horizontal' | 'vertical';
   isRtl: boolean;
 };
 
 const defaultProps: TestComponentProps = {
-  initialIndex: 0,
+  focusableIndex: 0,
   orientation: 'horizontal',
   isRtl: false,
 };
 
 function TestComponent(props: Partial<TestComponentProps>) {
-  const { handleKeyDown, focusableIndex, registerElementRef, handleClick } = useRovingTabIndexFocus(
-    { ...defaultProps, ...props },
-  );
-
-  const button1Ref = React.useRef<HTMLButtonElement>(null);
-  const button2Ref = React.useRef<HTMLButtonElement>(null);
-  const button3Ref = React.useRef<HTMLButtonElement>(null);
-  const button4Ref = React.useRef<HTMLButtonElement>(null);
-
-  React.useLayoutEffect(() => {
-    registerElementRef(button1Ref, 0);
-    registerElementRef(button2Ref, 1);
-    registerElementRef(button3Ref, 2);
-    registerElementRef(button4Ref, 3);
-  }, [registerElementRef]);
+  const { getItemProps, getContainerProps } = useRovingTabIndexFocus({ ...defaultProps, ...props });
 
   return (
-    <div data-testid="container">
-      <button
-        ref={button1Ref}
-        tabIndex={focusableIndex === 0 ? 0 : -1}
-        onKeyDown={handleKeyDown}
-        onClick={handleClick}
-        data-testid="button-1"
-        role="tab"
-      >
+    <div data-testid="container" {...getContainerProps()}>
+      <button {...getItemProps(0)} data-testid="button-1" role="tab">
         Button 1
       </button>
-      <button
-        ref={button2Ref}
-        tabIndex={focusableIndex === 1 ? 0 : -1}
-        onKeyDown={handleKeyDown}
-        onClick={handleClick}
-        data-testid="button-2"
-        role="tab"
-      >
+      <button {...getItemProps(1)} data-testid="button-2" role="tab">
         Button 2
       </button>
-      <button
-        ref={button3Ref}
-        tabIndex={focusableIndex === 2 ? 0 : -1}
-        onKeyDown={handleKeyDown}
-        onClick={handleClick}
-        data-testid="button-3"
-        role="tab"
-        disabled
-      >
+      <button {...getItemProps(2)} data-testid="button-3" role="tab" disabled>
         Button 3
       </button>
-      <button
-        ref={button4Ref}
-        tabIndex={focusableIndex === 3 ? 0 : -1}
-        onKeyDown={handleKeyDown}
-        onClick={handleClick}
-        data-testid="button-4"
-        role="tab"
-      >
+      <button {...getItemProps(3)} data-testid="button-4" role="tab">
         Button 4
       </button>
     </div>
@@ -83,10 +40,10 @@ function TestComponent(props: Partial<TestComponentProps>) {
 describe('useRovingTabIndexFocus', () => {
   const { render } = createRenderer();
 
-  it('should set initial focusable index correctly', () => {
-    const initialIndex = 1;
+  it('should set focusable index correctly', () => {
+    const focusableIndex = 1;
 
-    render(<TestComponent initialIndex={initialIndex} />);
+    render(<TestComponent focusableIndex={focusableIndex} />);
 
     expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('-1');
     expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('0');
@@ -94,10 +51,23 @@ describe('useRovingTabIndexFocus', () => {
     expect(screen.getByTestId('button-4').getAttribute('tabindex')).to.equal('-1');
   });
 
-  it('should set focusable index to next enabled element if initial index is on a disabled element', () => {
-    const initialIndex = 2;
+  it('should update focusable index when prop changes', () => {
+    const focusableIndex = 1;
 
-    render(<TestComponent initialIndex={initialIndex} />);
+    const {setProps} = render(<TestComponent focusableIndex={focusableIndex} />);
+
+    setProps({ focusableIndex: 3 });
+
+    expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-3').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-4').getAttribute('tabindex')).to.equal('0');
+  });
+
+  it('should set focusable index to next enabled element if initial index is on a disabled element', () => {
+    const focusableIndex = 2;
+
+    render(<TestComponent focusableIndex={focusableIndex} />);
 
     expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('-1');
     expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
@@ -322,9 +292,7 @@ describe('useRovingTabIndexFocus', () => {
   });
 
   it('does not change focusable index if a non-arrow key is pressed', async () => {
-    const initialIndex = 0;
-
-    const { user } = render(<TestComponent initialIndex={initialIndex} />);
+    const { user } = render(<TestComponent />);
 
     const button1 = screen.getByTestId('button-1');
     const button2 = screen.getByTestId('button-2');
@@ -341,12 +309,30 @@ describe('useRovingTabIndexFocus', () => {
     expect(button1).toHaveFocus();
   });
 
+  it('should not change focus on vertical navigation when orientation is horizontal', async () => {
+    const { user } = render(<TestComponent orientation="horizontal" />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button2 = screen.getByTestId('button-2');
+
+    await user.click(button1);
+    await user.keyboard('{ArrowDown}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('0');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button1).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('0');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button1).toHaveFocus();
+  });
+
   it.each(['Shift', 'Control', 'Alt', 'Meta'])(
     'does not change focusable index if a %s modifier key is pressed',
     async (modifier) => {
-      const initialIndex = 0;
-
-      const { user } = render(<TestComponent initialIndex={initialIndex} />);
+      const { user } = render(<TestComponent />);
 
       const button1 = screen.getByTestId('button-1');
       const button2 = screen.getByTestId('button-2');
@@ -401,9 +387,7 @@ describe('useRovingTabIndexFocus', () => {
   });
 
   it('prevents default behavior of arrow keys when navigating', async () => {
-    const initialIndex = 0;
-
-    const { user } = render(<TestComponent initialIndex={initialIndex} />);
+    const { user } = render(<TestComponent />);
 
     const button1 = screen.getByTestId('button-1');
 
@@ -418,9 +402,7 @@ describe('useRovingTabIndexFocus', () => {
   });
 
   it('does not prevent default behavior of non-arrow keys', async () => {
-    const initialIndex = 0;
-
-    const { user } = render(<TestComponent initialIndex={initialIndex} />);
+    const { user } = render(<TestComponent />);
 
     const button1 = screen.getByTestId('button-1');
 
