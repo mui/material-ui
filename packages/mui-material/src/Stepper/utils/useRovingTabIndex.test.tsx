@@ -54,7 +54,7 @@ describe('useRovingTabIndexFocus', () => {
   it('should update focusable index when prop changes', () => {
     const focusableIndex = 1;
 
-    const {setProps} = render(<TestComponent focusableIndex={focusableIndex} />);
+    const { setProps } = render(<TestComponent focusableIndex={focusableIndex} />);
 
     setProps({ focusableIndex: 3 });
 
