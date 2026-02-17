@@ -494,8 +494,8 @@ importers:
         specifier: ^4.18.1
         version: 4.18.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-window:
-        specifier: ^2.2.5
-        version: 2.2.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.2.7
+        version: 2.2.7(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       rimraf:
         specifier: ^6.1.2
         version: 6.1.2
@@ -10596,6 +10596,12 @@ packages:
 
   react-window@2.2.6:
     resolution: {integrity: sha512-v89O08xRdpCaEuf380B39D1C/0KgUDZA59xft6SVAjzjz/xQxSyXrgDWHymIsYI6TMrqE8WO+G0/PB9AGE8VNA==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+
+  react-window@2.2.7:
+    resolution: {integrity: sha512-SH5nvfUQwGHYyriDUAOt7wfPsfG9Qxd6OdzQxl5oQ4dsSsUicqQvjV7dR+NqZ4coY0fUn3w1jnC5PwzIUWEg5w==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -22915,6 +22921,11 @@ snapshots:
       react-dom: 19.2.3(react@19.2.3)
 
   react-window@2.2.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+
+  react-window@2.2.7(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
