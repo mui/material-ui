@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
@@ -18,11 +17,22 @@ import MultiAppSwitch from 'docs/src/components/pricing/MultiAppSwitch';
 import { MultiAppProvider, useMultiApp } from 'docs/src/components/pricing/MultiAppContext';
 
 export interface Feature {
-  text?: string;
-  highlight?: string;
-  text2?: string;
+  primaryLabel?: React.ReactNode;
+  secondaryLabel?: string;
   icon?: 'support' | 'check';
   supportType?: 'community' | 'pro' | 'premium' | 'priority';
+}
+
+function highlightText(text: string): React.ReactNode {
+  return (
+    <Typography
+      component="span"
+      variant="body2"
+      sx={{ color: 'primary.main', fontWeight: 500, px: 0.5 }}
+    >
+      {text}
+    </Typography>
+  );
 }
 
 export type PlanName = 'community' | 'pro' | 'premium' | 'enterprise';
@@ -41,11 +51,12 @@ export const planInfo: Record<
     title: 'Community',
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
     features: [
-      { text: '40+ free components', icon: 'check' },
       {
-        icon: 'support',
+        icon: 'check',
         supportType: 'community',
+        primaryLabel: 'Community support',
       },
+      { primaryLabel: '40+ free components', icon: 'check' },
     ],
   },
   pro: {
@@ -53,10 +64,19 @@ export const planInfo: Record<
     title: 'Pro',
     description: 'Best for professional developers or startups building data-rich applications.',
     features: [
-      { text: 'All Community features and…', icon: 'check' },
-      { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
-      { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
-      { highlight: 'Pro', text2: 'support', icon: 'support', supportType: 'pro' },
+      {
+        primaryLabel: <React.Fragment>{highlightText('Pro')} support</React.Fragment>,
+        icon: 'support',
+        supportType: 'pro',
+      },
+      {
+        primaryLabel: <React.Fragment>MUI X {highlightText('Pro')} access</React.Fragment>,
+        icon: 'check',
+      },
+      {
+        primaryLabel: <React.Fragment>10+ {highlightText('Pro')} features</React.Fragment>,
+        icon: 'check',
+      },
     ],
   },
   premium: {
@@ -65,10 +85,16 @@ export const planInfo: Record<
     description:
       'The most advanced features for data-rich applications along with standard support.',
     features: [
-      { text: 'All Pro', text2: 'features', icon: 'check' },
-      { text: 'Access new features first', icon: 'check' },
-      { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
-      { highlight: 'Premium', text2: 'support', icon: 'support', supportType: 'premium' },
+      {
+        primaryLabel: <React.Fragment>{highlightText('Premium')} support</React.Fragment>,
+        icon: 'support',
+        supportType: 'premium',
+      },
+      { primaryLabel: 'Access new features first', icon: 'check' },
+      {
+        primaryLabel: <React.Fragment>5+ {highlightText('Premium')} features</React.Fragment>,
+        icon: 'check',
+      },
     ],
   },
   enterprise: {
@@ -77,35 +103,56 @@ export const planInfo: Record<
     description:
       'All features of Premium coupled with enterprise-grade support and customer success.',
     features: [
-      { text: 'All Premium', text2: 'features and…', icon: 'check' },
-      { text: 'Multi-app license included', icon: 'check' },
-      { text: 'Technical support for all libraries', icon: 'check' },
-      { text: 'Guaranteed response time', icon: 'check' },
-      { text: 'Pre-screening', icon: 'check' },
-      { text: 'Issue escalation', icon: 'check' },
-      { text: 'Customer Success Manager', icon: 'check' },
-      { text: 'Available from 15 seats', icon: 'check' },
-      { highlight: 'Priority', text2: 'support', icon: 'support', supportType: 'priority' },
+      {
+        primaryLabel: <React.Fragment>{highlightText('Priority')} support</React.Fragment>,
+        icon: 'support',
+        supportType: 'priority',
+      },
+      { primaryLabel: 'Multi-app license included', icon: 'check' },
+      { primaryLabel: 'Technical support for all libraries', icon: 'check' },
+      { primaryLabel: 'Guaranteed response time', icon: 'check' },
+      { primaryLabel: 'Pre-screening', icon: 'check' },
+      { primaryLabel: 'Issue escalation', icon: 'check' },
+      { primaryLabel: 'Customer Success Manager', icon: 'check' },
+      { primaryLabel: 'Available from 15 seats', icon: 'check' },
     ],
   },
 };
 
 export const multiAppPlanInfo: Partial<Record<PlanName, Feature[]>> = {
   pro: [
-    { text: 'Multi-app license included', icon: 'check' },
-    { text: 'All Community features', icon: 'check' },
-    { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
-    { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
-    { highlight: 'Pro', text2: 'support', icon: 'support', supportType: 'pro' },
+    {
+      primaryLabel: <React.Fragment>{highlightText('Pro')} support</React.Fragment>,
+      icon: 'support',
+      supportType: 'pro',
+    },
+    { primaryLabel: 'Multi-app license included', icon: 'check' },
+    {
+      primaryLabel: <React.Fragment>MUI X {highlightText('Pro')} access</React.Fragment>,
+      icon: 'check',
+    },
+    {
+      primaryLabel: <React.Fragment>10+ {highlightText('Pro')} features</React.Fragment>,
+      icon: 'check',
+    },
   ],
   premium: [
-    { text: 'Multi-app license included', icon: 'check' },
-    { text: 'All Pro', text2: 'features and…', icon: 'check' },
-    { text: 'Access new features first', icon: 'check' },
-    { text: 'MUI X', highlight: 'Premium', text2: 'access', icon: 'check' },
-    { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
-    { text: 'Self served up to 15 seats', icon: 'check' },
-    { highlight: 'Premium', text2: 'support', icon: 'support', supportType: 'premium' },
+    {
+      primaryLabel: <React.Fragment>{highlightText('Premium')} support</React.Fragment>,
+      icon: 'support',
+      supportType: 'premium',
+    },
+    { primaryLabel: 'Multi-app license included', icon: 'check' },
+    { primaryLabel: 'Access new features first', icon: 'check' },
+    {
+      primaryLabel: <React.Fragment>MUI X {highlightText('Premium')} access</React.Fragment>,
+      icon: 'check',
+    },
+    {
+      primaryLabel: <React.Fragment>5+ {highlightText('Premium')} features</React.Fragment>,
+      icon: 'check',
+    },
+    { primaryLabel: 'Self served up to 15 seats', icon: 'check' },
   ],
 };
 
@@ -116,10 +163,84 @@ export function getPlanFeatures(plan: PlanName, multiApp: boolean): Feature[] {
   return planInfo[plan].features;
 }
 
+const previousPlanNames: Record<PlanName, string> = {
+  community: '',
+  pro: 'Community',
+  premium: 'Pro',
+  enterprise: 'Premium',
+};
+
+function getPreviousPlanName(plan: PlanName): string {
+  return previousPlanNames[plan];
+}
+
 const formatter = new Intl.NumberFormat('en-US');
 
 function formatCurrency(value: number) {
   return `$${formatter.format(value)}`;
+}
+
+function PlanPriceDisplay({
+  price,
+  priceUnit,
+  priceExplanation,
+  priceColor = 'primary.main',
+  href,
+  buttonText = 'Buy now',
+  buttonVariant = 'contained',
+}: {
+  price: number | string;
+  priceUnit?: string;
+  priceExplanation: React.ReactNode;
+  priceColor?: string;
+  href: string;
+  buttonText?: string;
+  buttonVariant?: 'contained' | 'outlined';
+}) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        flexDirection: 'column',
+        gap: 1,
+      }}
+    >
+      {/* Main price */}
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.75 }}>
+        <Typography variant="h3" component="div" sx={{ fontWeight: 'semiBold', color: priceColor }}>
+          {typeof price === 'number' ? formatCurrency(price) : price}
+        </Typography>
+        {priceUnit && (
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
+            {priceUnit}
+          </Typography>
+        )}
+      </Box>
+      {/* Monthly price breakdown */}
+      <Typography
+        variant="body2"
+        sx={{
+          color: 'text.secondary',
+          textAlign: 'center',
+          fontSize: '0.8125rem',
+        }}
+      >
+        {priceExplanation}
+      </Typography>
+      <Button
+        component={Link}
+        noLinkStyle
+        href={href}
+        variant={buttonVariant}
+        fullWidth
+        endIcon={<KeyboardArrowRightRounded />}
+        sx={{ py: 1, mt: 2, mb: 2 }}
+      >
+        {buttonText}
+      </Button>
+    </Box>
+  );
 }
 
 interface PlanPriceProps {
@@ -132,54 +253,28 @@ export function PlanPrice(props: PlanPriceProps) {
 
   const { licenseModel } = useLicenseModel();
   const annual = licenseModel === 'annual';
-  const planPriceMinHeight = 24;
+
   if (plan === 'community') {
     return (
-      <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'success.600' }}
-          >
-            $0
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mb: 1.5,
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: 'text.secondary', textAlign: 'center', minHeight: 38 }}
-          >
-            Free forever!
-          </Typography>
-        </Box>
-        <Button
-          component={Link}
-          noLinkStyle
-          href="/material-ui/getting-started/usage/"
-          variant="outlined"
-          fullWidth
-          endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1, mt: 2 }}
-        >
-          Get started
-        </Button>
-      </React.Fragment>
+      <PlanPriceDisplay
+        price="Free"
+        priceExplanation="Free forever!"
+        priceColor="success.600"
+        href="/material-ui/getting-started/usage/"
+        buttonText="Get started"
+        buttonVariant="outlined"
+      />
     );
   }
 
   const priceUnit = annual ? '/ year / dev' : '/ dev';
   const getPriceExplanation = (displayedValue: number) => {
     if (annual) {
-      return `Equivalent to $${displayedValue.toFixed(2)} / month / dev`;
+      return (
+        <React.Fragment>
+          Equivalent to <strong>${displayedValue.toFixed(2)}</strong> / month / dev
+        </React.Fragment>
+      );
     }
     return '';
   };
@@ -213,7 +308,6 @@ export function PlanPrice(props: PlanPriceProps) {
     } else {
       priceForExplanation = perpetualValue;
     }
-    const priceExplanation = getPriceExplanation(priceForExplanation);
 
     let mainDisplayValue: number = annual ? annualValue : perpetualValue;
     if (annual && multiApp) {
@@ -227,60 +321,18 @@ export function PlanPrice(props: PlanPriceProps) {
     }
 
     return (
-      <Box
-        sx={{ display: 'flex', alignItems: 'center', flex: '1 1 auto', flexDirection: 'column' }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'primary.main' }}
-          >
-            {formatCurrency(mainDisplayValue)}
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-            {priceUnit}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mb: 1.5,
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              textAlign: 'center',
-              fontSize: '0.8125rem',
-              minHeight: 38,
-            }}
-          >
-            {priceExplanation}
-          </Typography>
-        </Box>
-        <Button
-          component={Link}
-          noLinkStyle
-          href={getProStoreUrl(licenseModel, multiApp)}
-          variant="contained"
-          endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1, width: '100%', mt: 2, mb: 2 }}
-        >
-          Buy now
-        </Button>
-      </Box>
+      <PlanPriceDisplay
+        price={mainDisplayValue}
+        priceUnit={priceUnit}
+        priceExplanation={getPriceExplanation(priceForExplanation)}
+        href={getProStoreUrl(licenseModel, multiApp)}
+        buttonVariant="outlined"
+      />
     );
   }
 
   if (plan === 'premium') {
     const premiumAnnualValue = 599;
-
     const premiumPerpetualValue = 1318;
     const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
@@ -288,10 +340,6 @@ export function PlanPrice(props: PlanPriceProps) {
     const premiumPerpetualValueWithPrioritySupport = 2198;
     const premiumMonthlyValueForAnnualWithPrioritySupport =
       Math.round((premiumAnnualValueWithPrioritySupport / 12) * 100) / 100;
-
-    const priceExplanation = getPriceExplanation(
-      multiApp ? premiumMonthlyValueForAnnualWithPrioritySupport : premiumMonthlyValueForAnnual,
-    );
 
     let premiumDisplayedValue: number = premiumAnnualValue;
     if (annual && multiApp) {
@@ -305,62 +353,14 @@ export function PlanPrice(props: PlanPriceProps) {
     }
 
     return (
-      <Box
-        sx={{ display: 'flex', alignItems: 'center', flex: '1 1 auto', flexDirection: 'column' }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            mt: 2,
-          }}
-        >
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'primary.main' }}
-          >
-            {formatCurrency(premiumDisplayedValue)}
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-            {priceUnit}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mb: 1.5,
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              textAlign: 'center',
-              fontSize: '0.8125rem',
-              minHeight: 38,
-            }}
-          >
-            {priceExplanation}
-          </Typography>
-        </Box>
-        <Button
-          component={Link}
-          noLinkStyle
-          href={getHref(annual, multiApp)}
-          variant="contained"
-          fullWidth
-          endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1, mt: 2, mb: 2 }}
-        >
-          Buy now
-        </Button>
-      </Box>
+      <PlanPriceDisplay
+        price={premiumDisplayedValue}
+        priceUnit={priceUnit}
+        priceExplanation={getPriceExplanation(
+          multiApp ? premiumMonthlyValueForAnnualWithPrioritySupport : premiumMonthlyValueForAnnual,
+        )}
+        href={getHref(annual, multiApp)}
+      />
     );
   }
 
@@ -369,60 +369,15 @@ export function PlanPrice(props: PlanPriceProps) {
     const enterprisePerpetualValue = 2798;
     const enterpriseMonthlyValueForAnnual = enterpriseAnnualValue / 12;
 
-    const priceExplanation = getPriceExplanation(enterpriseMonthlyValueForAnnual);
-
-    const enterpriseDisplayedValue = annual ? enterpriseAnnualValue : enterprisePerpetualValue;
-
     return (
-      <Box
-        sx={{ display: 'flex', alignItems: 'center', flex: '1 1 auto', flexDirection: 'column' }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'primary.main' }}
-          >
-            {formatCurrency(enterpriseDisplayedValue)}
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-            {priceUnit}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mb: 1.5,
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              textAlign: 'center',
-              fontSize: '0.8125rem',
-              minHeight: 38,
-            }}
-          >
-            {priceExplanation}
-          </Typography>
-        </Box>
-        <Button
-          component={Link}
-          noLinkStyle
-          href="mailto:sales@mui.com"
-          variant="contained"
-          fullWidth
-          endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1, width: '100%', mt: 2, mb: 2 }}
-        >
-          Contact Sales
-        </Button>
-      </Box>
+      <PlanPriceDisplay
+        price={annual ? enterpriseAnnualValue : enterprisePerpetualValue}
+        priceUnit={priceUnit}
+        priceExplanation={getPriceExplanation(enterpriseMonthlyValueForAnnual)}
+        href="mailto:sales@mui.com"
+        buttonText="Contact Sales"
+        buttonVariant="outlined"
+      />
     );
   }
 
@@ -447,13 +402,13 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
     <Box
       sx={{
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         gap: 1,
         pl: feature.icon === 'check' ? 0.4 : null,
       }}
     >
       {feature.icon === 'check' && (
-        <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main' }} />
+        <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main', mt: '2px' }} />
       )}
       {feature.icon === 'support' && (
         <Box
@@ -477,30 +432,22 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
           })()}
         </Box>
       )}
-      <Typography
-        component="span"
-        variant="body2"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 0.5,
-        }}
-      >
-        {feature.text}
-        {feature.highlight && (
-          <Typography
-            variant="body2"
-            component="span"
-            sx={{
-              color: 'primary.main',
-              fontWeight: 500,
-            }}
-          >
-            {feature.highlight}
+      <div>
+        <Typography
+          variant="body2"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          {feature.primaryLabel}
+        </Typography>
+        {feature.secondaryLabel && (
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.75 }}>
+            {feature.secondaryLabel}
           </Typography>
         )}
-        {feature.text2 && ` ${feature.text2}`}
-      </Typography>
+      </div>
     </Box>
   );
 }
@@ -514,38 +461,40 @@ export function PlanNameDisplay({
 }) {
   const { title, iconName, description } = planInfo[plan];
   return (
-    <React.Fragment>
-      <Typography
-        variant="body2"
-        sx={{
-          fontWeight: 'bold',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          pr: 0.5,
-        }}
-      >
-        <IconImage name={iconName} mode="" loading="eager" sx={{ mr: 1 }} /> {title}
-      </Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        textAlign: 'center',
+        gap: 1,
+      }}
+    >
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <IconImage name={iconName} mode="" loading="eager" />
+        <Typography variant="h6" sx={{ fontWeight: 'medium', color: 'text.primary' }}>
+          {title}
+        </Typography>
+      </Box>
+
       {!disableDescription && (
         <Typography
           variant="body2"
           sx={{
             color: 'text.secondary',
             display: 'flex',
-            textAlign: 'center',
+            textAlign: 'start',
             justifyContent: 'center',
             alignItems: 'baseline',
             mt: 1,
-            minHeight: 96,
-            height: 48,
+            minHeight: { xs: 0, md: 96 },
             lineHeight: '24px',
           }}
         >
           {description}
         </Typography>
       )}
-    </React.Fragment>
+    </Box>
   );
 }
 
@@ -565,7 +514,7 @@ function PricingCardWrapper({ plan, highlighted = false }: PricingCardWrapperPro
         borderColor: highlighted ? 'primary.200' : 'divider',
         borderRadius: 1,
         flexDirection: 'column',
-        gap: 3,
+        gap: 2,
         py: 3,
         px: 2,
         flex: '1 1 0px',
@@ -579,27 +528,27 @@ function PricingCardWrapper({ plan, highlighted = false }: PricingCardWrapperPro
         }),
       })}
     >
-      <Box sx={{ height: 'fit-content' }}>
+      <Box
+        sx={{
+          height: 'fit-content',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 3,
+        }}
+      >
         <PlanNameDisplay plan={plan} disableDescription={false} />
         <PlanPrice plan={plan} multiApp={multiApp} />
       </Box>
-      {plan !== 'community' && plan !== 'enterprise' && (
-        <MultiAppSwitch />
-      )}
-      {plan !== 'community' && plan !== 'enterprise' && <Divider />}
-      <Box textAlign="left">
+      {plan !== 'community' && plan !== 'enterprise' && <MultiAppSwitch />}
+      <Box textAlign="left" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {plan !== 'community' && (
+          <Typography variant="body2" sx={{ fontWeight: 'medium', color: 'text.primary' }}>
+            Everything in {getPreviousPlanName(plan)} plan and...
+          </Typography>
+        )}
+
         {getPlanFeatures(plan, multiApp).map((feature, index) => (
-          <Box
-            key={index}
-            sx={{
-              mb: 2,
-              '&:last-child': {
-                mb: 0,
-              },
-            }}
-          >
-            <FeatureItem feature={feature} />
-          </Box>
+          <FeatureItem feature={feature} key={index} />
         ))}
       </Box>
     </Box>
