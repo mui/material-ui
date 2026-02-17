@@ -16,57 +16,9 @@ import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
-import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-import getActiveElement from '../utils/getActiveElement';
 import useSlot from '../utils/useSlot';
-
-const nextItem = (list, item) => {
-  if (list === item) {
-    return list.firstChild;
-  }
-  if (item && item.nextElementSibling) {
-    return item.nextElementSibling;
-  }
-  return list.firstChild;
-};
-
-const previousItem = (list, item) => {
-  if (list === item) {
-    return list.lastChild;
-  }
-  if (item && item.previousElementSibling) {
-    return item.previousElementSibling;
-  }
-  return list.lastChild;
-};
-
-const moveFocus = (list, currentFocus, traversalFunction) => {
-  let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus);
-
-  while (nextFocus) {
-    // Prevent infinite loop.
-    if (nextFocus === list.firstChild) {
-      if (wrappedOnce) {
-        return;
-      }
-      wrappedOnce = true;
-    }
-
-    // Same logic as useAutocomplete.js
-    const nextFocusDisabled =
-      nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
-
-    if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
-      // Move to the next element.
-      nextFocus = traversalFunction(list, nextFocus);
-    } else {
-      nextFocus.focus();
-      return;
-    }
-  }
-};
+import useRovingTabIndex from '../Stepper/utils/useRovingTabIndex';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -780,28 +732,40 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const indicator = <IndicatorSlot {...indicatorSlotProps} />;
 
-  let childIndex = 0;
-  const children = React.Children.map(childrenProp, (child) => {
-    if (!React.isValidElement(child)) {
-      return null;
-    }
+  const validChildren = React.Children.toArray(childrenProp)
+    .filter(React.isValidElement)
+    .map((child, index) => {
+      const childValue = child.props.value === undefined ? index : child.props.value;
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (isFragment(child)) {
-        console.error(
-          [
-            "MUI: The Tabs component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
+      if (process.env.NODE_ENV !== 'production') {
+        if (isFragment(child)) {
+          console.error(
+            [
+              "MUI: The Tabs component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+        }
       }
-    }
 
-    const childValue = child.props.value === undefined ? childIndex : child.props.value;
-    valueToIndex.set(childValue, childIndex);
+      valueToIndex.set(childValue, index);
+
+      return { child, index, childValue };
+    });
+
+  const focusableIndex = valueToIndex.get(value) ?? 0;
+
+  const { getContainerProps, getItemProps } = useRovingTabIndex({
+    focusableIndex,
+    orientation,
+    isRtl,
+  });
+  const { onFocus, onKeyDown } = getContainerProps();
+
+  const children = validChildren.map(({ child, index, childValue }) => {
     const selected = childValue === value;
+    const { ref: tabRef, tabIndex } = getItemProps(index);
 
-    childIndex += 1;
     return React.cloneElement(child, {
       fullWidth: variant === 'fullWidth',
       indicator: selected && !mounted && indicator,
@@ -810,55 +774,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       onChange,
       textColor,
       value: childValue,
-      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : {}),
+      index,
+      ref: tabRef,
+      tabIndex,
     });
   });
-
-  const handleKeyDown = (event) => {
-    // Check if a modifier key (Alt, Shift, Ctrl, Meta) is pressed
-    if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
-      return;
-    }
-
-    const list = tabListRef.current;
-    const currentFocus = getActiveElement(ownerDocument(list));
-    // Keyboard navigation assumes that [role="tab"] are siblings
-    // though we might warn in the future about nested, interactive elements
-    // as a a11y violation
-    const role = currentFocus?.getAttribute('role');
-    if (role !== 'tab') {
-      return;
-    }
-
-    let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
-    let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
-    if (orientation === 'horizontal' && isRtl) {
-      // swap previousItemKey with nextItemKey
-      previousItemKey = 'ArrowRight';
-      nextItemKey = 'ArrowLeft';
-    }
-
-    switch (event.key) {
-      case previousItemKey:
-        event.preventDefault();
-        moveFocus(list, currentFocus, previousItem);
-        break;
-      case nextItemKey:
-        event.preventDefault();
-        moveFocus(list, currentFocus, nextItem);
-        break;
-      case 'Home':
-        event.preventDefault();
-        moveFocus(list, null, nextItem);
-        break;
-      case 'End':
-        event.preventDefault();
-        moveFocus(list, null, previousItem);
-        break;
-      default:
-        break;
-    }
-  };
 
   const conditionalElements = getConditionalElements();
 
@@ -899,8 +819,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     getSlotProps: (handlers) => ({
       ...handlers,
       onKeyDown: (event) => {
-        handleKeyDown(event);
+        onKeyDown(event);
         handlers.onKeyDown?.(event);
+      },
+      onFocus: (event) => {
+        onFocus(event);
+        handlers.onFocus?.(event);
       },
     }),
   });
