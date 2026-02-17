@@ -248,45 +248,45 @@ describe('<ButtonBase />', () => {
       expect(onMouseLeave.callCount).to.equal(1);
     });
 
- it('should propagate click events when Enter is pressed on non-native button', async () => {
-        const parentClickSpy = spy();
-        const buttonClickSpy = spy();
+    it('should propagate click events when Enter is pressed on non-native button', async () => {
+      const parentClickSpy = spy();
+      const buttonClickSpy = spy();
 
-        const {user} = render(
-          <div onClick={parentClickSpy}>
-            <ButtonBase onClick={buttonClickSpy} component="div">
-              Hello
-            </ButtonBase>
-          </div>,
-        );
+      const { user } = render(
+        <div onClick={parentClickSpy}>
+          <ButtonBase onClick={buttonClickSpy} component="div">
+            Hello
+          </ButtonBase>
+        </div>,
+      );
 
-        // moves focus to the button
-        await user.tab()
-        await user.keyboard('{Enter}');
+      // moves focus to the button
+      await user.tab();
+      await user.keyboard('{Enter}');
 
-        expect(buttonClickSpy.callCount).to.equal(1);
-        expect(parentClickSpy.callCount).to.equal(1);
-      });
+      expect(buttonClickSpy.callCount).to.equal(1);
+      expect(parentClickSpy.callCount).to.equal(1);
+    });
 
-      it('should propagate click events when Space is released on non-native button', async () => {
-        const parentClickSpy = spy();
-        const buttonClickSpy = spy();
+    it('should propagate click events when Space is released on non-native button', async () => {
+      const parentClickSpy = spy();
+      const buttonClickSpy = spy();
 
-        const {user} = render(
-          <div onClick={parentClickSpy}>
-            <ButtonBase onClick={buttonClickSpy} component="div">
-              Hello
-            </ButtonBase>
-          </div>,
-        );
+      const { user } = render(
+        <div onClick={parentClickSpy}>
+          <ButtonBase onClick={buttonClickSpy} component="div">
+            Hello
+          </ButtonBase>
+        </div>,
+      );
 
-        // moves focus to the button
-        await user.tab();
-        await user.keyboard(' ');
+      // moves focus to the button
+      await user.tab();
+      await user.keyboard(' ');
 
-        expect(buttonClickSpy.callCount).to.equal(1);
-        expect(parentClickSpy.callCount).to.equal(1);
-      });
+      expect(buttonClickSpy.callCount).to.equal(1);
+      expect(parentClickSpy.callCount).to.equal(1);
+    });
   });
 
   describe.skipIf(isJsdom())('ripple', () => {
