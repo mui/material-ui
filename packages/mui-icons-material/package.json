@@ -46,7 +46,7 @@
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/internal-waterfall": "workspace:^",
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/chai": "5.2.3",
     "@types/react": "19.2.9",
     "chai": "6.2.2",
@@ -62,7 +62,7 @@
     "yargs": "18.0.0"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
