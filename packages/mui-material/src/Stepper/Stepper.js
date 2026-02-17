@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import { StepperContextProvider } from './StepperContext';
 import useRovingTabIndexFocus from './utils/useRovingTabIndex';
-import { useRtl } from '@mui/system/RtlProvider';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -99,24 +99,12 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     });
   });
 
-  const {
-    registerElementRef: registerElementRefInternal,
-    handleKeyDown: handleStepButtonKeyDown,
-    handleClick: handleStepButtonClick,
-    focusableIndex,
-  } = useRovingTabIndexFocus({
+  const { getContainerProps, getItemProps: getRovingTabindexProps } = useRovingTabIndexFocus({
     initialIndex: activeStep,
     orientation,
     isRtl,
   });
-
-  const registerElementRef = React.useCallback(
-    (index, node, disabled) => {
-      setIsTabList(true);
-      registerElementRefInternal(index, node, disabled);
-    },
-    [registerElementRefInternal],
-  );
+  const { onFocus, onKeyDown } = getContainerProps();
 
   const contextValue = React.useMemo(
     () => ({
@@ -126,22 +114,17 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       nonLinear,
       orientation,
       totalSteps,
-      handleStepButtonKeyDown,
-      handleStepButtonClick,
-      registerElementRef,
-      focusableIndex,
+      setIsTabList,
+      getRovingTabindexProps,
     }),
     [
       activeStep,
       alternativeLabel,
       connector,
+      getRovingTabindexProps,
       nonLinear,
       orientation,
       totalSteps,
-      handleStepButtonKeyDown,
-      handleStepButtonClick,
-      registerElementRef,
-      focusableIndex,
     ],
   );
 
@@ -154,6 +137,8 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
         ref={ref}
         aria-orientation={orientation}
         role={isTabList ? 'tablist' : undefined}
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
         {...other}
       >
         {steps}

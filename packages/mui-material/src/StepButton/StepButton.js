@@ -11,7 +11,6 @@ import isMuiElement from '../utils/isMuiElement';
 import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
-import { useForkRef } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation } = ownerState;
@@ -61,25 +60,11 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const { children, className, icon, optional, onClick, onKeyDown, ...other } = props;
 
   const { disabled, active, index } = React.useContext(StepContext);
-  const {
-    orientation,
-    totalSteps,
-    focusableIndex,
-    registerElementRef,
-    handleStepButtonKeyDown,
-    handleStepButtonClick,
-  } = useStepperContext();
+  const { orientation, totalSteps, getRovingTabindexProps, setIsTabList } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 
   const classes = useUtilityClasses(ownerState);
-
-  const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(ref, nodeRef);
-
-  React.useLayoutEffect(() => {
-    registerElementRef?.(index, nodeRef, Boolean(disabled));
-  }, [index, registerElementRef, disabled]);
 
   const childProps = {
     icon,
@@ -92,26 +77,11 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
-  const handleClick = React.useCallback((event) => {
-    onClick?.(event);
-    handleStepButtonClick?.(event);
-  }, [index, handleStepButtonClick, onClick]);
+  const { ref: mergedRef, tabIndex } = getRovingTabindexProps(index, ref);
 
-  const handleKeyDown = React.useCallback(
-    (event) => {
-      onKeyDown?.(event);
-      handleStepButtonKeyDown?.(event);
-    },
-    [onKeyDown, handleStepButtonKeyDown],
-  );
-
-  let tabIndex;
-
-  if (focusableIndex == null) {
-    tabIndex = undefined;
-  } else {
-    tabIndex = focusableIndex === index ? 0 : -1;
-  }
+  React.useLayoutEffect(() => {
+    setIsTabList(true);
+  }, [setIsTabList]);
 
   return (
     <StepButtonRoot
@@ -119,15 +89,13 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, className)}
-      ref={handleRef}
+      ref={mergedRef}
       ownerState={ownerState}
       aria-selected={active}
       aria-posinset={index + 1}
       aria-setsize={totalSteps}
-      tabIndex={tabIndex}
-      onKeyDown={handleKeyDown}
-      onClick={handleClick}
       role={'tab'}
+      tabIndex={tabIndex}
       {...other}
     >
       {child}

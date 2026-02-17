@@ -8,14 +8,11 @@ export interface StepperContextType {
   nonLinear: boolean;
   orientation: 'horizontal' | 'vertical';
   totalSteps: number;
-  focusableIndex: number;
-  registerElementRef: (
-    index: number,
-    elementRef: React.RefObject<HTMLElement>,
-    disabled: boolean,
-  ) => void;
-  setFocusableIndex: (index: number) => void;
-  handleElementKeyDown: (event: React.KeyboardEvent<HTMLElement>) => void;
+  setIsTabList: React.Dispatch<React.SetStateAction<boolean>>;
+  getRovingTabindexProps: (index: number, ref?: React.Ref<HTMLElement>) => {
+    ref: (element: HTMLElement | null) => void;
+    tabIndex: number;
+  };
 }
 
 /**
