@@ -124,7 +124,7 @@
     "babel-plugin-module-resolver": "5.0.2",
     "chalk": "5.6.2",
     "concurrently": "9.2.1",
-    "cpy-cli": "6.0.0",
+    "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
     "danger": "13.0.5",
     "dotenv": "17.3.1",
