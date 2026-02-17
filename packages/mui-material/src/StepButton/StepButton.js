@@ -60,7 +60,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const { children, className, icon, optional, ...other } = props;
 
   const { disabled, active, index } = React.useContext(StepContext);
-  const { orientation, totalSteps, getRovingTabindexProps, setIsTabList } = useStepperContext();
+  const { orientation, totalSteps, getRovingTabIndexProps, setIsTabList } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 
@@ -77,10 +77,13 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
-  const { ref: mergedRef, tabIndex } = getRovingTabindexProps(index, ref);
+  const { ref: mergedRef, tabIndex } = getRovingTabIndexProps?.(index, ref) ?? {
+    ref,
+    tabIndex: active ? 0 : -1,
+  };
 
   React.useLayoutEffect(() => {
-    setIsTabList(true);
+    setIsTabList?.(true);
   }, [setIsTabList]);
 
   return (

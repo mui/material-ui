@@ -6,25 +6,10 @@ import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
-import Stepper, { StepperContextProvider } from '../Stepper';
+import Stepper from '../Stepper';
 
 describe('<StepButton />', () => {
   const { render } = createRenderer();
-
-  function renderInContext(node) {
-    return render(
-      <StepperContextProvider
-        value={{
-          getRovingTabindexProps: (_index, ref) => ({
-            ref,
-          }),
-          setIsTabList: () => {},
-        }}
-      >
-        {node}
-      </StepperContextProvider>,
-    );
-  }
 
   describe('internals', () => {
     describeConformance(<StepButton />, () => ({
@@ -32,7 +17,7 @@ describe('<StepButton />', () => {
       inheritComponent: ButtonBase,
       muiName: 'MuiStepButton',
       refInstanceof: window.HTMLButtonElement,
-      render: renderInContext,
+      render,
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }));
 
@@ -61,7 +46,7 @@ describe('<StepButton />', () => {
     });
 
     it('passes active, completed, disabled to StepLabel', () => {
-      const { container } = renderInContext(
+      const { container } = render(
         <Step active completed disabled>
           <StepButton>Step One</StepButton>
         </Step>,
@@ -76,7 +61,7 @@ describe('<StepButton />', () => {
     });
 
     it('should pass props to a provided StepLabel', () => {
-      const { container } = renderInContext(
+      const { container } = render(
         <Step active completed disabled>
           <StepButton label="Step One">
             <StepLabel>Step One</StepLabel>
@@ -94,7 +79,7 @@ describe('<StepButton />', () => {
   });
 
   it('should disable the button', () => {
-    renderInContext(<StepButton disabled>Step One</StepButton>);
+    render(<StepButton disabled>Step One</StepButton>);
 
     expect(screen.getByRole('tab')).to.have.property('disabled', true);
   });
@@ -108,7 +93,7 @@ describe('<StepButton />', () => {
         const handleMouseLeave = spy();
         const handleTouchStart = spy();
 
-        renderInContext(
+        render(
           <StepButton
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -152,7 +137,7 @@ describe('<StepButton />', () => {
   });
 
   it('can be used as a child of `Step`', () => {
-    renderInContext(
+    render(
       <Step>
         <StepButton>Next</StepButton>
       </Step>,

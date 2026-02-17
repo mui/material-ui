@@ -212,7 +212,9 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     value,
     wrapped = false,
     // eslint-disable-next-line react/prop-types
-    tabIndex,
+    getRovingTabIndexProps,
+    // eslint-disable-next-line react/prop-types
+    index,
     ...other
   } = props;
 
@@ -256,11 +258,16 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     }
   };
 
+  const { ref: mergedRef, tabIndex } = getRovingTabIndexProps?.(index, ref) ?? {
+    ref,
+    tabIndex: selected ? 0 : -1,
+  };
+
   return (
     <TabRoot
       focusRipple={!disableFocusRipple}
       className={clsx(classes.root, className)}
-      ref={ref}
+      ref={mergedRef}
       role="tab"
       aria-selected={selected}
       disabled={disabled}
