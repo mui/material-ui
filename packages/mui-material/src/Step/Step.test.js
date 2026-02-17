@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { stepClasses as classes } from '@mui/material/Step';
-import Stepper from '@mui/material/Stepper';
+import Stepper, { StepperContextProvider } from '@mui/material/Stepper';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import StepButton, { stepButtonClasses } from '@mui/material/StepButton';
 import describeConformance from '../../test/describeConformance';
@@ -9,10 +9,23 @@ import describeConformance from '../../test/describeConformance';
 describe('<Step />', () => {
   const { render } = createRenderer();
 
+  // StepButton needs to be rendered in a StepperContextProvider
+  function renderInContext(node) {
+    return render(
+      <StepperContextProvider
+        value={{
+          registerElementRef: () => {},
+        }}
+      >
+        {node}
+      </StepperContextProvider>,
+    );
+  }
+
   describeConformance(<Step />, () => ({
     classes,
     inheritComponent: 'li',
-    render,
+    render: renderInContext,
     muiName: 'MuiStep',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLLIElement,
@@ -37,7 +50,7 @@ describe('<Step />', () => {
 
   describe('rendering children', () => {
     it('renders children', () => {
-      const { container } = render(
+      const { container } = renderInContext(
         <Step>
           <StepButton />
           <StepLabel />
@@ -51,7 +64,7 @@ describe('<Step />', () => {
     });
 
     it('should handle null children', () => {
-      const { container } = render(
+      const { container } = renderInContext(
         <Step>
           <StepButton />
           {null}
