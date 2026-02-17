@@ -53,7 +53,7 @@ We are breaking the strong association with Material Design
 as we have seen too many people confusing Material UI with Google or as a synonym of Material Design.
 
 We are now called **MUI**. It stands for **M**aterial to build **UI**s
-and is pronounced [/ɛm juː aɪ/](http://ipa-reader.xyz/?text=%C9%9Bmju%CB%90a%C9%AA).
+and is pronounced [/ɛm juː aɪ/](https://ipa-reader.com/?text=%C9%9Bmju%CB%90a%C9%AA).
 
 It's shorter, it distinguishes us, and it's familiar – many people already used it for abbreviating Material UI.
 More importantly, it allows for the release of products not directly coupled to Material Design, such as an unstyled/headless version of the components, a brand new second design system as an alternative to MD, and more ambitious initiatives.
