@@ -131,6 +131,7 @@ export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
  *
  * - [Button Group](https://next.mui.com/material-ui/react-button-group/)
  * - [Button](https://next.mui.com/material-ui/react-button/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
  * - [Number Field](https://next.mui.com/material-ui/react-number-field/)
  *
  * API:

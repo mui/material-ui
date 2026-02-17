@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Menu } from '@base-ui/react/menu';
 import { Menubar as BaseMenubar } from '@base-ui/react/menubar';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
@@ -16,54 +17,40 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Divider, { DividerProps } from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
+const StyledMenubar = styled('div')({
+  display: 'flex',
+  gap: '1px',
+  p: 0.25,
+  '&[aria-orientation="vertical"]': {
+    flexDirection: 'column',
+  },
+});
 export function Menubar(props: React.ComponentProps<typeof BaseMenubar>) {
-  return (
-    <BaseMenubar
-      render={
-        <Box
-          sx={{
-            display: 'flex',
-            gap: '1px',
-            p: 0.25,
-            '&[aria-orientation="vertical"]': {
-              flexDirection: 'column',
-            },
-          }}
-        />
-      }
-      {...props}
-    />
-  );
+  return <BaseMenubar render={<StyledMenubar />} {...props} />;
 }
 
 export function MenuRoot(props: React.ComponentProps<typeof Menu.Root>) {
   return <Menu.Root {...props} />;
 }
 
+const StyledTrigger = styled(Button)({
+  px: 2,
+  color: 'text.secondary',
+  fontWeight: 500,
+  transition: 'none',
+  textTransform: 'capitalize',
+  letterSpacing: 0,
+  fontSize: '0.875rem',
+  '&[data-popup-open]': { bgcolor: 'action.focus' },
+  '&.Mui-focusVisible': { bgcolor: 'action.focus' },
+  '[aria-orientation="vertical"] &': {
+    justifyContent: 'initial',
+  },
+});
 export function MenuTrigger(props: React.ComponentProps<typeof Menu.Trigger>) {
   return (
     <Menu.Trigger
-      render={
-        <Button
-          size="small"
-          color="inherit"
-          disableRipple
-          sx={{
-            px: 2,
-            color: 'text.secondary',
-            fontWeight: 500,
-            transition: 'none',
-            textTransform: 'capitalize',
-            letterSpacing: 0,
-            fontSize: '0.875rem',
-            '&[data-popup-open]': { bgcolor: 'action.focus' },
-            '&.Mui-focusVisible': { bgcolor: 'action.focus' },
-            '[aria-orientation="vertical"] &': {
-              justifyContent: 'initial',
-            },
-          }}
-        />
-      }
+      render={<StyledTrigger size="small" color="inherit" disableRipple />}
       {...props}
     />
   );
@@ -77,22 +64,20 @@ export function MenuPositioner(props: React.ComponentProps<typeof Menu.Positione
   return <Menu.Positioner {...props} />;
 }
 
+const StyledPaper = styled(Paper)({
+  minWidth: 160,
+  py: 0.5,
+  transformOrigin: 'var(--transform-origin)',
+  '&[data-starting-style], &[data-ending-style]': {
+    opacity: 0,
+    transform: 'scale(0.95)',
+  },
+});
 export function MenuPopup(props: React.ComponentProps<typeof Menu.Popup>) {
   return (
     <Menu.Popup
       render={(renderProps) => (
-        <Paper
-          elevation={8}
-          sx={{
-            minWidth: 160,
-            py: 0.5,
-            transformOrigin: 'var(--transform-origin)',
-            '&[data-starting-style], &[data-ending-style]': {
-              opacity: 0,
-              transform: 'scale(0.95)',
-            },
-          }}
-        >
+        <StyledPaper elevation={8}>
           <List
             component="div"
             disablePadding
@@ -101,7 +86,7 @@ export function MenuPopup(props: React.ComponentProps<typeof Menu.Popup>) {
           >
             {props.children}
           </List>
-        </Paper>
+        </StyledPaper>
       )}
       {...props}
     />
@@ -149,6 +134,11 @@ export function MenuSubmenuRoot(
   return <Menu.SubmenuRoot {...props} />;
 }
 
+const StyledHint = styled(Typography)({
+  flexShrink: 0,
+  color: 'text.secondary',
+  typography: 'body2',
+});
 export function MenuSubmenuTrigger(
   props: React.ComponentProps<typeof Menu.SubmenuTrigger> &
     Pick<ListItemButtonProps, 'sx'> &
@@ -159,13 +149,7 @@ export function MenuSubmenuTrigger(
     <Menu.SubmenuTrigger render={<ListItemButton dense sx={sx} />} {...other}>
       {icon && <ListItemIcon sx={{ minWidth: 32 }}>{icon}</ListItemIcon>}
       <ListItemText>{children}</ListItemText>
-      {hint && (
-        <Typography
-          sx={{ flexShrink: 0, color: 'text.secondary', typography: 'body2' }}
-        >
-          {hint}
-        </Typography>
-      )}
+      {hint && <StyledHint>{hint}</StyledHint>}
       <ChevronRightIcon fontSize="small" sx={{ mr: -1 }} />
     </Menu.SubmenuTrigger>
   );
@@ -194,13 +178,7 @@ export function MenuCheckboxItem(
         <Menu.CheckboxItemIndicator render={<CheckIcon fontSize="small" />} />
       </ListItemIcon>
       <ListItemText>{children}</ListItemText>
-      {hint && (
-        <Typography
-          sx={{ flexShrink: 0, color: 'text.secondary', typography: 'body2' }}
-        >
-          {hint}
-        </Typography>
-      )}
+      {hint && <StyledHint>{hint}</StyledHint>}
     </Menu.CheckboxItem>
   );
 }
@@ -228,13 +206,7 @@ export function MenuRadioItem(
         />
       </ListItemIcon>
       <ListItemText>{children}</ListItemText>
-      {hint && (
-        <Typography
-          sx={{ flexShrink: 0, color: 'text.secondary', typography: 'body2' }}
-        >
-          {hint}
-        </Typography>
-      )}
+      {hint && <StyledHint>{hint}</StyledHint>}
     </Menu.RadioItem>
   );
 }
