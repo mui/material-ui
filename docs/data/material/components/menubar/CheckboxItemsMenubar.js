@@ -9,7 +9,7 @@ import {
   MenuItem,
   MenuCheckboxItem,
   MenuSeparator,
-} from './Menubar';
+} from './components/Menubar';
 
 export default function CheckboxItemsMenubar() {
   const [showSidebar, setShowSidebar] = React.useState(true);

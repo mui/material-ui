@@ -8,7 +8,7 @@ import {
   MenuPopup,
   MenuItem,
   MenuSeparator,
-} from './Menubar';
+} from './components/Menubar';
 
 export default function ShortcutHintsMenubar() {
   return (

@@ -11,7 +11,7 @@ import {
   MenuSeparator,
   MenuSubmenuRoot,
   MenuSubmenuTrigger,
-} from './Menubar';
+} from './components/Menubar';
 
 export default function RadioGroupItemsMenubar() {
   const [theme, setTheme] = React.useState('system');

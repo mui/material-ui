@@ -10,7 +10,7 @@ import {
   MenuSeparator,
   MenuSubmenuRoot,
   MenuSubmenuTrigger,
-} from './Menubar';
+} from './components/Menubar';
 
 export default function BasicMenubar() {
   return (
