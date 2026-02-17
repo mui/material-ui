@@ -24,6 +24,10 @@ A big thanks to the 3 contributors who made this release possible.
 
 All contributors of this release in alphabetical order: @bernardobelchior, @silviuaavram, @ZeeshanTamboli
 
+## v8
+
+This version is skipped to align the release version with MUI X v9.
+
 ## 7.3.8
 
 <!-- generated comparing v7.3.7..master -->
