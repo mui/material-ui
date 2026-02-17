@@ -7,7 +7,10 @@ type UseRovingTabIndexOptions = {
 };
 
 type UseRovingTabIndexReturn = {
-  getItemProps: (index: number) => {
+  getItemProps: (
+    index: number,
+    ref?: React.RefObject<HTMLElement>,
+  ) => {
     ref: (element: HTMLElement | null) => void;
     tabIndex: number;
   };
@@ -51,7 +54,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
 
   if (focusableIndexProp !== indexRef.current) {
     indexRef.current = focusableIndexProp;
-    
+
     if (focusableIndexProp !== focusableIndex) {
       setFocusableIndex(focusableIndexProp);
     }
