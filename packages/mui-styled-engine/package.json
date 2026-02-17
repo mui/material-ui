@@ -43,9 +43,9 @@
     "@emotion/styled": "11.14.1",
     "@mui/styled-engine": "workspace:*",
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.9",
+    "@types/react": "19.2.14",
     "chai": "6.2.2",
-    "react": "19.2.3"
+    "react": "19.2.4"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

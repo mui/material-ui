@@ -43,15 +43,15 @@
     "@mui/material": "workspace:^",
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.9",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "es-toolkit": "1.44.0",
     "fast-glob": "3.3.3",
     "next": "15.5.12",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "sinon": "21.0.1"
   },
   "peerDependencies": {
