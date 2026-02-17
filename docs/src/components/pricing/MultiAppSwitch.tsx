@@ -7,30 +7,14 @@ import Typography from '@mui/material/Typography';
 import { useMultiApp } from 'docs/src/components/pricing/MultiAppContext';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function MultiAppSwitch() {
   const { multiApp, setMultiApp } = useMultiApp();
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMultiApp(event.target.checked);
   };
-  const MultiAppDescription =
-    'Choose this option if you need to use MUI X across multiple applications within your organization.';
 
-  const tooltipProps = {
-    enterDelay: 400,
-    enterNextDelay: 50,
-    enterTouchDelay: 500,
-    placement: 'top' as const,
-    describeChild: true,
-    slotProps: {
-      tooltip: {
-        sx: {
-          fontSize: 12,
-        },
-      },
-    },
-  };
+  const MultiAppDescription = 'Use MUI X across multiple apps within your organization.';
 
   return (
     <Box
@@ -39,6 +23,7 @@ export default function MultiAppSwitch() {
         borderColor: 'primary.100',
         borderRadius: 1,
         padding: 2,
+        backgroundColor: 'background.paper',
         ...theme.applyDarkStyles({
           borderColor: `${alpha(theme.palette.primary[700], 0.4)}`,
         }),
@@ -46,7 +31,7 @@ export default function MultiAppSwitch() {
     >
       <FormGroup>
         <FormControlLabel
-          control={<Switch checked={multiApp} onChange={handleChange} />}
+          control={<Switch checked={multiApp} onChange={onChange} />}
           label={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Typography
@@ -60,9 +45,6 @@ export default function MultiAppSwitch() {
               >
                 Multi App License
               </Typography>
-              <Tooltip title={MultiAppDescription} {...tooltipProps}>
-                <InfoOutlinedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-              </Tooltip>
             </Box>
           }
           sx={{
@@ -79,6 +61,9 @@ export default function MultiAppSwitch() {
           labelPlacement="start"
         />
       </FormGroup>
+      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+        {MultiAppDescription}
+      </Typography>
     </Box>
   );
 }

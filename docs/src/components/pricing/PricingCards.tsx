@@ -4,11 +4,6 @@ import { alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import Switch from '@mui/material/Switch';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Tooltip from '@mui/material/Tooltip';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
@@ -19,6 +14,8 @@ import {
   PremiumSupportIcon,
   PrioritySupportIcon,
 } from 'docs/src/components/pricing/SupportIcons';
+import MultiAppSwitch from 'docs/src/components/pricing/MultiAppSwitch';
+import { MultiAppProvider, useMultiApp } from 'docs/src/components/pricing/MultiAppContext';
 
 export interface Feature {
   text?: string;
@@ -558,29 +555,7 @@ interface PricingCardWrapperProps {
 }
 
 function PricingCardWrapper({ plan, highlighted = false }: PricingCardWrapperProps) {
-  const [multiApp, setMultiApp] = React.useState(false);
-
-  const handleMultiAppChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMultiApp(event.target.checked);
-  };
-
-  const MultiAppDescription =
-    'Choose this option if you need to use MUI X across multiple applications within your organization.';
-
-  const tooltipProps = {
-    enterDelay: 400,
-    enterNextDelay: 50,
-    enterTouchDelay: 500,
-    placement: 'top' as const,
-    describeChild: true,
-    slotProps: {
-      tooltip: {
-        sx: {
-          fontSize: 12,
-        },
-      },
-    },
-  };
+  const { multiApp } = useMultiApp();
 
   return (
     <Box
@@ -609,53 +584,7 @@ function PricingCardWrapper({ plan, highlighted = false }: PricingCardWrapperPro
         <PlanPrice plan={plan} multiApp={multiApp} />
       </Box>
       {plan !== 'community' && plan !== 'enterprise' && (
-        <Box
-          sx={(theme) => ({
-            border: '1px solid',
-            borderColor: 'primary.100',
-            borderRadius: 1,
-            padding: 2,
-            ...theme.applyDarkStyles({
-              borderColor: `${alpha(theme.palette.primary[700], 0.4)}`,
-            }),
-          })}
-        >
-          <FormGroup>
-            <FormControlLabel
-              control={<Switch checked={multiApp} onChange={handleMultiAppChange} />}
-              label={
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <Typography
-                    fontWeight="semiBold"
-                    color="text.primary"
-                    variant="body2"
-                    sx={{
-                      textAlign: 'left',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    Multi App License
-                  </Typography>
-                  <Tooltip title={MultiAppDescription} {...tooltipProps}>
-                    <InfoOutlinedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-                  </Tooltip>
-                </Box>
-              }
-              sx={{
-                mb: 0.5,
-                ml: 0,
-                mr: 0,
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-                '& .MuiFormControlLabel-label': {
-                  marginRight: 'auto',
-                },
-              }}
-              labelPlacement="start"
-            />
-          </FormGroup>
-        </Box>
+        <MultiAppSwitch />
       )}
       {plan !== 'community' && plan !== 'enterprise' && <Divider />}
       <Box textAlign="left">
@@ -693,8 +622,12 @@ export default function PricingCards() {
         }}
       >
         <PricingCardWrapper plan="community" />
-        <PricingCardWrapper plan="pro" />
-        <PricingCardWrapper plan="premium" highlighted />
+        <MultiAppProvider>
+          <PricingCardWrapper plan="pro" />
+        </MultiAppProvider>
+        <MultiAppProvider>
+          <PricingCardWrapper plan="premium" highlighted />
+        </MultiAppProvider>
         <PricingCardWrapper plan="enterprise" />
       </Box>
     </React.Fragment>
