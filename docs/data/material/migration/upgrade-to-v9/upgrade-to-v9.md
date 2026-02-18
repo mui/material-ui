@@ -23,3 +23,35 @@ The steps you need to take to migrate from Material UI v7 to v9 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### TablePagination numbers are formatted by default
+
+Pagination numbers in `TablePagination` are now formatted using `Intl.NumberFormat` according to the locale.
+For example, `103177` is displayed as `103,177` in `en-US` or `103.177` in `de-DE`.
+
+To opt out of number formatting, provide a custom `labelDisplayedRows` function:
+
+```jsx
+<TablePagination
+  labelDisplayedRows={({ from, to, count }) =>
+    `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`
+  }
+/>
+```
+
+Or when using a locale:
+
+```jsx
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    MuiTablePagination: {
+      defaultProps: {
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
+      },
+    },
+  },
+});
+```
