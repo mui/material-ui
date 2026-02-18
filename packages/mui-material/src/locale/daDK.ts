@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('da-DK');
 
 export const daDK: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const daDK: Localization = {
         },
         labelRowsPerPage: 'Rækker pr side:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} af ${count !== -1 ? count : `mere end ${to}`}`,
+          `${formatNumber(from)}-${formatNumber(to)} af ${count !== -1 ? formatNumber(count) : `mere end ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

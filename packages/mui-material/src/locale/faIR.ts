@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('fa-IR');
 
 export const faIR: Localization = {
   components: {
@@ -29,7 +32,7 @@ export const faIR: Localization = {
         },
         labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} از ${count !== -1 ? count : `بیشتر از ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} از ${count !== -1 ? formatNumber(count) : `بیشتر از ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

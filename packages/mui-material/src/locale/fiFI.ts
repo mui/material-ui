@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('fi-FI');
 
 export const fiFI: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const fiFI: Localization = {
         },
         labelRowsPerPage: 'Rivejä per sivu:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} / ${count !== -1 ? count : `enemmän kuin ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} / ${count !== -1 ? formatNumber(count) : `enemmän kuin ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

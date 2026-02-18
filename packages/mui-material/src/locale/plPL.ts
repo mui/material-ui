@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('pl-PL');
 
 export const plPL: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const plPL: Localization = {
         },
         labelRowsPerPage: 'Wierszy na stronę:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} z ${count !== -1 ? count : `ponad ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} z ${count !== -1 ? formatNumber(count) : `ponad ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

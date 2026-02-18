@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('my-MY');
 
 // Myanmar - မြန်မာ
 export const myMY: Localization = {
@@ -25,7 +28,7 @@ export const myMY: Localization = {
         },
         labelRowsPerPage: 'စာမျက်နှာအလိုက် အတန်းများ:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} ၏ ${count !== -1 ? count : `ထက်ပိုပြီး ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} ၏ ${count !== -1 ? formatNumber(count) : `ထက်ပိုပြီး ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

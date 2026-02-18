@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ja-JP');
 
 export const jaJP: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const jaJP: Localization = {
         },
         labelRowsPerPage: 'ページあたりの行数:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}～${to} / ${count !== -1 ? count : `${to}以上`}`,
+          `${formatNumber(from)}～${formatNumber(to)} / ${count !== -1 ? formatNumber(count) : `${formatNumber(to)}以上`}`,
       },
     },
     MuiRating: {

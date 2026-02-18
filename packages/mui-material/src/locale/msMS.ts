@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ms-MS');
 
 // Malay-Melayu
 export const msMS: Localization = {
@@ -25,7 +28,7 @@ export const msMS: Localization = {
         },
         labelRowsPerPage: 'Baris setiap halaman:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} daripada ${count !== -1 ? count : `lebih daripada ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} daripada ${count !== -1 ? formatNumber(count) : `lebih daripada ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

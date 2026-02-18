@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ru-RU');
 
 export const ruRU: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const ruRU: Localization = {
         },
         labelRowsPerPage: 'Строк на странице:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} из ${count !== -1 ? count : `более чем ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} из ${count !== -1 ? formatNumber(count) : `более чем ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

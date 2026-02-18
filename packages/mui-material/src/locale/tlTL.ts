@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('tl-TL');
 
 // Tagalog-Tagalog
 export const tlTL: Localization = {
@@ -25,7 +28,7 @@ export const tlTL: Localization = {
         },
         labelRowsPerPage: 'Mga hilera bawat pahina:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} ng ${count !== -1 ? count : `higit sa ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} ng ${count !== -1 ? formatNumber(count) : `higit sa ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

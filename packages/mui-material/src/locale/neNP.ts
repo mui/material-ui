@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ne-NP');
 
 // Nepali-नेपाली
 export const neNP: Localization = {
@@ -25,7 +28,7 @@ export const neNP: Localization = {
         },
         labelRowsPerPage: 'प्रति पृष्ठ पङ्क्तिहरू:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} को ${count !== -1 ? count : `धेरै ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} को ${count !== -1 ? formatNumber(count) : `धेरै ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

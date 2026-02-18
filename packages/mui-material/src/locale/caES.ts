@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ca-ES');
 
 export const caES: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const caES: Localization = {
         },
         labelRowsPerPage: 'Files per pàgina:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} de ${count !== -1 ? count : `més de ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} de ${count !== -1 ? formatNumber(count) : `més de ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

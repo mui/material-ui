@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('is-IS');
 
 export const isIS: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const isIS: Localization = {
         },
         labelRowsPerPage: 'Raðir á síðu:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} af ${count !== -1 ? count : `fleiri en ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} af ${count !== -1 ? formatNumber(count) : `fleiri en ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('be-BY');
 
 export const beBY: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const beBY: Localization = {
         },
         labelRowsPerPage: 'Радкоў на старонцы:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} з ${count !== -1 ? count : `больш чым ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} з ${count !== -1 ? formatNumber(count) : `больш чым ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

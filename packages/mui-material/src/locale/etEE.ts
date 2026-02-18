@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('et-EE');
 
 export const etEE: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const etEE: Localization = {
         },
         labelRowsPerPage: 'Ridu leheküljel:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} / ${count !== -1 ? count : `rohkem kui ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} / ${count !== -1 ? formatNumber(count) : `rohkem kui ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('vi-VN');
 
 export const viVN: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const viVN: Localization = {
         },
         labelRowsPerPage: 'Số hàng mỗi trang:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} trong ${count !== -1 ? count : `nhiều hơn ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} trong ${count !== -1 ? formatNumber(count) : `nhiều hơn ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

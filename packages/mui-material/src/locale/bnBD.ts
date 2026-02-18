@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('bn-BD');
 
 export const bnBD: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const bnBD: Localization = {
         },
         labelRowsPerPage: 'প্রতি পৃষ্ঠায় সারি:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} / ${count !== -1 ? count : `${to} থেকে বেশি`}`,
+          `${formatNumber(from)}–${formatNumber(to)} / ${count !== -1 ? formatNumber(count) : `${formatNumber(to)} থেকে বেশি`}`,
       },
     },
     MuiRating: {

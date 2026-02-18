@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('kh-KH');
 
 export const khKH: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const khKH: Localization = {
         },
         labelRowsPerPage: 'ចំនួនជួរដេកក្នុងមួយទំព័រ:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from} - ${to} នៃ ${count !== -1 ? count : `ច្រើនជាង ${to}`}`,
+          `${formatNumber(from)} - ${formatNumber(to)} នៃ ${count !== -1 ? formatNumber(count) : `ច្រើនជាង ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

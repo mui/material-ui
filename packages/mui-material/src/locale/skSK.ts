@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('sk-SK');
 
 export const skSK: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const skSK: Localization = {
         },
         labelRowsPerPage: 'Riadkov na stránke:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} z ${count !== -1 ? count : `viac ako ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} z ${count !== -1 ? formatNumber(count) : `viac ako ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {
