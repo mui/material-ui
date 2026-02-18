@@ -11,13 +11,13 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
 const props1: MenuItemProps<'div'> = {
   component: 'div',
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
   },
 };
 
 const props2: MenuItemProps = {
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLLIElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLLIElement>, typeof event>(event);
   },
 };
 
@@ -53,13 +53,13 @@ const TestComponent = () => {
       }
       <MenuItem
         onChange={(event) => {
-          expectType<React.FormEvent<HTMLLIElement>, typeof event>(event);
+          expectType<React.ChangeEvent<HTMLLIElement>, typeof event>(event);
         }}
       />
       <MenuItem
         component="span"
         onChange={(event) => {
-          expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
+          expectType<React.ChangeEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
       <MenuItem component={Link} />

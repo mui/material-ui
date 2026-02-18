@@ -10,13 +10,13 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
 const props1: FormHelperTextProps<'div'> = {
   component: 'div',
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
   },
 };
 
 const props2: FormHelperTextProps = {
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLParagraphElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLParagraphElement>, typeof event>(event);
   },
 };
 
@@ -53,7 +53,7 @@ const TestComponent = () => {
       <FormHelperText
         component="span"
         onChange={(event) => {
-          expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
+          expectType<React.ChangeEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
     </React.Fragment>

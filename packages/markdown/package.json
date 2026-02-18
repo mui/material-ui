@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "2.0.14",
+  "version": "3.0.1",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.mjs",
@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/runtime": "^7.28.6",
     "es-toolkit": "^1.44.0",
-    "marked": "^17.0.1",
+    "marked": "^17.0.2",
     "prismjs": "^1.30.0"
   },
   "devDependencies": {
