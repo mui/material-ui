@@ -157,7 +157,7 @@ export default function JoySignInSideTemplate() {
             </Divider>
             <Stack sx={{ gap: 4, mt: 2 }}>
               <form
-                onSubmit={(event: React.FormEvent<SignInFormElement>) => {
+                onSubmit={(event: React.SubmitEvent<SignInFormElement>) => {
                   event.preventDefault();
                   const formElements = event.currentTarget.elements;
                   const data = {
