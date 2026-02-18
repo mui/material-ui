@@ -262,7 +262,7 @@ export function PromptDialog({ open, payload, onClose }: PromptDialogProps) {
       slotProps={{
         paper: {
           component: 'form',
-          onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
+          onSubmit: async (event: React.SubmitEvent<HTMLFormElement>) => {
             event.preventDefault();
             try {
               setLoading(true);

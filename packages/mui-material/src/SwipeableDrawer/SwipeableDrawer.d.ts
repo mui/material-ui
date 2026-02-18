@@ -108,12 +108,12 @@ export interface SwipeableDrawerProps
  *
  * Demos:
  *
- * - [Drawer](https://mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://next.mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [SwipeableDrawer API](https://mui.com/material-ui/api/swipeable-drawer/)
- * - inherits [Drawer API](https://mui.com/material-ui/api/drawer/)
+ * - [SwipeableDrawer API](https://next.mui.com/material-ui/api/swipeable-drawer/)
+ * - inherits [Drawer API](https://next.mui.com/material-ui/api/drawer/)
  */
 declare const SwipeableDrawer: React.JSXElementConstructor<SwipeableDrawerProps>;
 
