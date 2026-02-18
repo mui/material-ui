@@ -17,7 +17,7 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "variant": {
-      "description": "The variant context for the avatar children. It has no effect on the AvatarGroup."
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use."
     }
   },
   "classDescriptions": {},
