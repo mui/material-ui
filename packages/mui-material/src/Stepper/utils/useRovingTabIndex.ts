@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-type UseRovingTabIndexOptions = {
-  focusableIndex: number;
+export type UseRovingTabIndexOptions = {
+  focusableIndex?: number;
   orientation: 'horizontal' | 'vertical';
-  isRtl: boolean;
+  isRtl?: boolean;
 };
 
 type UseRovingTabIndexReturn = {
@@ -45,32 +45,36 @@ const SUPPORTED_ROLES = ['button', 'tab', 'menuitem', 'option'];
  *
  */
 const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndexReturn => {
-  const { orientation, isRtl, focusableIndex: focusableIndexProp } = options;
-  const indexRef = React.useRef(focusableIndexProp);
+  const initialFocusableIndex = options.focusableIndex ?? 0;
 
-  const [focusableIndex, setFocusableIndex] = React.useState(focusableIndexProp);
+  const [focusableIndex, setFocusableIndex] = React.useState(initialFocusableIndex);
 
   const elementsRef = React.useRef<(ActionableElement | null)[]>([]);
+  const indexRef = React.useRef(initialFocusableIndex);
 
-  if (focusableIndexProp !== indexRef.current) {
-    indexRef.current = focusableIndexProp;
+  if (options.focusableIndex !== undefined && options.focusableIndex !== indexRef.current) {
+    indexRef.current = options.focusableIndex;
 
-    if (focusableIndexProp !== focusableIndex) {
-      setFocusableIndex(focusableIndexProp);
+    if (options.focusableIndex !== focusableIndex) {
+      setFocusableIndex(options.focusableIndex);
     }
   }
 
+
   React.useEffect(() => {
-    if (isDisabled(elementsRef.current[focusableIndexProp])) {
-      const [, nextIndex] = getNextFocus(elementsRef, focusableIndexProp, 'next');
+    if (
+      options.focusableIndex !== undefined &&
+      isDisabled(elementsRef.current[options.focusableIndex])
+    ) {
+      const [, nextIndex] = getNextFocus(elementsRef, options.focusableIndex, 'next');
       if (nextIndex !== -1) {
         setFocusableIndex(nextIndex);
       }
     }
-  }, [focusableIndexProp]);
+  }, [options.focusableIndex]);
 
   const getItemProps = React.useCallback(
-    (index: number, ref?: React.RefObject<HTMLElement>) => ({
+    (index: number, ref?: React.Ref<HTMLElement>) => ({
       ref: handleRefs(ref, (elementNode) => {
         if (elementNode) {
           elementsRef.current[index] = elementNode;
@@ -100,10 +104,10 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
         return;
       }
 
-      let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
-      let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+      let previousItemKey = options.orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
+      let nextItemKey = options.orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
 
-      if (orientation === 'horizontal' && isRtl) {
+      if (options.orientation === 'horizontal' && options.isRtl) {
         // swap previousItemKey with nextItemKey
         previousItemKey = 'ArrowRight';
         nextItemKey = 'ArrowLeft';
@@ -150,7 +154,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
       onKeyDown: handleKeyDown,
       onFocus: handleFocus,
     };
-  }, [focusableIndex, isRtl, orientation]);
+  }, [focusableIndex, options.isRtl, options.orientation]);
 
   return { getItemProps, getContainerProps, focusableIndex, setFocusableIndex };
 };
@@ -207,9 +211,7 @@ function isDisabled(element: ActionableElement | null) {
   return element?.disabled || element?.getAttribute('aria-disabled') === 'true';
 }
 
-function handleRefs(
-  ...refs: (React.RefObject<HTMLElement> | React.RefCallback<HTMLElement> | undefined)[]
-) {
+function handleRefs(...refs: (React.Ref<HTMLElement> | undefined)[]) {
   return (node: HTMLElement | null) => {
     if (!node) {
       return;
