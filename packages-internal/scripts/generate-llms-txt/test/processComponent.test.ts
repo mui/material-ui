@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
@@ -117,6 +117,8 @@ Some text in between.
     });
 
     it('should return original match when demo file is not found', () => {
+      vi.spyOn(console, 'warn').mockImplementation(() => {});
+
       const markdown = `{{"demo": "NonExistent.js"}}`;
 
       const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
@@ -124,6 +126,7 @@ Some text in between.
       });
 
       expect(result).to.equal(markdown);
+      expect(console.warn).toHaveBeenCalledWith('Demo file not found: NonExistent.js');
     });
 
     it('should handle demos with additional properties', () => {

@@ -35,7 +35,7 @@
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/node": "20.19.30",
+    "@types/node": "20.19.33",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "sinon": "21.0.1"
