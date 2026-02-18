@@ -42,16 +42,24 @@ To opt out of number formatting, provide a custom `labelDisplayedRows` function:
 Or when using a locale:
 
 ```jsx
-import { createTheme } from '@mui/material/styles';
+import { enUS } from '@mui/material/locale';
 
-const theme = createTheme({
-  components: {
-    MuiTablePagination: {
-      defaultProps: {
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
+  },
+  enUS,
+  {
+    components: {
+      MuiTablePagination: {
+        defaultProps: {
+          labelDisplayedRows: ({ from, to, count }) =>
+            `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
+        },
       },
     },
   },
-});
+);
 ```
