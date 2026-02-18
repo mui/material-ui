@@ -313,8 +313,7 @@ export function generatePropTypes(
 
     const previousJsDoc = previousPropTypesJsDoc.get(propTypeDefinition.name);
     const jsDocSource =
-      previousJsDoc !== undefined &&
-      validatorSource.includes('@typescript-to-proptypes-ignore')
+      previousJsDoc !== undefined && validatorSource.includes('@typescript-to-proptypes-ignore')
         ? `${previousJsDoc}\n`
         : jsDoc(propTypeDefinition);
 
