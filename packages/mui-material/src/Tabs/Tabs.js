@@ -753,9 +753,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       return { child, index, childValue };
     });
 
-  const focusableIndex = valueToIndex.get(value) ?? 0;
+  const focusableIndex = valueToIndex.get(value);
 
-  const { getContainerProps, getItemProps: getRovingTabIndexProps } = useRovingTabIndex({
+  const { getContainerProps, getItemProps } = useRovingTabIndex({
     focusableIndex,
     orientation,
     isRtl,
@@ -765,6 +765,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const children = validChildren.map(({ child, index, childValue }) => {
     const selected = childValue === value;
 
+    const {ref, tabIndex} = getItemProps(index, child.ref);
+
     return React.cloneElement(child, {
       fullWidth: variant === 'fullWidth',
       indicator: selected && !mounted && indicator,
@@ -773,8 +775,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       onChange,
       textColor,
       value: childValue,
-      index,
-      getRovingTabIndexProps,
+      tabIndex,
+      ref
     });
   });
 

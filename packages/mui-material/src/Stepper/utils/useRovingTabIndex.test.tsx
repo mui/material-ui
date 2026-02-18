@@ -1,22 +1,13 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
-import useRovingTabIndexFocus from './useRovingTabIndex';
+import useRovingTabIndexFocus, { UseRovingTabIndexOptions } from './useRovingTabIndex';
 
-type TestComponentProps = {
-  focusableIndex: number;
-  orientation: 'horizontal' | 'vertical';
-  isRtl: boolean;
-};
-
-const defaultProps: TestComponentProps = {
-  focusableIndex: 0,
+const defaultProps: UseRovingTabIndexOptions = {
   orientation: 'horizontal',
-  isRtl: false,
 };
 
-function TestComponent(props: Partial<TestComponentProps>) {
+function TestComponent(props: Partial<UseRovingTabIndexOptions>) {
   const { getItemProps, getContainerProps } = useRovingTabIndexFocus({ ...defaultProps, ...props });
 
   return (
@@ -39,6 +30,15 @@ function TestComponent(props: Partial<TestComponentProps>) {
 
 describe('useRovingTabIndexFocus', () => {
   const { render } = createRenderer();
+
+  it('should set the first enabled element as focusable when no focusableIndex is provided', () => {
+    render(<TestComponent />);
+
+    expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('0');
+    expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-3').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-4').getAttribute('tabindex')).to.equal('-1');
+  });
 
   it('should set focusable index correctly', () => {
     const focusableIndex = 1;
@@ -65,6 +65,7 @@ describe('useRovingTabIndexFocus', () => {
   });
 
   it('should set focusable index to next enabled element if initial index is on a disabled element', () => {
+    // it's disabled
     const focusableIndex = 2;
 
     render(<TestComponent focusableIndex={focusableIndex} />);

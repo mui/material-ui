@@ -99,7 +99,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     });
   });
 
-  const { getContainerProps, getItemProps: getRovingTabIndexProps } = useRovingTabIndexFocus({
+  const { getContainerProps, getItemProps } = useRovingTabIndexFocus({
     initialIndex: activeStep,
     orientation,
     isRtl,
@@ -114,17 +114,18 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       nonLinear,
       orientation,
       totalSteps,
+      getRovingTabIndexProps: getItemProps,
       setIsTabList,
-      getRovingTabIndexProps,
     }),
     [
       activeStep,
       alternativeLabel,
       connector,
-      getRovingTabIndexProps,
       nonLinear,
       orientation,
       totalSteps,
+      getItemProps,
+      setIsTabList,
     ],
   );
 
@@ -136,9 +137,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
         className={clsx(classes.root, className)}
         ref={ref}
         aria-orientation={orientation}
-        role={isTabList ? 'tablist' : undefined}
-        onFocus={onFocus}
-        onKeyDown={onKeyDown}
+        {...(isTabList && { role: 'tablist', onFocus, onKeyDown })}
         {...other}
       >
         {steps}
