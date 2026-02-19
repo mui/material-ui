@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('hr-HR');
 
 // Croatian - Hrvatski
 export const hrHR: Localization = {
@@ -25,7 +28,7 @@ export const hrHR: Localization = {
         },
         labelRowsPerPage: 'Redova po stranici:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} od ${count !== -1 ? count : `više nego ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} od ${count !== -1 ? formatNumber(count) : `više nego ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

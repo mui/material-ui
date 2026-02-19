@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('nl-NL');
 
 export const nlNL: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const nlNL: Localization = {
         },
         labelRowsPerPage: 'Regels per pagina:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} van ${count !== -1 ? count : `meer dan ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} van ${count !== -1 ? formatNumber(count) : `meer dan ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('mk-MK');
 
 // Macedonian - Македонски
 export const mkMK: Localization = {
@@ -25,7 +28,7 @@ export const mkMK: Localization = {
         },
         labelRowsPerPage: 'Редови по страница:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} од ${count !== -1 ? count : `повеќе од ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} од ${count !== -1 ? formatNumber(count) : `повеќе од ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('am-ET');
 
 export const amET: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const amET: Localization = {
         },
         labelRowsPerPage: 'ረድፎች በአንድ ገጽ:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} ከ ${count !== -1 ? count : `${to} በላይ`}`,
+          `${formatNumber(from)}-${formatNumber(to)} ከ ${count !== -1 ? formatNumber(count) : `${formatNumber(to)} በላይ`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ku-CKB');
 
 export const kuCKB: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const kuCKB: Localization = {
         },
         labelRowsPerPage: 'ژمارەی ڕیزەکان لە هەر پەڕەیەک:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} لە ${count !== -1 ? count : ` زیاترە لە${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} لە ${count !== -1 ? formatNumber(count) : ` زیاترە لە${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('zh-CN');
 
 export const zhCN: Localization = {
   components: {
@@ -23,7 +26,7 @@ export const zhCN: Localization = {
         },
         labelRowsPerPage: '每页行数:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `第 ${from} 条到第 ${to} 条，${count !== -1 ? `共 ${count} 条` : `至少 ${to} 条`}`,
+          `第 ${formatNumber(from)} 条到第 ${formatNumber(to)} 条，${count !== -1 ? `共 ${formatNumber(count)} 条` : `至少 ${formatNumber(to)} 条`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ps-AF');
 
 export const psAF: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const psAF: Localization = {
         },
         labelRowsPerPage: 'په پاڼه کی د کرښو شمیر',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${count !== -1 ? count : `${to} زیات له`} ${to}- ${from} د`,
+          `${count !== -1 ? formatNumber(count) : `${formatNumber(to)} زیات له`} ${formatNumber(to)}- ${formatNumber(from)} د`,
       },
     },
     MuiRating: {

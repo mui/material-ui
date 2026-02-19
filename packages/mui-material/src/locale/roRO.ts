@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ro-RO');
 
 export const roRO: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const roRO: Localization = {
         },
         labelRowsPerPage: 'Rânduri pe pagină:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} din ${count !== -1 ? count : `mai mult de ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} din ${count !== -1 ? formatNumber(count) : `mai mult de ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

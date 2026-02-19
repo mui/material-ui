@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('nb-NO');
 
 export const nbNO: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const nbNO: Localization = {
         },
         labelRowsPerPage: 'Rader per side:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} av ${count !== -1 ? count : `mer enn ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} av ${count !== -1 ? formatNumber(count) : `mer enn ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

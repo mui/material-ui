@@ -200,7 +200,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    *
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }) {
-   *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   *   return `${formatNumber(from)}–${formatNumber(to)} of ${count !== -1 ? formatNumber(count) : `more than ${formatNumber(to)}`}`;
    * }
    */
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;

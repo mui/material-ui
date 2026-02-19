@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('de-DE');
 
 export const deDE: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const deDE: Localization = {
         },
         labelRowsPerPage: 'Zeilen pro Seite:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} von ${count !== -1 ? count : `mehr als ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} von ${count !== -1 ? formatNumber(count) : `mehr als ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

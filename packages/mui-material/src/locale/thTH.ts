@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('th-TH');
 
 export const thTH: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const thTH: Localization = {
         },
         labelRowsPerPage: 'จำนวนแถวต่อหน้า:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} จาก ${count !== -1 ? count : `มากกว่า ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} จาก ${count !== -1 ? formatNumber(count) : `มากกว่า ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

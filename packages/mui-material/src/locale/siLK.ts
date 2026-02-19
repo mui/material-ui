@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('si-LK');
 
 export const siLK: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const siLK: Localization = {
         },
         labelRowsPerPage: 'පිටුවක පේළි:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} දක්වා ${count !== -1 ? count : `${to} ට වැඩි ප්‍රමාණයකින්`}`,
+          `${formatNumber(from)}–${formatNumber(to)} දක්වා ${count !== -1 ? formatNumber(count) : `${formatNumber(to)} ට වැඩි ප්‍රමාණයකින්`}`,
       },
     },
     MuiRating: {

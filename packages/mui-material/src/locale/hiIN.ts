@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('hi-IN');
 
 export const hiIN: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const hiIN: Localization = {
         },
         labelRowsPerPage: 'पंक्तियाँ प्रति पृष्ठ:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to === -1 ? count : to} कुल ${count} में`,
+          `${formatNumber(from)}-${to === -1 ? formatNumber(count) : formatNumber(to)} कुल ${formatNumber(count)} में`,
       },
     },
     MuiRating: {

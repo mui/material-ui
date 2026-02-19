@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ko-KR');
 
 export const koKR: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const koKR: Localization = {
         },
         labelRowsPerPage: '페이지 당 행:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} / ${count !== -1 ? count : `${to}개 이상`}`,
+          `${formatNumber(from)}–${formatNumber(to)} / ${count !== -1 ? formatNumber(count) : `${formatNumber(to)}개 이상`}`,
       },
     },
     MuiRating: {

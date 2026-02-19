@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ur-PK');
 
 export const urPK: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const urPK: Localization = {
         },
         labelRowsPerPage: 'ایک صفحے پر قطاریں:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${count !== -1 ? `${count} میں سے` : `${to} سے ذیادہ میں سے`} ${from} سے ${to} قطاریں`,
+          `${count !== -1 ? `${formatNumber(count)} میں سے` : `${formatNumber(to)} سے ذیادہ میں سے`} ${formatNumber(from)} سے ${formatNumber(to)} قطاریں`,
       },
     },
     MuiRating: {

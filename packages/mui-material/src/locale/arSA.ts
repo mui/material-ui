@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('ar-SA');
 
 export const arSA: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const arSA: Localization = {
         },
         labelRowsPerPage: 'عدد الصفوف في الصفحة:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} من ${count !== -1 ? formatNumber(count) : ` أكثر من${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

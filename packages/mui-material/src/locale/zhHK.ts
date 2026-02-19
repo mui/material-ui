@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('zh-HK');
 
 export const zhHK: Localization = {
   components: {
@@ -23,7 +26,7 @@ export const zhHK: Localization = {
         },
         labelRowsPerPage: '每頁行數:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `第 ${from} 項至第 ${to} 項，${count !== -1 ? `共 ${count} 項` : `超過 ${to} 項`}`,
+          `第 ${formatNumber(from)} 項至第 ${formatNumber(to)} 項，${count !== -1 ? `共 ${formatNumber(count)} 項` : `超過 ${formatNumber(to)} 項`}`,
       },
     },
     MuiRating: {

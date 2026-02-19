@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('tr-TR');
 
 export const trTR: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const trTR: Localization = {
         },
         labelRowsPerPage: 'Sayfa başına satır:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `${to}'den fazla`}`,
+          `${formatNumber(from)}-${formatNumber(to)} / ${count !== -1 ? formatNumber(count) : `${formatNumber(to)}'den fazla`}`,
       },
     },
     MuiRating: {

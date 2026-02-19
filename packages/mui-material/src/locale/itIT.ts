@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('it-IT');
 
 export const itIT: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const itIT: Localization = {
         },
         labelRowsPerPage: 'Righe per pagina:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} di ${count !== -1 ? count : `più di ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} di ${count !== -1 ? formatNumber(count) : `più di ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('kk-KZ');
 
 export const kkKZ: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const kkKZ: Localization = {
         },
         labelRowsPerPage: 'Беттегі қатарлар:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${count !== -1 ? count : `+${to}`} қатардың ішінен ${from}–${to}`,
+          `${count !== -1 ? formatNumber(count) : `+${formatNumber(to)}`} қатардың ішінен ${formatNumber(from)}–${formatNumber(to)}`,
       },
     },
     MuiRating: {

@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('uk-UA');
 
 export const ukUA: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const ukUA: Localization = {
         },
         labelRowsPerPage: 'Рядків на сторінці:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} з ${count !== -1 ? count : `понад ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} з ${count !== -1 ? formatNumber(count) : `понад ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {

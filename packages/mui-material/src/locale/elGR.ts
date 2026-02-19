@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import { buildFormatNumber } from './utils/formatNumber';
+
+const formatNumber = buildFormatNumber('el-GR');
 
 export const elGR: Localization = {
   components: {
@@ -25,7 +28,7 @@ export const elGR: Localization = {
         },
         labelRowsPerPage: 'Γραμμές ανα σελίδα:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} από ${count !== -1 ? count : `πάνω από ${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} από ${count !== -1 ? formatNumber(count) : `πάνω από ${formatNumber(to)}`}`,
       },
     },
     MuiRating: {
