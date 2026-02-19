@@ -1110,27 +1110,42 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('calls onClick when Enter is pressed on the element', async () => {
+      it('calls onKeyDown and onClick when Enter is pressed on the element', async () => {
         const onClickSpy = spy();
+        const onKeyDownSpy = spy();
 
-        render(
-          <ButtonBase onClick={onClickSpy} component="div">
+        const { user } = render(
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
             Hello
           </ButtonBase>,
         );
 
-        const button = screen.getByRole('button');
+        await user.tab();
+        await user.keyboard('{Enter}');
 
-        await act(async () => {
-          button.focus();
-        });
-
-        fireEvent.keyDown(button, {
-          key: 'Enter',
-        });
-
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
+
+      it('calls onKeyDown and onClick when Spacebar is pressed on the element', async () => {
+        const onClickSpy = spy();
+        const onKeyDownSpy = spy();
+
+        const { user } = render(
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
+            Hello
+          </ButtonBase>,
+        );
+
+        await user.tab();
+        await user.keyboard(' ');
+
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.calledOnce).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
 
       it('does not call onClick if Enter was pressed on a child', () => {
@@ -1167,25 +1182,42 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('prevents default with an anchor and empty href', async () => {
+      it('prevents default on Enter with an anchor and empty href', async () => {
         const onClickSpy = spy();
+        const onKeyDownSpy = spy();
 
-        render(
-          <ButtonBase component="a" onClick={onClickSpy}>
+        const { user } = render(
+          <ButtonBase component="a" onKeyDown={onKeyDownSpy} onClick={onClickSpy}>
             Hello
           </ButtonBase>,
         );
 
-        const button = screen.getByRole('button');
+        await user.tab();
+        await user.keyboard('{Enter}');
 
-        await act(async () => {
-          button.focus();
-        });
-
-        fireEvent.keyDown(button, { key: 'Enter' });
-
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
+
+      it('prevents default on Spacebar with an anchor and empty href', async () => {
+        const onClickSpy = spy();
+        const onKeyDownSpy = spy();
+
+        const { user } = render(
+          <ButtonBase component="a" onKeyDown={onKeyDownSpy} onClick={onClickSpy}>
+            Hello
+          </ButtonBase>,
+        );
+
+        await user.tab();
+        await user.keyboard(' ');
+
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.calledOnce).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
 
       it('should ignore anchors with href', async () => {
