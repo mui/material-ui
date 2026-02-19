@@ -17,7 +17,7 @@ permissions: {}
 jobs:
   continuous-releases:
     name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@8d98527ab3be91784f2e3c272f96508f35ba7165
+    uses: mui/mui-public/.github/workflows/ci-base.yml@10b29d3ee08a4d030498019863302d362196a316
 
   # Tests dev-only scripts across all supported dev environments
   test-dev:
