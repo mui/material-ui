@@ -23,3 +23,7 @@ The steps you need to take to migrate from Material UI v7 to v9 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### Backdrop
+
+The Backdrop component no longer adds the `aria-hidden="true"` attribute to the Root slot by default.

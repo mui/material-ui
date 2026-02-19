@@ -100,7 +100,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   return (
     <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionProps}>
-      <RootSlot aria-hidden {...rootProps} ref={ref}>
+      <RootSlot {...rootProps} ref={ref}>
         {children}
       </RootSlot>
     </TransitionSlot>
