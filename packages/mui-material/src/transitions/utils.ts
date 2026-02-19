@@ -3,9 +3,9 @@ import * as React from 'react';
 export const reflow = (node: Element) => node.scrollTop;
 
 interface ComponentProps {
-  easing: string | { enter?: string; exit?: string } | undefined;
+  easing: string | { enter?: string | undefined; exit?: string | undefined } | undefined;
   style: React.CSSProperties | undefined;
-  timeout: number | { enter?: number; exit?: number };
+  timeout: number | { enter?: number | undefined; exit?: number | undefined };
 }
 
 interface Options {

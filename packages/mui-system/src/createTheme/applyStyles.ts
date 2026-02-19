@@ -71,8 +71,8 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
   const theme = this as {
     palette: { mode: 'light' | 'dark' };
     vars?: any;
-    colorSchemes?: Record<K, any>;
-    getColorSchemeSelector?: (scheme: string) => string;
+    colorSchemes?: Record<K, any> | undefined;
+    getColorSchemeSelector?: ((scheme: string) => string) | undefined;
   };
   if (theme.vars) {
     if (!theme.colorSchemes?.[key] || typeof theme.getColorSchemeSelector !== 'function') {

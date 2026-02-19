@@ -5,7 +5,7 @@ import { GridDirection, GridOwnerState } from './GridProps';
 import { traverseBreakpoints } from './traverseBreakpoints';
 
 interface Props {
-  theme: { breakpoints: Breakpoints; spacing?: Spacing };
+  theme: { breakpoints: Breakpoints; spacing?: Spacing | undefined };
   ownerState: GridOwnerState;
 }
 

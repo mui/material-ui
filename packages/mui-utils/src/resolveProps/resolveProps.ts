@@ -11,12 +11,12 @@ import clsx from 'clsx';
  */
 export default function resolveProps<
   T extends {
-    components?: Record<string, unknown>;
-    componentsProps?: Record<string, unknown>;
-    slots?: Record<string, unknown>;
-    slotProps?: Record<string, unknown>;
-    className?: string;
-    style?: React.CSSProperties;
+    components?: Record<string, unknown> | undefined;
+    componentsProps?: Record<string, unknown> | undefined;
+    slots?: Record<string, unknown> | undefined;
+    slotProps?: Record<string, unknown> | undefined;
+    className?: string | undefined;
+    style?: React.CSSProperties | undefined;
   } & Record<string, unknown>,
 >(defaultProps: T, props: T, mergeClassNameAndStyle: boolean = false) {
   const output = { ...props };

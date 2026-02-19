@@ -220,7 +220,21 @@ export default defineConfig(
     },
   },
   {
-    files: [`packages/*/src/*/*${EXTENSION_TS}`],
+    files: [`packages/*/src/**/*${EXTENSION_TS}`, `packages/*/src/**/*${EXTENSION_DTS}`],
+    ignores: [
+      '**/*.spec.*',
+      '**/*.test.*',
+      // deprecated library
+      '**/mui-joy/**/*',
+      // used internally, not used on app router yet
+      '**/mui-docs/**/*',
+    ],
+    rules: {
+      'mui/add-undef-to-optional': 'error',
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',

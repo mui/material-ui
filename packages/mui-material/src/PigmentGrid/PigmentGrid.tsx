@@ -33,24 +33,24 @@ export interface GridBaseProps {
    * The number of columns.
    * @default 12
    */
-  columns?: ResponsiveStyleValue<number>;
+  columns?: ResponsiveStyleValue<number> | undefined;
   /**
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing?: ResponsiveStyleValue<GridSpacing>;
+  columnSpacing?: ResponsiveStyleValue<GridSpacing> | undefined;
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    * @default false
    */
-  container?: boolean;
+  container?: boolean | undefined;
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction?: ResponsiveStyleValue<GridDirection>;
+  direction?: ResponsiveStyleValue<GridDirection> | undefined;
   /**
    * Defines the offset of the grid.
    */
@@ -59,7 +59,7 @@ export interface GridBaseProps {
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing?: ResponsiveStyleValue<GridSpacing>;
+  rowSpacing?: ResponsiveStyleValue<GridSpacing> | undefined;
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
@@ -75,21 +75,21 @@ export interface GridBaseProps {
    * It's applied for all screen sizes.
    * @default 'wrap'
    */
-  wrap?: GridWrap;
+  wrap?: GridWrap | undefined;
 }
 
 export interface GridTypeMap<
   AdditionalProps = {},
   DefaultComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> };
+  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> | undefined };
   defaultComponent: DefaultComponent;
 }
 
 export type GridProps<
   RootComponent extends React.ElementType = GridTypeMap['defaultComponent'],
   AdditionalProps = {
-    component?: React.ElementType;
+    component?: React.ElementType | undefined;
   },
 > = OverrideProps<GridTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
