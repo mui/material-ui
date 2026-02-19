@@ -26,7 +26,7 @@ Expect updates as new breaking changes are introduced.
 
 ### Dialog & Modal
 
-The deprecated `disableEscapeKeyDown` has been removed. The same behaviour could be achieved
+The deprecated `disableEscapeKeyDown` has been removed. The same behavior could be achieved
 by checking the `reason` argument in `onClose`. These are equivalent:
 
 ```tsx
