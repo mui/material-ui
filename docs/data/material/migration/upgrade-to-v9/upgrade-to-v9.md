@@ -48,3 +48,13 @@ by checking the value of the `reason` argument in `onClose`:
 ```
 
 The `Modal` change is the same.
+
+### ButtonBase
+
+#### Click event propagation from Enter and Spacebar
+
+When sending Enter and Spacebar keys on the ButtonBase or components that are composed from ButtonBase,
+the click event now bubbles to their ancestors.
+
+Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
+in the ButtonBase keyboard handlers. This is actually the expected behaviour.
