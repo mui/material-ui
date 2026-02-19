@@ -221,7 +221,7 @@ CustomAutocomplete.propTypes = {
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {Value} option
+   * @param {Value|string} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */

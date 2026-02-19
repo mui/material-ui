@@ -64,3 +64,33 @@ in the ButtonBase keyboard handlers. This is actually the expected behavior.
 #### Listbox toggle on right click
 
 The listbox does not toggle anymore when using right click on the input. The left click toggle behavior remains unchanged.
+
+#### freeSolo type related changes
+
+When the `freeSolo` prop is passed as `true`, the `getOptionLabel` and `isOptionEqualToValue` props
+accept `string` as well for their `option` and, respectively, `value` arguments:
+
+```diff
+- isOptionEqualToValue?: (option: Value, value: Value) => boolean;
++ isOptionEqualToValue?: (
++  option: Value,
++  value: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>,
++ ) => boolean;
+```
+
+```diff
+- getOptionLabel?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
++ getOptionLabel?: (option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string;
+```
+
+For reference:
+
+```ts
+type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true
+  ? string
+  : never;
+
+type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
+  ? Value | string
+  : Value;
+```
