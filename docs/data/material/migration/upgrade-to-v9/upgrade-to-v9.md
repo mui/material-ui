@@ -58,3 +58,9 @@ the click event now bubbles to their ancestors.
 
 Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
 in the ButtonBase keyboard handlers. This is actually the expected behavior.
+
+### Autocomplete
+
+#### Listbox toggle on right click
+
+The listbox does not toggle anymore when using right click on the input. The left click toggle behavior remains unchanged.
