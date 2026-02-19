@@ -30,7 +30,7 @@ The `disableEscapeKeyDown` prop has been removed. The same behavior could be ach
 by checking the value of the `reason` argument in `onClose`:
 
 ```diff
-const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(true);
 - const handleClose = () => {
 -   setOpen(false);
 - };
@@ -39,12 +39,12 @@ const [open, setOpen] = React.useState(true);
 +     setOpen(false);
 +   }
 + };
-return (
+  return (
 -  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
 +  <Dialog open={open} onClose={handleClose}>
     {/* ... */}
   </Dialog>
-);
+  );
 ```
 
 The `Modal` change is the same.
