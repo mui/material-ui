@@ -36,19 +36,19 @@
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.3"
+    "react-is": "^19.2.4"
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.30",
-    "@types/react": "19.2.9",
+    "@types/node": "20.19.33",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/react-is": "19.2.0",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "sinon": "21.0.1"
   },
   "peerDependencies": {
