@@ -19,7 +19,7 @@ import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import getActiveElement from '../utils/getActiveElement';
-import isLayoutSupported from '@mui/utils/isLayoutSupported';
+import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
 
 const nextItem = (list, item) => {

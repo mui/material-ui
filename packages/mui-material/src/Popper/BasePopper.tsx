@@ -2,7 +2,6 @@
 import * as React from 'react';
 import ownerDocument from '@mui/utils/ownerDocument';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
-import isLayoutSupported from '@mui/utils/isLayoutSupported';
 import useForkRef from '@mui/utils/useForkRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
@@ -11,6 +10,7 @@ import { createPopper, Instance, Modifier, Placement, State, VirtualElement } fr
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
+import isLayoutSupported from '../utils/isLayoutSupported';
 import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
 import { WithOptionalOwnerState } from '../utils/types';
@@ -351,21 +351,22 @@ Popper.propTypes /* remove-proptypes */ = {
           resolvedAnchorEl.nodeType === 1
         ) {
           const box = resolvedAnchorEl.getBoundingClientRect();
-          if (
-            process.env.NODE_ENV !== 'production' &&
-            isLayoutSupported() &&
-            box.top === 0 &&
-            box.left === 0 &&
-            box.right === 0 &&
-            box.bottom === 0
-          ) {
-            return new Error(
-              [
-                'MUI: The `anchorEl` prop provided to the component is invalid.',
-                'The anchor element should be part of the document layout.',
-                "Make sure the element is present in the document or that it's not display none.",
-              ].join('\n'),
-            );
+          if (process.env.NODE_ENV !== 'production') {
+            if (
+              isLayoutSupported() &&
+              box.top === 0 &&
+              box.left === 0 &&
+              box.right === 0 &&
+              box.bottom === 0
+            ) {
+              return new Error(
+                [
+                  'MUI: The `anchorEl` prop provided to the component is invalid.',
+                  'The anchor element should be part of the document layout.',
+                  "Make sure the element is present in the document or that it's not display none.",
+                ].join('\n'),
+              );
+            }
           }
         } else if (
           !resolvedAnchorEl ||
