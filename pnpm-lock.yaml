@@ -813,6 +813,9 @@ importers:
       '@babel/traverse':
         specifier: ^7.28.6
         version: 7.28.6
+      '@mui/material-v5':
+        specifier: npm:@mui/material@5.18.0
+        version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)'
       jscodeshift:
         specifier: ^17.1.2
         version: 17.1.2(@babel/preset-env@7.28.6(@babel/core@7.28.6))
@@ -832,9 +835,6 @@ importers:
       '@material-ui/core':
         specifier: ^4.12.4
         version: 4.12.4(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@mui/material-v5':
-        specifier: npm:@mui/material@5.18.0
-        version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)'
       '@types/chai':
         specifier: 5.2.3
         version: 5.2.3
