@@ -285,7 +285,7 @@ export default defineConfig(
       'mui/require-dev-wrapper': [
         'error',
         {
-          functionNames: ['isLayoutSupported'],
+          functionNames: ['warnOnce', 'warn', 'checkSlot', 'isLayoutSupported'],
         },
       ],
     },
