@@ -9,6 +9,7 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { ownerWindow } from '../utils';
+import useRovingTabIndex from '../Stepper/utils/useRovingTabIndex';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
@@ -143,73 +144,73 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     [],
   );
 
-  const handleKeyDown = (event) => {
-    const list = listRef.current;
-    const key = event.key;
-    const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
+  // const handleKeyDown = (event) => {
+  //   const list = listRef.current;
+  //   const key = event.key;
+  //   const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
 
-    if (isModifierKeyPressed) {
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
+  //   if (isModifierKeyPressed) {
+  //     if (onKeyDown) {
+  //       onKeyDown(event);
+  //     }
 
-      return;
-    }
+  //     return;
+  //   }
 
-    /**
-     * @type {Element} - will always be defined since we are in a keydown handler
-     * attached to an element. A keydown event is either dispatched to the activeElement
-     * or document.body or document.documentElement. Only the first case will
-     * trigger this specific handler.
-     */
-    const currentFocus = getActiveElement(ownerDocument(list));
+  //   /**
+  //    * @type {Element} - will always be defined since we are in a keydown handler
+  //    * attached to an element. A keydown event is either dispatched to the activeElement
+  //    * or document.body or document.documentElement. Only the first case will
+  //    * trigger this specific handler.
+  //    */
+  //   const currentFocus = getActiveElement(ownerDocument(list));
 
-    if (key === 'ArrowDown') {
-      // Prevent scroll of the page
-      event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem);
-    } else if (key === 'ArrowUp') {
-      event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem);
-    } else if (key === 'Home') {
-      event.preventDefault();
-      moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem);
-    } else if (key === 'End') {
-      event.preventDefault();
-      moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem);
-    } else if (key.length === 1) {
-      const criteria = textCriteriaRef.current;
-      const lowerKey = key.toLowerCase();
-      const currTime = performance.now();
-      if (criteria.keys.length > 0) {
-        // Reset
-        if (currTime - criteria.lastTime > 500) {
-          criteria.keys = [];
-          criteria.repeating = true;
-          criteria.previousKeyMatched = true;
-        } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
-          criteria.repeating = false;
-        }
-      }
-      criteria.lastTime = currTime;
-      criteria.keys.push(lowerKey);
-      const keepFocusOnCurrent =
-        currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
-      if (
-        criteria.previousKeyMatched &&
-        (keepFocusOnCurrent ||
-          moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
-      ) {
-        event.preventDefault();
-      } else {
-        criteria.previousKeyMatched = false;
-      }
-    }
+  //   if (key === 'ArrowDown') {
+  //     // Prevent scroll of the page
+  //     event.preventDefault();
+  //     moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem);
+  //   } else if (key === 'ArrowUp') {
+  //     event.preventDefault();
+  //     moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem);
+  //   } else if (key === 'Home') {
+  //     event.preventDefault();
+  //     moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem);
+  //   } else if (key === 'End') {
+  //     event.preventDefault();
+  //     moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem);
+  //   } else if (key.length === 1) {
+  //     const criteria = textCriteriaRef.current;
+  //     const lowerKey = key.toLowerCase();
+  //     const currTime = performance.now();
+  //     if (criteria.keys.length > 0) {
+  //       // Reset
+  //       if (currTime - criteria.lastTime > 500) {
+  //         criteria.keys = [];
+  //         criteria.repeating = true;
+  //         criteria.previousKeyMatched = true;
+  //       } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+  //         criteria.repeating = false;
+  //       }
+  //     }
+  //     criteria.lastTime = currTime;
+  //     criteria.keys.push(lowerKey);
+  //     const keepFocusOnCurrent =
+  //       currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
+  //     if (
+  //       criteria.previousKeyMatched &&
+  //       (keepFocusOnCurrent ||
+  //         moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
+  //     ) {
+  //       event.preventDefault();
+  //     } else {
+  //       criteria.previousKeyMatched = false;
+  //     }
+  //   }
 
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-  };
+  //   if (onKeyDown) {
+  //     onKeyDown(event);
+  //   }
+  // };
 
   const handleRef = useForkRef(listRef, ref);
 
@@ -265,21 +266,52 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
   });
 
+  const { getContainerProps, getItemProps } = useRovingTabIndex({
+    focusableIndex: activeItemIndex,
+    orientation: 'vertical',
+  });
+  const {onFocus, onKeyDown: rovingTabIndexOnKeyDown} = getContainerProps();
+
+  const handleKeyDown = React.useCallback(
+    (event) => {
+      const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
+
+      if (isModifierKeyPressed && onKeyDown) {
+        onKeyDown(event);
+
+        return;
+      }
+
+      rovingTabIndexOnKeyDown(event);
+
+      // keys focus here
+
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+    },
+    [onKeyDown, rovingTabIndexOnKeyDown],
+  );
+
+  let foucsableIndex = 0;
   const items = React.Children.map(children, (child, index) => {
+    if (!React.isValidElement(child)) {
+      return child;
+    }
+
+    const newChildProps = getItemProps(foucsableIndex++, child.ref);
+
     if (index === activeItemIndex) {
-      const newChildProps = {};
       if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
 
-      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
-        newChildProps.tabIndex = 0;
-      }
-
-      return React.cloneElement(child, newChildProps);
+      // if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
+      //   newChildProps.tabIndex = 0;
+      // }
     }
 
-    return child;
+    return React.cloneElement(child, newChildProps);
   });
 
   return (
@@ -288,6 +320,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       ref={handleRef}
       className={className}
       onKeyDown={handleKeyDown}
+      onFocus={onFocus}
       tabIndex={autoFocus ? 0 : -1}
       {...other}
     >
