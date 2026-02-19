@@ -2,6 +2,7 @@
 import * as React from 'react';
 import ownerDocument from '@mui/utils/ownerDocument';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import isLayoutSupported from '@mui/utils/isLayoutSupported';
 import useForkRef from '@mui/utils/useForkRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
@@ -147,7 +148,7 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
         const box = resolvedAnchorElement.getBoundingClientRect();
 
         if (
-          !(globalThis as any).MUI_TEST_ENV &&
+          isLayoutSupported() &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&
@@ -352,7 +353,7 @@ Popper.propTypes /* remove-proptypes */ = {
           const box = resolvedAnchorEl.getBoundingClientRect();
           if (
             process.env.NODE_ENV !== 'production' &&
-            !(globalThis as any).MUI_TEST_ENV &&
+            isLayoutSupported() &&
             box.top === 0 &&
             box.left === 0 &&
             box.right === 0 &&

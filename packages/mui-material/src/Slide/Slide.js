@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
+import isLayoutSupported from '@mui/utils/isLayoutSupported';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import debounce from '../utils/debounce';
@@ -302,7 +303,7 @@ Slide.propTypes /* remove-proptypes */ = {
 
         if (
           process.env.NODE_ENV !== 'production' &&
-          !globalThis.MUI_TEST_ENV &&
+          isLayoutSupported() &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&

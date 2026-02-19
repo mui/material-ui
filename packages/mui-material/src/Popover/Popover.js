@@ -11,6 +11,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import isHostComponent from '@mui/utils/isHostComponent';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import isLayoutSupported from '@mui/utils/isLayoutSupported';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
@@ -167,7 +168,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const box = anchorElement.getBoundingClientRect();
 
       if (
-        !globalThis.MUI_TEST_ENV &&
+        isLayoutSupported() &&
         box.top === 0 &&
         box.left === 0 &&
         box.right === 0 &&
@@ -481,7 +482,7 @@ Popover.propTypes /* remove-proptypes */ = {
 
         if (
           process.env.NODE_ENV !== 'production' &&
-          !globalThis.MUI_TEST_ENV &&
+          isLayoutSupported() &&
           box.top === 0 &&
           box.left === 0 &&
           box.right === 0 &&
