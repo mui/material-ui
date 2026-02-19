@@ -246,6 +246,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       'Button',
       'Chip',
       'FilledInput',
+      'Input',
       'LinearProgress',
       'Skeleton',
       'Slider',
@@ -368,6 +369,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
+      setColor(palette.Input, 'autofillWebkitShadowBox', 'unset');
       setColor(
         palette.LinearProgress,
         'primaryBg',
@@ -693,6 +695,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
+      setColor(palette.Input, 'autofillWebkitShadowBox', '0 0 0 100px #266798 inset');
       setColor(
         palette.LinearProgress,
         'primaryBg',
