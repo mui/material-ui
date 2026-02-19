@@ -26,38 +26,22 @@ Expect updates as new breaking changes are introduced.
 
 ### Dialog & Modal
 
-The deprecated `disableEscapeKeyDown` has been removed. The same behavior could be achieved
-by checking the `reason` argument in `onClose`. These are equivalent:
+The `disableEscapeKeyDown` prop has been removed. The same behavior could be achieved
+by checking the value of the `reason` argument in `onClose`:
 
-```tsx
-// old usage with the disableEscapeKeyDown
-
+```diff
 const [open, setOpen] = React.useState(true);
-
-const handleClose = () => {
-  setOpen(false);
-};
-
+- const handleClose = () => {
+-   setOpen(false);
+- };
++ const handleClose = (_event: React.SyntheticEvent<unknown>, reason: string) => {
++   if (reason !== 'escapeKeyDown') {
++     setOpen(false);
++   }
++ };
 return (
-  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
-    {/* ... */}
-  </Dialog>
-);
-```
-
-```tsx
-// new usage by checking the reason argument
-
-const [open, setOpen] = React.useState(true);
-
-const handleClose = (_event: React.SyntheticEvent<unknown>, reason: string) => {
-  if (reason !== 'escapeKeyDown') {
-    setOpen(false);
-  }
-};
-
-return (
-  <Dialog open={open} onClose={handleClose}>
+-  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
++  <Dialog open={open} onClose={handleClose}>
     {/* ... */}
   </Dialog>
 );
