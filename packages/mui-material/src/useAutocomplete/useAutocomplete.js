@@ -619,7 +619,7 @@ function useAutocomplete(props) {
       syncHighlightedIndex();
     }
   }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
-  
+
   // Tracks browser window focus state.
   React.useEffect(() => {
     const handleWindowFocus = () => {
@@ -632,7 +632,6 @@ function useAutocomplete(props) {
       window.removeEventListener('focus', handleWindowFocus);
     };
   }, []);
-
 
   const handleOpen = (event) => {
     if (open) {
