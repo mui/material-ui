@@ -9,7 +9,7 @@ manualCard: true
 
 <img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new Material UI logo" width="2400" height="800" />
 
-Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
+Starting today, we are evolving our brand identity to clarify the difference between our company and our products.
 
 - Material-UI: the Material Design components developed by MUI is now called **[Material UI](https://mui.com/material-ui/getting-started/)**, we ditched the hyphen!
 - Material-UI: the organization is now called **[MUI](https://github.com/mui)**.
