@@ -23,3 +23,44 @@ The steps you need to take to migrate from Material UI v7 to v9 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### Dialog & Modal
+
+The deprecated `disableEscapeKeyDown` has been removed. The same behaviour could be achieved
+by checking the `reason` argument in `onClose`. These are equivalent:
+
+```tsx
+// old usage with the disableEscapeKeyDown
+
+const [open, setOpen] = React.useState(true);
+
+const handleClose = () => {
+  setOpen(false);
+};
+
+return (
+  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
+    {/* ... */}
+  </Dialog>
+);
+```
+
+```tsx
+// new usage by checking the reason argument
+
+const [open, setOpen] = React.useState(true);
+
+const handleClose = (_event: React.SyntheticEvent<unknown>, reason: string) => {
+  if (reason !== 'escapeKeyDown') {
+    setOpen(false);
+  }
+};
+
+return (
+  <Dialog open={open} onClose={handleClose}>
+    {/* ... */}
+  </Dialog>
+);
+```
+
+The `Modal` change is the same.
