@@ -13,7 +13,7 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SnackbarContentClasses>;
+  classes?: Partial<SnackbarContentClasses> | undefined;
   /**
    * The message to display.
    */
@@ -22,11 +22,11 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
    * The ARIA role attribute of the element.
    * @default 'alert'
    */
-  role?: PaperProps['role'];
+  role?: PaperProps['role'] | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

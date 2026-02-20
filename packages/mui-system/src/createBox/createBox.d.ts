@@ -6,8 +6,8 @@ export default function createBox<
   T extends object = SystemTheme,
   AdditionalProps extends Record<string, unknown> = {},
 >(options?: {
-  themeId?: string;
+  themeId?: string | undefined;
   defaultTheme: T;
-  defaultClassName?: string;
-  generateClassName?: (componentName: string) => string;
+  defaultClassName?: string | undefined;
+  generateClassName?: ((componentName: string) => string) | undefined;
 }): OverridableComponent<BoxTypeMap<AdditionalProps, 'div', T>>;

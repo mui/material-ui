@@ -130,7 +130,7 @@ function focusThumb({
 }: {
   sliderRef: React.RefObject<any>;
   activeIndex: number;
-  setActive?: (num: number) => void;
+  setActive?: ((num: number) => void) | undefined;
 }) {
   const doc = ownerDocument(sliderRef.current);
   if (
@@ -468,7 +468,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     move = false,
   }: {
     finger: { x: number; y: number };
-    move?: boolean;
+    move?: boolean | undefined;
   }) => {
     const { current: slider } = sliderRef;
     const { width, height, bottom, left } = slider!.getBoundingClientRect();

@@ -13,11 +13,11 @@ export interface TimelineContentProps extends StandardProps<TypographyProps> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineContentClasses>;
+  classes?: Partial<TimelineContentClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
