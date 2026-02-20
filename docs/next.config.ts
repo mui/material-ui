@@ -166,6 +166,13 @@ export default withDocsInfra({
               },
             ],
           },
+          {
+            test: /\.demo\.ts$/,
+            use: [
+              options.defaultLoaders.babel,
+              '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+            ],
+          },
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
