@@ -214,7 +214,7 @@ describe('useRovingTabIndexFocus', () => {
   });
 
   it('should not wrap focus when navigating with arrow keys if wrap is set to false', async () => {
-    const { user } = render(<TestComponent wrap={false} />);
+    const { user } = render(<TestComponent shouldWrap={false} />);
 
     const button1 = screen.getByTestId('button-1');
     const button2 = screen.getByTestId('button-2');
@@ -238,10 +238,10 @@ describe('useRovingTabIndexFocus', () => {
     expect(button3.getAttribute('tabindex')).to.equal('-1');
     expect(button4.getAttribute('tabindex')).to.equal('0');
     expect(button4).toHaveFocus();
-  })
+  });
 
   it('should skip elements that do not have the tabindex attribute set', async () => {
-    const {user} = render(<TestComponent />);
+    const { user } = render(<TestComponent />);
 
     const button1 = screen.getByTestId('button-1');
     const button2 = screen.getByTestId('button-2');
@@ -254,7 +254,7 @@ describe('useRovingTabIndexFocus', () => {
 
     expect(button4.getAttribute('tabindex')).to.equal('0');
     expect(button4).toHaveFocus();
-  })
+  });
 
   it('should skip aria-disabled elements when navigating with arrow keys', async () => {
     const { user } = render(<TestComponent />);
@@ -497,6 +497,35 @@ describe('useRovingTabIndexFocus', () => {
 
     expect(button1.getAttribute('tabindex')).to.equal('0');
     expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button1).toHaveFocus();
+  });
+
+  it('should skip focus on elements for which shouldSkipFocus returns true', async () => {
+    const shouldSkipFocus = (element: HTMLElement | null) =>
+      element?.getAttribute('data-disabled') === 'true';
+
+    const { user } = render(<TestComponent shouldSkipFocus={shouldSkipFocus} />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button2 = screen.getByTestId('button-2');
+    const button3 = screen.getByTestId('button-3');
+
+    button2.setAttribute('data-disabled', 'true');
+    button3.removeAttribute('disabled');
+
+    await user.click(button1);
+    await user.keyboard('{ArrowRight}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('-1');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button3.getAttribute('tabindex')).to.equal('0');
+    expect(button3).toHaveFocus();
+
+    await user.keyboard('{ArrowLeft}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('0');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button3.getAttribute('tabindex')).to.equal('-1');
     expect(button1).toHaveFocus();
   });
 });

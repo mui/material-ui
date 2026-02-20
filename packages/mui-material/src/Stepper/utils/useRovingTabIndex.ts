@@ -6,7 +6,8 @@ export type UseRovingTabIndexOptions = {
   focusableIndex?: number | undefined;
   orientation: 'horizontal' | 'vertical';
   isRtl?: boolean | undefined;
-  wrap?: boolean | undefined;
+  shouldSkipFocus?: ((element: HTMLElement | null) => boolean) | undefined;
+  shouldWrap?: boolean | undefined;
 };
 
 type UseRovingTabIndexReturn = {
@@ -21,8 +22,6 @@ type UseRovingTabIndexReturn = {
     onFocus: (event: React.FocusEvent<HTMLElement>) => void;
     onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => void;
   };
-  focusableIndex: number;
-  setFocusableIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
@@ -48,32 +47,46 @@ const SUPPORTED_ROLES = ['button', 'tab', 'menuitem', 'option'];
  *
  */
 const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndexReturn => {
-  const initialFocusableIndex = options.focusableIndex ?? 0;
+  const {
+    shouldSkipFocus = defaultShouldSkipFocus,
+    orientation,
+    focusableIndex: focusableIndexProp,
+    isRtl = false,
+    shouldWrap = true,
+  } = options;
+
+  const initialFocusableIndex = focusableIndexProp ?? 0;
 
   const [focusableIndex, setFocusableIndex] = React.useState(initialFocusableIndex);
 
-  const elementsRef = React.useRef<(ActionableElement | null)[]>([]);
+  const elementsRef = React.useRef<(HTMLElement | null)[]>([]);
   const indexRef = React.useRef(initialFocusableIndex);
 
-  if (options.focusableIndex !== undefined && options.focusableIndex !== indexRef.current) {
-    indexRef.current = options.focusableIndex;
+  if (focusableIndexProp !== undefined && focusableIndexProp !== indexRef.current) {
+    indexRef.current = focusableIndexProp;
 
-    if (options.focusableIndex !== focusableIndex) {
-      setFocusableIndex(options.focusableIndex);
+    if (focusableIndexProp !== focusableIndex) {
+      setFocusableIndex(focusableIndexProp);
     }
   }
 
   React.useEffect(() => {
     if (
-      options.focusableIndex !== undefined &&
-      shouldSkipFocus(elementsRef.current[options.focusableIndex])
+      focusableIndexProp !== undefined &&
+      shouldSkipFocus(elementsRef.current[focusableIndexProp])
     ) {
-      const [, nextIndex] = getNextFocus(elementsRef, options.focusableIndex, 'next');
+      const [, nextIndex] = getNextFocus(
+        elementsRef,
+        focusableIndexProp,
+        'next',
+        shouldWrap,
+        shouldSkipFocus,
+      );
       if (nextIndex !== -1) {
         setFocusableIndex(nextIndex);
       }
     }
-  }, [options.focusableIndex]);
+  }, [focusableIndexProp, shouldSkipFocus, shouldWrap]);
 
   const getItemProps = React.useCallback(
     (index: number, ref?: React.Ref<HTMLElement>) => ({
@@ -112,10 +125,10 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
         return;
       }
 
-      let previousItemKey = options.orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
-      let nextItemKey = options.orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+      let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
+      let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
 
-      if (options.orientation === 'horizontal' && options.isRtl) {
+      if (orientation === 'horizontal' && isRtl) {
         // swap previousItemKey with nextItemKey
         previousItemKey = 'ArrowRight';
         nextItemKey = 'ArrowLeft';
@@ -149,7 +162,8 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
         elementsRef,
         currentIndex,
         direction,
-        options.wrap,
+        shouldWrap,
+        shouldSkipFocus,
       );
 
       if (nextIndex === -1) {
@@ -163,22 +177,18 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
       onKeyDown: handleKeyDown,
       onFocus: handleFocus,
     };
-  }, [focusableIndex, options.isRtl, options.orientation, options.wrap]);
+  }, [focusableIndex, isRtl, orientation, shouldWrap, shouldSkipFocus]);
 
-  return { getItemProps, getContainerProps, focusableIndex, setFocusableIndex };
-};
-
-type ActionableElement = Element & {
-  disabled?: boolean | undefined;
-  focus?: (() => void) | undefined;
+  return { getItemProps, getContainerProps };
 };
 
 function getNextFocus(
-  elementsRef: React.RefObject<(ActionableElement | null)[]>,
+  elementsRef: React.RefObject<(HTMLElement | null)[]>,
   currentIndex: number,
   direction: 'next' | 'previous',
-  wrap: boolean = true,
-): [ActionableElement | null, number] {
+  wrap: boolean,
+  shouldSkipFocus: (element: HTMLElement | null) => boolean,
+): [HTMLElement | null, number] {
   let wrappedOnce = false;
   let nextIndex = getNextIndex(elementsRef, currentIndex, direction, wrap);
 
@@ -206,7 +216,7 @@ function getNextFocus(
 }
 
 function getNextIndex(
-  elementsRef: React.RefObject<(ActionableElement | null)[]>,
+  elementsRef: React.RefObject<(HTMLElement | null)[]>,
   currentIndex: number,
   direction: 'next' | 'previous',
   wrap: boolean = true,
@@ -227,9 +237,9 @@ function getNextIndex(
   return currentIndex - 1;
 }
 
-function shouldSkipFocus(element: ActionableElement | null) {
+function defaultShouldSkipFocus(element: HTMLElement | null) {
   return (
-    element?.disabled ||
+    element?.hasAttribute('disabled') ||
     element?.getAttribute('aria-disabled') === 'true' ||
     !element?.hasAttribute('tabindex')
   );
