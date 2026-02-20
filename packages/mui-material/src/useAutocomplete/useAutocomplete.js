@@ -1125,7 +1125,12 @@ function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (!disabledProp && (inputValue === '' || !open)) {
+    if (
+      !disabledProp &&
+      (inputValue === '' || !open) &&
+      // Only handle event when the main button is pressed (left click).
+      event.button === 0
+    ) {
       handlePopupIndicator(event);
     }
   };
