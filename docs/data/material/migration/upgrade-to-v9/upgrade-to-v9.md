@@ -23,3 +23,28 @@ The steps you need to take to migrate from Material UI v7 to v9 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### Dialog & Modal
+
+The `disableEscapeKeyDown` prop has been removed. The same behavior could be achieved
+by checking the value of the `reason` argument in `onClose`:
+
+```diff
+  const [open, setOpen] = React.useState(true);
+- const handleClose = () => {
+-   setOpen(false);
+- };
++ const handleClose = (_event: React.SyntheticEvent<unknown>, reason: string) => {
++   if (reason !== 'escapeKeyDown') {
++     setOpen(false);
++   }
++ };
+  return (
+-  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
++  <Dialog open={open} onClose={handleClose}>
+    {/* ... */}
+  </Dialog>
+  );
+```
+
+The `Modal` change is the same.

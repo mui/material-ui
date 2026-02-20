@@ -31,7 +31,6 @@ const manager = new ModalManager();
 function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,
-    disableEscapeKeyDown = false,
     disableScrollLock = false,
     closeAfterTransition = false,
     onTransitionEnter,
@@ -133,13 +132,11 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
       return;
     }
 
-    if (!disableEscapeKeyDown) {
-      // Swallow the event, in case someone is listening for the escape key on the body.
-      event.stopPropagation();
+    // Swallow the event, in case someone is listening for the escape key on the body.
+    event.stopPropagation();
 
-      if (onClose) {
-        onClose(event, 'escapeKeyDown');
-      }
+    if (onClose) {
+      onClose(event, 'escapeKeyDown');
     }
   };
 
