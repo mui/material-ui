@@ -499,7 +499,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   // Scheduler - Event Calendar
   'scheduler/calendar-views': (
     <ColumnHead
-      label="Calendar views (day, week, month)"
+      label="Calendar views (day, week, month, agenda)"
       href="/x/react-scheduler/event-calendar/views/"
     />
   ),
@@ -528,7 +528,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Lazy loading" href="/x/react-scheduler/event-calendar/lazy-loading/" />
   ),
   'scheduler/calendar-year-view': <ColumnHead label="Year view" />,
-  'scheduler/calendar-resource-view': <ColumnHead label="Resource view" />,
+  'scheduler/calendar-resource-view': <ColumnHead label="Resource views" />,
   'scheduler/calendar-constraints': <ColumnHead label="Event constraints" />,
   'scheduler/calendar-event-creation': (
     <ColumnHead
@@ -1908,84 +1908,6 @@ export default function PricingTable({
           }}
         >
           <Cell />
-          <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
-          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-            {treeViewUnfoldMore}
-          </Cell>
-          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-            {treeViewUnfoldMore}
-          </Cell>
-          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-            {treeViewUnfoldMore}
-          </Cell>
-          <Button
-            fullWidth
-            onClick={() => setTreeViewCollapsed((bool) => !bool)}
-            endIcon={
-              <KeyboardArrowRightRounded
-                color="primary"
-                sx={{ transform: treeViewCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
-              />
-            }
-            sx={[
-              (theme) => ({
-                px: 1,
-                justifyContent: 'flex-start',
-                fontSize: '0.875rem',
-                fontWeight: 'medium',
-                borderRadius: '0px',
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: '100%',
-                height: '100%',
-                '&:hover': {
-                  bgcolor: alpha(theme.palette.primary.main, 0.06),
-                  '@media (hover: none)': {
-                    bgcolor: 'initial',
-                  },
-                },
-              }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  '&:hover': {
-                    bgcolor: alpha(theme.palette.primary.main, 0.06),
-                  },
-                }),
-            ]}
-          >
-            Tree View
-          </Button>
-        </Box>
-        <StyledCollapse in={treeViewCollapsed}>
-          <RowCategory>Components</RowCategory>
-          {renderNestedRow('tree-view/simple-tree-view')}
-          {divider}
-          {renderNestedRow('tree-view/rich-tree-view')}
-          {divider}
-          <RowCategory>Advanced features</RowCategory>
-          {renderNestedRow('tree-view/selection')}
-          {divider}
-          {renderNestedRow('tree-view/multi-selection')}
-          {divider}
-          {renderNestedRow('tree-view/inline-editing')}
-          {divider}
-          {renderNestedRow('tree-view/drag-to-reorder')}
-          {divider}
-          {renderNestedRow('tree-view/virtualization')}
-          {divider}
-        </StyledCollapse>
-        {divider}
-        <Box
-          sx={{
-            position: 'relative',
-            minHeight: 58,
-            '& svg': { transition: '0.3s' },
-            '&:hover svg': { color: 'primary.main' },
-            ...gridSx,
-          }}
-        >
-          <Cell />
           <Cell sx={{ minHeight: 60 }}>{eventCalendarUnfoldMore}</Cell>
           <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
             {eventCalendarUnfoldMore}
@@ -2049,15 +1971,15 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('scheduler/calendar-resources')}
           {divider}
+          {renderNestedRow('scheduler/calendar-timezone')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-constraints')}
+          {divider}
           {renderNestedRow('scheduler/calendar-resource-view')}
           {divider}
           {renderNestedRow('scheduler/calendar-recurring-events')}
           {divider}
-          {renderNestedRow('scheduler/calendar-timezone')}
-          {divider}
           {renderNestedRow('scheduler/calendar-lazy-loading')}
-          {divider}
-          {renderNestedRow('scheduler/calendar-constraints')}
           {divider}
           <RowCategory>Editing features</RowCategory>
           {renderNestedRow('scheduler/calendar-event-editor')}
@@ -2206,6 +2128,84 @@ export default function PricingTable({
           {renderNestedRow('scheduler/timeline-keyboard-nav')}
           {divider}
           {renderNestedRow('scheduler/timeline-localization')}
+        </StyledCollapse>
+        {divider}
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setTreeViewCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{ transform: treeViewCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Tree View
+          </Button>
+        </Box>
+        <StyledCollapse in={treeViewCollapsed}>
+          <RowCategory>Components</RowCategory>
+          {renderNestedRow('tree-view/simple-tree-view')}
+          {divider}
+          {renderNestedRow('tree-view/rich-tree-view')}
+          {divider}
+          <RowCategory>Advanced features</RowCategory>
+          {renderNestedRow('tree-view/selection')}
+          {divider}
+          {renderNestedRow('tree-view/multi-selection')}
+          {divider}
+          {renderNestedRow('tree-view/inline-editing')}
+          {divider}
+          {renderNestedRow('tree-view/drag-to-reorder')}
+          {divider}
+          {renderNestedRow('tree-view/virtualization')}
+          {divider}
         </StyledCollapse>
         {divider}
         {renderRow('mui-x-production')}
