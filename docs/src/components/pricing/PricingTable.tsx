@@ -496,7 +496,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'tree-view/virtualization': <ColumnHead label="Virtualization" />,
 
-  // Scheduler - Event Calendar (implemented)
+  // Scheduler - Event Calendar
   'scheduler/calendar-views': (
     <ColumnHead label="Calendar views (day, week, month)" href="/x/react-scheduler/event-calendar/views/" />
   ),
@@ -524,7 +524,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'scheduler/calendar-lazy-loading': (
     <ColumnHead label="Lazy loading" href="/x/react-scheduler/event-calendar/lazy-loading/" />
   ),
-  // Scheduler - Event Calendar (pending)
   'scheduler/calendar-year-view': <ColumnHead label="Year view" />,
   'scheduler/calendar-resource-view': <ColumnHead label="Resource view" />,
   'scheduler/calendar-constraints': <ColumnHead label="Event constraints" />,
@@ -545,7 +544,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'scheduler/calendar-localization': (
     <ColumnHead label="Localization" href="/x/react-scheduler/localization/" />
   ),
-  // Scheduler - Event Timeline (implemented)
+  // Scheduler - Event Timeline
   'scheduler/timeline-views': (
     <ColumnHead label="Timeline views" href="/x/react-scheduler/event-timeline/views/" />
   ),
@@ -570,7 +569,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'scheduler/timeline-recurring-events': (
     <ColumnHead label="Recurring events" href="/x/react-scheduler/recurring-events/" />
   ),
-  // Scheduler - Event Timeline (pending)
   'scheduler/timeline-lazy-loading': <ColumnHead label="Lazy loading" />,
   'scheduler/timeline-zooming': <ColumnHead label="Zoom in/out" />,
   'scheduler/timeline-virtualization': <ColumnHead label="Virtualization" />,
