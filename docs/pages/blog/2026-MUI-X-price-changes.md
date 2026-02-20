@@ -40,7 +40,7 @@ If you're unsure how this applies to your team, please reach out to us at **sale
 
 ## What's changing in licensing
 
-### Application-Based licensing for Pro and Premium
+### Application-based licensing for Pro and Premium
 
 MUI X Pro and Premium are moving to an **application-based licensing model**, giving teams more control over how licenses are used across projects.
 
