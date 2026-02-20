@@ -7,7 +7,7 @@ tags: ['MUI X']
 manualCard: false
 ---
 
-Beginning **April 8, 2026**, we're introducing updates to MUI X pricing and licensing. These changes are designed to give teams more flexibility as they scale, expand licensing options to suit a wider variety of customers, and ensure we can continue investing in the long-term future of the MUI ecosystem.
+Starting **April 8, 2026**, we're introducing updates to MUI X pricing and licensing. These changes are designed to give teams more flexibility as they scale, expand licensing options to suit a wider variety of customers, and ensure we can continue investing in the long-term future of the MUI ecosystem.
 
 ## 🔄 Summary of changes
 
@@ -44,9 +44,8 @@ If you're unsure how this applies to your team, please reach out to us at **sale
 
 MUI X Pro and Premium are moving to an **application-based licensing model**, giving teams more control over how licenses are used across projects.
 
-Each developer must still be licensed, but you can now choose between **single-application** and **multi-application** licenses.
-
-- The Enterprise plan is always multi-application and starts at a minimum of 15 seats.
+- Each developer must still be licensed, but you can now choose between **single-application** and **multi-application** licenses.
+- The Enterprise plan is always **multi-application** and starts at a minimum of 15 seats.
 
 ## Support updates
 
