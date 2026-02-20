@@ -213,6 +213,49 @@ describe('useRovingTabIndexFocus', () => {
     expect(button1).toHaveFocus();
   });
 
+  it('should not wrap focus when navigating with arrow keys if wrap is set to false', async () => {
+    const { user } = render(<TestComponent wrap={false} />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button2 = screen.getByTestId('button-2');
+    const button3 = screen.getByTestId('button-3');
+    const button4 = screen.getByTestId('button-4');
+
+    await user.click(button1);
+    await user.keyboard('{ArrowLeft}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('0');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button3.getAttribute('tabindex')).to.equal('-1');
+    expect(button4.getAttribute('tabindex')).to.equal('-1');
+    expect(button1).toHaveFocus();
+
+    await user.click(button4);
+    await user.keyboard('{ArrowRight}');
+
+    expect(button1.getAttribute('tabindex')).to.equal('-1');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button3.getAttribute('tabindex')).to.equal('-1');
+    expect(button4.getAttribute('tabindex')).to.equal('0');
+    expect(button4).toHaveFocus();
+  })
+
+  it('should skip elements that do not have the tabindex attribute set', async () => {
+    const {user} = render(<TestComponent />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button2 = screen.getByTestId('button-2');
+    const button4 = screen.getByTestId('button-4');
+
+    button2.removeAttribute('tabindex');
+
+    await user.click(button1);
+    await user.keyboard('{ArrowRight}');
+
+    expect(button4.getAttribute('tabindex')).to.equal('0');
+    expect(button4).toHaveFocus();
+  })
+
   it('should skip aria-disabled elements when navigating with arrow keys', async () => {
     const { user } = render(<TestComponent />);
 

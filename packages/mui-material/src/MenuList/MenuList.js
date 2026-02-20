@@ -270,7 +270,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     focusableIndex: activeItemIndex,
     orientation: 'vertical',
   });
-  const {onFocus, onKeyDown: rovingTabIndexOnKeyDown} = getContainerProps();
+  const { onFocus, onKeyDown: rovingTabIndexOnKeyDown } = getContainerProps();
 
   const handleKeyDown = React.useCallback(
     (event) => {
@@ -284,22 +284,49 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 
       rovingTabIndexOnKeyDown(event);
 
-      // keys focus here
+      // if (event.key.length === 1) {
+      //   const criteria = textCriteriaRef.current;
+      //   const lowerKey = event.key.toLowerCase();
+      //   const currTime = performance.now();
+      //   if (criteria.keys.length > 0) {
+      //     // Reset
+      //     if (currTime - criteria.lastTime > 500) {
+      //       criteria.keys = [];
+      //       criteria.repeating = true;
+      //       criteria.previousKeyMatched = true;
+      //     } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+      //       criteria.repeating = false;
+      //     }
+      //   }
+      //   criteria.lastTime = currTime;
+      //   criteria.keys.push(lowerKey);
+      //   const keepFocusOnCurrent =
+      //     currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
+      //   if (
+      //     criteria.previousKeyMatched &&
+      //     (keepFocusOnCurrent ||
+      //       moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
+      //   ) {
+      //     event.preventDefault();
+      //   } else {
+      //     criteria.previousKeyMatched = false;
+      //   }
+      // }
 
       if (onKeyDown) {
         onKeyDown(event);
       }
     },
-    [onKeyDown, rovingTabIndexOnKeyDown],
+    [disabledItemsFocusable, onKeyDown, rovingTabIndexOnKeyDown],
   );
 
-  let foucsableIndex = 0;
+  let focusableIndex = 0;
   const items = React.Children.map(children, (child, index) => {
     if (!React.isValidElement(child)) {
       return child;
     }
 
-    const newChildProps = getItemProps(foucsableIndex++, child.ref);
+    const newChildProps = getItemProps(focusableIndex, child.ref);
 
     if (index === activeItemIndex) {
       if (autoFocusItem) {
@@ -310,6 +337,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       //   newChildProps.tabIndex = 0;
       // }
     }
+
+    focusableIndex += 1;
 
     return React.cloneElement(child, newChildProps);
   });

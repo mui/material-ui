@@ -1,9 +1,12 @@
+'use client';
+
 import * as React from 'react';
 
 export type UseRovingTabIndexOptions = {
-  focusableIndex?: number;
+  focusableIndex?: number | undefined;
   orientation: 'horizontal' | 'vertical';
-  isRtl?: boolean;
+  isRtl?: boolean | undefined;
+  wrap?: boolean | undefined;
 };
 
 type UseRovingTabIndexReturn = {
@@ -60,11 +63,10 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
     }
   }
 
-
   React.useEffect(() => {
     if (
       options.focusableIndex !== undefined &&
-      isDisabled(elementsRef.current[options.focusableIndex])
+      shouldSkipFocus(elementsRef.current[options.focusableIndex])
     ) {
       const [, nextIndex] = getNextFocus(elementsRef, options.focusableIndex, 'next');
       if (nextIndex !== -1) {
@@ -104,6 +106,12 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
         return;
       }
 
+      const currentElement = elementsRef.current[focusableIndex];
+
+      if (!SUPPORTED_ROLES.includes(currentElement?.getAttribute('role') ?? '')) {
+        return;
+      }
+
       let previousItemKey = options.orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
       let nextItemKey = options.orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
 
@@ -137,39 +145,44 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
           return;
       }
 
-      const [nextFocus, nextIndex] = getNextFocus(elementsRef, currentIndex, direction);
+      const [nextFocus, nextIndex] = getNextFocus(
+        elementsRef,
+        currentIndex,
+        direction,
+        options.wrap,
+      );
 
-      if (
-        !nextFocus ||
-        nextIndex === -1 ||
-        !SUPPORTED_ROLES.includes(nextFocus.getAttribute('role') ?? '')
-      ) {
+      if (nextIndex === -1) {
         return;
       }
 
-      nextFocus.focus?.();
+      nextFocus?.focus?.();
     };
 
     return {
       onKeyDown: handleKeyDown,
       onFocus: handleFocus,
     };
-  }, [focusableIndex, options.isRtl, options.orientation]);
+  }, [focusableIndex, options.isRtl, options.orientation, options.wrap]);
 
   return { getItemProps, getContainerProps, focusableIndex, setFocusableIndex };
 };
 
-type ActionableElement = Element & { disabled?: boolean; focus?: () => void };
+type ActionableElement = Element & {
+  disabled?: boolean | undefined;
+  focus?: (() => void) | undefined;
+};
 
 function getNextFocus(
   elementsRef: React.RefObject<(ActionableElement | null)[]>,
   currentIndex: number,
   direction: 'next' | 'previous',
+  wrap: boolean = true,
 ): [ActionableElement | null, number] {
   let wrappedOnce = false;
-  let [nextFocus, nextIndex] = getNext(elementsRef, currentIndex, direction);
+  let nextIndex = getNextIndex(elementsRef, currentIndex, direction, wrap);
 
-  while (nextFocus) {
+  while (nextIndex !== -1) {
     // Prevent infinite loop.
     if (nextIndex === 0) {
       if (wrappedOnce) {
@@ -178,37 +191,48 @@ function getNextFocus(
       wrappedOnce = true;
     }
 
+    const nextElement = elementsRef.current[nextIndex];
+
     // Same logic as useAutocomplete.js
-    if (!nextFocus.hasAttribute('tabindex') || isDisabled(nextFocus)) {
+    if (shouldSkipFocus(nextElement)) {
       // Move to the next element.
-      [nextFocus, nextIndex] = getNext(elementsRef, nextIndex, direction);
+      nextIndex = getNextIndex(elementsRef, nextIndex, direction, wrap);
     } else {
-      return [nextFocus, nextIndex];
+      return [nextElement, nextIndex];
     }
   }
 
   return [null, -1];
 }
 
-function getNext(
+function getNextIndex(
   elementsRef: React.RefObject<(ActionableElement | null)[]>,
   currentIndex: number,
   direction: 'next' | 'previous',
-): [ActionableElement | null, number] {
+  wrap: boolean = true,
+): number {
   const lastIndex = elementsRef.current.length - 1;
-  let nextIndex;
 
   if (direction === 'next') {
-    nextIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
-  } else {
-    nextIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
+    if (currentIndex === lastIndex) {
+      return wrap ? 0 : -1;
+    }
+
+    return currentIndex + 1;
   }
 
-  return [elementsRef.current[nextIndex], nextIndex];
+  if (currentIndex === 0) {
+    return wrap ? lastIndex : -1;
+  }
+  return currentIndex - 1;
 }
 
-function isDisabled(element: ActionableElement | null) {
-  return element?.disabled || element?.getAttribute('aria-disabled') === 'true';
+function shouldSkipFocus(element: ActionableElement | null) {
+  return (
+    element?.disabled ||
+    element?.getAttribute('aria-disabled') === 'true' ||
+    !element?.hasAttribute('tabindex')
+  );
 }
 
 function handleRefs(...refs: (React.Ref<HTMLElement> | undefined)[]) {
