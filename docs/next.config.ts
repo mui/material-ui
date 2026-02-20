@@ -219,11 +219,11 @@ export default withDocsInfra({
             ],
           },
           {
-            // API page description JSON (`translations/api-docs/**`, imported only by
-            // generated API pages) → render the markdown to HTML at build time.
-            test: /translations[\\/]api-docs[\\/].*\.json$/,
-            type: 'javascript/auto',
-            use: [{ loader: require.resolve('@mui/internal-markdown/apiPageTranslationLoader') }],
+            test: /\.demo\.ts$/,
+            use: [
+              options.defaultLoaders.babel,
+              '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+            ],
           },
           // required to transpile ../packages/
           {
