@@ -54,7 +54,7 @@ Alongside pricing changes, we're updating how support is structured:
 
 - Priority support is no longer available as a Premium add-on and will be exclusive to Enterprise customers.
 - We will only respond to security questionnaires and provide custom agreements (including reviewing company-specific purchasing terms) for orders of **$12,000 and above** across all plans.
-- MUI X Premium will be self-service for purchases up to 15 seats. Purchase orders or email-based requests will only be accepted starting at 15 seats of MUI X Premium.
+- MUI X Premium will be self-service for purchases of up to 15 seats. Purchase orders or email-based requests will only be accepted starting at 15 seats of MUI X Premium.
 - All other purchases must be completed directly on our website.
 
 ## Pricing breakdown
