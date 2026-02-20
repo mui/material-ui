@@ -16,6 +16,7 @@ import useAutocomplete, {
   createFilterOptions,
   UseAutocompleteProps,
   AutocompleteFreeSoloValueMapping,
+  AutocompleteValueOrFreeSoloValueMapping,
 } from '../useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -43,7 +44,7 @@ export type AutocompleteOwnerState<
   expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
-  getOptionLabel: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
+  getOptionLabel: (option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
   inputFocused: boolean;
