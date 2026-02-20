@@ -498,7 +498,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
 
   // Scheduler - Event Calendar
   'scheduler/calendar-views': (
-    <ColumnHead label="Calendar views (day, week, month)" href="/x/react-scheduler/event-calendar/views/" />
+    <ColumnHead
+      label="Calendar views (day, week, month)"
+      href="/x/react-scheduler/event-calendar/views/"
+    />
   ),
   'scheduler/calendar-drag-and-drop': (
     <ColumnHead label="Drag & drop" href="/x/react-scheduler/event-calendar/drag-interactions/" />
@@ -528,7 +531,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'scheduler/calendar-resource-view': <ColumnHead label="Resource view" />,
   'scheduler/calendar-constraints': <ColumnHead label="Event constraints" />,
   'scheduler/calendar-event-creation': (
-    <ColumnHead label="Event creation" href="/x/react-scheduler/event-calendar/events/#event-creation" />
+    <ColumnHead
+      label="Event creation"
+      href="/x/react-scheduler/event-calendar/events/#event-creation"
+    />
   ),
   'scheduler/calendar-delete-event': <ColumnHead label="Event deletion" />,
   'scheduler/calendar-copy-paste-events': <ColumnHead label="Copy & paste events" />,
@@ -821,7 +827,6 @@ const communityData: Record<string, React.ReactNode> = {
   'scheduler/calendar-external-drag': yes,
   'scheduler/calendar-recurring-events': no,
   'scheduler/calendar-lazy-loading': no,
-
   'scheduler/calendar-year-view': pending,
   'scheduler/calendar-resource-view': no,
   'scheduler/calendar-constraints': pending,
@@ -978,7 +983,6 @@ const proData: Record<string, React.ReactNode> = {
   'scheduler/calendar-external-drag': no,
   'scheduler/calendar-recurring-events': no,
   'scheduler/calendar-lazy-loading': no,
-
   'scheduler/calendar-year-view': no,
   'scheduler/calendar-resource-view': no,
   'scheduler/calendar-constraints': no,
@@ -1134,7 +1138,6 @@ const premiumData: Record<string, React.ReactNode> = {
   'scheduler/calendar-external-drag': yes,
   'scheduler/calendar-recurring-events': yes,
   'scheduler/calendar-lazy-loading': yes,
-
   'scheduler/calendar-year-view': pending,
   'scheduler/calendar-resource-view': pending,
   'scheduler/calendar-constraints': pending,
@@ -1290,7 +1293,6 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'scheduler/calendar-external-drag': yes,
   'scheduler/calendar-recurring-events': yes,
   'scheduler/calendar-lazy-loading': yes,
-
   'scheduler/calendar-year-view': pending,
   'scheduler/calendar-resource-view': pending,
   'scheduler/calendar-constraints': pending,
