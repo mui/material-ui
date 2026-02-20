@@ -280,7 +280,7 @@ export default defineConfig(
   },
   {
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
-    ignores: ['**/*.spec.*', '**/*.test.*'],
+    ignores: ['**/*.spec.*', '**/*.test.*', '**/mui-lab/**'],
     rules: {
       'mui/require-dev-wrapper': [
         'error',
