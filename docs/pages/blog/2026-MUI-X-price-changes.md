@@ -7,7 +7,7 @@ tags: ['MUI X']
 manualCard: false
 ---
 
-Beginning **March 31, 2026**, we're introducing updates to MUI X pricing and licensing. These changes are designed to give teams more flexibility as they scale, expand licensing options to suit a wider variety of customers, and ensure we can continue investing in the long-term future of the MUI ecosystem.
+Beginning **April 8, 2026**, we're introducing updates to MUI X pricing and licensing. These changes are designed to give teams more flexibility as they scale, expand licensing options to suit a wider variety of customers, and ensure we can continue investing in the long-term future of the MUI ecosystem.
 
 ## 🔄 Summary of changes
 
