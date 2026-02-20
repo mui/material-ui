@@ -28,13 +28,13 @@ type CssVarsConfigList =
   | 'nativeColor';
 
 export interface ThemeOptions extends CssVarsOptions, Omit<CssVarsThemeOptions, CssVarsConfigList> {
-  cssVariables?: boolean | Pick<CssVarsThemeOptions, CssVarsConfigList>;
-  palette?: PaletteOptions;
+  cssVariables?: boolean | Pick<CssVarsThemeOptions, CssVarsConfigList> | undefined;
+  palette?: PaletteOptions | undefined;
 }
 
 // eslint-disable-next-line consistent-return
 function attachColorScheme(
-  theme: { colorSchemes?: Partial<Record<string, any>> },
+  theme: { colorSchemes?: Partial<Record<string, any>> | undefined },
   scheme: 'light' | 'dark',
   colorScheme: boolean | Record<string, any> | undefined,
 ) {
@@ -105,8 +105,8 @@ export default function createTheme(
       { ...options, palette: paletteOptions } as ThemeNoVarsOptions,
       ...args,
     ) as unknown as Theme & {
-      defaultColorScheme?: 'light' | 'dark';
-      colorSchemes?: Partial<Record<string, any>>;
+      defaultColorScheme?: 'light' | 'dark' | undefined;
+      colorSchemes?: Partial<Record<string, any>> | undefined;
     };
 
     theme.defaultColorScheme = defaultColorSchemeInput;

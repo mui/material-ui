@@ -12,16 +12,16 @@ export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLD
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<FormGroupClasses>;
+  classes?: Partial<FormGroupClasses> | undefined;
   /**
    * Display group of elements in a compact row.
    * @default false
    */
-  row?: boolean;
+  row?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

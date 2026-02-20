@@ -13,13 +13,13 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
    * Set to -1 to disable all the steps.
    * @default 0
    */
-  activeStep?: number;
+  activeStep?: number | undefined;
   /**
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
    * @default false
    */
-  alternativeLabel?: boolean;
+  alternativeLabel?: boolean | undefined;
   /**
    * Two or more `<Step />` components.
    */
@@ -27,26 +27,26 @@ export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square'
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepperClasses>;
+  classes?: Partial<StepperClasses> | undefined;
   /**
    * An element to be placed between each step.
    * @default <StepConnector />
    */
-  connector?: React.ReactElement<unknown, any> | null;
+  connector?: React.ReactElement<unknown, any> | null | undefined;
   /**
    * If set the `Stepper` will not assist in controlling steps for linear flow.
    * @default false
    */
-  nonLinear?: boolean;
+  nonLinear?: boolean | undefined;
   /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
-  orientation?: Orientation;
+  orientation?: Orientation | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface StepperTypeMap<
@@ -59,9 +59,9 @@ export interface StepperTypeMap<
 
 export type StepperProps<
   RootComponent extends React.ElementType = StepperTypeMap['defaultComponent'],
-  AdditionalProps = { component?: React.ElementType },
+  AdditionalProps = { component?: React.ElementType | undefined },
 > = OverrideProps<StepperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;

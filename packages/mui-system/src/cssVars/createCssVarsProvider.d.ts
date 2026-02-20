@@ -14,17 +14,17 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * DOM attribute for applying color scheme
    * @default 'data-color-scheme'
    */
-  attribute?: string;
+  attribute?: string | undefined;
   /**
    * localStorage key used to store application `mode`
    * @default 'mode'
    */
-  modeStorageKey?: string;
+  modeStorageKey?: string | undefined;
   /**
    * localStorage key used to store `colorScheme`
    * @default 'color-scheme'
    */
-  colorSchemeStorageKey?: string;
+  colorSchemeStorageKey?: string | undefined;
   /**
    * Design system default color scheme.
    * - provides string if the design system has one default color scheme (either light or dark)
@@ -35,13 +35,13 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */
-  disableTransitionOnChange?: boolean;
+  disableTransitionOnChange?: boolean | undefined;
   /**
    * If `true`, theme values are recalculated when the mode changes.
    * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
    * @default false
    */
-  forceThemeRerender?: boolean;
+  forceThemeRerender?: boolean | undefined;
 }
 
 type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;
@@ -53,52 +53,54 @@ export interface CreateCssVarsProviderResult<
   CssVarsProvider: (
     props: React.PropsWithChildren<
       Partial<CssVarsProviderConfig<ColorScheme>> & {
-        theme?: Identify<
-          Identifier,
-          {
-            cssVariables?: false;
-            cssVarPrefix?: string;
-            colorSchemes: Partial<Record<ColorScheme, any>>;
-            colorSchemeSelector?: 'media' | 'class' | 'data' | string;
-          }
-        >;
+        theme?:
+          | Identify<
+              Identifier,
+              {
+                cssVariables?: false | undefined;
+                cssVarPrefix?: string | undefined;
+                colorSchemes: Partial<Record<ColorScheme, any>>;
+                colorSchemeSelector?: 'media' | 'class' | 'data' | string | undefined;
+              }
+            >
+          | undefined;
         /**
          * The default mode when the storage is empty,
          * require the theme to have `colorSchemes` with light and dark.
          * @default 'system'
          */
-        defaultMode?: 'light' | 'dark' | 'system';
+        defaultMode?: 'light' | 'dark' | 'system' | undefined;
         /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
          */
-        documentNode?: Document | null;
+        documentNode?: Document | null | undefined;
         /**
          * The node used to attach the color-scheme attribute
          * @default document
          */
-        colorSchemeNode?: Element | null;
+        colorSchemeNode?: Element | null | undefined;
         /**
          * The storage manager to be used for storing the mode and color scheme.
          * @default using `window.localStorage`
          */
-        storageManager?: StorageManager | null;
+        storageManager?: StorageManager | null | undefined;
         /**
          * The window that attaches the 'storage' event listener
          * @default window
          */
-        storageWindow?: Window | null;
+        storageWindow?: Window | null | undefined;
         /**
          * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
          */
-        disableNestedContext?: boolean;
+        disableNestedContext?: boolean | undefined;
         /**
          * If `true`, the style sheet won't be generated.
          *
          * This is useful for controlling nested CssVarsProvider behavior.
          * @default false
          */
-        disableStyleSheetGeneration?: boolean;
+        disableStyleSheetGeneration?: boolean | undefined;
       }
     >,
   ) => React.JSX.Element;
@@ -114,7 +116,7 @@ export default function createCssVarsProvider<
     /**
      * The design system's unique id for getting the corresponded theme when there are multiple design systems.
      */
-    themeId?: Identifier;
+    themeId?: Identifier | undefined;
     /**
      * Design system default theme
      *
@@ -152,7 +154,7 @@ export default function createCssVarsProvider<
      * The example usage is the variant generation in Joy. We need to combine the token from user-input and the default theme first, then generate
      * variants from those tokens.
      */
-    resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
+    resolveTheme?: ((theme: any) => any) | undefined; // the type is any because it depends on the design system.
   },
 ): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 

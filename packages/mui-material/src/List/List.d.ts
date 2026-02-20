@@ -12,19 +12,19 @@ export interface ListOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ListClasses>;
+  classes?: Partial<ListClasses> | undefined;
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input is used for
    * the list and list items.
    * The prop is available to descendant components as the `dense` context.
    * @default false
    */
-  dense?: boolean;
+  dense?: boolean | undefined;
   /**
    * If `true`, vertical padding is removed from the list.
    * @default false
    */
-  disablePadding?: boolean;
+  disablePadding?: boolean | undefined;
   /**
    * The content of the subheader, normally `ListSubheader`.
    */
@@ -32,7 +32,7 @@ export interface ListOwnProps {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface ListTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'ul'> {
@@ -69,7 +69,7 @@ export type ListProps<
   RootComponent extends React.ElementType = ListTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<ListTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default List;

@@ -7,7 +7,7 @@ export interface SlideProps extends TransitionProps {
    * Set this to `false` to disable this behavior.
    * @default true
    */
-  appear?: boolean;
+  appear?: boolean | undefined;
   /**
    * A single child content element.
    */
@@ -16,12 +16,12 @@ export interface SlideProps extends TransitionProps {
    * An HTML element, or a function that returns one.
    * It's used to set the container the Slide is transitioning from.
    */
-  container?: null | Element | ((element: Element) => Element);
+  container?: null | Element | ((element: Element) => Element) | undefined;
   /**
    * Direction the child node will enter from.
    * @default 'down'
    */
-  direction?: 'left' | 'right' | 'up' | 'down';
+  direction?: 'left' | 'right' | 'up' | 'down' | undefined;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
@@ -30,12 +30,12 @@ export interface SlideProps extends TransitionProps {
    *   exit: theme.transitions.easing.sharp,
    * }
    */
-  easing?: TransitionProps['easing'];
+  easing?: TransitionProps['easing'] | undefined;
   /**
    * If `true`, the component will transition in.
    */
-  in?: TransitionProps['in'];
-  ref?: React.Ref<unknown>;
+  in?: TransitionProps['in'] | undefined;
+  ref?: React.Ref<unknown> | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -44,7 +44,7 @@ export interface SlideProps extends TransitionProps {
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  timeout?: TransitionProps['timeout'];
+  timeout?: TransitionProps['timeout'] | undefined;
 }
 
 /**

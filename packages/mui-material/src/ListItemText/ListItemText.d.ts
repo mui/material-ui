@@ -11,17 +11,17 @@ export interface ListItemTextSlots {
    * The component that renders the root slot.
    * @default 'div'
    */
-  root?: React.ElementType;
+  root?: React.ElementType | undefined;
   /**
    * The component that renders the primary slot.
    * @default Typography
    */
-  primary?: React.ElementType;
+  primary?: React.ElementType | undefined;
   /**
    * The component that renders the secondary slot.
    * @default Typography
    */
-  secondary?: React.ElementType;
+  secondary?: React.ElementType | undefined;
 }
 
 export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -59,7 +59,7 @@ export interface ListItemTextProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ListItemTextClasses>;
+  classes?: Partial<ListItemTextClasses> | undefined;
   /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
@@ -67,13 +67,13 @@ export interface ListItemTextProps<
    * with the Typography component.
    * @default false
    */
-  disableTypography?: boolean;
+  disableTypography?: boolean | undefined;
   /**
    * If `true`, the children are indented.
    * This should be used if there is no left avatar or left icon.
    * @default false
    */
-  inset?: boolean;
+  inset?: boolean | undefined;
   /**
    * The main content element.
    */
@@ -83,10 +83,12 @@ export interface ListItemTextProps<
    * (as long as disableTypography is not `true`).
    * @deprecated Use `slotProps.primary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  primaryTypographyProps?: TypographyProps<
-    PrimaryTypographyComponent,
-    { component?: PrimaryTypographyComponent }
-  >;
+  primaryTypographyProps?:
+    | TypographyProps<
+        PrimaryTypographyComponent,
+        { component?: PrimaryTypographyComponent | undefined }
+      >
+    | undefined;
   /**
    * The secondary content element.
    */
@@ -96,14 +98,16 @@ export interface ListItemTextProps<
    * (as long as disableTypography is not `true`).
    * @deprecated Use `slotProps.secondary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  secondaryTypographyProps?: TypographyProps<
-    SecondaryTypographyComponent,
-    { component?: SecondaryTypographyComponent }
-  >;
+  secondaryTypographyProps?:
+    | TypographyProps<
+        SecondaryTypographyComponent,
+        { component?: SecondaryTypographyComponent | undefined }
+      >
+    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

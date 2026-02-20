@@ -3,13 +3,13 @@ import { StyleFunction, TransformFunction } from '../style';
 type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, any>>>;
 
 export interface SxConfigRecord {
-  cssProperty?: keyof React.CSSProperties | false;
+  cssProperty?: keyof React.CSSProperties | false | undefined;
   /**
    * dot access in `Theme`
    */
-  themeKey?: string;
-  transform?: TransformFunction;
-  style?: SimpleStyleFunction<any>;
+  themeKey?: string | undefined;
+  transform?: TransformFunction | undefined;
+  style?: SimpleStyleFunction<any> | undefined;
 }
 
 export type SxConfig = Record<string, SxConfigRecord>;
