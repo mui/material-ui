@@ -21,7 +21,7 @@ Changes include:
 - Premium self-service purchases up to 15 seats
 - Grandfathering for existing **v8 license renewals**
 
-## Why We're updating pricing
+## Why we're updating pricing
 
 MUI X has grown significantly since its early days. While the MUI X Pro plan has evolved over the years, its pricing per developer has not significantly changed since it was first introduced in 2020—despite major feature additions, performance improvements, and ongoing maintenance.
 
