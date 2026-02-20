@@ -25,7 +25,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 The `Button` comes with three variants: text (default), contained, and outlined.
 
-{{"demo": "BasicButtons.js"}}
+{{"component": "../data/material/components/buttons/BasicButtons.demo.ts"}}
 
 ### Text button
 
