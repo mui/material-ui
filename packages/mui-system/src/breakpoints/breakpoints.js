@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import deepmerge from '@mui/utils/deepmerge';
 import merge from '../merge';
 import { isCqShorthand, getContainerQuery } from '../cssContainerQueries';
+import { breakpointKeys } from '../createBreakpoints/createBreakpoints';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -16,7 +17,7 @@ export const values = {
 const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for propTypes.
-  keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+  keys: breakpointKeys,
   up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
