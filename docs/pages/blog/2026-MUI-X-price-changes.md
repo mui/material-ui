@@ -44,7 +44,7 @@ If you're unsure how this applies to your team, please reach out to us at **sale
 
 MUI X Pro and Premium are moving to an **application-based licensing model**, giving teams more control over how licenses are used across projects.
 
-- Each developer must still be licensed.
+- Each developer must still be licensed,
 - You can now choose between **single-application** and **multi-application** licenses.
 - The Enterprise plan is always multi-application and starts at a minimum of 15 seats.
 
