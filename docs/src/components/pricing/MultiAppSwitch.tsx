@@ -74,7 +74,7 @@ export function MultiAppSwitchTable() {
     setMultiApp(event.target.checked);
   };
   const MultiAppDescription =
-    'Choose this option if you need to use MUI X across multiple applications within your organization.';
+    'Choose this option if you expect to use MUI X across multiple applications within your organization.';
 
   const tooltipProps = {
     enterDelay: 400,
