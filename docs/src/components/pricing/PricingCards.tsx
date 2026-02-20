@@ -152,7 +152,6 @@ export const multiAppPlanInfo: Partial<Record<PlanName, Feature[]>> = {
       primaryLabel: <React.Fragment>5+ {highlightText('Premium')} features</React.Fragment>,
       icon: 'check',
     },
-    { primaryLabel: 'Self served up to 15 seats', icon: 'check' },
   ],
 };
 
