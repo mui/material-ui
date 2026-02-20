@@ -18,7 +18,7 @@ Changes include:
 - Enterprise plan remains multi-application (minimum 15 seats)
 - Priority support available only to Enterprise customers
 - Security questionnaires and custom agreements available for orders above $12,000 USD
-- Premium self-service purchases up to 15 seats
+- Premium self-service for purchases of up to 15 seats
 - Grandfathering for existing **v8 license renewals**
 
 ## Why we're updating pricing
