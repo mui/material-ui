@@ -15,6 +15,7 @@ export function getPath(obj, path, checkVars = true) {
   if (val != null && isCssVariablesUsed) {
     return val;
   }
+  return val;
 }
 
 export function getStyleValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
