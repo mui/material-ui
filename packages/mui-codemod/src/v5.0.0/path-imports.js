@@ -1,12 +1,5 @@
 import addImports from 'jscodeshift-add-imports';
 
-// istanbul ignore next
-if (globalThis.MUI_TEST_ENV) {
-  const resolve = require.resolve;
-  require.resolve = (source) =>
-    resolve(source.replace(/^@mui\/material\/modern/, '../../../mui-material/src'));
-}
-
 const barrelImportsToTransform = {
   material: {},
   'icons-material': {},
