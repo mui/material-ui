@@ -7,11 +7,12 @@ export function getPath(obj, path, checkVars = true) {
     return null;
   }
   // Check if CSS variables are used
-  const finalPath = obj && obj.vars && checkVars ? `vars.${path}` : path;
+  const isCssVariablesUsed = checkVars && obj && obj.vars;
+  const finalPath = isCssVariablesUsed ? `vars.${path}` : path;
   const val = finalPath
     .split('.')
     .reduce((acc, item) => (acc && acc[item] != null ? acc[item] : null), obj);
-  if (val != null) {
+  if (val != null && isCssVariablesUsed) {
     return val;
   }
 }
