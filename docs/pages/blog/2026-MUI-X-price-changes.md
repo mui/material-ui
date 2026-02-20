@@ -64,7 +64,7 @@ For a detailed overview of the new pricing structure, please visit [the updated 
 
 ## What's next
 
-We'll be sharing exciting roadmap updates for **MUI X v9**, including version alignment between Material UI and MUI X, on our blog in the coming months.
+We'll be sharing exciting roadmap updates for **MUI X v9**—including version alignment between Material UI and MUI X—on our blog in the coming months.
 
 We're deeply thankful for the continued support from our community and customers. These pricing updates allow us to keep pushing MUI X and the broader MUI ecosystem in ambitious new directions, while staying true to our open-source roots.
 
