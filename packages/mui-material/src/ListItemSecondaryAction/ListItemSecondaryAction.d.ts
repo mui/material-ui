@@ -14,11 +14,11 @@ export interface ListItemSecondaryActionProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ListItemSecondaryActionClasses>;
+  classes?: Partial<ListItemSecondaryActionClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
@@ -26,11 +26,11 @@ export interface ListItemSecondaryActionProps extends StandardProps<
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemSecondaryAction API](https://mui.com/material-ui/api/list-item-secondary-action/)
+ * - [ListItemSecondaryAction API](https://next.mui.com/material-ui/api/list-item-secondary-action/)
  *
  * @deprecated Use the `secondaryAction` prop in the `ListItem` component instead. This component will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
  */

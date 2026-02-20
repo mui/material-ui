@@ -165,6 +165,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/136349774',
     github: 'rluzists1',
   },
+  bernardobelchior: {
+    name: 'Bernardo Belchior',
+    avatar: 'https://avatars.githubusercontent.com/u/12778398',
+    github: 'bernardobelchior',
+  },
 };
 
 const classes = {

@@ -110,20 +110,20 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AlertClasses>;
+  classes?: Partial<AlertClasses> | undefined;
   /**
    * Override the default label for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
-  closeText?: string;
+  closeText?: string | undefined;
   /**
    * The color of the component. Unless provided, the value is taken from the `severity` prop.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
-  color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
+  color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides> | undefined;
   /**
    * The components used for each slot inside.
    *
@@ -131,10 +131,12 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    *
    * @default {}
    */
-  components?: {
-    CloseButton?: React.ElementType;
-    CloseIcon?: React.ElementType;
-  };
+  components?:
+    | {
+        CloseButton?: React.ElementType | undefined;
+        CloseIcon?: React.ElementType | undefined;
+      }
+    | undefined;
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
@@ -143,15 +145,17 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    *
    * @default {}
    */
-  componentsProps?: {
-    closeButton?: IconButtonProps;
-    closeIcon?: SvgIconProps;
-  };
+  componentsProps?:
+    | {
+        closeButton?: IconButtonProps | undefined;
+        closeIcon?: SvgIconProps | undefined;
+      }
+    | undefined;
   /**
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
+  severity?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides> | undefined;
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -162,31 +166,33 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    * The ARIA role attribute of the element.
    * @default 'alert'
    */
-  role?: string;
+  role?: string | undefined;
   /**
    * The component maps the `severity` prop to a range of different icons,
    * for instance success to `<SuccessOutlined>`.
    * If you wish to change this mapping, you can provide your own.
    * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
-  iconMapping?: Partial<
-    Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, React.ReactNode>
-  >;
+  iconMapping?:
+    | Partial<Record<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>, React.ReactNode>>
+    | undefined;
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
    * @param {React.SyntheticEvent} event The event source of the callback.
    */
-  onClose?: (event: React.SyntheticEvent) => void;
+  onClose?: ((event: React.SyntheticEvent) => void) | undefined;
   /**
    * The variant to use.
    * @default 'standard'
    */
-  variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
+  variant?:
+    | OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>
+    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface AlertOwnerState extends AlertProps {}
@@ -195,11 +201,11 @@ export interface AlertOwnerState extends AlertProps {}
  *
  * Demos:
  *
- * - [Alert](https://mui.com/material-ui/react-alert/)
+ * - [Alert](https://next.mui.com/material-ui/react-alert/)
  *
  * API:
  *
- * - [Alert API](https://mui.com/material-ui/api/alert/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
+ * - [Alert API](https://next.mui.com/material-ui/api/alert/)
+ * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
  */
 export default function Alert(props: AlertProps): React.JSX.Element;

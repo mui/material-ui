@@ -90,14 +90,14 @@ export interface SnackbarProps
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
-  action?: SnackbarContentProps['action'];
+  action?: SnackbarContentProps['action'] | undefined;
   /**
    * The anchor of the `Snackbar`.
    * On smaller screens, the component grows to occupy all the available width,
    * the horizontal alignment is ignored.
    * @default { vertical: 'bottom', horizontal: 'left' }
    */
-  anchorOrigin?: SnackbarOrigin;
+  anchorOrigin?: SnackbarOrigin | undefined;
   /**
    * The number of milliseconds to wait before automatically calling the
    * `onClose` function. `onClose` should then set the state of the `open`
@@ -105,30 +105,30 @@ export interface SnackbarProps
    * the `null` value.
    * @default null
    */
-  autoHideDuration?: number | null;
+  autoHideDuration?: number | null | undefined;
   /**
    * Replace the `SnackbarContent` component.
    */
-  children?: React.ReactElement<unknown, any>;
+  children?: React.ReactElement<unknown, any> | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SnackbarClasses>;
+  classes?: Partial<SnackbarClasses> | undefined;
   /**
    * Props applied to the `ClickAwayListener` element.
    * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
+  ClickAwayListenerProps?: Partial<ClickAwayListenerProps> | undefined;
   /**
    * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
    * @deprecated Use `slotProps.content` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  ContentProps?: Partial<SnackbarContentProps>;
+  ContentProps?: Partial<SnackbarContentProps> | undefined;
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
    */
-  disableWindowBlurListener?: boolean;
+  disableWindowBlurListener?: boolean | undefined;
   /**
    * When displaying multiple consecutive snackbars using a single parent-rendered
    * `<Snackbar/>`, add the `key` prop to ensure independent treatment of each message.
@@ -139,7 +139,7 @@ export interface SnackbarProps
   /**
    * The message to display.
    */
-  message?: SnackbarContentProps['message'];
+  message?: SnackbarContentProps['message'] | undefined;
   /**
    * Callback fired when the component requests to be closed.
    * Typically `onClose` is used to set state in the parent component,
@@ -150,31 +150,33 @@ export interface SnackbarProps
    * @param {React.SyntheticEvent<any> | Event} event The event source of the callback.
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
-  onClose?: (event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void;
+  onClose?:
+    | ((event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void)
+    | undefined;
   /**
    * If `true`, the component is shown.
    */
-  open?: boolean;
+  open?: boolean | undefined;
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` prop isn't specified, it does nothing.
    * If `autoHideDuration` prop is specified but `resumeHideDuration` isn't,
    * we default to `autoHideDuration / 2` ms.
    */
-  resumeHideDuration?: number;
+  resumeHideDuration?: number | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default Grow
    */
-  TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<unknown, any> }
-  >;
+  TransitionComponent?:
+    | React.JSXElementConstructor<TransitionProps & { children: React.ReactElement<unknown, any> }>
+    | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -183,25 +185,25 @@ export interface SnackbarProps
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  transitionDuration?: TransitionProps['timeout'];
+  transitionDuration?: TransitionProps['timeout'] | undefined;
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
-  TransitionProps?: TransitionProps;
+  TransitionProps?: TransitionProps | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://next.mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
+ * - [Snackbar API](https://next.mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
 

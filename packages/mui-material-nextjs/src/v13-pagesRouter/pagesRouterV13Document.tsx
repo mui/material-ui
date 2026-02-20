@@ -57,8 +57,8 @@ export function DocumentHeadTags(props: DocumentHeadTagsProps) {
 export async function documentGetInitialProps(
   ctx: DocumentContext,
   options?: {
-    emotionCache?: EmotionCache;
-    plugins?: Plugin[];
+    emotionCache?: EmotionCache | undefined;
+    plugins?: Plugin[] | undefined;
   },
 ) {
   // Resolution order

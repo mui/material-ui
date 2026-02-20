@@ -40,12 +40,12 @@ export interface ClickAwayListenerProps {
    * This prop changes how portaled elements are handled.
    * @default false
    */
-  disableReactTree?: boolean;
+  disableReactTree?: boolean | undefined;
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    * @default 'onClick'
    */
-  mouseEvent?: ClickAwayMouseEventHandler | false;
+  mouseEvent?: ClickAwayMouseEventHandler | false | undefined;
   /**
    * Callback fired when a "click away" event is detected.
    */
@@ -54,7 +54,7 @@ export interface ClickAwayListenerProps {
    * The touch event to listen to. You can disable the listener by providing `false`.
    * @default 'onTouchEnd'
    */
-  touchEvent?: ClickAwayTouchEventHandler | false;
+  touchEvent?: ClickAwayTouchEventHandler | false | undefined;
 }
 
 /**
@@ -63,12 +63,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Click-Away Listener](https://next.mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://next.mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
+ * - [ClickAwayListener API](https://next.mui.com/material-ui/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {

@@ -24,25 +24,27 @@ export interface SliderOwnProps<Value extends number | number[]> {
   /**
    * The label of the slider.
    */
-  'aria-label'?: string;
+  'aria-label'?: string | undefined;
   /**
    * The id of the element containing a label for the slider.
    */
-  'aria-labelledby'?: string;
+  'aria-labelledby'?: string | undefined;
   /**
    * A string value that provides a user-friendly name for the current value of the slider.
    */
-  'aria-valuetext'?: string;
+  'aria-valuetext'?: string | undefined;
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
-    SliderPropsColorOverrides
-  >;
+  color?:
+    | OverridableStringUnion<
+        'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+        SliderPropsColorOverrides
+      >
+    | undefined;
   /**
    * The components used for each slot inside.
    *
@@ -50,16 +52,18 @@ export interface SliderOwnProps<Value extends number | number[]> {
    *
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Track?: React.ElementType;
-    Rail?: React.ElementType;
-    Thumb?: React.ElementType;
-    Mark?: React.ElementType;
-    MarkLabel?: React.ElementType;
-    ValueLabel?: React.ElementType;
-    Input?: React.ElementType;
-  };
+  components?:
+    | {
+        Root?: React.ElementType | undefined;
+        Track?: React.ElementType | undefined;
+        Rail?: React.ElementType | undefined;
+        Thumb?: React.ElementType | undefined;
+        Mark?: React.ElementType | undefined;
+        MarkLabel?: React.ElementType | undefined;
+        ValueLabel?: React.ElementType | undefined;
+        Input?: React.ElementType | undefined;
+      }
+    | undefined;
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
@@ -68,49 +72,67 @@ export interface SliderOwnProps<Value extends number | number[]> {
    *
    * @default {}
    */
-  componentsProps?: {
-    root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelComponent,
-      SliderComponentsPropsOverrides,
-      SliderOwnerState
-    >;
-    input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
-  };
+  componentsProps?:
+    | {
+        root?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        track?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        rail?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        thumb?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        mark?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        markLabel?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        valueLabel?:
+          | SlotComponentProps<
+              typeof SliderValueLabelComponent,
+              SliderComponentsPropsOverrides,
+              SliderOwnerState
+            >
+          | undefined;
+        input?:
+          | SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+      }
+    | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SliderClasses>;
+  classes?: Partial<SliderClasses> | undefined;
   /**
    * @ignore
    */
-  className?: string;
+  className?: string | undefined;
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: Value;
+  defaultValue?: Value | undefined;
   /**
    * If `true`, the component is disabled.
    * @default false
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
    * @default false
    */
-  disableSwap?: boolean;
+  disableSwap?: boolean | undefined;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
    * This is important for screen reader users.
    * @param {number} index The thumb label's index to format.
    * @returns {string}
    */
-  getAriaLabel?: (index: number) => string;
+  getAriaLabel?: ((index: number) => string) | undefined;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
    * This is important for screen reader users.
@@ -118,30 +140,30 @@ export interface SliderOwnProps<Value extends number | number[]> {
    * @param {number} index The thumb label's index to format.
    * @returns {string}
    */
-  getAriaValueText?: (value: number, index: number) => string;
+  getAriaValueText?: ((value: number, index: number) => string) | undefined;
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * If `true` the marks are spaced according the value of the `step` prop.
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
-  marks?: boolean | readonly Mark[];
+  marks?: boolean | readonly Mark[] | undefined;
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
    * @default 100
    */
-  max?: number;
+  max?: number | undefined;
   /**
    * The minimum allowed value of the slider.
    * Should not be equal to max.
    * @default 0
    */
-  min?: number;
+  min?: number | undefined;
   /**
    * Name attribute of the hidden `input` element.
    */
-  name?: string;
+  name?: string | undefined;
   /**
    * Callback function that is fired when the slider's value changed.
    *
@@ -151,19 +173,19 @@ export interface SliderOwnProps<Value extends number | number[]> {
    * @param {Value} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
-  onChange?: (event: Event, value: Value, activeThumb: number) => void;
+  onChange?: ((event: Event, value: Value, activeThumb: number) => void) | undefined;
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {Value} value The new value.
    */
-  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: Value) => void;
+  onChangeCommitted?: ((event: React.SyntheticEvent | Event, value: Value) => void) | undefined;
   /**
    * The component orientation.
    * @default 'horizontal'
    */
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: 'horizontal' | 'vertical' | undefined;
   /**
    * A transformation function, to change the scale of the slider.
    * @param {any} x
@@ -172,50 +194,70 @@ export interface SliderOwnProps<Value extends number | number[]> {
    *   return x;
    * }
    */
-  scale?: (value: number) => number;
+  scale?: ((value: number) => number) | undefined;
   /**
    * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
    * @default 10
    */
-  shiftStep?: number;
+  shiftStep?: number | undefined;
   /**
    * The size of the slider.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium', SliderPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', SliderPropsSizeOverrides> | undefined;
   /**
    * The props used for each slot inside the Slider.
    * @default {}
    */
-  slotProps?: {
-    root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelComponent,
-      SliderComponentsPropsOverrides,
-      SliderOwnerState
-    >;
-    input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
-  };
+  slotProps?:
+    | {
+        root?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        track?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        rail?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        thumb?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        mark?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        markLabel?:
+          | SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+        valueLabel?:
+          | SlotComponentProps<
+              typeof SliderValueLabelComponent,
+              SliderComponentsPropsOverrides,
+              SliderOwnerState
+            >
+          | undefined;
+        input?:
+          | SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>
+          | undefined;
+      }
+    | undefined;
   /**
    * The components used for each slot inside the Slider.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    track?: React.ElementType;
-    rail?: React.ElementType;
-    thumb?: React.ElementType;
-    mark?: React.ElementType;
-    markLabel?: React.ElementType;
-    valueLabel?: React.ElementType;
-    input?: React.ElementType;
-  };
+  slots?:
+    | {
+        root?: React.ElementType | undefined;
+        track?: React.ElementType | undefined;
+        rail?: React.ElementType | undefined;
+        thumb?: React.ElementType | undefined;
+        mark?: React.ElementType | undefined;
+        markLabel?: React.ElementType | undefined;
+        valueLabel?: React.ElementType | undefined;
+        input?: React.ElementType | undefined;
+      }
+    | undefined;
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
@@ -224,15 +266,15 @@ export interface SliderOwnProps<Value extends number | number[]> {
    * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
    * @default 1
    */
-  step?: number | null;
+  step?: number | null | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * Tab index attribute of the hidden `input` element.
    */
-  tabIndex?: number;
+  tabIndex?: number | undefined;
   /**
    * The track presentation:
    *
@@ -241,12 +283,12 @@ export interface SliderOwnProps<Value extends number | number[]> {
    * - `false` the track will render without a bar.
    * @default 'normal'
    */
-  track?: 'normal' | false | 'inverted';
+  track?: 'normal' | false | 'inverted' | undefined;
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: Value;
+  value?: Value | undefined;
   /**
    * Controls when the value label is displayed:
    *
@@ -255,7 +297,7 @@ export interface SliderOwnProps<Value extends number | number[]> {
    * - `off` will never display.
    * @default 'off'
    */
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
+  valueLabelDisplay?: 'on' | 'auto' | 'off' | undefined;
   /**
    * The format function the value label's value.
    *
@@ -269,7 +311,7 @@ export interface SliderOwnProps<Value extends number | number[]> {
    *   return x;
    * }
    */
-  valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
+  valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode) | undefined;
 }
 
 export interface SliderTypeMap<
@@ -315,11 +357,11 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://mui.com/material-ui/react-slider/)
+ * - [Slider](https://next.mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://mui.com/material-ui/api/slider/)
+ * - [Slider API](https://next.mui.com/material-ui/api/slider/)
  */
 declare const Slider: SliderType;
 
@@ -327,7 +369,7 @@ export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Slider;

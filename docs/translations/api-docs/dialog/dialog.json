@@ -11,9 +11,6 @@
     },
     "children": { "description": "Dialog children, usually the included sub-components." },
     "classes": { "description": "Override or extend the styles applied to the component." },
-    "disableEscapeKeyDown": {
-      "description": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback."
-    },
     "fullScreen": { "description": "If <code>true</code>, the dialog is full-screen." },
     "fullWidth": {
       "description": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.<br>Notice that the dialog width grow is limited by the default margin."

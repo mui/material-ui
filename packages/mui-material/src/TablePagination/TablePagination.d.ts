@@ -159,18 +159,18 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * Either a string to use a HTML element or a component.
    * @default TablePaginationActions
    */
-  ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
+  ActionsComponent?: React.ElementType<TablePaginationActionsProps> | undefined;
   /**
    * Props applied to the back arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) component.
    *
    * This prop is an alias for `slotProps.actions.previousButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.actions.previousButton` instead.
    */
-  backIconButtonProps?: Partial<IconButtonProps>;
+  backIconButtonProps?: Partial<IconButtonProps> | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TablePaginationClasses>;
+  classes?: Partial<TablePaginationClasses> | undefined;
   /**
    * The total number of rows.
    *
@@ -181,7 +181,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * If `true`, the component is disabled.
    * @default false
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
@@ -193,7 +193,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    *   return `Go to ${type} page`;
    * }
    */
-  getItemAriaLabel?: (type: 'first' | 'last' | 'next' | 'previous') => string;
+  getItemAriaLabel?: ((type: 'first' | 'last' | 'next' | 'previous') => string) | undefined;
   /**
    * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
    * object.
@@ -203,7 +203,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
    */
-  labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
+  labelDisplayedRows?: ((paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode) | undefined;
   /**
    * Customize the rows per page label.
    *
@@ -217,7 +217,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * This prop is an alias for `slotProps.actions.nextButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.actions.nextButton` instead.
    */
-  nextIconButtonProps?: Partial<IconButtonProps>;
+  nextIconButtonProps?: Partial<IconButtonProps> | undefined;
   /**
    * Callback fired when the page is changed.
    *
@@ -230,7 +230,9 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    *
    * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    */
-  onRowsPerPageChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onRowsPerPageChange?:
+    | React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
   /**
    * The zero-based index of the current page.
    */
@@ -247,7 +249,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * Use -1 for the value with a custom label to show all the rows.
    * @default [10, 25, 50, 100]
    */
-  rowsPerPageOptions?: ReadonlyArray<number | { value: number; label: string }>;
+  rowsPerPageOptions?: ReadonlyArray<number | { value: number; label: string }> | undefined;
   /**
    * Props applied to the rows per page [`Select`](https://mui.com/material-ui/api/select/) element.
    *
@@ -256,21 +258,21 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    *
    * @default {}
    */
-  SelectProps?: Partial<SelectProps>;
+  SelectProps?: Partial<SelectProps> | undefined;
   /**
    * If `true`, show the first-page button.
    * @default false
    */
-  showFirstButton?: boolean;
+  showFirstButton?: boolean | undefined;
   /**
    * If `true`, show the last-page button.
    * @default false
    */
-  showLastButton?: boolean;
+  showLastButton?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface TablePaginationOwnerState extends TablePaginationOwnProps {}
@@ -285,13 +287,13 @@ export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends R
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/material-ui/react-pagination/)
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
+ * - [Table](https://next.mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TablePagination API](https://mui.com/material-ui/api/table-pagination/)
- * - inherits [TableCell API](https://mui.com/material-ui/api/table-cell/)
+ * - [TablePagination API](https://next.mui.com/material-ui/api/table-pagination/)
+ * - inherits [TableCell API](https://next.mui.com/material-ui/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
@@ -301,7 +303,7 @@ export type TablePaginationProps<
   RootComponent extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
   AdditionalProps = {},
 > = OverrideProps<TablePaginationTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default TablePagination;

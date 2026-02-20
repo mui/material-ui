@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "7.0.1-beta.21",
+  "version": "9.0.0-alpha.0",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "keywords": [
@@ -34,28 +34,28 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
-    "@mui/system": "workspace:^",
+    "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:^",
+    "@mui/utils": "workspace:*",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.9",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "sinon": "21.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@mui/material-pigment-css": "workspace:^",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
