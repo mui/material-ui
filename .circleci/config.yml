@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/b83516ba08a1eff0da5936837c8d44523a68c547/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/5a397056f9e93982f8e275c0214fc882d8af3b1c/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -214,7 +214,7 @@ jobs:
     resource_class: 'medium+'
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     steps:
       - checkout
       - install-deps:
@@ -247,7 +247,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     steps:
       - checkout
       - install-deps:
@@ -260,7 +260,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     steps:
       - checkout
       - install-deps
@@ -273,7 +273,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     steps:
       - checkout
       - install-deps:
@@ -345,7 +345,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -361,7 +361,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -377,7 +377,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -393,7 +393,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -409,7 +409,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -424,7 +424,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.57.0-noble
+      - image: mcr.microsoft.com/playwright:v1.58.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -440,7 +440,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.57.0-noble
+      playwright-img-version: v1.58.2-noble
       environment:
         GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/

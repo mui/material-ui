@@ -16,7 +16,7 @@ export interface PopperTransitionProps {
 
 export interface PopperChildrenProps {
   placement: PopperPlacementType;
-  TransitionProps?: PopperTransitionProps;
+  TransitionProps?: PopperTransitionProps | undefined;
 }
 
 export interface PopperOwnProps {
@@ -26,7 +26,13 @@ export interface PopperOwnProps {
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
    */
-  anchorEl?: null | VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement);
+  anchorEl?:
+    | null
+    | VirtualElement
+    | HTMLElement
+    | (() => HTMLElement)
+    | (() => VirtualElement)
+    | undefined;
   /**
    * Popper render function or node.
    */
@@ -41,24 +47,24 @@ export interface PopperOwnProps {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container?: PortalProps['container'];
+  container?: PortalProps['container'] | undefined;
   /**
    * Direction of the text.
    * @default 'ltr'
    */
-  direction?: 'ltr' | 'rtl';
+  direction?: 'ltr' | 'rtl' | undefined;
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
-  disablePortal?: PortalProps['disablePortal'];
+  disablePortal?: PortalProps['disablePortal'] | undefined;
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Popper.
    * @default false
    */
-  keepMounted?: boolean;
+  keepMounted?: boolean | undefined;
   /**
    * Popper.js is based on a "plugin-like" architecture,
    * most of its features are fully encapsulated "modifiers".
@@ -68,7 +74,7 @@ export interface PopperOwnProps {
    * For this reason, modifiers should be very performant to avoid bottlenecks.
    * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
    */
-  modifiers?: Options['modifiers'];
+  modifiers?: Options['modifiers'] | undefined;
   /**
    * If `true`, the component is shown.
    */
@@ -77,34 +83,38 @@ export interface PopperOwnProps {
    * Popper placement.
    * @default 'bottom'
    */
-  placement?: PopperPlacementType;
+  placement?: PopperPlacementType | undefined;
   /**
    * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
-  popperOptions?: Partial<OptionsGeneric<any>>;
+  popperOptions?: Partial<OptionsGeneric<any>> | undefined;
   /**
    * A ref that points to the used popper instance.
    */
-  popperRef?: React.Ref<Instance>;
+  popperRef?: React.Ref<Instance> | undefined;
   /**
    * The props used for each slot inside the Popper.
    * @default {}
    */
-  slotProps?: {
-    root?: SlotComponentProps<'div', PopperRootSlotPropsOverrides, PopperOwnerState>;
-  };
+  slotProps?:
+    | {
+        root?:
+          | SlotComponentProps<'div', PopperRootSlotPropsOverrides, PopperOwnerState>
+          | undefined;
+      }
+    | undefined;
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: PopperSlots;
+  slots?: PopperSlots | undefined;
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
    */
-  transition?: boolean;
+  transition?: boolean | undefined;
 }
 
 export interface PopperSlots {
@@ -112,7 +122,7 @@ export interface PopperSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root?: React.ElementType;
+  root?: React.ElementType | undefined;
 }
 
 export type PopperOwnerState = PopperOwnProps;
@@ -133,7 +143,7 @@ export type PopperTooltipOwnProps = Omit<
   PopperOwnProps,
   'container' | 'keepMounted' | 'transition'
 > & {
-  TransitionProps?: PopperTransitionProps;
+  TransitionProps?: PopperTransitionProps | undefined;
 };
 
 export interface PopperTooltipTypeMap<
@@ -149,7 +159,7 @@ export type PopperTooltipProps<
 > = PolymorphicProps<PopperTooltipTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export interface PopperRootSlotProps {
-  className?: string;
+  className?: string | undefined;
   ref: React.Ref<any>;
   ownerState: PopperOwnerState;
 }

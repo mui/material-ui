@@ -803,7 +803,7 @@ const proData: Record<string, React.ReactNode> = {
 
   'charts/radar': yes,
   'charts/funnel': yes,
-  'charts/sankey': pending,
+  'charts/sankey': yes,
   'charts/gantt': no,
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
@@ -908,7 +908,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/treemap': pending,
   'charts/radar': yes,
   'charts/funnel': yes,
-  'charts/sankey': pending,
+  'charts/sankey': yes,
   'charts/gantt': pending,
   'charts/gantt-advanced': toBeDefined,
   'charts/candlestick': toBeDefined,
@@ -1013,7 +1013,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'charts/treemap': pending,
   'charts/radar': yes,
   'charts/funnel': yes,
-  'charts/sankey': pending,
+  'charts/sankey': yes,
   'charts/gantt': pending,
   'charts/gantt-advanced': toBeDefined,
   'charts/candlestick': toBeDefined,
@@ -1287,7 +1287,7 @@ export default function PricingTable({
 
   return (
     <ThemeProvider theme={transitionTheme}>
-      <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', ...props.sx }}>
+      <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', contain: 'paint', ...props.sx }}>
         <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
         {!columnHeaderHidden && (
           <Box sx={gridSx}>
@@ -1554,9 +1554,9 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('charts/funnel')}
           {divider}
-          {renderNestedRow('charts/treemap')}
-          {divider}
           {renderNestedRow('charts/sankey')}
+          {divider}
+          {renderNestedRow('charts/treemap')}
           {divider}
           {renderNestedRow('charts/gantt')}
           {divider}

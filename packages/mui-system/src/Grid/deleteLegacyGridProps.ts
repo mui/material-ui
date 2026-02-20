@@ -6,7 +6,7 @@ const getLegacyGridWarning = (propName: 'item' | 'zeroMinWidth' | Breakpoint) =>
   }
 
   // #host-reference
-  return `The \`${propName}\` prop has been removed. See https://mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`;
+  return `The \`${propName}\` prop has been removed. See https://next.mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`;
 };
 
 const warnedAboutProps: string[] = [];
@@ -18,7 +18,7 @@ const warnedAboutProps: string[] = [];
  * @param {Breakpoints} breakpoints The breakpoints object.
  */
 export default function deleteLegacyGridProps(
-  props: { item?: boolean; zeroMinWidth?: boolean } & Partial<
+  props: { item?: boolean | undefined; zeroMinWidth?: boolean | undefined } & Partial<
     Record<Breakpoint, 'auto' | number | boolean>
   > &
     Record<string, any>,

@@ -70,7 +70,7 @@ export type AutocompleteRenderValueGetItemProps<Multiple extends boolean | undef
         tabIndex: -1;
         onDelete: (event: any) => void;
       }
-    : (args?: { index?: number }) => {
+    : (args?: { index?: number | undefined }) => {
         className: string;
         disabled: boolean;
         'data-item-index': number;
@@ -155,8 +155,8 @@ export type AutocompleteSlotsAndSlotProps<
     listbox: SlotProps<
       React.ElementType<
         ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
-          sx?: SxProps<Theme>;
-          ref?: React.Ref<Element>;
+          sx?: SxProps<Theme> | undefined;
+          ref?: React.Ref<Element> | undefined;
         }
       >,
       {},
@@ -195,11 +195,11 @@ export interface AutocompleteProps<
    * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
    * @deprecated Use `slotProps.chip` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  ChipProps?: ChipProps<ChipComponent>;
+  ChipProps?: ChipProps<ChipComponent> | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AutocompleteClasses>;
+  classes?: Partial<AutocompleteClasses> | undefined;
   /**
    * The icon to display in place of the default clear icon.
    * @default <ClearIcon fontSize="small" />
@@ -211,44 +211,46 @@ export interface AutocompleteProps<
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
-  clearText?: string;
+  clearText?: string | undefined;
   /**
    * Override the default text for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
-  closeText?: string;
+  closeText?: string | undefined;
   /**
    * The props used for each slot inside.
    * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  componentsProps?: {
-    clearIndicator?: Partial<IconButtonProps>;
-    paper?: PaperProps;
-    popper?: Partial<PopperProps>;
-    popupIndicator?: Partial<IconButtonProps>;
-  };
+  componentsProps?:
+    | {
+        clearIndicator?: Partial<IconButtonProps> | undefined;
+        paper?: PaperProps | undefined;
+        popper?: Partial<PopperProps> | undefined;
+        popupIndicator?: Partial<IconButtonProps> | undefined;
+      }
+    | undefined;
   /**
    * If `true`, the component is disabled.
    * @default false
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
    */
-  disablePortal?: boolean;
+  disablePortal?: boolean | undefined;
   /**
    * Force the visibility display of the popup icon.
    * @default 'auto'
    */
-  forcePopupIcon?: true | false | 'auto';
+  forcePopupIcon?: true | false | 'auto' | undefined;
   /**
    * If `true`, the input will take up the full width of its container.
    * @default false
    */
-  fullWidth?: boolean;
+  fullWidth?: boolean | undefined;
   /**
    * The label to display when the tags are truncated (`limitTags`).
    *
@@ -256,27 +258,29 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    * @default (more) => `+${more}`
    */
-  getLimitTagsText?: (more: number) => React.ReactNode;
+  getLimitTagsText?: ((more: number) => React.ReactNode) | undefined;
   /**
    * The component used to render the listbox.
    * @default 'ul'
    * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>> | undefined;
   /**
    * Props applied to the Listbox element.
    * @deprecated Use `slotProps.listbox` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
-    sx?: SxProps<Theme>;
-    ref?: React.Ref<Element>;
-  };
+  ListboxProps?:
+    | (ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
+        sx?: SxProps<Theme> | undefined;
+        ref?: React.Ref<Element> | undefined;
+      })
+    | undefined;
   /**
    * If `true`, the component is in a loading state.
    * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
    */
-  loading?: boolean;
+  loading?: boolean | undefined;
   /**
    * Text to display when in a loading state.
    *
@@ -289,7 +293,7 @@ export interface AutocompleteProps<
    * Set `-1` to disable the limit.
    * @default -1
    */
-  limitTags?: number;
+  limitTags?: number | undefined;
   /**
    * Text to display when there are no options.
    *
@@ -297,28 +301,30 @@ export interface AutocompleteProps<
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
-  onKeyDown?: (
-    event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean },
-  ) => void;
+  onKeyDown?:
+    | ((
+        event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean | undefined },
+      ) => void)
+    | undefined;
   /**
    * Override the default text for the *open popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
-  openText?: string;
+  openText?: string | undefined;
   /**
    * The component used to render the body of the popup.
    * @default Paper
    * @deprecated Use `slots.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
+  PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>> | undefined;
   /**
    * The component used to position the popup.
    * @default Popper
    * @deprecated Use `slots.popper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  PopperComponent?: React.JSXElementConstructor<PopperProps>;
+  PopperComponent?: React.JSXElementConstructor<PopperProps> | undefined;
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
@@ -328,14 +334,14 @@ export interface AutocompleteProps<
    * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
    * @default false
    */
-  readOnly?: boolean;
+  readOnly?: boolean | undefined;
   /**
    * Render the group.
    *
    * @param {AutocompleteRenderGroupParams} params The group to render.
    * @returns {ReactNode}
    */
-  renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode;
+  renderGroup?: ((params: AutocompleteRenderGroupParams) => React.ReactNode) | undefined;
   /**
    * Render the input.
    *
@@ -359,12 +365,20 @@ export interface AutocompleteProps<
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
-  renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
-    option: Value,
-    state: AutocompleteRenderOptionState,
-    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-  ) => React.ReactNode;
+  renderOption?:
+    | ((
+        props: React.HTMLAttributes<HTMLLIElement> & { key: React.Key },
+        option: Value,
+        state: AutocompleteRenderOptionState,
+        ownerState: AutocompleteOwnerState<
+          Value,
+          Multiple,
+          DisableClearable,
+          FreeSolo,
+          ChipComponent
+        >,
+      ) => React.ReactNode)
+    | undefined;
   /**
    * Render the selected value when doing multiple selections.
    *
@@ -375,11 +389,19 @@ export interface AutocompleteProps<
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
-  renderTags?: (
-    value: Value[],
-    getTagProps: AutocompleteRenderGetTagProps,
-    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-  ) => React.ReactNode;
+  renderTags?:
+    | ((
+        value: Value[],
+        getTagProps: AutocompleteRenderGetTagProps,
+        ownerState: AutocompleteOwnerState<
+          Value,
+          Multiple,
+          DisableClearable,
+          FreeSolo,
+          ChipComponent
+        >,
+      ) => React.ReactNode)
+    | undefined;
   /**
    * Renders the selected value(s) as rich content in the input for both single and multiple selections.
    *
@@ -388,31 +410,39 @@ export interface AutocompleteProps<
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
-  renderValue?: (
-    value: AutocompleteRenderValue<Value, Multiple, FreeSolo>,
-    getItemProps: AutocompleteRenderValueGetItemProps<Multiple>,
-    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-  ) => React.ReactNode;
+  renderValue?:
+    | ((
+        value: AutocompleteRenderValue<Value, Multiple, FreeSolo>,
+        getItemProps: AutocompleteRenderValueGetItemProps<Multiple>,
+        ownerState: AutocompleteOwnerState<
+          Value,
+          Multiple,
+          DisableClearable,
+          FreeSolo,
+          ChipComponent
+        >,
+      ) => React.ReactNode)
+    | undefined;
   /**
    * The size of the component.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ * - [Autocomplete API](https://next.mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   Value,

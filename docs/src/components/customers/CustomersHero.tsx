@@ -11,13 +11,13 @@ export default function CustomersHero() {
         alwaysCenter
         overline="Customers"
         title={
-          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
+          <Typography variant="h2" component="h1" sx={{ mb: 2 }}>
             Meet the <GradientText color="primary">teams</GradientText>
             <br />
             powered by <GradientText color="primary">MUI</GradientText>
           </Typography>
         }
-        description="See how MUI's comprehensive suite of UI tools helps them ship better and faster"
+        description="See how MUI's comprehensive suite of UI tools helps them ship better and faster."
       />
     </Section>
   );

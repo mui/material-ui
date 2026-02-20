@@ -7,18 +7,18 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * This prop is an alias for `slotProps.previousButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.previousButton` instead.
    */
-  backIconButtonProps?: Partial<IconButtonProps>;
+  backIconButtonProps?: Partial<IconButtonProps> | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {};
-  className?: string;
+  classes?: {} | undefined;
+  className?: string | undefined;
   count: number;
   /**
    * If `true`, the component is disabled.
    * @default false
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
@@ -32,23 +32,25 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * This prop is an alias for `slotProps.nextButton` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.nextButton` instead.
    */
-  nextIconButtonProps?: Partial<IconButtonProps>;
+  nextIconButtonProps?: Partial<IconButtonProps> | undefined;
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;
   showFirstButton: boolean;
   showLastButton: boolean;
-  slotProps?: {
-    firstButton?: Partial<IconButtonProps>;
-    lastButton?: Partial<IconButtonProps>;
-    nextButton?: Partial<IconButtonProps>;
-    previousButton?: Partial<IconButtonProps>;
-    firstButtonIcon?: Partial<SvgIconProps>;
-    lastButtonIcon?: Partial<SvgIconProps>;
-    nextButtonIcon?: Partial<SvgIconProps>;
-    previousButtonIcon?: Partial<SvgIconProps>;
-  };
-  slots?: TablePaginationActionsSlots;
+  slotProps?:
+    | {
+        firstButton?: Partial<IconButtonProps> | undefined;
+        lastButton?: Partial<IconButtonProps> | undefined;
+        nextButton?: Partial<IconButtonProps> | undefined;
+        previousButton?: Partial<IconButtonProps> | undefined;
+        firstButtonIcon?: Partial<SvgIconProps> | undefined;
+        lastButtonIcon?: Partial<SvgIconProps> | undefined;
+        nextButtonIcon?: Partial<SvgIconProps> | undefined;
+        previousButtonIcon?: Partial<SvgIconProps> | undefined;
+      }
+    | undefined;
+  slots?: TablePaginationActionsSlots | undefined;
 }
 
 export interface TablePaginationActionsSlots {
@@ -56,52 +58,52 @@ export interface TablePaginationActionsSlots {
    * The component that renders the first button.
    * @default IconButton
    */
-  firstButton?: React.ElementType;
+  firstButton?: React.ElementType | undefined;
   /**
    * The component that renders the last button.
    * @default IconButton
    */
-  lastButton?: React.ElementType;
+  lastButton?: React.ElementType | undefined;
   /**
    * The component that renders the next button.
    * @default IconButton
    */
-  nextButton?: React.ElementType;
+  nextButton?: React.ElementType | undefined;
   /**
    * The component that renders the previous button.
    * @default IconButton
    */
-  previousButton?: React.ElementType;
+  previousButton?: React.ElementType | undefined;
   /**
    * The component that renders the first button icon.
    * @default FirstPageIcon
    */
-  firstButtonIcon?: React.ElementType;
+  firstButtonIcon?: React.ElementType | undefined;
   /**
    * The component that renders the last button icon.
    * @default LastPageIcon
    */
-  lastButtonIcon?: React.ElementType;
+  lastButtonIcon?: React.ElementType | undefined;
   /**
    * The component that renders the next button icon.
    * @default KeyboardArrowRight
    */
-  nextButtonIcon?: React.ElementType;
+  nextButtonIcon?: React.ElementType | undefined;
   /**
    * The component that renders the previous button icon.
    * @default KeyboardArrowLeft
    */
-  previousButtonIcon?: React.ElementType;
+  previousButtonIcon?: React.ElementType | undefined;
 }
 /**
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
  *
  * API:
  *
- * - [TablePaginationActions API](https://mui.com/material-ui/api/table-pagination-actions/)
+ * - [TablePaginationActions API](https://next.mui.com/material-ui/api/table-pagination-actions/)
  */
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
 

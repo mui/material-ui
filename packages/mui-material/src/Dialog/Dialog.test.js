@@ -138,7 +138,7 @@ describe('<Dialog />', () => {
     });
 
     // keyDown not targeted at anything specific
-    // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+    // eslint-disable-next-line mui/disallow-active-element-as-key-event-target
     fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
@@ -171,7 +171,7 @@ describe('<Dialog />', () => {
     function DialogWithBackdropClickDisabled(props) {
       const { onClose, ...other } = props;
       function handleClose(event, reason) {
-        if (reason !== 'backdropClick') {
+        if (!['backdropClick', 'escapeKeyDown'].includes(reason)) {
           onClose(event, reason);
         }
       }
@@ -180,12 +180,7 @@ describe('<Dialog />', () => {
     }
     const onClose = spy();
     render(
-      <DialogWithBackdropClickDisabled
-        open
-        disableEscapeKeyDown
-        onClose={onClose}
-        transitionDuration={0}
-      >
+      <DialogWithBackdropClickDisabled open onClose={onClose} transitionDuration={0}>
         foo
       </DialogWithBackdropClickDisabled>,
     );
@@ -196,7 +191,7 @@ describe('<Dialog />', () => {
       dialog.click();
     });
     // keyDown is not targeted at anything specific.
-    // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+    // eslint-disable-next-line mui/disallow-active-element-as-key-event-target
     fireEvent.keyDown(document.activeElement, { key: 'Escape' });
 
     expect(onClose.callCount).to.equal(0);

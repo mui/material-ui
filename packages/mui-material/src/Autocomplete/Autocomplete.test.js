@@ -158,6 +158,21 @@ describe('<Autocomplete />', () => {
   });
 
   describe('combobox', () => {
+    it('should not open popup on right click', async () => {
+      const { user } = render(
+        <Autocomplete
+          disablePortal
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      await user.pointer({ keys: '[MouseRight]', target: screen.getByRole('combobox') });
+
+      const listbox = screen.queryByRole('listbox');
+      expect(listbox).to.equal(null);
+    });
+
     it('should clear the input when blur', () => {
       render(<Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />);
       const input = screen.getByRole('combobox');
@@ -3019,16 +3034,35 @@ describe('<Autocomplete />', () => {
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const view = render(
+      const renderInput = spy((params) => <TextField {...params} />);
+      const { container, rerender } = render(
+        <Autocomplete fullWidth options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
+
+      rerender(
         <Autocomplete
-          fullWidth
+          fullWidth={false}
           options={[0, 10, 20]}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={renderInput}
           value={null}
         />,
       );
 
-      expect(view.container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(false);
+    });
+
+    it('should pass fullWidth as true to renderInput if not provided', () => {
+      const renderInput = spy((params) => <TextField {...params} />);
+      const view = render(
+        <Autocomplete options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(view.container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
     });
   });
 
@@ -3916,4 +3950,39 @@ describe('<Autocomplete />', () => {
 
     expect(screen.getByTestId('label')).to.have.attribute('data-shrink', 'false');
   });
+
+  // https://github.com/mui/material-ui/issues/47203
+  it.skipIf(isJsdom())(
+    'should not scroll the listbox to the top when listbox is scrolled down and one of the end option is clicked',
+    () => {
+      render(
+        <Autocomplete
+          multiple
+          disableCloseOnSelect
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { style: { padding: 0, maxHeight: '100px' } } }}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      // open listbox
+      fireEvent.mouseDown(textbox);
+
+      // close listbox
+      fireEvent.mouseDown(textbox);
+
+      // re-open listbox
+      fireEvent.mouseDown(textbox);
+
+      const listbox = screen.getByRole('listbox');
+      const options = screen.getAllByRole('option');
+
+      listbox.scrollBy(0, 180);
+
+      fireEvent.click(options[4]);
+
+      expect(listbox).not.to.have.property('scrollTop', 0);
+    },
+  );
 });

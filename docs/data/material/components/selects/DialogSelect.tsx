@@ -23,16 +23,23 @@ export default function DialogSelect() {
     setOpen(true);
   };
 
-  const handleClose = (event: React.SyntheticEvent<unknown>, reason?: string) => {
-    if (reason !== 'backdropClick') {
+  const handleDialogClose = (
+    _event: React.SyntheticEvent<unknown>,
+    reason: string,
+  ) => {
+    if (!['backdropClick', 'escapeKeyDown'].includes(reason)) {
       setOpen(false);
     }
+  };
+
+  const handleActionButtonClick = () => {
+    setOpen(false);
   };
 
   return (
     <div>
       <Button onClick={handleClickOpen}>Open select dialog</Button>
-      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleDialogClose}>
         <DialogTitle>Fill the form</DialogTitle>
         <DialogContent>
           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -70,8 +77,8 @@ export default function DialogSelect() {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Ok</Button>
+          <Button onClick={handleActionButtonClick}>Cancel</Button>
+          <Button onClick={handleActionButtonClick}>Ok</Button>
         </DialogActions>
       </Dialog>
     </div>

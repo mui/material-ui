@@ -14,21 +14,21 @@ export interface TimelineSeparatorProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineSeparatorClasses>;
+  classes?: Partial<TimelineSeparatorClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineSeparator API](https://mui.com/material-ui/api/timeline-separator/)
+ * - [TimelineSeparator API](https://next.mui.com/material-ui/api/timeline-separator/)
  */
 export default function TimelineSeparator(props: TimelineSeparatorProps): React.JSX.Element;

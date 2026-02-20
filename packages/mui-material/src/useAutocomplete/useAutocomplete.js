@@ -614,10 +614,10 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    if (filteredOptionsChanged || popupOpen) {
+    if (filteredOptionsChanged || (popupOpen && !disableCloseOnSelect)) {
       syncHighlightedIndex();
     }
-  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen]);
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
 
   const handleOpen = (event) => {
     if (open) {
@@ -1125,7 +1125,12 @@ function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (!disabledProp && (inputValue === '' || !open)) {
+    if (
+      !disabledProp &&
+      (inputValue === '' || !open) &&
+      // Only handle event when the main button is pressed (left click).
+      event.button === 0
+    ) {
       handlePopupIndicator(event);
     }
   };
@@ -1232,6 +1237,7 @@ function useAutocomplete(props) {
       role: 'listbox',
       id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
+      'aria-multiselectable': multiple || undefined,
       ref: handleListboxRef,
       onMouseDown: (event) => {
         // Prevent blur

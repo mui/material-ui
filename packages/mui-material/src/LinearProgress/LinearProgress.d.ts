@@ -15,40 +15,44 @@ export interface LinearProgressProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<LinearProgressClasses>;
+  classes?: Partial<LinearProgressClasses> | undefined;
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit',
-    LinearProgressPropsColorOverrides
-  >;
+  color?:
+    | OverridableStringUnion<
+        'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'inherit',
+        LinearProgressPropsColorOverrides
+      >
+    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.
    */
-  value?: number;
+  value?: number | undefined;
   /**
    * The value for the buffer variant.
    * Value between 0 and 100.
    */
-  valueBuffer?: number;
+  valueBuffer?: number | undefined;
   /**
    * The variant to use.
    * Use indeterminate or query when there is no progress value.
    * @default 'indeterminate'
    */
-  variant?: OverridableStringUnion<
-    'determinate' | 'indeterminate' | 'buffer' | 'query',
-    LinearProgressPropsVariantOverrides
-  >;
+  variant?:
+    | OverridableStringUnion<
+        'determinate' | 'indeterminate' | 'buffer' | 'query',
+        LinearProgressPropsVariantOverrides
+      >
+    | undefined;
 }
 
 /**
@@ -60,10 +64,10 @@ export interface LinearProgressProps extends StandardProps<
  *
  * Demos:
  *
- * - [Progress](https://mui.com/material-ui/react-progress/)
+ * - [Progress](https://next.mui.com/material-ui/react-progress/)
  *
  * API:
  *
- * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
+ * - [LinearProgress API](https://next.mui.com/material-ui/api/linear-progress/)
  */
 export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;
