@@ -27,7 +27,7 @@ MUI X has grown significantly since its early days. While the MUI X Pro plan h
 
 As a result, this new pricing brings Pro closer in line with the value teams receive today, and allowing us to sustainably support its future development.
 
-This post breaks down everything you need to know about the changes. You can also head directly to [the updated pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/) for a thorough feature comparison.
+This post breaks down everything you need to know about the changes. You can also head directly to [the updated pricing page](https://next.mui.com/pricing/) for a thorough feature comparison.
 
 ## Grandfathering current customers
 
@@ -58,7 +58,7 @@ Alongside pricing changes, we're updating how support is structured:
 
 ## Pricing breakdown
 
-For a detailed overview of the new pricing structure, please visit [the updated pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/).
+For a detailed overview of the new pricing structure, please visit [the updated pricing page](https://next.mui.com/pricing/).
 
 ## What's next
 
