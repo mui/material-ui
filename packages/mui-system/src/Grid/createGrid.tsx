@@ -95,7 +95,7 @@ export default function createGrid(
     } else if (typeof propValue === 'object') {
       Object.keys(propValue).forEach((key) => {
         const value = propValue[key as Breakpoint];
-        if (value !== null && value !== undefined && shouldUseValue(value)) {
+        if (value != null && shouldUseValue(value)) {
           parsedProp[key as Breakpoint] = value;
         }
       });

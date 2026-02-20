@@ -107,7 +107,7 @@ export function unstable_createStyleFunctionSx() {
 
       Object.keys(sxObject).forEach((styleKey) => {
         const value = callIfFn(sxObject[styleKey], theme);
-        if (value !== null && value !== undefined) {
+        if (value != null) {
           if (typeof value === 'object') {
             if (config[styleKey]) {
               css = merge(css, getThemeValue(styleKey, value, theme, config));
