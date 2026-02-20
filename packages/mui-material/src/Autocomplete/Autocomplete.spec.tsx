@@ -186,35 +186,39 @@ function CustomListboxRef() {
 
 // freeSolo prop adds string to the getOptionLabel and isOptionEqualToValue value argument type
 <MyAutocomplete
-  options={['1', '2', '3']}
+  options={[{ label: '1' }, { label: '2' }]}
   renderInput={() => null}
   freeSolo
   getOptionLabel={(option) => {
-    expectType<AutocompleteValueOrFreeSoloValueMapping<string, true>, typeof option>(option);
+    expectType<AutocompleteValueOrFreeSoloValueMapping<{ label: string }, true>, typeof option>(
+      option,
+    );
 
-    return option;
+    return typeof option === 'string' ? option : option.label;
   }}
   isOptionEqualToValue={(option, value) => {
-    expectType<AutocompleteValueOrFreeSoloValueMapping<string, true>, typeof value>(value);
-    expectType<string, typeof option>(option);
+    expectType<AutocompleteValueOrFreeSoloValueMapping<{ label: string }, true>, typeof value>(
+      value,
+    );
+    expectType<{ label: string }, typeof option>(option);
 
-    return option === value;
+    return typeof value === 'string' ? option.label === value : option.label === value.label;
   }}
 />;
 
 // getOptionLabel and isOptionEqualToValue value argument type should not include string when freeSolo is false
 <MyAutocomplete
-  options={['1', '2', '3']}
+  options={[{ label: '1' }, { label: '2' }]}
   renderInput={() => null}
   getOptionLabel={(option) => {
-    expectType<string, typeof option>(option);
+    expectType<{ label: string }, typeof option>(option);
 
-    return option;
+    return option.label;
   }}
   isOptionEqualToValue={(option, value) => {
-    expectType<string, typeof value>(value);
-    expectType<string, typeof option>(option);
+    expectType<{ label: string }, typeof value>(value);
+    expectType<{ label: string }, typeof option>(option);
 
-    return option === value;
+    return option.label === value.label;
   }}
 />;
