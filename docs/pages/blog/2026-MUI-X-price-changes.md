@@ -25,7 +25,7 @@ Changes include:
 
 MUI X has grown significantly since its early days. While the MUI X Pro plan has evolved over the years, its pricing per developer has not significantly changed since it was first introduced in 2020—despite major feature additions, performance improvements, and ongoing maintenance.
 
-As a result, this update represents the largest percentage increase for Pro. It brings pricing closer in line with the value teams receive today and allows us to sustainably support its future development.
+As a result, Pro sees the largest percentage increase, bringing its pricing closer in line with the value teams receive today, and allowing us to sustainably support its future development.
 
 This post breaks down everything you need to know about the changes. You can also head directly to [the updated pricing page](https://deploy-preview-47606--material-ui.netlify.app/pricing/) for a thorough feature comparison.
 
