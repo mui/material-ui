@@ -1017,7 +1017,8 @@ function useAutocomplete(props) {
     setFocused(false);
     firstFocus.current = true;
     // Track when window loses focus (relatedTarget is null)
-    if (event?.relatedTarget === null) {
+    // Only set if popup is open, to prevent preventing legitimate re-opens when popup is already closed
+    if (event?.relatedTarget === null && popupOpen) {
       windowLostFocus.current = true;
     }
 
