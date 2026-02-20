@@ -2,7 +2,7 @@
 title: 'Upcoming Changes to MUI X Pricing and Licensing in 2026'
 description: Beginning in 2026, MUI X pricing and licensing is being updated to reflect product value and support continued investment in the ecosystem.
 date: 2026-03-01T08:00:00.000Z
-authors: ['rluzists1']
+authors: ['raffaellaluzi']
 tags: ['MUI X']
 manualCard: false
 ---
