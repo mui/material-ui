@@ -43,7 +43,7 @@ export default function FreeSolo() {
           if (typeof value === 'string') {
             return option.title === value;
           }
-          return option.title === value?.title;
+          return option.title === value.title;
         }}
       />
     </Stack>
