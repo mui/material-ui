@@ -9,7 +9,9 @@ function compose(...styles) {
       handlers[prop] = style;
     });
     filterProps.push(...style.filterProps);
-    if (process.env.NODE_ENV !== 'production') Object.assign(propTypes, style.propTypes);
+    if (process.env.NODE_ENV !== 'production') {
+      Object.assign(propTypes, style.propTypes);
+    }
   }
 
   // false positive
