@@ -496,6 +496,101 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'tree-view/virtualization': <ColumnHead label="Virtualization" />,
 
+  // Scheduler - Event Calendar (implemented)
+  'scheduler/calendar-views': (
+    <ColumnHead label="Calendar views (day, week, month)" href="/x/react-scheduler/event-calendar/views/" />
+  ),
+  'scheduler/calendar-drag-and-drop': (
+    <ColumnHead label="Drag & drop" href="/x/react-scheduler/event-calendar/drag-interactions/" />
+  ),
+  'scheduler/calendar-resources': (
+    <ColumnHead label="Resource management" href="/x/react-scheduler/event-calendar/resources/" />
+  ),
+  'scheduler/calendar-timezone': (
+    <ColumnHead label="Timezone support" href="/x/react-scheduler/timezone/" />
+  ),
+  'scheduler/calendar-event-editor': (
+    <ColumnHead label="Event editing" href="/x/react-scheduler/event-calendar/events/" />
+  ),
+  'scheduler/calendar-external-drag': (
+    <ColumnHead
+      label="External drag & drop"
+      href="/x/react-scheduler/event-calendar/drag-interactions/#external-drag-and-drop"
+    />
+  ),
+  'scheduler/calendar-recurring-events': (
+    <ColumnHead label="Recurring events" href="/x/react-scheduler/recurring-events/" />
+  ),
+  'scheduler/calendar-lazy-loading': (
+    <ColumnHead label="Lazy loading" href="/x/react-scheduler/event-calendar/lazy-loading/" />
+  ),
+  // Scheduler - Event Calendar (pending)
+  'scheduler/calendar-year-view': <ColumnHead label="Year view" />,
+  'scheduler/calendar-resource-view': <ColumnHead label="Resource view" />,
+  'scheduler/calendar-constraints': <ColumnHead label="Event constraints" />,
+  'scheduler/calendar-event-creation': (
+    <ColumnHead label="Event creation" href="/x/react-scheduler/event-calendar/events/#event-creation" />
+  ),
+  'scheduler/calendar-delete-event': <ColumnHead label="Event deletion" />,
+  'scheduler/calendar-copy-paste-events': <ColumnHead label="Copy & paste events" />,
+  'scheduler/calendar-undo-redo': <ColumnHead label="Undo / Redo" />,
+  'scheduler/calendar-search': <ColumnHead label="Event search" />,
+  'scheduler/calendar-filtering': <ColumnHead label="Event filtering" />,
+  'scheduler/calendar-ics-import-export': <ColumnHead label="ICS import / export" />,
+  'scheduler/calendar-excel-csv-export': <ColumnHead label="Excel / CSV export" />,
+  'scheduler/calendar-print-export': <ColumnHead label="Print export" />,
+  'scheduler/calendar-pdf-export': <ColumnHead label="PDF export" />,
+  'scheduler/calendar-accessibility': <ColumnHead label="Accessibility" />,
+  'scheduler/calendar-keyboard-nav': <ColumnHead label="Keyboard navigation" />,
+  'scheduler/calendar-localization': (
+    <ColumnHead label="Localization" href="/x/react-scheduler/localization/" />
+  ),
+  // Scheduler - Event Timeline (implemented)
+  'scheduler/timeline-views': (
+    <ColumnHead label="Timeline views" href="/x/react-scheduler/event-timeline/views/" />
+  ),
+  'scheduler/timeline-drag-and-drop': (
+    <ColumnHead label="Drag & drop" href="/x/react-scheduler/event-timeline/drag-interactions/" />
+  ),
+  'scheduler/timeline-resources': (
+    <ColumnHead label="Resource management" href="/x/react-scheduler/event-timeline/resources/" />
+  ),
+  'scheduler/timeline-timezone': (
+    <ColumnHead label="Timezone support" href="/x/react-scheduler/timezone/" />
+  ),
+  'scheduler/timeline-event-editor': (
+    <ColumnHead label="Event editing" href="/x/react-scheduler/event-timeline/events/" />
+  ),
+  'scheduler/timeline-external-drag': (
+    <ColumnHead
+      label="External drag & drop"
+      href="/x/react-scheduler/event-timeline/drag-interactions/"
+    />
+  ),
+  'scheduler/timeline-recurring-events': (
+    <ColumnHead label="Recurring events" href="/x/react-scheduler/recurring-events/" />
+  ),
+  // Scheduler - Event Timeline (pending)
+  'scheduler/timeline-lazy-loading': <ColumnHead label="Lazy loading" />,
+  'scheduler/timeline-zooming': <ColumnHead label="Zoom in/out" />,
+  'scheduler/timeline-virtualization': <ColumnHead label="Virtualization" />,
+  'scheduler/timeline-constraints': <ColumnHead label="Event constraints" />,
+  'scheduler/timeline-event-creation': <ColumnHead label="Event creation" />,
+  'scheduler/timeline-delete-event': <ColumnHead label="Event deletion" />,
+  'scheduler/timeline-copy-paste-events': <ColumnHead label="Copy & paste events" />,
+  'scheduler/timeline-undo-redo': <ColumnHead label="Undo / Redo" />,
+  'scheduler/timeline-search': <ColumnHead label="Event search" />,
+  'scheduler/timeline-filtering': <ColumnHead label="Event filtering" />,
+  'scheduler/timeline-ics-import-export': <ColumnHead label="ICS import / export" />,
+  'scheduler/timeline-excel-csv-export': <ColumnHead label="Excel / CSV export" />,
+  'scheduler/timeline-print-export': <ColumnHead label="Print export" />,
+  'scheduler/timeline-pdf-export': <ColumnHead label="PDF export" />,
+  'scheduler/timeline-accessibility': <ColumnHead label="Accessibility" />,
+  'scheduler/timeline-keyboard-nav': <ColumnHead label="Keyboard navigation" />,
+  'scheduler/timeline-localization': (
+    <ColumnHead label="Localization" href="/x/react-scheduler/localization/" />
+  ),
+
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -719,6 +814,57 @@ const communityData: Record<string, React.ReactNode> = {
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': no,
   'tree-view/virtualization': no,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': yes,
+  'scheduler/calendar-drag-and-drop': yes,
+  'scheduler/calendar-resources': yes,
+  'scheduler/calendar-timezone': yes,
+  'scheduler/calendar-event-editor': yes,
+  'scheduler/calendar-external-drag': yes,
+  'scheduler/calendar-recurring-events': no,
+  'scheduler/calendar-lazy-loading': no,
+
+  'scheduler/calendar-year-view': pending,
+  'scheduler/calendar-resource-view': no,
+  'scheduler/calendar-constraints': pending,
+  'scheduler/calendar-event-creation': yes,
+  'scheduler/calendar-delete-event': yes,
+  'scheduler/calendar-copy-paste-events': pending,
+  'scheduler/calendar-undo-redo': pending,
+  'scheduler/calendar-search': no,
+  'scheduler/calendar-filtering': no,
+  'scheduler/calendar-ics-import-export': no,
+  'scheduler/calendar-excel-csv-export': no,
+  'scheduler/calendar-print-export': no,
+  'scheduler/calendar-pdf-export': no,
+  'scheduler/calendar-accessibility': yes,
+  'scheduler/calendar-keyboard-nav': yes,
+  'scheduler/calendar-localization': yes,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': no,
+  'scheduler/timeline-drag-and-drop': no,
+  'scheduler/timeline-resources': no,
+  'scheduler/timeline-timezone': no,
+  'scheduler/timeline-event-editor': no,
+  'scheduler/timeline-external-drag': no,
+  'scheduler/timeline-recurring-events': no,
+  'scheduler/timeline-lazy-loading': no,
+  'scheduler/timeline-zooming': no,
+  'scheduler/timeline-virtualization': no,
+  'scheduler/timeline-constraints': no,
+  'scheduler/timeline-event-creation': no,
+  'scheduler/timeline-delete-event': no,
+  'scheduler/timeline-copy-paste-events': no,
+  'scheduler/timeline-undo-redo': no,
+  'scheduler/timeline-search': no,
+  'scheduler/timeline-filtering': no,
+  'scheduler/timeline-ics-import-export': no,
+  'scheduler/timeline-excel-csv-export': no,
+  'scheduler/timeline-print-export': no,
+  'scheduler/timeline-pdf-export': no,
+  'scheduler/timeline-accessibility': no,
+  'scheduler/timeline-keyboard-nav': no,
+  'scheduler/timeline-localization': no,
   // general
   'mui-x-production': yes,
   'mui-x-updates': yes,
@@ -825,6 +971,57 @@ const proData: Record<string, React.ReactNode> = {
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': yes,
   'tree-view/virtualization': pending,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': no,
+  'scheduler/calendar-drag-and-drop': no,
+  'scheduler/calendar-resources': no,
+  'scheduler/calendar-timezone': no,
+  'scheduler/calendar-event-editor': no,
+  'scheduler/calendar-external-drag': no,
+  'scheduler/calendar-recurring-events': no,
+  'scheduler/calendar-lazy-loading': no,
+
+  'scheduler/calendar-year-view': no,
+  'scheduler/calendar-resource-view': no,
+  'scheduler/calendar-constraints': no,
+  'scheduler/calendar-event-creation': no,
+  'scheduler/calendar-delete-event': no,
+  'scheduler/calendar-copy-paste-events': no,
+  'scheduler/calendar-undo-redo': no,
+  'scheduler/calendar-search': no,
+  'scheduler/calendar-filtering': no,
+  'scheduler/calendar-ics-import-export': no,
+  'scheduler/calendar-excel-csv-export': no,
+  'scheduler/calendar-print-export': no,
+  'scheduler/calendar-pdf-export': no,
+  'scheduler/calendar-accessibility': no,
+  'scheduler/calendar-keyboard-nav': no,
+  'scheduler/calendar-localization': no,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': no,
+  'scheduler/timeline-drag-and-drop': no,
+  'scheduler/timeline-resources': no,
+  'scheduler/timeline-timezone': no,
+  'scheduler/timeline-event-editor': no,
+  'scheduler/timeline-external-drag': no,
+  'scheduler/timeline-recurring-events': no,
+  'scheduler/timeline-lazy-loading': no,
+  'scheduler/timeline-zooming': no,
+  'scheduler/timeline-virtualization': no,
+  'scheduler/timeline-constraints': no,
+  'scheduler/timeline-event-creation': no,
+  'scheduler/timeline-delete-event': no,
+  'scheduler/timeline-copy-paste-events': no,
+  'scheduler/timeline-undo-redo': no,
+  'scheduler/timeline-search': no,
+  'scheduler/timeline-filtering': no,
+  'scheduler/timeline-ics-import-export': no,
+  'scheduler/timeline-excel-csv-export': no,
+  'scheduler/timeline-print-export': no,
+  'scheduler/timeline-pdf-export': no,
+  'scheduler/timeline-accessibility': no,
+  'scheduler/timeline-keyboard-nav': no,
+  'scheduler/timeline-localization': no,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -930,6 +1127,57 @@ const premiumData: Record<string, React.ReactNode> = {
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': yes,
   'tree-view/virtualization': pending,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': yes,
+  'scheduler/calendar-drag-and-drop': yes,
+  'scheduler/calendar-resources': yes,
+  'scheduler/calendar-timezone': yes,
+  'scheduler/calendar-event-editor': yes,
+  'scheduler/calendar-external-drag': yes,
+  'scheduler/calendar-recurring-events': yes,
+  'scheduler/calendar-lazy-loading': yes,
+
+  'scheduler/calendar-year-view': pending,
+  'scheduler/calendar-resource-view': pending,
+  'scheduler/calendar-constraints': pending,
+  'scheduler/calendar-event-creation': yes,
+  'scheduler/calendar-delete-event': yes,
+  'scheduler/calendar-copy-paste-events': pending,
+  'scheduler/calendar-undo-redo': pending,
+  'scheduler/calendar-search': pending,
+  'scheduler/calendar-filtering': pending,
+  'scheduler/calendar-ics-import-export': pending,
+  'scheduler/calendar-excel-csv-export': pending,
+  'scheduler/calendar-print-export': pending,
+  'scheduler/calendar-pdf-export': pending,
+  'scheduler/calendar-accessibility': yes,
+  'scheduler/calendar-keyboard-nav': yes,
+  'scheduler/calendar-localization': yes,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': yes,
+  'scheduler/timeline-drag-and-drop': yes,
+  'scheduler/timeline-resources': yes,
+  'scheduler/timeline-timezone': yes,
+  'scheduler/timeline-event-editor': yes,
+  'scheduler/timeline-external-drag': yes,
+  'scheduler/timeline-recurring-events': yes,
+  'scheduler/timeline-lazy-loading': pending,
+  'scheduler/timeline-zooming': pending,
+  'scheduler/timeline-virtualization': pending,
+  'scheduler/timeline-constraints': pending,
+  'scheduler/timeline-event-creation': yes,
+  'scheduler/timeline-delete-event': yes,
+  'scheduler/timeline-copy-paste-events': pending,
+  'scheduler/timeline-undo-redo': pending,
+  'scheduler/timeline-search': pending,
+  'scheduler/timeline-filtering': pending,
+  'scheduler/timeline-ics-import-export': pending,
+  'scheduler/timeline-excel-csv-export': pending,
+  'scheduler/timeline-print-export': pending,
+  'scheduler/timeline-pdf-export': pending,
+  'scheduler/timeline-accessibility': yes,
+  'scheduler/timeline-keyboard-nav': yes,
+  'scheduler/timeline-localization': yes,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -1035,6 +1283,57 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': yes,
   'tree-view/virtualization': pending,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': yes,
+  'scheduler/calendar-drag-and-drop': yes,
+  'scheduler/calendar-resources': yes,
+  'scheduler/calendar-timezone': yes,
+  'scheduler/calendar-event-editor': yes,
+  'scheduler/calendar-external-drag': yes,
+  'scheduler/calendar-recurring-events': yes,
+  'scheduler/calendar-lazy-loading': yes,
+
+  'scheduler/calendar-year-view': pending,
+  'scheduler/calendar-resource-view': pending,
+  'scheduler/calendar-constraints': pending,
+  'scheduler/calendar-event-creation': yes,
+  'scheduler/calendar-delete-event': yes,
+  'scheduler/calendar-copy-paste-events': pending,
+  'scheduler/calendar-undo-redo': pending,
+  'scheduler/calendar-search': pending,
+  'scheduler/calendar-filtering': pending,
+  'scheduler/calendar-ics-import-export': pending,
+  'scheduler/calendar-excel-csv-export': pending,
+  'scheduler/calendar-print-export': pending,
+  'scheduler/calendar-pdf-export': pending,
+  'scheduler/calendar-accessibility': yes,
+  'scheduler/calendar-keyboard-nav': yes,
+  'scheduler/calendar-localization': yes,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': yes,
+  'scheduler/timeline-drag-and-drop': yes,
+  'scheduler/timeline-resources': yes,
+  'scheduler/timeline-timezone': yes,
+  'scheduler/timeline-event-editor': yes,
+  'scheduler/timeline-external-drag': yes,
+  'scheduler/timeline-recurring-events': yes,
+  'scheduler/timeline-lazy-loading': pending,
+  'scheduler/timeline-zooming': pending,
+  'scheduler/timeline-virtualization': pending,
+  'scheduler/timeline-constraints': pending,
+  'scheduler/timeline-event-creation': yes,
+  'scheduler/timeline-delete-event': yes,
+  'scheduler/timeline-copy-paste-events': pending,
+  'scheduler/timeline-undo-redo': pending,
+  'scheduler/timeline-search': pending,
+  'scheduler/timeline-filtering': pending,
+  'scheduler/timeline-ics-import-export': pending,
+  'scheduler/timeline-excel-csv-export': pending,
+  'scheduler/timeline-print-export': pending,
+  'scheduler/timeline-pdf-export': pending,
+  'scheduler/timeline-accessibility': yes,
+  'scheduler/timeline-keyboard-nav': yes,
+  'scheduler/timeline-localization': yes,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -1229,12 +1528,16 @@ export default function PricingTable({
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
   const [treeViewCollapsed, setTreeViewCollapsed] = React.useState(false);
+  const [eventCalendarCollapsed, setEventCalendarCollapsed] = React.useState(false);
+  const [eventTimelineCollapsed, setEventTimelineCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
       setDataGridCollapsed(true);
       setChartsCollapsed(true);
       setTreeViewCollapsed(true);
+      setEventCalendarCollapsed(true);
+      setEventTimelineCollapsed(true);
     }
   }, [router.query]);
 
@@ -1279,6 +1582,18 @@ export default function PricingTable({
     <UnfoldMoreRounded
       fontSize="small"
       sx={{ color: 'grey.600', opacity: treeViewCollapsed ? 0 : 1 }}
+    />
+  );
+  const eventCalendarUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: eventCalendarCollapsed ? 0 : 1 }}
+    />
+  );
+  const eventTimelineUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: eventTimelineCollapsed ? 0 : 1 }}
     />
   );
 
@@ -1659,6 +1974,238 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('tree-view/virtualization')}
           {divider}
+        </StyledCollapse>
+        {divider}
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{eventCalendarUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {eventCalendarUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {eventCalendarUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {eventCalendarUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setEventCalendarCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{
+                  transform: eventCalendarCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
+                }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Event Calendar
+          </Button>
+        </Box>
+        <StyledCollapse in={eventCalendarCollapsed}>
+          <RowCategory>Core features</RowCategory>
+          {renderNestedRow('scheduler/calendar-views')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-year-view')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-drag-and-drop')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-external-drag')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-resources')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-resource-view')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-recurring-events')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-timezone')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-lazy-loading')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-constraints')}
+          {divider}
+          <RowCategory>Editing features</RowCategory>
+          {renderNestedRow('scheduler/calendar-event-editor')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-event-creation')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-delete-event')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-copy-paste-events')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-undo-redo')}
+          {divider}
+          <RowCategory>Filtering features</RowCategory>
+          {renderNestedRow('scheduler/calendar-search')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-filtering')}
+          {divider}
+          <RowCategory>Import & export</RowCategory>
+          {renderNestedRow('scheduler/calendar-ics-import-export')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-excel-csv-export')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-print-export')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-pdf-export')}
+          {divider}
+          <RowCategory>Miscellaneous</RowCategory>
+          {renderNestedRow('scheduler/calendar-accessibility')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-keyboard-nav')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-localization')}
+        </StyledCollapse>
+        {divider}
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{eventTimelineUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {eventTimelineUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {eventTimelineUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {eventTimelineUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setEventTimelineCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{
+                  transform: eventTimelineCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
+                }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Event Timeline
+          </Button>
+        </Box>
+        <StyledCollapse in={eventTimelineCollapsed}>
+          <RowCategory>Core features</RowCategory>
+          {renderNestedRow('scheduler/timeline-views')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-drag-and-drop')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-external-drag')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-resources')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-recurring-events')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-timezone')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-lazy-loading')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-zooming')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-virtualization')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-constraints')}
+          {divider}
+          <RowCategory>Editing features</RowCategory>
+          {renderNestedRow('scheduler/timeline-event-editor')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-event-creation')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-delete-event')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-copy-paste-events')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-undo-redo')}
+          {divider}
+          <RowCategory>Filtering features</RowCategory>
+          {renderNestedRow('scheduler/timeline-search')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-filtering')}
+          {divider}
+          <RowCategory>Import & export</RowCategory>
+          {renderNestedRow('scheduler/timeline-ics-import-export')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-excel-csv-export')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-print-export')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-pdf-export')}
+          {divider}
+          <RowCategory>Miscellaneous</RowCategory>
+          {renderNestedRow('scheduler/timeline-accessibility')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-keyboard-nav')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-localization')}
         </StyledCollapse>
         {divider}
         {renderRow('mui-x-production')}
