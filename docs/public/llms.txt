@@ -1,0 +1,25 @@
+# MUI
+
+MUI provides a complete ecosystem of React components, from the flagship Material UI library implementing Google's Material Design to advanced commercial components and styling systems.
+
+## Docs
+- [Material UI Documentation](https://mui.com/material-ui/llms.txt): Complete documentation for Material UI React components and design system
+- [MUI X Documentation](https://mui.com/x/llms.txt): Advanced components including Data Grid, Date Pickers, Tree View, and Charts
+- [Base UI Documentation](https://base-ui.com/llms.txt): Unstyled UI components for building accessible web apps and design systems. From the creators of Radix, Floating UI, and Material UI
+
+## Advanced Components (MUI X)
+- [MUI X Overview](https://mui.com/x/introduction/): Advanced components for data-intensive applications
+- [Data Grid](https://mui.com/x/react-data-grid/overview.md): Enterprise data grid with filtering, sorting, and virtualization
+- [Date Pickers](https://mui.com/x/react-date-pickers/overview.md): Date and time selection components
+- [Charts](https://mui.com/x/react-charts/): Data visualization components
+- [Tree View](https://mui.com/x/react-tree-view/): Hierarchical data display components
+
+## Developer Tools
+- [Toolpad Core](https://mui.com/toolpad/core/introduction/): Components for building dashboards and internal tools
+
+## Optional
+- [Pricing](https://mui.com/pricing/): Commercial license and pricing information
+- [Blog](https://mui.com/blog/): Product updates and technical articles
+- [Company](https://mui.com/about/): About MUI and company information
+- [Design Kits](https://mui.com/design-kits/): Figma, Sketch, and Adobe XD design resources
+- [Store](https://mui.com/store/): Premium templates and design resources
