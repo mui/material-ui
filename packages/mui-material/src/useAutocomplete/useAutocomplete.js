@@ -147,6 +147,7 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  const windowJustFocusedRef = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedItem, setFocusedItem] = React.useState(-1);
@@ -618,6 +619,19 @@ function useAutocomplete(props) {
       syncHighlightedIndex();
     }
   }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
+
+  // Tracks browser window focus state.
+  React.useEffect(() => {
+    const handleWindowFocus = () => {
+      windowJustFocusedRef.current = true;
+    };
+
+    window.addEventListener('focus', handleWindowFocus);
+
+    return () => {
+      window.removeEventListener('focus', handleWindowFocus);
+    };
+  }, []);
 
   const handleOpen = (event) => {
     if (open) {
@@ -1100,9 +1114,11 @@ function useAutocomplete(props) {
     if (!event.currentTarget.contains(event.target)) {
       return;
     }
-    if (event.target.getAttribute('id') !== id) {
+    if (event.target.getAttribute('id') !== id && !windowJustFocusedRef.current) {
       event.preventDefault();
     }
+
+    windowJustFocusedRef.current = false;
   };
 
   // Focus the input when interacting with the combobox
