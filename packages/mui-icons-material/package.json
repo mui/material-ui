@@ -27,18 +27,17 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
-    "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
-    "build:lib": "code-infra build --hasLargeFiles --skipPackageJson --skipBundlePackageJson --skipMainCheck --buildTypes false",
-    "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib",
-    "build:copy-files": "shx cp package.json README.md ../../CHANGELOG.md ../../LICENSE build",
+    "build": "rimraf build && shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings",
+    "build:lib": "code-infra build --flat --hasLargeFiles --skipMainCheck --buildTypes false",
+    "build:lib:clean": "rimraf lib && pnpm build:lib && pnpm attw-icons && shx cp -R build lib && rimraf build",
+    "build:copy-files": "shx cp README.md ../../CHANGELOG.md ../../LICENSE build",
     "build:typings": "node ./scripts/create-typings.mjs",
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
     "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/icons-material\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
+    "attw-icons": "attw --pack ./build"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6"
@@ -80,27 +79,9 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    ".": {
-      "require": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      },
-      "default": {
-        "types": "./esm/index.d.ts",
-        "default": "./esm/index.js"
-      }
-    },
-    "./*": {
-      "require": {
-        "types": "./*.d.ts",
-        "default": "./*.js"
-      },
-      "default": {
-        "types": "./esm/*.d.ts",
-        "default": "./esm/*.js"
-      }
-    },
-    "./esm": null,
+    ".": "./src/index.js",
+    "./*": "./src/*.js",
+    "./index*": null,
     "./utils/*": null
   }
 }

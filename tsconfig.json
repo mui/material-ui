@@ -40,8 +40,8 @@
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/package.json": ["./packages/mui-joy/package.json"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
-      "@mui/icons-material": ["./packages/mui-icons-material/lib/esm/index.js"],
-      "@mui/icons-material/*": ["./packages/mui-icons-material/lib/esm/*"],
+      "@mui/icons-material": ["./packages/mui-icons-material/lib/index.mjs"],
+      "@mui/icons-material/*": ["./packages/mui-icons-material/lib/*.mjs"],
       "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"

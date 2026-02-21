@@ -24,7 +24,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --skipTsc",
+    "build": "code-infra build --flat --skipTsc",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine-sc\"",
     "typescript": "tsc -p tsconfig.json"
