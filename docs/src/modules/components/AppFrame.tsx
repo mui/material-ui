@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, SxProps } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
@@ -159,6 +159,7 @@ export interface AppFrameProps {
   children: React.ReactNode;
   className?: string;
   disableDrawer?: boolean;
+  sx?: SxProps;
 }
 
 export default function AppFrame(props: AppFrameProps) {
@@ -180,7 +181,7 @@ export default function AppFrame(props: AppFrameProps) {
 
   return (
     <DemoPageThemeProvider hasJoy={isJoy}>
-      <RootDiv className={className}>
+      <RootDiv className={className} sx={props.sx}>
         <StyledAppBar
           disablePermanent={disablePermanent}
           sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
@@ -189,6 +190,9 @@ export default function AppFrame(props: AppFrameProps) {
             styles={{
               ':root': {
                 '--MuiDocs-header-height': `${HEIGHT}px`,
+                // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
+                // 59rem ≈ 930px
+                '--MuiDocs-content-max-width': '59rem',
               },
             }}
           />
