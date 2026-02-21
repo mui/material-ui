@@ -1,13 +1,18 @@
 import merge from '../merge';
 
 function compose(...styles) {
-  const handlers = styles.reduce((acc, style) => {
+  const handlers = {};
+  const filterProps = [];
+  const propTypes = {};
+  for (const style of styles) {
     style.filterProps.forEach((prop) => {
-      acc[prop] = style;
+      handlers[prop] = style;
     });
-
-    return acc;
-  }, {});
+    filterProps.push(...style.filterProps);
+    if (process.env.NODE_ENV !== 'production') {
+      Object.assign(propTypes, style.propTypes);
+    }
+  }
 
   // false positive
   // eslint-disable-next-line react/function-component-definition
@@ -21,12 +26,9 @@ function compose(...styles) {
     }, {});
   };
 
-  fn.propTypes =
-    process.env.NODE_ENV !== 'production'
-      ? styles.reduce((acc, style) => Object.assign(acc, style.propTypes), {})
-      : {};
+  fn.propTypes = process.env.NODE_ENV !== 'production' ? propTypes : {};
 
-  fn.filterProps = styles.reduce((acc, style) => acc.concat(style.filterProps), []);
+  fn.filterProps = filterProps;
 
   return fn;
 }

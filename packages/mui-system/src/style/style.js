@@ -6,22 +6,16 @@ export function getPath(obj, path, checkVars = true) {
   if (!path || typeof path !== 'string') {
     return null;
   }
-
   // Check if CSS variables are used
-  if (obj && obj.vars && checkVars) {
-    const val = `vars.${path}`
-      .split('.')
-      .reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
-    if (val != null) {
-      return val;
-    }
+  const isCssVariablesUsed = checkVars && obj && obj.vars;
+  const finalPath = isCssVariablesUsed ? `vars.${path}` : path;
+  const val = finalPath
+    .split('.')
+    .reduce((acc, item) => (acc && acc[item] != null ? acc[item] : null), obj);
+  if (val != null && isCssVariablesUsed) {
+    return val;
   }
-  return path.split('.').reduce((acc, item) => {
-    if (acc && acc[item] != null) {
-      return acc[item];
-    }
-    return null;
-  }, obj);
+  return val;
 }
 
 export function getStyleValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
