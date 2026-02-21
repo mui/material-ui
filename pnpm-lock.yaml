@@ -652,8 +652,8 @@ importers:
         specifier: 19.2.14
         version: 19.2.14
       '@types/uuid':
-        specifier: 10.0.0
-        version: 10.0.0
+        specifier: 11.0.0
+        version: 11.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -737,8 +737,8 @@ importers:
         specifier: workspace:*
         version: link:../react-docgen-types
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -768,8 +768,8 @@ importers:
         specifier: 20.19.33
         version: 20.19.33
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -839,8 +839,8 @@ importers:
         specifier: 5.2.3
         version: 5.2.3
       '@types/jscodeshift':
-        specifier: 0.12.0
-        version: 0.12.0
+        specifier: 17.3.0
+        version: 17.3.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1057,8 +1057,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.14)
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1128,8 +1128,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.14)
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1205,8 +1205,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.14)
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1400,8 +1400,8 @@ importers:
         specifier: 20.19.33
         version: 20.19.33
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       '@types/stylis':
         specifier: 4.2.7
         version: 4.2.7
@@ -1462,8 +1462,8 @@ importers:
         specifier: 19.2.14
         version: 19.2.14
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1535,8 +1535,8 @@ importers:
         specifier: 19.2.0
         version: 19.2.0
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1611,8 +1611,8 @@ importers:
         specifier: 19.2.0
         version: 19.2.0
       '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 21.0.0
+        version: 21.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -5443,8 +5443,8 @@ packages:
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
 
-  '@types/jscodeshift@0.12.0':
-    resolution: {integrity: sha512-Jr2fQbEoDmjwEa92TreR/mX2t9iAaY/l5P/GKezvK4BodXahex60PDLXaQR0vAgP0KfCzc1CivHusQB9NhzX8w==}
+  '@types/jscodeshift@17.3.0':
+    resolution: {integrity: sha512-ogvGG8VQQqAQQ096uRh+d6tBHrYuZjsumHirKtvBa5qEyTMN3IQJ7apo+sw9lxaB/iKWIhbbLlF3zmAWk9XQIg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -5525,8 +5525,8 @@ packages:
   '@types/serve-static@2.2.0':
     resolution: {integrity: sha512-8mam4H1NHLtu7nmtalF7eyBH14QyOASmcxHhSfEoRyr0nP/YdoesEtU+uSRvMe96TW/HPTtkoKqQLl53N7UXMQ==}
 
-  '@types/sinon@17.0.4':
-    resolution: {integrity: sha512-RHnIrhfPO3+tJT0s7cFaXGZvsL4bbR3/k7z3P312qMS4JaS2Tk+KiwiLx1S0rQ56ERj00u1/BtdyVd0FY+Pdew==}
+  '@types/sinon@21.0.0':
+    resolution: {integrity: sha512-+oHKZ0lTI+WVLxx1IbJDNmReQaIsQJjN2e7UUrJHEeByG7bFeKJYsv1E75JxTQ9QKJDp21bAa/0W2Xo4srsDnw==}
 
   '@types/sinonjs__fake-timers@8.1.5':
     resolution: {integrity: sha512-mQkU2jY8jJEF7YHjHvsQO8+3ughTL1mcnn96igfhONmR+fUPSKIkefQYpSe8bsly2Ep7oQbn/6VG5/9/0qcArQ==}
@@ -5546,8 +5546,9 @@ packages:
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
 
-  '@types/uuid@10.0.0':
-    resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
+  '@types/uuid@11.0.0':
+    resolution: {integrity: sha512-HVyk8nj2m+jcFRNazzqyVKiZezyhDKrGUA3jlEcg/nZ6Ms+qHwocba1Y/AaVaznJTAM9xpdFSh+ptbNrhOGvZA==}
+    deprecated: This is a stub types definition. uuid provides its own type definitions, so you do not need this installed.
 
   '@types/ws@8.18.1':
     resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
@@ -10659,10 +10660,6 @@ packages:
   readline-sync@1.4.10:
     resolution: {integrity: sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==}
     engines: {node: '>= 0.8.0'}
-
-  recast@0.20.5:
-    resolution: {integrity: sha512-E5qICoPoNL4yU0H0NoBDntNB0Q5oMSNh9usFctYniLBluTthi3RsQVBXIJNbApOlvSwW/RGxIuokPcAc59J5fQ==}
-    engines: {node: '>= 4'}
 
   recast@0.23.11:
     resolution: {integrity: sha512-YTUo+Flmw4ZXiWfQKGcwwc11KnoRAYgzAE2E7mXKCjSviTKShtxBsN6YUUBB2gtaBzKzeKunxhUwNHQuRryhWA==}
@@ -16896,10 +16893,10 @@ snapshots:
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
-  '@types/jscodeshift@0.12.0':
+  '@types/jscodeshift@17.3.0':
     dependencies:
-      ast-types: 0.14.2
-      recast: 0.20.5
+      ast-types: 0.16.1
+      recast: 0.23.11
 
   '@types/json-schema@7.0.15': {}
 
@@ -16972,7 +16969,7 @@ snapshots:
       '@types/http-errors': 2.0.5
       '@types/node': 20.19.33
 
-  '@types/sinon@17.0.4':
+  '@types/sinon@21.0.0':
     dependencies:
       '@types/sinonjs__fake-timers': 8.1.5
 
@@ -16990,7 +16987,9 @@ snapshots:
 
   '@types/unist@3.0.2': {}
 
-  '@types/uuid@10.0.0': {}
+  '@types/uuid@11.0.0':
+    dependencies:
+      uuid: 11.1.0
 
   '@types/ws@8.18.1':
     dependencies:
@@ -22991,13 +22990,6 @@ snapshots:
       picomatch: 2.3.1
 
   readline-sync@1.4.10: {}
-
-  recast@0.20.5:
-    dependencies:
-      ast-types: 0.14.2
-      esprima: 4.0.1
-      source-map: 0.6.1
-      tslib: 2.8.1
 
   recast@0.23.11:
     dependencies:

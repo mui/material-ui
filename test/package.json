@@ -20,7 +20,7 @@
     "@types/chai": "5.2.3",
     "@types/react": "19.2.14",
     "@types/react-is": "19.2.0",
-    "@types/sinon": "17.0.4",
+    "@types/sinon": "21.0.0",
     "chai": "6.2.2",
     "docs": "workspace:^",
     "es-toolkit": "1.44.0",
