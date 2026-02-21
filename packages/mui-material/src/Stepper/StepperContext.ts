@@ -7,6 +7,15 @@ export interface StepperContextType {
   connector: React.ReactNode;
   nonLinear: boolean;
   orientation: 'horizontal' | 'vertical';
+  totalSteps: number;
+  setIsTabList: React.Dispatch<React.SetStateAction<boolean>>;
+  getRovingTabIndexProps: (
+    index: number,
+    ref?: React.Ref<HTMLElement>,
+  ) => {
+    ref: (element: HTMLElement | null) => void;
+    tabIndex: number;
+  };
 }
 
 /**
@@ -26,4 +35,4 @@ export function useStepperContext(): StepperContextType | {} {
   return React.useContext(StepperContext);
 }
 
-export default StepperContext;
+export const StepperContextProvider = StepperContext.Provider;
