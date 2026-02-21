@@ -756,7 +756,7 @@
     {
       "class": null,
       "name": "columnMenuGroupIcon",
-      "description": "Icon displayed in column menu for grouping",
+      "description": "Icon displayed in column menu for grouping. This icon toggles to columnMenuUngroupIcon when the column is already grouped.",
       "default": "GridGroupWorkIcon"
     },
     {
@@ -774,20 +774,32 @@
     {
       "class": null,
       "name": "columnMenuManageColumnsIcon",
-      "description": "Icon displayed in column menu for showing all columns",
-      "default": "GridViewColumnIcon"
+      "description": "Icon displayed in column menu for showing all columns. Deprecated: Use columnSelectorIcon instead for unified configuration.",
+      "default": "GridViewColumnIcon",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>columnSelectorIcon</code> slot instead for unified configuration."
     },
     {
       "class": null,
       "name": "columnMenuPinLeftIcon",
-      "description": "Icon displayed in column menu for left pinning",
-      "default": "GridPushPinLeftIcon"
+      "description": "Icon displayed in column menu for left pinning. Deprecated: Use columnMenuPinIcon with toggle pattern instead.",
+      "default": "GridPushPinLeftIcon",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>columnMenuPinIcon</code> slot instead, which toggles based on pin state."
     },
     {
       "class": null,
       "name": "columnMenuPinRightIcon",
-      "description": "Icon displayed in column menu for right pinning",
-      "default": "GridPushPinRightIcon"
+      "description": "Icon displayed in column menu for right pinning. Deprecated: Use columnMenuPinIcon with toggle pattern instead.",
+      "default": "GridPushPinRightIcon",
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>columnMenuPinIcon</code> slot instead, which toggles based on pin state."
+    },
+    {
+      "class": null,
+      "name": "columnMenuPinIcon",
+      "description": "Icon displayed in column menu for pinning/unpinning columns. This icon toggles based on the current pin state (unpinned -> pin left, pin left -> pin right, pin right -> unpinned).",
+      "default": "GridPushPinIcon"
     },
     {
       "class": null,
@@ -804,7 +816,7 @@
     {
       "class": null,
       "name": "columnMenuUngroupIcon",
-      "description": "Icon displayed in column menu for ungrouping",
+      "description": "Icon displayed in column menu for ungrouping. This icon is shown when the column is already grouped, replacing columnMenuGroupIcon.",
       "default": "GridWorkspacesIcon"
     },
     {
@@ -822,7 +834,7 @@
     {
       "class": null,
       "name": "columnSelectorIcon",
-      "description": "Icon displayed on the column menu selector tab.",
+      "description": "Icon displayed on the column menu selector tab and in the column menu for showing all columns. This is the unified icon for column selection functionality.",
       "default": "GridColumnIcon"
     },
     {
@@ -905,7 +917,7 @@
     },
     {
       "class": null,
-      "name": "filterPanelRemoveAllIcon",
+      "name": "filterPanelDeleteAllIcon",
       "description": "Icon displayed for deleting all the active filters from filter panel.",
       "default": "GridDeleteForeverIcon"
     },
@@ -986,6 +998,30 @@
       "name": "pagination",
       "description": "Pagination component rendered in the grid footer by default.",
       "default": "Pagination"
+    },
+    {
+      "class": null,
+      "name": "paginationFirstIcon",
+      "description": "Icon displayed on the first page button in pagination.",
+      "default": "FirstPageIcon"
+    },
+    {
+      "class": null,
+      "name": "paginationPreviousIcon",
+      "description": "Icon displayed on the previous page button in pagination.",
+      "default": "NavigateBeforeIcon"
+    },
+    {
+      "class": null,
+      "name": "paginationNextIcon",
+      "description": "Icon displayed on the next page button in pagination.",
+      "default": "NavigateNextIcon"
+    },
+    {
+      "class": null,
+      "name": "paginationLastIcon",
+      "description": "Icon displayed on the last page button in pagination.",
+      "default": "LastPageIcon"
     },
     {
       "class": null,
