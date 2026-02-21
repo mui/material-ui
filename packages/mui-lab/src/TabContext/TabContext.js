@@ -10,17 +10,17 @@ if (process.env.NODE_ENV !== 'production') {
   Context.displayName = 'TabContext';
 }
 
-function useUniquePrefix() {
+function useUniquePrefix(idGenerator = Math.random) {
   const [id, setId] = React.useState(null);
   React.useEffect(() => {
-    setId(`mui-p-${Math.round(Math.random() * 1e5)}`);
-  }, []);
+    setId(`mui-p-${Math.round(idGenerator() * 1e5)}`);
+  }, [idGenerator]);
   return id;
 }
 
 export default function TabContext(props) {
-  const { children, value } = props;
-  const idPrefix = useUniquePrefix();
+  const { children, value, idGenerator } = props;
+  const idPrefix = useUniquePrefix(idGenerator);
 
   const context = React.useMemo(() => {
     return { idPrefix, value };
@@ -38,6 +38,10 @@ TabContext.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * The optional id generator, internally used to render buttons, falls back to Math.random
+   */
+  idGenerator: PropTypes.func,
   /**
    * The value of the currently selected `Tab`.
    */

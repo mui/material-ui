@@ -14,6 +14,10 @@ export interface TabContextProps {
    * The value of the currently selected `Tab`.
    */
   value: string | number;
+  /**
+   * The optional id generator, internally used to render buttons, falls back to Math.random
+   */
+  idGenerator?: () => number;
 }
 /**
  *

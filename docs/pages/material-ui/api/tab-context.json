@@ -4,7 +4,8 @@
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": true
     },
-    "children": { "type": { "name": "node" } }
+    "children": { "type": { "name": "node" } },
+    "idGenerator": { "type": { "name": "func" } }
   },
   "name": "TabContext",
   "imports": [

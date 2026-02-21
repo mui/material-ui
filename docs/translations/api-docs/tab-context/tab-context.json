@@ -2,6 +2,9 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": { "description": "The content of the component." },
+    "idGenerator": {
+      "description": "The optional id generator, internally used to render buttons, falls back to Math.random"
+    },
     "value": { "description": "The value of the currently selected <code>Tab</code>." }
   },
   "classDescriptions": {}
