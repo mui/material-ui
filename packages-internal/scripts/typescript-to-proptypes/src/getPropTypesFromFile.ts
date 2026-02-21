@@ -34,20 +34,52 @@ function getSymbolDocumentation({
 }: {
   symbol: ts.Symbol | undefined;
   project: TypeScriptProject;
+  parentType?: ts.Type;
 }): string | undefined {
   if (symbol === undefined) {
     return undefined;
   }
 
   const decl = symbol.getDeclarations();
-  if (decl) {
-    // @ts-ignore
-    const comments = ts.getJSDocCommentsAndTags(decl[0]) as readonly any[];
-    if (comments && comments.length === 1) {
-      const commentNode = comments[0];
-      if (ts.isJSDoc(commentNode)) {
-        return doctrine.unwrapComment(commentNode.getText()).trim();
+  if (decl && decl.length > 0) {
+    // This behavior tries to replicate how TypeScript itself merges JSDoc comments
+    // It is a complex logic that changes based on the kind of declarations
+    // There is an open issue for it in: https://github.com/microsoft/TypeScript/issues/30901
+    //
+    // For intersection types (A & B), the symbol may have multiple declarations.
+    // We need to handle three cases:
+    // 1. Intersection (type C = A & B): merge JSDoc from all declarations (deduplicated)
+    // 2. Interface extends (interface Z extends X, Y): use the (only) declaration's JSDoc
+    // 3. Interface override (interface W extends X { prop }): use the override's JSDoc (which is the only declaration)
+    //
+    // Note: TypeScript gives us:
+    // - Multiple declarations for intersection types (one from each constituent type)
+    // - Single declaration for interface extends (from the original interface)
+    // - Single declaration for interface override (from the overriding interface)
+
+    // Get JSDoc comments paired with their declarations
+    const declarationsWithComments = decl
+      .map((d) => {
+        const jsDocNodes = ts.getJSDocCommentsAndTags(d).filter((node) => ts.isJSDoc(node));
+        const comment =
+          jsDocNodes.length > 0
+            ? doctrine.unwrapComment(jsDocNodes[0].getText()).trim()
+            : undefined;
+        return { declaration: d, comment };
+      })
+      .filter((item) => item.comment !== undefined);
+
+    if (declarationsWithComments.length > 0) {
+      // If there's only one declaration with a comment, use it
+      // This handles both interface extends and interface override cases
+      if (declarationsWithComments.length === 1) {
+        return declarationsWithComments[0].comment;
       }
+
+      // Multiple declarations with comments - this is the intersection case (type C = A & B)
+      // Merge JSDoc comments, deduplicating identical ones
+      const uniqueComments = [...new Set(declarationsWithComments.map((d) => d.comment))];
+      return uniqueComments.join('\n');
     }
   }
 
@@ -116,7 +148,7 @@ function checkType({
     return createObjectType({ jsDoc: undefined });
   }
 
-  const typeNode = type as any;
+  const typeNode = type;
   const symbol = typeNode.aliasSymbol ? typeNode.aliasSymbol : typeNode.symbol;
   const jsDoc = getSymbolDocumentation({ symbol, project });
 
@@ -396,16 +428,18 @@ function checkSymbol({
   symbol,
   location,
   typeStack,
+  parentType,
 }: {
   project: PropTypesProject;
   symbol: ts.Symbol;
   location: ts.Node;
   typeStack: readonly number[];
+  parentType?: ts.Type;
 }): PropTypeDefinition {
   const declarations = symbol.getDeclarations();
   const declaration = declarations && declarations[0];
   const symbolFilenames = getSymbolFileNames(symbol);
-  const jsDoc = getSymbolDocumentation({ symbol, project });
+  const jsDoc = getSymbolDocumentation({ symbol, project, parentType });
 
   // TypeChecker keeps the name for
   // { a: React.ElementType, b: React.ReactElement | boolean }
@@ -535,9 +569,9 @@ function squashPropTypeDefinitions({
 }): PropTypeDefinition {
   const distinctDefinitions = new Map<number, PropTypeDefinition>();
   propTypeDefinitions.forEach((definition) => {
-    if (!distinctDefinitions.has(definition.$$id)) {
-      distinctDefinitions.set(definition.$$id, definition);
-    }
+    // Always update so that the last definition's jsDoc wins
+    // This ensures that when types are intersected (A & B), the last type's documentation is used
+    distinctDefinitions.set(definition.$$id, definition);
   });
 
   if (distinctDefinitions.size === 1 && !onlyUsedInSomeSignatures) {
@@ -550,16 +584,20 @@ function squashPropTypeDefinitions({
     types.push(createUndefinedType({ jsDoc: undefined }));
   }
 
+  // Use the last definition's jsDoc so that when types are intersected (A & B),
+  // the last type's documentation wins
+  const lastDefinition = definitions[definitions.length - 1];
+
   return {
-    name: definitions[0].name,
-    jsDoc: definitions[0].jsDoc,
+    name: lastDefinition.name,
+    jsDoc: lastDefinition.jsDoc,
     propType: createUnionType({
       // TODO: jsDoc from squashing is dropped
       jsDoc: undefined,
       types,
     }),
     filenames: new Set(definitions.flatMap((definition) => Array.from(definition.filenames))),
-    $$id: definitions[0].$$id,
+    $$id: lastDefinition.$$id,
   };
 }
 
@@ -581,6 +619,7 @@ function generatePropTypesFromNode(
         project: params.project,
         location: parsedComponent.location,
         typeStack: [(componentType as any).id],
+        parentType: componentType,
       }),
     );
 

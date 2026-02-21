@@ -1,6 +1,6 @@
 import * as doctrine from 'doctrine';
 import * as recast from 'recast';
-import { PropTypeDescriptor } from 'react-docgen';
+import type { PropTypeDescriptor } from 'react-docgen';
 import { escapeCell, removeNewLines } from '../buildApi';
 import {
   isElementTypeAcceptingRefProp,
@@ -57,6 +57,9 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
 }
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
+  if (!type.raw) {
+    return false;
+  }
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
   const match = type.raw.match(marker);
   const startIndex = type.raw.search(marker);
@@ -99,7 +102,7 @@ export default function generatePropDescription(
   const type = prop.type;
   let deprecated = '';
 
-  if (type.name === 'custom') {
+  if (type?.name === 'custom') {
     const deprecatedInfo = getDeprecatedInfo(type);
     if (deprecatedInfo) {
       deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
@@ -144,7 +147,7 @@ export default function generatePropDescription(
       return { key, description };
     })
     .filter(Boolean) as PropTemplateDescriptor[];
-  if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
+  if (type?.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
     // Remove new lines from tag descriptions to avoid markdown errors.

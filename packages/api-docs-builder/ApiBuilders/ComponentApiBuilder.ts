@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { kebabCase, escapeRegExp } from 'es-toolkit/string';
@@ -518,7 +517,7 @@ const attachPropsTable = (
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
   const componentProps: ComponentReactApi['propsTable'] = Object.fromEntries(
-    Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
+    Object.entries(reactApi.props!).flatMap(([propName, propDescriptor]): Pair[] => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName, settings);
@@ -527,11 +526,10 @@ const attachPropsTable = (
         prop = null;
       }
       if (prop === null) {
-        // have to delete `componentProps.undefined` later
-        return [] as any;
+        return [];
       }
 
-      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
+      const defaultValue = (propDescriptor as any).jsdocDefaultValue?.value;
 
       const {
         signature: signatureType,
@@ -539,12 +537,13 @@ const attachPropsTable = (
         signatureReturn,
         seeMore,
       } = generatePropDescription(prop, propName);
-      const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
+      const propType = propDescriptor.type;
+      const propTypeDescription = propType ? generatePropTypeDescription(propType) : undefined;
       const chainedPropType = getChained(prop.type);
 
       const requiredProp =
         prop.required ||
-        prop.type.raw?.includes('.isRequired') ||
+        prop.type?.raw?.includes('.isRequired') ||
         (chainedPropType !== false && chainedPropType.required);
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
@@ -582,24 +581,30 @@ const attachPropsTable = (
           returned: signatureReturn?.name,
         };
       }
+      // Skip props with unknown/undefined types
+      if (!propType?.name) {
+        return [];
+      }
+
       return [
-        propName,
-        {
-          type: {
-            name: propDescriptor.type.name,
-            description:
-              propTypeDescription !== propDescriptor.type.name ? propTypeDescription : undefined,
+        [
+          propName,
+          {
+            type: {
+              name: propType.name,
+              description: propTypeDescription !== propType.name ? propTypeDescription : undefined,
+            },
+            default: defaultValue,
+            // undefined values are not serialized => saving some bytes
+            required: requiredProp || undefined,
+            deprecated: !!deprecation || undefined,
+            deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
+            signature,
+            additionalInfo:
+              Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
+            seeMoreLink: seeMore?.link,
           },
-          default: defaultValue,
-          // undefined values are not serialized => saving some bytes
-          required: requiredProp || undefined,
-          deprecated: !!deprecation || undefined,
-          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
-          signature,
-          additionalInfo:
-            Object.keys(additionalPropsInfo).length === 0 ? undefined : additionalPropsInfo,
-          seeMoreLink: seeMore?.link,
-        },
+        ],
       ];
     }),
   );
@@ -612,9 +617,6 @@ const attachPropsTable = (
         .join('\n')}`,
     );
   }
-
-  // created by returning the `[]` entry
-  delete componentProps.undefined;
 
   reactApi.propsTable = componentProps;
 };
@@ -663,7 +665,7 @@ const attachTable = (
 ) => {
   const errors: Array<[propName: string, error: Error]> = [];
   const data: { [key: string]: ApiItemDescription } = params
-    .map((p) => {
+    .flatMap((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
       try {
@@ -673,8 +675,7 @@ const attachTable = (
         prop = null;
       }
       if (prop === null) {
-        // have to delete `componentProps.undefined` later
-        return [] as any;
+        return [];
       }
 
       const deprecationTag = propDescriptor.tags?.deprecated;
@@ -687,13 +688,15 @@ const attachTable = (
         type = type.replace(/{|}/g, '');
       }
 
-      return {
-        name: propName,
-        description: propDescriptor.description,
-        type,
-        deprecated: !!deprecation || undefined,
-        deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
-      };
+      return [
+        {
+          name: propName,
+          description: propDescriptor.description,
+          type,
+          deprecated: !!deprecation || undefined,
+          deprecationInfo: renderMarkdown(deprecation || '').trim() || undefined,
+        },
+      ];
     })
     .reduce((acc, cssVarDefinition) => {
       const { name, ...other } = cssVarDefinition;
@@ -737,56 +740,68 @@ export default async function generateComponentApi(
   const filename = componentInfo.filename;
   let reactApi: ComponentReactApi;
 
+  const handlers = [...defaultHandlers, muiDefaultPropsHandler];
   try {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+    const results = docgenParse(src, {
+      handlers,
       filename,
     });
+    reactApi = results[0] as ComponentReactApi;
   } catch (error) {
     // fallback to default logic if there is no `create*` definition.
     if ((error as Error).message === 'No suitable component definition found.') {
-      reactApi = docgenParse(
-        src,
-        (ast) => {
-          let node;
-          // TODO migrate to react-docgen v6, using Babel AST now
-          astTypes.visit(ast, {
-            visitFunctionDeclaration: (functionPath) => {
-              // @ts-ignore
-              if (functionPath.node.params[0].name === 'props') {
-                node = functionPath;
-              }
-              return false;
-            },
-            visitVariableDeclaration: (variablePath) => {
-              const definitions: any[] = [];
-              if (variablePath.node.declarations) {
-                variablePath
-                  .get('declarations')
-                  .each((declarator: any) => definitions.push(declarator.get('init')));
-              }
-              definitions.forEach((definition) => {
-                // definition.value.expression is defined when the source is in TypeScript.
-                const expression = definition.value?.expression
-                  ? definition.get('expression')
-                  : definition;
-                if (expression.value?.callee) {
-                  const definitionName = expression.value.callee.name;
-                  if (definitionName === `create${componentInfo.name}`) {
-                    node = expression;
+      const results = docgenParse(src, {
+        resolver: {
+          resolve(file) {
+            const foundPaths: any[] = [];
+            file.traverse({
+              FunctionDeclaration(funcPath) {
+                const params = funcPath.node.params;
+                if (
+                  params.length > 0 &&
+                  params[0].type === 'Identifier' &&
+                  params[0].name === 'props'
+                ) {
+                  foundPaths.push(funcPath);
+                }
+              },
+              VariableDeclaration(varPath) {
+                for (const declarator of varPath.node.declarations) {
+                  if (declarator.init) {
+                    let initNode = declarator.init;
+                    // Handle TSAsExpression wrapper
+                    if (initNode.type === 'TSAsExpression') {
+                      initNode = initNode.expression;
+                    }
+                    if (
+                      initNode.type === 'CallExpression' &&
+                      initNode.callee.type === 'Identifier' &&
+                      initNode.callee.name === `create${componentInfo.name}`
+                    ) {
+                      // Get the path to the init (call expression)
+                      const declarators = varPath.get('declarations');
+                      if (Array.isArray(declarators) && declarators.length > 0) {
+                        let initPath = declarators[0].get('init');
+                        if (!Array.isArray(initPath)) {
+                          // Unwrap TSAsExpression if present
+                          if (initPath.isTSAsExpression()) {
+                            initPath = initPath.get('expression') as typeof initPath;
+                          }
+                          foundPaths.push(initPath);
+                        }
+                      }
+                    }
                   }
                 }
-              });
-              return false;
-            },
-          });
-
-          return node;
+              },
+            });
+            return foundPaths;
+          },
         },
-        defaultHandlers.concat(muiDefaultPropsHandler),
-        {
-          filename,
-        },
-      );
+        handlers,
+        filename,
+      });
+      reactApi = results[0] as ComponentReactApi;
     } else {
       throw error;
     }

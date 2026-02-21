@@ -199,7 +199,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
+   * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
