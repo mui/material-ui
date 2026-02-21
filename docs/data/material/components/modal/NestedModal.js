@@ -32,6 +32,7 @@ function ChildModal() {
       <Modal
         open={open}
         onClose={handleClose}
+        hideBackdrop
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
