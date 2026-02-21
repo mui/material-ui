@@ -136,7 +136,7 @@ export function unstable_createUseMediaQuery(params: { themeId?: string | undefi
       typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
     const {
       defaultMatches = false,
-      matchMedia = supportMatchMedia ? window.matchMedia : null,
+      matchMedia = supportMatchMedia ? window.matchMedia.bind(window) : null,
       ssrMatchMedia = null,
       noSsr = false,
     } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
