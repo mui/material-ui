@@ -19,6 +19,7 @@ import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import getActiveElement from '../utils/getActiveElement';
+import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
 
 const nextItem = (list, item) => {
@@ -432,7 +433,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
         if (process.env.NODE_ENV !== 'production') {
           if (
-            !globalThis.MUI_TEST_ENV &&
+            isLayoutSupported() &&
             !warnedOnceTabPresent &&
             tabMeta &&
             tabMeta.width === 0 &&

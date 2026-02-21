@@ -280,6 +280,18 @@ export default defineConfig(
   },
   {
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
+    ignores: ['**/*.spec.*', '**/*.test.*', '**/mui-lab/**'],
+    rules: {
+      'mui/require-dev-wrapper': [
+        'error',
+        {
+          functionNames: ['warnOnce', 'warn', 'checkSlot', 'isLayoutSupported'],
+        },
+      ],
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
     ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
     rules: {
       'mui/material-ui-name-matches-component-name': 'error',
