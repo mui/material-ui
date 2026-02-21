@@ -17,6 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useRouter } from 'next/router';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
@@ -288,6 +289,7 @@ export default function DemoToolbar(props) {
     onResetDemoClick,
     openDemoSource,
     showPreview,
+    enableOpenInNewTab,
   } = props;
 
   const setCodeVariant = useSetCodeVariant();
@@ -525,13 +527,32 @@ export default function DemoToolbar(props) {
               </DemoTooltip>
             </React.Fragment>
           )}
+          {enableOpenInNewTab && (
+            <DemoTooltip title={t('openInNewTab')} placement="bottom">
+              <IconButton
+                data-ga-event-category="demo"
+                data-ga-event-label={demo.gaLabel}
+                data-ga-event-action="openInNewTab"
+                onClick={() => {
+                  const url = new URL(window.location.href);
+                  url.hash = '';
+                  url.searchParams.set('scopedDemo', demoOptions.demo);
+                  window.open(url.toString(), '_blank');
+                }}
+                {...getControlProps(6)}
+                sx={{ borderRadius: 1 }}
+              >
+                <OpenInNewIcon />
+              </IconButton>
+            </DemoTooltip>
+          )}
           <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
               onClick={copyButtonOnClick}
-              {...getControlProps(6)}
+              {...getControlProps(7)}
               sx={{ borderRadius: 1 }}
             >
               {copyIcon}
@@ -543,7 +564,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
-              {...getControlProps(7)}
+              {...getControlProps(8)}
               sx={{ borderRadius: 1 }}
             >
               <ResetFocusIcon />
@@ -556,7 +577,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
-              {...getControlProps(8)}
+              {...getControlProps(9)}
               sx={{ borderRadius: 1 }}
             >
               <RefreshRoundedIcon />
@@ -567,7 +588,7 @@ export default function DemoToolbar(props) {
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
-            {...getControlProps(9)}
+            {...getControlProps(10)}
             sx={{ borderRadius: 1 }}
           >
             <MoreVertIcon />
@@ -639,6 +660,7 @@ DemoToolbar.propTypes = {
   demoName: PropTypes.string.isRequired,
   demoOptions: PropTypes.object.isRequired,
   demoSourceId: PropTypes.string,
+  enableOpenInNewTab: PropTypes.bool,
   hasNonSystemDemos: PropTypes.string,
   initialFocusRef: PropTypes.shape({ current: PropTypes.object }).isRequired,
   onCodeOpenChange: PropTypes.func.isRequired,
