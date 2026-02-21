@@ -2421,6 +2421,29 @@ describe.skipIf(isJsdom())('Joy <Autocomplete />', () => {
     });
   });
 
+  describe('prop: placeholder', () => {
+    it('should render placeholder when no options are selected', () => {
+      render(
+        <Autocomplete multiple options={['one', 'two', 'three']} placeholder="Select options" />,
+      );
+      const textbox = screen.getByRole('combobox');
+      expect(textbox).to.have.attribute('placeholder', 'Select options');
+    });
+
+    it('should hide placeholder when options are selected', () => {
+      render(
+        <Autocomplete
+          multiple
+          options={['one', 'two', 'three']}
+          defaultValue={['one']}
+          placeholder="Select options"
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      expect(textbox).not.to.have.attribute('placeholder');
+    });
+  });
+
   describe('prop: readOnly', () => {
     it('should make the input readonly', () => {
       render(<Autocomplete readOnly options={['one', 'two', 'three']} />);

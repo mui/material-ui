@@ -463,6 +463,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     [autocompleteClasses.disabled]: disabled,
   };
 
+  let inputPlaceholder = placeholder;
+  if (multiple && (value as Array<unknown>).length > 0) {
+    inputPlaceholder = undefined;
+  }
+
   const [SlotInput, inputProps] = useSlot('input', {
     className: [classes.input, inputStateClasses],
     elementType: AutocompleteInput,
@@ -488,7 +493,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     additionalProps: {
       autoFocus,
-      placeholder,
+      placeholder: inputPlaceholder,
       name,
       readOnly,
       disabled,
