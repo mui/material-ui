@@ -82,8 +82,8 @@ To add extra variables to the `theme.palette`, see [palette customization](/mate
 
 ## Theme builder
 
-<video autoPlay muted loop width="320">
-  <source src="/static/studies.mp4" type="video/mp4" >
+<video style="width: 320px;" autoplay muted loop playsinline width="640" height="360">
+  <source src="/static/material-ui/studies.mp4" type="video/mp4" >
 </video>
 
 The community has built great tools to build a theme:
