@@ -88,7 +88,7 @@
     "react-draggable": "^4.5.0",
     "react-final-form": "^7.0.0",
     "react-imask": "^7.6.1",
-    "react-intersection-observer": "^10.0.2",
+    "react-intersection-observer": "^10.0.3",
     "react-is": "^19.2.4",
     "react-number-format": "^5.4.4",
     "react-router": "^7.13.0",
