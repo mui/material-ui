@@ -21,18 +21,18 @@ export interface Transitions {}
 export interface ZIndex {}
 
 export interface ThemeOptions {
-  shape?: ShapeOptions;
-  breakpoints?: BreakpointsOptions;
-  direction?: Direction;
-  mixins?: Mixins;
-  palette?: Record<string, any>;
-  shadows?: Shadows;
-  spacing?: SpacingOptions;
-  transitions?: Transitions;
-  components?: Record<string, any>;
-  typography?: Typography;
-  zIndex?: ZIndex;
-  unstable_sxConfig?: SxConfig;
+  shape?: ShapeOptions | undefined;
+  breakpoints?: BreakpointsOptions | undefined;
+  direction?: Direction | undefined;
+  mixins?: Mixins | undefined;
+  palette?: Record<string, any> | undefined;
+  shadows?: Shadows | undefined;
+  spacing?: SpacingOptions | undefined;
+  transitions?: Transitions | undefined;
+  components?: Record<string, any> | undefined;
+  typography?: Typography | undefined;
+  zIndex?: ZIndex | undefined;
+  unstable_sxConfig?: SxConfig | undefined;
 }
 
 export interface Theme extends CssContainerQueries {
@@ -40,13 +40,13 @@ export interface Theme extends CssContainerQueries {
   breakpoints: Breakpoints;
   direction: Direction;
   palette: Record<string, any> & { mode: 'light' | 'dark' };
-  shadows?: Shadows;
+  shadows?: Shadows | undefined;
   spacing: Spacing;
-  transitions?: Transitions;
-  components?: Record<string, any>;
-  mixins?: Mixins;
-  typography?: Typography;
-  zIndex?: ZIndex;
+  transitions?: Transitions | undefined;
+  components?: Record<string, any> | undefined;
+  mixins?: Mixins | undefined;
+  typography?: Typography | undefined;
+  zIndex?: ZIndex | undefined;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;

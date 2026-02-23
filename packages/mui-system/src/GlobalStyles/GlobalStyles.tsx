@@ -10,12 +10,12 @@ import { Theme as SystemTheme } from '../createTheme';
 
 export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;
-  defaultTheme?: object;
-  themeId?: string;
+  defaultTheme?: object | undefined;
+  themeId?: string | undefined;
 }
 
 function wrapGlobalLayer(styles: any) {
-  const serialized = serializeStyles(styles) as { styles?: string };
+  const serialized = serializeStyles(styles) as { styles?: string | undefined };
   if (styles !== serialized && serialized.styles) {
     if (!serialized.styles.match(/^@layer\s+[^{]*$/)) {
       // If the styles are not already wrapped in a layer, wrap them in a global layer.

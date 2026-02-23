@@ -7,6 +7,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { ChipTypeMap } from '@mui/material/Chip';
+import { AutocompleteValueOrFreeSoloValueMapping } from '../useAutocomplete';
 
 interface MyAutocompleteProps<
   T,
@@ -180,5 +181,44 @@ function CustomListboxRef() {
       },
       typeof event
     >(event);
+  }}
+/>;
+
+// freeSolo prop adds string to the getOptionLabel and isOptionEqualToValue value argument type
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={() => null}
+  freeSolo
+  getOptionLabel={(option) => {
+    expectType<AutocompleteValueOrFreeSoloValueMapping<{ label: string }, true>, typeof option>(
+      option,
+    );
+
+    return typeof option === 'string' ? option : option.label;
+  }}
+  isOptionEqualToValue={(option, value) => {
+    expectType<AutocompleteValueOrFreeSoloValueMapping<{ label: string }, true>, typeof value>(
+      value,
+    );
+    expectType<{ label: string }, typeof option>(option);
+
+    return typeof value === 'string' ? option.label === value : option.label === value.label;
+  }}
+/>;
+
+// getOptionLabel and isOptionEqualToValue value argument type should not include string when freeSolo is false
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={() => null}
+  getOptionLabel={(option) => {
+    expectType<{ label: string }, typeof option>(option);
+
+    return option.label;
+  }}
+  isOptionEqualToValue={(option, value) => {
+    expectType<{ label: string }, typeof value>(value);
+    expectType<{ label: string }, typeof option>(option);
+
+    return option.label === value.label;
   }}
 />;

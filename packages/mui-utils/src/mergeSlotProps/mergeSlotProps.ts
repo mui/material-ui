@@ -6,9 +6,9 @@ import extractEventHandlers from '../extractEventHandlers';
 import omitEventHandlers from '../omitEventHandlers';
 
 export type WithCommonProps<OtherProps> = OtherProps & {
-  className?: string;
-  style?: React.CSSProperties;
-  ref?: React.Ref<any>;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
+  ref?: React.Ref<any> | undefined;
 };
 
 export interface MergeSlotPropsParameters<
@@ -22,24 +22,24 @@ export interface MergeSlotPropsParameters<
    * It accepts the event handlers passed into the component by the user
    * and is responsible for calling them where appropriate.
    */
-  getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
+  getSlotProps?: ((other: EventHandlers) => WithCommonProps<SlotProps>) | undefined;
   /**
    * Props provided to the `slotProps.*` of the Base UI component.
    */
-  externalSlotProps?: WithCommonProps<ExternalSlotProps>;
+  externalSlotProps?: WithCommonProps<ExternalSlotProps> | undefined;
   /**
    * Extra props placed on the Base UI component that should be forwarded to the slot.
    * This should usually be used only for the root slot.
    */
-  externalForwardedProps?: WithCommonProps<ExternalForwardedProps>;
+  externalForwardedProps?: WithCommonProps<ExternalForwardedProps> | undefined;
   /**
    * Additional props to be placed on the slot.
    */
-  additionalProps?: WithCommonProps<AdditionalProps>;
+  additionalProps?: WithCommonProps<AdditionalProps> | undefined;
   /**
    * Extra class name(s) to be placed on the slot.
    */
-  className?: ClassValue | ClassValue[];
+  className?: ClassValue | ClassValue[] | undefined;
 }
 
 export type MergeSlotPropsResult<
@@ -52,7 +52,7 @@ export type MergeSlotPropsResult<
     SlotProps &
       ExternalForwardedProps &
       ExternalSlotProps &
-      AdditionalProps & { className?: string; style?: React.CSSProperties }
+      AdditionalProps & { className?: string | undefined; style?: React.CSSProperties | undefined }
   >;
   internalRef: React.Ref<any> | undefined;
 };

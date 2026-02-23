@@ -20,8 +20,6 @@ Note that Base UI is tree-shakeable, so the final bundle will only include the 
 
 ## Installation
 
-<!-- #npm-tag-reference -->
-
 <codeblock storageKey="package-manager">
 
 ```bash npm

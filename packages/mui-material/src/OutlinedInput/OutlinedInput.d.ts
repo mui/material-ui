@@ -20,8 +20,8 @@ type OutlinedInputSlotsAndSlotProps = CreateSlotsAndSlotProps<
     notchedOutline: SlotProps<'fieldset', {}, OutlinedInputOwnerState>;
   }
 > & {
-  slots?: InputBaseProps['slots'];
-  slotProps?: InputBaseProps['slotProps'];
+  slots?: InputBaseProps['slots'] | undefined;
+  slotProps?: InputBaseProps['slotProps'] | undefined;
 };
 
 export interface OutlinedInputProps
@@ -31,7 +31,7 @@ export interface OutlinedInputProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<OutlinedInputClasses>;
+  classes?: Partial<OutlinedInputClasses> | undefined;
   /**
    * The label of the `input`. It is only used for layout. The actual labelling
    * is handled by `InputLabel`.
@@ -40,11 +40,11 @@ export interface OutlinedInputProps
   /**
    * If `true`, the outline is notched to accommodate the label.
    */
-  notched?: boolean;
+  notched?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface OutlinedInputOwnerState extends Omit<OutlinedInputProps, 'slots' | 'slotProps'> {}
@@ -53,13 +53,13 @@ export interface OutlinedInputOwnerState extends Omit<OutlinedInputProps, 'slots
  *
  * Demos:
  *
- * - [Number Field](https://mui.com/material-ui/react-number-field/)
- * - [Text Field](https://mui.com/material-ui/react-text-field/)
+ * - [Number Field](https://next.mui.com/material-ui/react-number-field/)
+ * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
- * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
+ * - [OutlinedInput API](https://next.mui.com/material-ui/api/outlined-input/)
+ * - inherits [InputBase API](https://next.mui.com/material-ui/api/input-base/)
  */
 declare const OutlinedInput: ((props: OutlinedInputProps) => React.JSX.Element) & {
   muiName: string;

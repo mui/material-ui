@@ -45,10 +45,10 @@ function useThemePropsDefault<T extends {}>(props: T) {
 
 export default function createGrid(
   options: {
-    createStyledComponent?: typeof defaultCreateStyledComponent;
-    useThemeProps?: typeof useThemePropsDefault;
-    useTheme?: typeof useThemeSystem;
-    componentName?: string;
+    createStyledComponent?: typeof defaultCreateStyledComponent | undefined;
+    useThemeProps?: typeof useThemePropsDefault | undefined;
+    useTheme?: typeof useThemeSystem | undefined;
+    componentName?: string | undefined;
   } = {},
 ) {
   const {
@@ -120,7 +120,9 @@ export default function createGrid(
 
   const Grid = React.forwardRef(function Grid(inProps, ref) {
     const theme = useTheme();
-    const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
+    const themeProps = useThemeProps<
+      typeof inProps & { component?: React.ElementType | undefined }
+    >(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
 
     // TODO v8: Remove when removing the legacy Grid component

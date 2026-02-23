@@ -11,13 +11,13 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
 const props1: GridLegacyProps<'span'> = {
   component: 'span',
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLSpanElement>, typeof event>(event);
   },
 };
 
 const props2: GridLegacyProps = {
   onChange: (event) => {
-    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+    expectType<React.ChangeEvent<HTMLDivElement>, typeof event>(event);
   },
 };
 
@@ -55,7 +55,7 @@ function ResponsiveTest() {
         item
         component="span"
         onChange={(event) => {
-          expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
+          expectType<React.ChangeEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
     </React.Fragment>
