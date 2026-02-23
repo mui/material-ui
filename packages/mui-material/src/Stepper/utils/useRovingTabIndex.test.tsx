@@ -1,14 +1,22 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import useRovingTabIndexFocus, { UseRovingTabIndexOptions } from './useRovingTabIndex';
 
-const defaultProps: UseRovingTabIndexOptions = {
-  orientation: 'horizontal',
-};
+let focusNext: () => void;
 
 function TestComponent(props: Partial<UseRovingTabIndexOptions>) {
-  const { getItemProps, getContainerProps } = useRovingTabIndexFocus({ ...defaultProps, ...props });
+  const {
+    getItemProps,
+    getContainerProps,
+    focusNext: focusNextFn,
+  } = useRovingTabIndexFocus({
+    orientation: 'horizontal',
+    ...props,
+  });
+
+  focusNext = focusNextFn;
 
   return (
     <div data-testid="container" {...getContainerProps()}>
@@ -527,5 +535,50 @@ describe('useRovingTabIndexFocus', () => {
     expect(button2.getAttribute('tabindex')).to.equal('-1');
     expect(button3.getAttribute('tabindex')).to.equal('-1');
     expect(button1).toHaveFocus();
+  });
+
+  test('focusNext function should move focus to the next enabled element', async () => {
+    const { user } = render(<TestComponent />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button2 = screen.getByTestId('button-2');
+    const button3 = screen.getByTestId('button-3');
+    const button4 = screen.getByTestId('button-4');
+
+    await user.click(button1);
+
+    React.act(() => {
+      focusNext();
+    });
+
+    expect(button1.getAttribute('tabindex')).to.equal('-1');
+    expect(button2.getAttribute('tabindex')).to.equal('0');
+    expect(button3.getAttribute('tabindex')).to.equal('-1');
+    expect(button4.getAttribute('tabindex')).to.equal('-1');
+    expect(button2).toHaveFocus();
+  });
+
+  test('focusNext function should skip elements for which shouldSkipFocus returns true', async () => {
+    const shouldSkipFocus = (element: HTMLElement | null) =>
+      element === screen.getByTestId('button-2');
+
+    const { user } = render(<TestComponent shouldSkipFocus={shouldSkipFocus} />);
+
+    const button1 = screen.getByTestId('button-1');
+    const button2 = screen.getByTestId('button-2');
+    const button3 = screen.getByTestId('button-3');
+    const button4 = screen.getByTestId('button-4');
+
+    await user.click(button1);
+
+    React.act(() => {
+      focusNext();
+    });
+
+    expect(button1.getAttribute('tabindex')).to.equal('-1');
+    expect(button2.getAttribute('tabindex')).to.equal('-1');
+    expect(button3.getAttribute('tabindex')).to.equal('0');
+    expect(button4.getAttribute('tabindex')).to.equal('-1');
+    expect(button3).toHaveFocus();
   });
 });
