@@ -50,7 +50,8 @@ const Main = styled('main', {
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc' && prop !== 'container',
+  shouldForwardProp: (prop) =>
+    prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc' && prop !== 'container',
 })(({ theme }) => {
   return {
     position: 'relative',

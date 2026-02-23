@@ -8,9 +8,7 @@ import NoSsr from '@mui/material/NoSsr';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
-import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Tooltip from '@mui/material/Tooltip';
@@ -264,8 +262,6 @@ function TableOfContents({ toc, itemLink, onLinkClick }) {
           </NavList>
         </React.Fragment>
       ) : null}
-      <DiamondSponsors />
-      <TableOfContentsBanner />
     </React.Fragment>
   );
 }

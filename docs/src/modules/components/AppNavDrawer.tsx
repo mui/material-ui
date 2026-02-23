@@ -24,6 +24,8 @@ import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext, { ProductVersion } from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import { MuiPage } from 'docs/src/MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
@@ -468,10 +470,10 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
         </ToolbarDiv>
         <Box
           sx={{
-            pt: 0.5,
-            pb: 5,
-            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
             flexGrow: 1,
+            overflow: 'hidden',
             ...(swipeableDrawer
               ? {}
               : {
@@ -480,9 +482,32 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
                 }),
           }}
         >
-          <PersistScroll slot="side" enabled>
-            {navItems}
-          </PersistScroll>
+          <Box
+            sx={{
+              pt: 0.5,
+              pb: 5,
+              overflowY: 'auto',
+              flexGrow: 1,
+            }}
+          >
+            <PersistScroll slot="side" enabled>
+              {navItems}
+            </PersistScroll>
+          </Box>
+          <Box
+            sx={{
+              flexShrink: 0,
+              borderTop: '1px solid',
+              borderColor: 'divider',
+              p:1,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1,
+            }}
+          >
+            <DiamondSponsors />
+            <TableOfContentsBanner />
+          </Box>
         </Box>
       </React.Fragment>
     );

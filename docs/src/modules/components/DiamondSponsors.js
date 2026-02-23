@@ -42,7 +42,7 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack direction="column" sx={{ mt: 2, mx: 0.5 }}>
+    <Stack direction="column" >
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
