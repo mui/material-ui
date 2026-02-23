@@ -33,7 +33,9 @@ export default function FreeSolo() {
         id="free-solo-demo3"
         freeSolo
         options={top100Films}
-        renderInput={(params) => <TextField {...params} label="freeSolo" />}
+        renderInput={(params) => (
+          <TextField {...params} label="freeSolo (handle string values)" />
+        )}
         getOptionLabel={(option) =>
           typeof option === 'string' ? option : option.title
         }
