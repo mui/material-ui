@@ -27,7 +27,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/lab\"",
     "typescript": "tsc -p tsconfig.json"
@@ -85,6 +85,19 @@
   },
   "exports": {
     ".": "./src/index.js",
+    "./LoadingButton": "./src/LoadingButton/index.js",
+    "./Masonry": "./src/Masonry/index.js",
+    "./TabContext": "./src/TabContext/index.js",
+    "./TabList": "./src/TabList/index.js",
+    "./TabPanel": "./src/TabPanel/index.js",
+    "./themeAugmentation": "./src/themeAugmentation/index.js",
+    "./TimelineConnector": "./src/TimelineConnector/index.js",
+    "./TimelineContent": "./src/TimelineContent/index.js",
+    "./TimelineDot": "./src/TimelineDot/index.js",
+    "./TimelineItem": "./src/TimelineItem/index.js",
+    "./TimelineOppositeContent": "./src/TimelineOppositeContent/index.js",
+    "./TimelineSeparator": "./src/TimelineSeparator/index.js",
+    "./useAutocomplete": "./src/useAutocomplete/index.js",
     "./*": "./src/*/index.ts"
   }
 }

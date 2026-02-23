@@ -3,7 +3,7 @@
   "version": "9.0.0-alpha.0",
   "author": "MUI Team",
   "description": "Codemod scripts for Material UI.",
-  "bin": "./codemod.js",
+  "bin": "./src/codemod.js",
   "keywords": [
     "react",
     "react-component",
@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/codemod\"",
-    "build": "code-infra build --bundle cjs --buildTypes false --copy codemod.js",
+    "build": "code-infra build --flat --bundle cjs --buildTypes false",
     "release": "pnpm build && pnpm publish"
   },
   "repository": {

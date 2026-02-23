@@ -49,7 +49,7 @@
     "chai": "6.2.2",
     "fast-glob": "3.3.3",
     "prettier": "3.8.1",
-    "rimraf": "6.1.2"
+    "rimraf": "6.1.3"
   },
   "publishConfig": {
     "access": "public"

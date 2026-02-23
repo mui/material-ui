@@ -101,9 +101,9 @@ export default withDocsInfra({
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
           '@mui/icons-material$': path.resolve(
             workspaceRoot,
-            'packages/mui-icons-material/lib/esm/index.js',
+            'packages/mui-icons-material/lib/index.mjs',
           ),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
           '@mui/system/package.json': path.resolve(
@@ -118,9 +118,12 @@ export default withDocsInfra({
           '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
         extensions: [
+          '.mjs',
           '.tsx',
           // @ts-ignore
-          ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
+          ...config.resolve.extensions.filter(
+            (extension: string) => extension !== '.tsx' && extension !== '.mjs',
+          ),
         ],
       },
       module: {
