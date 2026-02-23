@@ -10,9 +10,10 @@ const StyledListHeader = Object.assign(
     backgroundImage: 'var(--Paper-overlay)',
   }),
   {
-    // IMPORTANT: this property is needed to prevent the component from being focused
-    // when navigating with the keyboard, as ListSubheader is not a focusable element.
-    // For example, ListSubheader has it set to true by default, so does Divider.
+    // IMPORTANT: The base ListSubheader component sets `muiSkipListHighlight = true`
+    // by default, but wrapping it with `styled(ListSubheader)` does not preserve
+    // that static field. We re-declare it here so the menu list continues to skip
+    // highlighting this non-focusable subheader when navigating with the keyboard.
     muiSkipListHighlight: true,
   },
 );
