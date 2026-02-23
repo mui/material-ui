@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "7.3.8",
+  "version": "9.0.0-alpha.0",
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
   "keywords": [
@@ -24,7 +24,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --skipTsc",
+    "build": "code-infra build --flat --skipTsc",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine-sc\"",
     "typescript": "tsc -p tsconfig.json"
@@ -38,10 +38,10 @@
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.9",
+    "@types/react": "19.2.14",
     "chai": "6.2.2",
-    "react": "19.2.3",
-    "styled-components": "6.3.9"
+    "react": "19.2.4",
+    "styled-components": "6.3.11"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

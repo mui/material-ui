@@ -49,12 +49,12 @@ export interface CardActionAreaOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<CardActionAreaClasses>;
-  focusVisibleClassName?: string;
+  classes?: Partial<CardActionAreaClasses> | undefined;
+  focusVisibleClassName?: string | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type CardActionAreaTypeMap<
@@ -84,7 +84,7 @@ export type CardActionAreaProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<CardActionAreaTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default CardActionArea;

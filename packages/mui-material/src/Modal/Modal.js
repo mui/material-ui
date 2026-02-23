@@ -88,7 +88,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     componentsProps = {},
     disableAutoFocus = false,
     disableEnforceFocus = false,
-    disableEscapeKeyDown = false,
     disablePortal = false,
     disableRestoreFocus = false,
     disableScrollLock = false,
@@ -110,7 +109,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
-    disableEscapeKeyDown,
     disablePortal,
     disableRestoreFocus,
     disableScrollLock,
@@ -320,11 +318,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableEnforceFocus: PropTypes.bool,
-  /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   * @default false
-   */
-  disableEscapeKeyDown: PropTypes.bool,
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false

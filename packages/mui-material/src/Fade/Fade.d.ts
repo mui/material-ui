@@ -7,7 +7,7 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
    * Set this to `false` to disable this behavior.
    * @default true
    */
-  appear?: boolean;
+  appear?: boolean | undefined;
   /**
    * A single child content element.
    */
@@ -16,12 +16,12 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
    */
-  easing?: TransitionProps['easing'];
+  easing?: TransitionProps['easing'] | undefined;
   /**
    * If `true`, the component will transition in.
    */
-  in?: boolean;
-  ref?: React.Ref<unknown>;
+  in?: boolean | undefined;
+  ref?: React.Ref<unknown> | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -30,7 +30,7 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  timeout?: TransitionProps['timeout'];
+  timeout?: TransitionProps['timeout'] | undefined;
 }
 
 /**

@@ -20,7 +20,7 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
    * menu, otherwise it will be at least the width of the select input.
    * @default false
    */
-  autoWidth?: boolean;
+  autoWidth?: boolean | undefined;
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
@@ -32,17 +32,17 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
    * Override or extend the styles applied to the component.
    * @default {}
    */
-  classes?: Partial<SelectClasses>;
+  classes?: Partial<SelectClasses> | undefined;
   /**
    * If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined).
    * You can only use it when the `native` prop is `false` (default).
    * @default false
    */
-  defaultOpen?: boolean;
+  defaultOpen?: boolean | undefined;
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: Value;
+  defaultValue?: Value | undefined;
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -53,25 +53,25 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
    * The label should either be hidden or forced to a shrunk state.
    * @default false
    */
-  displayEmpty?: boolean;
+  displayEmpty?: boolean | undefined;
   /**
    * The icon that displays the arrow.
    * @default ArrowDropDownIcon
    */
-  IconComponent?: React.ElementType;
+  IconComponent?: React.ElementType | undefined;
   /**
    * The `id` of the wrapper element or the `select` element when `native`.
    */
-  id?: string;
+  id?: string | undefined;
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: React.ReactElement<unknown, any>;
+  input?: React.ReactElement<unknown, any> | undefined;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
-  inputProps?: InputProps['inputProps'];
+  inputProps?: InputProps['inputProps'] | undefined;
   /**
    * See [OutlinedInput#label](https://mui.com/material-ui/api/outlined-input/#props)
    */
@@ -80,21 +80,21 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
    * The ID of an element that acts as an additional label. The Select will
    * be labelled by the additional label and the selected value.
    */
-  labelId?: string;
+  labelId?: string | undefined;
   /**
    * Props applied to the [`Menu`](https://mui.com/material-ui/api/menu/) element.
    */
-  MenuProps?: Partial<MenuProps>;
+  MenuProps?: Partial<MenuProps> | undefined;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
    */
-  multiple?: boolean;
+  multiple?: boolean | undefined;
   /**
    * If `true`, the component uses a native `select` element.
    * @default false
    */
-  native?: boolean;
+  native?: boolean | undefined;
   /**
    * Callback fired when a menu item is selected.
    *
@@ -103,26 +103,26 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
    * **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange?: SelectInputProps<Value>['onChange'];
+  onChange?: SelectInputProps<Value>['onChange'] | undefined;
   /**
    * Callback fired when the component requests to be closed.
    * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapses).
    *
    * @param {object} event The event source of the callback.
    */
-  onClose?: (event: React.SyntheticEvent) => void;
+  onClose?: ((event: React.SyntheticEvent) => void) | undefined;
   /**
    * Callback fired when the component requests to be opened.
    * Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select expands).
    *
    * @param {object} event The event source of the callback.
    */
-  onOpen?: (event: React.SyntheticEvent) => void;
+  onOpen?: ((event: React.SyntheticEvent) => void) | undefined;
   /**
    * If `true`, the component is shown.
    * You can only use it when the `native` prop is `false` (default).
    */
-  open?: boolean;
+  open?: boolean | undefined;
   /**
    * Render the selected value.
    * You can only use it when the `native` prop is `false` (default).
@@ -130,15 +130,15 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: (value: Value) => React.ReactNode;
+  renderValue?: ((value: Value) => React.ReactNode) | undefined;
   /**
    * Props applied to the clickable div element.
    */
-  SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
+  SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
@@ -146,12 +146,12 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: Value | '';
+  value?: Value | '' | undefined;
   /**
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: SelectVariants;
+  variant?: SelectVariants | undefined;
 }
 
 export interface FilledSelectProps extends Omit<
@@ -184,7 +184,7 @@ export interface OutlinedSelectProps extends Omit<
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: 'outlined';
+  variant?: 'outlined' | undefined;
 }
 
 export type SelectVariants = 'outlined' | 'standard' | 'filled';

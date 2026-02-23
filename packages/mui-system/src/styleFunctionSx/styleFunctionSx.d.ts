@@ -77,7 +77,7 @@ export type SxProps<Theme extends object = {}> =
 
 export interface StyleFunctionSx {
   (props: object): CSSObject;
-  filterProps?: string[];
+  filterProps?: string[] | undefined;
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

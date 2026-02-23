@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "exports": {
@@ -43,13 +43,13 @@
     "@types/babel__core": "7.20.5",
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
-    "@types/node": "20.19.30",
-    "@types/react": "19.2.9",
+    "@types/node": "20.19.33",
+    "@types/react": "19.2.14",
     "@types/uuid": "10.0.0",
     "chai": "6.2.2",
     "fast-glob": "3.3.3",
     "prettier": "3.8.1",
-    "rimraf": "6.1.2"
+    "rimraf": "6.1.3"
   },
   "publishConfig": {
     "access": "public"

@@ -66,7 +66,7 @@ export interface AccordionSummaryOwnProps extends AccordionSummarySlotsAndSlotPr
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AccordionSummaryClasses>;
+  classes?: Partial<AccordionSummaryClasses> | undefined;
   /**
    * The icon to display as the expand indicator.
    */
@@ -74,7 +74,7 @@ export interface AccordionSummaryOwnProps extends AccordionSummarySlotsAndSlotPr
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type AccordionSummaryTypeMap<
@@ -107,7 +107,7 @@ export type AccordionSummaryProps<
   RootComponent extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<AccordionSummaryTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default AccordionSummary;

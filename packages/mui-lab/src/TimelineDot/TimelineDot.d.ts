@@ -17,24 +17,28 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineDotClasses>;
+  classes?: Partial<TimelineDotClasses> | undefined;
   /**
    * The dot can have a different colors.
    * @default 'grey'
    */
-  color?: OverridableStringUnion<
-    'inherit' | 'grey' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
-    TimelineDotPropsColorOverrides
-  >;
+  color?:
+    | OverridableStringUnion<
+        'inherit' | 'grey' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+        TimelineDotPropsColorOverrides
+      >
+    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The dot can appear filled or outlined.
    * @default 'filled'
    */
-  variant?: OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>;
+  variant?:
+    | OverridableStringUnion<'filled' | 'outlined', TimelineDotPropsVariantOverrides>
+    | undefined;
 }
 
 /**

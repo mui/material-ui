@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "7.3.8",
+  "version": "9.0.0-alpha.0",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
   "keywords": [
@@ -25,12 +25,12 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
+    "attw": "attw --pack ./build"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
@@ -43,21 +43,21 @@
     "clsx": "^2.1.1",
     "csstype": "^3.2.3",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.3",
+    "react-is": "^19.2.4",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.9",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "css-mediaquery": "0.1.2",
     "es-toolkit": "1.44.0",
     "fast-glob": "3.3.3",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-router": "7.13.0",
     "sinon": "21.0.1"
   },
@@ -94,7 +94,25 @@
   "exports": {
     ".": "./src/index.js",
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
-    "./*": "./src/*/index.ts"
+    "./zero-styled": "./src/zero-styled/index.tsx",
+    "./className": "./src/className/index.ts",
+    "./ClickAwayListener": "./src/ClickAwayListener/index.ts",
+    "./darkScrollbar": "./src/darkScrollbar/index.ts",
+    "./DefaultPropsProvider": "./src/DefaultPropsProvider/index.ts",
+    "./generateUtilityClass": "./src/generateUtilityClass/index.ts",
+    "./generateUtilityClasses": "./src/generateUtilityClasses/index.ts",
+    "./Grid": "./src/Grid/index.ts",
+    "./InitColorSchemeScript": "./src/InitColorSchemeScript/index.ts",
+    "./internal": "./src/internal/index.ts",
+    "./locale": "./src/locale/index.ts",
+    "./OverridableComponent": "./src/OverridableComponent/index.ts",
+    "./PigmentContainer": "./src/PigmentContainer/index.ts",
+    "./PigmentGrid": "./src/PigmentGrid/index.ts",
+    "./PigmentStack": "./src/PigmentStack/index.ts",
+    "./transitions": "./src/transitions/index.ts",
+    "./useLazyRipple": "./src/useLazyRipple/index.ts",
+    "./version": "./src/version/index.ts",
+    "./*": "./src/*/index.js"
   },
   "pigment-css": {
     "vite": {

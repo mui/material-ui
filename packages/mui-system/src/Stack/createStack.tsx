@@ -155,9 +155,9 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
 
 export default function createStack(
   options: {
-    createStyledComponent?: typeof defaultCreateStyledComponent;
-    useThemeProps?: typeof useThemePropsDefault;
-    componentName?: string;
+    createStyledComponent?: typeof defaultCreateStyledComponent | undefined;
+    useThemeProps?: typeof useThemePropsDefault | undefined;
+    componentName?: string | undefined;
   } = {},
 ) {
   const {
@@ -180,7 +180,9 @@ export default function createStack(
   }>(style);
 
   const Stack = React.forwardRef(function Grid(inProps, ref) {
-    const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
+    const themeProps = useThemeProps<
+      typeof inProps & { component?: React.ElementType | undefined }
+    >(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
     const {
       component = 'div',
