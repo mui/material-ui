@@ -24,12 +24,12 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/system\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
+    "attw": "attw --pack ./build"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
@@ -83,6 +83,14 @@
   },
   "exports": {
     ".": "./src/index.js",
+    "./Box": "./src/Box/index.js",
+    "./Container": "./src/Container/index.js",
+    "./createBreakpoints": "./src/createBreakpoints/index.js",
+    "./createTheme": "./src/createTheme/index.js",
+    "./RtlProvider": "./src/RtlProvider/index.js",
+    "./styleFunctionSx": "./src/styleFunctionSx/index.js",
+    "./ThemeProvider": "./src/ThemeProvider/index.js",
+    "./useThemeProps": "./src/useThemeProps/index.js",
     "./*": "./src/*/index.ts"
   }
 }

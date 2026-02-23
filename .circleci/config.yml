@@ -290,6 +290,7 @@ jobs:
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
+          no_output_timeout: 20m
       - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
