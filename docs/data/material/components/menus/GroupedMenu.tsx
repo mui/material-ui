@@ -5,9 +5,17 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 
-const StyledListHeader = styled(ListSubheader)({
-  backgroundImage: 'var(--Paper-overlay)',
-});
+const StyledListHeader = Object.assign(
+  styled(ListSubheader)({
+    backgroundImage: 'var(--Paper-overlay)',
+  }),
+  {
+    // IMPORTANT: this property is needed to prevent the component from being focused
+    // when navigating with the keyboard, as ListSubheader is not a focusable element.
+    // For example, ListSubheader has it set to true by default, so does Divider.
+    muiSkipListHighlight: true,
+  },
+);
 
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
