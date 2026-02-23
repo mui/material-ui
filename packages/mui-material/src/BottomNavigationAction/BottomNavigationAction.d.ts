@@ -49,7 +49,7 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<BottomNavigationActionClasses>;
+  classes?: Partial<BottomNavigationActionClasses> | undefined;
   /**
    * The icon to display.
    */
@@ -65,11 +65,11 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
    *
    * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
    */
-  showLabel?: boolean;
+  showLabel?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
@@ -103,7 +103,7 @@ export type BottomNavigationActionProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<BottomNavigationActionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export interface BottomNavigationActionOwnerState extends Omit<

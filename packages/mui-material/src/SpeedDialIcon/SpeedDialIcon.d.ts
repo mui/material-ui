@@ -11,7 +11,7 @@ export interface SpeedDialIconProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SpeedDialIconClasses>;
+  classes?: Partial<SpeedDialIconClasses> | undefined;
   /**
    * The icon to display.
    */
@@ -24,11 +24,11 @@ export interface SpeedDialIconProps extends StandardProps<
    * @ignore
    * If `true`, the component is shown.
    */
-  open?: boolean;
+  open?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

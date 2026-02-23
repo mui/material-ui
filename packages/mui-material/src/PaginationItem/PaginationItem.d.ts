@@ -85,17 +85,19 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<PaginationItemClasses>;
+  classes?: Partial<PaginationItemClasses> | undefined;
   /**
    * The active color.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
-  color?: OverridableStringUnion<
-    'standard' | 'primary' | 'secondary',
-    PaginationItemPropsColorOverrides
-  >;
+  color?:
+    | OverridableStringUnion<
+        'standard' | 'primary' | 'secondary',
+        PaginationItemPropsColorOverrides
+      >
+    | undefined;
   /**
    * The components used for each slot inside.
    *
@@ -105,17 +107,19 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    * @default {}
    * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  components?: {
-    first?: React.ElementType;
-    last?: React.ElementType;
-    next?: React.ElementType;
-    previous?: React.ElementType;
-  };
+  components?:
+    | {
+        first?: React.ElementType | undefined;
+        last?: React.ElementType | undefined;
+        next?: React.ElementType | undefined;
+        previous?: React.ElementType | undefined;
+      }
+    | undefined;
   /**
    * If `true`, the component is disabled.
    * @default false
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * The current page number.
    */
@@ -124,31 +128,35 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    * If `true` the pagination item is selected.
    * @default false
    */
-  selected?: boolean;
+  selected?: boolean | undefined;
   /**
    * The shape of the pagination item.
    * @default 'circular'
    */
-  shape?: 'circular' | 'rounded';
+  shape?: 'circular' | 'rounded' | undefined;
   /**
    * The size of the component.
    * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'medium' | 'large', PaginationItemPropsSizeOverrides>;
+  size?:
+    | OverridableStringUnion<'small' | 'medium' | 'large', PaginationItemPropsSizeOverrides>
+    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The type of pagination item.
    * @default 'page'
    */
-  type?: UsePaginationItem['type'];
+  type?: UsePaginationItem['type'] | undefined;
   /**
    * The variant to use.
    * @default 'text'
    */
-  variant?: OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>;
+  variant?:
+    | OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>
+    | undefined;
 }
 
 export interface PaginationItemTypeMap<
@@ -176,7 +184,7 @@ export type PaginationItemProps<
   RootComponent extends React.ElementType = PaginationItemTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<PaginationItemTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default PaginationItem;

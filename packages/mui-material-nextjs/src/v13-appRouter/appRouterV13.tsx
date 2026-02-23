@@ -9,17 +9,19 @@ export type AppRouterCacheProviderProps = {
   /**
    * These are the options passed to createCache() from 'import createCache from "@emotion/cache"'.
    */
-  options?: Partial<OptionsOfCreateCache> & {
-    /**
-     * If `true`, the generated styles are wrapped within `@layer mui`.
-     * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind CSS, plain CSS etc.
-     */
-    enableCssLayer?: boolean;
-  };
+  options?:
+    | (Partial<OptionsOfCreateCache> & {
+        /**
+         * If `true`, the generated styles are wrapped within `@layer mui`.
+         * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind CSS, plain CSS etc.
+         */
+        enableCssLayer?: boolean | undefined;
+      })
+    | undefined;
   /**
    * By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"'.
    */
-  CacheProvider?: React.ElementType<{ value: EmotionCache }>;
+  CacheProvider?: React.ElementType<{ value: EmotionCache }> | undefined;
   children: React.ReactNode;
 };
 

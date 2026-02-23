@@ -12,7 +12,7 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false
    */
-  enableColorScheme?: boolean;
+  enableColorScheme?: boolean | undefined;
 }
 
 /**

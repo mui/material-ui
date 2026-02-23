@@ -294,10 +294,10 @@ export type CreateStyledComponent<
 // Config to be used with withConfig
 export interface StyledConfig<O extends object = {}> {
   // TODO: Add all types from the original StyledComponentWrapperProperties
-  componentId?: string;
-  displayName?: string;
-  label?: string;
-  target?: string;
+  componentId?: string | undefined;
+  displayName?: string | undefined;
+  label?: string | undefined;
+  target?: string | undefined;
   shouldForwardProp?:
     | ((prop: keyof O, defaultValidatorFn: (prop: keyof O) => boolean) => boolean)
     | undefined;
@@ -305,11 +305,11 @@ export interface StyledConfig<O extends object = {}> {
 
 /** Same as StyledConfig but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {
-  componentId?: string;
-  displayName?: string;
-  label?: string;
+  componentId?: string | undefined;
+  displayName?: string | undefined;
+  label?: string | undefined;
   shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps;
-  target?: string;
+  target?: string | undefined;
 }
 
 // same as ThemedBaseStyledInterface in styled-components, but with added options & common props for MUI components
@@ -328,7 +328,7 @@ export interface ThemedBaseStyledInterface<
     Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps,
     {},
     {
-      ref?: React.Ref<InstanceType<C>>;
+      ref?: React.Ref<InstanceType<C>> | undefined;
     },
     Theme
   >;
@@ -340,7 +340,7 @@ export interface ThemedBaseStyledInterface<
     PropsOf<C> & MUIStyledCommonProps,
     {},
     {
-      ref?: React.Ref<InstanceType<C>>;
+      ref?: React.Ref<InstanceType<C>> | undefined;
     },
     Theme
   >;
@@ -396,7 +396,11 @@ export interface MUIStyledComponent<
 > extends React.FC<ComponentProps & SpecificComponentProps & JSXProps> {
   withComponent<C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
-  ): MUIStyledComponent<ComponentProps & PropsOf<C>, {}, { ref?: React.Ref<InstanceType<C>> }>;
+  ): MUIStyledComponent<
+    ComponentProps & PropsOf<C>,
+    {},
+    { ref?: React.Ref<InstanceType<C>> | undefined }
+  >;
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
   ): MUIStyledComponent<ComponentProps & PropsOf<C>>;

@@ -16,7 +16,7 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
@@ -24,20 +24,22 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
    * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-  };
+  components?:
+    | {
+        Root?: React.ElementType | undefined;
+      }
+    | undefined;
   /**
    * The props used for each slot inside the Popper.
    *
    * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
-  componentsProps?: BasePopperProps['slotProps'];
+  componentsProps?: BasePopperProps['slotProps'] | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 const PopperRoot = styled(BasePopper, {

@@ -14,30 +14,30 @@ export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'>
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<LinkClasses>;
+  classes?: Partial<LinkClasses> | undefined;
   /**
    * The color of the link.
    * @default 'primary'
    */
-  color?: TypographyOwnProps['color'];
+  color?: TypographyOwnProps['color'] | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * `classes` prop applied to the [`Typography`](https://mui.com/material-ui/api/typography/) element.
    */
-  TypographyClasses?: TypographyOwnProps['classes'];
+  TypographyClasses?: TypographyOwnProps['classes'] | undefined;
   /**
    * Controls when the link should have an underline.
    * @default 'always'
    */
-  underline?: 'none' | 'hover' | 'always';
+  underline?: 'none' | 'hover' | 'always' | undefined;
   /**
    * Applies the theme typography styles.
    * @default 'inherit'
    */
-  variant?: TypographyOwnProps['variant'];
+  variant?: TypographyOwnProps['variant'] | undefined;
 }
 
 export interface LinkTypeMap<AdditionalProps = {}, RootComponent extends React.ElementType = 'a'> {
@@ -68,7 +68,7 @@ export type LinkProps<
   RootComponent extends React.ElementType = LinkTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<LinkTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Link;

@@ -18,7 +18,7 @@ const warnedAboutProps: string[] = [];
  * @param {Breakpoints} breakpoints The breakpoints object.
  */
 export default function deleteLegacyGridProps(
-  props: { item?: boolean; zeroMinWidth?: boolean } & Partial<
+  props: { item?: boolean | undefined; zeroMinWidth?: boolean | undefined } & Partial<
     Record<Breakpoint, 'auto' | number | boolean>
   > &
     Record<string, any>,

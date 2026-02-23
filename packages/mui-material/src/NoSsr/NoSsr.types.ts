@@ -10,7 +10,7 @@ export interface NoSsrProps {
    * It will also defer the rendering of the children into a different screen frame.
    * @default false
    */
-  defer?: boolean;
+  defer?: boolean | undefined;
   /**
    * The fallback content to display.
    * @default null

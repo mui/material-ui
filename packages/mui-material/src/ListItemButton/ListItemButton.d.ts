@@ -14,13 +14,13 @@ export interface ListItemButtonBaseProps {
    * Defines the `align-items` style property.
    * @default 'center'
    */
-  alignItems?: 'flex-start' | 'center';
+  alignItems?: 'flex-start' | 'center' | undefined;
   /**
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
    */
-  autoFocus?: boolean;
+  autoFocus?: boolean | undefined;
   /**
    * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
@@ -29,37 +29,37 @@ export interface ListItemButtonBaseProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ListItemButtonClasses>;
+  classes?: Partial<ListItemButtonClasses> | undefined;
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * The prop defaults to the value inherited from the parent List component.
    * @default false
    */
-  dense?: boolean;
+  dense?: boolean | undefined;
   /**
    * If `true`, the component is disabled.
    * @default false
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * If `true`, the left and right padding is removed.
    * @default false
    */
-  disableGutters?: boolean;
+  disableGutters?: boolean | undefined;
   /**
    * If `true`, a 1px light border is added to the bottom of the list item.
    * @default false
    */
-  divider?: boolean;
+  divider?: boolean | undefined;
   /**
    * Use to apply selected styling.
    * @default false
    */
-  selected?: boolean;
+  selected?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface ListItemButtonOwnProps extends ListItemButtonBaseProps {}
@@ -89,7 +89,7 @@ export type ListItemButtonProps<
   RootComponent extends React.ElementType = ListItemButtonTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<ListItemButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default ListItemButton;
