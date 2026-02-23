@@ -1,12 +1,14 @@
 import { expect } from 'chai';
-import { createRenderer, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
   darken as systemDarken,
 } from '@mui/system/colorManipulator';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
@@ -562,7 +564,7 @@ describe('createTheme', () => {
     } catch (error) {
       expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
+          'Please use another name or follow the [docs](https://next.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
   });
@@ -782,4 +784,42 @@ describe('createTheme', () => {
       );
     });
   });
+
+  // Skip WebKit and firefox because they have a slightly different value
+  it.skipIf(isJSDOM || !/chrome/.test(window.navigator.userAgent))(
+    'should build color-mix() on top of generated Material UI CSS variables',
+    () => {
+      function App() {
+        const theme = createTheme({
+          cssVariables: {
+            nativeColor: true,
+          },
+        });
+
+        return (
+          <ThemeProvider theme={theme}>
+            {/* This is just to replicate the global CSS file */}
+            <GlobalStyles
+              styles={{
+                ':root': {
+                  '--mui-palette-info-main': '#d3b613 !important', // !important is to take precedence over the default one. This is just for test, in real world case global CSS file should be used.
+                  '--mui-palette-info-light': '#dfc21f !important',
+                },
+              }}
+            />
+
+            <Alert variant="standard" severity="info" data-testid="alert">
+              Alert
+            </Alert>
+          </ThemeProvider>
+        );
+      }
+
+      render(<App />);
+
+      expect(screen.getByTestId('alert')).toHaveComputedStyle({
+        backgroundColor: 'oklch(0.981465 0.01628 97.7526)', // browser converts color-mix to oklch in window.getComputedStyle()
+      });
+    },
+  );
 });

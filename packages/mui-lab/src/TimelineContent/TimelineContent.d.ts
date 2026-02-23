@@ -13,22 +13,22 @@ export interface TimelineContentProps extends StandardProps<TypographyProps> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineContentClasses>;
+  classes?: Partial<TimelineContentClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineContent API](https://mui.com/material-ui/api/timeline-content/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [TimelineContent API](https://next.mui.com/material-ui/api/timeline-content/)
+ * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
  */
 export default function TimelineContent(props: TimelineContentProps): React.JSX.Element;

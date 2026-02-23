@@ -36,34 +36,34 @@ export interface SwitchBaseProps
   extends
     StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'>,
     SwitchBaseSlotsAndSlotProps {
-  autoFocus?: boolean;
+  autoFocus?: boolean | undefined;
   /**
    * If `true`, the component is checked.
    */
-  checked?: boolean;
+  checked?: boolean | undefined;
   checkedIcon: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SwitchBaseClasses>;
+  classes?: Partial<SwitchBaseClasses> | undefined;
   /**
    * The default checked state. Use when the component is not controlled.
    */
-  defaultChecked?: boolean;
+  defaultChecked?: boolean | undefined;
   /**
    * If `true`, the component is disabled.
    */
-  disabled?: boolean;
+  disabled?: boolean | undefined;
   /**
    * If `true`, the ripple effect is disabled.
    * @default false
    */
-  disableRipple?: boolean;
+  disableRipple?: boolean | undefined;
   /**
    * If `true`, the  keyboard focus ripple is disabled.
    * @default false
    */
-  disableFocusRipple?: boolean;
+  disableFocusRipple?: boolean | undefined;
   /**
    * If given, uses a negative margin to counteract the padding on one
    * side (this is often helpful for aligning the left or right
@@ -71,26 +71,26 @@ export interface SwitchBaseProps
    * size and shape).
    * @default false
    */
-  edge?: 'start' | 'end' | false;
+  edge?: 'start' | 'end' | false | undefined;
   icon: React.ReactNode;
   /**
    * The id of the `input` element.
    */
-  id?: string;
+  id?: string | undefined;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement> | undefined;
   /**
    * Pass a ref to the `input` element.
    * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  inputRef?: React.Ref<any>;
+  inputRef?: React.Ref<any> | undefined;
   /**
    * Name attribute of the `input` element.
    */
-  name?: string;
+  name?: string | undefined;
   /**
    * Callback fired when the state is changed.
    *
@@ -98,15 +98,15 @@ export interface SwitchBaseProps
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
-  readOnly?: boolean;
+  onChange?: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
+  readOnly?: boolean | undefined;
   /**
    * If `true`, the `input` element is required.
    * @default false
    */
-  required?: boolean;
-  tabIndex?: number;
-  type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
+  required?: boolean | undefined;
+  tabIndex?: number | undefined;
+  type?: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;
   /**
    * The value of the component. The DOM API casts this to a string.
    */

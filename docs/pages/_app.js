@@ -26,6 +26,7 @@ import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvide
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { AnalyticsProvider } from 'docs/src/modules/components/AnalyticsProvider';
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
 import SvgMuiLogomark, {
@@ -245,6 +246,10 @@ function AppWrapper(props) {
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
+            text: 'v7',
+            href: `https://v7.mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
+          {
             text: 'v6',
             href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
           },
@@ -284,6 +289,7 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v7', href: `https://v7.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
@@ -423,8 +429,10 @@ function AppWrapper(props) {
               <DemoContext.Provider value={demoContextValue}>
                 <ThemeProvider>
                   <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                    {children}
-                    <GoogleAnalytics />
+                    <AnalyticsProvider>
+                      {children}
+                      <GoogleAnalytics />
+                    </AnalyticsProvider>
                   </DocsStyledEngineProvider>
                 </ThemeProvider>
               </DemoContext.Provider>

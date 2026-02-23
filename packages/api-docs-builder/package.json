@@ -24,7 +24,7 @@
     "fast-glob": "^3.3.3",
     "prettier": "^3.8.1",
     "react-docgen": "^5.4.3",
-    "recast": "^0.23.9",
+    "recast": "^0.23.11",
     "remark": "^15.0.1",
     "typescript": "^5.9.3",
     "unist-util-visit": "^5.1.0"
@@ -35,7 +35,7 @@
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/node": "20.19.30",
+    "@types/node": "20.19.33",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",

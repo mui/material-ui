@@ -86,6 +86,8 @@ If native color is not enabled, they will fall back to the JavaScript color mani
 The `theme.palette.getContrastText()` function produces the contrast color.
 The demo below shows the result of the `theme.palette.getContrastText()` function, which produces the text color based on the selected background.
 
+{{"demo": "ContrastTextDemo.js"}}
+
 :::info
 The CSS variables `--__l` and `--__a` are internal variables set globally by Material UI.
 

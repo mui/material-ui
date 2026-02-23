@@ -14,12 +14,12 @@ export interface StackBaseProps {
    * It is applied for all screen sizes.
    * @default 'column'
    */
-  direction?: ResponsiveStyleValue<'row' | 'row-reverse' | 'column' | 'column-reverse'>;
+  direction?: ResponsiveStyleValue<'row' | 'row-reverse' | 'column' | 'column-reverse'> | undefined;
   /**
    * Defines the space between immediate children.
    * @default 0
    */
-  spacing?: ResponsiveStyleValue<number | string>;
+  spacing?: ResponsiveStyleValue<number | string> | undefined;
   /**
    * Add an element between each child.
    */
@@ -33,7 +33,7 @@ export interface StackBaseProps {
    * To enable this flag globally, follow the theme's default props configuration.
    * @default false
    */
-  useFlexGap?: boolean;
+  useFlexGap?: boolean | undefined;
 }
 export interface StackTypeMap<
   AdditionalProps = {},
@@ -44,7 +44,7 @@ export interface StackTypeMap<
       /**
        * The system prop, which allows defining system overrides as well as additional CSS styles.
        */
-      sx?: SxProps<Theme>;
+      sx?: SxProps<Theme> | undefined;
     } & SystemProps<Theme>;
   defaultComponent: DefaultComponent;
 }
@@ -52,7 +52,7 @@ export interface StackTypeMap<
 export type StackProps<
   RootComponent extends React.ElementType = StackTypeMap['defaultComponent'],
   AdditionalProps = {
-    component?: React.ElementType;
+    component?: React.ElementType | undefined;
   },
 > = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
