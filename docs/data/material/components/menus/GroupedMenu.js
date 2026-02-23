@@ -17,7 +17,6 @@ const StyledListHeader = Object.assign(
   },
 );
 
-
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
