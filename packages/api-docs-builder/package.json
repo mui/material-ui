@@ -23,7 +23,7 @@
     "es-toolkit": "^1.44.0",
     "fast-glob": "^3.3.3",
     "prettier": "^3.8.1",
-    "react-docgen": "^5.4.3",
+    "react-docgen": "^8.0.2",
     "recast": "^0.23.11",
     "remark": "^15.0.1",
     "typescript": "^5.9.3",
