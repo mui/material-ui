@@ -12,8 +12,6 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { alpha, styled } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';
 
-import '@wooorm/starry-night/style/light';
-
 // ---------------------------------------------------------------------------
 // Styled components — ported from Demo.js, DemoToolbarRoot.ts, DemoToolbar.js
 // ---------------------------------------------------------------------------
@@ -162,6 +160,20 @@ const CodeViewer = styled('div')({
     borderRadius: 0,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
+    overflow: 'auto',
+    backgroundColor: 'hsl(210, 25%, 9%)',
+    border: '1px solid transparent',
+    '-webkit-print-color-scheme': 'dark',
+    colorScheme: 'dark',
+    color: '#f8f8f2',
+    paddingTop: 'calc(2 * var(--muidocs-spacing))',
+    paddingRight: 'calc(2 * var(--muidocs-spacing))',
+    paddingBottom: 'calc(2 * var(--muidocs-spacing))',
+    paddingLeft: 'calc(2 * var(--muidocs-spacing))',
+    fontFamily: 'Menlo, Consolas, "Droid Sans Mono", monospace',
+    fontWeight: '400',
+    fontSize: '0.8125rem',
+    lineHeight: '1.5',
   },
 });
 
