@@ -13,9 +13,9 @@
     "directory": "packages/api-docs-builder"
   },
   "dependencies": {
-    "@babel/core": "^7.28.6",
+    "@babel/core": "^7.29.0",
     "@babel/preset-typescript": "^7.28.5",
-    "@babel/traverse": "^7.28.6",
+    "@babel/traverse": "^7.29.0",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
