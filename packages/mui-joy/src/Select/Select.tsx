@@ -724,6 +724,8 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, selecting multiple values is allowed.
    * This affects the type of the `value`, `defaultValue`, and `onChange` props.
+   *
+   * @default false
    */
   multiple: PropTypes.bool,
   /**
