@@ -28,9 +28,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "dependencies": {
-    "@babel/core": "^7.28.6",
+    "@babel/core": "^7.29.0",
     "@babel/runtime": "^7.28.6",
-    "@babel/traverse": "^7.28.6",
+    "@babel/traverse": "^7.29.0",
     "@mui/material-v5": "npm:@mui/material@5.18.0",
     "jscodeshift": "^17.1.2",
     "jscodeshift-add-imports": "^1.0.11",

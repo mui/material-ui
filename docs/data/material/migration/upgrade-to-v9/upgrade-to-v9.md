@@ -98,3 +98,22 @@ type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends
   ? Value | string
   : Value;
 ```
+
+### Grid
+
+The Grid component no longer supports [system props](/material-ui/customization/how-to-customize/#the-sx-prop).
+Use the `sx` prop instead:
+
+```diff
+-<Grid mt={2} mr={1} />
++<Grid sx={{ mt: 2, mr: 1 }} />
+```
+
+This also fixes an issue where props like `color` were consumed by the Grid instead of being forwarded to the component rendered via the `component` prop:
+
+```jsx
+// `color` is now correctly forwarded to Button
+<Grid component={Button} color="secondary" variant="contained">
+  hello
+</Grid>
+```

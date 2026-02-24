@@ -8,7 +8,7 @@ import Tooltip from '@mui/material/Tooltip';
 function PositionedTooltips() {
   return (
     <Box sx={{ width: 400, padding: '50px 70px' }}>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid>
           <Tooltip open arrow title="Add" placement="top-start">
             <Button>top-start</Button>
@@ -21,7 +21,7 @@ function PositionedTooltips() {
           </Tooltip>
         </Grid>
       </Grid>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid size={6}>
           <Tooltip open arrow title="Add" placement="left-start">
             <Button>left-start</Button>
@@ -35,7 +35,7 @@ function PositionedTooltips() {
             <Button>left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid container alignItems="flex-end" direction="column" size={6}>
+        <Grid container direction="column" size={6} sx={{ alignItems: 'flex-end' }}>
           <Grid>
             <Tooltip open arrow title="Add" placement="right-start">
               <Button>right-start</Button>
@@ -53,7 +53,7 @@ function PositionedTooltips() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container justifyContent="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid>
           <Tooltip open arrow title="Add" placement="bottom-start">
             <Button>bottom-start</Button>

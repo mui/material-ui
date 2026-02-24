@@ -20,7 +20,7 @@ permissions: {}
 jobs:
   continuous-releases:
     name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@f87c4b1b022bb383419be7979bcb05c4e343499b
+    uses: mui/mui-public/.github/workflows/ci-base.yml@74232307111caed6f4d181e941df5c358f57ed28
 
   test-dev:
     if: ${{ github.actor != 'l10nbot' }}
