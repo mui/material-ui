@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "7.3.8",
+  "version": "9.0.0-alpha.0",
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
   "keywords": [
@@ -24,11 +24,11 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --skipTsc",
+    "build": "code-infra build --flat --skipTsc",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints StyledEngineProvider GlobalStyles"
+    "attw": "attw --pack ./build"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
@@ -43,9 +43,9 @@
     "@emotion/styled": "11.14.1",
     "@mui/styled-engine": "workspace:*",
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.9",
+    "@types/react": "19.2.14",
     "chai": "6.2.2",
-    "react": "19.2.3"
+    "react": "19.2.4"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",

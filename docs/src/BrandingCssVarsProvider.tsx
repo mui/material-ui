@@ -127,15 +127,11 @@ export function resetDocsSpacing() {
   }
 }
 
-export default function BrandingCssVarsProvider(props: {
-  children: React.ReactNode;
-  direction?: 'ltr' | 'rtl';
-}) {
-  const { direction = 'ltr', children } = props;
-  const { asPath } = useRouter();
-  const { canonicalAs } = pathnameToLanguage(asPath);
-  const theme = React.useMemo(() => {
-    return createTheme({
+const themeCache: Map<string, ReturnType<typeof createTheme>> = new Map();
+function getTheme(direction: 'ltr' | 'rtl') {
+  let cachedTheme = themeCache.get(direction);
+  if (!cachedTheme) {
+    cachedTheme = createTheme({
       cssVariables: {
         cssVarPrefix: 'muidocs',
         colorSchemeSelector: 'data-mui-color-scheme',
@@ -143,7 +139,35 @@ export default function BrandingCssVarsProvider(props: {
       direction,
       ...themeOptions,
     });
-  }, [direction]);
+    themeCache.set(direction, cachedTheme);
+  }
+  return cachedTheme!;
+}
+
+export function BrandingCssThemeProvider({
+  children,
+  direction = 'ltr',
+  forceThemeRerender = false,
+}: React.PropsWithChildren<{ direction?: 'ltr' | 'rtl'; forceThemeRerender?: boolean }>) {
+  return (
+    <ThemeProvider
+      theme={getTheme(direction)}
+      disableTransitionOnChange
+      // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
+      forceThemeRerender={forceThemeRerender}
+    >
+      {children}
+    </ThemeProvider>
+  );
+}
+
+export default function BrandingCssVarsProvider(props: {
+  children: React.ReactNode;
+  direction?: 'ltr' | 'rtl';
+}) {
+  const { direction = 'ltr', children } = props;
+  const { asPath } = useRouter();
+  const { canonicalAs } = pathnameToLanguage(asPath);
   useEnhancedEffect(() => {
     const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
     if (nextPaletteColors) {
@@ -164,10 +188,7 @@ export default function BrandingCssVarsProvider(props: {
     }
   }, [direction]);
   return (
-    <ThemeProvider
-      theme={theme}
-      disableTransitionOnChange
-      // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
+    <BrandingCssThemeProvider
       forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
     >
       <NextNProgressBar />
@@ -175,6 +196,6 @@ export default function BrandingCssVarsProvider(props: {
       <SkipLink />
       <MarkdownLinks />
       {children}
-    </ThemeProvider>
+    </BrandingCssThemeProvider>
   );
 }

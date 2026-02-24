@@ -57,9 +57,11 @@ export interface BackdropOwnProps
    *
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-  };
+  components?:
+    | {
+        Root?: React.ElementType | undefined;
+      }
+    | undefined;
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
@@ -68,19 +70,23 @@ export interface BackdropOwnProps
    *
    * @default {}
    */
-  componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
-  };
+  componentsProps?:
+    | {
+        root?:
+          | (React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides)
+          | undefined;
+      }
+    | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<BackdropClasses>;
+  classes?: Partial<BackdropClasses> | undefined;
   /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.
    * @default false
    */
-  invisible?: boolean;
+  invisible?: boolean | undefined;
   /**
    * If `true`, the component is shown.
    */
@@ -88,23 +94,25 @@ export interface BackdropOwnProps
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  transitionDuration?: TransitionProps['timeout'];
+  transitionDuration?: TransitionProps['timeout'] | undefined;
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & {
-      children: React.ReactElement<unknown, any>;
-    }
-  >;
+  TransitionComponent?:
+    | React.JSXElementConstructor<
+        TransitionProps & {
+          children: React.ReactElement<unknown, any>;
+        }
+      >
+    | undefined;
 }
 
 export interface BackdropTypeMap<
@@ -123,12 +131,12 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
  *
  * Demos:
  *
- * - [Backdrop](https://mui.com/material-ui/react-backdrop/)
+ * - [Backdrop](https://next.mui.com/material-ui/react-backdrop/)
  *
  * API:
  *
- * - [Backdrop API](https://mui.com/material-ui/api/backdrop/)
- * - inherits [Fade API](https://mui.com/material-ui/api/fade/)
+ * - [Backdrop API](https://next.mui.com/material-ui/api/backdrop/)
+ * - inherits [Fade API](https://next.mui.com/material-ui/api/fade/)
  */
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 
@@ -136,7 +144,7 @@ export type BackdropProps<
   RootComponent extends React.ElementType = BackdropTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<BackdropTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export interface BackdropOwnerState extends BackdropProps {}

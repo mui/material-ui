@@ -114,6 +114,7 @@ export default async function create(
     },
     resolve: {
       dedupe: ['react', 'react-dom'],
+      extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
       alias: {
         '@mui/internal-docs-utils': path.resolve(
           MONOREPO_ROOT,
@@ -130,7 +131,7 @@ export default async function create(
           MONOREPO_ROOT,
           './packages/mui-stylis-plugin-rtl/src',
         ),
-        '@mui/icons-material': path.resolve(MONOREPO_ROOT, './packages/mui-icons-material/lib/esm'),
+        '@mui/icons-material': path.resolve(MONOREPO_ROOT, './packages/mui-icons-material/lib'),
         '@mui/lab': path.resolve(MONOREPO_ROOT, './packages/mui-lab/src'),
         '@mui/private-theming': path.resolve(MONOREPO_ROOT, './packages/mui-private-theming/src'),
         '@mui/joy': path.resolve(MONOREPO_ROOT, './packages/mui-joy/src'),

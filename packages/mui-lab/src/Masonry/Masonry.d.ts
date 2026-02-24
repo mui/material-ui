@@ -11,38 +11,38 @@ export interface MasonryOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<MasonryClasses>;
+  classes?: Partial<MasonryClasses> | undefined;
   /**
    * Number of columns.
    * @default 4
    */
-  columns?: ResponsiveStyleValue<number | string>;
+  columns?: ResponsiveStyleValue<number | string> | undefined;
   /**
    * The default number of columns of the component. This is provided for server-side rendering.
    */
-  defaultColumns?: number;
+  defaultColumns?: number | undefined;
   /**
    * The default height of the component in px. This is provided for server-side rendering.
    */
-  defaultHeight?: number;
+  defaultHeight?: number | undefined;
   /**
    * The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
    */
-  defaultSpacing?: number;
+  defaultSpacing?: number | undefined;
   /**
    * Defines the space between children. It is a factor of the theme's spacing.
    * @default 1
    */
-  spacing?: ResponsiveStyleValue<number | string>;
+  spacing?: ResponsiveStyleValue<number | string> | undefined;
   /**
    * Allows using sequential order rather than adding to shortest column
    * @default false
    */
-  sequential?: boolean;
+  sequential?: boolean | undefined;
   /**
    * Allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface MasonryTypeMap<
@@ -56,11 +56,11 @@ export interface MasonryTypeMap<
  *
  * Demos:
  *
- * - [Masonry](https://mui.com/material-ui/react-masonry/)
+ * - [Masonry](https://next.mui.com/material-ui/react-masonry/)
  *
  * API:
  *
- * - [Masonry API](https://mui.com/material-ui/api/masonry/)
+ * - [Masonry API](https://next.mui.com/material-ui/api/masonry/)
  */
 declare const Masonry: OverridableComponent<MasonryTypeMap>;
 

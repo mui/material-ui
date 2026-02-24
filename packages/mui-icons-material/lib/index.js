@@ -1,3 +1,10 @@
+/**
+ * @mui/icons-material v9.0.0-alpha.0
+ *
+ * @license MIT
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault").default;
@@ -21055,7 +21062,7 @@ Object.defineProperty(exports, "Filter8TwoTone", {
 Object.defineProperty(exports, "Filter9", {
   enumerable: true,
   get: function () {
-    return _Filter10.default;
+    return _Filter0.default;
   }
 });
 Object.defineProperty(exports, "Filter9Outlined", {
@@ -68150,7 +68157,7 @@ var _Filter8Outlined = _interopRequireDefault(require("./Filter8Outlined"));
 var _Filter8Rounded = _interopRequireDefault(require("./Filter8Rounded"));
 var _Filter8Sharp = _interopRequireDefault(require("./Filter8Sharp"));
 var _Filter8TwoTone = _interopRequireDefault(require("./Filter8TwoTone"));
-var _Filter10 = _interopRequireDefault(require("./Filter9"));
+var _Filter0 = _interopRequireDefault(require("./Filter9"));
 var _Filter9Outlined = _interopRequireDefault(require("./Filter9Outlined"));
 var _Filter9Plus = _interopRequireDefault(require("./Filter9Plus"));
 var _Filter9PlusOutlined = _interopRequireDefault(require("./Filter9PlusOutlined"));
