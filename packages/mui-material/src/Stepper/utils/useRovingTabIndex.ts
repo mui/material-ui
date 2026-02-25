@@ -2,6 +2,9 @@
 
 import * as React from 'react';
 
+import ownerDocument from '../../utils/ownerDocument';
+import getActiveElement from '../../utils/getActiveElement';
+
 export type UseRovingTabIndexOptions = {
   focusableIndex?: number | undefined;
   orientation: 'horizontal' | 'vertical';
@@ -21,8 +24,9 @@ type UseRovingTabIndexReturn = {
   getContainerProps: () => {
     onFocus: (event: React.FocusEvent<HTMLElement>) => void;
     onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => void;
+    ref: (element: HTMLElement | null) => void;
   };
-  focusNext: (shouldSkipFocusOverride?: (element: HTMLElement | null) => boolean) => void;
+  focusNext: (shouldSkipFocusOverride?: (element: HTMLElement | null) => boolean) => number;
 };
 
 const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
@@ -61,10 +65,14 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
   const [focusableIndex, setFocusableIndex] = React.useState(initialFocusableIndex);
 
   const elementsRef = React.useRef<(HTMLElement | null)[]>([]);
-  const indexRef = React.useRef(initialFocusableIndex);
+  const containerRef = React.useRef<HTMLElement | null>(null);
+  const previousFocusableIndexPropRef = React.useRef<number | undefined>(initialFocusableIndex);
 
-  if (focusableIndexProp !== undefined && focusableIndexProp !== indexRef.current) {
-    indexRef.current = focusableIndexProp;
+  if (
+    focusableIndexProp !== undefined &&
+    focusableIndexProp !== previousFocusableIndexPropRef.current
+  ) {
+    previousFocusableIndexPropRef.current = focusableIndexProp;
 
     if (focusableIndexProp !== focusableIndex) {
       setFocusableIndex(focusableIndexProp);
@@ -72,23 +80,18 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
   }
 
   React.useEffect(() => {
-    if (
-      focusableIndexProp !== undefined &&
-      shouldSkipFocus(elementsRef.current[focusableIndexProp])
-    ) {
+    if (shouldSkipFocus(elementsRef.current[focusableIndex])) {
       const nextIndex = internalFocusNext(
         elementsRef,
-        focusableIndexProp,
+        focusableIndex,
         'next',
-        shouldWrap,
+        false,
         shouldSkipFocus,
       );
 
-      if (nextIndex !== -1) {
-        setFocusableIndex(nextIndex);
-      }
+      setFocusableIndex(nextIndex);
     }
-  }, [focusableIndexProp, shouldSkipFocus, shouldWrap]);
+  }, [focusableIndex, shouldSkipFocus]);
 
   const getItemProps = React.useCallback(
     (index: number, ref?: React.Ref<HTMLElement>) => ({
@@ -136,6 +139,8 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
         nextItemKey = 'ArrowLeft';
       }
 
+      const currentFocus = getActiveElement(ownerDocument(containerRef.current));
+      const isFocusOnContainer = currentFocus === containerRef.current;
       let direction: 'next' | 'previous' = 'next';
       let currentIndex = focusableIndex;
 
@@ -143,9 +148,17 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
         case previousItemKey:
           direction = 'previous';
           event.preventDefault();
+
+          if (isFocusOnContainer) {
+            currentIndex = elementsRef.current.length;
+          }
           break;
         case nextItemKey:
           event.preventDefault();
+
+          if (isFocusOnContainer) {
+            currentIndex = -1;
+          }
           break;
         case 'Home':
           event.preventDefault();
@@ -166,6 +179,11 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
     return {
       onFocus,
       onKeyDown,
+      ref: handleRefs(containerRef, (elementNode) => {
+        if (elementNode) {
+          containerRef.current = elementNode;
+        }
+      }),
     };
   }, [focusableIndex, isRtl, orientation, shouldWrap, shouldSkipFocus]);
 
@@ -182,6 +200,8 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
       if (nextIndex !== -1) {
         setFocusableIndex(nextIndex);
       }
+
+      return nextIndex;
     },
     [focusableIndex, shouldSkipFocus],
   );
