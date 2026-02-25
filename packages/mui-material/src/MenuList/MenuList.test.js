@@ -36,6 +36,17 @@ describe('<MenuList />', () => {
     ],
   }));
 
+  it('should render a list with role menu and tabIndex -1', () => {
+    render(
+      <MenuList>
+        <div role="menuitem">one</div>
+        <div role="menuitem">two</div>
+      </MenuList>,
+    );
+
+    expect(screen.getByRole('menu')).to.have.attribute('tabIndex', '-1');
+  });
+
   describe('prop: children', () => {
     it('should support null children', () => {
       render(
