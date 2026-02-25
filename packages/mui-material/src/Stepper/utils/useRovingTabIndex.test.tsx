@@ -591,11 +591,11 @@ describe('useRovingTabIndexFocus', () => {
     expect(button1).toHaveFocus();
   });
 
-  test('should skip focus on elements for which shouldSkipFocus returns true', async () => {
-    const shouldSkipFocus = (element: HTMLElement | null) =>
-      element?.getAttribute('data-disabled') === 'true';
+  test('should skip focus on elements for which shouldFocus returns false', async () => {
+    const shouldFocus = (element: HTMLElement | null) =>
+      element?.getAttribute('data-disabled') !== 'true';
 
-    const { user } = render(<TestComponent shouldSkipFocus={shouldSkipFocus} />);
+    const { user } = render(<TestComponent shouldFocus={shouldFocus} />);
 
     const button1 = screen.getByTestId('button-1');
     const button2 = screen.getByTestId('button-2');
@@ -669,12 +669,11 @@ describe('useRovingTabIndexFocus', () => {
     expect(focusNextResult).to.equal(1);
   });
 
-  test('focusNext function should skip elements for which shouldSkipFocus returns true', async () => {
+  test('focusNext function should skip elements for which shouldFocus returns false', async () => {
     let focusNextResult: number | undefined;
-    const shouldSkipFocus = (element: HTMLElement | null) =>
-      element === screen.getByTestId('button-2');
+    const shouldFocus = (element: HTMLElement | null) => element !== screen.getByTestId('button-2');
 
-    const { user } = render(<TestComponent shouldSkipFocus={shouldSkipFocus} />);
+    const { user } = render(<TestComponent shouldFocus={shouldFocus} />);
 
     const button1 = screen.getByTestId('button-1');
     const button2 = screen.getByTestId('button-2');
@@ -704,7 +703,7 @@ describe('useRovingTabIndexFocus', () => {
     await user.click(button1);
 
     React.act(() => {
-      focusNextResult = focusNext(() => true);
+      focusNextResult = focusNext(() => false);
     });
 
     expect(focusNextResult).to.equal(-1);

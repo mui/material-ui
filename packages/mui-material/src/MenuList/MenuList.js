@@ -30,24 +30,24 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   return text.startsWith(textCriteria.keys.join(''));
 }
 
-function shouldSkipFocusWithTextCriteria(element, criteria, disabledItemsFocusable) {
+function shouldFocusWithTextCriteria(element, criteria, disabledItemsFocusable) {
   if (!textCriteriaMatches(element, criteria)) {
-    return true;
-  }
-
-  return shouldSkipFocus(element, disabledItemsFocusable);
-}
-
-function shouldSkipFocus(element, disabledItemsFocusable) {
-  if (!element || !element.hasAttribute('tabindex')) {
-    return true;
-  }
-
-  if (disabledItemsFocusable) {
     return false;
   }
 
-  return element.disabled || element.getAttribute('aria-disabled') === 'true';
+  return shouldFocus(element, disabledItemsFocusable);
+}
+
+function shouldFocus(element, disabledItemsFocusable) {
+  if (!element || !element.hasAttribute('tabindex')) {
+    return false;
+  }
+
+  if (disabledItemsFocusable) {
+    return true;
+  }
+
+  return !element.disabled && element.getAttribute('aria-disabled') !== 'true';
 }
 
 /**
@@ -160,7 +160,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     focusableIndex: activeItemIndex,
     orientation: 'vertical',
     shouldWrap: !disableListWrap,
-    shouldSkipFocus: (element) => shouldSkipFocus(element, disabledItemsFocusable),
+    shouldFocus: (element) => shouldFocus(element, disabledItemsFocusable),
   });
   const {
     onFocus,
@@ -235,7 +235,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
           criteria.previousKeyMatched &&
           (keepFocusOnCurrent ||
             focusNext((element) =>
-              shouldSkipFocusWithTextCriteria(element, criteria, disabledItemsFocusable),
+              shouldFocusWithTextCriteria(element, criteria, disabledItemsFocusable),
             ) !== -1)
         ) {
           event.preventDefault();
@@ -258,7 +258,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       className={className}
       onKeyDown={handleKeyDown}
       onFocus={onFocus}
-      tabIndex={autoFocus ? 0 : -1}
+      tabIndex={autoFocus ? -1 : undefined}
       {...other}
     >
       {items}
