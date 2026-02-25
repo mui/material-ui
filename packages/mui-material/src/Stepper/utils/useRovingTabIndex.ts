@@ -80,6 +80,10 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
   }
 
   React.useEffect(() => {
+    if (elementsRef.current.length === 0) {
+      return;
+    }
+
     if (shouldSkipFocus(elementsRef.current[focusableIndex])) {
       const nextIndex = internalFocusNext(
         elementsRef,

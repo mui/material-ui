@@ -136,6 +136,24 @@ describe('useRovingTabIndexFocus', () => {
     expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
   });
 
+  test('should do nothing when there are no children', () => {
+    function TestComponentWithDisabledButtons() {
+      const { getContainerProps } = useRovingTabIndexFocus({
+        orientation: 'horizontal',
+      });
+
+      return <div data-testid="container" tabIndex={-1} {...getContainerProps()}></div>;
+    }
+
+    const { setProps } = render(<TestComponentWithDisabledButtons />);
+
+    expect(screen.getByTestId('container').getAttribute('tabindex')).to.equal('-1');
+
+    setProps({ focusableIndex: 1 });
+
+    expect(screen.getByTestId('container').getAttribute('tabindex')).to.equal('-1');
+  });
+
   test('should make the controlled prop take precedence over internal state', async () => {
     const focusableIndex = 1;
 
