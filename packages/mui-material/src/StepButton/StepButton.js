@@ -77,7 +77,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
-  const { ref: mergedRef, tabIndex } = getRovingTabIndexProps?.(index, ref) ?? {
+  const rovingTabIndexItemProps = getRovingTabIndexProps?.(index, ref) ?? {
     ref,
     tabIndex: active ? 0 : -1,
   };
@@ -92,13 +92,12 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, className)}
-      ref={mergedRef}
       ownerState={ownerState}
       aria-selected={active}
       aria-posinset={index + 1}
       aria-setsize={totalSteps}
       role={'tab'}
-      tabIndex={tabIndex}
+      {...rovingTabIndexItemProps}
       {...other}
     >
       {child}

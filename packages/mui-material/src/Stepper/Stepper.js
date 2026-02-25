@@ -103,7 +103,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     orientation,
     isRtl,
   });
-  const { onFocus, onKeyDown } = getContainerProps();
+  const rovingTabIndexContainerProps = getContainerProps();
 
   const contextValue = React.useMemo(
     () => ({
@@ -136,7 +136,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
         className={clsx(classes.root, className)}
         ref={ref}
         aria-orientation={orientation}
-        {...(isTabList && { role: 'tablist', onFocus, onKeyDown })}
+        {...(isTabList && { role: 'tablist', ...rovingTabIndexContainerProps })}
         {...other}
       >
         {steps}
