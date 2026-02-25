@@ -70,9 +70,9 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' });
 
       expect(menuitems[2]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
 
     it('should select the second item when pressing down if the first item is selected', () => {
@@ -88,8 +88,8 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
 
       expect(menuitems[1]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
-      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
@@ -160,7 +160,7 @@ describe('<MenuList> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('down arrow can go to all items while not changing tabIndex', () => {
+    it('down arrow can go to all items while changing tabIndex', () => {
       render(
         <MenuList autoFocusItem>
           <MenuItem selected>Menu Item 1</MenuItem>
@@ -174,16 +174,16 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
 
       expect(menuitems[1]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
-      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
 
       fireEvent.keyDown(menuitems[1], { key: 'ArrowDown' });
 
       expect(menuitems[2]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
 
     describe('when a modifier key is pressed', () => {
@@ -268,8 +268,8 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
 
@@ -287,8 +287,8 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(screen.getByRole('menu'), { key: 'ArrowDown' });
 
       expect(menuitems[0]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
@@ -308,8 +308,8 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
 

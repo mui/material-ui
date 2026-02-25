@@ -30,6 +30,26 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   return text.startsWith(textCriteria.keys.join(''));
 }
 
+function shouldSkipFocusWithTextCriteria(element, criteria, disabledItemsFocusable) {
+  if (!textCriteriaMatches(element, criteria)) {
+    return true;
+  }
+
+  return shouldSkipFocus(element, disabledItemsFocusable);
+}
+
+function shouldSkipFocus(element, disabledItemsFocusable) {
+  if (!element || !element.hasAttribute('tabindex')) {
+    return true;
+  }
+
+  if (disabledItemsFocusable) {
+    return false;
+  }
+
+  return element.disabled || element.getAttribute('aria-disabled') === 'true';
+}
+
 /**
  * A permanently displayed menu following https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/.
  * It's exposed to help customization of the [`Menu`](/material-ui/api/menu/) component if you
@@ -83,8 +103,6 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }),
     [],
   );
-
-  const handleRef = useForkRef(listRef, ref);
 
   /**
    * the index of the item should receive focus
@@ -142,8 +160,14 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     focusableIndex: activeItemIndex,
     orientation: 'vertical',
     shouldWrap: !disableListWrap,
+    shouldSkipFocus: (element) => shouldSkipFocus(element, disabledItemsFocusable),
   });
-  const { onFocus, onKeyDown: rovingTabIndexOnKeyDown } = getContainerProps();
+  const {
+    onFocus,
+    onKeyDown: rovingTabIndexOnKeyDown,
+    ref: rovingTabIndexRef,
+  } = getContainerProps();
+  const handleRef = useForkRef(listRef, rovingTabIndexRef, ref);
 
   let focusableIndex = 0;
   const items = React.Children.map(children, (child, index) => {
@@ -210,25 +234,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         if (
           criteria.previousKeyMatched &&
           (keepFocusOnCurrent ||
-            focusNext((element) => {
-              if (!element.hasAttribute('tabindex') || !textCriteriaMatches(element, criteria)) {
-                return true;
-              }
-
-              if (disabledItemsFocusable) {
-                return false;
-              }
-
-              return element.disabled || element.getAttribute('aria-disabled') === 'true';
-
-              // return (
-              //   disabledItemsFocusable ||
-              //   element.disabled ||
-              //   element.getAttribute('aria-disabled') === 'true' ||
-              //   !element.hasAttribute('tabindex') ||
-              //   !textCriteriaMatches(element, criteria)
-              // );
-            }) !== -1)
+            focusNext((element) =>
+              shouldSkipFocusWithTextCriteria(element, criteria, disabledItemsFocusable),
+            ) !== -1)
         ) {
           event.preventDefault();
         } else {
