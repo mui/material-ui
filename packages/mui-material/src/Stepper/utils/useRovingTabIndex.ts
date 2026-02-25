@@ -271,10 +271,14 @@ function getNextIndex(
 }
 
 function internalShouldSkipFocus(element: HTMLElement | null) {
+  if (!element) {
+    return true;
+  }
+
   return (
-    element?.hasAttribute('disabled') ||
-    element?.getAttribute('aria-disabled') === 'true' ||
-    !element?.hasAttribute('tabindex')
+    element.hasAttribute('disabled') ||
+    element.getAttribute('aria-disabled') === 'true' ||
+    !element.hasAttribute('tabindex')
   );
 }
 
