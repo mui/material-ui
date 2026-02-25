@@ -162,12 +162,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     shouldWrap: !disableListWrap,
     shouldFocus: (element) => shouldFocus(element, disabledItemsFocusable),
   });
-  const {
-    onFocus,
-    onKeyDown: rovingTabIndexOnKeyDown,
-    ref: rovingTabIndexRef,
-  } = getContainerProps();
-  const handleRef = useForkRef(listRef, rovingTabIndexRef, ref);
+  const rovingTabIndexContainerProps = getContainerProps();
+  const handleRef = useForkRef(listRef, rovingTabIndexContainerProps.ref, ref);
 
   let focusableIndex = 0;
   const items = React.Children.map(children, (child, index) => {
@@ -181,14 +177,14 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 
     const newChildProps = getItemProps(focusableIndex, child.ref);
 
+    if (child.props.tabIndex !== undefined || variant === 'menu') {
+     delete newChildProps.tabIndex;
+    }
+
     if (index === activeItemIndex) {
       if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
-
-      // if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
-      //   newChildProps.tabIndex = 0;
-      // }
     }
 
     focusableIndex += 1;
@@ -196,60 +192,57 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     return React.cloneElement(child, newChildProps);
   });
 
-  const handleKeyDown = React.useCallback(
-    (event) => {
-      const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
+  const handleKeyDown = (event) => {
+    const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
 
-      if (isModifierKeyPressed && onKeyDown) {
-        onKeyDown(event);
+    if (isModifierKeyPressed && onKeyDown) {
+      onKeyDown(event);
 
-        return;
-      }
+      return;
+    }
 
-      rovingTabIndexOnKeyDown(event);
+    rovingTabIndexContainerProps.onKeyDown(event);
 
-      if (event.key.length === 1) {
-        const criteria = textCriteriaRef.current;
-        const lowerKey = event.key.toLowerCase();
-        const currTime = performance.now();
+    if (event.key.length === 1) {
+      const criteria = textCriteriaRef.current;
+      const lowerKey = event.key.toLowerCase();
+      const currTime = performance.now();
 
-        if (criteria.keys.length > 0) {
-          // Reset
-          if (currTime - criteria.lastTime > 500) {
-            criteria.keys = [];
-            criteria.repeating = true;
-            criteria.previousKeyMatched = true;
-          } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
-            criteria.repeating = false;
-          }
-        }
-
-        criteria.lastTime = currTime;
-        criteria.keys.push(lowerKey);
-
-        const currentFocus = getActiveElement(ownerDocument(listRef.current));
-        const keepFocusOnCurrent =
-          currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
-
-        if (
-          criteria.previousKeyMatched &&
-          (keepFocusOnCurrent ||
-            focusNext((element) =>
-              shouldFocusWithTextCriteria(element, criteria, disabledItemsFocusable),
-            ) !== -1)
-        ) {
-          event.preventDefault();
-        } else {
-          criteria.previousKeyMatched = false;
+      if (criteria.keys.length > 0) {
+        // Reset
+        if (currTime - criteria.lastTime > 500) {
+          criteria.keys = [];
+          criteria.repeating = true;
+          criteria.previousKeyMatched = true;
+        } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+          criteria.repeating = false;
         }
       }
 
-      if (onKeyDown) {
-        onKeyDown(event);
+      criteria.lastTime = currTime;
+      criteria.keys.push(lowerKey);
+
+      const currentFocus = getActiveElement(ownerDocument(listRef.current));
+      const keepFocusOnCurrent =
+        currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
+
+      if (
+        criteria.previousKeyMatched &&
+        (keepFocusOnCurrent ||
+          focusNext((element) =>
+            shouldFocusWithTextCriteria(element, criteria, disabledItemsFocusable),
+          ) !== -1)
+      ) {
+        event.preventDefault();
+      } else {
+        criteria.previousKeyMatched = false;
       }
-    },
-    [disabledItemsFocusable, focusNext, onKeyDown, rovingTabIndexOnKeyDown],
-  );
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  };
 
   return (
     <List
@@ -257,7 +250,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       ref={handleRef}
       className={className}
       onKeyDown={handleKeyDown}
-      onFocus={onFocus}
+      onFocus={rovingTabIndexContainerProps.onFocus}
       tabIndex={-1}
       {...other}
     >

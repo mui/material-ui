@@ -268,7 +268,7 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
@@ -308,7 +308,7 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
