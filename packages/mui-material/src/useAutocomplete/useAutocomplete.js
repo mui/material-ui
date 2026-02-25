@@ -620,6 +620,20 @@ function useAutocomplete(props) {
     }
   }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
 
+  // Listen for browser window blur to detect when the user switches tabs or windows.
+  // This helps prevent the popup from reopening automatically when the window regains focus.
+  React.useEffect(() => {
+    const handleWindowBlur = () => {
+      windowLostFocus.current = true;
+    };
+
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, [popupOpen]);
+
   const handleOpen = (event) => {
     if (open) {
       return;
@@ -996,15 +1010,17 @@ function useAutocomplete(props) {
       focusItem(-1);
     }
 
-    // Prevent popup from reopening when window regains focus
-    // relatedTarget is null when focus comes from outside of document (window regain)
-    // For Tab/keyboard navigation, relatedTarget will be the previous element
-    const isWindowRegainingFocus = windowLostFocus.current && event?.relatedTarget === null;
-    if (openOnFocus && !ignoreFocus.current && !isWindowRegainingFocus) {
-      handleOpen(event);
+    // If the window previously lost focus while the popup was open,
+    // ignore this focus event to prevent unintended reopening.
+    // Reset the flag so normal focus behavior resumes.
+    if (windowLostFocus.current) {
+      windowLostFocus.current = false;
+      return;
     }
 
-    windowLostFocus.current = false;
+    if (openOnFocus && !ignoreFocus.current) {
+      handleOpen(event);
+    }
   };
 
   const handleBlur = (event) => {
@@ -1016,12 +1032,6 @@ function useAutocomplete(props) {
 
     setFocused(false);
     firstFocus.current = true;
-    // Track when window loses focus (relatedTarget is null)
-    // Only set if popup is open, to prevent preventing legitimate re-opens when popup is already closed
-    if (event?.relatedTarget === null && popupOpen) {
-      windowLostFocus.current = true;
-    }
-
     ignoreFocus.current = false;
 
     if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
@@ -1124,7 +1134,6 @@ function useAutocomplete(props) {
     if (!event.currentTarget.contains(event.target)) {
       return;
     }
-    ignoreFocus.current = false;
     inputRef.current.focus();
 
     if (
