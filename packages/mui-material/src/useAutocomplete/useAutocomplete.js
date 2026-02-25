@@ -632,7 +632,7 @@ function useAutocomplete(props) {
     return () => {
       window.removeEventListener('blur', handleWindowBlur);
     };
-  }, [popupOpen]);
+  }, []);
 
   const handleOpen = (event) => {
     if (open) {
