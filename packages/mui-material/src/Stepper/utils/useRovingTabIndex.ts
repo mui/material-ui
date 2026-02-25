@@ -79,7 +79,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
   }
 
   React.useEffect(() => {
-    if (elementsRef.current.length === 0 || focusableIndex === -1) {
+    if (elementsRef.current.length === 0 || focusableIndex === -1 || focusableIndex >= elementsRef.current.length) {
       return;
     }
 
