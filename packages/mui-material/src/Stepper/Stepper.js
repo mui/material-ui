@@ -100,7 +100,6 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   });
 
   const { getContainerProps, getItemProps } = useRovingTabIndexFocus({
-    initialIndex: activeStep,
     orientation,
     isRtl,
   });

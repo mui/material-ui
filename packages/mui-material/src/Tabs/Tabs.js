@@ -20,6 +20,7 @@ import ownerWindow from '../utils/ownerWindow';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
 import useRovingTabIndex from '../Stepper/utils/useRovingTabIndex';
+import { useForkRef } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -756,7 +757,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const focusableIndex = valueToIndex.get(value);
 
-  const { getContainerProps, getItemProps } = useRovingTabIndex({
+  const { getContainerProps, getItemProps, ref: rovingTabIndexRef } = useRovingTabIndex({
     focusableIndex,
     orientation,
     isRtl,
@@ -766,7 +767,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const children = validChildren.map(({ child, index, childValue }) => {
     const selected = childValue === value;
 
-    const {ref, tabIndex} = getItemProps(index, child.ref);
+    const { ref: mergedRef, tabIndex } = getItemProps(index, child.ref);
 
     return React.cloneElement(child, {
       fullWidth: variant === 'fullWidth',
@@ -777,7 +778,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       textColor,
       value: childValue,
       tabIndex,
-      ref
+      ref: mergedRef,
     });
   });
 
@@ -811,8 +812,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     },
   });
 
+  const mergedRef = useForkRef(rovingTabIndexRef, tabListRef);
+
   const [ListSlot, listSlotProps] = useSlot('list', {
-    ref: tabListRef,
+    ref: mergedRef,
     className: clsx(classes.list, classes.flexContainer),
     elementType: List,
     externalForwardedProps,
