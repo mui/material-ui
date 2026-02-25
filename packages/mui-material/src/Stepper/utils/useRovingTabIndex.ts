@@ -30,7 +30,6 @@ type UseRovingTabIndexReturn = {
 };
 
 const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
-const SUPPORTED_ROLES = ['button', 'tab', 'menuitem', 'option'];
 
 /**
  * Implements roving tab index focus management on a set of focusable elements.
@@ -80,18 +79,12 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
   }
 
   React.useEffect(() => {
-    if (elementsRef.current.length === 0) {
+    if (elementsRef.current.length === 0 || focusableIndex === -1) {
       return;
     }
 
     if (!shouldFocus(elementsRef.current[focusableIndex])) {
-      const nextIndex = focusNext(
-        elementsRef,
-        focusableIndex,
-        'next',
-        false,
-        shouldFocus,
-      );
+      const nextIndex = focusNext(elementsRef, focusableIndex, 'next', false, shouldFocus);
 
       setFocusableIndex(nextIndex);
     }
@@ -125,12 +118,6 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
       }
 
       if (!SUPPORTED_KEYS.includes(event.key)) {
-        return;
-      }
-
-      const currentElement = elementsRef.current[focusableIndex];
-
-      if (!SUPPORTED_ROLES.includes(currentElement?.getAttribute('role') ?? '')) {
         return;
       }
 
@@ -198,7 +185,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
       let currentIndex = focusableIndex;
 
       if (isFocusOnContainer) {
-        currentIndex = -1
+        currentIndex = -1;
       }
 
       const nextIndex = focusNext(

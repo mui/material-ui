@@ -485,42 +485,6 @@ describe('useRovingTabIndexFocus', () => {
     },
   );
 
-  it.each(['button', 'tab', 'menuitem', 'option'])(
-    'should only consider elements with the %s role as focusable',
-    async (role) => {
-      const { user } = render(<TestComponent />);
-
-      const button1 = screen.getByTestId('button-1');
-      const button2 = screen.getByTestId('button-2');
-
-      button1.setAttribute('role', role);
-      button2.setAttribute('role', role);
-
-      await user.click(button1);
-      await user.keyboard('{ArrowRight}');
-
-      expect(button1.getAttribute('tabindex')).to.equal('-1');
-      expect(button2.getAttribute('tabindex')).to.equal('0');
-      expect(button2).toHaveFocus();
-    },
-  );
-
-  test('should not change focus if the next focusable element does not have a supported role', async () => {
-    const { user } = render(<TestComponent />);
-
-    const button1 = screen.getByTestId('button-1');
-    const button2 = screen.getByTestId('button-2');
-
-    button1.setAttribute('role', 'presentation');
-    button2.setAttribute('role', 'presentation');
-
-    await user.click(button1);
-    await user.keyboard('{ArrowRight}');
-
-    expect(button1.getAttribute('tabindex')).to.equal('0');
-    expect(button2.getAttribute('tabindex')).to.equal('-1');
-  });
-
   test('prevents default behavior of arrow keys when navigating', async () => {
     const { user } = render(<TestComponent />);
 
