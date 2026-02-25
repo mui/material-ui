@@ -20,7 +20,7 @@ import ownerWindow from '../utils/ownerWindow';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
 import useRovingTabIndex from '../Stepper/utils/useRovingTabIndex';
-import { useForkRef } from '../utils';
+import { ownerDocument, useForkRef, getActiveElement } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -757,17 +757,17 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const focusableIndex = valueToIndex.get(value);
 
-  const { getContainerProps, getItemProps, ref: rovingTabIndexRef } = useRovingTabIndex({
+  const { getContainerProps, getItemProps } = useRovingTabIndex({
     focusableIndex,
     orientation,
     isRtl,
   });
-  const { onFocus, onKeyDown } = getContainerProps();
+  const rovingTabIndexContainerProps = getContainerProps();
 
   const children = validChildren.map(({ child, index, childValue }) => {
     const selected = childValue === value;
 
-    const { ref: mergedRef, tabIndex } = getItemProps(index, child.ref);
+    const rovingTabIndexItemProps = getItemProps(index, child.ref);
 
     return React.cloneElement(child, {
       fullWidth: variant === 'fullWidth',
@@ -777,8 +777,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       onChange,
       textColor,
       value: childValue,
-      tabIndex,
-      ref: mergedRef,
+      ...rovingTabIndexItemProps,
     });
   });
 
@@ -812,7 +811,21 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     },
   });
 
-  const mergedRef = useForkRef(rovingTabIndexRef, tabListRef);
+  const mergedRef = useForkRef(rovingTabIndexContainerProps.ref, tabListRef);
+
+  const handleKeyDown = (event) => {
+    const list = tabListRef.current;
+    const currentFocus = getActiveElement(ownerDocument(list));
+    // Keyboard navigation assumes that [role="tab"] are siblings
+    // though we might warn in the future about nested, interactive elements
+    // as a a11y violation
+    const role = currentFocus?.getAttribute('role');
+    if (role !== 'tab') {
+      return;
+    }
+
+    rovingTabIndexContainerProps.onKeyDown(event);
+  };
 
   const [ListSlot, listSlotProps] = useSlot('list', {
     ref: mergedRef,
@@ -823,11 +836,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     getSlotProps: (handlers) => ({
       ...handlers,
       onKeyDown: (event) => {
-        onKeyDown(event);
+        handleKeyDown(event);
         handlers.onKeyDown?.(event);
       },
       onFocus: (event) => {
-        onFocus(event);
+        rovingTabIndexContainerProps.onFocus(event);
         handlers.onFocus?.(event);
       },
     }),
