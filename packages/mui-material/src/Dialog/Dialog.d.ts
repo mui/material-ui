@@ -111,11 +111,6 @@ export interface DialogProps
    */
   classes?: Partial<DialogClasses> | undefined;
   /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   * @default false
-   */
-  disableEscapeKeyDown?: boolean | undefined;
-  /**
    * If `true`, the dialog is full-screen.
    * @default false
    */

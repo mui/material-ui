@@ -26,6 +26,7 @@ import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvide
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { AnalyticsProvider } from 'docs/src/modules/components/AnalyticsProvider';
 import { DocsProvider } from '@mui/docs/DocsProvider';
 import { mapTranslations } from '@mui/docs/i18n';
 import SvgMuiLogomark, {
@@ -428,8 +429,10 @@ function AppWrapper(props) {
               <DemoContext.Provider value={demoContextValue}>
                 <ThemeProvider>
                   <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                    {children}
-                    <GoogleAnalytics />
+                    <AnalyticsProvider>
+                      {children}
+                      <GoogleAnalytics />
+                    </AnalyticsProvider>
                   </DocsStyledEngineProvider>
                 </ThemeProvider>
               </DemoContext.Provider>

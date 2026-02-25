@@ -23,3 +23,97 @@ The steps you need to take to migrate from Material UI v7 to v9 are described 
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### Backdrop
+
+The Backdrop component no longer adds the `aria-hidden="true"` attribute to the Root slot by default.
+
+### Dialog & Modal
+
+The `disableEscapeKeyDown` prop has been removed. The same behavior could be achieved
+by checking the value of the `reason` argument in `onClose`:
+
+```diff
+  const [open, setOpen] = React.useState(true);
+- const handleClose = () => {
+-   setOpen(false);
+- };
++ const handleClose = (_event: React.SyntheticEvent<unknown>, reason: string) => {
++   if (reason !== 'escapeKeyDown') {
++     setOpen(false);
++   }
++ };
+  return (
+-  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
++  <Dialog open={open} onClose={handleClose}>
+    {/* ... */}
+  </Dialog>
+  );
+```
+
+The `Modal` change is the same.
+
+### ButtonBase
+
+#### Click event propagation from Enter and Spacebar
+
+When sending Enter and Spacebar keys on the ButtonBase or components that are composed from ButtonBase,
+the click event now bubbles to their ancestors.
+
+Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
+in the ButtonBase keyboard handlers. This is actually the expected behavior.
+
+### Autocomplete
+
+#### Listbox toggle on right click
+
+The listbox does not toggle anymore when using right click on the input. The left click toggle behavior remains unchanged.
+
+#### freeSolo type related changes
+
+When the `freeSolo` prop is passed as `true`, the `getOptionLabel` and `isOptionEqualToValue` props
+accept `string` as well for their `option` and, respectively, `value` arguments:
+
+```diff
+- isOptionEqualToValue?: (option: Value, value: Value) => boolean;
++ isOptionEqualToValue?: (
++  option: Value,
++  value: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>,
++ ) => boolean;
+```
+
+```diff
+- getOptionLabel?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
++ getOptionLabel?: (option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string;
+```
+
+For reference:
+
+```ts
+type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true
+  ? string
+  : never;
+
+type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
+  ? Value | string
+  : Value;
+```
+
+### Grid
+
+The Grid component no longer supports [system props](/material-ui/customization/how-to-customize/#the-sx-prop).
+Use the `sx` prop instead:
+
+```diff
+-<Grid mt={2} mr={1} />
++<Grid sx={{ mt: 2, mr: 1 }} />
+```
+
+This also fixes an issue where props like `color` were consumed by the Grid instead of being forwarded to the component rendered via the `component` prop:
+
+```jsx
+// `color` is now correctly forwarded to Button
+<Grid component={Button} color="secondary" variant="contained">
+  hello
+</Grid>
+```

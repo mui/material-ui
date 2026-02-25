@@ -101,7 +101,7 @@ export interface ButtonBaseTypeMap<
  * can make extension quite tricky
  */
 export interface ExtendButtonBaseTypeMap<TypeMap extends OverridableTypeMap> {
-  props: TypeMap['props'] & Omit<ButtonBaseTypeMap['props'], 'classes'>;
+  props: TypeMap['props'] & Omit<ButtonBaseTypeMap['props'], 'classes' | keyof TypeMap['props']>;
   defaultComponent: TypeMap['defaultComponent'];
 }
 

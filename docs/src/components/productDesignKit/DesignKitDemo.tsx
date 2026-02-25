@@ -187,7 +187,7 @@ export default function DesignKitsDemo() {
   };
   return (
     <Section bg="gradient" cozy>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Design Kits"

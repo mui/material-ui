@@ -47,11 +47,6 @@ export type UseModalParameters = {
    */
   container?: PortalProps['container'] | undefined;
   /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   * @default false
-   */
-  disableEscapeKeyDown?: boolean | undefined;
-  /**
    * Disable the scroll lock behavior.
    * @default false
    */

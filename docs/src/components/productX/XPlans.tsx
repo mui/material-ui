@@ -36,7 +36,7 @@ const content = [
 export default function XPlans2() {
   return (
     <Section cozy>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Plans"

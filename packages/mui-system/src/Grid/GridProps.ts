@@ -2,7 +2,6 @@ import * as React from 'react';
 import { OverrideProps, PartiallyRequired } from '@mui/types';
 import { SxProps } from '../styleFunctionSx';
 import { Theme, Breakpoint } from '../createTheme';
-import { SystemProps } from '../Box';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
@@ -104,7 +103,7 @@ export interface GridTypeMap<
   AdditionalProps = {},
   DefaultComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> | undefined } & SystemProps<Theme>;
+  props: AdditionalProps & GridBaseProps & { sx?: SxProps<Theme> | undefined };
   defaultComponent: DefaultComponent;
 }
 

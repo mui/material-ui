@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/runtime": "^7.28.6",
     "es-toolkit": "^1.44.0",
-    "marked": "^17.0.2",
+    "marked": "^17.0.3",
     "prismjs": "^1.30.0"
   },
   "devDependencies": {
