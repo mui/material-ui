@@ -258,7 +258,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       className={className}
       onKeyDown={handleKeyDown}
       onFocus={onFocus}
-      tabIndex={autoFocus ? -1 : undefined}
+      tabIndex={-1}
       {...other}
     >
       {items}
