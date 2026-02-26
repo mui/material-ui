@@ -178,7 +178,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     const newChildProps = getItemProps(focusableIndex, child.ref);
 
     if (child.props.tabIndex !== undefined || variant === 'menu') {
-     delete newChildProps.tabIndex;
+      delete newChildProps.tabIndex;
     }
 
     if (index === activeItemIndex) {
