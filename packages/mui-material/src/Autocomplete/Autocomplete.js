@@ -527,7 +527,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps
+    slotProps,
   };
 
   const [ListboxSlot, listboxProps] = useSlot('listbox', {
@@ -794,11 +794,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
-   * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
-   * @deprecated Use `slotProps.chip` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ChipProps: PropTypes.object,
-  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
@@ -838,16 +833,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default 'Close'
    */
   closeText: PropTypes.string,
-  /**
-   * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps: PropTypes.shape({
-    clearIndicator: PropTypes.object,
-    paper: PropTypes.object,
-    popper: PropTypes.object,
-    popupIndicator: PropTypes.object,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
@@ -1002,17 +987,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   limitTags: integerPropType,
   /**
-   * The component used to render the listbox.
-   * @default 'ul'
-   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ListboxComponent: PropTypes.elementType,
-  /**
-   * Props applied to the Listbox element.
-   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ListboxProps: PropTypes.object,
-  /**
    * If `true`, the component is in a loading state.
    * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
    * @default false
@@ -1102,18 +1076,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   options: PropTypes.array.isRequired,
   /**
-   * The component used to render the body of the popup.
-   * @default Paper
-   * @deprecated Use `slots.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  PaperComponent: PropTypes.elementType,
-  /**
-   * The component used to position the popup.
-   * @default Popper
-   * @deprecated Use `slots.popper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  PopperComponent: PropTypes.elementType,
-  /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
    */
@@ -1154,17 +1116,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {ReactNode}
    */
   renderOption: PropTypes.func,
-  /**
-   * Render the selected value when doing multiple selections.
-   *
-   * @deprecated Use `renderValue` prop instead
-   *
-   * @param {Value[]} value The `value` provided to the component.
-   * @param {function} getTagProps A tag props getter.
-   * @param {object} ownerState The state of the Autocomplete component.
-   * @returns {ReactNode}
-   */
-  renderTags: PropTypes.func,
   /**
    * Renders the selected value(s) as rich content in the input for both single and multiple selections.
    *
