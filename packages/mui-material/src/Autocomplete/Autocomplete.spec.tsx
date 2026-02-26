@@ -149,7 +149,7 @@ function AutocompleteComponentsProps() {
     <Autocomplete
       options={['one', 'two', 'three']}
       renderInput={(params) => <TextField {...params} />}
-      componentsProps={{
+      slotProps={{
         clearIndicator: { size: 'large' },
         paper: { elevation: 2 },
         popper: { placement: 'bottom-end' },
@@ -165,7 +165,7 @@ function CustomListboxRef() {
     <Autocomplete
       renderInput={(params) => <TextField {...params} />}
       options={['one', 'two', 'three']}
-      ListboxProps={{ ref }}
+      slotProps={{ listbox: { ref } }}
     />
   );
 }
