@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import useRovingTabIndexFocus, { UseRovingTabIndexOptions } from './useRovingTabIndex';
 
@@ -621,7 +620,7 @@ describe('useRovingTabIndexFocus', () => {
 
     await user.click(button1);
 
-    React.act(() => {
+    act(() => {
       focusNextResult = focusNext();
     });
 
@@ -646,7 +645,7 @@ describe('useRovingTabIndexFocus', () => {
 
     await user.click(button1);
 
-    React.act(() => {
+    act(() => {
       focusNextResult = focusNext();
     });
 
@@ -666,7 +665,7 @@ describe('useRovingTabIndexFocus', () => {
 
     await user.click(button1);
 
-    React.act(() => {
+    act(() => {
       focusNextResult = focusNext(() => false);
     });
 
