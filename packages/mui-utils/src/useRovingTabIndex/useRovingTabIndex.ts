@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 
-import ownerDocument from '../../utils/ownerDocument';
-import getActiveElement from '../../utils/getActiveElement';
+import ownerDocument from '../ownerDocument';
+import getActiveElement from '../getActiveElement';
 
 export type UseRovingTabIndexOptions = {
   focusableIndex?: number | undefined;
@@ -32,25 +32,17 @@ type UseRovingTabIndexReturn = {
 const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
 
 /**
- * Implements roving tab index focus management on a set of focusable elements.
- * Focus can be moved between elements using the ArrowRight and ArrowLeft keys.
- * Elements that are disabled are skipped when navigating with the keyboard.
- * Navigation wraps around when the end or beginning of the set is reached.
- * If the initial focusable element is disabled, the next enabled element is set as
- * focusable.
- *
- * @param {UseRovingTabIndexOptions} options Configuration options for roving tab index focus management.
- * It includes:
- * - initialFocusableIndex: The index of the element that should be focusable initially.
- *
- * @returns An object containing methods and state for managing roving tab index focus.
- * - registerElementRef: A function to register each focusable element's ref and disabled state.
- * - handleElementKeyDown: A function to handle keydown events for focus navigation.
- * - setFocusableIndex: A function to manually set the focusable index.
- * - focusableIndex: The current index of the focusable element, useful for setting tabIndex.
- *
+ * Provides roving tab index behavior for a container and its focusable children. 
+ * This is useful for implementing keyboard navigation in components like menus, tabs, and lists.
+ * The hook manages the focus state of child elements and provides props to be spread on both the container and the items.
+ * The container will handle keyboard events to move focus between items based on the specified orientation and wrapping behavior.
+ * 
+ * @param options - Configuration options for the roving tab index behavior, including orientation, initial focusable index, RTL support, and custom focus logic.
+ * @returns An object containing `getItemProps` and `getContainerProps` functions to be spread on the respective elements, and a `focusNext` function to programmatically move focus to the next item.
  */
-const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndexReturn => {
+export default function useRovingTabIndex(
+  options: UseRovingTabIndexOptions,
+): UseRovingTabIndexReturn {
   const {
     orientation,
     focusableIndex: focusableIndexProp,
@@ -210,7 +202,7 @@ const useRovingTabIndex = (options: UseRovingTabIndexOptions): UseRovingTabIndex
   );
 
   return { getItemProps, getContainerProps, focusNext: focusNextExport };
-};
+}
 
 function focusNext(
   elementsRef: React.RefObject<(HTMLElement | null)[]>,
@@ -296,5 +288,3 @@ function handleRefs(...refs: (React.Ref<HTMLElement> | undefined)[]) {
     });
   };
 }
-
-export default useRovingTabIndex;

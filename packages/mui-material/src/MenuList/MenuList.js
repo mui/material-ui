@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
+import { useRovingTabIndex } from '../utils/useRovingTabindex';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getActiveElement from '../utils/getActiveElement';
@@ -9,7 +10,6 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { ownerWindow } from '../utils';
-import useRovingTabIndex from '../Stepper/utils/useRovingTabIndex';
 
 function textCriteriaMatches(nextFocus, textCriteria) {
   if (textCriteria === undefined) {

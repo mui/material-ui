@@ -5,12 +5,12 @@ import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
+import { useRovingTabIndex } from '../utils/useRovingTabindex';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import { StepperContextProvider } from './StepperContext';
-import useRovingTabIndexFocus from './utils/useRovingTabIndex';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -99,7 +99,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     });
   });
 
-  const { getContainerProps, getItemProps } = useRovingTabIndexFocus({
+  const { getContainerProps, getItemProps } = useRovingTabIndex({
     orientation,
     isRtl,
   });

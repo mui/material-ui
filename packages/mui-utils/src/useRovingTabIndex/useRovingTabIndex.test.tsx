@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
-import useRovingTabIndexFocus, { UseRovingTabIndexOptions } from './useRovingTabIndex';
+import useRovingTabIndex, { type UseRovingTabIndexOptions } from './useRovingTabIndex';
 
 let focusNext: (shouldSkipFocusOverride?: (element: HTMLElement | null) => boolean) => number;
 
@@ -10,7 +10,7 @@ function TestComponent(props: Partial<UseRovingTabIndexOptions>) {
     getItemProps,
     getContainerProps,
     focusNext: focusNextFn,
-  } = useRovingTabIndexFocus({
+  } = useRovingTabIndex({
     orientation: 'horizontal',
     ...props,
   });
@@ -35,7 +35,7 @@ function TestComponent(props: Partial<UseRovingTabIndexOptions>) {
   );
 }
 
-describe('useRovingTabIndexFocus', () => {
+describe('useRovingTabIndex', () => {
   const { render } = createRenderer();
 
   test('should set the first enabled element as focusable when no focusableIndex is provided', () => {
@@ -84,7 +84,7 @@ describe('useRovingTabIndexFocus', () => {
 
   test('should not change focusable index if initial index is on a disabled element but there are no enabled elements', () => {
     function TestComponentWithDisabledButtons() {
-      const { getItemProps, getContainerProps } = useRovingTabIndexFocus({
+      const { getItemProps, getContainerProps } = useRovingTabIndex({
         orientation: 'horizontal',
       });
 
@@ -108,7 +108,7 @@ describe('useRovingTabIndexFocus', () => {
 
   test('should update focusable index when prop change and the element is disabled', () => {
     function TestComponentWithDisabledButtons() {
-      const { getItemProps, getContainerProps } = useRovingTabIndexFocus({
+      const { getItemProps, getContainerProps } = useRovingTabIndex({
         orientation: 'horizontal',
       });
 
@@ -137,7 +137,7 @@ describe('useRovingTabIndexFocus', () => {
 
   test('should do nothing when there are no children', () => {
     function TestComponentWithDisabledButtons() {
-      const { getContainerProps } = useRovingTabIndexFocus({
+      const { getContainerProps } = useRovingTabIndex({
         orientation: 'horizontal',
       });
 

@@ -19,8 +19,7 @@ import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerWindow from '../utils/ownerWindow';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
-import useRovingTabIndex from '../Stepper/utils/useRovingTabIndex';
-import { ownerDocument, useForkRef, getActiveElement } from '../utils';
+import { ownerDocument, useForkRef, getActiveElement, useRovingTabIndex } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
