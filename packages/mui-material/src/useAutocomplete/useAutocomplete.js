@@ -268,7 +268,7 @@ function useAutocomplete(props) {
     if (itemToFocus === -1) {
       inputRef.current.focus();
     } else {
-      anchorEl.querySelector(`['data-item-index'="${itemToFocus}"]`).focus();
+      anchorEl.querySelector(`["data-item-index"="${itemToFocus}"]`).focus();
     }
   });
 
@@ -722,7 +722,7 @@ function useAutocomplete(props) {
         return -1;
       }
 
-      const option = anchorEl.querySelector(`['data-item-index'="${nextFocus}"]`);
+      const option = anchorEl.querySelector(`["data-item-index"="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       if (
