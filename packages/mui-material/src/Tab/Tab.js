@@ -211,8 +211,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     textColor = 'inherit',
     value,
     wrapped = false,
-    // eslint-disable-next-line react/prop-types
-    tabIndex,
     ...other
   } = props;
 
@@ -267,7 +265,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onClick={handleClick}
       onFocus={handleFocus}
       ownerState={ownerState}
-      tabIndex={tabIndex}
       {...other}
     >
       {iconPosition === 'top' || iconPosition === 'start' ? (
