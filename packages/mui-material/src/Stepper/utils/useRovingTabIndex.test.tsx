@@ -642,6 +642,7 @@ describe('useRovingTabIndexFocus', () => {
     const button2 = screen.getByTestId('button-2');
     const button3 = screen.getByTestId('button-3');
     const button4 = screen.getByTestId('button-4');
+    button3.removeAttribute('disabled');
 
     await user.click(button1);
 
