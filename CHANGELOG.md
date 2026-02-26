@@ -15,6 +15,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [ButtonBase] Ensure that onClick propagates when non-native button is clicked (#47800) @silviuaavram
 - [Dialog][modal] Remove `disableEscapeKeyDown` prop (#47695) @silviuaavram
 - [Grid] Remove system props support (#47846) @siriwatknp
+- [material] Remove MuiTouchRipple from theme component types (#47849) @siriwatknp
 - [TableCell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47762) @ZeeshanTamboli
 - [Tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47684) @ZeeshanTamboli
 - [useAutocomplete] Improve isOptionEqualToValue value argument type (#47801) @silviuaavram
