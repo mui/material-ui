@@ -420,14 +420,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
-    ChipProps: ChipPropsProp,
     className,
     clearIcon = <ClearIcon fontSize="small" />,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
     closeText = 'Close',
-    componentsProps,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -451,8 +449,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     includeInputInList = false,
     inputValue: inputValueProp,
     limitTags = -1,
-    ListboxComponent: ListboxComponentProp,
-    ListboxProps: ListboxPropsProp,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -466,14 +462,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     openOnFocus = false,
     openText = 'Open',
     options,
-    PaperComponent: PaperComponentProp,
-    PopperComponent: PopperComponentProp,
     popupIcon = <ArrowDropDownIcon />,
     readOnly = false,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
-    renderTags,
     renderValue,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
@@ -533,17 +526,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
-    slots: {
-      paper: PaperComponentProp,
-      popper: PopperComponentProp,
-      ...slots,
-    },
-    slotProps: {
-      chip: ChipPropsProp,
-      listbox: ListboxPropsProp,
-      ...componentsProps,
-      ...slotProps,
-    },
+    slots,
+    slotProps
   };
 
   const [ListboxSlot, listboxProps] = useSlot('listbox', {
@@ -586,9 +570,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (multiple) {
     if (value.length > 0) {
-      if (renderTags) {
-        startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
-      } else if (renderValue) {
+      if (renderValue) {
         startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
       } else {
         startAdornment = value.map((option, index) => {
@@ -752,7 +734,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               </AutocompleteNoOptions>
             ) : null}
             {groupedOptions.length > 0 ? (
-              <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
+              <ListboxSlot {...listboxProps}>
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
                     return renderGroup({

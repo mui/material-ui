@@ -32,7 +32,7 @@ function MyAutocomplete<
 // Test for ChipComponent generic type
 <MyAutocomplete<string, false, false, false, 'span'>
   options={['1', '2', '3']}
-  renderTags={(value, getTagProps, ownerState) => {
+  renderValue={(value, getItemProps, ownerState) => {
     expectType<AutocompleteOwnerState<string, false, false, false, 'span'>, typeof ownerState>(
       ownerState,
     );
@@ -63,7 +63,7 @@ function MyAutocomplete<
 // Tests presence of sx prop in ListboxProps
 <Autocomplete
   options={['1', '2', '3']}
-  ListboxProps={{ sx: { height: '10px' } }}
+  slotProps={{ listbox: { sx: { height: '10px' } } }}
   renderInput={() => null}
 />;
 
