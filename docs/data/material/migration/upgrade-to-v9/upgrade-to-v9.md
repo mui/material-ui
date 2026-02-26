@@ -117,3 +117,29 @@ This also fixes an issue where props like `color` were consumed by the Grid inst
   hello
 </Grid>
 ```
+
+### Theme
+
+`MuiTouchRipple` has been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
+TouchRipple has been an internal component since v5 and never consumed theme overrides or default props, so the types were misleading.
+
+If you were using `MuiTouchRipple` in your theme, remove it and use global CSS with the `MuiTouchRipple-*` class names instead:
+
+```diff
+ const theme = createTheme({
+   components: {
+-    MuiTouchRipple: {
+-      styleOverrides: {
+-        root: { color: 'red' },
+-      },
+-    },
++    MuiButtonBase: {
++      styleOverrides: {
++        root: {
++          '& .MuiTouchRipple-root': { color: 'red' },
++        },
++      },
++    },
+   },
+ });
+```
