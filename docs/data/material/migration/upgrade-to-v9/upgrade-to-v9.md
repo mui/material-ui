@@ -147,3 +147,39 @@ If you were using `MuiTouchRipple` in your theme, remove it and use global CSS w
 ### JSDOM support
 
 v9 removes all usage of `process.env.NODE_ENV === 'test'`. The `NODE_ENV` variable will exclusively be used for for tree-shaking. Our libraries have been updated to auto-detect DOM environments that don't support layout such as [JSDOM](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom) through user agent sniffing.
+
+### Stepper
+
+The `Stepper` and `Step` markups have changed to improve their semantics:
+
+- `Stepper` returns a `<ol>` element instead of `<div>`.
+- `Step` returns a `<li>` element instead of `<div>`.
+
+The `Stepper` component now supports keyboard navigation when used with `StepButton` descendants. The navigation is implemented as a roving tabindex, supporting Arrow Keys as well as Home and End. Only one `StepButton` is focusable at a time, by having `tabindex="0"`, while the rest all have `tabindex="-1"`. Once selection is changed by Arrow Keys or Home / End, the `tabindex` value is also updated.
+
+The markup for a `Stepper` with `StepButton` descendants has changed further to reflect this behavior. These changes apply on top of the tag changes described above.
+
+The `Stepper` has:
+
+- The `role` of `tablist`.
+
+The `StepButton` has:
+
+- The `role` of `tab`.
+- The `aria-current` changed to `aria-selected`. The value is `true` when step is selected, and `false` otherwise.
+- The `aria-setsize` added. The value is the total number of steps.
+- The `aria-posinset` added. The value is the index of the step inside the list, 1-based.
+
+### Tabs
+
+As a consequence of adding the roving tabindex strategy to the `Stepper` component, `Tabs` also received an update. The `tabindex` attribute for each tab will be changed on Arrow Key or Home / End navigation. Previously, we only moved the focus on keyboard navigation. Now, we move the focus and also add the `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `Tab` at a time.
+
+Selecting a `Tab` will update the focus and `tabindex` as before.
+
+### Menu & MenuList
+
+As a consequence of adding the roving tabindex strategy to the `Stepper` component, `MenuList` also received an update. The `tabindex` attribute for each menu item will be changed on Arrow Key or Home / End navigation. Previously, we only moved the focus on keyboard navigation. Now, we move the focus and also add the `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `MenuItem` at a time.
+
+This change also applies to the `Menu` since it uses `MenuList`.
+
+Selecting a `MenuItem`, as well as pressing letter keys, will update the focus and `tabindex` as before.
