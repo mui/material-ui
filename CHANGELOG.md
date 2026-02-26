@@ -33,7 +33,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ### Core
 
-- [blog] Blogpost for upcoming price changes for MUI X (#47748) @DanailH
+- [blog] Blogpost for upcoming price changes for MUI X (#47748) @DanailH
 - [code-infra] Detect browser envs that don't support layout (#47813) @Janpot
 - [code-infra] Enable undefined addition to optional properties (#47750) @brijeshb42
 - [code-infra] Exclusively enable test mode in jsdom (#47812) @Janpot
@@ -42,7 +42,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [code-infra] Setup flat build for packages (#47670) @brijeshb42
 - [code-infra] Upgrade react-docgen to v8 (#47685) @JCQuintas
 - [docs-infra] Reapply Cookie Banner with Design Fixes (#47744) @dav-is
-- [internal] Remove legacy MUI Base API docs (#47804) @ZeeshanTamboli
+- [internal] Remove legacy MUI Base API docs (#47804) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @DanailH, @dav-is, @Janpot, @JCQuintas, @matthias-ccri, @oliviertassinari, @pavan-sh, @PeterTYLiu, @silviuaavram, @siriwatknp, @ZeeshanTamboli
 
