@@ -313,6 +313,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     variant = 'text',
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = {
     ...props,
@@ -400,7 +401,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       component={component}
       disabled={disabled}
       className={clsx(classes.root, className)}
-      {...other}
+      {...buttonBaseProps}
     >
       {type === 'page' && page}
       {IconSlot ? (

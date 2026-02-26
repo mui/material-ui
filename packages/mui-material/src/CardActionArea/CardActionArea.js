@@ -73,6 +73,7 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
@@ -86,7 +87,7 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
     elementType: CardActionAreaRoot,
     externalForwardedProps: {
       ...externalForwardedProps,
-      ...other,
+      ...buttonBaseProps,
     },
     shouldForwardComponentProp: true,
     ownerState,

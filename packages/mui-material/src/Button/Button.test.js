@@ -51,6 +51,20 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
+  it('does not forward nativeButton to ButtonBase', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <Button component="div" nativeButton>
+        Hello World
+      </Button>,
+    );
+
+    expect(screen.getByRole('button')).to.have.tagName('DIV');
+    expect(errorSpy.mock.calls.length).to.equal(0);
+    errorSpy.mockRestore();
+  });
+
   it('startIcon and endIcon should have icon class', () => {
     render(
       <Button startIcon={<span>start icon</span>} endIcon={<span>end icon</span>}>

@@ -65,6 +65,12 @@ export interface ButtonBaseOwnProps {
    */
   LinkComponent?: React.ElementType | undefined;
   /**
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * This enables native button semantics even when `component` is a custom component.
+   * @default component === 'button'
+   */
+  nativeButton?: boolean | undefined;
+  /**
    * Callback fired when the component is focused with a keyboard.
    * We trigger a `onFocus` callback too.
    */
@@ -101,7 +107,8 @@ export interface ButtonBaseTypeMap<
  * can make extension quite tricky
  */
 export interface ExtendButtonBaseTypeMap<TypeMap extends OverridableTypeMap> {
-  props: TypeMap['props'] & Omit<ButtonBaseTypeMap['props'], 'classes' | keyof TypeMap['props']>;
+  props: TypeMap['props'] &
+    Omit<ButtonBaseTypeMap['props'], 'classes' | 'nativeButton' | keyof TypeMap['props']>;
   defaultComponent: TypeMap['defaultComponent'];
 }
 

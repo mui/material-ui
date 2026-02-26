@@ -118,6 +118,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     slotProps,
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
 
   const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
@@ -150,7 +151,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     elementType: AccordionSummaryRoot,
     externalForwardedProps: {
       ...externalForwardedProps,
-      ...other,
+      ...buttonBaseProps,
     },
     ownerState,
     additionalProps: {

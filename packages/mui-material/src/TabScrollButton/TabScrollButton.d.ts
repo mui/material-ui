@@ -13,7 +13,7 @@ export interface TabScrollButtonOwnerState extends TabScrollButtonProps {
   isRtl: boolean;
 }
 
-export interface TabScrollButtonProps extends ButtonBaseProps {
+export interface TabScrollButtonProps extends Omit<ButtonBaseProps, 'nativeButton'> {
   /**
    * The content of the component.
    */

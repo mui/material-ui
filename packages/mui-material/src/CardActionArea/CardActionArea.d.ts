@@ -31,7 +31,11 @@ export type CardActionAreaSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the span element.
      */
-    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, CardActionAreaOwnerState>;
+    root: SlotProps<
+      React.ElementType<Omit<ButtonBaseProps, 'nativeButton'>>,
+      {},
+      CardActionAreaOwnerState
+    >;
     /**
      * Props forwarded to the focusHighlight slot.
      * By default, the available props are based on the span element.

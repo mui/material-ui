@@ -177,6 +177,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
     variant = 'circular',
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = {
     ...props,
@@ -199,7 +200,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ownerState={ownerState}
       ref={ref}
-      {...other}
+      {...buttonBaseProps}
       classes={classes}
     >
       {children}

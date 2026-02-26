@@ -36,7 +36,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
      */
     root: SlotProps<
-      React.ElementType<ButtonBaseProps>,
+      React.ElementType<Omit<ButtonBaseProps, 'nativeButton'>>,
       AccordionSummaryRootSlotPropsOverrides,
       AccordionSummaryOwnerState
     >;

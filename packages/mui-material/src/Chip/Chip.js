@@ -389,6 +389,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
 
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
@@ -497,7 +498,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     elementType: ChipRoot,
     externalForwardedProps: {
       ...externalForwardedProps,
-      ...other,
+      ...buttonBaseProps,
     },
     ownerState,
     // The `component` prop is preserved because `Chip` relies on it for internal logic. If `shouldForwardComponentProp` were `false`, `useSlot` would remove the `component` prop, potentially breaking the component's behavior.

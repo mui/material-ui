@@ -10,6 +10,7 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
+import useButtonBase from './useButtonBase';
 import useLazyRipple from '../useLazyRipple';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
@@ -86,6 +87,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusRipple = false,
     focusVisibleClassName,
     LinkComponent = 'a',
+    nativeButton: nativeButtonProp,
     onBlur,
     onClick,
     onContextMenu,
@@ -107,15 +109,43 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ...other
   } = props;
 
-  const buttonRef = React.useRef(null);
+  let ComponentProp = component;
 
+  if (ComponentProp === 'button' && (other.href || other.to)) {
+    ComponentProp = LinkComponent;
+  }
+
+  const nativeButton = nativeButtonProp ?? ComponentProp === 'button';
   const ripple = useLazyRipple();
   const handleRippleRef = useForkRef(ripple.ref, touchRippleRef);
-
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
+  const { eventHandlers, rootRef: buttonRef } = useButtonBase({
+    nativeButton,
+    disabled,
+    onBeforeKeyDown: (event) => {
+      // Check if key is already down to avoid repeats being counted as multiple activations
+      if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
+        ripple.stop(event, () => {
+          ripple.start(event);
+        });
+      }
+    },
+    onBeforeKeyUp: (event) => {
+      // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
+      // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
+      if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
+        ripple.stop(event, () => {
+          ripple.pulsate(event);
+        });
+      }
+    },
+    onClick,
+    onKeyDown,
+    onKeyUp,
+  });
 
   React.useImperativeHandle(
     action,
@@ -125,7 +155,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
         buttonRef.current.focus();
       },
     }),
-    [],
+    [buttonRef],
   );
 
   const enableTouchRipple = ripple.shouldMount && !disableRipple && !disabled;
@@ -190,97 +220,19 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   });
 
-  const isNonNativeButton = () => {
-    const button = buttonRef.current;
-
-    if (!button) {
-      return component && component !== 'button';
-    }
-
-    if (button.tagName === 'BUTTON') {
-      return false;
-    }
-
-    return !(button.tagName === 'A' && button.href);
-  };
-
-  const handleKeyDown = useEventCallback((event) => {
-    if (disabled) {
-      return;
-    }
-
-    // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
-      ripple.stop(event, () => {
-        ripple.start(event);
-      });
-    }
-
-    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
-      event.preventDefault();
-    }
-
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      isNonNativeButton() &&
-      event.key === 'Enter' &&
-      !disabled
-    ) {
-      event.preventDefault();
-      event.currentTarget.click();
-    }
-  });
-
-  const handleKeyUp = useEventCallback((event) => {
-    if (disabled) {
-      return;
-    }
-
-    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
-    if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
-      ripple.stop(event, () => {
-        ripple.pulsate(event);
-      });
-    }
-    if (onKeyUp) {
-      onKeyUp(event);
-    }
-
-    // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      isNonNativeButton() &&
-      event.key === ' ' &&
-      !event.defaultPrevented &&
-      !disabled
-    ) {
-      event.currentTarget.click();
-    }
-  });
-
-  let ComponentProp = component;
-
-  if (ComponentProp === 'button' && (other.href || other.to)) {
-    ComponentProp = LinkComponent;
-  }
-
   const buttonProps = {};
-  if (ComponentProp === 'button') {
+  if (other.href || other.to) {
+    if (disabled) {
+      buttonProps['aria-disabled'] = disabled;
+    }
+  } else if (nativeButton) {
     const hasFormAttributes = !!other.formAction;
     // ButtonBase was defaulting to type="button" when no type prop was provided, which prevented form submission and broke formAction functionality.
     // The fix checks for form-related attributes and skips the default type to allow the browser's natural submit behavior (type="submit").
     buttonProps.type = type === undefined && !hasFormAttributes ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
-    if (!other.href && !other.to) {
-      buttonProps.role = 'button';
-    }
+    buttonProps.role = 'button';
     if (disabled) {
       buttonProps['aria-disabled'] = disabled;
     }
@@ -308,11 +260,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       onBlur={handleBlur}
-      onClick={onClick}
+      onClick={eventHandlers.onClick}
       onContextMenu={handleContextMenu}
       onFocus={handleFocus}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
+      onKeyDown={eventHandlers.onKeyDown}
+      onKeyUp={eventHandlers.onKeyUp}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
@@ -426,6 +378,12 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * @default 'a'
    */
   LinkComponent: PropTypes.elementType,
+  /**
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * This enables native button semantics even when `component` is a custom component.
+   * @default component === 'button'
+   */
+  nativeButton: PropTypes.bool,
   /**
    * @ignore
    */

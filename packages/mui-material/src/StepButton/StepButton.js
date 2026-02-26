@@ -58,6 +58,7 @@ const StepButtonRoot = styled(ButtonBase, {
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
   const { children, className, icon, optional, ...other } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
 
   const { disabled, active, index } = React.useContext(StepContext);
   const { orientation, totalSteps, getRovingTabIndexProps } = useStepperContext();
@@ -94,7 +95,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       aria-setsize={totalSteps}
       role="tab"
       {...rovingTabIndexItemProps}
-      {...other}
+      {...buttonBaseProps}
     >
       {child}
     </StepButtonRoot>

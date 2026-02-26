@@ -90,6 +90,16 @@ describe('<Chip />', () => {
       expect(button).toHaveAccessibleName('My Chip');
     });
 
+    it('does not forward nativeButton to ButtonBase', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<Chip label="My Chip" onClick={() => {}} nativeButton />);
+
+      expect(screen.getByRole('button')).to.have.tagName('DIV');
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
+
     it('should render link with the button base', () => {
       const { container } = render(<Chip component="a" clickable label="My text Chip" />);
 

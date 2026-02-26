@@ -532,6 +532,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'text',
     ...other
   } = props;
+  const { nativeButton, ...buttonProps } = other;
 
   const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
@@ -603,7 +604,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       ref={ref}
       type={type}
       id={loading ? loadingId : idProp}
-      {...other}
+      {...buttonProps}
       classes={classes}
     >
       {startIcon}
