@@ -672,4 +672,33 @@ describe('useRovingTabIndex', () => {
 
     expect(focusNextResult).to.equal(-1);
   });
+
+  test('should skip null items when focusing', async () => {
+    function TestComponentWithNullItems() {
+      const { getItemProps, getContainerProps } = useRovingTabIndex({
+        orientation: 'horizontal',
+      });
+
+      getItemProps(1); // This will create a null item in the elementsRef
+
+      return (
+        <div data-testid="container" tabIndex={-1} {...getContainerProps()}>
+          <button {...getItemProps(0)} data-testid="button-1">
+            Button 1
+          </button>
+          <button {...getItemProps(2)} data-testid="button-2">
+            Button 2
+          </button>
+        </div>
+      );
+    }
+
+    const { user } = render(<TestComponentWithNullItems />);
+
+    await user.click(screen.getByTestId('button-1'));
+    await user.keyboard('{ArrowRight}');
+
+    expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('-1');
+    expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('0');
+  });
 });

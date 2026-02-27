@@ -89,9 +89,7 @@ export default function useRovingTabIndex(
   const getItemProps = React.useCallback(
     (index: number, ref?: React.Ref<HTMLElement>) => ({
       ref: handleRefs(ref, (elementNode) => {
-        if (elementNode) {
-          elementsRef.current[index] = elementNode;
-        }
+        elementsRef.current[index] = elementNode;
       }),
       tabIndex: index === focusableIndex ? 0 : -1,
     }),
@@ -167,9 +165,7 @@ export default function useRovingTabIndex(
       onFocus,
       onKeyDown,
       ref: handleRefs(containerRef, (elementNode) => {
-        if (elementNode) {
-          containerRef.current = elementNode;
-        }
+        containerRef.current = elementNode;
       }),
     };
   }, [focusableIndex, isRtl, orientation, shouldWrap, shouldFocus]);
