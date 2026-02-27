@@ -9,6 +9,7 @@ export interface StepperContextType {
   orientation: 'horizontal' | 'vertical';
   totalSteps: number;
   setIsTabList: React.Dispatch<React.SetStateAction<boolean>>;
+  isTabList: boolean;
   getRovingTabIndexProps: (
     index: number,
     ref?: React.Ref<HTMLElement>,

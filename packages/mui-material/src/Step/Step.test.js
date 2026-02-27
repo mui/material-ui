@@ -74,6 +74,20 @@ describe('<Step />', () => {
       const stepButton = container.querySelector(`.${stepButtonClasses.root}`);
       expect(stepButton).not.to.equal(null);
     });
+
+    it('should add the role presentation to the root node if the context is a tab list', () => {
+      renderInContext(
+        <Stepper activeStep={0}>
+          <Step>
+            <StepButton>Step 1</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepper = screen.getByRole('tablist');
+
+      expect(stepper.childNodes[0]).to.have.attribute('role', 'presentation');
+    });
   });
 
   describe('overriding context props', () => {

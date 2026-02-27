@@ -67,7 +67,8 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     ...other
   } = props;
 
-  const { activeStep, connector, alternativeLabel, orientation, nonLinear } = useStepperContext();
+  const { activeStep, connector, alternativeLabel, orientation, nonLinear, isTabList } =
+    useStepperContext();
 
   let [active = false, completed = false, disabled = false] = [
     activeProp,
@@ -107,6 +108,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       ownerState={ownerState}
+      role={isTabList ? 'presentation' : undefined}
       {...other}
     >
       {connector && alternativeLabel && index !== 0 ? connector : null}
