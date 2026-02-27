@@ -162,6 +162,7 @@ The markup for a `Stepper` with `StepButton` descendants has changed further to 
 The `Stepper` has:
 
 - The `role` of `tablist`.
+- The `aria-orientation` added. The value is either `horizontal` or `vertical` depending on the `orientation` prop.
 
 The `StepButton` has:
 
