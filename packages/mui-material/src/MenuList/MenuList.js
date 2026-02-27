@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import { useRovingTabIndex } from '../utils/useRovingTabindex';
+import useRovingTabIndex from '../utils/useRovingTabIndex';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getActiveElement from '../utils/getActiveElement';
