@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "9.0.0-alpha.0",
+  "version": "9.0.0-alpha.1",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "keywords": [

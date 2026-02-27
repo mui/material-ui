@@ -16,7 +16,6 @@ import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import DiscordIcon from 'docs/src/icons/DiscordIcon';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -408,10 +407,6 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   </Link>
                   <Link href="https://x.com/MUI_hq" target="_blank" sx={{ fontSize: 14 }}>
                     <XIcon fontSize="small" />X
-                  </Link>
-                  <Link href="https://mui.com/r/discord/" target="_blank" sx={{ fontSize: 14 }}>
-                    <DiscordIcon fontSize="small" />
-                    Discord
                   </Link>
                   <Link
                     href="https://www.linkedin.com/company/mui/"
