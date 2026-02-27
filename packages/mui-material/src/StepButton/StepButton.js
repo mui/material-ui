@@ -127,14 +127,6 @@ StepButton.propTypes /* remove-proptypes */ = {
    */
   icon: PropTypes.node,
   /**
-   * Callback fired when the component is clicked.
-   */
-  onClick: PropTypes.func,
-  /**
-   * Callback fired when a key is pressed down.
-   */
-  onKeyDown: PropTypes.func,
-  /**
    * The optional node to display.
    */
   optional: PropTypes.node,
