@@ -173,14 +173,16 @@ The `StepButton` has:
 
 ### Tabs
 
-As a consequence of adding the roving tabindex strategy to the `Stepper` component, `Tabs` also received an update. The `tabindex` attribute for each tab will be changed on Arrow Key or Home / End navigation. Previously, we only moved the focus on keyboard navigation. Now, we move the focus and also add the `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `Tab` at a time.
+The `tabindex` attribute for each tab will be changed on Arrow Key or Home / End navigation. Previously, we only moved the focus on keyboard navigation. Now, we move the focus and also add the `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `Tab` at a time.
 
 Selecting a `Tab` will update the focus and `tabindex` as before.
 
 ### Menu & MenuList
 
-As a consequence of adding the roving tabindex strategy to the `Stepper` component, `MenuList` also received an update. The `tabindex` attribute for each menu item will be changed on Arrow Key or Home / End navigation. Previously, we only moved the focus on keyboard navigation. Now, we move the focus and also add the `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `MenuItem` at a time.
+The `tabindex` attribute for each menu item will be changed on Arrow Key, Home / End or Character Key navigation. Previously, we only moved the focus on keyboard navigation. Now, we move the focus and also add the `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `MenuItem` at a time.
 
 This change also applies to the `Menu` since it uses `MenuList`.
 
-Selecting a `MenuItem`, as well as pressing letter keys, will update the focus and `tabindex` as before.
+Selecting a `MenuItem` will update the focus and `tabindex` as before.
+
+The `autoFocus` prop in `MenuList` does not set `tabindex="0"` on the `List` component anymore. It will always stay as `-1`.
