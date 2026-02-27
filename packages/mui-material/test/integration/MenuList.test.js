@@ -32,7 +32,7 @@ describe('<MenuList> integration', () => {
     it('the specified item should be in tab order while the rest is focusable', () => {
       render(
         <MenuList>
-          <MenuItem tabIndex={0}>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -236,7 +236,7 @@ describe('<MenuList> integration', () => {
       render(
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem autoFocus selected tabIndex={0}>
+          <MenuItem autoFocus selected>
             Menu Item 2
           </MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
@@ -255,7 +255,7 @@ describe('<MenuList> integration', () => {
       render(
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem autoFocus selected tabIndex={0}>
+          <MenuItem autoFocus selected>
             Menu Item 2
           </MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
@@ -268,7 +268,7 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
@@ -296,9 +296,7 @@ describe('<MenuList> integration', () => {
       render(
         <MenuList autoFocus>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem selected tabIndex={0}>
-            Menu Item 2
-          </MenuItem>
+          <MenuItem selected>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
       );
@@ -308,7 +306,7 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
