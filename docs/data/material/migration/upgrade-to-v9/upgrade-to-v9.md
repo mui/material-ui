@@ -156,13 +156,13 @@ APIs that were deprecated earlier have been removed in v9.
 
 The following deprecated props have been removed from the `Autocomplete` component:
 
-* `ChipProps` → use `slotProps.chip`
-* `componentsProps` → use `slotProps`
-* `ListboxComponent` → use `slots.listbox`
-* `ListboxProps` → use `slotProps.listbox`
-* `PaperComponent` → use `slots.paper`
-* `PopperComponent` → use `slots.popper`
-* `renderTags` → use `renderValue`
+- `ChipProps` → use `slotProps.chip`
+- `componentsProps` → use `slotProps`
+- `ListboxComponent` → use `slots.listbox`
+- `ListboxProps` → use `slotProps.listbox`
+- `PaperComponent` → use `slots.paper`
+- `PopperComponent` → use `slots.popper`
+- `renderTags` → use `renderValue`
 
 ##### ChipProps prop
 
@@ -300,8 +300,8 @@ The deprecated `renderTags` prop has been removed. Use `renderValue` instead.
 
 The following deprecated members have been removed from the `useAutocomplete` hook return value:
 
-* `getTagProps` → use `getItemProps`
-* `focusedTag` → use `focusedItem`
+- `getTagProps` → use `getItemProps`
+- `focusedTag` → use `focusedItem`
 
 ##### getTagProps
 
