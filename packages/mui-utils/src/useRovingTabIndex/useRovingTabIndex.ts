@@ -32,11 +32,11 @@ type UseRovingTabIndexReturn = {
 const SUPPORTED_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
 
 /**
- * Provides roving tab index behavior for a container and its focusable children. 
+ * Provides roving tab index behavior for a container and its focusable children.
  * This is useful for implementing keyboard navigation in components like menus, tabs, and lists.
  * The hook manages the focus state of child elements and provides props to be spread on both the container and the items.
  * The container will handle keyboard events to move focus between items based on the specified orientation and wrapping behavior.
- * 
+ *
  * @param options - Configuration options for the roving tab index behavior, including orientation, initial focusable index, RTL support, and custom focus logic.
  * @returns An object containing `getItemProps` and `getContainerProps` functions to be spread on the respective elements, and a `focusNext` function to programmatically move focus to the next item.
  */
