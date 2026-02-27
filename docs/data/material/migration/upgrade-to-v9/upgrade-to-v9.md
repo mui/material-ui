@@ -147,3 +147,180 @@ If you were using `MuiTouchRipple` in your theme, remove it and use global CSS w
 ### JSDOM support
 
 v9 removes all usage of `process.env.NODE_ENV === 'test'`. The `NODE_ENV` variable will exclusively be used for for tree-shaking. Our libraries have been updated to auto-detect DOM environments that don't support layout such as [JSDOM](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom) through user agent sniffing.
+
+### Deprecated APIs removed
+
+APIs that were deprecated earlier have been removed in v9.
+
+#### Autocomplete deprecated props removed
+
+The following deprecated props have been removed from the `Autocomplete` component:
+
+* `ChipProps` → use `slotProps.chip`
+* `componentsProps` → use `slotProps`
+* `ListboxComponent` → use `slots.listbox`
+* `ListboxProps` → use `slotProps.listbox`
+* `PaperComponent` → use `slots.paper`
+* `PopperComponent` → use `slots.popper`
+* `renderTags` → use `renderValue`
+
+##### ChipProps prop
+
+The deprecated `ChipProps` prop has been removed. Use `slotProps.chip` instead.
+
+```diff
+ <Autocomplete
+   multiple
+   options={options}
+-  ChipProps={{ size: 'small' }}
++  slotProps={{ chip: { size: 'small' } }}
+ />
+```
+
+##### componentsProps prop
+
+The deprecated `componentsProps` prop has been removed. Use `slotProps` instead.
+
+```diff
+ <Autocomplete
+   options={options}
+   renderInput={(params) => <TextField {...params} />}
+-  componentsProps={{
+-    clearIndicator: { size: 'large' },
+-    paper: { elevation: 2 },
+-    popper: { placement: 'bottom-end' },
+-    popupIndicator: { size: 'large' },
+-  }}
++  slotProps={{
++    clearIndicator: { size: 'large' },
++    paper: { elevation: 2 },
++    popper: { placement: 'bottom-end' },
++    popupIndicator: { size: 'large' },
++  }}
+ />
+```
+
+##### ListboxComponent and ListboxProps props
+
+The deprecated `ListboxComponent` and `ListboxProps` props have been removed.
+
+Use `slots.listbox` instead of `ListboxComponent`:
+
+```diff
+ <Autocomplete
+   options={options}
+   renderInput={(params) => <TextField {...params} />}
+-  ListboxComponent={CustomListbox}
++  slots={{ listbox: CustomListbox }}
+ />
+```
+
+Use `slotProps.listbox` instead of `ListboxProps`:
+
+```diff
+ <Autocomplete
+   options={options}
+   renderInput={(params) => <TextField {...params} />}
+-  ListboxProps={{ style: { maxHeight: 200 } }}
++  slotProps={{ listbox: { style: { maxHeight: 200 } } }}
+ />
+```
+
+If you were passing a `ref` via `ListboxProps`, move it to `slotProps.listbox.ref`:
+
+```diff
+ <Autocomplete
+   options={options}
+   renderInput={(params) => <TextField {...params} />}
+-  ListboxProps={{ ref }}
++  slotProps={{ listbox: { ref } }}
+ />
+```
+
+##### PaperComponent and PopperComponent props
+
+The deprecated `PaperComponent` and `PopperComponent` props have been removed. Use `slots.paper` and `slots.popper` instead.
+
+```diff
+ <Autocomplete
+   options={options}
+   renderInput={(params) => <TextField {...params} />}
+-  PaperComponent={CustomPaper}
+-  PopperComponent={CustomPopper}
++  slots={{
++    paper: CustomPaper,
++    popper: CustomPopper,
++  }}
+ />
+```
+
+If you were providing an inline component:
+
+```diff
+ <Autocomplete
+   options={options}
+   renderInput={(params) => <TextField {...params} />}
+-  PopperComponent={(props) => {
+-    const { disablePortal, anchorEl, open, ...other } = props;
+-    return <Box {...other} />;
+-  }}
++  slots={{
++    popper: (props) => {
++      const { disablePortal, anchorEl, open, ...other } = props;
++      return <Box {...other} />;
++    },
++  }}
+ />
+```
+
+##### renderTags prop
+
+The deprecated `renderTags` prop has been removed. Use `renderValue` instead.
+
+```diff
+ <Autocomplete
+   multiple
+   options={options}
+-  renderTags={(value, getTagProps, ownerState) =>
+-    value.map((option, index) => (
+-      <Chip label={option.label} {...getTagProps({ index })} />
+-    ))
+-  }
++  renderValue={(value, getItemProps, ownerState) =>
++    value.map((option, index) => (
++      <Chip label={option.label} {...getItemProps({ index })} />
++    ))
++  }
+ />
+```
+
+---
+
+#### useAutocomplete deprecated fields removed
+
+The following deprecated members have been removed from the `useAutocomplete` hook return value:
+
+* `getTagProps` → use `getItemProps`
+* `focusedTag` → use `focusedItem`
+
+##### getTagProps
+
+```diff
+ const {
+-  getTagProps,
++  getItemProps,
+ } = useAutocomplete(props);
+
+ // ...
+-<Chip {...getTagProps({ index })} />
++<Chip {...getItemProps({ index })} />
+```
+
+##### focusedTag
+
+```diff
+ const {
+-  focusedTag,
++  focusedItem,
+ } = useAutocomplete(props);
+```
