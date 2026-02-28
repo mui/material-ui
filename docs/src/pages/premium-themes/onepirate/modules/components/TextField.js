@@ -72,70 +72,88 @@ const styles = ({ theme }) => ({
 });
 
 function TextField(props) {
-  const {
-    InputProps = {},
-    InputLabelProps,
-    noBorder,
-    size = 'medium',
-    SelectProps,
-    ...other
-  } = props;
+  const { slotProps = {}, noBorder, size = 'medium', ...other } = props;
 
   const {
     classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
     ...InputPropsOther
-  } = InputProps;
+  } = slotProps.input;
 
   return (
     <MuiTextField
-      InputProps={{
-        classes: {
-          root: classes.root,
-          input: clsx(
-            classes.input,
-            inputStyleMappingClasses[size],
-            {
-              [classes.inputBorder]: !noBorder,
-            },
-            InputPropsClassesInput,
-          ),
-          ...InputPropsClassesOther,
+      slotProps={{
+        input: {
+          classes: {
+            root: classes.root,
+            input: clsx(
+              classes.input,
+              inputStyleMappingClasses[size],
+              {
+                [classes.inputBorder]: !noBorder,
+              },
+              InputPropsClassesInput,
+            ),
+            ...InputPropsClassesOther,
+          },
+          disableUnderline: true,
+          ...InputPropsOther,
         },
-        disableUnderline: true,
-        ...InputPropsOther,
+        inputLabel: {
+          ...slotProps.inputLabel,
+          shrink: true,
+        },
+        ...slotProps,
       }}
-      InputLabelProps={{
-        ...InputLabelProps,
-        shrink: true,
-      }}
-      SelectProps={SelectProps}
       {...other}
     />
   );
 }
 
 TextField.propTypes = {
-  /**
-   * Props applied to the [`InputLabel`](https://mui.com/material-ui/api/input-label/) element.
-   * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
-   * @deprecated Use `slotProps.inputLabel` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  InputLabelProps: PropTypes.object,
-  /**
-   * Props applied to the Input element.
-   * It will be a [`FilledInput`](https://mui.com/material-ui/api/filled-input/),
-   * [`OutlinedInput`](https://mui.com/material-ui/api/outlined-input/) or [`Input`](https://mui.com/material-ui/api/input/)
-   * component depending on the `variant` prop value.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  InputProps: PropTypes.object,
   noBorder: PropTypes.bool,
-  /**
-   * Props applied to the [`Select`](https://mui.com/material-ui/api/select/) element.
-   * @deprecated Use `slotProps.select` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  SelectProps: PropTypes.object,
   size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    htmlInput: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        key: PropTypes.oneOfType([
+          PropTypes.number,
+          PropTypes.shape({
+            '__@toStringTag@1136': PropTypes.oneOf(['BigInt']).isRequired,
+            toLocaleString: PropTypes.func.isRequired,
+            toString: PropTypes.func.isRequired,
+            valueOf: PropTypes.func.isRequired,
+          }),
+          PropTypes.shape({
+            '__@toPrimitive@2449': PropTypes.func.isRequired,
+            '__@toStringTag@1136': PropTypes.string.isRequired,
+            description: PropTypes.string,
+            toString: PropTypes.func.isRequired,
+            valueOf: PropTypes.func.isRequired,
+          }),
+          PropTypes.string,
+        ]),
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
 };
 
 export default styled(TextField)(styles);
