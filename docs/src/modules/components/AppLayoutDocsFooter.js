@@ -24,7 +24,6 @@ import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-import DiscordIcon from 'docs/src/icons/DiscordIcon';
 // Other imports
 import { Link } from '@mui/docs/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -508,16 +507,6 @@ export default function AppLayoutDocsFooter(props) {
               size="small"
             >
               <XIcon fontSize="small" sx={{ color: iconColor }} />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://mui.com/r/discord/"
-              aria-label="Discord"
-              title="Discord"
-              size="small"
-            >
-              <DiscordIcon fontSize="small" sx={{ color: iconColor }} />
             </IconButton>
             <IconButton
               target="_blank"

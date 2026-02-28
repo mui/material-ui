@@ -1,5 +1,51 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-alpha.1
+
+<!-- generated comparing v9.0.0-alpha.0..master -->
+
+_Feb 26, 2026_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+### @mui/material@9.0.0-alpha.1
+
+- [Autocomplete] Prevents Autocomplete menu from opening on right click (#47797) @silviuaavram
+- [Backdrop] Remove aria-hidden by default (#47798) @silviuaavram
+- [ButtonBase] Ensure that onClick propagates when non-native button is clicked (#47800) @silviuaavram
+- [Dialog][Modal] Remove `disableEscapeKeyDown` prop (#47695) @silviuaavram
+- [Grid] Remove system props support (#47846) @siriwatknp
+- [TableCell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47762) @ZeeshanTamboli
+- [theme] Remove MuiTouchRipple from theme component types (#47849) @siriwatknp
+- [Tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47684) @ZeeshanTamboli
+- [useAutocomplete] Improve isOptionEqualToValue value argument type (#47801) @silviuaavram
+
+### Docs
+
+- [docs] Add updated community theme resource (#47847) @PeterTYLiu
+- [docs] Few copy fixes (#47806) @pavan-sh
+- [docs] Fix IPA reader link in blog post (#47796) @pavan-sh
+- [docs] Fix JSX in Overriding component structure docs (#47799) @ZeeshanTamboli
+- [docs] Fix the keyboard navigation in GroupedMenu example (#47842) @silviuaavram
+- [docs] Fix Theme builder video (#47835) @oliviertassinari
+- [docs] Update pricing sankey as done (#47795) @alexfauquette
+- [docs][system] Update sizing docs to clarify `(0, 1]` behavior. (#47845) @matthias-ccri
+
+### Core
+
+- [blog] Blogpost for upcoming price changes for MUI X (#47748) @DanailH
+- [code-infra] Detect browser envs that don't support layout (#47813) @Janpot
+- [code-infra] Enable undefined addition to optional properties (#47750) @brijeshb42
+- [code-infra] Exclusively enable test mode in jsdom (#47812) @Janpot
+- [code-infra] Fix console.warn during test (#47802) @Janpot
+- [code-infra] Remove vale as a workspace dependency (#47860) @brijeshb42
+- [code-infra] Setup flat build for packages (#47670) @brijeshb42
+- [code-infra] Upgrade react-docgen to v8 (#47685) @JCQuintas
+- [docs-infra] Reapply Cookie Banner with Design Fixes (#47744) @dav-is
+- [internal] Remove legacy MUI Base API docs (#47804) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @DanailH, @dav-is, @Janpot, @JCQuintas, @matthias-ccri, @oliviertassinari, @pavan-sh, @PeterTYLiu, @silviuaavram, @siriwatknp, @ZeeshanTamboli
+
 ## 9.0.0-alpha.0
 
 <!-- generated comparing v7.3.8..master -->

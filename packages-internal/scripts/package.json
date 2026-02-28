@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "exports": {

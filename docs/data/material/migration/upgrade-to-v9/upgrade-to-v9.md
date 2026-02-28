@@ -117,3 +117,33 @@ This also fixes an issue where props like `color` were consumed by the Grid inst
   hello
 </Grid>
 ```
+
+### Theme
+
+`MuiTouchRipple` has been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
+TouchRipple has been an internal component since v5 and never consumed theme overrides or default props, so the types were misleading.
+
+If you were using `MuiTouchRipple` in your theme, remove it and use global CSS with the `MuiTouchRipple-*` class names instead:
+
+```diff
+ const theme = createTheme({
+   components: {
+-    MuiTouchRipple: {
+-      styleOverrides: {
+-        root: { color: 'red' },
+-      },
+-    },
++    MuiButtonBase: {
++      styleOverrides: {
++        root: {
++          '& .MuiTouchRipple-root': { color: 'red' },
++        },
++      },
++    },
+   },
+ });
+```
+
+### JSDOM support
+
+v9 removes all usage of `process.env.NODE_ENV === 'test'`. The `NODE_ENV` variable will exclusively be used for for tree-shaking. Our libraries have been updated to auto-detect DOM environments that don't support layout such as [JSDOM](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom) through user agent sniffing.

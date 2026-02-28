@@ -11,6 +11,7 @@ import chainPropTypes from '@mui/utils/chainPropTypes';
 import isHostComponent from '@mui/utils/isHostComponent';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import isLayoutSupported from '../utils/isLayoutSupported';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
@@ -167,7 +168,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const box = anchorElement.getBoundingClientRect();
 
       if (
-        !globalThis.MUI_TEST_ENV &&
+        isLayoutSupported() &&
         box.top === 0 &&
         box.left === 0 &&
         box.right === 0 &&
@@ -479,21 +480,22 @@ Popover.propTypes /* remove-proptypes */ = {
       if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
-        if (
-          process.env.NODE_ENV !== 'production' &&
-          !globalThis.MUI_TEST_ENV &&
-          box.top === 0 &&
-          box.left === 0 &&
-          box.right === 0 &&
-          box.bottom === 0
-        ) {
-          return new Error(
-            [
-              'MUI: The `anchorEl` prop provided to the component is invalid.',
-              'The anchor element should be part of the document layout.',
-              "Make sure the element is present in the document or that it's not display none.",
-            ].join('\n'),
-          );
+        if (process.env.NODE_ENV !== 'production') {
+          if (
+            isLayoutSupported() &&
+            box.top === 0 &&
+            box.left === 0 &&
+            box.right === 0 &&
+            box.bottom === 0
+          ) {
+            return new Error(
+              [
+                'MUI: The `anchorEl` prop provided to the component is invalid.',
+                'The anchor element should be part of the document layout.',
+                "Make sure the element is present in the document or that it's not display none.",
+              ].join('\n'),
+            );
+          }
         }
       } else {
         return new Error(

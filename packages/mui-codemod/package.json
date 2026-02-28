@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "9.0.0-alpha.0",
+  "version": "9.0.0-alpha.1",
   "author": "MUI Team",
   "description": "Codemod scripts for Material UI.",
   "bin": "./src/codemod.js",

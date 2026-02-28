@@ -287,11 +287,6 @@ type AutocompleteOwnProps<
      */
     popupIcon?: React.ReactNode;
     /**
-     * If `true`, the component becomes read-only. It is also supported in multiple tags where the tag cannot be deleted.
-     * @default false
-     */
-    readOnly?: boolean;
-    /**
      * Render the group.
      *
      * @param {AutocompleteRenderGroupParams} params The group to render.

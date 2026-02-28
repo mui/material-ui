@@ -156,7 +156,7 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
 
 export interface FilledSelectProps extends Omit<
   FilledInputProps,
-  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder' | 'label'
 > {
   /**
    * The variant to use.
@@ -167,7 +167,7 @@ export interface FilledSelectProps extends Omit<
 
 export interface StandardSelectProps extends Omit<
   InputProps,
-  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder' | 'label'
 > {
   /**
    * The variant to use.
@@ -178,7 +178,7 @@ export interface StandardSelectProps extends Omit<
 
 export interface OutlinedSelectProps extends Omit<
   OutlinedInputProps,
-  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder' | 'label'
 > {
   /**
    * The variant to use.

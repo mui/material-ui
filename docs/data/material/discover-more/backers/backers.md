@@ -9,9 +9,10 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="formengine.io" href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
 </p>
 
-_2/3 slots available_
+_1/3 slots available_
 
 Diamond sponsors are those who've pledged \$1,500/month or more to the MUI organization. [Tier benefits](#diamond).
 

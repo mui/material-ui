@@ -115,7 +115,6 @@ import { ToggleButtonClassKey } from '../ToggleButton';
 import { ToggleButtonGroupClassKey } from '../ToggleButtonGroup';
 import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
-import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
 export type OverridesStyleRules<
@@ -262,6 +261,5 @@ export interface ComponentNameToClassKey {
   MuiToggleButtonGroup: ToggleButtonGroupClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
-  MuiTouchRipple: TouchRippleClassKey;
   MuiTypography: TypographyClassKey;
 }
