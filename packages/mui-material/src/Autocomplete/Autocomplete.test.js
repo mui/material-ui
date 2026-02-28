@@ -1322,7 +1322,10 @@ describe('<Autocomplete />', () => {
           onOpen={handleOpen}
           options={['one']}
           renderInput={(params) => (
-            <TextField {...params} slotProps={{ input: { ...params.slotProps.input, ref } }} />
+            <TextField
+              {...params}
+              slotProps={{ ...params.slotProps, input: { ...params.slotProps.input, ref } }}
+            />
           )}
         />,
       );
@@ -1761,7 +1764,10 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => (
             <TextField
               {...params}
-              slotProps={{ input: { ...params.slotProps.input, 'data-testid': 'test-input-root' } }}
+              slotProps={{
+                ...params.slotProps,
+                input: { ...params.slotProps.input, 'data-testid': 'test-input-root' },
+              }}
             />
           )}
         />,
@@ -2386,6 +2392,7 @@ describe('<Autocomplete />', () => {
               <TextField
                 {...params}
                 slotProps={{
+                  ...params.slotProps,
                   input: {
                     ...params.slotProps.input,
                     startAdornment: (
@@ -3941,7 +3948,10 @@ describe('<Autocomplete />', () => {
           <TextField
             {...params}
             label="Fixed tag"
-            slotProps={{ inputLabel: { 'data-testid': 'label' } }}
+            slotProps={{
+              ...params.slotProps,
+              inputLabel: { ...params.slotProps.inputLabel, 'data-testid': 'label' },
+            }}
           />
         )}
       />,
