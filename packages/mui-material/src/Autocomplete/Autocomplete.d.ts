@@ -100,15 +100,17 @@ export interface AutocompleteRenderInputParams {
   disabled: boolean;
   fullWidth: boolean;
   size: 'small' | undefined;
-  InputLabelProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputLabelProps']>;
-  InputProps: {
-    ref: React.Ref<any>;
-    className: string;
-    startAdornment: React.ReactNode;
-    endAdornment: React.ReactNode;
-    onMouseDown: React.MouseEventHandler;
+  slotProps: {
+    inputLabel: ReturnType<ReturnType<typeof useAutocomplete>['getInputLabelProps']>;
+    input: {
+      ref: React.Ref<any>;
+      className: string;
+      startAdornment: React.ReactNode;
+      endAdornment: React.ReactNode;
+      onMouseDown: React.MouseEventHandler;
+    };
+    htmlInput: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
   };
-  inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
 
 export interface AutocompletePropsSizeOverrides {}
