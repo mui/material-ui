@@ -83,7 +83,7 @@
   "dependencies": {
     "@netlify/functions": "^5.1.2",
     "@slack/bolt": "^4.6.0",
-    "@vitest/eslint-plugin": "^1.6.7",
+    "@vitest/eslint-plugin": "^1.6.9",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.1"
   },
@@ -128,7 +128,7 @@
     "danger": "13.0.5",
     "dotenv": "17.3.1",
     "es-toolkit": "1.44.0",
-    "eslint": "9.39.2",
+    "eslint": "9.39.3",
     "eslint-import-resolver-webpack": "0.13.10",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
