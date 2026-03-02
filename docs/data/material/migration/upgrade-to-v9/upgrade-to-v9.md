@@ -99,6 +99,50 @@ type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends
   : Value;
 ```
 
+### TextField
+
+The deprecated `TextField` props have been removed.
+Use the `slotProps` prop instead:
+
+```diff
+ <TextField
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
++  slotProps={{
++    input: CustomInputProps,
++    htmlInput: CustomHtmlInputProps,
++    select: CustomSelectProps,
++    inputLabel: CustomInputLabelProps,
++    formHelperText: CustomFormHelperTextProps,
++  }}
+ />
+```
+
+If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
+
+```diff
+ <Autocomplete
+   renderInput={(params) => (
+     <TextField
+       {...params}
+-      inputProps={{
+-        ...params.inputProps,
+-        autoComplete: 'new-password',
++      slotProps={{
++        ...params.slotProps,
++        htmlInput: {
++          ...params.slotProps.htmlInput,
++          autoComplete: 'new-password',
++        },
+       }}
+     />
+   )}
+ />
+```
+
 ### Grid
 
 The Grid component no longer supports [system props](/material-ui/customization/how-to-customize/#the-sx-prop).
