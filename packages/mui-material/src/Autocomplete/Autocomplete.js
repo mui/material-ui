@@ -581,6 +581,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     externalForwardedProps,
     ownerState,
     className: classes.clearIndicator,
+    shouldForwardComponentProp: true,
     additionalProps: {
       ...getClearProps(),
       'aria-label': clearText,
@@ -593,6 +594,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     externalForwardedProps,
     ownerState,
     className: classes.popupIndicator,
+    shouldForwardComponentProp: true,
     additionalProps: {
       ...getPopupIndicatorProps(),
       disabled,
@@ -1225,9 +1227,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
     paper: PropTypes.elementType,
     popper: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
