@@ -890,16 +890,23 @@ function TextFieldTest() {
         value="Alice"
         onChange={(event) => log({ name: event.currentTarget.value })}
       />
-      <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
+      <TextField
+        id="name"
+        label="Name"
+        value="Alice"
+        slotProps={{ input: { classes: { root: 'foo' } } }}
+      />
       <TextField
         type="number"
-        inputProps={{
-          min: '0',
-          max: '10',
-          step: '1',
-          style: {
-            // just a long CSS property to test autocompletion
-            WebkitAnimationIterationCount: 0,
+        slotProps={{
+          htmlInput: {
+            min: '0',
+            max: '10',
+            step: '1',
+            style: {
+              // just a long CSS property to test autocompletion
+              WebkitAnimationIterationCount: 0,
+            },
           },
         }}
       />
