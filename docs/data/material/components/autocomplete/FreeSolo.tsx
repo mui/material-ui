@@ -21,8 +21,9 @@ export default function FreeSolo() {
             {...params}
             label="Search input"
             slotProps={{
+              ...params.slotProps,
               input: {
-                ...params.InputProps,
+                ...params.slotProps.input,
                 type: 'search',
               },
             }}

@@ -319,11 +319,13 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
  * ```jsx
- * const inputProps = {
- *   step: 300,
+ * const slotProps = {
+ *   htmlInput: {
+ *      step: 300
+ *   }
  * };
  *
- * return <TextField id="time" type="time" inputProps={inputProps} />;
+ * return <TextField id="time" type="time" slotProps={slotProps} />;
  * ```
  *
  * For advanced cases, please look at the source of TextField by clicking on the
