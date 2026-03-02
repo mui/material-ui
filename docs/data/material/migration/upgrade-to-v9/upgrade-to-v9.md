@@ -99,50 +99,6 @@ type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends
   : Value;
 ```
 
-### TextField
-
-The deprecated `TextField` props have been removed.
-Use the `slotProps` prop instead:
-
-```diff
- <TextField
--  InputProps={CustomInputProps}
--  inputProps={CustomHtmlInputProps}
--  SelectProps={CustomSelectProps}
--  InputLabelProps={CustomInputLabelProps}
--  FormHelperTextProps={CustomFormHelperTextProps}
-+  slotProps={{
-+    input: CustomInputProps,
-+    htmlInput: CustomHtmlInputProps,
-+    select: CustomSelectProps,
-+    inputLabel: CustomInputLabelProps,
-+    formHelperText: CustomFormHelperTextProps,
-+  }}
- />
-```
-
-If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
-
-```diff
- <Autocomplete
-   renderInput={(params) => (
-     <TextField
-       {...params}
--      inputProps={{
--        ...params.inputProps,
--        autoComplete: 'new-password',
-+      slotProps={{
-+        ...params.slotProps,
-+        htmlInput: {
-+          ...params.slotProps.htmlInput,
-+          autoComplete: 'new-password',
-+        },
-       }}
-     />
-   )}
- />
-```
-
 ### Grid
 
 The Grid component no longer supports [system props](/material-ui/customization/how-to-customize/#the-sx-prop).
@@ -191,3 +147,51 @@ If you were using `MuiTouchRipple` in your theme, remove it and use global CSS w
 ### JSDOM support
 
 v9 removes all usage of `process.env.NODE_ENV === 'test'`. The `NODE_ENV` variable will exclusively be used for for tree-shaking. Our libraries have been updated to auto-detect DOM environments that don't support layout such as [JSDOM](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom) through user agent sniffing.
+
+### Deprecated APIs removed
+
+APIs that were deprecated earlier have been removed in v9.
+
+#### TextField deprecated props removed
+
+The deprecated `TextField` props have been removed.
+Use the `slotProps` prop instead:
+
+```diff
+ <TextField
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
++  slotProps={{
++    input: CustomInputProps,
++    htmlInput: CustomHtmlInputProps,
++    select: CustomSelectProps,
++    inputLabel: CustomInputLabelProps,
++    formHelperText: CustomFormHelperTextProps,
++  }}
+ />
+```
+
+If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
+
+```diff
+ <Autocomplete
+   renderInput={(params) => (
+     <TextField
+       {...params}
+-      inputProps={{
+-        ...params.inputProps,
+-        autoComplete: 'new-password',
++      slotProps={{
++        ...params.slotProps,
++        htmlInput: {
++          ...params.slotProps.htmlInput,
++          autoComplete: 'new-password',
++        },
+       }}
+     />
+   )}
+ />
+```
