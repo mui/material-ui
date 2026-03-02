@@ -77,7 +77,7 @@ function TextField(props) {
   const {
     classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
     ...InputPropsOther
-  } = slotProps.input;
+  } = slotProps.input ?? {};
 
   return (
     <MuiTextField

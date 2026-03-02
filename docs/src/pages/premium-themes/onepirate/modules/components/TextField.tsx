@@ -89,7 +89,7 @@ function TextField(props: OnePirateTextFieldProps) {
   const {
     classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
     ...InputPropsOther
-  } = slotProps.input as FilledInputProps | StandardInputProps;
+  } = (slotProps.input ?? {}) as FilledInputProps | StandardInputProps;
 
   return (
     <MuiTextField
