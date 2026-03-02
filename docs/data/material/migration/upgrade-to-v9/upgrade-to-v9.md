@@ -148,7 +148,7 @@ If you were using `MuiTouchRipple` in your theme, remove it and use global CSS w
 
 v9 removes all usage of `process.env.NODE_ENV === 'test'`. The `NODE_ENV` variable will exclusively be used for for tree-shaking. Our libraries have been updated to auto-detect DOM environments that don't support layout such as [JSDOM](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom) through user agent sniffing.
 
-### Stepper
+### Stepper, Step and StepButton
 
 The `Stepper` and `Step` markups have changed to improve their semantics:
 
@@ -177,7 +177,7 @@ The `tabindex` attribute for each tab will be changed on Arrow Key or Home / End
 
 Selecting a `Tab` will update the focus and `tabindex` as before.
 
-### Menu & MenuList
+### Menu and MenuList
 
 The `tabindex` attribute for each menu item will be changed on Arrow Key, Home / End or Character Key navigation. Previously, we only moved the focus on keyboard navigation. Now, we move the focus and also add the `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `MenuItem` at a time.
 
