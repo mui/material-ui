@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { Tabs } from '@mui/base/Tabs';
@@ -19,7 +18,7 @@ import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
 import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { useDemoContext } from 'docs/src/modules/components/DemoContext';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
@@ -53,21 +52,10 @@ function getDemoName(location) {
       location.split('/').pop();
 }
 
-function useDemoData(codeVariant, demo, githubLocation) {
+function useDemoData(codeVariant, demo, githubLocation, productDisplayName) {
   const userLanguage = useUserLanguage();
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   return React.useMemo(() => {
-    let productId;
-    let name = 'Material UI';
-    if (canonicalAs.startsWith('/joy-ui/')) {
-      productId = 'joy-ui';
-      name = 'Joy UI';
-    } else if (canonicalAs.startsWith('/x/')) {
-      name = 'MUI X';
-    }
-
     let codeOptions = {};
 
     if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
@@ -100,11 +88,10 @@ function useDemoData(codeVariant, demo, githubLocation) {
       scope: demo.scope,
       jsxPreview: demo.jsxPreview,
       ...codeOptions,
-      title: `${getDemoName(githubLocation)} demo — ${name}`,
-      productId,
+      title: `${getDemoName(githubLocation)} demo — ${productDisplayName}`,
       language: userLanguage,
     };
-  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
+  }, [codeVariant, demo, githubLocation, productDisplayName, userLanguage]);
 }
 
 function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
@@ -365,8 +352,9 @@ export default function Demo(props) {
 
   const t = useTranslate();
   const codeVariant = useCodeVariant();
+  const { productDisplayName } = useDemoContext();
 
-  const demoData = useDemoData(codeVariant, demo, githubLocation);
+  const demoData = useDemoData(codeVariant, demo, githubLocation, productDisplayName);
 
   const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
@@ -517,7 +505,6 @@ export default function Demo(props) {
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
           isolated={demoOptions.isolated}
-          isJoy={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}
         >

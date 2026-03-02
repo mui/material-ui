@@ -56,7 +56,7 @@ Depending on the day, you'll:
 - Research a11y requirements for UI components.
 - Contribute to component API design decisions and architecture.
 - Contribute to Base UI documentation.
-- Help out with community support on GitHub and Discord.
+- Help out with community support on GitHub.
 
 ## Who we're looking for
 

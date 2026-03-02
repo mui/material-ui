@@ -42,7 +42,7 @@ export default function MaterialDesignKits({ gradient }: MaterialDesignKitsProps
 
   return (
     <Section cozy bg={gradient ? 'gradient' : 'white'}>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid sx={{ minWidth: 0 }} size={{ md: 6 }}>
           <SectionHeadline
             overline="Design resources"

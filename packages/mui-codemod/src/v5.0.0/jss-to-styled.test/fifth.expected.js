@@ -61,7 +61,7 @@ function SellHero() {
 
 
   return (
-    (<Root className={classes.root}>
+    <Root className={classes.root}>
       <Container className={classes.container}>
         <Typography variant="h1" align="center" color="textPrimary" className={classes.title}>
           Sell themes
@@ -86,7 +86,7 @@ function SellHero() {
           </Button>
         </div>
       </Container>
-    </Root>)
+    </Root>
   );
 }
 

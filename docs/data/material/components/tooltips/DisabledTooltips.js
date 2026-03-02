@@ -3,7 +3,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 export default function DisabledTooltips() {
   return (
-    <Tooltip title="You don't have permission to do this">
+    <Tooltip describeChild title="You don't have permission to do this">
       <span>
         <Button disabled>A Disabled Button</Button>
       </span>

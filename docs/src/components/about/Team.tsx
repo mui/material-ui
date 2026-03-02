@@ -394,7 +394,7 @@ export default function Team() {
             Special members of the community deserve a shout-out for their ever-lasting impact on
             MUI&apos;s open-source projects.
           </Typography>
-          <Grid container spacing={2} mt={2}>
+          <Grid container spacing={2} sx={{ mt: 2 }}>
             {contributors.map((profile) => (
               <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
@@ -413,7 +413,7 @@ export default function Team() {
             We honor some no-longer-active core team members who have made valuable contributions in
             the past. They advise us from time to time.
           </Typography>
-          <Grid container spacing={2} mt={2}>
+          <Grid container spacing={2} sx={{ mt: 2 }}>
             {emeriti.map((profile) => (
               <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />

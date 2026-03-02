@@ -17,7 +17,7 @@ export default function CustomersHero() {
             powered by <GradientText color="primary">MUI</GradientText>
           </Typography>
         }
-        description="See how MUI's comprehensive suite of UI tools helps them ship better and faster"
+        description="See how MUI's comprehensive suite of UI tools helps them ship better and faster."
       />
     </Section>
   );

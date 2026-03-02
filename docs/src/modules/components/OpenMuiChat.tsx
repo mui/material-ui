@@ -5,6 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import PageContext from 'docs/src/modules/components/PageContext';
+import { useDemoContext } from 'docs/src/modules/components/DemoContext';
 import { createMuiChat } from '../sandbox/MuiChat';
 import { DemoData } from '../sandbox/types';
 
@@ -91,6 +92,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
 const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatButtonProps>(
   function OpenInMUIChatButton({ demoData, ...props }, ref) {
     const { productId } = React.useContext(PageContext);
+    const { csb } = useDemoContext();
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<Error | null>(null);
     const baseUrl = process.env.MUI_CHAT_API_BASE_URL;
@@ -101,7 +103,7 @@ const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatBut
       setError(null);
 
       try {
-        await createMuiChat(demoData).openSandbox();
+        await createMuiChat(demoData, csb).openSandbox();
       } catch (err: any) {
         setError(err as Error);
       } finally {

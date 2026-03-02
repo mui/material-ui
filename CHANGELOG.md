@@ -1,5 +1,141 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-alpha.1
+
+<!-- generated comparing v9.0.0-alpha.0..master -->
+
+_Feb 26, 2026_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+### @mui/material@9.0.0-alpha.1
+
+- [Autocomplete] Prevents Autocomplete menu from opening on right click (#47797) @silviuaavram
+- [Backdrop] Remove aria-hidden by default (#47798) @silviuaavram
+- [ButtonBase] Ensure that onClick propagates when non-native button is clicked (#47800) @silviuaavram
+- [Dialog][Modal] Remove `disableEscapeKeyDown` prop (#47695) @silviuaavram
+- [Grid] Remove system props support (#47846) @siriwatknp
+- [TableCell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47762) @ZeeshanTamboli
+- [theme] Remove MuiTouchRipple from theme component types (#47849) @siriwatknp
+- [Tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47684) @ZeeshanTamboli
+- [useAutocomplete] Improve isOptionEqualToValue value argument type (#47801) @silviuaavram
+
+### Docs
+
+- [docs] Add updated community theme resource (#47847) @PeterTYLiu
+- [docs] Few copy fixes (#47806) @pavan-sh
+- [docs] Fix IPA reader link in blog post (#47796) @pavan-sh
+- [docs] Fix JSX in Overriding component structure docs (#47799) @ZeeshanTamboli
+- [docs] Fix the keyboard navigation in GroupedMenu example (#47842) @silviuaavram
+- [docs] Fix Theme builder video (#47835) @oliviertassinari
+- [docs] Update pricing sankey as done (#47795) @alexfauquette
+- [docs][system] Update sizing docs to clarify `(0, 1]` behavior. (#47845) @matthias-ccri
+
+### Core
+
+- [blog] Blogpost for upcoming price changes for MUI X (#47748) @DanailH
+- [code-infra] Detect browser envs that don't support layout (#47813) @Janpot
+- [code-infra] Enable undefined addition to optional properties (#47750) @brijeshb42
+- [code-infra] Exclusively enable test mode in jsdom (#47812) @Janpot
+- [code-infra] Fix console.warn during test (#47802) @Janpot
+- [code-infra] Remove vale as a workspace dependency (#47860) @brijeshb42
+- [code-infra] Setup flat build for packages (#47670) @brijeshb42
+- [code-infra] Upgrade react-docgen to v8 (#47685) @JCQuintas
+- [docs-infra] Reapply Cookie Banner with Design Fixes (#47744) @dav-is
+- [internal] Remove legacy MUI Base API docs (#47804) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @DanailH, @dav-is, @Janpot, @JCQuintas, @matthias-ccri, @oliviertassinari, @pavan-sh, @PeterTYLiu, @silviuaavram, @siriwatknp, @ZeeshanTamboli
+
+## 9.0.0-alpha.0
+
+<!-- generated comparing v7.3.8..master -->
+
+_Feb 17, 2026_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### @mui/material@9.0.0-alpha.0
+
+- [theme] Generate `color-mix` value on top of default generated Material UI CSS variables (#47767) @ZeeshanTamboli
+
+### Docs
+
+- [docs] Make tooltips describe their visible text triggers (#47658) @silviuaavram
+- [docs][theme] Fix `nativeColor` docs (#47759) @ZeeshanTamboli
+
+### Core
+
+- [blog] A pattern for opt-in type-only breaking changes in minor versions (#47622) @bernardobelchior
+- [internal] Prepare libraries for first v9 alpha release (#47756) @silviuaavram
+
+All contributors of this release in alphabetical order: @bernardobelchior, @silviuaavram, @ZeeshanTamboli
+
+## v8
+
+This version is skipped to align the release version with MUI X v9.
+
+## 7.3.8
+
+<!-- generated comparing v7.3.7..master -->
+
+_Feb 12, 2026_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+### `@mui/material@7.3.8`
+
+- [alert] Revert removing default icon mapping fallback (#47629) @ZeeshanTamboli
+- [app-bar] Fix optional chaining in joinVars function (#47739) @sai6855
+- [autocomplete] Fix scroll position resetting on reopen with `disableCloseOnSelect` (#47248) @ZeeshanTamboli
+- [autocomplete] Pass fullWidth prop to input, with default as true (#47663) @silviuaavram
+- [badge] Refactor variant styles generation (#47742) @sai6855
+- [chip] Remove unnecessary `onDelete` check (#47753) @ZeeshanTamboli
+- [switch][checkbox][radio] Remove `aria-disabled` from root span (#46318) @KirankumarAmbati
+- [collapse] Remove unnecessary string concatenation (#47745) @sai6855
+- [drawer] `persistent` and `permanent` variant Drawers should not override the styles via theme using `modal` class (#47581) @ZeeshanTamboli
+- [tabs] Add ability to extend Tabs variant (#47590) @aditya1906
+- [useAutocomplete] Add aria-multiselectable to listbox props when multiple is true (#47632) @silviuaavram
+- [useAutocomplete] Use `React.Key` instead of `any` for `key` prop (#47619) @sonixx02
+
+#### Core
+
+- Revert "[docs-infra] Add Cookie Banner and Analytics Provider (#47445)" (868d23e) @dav-is
+- Revert "[docs-infra] Update Cookie Consent Dialog styling and content (#47718)" (ae29d03) @dav-is
+- [api-docs-builder] Validate slots prop and Slots interface export consistency (#47623) @Janpot
+- [code-infra] Remove `window.muiDocConfig` (#47737) @Janpot
+- [code-infra] Fix flaky Select test on Webkit (#47728) @Janpot
+- [code-infra] Remove usage of NODE_ENV=test (#47692) @Janpot
+- [code-infra] Prepare eslint rule rename (#47702) @Janpot
+- [code-infra] Next.js 15.5.11 (security update) (#47697) @Janpot
+- [code-infra] Fix Tooltip tests flakyness (#47669) @Janpot
+- [code-infra] Improve instructions for error messages (#47668) @Janpot
+- [code-infra] Add initial agent instructions (#47655) @Janpot
+- [code-infra] Update broken links checker (#47633) @Janpot
+- [code-infra] Improve Tooltip leaveDelay test (#47624) @Janpot
+- [code-infra] Fix internal broken links (#47607) @Janpot
+- [docs-infra] Resolve a few 301s in our docs (#47746) @Janpot
+- [docs-infra] Update Cookie Consent Dialog styling and content (#47718) @dav-is
+- [docs-infra] Add Cookie Banner and Analytics Provider (#47445) @dav-is
+- [docs-infra] Make sure /customers page has a h1 (#47615) @Janpot
+- [docs-infra] Fix privacy link (#47614) @Janpot
+- [docs-infra] Resolve a few 301s (#47579) @Janpot
+- [internal] Remove unused sponsor files (#47741) @oliviertassinari
+- [markdown] Fix some broken hash links (#47609) @Janpot
+- [test] Cleanup Table tests TODOs (#47656) @Ocheretovich
+
+### Docs
+
+- [website] unclickable banner in the pricing page (#47634) @aemartos
+- [blog] Company Update: What we've been working on (and why) (#47626) @alelthomas
+- [docs] Remove outdated notifications (#47743) @bernardobelchior
+- [docs] Make Demo component product-agnostic (#47635) @Janpot
+- [docs] Copyedit the Number Field doc (#47469) @mapache-salvaje
+- [docs] Fix Roboto font not loading in iframe demos (#47660) @Janpot
+- [docs] Replace Checkbox with Icons in Combobox examples (#47654) @silviuaavram
+- [docs] Fix punctuation in TypeScript guide description (#47617) @nodirbekprogrammer
+
+All contributors of this release in alphabetical order: @aditya1906, @aemartos, @alelthomas, @bernardobelchior, @dav-is, @Janpot, @KirankumarAmbati, @mapache-salvaje, @nodirbekprogrammer, @Ocheretovich, @oliviertassinari, @sai6855, @silviuaavram, @sonixx02, @ZeeshanTamboli
+
 ## 7.3.7
 
 <!-- generated comparing v7.3.6..master -->

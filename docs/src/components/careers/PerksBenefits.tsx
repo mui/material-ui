@@ -104,7 +104,7 @@ function RemoteAwardCard() {
 export default function PerksBenefits() {
   return (
     <Section bg="gradient" cozy>
-      <Grid container spacing={5} alignItems="center">
+      <Grid container spacing={5} sx={{ alignItems: 'center' }}>
         <Grid size={{ md: 6 }}>
           <SectionHeadline
             overline="Working at MUI"

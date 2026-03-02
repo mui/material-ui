@@ -57,7 +57,7 @@ export default function MaterialEnd({ noFaq }: MaterialEndProps) {
           />
         </Box>
       ) : (
-        <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
+        <Grid container spacing={{ xs: 6, sm: 10 }} sx={{ alignItems: 'center' }}>
           <Grid size={{ xs: 12, sm: 6 }}>
             <SectionHeadline
               overline="Community"
