@@ -77,10 +77,20 @@ const styles = ({ theme }: { theme: Theme }) => ({
 
 export interface OnePirateTextFieldProps extends Omit<
   FilledTextFieldProps | StandardTextFieldProps,
-  'size'
+  'size' | 'slotProps'
 > {
   noBorder?: boolean;
   size?: 'small' | 'medium' | 'large' | 'xlarge';
+  slotProps?: OnePirateTextFieldSlotProps;
+}
+
+interface OnePirateTextFieldSlotProps {
+  formHelperText?: object;
+  htmlInput?: object;
+  input?: FilledInputProps | StandardInputProps;
+  inputLabel?: object;
+  root?: object;
+  select?: object;
 }
 
 function TextField(props: OnePirateTextFieldProps) {

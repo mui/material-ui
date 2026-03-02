@@ -66,47 +66,13 @@ RFTextField.propTypes = {
     validating: PropTypes.bool,
     visited: PropTypes.bool,
   }).isRequired,
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
   slotProps: PropTypes.shape({
-    formHelperText: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    htmlInput: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.object,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        key: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.shape({
-            '__@toStringTag@1136': PropTypes.oneOf(['BigInt']).isRequired,
-            toLocaleString: PropTypes.func.isRequired,
-            toString: PropTypes.func.isRequired,
-            valueOf: PropTypes.func.isRequired,
-          }),
-          PropTypes.shape({
-            '__@toPrimitive@2449': PropTypes.func.isRequired,
-            '__@toStringTag@1136': PropTypes.string.isRequired,
-            description: PropTypes.string,
-            toString: PropTypes.func.isRequired,
-            valueOf: PropTypes.func.isRequired,
-          }),
-          PropTypes.string,
-        ]),
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    inputLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    formHelperText: PropTypes.object,
+    htmlInput: PropTypes.object,
+    input: PropTypes.object,
+    inputLabel: PropTypes.object,
+    root: PropTypes.object,
+    select: PropTypes.object,
   }),
 };
 
