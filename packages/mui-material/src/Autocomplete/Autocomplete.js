@@ -576,6 +576,31 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   });
 
+  const [ClearIndicatorSlot, clearIndicatorProps] = useSlot('clearIndicator', {
+    elementType: AutocompleteClearIndicator,
+    externalForwardedProps,
+    ownerState,
+    className: classes.clearIndicator,
+    additionalProps: {
+      ...getClearProps(),
+      'aria-label': clearText,
+      title: clearText,
+    },
+  });
+
+  const [PopupIndicatorSlot, popupIndicatorProps] = useSlot('popupIndicator', {
+    elementType: AutocompletePopupIndicator,
+    externalForwardedProps,
+    ownerState,
+    className: classes.popupIndicator,
+    additionalProps: {
+      ...getPopupIndicatorProps(),
+      disabled,
+      'aria-label': popupOpen ? closeText : openText,
+      title: popupOpen ? closeText : openText,
+    },
+  });
+
   let startAdornment;
 
   const getCustomizedItemProps = (params) => ({
@@ -663,9 +688,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     );
   };
 
-  const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
-  const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
-
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -693,30 +715,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
                   {hasClearIcon ? (
-                    <AutocompleteClearIndicator
-                      {...getClearProps()}
-                      aria-label={clearText}
-                      title={clearText}
-                      ownerState={ownerState}
-                      {...clearIndicatorSlotProps}
-                      className={clsx(classes.clearIndicator, clearIndicatorSlotProps?.className)}
-                    >
-                      {clearIcon}
-                    </AutocompleteClearIndicator>
+                    <ClearIndicatorSlot {...clearIndicatorProps}>{clearIcon}</ClearIndicatorSlot>
                   ) : null}
-
                   {hasPopupIcon ? (
-                    <AutocompletePopupIndicator
-                      {...getPopupIndicatorProps()}
-                      disabled={disabled}
-                      aria-label={popupOpen ? closeText : openText}
-                      title={popupOpen ? closeText : openText}
-                      ownerState={ownerState}
-                      {...popupIndicatorSlotProps}
-                      className={clsx(classes.popupIndicator, popupIndicatorSlotProps?.className)}
-                    >
-                      {popupIcon}
-                    </AutocompletePopupIndicator>
+                    <PopupIndicatorSlot {...popupIndicatorProps}>{popupIcon}</PopupIndicatorSlot>
                   ) : null}
                 </AutocompleteEndAdornment>
               ),
