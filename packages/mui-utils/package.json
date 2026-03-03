@@ -28,7 +28,7 @@
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/utils\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build"
+    "attw": "attw --pack ./build --entrypoints \".\" \"deepmerge\" \"useId\" \"composeClasses\""
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
