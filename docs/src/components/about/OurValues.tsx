@@ -8,7 +8,7 @@ import { Link } from '@mui/docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 
 const values = [
   {

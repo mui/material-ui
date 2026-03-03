@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createTheme as createMdTheme } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import { getMetaThemeColor } from '@mui/docs/branding';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
+import useLazyCSS from '../useLazyCSS';
+import { getMetaThemeColor } from '../branding';
 
 const themeInitialOptions = {
   dense: false,
