@@ -19,12 +19,12 @@ import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha } from '@mui/material/styles';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import { Link } from '@mui/docs/Link';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from '@mui/docs/useLazyCSS';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import SearchButton from './SearchButton';
 
 function NewStartScreen() {

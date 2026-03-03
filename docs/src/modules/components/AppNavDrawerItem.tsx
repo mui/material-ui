@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import { Link, LinkProps } from '@mui/docs/Link';
-import { MuiPageIcon } from 'docs/src/MuiPage';
+import { MuiPageIcon } from '@mui/docs/MuiPage';
 import standardNavIcons from './AppNavIcons';
 
 interface ItemBaseProps {

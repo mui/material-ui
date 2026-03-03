@@ -1,9 +1,9 @@
 import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
-import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
+import { useNoSsrCodeVariant } from '@mui/docs/codeVariant';
 import { useUserLanguage } from '@mui/docs/i18n';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 import { ThemeOptionsContext } from '@mui/docs/ThemeContext';
 
 // So we can write code like:

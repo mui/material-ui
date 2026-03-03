@@ -17,12 +17,12 @@ import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 import SearchButton from './SearchButton';
 
 const nProgressStart = debounce(() => {

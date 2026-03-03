@@ -6,8 +6,8 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import createEmotionCache from 'docs/src/createEmotionCache';
+import { pathnameToLanguage } from '@mui/docs/helpers';
+import createEmotionCache from '@mui/docs/createEmotionCache';
 import { getMetaThemeColor } from '@mui/docs/branding';
 import { fontClasses } from './_app';
 

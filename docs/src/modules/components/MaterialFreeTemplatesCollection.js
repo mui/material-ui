@@ -11,7 +11,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import { useTranslate } from '@mui/docs/i18n';
-import { pascalCase } from 'docs/src/modules/utils/helpers';
+import { pascalCase } from '@mui/docs/helpers';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';

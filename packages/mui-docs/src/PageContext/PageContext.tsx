@@ -1,7 +1,13 @@
 import * as React from 'react';
-import type { MuiPage } from 'docs/src/MuiPage';
-import type { MuiProductId } from 'docs/src/modules/utils/getProductInfoFromUrl';
-import { RootSvgProps } from 'docs/src/icons/RootSvg';
+import type { Theme } from '@mui/material/styles';
+import type { SxProps } from '@mui/system';
+import type { MuiPage } from '../MuiPage';
+import type { MuiProductId } from '../getProductInfoFromUrl';
+
+export type RootSvgProps<P = unknown> = Omit<React.SVGProps<SVGSVGElement>, 'ref'> & {
+  sx?: SxProps<Theme>;
+  ref?: React.Ref<SVGSVGElement>;
+} & P;
 
 export interface ProductVersion {
   text: string;

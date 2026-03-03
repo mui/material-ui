@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/s
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
-import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { getCookie, pathnameToLanguage } from '@mui/docs/helpers';
 // @ts-ignore to bypass type checking in MUI X repo
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';

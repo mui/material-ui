@@ -1,5 +1,22 @@
 import * as React from 'react';
-import type { CodeVariant } from 'docs/src/modules/sandbox/types';
+import type { MuiProductId } from '../getProductInfoFromUrl';
+
+export type CodeVariant = 'TS' | 'JS';
+
+type RelativeModule = {
+  module: string;
+  raw: string;
+};
+
+export interface DemoData {
+  title: string;
+  language: string;
+  raw: string;
+  codeVariant: CodeVariant;
+  githubLocation: string;
+  productId?: Exclude<MuiProductId, 'null'>;
+  relativeModules?: RelativeModule[];
+}
 
 export interface SandboxConfig {
   /**
