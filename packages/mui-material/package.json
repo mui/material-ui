@@ -30,7 +30,7 @@
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
-    "attw": "attw --pack ./build"
+    "attw": "attw --pack ./build --entrypoints \".\" \"Button\" \"styles\" \"utils\""
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
