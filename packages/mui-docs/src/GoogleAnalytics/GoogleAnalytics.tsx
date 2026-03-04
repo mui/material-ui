@@ -14,15 +14,16 @@ import { ThemeOptionsContext } from '@mui/docs/ThemeContext';
 // >
 //   Foo
 // </Button>
-function handleClick(event) {
-  let element = event.target;
+function handleClick(event: PointerEvent) {
+  let el = event.target;
 
-  while (element && element !== document) {
+  while (el && el !== document) {
+    const element = el as HTMLElement;
     const category = element.getAttribute('data-ga-event-category');
 
     // We reach a tracking element, no need to look higher in the dom tree.
     if (category) {
-      const split = parseFloat(element.getAttribute('data-ga-event-split'));
+      const split = parseFloat(element.getAttribute('data-ga-event-split') || '');
 
       if (split && split < Math.random()) {
         return;
@@ -35,7 +36,7 @@ function handleClick(event) {
       break;
     }
 
-    element = element.parentElement;
+    el = element.parentElement;
   }
 }
 
@@ -54,21 +55,29 @@ function GoogleAnalytics() {
     }
   }, []);
   const router = useRouter();
-  const timeout = React.useRef();
+  const timeout = React.useRef<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
     // Wait for the title to be updated.
     // React fires useEffect twice in dev mode
-    clearTimeout(timeout.current);
+    if (timeout.current) {
+      clearTimeout(timeout.current);
+    }
     timeout.current = setTimeout(() => {
       const { canonicalAsServer } = pathnameToLanguage(window.location.pathname);
 
       // https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag
+      const productIdMeta = document.querySelector(
+        'meta[name="mui:productId"]',
+      ) as HTMLMetaElement | null;
+      const productCategoryIdMeta = document.querySelector(
+        'meta[name="mui:productCategoryId"]',
+      ) as HTMLMetaElement | null;
       window.gtag('event', 'page_view', {
         page_title: document.title,
         page_location: canonicalAsServer,
-        productId: document.querySelector('meta[name="mui:productId"]').content,
-        productCategoryId: document.querySelector('meta[name="mui:productCategoryId"]').content,
+        productId: productIdMeta?.content,
+        productCategoryId: productCategoryIdMeta?.content,
       });
     });
   }, [router.route]);

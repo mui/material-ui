@@ -9,7 +9,7 @@ import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import { pathnameToLanguage } from '@mui/docs/helpers';
 import createEmotionCache from '@mui/docs/createEmotionCache';
 import { getMetaThemeColor } from '@mui/docs/branding';
-import { fontClasses } from './_app';
+import { fontClasses } from '@mui/docs/nextFonts';
 
 const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
