@@ -4,6 +4,24 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  docs:
+    '@emotion/cache':
+      specifier: ^11.14.0
+      version: 11.14.0
+    '@emotion/react':
+      specifier: ^11.14.0
+      version: 11.14.0
+    '@emotion/server':
+      specifier: ^11.11.0
+      version: 11.11.0
+    '@emotion/styled':
+      specifier: ^11.14.1
+      version: 11.14.1
+    stylis:
+      specifier: 4.2.0
+      version: 4.2.0
+
 overrides:
   '@babel/core': 7.29.0
   '@babel/plugin-transform-runtime': ^7.29.0
@@ -263,16 +281,16 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(@algolia/client-search@5.18.0)(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(search-insights@2.13.0)
       '@emotion/cache':
-        specifier: ^11.14.0
+        specifier: catalog:docs
         version: 11.14.0
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:docs
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
       '@emotion/server':
-        specifier: ^11.11.0
+        specifier: catalog:docs
         version: 11.11.0(@emotion/css@11.13.4)
       '@emotion/styled':
-        specifier: ^11.14.1
+        specifier: catalog:docs
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.7.2
@@ -497,7 +515,7 @@ importers:
         specifier: ^6.3.11
         version: 6.3.11(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       stylis:
-        specifier: 4.2.0
+        specifier: catalog:docs
         version: 4.2.0
       use-count-up:
         specifier: ^3.0.1
@@ -845,13 +863,13 @@ importers:
         specifier: ^7.28.6
         version: 7.28.6
       '@emotion/cache':
-        specifier: ^11.11.0
+        specifier: catalog:docs
         version: 11.14.0
       '@emotion/react':
-        specifier: ^11.11.4
+        specifier: catalog:docs
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
       '@emotion/styled':
-        specifier: ^11.11.0
+        specifier: catalog:docs
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@mui/base':
         specifier: ^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta
@@ -896,7 +914,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       stylis:
-        specifier: 4.2.0
+        specifier: catalog:docs
         version: 4.2.0
     devDependencies:
       '@mui/icons-material':
