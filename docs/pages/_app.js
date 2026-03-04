@@ -24,7 +24,6 @@ import generalDocsPages from 'docs/data/docs/pages';
 import joyPages from 'docs/data/joy/pages';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import { BrandingCssThemeProvider } from 'docs/src/BrandingCssVarsProvider';
 import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
@@ -428,7 +427,7 @@ function AppWrapper(props) {
               <DemoContext.Provider value={demoContextValue}>
                 <ThemeProvider>
                   <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                    <AnalyticsProvider slots={{ PagesThemeContainer: BrandingCssThemeProvider }}>
+                    <AnalyticsProvider>
                       {children}
                       <GoogleAnalytics />
                     </AnalyticsProvider>

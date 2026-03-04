@@ -10,6 +10,7 @@ import { alpha } from '@mui/system';
 import Portal from '@mui/material/Portal';
 import TrapFocus from '@mui/material/Unstable_TrapFocus';
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
+import { BrandingCssThemeProvider } from '../branding/BrandingCssVarsProvider';
 
 const COOKIE_CONSENT_KEY = 'docs-cookie-consent';
 
@@ -177,15 +178,7 @@ function updateGoogleConsent(hasAnalytics: boolean) {
   }
 }
 
-export function AnalyticsProvider({
-  children,
-  slots,
-}: {
-  children: React.ReactNode;
-  slots?: {
-    PagesThemeContainer?: React.ElementType;
-  };
-}) {
+export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const [consentStatus, setConsentStatus] = useLocalStorageState(COOKIE_CONSENT_KEY, null);
   const doNotTrack = useDoNotTrack();
 
@@ -221,14 +214,12 @@ export function AnalyticsProvider({
     [consentStatus, doNotTrack, needsConsent, setAnalyticsConsent, setEssentialOnly],
   );
 
-  const PagesThemeContainer = slots?.PagesThemeContainer || React.Fragment;
-
   return (
     <AnalyticsContext.Provider value={contextValue}>
       {children}
-      <PagesThemeContainer>
+      <BrandingCssThemeProvider>
         <CookieConsentDialog />
-      </PagesThemeContainer>
+      </BrandingCssThemeProvider>
     </AnalyticsContext.Provider>
   );
 }

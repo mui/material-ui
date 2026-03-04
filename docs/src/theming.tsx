@@ -8,7 +8,7 @@ import {
 } from '@mui/joy/styles';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '@mui/docs/ThemeContext';
-import BrandingCssVarsProvider from './BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 
 const defaultTheme = createTheme({
   colorSchemes: { light: true, dark: true },

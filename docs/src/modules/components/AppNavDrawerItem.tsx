@@ -5,8 +5,7 @@ import { alpha, styled, SxProps, Theme } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
-import { Link, LinkProps } from '@mui/docs/Link';
+import { samePageLinkNavigation, Link, type LinkProps } from '@mui/docs/Link';
 import { MuiPageIcon } from '@mui/docs/MuiPage';
 import standardNavIcons from './AppNavIcons';
 

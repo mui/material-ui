@@ -938,6 +938,9 @@ importers:
       '@types/node':
         specifier: 20.19.35
         version: 20.19.35
+      '@types/nprogress':
+        specifier: 0.2.3
+        version: 0.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15

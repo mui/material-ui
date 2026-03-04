@@ -11,7 +11,7 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import Sponsors from 'docs/src/components/home/Sponsors';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import NewsletterToast from 'docs/src/components/home/NewsletterToast';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 

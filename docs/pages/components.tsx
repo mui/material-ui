@@ -8,7 +8,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import Section from 'docs/src/layouts/Section';
 import { pageToTitleI18n } from '@mui/docs/helpers';
 import { useTranslate } from '@mui/docs/i18n';
