@@ -74,6 +74,8 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   &nbsp;
+  <a href="https://www.react-pdf-kit.dev/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/288.png" alt="react-pdf-kit.dev" title="React PDF Kit: Powerful, Fast and Developer-Friendly." loading="lazy" /></a>
+  &nbsp;
 </p>
 
 <p>
