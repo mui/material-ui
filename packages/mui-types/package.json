@@ -24,7 +24,7 @@
     "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build"
+    "attw": "attw --pack ./build --entrypoints \".\""
   },
   "sideEffects": false,
   "publishConfig": {
