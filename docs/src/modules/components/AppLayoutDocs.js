@@ -14,7 +14,8 @@ import {
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
-import AppTableOfContents, { TOC_WIDTH } from 'docs/src/modules/components/AppTableOfContents';
+import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
@@ -50,6 +51,7 @@ const Main = styled('main', {
       props: ({ disableToc, collapseToc }) => !disableToc && collapseToc,
       style: {
         gridTemplateColumns: '1fr auto',
+        paddingRight: theme.spacing(1),
       },
     },
   ],
