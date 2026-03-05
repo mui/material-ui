@@ -69,7 +69,7 @@ const TextFieldRoot = styled(FormControl, {
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
  *
- * - using the upper case props for passing values directly to the components
+ * - using the `slotProps` prop for passing values directly to the components
  * - using the underlying components directly as shown in the demos
  */
 const TextField = React.forwardRef(function TextField(inProps, ref) {

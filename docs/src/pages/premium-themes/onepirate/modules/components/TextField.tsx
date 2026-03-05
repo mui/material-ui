@@ -104,6 +104,7 @@ function TextField(props: OnePirateTextFieldProps) {
   return (
     <MuiTextField
       slotProps={{
+        ...slotProps,
         input: {
           classes: {
             root: classes.root,
@@ -124,7 +125,6 @@ function TextField(props: OnePirateTextFieldProps) {
           ...slotProps.inputLabel,
           shrink: true,
         },
-        ...slotProps,
       }}
       {...other}
     />

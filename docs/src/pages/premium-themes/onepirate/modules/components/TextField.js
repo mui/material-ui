@@ -82,6 +82,7 @@ function TextField(props) {
   return (
     <MuiTextField
       slotProps={{
+        ...slotProps,
         input: {
           classes: {
             root: classes.root,
@@ -102,7 +103,6 @@ function TextField(props) {
           ...slotProps.inputLabel,
           shrink: true,
         },
-        ...slotProps,
       }}
       {...other}
     />
