@@ -212,7 +212,7 @@
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: elementType, paper?: elementType, popper?: elementType }"
+        "description": "{ clearIndicator?: elementType, listbox?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType }"
       },
       "default": "{}"
     },
@@ -231,6 +231,18 @@
     "import { Autocomplete } from '@mui/material';"
   ],
   "slots": [
+    {
+      "name": "clearIndicator",
+      "description": "The component used to render the clear indicator element.",
+      "default": "IconButton",
+      "class": "MuiAutocomplete-clearIndicator"
+    },
+    {
+      "name": "popupIndicator",
+      "description": "The component used to render the popup indicator element.",
+      "default": "IconButton",
+      "class": "MuiAutocomplete-popupIndicator"
+    },
     {
       "name": "listbox",
       "description": "The component used to render the listbox.",
@@ -251,12 +263,6 @@
     }
   ],
   "classes": [
-    {
-      "key": "clearIndicator",
-      "className": "MuiAutocomplete-clearIndicator",
-      "description": "Styles applied to the clear indicator.",
-      "isGlobal": false
-    },
     {
       "key": "endAdornment",
       "className": "MuiAutocomplete-endAdornment",
@@ -351,12 +357,6 @@
       "key": "popperDisablePortal",
       "className": "MuiAutocomplete-popperDisablePortal",
       "description": "Styles applied to the popper element if `disablePortal={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "popupIndicator",
-      "className": "MuiAutocomplete-popupIndicator",
-      "description": "Styles applied to the popup indicator.",
       "isGlobal": false
     },
     {

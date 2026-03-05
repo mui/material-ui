@@ -1,5 +1,33 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-alpha.2
+
+<!-- generated comparing v9.0.0-alpha.1..master -->
+
+_Mar 5, 2026_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### @mui/material@9.0.0-alpha.2
+
+- Clean up duplicated CSS rules (#47838) @sai6855
+
+### @mui/system@9.0.0-alpha.2
+
+- Refactor sortContainerQueries to define regex outside of sort function (#47817) @sai6855
+
+### Docs
+
+- Move shared components to @mui/docs package (#47672) @Janpot
+- Fix small typo in NumberField page (#47877) @arthur-plazanet
+
+### Core
+
+- [code-infra] Reduce paths for attw checks (#47896) @brijeshb42
+- [docs-infra] Run syncTeamMembers (#47900) @Janpot
+
+All contributors of this release in alphabetical order: @arthur-plazanet, @brijeshb42, @Janpot, @sai6855
+
 ## 9.0.0-alpha.1
 
 <!-- generated comparing v9.0.0-alpha.0..master -->

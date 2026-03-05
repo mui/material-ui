@@ -576,6 +576,33 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   });
 
+  const [ClearIndicatorSlot, clearIndicatorProps] = useSlot('clearIndicator', {
+    elementType: AutocompleteClearIndicator,
+    externalForwardedProps,
+    ownerState,
+    className: classes.clearIndicator,
+    shouldForwardComponentProp: true,
+    additionalProps: {
+      ...getClearProps(),
+      'aria-label': clearText,
+      title: clearText,
+    },
+  });
+
+  const [PopupIndicatorSlot, popupIndicatorProps] = useSlot('popupIndicator', {
+    elementType: AutocompletePopupIndicator,
+    externalForwardedProps,
+    ownerState,
+    className: classes.popupIndicator,
+    shouldForwardComponentProp: true,
+    additionalProps: {
+      ...getPopupIndicatorProps(),
+      disabled,
+      'aria-label': popupOpen ? closeText : openText,
+      title: popupOpen ? closeText : openText,
+    },
+  });
+
   let startAdornment;
 
   const getCustomizedItemProps = (params) => ({
@@ -662,9 +689,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       ownerState,
     );
   };
-
-  const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
-  const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
 
   return (
     <React.Fragment>
@@ -1228,9 +1252,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
     paper: PropTypes.elementType,
     popper: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
