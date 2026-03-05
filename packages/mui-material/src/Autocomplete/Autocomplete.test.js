@@ -83,7 +83,12 @@ describe('<Autocomplete />', () => {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         popupIndicator: { expectedClassName: classes.popupIndicator },
       },
-      only: ['slotPropsProp'],
+      only: [
+        'slotsProp',
+        'slotPropsProp',
+        'slotPropsCallback',
+        'slotPropsCallbackWithPropsAsOwnerState',
+      ],
     }),
   );
 
