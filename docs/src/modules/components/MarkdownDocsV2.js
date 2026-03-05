@@ -44,6 +44,7 @@ export default function MarkdownDocsV2(props) {
     disableAd = false,
     disableToc = false,
     container,
+    collapseToc,
     demos = {},
     docs,
     demoComponents,
@@ -222,6 +223,7 @@ export default function MarkdownDocsV2(props) {
       disableAd={disableAd}
       disableToc={disableToc}
       container={container}
+      collapseToc={collapseToc}
       location={localizedDoc.location}
       title={localizedDoc.title}
       toc={activeToc}
@@ -274,6 +276,7 @@ export default function MarkdownDocsV2(props) {
 }
 
 MarkdownDocsV2.propTypes = {
+  collapseToc: PropTypes.bool,
   componentsApiDescriptions: PropTypes.object,
   componentsApiPageContents: PropTypes.object,
   container: PropTypes.oneOf(['narrow', 'wide']),

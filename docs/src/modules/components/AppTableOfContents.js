@@ -226,7 +226,6 @@ function TableOfContents({ toc, itemLink, onLinkClick }) {
               variant="caption"
               sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}
             </Typography>
           </Link>
@@ -273,8 +272,10 @@ TableOfContents.propTypes = {
 };
 
 export default function AppTableOfContents(props) {
-  const { toc } = props;
+  const { toc, collapseToc } = props;
   const t = useTranslate();
+
+  const collapseBreakpoint = 'xl';
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
@@ -397,17 +398,29 @@ export default function AppTableOfContents(props) {
     <React.Fragment>
       <Tooltip title={t('tableOfContents')} placement="left">
         <Box
-          className="mui-fixed"
-          sx={(theme) => ({
-            position: 'fixed',
-            top: {
-              xs: `calc(var(--MuiDocs-header-height) + ${theme.spacing(1)})`,
-              lg: `calc(var(--MuiDocs-header-height) + ${theme.spacing(5)})`,
-            },
-            right: { xs: theme.spacing(1.5), lg: theme.spacing(3) },
-            zIndex: 10,
-            display: { xl: 'none' },
-          })}
+          className={collapseToc ? undefined : 'mui-fixed'}
+          sx={(theme) =>
+            collapseToc
+              ? {
+                  position: 'sticky',
+                  top: `calc(var(--MuiDocs-header-height) + ${theme.spacing(4)})`,
+                  marginTop: 'var(--MuiDocs-header-height)',
+                  height: 'fit-content',
+                  py: 1,
+                  display: 'flex',
+                  justifyContent: 'center',
+                }
+              : {
+                  position: 'fixed',
+                  top: {
+                    xs: `calc(var(--MuiDocs-header-height) + ${theme.spacing(1)})`,
+                    lg: `calc(var(--MuiDocs-header-height) + ${theme.spacing(5)})`,
+                  },
+                  right: { xs: theme.spacing(1.5), lg: theme.spacing(3) },
+                  zIndex: 10,
+                  display: { [collapseBreakpoint]: 'none' },
+                }
+          }
         >
           <Fab
             size="small"
@@ -443,7 +456,7 @@ export default function AppTableOfContents(props) {
         placement="bottom-end"
         transition
         sx={{
-          display: { xl: 'none' },
+          ...(collapseToc ? {} : { display: { [collapseBreakpoint]: 'none' } }),
           zIndex: 1300,
         }}
       >
@@ -480,7 +493,7 @@ export default function AppTableOfContents(props) {
         )}
       </Popper>
 
-      <Nav aria-label={t('pageTOC')}>
+      <Nav aria-label={t('pageTOC')} sx={collapseToc ? { display: 'none' } : undefined}>
         <TableOfContents toc={toc} itemLink={itemLink} />
       </Nav>
     </React.Fragment>
@@ -488,5 +501,6 @@ export default function AppTableOfContents(props) {
 }
 
 AppTableOfContents.propTypes = {
+  collapseToc: PropTypes.bool,
   toc: PropTypes.array.isRequired,
 };

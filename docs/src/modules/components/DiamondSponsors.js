@@ -8,7 +8,7 @@ import { useTranslate } from '@mui/docs/i18n';
 const NativeLink = styled('a')(({ theme }) => ({
   boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   width: '100%',
-  height: 45,
+  height: 60,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -42,7 +42,7 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack direction="column" >
+    <Stack direction="column">
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"

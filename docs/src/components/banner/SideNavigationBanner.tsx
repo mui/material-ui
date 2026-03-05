@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 import { Link } from '@mui/docs/Link';
 
-export default function TableOfContentsBanner() {
+export default function SideNavigationBanner() {
   return (
     <Link
       href="https://war.ukraine.ua/support-ukraine/"

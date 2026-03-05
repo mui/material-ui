@@ -21,7 +21,7 @@ import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl'
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const Main = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'disableToc',
+  shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'collapseToc',
 })(({ theme }) => ({
   minHeight: '100vh',
   display: 'grid',
@@ -39,11 +39,17 @@ const Main = styled('main', {
       },
     },
     {
-      props: ({ disableToc }) => !disableToc,
+      props: ({ disableToc, collapseToc }) => !disableToc && !collapseToc,
       style: {
         [theme.breakpoints.up('xl')]: {
           gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
         },
+      },
+    },
+    {
+      props: ({ disableToc, collapseToc }) => !disableToc && collapseToc,
+      style: {
+        gridTemplateColumns: '1fr auto',
       },
     },
   ],
@@ -51,7 +57,11 @@ const Main = styled('main', {
 
 const StyledAppContainer = styled(AppContainer, {
   shouldForwardProp: (prop) =>
-    prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc' && prop !== 'container',
+    prop !== 'disableAd' &&
+    prop !== 'hasTabs' &&
+    prop !== 'disableToc' &&
+    prop !== 'container' &&
+    prop !== 'collapseToc',
 })(({ theme }) => {
   return {
     position: 'relative',
@@ -135,6 +145,7 @@ export default function AppLayoutDocs(props) {
     // improves the UX. It's faster to transition, and you don't lose UI states, like scroll.
     disableLayout = false,
     disableToc = false,
+    collapseToc,
     container = 'narrow',
     hasTabs = false,
     location,
@@ -170,7 +181,7 @@ export default function AppLayoutDocs(props) {
           description={description}
           card={card}
         />
-        <Main disableToc={disableToc}>
+        <Main disableToc={disableToc} collapseToc={collapseToc}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
@@ -180,11 +191,12 @@ export default function AppLayoutDocs(props) {
             hasTabs={hasTabs}
             disableToc={disableToc}
             container={container}
+            collapseToc={collapseToc}
           >
             {children}
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
+          {disableToc ? null : <AppTableOfContents toc={toc} collapseToc={collapseToc} />}
           <BackToTop />
         </Main>
       </AdManager>
@@ -194,6 +206,7 @@ export default function AppLayoutDocs(props) {
 
 AppLayoutDocs.propTypes = {
   BannerComponent: PropTypes.elementType,
+  collapseToc: PropTypes.bool,
   cardOptions: PropTypes.shape({
     description: PropTypes.string,
     title: PropTypes.string,

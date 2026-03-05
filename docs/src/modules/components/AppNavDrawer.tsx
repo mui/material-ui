@@ -25,7 +25,7 @@ import PageContext, { ProductVersion } from 'docs/src/modules/components/PageCon
 import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
-import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
+import SideNavigationBanner from 'docs/src/components/banner/SideNavigationBanner';
 import { MuiPage } from 'docs/src/MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
@@ -488,6 +488,7 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
               pb: 5,
               overflowY: 'auto',
               flexGrow: 1,
+              scrollbarWidth: 'thin',
             }}
           >
             <PersistScroll slot="side" enabled>
@@ -506,7 +507,7 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
             }}
           >
             <DiamondSponsors />
-            <TableOfContentsBanner />
+            <SideNavigationBanner />
           </Box>
         </Box>
       </React.Fragment>
