@@ -623,6 +623,10 @@ function useAutocomplete(props) {
   // Listen for browser window blur to detect when the user switches tabs or windows.
   // This helps prevent the popup from reopening automatically when the window regains focus.
   React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
     const handleWindowBlur = () => {
       windowLostFocus.current = true;
     };
