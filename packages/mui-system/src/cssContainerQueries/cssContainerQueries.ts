@@ -25,10 +25,10 @@ export function sortContainerQueries(
   if (!theme.containerQueries) {
     return css;
   }
+  const regex = /min-width:\s*([0-9.]+)/;
   const sorted = Object.keys(css)
     .filter((key) => key.startsWith('@container'))
     .sort((a, b) => {
-      const regex = /min-width:\s*([0-9.]+)/;
       return +(a.match(regex)?.[1] || 0) - +(b.match(regex)?.[1] || 0);
     });
   if (!sorted.length) {

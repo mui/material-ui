@@ -42,12 +42,10 @@ const ListItemTextRoot = styled('div', {
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary})`]: {
-    display: 'block',
-  },
-  [`.${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]: {
-    display: 'block',
-  },
+  [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary}), .${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]:
+    {
+      display: 'block',
+    },
   variants: [
     {
       props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
