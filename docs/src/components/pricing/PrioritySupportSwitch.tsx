@@ -4,17 +4,33 @@ import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
-import { useMultiApp } from 'docs/src/components/pricing/MultiAppContext';
+import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-export default function MultiAppSwitch() {
-  const { multiApp, setMultiApp } = useMultiApp();
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMultiApp(event.target.checked);
+export default function PrioritySupportSwitch() {
+  const { prioritySupport, setPrioritySupport } = usePrioritySupport();
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPrioritySupport(event.target.checked);
   };
+  const prioritySupportDescription =
+    'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.';
 
-  const MultiAppDescription = 'Use MUI X across multiple apps within your organization.';
+  const tooltipProps = {
+    enterDelay: 400,
+    enterNextDelay: 50,
+    enterTouchDelay: 500,
+    placement: 'top' as const,
+    describeChild: true,
+    slotProps: {
+      tooltip: {
+        sx: {
+          fontSize: 12,
+        },
+      },
+    },
+  };
 
   return (
     <Box
@@ -23,7 +39,6 @@ export default function MultiAppSwitch() {
         borderColor: 'primary.100',
         borderRadius: 1,
         padding: 2,
-        backgroundColor: 'background.paper',
         ...theme.applyDarkStyles({
           borderColor: `${alpha(theme.palette.primary[700], 0.4)}`,
         }),
@@ -31,7 +46,7 @@ export default function MultiAppSwitch() {
     >
       <FormGroup>
         <FormControlLabel
-          control={<Switch checked={multiApp} onChange={onChange} />}
+          control={<Switch checked={prioritySupport} onChange={handleChange} />}
           label={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Typography
@@ -43,8 +58,11 @@ export default function MultiAppSwitch() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Multi App License
+                Priority Support
               </Typography>
+              <Tooltip title={prioritySupportDescription} {...tooltipProps}>
+                <InfoOutlinedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+              </Tooltip>
             </Box>
           }
           sx={{
@@ -61,20 +79,20 @@ export default function MultiAppSwitch() {
           labelPlacement="start"
         />
       </FormGroup>
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        {MultiAppDescription}
+      <Typography variant="body2" color="text.secondary">
+        24h SLA response time, support for MUI Core, and the highest priority on bug fixes.
       </Typography>
     </Box>
   );
 }
 
-export function MultiAppSwitchTable() {
-  const { multiApp, setMultiApp } = useMultiApp();
+export function PrioritySupportSwitchTable() {
+  const { prioritySupport, setPrioritySupport } = usePrioritySupport();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMultiApp(event.target.checked);
+    setPrioritySupport(event.target.checked);
   };
-  const MultiAppDescription =
-    'Choose this option if you expect to use MUI X across multiple applications within your organization.';
+  const prioritySupportDescription =
+    'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.';
 
   const tooltipProps = {
     enterDelay: 400,
@@ -94,14 +112,14 @@ export function MultiAppSwitchTable() {
   return (
     <FormGroup>
       <FormControlLabel
-        control={<Switch checked={multiApp} onChange={handleChange} />}
+        control={<Switch checked={prioritySupport} onChange={handleChange} />}
         label={
-          <Tooltip title={MultiAppDescription} {...tooltipProps}>
+          <Tooltip title={prioritySupportDescription} {...tooltipProps}>
             <Typography
               variant="body1"
               sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.875rem' }}
             >
-              Multi App License
+              Priority Support
             </Typography>
           </Tooltip>
         }

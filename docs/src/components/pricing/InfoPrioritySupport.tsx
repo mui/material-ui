@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import { useMultiApp } from 'docs/src/components/pricing/MultiAppContext';
+import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 
 export default function InfoPrioritySupport(props: {
   value: React.ReactNode;
@@ -9,11 +9,11 @@ export default function InfoPrioritySupport(props: {
   metadata2?: React.ReactNode;
 }) {
   const { value, value2, metadata, metadata2 } = props;
-  const { multiApp } = useMultiApp();
+  const { prioritySupport } = usePrioritySupport();
 
   return (
     <React.Fragment>
-      {multiApp ? (
+      {prioritySupport ? (
         <React.Fragment>
           <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
             {value}

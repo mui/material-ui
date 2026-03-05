@@ -8,12 +8,10 @@ import PricingTable from 'docs/src/components/pricing/PricingTable';
 import {
   PlanPrice,
   PlanNameDisplay,
+  planInfo,
   FeatureItem,
-  getPlanFeatures,
 } from 'docs/src/components/pricing/PricingCards';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
-import MultiAppSwitch from 'docs/src/components/pricing/MultiAppSwitch';
-import { useMultiApp } from 'docs/src/components/pricing/MultiAppContext';
 
 const Plan = React.forwardRef<
   HTMLDivElement,
@@ -23,36 +21,33 @@ const Plan = React.forwardRef<
     unavailable?: boolean;
   } & PaperProps
 >(function Plan({ plan, unavailable, sx, ...props }, ref) {
-  const { multiApp } = useMultiApp();
-  const features = getPlanFeatures(plan, multiApp);
+  const { features } = planInfo[plan];
 
   return (
     <Paper
       ref={ref}
       variant="outlined"
-      sx={{
-        p: 2,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 1,
-        ...(unavailable && { '& .MuiTypography-root': { opacity: 0.5 } }),
-        ...sx,
-      }}
+      sx={{ p: 2, ...(unavailable && { '& .MuiTypography-root': { opacity: 0.5 } }), ...sx }}
       {...props}
     >
       <PlanNameDisplay plan={plan} disableDescription={false} />
-      {(plan === 'pro' || plan === 'premium') && (
-        <Box sx={{ alignSelf: 'flex-start' }}>
-          <LicenseModelSwitch />
-        </Box>
-      )}
-      <PlanPrice plan={plan} multiApp={multiApp} />
-      {plan !== 'community' && plan !== 'enterprise' && <MultiAppSwitch />}
-      <Box textAlign="left" sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
-        {features.map((feature, index) => (
-          <FeatureItem feature={feature} idPrefix={plan} key={index} />
-        ))}
+      <Box sx={{ mb: 2 }}>
+        {(plan === 'pro' || plan === 'premium') && <LicenseModelSwitch />}
+        <PlanPrice plan={plan} />
       </Box>
+      {features.map((feature, index) => (
+        <Box
+          key={index}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            mt: 1,
+          }}
+        >
+          <FeatureItem feature={feature} idPrefix={plan} />
+        </Box>
+      ))}
     </Paper>
   );
 });
