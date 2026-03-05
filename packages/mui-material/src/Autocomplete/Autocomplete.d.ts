@@ -115,6 +115,16 @@ export interface AutocompletePropsSizeOverrides {}
 
 export interface AutocompleteSlots {
   /**
+   * The component used to render the clear indicator element.
+   * @default IconButton
+   */
+  clearIndicator: React.JSXElementConstructor<IconButtonProps>;
+  /**
+   * The component used to render the popup indicator element.
+   * @default IconButton
+   */
+  popupIndicator: React.JSXElementConstructor<IconButtonProps>;
+  /**
    * The component used to render the listbox.
    * @default 'ul'
    */
