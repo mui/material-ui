@@ -18,7 +18,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import DemoContext from 'docs/src/modules/components/DemoContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from '@mui/docs/CodeCopy';
-import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
+import { ThemeProvider } from '@mui/docs/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';

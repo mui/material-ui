@@ -83,11 +83,7 @@ const StepLabelLabel = styled('span', {
     transition: theme.transitions.create('color', {
       duration: theme.transitions.duration.shortest,
     }),
-    [`&.${stepLabelClasses.active}`]: {
-      color: (theme.vars || theme).palette.text.primary,
-      fontWeight: 500,
-    },
-    [`&.${stepLabelClasses.completed}`]: {
+    [`&.${stepLabelClasses.active}, &.${stepLabelClasses.completed}`]: {
       color: (theme.vars || theme).palette.text.primary,
       fontWeight: 500,
     },

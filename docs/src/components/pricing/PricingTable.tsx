@@ -13,7 +13,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
-import IconImage from 'docs/src/components/icon/IconImage';
+import IconImage from '@mui/docs/IconImage';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import { MultiAppSwitchTable } from 'docs/src/components/pricing/MultiAppSwitch';

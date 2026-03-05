@@ -7,7 +7,7 @@ import {
   THEME_ID as JOY_THEME_ID,
 } from '@mui/joy/styles';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import { ThemeOptionsContext, highDensity } from 'docs/src/modules/components/ThemeContext';
+import { ThemeOptionsContext, highDensity } from '@mui/docs/ThemeContext';
 import BrandingCssVarsProvider from './BrandingCssVarsProvider';
 
 const defaultTheme = createTheme({
