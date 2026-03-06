@@ -14,7 +14,7 @@ import yargs from 'yargs';
  * @returns {boolean}
  */
 function isBot(login) {
-  return login.endsWith('[bot]') && !login.includes('copilot');
+  return login.endsWith('[bot]') && !login.includes('copilot') && !login.includes('github-actions');
 }
 
 /**
@@ -41,6 +41,10 @@ function parseTags(commitMessage) {
 // Match commit messages like:
 // "[docs] Fix small typo on Grid2 page (#44062)"
 const prLinkRegEx = /\(#[0-9]+\)$/;
+
+// Match cherry-pick commit messages like:
+// "[docs] Fix small typo (@username) (#44062)"
+const cherryPickAuthorRegEx = /\(@(\w[\w-]*)\)\s*(?:\(#\d+\))?$/;
 
 /**
  *
@@ -91,7 +95,17 @@ async function main(argv) {
         ? new Octokit({ auth: process.env.GITHUB_TOKEN })
         : undefined,
     })
-  ).filter((commit) => !isBot(commit.author.login) && !commit.message.startsWith('[website]'));
+  )
+    .map((commit) => {
+      // Cherry-pick PRs are opened by github-actions[bot], resolve the real author from the message.
+      const shortMessage = commit.message.split('\n')[0];
+      const cherryPickMatch = shortMessage.match(cherryPickAuthorRegEx);
+      if (cherryPickMatch && commit.author?.login === 'github-actions[bot]') {
+        return { ...commit, author: { ...commit.author, login: cherryPickMatch[1] } };
+      }
+      return commit;
+    })
+    .filter((commit) => !isBot(commit.author.login) && !commit.message.startsWith('[website]'));
 
   const contributorHandles = getAllContributors(commitsItems);
 
@@ -110,6 +124,9 @@ async function main(argv) {
   });
   const changes = commitsItems.map((commitsItem) => {
     let shortMessage = commitsItem.message.split('\n')[0];
+
+    // Remove the cherry-pick author annotation since the author is appended at the end.
+    shortMessage = shortMessage.replace(/\s*\(@\w[\w-]*\)/, '');
 
     // If the commit message doesn't have an associated PR, add the commit sha for reference.
     if (!prLinkRegEx.test(shortMessage)) {
@@ -160,7 +177,7 @@ yargs(process.argv.slice(2))
         })
         .option('release', {
           // #target-branch-reference
-          default: 'master',
+          default: 'v7.x',
           describe: 'Ref which we want to release',
           type: 'string',
         }),

@@ -18,7 +18,7 @@ We'd like to provide clarity on what we're actively investing in today, what we'
   - [Material UI](#material-ui)
   - [Base UI](#base-ui)
   - [MUI X](#mui-x)
-- [Projects currently on hold or in limited maintenace](#projects-currently-on-hold-or-in-limited-maintenance)
+- [Projects on hold or in limited maintenace](#projects-on-hold-or-in-limited-maintenance)
   - [Pigment CSS](#pigment-css)
   - [Joy UI](#joy-ui)
   - [Toolpad](#toolpad)
@@ -36,13 +36,13 @@ Material UI continues to be a core focus for us.
 We're currently maintaining the library and continuing to ship new components and improvements.
 Most recently, we released [NumberField](https://mui.com/material-ui/react-number-field/) (one of our most requested components), designed to fully integrate with Base UI primitives.
 
-We're working on additional components built on top of Base UI, with examples like MenuBar and PreviewCard that are currently in progress.
+We're working on additional components built on top of Base UI, with examples like MenuBar and PreviewCard that are in progress.
 Alongside this, we're drafting and shaping the feature set that will define the next major version of Material UI (v8).
 While it's still early to share specifics, this work is under way and will be communicated as it solidifies.
 
 ### Base UI
 
-<img width="692" height="390" alt="Base UI v1.1.0 announcement tweet" src="https://github.com/user-attachments/assets/1e699941-f38f-4275-a7c5-7179ecd251f3" />
+<img width="692" height="390" alt="Base UI v1.1.0 announcement tweet" src="/static/blog/2026-and-beyond/base-ui.png" />
 
 Base UI is a major area of focus this year.
 
@@ -55,17 +55,17 @@ Base UI is where we are concentrating our foundational work going forward.
 
 ### MUI X
 
-<img width="692" height="390" alt="MUI X Data Grid updates since MUI X v8" src="https://github.com/user-attachments/assets/3f0bf173-1fdd-4efe-85a8-aed90a72549d" />
+<img width="692" height="390" alt="MUI X Data Grid updates since MUI X v8" src="/static/blog/2026-and-beyond/data-grid.png" />
 
 We're also investing in our MUI X advanced components: Data Grid, Charts, Tree View, and Date and Time Pickers.
 As we prepare for the next major version, we've been continuously shipping new features and improvements since MUI X v8.
 These updates have been covered in our [What's New](https://mui.com/x/whats-new/) section and our [most recent blog post](https://mui.com/blog/mui-x-end-v8/) outlining what's shipped since v8.
 
-## Projects currently on hold or in limited maintenance
+## Projects on hold or in limited maintenance
 
 ### Pigment CSS
 
-Pigment CSS remains in alpha phase and is currently on hold.
+Pigment CSS remains in alpha phase and is on hold.
 
 We made fast progress early on, but it became clear that the underlying problems were not fully solved yet.
 At that point, we made the decision to prioritize our roadmap and focus on one foundational problem at a time.
@@ -77,7 +77,7 @@ So for now, development is paused.
 
 ### Joy UI
 
-Joy UI is currently on hold.
+Joy UI is on hold.
 
 We have no active plans or timelines to share, and the team is not focused on advancing with the project at this time.
 We will be explicit if and when this changes.

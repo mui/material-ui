@@ -60,6 +60,7 @@ View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
 
 <p>
   <a href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui/?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
 </p>
 
 Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
@@ -72,6 +73,8 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   <a href="https://tidelift.com/" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
+  &nbsp;
+  <a href="https://www.react-pdf-kit.dev/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/288.png" alt="react-pdf-kit.dev" title="React PDF Kit: Powerful, Fast and Developer-Friendly." loading="lazy" /></a>
   &nbsp;
 </p>
 

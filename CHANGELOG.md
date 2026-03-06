@@ -1,5 +1,44 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.9
+
+<!-- generated comparing v7.3.8..v7.x -->
+
+_Mar 5, 2026_
+
+A big thanks to the 15 contributors who made this release possible.
+
+### `@mui/material@7.3.9`
+
+- Clean up duplicated CSS rules (#47893) @sai6855
+- [theme] Generate `color-mix` value on top of default generated Material UI CSS variables (#47791) @ZeeshanTamboli
+- [tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47841) @ZeeshanTamboli
+- [table cell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47840) @ZeeshanTamboli
+
+### Docs
+
+- Fix small typo in NumberField page (#47888) @arthur-plazanet
+- Fix Theme builder video (#47855) @oliviertassinari
+- Add updated community theme resource (#47853) @PeterTYLiu
+- Fix the keyboard navigation in GroupedMenu example (#47848) @silviuaavram
+- Few copy fixes (#47810) @pavan-sh
+- Fix JSX in Overriding component structure docs (#47805) @ZeeshanTamboli
+- Fix SSR flicker sentence grammar (#47794) @pavan-sh
+- [system] Update sizing docs to clarify `(0, 1]` behavior. (#47851) @matthias-ccri
+- [theme] Fix `nativeColor` docs (#47759) (#47789) @ZeeshanTamboli
+
+### Core
+
+- point v7 subdomain to MUI X v7 docs (#113) @vmakhaev
+- [blog] Blogpost for upcoming price changes for MUI X (#47748) (#47910) @DanailH
+- [blog] Company Update: What we've been working on (and why) (alethomas) (#47626) (#47908) @alelthomas
+- [core] Update releaseChangelog.mjs (#47862) @mnajdova
+- [code-infra] Detect browser envs that don't support layout (#47813) (#47873) @Janpot
+- [code-infra] Enable undefined addition to optional properties (#47815) @brijeshb42
+- [docs-infra] Reapply Cookie Banner with Design Fixes (#47744) @dav-is
+
+All contributors of this release in alphabetical order: @alelthomas, @arthur-plazanet, @brijeshb42, @DanailH, @dav-is, @Janpot, @matthias-ccri, @mnajdova, @oliviertassinari, @pavan-sh, @PeterTYLiu, @sai6855, @silviuaavram, @vmakhaev, @ZeeshanTamboli
+
 ## 7.3.8
 
 <!-- generated comparing v7.3.7..master -->

@@ -82,13 +82,14 @@ To add extra variables to the `theme.palette`, see [palette customization](/mate
 
 ## Theme builder
 
-<video autoPlay muted loop width="320">
-  <source src="/static/studies.mp4" type="video/mp4" >
+<video style="width: 320px;" autoplay muted loop playsinline width="640" height="360">
+  <source src="/static/material-ui/studies.mp4" type="video/mp4" >
 </video>
 
 The community has built great tools to build a theme:
 
 - [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [MUI Theme Builder](https://petertyliu.github.io/mui-theme-builder/): A tool to generate, preview, and edit Material UI themes
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## Accessing the theme in a component
