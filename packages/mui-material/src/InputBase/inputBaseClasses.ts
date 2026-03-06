@@ -39,6 +39,10 @@ export interface InputBaseClasses {
    */
   inputMultiline: string;
   inputTypeSearch: string;
+  /** Styles applied to the input element for temporal input types (date, time, datetime-local, month, week).
+   * Fixes shrunken height on iOS Safari (see https://bugs.webkit.org/show_bug.cgi?id=198959).
+   */
+  inputTypeTemporal: string;
   /** Styles applied to the input element if `startAdornment` is provided.
    * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#input-base-classes-MuiInputBase-input) and [.MuiInputBase-adornedStart](/material-ui/api/input-base/#input-base-classes-MuiInputBase-adornedStart) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
@@ -77,6 +81,7 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'inputSizeSmall',
   'inputMultiline',
   'inputTypeSearch',
+  'inputTypeTemporal',
   'inputAdornedStart',
   'inputAdornedEnd',
   'inputHiddenLabel',

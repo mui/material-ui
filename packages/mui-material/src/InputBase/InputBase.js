@@ -19,6 +19,23 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
+/**
+ * HTML input types that use the browser's native date/time picker (temporal inputs).
+ * Safari on iOS renders these with a shadow DOM and can collapse their height;
+ * @see https://bugs.webkit.org/show_bug.cgi?id=198959
+ */
+const TEMPORAL_INPUT_TYPES = ['date', 'time', 'datetime-local', 'month', 'week'];
+
+/**
+ * Returns true if the given input type is a temporal type (date, time, datetime-local, month, week).
+ * Used to apply iOS Safari height fixes for native date/time picker inputs.
+ * @param {string} [type] - The input type attribute value
+ * @returns {boolean}
+ */
+function isTemporalInputType(type) {
+  return type != null && TEMPORAL_INPUT_TYPES.includes(type);
+}
+
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
 
@@ -44,6 +61,7 @@ export const inputOverridesResolver = (props, styles) => {
     ownerState.size === 'small' && styles.inputSizeSmall,
     ownerState.multiline && styles.inputMultiline,
     ownerState.type === 'search' && styles.inputTypeSearch,
+    isTemporalInputType(ownerState.type) && styles.inputTypeTemporal,
     ownerState.startAdornment && styles.inputAdornedStart,
     ownerState.endAdornment && styles.inputAdornedEnd,
     ownerState.hiddenLabel && styles.inputHiddenLabel,
@@ -87,6 +105,7 @@ const useUtilityClasses = (ownerState) => {
       'input',
       disabled && 'disabled',
       type === 'search' && 'inputTypeSearch',
+      isTemporalInputType(type) && 'inputTypeTemporal',
       multiline && 'inputMultiline',
       size === 'small' && 'inputSizeSmall',
       hiddenLabel && 'inputHiddenLabel',
@@ -248,6 +267,45 @@ export const InputBaseInput = styled('input', {
           },
           style: {
             MozAppearance: 'textfield', // Improve type search style.
+          },
+        },
+        {
+          props: ({ ownerState }) => isTemporalInputType(ownerState.type),
+          style: {
+            minHeight: '1.4375em',
+            '&::-webkit-date-and-time-value': {
+              minHeight: '1.4375em',
+            },
+            '&::-webkit-datetime-edit': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-fields-wrapper': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-text': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-minute-field': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-hour-field': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-meridiem-field': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-day-field': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-month-field': {
+              padding: 0,
+            },
+            '&::-webkit-datetime-edit-year-field': {
+              padding: 0,
+            },
+            '&::-webkit-inner-spin-button': {
+              height: 'auto',
+            },
           },
         },
       ],
