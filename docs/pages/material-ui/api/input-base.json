@@ -185,6 +185,12 @@
       "isGlobal": false
     },
     {
+      "key": "inputTypeTemporal",
+      "className": "MuiInputBase-inputTypeTemporal",
+      "description": "Styles applied to the input element when type is date, time, datetime-local, month, or week. Fixes shrunken height on iOS Safari (see https://bugs.webkit.org/show_bug.cgi?id=198959).",
+      "isGlobal": false
+    },
+    {
       "key": "multiline",
       "className": "MuiInputBase-multiline",
       "description": "Styles applied to the root element if `multiline={true}`.",

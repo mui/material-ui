@@ -174,6 +174,11 @@
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/input-base/#input-base-classes-MuiInputBase-input\">.MuiInputBase-input</a> and <a href=\"/material-ui/api/input-base/#input-base-classes-MuiInputBase-sizeSmall\">.MuiInputBase-sizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "inputTypeSearch": { "description": "" },
+    "inputTypeTemporal": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "type is date, time, datetime-local, month, or week. Fixes shrunken height on iOS Safari (see <a href=\"https://bugs.webkit.org/show_bug.cgi?id=198959\">https://bugs.webkit.org/show_bug.cgi?id=198959</a>)"
+    },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
