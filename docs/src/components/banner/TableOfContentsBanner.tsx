@@ -6,7 +6,7 @@ import { Link } from '@mui/docs/Link';
 export default function TableOfContentsBanner() {
   return (
     <Link
-      href="https://war.ukraine.ua/support-ukraine/"
+      href="https://u24.gov.ua/about/"
       target="_blank"
       sx={[
         (theme) => ({
