@@ -60,7 +60,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const { children, className, icon, optional, ...other } = props;
 
   const { disabled, active, index } = React.useContext(StepContext);
-  const { orientation, totalSteps, getRovingTabIndexProps, setIsTabList } = useStepperContext();
+  const { orientation, totalSteps, getRovingTabIndexProps } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 
@@ -82,10 +82,6 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     tabIndex: active ? 0 : -1,
   };
 
-  React.useLayoutEffect(() => {
-    setIsTabList?.(true);
-  }, [setIsTabList]);
-
   return (
     <StepButtonRoot
       focusRipple
@@ -96,7 +92,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       aria-selected={active}
       aria-posinset={index + 1}
       aria-setsize={totalSteps}
-      role={'tab'}
+      role="tab"
       {...rovingTabIndexItemProps}
       {...other}
     >

@@ -283,5 +283,34 @@ describe('<Stepper />', () => {
 
     const stepper = container.querySelector(`.${classes.root}`);
     expect(stepper).to.have.attribute('role', 'tablist');
+    expect(stepper).to.have.attribute('aria-orientation', 'horizontal');
+  });
+
+  it('should render a vertical tablist when at least one step is a StepButton and orientation is vertical', () => {
+    const { container } = render(
+      <Stepper activeStep={0} orientation="vertical">
+        <Step>
+          <StepButton>one</StepButton>
+        </Step>
+      </Stepper>,
+    );
+
+    const stepper = container.querySelector(`.${classes.root}`);
+    expect(stepper).to.have.attribute('role', 'tablist');
+    expect(stepper).to.have.attribute('aria-orientation', 'vertical');
+  });
+
+  it('should not render a tablist when no steps are StepButtons', () => {
+    const { container } = render(
+      <Stepper activeStep={0}>
+        <Step>
+          <StepLabel>one</StepLabel>
+        </Step>
+      </Stepper>,
+    );
+
+    const stepper = container.querySelector(`.${classes.root}`);
+    expect(stepper).not.to.have.attribute('role', 'tablist');
+    expect(stepper).not.to.have.attribute('aria-orientation');
   });
 });

@@ -11,6 +11,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import { StepperContextProvider } from './StepperContext';
+import StepButton from '../StepButton';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -65,7 +66,6 @@ const defaultConnector = <StepConnector />;
 
 const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const isRtl = useRtl();
-  const [isTabList, setIsTabList] = React.useState(false);
   const props = useDefaultProps({ props: inProps, name: 'MuiStepper' });
   const {
     activeStep = 0,
@@ -91,6 +91,29 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
   const totalSteps = childrenArray.length;
+  const isTabList = childrenArray.some((child) => {
+    if (!React.isValidElement(child)) {
+      return false;
+    }
+
+    if (child.type === StepButton) {
+      return true;
+    }
+
+    const grandChildren = child.props.children;
+
+    if (grandChildren) {
+      return React.Children.toArray(grandChildren).some((grandChild) => {
+        if (!React.isValidElement(grandChild)) {
+          return false;
+        }
+
+        return grandChild.type === StepButton;
+      });
+    }
+
+    return false;
+  });
   const steps = childrenArray.map((step, index) => {
     return React.cloneElement(step, {
       index,
@@ -114,8 +137,6 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       orientation,
       totalSteps,
       getRovingTabIndexProps: getItemProps,
-      setIsTabList,
-      isTabList,
     }),
     [
       activeStep,
@@ -125,8 +146,6 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       orientation,
       totalSteps,
       getItemProps,
-      setIsTabList,
-      isTabList,
     ],
   );
 
@@ -137,8 +156,11 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
-        aria-orientation={orientation}
-        {...(isTabList && { role: 'tablist', ...rovingTabIndexContainerProps })}
+        {...(isTabList && {
+          role: 'tablist',
+          'aria-orientation': orientation,
+          ...rovingTabIndexContainerProps,
+        })}
         {...other}
       >
         {steps}
