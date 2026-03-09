@@ -137,6 +137,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       orientation,
       totalSteps,
       getRovingTabIndexProps: getItemProps,
+      isTabList,
     }),
     [
       activeStep,
@@ -146,6 +147,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
       orientation,
       totalSteps,
       getItemProps,
+      isTabList,
     ],
   );
 
