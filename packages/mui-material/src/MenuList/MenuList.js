@@ -175,10 +175,11 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       return child;
     }
 
-    const newChildProps = getItemProps(focusableIndex, child.ref);
+    const rovingTabIndexItemProps = getItemProps(focusableIndex, child.ref);
+    const newChildProps = { ref: rovingTabIndexItemProps.ref };
 
-    if (child.props.tabIndex !== undefined || variant === 'menu') {
-      delete newChildProps.tabIndex;
+    if (child.props.tabIndex === undefined && variant !== 'menu') {
+      newChildProps.tabIndex = rovingTabIndexItemProps.tabIndex;
     }
 
     if (index === activeItemIndex) {
