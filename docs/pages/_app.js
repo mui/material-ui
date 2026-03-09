@@ -33,9 +33,12 @@ import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import * as React from 'react';
+
 import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
+
+export { fontClasses } from '@mui/docs/nextFonts';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
