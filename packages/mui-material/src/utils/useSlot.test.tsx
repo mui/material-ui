@@ -9,6 +9,18 @@ import useSlot from './useSlot';
 describe('useSlot', () => {
   const { render } = createRenderer();
 
+  let defaultAnchorElm: HTMLDivElement | null = null;
+  beforeAll(() => {
+    defaultAnchorElm = document.createElement('div');
+    document.body.appendChild(defaultAnchorElm);
+  });
+  afterAll(() => {
+    if (defaultAnchorElm !== null) {
+      document.body.removeChild(defaultAnchorElm);
+      defaultAnchorElm = null;
+    }
+  });
+
   describe('single slot', () => {
     const ItemRoot = styled('button')({});
     const Item = React.forwardRef<
@@ -139,7 +151,7 @@ describe('useSlot', () => {
         ownerState: {},
         additionalProps: {
           open: true, // !!force the popper to always visible for testing
-          anchorEl: () => document.createElement('div'),
+          anchorEl: () => defaultAnchorElm!,
         },
         internalForwardedProps: {
           slots: { root: ItemRoot },
@@ -213,7 +225,7 @@ describe('useSlot', () => {
         additionalProps: {
           open: true, // !!force the popper to always visible for testing
           role: 'menu',
-          anchorEl: () => document.createElement('div'),
+          anchorEl: () => defaultAnchorElm!,
         },
         internalForwardedProps: {
           slots: { root: ItemListbox },
