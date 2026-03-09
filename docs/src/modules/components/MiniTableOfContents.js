@@ -43,7 +43,7 @@ const Bar = styled('a', {
     width: barWidth,
     borderRadius: 2,
     backgroundColor: (theme.vars || theme).palette.grey[300],
-    transition: 'background-color 0.15s ease',
+    transition: 'background-color 0.15s ease, width 0.15s ease',
   },
   '&:hover::after': {
     backgroundColor: (theme.vars || theme).palette.grey[500],
@@ -88,8 +88,26 @@ export default function MiniTableOfContents(props) {
   const { toc, activeState, itemLink, onItemClick } = props;
   const containerRef = React.useRef(null);
   const [popperOpen, setPopperOpen] = React.useState(false);
+  const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
   const items = React.useMemo(() => flatten(toc), [toc]);
+
+  const getWidthIncrease = (index) => {
+    if (hoveredIndex === null) {
+      return 0;
+    }
+    const distance = Math.abs(index - hoveredIndex);
+    if (distance === 0) {
+      return 8;
+    }
+    if (distance === 1) {
+      return 4;
+    }
+    if (distance === 2) {
+      return 2;
+    }
+    return 0;
+  };
 
   const handleMouseEnter = () => {
     setPopperOpen(true);
@@ -112,13 +130,40 @@ export default function MiniTableOfContents(props) {
     }
   };
 
-  const popperItemLink = (item, level) => itemLink(item, level, handleClose);
+  const hoveredHash = hoveredIndex !== null ? items[hoveredIndex]?.hash : null;
+
+  const popperItemLink = (item, level) => {
+    const element = itemLink(item, level, handleClose);
+    if (hoveredHash !== item.hash) {
+      return element;
+    }
+    const isActive = activeState === item.hash;
+    return React.cloneElement(element, {
+      sx: (theme) => ({
+        borderLeftColor: isActive
+          ? (theme.vars || theme).palette.primary[600]
+          : (theme.vars || theme).palette.grey[400],
+        color: isActive
+          ? (theme.vars || theme).palette.primary[600]
+          : (theme.vars || theme).palette.grey[600],
+        ...theme.applyDarkStyles({
+          borderLeftColor: isActive
+            ? (theme.vars || theme).palette.primary[400]
+            : (theme.vars || theme).palette.grey[500],
+          color: isActive
+            ? (theme.vars || theme).palette.primary[400]
+            : (theme.vars || theme).palette.grey[200],
+        }),
+      }),
+    });
+  };
 
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <Box
         ref={containerRef}
         onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleClose}
         sx={{
           position: 'sticky',
           top: '20%',
@@ -127,18 +172,21 @@ export default function MiniTableOfContents(props) {
           display: { xs: 'none', md: 'flex' },
           flexDirection: 'column',
           alignItems: 'stretch',
+          minWidth: 36,
           py: 2,
-          px: 1.5,
+          marginRight: 1.5,
           cursor: 'pointer',
         }}
       >
-        {items.map((item) => (
+        {items.map((item, index) => (
           <Bar
             key={item.hash}
             href={`#${item.hash}`}
             active={activeState === item.hash}
-            barWidth={getBarWidth(item.text, item.level)}
+            barWidth={getBarWidth(item.text, item.level) + getWidthIncrease(index)}
             level={item.level}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
             onClick={(event) => handleBarClick(event, item.hash)}
           />
         ))}
@@ -147,13 +195,13 @@ export default function MiniTableOfContents(props) {
           anchorEl={containerRef.current}
           placement="left-start"
           transition
-          sx={{ zIndex: 1300 }}
+          disablePortal
+          sx={{ zIndex: 2000 }}
         >
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={250}>
               <Paper
                 variant="outlined"
-                onMouseLeave={handleClose}
                 sx={(theme) => ({
                   p: 1,
                   mr: 1,
@@ -171,7 +219,7 @@ export default function MiniTableOfContents(props) {
                   }),
                 })}
               >
-                <TableOfContents toc={toc} itemLink={popperItemLink} onLinkClick={handleClose} />
+                <TableOfContents toc={toc} itemLink={popperItemLink} />
               </Paper>
             </Fade>
           )}
