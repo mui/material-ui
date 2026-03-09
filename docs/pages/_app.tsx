@@ -28,7 +28,6 @@ import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
-
 import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
