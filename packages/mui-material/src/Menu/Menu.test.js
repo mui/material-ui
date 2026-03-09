@@ -131,13 +131,7 @@ describe('<Menu />', () => {
   });
 
   it('should pass `classes.paper` to the Paper', () => {
-    render(
-      <Menu
-        anchorEl={defaultAnchorEl}
-        open
-        PaperProps={{ 'data-testid': 'paper' }}
-      />,
-    );
+    render(<Menu anchorEl={defaultAnchorEl} open PaperProps={{ 'data-testid': 'paper' }} />);
 
     expect(screen.getByTestId('paper')).to.have.class(classes.paper);
   });
@@ -283,11 +277,7 @@ describe('<Menu />', () => {
     it('should call TransitionProps.onEntering', () => {
       const onEnteringSpy = spy();
       render(
-        <Menu
-          anchorEl={defaultAnchorEl}
-          open
-          TransitionProps={{ onEntering: onEnteringSpy }}
-        />,
+        <Menu anchorEl={defaultAnchorEl} open TransitionProps={{ onEntering: onEnteringSpy }} />,
       );
 
       expect(onEnteringSpy.callCount).to.equal(1);
