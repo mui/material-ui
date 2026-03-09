@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { LinkProps } from 'next/link';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -301,18 +302,25 @@ function reduceChildRoutes(context: ReduceChildRoutesContext): React.ReactNode[]
     }
 
     const subheader = Boolean(page.subheader);
-    const [path, hash] = firstChild.pathname.split('#');
+
+    let href: LinkProps['href'] = firstChild.pathname;
+
+    if (!href.startsWith('http')) {
+      const [pathname, hash] = href.split('#');
+      href = {
+        pathname,
+        ...(firstChild.query && { query: firstChild.query }),
+        ...(hash && { hash }),
+      };
+    }
+
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={{
-          pathname: path,
-          ...(firstChild.query && { query: firstChild.query }),
-          ...(hash && { hash }),
-        }}
+        href={href}
         legacy={page.legacy}
         newFeature={page.newFeature}
         planned={page.planned}
@@ -322,7 +330,7 @@ function reduceChildRoutes(context: ReduceChildRoutesContext): React.ReactNode[]
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
-        topLevel={topLevel && !page.subheader}
+        topLevel={topLevel && !subheader}
         initiallyExpanded={topLevel || subheader}
         expandable={!subheader}
       >
@@ -336,18 +344,24 @@ function reduceChildRoutes(context: ReduceChildRoutesContext): React.ReactNode[]
       </AppNavDrawerItem>,
     );
   } else {
-    const [path, hash] = page.pathname.split('#');
+    let href: LinkProps['href'] = page.pathname;
+
+    if (!href.startsWith('http')) {
+      const [pathname, hash] = href.split('#');
+      href = {
+        pathname,
+        ...(page.query && { query: page.query }),
+        ...(hash && { hash }),
+      };
+    }
+
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={{
-          pathname: path,
-          ...(page.query && { query: page.query }),
-          ...(hash && { hash }),
-        }}
+        href={href}
         legacy={page.legacy}
         newFeature={page.newFeature}
         planned={page.planned}

@@ -1,11 +1,12 @@
 import * as React from 'react';
+import type { LinkProps } from 'next/link';
 import standardNavIcons from './modules/components/AppNavIcons';
 
 export type MuiPageIcon = keyof typeof standardNavIcons | React.ComponentType;
 
 export interface MuiPage {
   pathname: string;
-  query?: object;
+  query?: Exclude<LinkProps['href'], string>['query'];
   children?: MuiPage[];
   disableDrawer?: boolean;
   icon?: MuiPageIcon;
