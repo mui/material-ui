@@ -35,3 +35,4 @@ export function useStepperContext(): StepperContextType | {} {
 }
 
 export const StepperContextProvider = StepperContext.Provider;
+export default StepperContext;
