@@ -54,7 +54,8 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
   }),
 }));
 
-export default function SkipLink() {
+// eslint-disable-next-line import/prefer-default-export
+export function SkipLink() {
   const t = useTranslate();
 
   return <StyledLink href="#main-content">{t('appFrame.skipToContent')}</StyledLink>;

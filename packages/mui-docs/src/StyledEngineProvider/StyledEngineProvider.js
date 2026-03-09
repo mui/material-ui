@@ -6,8 +6,8 @@ import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-page
 import { prefixer } from 'stylis';
 import rtlPlugin from '@mui/stylis-plugin-rtl';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { ThemeOptionsContext } from '@mui/docs/ThemeContext';
-import globalSelector from './globalSelector';
+import { ThemeOptionsContext } from '../ThemeContext';
+import globalSelector from '../globalSelector';
 
 // Cache for the rtl version of the styles
 const cacheRtl = createCache({

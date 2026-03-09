@@ -4,6 +4,24 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  docs:
+    '@emotion/cache':
+      specifier: ^11.14.0
+      version: 11.14.0
+    '@emotion/react':
+      specifier: ^11.14.0
+      version: 11.14.0
+    '@emotion/server':
+      specifier: ^11.11.0
+      version: 11.11.0
+    '@emotion/styled':
+      specifier: ^11.14.1
+      version: 11.14.1
+    stylis:
+      specifier: 4.2.0
+      version: 4.2.0
+
 overrides:
   '@babel/core': 7.29.0
   '@babel/plugin-transform-runtime': ^7.29.0
@@ -263,16 +281,16 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(@algolia/client-search@5.18.0)(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(search-insights@2.13.0)
       '@emotion/cache':
-        specifier: ^11.14.0
+        specifier: catalog:docs
         version: 11.14.0
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:docs
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
       '@emotion/server':
-        specifier: ^11.11.0
+        specifier: catalog:docs
         version: 11.11.0(@emotion/css@11.13.4)
       '@emotion/styled':
-        specifier: ^11.14.1
+        specifier: catalog:docs
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.7.2
@@ -497,7 +515,7 @@ importers:
         specifier: ^6.3.11
         version: 6.3.11(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       stylis:
-        specifier: 4.2.0
+        specifier: catalog:docs
         version: 4.2.0
       use-count-up:
         specifier: ^3.0.1
@@ -844,18 +862,36 @@ importers:
       '@babel/runtime':
         specifier: ^7.28.6
         version: 7.28.6
+      '@emotion/cache':
+        specifier: catalog:docs
+        version: 11.14.0
+      '@emotion/react':
+        specifier: catalog:docs
+        version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
+      '@emotion/styled':
+        specifier: catalog:docs
+        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@mui/base':
         specifier: ^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta
         version: 5.0.0-beta.70(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
+      '@mui/material-nextjs':
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
+        version: 7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+      '@mui/stylis-plugin-rtl':
+        specifier: workspace:^
+        version: link:../mui-stylis-plugin-rtl/build
       '@mui/system':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
         version: 6.4.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@mui/utils':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
         version: 7.3.6(@types/react@19.2.14)(react@19.2.4)
+      '@types/stylis':
+        specifier: ^4.2.7
+        version: 4.2.7
       chai:
         specifier: ^6.0.1
         version: 6.2.2
@@ -877,6 +913,12 @@ importers:
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
+      styled-components:
+        specifier: ^5.3.0 || ^6.0.0
+        version: 6.3.11(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      stylis:
+        specifier: catalog:docs
+        version: 4.2.0
     devDependencies:
       '@mui/icons-material':
         specifier: workspace:*
@@ -896,6 +938,9 @@ importers:
       '@types/node':
         specifier: 20.19.35
         version: 20.19.35
+      '@types/nprogress':
+        specifier: 0.2.3
+        version: 0.2.3
       '@types/prop-types':
         specifier: 15.7.15
         version: 15.7.15
@@ -3741,6 +3786,24 @@ packages:
       '@emotion/react':
         optional: true
       '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+
+  '@mui/material-nextjs@7.3.8':
+    resolution: {integrity: sha512-ewSnzgTiVGD+m0DQe4VxIkgpeKrb8a9745GXtfMtpoEz6Qhx96vDyz4k18BMx7zC7CWkGrEvVZcRVJaOyuIcXg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@emotion/cache': ^11.11.0
+      '@emotion/react': ^11.11.4
+      '@emotion/server': ^11.11.0
+      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+      next: ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/cache':
+        optional: true
+      '@emotion/server':
         optional: true
       '@types/react':
         optional: true
@@ -15016,6 +15079,17 @@ snapshots:
     optionalDependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.4)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
+      '@types/react': 19.2.14
+
+  '@mui/material-nextjs@7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
+    dependencies:
+      '@babel/runtime': 7.28.6
+      '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.4)
+      next: 15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+    optionalDependencies:
+      '@emotion/cache': 11.14.0
+      '@emotion/server': 11.11.0(@emotion/css@11.13.4)
       '@types/react': 19.2.14
 
   '@mui/material@5.15.4(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':

@@ -26,11 +26,11 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 // Other imports
 import { Link } from '@mui/docs/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EditPage from 'docs/src/modules/components/EditPage';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from '@mui/docs/helpers';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const FooterLink = styled(Link)(({ theme }) => {

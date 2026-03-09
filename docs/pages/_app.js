@@ -1,43 +1,41 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
-import * as React from 'react';
-import { loadCSS } from 'fg-loadcss';
-import NextHead from 'next/head';
-import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
-import { LicenseInfo } from '@mui/x-license';
-import materialPkgJson from '@mui/material/package.json';
-import joyPkgJson from '@mui/joy/package.json';
-import systemPkgJson from '@mui/system/package.json';
-import generalDocsPages from 'docs/data/docs/pages';
-import docsInfraPages from 'docs/data/docs-infra/pages';
-import materialPages from 'docs/data/material/pages';
-import joyPages from 'docs/data/joy/pages';
-import systemPages from 'docs/data/system/pages';
-import PageContext from 'docs/src/modules/components/PageContext';
-import DemoContext from 'docs/src/modules/components/DemoContext';
-import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import { AnalyticsProvider } from '@mui/docs/AnalyticsProvider';
 import { CodeCopyProvider } from '@mui/docs/CodeCopy';
-import { ThemeProvider } from '@mui/docs/ThemeContext';
-import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
-import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
-import createEmotionCache from 'docs/src/createEmotionCache';
-import findActivePage from 'docs/src/modules/utils/findActivePage';
-import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
-import { AnalyticsProvider } from 'docs/src/modules/components/AnalyticsProvider';
+import DemoContext from '@mui/docs/DemoContext';
 import { DocsProvider } from '@mui/docs/DocsProvider';
+import GoogleAnalytics from '@mui/docs/GoogleAnalytics';
+import PageContext from '@mui/docs/PageContext';
+import DocsStyledEngineProvider from '@mui/docs/StyledEngineProvider';
+import { ThemeProvider } from '@mui/docs/ThemeContext';
+import { CodeVariantProvider } from '@mui/docs/codeVariant';
+import createEmotionCache from '@mui/docs/createEmotionCache';
+import findActivePage from '@mui/docs/findActivePage';
+import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
 import { mapTranslations } from '@mui/docs/i18n';
+import joyPkgJson from '@mui/joy/package.json';
+import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import materialPkgJson from '@mui/material/package.json';
+import systemPkgJson from '@mui/system/package.json';
+import { LicenseInfo } from '@mui/x-license';
+import docsInfraPages from 'docs/data/docs-infra/pages';
+import generalDocsPages from 'docs/data/docs/pages';
+import joyPages from 'docs/data/joy/pages';
+import materialPages from 'docs/data/material/pages';
+import systemPages from 'docs/data/system/pages';
 import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
-import './global.css';
-import '../public/static/components-gallery/base-theme.css';
+import { loadCSS } from 'fg-loadcss';
+import NextHead from 'next/head';
+import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import * as config from '../config';
-
-export { fontClasses } from '@mui/docs/nextFonts';
+import '../public/static/components-gallery/base-theme.css';
+import './global.css';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);

@@ -1,17 +1,14 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { deepmerge } from '@mui/utils';
+import deepmerge from '@mui/utils/deepmerge';
 import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
-import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-// @ts-ignore to bypass type checking in MUI X repo
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
-import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
-import SkipLink from 'docs/src/modules/components/SkipLink';
-// @ts-ignore to bypass type checking in MUI X repo
-import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
+import { getCookie, pathnameToLanguage } from '../helpers/helpers';
+import { NextNProgressBar } from '../NextNProgressBar';
+import { getDesignTokens, getThemedComponents } from './brandingTheme';
+import { SkipLink, MarkdownLinks } from '../Link';
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
@@ -52,78 +49,68 @@ const themeOptions = {
 };
 
 export function setDocsColors(primary: Record<string, string>, secondary: Record<string, string>) {
-  function injectPalette(prefix: string, palette: string, color: string) {
+  function injectPalette(prefix: string, palette: string, color: string, el: HTMLElement) {
     // simplified logic of `createPalette` to avoid `useTheme`.
     const light = lighten(color, 0.2);
     const dark = darken(color, 0.3);
     const contrastText = getContrastRatio(color, '#fff') >= 3 ? '#fff' : 'rgba(0, 0, 0, 0.87)';
+    const elStyle = el.style;
 
-    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-main`, color);
-    document.documentElement.style.setProperty(
-      `--${prefix}-palette-${palette}-mainChannel`,
-      colorChannel(color),
-    );
-    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-light`, light);
-    document.documentElement.style.setProperty(
-      `--${prefix}-palette-${palette}-lightChannel`,
-      colorChannel(light),
-    );
-    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-dark`, dark);
-    document.documentElement.style.setProperty(
-      `--${prefix}-palette-${palette}-darkChannel`,
-      colorChannel(dark),
-    );
-    document.documentElement.style.setProperty(
-      `--${prefix}-palette-${palette}-contrastText`,
-      contrastText,
-    );
-    document.documentElement.style.setProperty(
+    elStyle.setProperty(`--${prefix}-palette-${palette}-main`, color);
+    elStyle.setProperty(`--${prefix}-palette-${palette}-mainChannel`, colorChannel(color));
+    elStyle.setProperty(`--${prefix}-palette-${palette}-light`, light);
+    elStyle.setProperty(`--${prefix}-palette-${palette}-lightChannel`, colorChannel(light));
+    elStyle.setProperty(`--${prefix}-palette-${palette}-dark`, dark);
+    elStyle.setProperty(`--${prefix}-palette-${palette}-darkChannel`, colorChannel(dark));
+    elStyle.setProperty(`--${prefix}-palette-${palette}-contrastText`, contrastText);
+    elStyle.setProperty(
       `--${prefix}-palette-${palette}-contrastTextChannel`,
       colorChannel(contrastText),
     );
   }
   if (typeof document !== 'undefined') {
-    injectPalette('muidocs', 'primary', primary.main);
-    injectPalette('muidocs', 'secondary', secondary.main);
+    const htmlEl = document.documentElement;
+    injectPalette('muidocs', 'primary', primary.main, htmlEl);
+    injectPalette('muidocs', 'secondary', secondary.main, htmlEl);
 
     ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].forEach((key) => {
-      document.documentElement.style.setProperty(`--muidocs-palette-primary-${key}`, primary[key]);
-      document.documentElement.style.setProperty(
-        `--muidocs-palette-secondary-${key}`,
-        secondary[key],
-      );
+      htmlEl.style.setProperty(`--muidocs-palette-primary-${key}`, primary[key]);
+      htmlEl.style.setProperty(`--muidocs-palette-secondary-${key}`, secondary[key]);
     });
 
-    injectPalette('mui', 'primary', primary.main);
-    injectPalette('mui', 'secondary', secondary.main);
+    injectPalette('mui', 'primary', primary.main, htmlEl);
+    injectPalette('mui', 'secondary', secondary.main, htmlEl);
   }
 }
 
 export function resetDocsColor() {
   if (typeof document !== 'undefined') {
-    document.documentElement.style.removeProperty('--muidocs-palette-primary-main');
-    document.documentElement.style.removeProperty('--muidocs-palette-secondary-main');
-    document.documentElement.style.removeProperty('--mui-palette-primary-main');
-    document.documentElement.style.removeProperty('--mui-palette-secondary-main');
+    const htmlElStyle = document.documentElement.style;
+    htmlElStyle.removeProperty('--muidocs-palette-primary-main');
+    htmlElStyle.removeProperty('--muidocs-palette-secondary-main');
+    htmlElStyle.removeProperty('--mui-palette-primary-main');
+    htmlElStyle.removeProperty('--mui-palette-secondary-main');
 
     ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].forEach((key) => {
-      document.documentElement.style.removeProperty(`--muidocs-palette-primary-${key}`);
-      document.documentElement.style.removeProperty(`--muidocs-palette-secondary-${key}`);
+      htmlElStyle.removeProperty(`--muidocs-palette-primary-${key}`);
+      htmlElStyle.removeProperty(`--muidocs-palette-secondary-${key}`);
     });
   }
 }
 
 export function setDocsSpacing(value: number) {
   if (typeof document !== 'undefined') {
-    document.documentElement.style.setProperty('--muidocs-spacing', `${value}px`);
-    document.documentElement.style.setProperty('--mui-spacing', `${value}px`);
+    const htmlElStyle = document.documentElement.style;
+    htmlElStyle.setProperty('--muidocs-spacing', `${value}px`);
+    htmlElStyle.setProperty('--mui-spacing', `${value}px`);
   }
 }
 
 export function resetDocsSpacing() {
   if (typeof document !== 'undefined') {
-    document.documentElement.style.removeProperty('--muidocs-spacing');
-    document.documentElement.style.removeProperty('--mui-spacing');
+    const htmlElStyle = document.documentElement.style;
+    htmlElStyle.removeProperty('--muidocs-spacing');
+    htmlElStyle.removeProperty('--mui-spacing');
   }
 }
 
@@ -149,9 +136,10 @@ export function BrandingCssThemeProvider({
   direction = 'ltr',
   forceThemeRerender = false,
 }: React.PropsWithChildren<{ direction?: 'ltr' | 'rtl'; forceThemeRerender?: boolean }>) {
+  const theme = React.useMemo(() => getTheme(direction), [direction]);
   return (
     <ThemeProvider
-      theme={getTheme(direction)}
+      theme={theme}
       disableTransitionOnChange
       // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
       forceThemeRerender={forceThemeRerender}
@@ -161,7 +149,7 @@ export function BrandingCssThemeProvider({
   );
 }
 
-export default function BrandingCssVarsProvider(props: {
+export function BrandingCssVarsProvider(props: {
   children: React.ReactNode;
   direction?: 'ltr' | 'rtl';
 }) {

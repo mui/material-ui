@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import MenuList, { MenuListProps } from '@mui/material/MenuList';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';

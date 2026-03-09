@@ -1,7 +1,7 @@
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
+import type { SandboxConfig } from '@mui/docs/DemoContext';
 import { CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 

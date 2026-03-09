@@ -10,7 +10,7 @@ import PricingWhatToExpect from 'docs/src/components/pricing/PricingWhatToExpect
 import PricingFAQ from 'docs/src/components/pricing/PricingFAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import { MultiAppProvider } from 'docs/src/components/pricing/MultiAppContext';
 import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';

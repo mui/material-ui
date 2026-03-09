@@ -1,7 +1,12 @@
 import * as React from 'react';
-import standardNavIcons from './modules/components/AppNavIcons';
 
-export type MuiPageIcon = keyof typeof standardNavIcons | React.ComponentType;
+export type MuiPageIcon =
+  | 'ReaderIcon'
+  | 'BookIcon'
+  | 'DescriptionIcon'
+  | 'VisibilityIcon'
+  | 'WebIcon'
+  | React.ComponentType;
 
 export interface MuiPage {
   pathname: string;
