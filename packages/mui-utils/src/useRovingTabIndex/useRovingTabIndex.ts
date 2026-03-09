@@ -271,10 +271,6 @@ function internalShouldFocus(element: HTMLElement | null) {
 
 function handleRefs(...refs: (React.Ref<HTMLElement> | undefined)[]) {
   return (node: HTMLElement | null) => {
-    if (!node) {
-      return;
-    }
-
     refs.forEach((ref) => {
       if (typeof ref === 'function') {
         ref(node);
