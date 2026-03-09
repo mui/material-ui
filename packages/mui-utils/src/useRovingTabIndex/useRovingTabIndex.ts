@@ -207,12 +207,14 @@ function focusNext(
   wrap: boolean,
   shouldFocus: (element: HTMLElement | null) => boolean,
 ): number {
+  const lastIndex = elementsRef.current.length - 1;
   let wrappedOnce = false;
-  let nextIndex = getNextIndex(elementsRef, currentIndex, direction, wrap);
+  let nextIndex = getNextIndex(currentIndex, lastIndex, direction, wrap);
+  const startIndex = nextIndex;
 
   while (nextIndex !== -1) {
     // Prevent infinite loop.
-    if (nextIndex === 0) {
+    if (nextIndex === startIndex) {
       if (wrappedOnce) {
         return -1;
       }
@@ -224,7 +226,7 @@ function focusNext(
     // Same logic as useAutocomplete.js
     if (!shouldFocus(nextElement)) {
       // Move to the next element.
-      nextIndex = getNextIndex(elementsRef, nextIndex, direction, wrap);
+      nextIndex = getNextIndex(nextIndex, lastIndex, direction, wrap);
     } else {
       nextElement?.focus();
 
@@ -236,13 +238,11 @@ function focusNext(
 }
 
 function getNextIndex(
-  elementsRef: React.RefObject<(HTMLElement | null)[]>,
   currentIndex: number,
+  lastIndex: number,
   direction: 'next' | 'previous',
   wrap: boolean = true,
 ): number {
-  const lastIndex = elementsRef.current.length - 1;
-
   if (direction === 'next') {
     if (currentIndex === lastIndex) {
       return wrap ? 0 : -1;
