@@ -82,6 +82,12 @@ function testOnChange() {
   onChange={(event, value: number[]) => {}}
   onChangeCommitted={(event, value: number[]) => {}}
 />;
+const values = [5, 10] as const;
+<Slider
+  value={values}
+  onChange={(event, value: readonly number[]) => {}}
+  onChangeCommitted={(event, value: readonly number[]) => {}}
+/>;
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {
