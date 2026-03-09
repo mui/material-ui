@@ -302,7 +302,7 @@ const selectionOverride = (theme) => ({
 });
 
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation } = props;
+  const { demo, demoOptions, disableAd, githubLocation, enableOpenInNewTab } = props;
 
   if (process.env.NODE_ENV !== 'production') {
     if (demoOptions.hideToolbar === false) {
@@ -546,6 +546,7 @@ export default function Demo(props) {
                   onResetDemoClick={resetDemo}
                   openDemoSource={openDemoSource}
                   showPreview={showPreview}
+                  enableOpenInNewTab={enableOpenInNewTab}
                 />
               </React.Suspense>
             </NoSsr>
@@ -662,5 +663,6 @@ Demo.propTypes = {
    */
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
+  enableOpenInNewTab: PropTypes.bool,
   githubLocation: PropTypes.string.isRequired,
 };

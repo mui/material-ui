@@ -19,6 +19,7 @@ export default function RichMarkdownElement(props) {
     localizedDoc,
     renderedMarkdownOrDemo,
     srcComponents,
+    enableOpenInNewTab,
   } = props;
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -113,6 +114,7 @@ export default function RichMarkdownElement(props) {
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}
       githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
+      enableOpenInNewTab={enableOpenInNewTab}
     />
   );
 }
@@ -122,6 +124,7 @@ RichMarkdownElement.propTypes = {
   demoComponents: PropTypes.any,
   demos: PropTypes.any,
   disableAd: PropTypes.bool,
+  enableOpenInNewTab: PropTypes.bool,
   localizedDoc: PropTypes.any,
   renderedMarkdownOrDemo: PropTypes.oneOfType([
     PropTypes.string,
