@@ -1,9 +1,14 @@
-import PropTypes from 'prop-types';
 import * as React from 'react';
 import { CODE_STYLING } from '../constants';
 import { getCookie } from '../helpers/index';
 
-const CodeStylingContext = React.createContext({
+interface CodeStylingContextValue {
+  codeStyling: string;
+  noSsrCodeStyling?: string;
+  setCodeStyling: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const CodeStylingContext = React.createContext<CodeStylingContextValue>({
   codeStyling: CODE_STYLING.SYSTEM,
   setCodeStyling: () => {},
 });
@@ -20,7 +25,7 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-export function CodeStylingProvider(props) {
+export function CodeStylingProvider(props: { children: React.ReactNode }) {
   const { children } = props;
 
   const [codeStyling, setCodeStyling] = React.useState(CODE_STYLING.SYSTEM);
@@ -78,10 +83,6 @@ export function CodeStylingProvider(props) {
 
   return <CodeStylingContext.Provider value={contextValue}>{children}</CodeStylingContext.Provider>;
 }
-
-CodeStylingProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export function useCodeStyling() {
   return React.useContext(CodeStylingContext).codeStyling;

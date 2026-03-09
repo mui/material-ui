@@ -1,9 +1,14 @@
-import PropTypes from 'prop-types';
 import * as React from 'react';
 import { CODE_VARIANTS } from '../constants';
 import { getCookie } from '../helpers/index';
 
-const CodeVariantContext = React.createContext({
+interface CodeVariantContextValue {
+  codeVariant: string;
+  noSsrCodeVariant?: string;
+  setCodeVariant: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const CodeVariantContext = React.createContext<CodeVariantContextValue>({
   codeVariant: CODE_VARIANTS.TS,
   setCodeVariant: () => {},
 });
@@ -20,7 +25,7 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-export function CodeVariantProvider(props) {
+export function CodeVariantProvider(props: { children: React.ReactNode }) {
   const { children } = props;
 
   const [codeVariant, setCodeVariant] = React.useState(CODE_VARIANTS.TS);
@@ -66,10 +71,6 @@ export function CodeVariantProvider(props) {
 
   return <CodeVariantContext.Provider value={contextValue}>{children}</CodeVariantContext.Provider>;
 }
-
-CodeVariantProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export function useCodeVariant() {
   return React.useContext(CodeVariantContext).codeVariant;

@@ -875,16 +875,16 @@ importers:
         specifier: workspace:^
         version: link:../markdown
       '@mui/material-nextjs':
-        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
         version: 7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@mui/stylis-plugin-rtl':
-        specifier: workspace:^
-        version: link:../mui-stylis-plugin-rtl/build
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
+        version: 7.3.8(stylis@4.2.0)
       '@mui/system':
-        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
         version: 6.4.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@mui/utils':
-        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
         version: 7.3.6(@types/react@19.2.14)(react@19.2.4)
       '@types/stylis':
         specifier: ^4.2.7
@@ -3785,6 +3785,12 @@ packages:
         optional: true
       '@emotion/styled':
         optional: true
+
+  '@mui/stylis-plugin-rtl@7.3.8':
+    resolution: {integrity: sha512-X5e+C6Nw0+0Mwl8RoQcvbT6gPOL5snilg7dDy04FZySE7/fyagT2H1gYsGDUamAo0h6GcNFzYkMZBod0RGlnMw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      stylis: 4.x
 
   '@mui/system@5.18.0':
     resolution: {integrity: sha512-ojZGVcRWqWhu557cdO3pWHloIGJdzVtxs3rk0F9L+x55LsUjcMUVkEhiF7E4TMxZoF9MmIHGGs0ZX3FDLAf0Xw==}
@@ -15031,6 +15037,12 @@ snapshots:
     optionalDependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.4)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
+
+  '@mui/stylis-plugin-rtl@7.3.8(stylis@4.2.0)':
+    dependencies:
+      '@babel/runtime': 7.28.6
+      cssjanus: 2.3.0
+      stylis: 4.2.0
 
   '@mui/system@5.18.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)':
     dependencies:
