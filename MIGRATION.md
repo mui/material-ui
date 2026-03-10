@@ -560,7 +560,7 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 3. Check the box below.
 
 ### Phase 0: Preparation
-- [ ] 0.1 Create directory structure — `git commit -m "[docs-infra] Create ApiPage and AppLayoutDocs directory structure (0.1)"`
+- [x] 0.1 Create directory structure — `git commit -m "[docs-infra] Create ApiPage and AppLayoutDocs directory structure (0.1)"`
 - [ ] 0.2 Add deps — `git commit -m "[docs-infra] Add api-docs-builder and es-toolkit deps to @mui/docs (0.2)"`
 - [ ] 0.3 Verify/add `next` peerDep — `git commit -m "[docs-infra] Add next as peerDependency of @mui/docs (0.3)"`
 - [ ] 0.4 Extract types — `git commit -m "[docs-infra] Extract TableOfContentsParams and LayoutStorageKeys types (0.4)"`
