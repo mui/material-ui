@@ -567,10 +567,10 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 - [x] 0.5 Extract `convertProductIdToName` — `git commit -m "[docs-infra] Extract convertProductIdToName to @mui/docs (0.5)"`
 
 ### Phase 1: ApiPage Leaves
-- [ ] 1.1 `ApiWarningAlert.tsx` — `git commit -m "[docs-infra] Migrate ApiWarningAlert to @mui/docs (1.1)"`
-- [ ] 1.2 `table/StyledTableContainer.tsx` — `git commit -m "[docs-infra] Migrate StyledTableContainer to @mui/docs (1.2)"`
-- [ ] 1.3 `list/ExpandableApiItem.tsx` — `git commit -m "[docs-infra] Migrate ExpandableApiItem to @mui/docs (1.3)"`
-- [ ] 1.4 `sections/ToggleDisplayOption.tsx` — `git commit -m "[docs-infra] Migrate ToggleDisplayOption to @mui/docs (1.4)"`
+- [x] 1.1 `ApiWarningAlert.tsx` — `git commit -m "[docs-infra] Migrate ApiWarningAlert to @mui/docs (1.1)"`
+- [x] 1.2 `table/StyledTableContainer.tsx` — `git commit -m "[docs-infra] Migrate StyledTableContainer to @mui/docs (1.2)"`
+- [x] 1.3 `list/ExpandableApiItem.tsx` — `git commit -m "[docs-infra] Migrate ExpandableApiItem to @mui/docs (1.3)"`
+- [x] 1.4 `sections/ToggleDisplayOption.tsx` — `git commit -m "[docs-infra] Migrate ToggleDisplayOption to @mui/docs (1.4)"`
 
 ### Phase 2: ApiPage Definitions
 - [ ] 2.1 `definitions/properties.ts` — `git commit -m "[docs-infra] Migrate properties definitions to @mui/docs (2.1)"`
