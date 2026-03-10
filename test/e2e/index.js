@@ -32,7 +32,7 @@ function App() {
     if (window.location.hash === '#no-dev') {
       return false;
     }
-    return process.env.NODE_ENV === 'development';
+    return process.env.NODE_ENV !== 'production';
   }
   const [isDev, setDev] = React.useState(computeIsDev);
   React.useEffect(() => {

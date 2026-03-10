@@ -38,7 +38,7 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   }
 }
 
-describe('Joy <Autocomplete />', () => {
+describe.skipIf(isJsdom())('Joy <Autocomplete />', () => {
   const { render } = createRenderer();
 
   const StyledInput = styled('input')({});

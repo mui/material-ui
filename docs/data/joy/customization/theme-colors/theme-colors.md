@@ -9,7 +9,7 @@ Joy UI's default theme includes 5 built-in semantic color palettes, with light 
 {{"demo": "PaletteThemeViewer.js", "bg": "inline"}}
 
 :::info
-Some tokens reuse color values from others using the [`var(--*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) syntax.
+Some tokens reuse color values from others using the [`var(--*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/var) syntax.
 :::
 
 ### Global variant tokens

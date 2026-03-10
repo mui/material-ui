@@ -14,21 +14,21 @@ export interface TimelineConnectorProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineConnectorClasses>;
+  classes?: Partial<TimelineConnectorClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineConnector API](https://mui.com/material-ui/api/timeline-connector/)
+ * - [TimelineConnector API](https://next.mui.com/material-ui/api/timeline-connector/)
  */
 export default function TimelineConnector(props: TimelineConnectorProps): React.JSX.Element;

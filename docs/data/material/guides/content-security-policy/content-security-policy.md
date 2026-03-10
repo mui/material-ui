@@ -80,7 +80,7 @@ See [Vite Features—Content Security Policy](https://vite.dev/guide/features.ht
 
 ### Next.js Pages Router
 
-For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy#nonces), pass it to the Emotion cache in two places:
+For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs/app/guides/content-security-policy#nonces), pass it to the Emotion cache in two places:
 
 1. In `_document.tsx`:
 

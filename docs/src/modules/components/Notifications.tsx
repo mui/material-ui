@@ -13,11 +13,11 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
-import { getCookie } from 'docs/src/modules/utils/helpers';
+import { getCookie } from '@mui/docs/helpers';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 
 async function fetchNotifications() {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     const items = (await import('../../../notifications.json')).default;
     return items;
   }
@@ -98,7 +98,7 @@ export default function Notifications() {
     setOpen((prevOpen) => !prevOpen);
     setTooltipOpen(false);
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV !== 'production') {
       // Skip last seen logic in dev to make editing notifications easier.
       return;
     }

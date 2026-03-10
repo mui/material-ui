@@ -112,7 +112,7 @@ export interface CardHeaderOwnProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<CardHeaderClasses>;
+  classes?: Partial<CardHeaderClasses> | undefined;
   /**
    * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
@@ -120,7 +120,7 @@ export interface CardHeaderOwnProps<
    * with the Typography component.
    * @default false
    */
-  disableTypography?: boolean;
+  disableTypography?: boolean | undefined;
   /**
    * The content of the component.
    */
@@ -130,16 +130,18 @@ export interface CardHeaderOwnProps<
    * (as long as disableTypography is not `true`).
    * @deprecated Use `slotProps.subheader` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  subheaderTypographyProps?: TypographyProps<
-    SubheaderTypographyComponent,
-    {
-      component?: SubheaderTypographyComponent;
-    }
-  >;
+  subheaderTypographyProps?:
+    | TypographyProps<
+        SubheaderTypographyComponent,
+        {
+          component?: SubheaderTypographyComponent | undefined;
+        }
+      >
+    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The content of the component.
    */
@@ -149,12 +151,14 @@ export interface CardHeaderOwnProps<
    * (as long as disableTypography is not `true`).
    * @deprecated Use `slotProps.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  titleTypographyProps?: TypographyProps<
-    TitleTypographyComponent,
-    {
-      component?: TitleTypographyComponent;
-    }
-  >;
+  titleTypographyProps?:
+    | TypographyProps<
+        TitleTypographyComponent,
+        {
+          component?: TitleTypographyComponent | undefined;
+        }
+      >
+    | undefined;
 }
 
 export interface CardHeaderOwnerState extends CardHeaderOwnProps {}
@@ -174,11 +178,11 @@ export interface CardHeaderTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://next.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardHeader API](https://mui.com/material-ui/api/card-header/)
+ * - [CardHeader API](https://next.mui.com/material-ui/api/card-header/)
  */
 declare const CardHeader: OverridableCardHeader;
 
@@ -223,7 +227,7 @@ export type CardHeaderPropsWithComponent<
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component?: RootComponent;
+  component?: RootComponent | undefined;
 } & CardHeaderProps<
   RootComponent,
   AdditionalProps,

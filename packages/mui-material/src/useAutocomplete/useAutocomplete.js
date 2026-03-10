@@ -147,6 +147,7 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedItem, setFocusedItem] = React.useState(-1);
@@ -614,10 +615,28 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    if (filteredOptionsChanged || popupOpen) {
+    if (filteredOptionsChanged || (popupOpen && !disableCloseOnSelect)) {
       syncHighlightedIndex();
     }
-  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen]);
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
+
+  // Listen for browser window blur to detect when the user switches tabs or windows.
+  // This helps prevent the popup from reopening automatically when the window regains focus.
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const handleWindowBlur = () => {
+      windowLostFocus.current = true;
+    };
+
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, []);
 
   const handleOpen = (event) => {
     if (open) {
@@ -995,6 +1014,14 @@ function useAutocomplete(props) {
       focusItem(-1);
     }
 
+    // If the window previously lost focus while the popup was open,
+    // ignore this focus event to prevent unintended reopening.
+    // Reset the flag so normal focus behavior resumes.
+    if (windowLostFocus.current) {
+      windowLostFocus.current = false;
+      return;
+    }
+
     if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
@@ -1125,7 +1152,12 @@ function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (!disabledProp && (inputValue === '' || !open)) {
+    if (
+      !disabledProp &&
+      (inputValue === '' || !open) &&
+      // Only handle event when the main button is pressed (left click).
+      event.button === 0
+    ) {
       handlePopupIndicator(event);
     }
   };

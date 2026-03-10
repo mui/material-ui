@@ -41,17 +41,20 @@ type CssVarsOptions = CssThemeVariables extends {
   : {};
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
-  mixins?: MixinsOptions;
-  components?: Components<Omit<Theme, 'components'>>;
-  palette?: PaletteOptions;
-  shadows?: Shadows;
-  shape?: ShapeOptions;
-  transitions?: TransitionsOptions;
-  typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
-  zIndex?: ZIndexOptions;
-  unstable_strictMode?: boolean;
-  unstable_sxConfig?: SxConfig;
-  modularCssLayers?: boolean | string;
+  mixins?: MixinsOptions | undefined;
+  components?: Components<Omit<Theme, 'components'>> | undefined;
+  palette?: PaletteOptions | undefined;
+  shadows?: Shadows | undefined;
+  shape?: ShapeOptions | undefined;
+  transitions?: TransitionsOptions | undefined;
+  typography?:
+    | TypographyVariantsOptions
+    | ((palette: Palette) => TypographyVariantsOptions)
+    | undefined;
+  zIndex?: ZIndexOptions | undefined;
+  unstable_strictMode?: boolean | undefined;
+  unstable_sxConfig?: SxConfig | undefined;
+  modularCssLayers?: boolean | string | undefined;
 }
 
 export interface BaseTheme extends SystemTheme {
@@ -62,7 +65,7 @@ export interface BaseTheme extends SystemTheme {
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
-  unstable_strictMode?: boolean;
+  unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
@@ -91,8 +94,8 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
-  cssVariables?: false;
-  components?: Components<BaseTheme>;
+  cssVariables?: false | undefined;
+  components?: Components<BaseTheme> | undefined;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;

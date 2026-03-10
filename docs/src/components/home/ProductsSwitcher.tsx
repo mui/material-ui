@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import IconImage from 'docs/src/components/icon/IconImage';
+import IconImage from '@mui/docs/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 

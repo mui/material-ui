@@ -28,7 +28,7 @@ import gridLegacyClasses, { getGridLegacyUtilityClass } from './gridLegacyClasse
 let warnedOnce = false;
 
 function warnAboutDeprecatedGridLegacy() {
-  if (!warnedOnce && process.env.NODE_ENV === 'development') {
+  if (!warnedOnce && process.env.NODE_ENV !== 'production') {
     warnedOnce = true;
     console.warn(
       'MUI: The GridLegacy component is deprecated. See https://mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.\n',

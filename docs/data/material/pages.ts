@@ -1,6 +1,6 @@
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from 'docs/data/material/pagesApi';
-import { MuiPage } from 'docs/src/MuiPage';
+import { MuiPage } from '@mui/docs/MuiPage';
 
 const pages: MuiPage[] = [
   {
@@ -308,6 +308,16 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/migration/pickers-migration',
         title: 'Migration from @material-ui/pickers',
+      },
+      {
+        pathname: '/material-ui/migration/v9',
+        subheader: 'Upgrade to v9',
+        children: [
+          {
+            pathname: '/material-ui/migration/upgrade-to-v9',
+            title: 'Upgrade to v9: getting started',
+          },
+        ],
       },
       {
         pathname: '/material-ui/migration/v7',

@@ -133,7 +133,7 @@ The following sections explain how to approach each of these scenarios.
 
 Cards often include buttons at the bottom section. Use `CardActions` component as a wrapper of those buttons to create proper spacing around them.
 
-The demo below also use `buttonFlex` prop to set the ideal width of the buttons to `120px` while allowing them to shrink if necessary. To learn more about CSS flex, visit [MDN's guide](https://developer.mozilla.org/en-US/docs/Web/CSS/flex).
+The demo below also uses the `buttonFlex` prop to set the ideal width of the buttons to `120px` while allowing them to shrink if necessary. To learn more about CSS flex, visit [MDN's guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex).
 
 {{"demo": "BottomActionsCard.js"}}
 
@@ -217,7 +217,7 @@ The example below shows a user card that stacks when the card's width is equal o
 {{"demo": "UserCard.js"}}
 
 :::info
-Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) to achieve the similar result.
+Alternatively, you can use [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries) to achieve a similar result.
 You should check the [browser support](https://caniuse.com/css-container-queries) before using CSS Container Queries.
 :::
 

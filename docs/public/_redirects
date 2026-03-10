@@ -20,7 +20,6 @@
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants 302
 /r/migration-v4 /material-ui/migration/migration-v4/ 302
-/r/discord https://discord.com/invite/tewQuNeUyS 302
 /r/pigment /blog/introducing-pigment-css/ 302
 
 # Legacy redirection
@@ -531,11 +530,11 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
-/x/_next/* https://material-ui-x.netlify.app/_next/:splat 200
-/x/* https://material-ui-x.netlify.app/x/:splat 200
-/r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
-/:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
+/static/x/* https://docs-next--material-ui-x.netlify.app/static/x/:splat 200
+/x/_next/* https://docs-next--material-ui-x.netlify.app/_next/:splat 200
+/x/* https://docs-next--material-ui-x.netlify.app/x/:splat 200
+/r/x-* https://docs-next--material-ui-x.netlify.app/r/x-:splat 200
+/:lang/x/* https://docs-next--material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## Toolpad
 /toolpad/core/templates/nextjs-dashboard/_next/* https://toolpad-core-nextjs-themed.vercel.app/_next/:splat 200

@@ -7,13 +7,8 @@ export default function transformer(fileInfo, api, options) {
   const importModule = options.importModule || '@mui/material';
   const targetModule = options.targetModule || '@mui/material';
 
-  let resolveModule = importModule;
-  if (process.env.NODE_ENV === 'test') {
-    resolveModule = resolveModule.replace(/^@mui\/material/, '@mui/material-v5');
-  }
-
   const whitelist = getJSExports(
-    require.resolve(`${resolveModule}/modern`, {
+    require.resolve(`@mui/material-v5/modern`, {
       paths: [dirname(fileInfo.path)],
     }),
   );

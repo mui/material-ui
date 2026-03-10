@@ -100,8 +100,15 @@ describe('Joy <List />', () => {
   });
 
   describe('Menu - integration', () => {
-    const element = document.createElement('div');
-    element.setAttribute('aria-controls', 'test');
+    let element: HTMLDivElement;
+    beforeAll(() => {
+      element = document.createElement('div');
+      element.setAttribute('aria-controls', 'test');
+      document.body.appendChild(element);
+    });
+    afterAll(() => {
+      document.body.removeChild(element);
+    });
 
     it('should have role="group" inside Menu', () => {
       render(

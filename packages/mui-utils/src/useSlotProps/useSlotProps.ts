@@ -38,7 +38,7 @@ export type UseSlotPropsParameters<
   /**
    * Set to true if the slotProps callback should receive more props.
    */
-  skipResolvingSlotProps?: boolean;
+  skipResolvingSlotProps?: boolean | undefined;
 };
 
 export type UseSlotPropsResult<
