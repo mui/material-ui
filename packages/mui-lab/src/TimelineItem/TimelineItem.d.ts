@@ -8,7 +8,7 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
   /**
    * The position where the timeline's item should appear.
    */
-  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
+  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse' | undefined;
   /**
    * The content of the component.
    */
@@ -16,11 +16,11 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineItemClasses>;
+  classes?: Partial<TimelineItemClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

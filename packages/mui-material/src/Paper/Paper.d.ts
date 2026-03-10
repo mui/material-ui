@@ -15,27 +15,29 @@ export interface PaperOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<PaperClasses>;
+  classes?: Partial<PaperClasses> | undefined;
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It accepts values between 0 and 24 inclusive.
    * @default 1
    */
-  elevation?: number;
+  elevation?: number | undefined;
   /**
    * If `true`, rounded corners are disabled.
    * @default false
    */
-  square?: boolean;
+  square?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The variant to use.
    * @default 'elevation'
    */
-  variant?: OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>;
+  variant?:
+    | OverridableStringUnion<'elevation' | 'outlined', PaperPropsVariantOverrides>
+    | undefined;
 }
 
 export interface PaperTypeMap<
@@ -68,7 +70,7 @@ export type PaperProps<
   RootComponent extends React.ElementType = PaperTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<PaperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Paper;

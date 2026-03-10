@@ -19,7 +19,7 @@ export type BoxProps<
   RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent, MaterialTheme>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Box;

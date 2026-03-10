@@ -14,11 +14,11 @@ export interface ListItemSecondaryActionProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ListItemSecondaryActionClasses>;
+  classes?: Partial<ListItemSecondaryActionClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

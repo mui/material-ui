@@ -220,7 +220,21 @@ export default defineConfig(
     },
   },
   {
-    files: [`packages/*/src/*/*${EXTENSION_TS}`],
+    files: [`packages/*/src/**/*${EXTENSION_TS}`, `packages/*/src/**/*${EXTENSION_DTS}`],
+    ignores: [
+      '**/*.spec.*',
+      '**/*.test.*',
+      // deprecated library
+      '**/mui-joy/**/*',
+      // used internally, not used on app router yet
+      '**/mui-docs/**/*',
+    ],
+    rules: {
+      'mui/add-undef-to-optional': 'error',
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
@@ -262,6 +276,18 @@ export default defineConfig(
     rules: {
       // Working with flags is common in TypeScript compiler
       'no-bitwise': 'off',
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
+    ignores: ['**/*.spec.*', '**/*.test.*', '**/mui-lab/**'],
+    rules: {
+      'mui/require-dev-wrapper': [
+        'error',
+        {
+          functionNames: ['warnOnce', 'warn', 'checkSlot', 'isLayoutSupported'],
+        },
+      ],
     },
   },
   {

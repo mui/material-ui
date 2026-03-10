@@ -570,7 +570,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         'border',
         colorMix(
           safeLighten,
-          colorMix(safeAlpha, nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
+          safeAlpha(nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
           0.88,
         ),
       );
@@ -887,7 +887,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         'border',
         colorMix(
           safeDarken,
-          colorMix(safeAlpha, nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
+          safeAlpha(nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
           0.68,
         ),
       );

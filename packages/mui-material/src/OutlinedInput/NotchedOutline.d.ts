@@ -4,9 +4,9 @@ import { InternalStandardProps as StandardProps } from '../internal';
 export interface NotchedOutlineProps extends StandardProps<
   React.FieldsetHTMLAttributes<HTMLFieldSetElement>
 > {
-  disabled?: boolean;
-  error?: boolean;
-  focused?: boolean;
+  disabled?: boolean | undefined;
+  error?: boolean | undefined;
+  focused?: boolean | undefined;
   label?: React.ReactNode;
   notched: boolean;
 }

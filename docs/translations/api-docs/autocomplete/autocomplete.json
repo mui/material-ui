@@ -253,10 +253,6 @@
     }
   },
   "classDescriptions": {
-    "clearIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the clear indicator"
-    },
     "endAdornment": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the endAdornment element"
@@ -318,16 +314,11 @@
       "nodeName": "the popper element",
       "conditions": "<code>disablePortal={true}</code>"
     },
-    "popupIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popup indicator"
-    },
     "popupIndicatorOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the popup indicator",
       "conditions": "the popup is open"
     },
-    "root": { "description": "Styles applied to the root element." },
     "tag": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
@@ -345,8 +336,11 @@
     }
   },
   "slotDescriptions": {
+    "clearIndicator": "The component used to render the clear indicator element.",
     "listbox": "The component used to render the listbox.",
     "paper": "The component used to render the body of the popup.",
-    "popper": "The component used to position the popup."
+    "popper": "The component used to position the popup.",
+    "popupIndicator": "The component used to render the popup indicator element.",
+    "root": "The component that renders the root."
   }
 }

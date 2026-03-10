@@ -10,9 +10,9 @@ import PricingWhatToExpect from 'docs/src/components/pricing/PricingWhatToExpect
 import PricingFAQ from 'docs/src/components/pricing/PricingFAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import { PrioritySupportProvider } from 'docs/src/components/pricing/PrioritySupportContext';
+import { MultiAppProvider } from 'docs/src/components/pricing/MultiAppContext';
 import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
 import PricingCards from 'docs/src/components/pricing/PricingCards';
 
@@ -29,7 +29,7 @@ export default function Pricing() {
       <main id="main-content">
         <HeroPricing />
         <LicenseModelProvider>
-          <PrioritySupportProvider>
+          <MultiAppProvider>
             <Container sx={{ display: { xs: 'none', md: 'block' } }}>
               <PricingCards />
             </Container>
@@ -42,7 +42,7 @@ export default function Pricing() {
             <Container sx={{ display: { xs: 'none', md: 'block' } }}>
               <PricingTable />
             </Container>
-          </PrioritySupportProvider>
+          </MultiAppProvider>
         </LicenseModelProvider>
         <PricingWhatToExpect />
         <Divider />

@@ -10,17 +10,33 @@ import MenuItem from '@mui/joy/MenuItem';
 import MenuButton from '@mui/joy/MenuButton';
 import describeConformance from '../../test/describeConformance';
 
+let defaultAnchorEl: HTMLDivElement | null = null;
+
 const testContext: DropdownContextValue = {
   dispatch: () => {},
   popupId: 'menu-popup',
   registerPopup: () => {},
   registerTrigger: () => {},
   state: { open: true, changeReason: null },
-  triggerElement: document.createElement('div'),
+  get triggerElement() {
+    return defaultAnchorEl;
+  },
 };
 
 describe('Joy <Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
+
+  beforeAll(() => {
+    defaultAnchorEl = document.createElement('div');
+    defaultAnchorEl.setAttribute('aria-controls', 'test');
+    document.body.appendChild(defaultAnchorEl);
+  });
+  afterAll(() => {
+    if (defaultAnchorEl !== null) {
+      document.body.removeChild(defaultAnchorEl);
+      defaultAnchorEl = null;
+    }
+  });
 
   describeConformance(<Menu />, () => ({
     classes,
@@ -45,11 +61,8 @@ describe('Joy <Menu />', () => {
     ],
   }));
 
-  const anchorEl = document.createElement('div');
-  anchorEl.setAttribute('aria-controls', 'test');
-
   it('should render with `ul` by default', () => {
-    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
+    render(<Menu anchorEl={defaultAnchorEl} open data-testid="popover" />);
     expect(screen.getByTestId('popover')).to.have.tagName('ul');
   });
 
@@ -77,7 +90,7 @@ describe('Joy <Menu />', () => {
 
   it('renders its children only when open', () => {
     const { setProps } = render(
-      <Menu anchorEl={anchorEl} open={false}>
+      <Menu anchorEl={defaultAnchorEl} open={false}>
         <div data-testid="children" />
       </Menu>,
     );
@@ -90,14 +103,14 @@ describe('Joy <Menu />', () => {
   });
 
   it('should have role="menu"', () => {
-    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
+    render(<Menu anchorEl={defaultAnchorEl} open data-testid="popover" />);
 
     expect(screen.getByTestId('popover')).to.have.attribute('role', 'menu');
   });
 
   it('ignores invalid children', () => {
     render(
-      <Menu anchorEl={anchorEl} open>
+      <Menu anchorEl={defaultAnchorEl} open>
         {null}
         <span role="menuitem">hello</span>
         {/* testing conditional rendering */}
@@ -113,19 +126,19 @@ describe('Joy <Menu />', () => {
 
   describe('classnames', () => {
     it('size prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open size="sm" />);
+      render(<Menu anchorEl={defaultAnchorEl} data-testid="menu" open size="sm" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.sizeSm);
     });
 
     it('variant prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open variant="soft" />);
+      render(<Menu anchorEl={defaultAnchorEl} data-testid="menu" open variant="soft" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.variantSoft);
     });
 
     it('color prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open color="primary" />);
+      render(<Menu anchorEl={defaultAnchorEl} data-testid="menu" open color="primary" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.colorPrimary);
     });

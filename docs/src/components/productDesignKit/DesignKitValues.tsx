@@ -6,7 +6,7 @@ import { InfoCard } from '@mui/docs/InfoCard';
 import CodeRounded from '@mui/icons-material/CodeRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 
 const content = [
   {
@@ -41,7 +41,7 @@ export default function DesignKitValues() {
           </Typography>
         }
       />
-      <Grid container spacing={3} mt={4}>
+      <Grid container spacing={3} sx={{ mt: 4 }}>
         {content.map(({ icon, title, description }) => (
           <Grid key={title} size={{ xs: 12, sm: 6, md: 4 }}>
             <InfoCard title={title} icon={icon} description={description} />

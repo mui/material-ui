@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import OrderDashboardTemplate from 'docs/data/joy/getting-started/templates/order-dashboard/App';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import { NextNProgressBar } from '@mui/docs/NextNProgressBar';
 
 export default function OrderDashboard() {
   return (

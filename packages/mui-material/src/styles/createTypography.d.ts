@@ -28,7 +28,7 @@ export interface FontStyle {
 }
 
 export interface FontStyleOptions extends Partial<FontStyle> {
-  allVariants?: React.CSSProperties;
+  allVariants?: React.CSSProperties | undefined;
 }
 
 // TODO: which one should actually be allowed to be subject to module augmentation?

@@ -12,9 +12,9 @@ import RoleEntry from 'docs/src/components/careers/RoleEntry';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import Head from 'docs/src/modules/components/Head';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
