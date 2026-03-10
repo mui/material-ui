@@ -313,4 +313,72 @@ describe('<Stepper />', () => {
     expect(stepper).not.to.have.attribute('role', 'tablist');
     expect(stepper).not.to.have.attribute('aria-orientation');
   });
+
+  describe('keyboard navigation', () => {
+    it('should move focus to the next tab when pressing the right arrow key', async () => {
+      const { user } = render(
+        <Stepper nonLinear>
+          <Step>
+            <StepButton>one</StepButton>
+          </Step>
+          <Step disabled>
+            <StepButton>two</StepButton>
+          </Step>
+          <Step>
+            <StepButton>three</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[2]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[2]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should add tabindex="0" to the focused tab', async () => {
+      const { user } = render(
+        <Stepper nonLinear>
+          <Step>
+            <StepButton>one</StepButton>
+          </Step>
+          <Step>
+            <StepButton>two</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.click(tabElements[1]);
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.click(tabElements[0]);
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+  });
 });
