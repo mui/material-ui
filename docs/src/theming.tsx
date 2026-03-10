@@ -11,9 +11,7 @@ const defaultTheme = createTheme({
   },
 });
 
-export function DemoPageThemeProvider({
-  children,
-}: React.PropsWithChildren<{}>) {
+export function DemoPageThemeProvider({ children }: React.PropsWithChildren<{}>) {
   const themeOptions = React.useContext(ThemeOptionsContext);
   return (
     <BrandingCssVarsProvider {...themeOptions}>

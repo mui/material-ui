@@ -142,7 +142,7 @@ export default function ApiPage(props: ApiPageProps) {
 
   const defaultPropsLink = '/material-ui/customization/theme-components/#theme-default-props';
   const styleOverridesLink = '/material-ui/customization/theme-components/#theme-style-overrides';
-  let slotGuideLink = '';
+  const slotGuideLink = '';
 
   const {
     componentDescription,

@@ -13,7 +13,6 @@ import createEmotionCache from '@mui/docs/createEmotionCache';
 import findActivePage from '@mui/docs/findActivePage';
 import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
 import { mapTranslations } from '@mui/docs/i18n';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import materialPkgJson from '@mui/material/package.json';
 import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';

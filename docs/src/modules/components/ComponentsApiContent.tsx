@@ -94,7 +94,6 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
     const pageContent = pageContents[key];
     const {
       cssComponent,
-      filename,
       forwardsRefTo,
       inheritance,
       name: componentName,
@@ -113,7 +112,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
       descriptions[key][userLanguage];
 
     const defaultPropsLink = '/material-ui/customization/theme-components/#theme-default-props';
-    let slotGuideLink = '';
+    const slotGuideLink = '';
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');

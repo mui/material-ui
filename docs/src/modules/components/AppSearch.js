@@ -10,7 +10,6 @@ import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import IntegrationInstructionsRoundedIcon from '@mui/icons-material/IntegrationInstructionsRounded';
-import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
 import CopyrightRoundedIcon from '@mui/icons-material/CopyrightRounded';
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';

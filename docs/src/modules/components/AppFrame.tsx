@@ -136,10 +136,8 @@ export default function AppFrame(props: AppFrameProps) {
   const { activePage, productIdentifier } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
-  const isJoy = canonicalAs.startsWith('/joy-ui/');
-
   return (
-    <DemoPageThemeProvider hasJoy={isJoy}>
+    <DemoPageThemeProvider>
       <RootDiv className={className}>
         <StyledAppBar
           disablePermanent={disablePermanent}
