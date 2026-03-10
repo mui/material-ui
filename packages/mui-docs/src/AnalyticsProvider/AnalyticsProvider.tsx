@@ -10,7 +10,7 @@ import { alpha } from '@mui/system';
 import Portal from '@mui/material/Portal';
 import TrapFocus from '@mui/material/Unstable_TrapFocus';
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
-import { BrandingCssThemeProvider } from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssThemeProvider } from '../branding/BrandingCssVarsProvider';
 
 const COOKIE_CONSENT_KEY = 'docs-cookie-consent';
 
@@ -96,9 +96,15 @@ export function CookieConsentDialog() {
               pointerEvents: 'auto',
               boxShadow: theme.shadows[2],
               zIndex: theme.zIndex.snackbar,
-              ...theme.applyDarkStyles({
-                bgcolor: 'primaryDark.900',
-              }),
+              ...(theme.applyDarkStyles
+                ? theme.applyDarkStyles({
+                    bgcolor: 'primaryDark.900',
+                  })
+                : {
+                    [theme.getColorSchemeSelector?.('dark') || '&.mode-dark']: {
+                      bgcolor: 'primaryDark.900',
+                    },
+                  }),
             })}
           >
             <Stack direction="column" spacing={3} sx={{ justifyContent: 'flex-start' }}>

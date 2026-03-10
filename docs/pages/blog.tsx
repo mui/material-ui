@@ -20,7 +20,7 @@ import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import { Link } from '@mui/docs/Link';

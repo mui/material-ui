@@ -1,6 +1,5 @@
 import { camelCase, upperFirst } from 'es-toolkit/string';
-import { LANGUAGES } from 'docs/config';
-import { Translate } from '@mui/docs/i18n';
+import type { Translate } from '../i18n';
 
 export function pascalCase(str: string) {
   return upperFirst(camelCase(str));
@@ -75,8 +74,14 @@ export function getCookie(name: string): string | undefined {
  * as is a reference to Next.js's as, the path in the URL
  * pathname is a reference to Next.js's pathname, the name of page in the filesystem
  * https://nextjs.org/docs/api-reference/next/router
+ *
+ * @param pathname - The URL pathname
+ * @param languages - List of supported language codes. Defaults to `['en']`.
  */
-export function pathnameToLanguage(pathname: string): {
+export function pathnameToLanguage(
+  pathname: string,
+  languages: string[] = ['en'],
+): {
   userLanguage: string;
   canonicalAs: string;
   canonicalAsServer: string;
@@ -86,7 +91,7 @@ export function pathnameToLanguage(pathname: string): {
   const userLanguageCandidate = pathname.substring(1, 3);
 
   if (
-    [...LANGUAGES, 'zh'].includes(userLanguageCandidate) &&
+    [...languages, 'zh'].includes(userLanguageCandidate) &&
     pathname.startsWith(`/${userLanguageCandidate}/`)
   ) {
     userLanguage = userLanguageCandidate;

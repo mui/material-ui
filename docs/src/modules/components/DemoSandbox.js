@@ -14,7 +14,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { DemoInstanceThemeProvider } from 'docs/src/theming';
 import { ThemeOptionsContext } from '@mui/docs/ThemeContext';
-import { useDemoContext } from 'docs/src/modules/components/DemoContext';
+import { useDemoContext } from '@mui/docs/DemoContext';
 
 const SRC_DOC = `<!DOCTYPE html>
 <html>
