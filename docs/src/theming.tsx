@@ -13,14 +13,7 @@ const defaultTheme = createTheme({
 
 export function DemoPageThemeProvider({
   children,
-  hasJoy,
-}: React.PropsWithChildren<{
-  /**
-   * Set to true if the children render Joy UI components.
-   * Otherwise, Joy UI components will throw errors because they try to get fields that does not exist in material theme.
-   */
-  hasJoy?: boolean;
-}>) {
+}: React.PropsWithChildren<{}>) {
   const themeOptions = React.useContext(ThemeOptionsContext);
   return (
     <BrandingCssVarsProvider {...themeOptions}>

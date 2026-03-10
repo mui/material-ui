@@ -112,14 +112,8 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
     const { classDescriptions, propDescriptions, slotDescriptions } =
       descriptions[key][userLanguage];
 
-    const isJoyComponent = filename.includes('mui-joy');
-    const defaultPropsLink = isJoyComponent
-      ? '/joy-ui/customization/themed-components/#theme-default-props'
-      : '/material-ui/customization/theme-components/#theme-default-props';
+    const defaultPropsLink = '/material-ui/customization/theme-components/#theme-default-props';
     let slotGuideLink = '';
-    if (isJoyComponent) {
-      slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-    }
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');

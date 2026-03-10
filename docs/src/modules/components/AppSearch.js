@@ -80,28 +80,6 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'Joy UI',
-      },
-      items: [
-        {
-          name: 'Installation',
-          href: '/joy-ui/getting-started/installation/',
-          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Templates',
-          href: '/joy-ui/getting-started/templates/',
-          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Customization',
-          href: '/joy-ui/customization/approaches/',
-          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-      ],
-    },
-    {
-      category: {
         name: 'Toolpad',
       },
       items: [
