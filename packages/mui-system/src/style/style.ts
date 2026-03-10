@@ -19,13 +19,13 @@ export type TransformFunction = (
 ) => number | string | React.CSSProperties | CSSObject;
 
 export interface StyleOptions<PropKey> {
-  cssProperty?: PropKey | keyof React.CSSProperties | false;
+  cssProperty?: PropKey | keyof React.CSSProperties | false | undefined;
   prop: PropKey;
   /**
    * dot access in `Theme`
    */
-  themeKey?: string;
-  transform?: TransformFunction;
+  themeKey?: string | undefined;
+  transform?: TransformFunction | undefined;
 }
 
 /**
@@ -127,7 +127,7 @@ export function getPath<T extends Record<string, any> | undefined | null>(
 }
 
 function getPathImpl(object: any, path: string[], alternateProp: string | undefined = undefined) {
-  let lastResult = undefined; // eslint-disable-line
+  let lastResult = undefined;
   let result = object;
   let index = 0;
 
@@ -151,7 +151,7 @@ function getPathImpl(object: any, path: string[], alternateProp: string | undefi
 }
 
 type StyleResult<PropKey extends string | number | symbol, Theme> = StyleFunction<
-  { [K in PropKey]?: unknown } & { theme?: Theme }
+  { [K in PropKey]?: unknown } & { theme?: Theme | undefined }
 > & { filterProps: string[]; propTypes: any };
 
 export default function style<PropKey extends string, Theme extends object>(
