@@ -18,7 +18,7 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
-import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
+import { convertProductIdToName } from '@mui/docs/AppLayoutDocs';
 
 const TOC_WIDTH = 242;
 

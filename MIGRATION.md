@@ -563,7 +563,7 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 - [x] 0.1 Create directory structure — `git commit -m "[docs-infra] Create ApiPage and AppLayoutDocs directory structure (0.1)"`
 - [x] 0.2 Add deps — `git commit -m "[docs-infra] Add api-docs-builder and es-toolkit deps to @mui/docs (0.2)"`
 - [x] 0.3 Verify/add `next` peerDep — already present (`"next": "^13.5.1 || ^14 || ^15.0.0 || ^16.0.0"`), no commit needed
-- [ ] 0.4 Extract types — `git commit -m "[docs-infra] Extract TableOfContentsParams and LayoutStorageKeys types (0.4)"`
+- [x] 0.4 Extract types — `git commit -m "[docs-infra] Extract TableOfContentsParams and LayoutStorageKeys types (0.4)"`
 - [ ] 0.5 Extract `convertProductIdToName` — `git commit -m "[docs-infra] Extract convertProductIdToName to @mui/docs (0.5)"`
 
 ### Phase 1: ApiPage Leaves

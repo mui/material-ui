@@ -30,7 +30,7 @@ function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
-        name: 'Material UI',
+        name: 'Material UI',
       },
       items: [
         {
@@ -57,7 +57,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI X',
+        name: 'MUI X',
       },
       items: [
         {
@@ -101,7 +101,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI System',
+        name: 'MUI System',
       },
       items: [
         {
@@ -141,24 +141,8 @@ function NewStartScreen() {
   );
 }
 
-const productNameProductId = {
-  'material-ui': 'Material UI',
-  'joy-ui': 'Joy UI',
-  'base-ui': 'MUI Base',
-  x: 'MUI X',
-  system: 'MUI System',
-  toolpad: 'Toolpad',
-  'toolpad-studio': 'Toolpad Studio',
-  'toolpad-core': 'Toolpad Core',
-  'docs-infra': 'Docs Infra',
-};
-
-export function convertProductIdToName(productInfo) {
-  return (
-    productNameProductId[productInfo.productId] ||
-    productNameProductId[productInfo.productCategoryId]
-  );
-}
+import { convertProductIdToName } from '@mui/docs/AppLayoutDocs';
+export { convertProductIdToName };
 
 function getDisplayTag(hit) {
   if (hit.productId === undefined || hit.productCategoryId === undefined) {
