@@ -179,6 +179,16 @@ function transformRenderInput(j, root, options) {
       replaceRenderInputParamsMembers(j, callbackRoot, paramsName);
 
       textFieldNames.forEach((textFieldName) => {
+        const textFieldElements = [];
+
+        if (
+          renderInputExpression.body.type === 'JSXElement' &&
+          renderInputExpression.body.openingElement.name.type === 'JSXIdentifier' &&
+          renderInputExpression.body.openingElement.name.name === textFieldName
+        ) {
+          textFieldElements.push(renderInputExpression.body);
+        }
+
         callbackRoot
           .find(j.JSXElement)
           .filter(
@@ -187,21 +197,35 @@ function transformRenderInput(j, root, options) {
               textFieldPath.node.openingElement.name.name === textFieldName,
           )
           .forEach((textFieldPath) => {
-            const element = textFieldPath.node;
-
-            moveJsxPropIntoSlotProps(j, element, 'InputProps', 'input');
-            moveJsxPropIntoSlotProps(j, element, 'inputProps', 'htmlInput');
-            moveJsxPropIntoSlotProps(j, element, 'InputLabelProps', 'inputLabel');
-            moveJsxPropIntoSlotProps(j, element, 'SelectProps', 'select');
-            moveJsxPropIntoSlotProps(j, element, 'FormHelperTextProps', 'formHelperText');
-
-            if (getAttributeIndex(element, 'slotProps') !== -1) {
-              ensureParamsSlotPropsSpread(j, element, paramsName);
-            }
+            textFieldElements.push(textFieldPath.node);
           });
+
+        textFieldElements.forEach((element) => {
+          moveJsxPropIntoSlotProps(j, element, 'InputProps', 'input');
+          moveJsxPropIntoSlotProps(j, element, 'inputProps', 'htmlInput');
+          moveJsxPropIntoSlotProps(j, element, 'InputLabelProps', 'inputLabel');
+          moveJsxPropIntoSlotProps(j, element, 'SelectProps', 'select');
+          moveJsxPropIntoSlotProps(j, element, 'FormHelperTextProps', 'formHelperText');
+
+          if (getAttributeIndex(element, 'slotProps') !== -1) {
+            ensureParamsSlotPropsSpread(j, element, paramsName);
+          }
+        });
       });
     },
   );
+}
+
+function normalizeRenderInputSlotPropsFormatting(source) {
+  return source
+    .replace(
+      /(slotProps=\{\{)(\r?\n)(\s+\.\.\.[A-Za-z_$][\w$]*\.slotProps,)(\r?\n)\s*(\r?\n)(\s+[A-Za-z_$][\w$]*: \{)/g,
+      '$1$2$3$4$6',
+    )
+    .replace(
+      /(\r?\n\s+[A-Za-z_$][\w$]*: \{[\s\S]*?params\.slotProps[\s\S]*?\r?\n\s+\})(\r?\n\s+\}\})/g,
+      '$1,$2',
+    );
 }
 
 /**
@@ -369,5 +393,5 @@ export default function transformer(file, api, options) {
       path.prune();
     });
 
-  return root.toSource(printOptions);
+  return normalizeRenderInputSlotPropsFormatting(root.toSource(printOptions));
 }
