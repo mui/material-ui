@@ -1,14 +1,12 @@
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { ProjectSettings, buildApi } from '@mui-internal/api-docs-builder';
 import {
-  joyUiProjectSettings,
   materialUiProjectSettings,
   muiSystemProjectSettings,
 } from '@mui-internal/api-docs-builder-core';
 
 const projectSettings: ProjectSettings[] = [
   materialUiProjectSettings,
-  joyUiProjectSettings,
   muiSystemProjectSettings,
 ];
 
