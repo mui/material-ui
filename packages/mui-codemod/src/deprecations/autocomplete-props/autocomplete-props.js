@@ -80,9 +80,7 @@ function moveJsxPropIntoSlotProps(j, element, propName, slotName) {
     );
 
     if (existingSlotIndex === -1) {
-      slotPropsExpression.properties.push(
-        j.objectProperty(j.identifier(slotName), removedValue),
-      );
+      slotPropsExpression.properties.push(j.objectProperty(j.identifier(slotName), removedValue));
       return;
     }
 
@@ -119,9 +117,7 @@ function ensureParamsSlotPropsSpread(j, element, paramsName) {
 
     if (!hasSlotPropsSpread) {
       slotPropsExpression.properties.unshift(
-        j.spreadElement(
-          j.memberExpression(j.identifier(paramsName), j.identifier('slotProps')),
-        ),
+        j.spreadElement(j.memberExpression(j.identifier(paramsName), j.identifier('slotProps'))),
       );
     }
   });
