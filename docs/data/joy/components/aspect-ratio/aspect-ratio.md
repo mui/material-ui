@@ -16,7 +16,7 @@ Aspect Ratio is a wrapper component for quickly resizing content to conform to y
 Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
 :::info
-A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, and we plan to implement it in Joy UI soon.
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio) does exist, and we plan to implement it in Joy UI soon.
 :::
 
 ## Basics
@@ -52,7 +52,7 @@ For example, the demo below uses a ratio of `4/3`, which is a common alternative
 {{"demo": "CustomRatio.js"}}
 
 :::info
-The `ratio` prop uses the [CSS `calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) function under the hood.
+The `ratio` prop uses the [CSS `calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/calc) function under the hood.
 :::
 
 ### Object fit
@@ -88,7 +88,7 @@ By default, the Aspect Ratio component will retain the provided aspect ratio. If
 
 ## Using with Next.js Image
 
-The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/app/building-your-application/optimizing/images) component as a child.
+The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/getting-started/images) component as a child.
 The Image should always include the `layout="fill"` property—otherwise it requires `height` and `width` values, which would defeat the purpose of the Aspect Ratio component.
 
 ```js

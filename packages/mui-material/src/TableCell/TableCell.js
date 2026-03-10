@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { darken, alpha, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
@@ -56,8 +55,8 @@ const TableCellRoot = styled('td', {
       : `1px solid
     ${
       theme.palette.mode === 'light'
-        ? lighten(alpha(theme.palette.divider, 1), 0.88)
-        : darken(alpha(theme.palette.divider, 1), 0.68)
+        ? theme.lighten(theme.alpha(theme.palette.divider, 1), 0.88)
+        : theme.darken(theme.alpha(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
     padding: 16,

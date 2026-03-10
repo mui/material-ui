@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Skeleton from '@mui/joy/Skeleton';
 
 <Skeleton variant="circular" />;

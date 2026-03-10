@@ -55,7 +55,6 @@ export default function GitHubLabel() {
   return (
     <React.Fragment>
       <Box sx={{ width: 221 }}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link
           color="neutral"
           component="button"

@@ -29,12 +29,13 @@ describe('CodeSandbox', () => {
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
+          private: true,
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
             react: 'latest',
             // #npm-tag-reference
-            '@mui/material': 'latest',
+            '@mui/material': 'next',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -120,12 +121,13 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
+          private: true,
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {
             react: 'latest',
             // #npm-tag-reference
-            '@mui/material': 'latest',
+            '@mui/material': 'next',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -136,7 +138,6 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
             '@types/react': 'latest',
             '@types/react-dom': 'latest',
           },
-          main: 'index.tsx',
           scripts: {
             build: 'react-scripts build',
             eject: 'react-scripts eject',
@@ -233,7 +234,7 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       react: 'latest',
       'react-dom': 'latest',
       typescript: 'latest',

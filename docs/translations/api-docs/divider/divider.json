@@ -74,7 +74,7 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "divider have text and <code>orientation=\"vertical\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/divider/#divider-classes-withChildren\">.MuiDivider-withChildren</a> and <a href=\"/material-ui/api/divider/#divider-classes-vertical\">.MuiDivider-vertical</a> classes instead."
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/divider/#divider-classes-MuiDivider-withChildren\">.MuiDivider-withChildren</a> and <a href=\"/material-ui/api/divider/#divider-classes-MuiDivider-vertical\">.MuiDivider-vertical</a> classes instead."
     },
     "wrapper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

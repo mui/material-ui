@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import useTimeout, { Timeout } from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import getReactElementRef from '@mui/utils/getReactElementRef';
@@ -163,7 +162,7 @@ const TooltipTooltip = styled('div', {
   memoTheme(({ theme }) => ({
     backgroundColor: theme.vars
       ? theme.vars.palette.Tooltip.bg
-      : alpha(theme.palette.grey[700], 0.92),
+      : theme.alpha(theme.palette.grey[700], 0.92),
     borderRadius: (theme.vars || theme).shape.borderRadius,
     color: (theme.vars || theme).palette.common.white,
     fontFamily: theme.typography.fontFamily,
@@ -278,7 +277,7 @@ const TooltipArrow = styled('span', {
     width: '1em',
     height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
-    color: theme.vars ? theme.vars.palette.Tooltip.bg : alpha(theme.palette.grey[700], 0.9),
+    color: theme.vars ? theme.vars.palette.Tooltip.bg : theme.alpha(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
       margin: 'auto',
@@ -477,9 +476,22 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
-    if (!isFocusVisible(event.target)) {
+    // Needed for https://github.com/mui/material-ui/issues/45373
+    const target = event?.target ?? childNode;
+    if (!target || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
-      handleMouseLeave(event);
+
+      // InputBase can call onBlur() without an event when the input becomes disabled.
+      // Tooltip must not assume an event object exists.
+      const closeEvent = event ?? new Event('blur');
+
+      // `new Event('blur')` has `target/currentTarget === null`, but Tooltip's close logic
+      // (and user callbacks like onClose) may expect them to reference the anchor element.
+      if (!event && target) {
+        Object.defineProperty(closeEvent, 'target', { value: target });
+        Object.defineProperty(closeEvent, 'currentTarget', { value: target });
+      }
+      handleMouseLeave(closeEvent);
     }
   };
 

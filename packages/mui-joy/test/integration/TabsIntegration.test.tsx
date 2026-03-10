@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
@@ -10,7 +10,7 @@ describe('Joy <Tabs />', () => {
   const { render } = createRenderer();
 
   it('display first tab', () => {
-    const { getByText, queryByText } = render(
+    render(
       <Tabs>
         <TabList>
           <Tab>1</Tab>
@@ -21,7 +21,7 @@ describe('Joy <Tabs />', () => {
       </Tabs>,
     );
 
-    expect(getByText('Panel 1')).toBeVisible();
-    expect(queryByText('Panel 2')).to.equal(null);
+    expect(screen.getByText('Panel 1')).toBeVisible();
+    expect(screen.queryByText('Panel 2')).to.equal(null);
   });
 });

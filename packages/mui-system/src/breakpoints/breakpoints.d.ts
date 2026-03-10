@@ -8,8 +8,8 @@ export const DEFAULT_BREAKPOINTS: Breakpoints;
 
 export interface ResolveBreakpointValuesOptions<T> {
   values: ResponsiveStyleValue<T>;
-  breakpoints?: Breakpoints['values'];
-  base?: Record<string, boolean>;
+  breakpoints?: Breakpoints['values'] | undefined;
+  base?: Record<string, boolean> | undefined;
 }
 export function resolveBreakpointValues<T>(
   options: ResolveBreakpointValuesOptions<T>,

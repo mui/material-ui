@@ -1,5 +1,0 @@
-{
-  "imports": {
-    "#error-formatter": "./error/formatter.ts"
-  }
-}

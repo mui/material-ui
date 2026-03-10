@@ -2,7 +2,6 @@ import Cloud from '@mui/icons-material/Cloud';
 import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
-import * as React from 'react';
 
 export default function ChipWithDecorators() {
   return (

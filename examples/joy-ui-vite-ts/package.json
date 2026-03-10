@@ -1,7 +1,7 @@
 {
   "name": "joy-ui-vite-ts",
-  "private": true,
   "version": "5.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",

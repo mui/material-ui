@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Divider from '@mui/joy/Divider';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';

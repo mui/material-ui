@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/joy/Button';

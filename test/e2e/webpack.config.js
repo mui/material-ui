@@ -1,3 +1,4 @@
+/* eslint-disable mui/consistent-production-guard */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackBaseConfig = require('../../webpackBaseConfig');
@@ -30,7 +31,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          configFile: path.resolve(__dirname, '../../babel.config.js'),
+          configFile: path.resolve(__dirname, '../../babel.config.mjs'),
           envName: 'regressions',
         },
       },

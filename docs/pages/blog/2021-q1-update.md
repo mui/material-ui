@@ -87,7 +87,6 @@ This new feature removes the need to create a wrapper component.
 - 🦴 We have migrated a couple of components to the `@mui/base` package.
   The aim of the package is to host the unstyled and headless (hooks) components.
   So far, you can only find:
-
   - Backdrop
   - Badge
   - Focus trap

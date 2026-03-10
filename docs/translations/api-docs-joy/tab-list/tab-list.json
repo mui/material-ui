@@ -16,7 +16,7 @@
     "size": { "description": "The size of the component." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
-    "sticky": { "description": "If provided, the TabList will have postion <code>sticky</code>." },
+    "sticky": { "description": "If provided, the TabList will have position <code>sticky</code>." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
@@ -72,9 +71,9 @@ describe('<Avatar />', () => {
     });
 
     it('should pass slots.img to `useLoaded` hook', () => {
-      const originalImage = global.Image;
+      const originalImage = globalThis.Image;
       const image = {};
-      global.Image = function Image() {
+      globalThis.Image = function Image() {
         return image;
       };
 
@@ -82,7 +81,7 @@ describe('<Avatar />', () => {
 
       expect(image.crossOrigin).to.equal('anonymous');
 
-      global.Image = originalImage;
+      globalThis.Image = originalImage;
     });
   });
 

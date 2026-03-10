@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  screen,
+  simulateKeyboardDevice,
+  within,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
@@ -24,8 +30,8 @@ describe('<Button />', () => {
   }));
 
   it('should render with the root, text, and textPrimary classes but no others', () => {
-    const { getByRole } = render(<Button>Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button>Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
@@ -46,12 +52,13 @@ describe('<Button />', () => {
   });
 
   it('startIcon and endIcon should have icon class', () => {
-    const { getByRole } = render(
+    render(
       <Button startIcon={<span>start icon</span>} endIcon={<span>end icon</span>}>
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
     const startIcon = button.querySelector(`.${classes.startIcon}`);
     const endIcon = button.querySelector(`.${classes.endIcon}`);
     expect(startIcon).to.have.class(classes.icon);
@@ -59,7 +66,7 @@ describe('<Button />', () => {
   });
 
   it('should add the appropriate color class to root element based on color prop', () => {
-    const { getByTestId } = render(
+    render(
       <React.Fragment>
         <Button color="inherit" data-testid="color-inherit">
           Hello World
@@ -85,18 +92,18 @@ describe('<Button />', () => {
       </React.Fragment>,
     );
 
-    expect(getByTestId('color-inherit')).to.have.class(classes.colorInherit);
-    expect(getByTestId('color-primary')).to.have.class(classes.colorPrimary);
-    expect(getByTestId('color-secondary')).to.have.class(classes.colorSecondary);
-    expect(getByTestId('color-success')).to.have.class(classes.colorSuccess);
-    expect(getByTestId('color-error')).to.have.class(classes.colorError);
-    expect(getByTestId('color-info')).to.have.class(classes.colorInfo);
-    expect(getByTestId('color-warning')).to.have.class(classes.colorWarning);
+    expect(screen.getByTestId('color-inherit')).to.have.class(classes.colorInherit);
+    expect(screen.getByTestId('color-primary')).to.have.class(classes.colorPrimary);
+    expect(screen.getByTestId('color-secondary')).to.have.class(classes.colorSecondary);
+    expect(screen.getByTestId('color-success')).to.have.class(classes.colorSuccess);
+    expect(screen.getByTestId('color-error')).to.have.class(classes.colorError);
+    expect(screen.getByTestId('color-info')).to.have.class(classes.colorInfo);
+    expect(screen.getByTestId('color-warning')).to.have.class(classes.colorWarning);
   });
 
   it('can render a text primary button', () => {
-    const { getByRole } = render(<Button color="primary">Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button color="primary">Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.contained);
@@ -105,8 +112,8 @@ describe('<Button />', () => {
   });
 
   it('should render a text secondary button', () => {
-    const { getByRole } = render(<Button color="secondary">Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button color="secondary">Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.contained);
@@ -175,8 +182,8 @@ describe('<Button />', () => {
   });
 
   it('should render an outlined button', () => {
-    const { getByRole } = render(<Button variant="outlined">Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button variant="outlined">Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.outlined);
@@ -185,12 +192,13 @@ describe('<Button />', () => {
   });
 
   it('should render a primary outlined button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="outlined" color="primary">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.outlined);
@@ -201,12 +209,13 @@ describe('<Button />', () => {
   });
 
   it('should render a secondary outlined button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="outlined" color="secondary">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.outlined);
@@ -217,12 +226,13 @@ describe('<Button />', () => {
   });
 
   it('should render an inherit outlined button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="outlined" color="inherit">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.outlined);
@@ -312,8 +322,8 @@ describe('<Button />', () => {
   });
 
   it('should render a contained button', () => {
-    const { getByRole } = render(<Button variant="contained">Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button variant="contained">Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.text);
@@ -323,12 +333,13 @@ describe('<Button />', () => {
   });
 
   it('should render a contained primary button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="contained" color="primary">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.text);
@@ -342,12 +353,13 @@ describe('<Button />', () => {
   });
 
   it('should render a contained secondary button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="contained" color="secondary">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).not.to.have.class(classes.text);
@@ -437,8 +449,8 @@ describe('<Button />', () => {
   });
 
   it('should render a small text button', () => {
-    const { getByRole } = render(<Button size="small">Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button size="small">Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
@@ -451,8 +463,8 @@ describe('<Button />', () => {
   });
 
   it('should render a large text button', () => {
-    const { getByRole } = render(<Button size="large">Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button size="large">Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
@@ -465,12 +477,13 @@ describe('<Button />', () => {
   });
 
   it('should render a small outlined button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="outlined" size="small">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.outlined);
@@ -483,12 +496,13 @@ describe('<Button />', () => {
   });
 
   it('should render a large outlined button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="outlined" size="large">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.outlined);
@@ -501,12 +515,13 @@ describe('<Button />', () => {
   });
 
   it('should render a small contained button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="contained" size="small">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.contained);
@@ -519,12 +534,13 @@ describe('<Button />', () => {
   });
 
   it('should render a large contained button', () => {
-    const { getByRole } = render(
+    render(
       <Button variant="contained" size="large">
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.contained);
@@ -537,8 +553,8 @@ describe('<Button />', () => {
   });
 
   it('should render a button with startIcon', () => {
-    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+    const button = screen.getByRole('button');
     const startIcon = button.querySelector(`.${classes.startIcon}`);
 
     expect(button).to.have.class(classes.root);
@@ -547,8 +563,8 @@ describe('<Button />', () => {
   });
 
   it('should render a button with endIcon', () => {
-    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+    const button = screen.getByRole('button');
     const endIcon = button.querySelector(`.${classes.endIcon}`);
 
     expect(button).to.have.class(classes.root);
@@ -557,44 +573,41 @@ describe('<Button />', () => {
   });
 
   it('should have a ripple', async () => {
-    const { getByRole } = render(
-      <Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>,
-    );
-    const button = getByRole('button');
+    render(<Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>);
+
+    const button = screen.getByRole('button');
     await ripple.startTouch(button);
     expect(button.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
   it('can disable the ripple', async () => {
-    const { getByRole } = render(
+    render(
       <Button disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
     await ripple.startTouch(button);
     expect(button.querySelector('.touch-ripple')).to.equal(null);
   });
 
   it('can disable the elevation', () => {
-    const { getByRole } = render(<Button disableElevation>Hello World</Button>);
-    const button = getByRole('button');
+    render(<Button disableElevation>Hello World</Button>);
+    const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.disableElevation);
   });
 
-  it('should have a focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
-
-    const { getByRole } = render(
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())('should have a focusRipple', async function test() {
+    render(
       <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     simulateKeyboardDevice();
     await ripple.startFocus(button);
@@ -602,13 +615,9 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
-  it('can disable the focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
-
-    const { getByRole } = render(
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())('can disable the focusRipple', async function test() {
+    render(
       <Button
         disableFocusRipple
         TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
@@ -616,7 +625,8 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    const button = getByRole('button');
+
+    const button = screen.getByRole('button');
 
     simulateKeyboardDevice();
     await ripple.startFocus(button);
@@ -624,14 +634,7 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  describe.skipIf(!isJsdom())('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Button>Hello World</Button>);
       expect(container.firstChild).to.have.text('Hello World');
@@ -699,7 +702,7 @@ describe('<Button />', () => {
       // This is pink
       const color = 'rgb(255, 192, 204)';
 
-      const { getByRole } = render(
+      render(
         <ClassNames>
           {({ css }) => (
             <Button color="primary" classes={{ root: css({ color }) }}>
@@ -708,7 +711,8 @@ describe('<Button />', () => {
           )}
         </ClassNames>,
       );
-      const button = getByRole('button');
+
+      const button = screen.getByRole('button');
 
       expect(getComputedStyle(button).color).to.equal(color);
     });
@@ -717,7 +721,7 @@ describe('<Button />', () => {
       const colorPink = 'rgb(255, 192, 204)';
       const colorRed = 'rgb(255, 0, 0)';
 
-      const { getByRole } = render(
+      render(
         <ClassNames>
           {({ css }) => (
             <Button
@@ -730,7 +734,8 @@ describe('<Button />', () => {
           )}
         </ClassNames>,
       );
-      const button = getByRole('button');
+
+      const button = screen.getByRole('button');
 
       expect(getComputedStyle(button).color).to.equal(colorRed);
     });
@@ -739,7 +744,7 @@ describe('<Button />', () => {
       // This is pink
       const color = 'rgb(255, 192, 204)';
 
-      const { getByRole } = render(
+      render(
         <ClassNames>
           {({ css }) => (
             <Button color="primary" classes={{ text: css({ color }) }}>
@@ -748,7 +753,8 @@ describe('<Button />', () => {
           )}
         </ClassNames>,
       );
-      const button = getByRole('button');
+
+      const button = screen.getByRole('button');
 
       expect(getComputedStyle(button).color).to.equal(color);
     });
@@ -827,17 +833,17 @@ describe('<Button />', () => {
     });
 
     it('should have loading position class attached to root when `loading`', () => {
-      const { rerender } = render(<Button loading>Test</Button>);
+      const view = render(<Button loading>Test</Button>);
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionCenter);
 
-      rerender(
+      view.rerender(
         <Button loading loadingPosition="start">
           Test
         </Button>,
       );
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionStart);
 
-      rerender(
+      view.rerender(
         <Button loading loadingPosition="end">
           Test
         </Button>,

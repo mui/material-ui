@@ -122,8 +122,10 @@ const getCssValue = (keys: string[], value: string | number) => {
 export default function cssVarsParser<T extends Record<string, any>>(
   theme: Record<string, any>,
   options?: {
-    prefix?: string;
-    shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
+    prefix?: string | undefined;
+    shouldSkipGeneratingVar?:
+      | ((objectPathKeys: Array<string>, value: string | number) => boolean)
+      | undefined;
   },
 ) {
   const { prefix, shouldSkipGeneratingVar } = options || {};

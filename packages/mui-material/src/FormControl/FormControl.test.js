@@ -84,7 +84,7 @@ describe('<FormControl />', () => {
   });
 
   describe('prop: disabled', () => {
-    it('will be unfocused if it gets disabled', () => {
+    it('will be unfocused if it gets disabled', async () => {
       const readContext = spy();
       const { container, setProps } = render(
         <FormControl>
@@ -94,7 +94,7 @@ describe('<FormControl />', () => {
       );
       expect(readContext.args[0][0]).to.have.property('focused', false);
 
-      act(() => {
+      await act(async () => {
         container.querySelector('input').focus();
       });
       expect(readContext.lastCall.args[0]).to.have.property('focused', true);
@@ -271,19 +271,19 @@ describe('<FormControl />', () => {
 
     describe('callbacks', () => {
       describe('onFilled', () => {
-        it('should set the filled state', () => {
+        it('should set the filled state', async () => {
           const formControlRef = React.createRef();
           render(<FormControlled ref={formControlRef} />);
 
           expect(formControlRef.current).to.have.property('filled', false);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onFilled();
           });
 
           expect(formControlRef.current).to.have.property('filled', true);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onFilled();
           });
 
@@ -292,23 +292,23 @@ describe('<FormControl />', () => {
       });
 
       describe('onEmpty', () => {
-        it('should clean the filled state', () => {
+        it('should clean the filled state', async () => {
           const formControlRef = React.createRef();
           render(<FormControlled ref={formControlRef} />);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onFilled();
           });
 
           expect(formControlRef.current).to.have.property('filled', true);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onEmpty();
           });
 
           expect(formControlRef.current).to.have.property('filled', false);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onEmpty();
           });
 
@@ -317,18 +317,18 @@ describe('<FormControl />', () => {
       });
 
       describe('handleFocus', () => {
-        it('should set the focused state', () => {
+        it('should set the focused state', async () => {
           const formControlRef = React.createRef();
           render(<FormControlled ref={formControlRef} />);
           expect(formControlRef.current).to.have.property('focused', false);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onFocus();
           });
 
           expect(formControlRef.current).to.have.property('focused', true);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onFocus();
           });
 
@@ -337,24 +337,24 @@ describe('<FormControl />', () => {
       });
 
       describe('handleBlur', () => {
-        it('should clear the focused state', () => {
+        it('should clear the focused state', async () => {
           const formControlRef = React.createRef();
           render(<FormControlled ref={formControlRef} />);
           expect(formControlRef.current).to.have.property('focused', false);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onFocus();
           });
 
           expect(formControlRef.current).to.have.property('focused', true);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onBlur();
           });
 
           expect(formControlRef.current).to.have.property('focused', false);
 
-          act(() => {
+          await act(async () => {
             formControlRef.current.onBlur();
           });
 

@@ -75,6 +75,70 @@ yarn add @types/react@<version> @types/react-dom@<version>
 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
+## React 18 and below
+
+If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
+
+For example, if you are using `react@18.3.1`, do the following steps:
+
+1. Install `react-is@18.3.1`.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react-is@18.3.1
+```
+
+```bash pnpm
+pnpm add react-is@18.3.1
+```
+
+```bash yarn
+yarn add react-is@18.3.1
+```
+
+</codeblock>
+
+2. Set the resolutions or overrides in the `package.json`.
+
+<codeblock storageKey="package-manager">
+
+```json npm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json pnpm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json yarn
+{
+  …
+  "resolutions": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+</codeblock>
+
+### Why is this needed?
+
+Material UI v7 uses `react-is@19`, which changed how React elements are identified.
+
+If you're on React 18 or below, mismatched versions of `react-is` can cause runtime errors in prop type checks.
+Forcing `react-is` to match your React version prevents these errors.
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
@@ -159,7 +223,7 @@ Depending on your project, you may follow one of the following approaches:
    <!-- #npm-tag-reference -->
 
    ```bash
-   npx @mui/codemod v7.0.0/grid-props <path/to/folder>
+   npx @mui/codemod@next v7.0.0/grid-props <path/to/folder>
    ```
 
    See the [Grid upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more information.
@@ -232,12 +296,23 @@ Use this codemod to automatically update the `size` value:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
+npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 ```
+
+**Note:** Because the default size of `InputLabel` was changed from `normal` to `medium`, the class `MuiInputLabel‑sizeMedium` is no longer added. If you relied on this class for custom styling, use a different class.
 
 ### SvgIcon's data-testid removed
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### TablePaginationActions types import path changed
+
+The import path for the types has changed from `@mui/material/TablePagination/TablePaginationActions` to `@mui/material/TablePaginationActions`.
+
+```diff
+- import type { TablePaginationActionsProps } from '@mui/material/TablePagination/TablePaginationActions';
++ import type { TablePaginationActionsProps } from '@mui/material/TablePaginationActions';
+```
 
 ### Theme behavior changes
 
@@ -300,7 +375,7 @@ const Custom = styled('div')(({ theme }) => ({
 ```
 
 If you need to do runtime calculations, we recommend using CSS instead of JavaScript whenever possible.
-For example, adjusting the alpha channel of a color can be done using the [`color-mix` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix):
+For example, adjusting the alpha channel of a color can be done using the [`color-mix` function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/color-mix):
 
 ```js
 const Custom = styled('div')(({ theme }) => ({
@@ -488,7 +563,7 @@ Use this codemod to automatically update the imports:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/lab-removed-components <path/to/folder>
+npx @mui/codemod@next v7.0.0/lab-removed-components <path/to/folder>
 ```
 
 :::warning

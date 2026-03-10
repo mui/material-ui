@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Alert from '@mui/joy/Alert';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 

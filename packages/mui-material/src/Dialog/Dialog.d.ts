@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps, Breakpoint } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { BackdropProps } from '../Backdrop';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
@@ -14,24 +15,24 @@ export interface DialogSlots {
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  transition?: React.ElementType;
+  transition?: React.ElementType | undefined;
   /**
    * The component that renders the paper.
    * @default Paper
    */
-  paper?: React.ElementType;
+  paper?: React.ElementType | undefined;
   /**
    * The component that renders the container.
    */
-  container?: React.ElementType;
+  container?: React.ElementType | undefined;
   /**
    * The component that renders the backdrop.
    */
-  backdrop?: React.ElementType;
+  backdrop?: React.ElementType | undefined;
   /**
    * The component that renders the root.
    */
-  root?: React.ElementType;
+  root?: React.ElementType | undefined;
 }
 
 export interface DialogTransitionSlotPropsOverrides {}
@@ -45,12 +46,12 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
+     * By default, the available props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
      */
     root: SlotProps<React.ElementType<ModalProps>, DialogRootSlotPropsOverrides, DialogOwnerState>;
     /**
      * Props forwarded to the backdrop slot.
-     * By default, the avaible props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
+     * By default, the available props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
      */
     backdrop: SlotProps<
       React.ElementType<BackdropProps>,
@@ -59,12 +60,12 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the container slot.
-     * By default, the avaible props are based on a div element.
+     * By default, the available props are based on a div element.
      */
     container: SlotProps<'div', DialogContainerSlotPropsOverrides, DialogOwnerState>;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
+     * By default, the available props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
     transition: SlotComponentProps<
       React.ElementType,
@@ -73,7 +74,7 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the paper slot.
-     * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
+     * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
     paper: SlotProps<
       React.ElementType<PaperProps>,
@@ -84,22 +85,23 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface DialogProps
-  extends Omit<StandardProps<ModalProps, 'children'>, 'slots' | 'slotProps'>,
+  extends
+    Omit<StandardProps<ModalProps, 'children'>, 'slots' | 'slotProps'>,
     DialogSlotsAndSlotProps {
   /**
    * The id(s) of the element(s) that describe the dialog.
    */
-  'aria-describedby'?: string;
+  'aria-describedby'?: string | undefined;
   /**
    * The id(s) of the element(s) that label the dialog.
    */
-  'aria-labelledby'?: string;
+  'aria-labelledby'?: string | undefined;
   /**
    * Informs assistive technologies that the element is modal.
    * It's added on the element with role="dialog".
    * @default true
    */
-  'aria-modal'?: boolean | 'true' | 'false';
+  'aria-modal'?: boolean | 'true' | 'false' | undefined;
   /**
    * Dialog children, usually the included sub-components.
    */
@@ -107,38 +109,33 @@ export interface DialogProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<DialogClasses>;
-  /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   * @default false
-   */
-  disableEscapeKeyDown?: boolean;
+  classes?: Partial<DialogClasses> | undefined;
   /**
    * If `true`, the dialog is full-screen.
    * @default false
    */
-  fullScreen?: boolean;
+  fullScreen?: boolean | undefined;
   /**
    * If `true`, the dialog stretches to `maxWidth`.
    *
    * Notice that the dialog width grow is limited by the default margin.
    * @default false
    */
-  fullWidth?: boolean;
+  fullWidth?: boolean | undefined;
   /**
    * Determine the max-width of the dialog.
    * The dialog width grows with the size of the screen.
    * Set to `false` to disable `maxWidth`.
    * @default 'sm'
    */
-  maxWidth?: Breakpoint | false;
+  maxWidth?: Breakpoint | false | undefined;
   /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
-  onClose?: ModalProps['onClose'];
+  onClose?: ModalProps['onClose'] | undefined;
   /**
    * If `true`, the component is shown.
    */
@@ -147,31 +144,31 @@ export interface DialogProps
    * The component used to render the body of the dialog.
    * @default Paper
    */
-  PaperComponent?: React.JSXElementConstructor<PaperProps>;
+  PaperComponent?: React.JSXElementConstructor<PaperProps> | undefined;
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    * @default {}
    * @deprecated Use `slotProps.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  PaperProps?: Partial<PaperProps<React.ElementType>>;
+  PaperProps?: Partial<PaperProps<React.ElementType>> | undefined;
   /**
    * Determine the container for scrolling the dialog.
    * @default 'paper'
    */
-  scroll?: 'body' | 'paper';
+  scroll?: 'body' | 'paper' | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<unknown, any> }
-  >;
+  TransitionComponent?:
+    | React.JSXElementConstructor<TransitionProps & { children: React.ReactElement<unknown, any> }>
+    | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -180,13 +177,13 @@ export interface DialogProps
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  transitionDuration?: TransitionProps['timeout'];
+  transitionDuration?: TransitionProps['timeout'] | undefined;
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  TransitionProps?: TransitionProps;
+  TransitionProps?: TransitionProps | undefined;
 }
 
 /**
@@ -194,12 +191,12 @@ export interface DialogProps
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://next.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [Dialog API](https://mui.com/material-ui/api/dialog/)
- * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ * - [Dialog API](https://next.mui.com/material-ui/api/dialog/)
+ * - inherits [Modal API](https://next.mui.com/material-ui/api/modal/)
  */
 export default function Dialog(props: DialogProps): React.JSX.Element;
 

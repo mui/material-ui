@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      // Unfortunatelly necessary as we opted to write our jsx in js files
+      // Unfortunately necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {
@@ -40,10 +40,11 @@ export default defineConfig({
     'process.env': '{}',
   },
   resolve: {
+    extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
     alias: {
       '@mui/material': path.resolve(WORKSPACE_ROOT, './packages/mui-material/src'),
       '@mui/docs': path.resolve(WORKSPACE_ROOT, './packages/mui-docs/src'),
-      '@mui/icons-material': path.resolve(WORKSPACE_ROOT, './packages/mui-icons-material/lib/esm'),
+      '@mui/icons-material': path.resolve(WORKSPACE_ROOT, './packages/mui-icons-material/lib'),
       '@mui/lab': path.resolve(WORKSPACE_ROOT, './packages/mui-lab/src'),
       '@mui/styled-engine': path.resolve(WORKSPACE_ROOT, './packages/mui-styled-engine/src'),
       '@mui/styled-engine-sc': path.resolve(WORKSPACE_ROOT, './packages/mui-styled-engine-sc/src'),
@@ -53,6 +54,10 @@ export default defineConfig({
       '@mui/utils': path.resolve(WORKSPACE_ROOT, './packages/mui-utils/src'),
       '@mui/material-nextjs': path.resolve(WORKSPACE_ROOT, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(WORKSPACE_ROOT, './packages/mui-joy/src'),
+      '@mui/stylis-plugin-rtl': path.resolve(
+        WORKSPACE_ROOT,
+        './packages/mui-stylis-plugin-rtl/src',
+      ),
       '@mui/internal-docs-utils': path.resolve(
         WORKSPACE_ROOT,
         './packages-internal/docs-utils/src',
@@ -60,10 +65,6 @@ export default defineConfig({
       '@mui/internal-scripts/typescript-to-proptypes': path.resolve(
         WORKSPACE_ROOT,
         './packages-internal/scripts/typescript-to-proptypes/src',
-      ),
-      '@mui/internal-test-utils': path.resolve(
-        WORKSPACE_ROOT,
-        './packages-internal/test-utils/src',
       ),
       docs: path.resolve(WORKSPACE_ROOT, './docs'),
     },

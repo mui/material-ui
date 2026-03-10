@@ -56,6 +56,10 @@ const importDemos = import.meta.glob(
     // Template
     '!docs/data/material/getting-started/templates/blog/components',
     '!docs/data/material/getting-started/templates/checkout/components',
+    '!docs/data/material/getting-started/templates/crud-dashboard/components',
+    '!docs/data/material/getting-started/templates/crud-dashboard/theme/customizations',
+    '!docs/data/material/getting-started/templates/crud-dashboard/hooks',
+    '!docs/data/material/getting-started/templates/crud-dashboard/context',
     '!docs/data/material/getting-started/templates/dashboard/components',
     '!docs/data/material/getting-started/templates/dashboard/internals/components',
     '!docs/data/material/getting-started/templates/dashboard/theme/customizations',
@@ -241,7 +245,7 @@ function computeIsDev(hash) {
   if (hash === '#no-dev') {
     return false;
   }
-  return process.env.NODE_ENV === 'development';
+  return process.env.NODE_ENV !== 'production';
 }
 
 function App(props) {

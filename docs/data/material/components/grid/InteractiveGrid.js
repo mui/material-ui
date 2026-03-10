@@ -75,16 +75,6 @@ export default function InteractiveGrid() {
                     control={<Radio />}
                     label="row-reverse"
                   />
-                  <FormControlLabel
-                    value="column"
-                    control={<Radio />}
-                    label="column"
-                  />
-                  <FormControlLabel
-                    value="column-reverse"
-                    control={<Radio />}
-                    label="column-reverse"
-                  />
                 </RadioGroup>
               </FormControl>
             </Grid>

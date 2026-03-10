@@ -94,3 +94,11 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
 <Slider component={CustomComponent} />;
 /* @ts-expect-error does not allow any prop */
 <Slider abc="123" />;
+
+const MARKS = [
+  { value: 0, label: '0°C' },
+  { value: 20, label: '20°C' },
+  { value: 37, label: '37°C' },
+  { value: 100, label: '100°C' },
+] as const;
+<Slider marks={MARKS} />;

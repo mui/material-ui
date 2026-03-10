@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Card from '@mui/joy/Card';
 import Link from '@mui/joy/Link';

@@ -37,7 +37,7 @@
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "PaperProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element.<br>This prop is an alias for <code>slotProps.paper</code> and will be overriden by it if both are used."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element.<br>This prop is an alias for <code>slotProps.paper</code> and will be overridden by it if both are used."
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },

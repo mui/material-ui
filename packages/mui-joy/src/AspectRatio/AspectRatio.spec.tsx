@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expectType } from '@mui/types';
 import AspectRatio, { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 

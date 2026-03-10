@@ -130,7 +130,7 @@ function focusThumb({
 }: {
   sliderRef: React.RefObject<any>;
   activeIndex: number;
-  setActive?: (num: number) => void;
+  setActive?: ((num: number) => void) | undefined;
 }) {
   const doc = ownerDocument(sliderRef.current);
   if (
@@ -267,7 +267,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         }))
       : marksProp || [];
 
-  const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
+  const marksValues = (marks as readonly Mark[]).map((mark: Mark) => mark.value);
 
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
@@ -468,7 +468,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     move = false,
   }: {
     finger: { x: number; y: number };
-    move?: boolean;
+    move?: boolean | undefined;
   }) => {
     const { current: slider } = sliderRef;
     const { width, height, bottom, left } = slider!.getBoundingClientRect();
@@ -802,7 +802,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks: marks as Mark[],
+    marks: marks as readonly Mark[],
     open,
     range,
     rootRef: handleRef,

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
@@ -41,15 +40,15 @@ export default function PageViewsBarChart() {
         <BarChart
           borderRadius={8}
           colors={colorPalette}
-          xAxis={
-            [
-              {
-                scaleType: 'band',
-                categoryGapRatio: 0.5,
-                data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-              },
-            ] as any
-          }
+          xAxis={[
+            {
+              scaleType: 'band',
+              categoryGapRatio: 0.5,
+              data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+              height: 24,
+            },
+          ]}
+          yAxis={[{ width: 50 }]}
           series={[
             {
               id: 'page-views',
@@ -71,13 +70,9 @@ export default function PageViewsBarChart() {
             },
           ]}
           height={250}
-          margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
+          margin={{ left: 0, right: 0, top: 20, bottom: 0 }}
           grid={{ horizontal: true }}
-          slotProps={{
-            legend: {
-              hidden: true,
-            },
-          }}
+          hideLegend
         />
       </CardContent>
     </Card>

@@ -1,6 +1,10 @@
+import * as React from 'react';
+
 export interface AppSettingsDrawerProps {
   onClose: () => void;
   open: boolean;
 }
 
-export default React.ComponentType<AppSettingsDrawerProps>;
+declare const AppSettingsDrawer: React.ComponentType<AppSettingsDrawerProps>;
+
+export default AppSettingsDrawer;

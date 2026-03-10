@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { AvatarClassKey, avatarClasses as classes } from '@mui/joy/Avatar';
@@ -31,16 +30,16 @@ describe('<Avatar />', () => {
 
   describe('prop: variant', () => {
     it('soft by default', () => {
-      const { getByTestId } = render(<Avatar data-testid="root" />);
+      render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantSoft);
+      expect(screen.getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
     (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByTestId } = render(<Avatar data-testid="root" variant={variant} />);
+        render(<Avatar data-testid="root" variant={variant} />);
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`variant${capitalize(variant)}` as AvatarClassKey],
         );
       });
@@ -49,16 +48,16 @@ describe('<Avatar />', () => {
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(<Avatar data-testid="root" />);
+      render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(screen.getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByTestId } = render(<Avatar data-testid="root" color={color} />);
+        render(<Avatar data-testid="root" color={color} />);
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`color${capitalize(color)}` as AvatarClassKey],
         );
       });
@@ -67,15 +66,15 @@ describe('<Avatar />', () => {
 
   describe('prop: size', () => {
     it('md by default', () => {
-      const { getByTestId } = render(<Avatar data-testid="root" />);
+      render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.sizeMd);
+      expect(screen.getByTestId('root')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
-        const { getByTestId } = render(<Avatar data-testid="root" size={size} />);
+        render(<Avatar data-testid="root" size={size} />);
 
-        expect(getByTestId('root')).to.have.class(
+        expect(screen.getByTestId('root')).to.have.class(
           classes[`size${capitalize(size)}` as AvatarClassKey],
         );
       });

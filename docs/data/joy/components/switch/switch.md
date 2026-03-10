@@ -2,8 +2,7 @@
 productId: joy-ui
 title: React Switch component
 components: Switch
-githubLabel: 'component: switch'
-unstyled: https://base-ui.com/react/components/switch
+githubLabel: 'scope: switch'
 ---
 
 # Switch

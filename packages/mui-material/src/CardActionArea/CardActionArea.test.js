@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import CardActionArea, { cardActionAreaClasses as classes } from '@mui/material/CardActionArea';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -30,4 +31,14 @@ describe('<CardActionArea />', () => {
       },
     },
   }));
+
+  it('should not forward root ref to the focusHighlight slot', () => {
+    const ref = React.createRef();
+
+    const { container } = render(<CardActionArea ref={ref}>Content</CardActionArea>);
+
+    const focusHighlight = container.querySelector(`.${classes.focusHighlight}`);
+
+    expect(ref.current).not.equal(focusHighlight);
+  });
 });

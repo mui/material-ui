@@ -1,11 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -365,28 +363,25 @@ const AutocompleteListbox = styled('ul', {
         backgroundColor: (theme.vars || theme).palette.action.focus,
       },
       '&[aria-selected="true"]': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          (theme.vars || theme).palette.action.selectedOpacity,
+        ),
         [`&.${autocompleteClasses.focused}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-              ),
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+          ),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
             backgroundColor: (theme.vars || theme).palette.action.selected,
           },
         },
         [`&.${autocompleteClasses.focusVisible}`]: {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-            : alpha(
-                theme.palette.primary.main,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-              ),
+          backgroundColor: theme.alpha(
+            (theme.vars || theme).palette.primary.main,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          ),
         },
       },
     },
@@ -550,6 +545,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    ref,
+    className: [classes.root, className],
+    elementType: AutocompleteRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    getSlotProps: getRootProps,
+    ownerState,
+  });
+
   const [ListboxSlot, listboxProps] = useSlot('listbox', {
     elementType: AutocompleteListbox,
     externalForwardedProps,
@@ -580,6 +587,33 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   });
 
+  const [ClearIndicatorSlot, clearIndicatorProps] = useSlot('clearIndicator', {
+    elementType: AutocompleteClearIndicator,
+    externalForwardedProps,
+    ownerState,
+    className: classes.clearIndicator,
+    shouldForwardComponentProp: true,
+    additionalProps: {
+      ...getClearProps(),
+      'aria-label': clearText,
+      title: clearText,
+    },
+  });
+
+  const [PopupIndicatorSlot, popupIndicatorProps] = useSlot('popupIndicator', {
+    elementType: AutocompletePopupIndicator,
+    externalForwardedProps,
+    ownerState,
+    className: classes.popupIndicator,
+    shouldForwardComponentProp: true,
+    additionalProps: {
+      ...getPopupIndicatorProps(),
+      disabled,
+      'aria-label': popupOpen ? closeText : openText,
+      title: popupOpen ? closeText : openText,
+    },
+  });
+
   let startAdornment;
 
   const getCustomizedItemProps = (params) => ({
@@ -588,23 +622,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     ...getItemProps(params),
   });
 
-  if (renderTags && multiple && value.length > 0) {
-    startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
-  } else if (renderValue && value) {
+  if (multiple) {
+    if (value.length > 0) {
+      if (renderTags) {
+        startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
+      } else if (renderValue) {
+        startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
+      } else {
+        startAdornment = value.map((option, index) => {
+          const { key, ...customItemProps } = getCustomizedItemProps({ index });
+          return (
+            <Chip
+              key={key}
+              label={getOptionLabel(option)}
+              size={size}
+              {...customItemProps}
+              {...externalForwardedProps.slotProps.chip}
+            />
+          );
+        });
+      }
+    }
+  } else if (renderValue && value != null) {
     startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
-  } else if (multiple && value.length > 0) {
-    startAdornment = value.map((option, index) => {
-      const { key, ...customItemProps } = getCustomizedItemProps({ index });
-      return (
-        <Chip
-          key={key}
-          label={getOptionLabel(option)}
-          size={size}
-          {...customItemProps}
-          {...externalForwardedProps.slotProps.chip}
-        />
-      );
-    });
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
@@ -661,21 +701,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     );
   };
 
-  const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
-  const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
-
   return (
     <React.Fragment>
-      <AutocompleteRoot
-        ref={ref}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...getRootProps(other)}
-      >
+      <RootSlot {...rootProps}>
         {renderInput({
           id,
           disabled,
-          fullWidth: true,
+          fullWidth: props.fullWidth ?? true,
           size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
@@ -691,30 +723,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
                   {hasClearIcon ? (
-                    <AutocompleteClearIndicator
-                      {...getClearProps()}
-                      aria-label={clearText}
-                      title={clearText}
-                      ownerState={ownerState}
-                      {...clearIndicatorSlotProps}
-                      className={clsx(classes.clearIndicator, clearIndicatorSlotProps?.className)}
-                    >
-                      {clearIcon}
-                    </AutocompleteClearIndicator>
+                    <ClearIndicatorSlot {...clearIndicatorProps}>{clearIcon}</ClearIndicatorSlot>
                   ) : null}
-
                   {hasPopupIcon ? (
-                    <AutocompletePopupIndicator
-                      {...getPopupIndicatorProps()}
-                      disabled={disabled}
-                      aria-label={popupOpen ? closeText : openText}
-                      title={popupOpen ? closeText : openText}
-                      ownerState={ownerState}
-                      {...popupIndicatorSlotProps}
-                      className={clsx(classes.popupIndicator, popupIndicatorSlotProps?.className)}
-                    >
-                      {popupIcon}
-                    </AutocompletePopupIndicator>
+                    <PopupIndicatorSlot {...popupIndicatorProps}>{popupIcon}</PopupIndicatorSlot>
                   ) : null}
                 </AutocompleteEndAdornment>
               ),
@@ -727,7 +739,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ...getInputProps(),
           },
         })}
-      </AutocompleteRoot>
+      </RootSlot>
       {anchorEl ? (
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
@@ -950,6 +962,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Used to determine the disabled state for a given option.
    *
    * @param {Value} option The option to test.
+   * @template Value The option shape. Will be the same shape as an item of the options.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
@@ -967,7 +980,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {Value} option
+   * @param {Value|string} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
@@ -1006,7 +1019,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {Value} option The option to test.
-   * @param {Value} value The value to test against.
+   * @param {Value|string} value The value to test against.
    * @returns {boolean}
    */
   isOptionEqualToValue: PropTypes.func,
@@ -1148,6 +1161,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Render the input.
    *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
+   *
    * @param {object} params
    * @returns {ReactNode}
    */
@@ -1207,15 +1227,19 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
     paper: PropTypes.elementType,
     popper: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

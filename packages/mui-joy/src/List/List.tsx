@@ -288,7 +288,7 @@ List.propTypes /* remove-proptypes */ = {
    * The marker (such as a disc, character, or custom counter style) of the list items.
    * When this prop is specified, the List Item changes the CSS display to `list-item` in order to apply the marker.
    *
-   * To see all available options, check out the [MDN list-style-type page](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
+   * To see all available options, check out the [MDN list-style-type page](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/list-style-type).
    */
   marker: PropTypes.string,
   /**
@@ -299,7 +299,7 @@ List.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * The size of the component (affect other nested list* components).
    * @default 'md'

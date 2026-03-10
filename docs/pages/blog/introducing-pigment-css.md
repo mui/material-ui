@@ -1,5 +1,5 @@
 ---
-title: 'A preview of Pigment CSS: the next generation of CSS-in-JS'
+title: 'A preview of Pigment CSS: the next generation of CSS-in-JS'
 description: 'Pigment CSS offers significant performance gains along with RSC and App Router support.'
 date: 2024-05-16T00:00:00.000Z
 authors:

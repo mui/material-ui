@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import fetch from 'cross-fetch';
-import fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import path from 'path';
 import yargs from 'yargs';
 import { fileURLToPath } from 'url';
@@ -139,7 +139,7 @@ function downloadIcon(icon) {
         throw new Error(`status ${response.status}`);
       }
       const SVG = await response.text();
-      await fse.writeFile(
+      await fs.writeFile(
         path.join(
           currentDirectory,
           `../material-icons/${icon.name}${themeFileMap[theme]}_24px.svg`,
@@ -156,7 +156,9 @@ async function run() {
       .usage('Download the SVG from material.io/resources/icons')
       .describe('start-after', 'Resume at the following index').argv;
     console.log('run', argv);
-    await fse.emptyDir(path.join(currentDirectory, '../material-icons'));
+    const iconDir = path.join(currentDirectory, '../material-icons');
+    await fs.rm(iconDir, { recursive: true, force: true });
+    await fs.mkdir(iconDir, { recursive: true });
     const response = await fetch(
       'https://fonts.google.com/metadata/icons?key=material_symbols&incomplete=true',
     );

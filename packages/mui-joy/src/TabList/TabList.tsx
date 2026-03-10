@@ -214,7 +214,7 @@ TabList.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * If provided, the TabList will have postion `sticky`.
+   * If provided, the TabList will have position `sticky`.
    */
   sticky: PropTypes.oneOf(['bottom', 'top']),
   /**

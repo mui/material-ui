@@ -51,7 +51,7 @@ The prop is converted into a CSS property using the [`theme.spacing()`](/materia
 ### Row & column spacing
 
 The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
-It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-column-gap).
 
 {{"demo": "RowAndColumnSpacing.js", "bg": true}}
 

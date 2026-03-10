@@ -40,4 +40,4 @@ It includes `@mui/joy` and it's peer dependencies.
 <!-- #host-reference -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/joy-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/joy-ui/getting-started/templates/) section.

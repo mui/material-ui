@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -86,10 +85,12 @@ export default function NestedGrid() {
         </Grid>
         <Grid
           container
-          justifyContent="space-between"
-          alignItems="center"
-          flexDirection={{ xs: 'column', sm: 'row' }}
-          sx={{ fontSize: '12px' }}
+          sx={{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexDirection: { xs: 'column', sm: 'row' },
+            fontSize: '12px',
+          }}
           size={12}
         >
           <Grid sx={{ order: { xs: 2, sm: 1 } }}>

@@ -203,8 +203,10 @@ export type SelectOwnProps<OptionValue extends {}, Multiple extends boolean> = S
     value?: SelectValue<OptionValue, Multiple>;
   };
 
-export interface SelectOwnerState<OptionValue extends {}, Multiple extends boolean>
-  extends ApplyColorInversion<SelectOwnProps<OptionValue, Multiple>> {
+export interface SelectOwnerState<
+  OptionValue extends {},
+  Multiple extends boolean,
+> extends ApplyColorInversion<SelectOwnProps<OptionValue, Multiple>> {
   /**
    * If `true`, the select button is active.
    */

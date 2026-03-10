@@ -7,7 +7,7 @@
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
-    "outDir": "build/esm",
+    "outDir": "build",
     "rootDir": "./src",
     "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo"
   },
@@ -15,7 +15,9 @@
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
     { "path": "../mui-material/tsconfig.build.json" },
+    { "path": "../mui-material-nextjs/tsconfig.build.json" },
     { "path": "../mui-system/tsconfig.build.json" },
-    { "path": "../mui-icons-material/tsconfig.build.json" }
+    { "path": "../mui-icons-material/tsconfig.build.json" },
+    { "path": "../mui-stylis-plugin-rtl/tsconfig.build.json" }
   ]
 }

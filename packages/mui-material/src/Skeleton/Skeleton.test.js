@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import Skeleton, { skeletonClasses as classes } from '@mui/material/Skeleton';
 import describeConformance from '../../test/describeConformance';

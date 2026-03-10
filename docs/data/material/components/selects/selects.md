@@ -2,10 +2,9 @@
 productId: material-ui
 title: React Select component
 components: Select, NativeSelect
-githubLabel: 'component: select'
+githubLabel: 'scope: select'
 materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base-ui/react-select/
 githubSource: packages/mui-material/src/Select
 ---
 
@@ -98,7 +97,9 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "MultipleSelect.js"}}
 
-### Checkmarks
+### Selection indicators
+
+This example demonstrates how icons are used to indicate the selection state of each item in the listbox.
 
 {{"demo": "MultipleSelectCheckmarks.js"}}
 

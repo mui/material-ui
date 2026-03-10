@@ -3,6 +3,20 @@ import Button from '@mui/material/Button';
 import ListSubheader from '@mui/material/ListSubheader';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
+
+const StyledListHeader = Object.assign(
+  styled(ListSubheader)({
+    backgroundImage: 'var(--Paper-overlay)',
+  }),
+  {
+    // IMPORTANT: The base ListSubheader component sets `muiSkipListHighlight = true`
+    // by default, but wrapping it with `styled(ListSubheader)` does not preserve
+    // that static field. We re-declare it here so the menu list continues to skip
+    // highlighting this non-focusable subheader when navigating with the keyboard.
+    muiSkipListHighlight: true,
+  },
+);
 
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,14 +44,19 @@ export default function GroupedMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'basic-button',
+            sx: {
+              py: 0,
+            },
+          },
         }}
       >
-        <ListSubheader>Category 1</ListSubheader>
+        <StyledListHeader>Category 1</StyledListHeader>
         <MenuItem onClick={handleClose}>Option 1</MenuItem>
         <MenuItem onClick={handleClose}>Option 2</MenuItem>
-        <ListSubheader>Category 2</ListSubheader>
+        <StyledListHeader>Category 2</StyledListHeader>
         <MenuItem onClick={handleClose}>Option 3</MenuItem>
         <MenuItem onClick={handleClose}>Option 4</MenuItem>
       </Menu>

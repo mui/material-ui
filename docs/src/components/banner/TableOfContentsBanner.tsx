@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
@@ -7,7 +6,7 @@ import { Link } from '@mui/docs/Link';
 export default function TableOfContentsBanner() {
   return (
     <Link
-      href="https://war.ukraine.ua/support-ukraine/"
+      href="https://u24.gov.ua/about/"
       target="_blank"
       sx={[
         (theme) => ({

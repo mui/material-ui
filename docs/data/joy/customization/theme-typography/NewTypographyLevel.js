@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 

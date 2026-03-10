@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Input from '@mui/joy/Input';

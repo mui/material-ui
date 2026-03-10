@@ -1,4 +1,7 @@
-import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  internal_mutateStyles as mutateStyles,
+  internal_serializeStyles as serializeStyles,
+} from '@mui/styled-engine';
 import isObjectEmpty from '@mui/utils/isObjectEmpty';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
@@ -18,6 +21,19 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+function shallowLayer(serialized, layerName) {
+  if (
+    layerName &&
+    serialized &&
+    typeof serialized === 'object' &&
+    serialized.styles &&
+    !serialized.styles.startsWith('@layer') // only add the layer if it is not already there.
+  ) {
+    serialized.styles = `@layer ${layerName}{${String(serialized.styles)}}`;
+  }
+  return serialized;
+}
+
 function defaultOverridesResolver(slot) {
   if (!slot) {
     return null;
@@ -29,7 +45,7 @@ function attachTheme(props, themeId, defaultTheme) {
   props.theme = isObjectEmpty(props.theme) ? defaultTheme : props.theme[themeId] || props.theme;
 }
 
-function processStyle(props, style) {
+function processStyle(props, style, layerName) {
   /*
    * Style types:
    *  - null/undefined
@@ -42,29 +58,31 @@ function processStyle(props, style) {
   const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
-    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle));
+    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle, layerName));
   }
 
   if (Array.isArray(resolvedStyle?.variants)) {
     let rootStyle;
     if (resolvedStyle.isProcessed) {
-      rootStyle = resolvedStyle.style;
+      rootStyle = layerName ? shallowLayer(resolvedStyle.style, layerName) : resolvedStyle.style;
     } else {
       const { variants, ...otherStyles } = resolvedStyle;
-      rootStyle = otherStyles;
+      rootStyle = layerName ? shallowLayer(serializeStyles(otherStyles), layerName) : otherStyles;
     }
 
-    return processStyleVariants(props, resolvedStyle.variants, [rootStyle]);
+    return processStyleVariants(props, resolvedStyle.variants, [rootStyle], layerName);
   }
 
   if (resolvedStyle?.isProcessed) {
-    return resolvedStyle.style;
+    return layerName
+      ? shallowLayer(serializeStyles(resolvedStyle.style), layerName)
+      : resolvedStyle.style;
   }
 
-  return resolvedStyle;
+  return layerName ? shallowLayer(serializeStyles(resolvedStyle), layerName) : resolvedStyle;
 }
 
-function processStyleVariants(props, variants, results = []) {
+function processStyleVariants(props, variants, results = [], layerName = undefined) {
   let mergedState; // We might not need it, initialized lazily
 
   variantLoop: for (let i = 0; i < variants.length; i += 1) {
@@ -85,9 +103,15 @@ function processStyleVariants(props, variants, results = []) {
 
     if (typeof variant.style === 'function') {
       mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-      results.push(variant.style(mergedState));
+      results.push(
+        layerName
+          ? shallowLayer(serializeStyles(variant.style(mergedState)), layerName)
+          : variant.style(mergedState),
+      );
     } else {
-      results.push(variant.style);
+      results.push(
+        layerName ? shallowLayer(serializeStyles(variant.style), layerName) : variant.style,
+      );
     }
   }
 
@@ -122,6 +146,11 @@ export default function createStyled(input = {}) {
       ...options
     } = inputOptions;
 
+    const layerName =
+      (componentName && componentName.startsWith('Mui')) || !!componentSlot
+        ? 'components'
+        : 'custom';
+
     // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
       inputSkipVariantsResolver !== undefined
@@ -153,21 +182,32 @@ export default function createStyled(input = {}) {
     });
 
     const transformStyle = (style) => {
-      // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-      // component stays as a function. This condition makes sure that we do not interpolate functions
-      // which are basically components used as a selectors.
-      if (typeof style === 'function' && style.__emotion_real !== style) {
+      // - On the server Emotion doesn't use React.forwardRef for creating components, so the created
+      //   component stays as a function. This condition makes sure that we do not interpolate functions
+      //   which are basically components used as a selectors.
+      // - `style` could be a styled component from a babel plugin for component selectors, This condition
+      //   makes sure that we do not interpolate them.
+      if (style.__emotion_real === style) {
+        return style;
+      }
+      if (typeof style === 'function') {
         return function styleFunctionProcessor(props) {
-          return processStyle(props, style);
+          return processStyle(props, style, props.theme.modularCssLayers ? layerName : undefined);
         };
       }
       if (isPlainObject(style)) {
         const serialized = preprocessStyles(style);
-        if (!serialized.variants) {
-          return serialized.style;
-        }
         return function styleObjectProcessor(props) {
-          return processStyle(props, serialized);
+          if (!serialized.variants) {
+            return props.theme.modularCssLayers
+              ? shallowLayer(serialized.style, layerName)
+              : serialized.style;
+          }
+          return processStyle(
+            props,
+            serialized,
+            props.theme.modularCssLayers ? layerName : undefined,
+          );
         };
       }
       return style;
@@ -195,7 +235,11 @@ export default function createStyled(input = {}) {
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           // eslint-disable-next-line guard-for-in
           for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
+            resolvedStyleOverrides[slotKey] = processStyle(
+              props,
+              styleOverrides[slotKey],
+              props.theme.modularCssLayers ? 'theme' : undefined,
+            );
           }
 
           return overridesResolver(props, resolvedStyleOverrides);
@@ -209,7 +253,12 @@ export default function createStyled(input = {}) {
           if (!themeVariants) {
             return null;
           }
-          return processStyleVariants(props, themeVariants);
+          return processStyleVariants(
+            props,
+            themeVariants,
+            [],
+            props.theme.modularCssLayers ? 'theme' : undefined,
+          );
         });
       }
 

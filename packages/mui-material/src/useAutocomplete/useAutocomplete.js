@@ -1,11 +1,20 @@
 'use client';
-/* eslint-disable no-constant-condition */
+
 import * as React from 'react';
 import setRef from '@mui/utils/setRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
 import useId from '@mui/utils/useId';
 import usePreviousProps from '@mui/utils/usePreviousProps';
+
+function areArraysSame({ array1, array2, parser = (value) => value }) {
+  return (
+    array1 &&
+    array2 &&
+    array1.length === array2.length &&
+    array1.every((prevOption, index) => parser(prevOption) === parser(array2[index]))
+  );
+}
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 function stripDiacritics(string) {
@@ -138,6 +147,7 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedItem, setFocusedItem] = React.useState(-1);
@@ -456,6 +466,12 @@ function useAutocomplete(props) {
     }
   });
 
+  const filteredOptionsChanged = !areArraysSame({
+    array1: previousProps.filteredOptions,
+    array2: filteredOptions,
+    parser: getOptionLabel,
+  });
+
   const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
       const label1 = value1 ? getOptionLabel(value1) : '';
@@ -465,8 +481,11 @@ function useAutocomplete(props) {
 
     if (
       highlightedIndexRef.current !== -1 &&
-      previousProps.filteredOptions &&
-      previousProps.filteredOptions.length !== filteredOptions.length &&
+      !areArraysSame({
+        array1: previousProps.filteredOptions,
+        array2: filteredOptions,
+        parser: getOptionLabel,
+      }) &&
       previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
@@ -549,7 +568,6 @@ function useAutocomplete(props) {
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
-    filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,
     popupOpen,
@@ -597,8 +615,28 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    syncHighlightedIndex();
-  }, [syncHighlightedIndex]);
+    if (filteredOptionsChanged || (popupOpen && !disableCloseOnSelect)) {
+      syncHighlightedIndex();
+    }
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
+
+  // Listen for browser window blur to detect when the user switches tabs or windows.
+  // This helps prevent the popup from reopening automatically when the window regains focus.
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const handleWindowBlur = () => {
+      windowLostFocus.current = true;
+    };
+
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, []);
 
   const handleOpen = (event) => {
     if (open) {
@@ -734,9 +772,16 @@ function useAutocomplete(props) {
 
     let nextItem = focusedItem;
 
-    if (focusedItem === -1) {
-      if (inputValue === '' && direction === 'previous') {
-        nextItem = value.length - 1;
+    // When moving focus from the input to tags with ArrowLeft,
+    // always jump to the last tag (if any) from the input.
+    if (focusedItem === -1 && direction === 'previous') {
+      nextItem = value.length - 1;
+      // In freeSolo, clear any draft text so it doesn't "come back" later.
+      if (freeSolo && inputValue !== '') {
+        setInputValueState('');
+        if (onInputChange) {
+          onInputChange(event, '', 'reset');
+        }
       }
     } else {
       nextItem += direction === 'next' ? 1 : -1;
@@ -832,15 +877,38 @@ function useAutocomplete(props) {
           changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
           handleOpen(event);
           break;
-        case 'ArrowLeft':
-          if (!multiple && renderValue) {
+        case 'ArrowLeft': {
+          const input = inputRef.current;
+          // Only handle ArrowLeft when the caret is at the start of the input.
+          // Otherwise let the browser move the caret normally.
+          const caretAtStart = input && input.selectionStart === 0 && input.selectionEnd === 0;
+
+          if (!caretAtStart) {
+            // Let the browser handle normal cursor movement
+            return;
+          }
+
+          // Single-value rendering: move focus from input to the single tag.
+          if (!multiple && renderValue && value != null) {
+            // Moving from input to single tag; clear freeSolo draft text,
+            // so it doesn't reappear when we move back.
+            if (freeSolo && inputValue !== '') {
+              setInputValueState('');
+              if (onInputChange) {
+                onInputChange(event, '', 'reset');
+              }
+            }
+            setFocusedItem(0);
             focusItem(0);
           } else {
+            // Multi-value: delegate to tag navigation helper.
             handleFocusItem(event, 'previous');
           }
           break;
+        }
         case 'ArrowRight':
           if (!multiple && renderValue) {
+            setFocusedItem(-1);
             focusItem(-1);
           } else {
             handleFocusItem(event, 'next');
@@ -903,9 +971,8 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderValue && !readOnly) {
-            setValueState(null);
-            focusItem(-1);
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
+            handleValue(event, null, 'removeOption', { option: value });
           }
           break;
         case 'Delete':
@@ -924,9 +991,10 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderValue && !readOnly) {
-            setValueState(null);
-            focusItem(-1);
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
+            // Single-value rendering: Delete on empty input removes
+            // the single rendered option, same "removeOption" reason as multiple.
+            handleValue(event, null, 'removeOption', { option: value });
           }
           break;
         default:
@@ -936,6 +1004,23 @@ function useAutocomplete(props) {
 
   const handleFocus = (event) => {
     setFocused(true);
+
+    // When focusing the input, ensure any previously focused item (chip)
+    // is cleared so the input receives the visible caret and the
+    // input-focused styling is applied.
+    if (focusedItem !== -1) {
+      setFocusedItem(-1);
+      // Ensure DOM focus lands on the input
+      focusItem(-1);
+    }
+
+    // If the window previously lost focus while the popup was open,
+    // ignore this focus event to prevent unintended reopening.
+    // Reset the flag so normal focus behavior resumes.
+    if (windowLostFocus.current) {
+      windowLostFocus.current = false;
+      return;
+    }
 
     if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
@@ -977,7 +1062,9 @@ function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (!disableClearable && !multiple) {
+      // For normal single-select, clearing the input clears the value.
+      // For renderValue (chip-style single), only Backspace/Delete clear the value.
+      if (!disableClearable && !multiple && !renderValue) {
         handleValue(event, null, 'clear');
       }
     } else {
@@ -1065,7 +1152,12 @@ function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (!disabledProp && (inputValue === '' || !open)) {
+    if (
+      !disabledProp &&
+      (inputValue === '' || !open) &&
+      // Only handle event when the main button is pressed (left click).
+      event.button === 0
+    ) {
       handlePopupIndicator(event);
     }
   };
@@ -1172,6 +1264,7 @@ function useAutocomplete(props) {
       role: 'listbox',
       id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
+      'aria-multiselectable': multiple || undefined,
       ref: handleListboxRef,
       onMouseDown: (event) => {
         // Prevent blur

@@ -18,10 +18,12 @@ import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { useRouter } from 'next/router';
-import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
+import { CODE_VARIANTS } from '@mui/docs/constants';
+import { useSetCodeVariant } from '@mui/docs/codeVariant';
 import { useTranslate } from '@mui/docs/i18n';
+import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
+import { useDemoContext } from '@mui/docs/DemoContext';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
@@ -290,6 +292,7 @@ export default function DemoToolbar(props) {
 
   const setCodeVariant = useSetCodeVariant();
   const t = useTranslate();
+  const { csb } = useDemoContext();
 
   const hasTSVariant = demo.rawTS;
   const renderedCodeVariant = () => {
@@ -369,7 +372,6 @@ export default function DemoToolbar(props) {
 
   const devMenuItems = [];
   if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
-    /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable rules of hooks
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
@@ -433,12 +435,17 @@ export default function DemoToolbar(props) {
         demo on&#160;<code>master</code>
       </MenuItem>,
     );
-    /* eslint-enable material-ui/no-hardcoded-labels */
   }
 
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
+        <OpenMuiChat
+          data-ga-event-category="mui-chat"
+          data-ga-event-label={demo.gaLabel}
+          data-ga-event-action="open-in-mui-chat"
+          demoData={demoData}
+        />
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (
@@ -457,7 +464,6 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-js"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(1)}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
                 JS
               </ToggleButton>
@@ -469,7 +475,6 @@ export default function DemoToolbar(props) {
                 data-ga-event-action="source-ts"
                 data-ga-event-label={demo.gaLabel}
                 {...getControlProps(2)}
-                // eslint-disable-next-line material-ui/no-hardcoded-labels
               >
                 TS
               </ToggleButton>
@@ -495,7 +500,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
+                  onClick={() => stackBlitz.createReactApp(demoData, csb).openSandbox()}
                   {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
@@ -509,7 +514,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox()}
+                  onClick={() => codeSandbox.createReactApp(demoData, csb).openSandbox()}
                   {...getControlProps(5)}
                   sx={{ borderRadius: 1 }}
                 >

@@ -5,7 +5,7 @@ import {
   HooksTranslations,
 } from '@mui-internal/api-docs-builder';
 import { Translate } from '@mui/docs/i18n';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
 
 export interface PropertyDefinition {
@@ -21,7 +21,12 @@ export interface PropertyDefinition {
   requiresRef?: boolean;
   seeMoreDescription?: string;
   signature?: string;
-  signatureArgs?: { argName: string; argDescription?: string }[];
+  signatureArgs?: {
+    argName: string;
+    argDescription?: string;
+    argType?: string;
+    argTypeDescription?: string;
+  }[];
   signatureReturnDescription?: string;
   typeName: string;
   /**
@@ -42,7 +47,7 @@ export type GetCssToCParams = {
   hash: string;
 };
 
-export const getPropertiesToC = ({
+export const getPropertiesToc = ({
   properties,
   inheritance,
   themeDefaultProps,
@@ -116,11 +121,15 @@ export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): Pr
     const signature = propData.signature?.type;
     const signatureArgs = propData.signature?.describedArgs?.map((argName) => ({
       argName,
-      argDescription: propertiesDescriptions[propName].typeDescriptions?.[argName],
+      argDescription: propertiesDescriptions[propName].typeDescriptions?.[argName].description,
+      argType: propertiesDescriptions[propName].typeDescriptions?.[argName]?.argType,
+      argTypeDescription:
+        propertiesDescriptions[propName].typeDescriptions?.[argName]?.argTypeDescription,
     }));
     const signatureReturnDescription =
       propData.signature?.returned &&
-      propertiesDescriptions[propName].typeDescriptions?.[propData.signature.returned];
+      propertiesDescriptions[propName].typeDescriptions?.[propData.signature.returned]
+        .argTypeDescription;
 
     return {
       hash: `${kebabCase(componentName)}-prop-${propName}`,

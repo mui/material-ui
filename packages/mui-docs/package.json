@@ -1,10 +1,8 @@
 {
   "name": "@mui/docs",
-  "version": "7.0.2",
-  "private": false,
+  "version": "9.0.0-alpha.2",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -12,6 +10,7 @@
     "material design",
     "docs"
   ],
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
@@ -23,47 +22,58 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json ./src/translations/translations.json:./modern/translations/translations.json",
-    "prebuild": "rimraf build",
+    "build": "code-infra build --flat --bundle esm --copy \"src/translations/translations.json\" --copy \"src/nextFonts/fonts\"",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.0",
+    "@babel/runtime": "^7.28.6",
     "@mui/internal-markdown": "workspace:^",
+    "@mui/stylis-plugin-rtl": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
+    "fg-loadcss": "^3.1.0",
     "nprogress": "^0.2.0",
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "stylis": "catalog:docs"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
-    "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.17.32",
-    "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.1.2",
-    "next": "^15.3.1",
-    "react": "^19.1.0"
+    "@types/chai": "5.2.3",
+    "@types/fg-loadcss": "3.1.3",
+    "@types/gtag.js": "0.0.20",
+    "@types/node": "20.19.35",
+    "@types/nprogress": "0.2.3",
+    "@types/prop-types": "15.7.15",
+    "@types/react": "19.2.14",
+    "next": "15.5.12",
+    "react": "19.2.4"
   },
   "peerDependencies": {
-    "@mui/base": "*",
+    "@emotion/cache": "catalog:docs",
+    "@emotion/react": "catalog:docs",
+    "@emotion/styled": "catalog:docs",
+    "@mui/base": "^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta",
     "@mui/icons-material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@mui/material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
+    "@mui/material-nextjs": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@mui/system": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
+    "@mui/utils": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "chai": "^4.4.1",
+    "@types/stylis": "^4.2.7",
+    "chai": "^6.0.1",
     "csstype": "^3.1.3",
-    "next": "^13.5.1 || ^14 || ^15.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "next": "^13.5.1 || ^14 || ^15.0.0 || ^16.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "styled-components": "^5.3.0 || ^6.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
+      "optional": true
+    },
+    "styled-components": {
       "optional": true
     }
   },
@@ -73,5 +83,8 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    "./*": "./src/*/index.ts"
   }
 }

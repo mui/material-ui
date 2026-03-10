@@ -1,12 +1,23 @@
 packages:
-  - benchmark
   - packages/*
   - packages/mui-envinfo/test
   - packages-internal/*
   - docs
   - test
-  - test/moduleResolution
-  - apps/*
-  - scripts/sizeSnapshot
+  - test/*
+
 patchedDependencies:
   styled-components: patches/styled-components.patch
+
+onlyBuiltDependencies:
+  - '@vvago/vale'
+
+engineStrict: true
+
+catalogs:
+  docs:
+    stylis: '4.2.0'
+    '@emotion/cache': '^11.14.0'
+    '@emotion/react': '^11.14.0'
+    '@emotion/server': '^11.11.0'
+    '@emotion/styled': '^11.14.1'

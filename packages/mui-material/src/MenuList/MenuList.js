@@ -4,6 +4,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
+import getActiveElement from '../utils/getActiveElement';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -161,7 +162,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
      * or document.body or document.documentElement. Only the first case will
      * trigger this specific handler.
      */
-    const currentFocus = ownerDocument(list).activeElement;
+    const currentFocus = getActiveElement(ownerDocument(list));
 
     if (key === 'ArrowDown') {
       // Prevent scroll of the page

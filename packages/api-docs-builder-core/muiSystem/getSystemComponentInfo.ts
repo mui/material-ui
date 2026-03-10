@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
@@ -76,6 +76,7 @@ export function getSystemComponentInfo(filename: string): ComponentInfo {
       return allMarkdowns
         .filter((page) => page.components.includes(name))
         .map((page) => ({
+          filePath: page.filename, // pathname of the markdown file
           demoPageTitle: pathToSystemTitle({
             ...page,
             title: getTitle(page.markdownContent),

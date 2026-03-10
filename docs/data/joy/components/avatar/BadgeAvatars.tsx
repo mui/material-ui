@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Badge, { badgeClasses } from '@mui/joy/Badge';
 import Avatar from '@mui/joy/Avatar';

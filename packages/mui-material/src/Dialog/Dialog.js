@@ -19,7 +19,6 @@ import useSlot from '../utils/useSlot';
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
   slot: 'Backdrop',
-  overrides: (props, styles) => styles.backdrop,
 })({
   // Improve scrollable dialog support.
   zIndex: -1,
@@ -30,6 +29,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root'],
+    backdrop: ['backdrop'],
     container: ['container', `scroll${capitalize(scroll)}`],
     paper: [
       'paper',
@@ -222,7 +222,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     BackdropProps,
     children,
     className,
-    disableEscapeKeyDown = false,
     fullScreen = false,
     fullWidth = false,
     maxWidth = 'sm',
@@ -242,7 +241,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
   const ownerState = {
     ...props,
-    disableEscapeKeyDown,
     fullScreen,
     fullWidth,
     maxWidth,
@@ -310,6 +308,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
+    className: classes.backdrop,
   });
 
   const [PaperSlot, paperSlotProps] = useSlot('paper', {
@@ -324,7 +323,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     elementType: DialogContainer,
     externalForwardedProps,
     ownerState,
-    className: clsx(classes.container),
+    className: classes.container,
   });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
@@ -350,7 +349,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
           ...backdropSlotProps,
         },
       }}
-      disableEscapeKeyDown={disableEscapeKeyDown}
       onClose={onClose}
       open={open}
       onClick={handleBackdropClick}
@@ -425,11 +423,6 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   * @default false
-   */
-  disableEscapeKeyDown: PropTypes.bool,
   /**
    * If `true`, the dialog is full-screen.
    * @default false

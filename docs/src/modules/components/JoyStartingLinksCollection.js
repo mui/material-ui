@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import InstallDesktopRoundedIcon from '@mui/icons-material/InstallDesktopRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';

@@ -1,4 +1,4 @@
-import { ReactDocgenApi } from 'react-docgen';
+import type { Documentation } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
 import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
@@ -14,7 +14,7 @@ export type AdditionalPropsInfo = {
 /**
  * Common interface for both Component and Hook API builders.
  */
-interface CommonReactApi extends ReactDocgenApi {
+interface CommonReactApi extends Documentation {
   demos: ReturnType<HookInfo['getDemos']>;
   EOL: string;
   filename: string;
@@ -61,11 +61,22 @@ export interface PropsTranslations {
   dataAttributesDescriptions?: { [key: string]: string };
 }
 
+export interface TypeDescription {
+  name: string;
+  description: string;
+  argType?: string;
+  argTypeDescription?: string;
+}
+
+export interface TypeDescriptions {
+  [t: string]: TypeDescription;
+}
+
 interface PropDescription {
   description: string;
   requiresRef?: boolean;
   deprecated?: string;
-  typeDescriptions?: { [t: string]: string };
+  typeDescriptions?: { [t: string]: TypeDescription };
   seeMoreText?: string;
 }
 
@@ -96,7 +107,7 @@ export interface ComponentReactApi extends CommonReactApi {
   slots: Slot[];
   cssVariables: { [key: string]: ApiItemDescription };
   dataAttributes: { [key: string]: ApiItemDescription };
-  propsTable: _.Dictionary<PropsTableItem>;
+  propsTable: { [key: string]: PropsTableItem };
   translations: PropsTranslations;
 }
 
@@ -169,8 +180,8 @@ export interface HookReactApi extends CommonReactApi {
    * @example 'useButton'
    */
   name: string;
-  parametersTable: _.Dictionary<AttributeDefinition>;
-  returnValueTable: _.Dictionary<AttributeDefinition>;
+  parametersTable: { [key: string]: AttributeDefinition };
+  returnValueTable: { [key: string]: AttributeDefinition };
   translations: HooksTranslations;
 }
 

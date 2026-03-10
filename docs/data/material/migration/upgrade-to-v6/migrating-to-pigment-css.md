@@ -184,7 +184,7 @@ Finally, add the Pigment CSS stylesheet to the top of the main file.
 ## Configuring the theme
 
 Integrating Pigment CSS with Material UI requires you to configure the theme to the plugin.
-Add the following code to your [Next.js](#nextjs) or [Vite](#vite) config file:
+Add the following code to your [Next.js](#next-js) or [Vite](#vite) config file:
 
 ```diff
 +import { createTheme } from '@mui/material';
@@ -483,10 +483,14 @@ If a value depends on a variable, you need to move it to a CSS variable inside i
         borderRadius: '50%',
         width: `max(6px - var(--offset), 3px)`,
         height: `max(6px - var(--offset), 3px)`,
-        bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
+        bgcolor: `var(--bg)`,
       }}
       style={{
         '--offset': `${index}px`,
+        '--bg':
+          index === 0
+            ? 'var(--mui-palette-primary-solidBg)'
+            : 'var(--mui-palette-background-level3)',
       }}
     />
   ))}

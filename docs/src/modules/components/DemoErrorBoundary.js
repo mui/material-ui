@@ -64,7 +64,6 @@ export default class DemoErrorBoundary extends React.Component {
 `,
       });
 
-      /* eslint-disable material-ui/no-hardcoded-labels */
       return (
         <div>
           <Typography color="error" component="p" variant="h5" gutterBottom>
@@ -84,7 +83,6 @@ The "report this error" link prefills the issue description with valuable inform
           </Button>
         </div>
       );
-      /* eslint-enable material-ui/no-hardcoded-labels */
     }
 
     return children;

@@ -9,7 +9,7 @@
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
     "marker": {
-      "description": "The marker (such as a disc, character, or custom counter style) of the list items. When this prop is specified, the List Item changes the CSS display to <code>list-item</code> in order to apply the marker.<br>To see all available options, check out the <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type\">MDN list-style-type page</a>."
+      "description": "The marker (such as a disc, character, or custom counter style) of the list items. When this prop is specified, the List Item changes the CSS display to <code>list-item</code> in order to apply the marker.<br>To see all available options, check out the <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/list-style-type\">MDN list-style-type page</a>."
     },
     "orientation": { "description": "The component orientation." },
     "size": { "description": "The size of the component (affect other nested list* components)." },

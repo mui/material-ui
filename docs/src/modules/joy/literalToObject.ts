@@ -33,7 +33,7 @@ export default function literalToObject(literal: string | null | undefined) {
             nested[key] = trimmedValue.slice(1, -1);
           }
         } catch (error) {
-          // igore error
+          // ignore error
         }
       }
     } else {

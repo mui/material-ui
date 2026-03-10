@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AutocompleteOption, {
   autocompleteOptionClasses as classes,
@@ -28,18 +27,18 @@ describe('Joy <AutocompleteOption />', () => {
   }));
 
   it('should have li tag', () => {
-    const { getByRole } = render(<AutocompleteOption />);
-    expect(getByRole('option')).to.have.tagName('li');
+    render(<AutocompleteOption />);
+    expect(screen.getByRole('option')).to.have.tagName('li');
   });
 
   it('should render with the variant class', () => {
-    const { getByRole } = render(<AutocompleteOption variant="outlined" />);
-    expect(getByRole('option')).to.have.class(classes.variantOutlined);
+    render(<AutocompleteOption variant="outlined" />);
+    expect(screen.getByRole('option')).to.have.class(classes.variantOutlined);
   });
 
   it('should render with primary color class', () => {
-    const { getByRole } = render(<AutocompleteOption color="primary" />);
-    expect(getByRole('option')).to.have.class(classes.colorPrimary);
+    render(<AutocompleteOption color="primary" />);
+    expect(screen.getByRole('option')).to.have.class(classes.colorPrimary);
   });
 
   it('should accept className prop', () => {

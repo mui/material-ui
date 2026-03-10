@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Stack from '@mui/joy/Stack';
 import LiveTv from '@mui/icons-material/LiveTv';

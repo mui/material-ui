@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import LinearProgress from '@mui/joy/LinearProgress';
 

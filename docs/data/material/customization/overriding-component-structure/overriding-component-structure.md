@@ -79,11 +79,11 @@ All additional props placed on the primary component are also propagated into th
 These two examples are equivalent:
 
 ```jsx
-<Autocomplete id="badge1">
+<Badge id="badge1">
 ```
 
 ```jsx
-<Autocomplete slotProps={{ root: { id: 'badge1' } }}>
+<Badge slotProps={{ root: { id: 'badge1' } }}>
 ```
 
 :::warning

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Typography from '@mui/joy/Typography';
 import Chip from '@mui/joy/Chip';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';

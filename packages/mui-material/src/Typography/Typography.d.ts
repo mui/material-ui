@@ -15,7 +15,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
    * Set the text-align on the component.
    * @default 'inherit'
    */
-  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify' | undefined;
   /**
    * The content of the component.
    */
@@ -23,7 +23,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TypographyClasses>;
+  classes?: Partial<TypographyClasses> | undefined;
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -40,12 +40,13 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
         | `text${Capitalize<keyof TypeText>}`,
         TypographyPropsColorOverrides
       >
-    | (string & {}); // to work with v5 color prop type which allows any string
+    | (string & {})
+    | undefined; // to work with v5 color prop type which allows any string
   /**
    * If `true`, the text will have a bottom margin.
    * @default false
    */
-  gutterBottom?: boolean;
+  gutterBottom?: boolean | undefined;
   /**
    * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
    *
@@ -53,22 +54,24 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
    * (the element needs to have a width in order to overflow).
    * @default false
    */
-  noWrap?: boolean;
+  noWrap?: boolean | undefined;
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
    * @deprecated Use the `component` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
-  paragraph?: boolean;
+  paragraph?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  variant?: OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>;
+  variant?:
+    | OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>
+    | undefined;
   /**
    * The component maps the variant prop to a range of different HTML element types.
    * For instance, subtitle1 to `<h6>`.
@@ -88,12 +91,14 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
    *   inherit: 'p',
    * }
    */
-  variantMapping?: Partial<
-    Record<
-      OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>,
-      string
-    >
-  >;
+  variantMapping?:
+    | Partial<
+        Record<
+          OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>,
+          string
+        >
+      >
+    | undefined;
 }
 
 export interface TypographyTypeMap<
@@ -108,12 +113,12 @@ export interface TypographyTypeMap<
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
- * - [Typography](https://mui.com/material-ui/react-typography/)
+ * - [Breadcrumbs](https://next.mui.com/material-ui/react-breadcrumbs/)
+ * - [Typography](https://next.mui.com/material-ui/react-typography/)
  *
  * API:
  *
- * - [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [Typography API](https://next.mui.com/material-ui/api/typography/)
  */
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 
@@ -121,7 +126,7 @@ export type TypographyProps<
   RootComponent extends React.ElementType = TypographyTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<TypographyTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Typography;

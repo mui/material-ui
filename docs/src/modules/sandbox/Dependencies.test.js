@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import SandboxDependencies from './Dependencies';
 
 describe('Dependencies', () => {
-  before(() => {
+  beforeAll(() => {
     process.env.SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
   });
 
-  after(() => {
+  afterAll(() => {
     delete process.env.SOURCE_CODE_REPO;
   });
 
@@ -41,7 +41,7 @@ const styles = theme => ({
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       '@mui/base': 'latest',
       'prop-types': 'latest',
     });
@@ -73,7 +73,7 @@ const suggestions = [
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -103,8 +103,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
     });
   });
 
@@ -131,8 +131,8 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
       exceljs: 'latest',
     });
   });
@@ -151,7 +151,7 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': 'next',
       '@mui/base': 'latest',
       typescript: 'latest',
     });
@@ -175,8 +175,6 @@ import 'exceljs';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest',
       typescript: 'latest',
     });
 
@@ -208,8 +206,8 @@ import {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
     });
   });
 
@@ -229,8 +227,8 @@ import lab from '@mui/lab';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': 'next',
+      '@mui/lab': 'next',
     });
   });
 
@@ -535,11 +533,38 @@ export default function EmailExample() {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/icons-material': 'latest',
+      '@mui/icons-material': 'next',
       '@mui/joy': 'latest',
-      '@mui/material': 'latest',
-      '@mui/system': 'latest',
+      '@mui/material': 'next',
+      '@mui/system': 'next',
       typescript: 'latest',
+    });
+  });
+
+  it('should generate correct Base UI dependencies', () => {
+    const source = `import * as React from 'react';
+import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
+import OutlinedInput from '@mui/material/OutlinedInput';
+`;
+
+    const { dependencies, devDependencies } = SandboxDependencies({
+      raw: source,
+      codeVariant: 'TS',
+    });
+
+    expect(dependencies).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      // #npm-tag-reference
+      '@mui/material': 'next',
+      '@base-ui/react': 'latest',
+      typescript: 'latest',
+    });
+    expect(devDependencies).to.deep.equal({
+      '@types/react-dom': 'latest',
+      '@types/react': 'latest',
     });
   });
 });

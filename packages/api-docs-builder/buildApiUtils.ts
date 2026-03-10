@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import * as ts from 'typescript';
 import * as prettier from 'prettier';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { getLineFeed } from '@mui/internal-docs-utils';
 import { replaceComponentLinks } from './utils/replaceUrl';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
@@ -35,7 +35,7 @@ export function fixPathname(pathname: string): string {
   return fixedPathname;
 }
 
-const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
+const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.mjs');
 
 export async function writePrettifiedFile(
   filename: string,
@@ -83,8 +83,8 @@ export function extractPackageFile(filePath: string) {
     /.*\/packages.*\/(?<packagePath>[^/]+)\/src\/(.*\/)?(?<name>[^/]+)\.(js|tsx|ts|d\.ts)/,
   );
   const result = {
-    packagePath: match ? match.groups?.packagePath! : null,
-    name: match ? match.groups?.name! : null,
+    packagePath: match ? match.groups?.packagePath : null,
+    name: match ? match.groups?.name : null,
   };
   return {
     ...result,

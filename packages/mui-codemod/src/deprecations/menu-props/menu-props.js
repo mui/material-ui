@@ -12,6 +12,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Menu',
     propName: 'MenuListProps',
     slotName: 'list',
@@ -19,6 +20,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Menu',
     propName: 'TransitionComponent',
     slotName: 'transition',
@@ -26,6 +28,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Menu',
     propName: 'TransitionProps',
     slotName: 'transition',

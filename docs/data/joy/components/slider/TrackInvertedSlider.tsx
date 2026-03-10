@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';

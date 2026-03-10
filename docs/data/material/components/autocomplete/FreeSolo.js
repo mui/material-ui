@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -29,6 +28,25 @@ export default function FreeSolo() {
             }}
           />
         )}
+      />
+      <Autocomplete
+        id="free-solo-demo3"
+        freeSolo
+        options={top100Films}
+        renderInput={(params) => (
+          <TextField {...params} label="freeSolo (handle string values)" />
+        )}
+        getOptionLabel={(option) =>
+          typeof option === 'string' ? option : option.title
+        }
+        // this demo demonstrates how the value parameter can be either an object (same type as option) or a string
+        // it could become a string if, for example, you press "Enter" in the input field
+        isOptionEqualToValue={(option, value) => {
+          if (typeof value === 'string') {
+            return option.title === value;
+          }
+          return option.title === value.title;
+        }}
       />
     </Stack>
   );

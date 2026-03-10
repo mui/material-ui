@@ -1,8 +1,11 @@
 import * as recast from 'recast';
-import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
+import { parse as docgenParse, type PropTypeDescriptor } from 'react-docgen';
 import { escapeCell, escapeEntities, joinUnionTypes } from '../buildApi';
 
-function getDeprecatedInfo(type: PropTypeDescriptor) {
+function getDeprecatedInfo(type: PropTypeDescriptor | undefined) {
+  if (!type?.raw) {
+    return false;
+  }
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
   const match = type.raw.match(marker);
   const startIndex = type.raw.search(marker);
@@ -18,13 +21,13 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
   return false;
 }
 
-export function getChained(type: PropTypeDescriptor) {
-  if (type.raw) {
+export function getChained(type: PropTypeDescriptor | undefined) {
+  if (type?.raw) {
     const marker = 'chainPropTypes';
     const indexStart = type.raw.indexOf(marker);
 
     if (indexStart !== -1) {
-      const parsed = docgenParse(
+      const results = docgenParse(
         `
         import PropTypes from 'prop-types';
         const Foo = () => <div />
@@ -33,14 +36,13 @@ export function getChained(type: PropTypeDescriptor) {
         }
         export default Foo
       `,
-        null,
-        null,
         // helps react-docgen pickup babel.config.js
         { filename: './' },
       );
+      const parsed = results[0];
       return {
-        type: parsed.props.bar.type,
-        required: parsed.props.bar.required,
+        type: parsed.props?.bar?.type,
+        required: parsed.props?.bar?.required,
       };
     }
   }
@@ -48,23 +50,28 @@ export function getChained(type: PropTypeDescriptor) {
   return false;
 }
 
-export function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return type.raw === 'elementTypeAcceptingRef';
+export function isElementTypeAcceptingRefProp(type: PropTypeDescriptor | undefined): boolean {
+  return type?.raw === 'elementTypeAcceptingRef';
 }
 
-function isRefType(type: PropTypeDescriptor): boolean {
-  return type.raw === 'refType';
+function isRefType(type: PropTypeDescriptor | undefined): boolean {
+  return type?.raw === 'refType';
 }
 
-function isIntegerType(type: PropTypeDescriptor): boolean {
-  return type.raw.startsWith('integerPropType');
+function isIntegerType(type: PropTypeDescriptor | undefined): boolean {
+  return type?.raw?.startsWith('integerPropType') ?? false;
 }
 
-export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return /^elementAcceptingRef/.test(type.raw);
+export function isElementAcceptingRefProp(type: PropTypeDescriptor | undefined): boolean {
+  return type?.raw ? /^elementAcceptingRef/.test(type.raw) : false;
 }
 
-export default function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
+export default function generatePropTypeDescription(
+  type: PropTypeDescriptor | undefined,
+): string | undefined {
+  if (!type) {
+    return undefined;
+  }
   switch (type.name) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
@@ -91,49 +98,57 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
         return generatePropTypeDescription({
           // eslint-disable-next-line react/forbid-foreign-prop-types
           name: deprecatedInfo.propTypes,
-        } as any);
+        } as PropTypeDescriptor);
       }
 
       const chained = getChained(type);
-      if (chained !== false) {
+      if (chained !== false && chained.type) {
         return generatePropTypeDescription(chained.type);
       }
 
       return type.raw;
     }
 
-    case 'shape':
-      return `{ ${Object.keys(type.value)
+    case 'shape': {
+      const shapeValue = type.value as Record<string, PropTypeDescriptor>;
+      return `{ ${Object.keys(shapeValue)
         .map((subValue) => {
-          const subType = type.value[subValue];
+          const subType = shapeValue[subValue];
           return `${subValue}${subType.required ? '' : '?'}: ${generatePropTypeDescription(
             subType,
           )}`;
         })
         .join(', ')} }`;
+    }
 
-    case 'union':
+    case 'union': {
+      const unionValue = type.value as PropTypeDescriptor[];
       return joinUnionTypes(
-        type.value.map((type2) => {
+        unionValue.map((type2) => {
           return generatePropTypeDescription(type2) ?? '';
         }),
       );
-    case 'enum':
+    }
+    case 'enum': {
+      const enumValue = type.value as Array<{ value: string; computed?: boolean }>;
       return joinUnionTypes(
-        type.value.map((type2) => {
+        enumValue.map((type2) => {
           return escapeCell(type2.value);
         }),
       );
+    }
 
     case 'arrayOf': {
-      return `Array${escapeEntities('<')}${generatePropTypeDescription(type.value)}${escapeEntities('>')}`;
+      const arrayValue = type.value as PropTypeDescriptor;
+      return `Array${escapeEntities('<')}${generatePropTypeDescription(arrayValue)}${escapeEntities('>')}`;
     }
 
     case 'instanceOf': {
-      if (type.value.startsWith('typeof')) {
-        return /typeof (.*) ===/.exec(type.value)![1];
+      const instanceValue = type.value as string;
+      if (instanceValue.startsWith('typeof')) {
+        return /typeof (.*) ===/.exec(instanceValue)![1];
       }
-      return type.value;
+      return instanceValue;
     }
 
     default:

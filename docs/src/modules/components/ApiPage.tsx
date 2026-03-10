@@ -11,10 +11,9 @@ import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { BrandingProvider } from '@mui/docs/branding';
+import { BrandingProvider, BrandingCssVarsProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
@@ -24,14 +23,17 @@ import {
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {
-  getPropertiesToC,
   getPropsApiDefinitions,
+  getPropertiesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import {
   getClassApiDefinitions,
-  getClassesToC,
+  getClassesToc,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
+import {
+  getSlotsApiDefinitions,
+  getSlotsToc,
+} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 // TODO Move this type definition to the AppLayoutDocs file when moved to TS
 export interface TableOfContentsParams {
@@ -199,9 +201,9 @@ export default function ApiPage(props: ApiPageProps) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
-    ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
-    ...getClassesToC({ classes: classesDef, t }),
+    getPropertiesToc({ properties: propertiesDef, hash: 'props', t }),
+    ...getSlotsToc({ slots: slotsDef, t }),
+    ...getClassesToc({ classes: classesDef, t }),
     pageContent.filename ? createTocEntry('source-code') : null,
   ].filter((item): item is TableOfContentsParams => Boolean(item));
 
@@ -345,6 +347,8 @@ export default function ApiPage(props: ApiPageProps) {
               />
             </React.Fragment>
           )}
+          {/* Fallback anchor for #classes link when there's no classes section */}
+          {classesDef.length === 0 && <span id="classes" />}
           <SlotsSection
             slots={slotsDef}
             spreadHint={

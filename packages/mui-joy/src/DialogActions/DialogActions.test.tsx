@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/joy/DialogActions';

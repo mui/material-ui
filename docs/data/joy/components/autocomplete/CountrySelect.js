@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';

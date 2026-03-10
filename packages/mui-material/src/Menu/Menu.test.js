@@ -7,6 +7,7 @@ import {
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
@@ -25,7 +26,17 @@ const CustomTransition = React.forwardRef(function CustomTransition(
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
+  let defaultAnchorEl;
+  beforeAll(() => {
+    defaultAnchorEl = document.createElement('div');
+    document.body.appendChild(defaultAnchorEl);
+  });
+  afterAll(() => {
+    document.body.removeChild(defaultAnchorEl);
+    defaultAnchorEl = null;
+  });
+
+  describeConformance(<Menu anchorEl={() => defaultAnchorEl} open />, () => ({
     classes,
     inheritComponent: Popover,
     render,
@@ -72,7 +83,7 @@ describe('<Menu />', () => {
         const handleEntering = spy();
         render(
           <Menu
-            anchorEl={document.createElement('div')}
+            anchorEl={defaultAnchorEl}
             open
             TransitionProps={{
               onEnter: handleEnter,
@@ -102,7 +113,7 @@ describe('<Menu />', () => {
               onExit: handleExit,
               onExiting: handleExiting,
             }}
-            anchorEl={document.createElement('div')}
+            anchorEl={defaultAnchorEl}
             open
           />,
         );
@@ -120,13 +131,7 @@ describe('<Menu />', () => {
   });
 
   it('should pass `classes.paper` to the Paper', () => {
-    render(
-      <Menu
-        anchorEl={document.createElement('div')}
-        open
-        PaperProps={{ 'data-testid': 'paper' }}
-      />,
-    );
+    render(<Menu anchorEl={defaultAnchorEl} open PaperProps={{ 'data-testid': 'paper' }} />);
 
     expect(screen.getByTestId('paper')).to.have.class(classes.paper);
   });
@@ -135,7 +140,7 @@ describe('<Menu />', () => {
     it('should be able to change the Popover style', () => {
       render(
         <Menu
-          anchorEl={document.createElement('div')}
+          anchorEl={defaultAnchorEl}
           open
           PaperProps={{ 'data-testid': 'paper' }}
           PopoverClasses={{ paper: 'bar' }}
@@ -148,7 +153,7 @@ describe('<Menu />', () => {
     it('should be able to change the Popover root element style when Menu classes prop is also provided', () => {
       render(
         <Menu
-          anchorEl={document.createElement('div')}
+          anchorEl={defaultAnchorEl}
           open
           data-testid="popover"
           classes={{ paper: 'bar' }}
@@ -166,7 +171,7 @@ describe('<Menu />', () => {
 
       render(
         <Menu
-          anchorEl={document.createElement('div')}
+          anchorEl={defaultAnchorEl}
           open
           PaperProps={{
             'data-testid': 'paper',
@@ -183,7 +188,7 @@ describe('<Menu />', () => {
 
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
-    render(<Menu anchorEl={document.createElement('div')} open onClose={handleClose} />);
+    render(<Menu anchorEl={defaultAnchorEl} open onClose={handleClose} />);
 
     fireEvent.keyDown(screen.getByRole('menu'), { key: 'Escape' });
 
@@ -192,7 +197,7 @@ describe('<Menu />', () => {
 
   it('renders its children only when open', () => {
     const { setProps } = render(
-      <Menu anchorEl={document.createElement('div')} open={false}>
+      <Menu anchorEl={defaultAnchorEl} open={false}>
         <div data-testid="children" />
       </Menu>,
     );
@@ -206,7 +211,7 @@ describe('<Menu />', () => {
 
   describe('list node', () => {
     it('should render a menu inside the Popover', () => {
-      render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
+      render(<Menu anchorEl={defaultAnchorEl} open data-testid="popover" />);
 
       expect(screen.getByTestId('popover').querySelector('[role="menu"]')).not.to.equal(null);
     });
@@ -222,7 +227,7 @@ describe('<Menu />', () => {
       );
     }
     render(
-      <Menu anchorEl={document.createElement('div')} open>
+      <Menu anchorEl={defaultAnchorEl} open>
         <MenuItem>one</MenuItem>
       </Menu>,
     );
@@ -232,7 +237,7 @@ describe('<Menu />', () => {
 
   it('should not focus list if autoFocus=false', () => {
     render(
-      <Menu anchorEl={document.createElement('div')} autoFocus={false} open>
+      <Menu anchorEl={defaultAnchorEl} autoFocus={false} open>
         <div tabIndex={-1} />
       </Menu>,
     );
@@ -244,7 +249,7 @@ describe('<Menu />', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
-        anchorEl={document.createElement('div')}
+        anchorEl={defaultAnchorEl}
         open
         slotProps={{ transition: { onEntering: onEnteringSpy } }}
       />,
@@ -257,7 +262,7 @@ describe('<Menu />', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
-        anchorEl={document.createElement('div')}
+        anchorEl={defaultAnchorEl}
         disableAutoFocusItem
         open
         slotProps={{ transition: { onEntering: onEnteringSpy } }}
@@ -272,11 +277,7 @@ describe('<Menu />', () => {
     it('should call TransitionProps.onEntering', () => {
       const onEnteringSpy = spy();
       render(
-        <Menu
-          anchorEl={document.createElement('div')}
-          open
-          TransitionProps={{ onEntering: onEnteringSpy }}
-        />,
+        <Menu anchorEl={defaultAnchorEl} open TransitionProps={{ onEntering: onEnteringSpy }} />,
       );
 
       expect(onEnteringSpy.callCount).to.equal(1);
@@ -286,7 +287,7 @@ describe('<Menu />', () => {
       const onEnteringSpy = spy();
       render(
         <Menu
-          anchorEl={document.createElement('div')}
+          anchorEl={defaultAnchorEl}
           disableAutoFocusItem
           open
           TransitionProps={{ onEntering: onEnteringSpy }}
@@ -316,7 +317,7 @@ describe('<Menu />', () => {
     }
     const onCloseSpy = spy();
     render(
-      <Menu anchorEl={document.createElement('div')} open onClose={onCloseSpy}>
+      <Menu anchorEl={defaultAnchorEl} open onClose={onCloseSpy}>
         <MenuItem>hello</MenuItem>
       </Menu>,
     );
@@ -329,10 +330,11 @@ describe('<Menu />', () => {
 
   it('ignores invalid children', () => {
     render(
-      <Menu anchorEl={document.createElement('div')} open>
+      <Menu anchorEl={defaultAnchorEl} open>
         {null}
         <span role="menuitem">hello</span>
         {/* testing conditional rendering */}
+        {/* eslint-disable-next-line no-constant-binary-expression */}
         {false && <span role="menuitem">hello</span>}
         {undefined}
         foo
@@ -346,7 +348,7 @@ describe('<Menu />', () => {
     it('warns a Fragment is passed as a child', () => {
       expect(() => {
         render(
-          <Menu anchorEl={document.createElement('div')} open={false}>
+          <Menu anchorEl={defaultAnchorEl} open={false}>
             {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
             <React.Fragment />
           </Menu>,
@@ -360,77 +362,75 @@ describe('<Menu />', () => {
   });
 
   describe('theme customization', () => {
-    it('should override Menu Paper styles following correct precedence', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it.skipIf(isJsdom())(
+      'should override Menu Paper styles following correct precedence',
+      function test() {
+        const menuPaperOverrides = { borderRadius: 4 };
+        const popoverPaperOverrides = { borderRadius: 8, height: 100 };
+        const rootPaperOverrides = { borderRadius: 16, height: 200, width: 200 };
 
-      const menuPaperOverrides = { borderRadius: 4 };
-      const popoverPaperOverrides = { borderRadius: 8, height: 100 };
-      const rootPaperOverrides = { borderRadius: 16, height: 200, width: 200 };
+        const theme = createTheme({
+          components: {
+            MuiMenu: { styleOverrides: { paper: menuPaperOverrides } },
+            MuiPopover: { styleOverrides: { paper: popoverPaperOverrides } },
+            MuiPaper: { styleOverrides: { root: rootPaperOverrides } },
+          },
+        });
 
-      const theme = createTheme({
-        components: {
-          MuiMenu: { styleOverrides: { paper: menuPaperOverrides } },
-          MuiPopover: { styleOverrides: { paper: popoverPaperOverrides } },
-          MuiPaper: { styleOverrides: { root: rootPaperOverrides } },
-        },
-      });
+        render(
+          <ThemeProvider theme={theme}>
+            <Menu
+              anchorEl={defaultAnchorEl}
+              open
+              PaperProps={{
+                'data-testid': 'paper',
+              }}
+            />
+          </ThemeProvider>,
+        );
 
-      render(
-        <ThemeProvider theme={theme}>
-          <Menu
-            anchorEl={document.createElement('div')}
-            open
-            PaperProps={{
-              'data-testid': 'paper',
-            }}
-          />
-        </ThemeProvider>,
-      );
+        const paper = screen.getByTestId('paper');
+        expect(paper).toHaveComputedStyle({
+          borderTopLeftRadius: `${menuPaperOverrides.borderRadius}px`,
+          borderBottomLeftRadius: `${menuPaperOverrides.borderRadius}px`,
+          borderTopRightRadius: `${menuPaperOverrides.borderRadius}px`,
+          borderBottomRightRadius: `${menuPaperOverrides.borderRadius}px`,
+          height: `${popoverPaperOverrides.height}px`,
+          width: `${rootPaperOverrides.width}px`,
+        });
+      },
+    );
 
-      const paper = screen.getByTestId('paper');
-      expect(paper).toHaveComputedStyle({
-        borderTopLeftRadius: `${menuPaperOverrides.borderRadius}px`,
-        borderBottomLeftRadius: `${menuPaperOverrides.borderRadius}px`,
-        borderTopRightRadius: `${menuPaperOverrides.borderRadius}px`,
-        borderBottomRightRadius: `${menuPaperOverrides.borderRadius}px`,
-        height: `${popoverPaperOverrides.height}px`,
-        width: `${rootPaperOverrides.width}px`,
-      });
-    });
+    it.skipIf(isJsdom())(
+      'should override Menu Paper styles using styles in MuiPaper slot',
+      function test() {
+        const theme = createTheme({
+          components: {
+            MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
+          },
+        });
 
-    it('should override Menu Paper styles using styles in MuiPaper slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+        render(
+          <ThemeProvider theme={theme}>
+            <Menu
+              anchorEl={defaultAnchorEl}
+              open
+              PaperProps={{
+                'data-testid': 'paper',
+              }}
+            />
+          </ThemeProvider>,
+        );
 
-      const theme = createTheme({
-        components: {
-          MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
-          <Menu
-            anchorEl={document.createElement('div')}
-            open
-            PaperProps={{
-              'data-testid': 'paper',
-            }}
-          />
-        </ThemeProvider>,
-      );
-
-      const paper = screen.getByTestId('paper');
-      expect(paper).toHaveComputedStyle({
-        borderTopLeftRadius: '90px',
-        borderBottomLeftRadius: '90px',
-        borderTopRightRadius: '90px',
-        borderBottomRightRadius: '90px',
-      });
-    });
+        const paper = screen.getByTestId('paper');
+        expect(paper).toHaveComputedStyle({
+          borderTopLeftRadius: '90px',
+          borderBottomLeftRadius: '90px',
+          borderTopRightRadius: '90px',
+          borderBottomRightRadius: '90px',
+        });
+      },
+    );
   });
 
   describe('slots', () => {
@@ -439,7 +439,7 @@ describe('<Menu />', () => {
         <Menu
           slots={{ root: 'span' }}
           slotProps={{ paper: { 'data-testid': 'paper' } }}
-          anchorEl={document.createElement('div')}
+          anchorEl={defaultAnchorEl}
           open
         >
           <div />

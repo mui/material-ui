@@ -1,13 +1,12 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import throttle from 'lodash/throttle';
+import { throttle } from 'es-toolkit/function';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
-import { Link } from '@mui/docs/Link';
+import { Link, samePageLinkNavigation } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
-import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
@@ -21,7 +20,7 @@ const Nav = styled('nav')(({ theme }) => ({
   overflowY: 'auto',
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(7),
-  paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
+  paddingRight: theme.spacing(4), // We can't use `padding` as @mui/stylis-plugin-rtl doesn't swap it
   display: 'none',
   scrollbarWidth: 'thin',
   [theme.breakpoints.up('md')]: {
@@ -301,7 +300,6 @@ export default function AppTableOfContents(props) {
               variant="caption"
               sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}
             </Typography>
           </Link>

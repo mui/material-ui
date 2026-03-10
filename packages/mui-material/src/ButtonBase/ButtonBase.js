@@ -219,9 +219,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       !disabled
     ) {
       event.preventDefault();
-      if (onClick) {
-        onClick(event);
-      }
+      event.currentTarget.click();
     }
   });
 
@@ -239,13 +237,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
     // Keyboard accessibility for non interactive elements
     if (
-      onClick &&
       event.target === event.currentTarget &&
       isNonNativeButton() &&
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      onClick(event);
+      event.currentTarget.click();
     }
   });
 
@@ -257,7 +254,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const buttonProps = {};
   if (ComponentProp === 'button') {
-    buttonProps.type = type === undefined ? 'button' : type;
+    const hasFormAttributes = !!other.formAction;
+    // ButtonBase was defaulting to type="button" when no type prop was provided, which prevented form submission and broke formAction functionality.
+    // The fix checks for form-related attributes and skips the default type to allow the browser's natural submit behavior (type="submit").
+    buttonProps.type = type === undefined && !hasFormAttributes ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
     if (!other.href && !other.to) {
@@ -395,6 +395,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   */
+  formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**
    * @ignore
    */

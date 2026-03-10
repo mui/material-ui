@@ -8,6 +8,7 @@ interface TableOfContentsEntry {
 export function createRender(context: {
   headingHashes?: Record<string, string>;
   toc?: TableOfContentsEntry[];
+  location?: string[];
   userLanguage?: string;
   ignoreLanguagePages?: (path: string) => boolean;
   options: object;

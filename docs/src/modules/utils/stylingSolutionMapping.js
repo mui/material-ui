@@ -1,4 +1,4 @@
-import { CODE_STYLING } from 'docs/src/modules/constants';
+import { CODE_STYLING } from '@mui/docs/constants';
 
 const stylingSolutionMapping = {
   [CODE_STYLING.TAILWIND]: 'tailwind',

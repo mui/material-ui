@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Chip from '@mui/joy/Chip';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 

@@ -16,12 +16,10 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
-/**
- * The teamMembers.json file should be synced with `pnpm docs:sync-team`.
- */
+// The teamMembers.json file should be synced with `pnpm docs:sync-team`.
 
 interface Profile {
   /**
@@ -211,30 +209,6 @@ const contributors = [
     src: 'https://avatars.githubusercontent.com/u/287804',
   },
   {
-    name: 'Yan Lee',
-    github: 'AGDholo',
-    title: 'Chinese docs',
-    location: 'China',
-    locationCountry: 'cn',
-    src: 'https://avatars.githubusercontent.com/u/13300332',
-  },
-  {
-    name: 'Jairon Alves Lima',
-    github: 'jaironalves',
-    title: 'Brazilian Portuguese docs',
-    location: 'São Paulo, Brazil',
-    locationCountry: 'br',
-    src: 'https://avatars.githubusercontent.com/u/29267813',
-  },
-  {
-    name: 'Danica Shen',
-    github: 'DDDDDanica',
-    title: 'Chinese docs',
-    location: 'Ireland',
-    locationCountry: 'ie',
-    src: 'https://avatars.githubusercontent.com/u/12678455',
-  },
-  {
     name: 'Zeeshan Tamboli',
     github: 'ZeeshanTamboli',
     location: 'Pune, India',
@@ -243,6 +217,16 @@ const contributors = [
     src: 'https://avatars.githubusercontent.com/u/20900032',
     twitter: 'ZeeshanTamboli',
     linkedin: 'in/zeeshantamboli',
+  },
+  {
+    name: 'Sai Chand',
+    github: 'sai6855',
+    location: 'Hyderabad, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/60743144',
+    twitter: 'UrsSaichand',
+    linkedin: 'in/sai-chand-yamsani',
   },
 ];
 
@@ -335,6 +319,22 @@ const emeriti = [
     locationCountry: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
   },
+  {
+    name: 'Yan Lee',
+    github: 'AGDholo',
+    title: 'Chinese docs',
+    location: 'China',
+    locationCountry: 'cn',
+    src: 'https://avatars.githubusercontent.com/u/13300332',
+  },
+  {
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    title: 'Chinese docs',
+    location: 'Ireland',
+    locationCountry: 'ie',
+    src: 'https://avatars.githubusercontent.com/u/12678455',
+  },
 ];
 
 export default function Team() {
@@ -392,9 +392,9 @@ export default function Team() {
           </Typography>
           <Typography sx={{ color: 'text.secondary', maxWidth: { md: 500 } }}>
             Special members of the community deserve a shout-out for their ever-lasting impact on
-            MUI&apos;s products.
+            MUI&apos;s open-source projects.
           </Typography>
-          <Grid container spacing={2} mt={2}>
+          <Grid container spacing={2} sx={{ mt: 2 }}>
             {contributors.map((profile) => (
               <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
@@ -413,7 +413,7 @@ export default function Team() {
             We honor some no-longer-active core team members who have made valuable contributions in
             the past. They advise us from time to time.
           </Typography>
-          <Grid container spacing={2} mt={2}>
+          <Grid container spacing={2} sx={{ mt: 2 }}>
             {emeriti.map((profile) => (
               <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />

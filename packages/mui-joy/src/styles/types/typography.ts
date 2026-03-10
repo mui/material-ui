@@ -21,8 +21,11 @@ export interface DefaultFontFamily {
   fallback: string;
 }
 export interface FontFamilyOverrides {}
-export interface FontFamily
-  extends OverridableRecord<DefaultFontFamily, FontFamilyOverrides, string> {}
+export interface FontFamily extends OverridableRecord<
+  DefaultFontFamily,
+  FontFamilyOverrides,
+  string
+> {}
 
 export interface DefaultFontWeight {
   xs: string | number;
@@ -32,8 +35,11 @@ export interface DefaultFontWeight {
   xl: string | number;
 }
 export interface FontWeightOverrides {}
-export interface FontWeight
-  extends OverridableRecord<DefaultFontWeight, FontWeightOverrides, string | number> {}
+export interface FontWeight extends OverridableRecord<
+  DefaultFontWeight,
+  FontWeightOverrides,
+  string | number
+> {}
 
 export interface DefaultLineHeight {
   xs: string | number;
@@ -43,8 +49,11 @@ export interface DefaultLineHeight {
   xl: string | number;
 }
 export interface LineHeightOverrides {}
-export interface LineHeight
-  extends OverridableRecord<DefaultLineHeight, LineHeightOverrides, string | number> {}
+export interface LineHeight extends OverridableRecord<
+  DefaultLineHeight,
+  LineHeightOverrides,
+  string | number
+> {}
 
 export interface DefaultTypographySystem {
   h1: CSSObject;
@@ -60,6 +69,9 @@ export interface DefaultTypographySystem {
   'body-xs': CSSObject;
 }
 export interface TypographySystemOverrides {}
-export interface TypographySystem
-  extends OverridableRecord<DefaultTypographySystem, TypographySystemOverrides, CSSObject> {}
+export interface TypographySystem extends OverridableRecord<
+  DefaultTypographySystem,
+  TypographySystemOverrides,
+  CSSObject
+> {}
 export type TypographySystemOptions = MergeDefault<TypographySystem, DefaultTypographySystem>;

@@ -1,11 +1,11 @@
 import path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs';
 
 const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
-  const files = fse.readdirSync(dirPath);
+  const files = fs.readdirSync(dirPath);
 
   files.forEach((file) => {
-    if (fse.statSync(`${dirPath}/${file}`).isDirectory()) {
+    if (fs.statSync(`${dirPath}/${file}`).isDirectory()) {
       arrayOfFiles = getAllFiles(`${dirPath}/${file}`, arrayOfFiles);
     } else {
       arrayOfFiles.push(path.join(__dirname, dirPath, '/', file));

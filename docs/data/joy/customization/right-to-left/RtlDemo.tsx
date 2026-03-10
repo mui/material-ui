@@ -1,5 +1,4 @@
-import * as React from 'react';
-import rtlPlugin from 'stylis-plugin-rtl';
+import rtlPlugin from '@mui/stylis-plugin-rtl';
 import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';

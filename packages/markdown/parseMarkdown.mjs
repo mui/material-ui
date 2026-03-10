@@ -145,8 +145,8 @@ function getHeaders(markdown) {
         value = value.replace(/,\s+\]$/g, ']');
         headers[key] = JSON.parse(value);
       } else {
-        // Remove trailing single quote yml escaping.
-        headers[key] = value.replace(/^'|'$/g, '');
+        // Remove quote YAML escaping.
+        headers[key] = value.replace(/^"|"$|^'|'$/g, '');
       }
     }
 

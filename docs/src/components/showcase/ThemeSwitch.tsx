@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Switch, { switchClasses } from '@mui/material/Switch';
 

@@ -1,5 +1,5 @@
 ---
-title: Upcoming changes to MUI X pricing in 2024
+title: Upcoming changes to MUI X pricing in 2024
 description: Check out the new pricing updates and how to transition to the new model.
 date: 2024-08-01T08:00:00.000Z
 authors: ['josefreitas', 'oliviertassinari']
@@ -31,7 +31,7 @@ These new features will only be available under the updated pricing: moving forw
 
 We value our loyal customers and want to ensure a smooth transition: current customers will be grandfathered into their existing plans.
 
-This means you can continue to renew your licenses under the legacy pricing for as long as you wish.
+This means you will be able to renew your licenses or purchase additional ones under the legacy plan for as long as you wish.
 However, the legacy pricing only covers the previously released components: Data Grid and Date Pickers.
 
 :::info
@@ -66,7 +66,9 @@ We consider the product mature and battle-tested enough and as a result, the ear
 
 However, we want to ensure that our valued early customers continue to enjoy the benefits of an earlier purchase.
 Current customers will still benefit from a 20% renewal discount (vs. 25% early bird discount before).
-You'll receive the discount per email, or by reaching out to our [sales team](mailto:sales@mui.com).
+
+This means you will be able to renew your licenses or purchase additional licenses at a 7% price increase while gaining access to new features.
+You'll receive the discount via email, or you can also request it by contacting our [sales team](mailto:sales@mui.com).
 
 ## Effective date
 

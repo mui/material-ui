@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Breadcrumbs component
 components: Breadcrumbs
-githubLabel: 'component: breadcrumbs'
+githubLabel: 'scope: breadcrumbs'
 ---
 
 # Breadcrumbs

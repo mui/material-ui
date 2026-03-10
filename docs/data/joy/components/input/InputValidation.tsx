@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -15,7 +14,7 @@ export default function InputValidation() {
         <Input placeholder="Type in here…" defaultValue="Oh no, error found!" />
         <FormHelperText>
           <InfoOutlined />
-          Opps! something is wrong.
+          Oops! something is wrong.
         </FormHelperText>
       </FormControl>
     </Stack>

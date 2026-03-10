@@ -83,7 +83,7 @@ const appList = [
     title: 'BARKS',
     description: 'Japan Music Network. 🇯🇵',
     image: 'barks.jpg',
-    link: 'https://www.barks.jp/',
+    link: 'https://barks.jp/',
     similarWebVisits: 3000,
     dateAdded: '2019-01-01',
   },
@@ -450,7 +450,6 @@ export default function MaterialShowcase() {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 'semiBold' }}>
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Sort by:'}
         </Typography>
         <ToggleButtonGroup

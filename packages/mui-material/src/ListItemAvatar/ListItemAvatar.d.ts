@@ -1,5 +1,6 @@
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { ListItemAvatarClasses } from './listItemAvatarClasses';
 
 export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -10,11 +11,11 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ListItemAvatarClasses>;
+  classes?: Partial<ListItemAvatarClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
@@ -22,10 +23,10 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemAvatar API](https://mui.com/material-ui/api/list-item-avatar/)
+ * - [ListItemAvatar API](https://next.mui.com/material-ui/api/list-item-avatar/)
  */
 export default function ListItemAvatar(props: ListItemAvatarProps): React.JSX.Element;

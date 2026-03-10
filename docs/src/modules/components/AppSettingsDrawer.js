@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme, useColorScheme } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
@@ -15,7 +14,7 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
-import { useColorSchemeShim, useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+import { useColorSchemeShim, useChangeTheme } from '@mui/docs/ThemeContext';
 import { useTranslate } from '@mui/docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({

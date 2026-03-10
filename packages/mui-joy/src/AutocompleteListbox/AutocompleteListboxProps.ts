@@ -56,5 +56,4 @@ export type AutocompleteListboxProps<
   },
 > = OverrideProps<AutocompleteListboxTypeMap<P, D>, D>;
 
-export interface AutocompleteListboxOwnerState
-  extends ApplyColorInversion<AutocompleteListboxProps> {}
+export interface AutocompleteListboxOwnerState extends ApplyColorInversion<AutocompleteListboxProps> {}

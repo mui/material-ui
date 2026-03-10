@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, SvgIcon
-githubLabel: 'component: avatar'
+githubLabel: 'scope: avatar'
 ---
 
 # Avatar
@@ -38,7 +38,7 @@ Note that the Avatar is designed to comfortably fit two letters at most—for in
 ### Image Avatar
 
 Insert images into the Avatar by defining a path inside the `src` prop, just like you would with an HTML `<img>` element.
-Make sure to to write a meaningful description for the `alt` prop.
+Make sure to write a meaningful description for the `alt` prop.
 
 {{"demo": "ImageAvatars.js"}}
 

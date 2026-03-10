@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import {
   brandingLightTheme as lightTheme,
@@ -18,7 +16,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
       '& .prop-list-title': {
         ...theme.typography.body2,
         fontWeight: theme.typography.fontWeightSemiBold,
-        color: theme.palette.text.primary,
+        color: (theme.vars || theme).palette.text.primary,
       },
     },
     '& .default-slot-value': {
@@ -72,6 +70,7 @@ export default function SlotsList(props: SlotsListProps) {
           >
             {description && (
               <p
+                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: description,
                 }}
@@ -81,6 +80,7 @@ export default function SlotsList(props: SlotsListProps) {
               <p className="slot-classname">
                 <span className="prop-list-title">{t('api-docs.className')}:</span>{' '}
                 <code
+                  // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{ __html: `.${className}` }}
                   className="global-class-value"
                 />
