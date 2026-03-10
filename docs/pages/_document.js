@@ -5,8 +5,6 @@ export default class MuiDocument extends NextDocument {
   static getInitialProps = createGetInitialProps({ setupStyledComponents: true });
 
   render() {
-    return (
-      <MuiDocsDocument {...this.props} />
-    );
+    return <MuiDocsDocument {...this.props} />;
   }
 }

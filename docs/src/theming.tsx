@@ -70,10 +70,6 @@ export function DemoInstanceThemeProvider({
   return (
     /* - use a function to ensure that the upper theme (branding theme) is not spread to the demo theme */
     /* - a function will skip the CSS vars generation logic */
-    <ThemeProvider
-      theme={() =>theme}
-    >
-      {children}
-    </ThemeProvider>
+    <ThemeProvider theme={() => theme}>{children}</ThemeProvider>
   );
 }
