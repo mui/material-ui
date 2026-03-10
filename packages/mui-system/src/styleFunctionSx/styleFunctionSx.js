@@ -21,12 +21,12 @@ export function unstable_createStyleFunctionSx() {
       return null;
     }
 
-    const { sx, theme = EMPTY_THEME } = props;
+    const { sx, theme = EMPTY_THEME, nested } = props;
 
     const config = theme.unstable_sxConfig ?? defaultSxConfig;
 
     // Pass argument without loop allocations
-    const wrapper = { sx: null, theme };
+    const wrapper = { sx: null, theme, nested: true };
 
     function process(sxInput) {
       let sxObject = sxInput;
@@ -66,6 +66,12 @@ export function unstable_createStyleFunctionSx() {
           wrapper.sx = value;
           css[styleKey] = styleFunctionSx(wrapper);
         }
+      }
+
+      if (!nested && theme.modularCssLayers) {
+        return {
+          '@layer sx': sortContainerQueries(theme, removeUnusedBreakpoints(breakpoints, css)),
+        };
       }
 
       return sortContainerQueries(theme, removeUnusedBreakpoints(breakpoints, css));
