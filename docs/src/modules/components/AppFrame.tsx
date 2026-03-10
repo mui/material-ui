@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -124,8 +123,6 @@ export interface AppFrameProps {
 export default function AppFrame(props: AppFrameProps) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
