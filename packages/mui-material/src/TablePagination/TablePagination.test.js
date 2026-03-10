@@ -675,12 +675,18 @@ describe('<TablePagination />', () => {
                     actions: {
                       firstButtonIcon: {
                         fontSize: 'small',
+                        legacyTestId: true,
                       },
                       lastButtonIcon: {
                         fontSize: 'large',
+                        legacyTestId: true,
                       },
                       previousButtonIcon: {
                         fontSize: 'inherit',
+                        legacyTestId: true,
+                      },
+                      nextButtonIcon: {
+                        legacyTestId: true,
                       },
                     },
                   }}
@@ -798,6 +804,14 @@ describe('<TablePagination />', () => {
                     lastButtonIcon: KeyboardDoubleArrowRightRoundedIcon,
                     previousButtonIcon: ArrowBackIcon,
                     nextButtonIcon: ArrowForwardIcon,
+                  },
+                }}
+                slotProps={{
+                  actions: {
+                    firstButtonIcon: { legacyTestId: true },
+                    lastButtonIcon: { legacyTestId: true },
+                    previousButtonIcon: { legacyTestId: true },
+                    nextButtonIcon: { legacyTestId: true },
                   },
                 }}
               />

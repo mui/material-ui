@@ -7,6 +7,7 @@ import {
   fireEvent,
   reactMajor,
   screen,
+  within,
   strictModeDoubleLoggingSuppressed,
   waitFor,
   flushEffects,
@@ -17,7 +18,6 @@ import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createSvgIcon } from '@mui/material/utils';
-import capitalize from '../utils/capitalize';
 import describeConformance from '../../test/describeConformance';
 
 const isJSDOM = isJsdom();
@@ -26,7 +26,7 @@ const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
 const ArrowForwardIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowForward');
 
 function findScrollButton(container, direction) {
-  return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
+  return within(container).queryByTestId(`TabScrollButton-${direction}`);
 }
 
 function hasLeftScrollButton(container) {
@@ -36,7 +36,7 @@ function hasLeftScrollButton(container) {
     return false;
   }
 
-  return !scrollButton.parentElement.classList.contains('Mui-disabled');
+  return !scrollButton.classList.contains('Mui-disabled');
 }
 
 function hasRightScrollButton(container) {
@@ -46,7 +46,7 @@ function hasRightScrollButton(container) {
     return false;
   }
 
-  return !scrollButton.parentElement.classList.contains('Mui-disabled');
+  return !scrollButton.classList.contains('Mui-disabled');
 }
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
