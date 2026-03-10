@@ -203,7 +203,7 @@ describe('<MenuList />', () => {
     });
 
     it('should add tabindex="0" to the focused item', async () => {
-       const {user} = render(
+      const { user } = render(
         <MenuList>
           <MenuItem>one</MenuItem>
           <Divider />

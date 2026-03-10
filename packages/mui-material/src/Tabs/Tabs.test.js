@@ -149,7 +149,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
 
     it('should add tabindex="0" to the focused tab', async () => {
-       const {user} = render(
+      const { user } = render(
         <Tabs value={0}>
           <Tab />
           <Tab />
