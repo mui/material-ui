@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
@@ -546,6 +545,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    ref,
+    className: [classes.root, className],
+    elementType: AutocompleteRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    getSlotProps: getRootProps,
+    ownerState,
+  });
+
   const [ListboxSlot, listboxProps] = useSlot('listbox', {
     elementType: AutocompleteListbox,
     externalForwardedProps,
@@ -692,12 +703,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   return (
     <React.Fragment>
-      <AutocompleteRoot
-        ref={ref}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...getRootProps(other)}
-      >
+      <RootSlot {...rootProps}>
         {renderInput({
           id,
           disabled,
@@ -738,7 +744,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             },
           },
         })}
-      </AutocompleteRoot>
+      </RootSlot>
       {anchorEl ? (
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
@@ -1226,6 +1232,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -1237,6 +1244,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     paper: PropTypes.elementType,
     popper: PropTypes.elementType,
     popupIndicator: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

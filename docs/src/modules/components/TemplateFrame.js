@@ -24,7 +24,7 @@ import PaletteIcon from '@mui/icons-material/PaletteOutlined';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
-import { pascalCase } from 'docs/src/modules/utils/helpers';
+import { pascalCase } from '@mui/docs/helpers';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   position: 'relative',

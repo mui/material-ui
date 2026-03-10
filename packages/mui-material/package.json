@@ -109,6 +109,7 @@
     "./PigmentContainer": "./src/PigmentContainer/index.ts",
     "./PigmentGrid": "./src/PigmentGrid/index.ts",
     "./PigmentStack": "./src/PigmentStack/index.ts",
+    "./themeCssVarsAugmentation": "./src/themeCssVarsAugmentation/index.ts",
     "./transitions": "./src/transitions/index.ts",
     "./useLazyRipple": "./src/useLazyRipple/index.ts",
     "./version": "./src/version/index.ts",

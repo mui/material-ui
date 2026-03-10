@@ -60,6 +60,7 @@ describe('<Autocomplete />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
       slots: {
+        root: { expectedClassName: classes.root },
         listbox: { expectedClassName: classes.listbox },
         paper: { expectedClassName: classes.paper },
         popper: { expectedClassName: classes.popper, testWithElement: null },

@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
-import { resetDocsColor, setDocsColors } from 'docs/src/BrandingCssVarsProvider';
+import { resetDocsColor, setDocsColors } from '@mui/docs/branding';
 import ColorDemo from './ColorDemo';
 
 const defaults = {
