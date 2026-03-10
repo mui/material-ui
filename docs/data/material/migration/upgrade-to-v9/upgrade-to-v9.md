@@ -154,6 +154,12 @@ APIs that were deprecated earlier have been removed in v9.
 
 #### TextField deprecated props removed
 
+Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/text-field-props <path>
+```
+
 The deprecated `TextField` props have been removed.
 Use the `slotProps` prop instead:
 
@@ -172,6 +178,12 @@ Use the `slotProps` prop instead:
 +    formHelperText: CustomFormHelperTextProps,
 +  }}
  />
+```
+
+Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
 ```
 
 If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
