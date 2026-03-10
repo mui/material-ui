@@ -5,10 +5,7 @@ import {
   muiSystemProjectSettings,
 } from '@mui-internal/api-docs-builder-core';
 
-const projectSettings: ProjectSettings[] = [
-  materialUiProjectSettings,
-  muiSystemProjectSettings,
-];
+const projectSettings: ProjectSettings[] = [materialUiProjectSettings, muiSystemProjectSettings];
 
 type CommandOptions = { grep?: string; rawDescriptions?: boolean };
 

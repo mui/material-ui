@@ -18,7 +18,6 @@ import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
-import { pathnameToLanguage } from '@mui/docs/helpers';
 import SearchButton from './SearchButton';
 
 const sx = { minWidth: { sm: 160 } };
