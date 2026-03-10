@@ -776,7 +776,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       onChange,
       textColor,
       value: childValue,
-      ...rovingTabIndexItemProps,
+      ref: rovingTabIndexItemProps.ref,
+      tabIndex: child.props.tabIndex ?? rovingTabIndexItemProps.tabIndex,
     });
   });
 

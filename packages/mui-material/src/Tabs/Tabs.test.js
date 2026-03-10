@@ -96,6 +96,20 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     expect(screen.getByRole('tablist')).toHaveAccessibleName('complex name');
   });
 
+  it('should not add tabindex to the tabs if the selected tab already has it', () => {
+    render(
+      <Tabs value={0}>
+        <Tab tabIndex={-1} />
+        <Tab tabIndex={0} />
+      </Tabs>,
+    );
+
+    const tabElements = screen.getAllByRole('tab');
+
+    expect(tabElements[0].tabIndex).to.equal(-1);
+    expect(tabElements[1].tabIndex).to.equal(0);
+  });
+
   describe('warnings', () => {
     it('should warn if the input is invalid', () => {
       expect(() => {

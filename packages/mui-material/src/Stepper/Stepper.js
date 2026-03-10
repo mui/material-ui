@@ -103,13 +103,9 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     const grandChildren = child.props.children;
 
     if (grandChildren) {
-      return React.Children.toArray(grandChildren).some((grandChild) => {
-        if (!React.isValidElement(grandChild)) {
-          return false;
-        }
-
-        return grandChild.type === StepButton;
-      });
+      return React.Children.toArray(grandChildren).some(
+        (grandChild) => React.isValidElement(grandChild) && grandChild.type === StepButton,
+      );
     }
 
     return false;

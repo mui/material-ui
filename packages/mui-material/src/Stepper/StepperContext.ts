@@ -15,6 +15,7 @@ export interface StepperContextType {
     ref: (element: HTMLElement | null) => void;
     tabIndex: number;
   };
+  isTabList: boolean;
 }
 
 /**
