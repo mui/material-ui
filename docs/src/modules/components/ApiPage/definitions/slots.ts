@@ -1,6 +1,6 @@
 import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { Translate } from '@mui/docs/i18n';
-import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
+import type { TableOfContentsParams } from '@mui/docs/ApiPage';
 
 export type SlotDefinition = {
   className: string | null;

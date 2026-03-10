@@ -13,7 +13,7 @@ import {
   PropertyDefinition,
   getPropsApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
-import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
+import { LayoutStorageKeys } from '@mui/docs/ApiPage';
 import {
   ComponentApiContent,
   PropsTableItem,

@@ -6,7 +6,7 @@ import {
 } from '@mui-internal/api-docs-builder';
 import { Translate } from '@mui/docs/i18n';
 import { kebabCase } from 'es-toolkit/string';
-import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
+import type { TableOfContentsParams } from '@mui/docs/ApiPage';
 
 export interface PropertyDefinition {
   additionalInfo?: string[];
