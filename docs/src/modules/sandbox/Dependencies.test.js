@@ -534,7 +534,6 @@ export default function EmailExample() {
       '@emotion/styled': 'latest',
       // #npm-tag-reference
       '@mui/icons-material': 'next',
-      '@mui/joy': 'latest',
       '@mui/material': 'next',
       '@mui/system': 'next',
       typescript: 'latest',
