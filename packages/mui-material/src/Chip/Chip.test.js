@@ -347,7 +347,7 @@ describe('<Chip />', () => {
       render(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
 
       const chip = screen.getByRole('button');
-      const icon = screen.getByTestId('CancelIcon');
+      const icon = screen.getByTestId('chip-delete-icon');
 
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.contain(icon);
@@ -363,7 +363,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.have.class(classes.deletableColorPrimary);
-      const icon = screen.getByTestId('CancelIcon');
+      const icon = screen.getByTestId('chip-delete-icon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorPrimary);
     });
@@ -377,7 +377,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.colorSecondary);
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.have.class(classes.deletableColorSecondary);
-      const icon = screen.getByTestId('CancelIcon');
+      const icon = screen.getByTestId('chip-delete-icon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorSecondary);
     });
@@ -396,7 +396,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.have.class(classes.deletableColorPrimary);
-      const icon = screen.getByTestId('CancelIcon');
+      const icon = screen.getByTestId('chip-delete-icon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorPrimary);
       expect(icon).to.have.class(classes.deleteIconFilledColorPrimary);
@@ -416,7 +416,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.have.class(classes.deletableColorPrimary);
-      const icon = screen.getByTestId('CancelIcon');
+      const icon = screen.getByTestId('chip-delete-icon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorPrimary);
       expect(icon).to.have.class(classes.deleteIconOutlinedColorPrimary);
@@ -426,10 +426,10 @@ describe('<Chip />', () => {
       const handleDelete = spy();
 
       render(
-        <Chip label="Custom delete icon Chip" onDelete={handleDelete} deleteIcon={<CheckBox legacyTestId />} />,
+        <Chip label="Custom delete icon Chip" onDelete={handleDelete} deleteIcon={<CheckBox data-testid="chip-delete-icon" />} />,
       );
 
-      fireEvent.click(screen.getByTestId('CheckBoxIcon'));
+      fireEvent.click(screen.getByTestId('chip-delete-icon'));
 
       expect(handleDelete.callCount).to.equal(1);
     });
@@ -662,7 +662,7 @@ describe('<Chip />', () => {
     it('should render the delete icon with the deleteIcon and deleteIconSmall classes', () => {
       render(<Chip size="small" onDelete={() => {}} />);
 
-      const icon = screen.getByTestId('CancelIcon');
+      const icon = screen.getByTestId('chip-delete-icon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconSmall);
     });

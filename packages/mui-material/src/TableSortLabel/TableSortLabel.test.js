@@ -69,9 +69,9 @@ describe('<TableSortLabel />', () => {
 
     it('should accept a custom icon for the sort icon', () => {
       render(
-        <TableSortLabel IconComponent={SortIcon} slotProps={{ icon: { legacyTestId: true } }} />,
+        <TableSortLabel IconComponent={SortIcon} slotProps={{ icon: { 'data-testid': 'sort-icon' } }} />,
       );
-      expect(screen.getAllByTestId('SortIcon')).not.to.equal(null);
+      expect(screen.getAllByTestId('sort-icon')).not.to.equal(null);
     });
   });
 

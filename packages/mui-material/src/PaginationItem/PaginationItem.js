@@ -404,12 +404,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     >
       {type === 'page' && page}
       {IconSlot ? (
-        <PaginationItemPageIcon
-          {...iconSlotProps}
-          className={classes.icon}
-          as={IconSlot}
-          legacyTestId
-        />
+        <PaginationItemPageIcon {...iconSlotProps} className={classes.icon} as={IconSlot} />
       ) : null}
     </PaginationItemPage>
   );

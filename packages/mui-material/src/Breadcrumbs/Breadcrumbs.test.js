@@ -55,7 +55,7 @@ describe('<Breadcrumbs />', () => {
 
     expect(listitems).to.have.length(3);
     expect(screen.getByRole('list')).to.have.text('first//ninth');
-    expect(screen.getByRole('button').querySelector('[data-testid="MoreHorizIcon"]')).not.to.equal(
+    expect(screen.getByRole('button').querySelector('[data-testid="breadcrumb-collapsed-icon"]')).not.to.equal(
       null,
     );
   });
@@ -109,7 +109,6 @@ describe('<Breadcrumbs />', () => {
           slots={{
             CollapsedIcon: FirstPageIcon,
           }}
-          slotProps={{ collapsedIcon: { legacyTestId: true } }}
           maxItems={2}
         >
           <span>first</span>
@@ -118,7 +117,7 @@ describe('<Breadcrumbs />', () => {
         </Breadcrumbs>,
       );
 
-      screen.getByTestId('FirstPageIcon');
+      screen.getByTestId('breadcrumb-collapsed-icon');
     });
 
     it('should apply slotProps to collapsed icon', () => {

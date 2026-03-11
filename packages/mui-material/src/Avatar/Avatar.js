@@ -217,7 +217,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     shouldForwardComponentProp: true,
     ownerState,
     additionalProps: {
-      'data-testid': 'avatar-fallback',
+      'data-testid': 'avatar-fallback-icon',
     },
   });
 

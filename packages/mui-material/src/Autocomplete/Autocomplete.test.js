@@ -664,7 +664,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      fireEvent.click(screen.getAllByTestId('CancelIcon')[1]);
+      fireEvent.click(screen.getAllByTestId('chip-delete-icon')[1]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
