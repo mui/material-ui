@@ -162,9 +162,9 @@ async function main() {
 
     describe('Table', () => {
       it('should integrate with react-virtuoso', async () => {
-        const testcase = await renderFixture('Table/ReactVirtualizedTable');
+        const testcase = await renderFixture('/regression-Table/ReactVirtualizedTable');
         await page.waitForSelector('[data-index="1"]');
-        await takeScreenshot({ testcase, route: 'Table/ReactVirtualizedTable1' });
+        await takeScreenshot({ testcase, route: '/regression-Table/ReactVirtualizedTable1' });
       });
     });
 
