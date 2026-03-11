@@ -57,9 +57,7 @@ const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
     <TableContainer component={Paper} {...props} ref={ref} />
   )),
-  Table: (props) => (
-    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
-  ),
+  Table: (props) => <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />,
   TableHead: React.forwardRef((props, ref) => <TableHead {...props} ref={ref} />),
   TableRow,
   TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
@@ -87,10 +85,7 @@ function rowContent(_index, row) {
   return (
     <React.Fragment>
       {columns.map((column) => (
-        <TableCell
-          key={column.dataKey}
-          align={column.numeric || false ? 'right' : 'left'}
-        >
+        <TableCell key={column.dataKey} align={column.numeric || false ? 'right' : 'left'}>
           {row[column.dataKey]}
         </TableCell>
       ))}
