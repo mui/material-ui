@@ -160,6 +160,14 @@ async function main() {
       });
     });
 
+    describe('Table', () => {
+      it('should integrate with react-virtuoso', async () => {
+        await renderFixture('Table/ReactVirtualizedTable');
+        await page.waitForSelector('[data-index="1"]');
+        await takeScreenshot({ testcase, route: 'Table/ReactVirtualizedTable1' });
+      });
+    });
+
     describe('Textarea', () => {
       it('should keep input caret position at the end when adding a newline', async () => {
         await renderFixture('/regression-Textarea/TextareaAutosize');
