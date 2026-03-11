@@ -59,7 +59,7 @@ function getDefaultHiringMessage() {
 function getPricingMessage() {
   return (
     <React.Fragment>
-      {`MUI X pricing updates are coming in 2026.`}
+      {`📣 MUI X pricing is changing on April 8, 2026.`}
       &nbsp;
       <Link href="/blog/2026-MUI-X-price-changes/" underline="always" sx={linkStyleOverrides}>
         Read the announcement →
