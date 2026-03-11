@@ -426,7 +426,11 @@ describe('<Chip />', () => {
       const handleDelete = spy();
 
       render(
-        <Chip label="Custom delete icon Chip" onDelete={handleDelete} deleteIcon={<CheckBox data-testid="chip-delete-icon" />} />,
+        <Chip
+          label="Custom delete icon Chip"
+          onDelete={handleDelete}
+          deleteIcon={<CheckBox data-testid="chip-delete-icon" />}
+        />,
       );
 
       fireEvent.click(screen.getByTestId('chip-delete-icon'));

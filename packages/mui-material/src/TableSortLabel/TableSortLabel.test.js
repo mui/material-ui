@@ -69,7 +69,10 @@ describe('<TableSortLabel />', () => {
 
     it('should accept a custom icon for the sort icon', () => {
       render(
-        <TableSortLabel IconComponent={SortIcon} slotProps={{ icon: { 'data-testid': 'sort-icon' } }} />,
+        <TableSortLabel
+          IconComponent={SortIcon}
+          slotProps={{ icon: { 'data-testid': 'sort-icon' } }}
+        />,
       );
       expect(screen.getAllByTestId('sort-icon')).not.to.equal(null);
     });

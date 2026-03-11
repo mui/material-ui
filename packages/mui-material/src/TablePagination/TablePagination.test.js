@@ -701,9 +701,7 @@ describe('<TablePagination />', () => {
         expect(screen.getByTestId('previous-page-icon')).to.have.class(
           svgIconClasses.fontSizeInherit,
         );
-        expect(screen.getByTestId('next-page-icon')).to.have.class(
-          svgIconClasses.fontSizeMedium,
-        );
+        expect(screen.getByTestId('next-page-icon')).to.have.class(svgIconClasses.fontSizeMedium);
       });
     });
 
