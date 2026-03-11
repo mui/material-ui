@@ -14,12 +14,12 @@ describe('<MobileStepper />', () => {
     nextButton: (
       <Button aria-label="next">
         Next
-        <KeyboardArrowRight />
+        <KeyboardArrowRight legacyTestId />
       </Button>
     ),
     backButton: (
       <Button aria-label="back">
-        <KeyboardArrowLeft />
+        <KeyboardArrowLeft legacyTestId />
         Back
       </Button>
     ),

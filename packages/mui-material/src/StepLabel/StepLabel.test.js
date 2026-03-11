@@ -31,7 +31,7 @@ describe('<StepLabel />', () => {
     });
 
     it('renders <StepIcon> with props passed through StepIconProps', () => {
-      const stepIconProps = { error: true };
+      const stepIconProps = { error: true, legacyTestId: true };
 
       const { container } = render(
         <Stepper alternativeLabel>

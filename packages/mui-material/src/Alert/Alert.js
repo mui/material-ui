@@ -149,10 +149,10 @@ const AlertAction = styled('div', {
 });
 
 const defaultIconMapping = {
-  success: <SuccessOutlinedIcon fontSize="inherit" />,
-  warning: <ReportProblemOutlinedIcon fontSize="inherit" />,
-  error: <ErrorOutlineIcon fontSize="inherit" />,
-  info: <InfoOutlinedIcon fontSize="inherit" />,
+  success: <SuccessOutlinedIcon fontSize="inherit" legacyTestId />,
+  warning: <ReportProblemOutlinedIcon fontSize="inherit" legacyTestId />,
+  error: <ErrorOutlineIcon fontSize="inherit" legacyTestId />,
+  info: <InfoOutlinedIcon fontSize="inherit" legacyTestId />,
 };
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {

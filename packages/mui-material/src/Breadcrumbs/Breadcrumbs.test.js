@@ -109,6 +109,7 @@ describe('<Breadcrumbs />', () => {
           slots={{
             CollapsedIcon: FirstPageIcon,
           }}
+          slotProps={{ collapsedIcon: { legacyTestId: true } }}
           maxItems={2}
         >
           <span>first</span>

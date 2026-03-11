@@ -18,13 +18,13 @@ describe('<StepIcon />', () => {
   }));
 
   it('renders <CheckCircle> when completed', () => {
-    render(<StepIcon completed icon={1} />);
+    render(<StepIcon completed icon={1} legacyTestId />);
 
     expect(screen.getAllByTestId('CheckCircleIcon')).to.have.length(1);
   });
 
   it('renders <Warning> when error occurred', () => {
-    render(<StepIcon icon={1} error />);
+    render(<StepIcon icon={1} error legacyTestId />);
     expect(screen.getAllByTestId('WarningIcon')).to.have.length(1);
   });
 

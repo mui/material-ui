@@ -40,13 +40,29 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: direction', () => {
     it('should render with the left icon', () => {
-      render(<TabScrollButton {...defaultProps} {...defaultProps} direction="left" disabled />);
+      render(
+        <TabScrollButton
+          {...defaultProps}
+          {...defaultProps}
+          direction="left"
+          disabled
+          slotProps={{ startScrollButtonIcon: { legacyTestId: true } }}
+        />,
+      );
 
       expect(screen.getAllByTestId('KeyboardArrowLeftIcon').length).to.equal(1);
     });
 
     it('should render with the right icon', () => {
-      render(<TabScrollButton {...defaultProps} {...defaultProps} direction="right" disabled />);
+      render(
+        <TabScrollButton
+          {...defaultProps}
+          {...defaultProps}
+          direction="right"
+          disabled
+          slotProps={{ endScrollButtonIcon: { legacyTestId: true } }}
+        />,
+      );
 
       expect(screen.getAllByTestId('KeyboardArrowRightIcon').length).to.equal(1);
     });
@@ -61,6 +77,7 @@ describe('<TabScrollButton />', () => {
         slots={{
           StartScrollButtonIcon: ArrowBackIcon,
         }}
+        slotProps={{ startScrollButtonIcon: { legacyTestId: true } }}
       />,
     );
 
@@ -76,6 +93,7 @@ describe('<TabScrollButton />', () => {
         slots={{
           EndScrollButtonIcon: ArrowForwardIcon,
         }}
+        slotProps={{ endScrollButtonIcon: { legacyTestId: true } }}
       />,
     );
 

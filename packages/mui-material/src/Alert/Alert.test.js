@@ -218,7 +218,7 @@ describe('<Alert />', () => {
           MuiAlert: {
             defaultProps: {
               iconMapping: {
-                warning: <AlarmIcon fontSize="inherit" />,
+                warning: <AlarmIcon fontSize="inherit" legacyTestId />,
               },
             },
           },

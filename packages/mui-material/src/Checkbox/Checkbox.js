@@ -110,7 +110,7 @@ const CheckboxRoot = styled(SwitchBase, {
 
 const defaultCheckedIcon = <CheckBoxIcon />;
 const defaultIcon = <CheckBoxOutlineBlankIcon />;
-const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
+const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon legacyTestId />;
 
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiCheckbox' });

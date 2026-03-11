@@ -103,7 +103,11 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
       {...other}
     >
       {openIconProp ? formatIcon(openIconProp, classes.openIcon) : null}
-      {iconProp ? formatIcon(iconProp, classes.icon) : <AddIcon className={classes.icon} />}
+      {iconProp ? (
+        formatIcon(iconProp, classes.icon)
+      ) : (
+        <AddIcon className={classes.icon} legacyTestId />
+      )}
     </SpeedDialIconRoot>
   );
 });
