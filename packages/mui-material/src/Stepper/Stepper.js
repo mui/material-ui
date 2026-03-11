@@ -122,7 +122,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     orientation,
     isRtl,
   });
-  const rovingTabIndexContainerProps = getContainerProps();
+  const rovingTabIndexContainerProps = getContainerProps(ref);
 
   const contextValue = React.useMemo(
     () => ({
