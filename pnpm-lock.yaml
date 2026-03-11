@@ -1572,9 +1572,6 @@ importers:
       chai:
         specifier: 6.2.2
         version: 6.2.2
-      chance:
-        specifier: ^1.1.13
-        version: 1.1.13
       docs:
         specifier: workspace:^
         version: link:../docs
@@ -1602,9 +1599,6 @@ importers:
       react-router:
         specifier: 7.13.1
         version: 7.13.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react-virtuoso:
-        specifier: ^4.18.1
-        version: 4.18.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-window:
         specifier: 2.2.7
         version: 2.2.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
