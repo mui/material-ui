@@ -329,6 +329,10 @@ const pages: MuiPage[] = [
             title: 'Upgrade to v7: getting started',
           },
           {
+            pathname: '/material-ui/migration/v7/migrating-from-deprecated-apis',
+            title: 'Migrating from deprecated APIs',
+          },
+          {
             pathname: '/material-ui/migration/upgrade-to-native-color',
             title: 'Native color',
           },
