@@ -1,5 +1,33 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-alpha.3
+
+<!-- generated comparing v9.0.0-alpha.2..master -->
+
+_Mar 11, 2026_
+
+A big thanks to the 8 contributors who made this release possible. Here are some highlights ✨:
+
+- [autocomplete] Add `root` slot (#47852) @GerardasB
+- [autocomplete] Fix popup reopening on window focus regain with openOnFocus (#47790) @aman44444
+- [autocomplete] Support full slots for clearIndicator and popupIndicator (#47891) @silviuaavram
+- [material-ui] Partially revert "[material-ui] Clean up duplicated CSS rules (#47838)" (#47927) @sai6855
+
+### Docs
+
+- [docs] Update faq about vendor chunks (#47747) @Janpot
+- [docs][menubar] Add Menubar component page (#47616) @siriwatknp
+
+### Core
+
+- [core] Remove Joy UI code and docs (#47939) @mnajdova
+- [code-infra] Add previously missed export of themeCssVarsAugmentation (#47918) @brijeshb42
+- [docs-infra] Import font module for nextjs transpilation (#47935) @brijeshb42
+- [docs-infra] Migrate simpler modules from docs to mui-docs (#47897) @brijeshb42
+- [test] Fix detached anchorEl elements in tests (#47929) @Janpot
+
+All contributors of this release in alphabetical order: @aman44444, @brijeshb42, @GerardasB, @Janpot, @mnajdova, @sai6855, @silviuaavram, @siriwatknp
+
 ## 9.0.0-alpha.2
 
 <!-- generated comparing v9.0.0-alpha.1..master -->
