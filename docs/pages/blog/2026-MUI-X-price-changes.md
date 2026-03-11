@@ -19,7 +19,7 @@ Changes include:
 - Priority support available only to Enterprise customers
 - Security questionnaires and custom agreements available for orders above $12,000 USD
 - Premium self-service for purchases of up to 15 seats
-- Grandfathering for existing **v8 license renewals**
+- Grandfathering for existing **v8 licenses**
 
 ## Why we're updating pricing
 
@@ -33,22 +33,24 @@ This post breaks down everything you need to know about the changes. You can als
 
 We value our loyal customers and want to ensure a smooth transition.
 
-Customers with **active MUI X v8 licenses** can continue using v8 and renew those licenses at the **previous pricing**.
+### Annual licenses
 
-If you want to upgrade to **MUI X v9**, you will need to request a **new v9 license key**, since **v8 license keys will not work with v9**. The new key will keep the **same expiration date** as your current license, so upgrading does not reset or extend your license period.
+Customers with active MUI X **v8 licenses** can continue using v8 and either renew their annual licenses or extend their perpetual support and maintenance plans at the **previous pricing**.
+
+If you want to upgrade to **MUI X v9**, you will need to request a **new v9 license key**, since v8 license keys will **not** work with v9. The new key will have the **same expiration date** as your current license, so upgrading does not reset or extend your license period.
 
 When your license term expires, you will have two options:
 
-- **Renew your v9 license** at the **new price**, with a **discount applied to the first renewal**
-- **Renew your v8 license** at the **previous price**, continuing to use v8
+- Renew your v9 license at the **new price**, with a discount applied to the **first** renewal
+- Renew your v8 license at the **previous price**
 
-This means existing customers can **move to v9 whenever they're ready**, while still keeping the option to stay on v8 under the previous pricing.
+This means existing customers can move to v9 whenever they're ready, or stay on v8 at the previous pricing.
 
 ### Perpetual licenses
 
-Customers with **perpetual licenses** can also request a **v9 license key**. This key will grant access to all **v9 versions released before your support expiration date listed on your license key**. It does not extend your maintenance and support access beyond the original date of your order.
+Customers with perpetual licenses can also request a **new v9 license key**. This key will grant access to all v9 versions released **before** your support and maintenance expiration date listed on your license key. It does not extend your maintenance and support access beyond the original date of your order.
 
-If you want to upgrade to **new versions released after your access to maintenance expires**, or if you'd like to extend support for v9, you will need to **extend your maintenance and support at the new pricing**. You are welcome to extend maintenance and support for v8 versions released before April 8th, 2026 at the **previous pricing**.
+If you want to upgrade to new versions released **after** your access to maintenance expires, or if you'd like to extend support for v9, you will need to extend your maintenance and support at the **new pricing**. You are welcome to extend maintenance and support for v8 versions released before April 8th, 2026 at the previous pricing.
 
 If you're unsure how these changes apply to your team, please reach out to us at **sales@mui.com** and we'll be happy to help.
 
