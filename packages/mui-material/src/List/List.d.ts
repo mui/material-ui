@@ -56,8 +56,9 @@ export type ExtendList<TypeMap extends OverridableTypeMap> = OverridableComponen
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
- * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
+ * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *

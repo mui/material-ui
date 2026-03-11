@@ -68,8 +68,9 @@ export interface DividerTypeMap<
  *
  * Demos:
  *
- * - [Divider](https://mui.com/material-ui/react-divider/)
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Divider](https://next.mui.com/material-ui/react-divider/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
  *
  * API:
  *

@@ -51,7 +51,8 @@ export interface ListSubheaderTypeMap<
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
  *
  * API:
  *

@@ -7,7 +7,8 @@ import { Theme as MaterialTheme } from '../styles';
  *
  * Demos:
  *
- * - [Box](https://mui.com/material-ui/react-box/)
+ * - [Box](https://next.mui.com/material-ui/react-box/)
+ * - [Menubar](https://next.mui.com/material-ui/react-menubar/)
  *
  * API:
  *
