@@ -21,9 +21,9 @@ The following steps must be proposed as a pull request.
 
 1. Fetch the upstream tags: `git fetch upstream --tags`.
 2. Update the root `/package.json`'s version.
-3. Generate the changelog with `pnpm release:changelog`
-   The output must be prepended to the top level `CHANGELOG.md`
-   `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
+3. Generate the changelog with `pnpm release:changelog`:
+   - The output must be prepended to the top level `CHANGELOG.md`
+   - `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
 4. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable
