@@ -164,7 +164,8 @@ async function main() {
       it('should integrate with react-virtuoso', async () => {
         const testcase = await renderFixture('/regression-Table/ReactVirtualizedTable');
         await page.waitForSelector('[data-index="1"]');
-        await takeScreenshot({ testcase, route: '/regression-Table/ReactVirtualizedTable1' });
+        // Override the existing screenshot with the one after the rows have loaded to avoid flakiness during loading
+        await takeScreenshot({ testcase, route: '/regression-Table/ReactVirtualizedTable' });
       });
     });
 
