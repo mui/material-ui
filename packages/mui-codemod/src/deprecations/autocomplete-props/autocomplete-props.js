@@ -282,9 +282,11 @@ export default function transformer(file, api, options) {
       path.prune();
     });
 
-  defaultPropsPathCollection.find(j.ObjectProperty, { key: { name: 'renderTags' } }).forEach((path) => {
-    renameRenderTagsProp(j, path);
-  });
+  defaultPropsPathCollection
+    .find(j.ObjectProperty, { key: { name: 'renderTags' } })
+    .forEach((path) => {
+      renameRenderTagsProp(j, path);
+    });
 
   renameUseAutocompleteReturnMembers(j, root);
 
