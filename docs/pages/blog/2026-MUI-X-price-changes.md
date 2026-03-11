@@ -37,7 +37,7 @@ Customers with **active MUI X v8 licenses** can continue using v8 and renew tho
 
 If you want to upgrade to **MUI X v9**, you will need to request a **new v9 license key**, since **v8 license keys will not work with v9**. The new key will keep the **same expiration date** as your current license, so upgrading does not reset or extend your license period.
 
-When your license reaches its renewal date, you will have two options:
+When your license term expires, you will have two options:
 
 - **Renew your v9 license** at the **new price**, with a **discount applied to the first renewal**
 - **Renew your v8 license** at the **previous price**, continuing to use v8
@@ -46,9 +46,9 @@ This means existing customers can **move to v9 whenever they're ready**, while s
 
 ### Perpetual licenses
 
-Customers with **perpetual licenses** can also request a **v9 license key**. This key will grant access to all **v9 versions released before the expiration date listed in the license key**.
+Customers with **perpetual licenses** can also request a **v9 license key**. This key will grant access to all **v9 versions released before your support expiration date listed on your license key**. It does not extend your maintenance and support access beyond the original date of your order.
 
-If you want access to **new versions released after that date**, you will need to **renew the license at the new pricing**.
+If you want to upgrade to **new versions released after your access to maintenance expires**, or if you'd like to extend support for v9, you will need to **extend your maintenance and support at the new pricing**. You are welcome to extend maintenance and support for v8 versions released before April 8th, 2026 at the **previous pricing**.
 
 If you're unsure how these changes apply to your team, please reach out to us at **sales@mui.com** and we'll be happy to help.
 
