@@ -4,7 +4,6 @@ export type MuiProductId =
   | 'null'
   | 'base-ui'
   | 'material-ui'
-  | 'joy-ui'
   | 'system'
   | 'docs-infra'
   | 'docs'

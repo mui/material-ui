@@ -13,15 +13,11 @@ import createEmotionCache from '@mui/docs/createEmotionCache';
 import findActivePage from '@mui/docs/findActivePage';
 import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
 import { mapTranslations } from '@mui/docs/i18n';
-import joyPkgJson from '@mui/joy/package.json';
-import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import materialPkgJson from '@mui/material/package.json';
 import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';
 import docsInfraPages from 'docs/data/docs-infra/pages';
 import generalDocsPages from 'docs/data/docs/pages';
-import joyPages from 'docs/data/joy/pages';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
 import SvgMuiLogomark, {
@@ -145,34 +141,6 @@ Tip: you can access the documentation \`theme\` object directly in the console.
     'font-family:monospace;color:#1976d2;font-size:12px;',
   );
 }
-/**
- * Joy UI iframe wrapper for demos.
- * Creates a Joy theme and syncs color scheme attribute.
- */
-function JoyIframeWrapper({ children, document: iframeDocument, isolated }) {
-  const { mode, systemMode } = useJoyColorScheme();
-
-  const iframeTheme = React.useMemo(() => {
-    if (isolated) {
-      return null;
-    }
-    return extendTheme();
-  }, [isolated]);
-
-  // Joy-specific: sync color scheme attribute
-  React.useEffect(() => {
-    if (!isolated && iframeDocument) {
-      iframeDocument.documentElement.setAttribute('data-joy-color-scheme', systemMode || mode);
-    }
-  }, [iframeDocument, mode, systemMode, isolated]);
-
-  return (
-    <React.Fragment>
-      {iframeTheme && <GlobalStyles styles={iframeTheme.generateStyleSheets?.()} />}
-      {children}
-    </React.Fragment>
-  );
-}
 
 /**
  * Generates root index template for Material UI demos.
@@ -188,27 +156,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <Demo />
-    </StyledEngineProvider>
-  </React.StrictMode>
-);`;
-}
-
-/**
- * Generates root index template for Joy UI demos.
- */
-function getJoyRootIndex(codeVariant) {
-  const type = codeVariant === 'TS' ? '!' : '';
-  return `import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
-import Demo from './Demo';
-
-ReactDOM.createRoot(document.querySelector("#root")${type}).render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <CssVarsProvider>
-        <Demo />
-      </CssVarsProvider>
     </StyledEngineProvider>
   </React.StrictMode>
 );`;
@@ -267,17 +214,6 @@ function AppWrapper(props) {
             href: `https://mui.com${languagePrefix}/versions/`,
           },
         ],
-      };
-    }
-
-    if (productId === 'joy-ui') {
-      return {
-        metadata: '',
-        name: 'Joy UI',
-        logo: SvgMuiLogomark,
-        logoSvg: muiSvgLogoString,
-        wordmarkSvg: muiSvgWordmarkString,
-        versions: [{ text: `v${joyPkgJson.version}`, current: true }],
       };
     }
 
@@ -358,8 +294,6 @@ function AppWrapper(props) {
     let pages = generalDocsPages;
     if (productId === 'material-ui') {
       pages = materialPages;
-    } else if (productId === 'joy-ui') {
-      pages = joyPages;
     } else if (productId === 'system') {
       pages = systemPages;
     } else if (productId === 'docs-infra') {
@@ -380,17 +314,6 @@ function AppWrapper(props) {
 
   // Demo context value - provides product-specific configuration for demos
   const demoContextValue = React.useMemo(() => {
-    if (productId === 'joy-ui') {
-      return {
-        productDisplayName: 'Joy UI',
-        IframeWrapper: JoyIframeWrapper,
-        csb: {
-          primaryPackage: '@mui/joy',
-          getRootIndex: getJoyRootIndex,
-        },
-      };
-    }
-
     // Determine display name based on productId
     let productDisplayName = 'Material UI';
     if (productId === 'system') {
