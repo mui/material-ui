@@ -3,8 +3,20 @@ import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Pagination, { paginationClasses as classes } from '@mui/material/Pagination';
-import { paginationItemClasses } from '@mui/material/PaginationItem';
+import PaginationItem, { paginationItemClasses } from '@mui/material/PaginationItem';
 import describeConformance from '../../test/describeConformance';
+
+const renderItemWithTestIds = (item) => (
+  <PaginationItem
+    {...item}
+    slotProps={{
+      previous: { 'data-testid': 'previous-icon' },
+      next: { 'data-testid': 'next-icon' },
+      first: { 'data-testid': 'first-icon' },
+      last: { 'data-testid': 'last-icon' },
+    }}
+  />
+);
 
 describe('<Pagination />', () => {
   const { render } = createRenderer();
@@ -65,18 +77,24 @@ describe('<Pagination />', () => {
           direction: 'rtl',
         })}
       >
-        <Pagination count={5} page={3} showFirstButton showLastButton />
+        <Pagination
+          count={5}
+          page={3}
+          showFirstButton
+          showLastButton
+          renderItem={renderItemWithTestIds}
+        />
       </ThemeProvider>,
     );
 
     const buttons = screen.getAllByRole('button');
 
-    expect(buttons[0].querySelector('svg')).to.have.attribute('data-testid', 'pagination-item-icon');
-    expect(buttons[1].querySelector('svg')).to.have.attribute('data-testid', 'pagination-item-icon');
+    expect(buttons[0].querySelector('[data-testid="last-icon"]')).not.to.equal(null);
+    expect(buttons[1].querySelector('[data-testid="next-icon"]')).not.to.equal(null);
     expect(buttons[2].textContent).to.equal('1');
     expect(buttons[6].textContent).to.equal('5');
-    expect(buttons[7].querySelector('svg')).to.have.attribute('data-testid', 'pagination-item-icon');
-    expect(buttons[8].querySelector('svg')).to.have.attribute('data-testid', 'pagination-item-icon');
+    expect(buttons[7].querySelector('[data-testid="previous-icon"]')).not.to.equal(null);
+    expect(buttons[8].querySelector('[data-testid="first-icon"]')).not.to.equal(null);
   });
 
   it('renders correct amount of buttons on correct order when boundaryCount is zero', () => {
@@ -86,15 +104,21 @@ describe('<Pagination />', () => {
           direction: 'rtl',
         })}
       >
-        <Pagination count={11} defaultPage={6} siblingCount={1} boundaryCount={0} />
+        <Pagination
+          count={11}
+          defaultPage={6}
+          siblingCount={1}
+          boundaryCount={0}
+          renderItem={renderItemWithTestIds}
+        />
       </ThemeProvider>,
     );
 
     const buttons = screen.getAllByRole('button');
-    expect(buttons[4].querySelector('svg')).to.have.attribute('data-testid', 'pagination-item-icon');
+    expect(buttons[4].querySelector('[data-testid="previous-icon"]')).not.to.equal(null);
     expect(buttons[1].textContent).to.equal('5');
     expect(buttons[2].textContent).to.equal('6');
     expect(buttons[3].textContent).to.equal('7');
-    expect(buttons[0].querySelector('svg')).to.have.attribute('data-testid', 'pagination-item-icon');
+    expect(buttons[0].querySelector('[data-testid="next-icon"]')).not.to.equal(null);
   });
 });
