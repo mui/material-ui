@@ -114,6 +114,7 @@ async function main() {
         }
 
         const testcase = await renderFixture(route);
+        this?.timeout?.(100);
         await takeScreenshot({ testcase, route });
       });
     });
