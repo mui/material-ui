@@ -1,6 +1,6 @@
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from 'docs/data/material/pagesApi';
-import { MuiPage } from 'docs/src/MuiPage';
+import { MuiPage } from '@mui/docs/MuiPage';
 
 const pages: MuiPage[] = [
   {
@@ -97,6 +97,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-drawer' },
           { pathname: '/material-ui/react-link' },
           { pathname: '/material-ui/react-menu' },
+          { pathname: '/material-ui/react-menubar', newFeature: true },
           { pathname: '/material-ui/react-pagination' },
           { pathname: '/material-ui/react-speed-dial', title: 'Speed Dial' },
           { pathname: '/material-ui/react-stepper' },

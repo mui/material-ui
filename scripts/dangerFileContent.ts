@@ -55,11 +55,6 @@ function addDeployPreviewUrls() {
     if (url.startsWith('/material')) {
       // needs to convert to correct material legacy folder structure to the existing url.
       url = replaceUrl(url.replace('/material', ''), '/material-ui').replace(/^\//, '');
-    } else {
-      url = url
-        .replace(/^\//, '') // remove initial `/`
-        .replace('joy/', 'joy-ui/')
-        .replace('components/', 'react-');
     }
 
     return url;

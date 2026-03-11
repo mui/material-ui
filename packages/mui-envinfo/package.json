@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.46",
+  "version": "2.0.47",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
   "bin": "./src/envinfo.js",

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { throttle } from 'es-toolkit/function';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';
-import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContents, { NavItem } from 'docs/src/modules/components/TableOfContents';
 import MiniTableOfContents from 'docs/src/modules/components/MiniTableOfContents';
+import { samePageLinkNavigation } from '@mui/docs/Link';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',

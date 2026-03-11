@@ -31,7 +31,7 @@ export default function SpacingGrid() {
         '&& pre': { margin: 0 },
       }}
     >
-      <Grid container justifyContent="center" spacing={spacing}>
+      <Grid container sx={{ justifyContent: 'center' }} spacing={spacing}>
         {[0, 1, 2].map((value) => (
           <Grid key={value}>
             <Paper

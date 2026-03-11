@@ -1,5 +1,5 @@
-import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
+import { CODE_VARIANTS } from '@mui/docs/constants';
+import type { SandboxConfig } from '@mui/docs/DemoContext';
 import { DemoData } from './types';
 
 const packagesWithBundledTypes = [
@@ -110,7 +110,6 @@ export default function SandboxDependencies(
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
-      '@mui/joy': getMuiPackageVersion('joy'),
     };
 
     // Allow product-specific version overrides via context config

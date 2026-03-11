@@ -20,13 +20,13 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
-import PageContext, { ProductVersion } from 'docs/src/modules/components/PageContext';
+import { pageToTitleI18n } from '@mui/docs/helpers';
+import PageContext, { ProductVersion } from '@mui/docs/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import SideNavigationBanner from 'docs/src/components/banner/SideNavigationBanner';
-import { MuiPage } from 'docs/src/MuiPage';
+import { MuiPage } from '@mui/docs/MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme: Theme) {
@@ -500,7 +500,7 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
               flexShrink: 0,
               borderTop: '1px solid',
               borderColor: 'divider',
-              p:1,
+              p: 1,
               display: 'flex',
               flexDirection: 'column',
               gap: 1,

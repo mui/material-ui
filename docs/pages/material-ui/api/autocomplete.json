@@ -205,14 +205,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object }"
+        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ listbox?: elementType, paper?: elementType, popper?: elementType }"
+        "description": "{ clearIndicator?: elementType, listbox?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType }"
       },
       "default": "{}"
     },
@@ -231,6 +231,24 @@
     "import { Autocomplete } from '@mui/material';"
   ],
   "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiAutocomplete-root"
+    },
+    {
+      "name": "clearIndicator",
+      "description": "The component used to render the clear indicator element.",
+      "default": "IconButton",
+      "class": "MuiAutocomplete-clearIndicator"
+    },
+    {
+      "name": "popupIndicator",
+      "description": "The component used to render the popup indicator element.",
+      "default": "IconButton",
+      "class": "MuiAutocomplete-popupIndicator"
+    },
     {
       "name": "listbox",
       "description": "The component used to render the listbox.",
@@ -251,12 +269,6 @@
     }
   ],
   "classes": [
-    {
-      "key": "clearIndicator",
-      "className": "MuiAutocomplete-clearIndicator",
-      "description": "Styles applied to the clear indicator.",
-      "isGlobal": false
-    },
     {
       "key": "endAdornment",
       "className": "MuiAutocomplete-endAdornment",
@@ -354,21 +366,9 @@
       "isGlobal": false
     },
     {
-      "key": "popupIndicator",
-      "className": "MuiAutocomplete-popupIndicator",
-      "description": "Styles applied to the popup indicator.",
-      "isGlobal": false
-    },
-    {
       "key": "popupIndicatorOpen",
       "className": "MuiAutocomplete-popupIndicatorOpen",
       "description": "Styles applied to the popup indicator if the popup is open.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiAutocomplete-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

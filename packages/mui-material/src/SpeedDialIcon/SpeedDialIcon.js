@@ -62,6 +62,10 @@ const SpeedDialIconRoot = styled('span', {
           [`& .${speedDialIconClasses.icon}`]: {
             transform: 'rotate(45deg)',
           },
+          [`& .${speedDialIconClasses.openIcon}`]: {
+            transform: 'rotate(0deg)',
+            opacity: 1,
+          },
         },
       },
       {
@@ -69,15 +73,6 @@ const SpeedDialIconRoot = styled('span', {
         style: {
           [`& .${speedDialIconClasses.icon}`]: {
             opacity: 0,
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.open,
-        style: {
-          [`& .${speedDialIconClasses.openIcon}`]: {
-            transform: 'rotate(0deg)',
-            opacity: 1,
           },
         },
       },

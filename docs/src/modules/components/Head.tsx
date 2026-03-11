@@ -3,7 +3,7 @@ import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import { LANGUAGES_SSR } from 'docs/config';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 
 // #host-reference
 const HOST = process.env.PULL_REQUEST_ID

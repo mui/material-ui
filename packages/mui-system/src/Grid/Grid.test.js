@@ -154,16 +154,6 @@ describe('System <Grid />', () => {
     });
   });
 
-  it('combines system properties with the sx prop', () => {
-    const { container } = render(<Grid mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
-
-    expect(container.firstChild).toHaveComputedStyle({
-      marginTop: '16px',
-      marginRight: '40px',
-      marginBottom: '16px',
-    });
-  });
-
   describe('prop: wrap', () => {
     it('should wrap by default', () => {
       render(<Grid container data-testid="wrap" />);
@@ -244,40 +234,6 @@ describe('System <Grid />', () => {
 
       expect(container.lastChild).to.have.class('MuiGrid-spacing-tablet-2');
       expect(container.lastChild).to.have.class('MuiGrid-spacing-laptop-4');
-    });
-  });
-
-  describe('legacy Grid component warnings', () => {
-    it('should warn once if the `item` prop is used', () => {
-      expect(() => {
-        render(<Grid item />);
-      }).toWarnDev(
-        'MUI Grid: The `item` prop has been removed and is no longer necessary. You can safely remove it.',
-      );
-
-      // Should not warn again
-      expect(() => {
-        render(<Grid item />);
-      }).not.toWarnDev();
-    });
-
-    it('should warn if the `zeroMinWidth` prop is used', () => {
-      expect(() => {
-        render(<Grid zeroMinWidth />);
-      }).toWarnDev(
-        'MUI Grid: The `zeroMinWidth` prop has been removed and is no longer necessary. You can safely remove it.',
-      );
-    });
-
-    createTheme({}).breakpoints.keys.forEach((breakpoint) => {
-      it(`should warn if the \`${breakpoint}\` prop is used`, () => {
-        expect(() => {
-          render(<Grid {...{ [breakpoint]: 8 }} />);
-        }).toWarnDev(
-          // #host-reference
-          `MUI Grid: The \`${breakpoint}\` prop has been removed. See https://next.mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`,
-        );
-      });
     });
   });
 });

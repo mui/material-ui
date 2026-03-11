@@ -23,3 +23,13 @@ The steps you need to take to migrate from MUI System v7 to v9 are described b
 This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
+
+### Grid
+
+The Grid component no longer supports system props.
+Use the `sx` prop instead:
+
+```diff
+-<Grid mt={2} mr={1} />
++<Grid sx={{ mt: 2, mr: 1 }} />
+```

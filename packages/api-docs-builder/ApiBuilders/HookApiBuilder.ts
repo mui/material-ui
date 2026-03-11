@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
@@ -231,7 +230,7 @@ const attachTable = (
 ) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
   const parameters: HookReactApi[typeof tableName] = params
-    .map((p) => {
+    .flatMap((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
       try {
@@ -242,7 +241,7 @@ const attachTable = (
       }
       if (prop === null) {
         // have to delete `componentProps.undefined` later
-        return [] as any;
+        return [];
       }
 
       const defaultTag = propDescriptor.tags?.default;
@@ -251,23 +250,26 @@ const attachTable = (
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
       const typeDescription = escapeEntities(propDescriptor.typeStr ?? '');
-      return {
-        [propName]: {
-          type: {
-            // The docgen generates this structure for the components. For consistency in the structure
-            // we are adding the same value in both the name and the description
-            name: typeDescription,
-            description: typeDescription,
+      return [
+        {
+          [propName]: {
+            type: {
+              // The docgen generates this structure for the components. For consistency in the structure
+              // we are adding the same value in both the name and the description
+              name: typeDescription,
+              description: typeDescription,
+            },
+            default: defaultValue,
+            // undefined values are not serialized => saving some bytes
+            required: requiredProp || undefined,
+            deprecated: !!deprecation || undefined,
+            deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
           },
-          default: defaultValue,
-          // undefined values are not serialized => saving some bytes
-          required: requiredProp || undefined,
-          deprecated: !!deprecation || undefined,
-          deprecationInfo: renderMarkdown(deprecation?.groups?.info || '').trim() || undefined,
         },
-      };
+      ];
     })
-    .reduce((acc, curr) => ({ ...acc, ...curr }), {}) as unknown as HookReactApi['parametersTable'];
+    .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+
   if (propErrors.length > 0) {
     throw new Error(
       `There were errors creating prop descriptions:\n${propErrors
@@ -277,9 +279,6 @@ const attachTable = (
         .join('\n')}`,
     );
   }
-
-  // created by returning the `[]` entry
-  delete parameters.undefined;
 
   reactApi[tableName] = parameters;
 };
@@ -426,23 +425,24 @@ export default async function generateHookApi(
     return null;
   }
 
-  const reactApi: HookReactApi = docgenParse(
-    src,
-    (ast) => {
-      let node;
-      astTypes.visit(ast, {
-        visitFunctionDeclaration: (functionPath) => {
-          if (functionPath.node?.id?.name === name) {
-            node = functionPath;
-          }
-          return false;
-        },
-      });
-      return node;
+  const results = docgenParse(src, {
+    resolver: {
+      resolve(file) {
+        const foundPaths: any[] = [];
+        file.traverse({
+          FunctionDeclaration(funcPath) {
+            if (funcPath.node.id?.name === name) {
+              foundPaths.push(funcPath);
+            }
+          },
+        });
+        return foundPaths;
+      },
     },
-    defaultHandlers,
-    { filename },
-  );
+    handlers: defaultHandlers,
+    filename,
+  });
+  const reactApi: HookReactApi = results[0] as HookReactApi;
 
   const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
   const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);

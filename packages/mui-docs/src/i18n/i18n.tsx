@@ -128,7 +128,9 @@ export function useTranslate(): Translate {
         const translation = getPath(wordings, key);
 
         if (!translation) {
-          warn(userLanguage, key, ignoreWarning);
+          if (process.env.NODE_ENV !== 'production') {
+            warn(userLanguage, key, ignoreWarning);
+          }
 
           const enTranslation = getPath(translations.en, key);
           return enTranslation ?? null;

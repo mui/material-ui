@@ -18,7 +18,7 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
-import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const Main = styled('main', {

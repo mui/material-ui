@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "9.0.0-alpha.0",
+  "version": "9.0.0-alpha.2",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
   "keywords": [
@@ -30,7 +30,7 @@
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
-    "attw": "attw --pack ./build"
+    "attw": "attw --pack ./build --entrypoints \".\" \"Button\" \"styles\" \"utils\""
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
@@ -58,7 +58,7 @@
     "fast-glob": "3.3.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-router": "7.13.0",
+    "react-router": "7.13.1",
     "sinon": "21.0.1"
   },
   "peerDependencies": {
@@ -109,6 +109,7 @@
     "./PigmentContainer": "./src/PigmentContainer/index.ts",
     "./PigmentGrid": "./src/PigmentGrid/index.ts",
     "./PigmentStack": "./src/PigmentStack/index.ts",
+    "./themeCssVarsAugmentation": "./src/themeCssVarsAugmentation/index.ts",
     "./transitions": "./src/transitions/index.ts",
     "./useLazyRipple": "./src/useLazyRipple/index.ts",
     "./version": "./src/version/index.ts",

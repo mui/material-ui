@@ -1,7 +1,7 @@
 'use client';
 import PropTypes from 'prop-types';
 import { createGrid } from '@mui/system/Grid';
-import { SxProps, SystemProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
 import { Theme, styled, Breakpoint } from '../styles';
@@ -103,7 +103,7 @@ export interface GridBaseProps {
 }
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<Theme> | undefined } & SystemProps<Theme>;
+  props: P & GridBaseProps & { sx?: SxProps<Theme> | undefined };
   defaultComponent: D;
 }
 
