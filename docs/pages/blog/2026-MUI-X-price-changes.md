@@ -42,7 +42,7 @@ When your license reaches its renewal date, you will have two options:
 - **Renew your v9 license** at the **new price**, with a **discount applied to the first renewal**
 - **Renew your v8 license** at the **previous price**, continuing to use v8
 
-This means existing customers can **move to v9 whenever they’re ready**, while still keeping the option to stay on v8 under the previous pricing.
+This means existing customers can **move to v9 whenever they're ready**, while still keeping the option to stay on v8 under the previous pricing.
 
 ### Perpetual licenses
 
