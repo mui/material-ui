@@ -16,12 +16,12 @@ export type UseRovingTabIndexOptions = {
 type UseRovingTabIndexReturn = {
   getItemProps: (
     index: number,
-    ref?: React.RefObject<HTMLElement>,
+    ref?: React.Ref<HTMLElement>,
   ) => {
     ref: (element: HTMLElement | null) => void;
     tabIndex: number;
   };
-  getContainerProps: () => {
+  getContainerProps: (ref?: React.Ref<HTMLElement>) => {
     onFocus: (event: React.FocusEvent<HTMLElement>) => void;
     onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => void;
     ref: (element: HTMLElement | null) => void;
@@ -96,79 +96,82 @@ export default function useRovingTabIndex(
     [focusableIndex],
   );
 
-  const getContainerProps = React.useCallback(() => {
-    const onFocus = (event: React.FocusEvent<HTMLElement>) => {
-      const focusedElement = event.target;
-      const focusedIndex = elementsRef.current.findIndex((ref) => ref === focusedElement);
+  const getContainerProps = React.useCallback(
+    (ref?: React.Ref<HTMLElement>) => {
+      const onFocus = (event: React.FocusEvent<HTMLElement>) => {
+        const focusedElement = event.target;
+        const focusedIndex = elementsRef.current.findIndex((element) => element === focusedElement);
 
-      if (focusedIndex !== -1) {
-        setFocusableIndex(focusedIndex);
-      }
-    };
+        if (focusedIndex !== -1) {
+          setFocusableIndex(focusedIndex);
+        }
+      };
 
-    const onKeyDown = (event: React.KeyboardEvent<HTMLElement | null>) => {
-      if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
-        return;
-      }
-
-      if (!SUPPORTED_KEYS.includes(event.key)) {
-        return;
-      }
-
-      let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
-      let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
-
-      if (orientation === 'horizontal' && isRtl) {
-        // swap previousItemKey with nextItemKey
-        previousItemKey = 'ArrowRight';
-        nextItemKey = 'ArrowLeft';
-      }
-
-      const currentFocus = getActiveElement(ownerDocument(containerRef.current));
-      const isFocusOnContainer = currentFocus === containerRef.current;
-      let direction: 'next' | 'previous' = 'next';
-      let currentIndex = focusableIndex;
-
-      switch (event.key) {
-        case previousItemKey:
-          direction = 'previous';
-          event.preventDefault();
-
-          if (isFocusOnContainer) {
-            currentIndex = elementsRef.current.length;
-          }
-          break;
-        case nextItemKey:
-          event.preventDefault();
-
-          if (isFocusOnContainer) {
-            currentIndex = -1;
-          }
-          break;
-        case 'Home':
-          event.preventDefault();
-          currentIndex = -1;
-          break;
-        case 'End':
-          event.preventDefault();
-          direction = 'previous';
-          currentIndex = elementsRef.current.length;
-          break;
-        default:
+      const onKeyDown = (event: React.KeyboardEvent<HTMLElement | null>) => {
+        if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
           return;
-      }
+        }
 
-      focusNext(elementsRef, currentIndex, direction, shouldWrap, shouldFocus);
-    };
+        if (!SUPPORTED_KEYS.includes(event.key)) {
+          return;
+        }
 
-    return {
-      onFocus,
-      onKeyDown,
-      ref: handleRefs(containerRef, (elementNode) => {
-        containerRef.current = elementNode;
-      }),
-    };
-  }, [focusableIndex, isRtl, orientation, shouldWrap, shouldFocus]);
+        let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
+        let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+
+        if (orientation === 'horizontal' && isRtl) {
+          // swap previousItemKey with nextItemKey
+          previousItemKey = 'ArrowRight';
+          nextItemKey = 'ArrowLeft';
+        }
+
+        const currentFocus = getActiveElement(ownerDocument(containerRef.current));
+        const isFocusOnContainer = currentFocus === containerRef.current;
+        let direction: 'next' | 'previous' = 'next';
+        let currentIndex = focusableIndex;
+
+        switch (event.key) {
+          case previousItemKey:
+            direction = 'previous';
+            event.preventDefault();
+
+            if (isFocusOnContainer) {
+              currentIndex = elementsRef.current.length;
+            }
+            break;
+          case nextItemKey:
+            event.preventDefault();
+
+            if (isFocusOnContainer) {
+              currentIndex = -1;
+            }
+            break;
+          case 'Home':
+            event.preventDefault();
+            currentIndex = -1;
+            break;
+          case 'End':
+            event.preventDefault();
+            direction = 'previous';
+            currentIndex = elementsRef.current.length;
+            break;
+          default:
+            return;
+        }
+
+        focusNext(elementsRef, currentIndex, direction, shouldWrap, shouldFocus);
+      };
+
+      return {
+        onFocus,
+        onKeyDown,
+        ref: handleRefs(ref, (elementNode) => {
+          containerRef.current = elementNode;
+        }),
+      };
+    },
+    [focusableIndex, isRtl, orientation, shouldWrap, shouldFocus],
+  );
 
   const focusNextExport = React.useCallback(
     (shouldFocusOverride: ((element: HTMLElement | null) => boolean) | undefined) => {

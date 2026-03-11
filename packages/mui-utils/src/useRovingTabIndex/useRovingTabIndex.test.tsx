@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
@@ -700,5 +701,37 @@ describe('useRovingTabIndex', () => {
 
     expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('-1');
     expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('0');
+  });
+
+  test('passing refs to the container and items should not break the hook', () => {
+    const containerRef = { current: null } as React.RefObject<HTMLDivElement | null>;
+    const buttonRef = { current: null } as React.RefObject<HTMLButtonElement | null>;
+    const TestComponentWithRef = React.forwardRef<
+      HTMLDivElement,
+      { buttonRef: React.Ref<HTMLButtonElement> }
+    >((props, ref) => {
+      const { getItemProps, getContainerProps } = useRovingTabIndex({
+        orientation: 'horizontal',
+        ...props,
+      });
+
+      return (
+        <div data-testid="container" tabIndex={-1} {...getContainerProps(ref)}>
+          <button {...getItemProps(0, props.buttonRef)} data-testid="button-1">
+            Button 1
+          </button>
+          <button {...getItemProps(1)} data-testid="button-2">
+            Button 2
+          </button>
+        </div>
+      );
+    });
+
+    render(<TestComponentWithRef ref={containerRef} buttonRef={buttonRef} />);
+
+    expect(screen.getByTestId('button-1').getAttribute('tabindex')).to.equal('0');
+    expect(screen.getByTestId('button-2').getAttribute('tabindex')).to.equal('-1');
+    expect(containerRef.current).to.equal(screen.getByTestId('container'));
+    expect(buttonRef.current).to.equal(screen.getByTestId('button-1'));
   });
 });
