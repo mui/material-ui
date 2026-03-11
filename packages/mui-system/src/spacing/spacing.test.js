@@ -1,8 +1,6 @@
 import { expect } from 'chai';
 import spacing, { margin, padding } from './spacing';
 
-const createTheme = (theme) => ({ ...theme, internal_cache: {} });
-
 describe('system spacing', () => {
   describe('spacing', () => {
     describe('themeTransformer', () => {
@@ -15,25 +13,25 @@ describe('system spacing', () => {
 
       it('should be able to customize the unit value', () => {
         const output1 = spacing({
-          theme: createTheme({
+          theme: {
             spacing: 2,
-          }),
+          },
           p: 2,
         });
         expect(output1).to.deep.equal({ padding: 4 });
 
         const output2 = spacing({
-          theme: createTheme({
+          theme: {
             spacing: [0, 3, 5, 8, 13, 21], // Fibonacci
-          }),
+          },
           p: 1,
         });
         expect(output2).to.deep.equal({ padding: 3 });
 
         const output3 = spacing({
-          theme: createTheme({
+          theme: {
             spacing: (x) => x ** 2,
-          }),
+          },
           p: 2,
         });
         expect(output3).to.deep.equal({ padding: 4 });
@@ -41,9 +39,9 @@ describe('system spacing', () => {
 
       it('should be able to use string value', () => {
         const output1 = spacing({
-          theme: createTheme({
+          theme: {
             spacing: '4px',
-          }),
+          },
           p: 2,
         });
         expect(output1).to.deep.equal({ padding: 'calc(2 * 4px)' });
@@ -51,9 +49,9 @@ describe('system spacing', () => {
 
       it('should be able to use string value with negative amount', () => {
         const output1 = spacing({
-          theme: createTheme({
+          theme: {
             spacing: '4px',
-          }),
+          },
           p: -2,
         });
         expect(output1).to.deep.equal({ padding: 'calc(-2 * 4px)' });
@@ -61,9 +59,9 @@ describe('system spacing', () => {
 
       it('should use the provided value directly if theme.spacing is a string', () => {
         const output1 = spacing({
-          theme: createTheme({
+          theme: {
             spacing: '4px',
-          }),
+          },
           p: '1rem',
         });
         expect(output1).to.deep.equal({ padding: '1rem' });
@@ -75,9 +73,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = spacing({
-            theme: createTheme({
+            theme: {
               spacing: [0, 3, 5],
-            }),
+            },
             p: 3,
           });
         }).toErrorDev(
@@ -92,9 +90,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = spacing({
-            theme: createTheme({
+            theme: {
               spacing: {},
-            }),
+            },
             p: 3,
           });
         }).toErrorDev(
@@ -108,9 +106,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = spacing({
-            theme: createTheme({
+            theme: {
               spacing: [1, 2, 3, 4, 5, 6],
-            }),
+            },
             p: 0.5,
           });
         }).toErrorDev(
@@ -122,9 +120,9 @@ describe('system spacing', () => {
 
     it('should accept non integer value', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           spacing: 8,
-        }),
+        },
         p: 0.5,
       });
       expect(output).to.deep.equal({ padding: 4 });
@@ -149,9 +147,9 @@ describe('system spacing', () => {
 
     it('should support string', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           spacing: ['1em', '2em'],
-        }),
+        },
         p: -1,
       });
       expect(output).to.deep.equal({ padding: '-2em' });
@@ -159,11 +157,11 @@ describe('system spacing', () => {
 
     it('should support CSS variables single value', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           vars: {
             spacing: 'var(--mui-spacing)',
           },
-        }),
+        },
         p: 1,
       });
       expect(output).to.deep.equal({ padding: 'var(--mui-spacing)' });
@@ -171,11 +169,11 @@ describe('system spacing', () => {
 
     it('should support CSS variables single value as decimal', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           vars: {
             spacing: 'var(--mui-spacing)',
           },
-        }),
+        },
         p: 0.2,
       });
       expect(output).to.deep.equal({ padding: 'calc(0.2 * var(--mui-spacing))' });
@@ -183,11 +181,11 @@ describe('system spacing', () => {
 
     it('should support CSS variables single value more than 1', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           vars: {
             spacing: 'var(--mui-spacing)',
           },
-        }),
+        },
         p: 3,
       });
       expect(output).to.deep.equal({ padding: 'calc(3 * var(--mui-spacing))' });
@@ -195,11 +193,11 @@ describe('system spacing', () => {
 
     it('should support CSS variables single value as zero', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           vars: {
             spacing: 'var(--mui-spacing)',
           },
-        }),
+        },
         p: 0,
       });
       expect(output).to.deep.equal({ padding: 0 });
@@ -207,7 +205,7 @@ describe('system spacing', () => {
 
     it('should support CSS variables array', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           vars: {
             spacing: [
               'var(--mui-spacing-0)',
@@ -217,7 +215,7 @@ describe('system spacing', () => {
               'var(--mui-spacing-4)',
             ],
           },
-        }),
+        },
         p: 2,
       });
       expect(output).to.deep.equal({ padding: 'var(--mui-spacing-2)' });
@@ -225,11 +223,11 @@ describe('system spacing', () => {
 
     it('should support CSS variables array with negative value', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           vars: {
             spacing: ['var(--mui-spacing-0)', 'var(--mui-spacing-1)', 'var(--mui-spacing-2)'],
           },
-        }),
+        },
         p: -2,
       });
       expect(output).to.deep.equal({ padding: 'calc(-1 * var(--mui-spacing-2))' });
@@ -237,11 +235,11 @@ describe('system spacing', () => {
 
     it('should support CSS variables array with zero value', () => {
       const output = spacing({
-        theme: createTheme({
+        theme: {
           vars: {
             spacing: ['var(--mui-spacing-0)', 'var(--mui-spacing-1)', 'var(--mui-spacing-2)'],
           },
-        }),
+        },
         p: 0,
       });
       expect(output).to.deep.equal({ padding: 'var(--mui-spacing-0)' });
@@ -340,25 +338,25 @@ describe('system spacing', () => {
 
       it('should be able to customize the unit value', () => {
         const output1 = margin({
-          theme: createTheme({
+          theme: {
             spacing: 2,
-          }),
+          },
           m: 2,
         });
         expect(output1).to.deep.equal({ margin: 4 });
 
         const output2 = margin({
-          theme: createTheme({
+          theme: {
             spacing: [0, 3, 5, 8, 13, 21], // Fibonacci
-          }),
+          },
           margin: 1,
         });
         expect(output2).to.deep.equal({ margin: 3 });
 
         const output3 = margin({
-          theme: createTheme({
+          theme: {
             spacing: (x) => x ** 2,
-          }),
+          },
           m: 2,
         });
         expect(output3).to.deep.equal({ margin: 4 });
@@ -370,9 +368,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = margin({
-            theme: createTheme({
+            theme: {
               spacing: [0, 3, 5],
-            }),
+            },
             m: 3,
           });
         }).toErrorDev(
@@ -387,9 +385,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = margin({
-            theme: createTheme({
+            theme: {
               spacing: {},
-            }),
+            },
             m: 3,
           });
         }).toErrorDev(
@@ -403,9 +401,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = margin({
-            theme: createTheme({
+            theme: {
               spacing: [1, 2, 3, 4, 5, 6],
-            }),
+            },
             m: 0.5,
           });
         }).toErrorDev(
@@ -417,9 +415,9 @@ describe('system spacing', () => {
 
     it('should accept non integer value', () => {
       const output = margin({
-        theme: createTheme({
+        theme: {
           spacing: 8,
-        }),
+        },
         m: 0.5,
       });
       expect(output).to.deep.equal({ margin: 4 });
@@ -444,9 +442,9 @@ describe('system spacing', () => {
 
     it('should support string', () => {
       const output = margin({
-        theme: createTheme({
+        theme: {
           spacing: ['1em', '2em'],
-        }),
+        },
         m: -1,
       });
       expect(output).to.deep.equal({ margin: '-2em' });
@@ -524,25 +522,25 @@ describe('system spacing', () => {
 
       it('should be able to customize the unit value', () => {
         const output1 = padding({
-          theme: createTheme({
+          theme: {
             spacing: 2,
-          }),
+          },
           p: 2,
         });
         expect(output1).to.deep.equal({ padding: 4 });
 
         const output2 = padding({
-          theme: createTheme({
+          theme: {
             spacing: [0, 3, 5, 8, 13, 21], // Fibonacci
-          }),
+          },
           p: 1,
         });
         expect(output2).to.deep.equal({ padding: 3 });
 
         const output3 = padding({
-          theme: createTheme({
+          theme: {
             spacing: (x) => x ** 2,
-          }),
+          },
           p: 2,
         });
         expect(output3).to.deep.equal({ padding: 4 });
@@ -554,9 +552,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = padding({
-            theme: createTheme({
+            theme: {
               spacing: [0, 3, 5],
-            }),
+            },
             p: 3,
           });
         }).toErrorDev(
@@ -571,9 +569,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = padding({
-            theme: createTheme({
+            theme: {
               spacing: {},
-            }),
+            },
             p: 3,
           });
         }).toErrorDev(
@@ -587,9 +585,9 @@ describe('system spacing', () => {
         let output;
         expect(() => {
           output = padding({
-            theme: createTheme({
+            theme: {
               spacing: [1, 2, 3, 4, 5, 6],
-            }),
+            },
             p: 0.5,
           });
         }).toErrorDev(
@@ -601,9 +599,9 @@ describe('system spacing', () => {
 
     it('should accept non integer value', () => {
       const output = padding({
-        theme: createTheme({
+        theme: {
           spacing: 8,
-        }),
+        },
         p: 0.5,
       });
       expect(output).to.deep.equal({ padding: 4 });
@@ -628,9 +626,9 @@ describe('system spacing', () => {
 
     it('should support string', () => {
       const output = padding({
-        theme: createTheme({
+        theme: {
           spacing: ['1em', '2em'],
-        }),
+        },
         p: -1,
       });
       expect(output).to.deep.equal({ padding: '-2em' });
