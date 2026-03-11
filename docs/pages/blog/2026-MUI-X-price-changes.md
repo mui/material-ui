@@ -31,12 +31,26 @@ This post breaks down everything you need to know about the changes. You can als
 
 ## Grandfathering current customers
 
-We value our loyal customers and want to ensure a smooth transition:
+We value our loyal customers and want to ensure a smooth transition.
 
-- Customers renewing existing **v8 licenses** or adding seats to v8 licenses are **not affected** by these pricing changes.
-- Only customers upgrading to **v9** or moving from **Pro to Premium** will be affected.
+Customers with **active MUI X v8 licenses** can continue using v8 and renew those licenses at the **previous pricing**.
 
-If you're unsure how this applies to your team, please reach out to us at **sales@mui.com** and we'll be happy to clarify.
+If you want to upgrade to **MUI X v9**, you will need to request a **new v9 license key**, since **v8 license keys will not work with v9**. The new key will keep the **same expiration date** as your current license, so upgrading does not reset or extend your license period.
+
+When your license reaches its renewal date, you will have two options:
+
+- **Renew your v9 license** at the **new price**, with a **discount applied to the first renewal**
+- **Renew your v8 license** at the **previous price**, continuing to use v8
+
+This means existing customers can **move to v9 whenever they’re ready**, while still keeping the option to stay on v8 under the previous pricing.
+
+### Perpetual licenses
+
+Customers with **perpetual licenses** can also request a **v9 license key**. This key will grant access to all **v9 versions released before the expiration date listed in the license key**.
+
+If you want access to **new versions released after that date**, you will need to **renew the license at the new pricing**.
+
+If you're unsure how these changes apply to your team, please reach out to us at **sales@mui.com** and we'll be happy to help.
 
 ## What's changing in licensing
 
