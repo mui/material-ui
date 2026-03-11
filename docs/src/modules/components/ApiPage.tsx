@@ -142,7 +142,6 @@ export default function ApiPage(props: ApiPageProps) {
 
   const defaultPropsLink = '/material-ui/customization/theme-components/#theme-default-props';
   const styleOverridesLink = '/material-ui/customization/theme-components/#theme-style-overrides';
-  const slotGuideLink = '';
 
   const {
     componentDescription,
@@ -343,10 +342,6 @@ export default function ApiPage(props: ApiPageProps) {
           {classesDef.length === 0 && <span id="classes" />}
           <SlotsSection
             slots={slotsDef}
-            spreadHint={
-              slotGuideLink &&
-              t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
-            }
             defaultLayout={defaultLayout}
             layoutStorageKey={layoutStorageKey.slots}
           />
