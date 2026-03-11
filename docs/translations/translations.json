@@ -96,6 +96,7 @@
     "/material-ui/react-drawer": "Drawer",
     "/material-ui/react-link": "Link",
     "/material-ui/react-menu": "Menu",
+    "/material-ui/react-menubar": "Menubar",
     "/material-ui/react-pagination": "Pagination",
     "/material-ui/react-speed-dial": "Speed Dial",
     "/material-ui/react-stepper": "Stepper",
