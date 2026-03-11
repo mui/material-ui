@@ -22,11 +22,36 @@ on:
         required: false
         type: string
         default: 'latest'
+      internal-packages-only:
+        description: 'Whether to publish only the internal packages'
+        required: false
+        type: boolean
+        default: false
 
 permissions: {}
 
 jobs:
+  publish-internal:
+    if: (github.event_name == 'workflow_dispatch' && inputs.internal-packages-only == true) || (github.event_name == 'push' && github.event.head_commit.author.name != 'renovate[bot]')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for pushing tags and creating releases
+      id-token: write # Required for provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event_name == 'push' && github.sha || inputs.sha }}
+          fetch-depth: 0 # Fetch full history for proper git operations
+      - name: Prepare for publishing
+        uses: mui/mui-public/.github/actions/publish-prepare@48198a7131b2ee621cc13bc7729cc41c72f370e7
+      - name: Publish packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm code-infra publish-canary --package @mui/internal-markdown @mui/docs @mui/internal-scripts @mui-internal/api-docs-builder @mui/internal-docs-utils
   publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.internal-packages-only != true
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required for pushing tags and creating releases
