@@ -16,6 +16,7 @@ import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
+import { areEqualValues, isEmpty, getOpenInteractionType } from './utils';
 
 const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
@@ -67,19 +68,6 @@ const SelectNativeInput = styled('input', {
   width: '100%',
   boxSizing: 'border-box',
 });
-
-function areEqualValues(a, b) {
-  if (typeof b === 'object' && b !== null) {
-    return a === b;
-  }
-
-  // The value could be a number, the DOM will stringify it anyway.
-  return String(a) === String(b);
-}
-
-function isEmpty(display) {
-  return display == null || (typeof display === 'string' && !display.trim());
-}
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, disabled, multiple, open, error } = ownerState;
@@ -153,7 +141,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
-
+  const [openInteractionType, setOpenInteractionType] = React.useState(null);
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -238,11 +226,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const update = (openParam, event) => {
     if (openParam) {
+      setOpenInteractionType(getOpenInteractionType(event));
+
       if (onOpen) {
         onOpen(event);
       }
-    } else if (onClose) {
-      onClose(event);
+    } else {
+      setOpenInteractionType(null);
+
+      if (onClose) {
+        onClose(event);
+      }
     }
 
     if (!isOpenControlled) {
@@ -420,6 +414,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return React.cloneElement(child, {
+      autoFocus:
+        selected && openState ? { focusVisible: openInteractionType === 'keyboard' } : undefined,
       'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
       onKeyUp: (event) => {

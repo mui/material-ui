@@ -1,6 +1,12 @@
 {
   "props": {
-    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "autoFocus": {
+      "type": {
+        "name": "union",
+        "description": "{ focusVisible?: bool, preventScroll?: bool }<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "component": { "type": { "name": "elementType" } },

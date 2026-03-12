@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "autoFocus": {
-      "description": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true."
+      "description": "If <code>true</code>, the list item is focused on mount. Pass <code>{ focusVisible: boolean, preventScroll: boolean }</code> to also control whether the focus-visible style is applied and whether to prevent scrolling. Focus will also be triggered if the value changes from false to true / object."
     },
     "children": { "description": "The content of the component." },
     "classes": { "description": "Override or extend the styles applied to the component." },

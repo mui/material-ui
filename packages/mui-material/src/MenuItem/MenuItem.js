@@ -16,6 +16,25 @@ import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 
+/**
+ * If autoFocus is an object, it will attempt to call `element.focus()` with the options argument.
+ * If the browser doesn't support the options argument, it will fall back to a simple `element.focus()` call.
+ * An extra check with NODE_ENV is required because the test run cannot recover even with the try catch.
+ */
+function focusWithVisible(element, autoFocus) {
+  if (typeof autoFocus !== 'object' || process.env.NODE_ENV !== 'production') {
+    element.focus();
+    return;
+  }
+
+  try {
+    element.focus({ preventScroll: true, ...autoFocus });
+  } catch (error) {
+    // If the browser doesn't support the focus options argument, fall back to a simple focus call.
+    element.focus();
+  }
+}
+
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
 
@@ -189,7 +208,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   useEnhancedEffect(() => {
     if (autoFocus) {
       if (menuItemRef.current) {
-        menuItemRef.current.focus();
+        focusWithVisible(menuItemRef.current, autoFocus);
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
           'MUI: Unable to set focus to a MenuItem whose component has not been rendered.',
@@ -237,11 +256,18 @@ MenuItem.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * If `true`, the list item is focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
+   * If `true`, the list item is focused on mount. Pass `{ focusVisible: boolean, preventScroll: boolean }`
+   * to also control whether the focus-visible style is applied and whether to prevent scrolling. Focus will also be
+   * triggered if the value changes from false to true / object.
    * @default false
    */
-  autoFocus: PropTypes.bool,
+  autoFocus: PropTypes.oneOfType([
+    PropTypes.shape({
+      focusVisible: PropTypes.bool,
+      preventScroll: PropTypes.bool,
+    }),
+    PropTypes.bool,
+  ]),
   /**
    * The content of the component.
    */
