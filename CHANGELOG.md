@@ -8,7 +8,7 @@ _Mar 12, 2026_
 
 A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
 
-- 📖 A new [Menubar](https://mui.com/material-ui/react-menubar/) component page integrated with [Base UI](https://base-ui.com/react/components/menubar)
+- 📖 A new [Menubar](https://mui.com/material-ui/react-menubar/) component page integrated with [Base UI](https://base-ui.com/react/components/menubar)
 - ♿️ Improved the Roving TabIndex keyboard navigation for the Stepper, Tabs and MenuList components.
 
 ### `@mui/material@9.0.0-alpha.3`
