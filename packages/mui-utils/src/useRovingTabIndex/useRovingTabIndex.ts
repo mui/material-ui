@@ -136,6 +136,7 @@ export default function useRovingTabIndex(
             event.preventDefault();
 
             if (isFocusOnContainer) {
+              // Set to length, so that the previous focused element will be the last one.
               currentIndex = elementsRef.current.length;
             }
             break;
@@ -143,16 +144,19 @@ export default function useRovingTabIndex(
             event.preventDefault();
 
             if (isFocusOnContainer) {
+              // Set to -1, so that the next focused element will be the first one.
               currentIndex = -1;
             }
             break;
           case 'Home':
             event.preventDefault();
+            // Set to -1, so that the next focused element will be the first one.
             currentIndex = -1;
             break;
           case 'End':
             event.preventDefault();
             direction = 'previous';
+            // Set to length, so that the previous focused element will be the last one.
             currentIndex = elementsRef.current.length;
             break;
           default:
