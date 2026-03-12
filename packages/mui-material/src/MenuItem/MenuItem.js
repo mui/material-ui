@@ -19,10 +19,9 @@ import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 /**
  * If autoFocus is an object, it will attempt to call `element.focus()` with the options argument.
  * If the browser doesn't support the options argument, it will fall back to a simple `element.focus()` call.
- * An extra check with NODE_ENV is required because the test run cannot recover even with the try catch.
  */
 function focusWithVisible(element, autoFocus) {
-  if (typeof autoFocus !== 'object' || process.env.NODE_ENV !== 'production') {
+  if (typeof autoFocus !== 'object') {
     element.focus();
     return;
   }
