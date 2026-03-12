@@ -139,6 +139,13 @@ Material UI v7 uses `react-is@19`, which changed how React elements are identif
 If you're on React 18 or below, mismatched versions of `react-is` can cause runtime errors in prop type checks.
 Forcing `react-is` to match your React version prevents these errors.
 
+## Deprecations
+
+It is not required to immediately go through the deprecations in order to use Material UI v7.
+
+You can do it at your own pace by checking out the [deprecations page](/material-ui/migration/v7/migrating-from-deprecated-apis/).
+Those deprecations will be removed in the next major version.
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
