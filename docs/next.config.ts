@@ -114,8 +114,6 @@ export default withDocsInfra({
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
-          '@mui/joy/package.json': path.resolve(workspaceRoot, 'packages/mui-joy/package.json'),
-          '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
         extensions: [
           '.mjs',
@@ -149,10 +147,6 @@ export default withDocsInfra({
                             path.join(workspaceRoot, 'packages/mui-lab/src'),
                             path.join(workspaceRoot, 'packages/mui-material/src'),
                           ],
-                        },
-                        {
-                          productId: 'joy-ui',
-                          paths: [path.join(workspaceRoot, 'packages/mui-joy/src')],
                         },
                       ],
                       env: {
