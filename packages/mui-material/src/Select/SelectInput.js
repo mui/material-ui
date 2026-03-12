@@ -17,6 +17,7 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 import { areEqualValues, isEmpty, getOpenInteractionType } from './utils';
+import { SelectFocusSourceProvider } from './utils/SelectFocusSourceContext';
 
 const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
@@ -414,8 +415,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return React.cloneElement(child, {
-      autoFocus:
-        selected && openState ? { focusVisible: openInteractionType === 'keyboard' } : undefined,
       'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
       onKeyUp: (event) => {
@@ -573,41 +572,43 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ownerState={ownerState}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
-      <Menu
-        id={`menu-${name || ''}`}
-        anchorEl={anchorElement}
-        open={open}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        {...MenuProps}
-        slotProps={{
-          ...MenuProps.slotProps,
-          list: {
-            'aria-labelledby': labelId,
-            role: 'listbox',
-            'aria-multiselectable': multiple ? 'true' : undefined,
-            disableListWrap: true,
-            id: listboxId,
-            ...listProps,
-          },
-          paper: {
-            ...paperProps,
-            style: {
-              minWidth: menuMinWidth,
-              ...(paperProps != null ? paperProps.style : null),
+      <SelectFocusSourceProvider value={openInteractionType}>
+        <Menu
+          id={`menu-${name || ''}`}
+          anchorEl={anchorElement}
+          open={open}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          {...MenuProps}
+          slotProps={{
+            ...MenuProps.slotProps,
+            list: {
+              'aria-labelledby': labelId,
+              role: 'listbox',
+              'aria-multiselectable': multiple ? 'true' : undefined,
+              disableListWrap: true,
+              id: listboxId,
+              ...listProps,
             },
-          },
-        }}
-      >
-        {items}
-      </Menu>
+            paper: {
+              ...paperProps,
+              style: {
+                minWidth: menuMinWidth,
+                ...(paperProps != null ? paperProps.style : null),
+              },
+            },
+          }}
+        >
+          {items}
+        </Menu>
+      </SelectFocusSourceProvider>
     </React.Fragment>
   );
 });

@@ -15,19 +15,20 @@ import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
+import { useSelectFocusSource } from '../Select';
 
 /**
  * If autoFocus is an object, it will attempt to call `element.focus()` with the options argument.
  * If the browser doesn't support the options argument, it will fall back to a simple `element.focus()` call.
  */
-function focusWithVisible(element, autoFocus) {
-  if (typeof autoFocus !== 'object') {
+function focusWithVisible(element, focusSource) {
+  if (focusSource == null) {
     element.focus();
     return;
   }
 
   try {
-    element.focus({ preventScroll: true, ...autoFocus });
+    element.focus({ focusVisible: focusSource === 'keyboard' });
   } catch (error) {
     // If the browser doesn't support the focus options argument, fall back to a simple focus call.
     element.focus();
@@ -194,6 +195,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...other
   } = props;
 
+  const focusSource = useSelectFocusSource();
   const context = React.useContext(ListContext);
   const childContext = React.useMemo(
     () => ({
@@ -207,13 +209,14 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   useEnhancedEffect(() => {
     if (autoFocus) {
       if (menuItemRef.current) {
-        focusWithVisible(menuItemRef.current, autoFocus);
+        focusWithVisible(menuItemRef.current, focusSource);
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
           'MUI: Unable to set focus to a MenuItem whose component has not been rendered.',
         );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoFocus]);
 
   const ownerState = {
@@ -255,18 +258,11 @@ MenuItem.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * If `true`, the list item is focused on mount. Pass `{ focusVisible: boolean, preventScroll: boolean }`
-   * to also control whether the focus-visible style is applied and whether to prevent scrolling. Focus will also be
-   * triggered if the value changes from false to true / object.
+   * If `true`, the list item is focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
    * @default false
    */
-  autoFocus: PropTypes.oneOfType([
-    PropTypes.shape({
-      focusVisible: PropTypes.bool,
-      preventScroll: PropTypes.bool,
-    }),
-    PropTypes.bool,
-  ]),
+  autoFocus: PropTypes.bool,
   /**
    * The content of the component.
    */

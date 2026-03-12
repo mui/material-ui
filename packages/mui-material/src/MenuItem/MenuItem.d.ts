@@ -7,15 +7,11 @@ import { MenuItemClasses } from './menuItemClasses';
 
 export interface MenuItemOwnProps {
   /**
-   * If `true`, the list item is focused on mount. Pass `{ focusVisible: boolean, preventScroll: boolean }`
-   * to also control whether the focus-visible style is applied and whether to prevent scrolling. Focus will also be
-   * triggered if the value changes from false to true / object.
+   * If `true`, the list item is focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
    * @default false
    */
-  autoFocus?:
-    | boolean
-    | { focusVisible?: boolean | undefined; preventScroll?: boolean | undefined }
-    | undefined;
+  autoFocus?: boolean | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
