@@ -172,9 +172,17 @@ export default function AppTableOfContents(props) {
   }
 
   return (
-    <Nav aria-label={t('pageTOC')}>
-      <TableOfContents toc={toc} itemLink={itemLink} />
-    </Nav>
+    <React.Fragment>
+      <Nav aria-label={t('pageTOC')}>
+        <TableOfContents toc={toc} itemLink={itemLink} />
+      </Nav>
+      <MiniTableOfContents
+        toc={toc}
+        activeState={activeState}
+        itemLink={itemLink}
+        onItemClick={handleClick}
+      />
+    </React.Fragment>
   );
 }
 

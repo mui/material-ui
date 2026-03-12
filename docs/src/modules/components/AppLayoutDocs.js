@@ -42,6 +42,9 @@ const Main = styled('main', {
     {
       props: ({ disableToc, collapseToc }) => !disableToc && !collapseToc,
       style: {
+        [theme.breakpoints.up('lg')]: {
+          gridTemplateColumns: '1fr auto',
+        },
         [theme.breakpoints.up('xl')]: {
           gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
         },
@@ -62,7 +65,7 @@ const StyledAppContainer = styled(AppContainer, {
     prop !== 'disableAd' &&
     prop !== 'hasTabs' &&
     prop !== 'disableToc' &&
-    prop !== 'container' &&
+    prop !== 'wideLayout' &&
     prop !== 'collapseToc',
 })(({ theme }) => {
   return {
@@ -76,14 +79,14 @@ const StyledAppContainer = styled(AppContainer, {
     },
     variants: [
       {
-        props: ({ disableToc, container }) => disableToc && container === 'narrow',
+        props: ({ disableToc, wideLayout }) => disableToc && !wideLayout,
         style: {
           // 105ch ≈ 930px
           maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
         },
       },
       {
-        props: ({ disableToc, container }) => !disableToc && container === 'narrow',
+        props: ({ disableToc, wideLayout }) => !disableToc && !wideLayout,
         style: {
           // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
           fontFamily: 'Arial',
@@ -92,10 +95,10 @@ const StyledAppContainer = styled(AppContainer, {
         },
       },
       {
-        props: ({ disableToc, container }) => !disableToc && container === 'wide',
+        props: ({ disableToc, wideLayout }) => !disableToc && wideLayout,
         style: {
           maxWidth: theme.breakpoints.values.xl,
-          '& p, & li, & h1, & h2, & h3, & h4, & h5, & h6': {
+          '& p, & li': {
             maxWidth: '105ch',
           },
         },
@@ -148,7 +151,7 @@ export default function AppLayoutDocs(props) {
     disableLayout = false,
     disableToc = false,
     collapseToc,
-    container = 'narrow',
+    wideLayout = false,
     hasTabs = false,
     location,
     title,
@@ -192,7 +195,7 @@ export default function AppLayoutDocs(props) {
             disableAd={disableAd}
             hasTabs={hasTabs}
             disableToc={disableToc}
-            container={container}
+            wideLayout={wideLayout}
             collapseToc={collapseToc}
           >
             {children}
@@ -214,7 +217,7 @@ AppLayoutDocs.propTypes = {
     title: PropTypes.string,
   }),
   children: PropTypes.node.isRequired,
-  container: PropTypes.oneOf(['narrow', 'wide']),
+  wideLayout: PropTypes.bool,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableLayout: PropTypes.bool,

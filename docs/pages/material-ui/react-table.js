@@ -3,7 +3,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/material/components/table/table.md?muiMarkdown';
 
 export default function Page() {
-  return <MarkdownDocs {...pageProps} container="wide" collapseToc />;
+  return <MarkdownDocs {...pageProps} wideLayout collapseToc />;
 }
 
 Page.getLayout = (page) => {

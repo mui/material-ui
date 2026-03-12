@@ -9,7 +9,7 @@ export default function MarkdownDocs(props) {
   const {
     disableAd = false,
     disableToc = false,
-    container,
+    wideLayout,
     demos = {},
     docs,
     demoComponents,
@@ -28,7 +28,7 @@ export default function MarkdownDocs(props) {
       description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
-      container={container}
+      wideLayout={wideLayout}
       location={localizedDoc.location}
       title={localizedDoc.title}
       toc={localizedDoc.toc}
@@ -54,7 +54,7 @@ export default function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
-  container: PropTypes.oneOf(['narrow', 'wide']),
+  wideLayout: PropTypes.bool,
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,

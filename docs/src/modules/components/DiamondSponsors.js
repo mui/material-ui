@@ -12,14 +12,12 @@ const NativeLink = styled('a')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderLeft: '1px solid',
-  borderRight: '1px solid',
   borderBottom: 0,
+  padding: theme.spacing(1),
   borderColor: (theme.vars || theme).palette.divider,
   transition: theme.transitions.create(['background-color']),
   '&:first-of-type': {
-    borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
-    borderRadius: '12px 12px 0 0',
+    borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
   },
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.grey[50],
@@ -43,59 +41,71 @@ export default function DiamondSponsors() {
 
   return (
     <Stack direction="column">
-      <NativeLink
-        data-ga-event-category="sponsor"
-        data-ga-event-action="docs-premium"
-        data-ga-event-label="doit.com"
-        href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral"
-        rel="noopener sponsored"
-        target="_blank"
+      <Stack
+        direction="row"
+        sx={(theme) => ({
+          borderLeft: '1px solid',
+          borderRight: '1px solid',
+          borderBottom: 0,
+          borderTop: '1px solid',
+          borderColor: (theme.vars || theme).palette.divider,
+          borderRadius: '12px 12px 0 0',
+        })}
       >
-        <Box
-          component="img"
-          src="/static/sponsors/doit-light.svg"
-          alt="doit"
-          title="Management Platform for Google Cloud and AWS"
-          loading="lazy"
-          sx={[
-            {
-              height: '29px',
-              width: '70px',
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/doit-dark.svg)`,
-              }),
-          ]}
-        />
-      </NativeLink>
-      <NativeLink
-        data-ga-event-category="sponsor"
-        data-ga-event-action="docs-premium"
-        data-ga-event-label="formengine.io"
-        href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway"
-        rel="noopener sponsored"
-        target="_blank"
-      >
-        <Box
-          component="img"
-          src="/static/sponsors/formengine-light.svg"
-          alt="formengine"
-          title="Build forms with MUI the smart way!"
-          loading="lazy"
-          sx={[
-            {
-              height: '23.2px',
-              width: 'auto',
-              maxWidth: '100%',
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/formengine-dark.svg)`,
-              }),
-          ]}
-        />
-      </NativeLink>
+        <NativeLink
+          data-ga-event-category="sponsor"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="doit.com"
+          href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral"
+          rel="noopener sponsored"
+          target="_blank"
+        >
+          <Box
+            component="img"
+            src="/static/sponsors/doit-light.svg"
+            alt="doit"
+            title="Management Platform for Google Cloud and AWS"
+            loading="lazy"
+            sx={[
+              {
+                height: '29px',
+                width: '70px',
+              },
+              (theme) =>
+                theme.applyDarkStyles({
+                  content: `url(/static/sponsors/doit-dark.svg)`,
+                }),
+            ]}
+          />
+        </NativeLink>
+        <NativeLink
+          data-ga-event-category="sponsor"
+          data-ga-event-action="docs-premium"
+          data-ga-event-label="formengine.io"
+          href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway"
+          rel="noopener sponsored"
+          target="_blank"
+        >
+          <Box
+            component="img"
+            src="/static/sponsors/formengine-light.svg"
+            alt="formengine"
+            title="Build forms with MUI the smart way!"
+            loading="lazy"
+            sx={[
+              {
+                height: '23.2px',
+                width: 'auto',
+                maxWidth: '100%',
+              },
+              (theme) =>
+                theme.applyDarkStyles({
+                  content: `url(/static/sponsors/formengine-dark.svg)`,
+                }),
+            ]}
+          />
+        </NativeLink>
+      </Stack>
       <Link
         href="/material-ui/discover-more/backers/#diamond-sponsors"
         sx={(theme) => ({

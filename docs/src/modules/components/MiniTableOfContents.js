@@ -175,7 +175,6 @@ export default function MiniTableOfContents(props) {
           minWidth: 36,
           py: 2,
           marginRight: 1.5,
-          cursor: 'pointer',
         }}
       >
         {items.map((item, index) => (
@@ -195,7 +194,6 @@ export default function MiniTableOfContents(props) {
           anchorEl={containerRef.current}
           placement="left-start"
           transition
-          disablePortal
           sx={{ zIndex: 2000 }}
         >
           {({ TransitionProps }) => (
@@ -233,5 +231,6 @@ MiniTableOfContents.propTypes = {
   activeState: PropTypes.string,
   itemLink: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,
+  sx: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   toc: PropTypes.array.isRequired,
 };
