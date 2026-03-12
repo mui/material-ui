@@ -202,7 +202,6 @@ export default defineConfig(
       // filenames/match-exported sees filename as 'file-name.d'
       // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
       '**/*.d.ts',
-      'docs/data/joy/getting-started/templates/**/*',
       'docs/data/**/{css,system,tailwind}/*',
     ],
     plugins: {
@@ -224,8 +223,6 @@ export default defineConfig(
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
       // used internally, not used on app router yet
       '**/mui-docs/**/*',
     ],
@@ -238,8 +235,6 @@ export default defineConfig(
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
       // used internally, not used on app router yet
       '**/mui-docs/**/*',
     ],
@@ -292,7 +287,7 @@ export default defineConfig(
   },
   {
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
-    ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
+    ignores: ['**/*.d.ts', '**/*.spec.*'],
     rules: {
       'mui/material-ui-name-matches-component-name': 'error',
     },

@@ -110,7 +110,6 @@ export default function SandboxDependencies(
       '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
-      '@mui/joy': getMuiPackageVersion('joy'),
     };
 
     // Allow product-specific version overrides via context config

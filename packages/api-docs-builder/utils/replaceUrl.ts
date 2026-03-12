@@ -8,7 +8,6 @@ export function isNewLocation(url: string) {
     url.startsWith('/x') ||
     url.startsWith('/material-ui') ||
     url.startsWith('/base') ||
-    url.startsWith('/joy-ui') ||
     url.startsWith('/system')
   );
 }

@@ -14,11 +14,5 @@ export default {
         'nesting-selector-no-missing-scoping-root': null,
       },
     },
-    {
-      files: ['docs/data/joy/**/*.js', 'docs/data/joy/**/*.tsx'],
-      rules: {
-        'property-no-deprecated': null,
-      },
-    },
   ],
 };
