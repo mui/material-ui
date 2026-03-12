@@ -18,7 +18,7 @@ npx @mui/codemod@latest deprecations/autocomplete-props <path>
 
 ### renderTags prop
 
-The deprecated `renderTags` prop has been removed. Use `renderValue` instead.
+The `renderTags` prop is deprecated, use `renderValue` instead.
 
 ```diff
  <Autocomplete
@@ -39,9 +39,9 @@ The deprecated `renderTags` prop has been removed. Use `renderValue` instead.
 
 ---
 
-### useAutocomplete deprecated fields removed
+### useAutocomplete deprecated fields
 
-The following deprecated members have been removed from the `useAutocomplete` hook return value:
+The following return value fields are deprecated from the `useAutocomplete` hook:
 
 - `getTagProps` → use `getItemProps`
 - `focusedTag` → use `focusedItem`
