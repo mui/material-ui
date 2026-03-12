@@ -27,26 +27,6 @@ import describeConformance from '../../test/describeConformance';
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
-  const isFirefox =
-    typeof globalThis.navigator !== 'undefined' &&
-    navigator.userAgent.toLowerCase().includes('firefox');
-
-  // In firefox tests, calling focus with arguments fails silently and
-  // other focus visible tests fail as a consequence.
-  if (isFirefox) {
-    const originalFocus = HTMLElement.prototype.focus;
-
-    beforeAll(() => {
-      HTMLElement.prototype.focus = function focusWithoutArguments() {
-        originalFocus.call(this); // always call without arguments
-      };
-    });
-
-    afterAll(() => {
-      HTMLElement.prototype.focus = originalFocus; // restore after tests
-    });
-  }
-
   describeConformance(<Select value="" />, () => ({
     classes,
     inheritComponent: OutlinedInput,
