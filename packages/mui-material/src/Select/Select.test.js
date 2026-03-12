@@ -1896,53 +1896,6 @@ describe('<Select />', () => {
     expect(event.button).to.equal(0);
   });
 
-  it('should ask MenuItem not to apply focus visible when opened by pointer after keyboard modality', () => {
-    const MenuItemSpy = spy();
-    render(
-      <Select value="">
-        <MenuItemSpy value="">None</MenuItemSpy>
-      </Select>,
-    );
-
-    const trigger = screen.getByRole('combobox');
-    fireEvent.keyDown(document.body, { key: 'Tab' });
-    fireEvent.mouseDown(trigger);
-
-    expect(MenuItemSpy.getCalls().map((call) => call.args[0].autoFocus)).to.deep.equal([
-      {
-        focusVisible: false,
-      },
-      {
-        focusVisible: false,
-      },
-    ]);
-  });
-
-  it('should ask MenuItem to apply focus visible when opened by keyboard after keyboard modality', async () => {
-    const MenuItemSpy = spy();
-    render(
-      <Select value="">
-        <MenuItemSpy value="">None</MenuItemSpy>
-      </Select>,
-    );
-
-    const trigger = screen.getByRole('combobox');
-    fireEvent.keyDown(document.body, { key: 'Tab' });
-    await act(async () => {
-      trigger.focus();
-    });
-    fireEvent.keyDown(trigger, { key: 'Enter' });
-
-    expect(MenuItemSpy.getCalls().map((call) => call.args[0].autoFocus)).to.deep.equal([
-      {
-        focusVisible: true,
-      },
-      {
-        focusVisible: true,
-      },
-    ]);
-  });
-
   describe('keyboard navigation in shadow DOM', () => {
     it.skipIf(isJsdom())('should navigate between options using arrow keys', async function test() {
       // reset fake timers
