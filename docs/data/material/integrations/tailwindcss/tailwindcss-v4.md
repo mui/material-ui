@@ -479,7 +479,7 @@ So when you add these classes to an element…
 
 ### Playground
 
-Visit the [Tailwind CSS Playground](https://play.tailwindcss.com/f1ZIr0qSNG) to explore the classes from Material UI theme tokens.
+Visit the [Tailwind CSS Playground](https://play.tailwindcss.com/mh7Ym0mGff) to explore the classes from Material UI theme tokens.
 
 ## Troubleshooting
 
