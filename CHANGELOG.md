@@ -8,6 +8,10 @@ _Mar 11, 2026_
 
 A big thanks to the 8 contributors who made this release possible. Here are some highlights ✨:
 
+- 📖 A new [Menubar](https://mui.com/material-ui/react-menubar/) component page integrated with [Base UI](https://base-ui.com/react/components/menubar)
+
+### `@mui/material@9.0.0-alpha.3`
+
 - [autocomplete] Add `root` slot (#47852) @GerardasB
 - [autocomplete] Fix popup reopening on window focus regain with openOnFocus (#47790) @aman44444
 - [autocomplete] Support full slots for clearIndicator and popupIndicator (#47891) @silviuaavram
