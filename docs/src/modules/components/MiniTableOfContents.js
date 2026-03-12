@@ -48,6 +48,14 @@ const Bar = styled('a', {
   '&:hover::after': {
     backgroundColor: (theme.vars || theme).palette.grey[500],
   },
+  '&:focus-visible': {
+    outline: 'none',
+  },
+  '&:focus-visible::after': {
+    outline: '2px solid',
+    outlineColor: (theme.vars || theme).palette.grey[500],
+    outlineOffset: '2px',
+  },
   variants: [
     {
       props: { active: true },
@@ -115,6 +123,18 @@ export default function MiniTableOfContents(props) {
 
   const handleClose = () => {
     setPopperOpen(false);
+    setHoveredIndex(null);
+  };
+
+  const handleBarFocus = (index) => {
+    setPopperOpen(true);
+    setHoveredIndex(index);
+  };
+
+  const handleContainerBlur = (event) => {
+    if (!containerRef.current?.contains(event.relatedTarget)) {
+      handleClose();
+    }
   };
 
   const handleBarClick = (event, hash) => {
@@ -164,6 +184,7 @@ export default function MiniTableOfContents(props) {
         ref={containerRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleClose}
+        onBlur={handleContainerBlur}
         sx={{
           position: 'sticky',
           top: '20%',
@@ -186,6 +207,7 @@ export default function MiniTableOfContents(props) {
             level={item.level}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onFocus={() => handleBarFocus(index)}
             onClick={(event) => handleBarClick(event, item.hash)}
           />
         ))}

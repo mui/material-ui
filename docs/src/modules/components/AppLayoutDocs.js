@@ -42,7 +42,7 @@ const Main = styled('main', {
     {
       props: ({ disableToc, collapseToc }) => !disableToc && !collapseToc,
       style: {
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('md')]: {
           gridTemplateColumns: '1fr auto',
         },
         [theme.breakpoints.up('xl')]: {
