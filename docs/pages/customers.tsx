@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import CustomersHero from 'docs/src/components/customers/CustomersHero';
 import AppHeader from 'docs/src/layouts/AppHeader';

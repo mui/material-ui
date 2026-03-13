@@ -24,6 +24,13 @@ const GOLDs = [
     description: 'Send text messages, calls, and emails.',
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: 'https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/40.png',
+    srcSet: 'https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/120.png 3x',
+    name: 'React PDF Kit',
+    description: 'Powerful, Fast, Dev-Friendly React PDF Viewer.',
+    href: 'https://www.react-pdf-kit.dev/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 const BACKLINKs = [

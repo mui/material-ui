@@ -115,6 +115,21 @@ export interface AutocompletePropsSizeOverrides {}
 
 export interface AutocompleteSlots {
   /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the clear indicator element.
+   * @default IconButton
+   */
+  clearIndicator: React.JSXElementConstructor<IconButtonProps>;
+  /**
+   * The component used to render the popup indicator element.
+   * @default IconButton
+   */
+  popupIndicator: React.JSXElementConstructor<IconButtonProps>;
+  /**
    * The component used to render the listbox.
    * @default 'ul'
    */
@@ -140,6 +155,11 @@ export type AutocompleteSlotsAndSlotProps<
 > = CreateSlotsAndSlotProps<
   AutocompleteSlots,
   {
+    root: SlotProps<
+      'div',
+      {},
+      AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
+    >;
     chip: SlotProps<
       React.ElementType<Partial<ChipProps<ChipComponent>>>,
       {},

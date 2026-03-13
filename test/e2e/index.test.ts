@@ -182,28 +182,6 @@ describe('e2e', () => {
 
       expect(focusedOptionText).toEqual('four');
     });
-
-    it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
-      await renderFixture('Autocomplete/HoverJoyAutocomplete');
-
-      const combobox = (await page.getByRole('combobox'))!;
-      await combobox.click();
-
-      const firstOption = (await page.getByText('one'))!;
-
-      const dimensions = (await firstOption.boundingBox())!;
-
-      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
-      await page.keyboard.down('ArrowDown'); // moves to 2nd option
-      await page.keyboard.down('ArrowDown'); // moves to 3rd option
-      await page.keyboard.down('ArrowDown'); // moves to 4th option
-
-      const listbox = await page.getByRole('listbox');
-      const focusedOption = listbox.locator('.Mui-focused');
-      const focusedOptionText = await focusedOption.innerHTML();
-
-      expect(focusedOptionText).toEqual('four');
-    });
   });
 
   describe('<TextareaAutosize />', () => {

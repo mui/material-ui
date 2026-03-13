@@ -2,7 +2,7 @@ import * as React from 'react';
 import Typography from 'docs/src/pages/premium-themes/onepirate/modules/components/Typography';
 import dynamic from 'next/dynamic';
 import Box from '@mui/material/Box';
-import SectionHeadline from '../typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import GradientText from '../typography/GradientText';
 
 const CustomerQuotes = dynamic(() => import('./CustomerQuotes'));

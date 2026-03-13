@@ -64,6 +64,7 @@ const CardHeaderContent = styled('div', {
   slot: 'Content',
 })({
   flex: '1 1 auto',
+  // Combine this and the below selector once https://github.com/emotion-js/emotion/issues/3366 is solved
   [`.${typographyClasses.root}:where(& .${cardHeaderClasses.title})`]: {
     display: 'block',
   },
