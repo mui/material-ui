@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
+import type { SliderProps } from '@mui/material/Slider';
 
 function testOnChange() {
   function handleSliderChange(event: Event, value: unknown) {}
@@ -88,6 +89,13 @@ const values = [5, 10] as const;
   onChange={(event, value: readonly number[]) => {}}
   onChangeCommitted={(event, value: readonly number[]) => {}}
 />;
+
+const sliderProps: SliderProps<'span', {}, readonly number[]> = {
+  value: values,
+  onChange: (event, value: readonly number[]) => {},
+  onChangeCommitted: (event, value: readonly number[]) => {},
+};
+<Slider {...sliderProps} />;
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {

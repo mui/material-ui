@@ -369,7 +369,8 @@ declare const Slider: SliderType;
 export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  Value extends number | readonly number[] = number | number[],
+> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps, Value>, RootComponent> & {
   component?: React.ElementType | undefined;
 };
 

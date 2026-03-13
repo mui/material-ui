@@ -1,5 +1,42 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-alpha.3
+
+<!-- generated comparing v9.0.0-alpha.2..master -->
+
+_Mar 12, 2026_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- 📖 A new [Menubar](https://mui.com/material-ui/react-menubar/) component page integrated with [Base UI](https://base-ui.com/react/components/menubar)
+- ♿️ Improved the Roving TabIndex keyboard navigation for the Stepper, Tabs and MenuList components.
+
+### `@mui/material@9.0.0-alpha.3`
+
+- [autocomplete] Add `root` slot (#47852) @GerardasB
+- [autocomplete] Fix popup reopening on window focus regain with openOnFocus (#47790) @aman44444
+- [autocomplete] Support full slots for clearIndicator and popupIndicator (#47891) @silviuaavram
+- [material-ui] Partially revert "[material-ui] Clean up duplicated CSS rules (#47838)" (#47927) @sai6855
+- [stepper][menulist][tabs] Improve accessibility (#47687) @silviuaavram
+
+### Docs
+
+- [docs][codemod] Add v7 migration docs for deprecated Autocomplete APIs and Autocomplete codemod (#47945) @ZeeshanTamboli
+- [docs] Update faq about vendor chunks (#47747) @Janpot
+- [docs] Use direct palette vars in Tailwind v4 snippet (#47940) @Ahmad-Alaziz
+- [docs][menubar] Add Menubar component page (#47616) @siriwatknp
+
+### Core
+
+- [core] Fix the release prepare steps (#47951) @silviuaavram
+- [core] Remove Joy UI code and docs (#47939) @mnajdova
+- [code-infra] Add previously missed export of themeCssVarsAugmentation (#47918) @brijeshb42
+- [docs-infra] Import font module for nextjs transpilation (#47935) @brijeshb42
+- [docs-infra] Migrate simpler modules from docs to mui-docs (#47897) @brijeshb42
+- [test] Fix detached anchorEl elements in tests (#47929) @Janpot
+
+All contributors of this release in alphabetical order: @Ahmad-Alaziz, @aman44444, @brijeshb42, @GerardasB, @Janpot, @mnajdova, @sai6855, @silviuaavram, @siriwatknp, @ZeeshanTamboli
+
 ## 9.0.0-alpha.2
 
 <!-- generated comparing v9.0.0-alpha.1..master -->
