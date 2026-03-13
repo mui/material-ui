@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { Autocomplete as MyAutocomplete } from '@mui/material';
 
 <Autocomplete
   renderInput={(params) => (
@@ -63,5 +64,37 @@ import Autocomplete from '@mui/material/Autocomplete';
     <div ref={params.InputProps.ref}>
       <input {...params.inputProps} />
     </div>
+  )}
+/>;
+
+<MyAutocomplete
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      InputProps={{
+        ...params.InputProps,
+        endAdornment: (
+          <React.Fragment>
+            {params.InputProps.endAdornment}
+          </React.Fragment>
+        ),
+      }}
+    />
+  )}
+/>;
+
+<CustomAutocomplete
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      InputProps={{
+        ...params.InputProps,
+        endAdornment: (
+          <React.Fragment>
+            {params.InputProps.endAdornment}
+          </React.Fragment>
+        ),
+      }}
+    />
   )}
 />;
