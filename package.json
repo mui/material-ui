@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.0.0-alpha.1",
+  "version": "9.0.0-alpha.3",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -101,7 +101,6 @@
     "@mui/internal-netlify-cache": "0.0.3-canary.0",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "2.0.18-canary.9",
-    "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "15.5.12",

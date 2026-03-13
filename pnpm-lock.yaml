@@ -100,9 +100,6 @@ importers:
       '@mui/internal-test-utils':
         specifier: 2.0.18-canary.9
         version: 2.0.18-canary.9(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@playwright/test@1.58.2)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(@vitest/utils@4.0.15)(chai@6.2.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vite@7.3.1(@types/node@20.19.35)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))(vitest@4.0.13)
-      '@mui/joy':
-        specifier: workspace:*
-        version: link:packages/mui-joy/build
       '@mui/material':
         specifier: workspace:^
         version: link:packages/mui-material/build
@@ -313,9 +310,6 @@ importers:
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages/markdown
-      '@mui/joy':
-        specifier: workspace:*
-        version: link:../packages/mui-joy/build
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
@@ -1053,80 +1047,6 @@ importers:
         version: 18.0.0
     publishDirectory: build
 
-  packages/mui-joy:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.28.6
-        version: 7.28.6
-      '@emotion/react':
-        specifier: ^11.5.0
-        version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
-      '@emotion/styled':
-        specifier: ^11.3.0
-        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
-      '@mui/base':
-        specifier: 7.0.0-beta.4
-        version: 7.0.0-beta.4(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@mui/core-downloads-tracker':
-        specifier: workspace:^
-        version: link:../mui-core-downloads-tracker
-      '@mui/system':
-        specifier: workspace:^
-        version: link:../mui-system/build
-      '@mui/types':
-        specifier: workspace:^
-        version: link:../mui-types/build
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../mui-utils/build
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
-    devDependencies:
-      '@mui/material':
-        specifier: workspace:^
-        version: link:../mui-material/build
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      '@types/prop-types':
-        specifier: 15.7.15
-        version: 15.7.15
-      '@types/react':
-        specifier: 19.2.14
-        version: 19.2.14
-      '@types/react-dom':
-        specifier: 19.2.3
-        version: 19.2.3(@types/react@19.2.14)
-      '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
-      es-toolkit:
-        specifier: 1.44.0
-        version: 1.44.0
-      fast-glob:
-        specifier: 3.3.3
-        version: 3.3.3
-      next:
-        specifier: 15.5.12
-        version: 15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react:
-        specifier: 19.2.4
-        version: 19.2.4
-      react-dom:
-        specifier: 19.2.4
-        version: 19.2.4(react@19.2.4)
-      sinon:
-        specifier: 21.0.1
-        version: 21.0.1
-    publishDirectory: build
-
   packages/mui-lab:
     dependencies:
       '@babel/runtime':
@@ -1619,9 +1539,6 @@ importers:
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
-      '@mui/joy':
-        specifier: workspace:*
-        version: link:../packages/mui-joy/build
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
@@ -3694,18 +3611,6 @@ packages:
 
   '@mui/base@5.0.0-beta.70':
     resolution: {integrity: sha512-Tb/BIhJzb0pa5zv/wu7OdokY9ZKEDqcu1BDFnohyvGCoHuSXbEr90rPq1qeNW3XvTBIbNWHEF7gqge+xpUo6tQ==}
-    engines: {node: '>=14.0.0'}
-    deprecated: This package has been replaced by @base-ui/react
-    peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@mui/base@7.0.0-beta.4':
-    resolution: {integrity: sha512-WzFMFK9dy66fy941u/N0cmA1Yz4LfdNbkBtDK0GBV5ewBvQhSL2Z1+Xcf+lJB0yX6Xg9QvjDDgGcqBqEstyFAg==}
     engines: {node: '>=14.0.0'}
     deprecated: This package has been replaced by @base-ui/react
     peerDependencies:
@@ -14866,20 +14771,6 @@ snapshots:
       '@floating-ui/react-dom': 2.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@mui/types': 7.2.24(@types/react@19.2.14)
       '@mui/utils': 6.4.8(@types/react@19.2.14)(react@19.2.4)
-      '@popperjs/core': 2.11.8
-      clsx: 2.1.1
-      prop-types: 15.8.1
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
-    optionalDependencies:
-      '@types/react': 19.2.14
-
-  '@mui/base@7.0.0-beta.4(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      '@babel/runtime': 7.28.6
-      '@floating-ui/react-dom': 2.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@mui/types': 7.4.9(@types/react@19.2.14)
-      '@mui/utils': 7.3.6(@types/react@19.2.14)(react@19.2.4)
       '@popperjs/core': 2.11.8
       clsx: 2.1.1
       prop-types: 15.8.1

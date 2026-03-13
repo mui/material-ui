@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -19,7 +18,6 @@ import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
-import { pathnameToLanguage } from '@mui/docs/helpers';
 import SearchButton from './SearchButton';
 
 const sx = { minWidth: { sm: 160 } };
@@ -124,8 +122,6 @@ export interface AppFrameProps {
 export default function AppFrame(props: AppFrameProps) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
@@ -136,10 +132,8 @@ export default function AppFrame(props: AppFrameProps) {
   const { activePage, productIdentifier } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
-  const isJoy = canonicalAs.startsWith('/joy-ui/');
-
   return (
-    <DemoPageThemeProvider hasJoy={isJoy}>
+    <DemoPageThemeProvider>
       <RootDiv className={className}>
         <StyledAppBar
           disablePermanent={disablePermanent}

@@ -18,7 +18,7 @@ export type DocumentProps = {
 
 export function Document({ canonicalAsServer, userLanguage, analytics, children }: DocumentProps) {
   return (
-    <Html lang={userLanguage} data-mui-color-scheme="light" data-joy-color-scheme="light">
+    <Html lang={userLanguage} data-mui-color-scheme="light">
       <Head>
         {/*
             manifest.json provides metadata used when your web app is added to the

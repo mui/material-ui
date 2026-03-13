@@ -4,7 +4,6 @@ import fs from 'node:fs/promises';
 import { pageToTitle } from '@mui/docs/helpers';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import joyPages from 'docs/data/joy/pages';
 import { MuiPage } from '@mui/docs/MuiPage';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-', '/toolpad'];
@@ -41,7 +40,7 @@ async function run() {
     });
   };
 
-  traverse([...systemPages, ...materialPages, ...joyPages]);
+  traverse([...systemPages, ...materialPages]);
 
   await fs.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
 }

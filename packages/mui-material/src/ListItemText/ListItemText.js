@@ -42,10 +42,13 @@ const ListItemTextRoot = styled('div', {
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary}), .${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]:
-    {
-      display: 'block',
-    },
+  // Combine this and the below selector once https://github.com/emotion-js/emotion/issues/3366 is solved
+  [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary})`]: {
+    display: 'block',
+  },
+  [`.${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]: {
+    display: 'block',
+  },
   variants: [
     {
       props: ({ ownerState }) => ownerState.primary && ownerState.secondary,

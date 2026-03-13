@@ -278,6 +278,11 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -  PopperComponent={CustomPopper}
 -  ListboxComponent={CustomListbox}
 -  ListboxProps={{ height: 12 }}
+-  renderTags={(value, getTagProps, ownerState) =>
+-    value.map((option, index) => (
+-      <Chip label={option.label} {...getTagProps({ index })} />
+-    ))
+-  }
 -  componentsProps={{
 -    clearIndicator: { width: 10 },
 -    paper: { width: 12 },
@@ -299,6 +304,11 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +    popper: { width: 14 },
 +    popupIndicator: { width: 16 },
 +  }}
++  renderValue={(value, getItemProps, ownerState) =>
++    value.map((option, index) => (
++      <Chip label={option.label} {...getItemProps({ index })} />
++    ))
++  }
  />
 ```
 
@@ -310,6 +320,10 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -    PopperComponent: CustomPopper,
 -    ListboxComponent: CustomListbox,
 -    ListboxProps: { height: 12 },
+-    renderTags: (value, getTagProps, ownerState) =>
+-      value.map((option, index) => (
+-        <Chip label={option.label} {...getTagProps({ index })} />
+-      )),
 -    componentsProps: {
 -       clearIndicator: { width: 10 },
 -       paper: { width: 12 },
@@ -331,8 +345,21 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +      popper: { width: 14 },
 +      popupIndicator: { width: 16 },
 +    },
++    renderValue: (value, getItemProps, ownerState) =>
++      value.map((option, index) => (
++        <Chip label={option.label} {...getItemProps({ index })} />
++      )),
    },
  },
+```
+
+```diff
+ const {
+-  getTagProps,
+-  focusedTag,
++  getItemProps,
++  focusedItem,
+ } = useAutocomplete(props);
 ```
 
 ```bash
