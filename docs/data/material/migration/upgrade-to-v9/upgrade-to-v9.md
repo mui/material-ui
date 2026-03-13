@@ -469,5 +469,18 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
        }}
      />
    )}
+```
+
+#### Alert deprecated props removed
+
+The deprecated `components` and `componentsProps` props have been removed. Use `slots` and `slotProps` instead.
+
+```diff
+ <Alert
+   onClose={handleClose}
+-  components={{ CloseIcon: MyCloseIcon, CloseButton: MyCloseButton }}
+-  componentsProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
++  slots={{ closeIcon: MyCloseIcon, closeButton: MyCloseButton }}
++  slotProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
  />
 ```

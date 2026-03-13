@@ -20,7 +20,6 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
-    testLegacyComponentsProp: ['closeButton', 'closeIcon'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -96,14 +95,14 @@ describe('<Alert />', () => {
     });
   });
 
-  describe('prop: components', () => {
+  describe('slots.closeButton and slots.closeIcon', () => {
     it('should override the default icon used in the close action', () => {
       function MyCloseIcon() {
         return <div data-testid="closeIcon">X</div>;
       }
 
       render(
-        <Alert onClose={() => {}} components={{ CloseIcon: MyCloseIcon }}>
+        <Alert onClose={() => {}} slots={{ closeIcon: MyCloseIcon }}>
           Hello World
         </Alert>,
       );
@@ -117,7 +116,7 @@ describe('<Alert />', () => {
       }
 
       render(
-        <Alert onClose={() => {}} components={{ CloseButton: MyCloseButton }}>
+        <Alert onClose={() => {}} slots={{ closeButton: MyCloseButton }}>
           Hello World
         </Alert>,
       );
@@ -126,12 +125,12 @@ describe('<Alert />', () => {
     });
   });
 
-  describe('prop: componentsProps', () => {
+  describe('slotProps.closeButton and slotProps.closeIcon', () => {
     it('should apply the props on the close IconButton component', () => {
       render(
         <Alert
           onClose={() => {}}
-          componentsProps={{
+          slotProps={{
             closeButton: {
               'data-testid': 'closeButton',
               size: 'large',
@@ -152,7 +151,7 @@ describe('<Alert />', () => {
       render(
         <Alert
           onClose={() => {}}
-          componentsProps={{
+          slotProps={{
             closeIcon: {
               'data-testid': 'closeIcon',
               fontSize: 'large',
