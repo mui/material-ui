@@ -471,3 +471,32 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
    )}
  />
 ```
+
+#### Accordion deprecated props removed
+
+The following deprecated props have been removed from the `Accordion` component:
+
+- `TransitionComponent` → use `slots.transition`
+- `TransitionProps` → use `slotProps.transition`
+
+##### TransitionComponent prop
+
+The deprecated `TransitionComponent` prop has been removed. Use `slots.transition` instead.
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ >
+```
+
+##### TransitionProps prop
+
+The deprecated `TransitionProps` prop has been removed. Use `slotProps.transition` instead.
+
+```diff
+ <Accordion
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ >
+```
