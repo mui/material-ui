@@ -48,7 +48,7 @@ This means existing customers can move to v9 whenever they're ready, or stay on 
 
 ### Perpetual licenses
 
-Customers with perpetual licenses can also request a **new v9 license key**. This key will grant access to all v9 versions released **before** your support and maintenance expiration date listed on your license key. It does not extend your support and maintenance access beyond the original expiry date.
+Customers with perpetual licenses can also request a **new v9 compatible license key**. This key will grant access to all versions released **before** your support and maintenance expiration date listed on your license key. It does not extend your support and maintenance access beyond the original expiry date. The v9 license key is compatible with any existing versions of MUI X.
 
 If you want to upgrade to new versions released **after** your access to maintenance expires, or if you'd like to extend support for v9, you will need to extend your maintenance and support at the **new pricing**. You are welcome to extend maintenance and support for v8 versions released before April 8th, 2026 at the previous pricing.
 
