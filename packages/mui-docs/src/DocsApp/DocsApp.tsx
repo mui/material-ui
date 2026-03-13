@@ -42,31 +42,51 @@ export interface DocsAppProps {
     [key: string]: unknown;
   };
   /**
-   * Docs language/SSR/i18n configuration (from docs/config.ts).
+   * Docs configuration object (from docs/config.ts)
    */
-  config: DocsConfig;
+  docsConfig: DocsConfig;
   /**
-   * Path to the service worker file, e.g. '/sw.js' or '/x/sw.js'.
+   * Path to the service worker file, e.g. '/sw.js'
    */
   serviceWorkerPath: string;
   /**
-   * The resolved page context value (activePage, pages, productIdentifier, etc.).
-   * Computed by each project since the pages and product info differ.
+   * The currently active page object
    */
-  pageContextValue: MuiPageContext;
+  activePage: MuiPageContext['activePage'];
   /**
-   * The resolved demo context value (product display name, sandbox config, etc.).
-   * Computed by each project since demo configuration differs.
+   * The parent pages of the active page
    */
-  demoContextValue: DemoContextValue;
+  activePageParents: MuiPageContext['activePageParents'];
   /**
-   * Optional ad configuration. material-ui passes { GADisplayRatio: 0.1 }.
+   * List of all pages for the product
+   */
+  pageList: MuiPageContext['pages'];
+  /**
+   * Product metadata and branding info
+   */
+  productIdentifier: MuiPageContext['productIdentifier'];
+  /**
+   * Product identifier string (e.g. 'material-ui')
+   */
+  productId: MuiPageContext['productId'];
+  /**
+   * Product category identifier string (e.g. 'core')
+   */
+  productCategoryId: MuiPageContext['productCategoryId'];
+  /**
+   * Display name for the product (e.g. 'Material UI')
+   */
+  demoDisplayName: DemoContextValue['productDisplayName'];
+  /**
+   * CodeSandbox configuration for demos
+   */
+  csbConfig: DemoContextValue['csb'];
+  /**
+   * Optional ad configuration
    */
   adConfig?: Partial<AdConfig>;
   /**
-   * Optional wrapper component around the themed content.
-   * Defaults to ThemeProvider from @mui/docs/ThemeContext.
-   * Pass React.Fragment to disable theming (e.g. for playground routes).
+   * Optional wrapper component for theming
    */
   ThemeWrapper?: React.ComponentType<{ children: React.ReactNode }>;
 }
@@ -76,13 +96,39 @@ function DocsApp(props: DocsAppProps) {
     Component,
     emotionCache = clientSideEmotionCache,
     pageProps,
-    config,
+    docsConfig,
     serviceWorkerPath,
-    pageContextValue,
-    demoContextValue,
+    activePage,
+    activePageParents,
+    pageList,
+    productIdentifier,
+    productId,
+    productCategoryId,
+    demoDisplayName,
+    csbConfig,
     adConfig,
     ThemeWrapper = ThemeProvider,
   } = props;
+
+  const pageContextValue: MuiPageContext = React.useMemo(
+    () => ({
+      activePage,
+      activePageParents,
+      pages: pageList,
+      productIdentifier,
+      productId,
+      productCategoryId,
+    }),
+    [activePage, activePageParents, pageList, productIdentifier, productId, productCategoryId],
+  );
+
+  const demoContextValue: DemoContextValue = React.useMemo(
+    () => ({
+      productDisplayName: demoDisplayName,
+      csb: csbConfig,
+    }),
+    [demoDisplayName, csbConfig],
+  );
 
   const getLayout = Component.getLayout ?? ((page: React.ReactElement) => page);
 
@@ -101,11 +147,11 @@ function DocsApp(props: DocsAppProps) {
     <React.Fragment>
       <NextHead>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta name="mui:productId" content={pageContextValue.productId} />
-        <meta name="mui:productCategoryId" content={pageContextValue.productCategoryId} />
+        <meta name="mui:productId" content={productId} />
+        <meta name="mui:productCategoryId" content={productCategoryId} />
       </NextHead>
       <DocsProvider
-        config={config}
+        config={docsConfig}
         adConfig={adConfig}
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}

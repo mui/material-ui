@@ -1,5 +1,8 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
+import * as React from 'react';
+import { AdConfig } from '@mui/docs/Ad';
+import { SandboxConfig } from '@mui/docs/DemoContext';
 import type { DocsAppProps } from '@mui/docs/DocsApp';
 import {
   DocsApp,
@@ -9,10 +12,14 @@ import {
 } from '@mui/docs/DocsApp';
 import findActivePage from '@mui/docs/findActivePage';
 import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
+import type { Translations } from '@mui/docs/i18n';
 import type { MuiPage } from '@mui/docs/MuiPage';
 import materialPkgJson from '@mui/material/package.json';
 import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+
 import docsInfraPages from 'docs/data/docs-infra/pages';
 import generalDocsPages from 'docs/data/docs/pages';
 import materialPages from 'docs/data/material/pages';
@@ -21,9 +28,7 @@ import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
-import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-import * as React from 'react';
+
 import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
@@ -54,7 +59,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 );`;
 }
 
-function usePageContextValue(pageProps: DocsAppProps['pageProps']) {
+function useProductData(pageProps: DocsAppProps['pageProps']) {
   const router = useRouter();
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
@@ -194,47 +199,58 @@ function usePageContextValue(pageProps: DocsAppProps['pageProps']) {
   }, [productId, productCategoryId, productIdentifier, router.pathname]);
 }
 
-function useDemoContextValue() {
+const CSB_CONFIG: SandboxConfig = {
+  primaryPackage: '@mui/material',
+  fallbackDependency: { name: '@mui/material', version: 'latest' },
+  getRootIndex: getMaterialRootIndex,
+};
+
+const GA_AD_CONFIG: AdConfig = { GADisplayRatio: 0.1 };
+
+function useDemoDisplayName() {
   const router = useRouter();
-  const { productId } = getProductInfoFromUrl(router.asPath);
-
+  const { productId } = React.useMemo(() => getProductInfoFromUrl(router.asPath), [router.asPath]);
   return React.useMemo(() => {
-    // Determine display name based on productId
-    let productDisplayName = 'Material UI';
     if (productId === 'system') {
-      productDisplayName = 'MUI System';
-    } else if (productId?.startsWith('x-')) {
-      productDisplayName = 'MUI X';
+      return 'MUI System';
     }
-
-    // Default: Material UI (and MUI X, System, etc.)
-    return {
-      productDisplayName,
-      // IframeWrapper: undefined means use default MaterialIframeWrapper
-      csb: {
-        primaryPackage: '@mui/material',
-        fallbackDependency: { name: '@mui/material', version: 'latest' },
-        getRootIndex: getMaterialRootIndex,
-      },
-    };
+    if (productId?.startsWith('x-')) {
+      return 'MUI X';
+    }
+    return 'Material UI';
   }, [productId]);
 }
 
-export default function MyApp(props: AppProps) {
+export default function MyApp(
+  props: AppProps<{ userLanguage: string; translations: Translations }>,
+) {
   const { Component, pageProps } = props;
-  const pageContextValue = usePageContextValue(pageProps as DocsAppProps['pageProps']);
-  const demoContextValue = useDemoContextValue();
+  const {
+    activePage,
+    activePageParents,
+    pages: pageList,
+    productIdentifier,
+    productId,
+    productCategoryId,
+  } = useProductData(pageProps);
+  const demoDisplayName = useDemoDisplayName();
 
   return (
     <DocsApp
       {...props}
       Component={Component}
-      pageProps={pageProps as DocsAppProps['pageProps']}
-      config={config}
+      pageProps={pageProps}
+      docsConfig={config}
       serviceWorkerPath="/sw.js"
-      pageContextValue={pageContextValue}
-      demoContextValue={demoContextValue}
-      adConfig={{ GADisplayRatio: 0.1 }}
+      adConfig={GA_AD_CONFIG}
+      activePage={activePage}
+      activePageParents={activePageParents}
+      pageList={pageList}
+      productIdentifier={productIdentifier}
+      productId={productId}
+      productCategoryId={productCategoryId}
+      demoDisplayName={demoDisplayName}
+      csbConfig={CSB_CONFIG}
     />
   );
 }
