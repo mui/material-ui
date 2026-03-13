@@ -94,8 +94,10 @@ export default function AppFooter() {
               select
               size="medium"
               variant="standard"
-              SelectProps={{
-                native: true,
+              slotProps={{
+                select: {
+                  native: true,
+                },
               }}
               sx={{ mt: 1, width: 150 }}
             >

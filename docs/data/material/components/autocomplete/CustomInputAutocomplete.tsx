@@ -18,8 +18,8 @@ export default function CustomInputAutocomplete() {
         id="custom-input-demo"
         options={options}
         renderInput={(params) => (
-          <div ref={params.InputProps.ref}>
-            <input type="text" {...params.inputProps} />
+          <div ref={params.slotProps.input.ref}>
+            <input type="text" {...params.slotProps.htmlInput} />
           </div>
         )}
       />
