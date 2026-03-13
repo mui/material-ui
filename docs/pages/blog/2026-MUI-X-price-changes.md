@@ -37,7 +37,7 @@ We value our loyal customers and want to ensure a smooth transition.
 
 Customers with active MUI X **v8 licenses** can continue using v8 and either renew their annual licenses or extend their perpetual support and maintenance plans at the **previous pricing**.
 
-If you want to upgrade to **MUI X v9**, you will need to request a **new v9 license key**, since v8 license keys will **not** work with v9. The new key will have the **same expiration date** as your current license, so upgrading does not reset or extend your license period.
+If you want to upgrade to **MUI X v9**, you will need to request a **new v9 compatible license key**, since previous license keys will **not** work with v9. The new key will have the **same expiration date** as your current license, so upgrading does not reset or extend your license period. The v9 license key is compatible with any existing versions of MUI X.
 
 When your license term expires, you will have two options:
 
