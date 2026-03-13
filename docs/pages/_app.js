@@ -126,9 +126,10 @@ function loadDependencies() {
 
 if (typeof window !== 'undefined') {
   window.theme = getTheme();
-  // eslint-disable-next-line no-console
-  console.log(
-    `%c
+  if (process.env.NODE_ENV === 'production') {
+    // eslint-disable-next-line no-console
+    console.log(
+      `%c
 
 ███╗   ███╗ ██╗   ██╗ ██████╗
 ████╗ ████║ ██║   ██║   ██╔═╝
@@ -139,8 +140,9 @@ if (typeof window !== 'undefined') {
 
 Tip: you can access the documentation \`theme\` object directly in the console.
 `,
-    'font-family:monospace;color:#1976d2;font-size:12px;',
-  );
+      'font-family:monospace;color:#1976d2;font-size:12px;',
+    );
+  }
 }
 
 /**
