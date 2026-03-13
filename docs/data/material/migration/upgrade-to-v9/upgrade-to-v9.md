@@ -233,6 +233,12 @@ APIs that were deprecated earlier have been removed in v9.
 
 #### Autocomplete deprecated props removed
 
+Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
+
 The following deprecated props have been removed from the `Autocomplete` component:
 
 - `ChipProps` → use `slotProps.chip`
@@ -376,6 +382,12 @@ The deprecated `renderTags` prop has been removed. Use `renderValue` instead.
 ---
 
 #### useAutocomplete deprecated fields removed
+
+Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
 
 The following deprecated members have been removed from the `useAutocomplete` hook return value:
 
