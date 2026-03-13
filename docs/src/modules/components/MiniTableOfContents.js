@@ -181,6 +181,8 @@ export default function MiniTableOfContents(props) {
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <Box
+        component="nav"
+        aria-label="Table of contents"
         ref={containerRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleClose}
@@ -202,6 +204,7 @@ export default function MiniTableOfContents(props) {
           <Bar
             key={item.hash}
             href={`#${item.hash}`}
+            aria-label={item.text.replace(/<[^>]*>/g, '')}
             active={activeState === item.hash}
             barWidth={getBarWidth(item.text, item.level) + getWidthIncrease(index)}
             level={item.level}
@@ -217,6 +220,7 @@ export default function MiniTableOfContents(props) {
           placement="left-start"
           transition
           sx={{ zIndex: 2000 }}
+          aria-hidden
         >
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={250}>
