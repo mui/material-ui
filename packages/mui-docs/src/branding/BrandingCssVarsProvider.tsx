@@ -115,7 +115,7 @@ export function resetDocsSpacing() {
 }
 
 const themeCache: Map<string, ReturnType<typeof createTheme>> = new Map();
-function getTheme(direction: 'ltr' | 'rtl') {
+export function getTheme(direction: 'ltr' | 'rtl') {
   let cachedTheme = themeCache.get(direction);
   if (!cachedTheme) {
     cachedTheme = createTheme({
@@ -131,11 +131,17 @@ function getTheme(direction: 'ltr' | 'rtl') {
   return cachedTheme!;
 }
 
+interface BrandingCssThemeProviderProps {
+  children: React.ReactNode;
+  direction?: 'ltr' | 'rtl';
+  forceThemeRerender?: boolean;
+}
+
 export function BrandingCssThemeProvider({
   children,
   direction = 'ltr',
   forceThemeRerender = false,
-}: React.PropsWithChildren<{ direction?: 'ltr' | 'rtl'; forceThemeRerender?: boolean }>) {
+}: BrandingCssThemeProviderProps) {
   const theme = React.useMemo(() => getTheme(direction), [direction]);
   return (
     <ThemeProvider

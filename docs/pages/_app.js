@@ -13,6 +13,7 @@ import createEmotionCache from '@mui/docs/createEmotionCache';
 import findActivePage from '@mui/docs/findActivePage';
 import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
 import { mapTranslations } from '@mui/docs/i18n';
+import { getTheme } from '@mui/docs/branding';
 import materialPkgJson from '@mui/material/package.json';
 import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';
@@ -29,7 +30,6 @@ import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-
 import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
@@ -124,7 +124,8 @@ function loadDependencies() {
   );
 }
 
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
+if (typeof window !== 'undefined') {
+  window.theme = getTheme();
   // eslint-disable-next-line no-console
   console.log(
     `%c
