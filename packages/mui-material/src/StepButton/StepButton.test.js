@@ -6,6 +6,7 @@ import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
+import Stepper from '../Stepper';
 
 describe('<StepButton />', () => {
   const { render } = createRenderer();
@@ -20,6 +21,30 @@ describe('<StepButton />', () => {
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }));
 
+    it('should receive the correct aria attributes', () => {
+      render(
+        <Stepper>
+          <Step>
+            <StepButton>Step One</StepButton>
+          </Step>
+          <Step>
+            <StepButton>Step Two</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepButton1 = screen.getByRole('tab', { name: 'Step One' });
+      const stepButton2 = screen.getByRole('tab', { name: 'Step Two' });
+
+      expect(stepButton1).to.have.attribute('aria-selected', 'true');
+      expect(stepButton1).to.have.attribute('aria-posinset', '1');
+      expect(stepButton1).to.have.attribute('aria-setsize', '2');
+
+      expect(stepButton2).not.to.have.attribute('aria-current', 'step');
+      expect(stepButton2).to.have.attribute('aria-posinset', '2');
+      expect(stepButton2).to.have.attribute('aria-setsize', '2');
+    });
+
     it('passes active, completed, disabled to StepLabel', () => {
       const { container } = render(
         <Step active completed disabled>
@@ -33,7 +58,6 @@ describe('<StepButton />', () => {
       expect(stepLabelRoot).to.have.class(stepLabelClasses.disabled);
       expect(stepLabel).to.have.class(stepLabelClasses.active);
       expect(stepLabel).to.have.class(stepLabelClasses.completed);
-      screen.getByText('Step One');
     });
 
     it('should pass props to a provided StepLabel', () => {
@@ -51,34 +75,13 @@ describe('<StepButton />', () => {
       expect(stepLabelRoot).to.have.class(stepLabelClasses.disabled);
       expect(stepLabel).to.have.class(stepLabelClasses.active);
       expect(stepLabel).to.have.class(stepLabelClasses.completed);
-      screen.getByText('Step One');
     });
   });
 
   it('should disable the button', () => {
     render(<StepButton disabled>Step One</StepButton>);
 
-    expect(screen.getByRole('button')).to.have.property('disabled', true);
-  });
-
-  it('should have `aria-current=step` when active', () => {
-    render(
-      <Step active>
-        <StepButton>Step One</StepButton>
-      </Step>,
-    );
-
-    expect(screen.getByRole('button')).to.have.attribute('aria-current', 'step');
-  });
-
-  it('should not have `aria-current` when non-active', () => {
-    render(
-      <Step active={false}>
-        <StepButton>Step One</StepButton>
-      </Step>,
-    );
-
-    expect(screen.getByRole('button')).not.to.have.attribute('aria-current', 'step');
+    expect(screen.getByRole('tab')).to.have.property('disabled', true);
   });
 
   describe('event handlers', () => {
@@ -100,7 +103,7 @@ describe('<StepButton />', () => {
           </StepButton>,
         );
 
-        const button = screen.getByRole('button');
+        const button = screen.getByRole('tab', { name: 'Step One' });
 
         fireEvent.mouseOver(button);
 
@@ -140,6 +143,6 @@ describe('<StepButton />', () => {
       </Step>,
     );
 
-    expect(screen.getByRole('button')).not.to.equal(null);
+    expect(screen.getByRole('tab', { name: 'Next' })).not.to.equal(null);
   });
 });

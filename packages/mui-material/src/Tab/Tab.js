@@ -265,7 +265,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onClick={handleClick}
       onFocus={handleFocus}
       ownerState={ownerState}
-      tabIndex={selected ? 0 : -1}
       {...other}
     >
       {iconPosition === 'top' || iconPosition === 'start' ? (

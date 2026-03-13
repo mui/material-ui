@@ -72,6 +72,8 @@ The use of the `StepButton` here demonstrates clickable step labels, as well as 
 flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to
 determine when all steps are completed (or even if they need to be completed).
 
+Actionable steps mean that they control the content update of a section. From an accessibility standpoint, this means that each `StepButton` requires an `aria-controls` attribute pointing at the content section element.
+
 {{"demo": "HorizontalNonLinearStepper.js"}}
 
 ### Alternative label
