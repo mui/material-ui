@@ -102,7 +102,7 @@ describe('<TextField />', () => {
         <TextField
           variant="standard"
           fullWidth
-          InputProps={{ 'data-testid': 'mui-input-base-root' }}
+          slotProps={{ input: { 'data-testid': 'mui-input-base-root' } }}
         />,
       );
 
@@ -119,7 +119,11 @@ describe('<TextField />', () => {
 
     it('should apply the className to the label', () => {
       const { container } = render(
-        <TextField label="Foo bar" InputLabelProps={{ className: 'foo' }} variant="standard" />,
+        <TextField
+          label="Foo bar"
+          slotProps={{ inputLabel: { className: 'foo' } }}
+          variant="standard"
+        />,
       );
 
       expect(container.querySelector('label')).to.have.class('foo');
@@ -139,7 +143,7 @@ describe('<TextField />', () => {
       const { getDescriptionOf } = render(
         <TextField
           helperText="Foo bar"
-          FormHelperTextProps={{ className: 'foo' }}
+          slotProps={{ formHelperText: { className: 'foo' } }}
           variant="standard"
         />,
       );
@@ -151,7 +155,7 @@ describe('<TextField />', () => {
       render(
         <TextField
           helperText="Foo bar"
-          FormHelperTextProps={{ className: 'foo' }}
+          slotProps={{ formHelperText: { className: 'foo' } }}
           variant="standard"
         />,
       );
@@ -164,7 +168,7 @@ describe('<TextField />', () => {
     it('should set outline props', () => {
       const { container } = render(
         <TextField
-          InputProps={{ classes: { notchedOutline: 'notch' } }}
+          slotProps={{ input: { classes: { notchedOutline: 'notch' } } }}
           label={<div data-testid="label">label</div>}
           required
         />,
@@ -177,7 +181,9 @@ describe('<TextField />', () => {
     });
 
     it('should set shrink prop on outline from label', () => {
-      const { container } = render(<TextField InputLabelProps={{ shrink: true }} classes={{}} />);
+      const { container } = render(
+        <TextField slotProps={{ inputLabel: { shrink: true } }} classes={{}} />,
+      );
 
       expect(container.querySelector('fieldset')).to.have.class(
         outlinedInputClasses.notchedOutline,
@@ -186,7 +192,11 @@ describe('<TextField />', () => {
 
     it('should render `0` label properly', () => {
       const { container } = render(
-        <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={0} required />,
+        <TextField
+          slotProps={{ input: { classes: { notchedOutline: 'notch' } } }}
+          label={0}
+          required
+        />,
       );
 
       const notch = container.querySelector('.notch legend');
@@ -199,7 +209,10 @@ describe('<TextField />', () => {
         const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
         ['', undefined, null].forEach((prop) => {
           const { container: container1 } = render(
-            <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={prop} />,
+            <TextField
+              slotProps={{ input: { classes: { notchedOutline: 'notch' } } }}
+              label={prop}
+            />,
           );
           expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
         });
@@ -209,7 +222,9 @@ describe('<TextField />', () => {
 
   describe('prop: InputProps', () => {
     it('should apply additional props to the Input component', () => {
-      render(<TextField InputProps={{ 'data-testid': 'InputComponent' }} variant="standard" />);
+      render(
+        <TextField slotProps={{ input: { 'data-testid': 'InputComponent' } }} variant="standard" />,
+      );
 
       expect(screen.getByTestId('InputComponent')).not.to.equal(null);
     });
@@ -223,7 +238,7 @@ describe('<TextField />', () => {
       ];
 
       const { container } = render(
-        <TextField select SelectProps={{ native: true }} variant="standard">
+        <TextField select slotProps={{ select: { native: true } }} variant="standard">
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -242,7 +257,7 @@ describe('<TextField />', () => {
         <TextField
           label="Currency:"
           select
-          SelectProps={{ native: true }}
+          slotProps={{ select: { native: true } }}
           value="$"
           variant="standard"
         >
@@ -311,7 +326,7 @@ describe('<TextField />', () => {
 
   describe('prop: inputProps', () => {
     it('should apply additional props to the input element', () => {
-      render(<TextField inputProps={{ 'data-testid': 'input-element' }} />);
+      render(<TextField slotProps={{ htmlInput: { 'data-testid': 'input-element' } }} />);
 
       expect(screen.getByRole('textbox')).to.have.attribute('data-testid', 'input-element');
     });

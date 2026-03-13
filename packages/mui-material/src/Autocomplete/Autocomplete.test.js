@@ -1328,7 +1328,10 @@ describe('<Autocomplete />', () => {
           onOpen={handleOpen}
           options={['one']}
           renderInput={(params) => (
-            <TextField {...params} InputProps={{ ...params.InputProps, ref }} />
+            <TextField
+              {...params}
+              slotProps={{ ...params.slotProps, input: { ...params.slotProps.input, ref } }}
+            />
           )}
         />,
       );
@@ -1797,9 +1800,9 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => (
             <TextField
               {...params}
-              InputProps={{
-                ...params.InputProps,
-                'data-testid': 'test-input-root',
+              slotProps={{
+                ...params.slotProps,
+                input: { ...params.slotProps.input, 'data-testid': 'test-input-root' },
               }}
             />
           )}
@@ -2424,15 +2427,18 @@ describe('<Autocomplete />', () => {
             return (
               <TextField
                 {...params}
-                InputProps={{
-                  ...params.InputProps,
-                  startAdornment: (
-                    <InputAdornment position="end">
-                      <Tooltip title="tooltip" open>
-                        <div>ICON</div>
-                      </Tooltip>
-                    </InputAdornment>
-                  ),
+                slotProps={{
+                  ...params.slotProps,
+                  input: {
+                    ...params.slotProps.input,
+                    startAdornment: (
+                      <InputAdornment position="end">
+                        <Tooltip title="tooltip" open>
+                          <div>ICON</div>
+                        </Tooltip>
+                      </InputAdornment>
+                    ),
+                  },
                 }}
               />
             );
@@ -3901,7 +3907,10 @@ describe('<Autocomplete />', () => {
           <TextField
             {...params}
             label="Fixed tag"
-            slotProps={{ inputLabel: { 'data-testid': 'label' } }}
+            slotProps={{
+              ...params.slotProps,
+              inputLabel: { ...params.slotProps.inputLabel, 'data-testid': 'label' },
+            }}
           />
         )}
       />,

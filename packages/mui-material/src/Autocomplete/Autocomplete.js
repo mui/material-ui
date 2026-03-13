@@ -691,34 +691,39 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           disabled,
           fullWidth: props.fullWidth ?? true,
           size: size === 'small' ? 'small' : undefined,
-          InputLabelProps: getInputLabelProps(),
-          InputProps: {
-            ref: setAnchorEl,
-            className: classes.inputRoot,
-            startAdornment,
-            onMouseDown: (event) => {
-              if (event.target === event.currentTarget) {
-                handleInputMouseDown(event);
-              }
+          slotProps: {
+            inputLabel: getInputLabelProps(),
+            input: {
+              ref: setAnchorEl,
+              className: classes.inputRoot,
+              startAdornment,
+              onMouseDown: (event) => {
+                if (event.target === event.currentTarget) {
+                  handleInputMouseDown(event);
+                }
+              },
+              ...((hasClearIcon || hasPopupIcon) && {
+                endAdornment: (
+                  <AutocompleteEndAdornment
+                    className={classes.endAdornment}
+                    ownerState={ownerState}
+                  >
+                    {hasClearIcon ? (
+                      <ClearIndicatorSlot {...clearIndicatorProps}>{clearIcon}</ClearIndicatorSlot>
+                    ) : null}
+                    {hasPopupIcon ? (
+                      <PopupIndicatorSlot {...popupIndicatorProps}>{popupIcon}</PopupIndicatorSlot>
+                    ) : null}
+                  </AutocompleteEndAdornment>
+                ),
+              }),
             },
-            ...((hasClearIcon || hasPopupIcon) && {
-              endAdornment: (
-                <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
-                  {hasClearIcon ? (
-                    <ClearIndicatorSlot {...clearIndicatorProps}>{clearIcon}</ClearIndicatorSlot>
-                  ) : null}
-                  {hasPopupIcon ? (
-                    <PopupIndicatorSlot {...popupIndicatorProps}>{popupIcon}</PopupIndicatorSlot>
-                  ) : null}
-                </AutocompleteEndAdornment>
-              ),
-            }),
-          },
-          inputProps: {
-            className: classes.input,
-            disabled,
-            readOnly,
-            ...getInputProps(),
+            htmlInput: {
+              className: classes.input,
+              disabled,
+              readOnly,
+              ...getInputProps(),
+            },
           },
         })}
       </RootSlot>

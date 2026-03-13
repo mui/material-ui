@@ -71,8 +71,8 @@ function MyAutocomplete<
 <Autocomplete
   options={['1', '2', '3']}
   renderInput={(params) => {
-    expectType<React.MouseEventHandler, typeof params.InputProps.onMouseDown>(
-      params.InputProps.onMouseDown,
+    expectType<React.MouseEventHandler, typeof params.slotProps.input.onMouseDown>(
+      params.slotProps.input.onMouseDown,
     );
     return <TextField {...params} />;
   }}
@@ -99,7 +99,7 @@ function MyAutocomplete<
 // Test for getInputProps return type
 <MyAutocomplete
   options={[{ label: '1' }, { label: '2' }]}
-  renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+  renderInput={(params) => <TextField {...params} value={params.slotProps.htmlInput.value} />}
 />;
 
 // Test for focusVisible class
