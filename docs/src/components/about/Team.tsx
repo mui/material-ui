@@ -83,10 +83,12 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           <Box sx={{ position: 'relative', display: 'inline-block' }}>
             <Avatar
               variant="rounded"
-              imgProps={{
-                width: '70',
-                height: '70',
-                loading: 'lazy',
+              slotProps={{
+                img: {
+                  width: '70',
+                  height: '70',
+                  loading: 'lazy',
+                },
               }}
               src={props.src}
               alt={props.name}
