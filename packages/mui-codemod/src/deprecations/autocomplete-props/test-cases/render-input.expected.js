@@ -9,6 +9,7 @@ import { Autocomplete as MyAutocomplete } from '@mui/material';
       {...params}
       slotProps={{
         ...params.slotProps,
+
         input: {
           ...params.slotProps.input,
           endAdornment: (
@@ -16,7 +17,7 @@ import { Autocomplete as MyAutocomplete } from '@mui/material';
               {params.slotProps.input.endAdornment}
             </React.Fragment>
           ),
-        },
+        }
       }}
     />
   )}
@@ -28,10 +29,11 @@ import { Autocomplete as MyAutocomplete } from '@mui/material';
       {...params}
       slotProps={{
         ...params.slotProps,
+
         htmlInput: {
           ...params.slotProps.htmlInput,
           autoComplete: 'new-password',
-        },
+        }
       }}
     />
   )}
@@ -43,10 +45,11 @@ import { Autocomplete as MyAutocomplete } from '@mui/material';
       {...params}
       slotProps={{
         ...params.slotProps,
+
         input: {
           ...params.slotProps.input,
           type: 'search',
-        },
+        }
       }}
     />
   )}
@@ -58,10 +61,11 @@ import { Autocomplete as MyAutocomplete } from '@mui/material';
       {...params}
       slotProps={{
         ...params.slotProps,
+
         inputLabel: {
           ...params.slotProps.inputLabel,
           shrink: true,
-        },
+        }
       }}
     />
   )}
@@ -81,6 +85,7 @@ import { Autocomplete as MyAutocomplete } from '@mui/material';
       {...params}
       slotProps={{
         ...params.slotProps,
+
         input: {
           ...params.slotProps.input,
           endAdornment: (
@@ -88,7 +93,7 @@ import { Autocomplete as MyAutocomplete } from '@mui/material';
               {params.slotProps.input.endAdornment}
             </React.Fragment>
           ),
-        },
+        }
       }}
     />
   )}

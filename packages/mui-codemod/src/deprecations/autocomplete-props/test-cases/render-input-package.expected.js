@@ -8,10 +8,11 @@ import { Autocomplete as MyAutocomplete } from '@org/ui/material';
       {...params}
       slotProps={{
         ...params.slotProps,
+
         htmlInput: {
           ...params.slotProps.htmlInput,
           autoComplete: 'new-password',
-        },
+        }
       }}
     />
   )}
@@ -23,10 +24,11 @@ import { Autocomplete as MyAutocomplete } from '@org/ui/material';
       {...params}
       slotProps={{
         ...params.slotProps,
+
         htmlInput: {
           ...params.slotProps.htmlInput,
           autoComplete: 'new-password',
-        },
+        }
       }}
     />
   )}

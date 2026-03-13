@@ -216,18 +216,6 @@ function transformRenderInput(j, root, options) {
   );
 }
 
-function normalizeRenderInputSlotPropsFormatting(source) {
-  return source
-    .replace(
-      /(slotProps=\{\{)(\r?\n)(\s+\.\.\.[A-Za-z_$][\w$]*\.slotProps,)(\r?\n)\s*(\r?\n)(\s+[A-Za-z_$][\w$]*: \{)/g,
-      '$1$2$3$4$6',
-    )
-    .replace(
-      /(\r?\n\s+[A-Za-z_$][\w$]*: \{[\s\S]*?params\.slotProps[\s\S]*?\r?\n\s+\})(\r?\n\s+\}\})/g,
-      '$1,$2',
-    );
-}
-
 function isNonComputedKey(j, path) {
   const parent = path.parent.node;
 
@@ -514,5 +502,5 @@ export default function transformer(file, api, options) {
 
   renameUseAutocompleteReturnMembers(j, root);
 
-  return normalizeRenderInputSlotPropsFormatting(root.toSource(printOptions));
+  return root.toSource(printOptions);
 }
