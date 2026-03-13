@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material/styles';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 const linkStyleOverrides = (theme: Theme) => ({
   color: 'inherit',
@@ -54,9 +56,34 @@ function getDefaultHiringMessage() {
   );
 }
 
+function getPricingMessage() {
+  return (
+    <React.Fragment>
+      {`📣 MUI X pricing is changing on April 8, 2026.`}
+      &nbsp;
+      <Link href="/blog/2026-MUI-X-price-changes/" underline="always" sx={linkStyleOverrides}>
+        Read the announcement →
+      </Link>
+    </React.Fragment>
+  );
+}
+
+function getBannerMessage(isPricingPage: boolean, showSurveyMessage: boolean) {
+  if (isPricingPage) {
+    return getPricingMessage();
+  }
+  if (showSurveyMessage) {
+    return getSurveyMessage();
+  }
+  return getDefaultHiringMessage();
+}
+
 export default function AppHeaderBanner() {
+  const router = useRouter();
+  const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const showSurveyMessage = true;
-  const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
+  const isPricingPage = canonicalAsServer === ROUTES.pricing;
+  const bannerMessage = getBannerMessage(isPricingPage, showSurveyMessage);
 
   return FEATURE_TOGGLE.enable_website_banner ? (
     <Typography
