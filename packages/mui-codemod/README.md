@@ -354,6 +354,35 @@ npx @mui/codemod@next deprecations/alert-props <path>
 ```
 
 ```diff
+ <Autocomplete
+  renderInput={(params) => (
+    <TextField
+      {...params}
+-      InputProps={{
+-        ...params.InputProps,
+-        endAdornment: (
+-          <React.Fragment>
+-            {params.InputProps.endAdornment}
+-          </React.Fragment>
+-        ),
+-      }}
++      slotProps={{
++        ...params.slotProps,
++        input: {
++          ...params.slotProps.input,
++          endAdornment: (
++            <React.Fragment>
++              {params.slotProps.input.endAdornment}
++            </React.Fragment>
++          ),
++        },
++      }}
+    />
+  )}
+ />
+```
+
+```diff
  const {
 -  getTagProps,
 -  focusedTag,

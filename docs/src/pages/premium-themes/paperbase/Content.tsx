@@ -28,9 +28,11 @@ export default function Content() {
               <TextField
                 fullWidth
                 placeholder="Search by email address, phone number, or user UID"
-                InputProps={{
-                  disableUnderline: true,
-                  sx: { fontSize: 'default' },
+                slotProps={{
+                  input: {
+                    disableUnderline: true,
+                    sx: { fontSize: 'default' },
+                  },
                 }}
                 variant="standard"
               />

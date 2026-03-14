@@ -20,7 +20,7 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-export interface SliderOwnProps<Value extends number | number[]> {
+export interface SliderOwnProps<Value extends number | readonly number[]> {
   /**
    * The label of the slider.
    */
@@ -317,18 +317,19 @@ export interface SliderOwnProps<Value extends number | number[]> {
 export interface SliderTypeMap<
   RootComponent extends React.ElementType = 'span',
   AdditionalProps = {},
-  Value extends number | number[] = number | number[],
+  Value extends number | readonly number[] = number | number[],
 > {
   props: AdditionalProps & SliderOwnProps<Value>;
   defaultComponent: RootComponent;
 }
 
-export type SliderComponent<Value extends number | number[]> = OverridableComponent<
+export type SliderComponent<Value extends number | readonly number[]> = OverridableComponent<
   SliderTypeMap<'span', {}, Value>
 >;
 
 export type SliderType = SliderComponent<number> &
   SliderComponent<number[]> &
+  SliderComponent<readonly number[]> &
   SliderComponent<number | number[]>;
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -368,7 +369,8 @@ declare const Slider: SliderType;
 export type SliderProps<
   RootComponent extends React.ElementType = SliderTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps>, RootComponent> & {
+  Value extends number | readonly number[] = number | number[],
+> = OverrideProps<SliderTypeMap<RootComponent, AdditionalProps, Value>, RootComponent> & {
   component?: React.ElementType | undefined;
 };
 
