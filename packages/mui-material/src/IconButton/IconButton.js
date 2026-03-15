@@ -186,7 +186,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     loadingIndicator: loadingIndicatorProp,
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
@@ -214,7 +213,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       focusRipple={!disableFocusRipple}
       disabled={disabled || loading}
       ref={ref}
-      {...buttonBaseProps}
+      {...other}
       ownerState={ownerState}
     >
       {typeof loading === 'boolean' && (

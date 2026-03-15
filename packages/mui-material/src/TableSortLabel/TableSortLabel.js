@@ -112,7 +112,6 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = {
     ...props,
@@ -145,7 +144,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
   });
 
   return (
-    <RootSlot disableRipple component="span" {...rootProps} {...buttonBaseProps}>
+    <RootSlot disableRipple component="span" {...rootProps} {...other}>
       {children}
       {hideSortIcon && !active ? null : <IconSlot as={IconComponent} {...iconProps} />}
     </RootSlot>

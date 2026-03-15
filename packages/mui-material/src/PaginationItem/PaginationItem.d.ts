@@ -121,6 +121,12 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    */
   disabled?: boolean | undefined;
   /**
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * This enables native button semantics even when `component` is a custom component.
+   * @default component === 'button'
+   */
+  nativeButton?: boolean | undefined;
+  /**
    * The current page number.
    */
   page?: React.ReactNode;

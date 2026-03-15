@@ -104,7 +104,6 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     slotProps = {},
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
@@ -128,7 +127,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     elementType: BottomNavigationActionRoot,
     externalForwardedProps: {
       ...externalForwardedProps,
-      ...buttonBaseProps,
+      ...other,
     },
     shouldForwardComponentProp: true,
     ownerState,

@@ -21,6 +21,9 @@
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "icon": { "description": "Icon element." },
     "label": { "description": "The content of the component." },
+    "nativeButton": {
+      "description": "If <code>true</code>, the component is expected to resolve to a native <code>&lt;button&gt;</code> element when the chip is interactive (clickable or deletable). Only relevant when <code>component</code> is a custom component and the chip renders through <code>ButtonBase</code>."
+    },
     "onDelete": {
       "description": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown."
     },

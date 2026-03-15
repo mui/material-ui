@@ -24,7 +24,11 @@ type SwitchBaseSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the available props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
      */
-    root: SlotProps<React.ElementType<Omit<ButtonBaseProps, 'nativeButton'>>, {}, SwitchBaseOwnerState>;
+    root: SlotProps<
+      React.ElementType<Omit<ButtonBaseProps, 'nativeButton'>>,
+      {},
+      SwitchBaseOwnerState
+    >;
     /**
      * Props forwarded to the input slot.
      */

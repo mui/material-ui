@@ -92,4 +92,13 @@ describe('<TableSortLabel />', () => {
       expect(iconChildren.length).to.equal(1);
     });
   });
+
+  describe('prop: nativeButton', () => {
+    it('renders as a span with pseudo-button semantics by default', () => {
+      render(<TableSortLabel />);
+
+      const label = screen.getByRole('button');
+      expect(label).to.have.tagName('SPAN');
+    });
+  });
 });

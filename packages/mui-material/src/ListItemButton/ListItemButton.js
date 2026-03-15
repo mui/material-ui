@@ -157,7 +157,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const context = React.useContext(ListContext);
   const childContext = React.useMemo(
@@ -199,15 +198,13 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     <ListContext.Provider value={childContext}>
       <ListItemButtonRoot
         ref={handleRef}
-        href={buttonBaseProps.href || buttonBaseProps.to}
+        href={other.href || other.to}
         // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
-        component={
-          (buttonBaseProps.href || buttonBaseProps.to) && component === 'div' ? 'button' : component
-        }
+        component={(other.href || other.to) && component === 'div' ? 'button' : component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
-        {...buttonBaseProps}
+        {...other}
         classes={classes}
       >
         {children}

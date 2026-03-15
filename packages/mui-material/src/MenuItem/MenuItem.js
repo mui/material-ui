@@ -175,7 +175,6 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     className,
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const context = React.useContext(ListContext);
   const childContext = React.useMemo(
@@ -224,7 +223,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         component={component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         className={clsx(classes.root, className)}
-        {...buttonBaseProps}
+        {...other}
         ownerState={ownerState}
         classes={classes}
       />

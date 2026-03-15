@@ -111,7 +111,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   let ComponentProp = component;
 
-  if (ComponentProp === 'button' && (other.href || other.to)) {
+  const isLink = !!(other.href || other.to);
+
+  if (ComponentProp === 'button' && isLink) {
     ComponentProp = LinkComponent;
   }
 
@@ -122,9 +124,16 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  const { eventHandlers, rootRef: buttonRef } = useButtonBase({
+  const {
+    eventHandlers,
+    buttonProps,
+    rootRef: buttonRef,
+  } = useButtonBase({
     nativeButton,
     disabled,
+    type,
+    hasFormAction: !!other.formAction,
+    tabIndex,
     onBeforeKeyDown: (event) => {
       // Check if key is already down to avoid repeats being counted as multiple activations
       if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
@@ -146,6 +155,35 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     onKeyDown,
     onKeyUp,
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      const root = buttonRef.current;
+      if (root == null) {
+        return;
+      }
+      if (typeof ComponentProp === 'string') {
+        return;
+      }
+      if (isLink) {
+        return;
+      }
+
+      if (nativeButtonProp === undefined) {
+        const tagName = root.tagName.toLowerCase();
+        if (tagName !== 'button') {
+          console.error(
+            [
+              'MUI: A component that acts as a button resolved to a non-button host,',
+              `but \`nativeButton={false}\` was not specified and the resolved root is <${tagName}>.`,
+              'When using a custom `component`, set `nativeButton={false}` explicitly or render a <button> element.',
+            ].join(' '),
+          );
+        }
+      }
+    });
+  }
 
   React.useImperativeHandle(
     action,
@@ -220,21 +258,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   });
 
-  const buttonProps = {};
-  if (other.href || other.to) {
+  // Link-mode props are owned by ButtonBase, not the hook
+  const linkProps = {};
+  if (isLink) {
+    linkProps.tabIndex = disabled ? -1 : tabIndex;
     if (disabled) {
-      buttonProps['aria-disabled'] = disabled;
-    }
-  } else if (nativeButton) {
-    const hasFormAttributes = !!other.formAction;
-    // ButtonBase was defaulting to type="button" when no type prop was provided, which prevented form submission and broke formAction functionality.
-    // The fix checks for form-related attributes and skips the default type to allow the browser's natural submit behavior (type="submit").
-    buttonProps.type = type === undefined && !hasFormAttributes ? 'button' : type;
-    buttonProps.disabled = disabled;
-  } else {
-    buttonProps.role = 'button';
-    if (disabled) {
-      buttonProps['aria-disabled'] = disabled;
+      linkProps['aria-disabled'] = disabled;
     }
   }
 
@@ -273,9 +302,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStart}
       ref={handleRef}
-      tabIndex={disabled ? -1 : tabIndex}
       type={type}
-      {...buttonProps}
+      {...(isLink ? linkProps : buttonProps)}
       {...other}
     >
       {children}

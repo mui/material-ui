@@ -90,13 +90,45 @@ describe('<Chip />', () => {
       expect(button).toHaveAccessibleName('My Chip');
     });
 
-    it('does not forward nativeButton to ButtonBase', () => {
+    it('forwards nativeButton to ButtonBase when interactive', () => {
+      const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+
+      render(<Chip label="My Chip" onClick={() => {}} component={CustomButton} nativeButton />);
+
+      const chip = screen.getByRole('button');
+      expect(chip).to.have.tagName('BUTTON');
+      expect(chip).to.have.attribute('type', 'button');
+    });
+
+    it('does not leak nativeButton to DOM when not interactive', () => {
+      const { container } = render(<Chip label="My Chip" nativeButton />);
+
+      expect(container.firstChild).to.have.tagName('DIV');
+      expect(container.firstChild).not.to.have.attribute('nativebutton');
+    });
+
+    it('warns when nativeButton is omitted and a custom non-button component is used', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      render(<Chip label="My Chip" onClick={() => {}} nativeButton />);
+      render(<Chip label="My Chip" onClick={() => {}} component={CustomSpan} />);
 
-      expect(screen.getByRole('button')).to.have.tagName('DIV');
-      expect(errorSpy.mock.calls.length).to.equal(0);
+      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
+      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(true);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn when nativeButton={false} is set with a custom non-button component', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Chip label="My Chip" onClick={() => {}} component={CustomSpan} nativeButton={false} />,
+      );
+
+      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
+      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
+      expect(screen.getByRole('button')).to.have.tagName('SPAN');
       errorSpy.mockRestore();
     });
 

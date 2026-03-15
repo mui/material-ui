@@ -213,7 +213,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     wrapped = false,
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = {
     ...props,
@@ -266,7 +265,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onClick={handleClick}
       onFocus={handleFocus}
       ownerState={ownerState}
-      {...buttonBaseProps}
+      {...other}
     >
       {iconPosition === 'top' || iconPosition === 'start' ? (
         <React.Fragment>

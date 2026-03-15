@@ -313,7 +313,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     variant = 'text',
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = {
     ...props,
@@ -401,7 +400,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       component={component}
       disabled={disabled}
       className={clsx(classes.root, className)}
-      {...buttonBaseProps}
+      {...other}
     >
       {type === 'page' && page}
       {IconSlot ? (
@@ -463,6 +462,12 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * This enables native button semantics even when `component` is a custom component.
+   * @default component === 'button'
+   */
+  nativeButton: PropTypes.bool,
   /**
    * The current page number.
    */

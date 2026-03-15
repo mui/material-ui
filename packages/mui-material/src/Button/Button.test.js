@@ -51,16 +51,44 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
-  it('does not forward nativeButton to ButtonBase', () => {
+  it('does not warn for intrinsic non-button components when nativeButton is omitted', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(<Button component="span">Hello World</Button>);
+
+    expect(screen.getByRole('button')).to.have.tagName('SPAN');
+    expect(errorSpy.mock.calls.length).to.equal(0);
+    errorSpy.mockRestore();
+  });
+
+  it('warns for custom non-button components when nativeButton is omitted', () => {
+    const StyledSpan = React.forwardRef(function StyledSpan(props, ref) {
+      return <span ref={ref} {...props} />;
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(<Button component={StyledSpan}>Hello World</Button>);
+
+    const allArgs = errorSpy.mock.calls.map((call) => call[0]);
+    expect(screen.getByRole('button')).to.have.tagName('SPAN');
+    expect(allArgs.length).to.be.greaterThanOrEqual(1);
+    expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(true);
+    errorSpy.mockRestore();
+  });
+
+  it('does not warn for custom non-button components when nativeButton={false}', () => {
+    const StyledSpan = React.forwardRef(function StyledSpan(props, ref) {
+      return <span ref={ref} {...props} />;
+    });
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
     render(
-      <Button component="div" nativeButton>
+      <Button component={StyledSpan} nativeButton={false}>
         Hello World
       </Button>,
     );
 
-    expect(screen.getByRole('button')).to.have.tagName('DIV');
+    expect(screen.getByRole('button')).to.have.tagName('SPAN');
     expect(errorSpy.mock.calls.length).to.equal(0);
     errorSpy.mockRestore();
   });

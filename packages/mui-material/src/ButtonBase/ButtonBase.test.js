@@ -885,7 +885,11 @@ describe('<ButtonBase />', () => {
       const Link = React.forwardRef((props, ref) => (
         <div data-testid="link" ref={ref} {...props} />
       ));
-      render(<ButtonBase component={Link}>Hello</ButtonBase>);
+      render(
+        <ButtonBase component={Link} nativeButton={false}>
+          Hello
+        </ButtonBase>,
+      );
 
       expect(screen.getByTestId('link')).to.have.attribute('role', 'button');
     });
@@ -1380,7 +1384,6 @@ describe('<ButtonBase />', () => {
         expect(onKeyDown.callCount).to.equal(1);
         expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
-
     });
   });
 
@@ -1453,11 +1456,7 @@ describe('<ButtonBase />', () => {
     it('warns when nativeButton=false but the resolved host is a button', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      render(
-        <ButtonBase nativeButton={false}>
-          Hello
-        </ButtonBase>,
-      );
+      render(<ButtonBase nativeButton={false}>Hello</ButtonBase>);
 
       const allArgs = errorSpy.mock.calls.map((call) => call[0]);
       expect(allArgs.length).to.be.greaterThanOrEqual(1);
@@ -1466,6 +1465,53 @@ describe('<ButtonBase />', () => {
           msg.includes('A component that acts as a button expected a non-button host'),
         ),
       ).to.equal(true);
+      errorSpy.mockRestore();
+    });
+
+    it('warns when nativeButton is omitted and a custom component resolves to a non-button', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const CustomDiv = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+
+      render(<ButtonBase component={CustomDiv}>Hello</ButtonBase>);
+
+      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
+      expect(allArgs.length).to.be.greaterThanOrEqual(1);
+      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(true);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn when nativeButton={false} is explicitly set on a custom component', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const CustomDiv = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
+
+      render(
+        <ButtonBase component={CustomDiv} nativeButton={false}>
+          Hello
+        </ButtonBase>,
+      );
+
+      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
+      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn for string component="div" when nativeButton is omitted', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<ButtonBase component="div">Hello</ButtonBase>);
+
+      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
+      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn in link mode when nativeButton is omitted', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<ButtonBase href="/test">Hello</ButtonBase>);
+
+      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
+      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
       errorSpy.mockRestore();
     });
 
@@ -1577,11 +1623,7 @@ describe('<ButtonBase />', () => {
             Submit
           </ButtonBase>
         );
-        const { user } = render(
-          <form>
-            {buttonBase}
-          </form>,
-        );
+        const { user } = render(<form>{buttonBase}</form>);
         const button = screen.getByRole('button');
 
         expect(button).not.to.have.attribute('type', 'button');

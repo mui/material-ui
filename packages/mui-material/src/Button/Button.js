@@ -526,13 +526,13 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     loading = null,
     loadingIndicator: loadingIndicatorProp,
     loadingPosition = 'center',
+    nativeButton: nativeButtonProp,
     size = 'medium',
     startIcon: startIconProp,
     type,
     variant = 'text',
     ...other
   } = props;
-  const { nativeButton, ...buttonProps } = other;
 
   const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
@@ -602,9 +602,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
+      nativeButton={nativeButtonProp}
       type={type}
       id={loading ? loadingId : idProp}
-      {...buttonProps}
+      {...other}
       classes={classes}
     >
       {startIcon}
@@ -711,6 +712,12 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 'center'
    */
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
+  /**
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * This enables native button semantics even when `component` is a custom component.
+   * @default component === 'button'
+   */
+  nativeButton: PropTypes.bool,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

@@ -12,6 +12,22 @@ export interface UseButtonBaseParameters {
    */
   disabled: boolean;
   /**
+   * The `type` attribute for the element.
+   */
+  type?: string | undefined;
+  /**
+   * Whether the element has a `formAction` attribute. When true, the hook
+   * will not default `type` to `'button'` for native buttons so the browser
+   * can use its natural submit behaviour.
+   * @default false
+   */
+  hasFormAction?: boolean | undefined;
+  /**
+   * The `tabIndex` attribute for the element.
+   * @default 0
+   */
+  tabIndex?: number | undefined;
+  /**
    * If `true`, calls `event.stopPropagation()` on click before the disabled guard runs.
    * @default false
    */
@@ -38,12 +54,25 @@ export interface UseButtonBaseParameters {
   onKeyUp?: React.KeyboardEventHandler<any> | undefined;
 }
 
+export interface ButtonBaseButtonProps {
+  role?: string | undefined;
+  'aria-disabled'?: boolean | undefined;
+  type?: string | undefined;
+  disabled?: boolean | undefined;
+  tabIndex: number;
+}
+
 export interface UseButtonBaseReturnValue {
   eventHandlers: {
     onClick: React.MouseEventHandler<any>;
     onKeyDown: React.KeyboardEventHandler<any>;
     onKeyUp: React.KeyboardEventHandler<any>;
   };
+  /**
+   * Props to spread on the root element for non-link button/pseudo-button semantics.
+   * Link mode is NOT handled here — ButtonBase owns that path.
+   */
+  buttonProps: ButtonBaseButtonProps;
   rootRef: React.RefObject<HTMLElement | null>;
 }
 
@@ -53,6 +82,9 @@ export default function useButtonBase(
   const {
     nativeButton,
     disabled,
+    type,
+    hasFormAction = false,
+    tabIndex = 0,
     stopEventPropagation = false,
     onBeforeKeyDown,
     onBeforeKeyUp,
@@ -158,12 +190,24 @@ export default function useButtonBase(
     });
   }
 
+  const buttonProps: ButtonBaseButtonProps = { tabIndex: disabled ? -1 : tabIndex };
+  if (nativeButton) {
+    buttonProps.type = type === undefined && !hasFormAction ? 'button' : type;
+    buttonProps.disabled = disabled;
+  } else {
+    buttonProps.role = 'button';
+    if (disabled) {
+      buttonProps['aria-disabled'] = disabled;
+    }
+  }
+
   return {
     eventHandlers: {
       onClick: handleClick,
       onKeyDown: handleKeyDown,
       onKeyUp: handleKeyUp,
     },
+    buttonProps,
     rootRef,
   };
 }

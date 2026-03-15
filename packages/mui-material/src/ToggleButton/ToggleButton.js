@@ -165,7 +165,6 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     value,
     ...other
   } = props;
-  const { nativeButton, ...buttonBaseProps } = other;
 
   const ownerState = {
     ...props,
@@ -204,7 +203,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
       value={value}
       ownerState={ownerState}
       aria-pressed={selected}
-      {...buttonBaseProps}
+      {...other}
     >
       {children}
     </ToggleButtonRoot>
