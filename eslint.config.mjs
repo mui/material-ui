@@ -7,6 +7,7 @@ import {
   EXTENSION_TEST_FILE,
   EXTENSION_DTS,
 } from '@mui/internal-code-infra/eslint';
+import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
@@ -67,6 +68,9 @@ export default defineConfig(
         typescript: {
           project: ['tsconfig.json'],
         },
+      },
+      next: {
+        rootDir: 'docs',
       },
     },
     rules: {
@@ -202,11 +206,10 @@ export default defineConfig(
       // filenames/match-exported sees filename as 'file-name.d'
       // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
       '**/*.d.ts',
-      'docs/data/joy/getting-started/templates/**/*',
       'docs/data/**/{css,system,tailwind}/*',
     ],
     plugins: {
-      'consistent-default-export-name': eslintPluginConsistentName,
+      'consistent-default-export-name': fixupPluginRules(eslintPluginConsistentName),
     },
     rules: {
       'consistent-default-export-name/default-export-match-filename': ['error'],
@@ -224,8 +227,6 @@ export default defineConfig(
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
       // used internally, not used on app router yet
       '**/mui-docs/**/*',
     ],
@@ -238,8 +239,6 @@ export default defineConfig(
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
       // used internally, not used on app router yet
       '**/mui-docs/**/*',
     ],
@@ -292,7 +291,7 @@ export default defineConfig(
   },
   {
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
-    ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
+    ignores: ['**/*.d.ts', '**/*.spec.*'],
     rules: {
       'mui/material-ui-name-matches-component-name': 'error',
     },

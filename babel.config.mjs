@@ -37,7 +37,6 @@ export default function getBabelConfig(api) {
     '@mui/system': resolveAliasPath('./packages/mui-system/src'),
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
-    '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),

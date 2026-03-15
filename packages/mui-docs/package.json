@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "9.0.0-alpha.2",
+  "version": "9.0.0-alpha.3",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "keywords": [
@@ -10,6 +10,7 @@
     "material design",
     "docs"
   ],
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
@@ -21,7 +22,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "code-infra build --flat --copy \"src/translations/translations.json\" --copy \"src/nextFonts/fonts\"",
+    "build": "code-infra build --flat --bundle esm --copy \"src/translations/translations.json\" --copy \"src/nextFonts/fonts\"",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsc -p tsconfig.json"
@@ -29,11 +30,13 @@
   "dependencies": {
     "@babel/runtime": "^7.28.6",
     "@mui/internal-markdown": "workspace:^",
+    "@mui/stylis-plugin-rtl": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
     "fg-loadcss": "^3.1.0",
     "nprogress": "^0.2.0",
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "stylis": "catalog:docs"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
@@ -42,25 +45,35 @@
     "@types/fg-loadcss": "3.1.3",
     "@types/gtag.js": "0.0.20",
     "@types/node": "20.19.35",
+    "@types/nprogress": "0.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.14",
     "next": "15.5.12",
     "react": "19.2.4"
   },
   "peerDependencies": {
+    "@emotion/cache": "catalog:docs",
+    "@emotion/react": "catalog:docs",
+    "@emotion/styled": "catalog:docs",
     "@mui/base": "^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta",
     "@mui/icons-material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@mui/material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
+    "@mui/material-nextjs": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@mui/system": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@mui/utils": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "@types/stylis": "^4.2.7",
     "chai": "^6.0.1",
     "csstype": "^3.1.3",
-    "next": "^13.5.1 || ^14 || ^15.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "next": "^13.5.1 || ^14 || ^15.0.0 || ^16.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "styled-components": "^5.3.0 || ^6.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
+      "optional": true
+    },
+    "styled-components": {
       "optional": true
     }
   },
@@ -72,8 +85,6 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./NProgressBar": "./src/NProgressBar/index.js",
-    "./SectionTitle": "./src/SectionTitle/index.tsx",
     "./*": "./src/*/index.ts"
   }
 }

@@ -14,6 +14,16 @@ import describeConformance from '../../test/describeConformance';
 describe('Material UI <GridLegacy />', () => {
   const { render } = createRenderer();
 
+  beforeEach(() => {
+    const orig = console.warn;
+    vi.spyOn(console, 'warn').mockImplementation((msg, ...rest) => {
+      if (/MUI: The GridLegacy component is deprecated./.test(msg)) {
+        return;
+      }
+      orig.apply(console, [msg, ...rest]);
+    });
+  });
+
   describeConformance(<GridLegacy />, () => ({
     classes,
     inheritComponent: 'div',
