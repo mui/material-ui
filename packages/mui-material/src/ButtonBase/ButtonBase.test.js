@@ -1182,6 +1182,37 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
+      it('should preserve native button keyboard behavior when a custom component renders a native button', async () => {
+        const onClickSpy = spy();
+        const onKeyDownSpy = spy();
+
+        /** @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>} */
+        const MyButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+
+        const { user } = render(
+          <ButtonBase component={MyButton} onClick={onClickSpy} onKeyDown={onKeyDownSpy}>
+            Hello
+          </ButtonBase>,
+        );
+
+        await user.tab();
+
+        await user.keyboard('{Enter}');
+
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(1);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+
+        onClickSpy.resetHistory();
+        onKeyDownSpy.resetHistory();
+
+        await user.keyboard(' ');
+
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(1);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
+
       it('prevents default on Enter with an anchor and empty href', async () => {
         const onClickSpy = spy();
         const onKeyDownSpy = spy();
