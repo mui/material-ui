@@ -203,8 +203,8 @@ importers:
         specifier: 26.1.0
         version: 26.1.0
       lerna:
-        specifier: 9.0.4
-        version: 9.0.4(@types/node@20.19.37)(babel-plugin-macros@3.1.0)
+        specifier: 9.0.6
+        version: 9.0.6(@types/node@20.19.37)(babel-plugin-macros@3.1.0)
       markdownlint-cli2:
         specifier: 0.21.0
         version: 0.21.0
@@ -3504,11 +3504,6 @@ packages:
 
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
-
-  '@lerna/create@9.0.4':
-    resolution: {integrity: sha512-WxedGD98G8/a6HztCXNWquaM0x17oSvfvuqDsLxNNX1qXGyrzmMUmd1mQikF/47uy80X6qyWdaRtaAHlwkvEUA==}
-    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
-    deprecated: This package is an implementation detail of Lerna and is no longer published separately.
 
   '@loaderkit/resolve@1.0.3':
     resolution: {integrity: sha512-oo51csrgEfeHO593bqoPOGwrX093QzDWrc/7y876b/ObDqp2Hbw+rl+3s26WRXIbnhty40T403nwU4UFX3KQCg==}
@@ -8830,8 +8825,8 @@ packages:
     resolution: {integrity: sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==}
     engines: {node: '>= 0.6.3'}
 
-  lerna@9.0.4:
-    resolution: {integrity: sha512-wKy9TOkkdCWPWET0R5o7mh7J0KuNNjxE0g+qTruNAt5ffWwy54wfWiJtWyDSMOrcGDt6gtisDBTKniOqK/sJvw==}
+  lerna@9.0.6:
+    resolution: {integrity: sha512-ylCTTq8QOa2oRBDhQhy8UIFob6wJZTdREjXTtMJzoB9eWk8qbI0qyIAYmFClu0NVN3mTZ2UKN1HFgTpg4hCdmQ==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     hasBin: true
 
@@ -9377,11 +9372,11 @@ packages:
     resolution: {integrity: sha512-oRjTw/97aTBN0RHbYCdtF1MQfvusSIBQM0IZEgzl6426+8jSC0nF1a/GmnVLpfB9yyr6g6FTqWqiZVbxrtaCIg==}
     engines: {node: 18 || 20 || >=22}
 
-  minimatch@3.0.5:
-    resolution: {integrity: sha512-tUpxzX0VAzJHjLu0xUfFv1gwVp9ba3IOuRAVH2EGuRW8a5emA2FlACLqiT/lDVtS1W+TGNwqz3sWaNyLgDJWuw==}
-
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
+
+  minimatch@3.1.4:
+    resolution: {integrity: sha512-twmL+S8+7yIsE9wsqgzU3E8/LumN3M3QELrBZ20OdmQ9jB2JvW5oZtBEmft84k/Gs5CG9mqtWc6Y9vW+JEzGxw==}
 
   minimatch@5.1.6:
     resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
@@ -11273,10 +11268,9 @@ packages:
   tar-stream@3.1.7:
     resolution: {integrity: sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ==}
 
-  tar@7.5.7:
-    resolution: {integrity: sha512-fov56fJiRuThVFXD6o6/Q354S7pnWMJIVlDBYijsTNx6jKSE4pvrDTs6lUnmGvNyfJwFQQwWy3owKz1ucIhveQ==}
+  tar@7.5.11:
+    resolution: {integrity: sha512-ChjMH33/KetonMTAtpYdgUFr0tbz69Fp2v7zWxQfYZX4g5ZN2nOBXm1R2xyA+lMIKrLKIoKAwFj93jE/avX9cQ==}
     engines: {node: '>=18'}
-    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   temp-dir@1.0.0:
     resolution: {integrity: sha512-xZFXEGbG7SNC3itwBzI3RYjq/cEhBkx2hJuKGIUOcEULmkQExXiHat2z/qkISYsuR+IKumhEfKKbV5qXmhICFQ==}
@@ -14533,84 +14527,6 @@ snapshots:
       keyv: 5.6.0
 
   '@keyv/serialize@1.1.1': {}
-
-  '@lerna/create@9.0.4(@types/node@20.19.37)(babel-plugin-macros@3.1.0)(typescript@5.9.3)':
-    dependencies:
-      '@npmcli/arborist': 9.1.6
-      '@npmcli/package-json': 7.0.2
-      '@npmcli/run-script': 10.0.3
-      '@nx/devkit': 21.6.8(nx@21.6.8)
-      '@octokit/plugin-enterprise-rest': 6.0.1
-      '@octokit/rest': 20.1.2
-      aproba: 2.0.0
-      byte-size: 8.1.1
-      chalk: 4.1.0
-      cmd-shim: 6.0.3
-      color-support: 1.1.3
-      columnify: 1.6.0
-      console-control-strings: 1.1.0
-      conventional-changelog-core: 5.0.1
-      conventional-recommended-bump: 7.0.1
-      cosmiconfig: 9.0.0(typescript@5.9.3)
-      dedent: 1.5.3(babel-plugin-macros@3.1.0)
-      execa: 5.0.0
-      fs-extra: 11.3.1
-      get-stream: 6.0.0
-      git-url-parse: 14.0.0
-      glob-parent: 6.0.2
-      has-unicode: 2.0.1
-      ini: 1.3.8
-      init-package-json: 8.2.2
-      inquirer: 12.9.6(@types/node@20.19.37)
-      is-ci: 3.0.1
-      is-stream: 2.0.0
-      js-yaml: 4.1.1
-      libnpmpublish: 11.1.2
-      load-json-file: 6.2.0
-      make-dir: 4.0.0
-      make-fetch-happen: 15.0.2
-      minimatch: 3.0.5
-      multimatch: 5.0.0
-      npm-package-arg: 13.0.1
-      npm-packlist: 10.0.3
-      npm-registry-fetch: 19.1.0
-      nx: 21.6.8
-      p-map: 4.0.0
-      p-map-series: 2.1.0
-      p-queue: 6.6.2
-      p-reduce: 2.1.0
-      pacote: 21.0.1
-      pify: 5.0.0
-      read-cmd-shim: 4.0.0
-      resolve-from: 5.0.0
-      rimraf: 6.1.3
-      semver: 7.7.2
-      set-blocking: 2.0.0
-      signal-exit: 3.0.7
-      slash: 3.0.0
-      ssri: 12.0.0
-      string-width: 4.2.3
-      tar: 7.5.7
-      temp-dir: 1.0.0
-      through: 2.3.8
-      tinyglobby: 0.2.12
-      upath: 2.0.1
-      uuid: 11.1.0
-      validate-npm-package-license: 3.0.4
-      validate-npm-package-name: 6.0.2
-      wide-align: 1.1.5
-      write-file-atomic: 5.0.1
-      write-pkg: 4.0.0
-      yargs: 17.7.2
-      yargs-parser: 21.1.1
-    transitivePeerDependencies:
-      - '@swc-node/register'
-      - '@swc/core'
-      - '@types/node'
-      - babel-plugin-macros
-      - debug
-      - supports-color
-      - typescript
 
   '@loaderkit/resolve@1.0.3':
     dependencies:
@@ -19030,7 +18946,7 @@ snapshots:
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
-      minimatch: 3.1.2
+      minimatch: 3.1.4
       object.fromentries: 2.0.8
       object.groupby: 1.0.3
       object.values: 1.2.1
@@ -19058,7 +18974,7 @@ snapshots:
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
       language-tags: 1.0.9
-      minimatch: 3.1.2
+      minimatch: 3.1.4
       object.fromentries: 2.0.8
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
@@ -19104,7 +19020,7 @@ snapshots:
       estraverse: 5.3.0
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
-      minimatch: 3.1.2
+      minimatch: 3.1.4
       object.entries: 1.1.9
       object.fromentries: 2.0.8
       object.values: 1.2.1
@@ -19682,7 +19598,7 @@ snapshots:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.1.2
+      minimatch: 3.1.4
       once: 1.4.0
       path-is-absolute: 1.0.1
 
@@ -20339,7 +20255,7 @@ snapshots:
       async: 3.2.6
       chalk: 4.1.2
       filelist: 1.0.4
-      minimatch: 3.1.2
+      minimatch: 3.1.4
 
   java-properties@1.0.2: {}
 
@@ -20645,9 +20561,8 @@ snapshots:
     dependencies:
       readable-stream: 2.3.8
 
-  lerna@9.0.4(@types/node@20.19.37)(babel-plugin-macros@3.1.0):
+  lerna@9.0.6(@types/node@20.19.37)(babel-plugin-macros@3.1.0):
     dependencies:
-      '@lerna/create': 9.0.4(@types/node@20.19.37)(babel-plugin-macros@3.1.0)(typescript@5.9.3)
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
       '@npmcli/run-script': 10.0.3
@@ -20657,6 +20572,7 @@ snapshots:
       aproba: 2.0.0
       byte-size: 8.1.1
       chalk: 4.1.0
+      ci-info: 4.3.1
       cmd-shim: 6.0.3
       color-support: 1.1.3
       columnify: 1.6.0
@@ -20687,7 +20603,7 @@ snapshots:
       load-json-file: 6.2.0
       make-dir: 4.0.0
       make-fetch-happen: 15.0.2
-      minimatch: 3.0.5
+      minimatch: 3.1.4
       multimatch: 5.0.0
       npm-package-arg: 13.0.1
       npm-packlist: 10.0.3
@@ -20710,7 +20626,7 @@ snapshots:
       slash: 3.0.0
       ssri: 12.0.0
       string-width: 4.2.3
-      tar: 7.5.7
+      tar: 7.5.11
       temp-dir: 1.0.0
       through: 2.3.8
       tinyglobby: 0.2.12
@@ -21439,11 +21355,11 @@ snapshots:
     dependencies:
       brace-expansion: 5.0.3
 
-  minimatch@3.0.5:
+  minimatch@3.1.2:
     dependencies:
       brace-expansion: 1.1.12
 
-  minimatch@3.1.2:
+  minimatch@3.1.4:
     dependencies:
       brace-expansion: 1.1.12
 
@@ -21551,7 +21467,7 @@ snapshots:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.1.2
+      minimatch: 3.1.4
 
   multipipe@1.0.2:
     dependencies:
@@ -21644,7 +21560,7 @@ snapshots:
       nopt: 9.0.0
       proc-log: 6.0.0
       semver: 7.7.4
-      tar: 7.5.7
+      tar: 7.5.11
       tinyglobby: 0.2.15
       which: 6.0.0
     transitivePeerDependencies:
@@ -22107,7 +22023,7 @@ snapshots:
       promise-retry: 2.0.1
       sigstore: 4.0.0
       ssri: 12.0.0
-      tar: 7.5.7
+      tar: 7.5.11
     transitivePeerDependencies:
       - supports-color
 
@@ -22129,7 +22045,7 @@ snapshots:
       promise-retry: 2.0.1
       sigstore: 4.0.0
       ssri: 13.0.0
-      tar: 7.5.7
+      tar: 7.5.11
     transitivePeerDependencies:
       - supports-color
 
@@ -23713,7 +23629,7 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
 
-  tar@7.5.7:
+  tar@7.5.11:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
@@ -23743,7 +23659,7 @@ snapshots:
     dependencies:
       '@istanbuljs/schema': 0.1.3
       glob: 7.2.3
-      minimatch: 3.1.2
+      minimatch: 3.1.4
 
   text-decoder@1.2.3:
     dependencies:
