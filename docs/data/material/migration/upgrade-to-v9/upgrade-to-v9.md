@@ -1891,6 +1891,25 @@ The following deprecated props have been removed from the `Tooltip` component:
  />
 ```
 
+#### CardHeader deprecated props removed
+
+Use the [card-header-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#card-header-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/card-header-props <path>
+```
+
+The deprecated `CardHeader` props have been removed.
+Use the `slotProps` prop instead:
+
+```diff
+ <CardHeader
+-  titleTypographyProps={{ className: 'my-title' }}
+-  subheaderTypographyProps={{ className: 'my-subheader' }}
++  slotProps={{ title: { className: 'my-title' }, subheader: { className: 'my-subheader' } }}
+ />
+```
+
 #### Typography deprecated CSS classes removed
 
 The deprecated `paragraph` CSS class has been removed.

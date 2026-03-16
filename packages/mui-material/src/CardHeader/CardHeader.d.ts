@@ -97,10 +97,7 @@ export type CardHeaderSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface CardHeaderOwnProps<
-  TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span',
-> {
+export interface CardHeaderOwnProps {
   /**
    * The action to display in the card header.
    */
@@ -126,19 +123,6 @@ export interface CardHeaderOwnProps<
    */
   subheader?: React.ReactNode;
   /**
-   * These props will be forwarded to the subheader
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.subheader` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  subheaderTypographyProps?:
-    | TypographyProps<
-        SubheaderTypographyComponent,
-        {
-          component?: SubheaderTypographyComponent | undefined;
-        }
-      >
-    | undefined;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
@@ -146,19 +130,6 @@ export interface CardHeaderOwnProps<
    * The content of the component.
    */
   title?: React.ReactNode;
-  /**
-   * These props will be forwarded to the title
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  titleTypographyProps?:
-    | TypographyProps<
-        TitleTypographyComponent,
-        {
-          component?: TitleTypographyComponent | undefined;
-        }
-      >
-    | undefined;
 }
 
 export interface CardHeaderOwnerState extends CardHeaderOwnProps {}
@@ -166,12 +137,8 @@ export interface CardHeaderOwnerState extends CardHeaderOwnProps {}
 export interface CardHeaderTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
-  TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
-  props: AdditionalProps &
-    CardHeaderOwnProps<TitleTypographyComponent, SubheaderTypographyComponent> &
-    CardHeaderSlotsAndSlotProps;
+  props: AdditionalProps & CardHeaderOwnProps & CardHeaderSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }
 /**
@@ -190,49 +157,25 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
   <
     RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
     AdditionalProps = {},
-    TitleTypographyComponent extends React.ElementType = 'span',
-    SubheaderTypographyComponent extends React.ElementType = 'span',
   >(
-    props: CardHeaderPropsWithComponent<
-      RootComponent,
-      AdditionalProps,
-      TitleTypographyComponent,
-      SubheaderTypographyComponent
-    >,
+    props: CardHeaderPropsWithComponent<RootComponent, AdditionalProps>,
   ): React.JSX.Element;
 }
 
 export type CardHeaderProps<
   RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
   AdditionalProps = {},
-  TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span',
-> = OverrideProps<
-  CardHeaderTypeMap<
-    AdditionalProps,
-    RootComponent,
-    TitleTypographyComponent,
-    SubheaderTypographyComponent
-  >,
-  RootComponent
->;
+> = OverrideProps<CardHeaderTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export type CardHeaderPropsWithComponent<
   RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
   AdditionalProps = {},
-  TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span',
 > = {
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component?: RootComponent | undefined;
-} & CardHeaderProps<
-  RootComponent,
-  AdditionalProps,
-  TitleTypographyComponent,
-  SubheaderTypographyComponent
->;
+} & CardHeaderProps<RootComponent, AdditionalProps>;
 
 export default CardHeader;
