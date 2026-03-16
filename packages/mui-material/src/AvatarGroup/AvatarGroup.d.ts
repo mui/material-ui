@@ -22,11 +22,6 @@ export interface AvatarGroupSlots {
 export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AvatarGroupSlots,
   {
-    /**
-     * @deprecated use `slotProps.surplus` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-     *  */
-    additionalAvatar: React.ComponentPropsWithRef<typeof Avatar> &
-      AvatarGroupComponentsPropsOverrides;
     surplus: SlotProps<
       React.ElementType<React.ComponentPropsWithRef<typeof Avatar>>,
       AvatarGroupComponentsPropsOverrides,
@@ -48,21 +43,6 @@ export interface AvatarGroupOwnProps extends AvatarGroupSlotsAndSlotProps {
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType | undefined;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `slotProps` prop.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps?:
-    | {
-        additionalAvatar?:
-          | (React.ComponentPropsWithRef<typeof Avatar> & AvatarGroupComponentsPropsOverrides)
-          | undefined;
-      }
-    | undefined;
   /**
    * Max avatars to show before +x.
    * @default 5
