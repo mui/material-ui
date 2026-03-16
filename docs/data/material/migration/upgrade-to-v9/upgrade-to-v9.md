@@ -473,7 +473,14 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
 
 #### Alert deprecated props removed
 
-The deprecated `components` and `componentsProps` props have been removed. Use `slots` and `slotProps` instead.
+Use the [alert-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+The deprecated `Alert` props have been removed.
+Use the `slots` and `slotProps` props instead:
 
 ```diff
  <Alert
