@@ -179,13 +179,17 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: AvatarRoot,
     externalForwardedProps: {
-      slots,
-      slotProps,
+      ...externalForwardedProps,
       component,
       ...other,
     },
@@ -195,10 +199,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const [ImgSlot, imgSlotProps] = useSlot('img', {
     className: classes.img,
     elementType: AvatarImg,
-    externalForwardedProps: {
-      slots,
-      slotProps,
-    },
+    externalForwardedProps,
     additionalProps: { alt, src, srcSet, sizes },
     ownerState,
   });
@@ -206,10 +207,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const [FallbackSlot, fallbackSlotProps] = useSlot('fallback', {
     className: classes.fallback,
     elementType: AvatarFallback,
-    externalForwardedProps: {
-      slots,
-      slotProps,
-    },
+    externalForwardedProps,
     shouldForwardComponentProp: true,
     ownerState,
   });
