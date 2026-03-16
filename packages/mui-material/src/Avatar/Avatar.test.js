@@ -23,14 +23,24 @@ describe('<Avatar />', () => {
       root: {
         expectedClassName: classes.root,
       },
-      img: {
-        expectedClassName: classes.img,
-      },
       fallback: {
         expectedClassName: classes.fallback,
       },
     },
     skip: ['componentsProp'],
+  }));
+
+  // img slot only renders when src is provided
+  describeConformance(<Avatar src="/fake.png" />, () => ({
+    classes,
+    render,
+    muiName: 'MuiAvatar',
+    slots: {
+      img: {
+        expectedClassName: classes.img,
+      },
+    },
+    only: ['slotsProp', 'slotPropsProp'],
   }));
 
   describe('image avatar', () => {

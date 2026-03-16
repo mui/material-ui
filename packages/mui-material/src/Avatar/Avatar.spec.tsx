@@ -1,6 +1,10 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 
+function SlotPropsImgShouldSupportSx() {
+  <Avatar slotProps={{ img: { sx: { objectFit: 'contain' } } }} />;
+}
+
 function CustomImg() {
   return <img alt="" />;
 }

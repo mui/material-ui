@@ -9,7 +9,6 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import useSlot from '../utils/useSlot';
-import useLoaded from './utils/useLoaded';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, colorDefault } = ownerState;
@@ -103,6 +102,45 @@ const AvatarFallback = styled(Person, {
   width: '75%',
   height: '75%',
 });
+
+function useLoaded(src, srcSet, crossOrigin, referrerPolicy) {
+  const [loaded, setLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!src && !srcSet) {
+      return undefined;
+    }
+
+    setLoaded(false);
+
+    let active = true;
+    const image = new Image();
+    image.onload = () => {
+      if (!active) {
+        return;
+      }
+      setLoaded('loaded');
+    };
+    image.onerror = () => {
+      if (!active) {
+        return;
+      }
+      setLoaded('error');
+    };
+    image.crossOrigin = crossOrigin;
+    image.referrerPolicy = referrerPolicy;
+    image.src = src;
+    if (srcSet) {
+      image.srcset = srcSet;
+    }
+
+    return () => {
+      active = false;
+    };
+  }, [crossOrigin, referrerPolicy, src, srcSet]);
+
+  return loaded;
+}
 
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAvatar' });
