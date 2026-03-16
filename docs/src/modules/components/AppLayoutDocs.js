@@ -22,7 +22,7 @@ import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const Main = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'collapseToc',
+  shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'wideLayout',
 })(({ theme }) => ({
   minHeight: '100vh',
   display: 'grid',
@@ -34,27 +34,31 @@ const Main = styled('main', {
     {
       props: ({ disableToc }) => disableToc,
       style: {
-        [theme.breakpoints.up('xl')]: {
+        [theme.breakpoints.up('lg')]: {
           marginRight: TOC_WIDTH / 2,
         },
       },
     },
     {
-      props: ({ disableToc, collapseToc }) => !disableToc && !collapseToc,
+      props: ({ disableToc, wideLayout }) => !disableToc && !wideLayout,
       style: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
           gridTemplateColumns: '1fr auto',
         },
-        [theme.breakpoints.up('xl')]: {
+        [theme.breakpoints.up('md')]: {
           gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
         },
       },
     },
     {
-      props: ({ disableToc, collapseToc }) => !disableToc && collapseToc,
+      props: ({ disableToc, wideLayout }) => !disableToc && wideLayout,
       style: {
-        gridTemplateColumns: '1fr auto',
-        paddingRight: theme.spacing(1),
+        [theme.breakpoints.up('sm')]: {
+          gridTemplateColumns: '1fr auto',
+        },
+        [`@media (min-width:${theme.breakpoints.values.xl + TOC_WIDTH}px)`]: {
+          gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
+        },
       },
     },
   ],
@@ -62,11 +66,7 @@ const Main = styled('main', {
 
 const StyledAppContainer = styled(AppContainer, {
   shouldForwardProp: (prop) =>
-    prop !== 'disableAd' &&
-    prop !== 'hasTabs' &&
-    prop !== 'disableToc' &&
-    prop !== 'wideLayout' &&
-    prop !== 'collapseToc',
+    prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc' && prop !== 'wideLayout',
 })(({ theme }) => {
   return {
     position: 'relative',
@@ -150,7 +150,6 @@ export default function AppLayoutDocs(props) {
     // improves the UX. It's faster to transition, and you don't lose UI states, like scroll.
     disableLayout = false,
     disableToc = false,
-    collapseToc,
     wideLayout = false,
     hasTabs = false,
     location,
@@ -186,7 +185,7 @@ export default function AppLayoutDocs(props) {
           description={description}
           card={card}
         />
-        <Main disableToc={disableToc} collapseToc={collapseToc}>
+        <Main disableToc={disableToc} wideLayout={wideLayout}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
@@ -196,12 +195,11 @@ export default function AppLayoutDocs(props) {
             hasTabs={hasTabs}
             disableToc={disableToc}
             wideLayout={wideLayout}
-            collapseToc={collapseToc}
           >
             {children}
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} collapseToc={collapseToc} />}
+          {disableToc ? null : <AppTableOfContents toc={toc} wideLayout={wideLayout} />}
           <BackToTop />
         </Main>
       </AdManager>
@@ -211,7 +209,6 @@ export default function AppLayoutDocs(props) {
 
 AppLayoutDocs.propTypes = {
   BannerComponent: PropTypes.elementType,
-  collapseToc: PropTypes.bool,
   cardOptions: PropTypes.shape({
     description: PropTypes.string,
     title: PropTypes.string,

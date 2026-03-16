@@ -93,7 +93,7 @@ const Bar = styled('a', {
 }));
 
 export default function MiniTableOfContents(props) {
-  const { toc, activeState, itemLink, onItemClick } = props;
+  const { toc, activeState, itemLink, onItemClick, wideLayout } = props;
   const containerRef = React.useRef(null);
   const [popperOpen, setPopperOpen] = React.useState(false);
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
@@ -187,18 +187,23 @@ export default function MiniTableOfContents(props) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleClose}
         onBlur={handleContainerBlur}
-        sx={{
+        sx={(theme) => ({
           position: 'sticky',
           top: '20%',
           transform: 'translateY(-20%)',
           height: 'fit-content',
-          display: { xs: 'none', md: 'flex' },
+          display: { xs: 'none', sm: 'flex', ...(wideLayout ? {} : { md: 'none' }) },
           flexDirection: 'column',
           alignItems: 'stretch',
           minWidth: 36,
           py: 2,
           marginRight: 1.5,
-        }}
+          ...(wideLayout && {
+            [`@media (min-width:${theme.breakpoints.values.xl + TOC_WIDTH}px)`]: {
+              display: 'none',
+            },
+          }),
+        })}
       >
         {items.map((item, index) => (
           <Bar
@@ -259,4 +264,5 @@ MiniTableOfContents.propTypes = {
   onItemClick: PropTypes.func.isRequired,
   sx: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   toc: PropTypes.array.isRequired,
+  wideLayout: PropTypes.bool,
 };

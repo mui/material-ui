@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { throttle } from 'es-toolkit/function';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';
-import TableOfContents, { NavItem } from 'docs/src/modules/components/TableOfContents';
+import TableOfContents, { NavItem, TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 import MiniTableOfContents from 'docs/src/modules/components/MiniTableOfContents';
 import { samePageLinkNavigation } from '@mui/docs/Link';
 
-const Nav = styled('nav')(({ theme }) => ({
+const Nav = styled('nav', {
+  shouldForwardProp: (prop) => prop !== 'wideLayout',
+})(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
   marginTop: 'var(--MuiDocs-header-height)',
   paddingLeft: 6, // Fix truncated focus outline style
@@ -20,9 +22,22 @@ const Nav = styled('nav')(({ theme }) => ({
   paddingRight: theme.spacing(4), // We can't use `padding` as @mui/stylis-plugin-rtl doesn't swap it
   display: 'none',
   scrollbarWidth: 'thin',
-  [theme.breakpoints.up('xl')]: {
+  [theme.breakpoints.up('md')]: {
     display: 'block',
   },
+  variants: [
+    {
+      props: { wideLayout: true },
+      style: {
+        [theme.breakpoints.up('md')]: {
+          display: 'none',
+        },
+        [`@media (min-width:${theme.breakpoints.values.xl + TOC_WIDTH}px)`]: {
+          display: 'block',
+        },
+      },
+    },
+  ],
 }));
 
 const noop = () => {};
@@ -62,7 +77,7 @@ function flatten(headings) {
 }
 
 export default function AppTableOfContents(props) {
-  const { toc, collapseToc } = props;
+  const { toc, wideLayout } = props;
   const t = useTranslate();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
@@ -160,20 +175,9 @@ export default function AppTableOfContents(props) {
     </NavItem>
   );
 
-  if (collapseToc) {
-    return (
-      <MiniTableOfContents
-        toc={toc}
-        activeState={activeState}
-        itemLink={itemLink}
-        onItemClick={handleClick}
-      />
-    );
-  }
-
   return (
     <React.Fragment>
-      <Nav aria-label={t('pageTOC')}>
+      <Nav aria-label={t('pageTOC')} wideLayout={wideLayout}>
         <TableOfContents toc={toc} itemLink={itemLink} />
       </Nav>
       <MiniTableOfContents
@@ -181,12 +185,13 @@ export default function AppTableOfContents(props) {
         activeState={activeState}
         itemLink={itemLink}
         onItemClick={handleClick}
+        wideLayout={wideLayout}
       />
     </React.Fragment>
   );
 }
 
 AppTableOfContents.propTypes = {
-  collapseToc: PropTypes.bool,
   toc: PropTypes.array.isRequired,
+  wideLayout: PropTypes.bool,
 };
