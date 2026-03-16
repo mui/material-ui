@@ -1367,18 +1367,12 @@ importers:
       '@types/node':
         specifier: 20.19.37
         version: 20.19.37
-      '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
       '@types/stylis':
         specifier: 4.2.7
         version: 4.2.7
       chai:
         specifier: 6.2.2
         version: 6.2.2
-      sinon:
-        specifier: 21.0.2
-        version: 21.0.2
       stylis:
         specifier: 4.3.6
         version: 4.3.6
