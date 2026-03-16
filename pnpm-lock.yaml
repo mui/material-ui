@@ -407,7 +407,7 @@ importers:
         specifier: ^1.11.19
         version: 1.11.19
       es-toolkit:
-        specifier: ^1.44.0
+        specifier: ^1.45.1
         version: 1.45.1
       feed:
         specifier: ^5.2.0
@@ -636,7 +636,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       es-toolkit:
-        specifier: ^1.44.0
+        specifier: ^1.45.1
         version: 1.45.1
       typescript:
         specifier: ^5.9.3
@@ -700,7 +700,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       es-toolkit:
-        specifier: ^1.44.0
+        specifier: ^1.45.1
         version: 1.45.1
       fast-glob:
         specifier: ^3.3.3
@@ -764,7 +764,7 @@ importers:
         specifier: workspace:^
         version: link:../../docs
       es-toolkit:
-        specifier: ^1.44.0
+        specifier: ^1.45.1
         version: 1.45.1
     devDependencies:
       '@types/chai':
@@ -792,7 +792,7 @@ importers:
         specifier: ^7.28.6
         version: 7.28.6
       es-toolkit:
-        specifier: ^1.44.0
+        specifier: ^1.45.1
         version: 1.45.1
       marked:
         specifier: ^17.0.4
