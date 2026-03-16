@@ -838,6 +838,30 @@ describe('<ButtonBase />', () => {
 
       expect(onClickSpy.callCount).to.equal(0);
     });
+
+    it('should not propagate click events when Space is released on a disabled non-native button', async () => {
+      const parentClickSpy = spy();
+      const buttonClickSpy = spy();
+
+      render(
+        <div onClick={parentClickSpy}>
+          <ButtonBase component="span" disabled onClick={buttonClickSpy}>
+            Hello
+          </ButtonBase>
+        </div>,
+      );
+
+      const button = screen.getByRole('button');
+
+      await act(async () => {
+        button.focus();
+      });
+
+      fireEvent.keyUp(button, { key: ' ' });
+
+      expect(buttonClickSpy.callCount).to.equal(0);
+      expect(parentClickSpy.callCount).to.equal(0);
+    });
   });
 
   describe('prop: component', () => {

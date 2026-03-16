@@ -249,7 +249,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       event.target === event.currentTarget &&
       isNonNativeButton() &&
       event.key === ' ' &&
-      !event.defaultPrevented
+      !event.defaultPrevented &&
+      !disabled
     ) {
       event.currentTarget.click();
     }
