@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
 import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-pagesRouter';
@@ -9,6 +8,11 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
 import globalSelector from '../globalSelector';
 
+type StyledEngineProviderProps = {
+  cacheLtr: ReturnType<typeof createCache>;
+  children: React.ReactNode;
+};
+
 // Cache for the rtl version of the styles
 const cacheRtl = createCache({
   key: 'rtl',
@@ -17,7 +21,7 @@ const cacheRtl = createCache({
   stylisPlugins: [prefixer, rtlPlugin, globalSelector],
 });
 
-export default function StyledEngineProvider(props) {
+export default function StyledEngineProvider(props: StyledEngineProviderProps) {
   const { children, cacheLtr } = props;
   const { direction } = React.useContext(ThemeOptionsContext);
 
@@ -33,8 +37,3 @@ export default function StyledEngineProvider(props) {
     </StyleSheetManager>
   );
 }
-
-StyledEngineProvider.propTypes = {
-  cacheLtr: PropTypes.object.isRequired,
-  children: PropTypes.node,
-};
