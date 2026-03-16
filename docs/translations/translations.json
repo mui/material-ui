@@ -105,7 +105,6 @@
     "/material-ui/react-box": "Box",
     "/material-ui/react-container": "Container",
     "/material-ui/react-grid": "Grid",
-    "/material-ui/react-grid-legacy": "GridLegacy",
     "/material-ui/react-stack": "Stack",
     "/material-ui/react-image-list": "Image List",
     "utils": "Utils",

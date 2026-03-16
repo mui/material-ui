@@ -23,7 +23,7 @@ export interface SandboxConfig {
    * Generates the root index.js/tsx content for CodeSandbox/StackBlitz.
    * Receives codeVariant ('TS' | 'JS') for type assertion.
    */
-  getRootIndex: (codeVariant: CodeVariant) => string;
+  getRootIndex?: (codeVariant: CodeVariant) => string;
 
   /**
    * Primary npm package for this product, used in sandbox generation.

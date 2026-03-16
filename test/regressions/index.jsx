@@ -100,8 +100,6 @@ const importDemos = import.meta.glob(
     '!docs/data/material/components/drawers/SwipeableTemporaryDrawer', // Needs interaction
     '!docs/data/material/components/drawers/TemporaryDrawer', // Needs interaction
     '!docs/data/material/components/floating-action-button/FloatingActionButtonZoom', // Needs interaction
-    '!docs/data/material/components/grid-legacy/InteractiveGrid', // Redux isolation
-    '!docs/data/material/components/grid-legacy/SpacingGrid', // Needs interaction
     '!docs/data/material/components/image-list', // Image don't load
     '!docs/data/material/components/masonry/ImageMasonry', // Image don't load
     '!docs/data/material/components/masonry/Sequential', // Flaky
