@@ -829,7 +829,7 @@ describe('<ButtonBase />', () => {
       const parentClickSpy = spy();
       const buttonClickSpy = spy();
 
-      render(
+      const { user } = render(
         <div onClick={parentClickSpy}>
           <ButtonBase component="span" disabled onClick={buttonClickSpy}>
             Hello
@@ -839,11 +839,13 @@ describe('<ButtonBase />', () => {
 
       const button = screen.getByRole('button');
 
+      // We don't use `user.tab()` because normal tab focus won't land on a disabled
+      // ButtonBase, only programmatic focus can happen
       await act(async () => {
         button.focus();
       });
 
-      fireEvent.keyUp(button, { key: ' ' });
+      await user.keyboard(' ');
 
       expect(buttonClickSpy.callCount).to.equal(0);
       expect(parentClickSpy.callCount).to.equal(0);
