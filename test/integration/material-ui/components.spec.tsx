@@ -34,7 +34,6 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  GridLegacy,
   ImageList,
   ImageListItem,
   Grow,
@@ -527,25 +526,6 @@ function AccordionTest() {
         </AccordionActions>
       </Accordion>
     </div>
-  );
-}
-
-function GridLegacyTest() {
-  return (
-    <GridLegacy component={Paper} container>
-      <GridLegacy item xs={12}>
-        ...
-      </GridLegacy>
-      <GridLegacy item sm={12}>
-        ...
-      </GridLegacy>
-      <GridLegacy item xl>
-        ...
-      </GridLegacy>
-      <GridLegacy item style={{ color: 'red' }}>
-        ...
-      </GridLegacy>
-    </GridLegacy>
   );
 }
 

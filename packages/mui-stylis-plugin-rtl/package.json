@@ -37,10 +37,8 @@
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/node": "20.19.37",
-    "@types/sinon": "17.0.4",
     "@types/stylis": "4.2.7",
     "chai": "6.2.2",
-    "sinon": "21.0.1",
     "stylis": "4.3.6"
   },
   "peerDependencies": {

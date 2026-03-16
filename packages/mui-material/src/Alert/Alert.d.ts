@@ -125,33 +125,6 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    */
   color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides> | undefined;
   /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components?:
-    | {
-        CloseButton?: React.ElementType | undefined;
-        CloseIcon?: React.ElementType | undefined;
-      }
-    | undefined;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps?:
-    | {
-        closeButton?: IconButtonProps | undefined;
-        closeIcon?: SvgIconProps | undefined;
-      }
-    | undefined;
-  /**
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
