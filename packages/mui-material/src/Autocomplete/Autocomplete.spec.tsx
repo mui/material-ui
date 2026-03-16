@@ -32,7 +32,7 @@ function MyAutocomplete<
 // Test for ChipComponent generic type
 <MyAutocomplete<string, false, false, false, 'span'>
   options={['1', '2', '3']}
-  renderTags={(value, getTagProps, ownerState) => {
+  renderValue={(value, getItemProps, ownerState) => {
     expectType<AutocompleteOwnerState<string, false, false, false, 'span'>, typeof ownerState>(
       ownerState,
     );
@@ -63,7 +63,7 @@ function MyAutocomplete<
 // Tests presence of sx prop in ListboxProps
 <Autocomplete
   options={['1', '2', '3']}
-  ListboxProps={{ sx: { height: '10px' } }}
+  slotProps={{ listbox: { sx: { height: '10px' } } }}
   renderInput={() => null}
 />;
 
@@ -71,8 +71,8 @@ function MyAutocomplete<
 <Autocomplete
   options={['1', '2', '3']}
   renderInput={(params) => {
-    expectType<React.MouseEventHandler, typeof params.InputProps.onMouseDown>(
-      params.InputProps.onMouseDown,
+    expectType<React.MouseEventHandler, typeof params.slotProps.input.onMouseDown>(
+      params.slotProps.input.onMouseDown,
     );
     return <TextField {...params} />;
   }}
@@ -99,7 +99,7 @@ function MyAutocomplete<
 // Test for getInputProps return type
 <MyAutocomplete
   options={[{ label: '1' }, { label: '2' }]}
-  renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+  renderInput={(params) => <TextField {...params} value={params.slotProps.htmlInput.value} />}
 />;
 
 // Test for focusVisible class
@@ -149,7 +149,7 @@ function AutocompleteComponentsProps() {
     <Autocomplete
       options={['one', 'two', 'three']}
       renderInput={(params) => <TextField {...params} />}
-      componentsProps={{
+      slotProps={{
         clearIndicator: { size: 'large' },
         paper: { elevation: 2 },
         popper: { placement: 'bottom-end' },
@@ -165,7 +165,7 @@ function CustomListboxRef() {
     <Autocomplete
       renderInput={(params) => <TextField {...params} />}
       options={['one', 'two', 'three']}
-      ListboxProps={{ ref }}
+      slotProps={{ listbox: { ref } }}
     />
   );
 }

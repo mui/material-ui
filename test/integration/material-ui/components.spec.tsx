@@ -34,7 +34,6 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  GridLegacy,
   ImageList,
   ImageListItem,
   Grow,
@@ -530,25 +529,6 @@ function AccordionTest() {
   );
 }
 
-function GridLegacyTest() {
-  return (
-    <GridLegacy component={Paper} container>
-      <GridLegacy item xs={12}>
-        ...
-      </GridLegacy>
-      <GridLegacy item sm={12}>
-        ...
-      </GridLegacy>
-      <GridLegacy item xl>
-        ...
-      </GridLegacy>
-      <GridLegacy item style={{ color: 'red' }}>
-        ...
-      </GridLegacy>
-    </GridLegacy>
-  );
-}
-
 function GridTest() {
   return (
     <Grid component={Paper} container>
@@ -890,16 +870,23 @@ function TextFieldTest() {
         value="Alice"
         onChange={(event) => log({ name: event.currentTarget.value })}
       />
-      <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
+      <TextField
+        id="name"
+        label="Name"
+        value="Alice"
+        slotProps={{ input: { classes: { root: 'foo' } } }}
+      />
       <TextField
         type="number"
-        inputProps={{
-          min: '0',
-          max: '10',
-          step: '1',
-          style: {
-            // just a long CSS property to test autocompletion
-            WebkitAnimationIterationCount: 0,
+        slotProps={{
+          htmlInput: {
+            min: '0',
+            max: '10',
+            step: '1',
+            style: {
+              // just a long CSS property to test autocompletion
+              WebkitAnimationIterationCount: 0,
+            },
           },
         }}
       />

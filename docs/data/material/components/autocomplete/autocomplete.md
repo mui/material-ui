@@ -420,9 +420,12 @@ In the event you want the avoid autofill, you can try the following:
   ```jsx
   <TextField
     {...params}
-    inputProps={{
-      ...params.inputProps,
-      autoComplete: 'new-password',
+    slotProps={{
+      ...params.slotProps,
+      htmlInput: {
+        ...params.slotProps.htmlInput,
+        autoComplete: 'new-password',
+      },
     }}
   />
   ```

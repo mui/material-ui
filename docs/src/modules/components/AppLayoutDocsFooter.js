@@ -26,11 +26,11 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 // Other imports
 import { Link } from '@mui/docs/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EditPage from 'docs/src/modules/components/EditPage';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from '@mui/docs/helpers';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const FooterLink = styled(Link)(({ theme }) => {
@@ -51,8 +51,8 @@ const FooterLink = styled(Link)(({ theme }) => {
 });
 
 /**
- * @typedef {import('docs/src/pages').MuiPage} MuiPage
- * @typedef {import('docs/src/pages').OrderedMuiPage} OrderedMuiPage
+ * @typedef {import('@mui/docs/MuiPage').MuiPage} MuiPage
+ * @typedef {import('@mui/docs/MuiPage').OrderedMuiPage} OrderedMuiPage
  */
 
 /**
@@ -405,10 +405,12 @@ export default function AppLayoutDocsFooter(props) {
                   rows={2}
                   value={comment}
                   onChange={handleChangeTextfield}
-                  inputProps={{
-                    'aria-label': t('feedbackCommentLabel'),
-                    'aria-describedby': 'feedback-description',
-                    ref: inputRef,
+                  slotProps={{
+                    htmlInput: {
+                      'aria-label': t('feedbackCommentLabel'),
+                      'aria-describedby': 'feedback-description',
+                      ref: inputRef,
+                    },
                   }}
                 />
                 {rating !== 1 && typeof window !== 'undefined' && (

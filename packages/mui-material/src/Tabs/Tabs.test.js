@@ -96,6 +96,78 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     expect(screen.getByRole('tablist')).toHaveAccessibleName('complex name');
   });
 
+  it('should not add tabindex to the tabs if the selected tab already has it', () => {
+    render(
+      <Tabs value={0}>
+        <Tab tabIndex={-1} />
+        <Tab tabIndex={0} />
+      </Tabs>,
+    );
+
+    const tabElements = screen.getAllByRole('tab');
+
+    expect(tabElements[0].tabIndex).to.equal(-1);
+    expect(tabElements[1].tabIndex).to.equal(0);
+  });
+
+  describe('keyboard navigation', () => {
+    it('should move focus to the next tab when pressing the right arrow key', async () => {
+      const { user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab disabled />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should add tabindex="0" to the focused tab', async () => {
+      const { user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      fireEvent.focus(tabElements[1]);
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.click(tabElements[0]);
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+  });
+
   describe('warnings', () => {
     it('should warn if the input is invalid', () => {
       expect(() => {

@@ -64,10 +64,13 @@ const CardHeaderContent = styled('div', {
   slot: 'Content',
 })({
   flex: '1 1 auto',
-  [`.${typographyClasses.root}:where(& .${cardHeaderClasses.title}), .${typographyClasses.root}:where(& .${cardHeaderClasses.subheader})`]:
-    {
-      display: 'block',
-    },
+  // Combine this and the below selector once https://github.com/emotion-js/emotion/issues/3366 is solved
+  [`.${typographyClasses.root}:where(& .${cardHeaderClasses.title})`]: {
+    display: 'block',
+  },
+  [`.${typographyClasses.root}:where(& .${cardHeaderClasses.subheader})`]: {
+    display: 'block',
+  },
 });
 
 const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {

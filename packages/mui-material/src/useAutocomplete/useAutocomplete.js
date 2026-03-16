@@ -147,6 +147,7 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedItem, setFocusedItem] = React.useState(-1);
@@ -268,9 +269,7 @@ function useAutocomplete(props) {
     if (itemToFocus === -1) {
       inputRef.current.focus();
     } else {
-      // Using `data-tag-index` for deprecated `renderTags`. Remove when `renderTags` is gone.
-      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
-      anchorEl.querySelector(`[${indexType}="${itemToFocus}"]`).focus();
+      anchorEl.querySelector(`[data-item-index="${itemToFocus}"]`).focus();
     }
   });
 
@@ -619,6 +618,24 @@ function useAutocomplete(props) {
     }
   }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
 
+  // Listen for browser window blur to detect when the user switches tabs or windows.
+  // This helps prevent the popup from reopening automatically when the window regains focus.
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const handleWindowBlur = () => {
+      windowLostFocus.current = true;
+    };
+
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, []);
+
   const handleOpen = (event) => {
     if (open) {
       return;
@@ -724,9 +741,7 @@ function useAutocomplete(props) {
         return -1;
       }
 
-      // Using `data-tag-index` for deprecated `renderTags`. Remove when `renderTags` is removed.
-      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
-      const option = anchorEl.querySelector(`[${indexType}="${nextFocus}"]`);
+      const option = anchorEl.querySelector(`[data-item-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       if (
@@ -995,6 +1010,14 @@ function useAutocomplete(props) {
       focusItem(-1);
     }
 
+    // If the window previously lost focus while the popup was open,
+    // ignore this focus event to prevent unintended reopening.
+    // Reset the flag so normal focus behavior resumes.
+    if (windowLostFocus.current) {
+      windowLostFocus.current = false;
+      return;
+    }
+
     if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
@@ -1217,7 +1240,7 @@ function useAutocomplete(props) {
     }),
     getItemProps: ({ index = 0 } = {}) => ({
       ...(multiple && { key: index }),
-      ...(renderValue ? { 'data-item-index': index } : { 'data-tag-index': index }),
+      'data-item-index': index,
       tabIndex: -1,
       ...(!readOnly && { onDelete: multiple ? handleItemDelete(index) : handleSingleItemDelete }),
     }),
@@ -1225,13 +1248,6 @@ function useAutocomplete(props) {
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
-    }),
-    // deprecated
-    getTagProps: ({ index }) => ({
-      key: index,
-      'data-tag-index': index,
-      tabIndex: -1,
-      ...(!readOnly && { onDelete: handleItemDelete(index) }),
     }),
     getListboxProps: () => ({
       role: 'listbox',
@@ -1273,8 +1289,6 @@ function useAutocomplete(props) {
     anchorEl,
     setAnchorEl,
     focusedItem,
-    // deprecated
-    focusedTag: focusedItem,
     groupedOptions,
   };
 }

@@ -8,7 +8,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
 
@@ -59,8 +59,8 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
   const { children, className, icon, optional, ...other } = props;
 
-  const { disabled, active } = React.useContext(StepContext);
-  const { orientation } = React.useContext(StepperContext);
+  const { disabled, active, index } = React.useContext(StepContext);
+  const { orientation, totalSteps, getRovingTabIndexProps } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 
@@ -77,15 +77,23 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
+  const rovingTabIndexItemProps = getRovingTabIndexProps?.(index, ref) ?? {
+    ref,
+    tabIndex: active ? 0 : -1,
+  };
+
   return (
     <StepButtonRoot
       focusRipple
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, className)}
-      ref={ref}
       ownerState={ownerState}
-      aria-current={active ? 'step' : undefined}
+      aria-selected={active}
+      aria-posinset={index + 1}
+      aria-setsize={totalSteps}
+      role="tab"
+      {...rovingTabIndexItemProps}
       {...other}
     >
       {child}

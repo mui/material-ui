@@ -1,4 +1,4 @@
-import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
+import type { SandboxConfig } from '@mui/docs/DemoContext';
 import { DemoData } from 'docs/src/modules/sandbox/types';
 
 export const getHtml = ({
@@ -49,23 +49,6 @@ export function getRootIndex(demoData: DemoData, csbConfig?: SandboxConfig) {
   // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
   const type = demoData.codeVariant === 'TS' ? '!' : '';
 
-  // Legacy fallback based on productId
-  if (demoData.productId === 'joy-ui') {
-    return `import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
-import Demo from './Demo';
-
-ReactDOM.createRoot(document.querySelector("#root")${type}).render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <CssVarsProvider>
-        <Demo />
-      </CssVarsProvider>
-    </StyledEngineProvider>
-  </React.StrictMode>
-);`;
-  }
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';

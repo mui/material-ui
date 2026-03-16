@@ -11,10 +11,9 @@ import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { BrandingProvider } from '@mui/docs/branding';
+import { BrandingProvider, BrandingCssVarsProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
@@ -141,17 +140,8 @@ export default function ApiPage(props: ApiPageProps) {
     ? [...classes].sort((c1, c2) => c1.className.localeCompare(c2.className))
     : [];
 
-  const isJoyComponent = filename.includes('mui-joy');
-  const defaultPropsLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#theme-default-props'
-    : '/material-ui/customization/theme-components/#theme-default-props';
-  const styleOverridesLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#theme-style-overrides'
-    : '/material-ui/customization/theme-components/#theme-style-overrides';
-  let slotGuideLink = '';
-  if (isJoyComponent) {
-    slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-  }
+  const defaultPropsLink = '/material-ui/customization/theme-components/#theme-default-props';
+  const styleOverridesLink = '/material-ui/customization/theme-components/#theme-style-overrides';
 
   const {
     componentDescription,
@@ -352,10 +342,6 @@ export default function ApiPage(props: ApiPageProps) {
           {classesDef.length === 0 && <span id="classes" />}
           <SlotsSection
             slots={slotsDef}
-            spreadHint={
-              slotGuideLink &&
-              t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
-            }
             defaultLayout={defaultLayout}
             layoutStorageKey={layoutStorageKey.slots}
           />

@@ -5,7 +5,7 @@ import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import type { SandboxConfig } from 'docs/src/modules/components/DemoContext';
+import type { SandboxConfig } from '@mui/docs/DemoContext';
 import { DemoData, CodeVariant } from 'docs/src/modules/sandbox/types';
 
 const CSB_DEV_DEPENDENCIES = {
@@ -111,92 +111,6 @@ function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   };
 }
 
-function createJoyTemplate(templateData: {
-  title: string;
-  files: Record<string, string>;
-  githubLocation: string;
-  codeVariant: CodeVariant;
-}) {
-  const ext = getFileExtension(templateData.codeVariant);
-  const { title, githubLocation: description } = templateData;
-
-  // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
-  const type = templateData.codeVariant === 'TS' ? '!' : '';
-
-  const files: Record<string, object> = {
-    'public/index.html': {
-      content: CRA.getHtml({
-        title: templateData.title,
-        language: 'en',
-      }),
-    },
-    [`index.${ext}`]: {
-      content: `import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/joy/styles';
-import App from './App';
-
-ReactDOM.createRoot(document.querySelector("#root")${type}).render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
-  </React.StrictMode>
-);`,
-    },
-    ...Object.entries(templateData.files).reduce(
-      (prev, curr) => ({
-        ...prev,
-        [curr[0]]: {
-          content: curr[1],
-        },
-      }),
-      {},
-    ),
-    ...(templateData.codeVariant === 'TS' && {
-      'tsconfig.json': {
-        content: CRA.getTsconfig(),
-      },
-    }),
-  };
-
-  const { dependencies, devDependencies } = SandboxDependencies(
-    {
-      codeVariant: templateData.codeVariant,
-      raw: Object.entries(templateData.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
-      productId: 'joy-ui',
-    },
-    {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-      devDeps: CSB_DEV_DEPENDENCIES,
-    },
-  );
-
-  files['package.json'] = {
-    content: {
-      private: true,
-      description,
-      dependencies,
-      devDependencies,
-      scripts: {
-        start: 'react-scripts start',
-        build: 'react-scripts build',
-        test: 'react-scripts test',
-        eject: 'react-scripts eject',
-      },
-    },
-  };
-
-  return {
-    title,
-    files,
-    dependencies,
-    devDependencies,
-    openSandbox: (initialFile: string = '/App') =>
-      openSandbox({ files, codeVariant: templateData.codeVariant, initialFile }),
-  };
-}
-
 function createMaterialTemplate(templateData: {
   title: string;
   files: Record<string, string>;
@@ -291,6 +205,5 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 
 export default {
   createReactApp,
-  createJoyTemplate,
   createMaterialTemplate,
 };

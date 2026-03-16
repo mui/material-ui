@@ -192,7 +192,16 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const isNonNativeButton = () => {
     const button = buttonRef.current;
-    return component && component !== 'button' && !(button.tagName === 'A' && button.href);
+
+    if (!button) {
+      return component && component !== 'button';
+    }
+
+    if (button.tagName === 'BUTTON') {
+      return false;
+    }
+
+    return !(button.tagName === 'A' && button.href);
   };
 
   const handleKeyDown = useEventCallback((event) => {
@@ -240,7 +249,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       event.target === event.currentTarget &&
       isNonNativeButton() &&
       event.key === ' ' &&
-      !event.defaultPrevented
+      !event.defaultPrevented &&
+      !disabled
     ) {
       event.currentTarget.click();
     }

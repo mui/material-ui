@@ -254,6 +254,8 @@ describe('<SpeedDial />', () => {
         expect(screen.queryByRole('tooltip')).to.equal(null);
         expect(fab).to.have.attribute('aria-expanded', 'false');
         expect(fab).toHaveFocus();
+
+        await flushEffects();
       },
     );
   });

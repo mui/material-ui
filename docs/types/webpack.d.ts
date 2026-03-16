@@ -1,0 +1,1 @@
+import '@mui/docs/webpack';

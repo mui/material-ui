@@ -10,7 +10,6 @@ import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import IntegrationInstructionsRoundedIcon from '@mui/icons-material/IntegrationInstructionsRounded';
-import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
 import CopyrightRoundedIcon from '@mui/icons-material/CopyrightRounded';
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
@@ -19,12 +18,12 @@ import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha } from '@mui/material/styles';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import { Link } from '@mui/docs/Link';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from '@mui/docs/useLazyCSS';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import SearchButton from './SearchButton';
 
 function NewStartScreen() {
@@ -75,28 +74,6 @@ function NewStartScreen() {
           name: 'What is new in MUI X',
           href: '/x/whats-new/',
           icon: <NewspaperRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-      ],
-    },
-    {
-      category: {
-        name: 'Joy UI',
-      },
-      items: [
-        {
-          name: 'Installation',
-          href: '/joy-ui/getting-started/installation/',
-          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Templates',
-          href: '/joy-ui/getting-started/templates/',
-          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Customization',
-          href: '/joy-ui/customization/approaches/',
-          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },

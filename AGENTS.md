@@ -71,7 +71,6 @@ This is a monorepo managed by Lerna with Nx for caching. Key packages:
 - `@mui/material` - Core Material UI components
 - `@mui/system` - Styling system (sx prop, styled, theme)
 - `@mui/lab` - Experimental components (new components go here first)
-- `@mui/joy` - Joy UI design system (beta, development on hold)
 - `@mui/icons-material` - Material Design icons
 - `@mui/utils` - Internal utilities
 - `@mui/styled-engine` - CSS-in-JS abstraction (Emotion by default)
