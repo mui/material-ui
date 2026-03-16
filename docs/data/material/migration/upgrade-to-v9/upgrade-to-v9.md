@@ -474,29 +474,20 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
 
 #### Accordion deprecated props removed
 
-The following deprecated props have been removed from the `Accordion` component:
+Use the [accordion-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following section:
 
-- `TransitionComponent` → use `slots.transition`
-- `TransitionProps` → use `slotProps.transition`
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
 
-##### TransitionComponent prop
-
-The deprecated `TransitionComponent` prop has been removed. Use `slots.transition` instead.
+The deprecated `Accordion` props have been removed.
+Use the `slots` and `slotProps` props instead:
 
 ```diff
  <Accordion
 -  TransitionComponent={CustomTransition}
-+  slots={{ transition: CustomTransition }}
- >
-```
-
-##### TransitionProps prop
-
-The deprecated `TransitionProps` prop has been removed. Use `slotProps.transition` instead.
-
-```diff
- <Accordion
 -  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
 +  slotProps={{ transition: { unmountOnExit: true } }}
  >
 ```
