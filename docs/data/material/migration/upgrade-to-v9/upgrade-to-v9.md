@@ -603,6 +603,25 @@ The following deprecated `Backdrop` props have been removed:
 -  TransitionComponent={CustomTransition}
 +  slots={{ root: CustomRoot, transition: CustomTransition }}
 +  slotProps={{ root: { className: 'my-class' } }}
+```
+
+#### Badge deprecated props removed
+
+Use the [badge-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
+The deprecated `Badge` props have been removed.
+Use the `slots` and `slotProps` props instead:
+
+```diff
+ <Badge
+-  components={{ root: CustomRoot, badge: CustomBadge }}
+-  componentsProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
++  slots={{ root: CustomRoot, badge: CustomBadge }}
++  slotProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
  />
 ```
 
