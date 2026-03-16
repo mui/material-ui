@@ -140,6 +140,7 @@
     "markdownlint-cli2": "0.20.0",
     "nx": "20.8.4",
     "playwright": "1.58.0",
+    "pkg-pr-new": "^0.0.66",
     "prettier": "3.8.1",
     "pretty-quick": "4.2.2",
     "process": "0.11.10",
