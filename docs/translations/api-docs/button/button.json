@@ -34,7 +34,7 @@
       "description": "The loading indicator can be positioned on the start, end, or the center of the button."
     },
     "nativeButton": {
-      "description": "If <code>true</code>, the component is expected to resolve to a native <code>&lt;button&gt;</code> element. This enables native button semantics even when <code>component</code> is a custom component."
+      "description": "If <code>true</code>, the component is expected to resolve to a native <code>&lt;button&gt;</code> element. When omitted, custom components inherit the default button semantics of the current wrapper. Set to <code>true</code> when a custom component resolves to a native <code>&lt;button&gt;</code>, or <code>false</code> when it resolves to a non-button host. For direct <code>ButtonBase</code> usage, the default is <code>component === &#39;button&#39;</code>."
     },
     "size": {
       "description": "The size of the component. <code>small</code> is equivalent to the dense button styling."

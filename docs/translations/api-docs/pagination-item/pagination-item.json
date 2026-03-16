@@ -13,7 +13,7 @@
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "nativeButton": {
-      "description": "If <code>true</code>, the component is expected to resolve to a native <code>&lt;button&gt;</code> element. This enables native button semantics even when <code>component</code> is a custom component."
+      "description": "If <code>true</code>, the component is expected to resolve to a native <code>&lt;button&gt;</code> element. When omitted, custom components inherit the default button semantics of the current wrapper. Set to <code>true</code> when a custom component resolves to a native <code>&lt;button&gt;</code>, or <code>false</code> when it resolves to a non-button host."
     },
     "page": { "description": "The current page number." },
     "selected": { "description": "If <code>true</code> the pagination item is selected." },

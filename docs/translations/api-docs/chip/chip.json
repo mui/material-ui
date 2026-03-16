@@ -22,7 +22,7 @@
     "icon": { "description": "Icon element." },
     "label": { "description": "The content of the component." },
     "nativeButton": {
-      "description": "If <code>true</code>, the component is expected to resolve to a native <code>&lt;button&gt;</code> element when the chip is interactive (clickable or deletable). Only relevant when <code>component</code> is a custom component and the chip renders through <code>ButtonBase</code>."
+      "description": "If <code>true</code>, the component is expected to resolve to a native <code>&lt;button&gt;</code> element. When omitted, custom components inherit the default button semantics of the current wrapper. Set to <code>true</code> when a custom component resolves to a native <code>&lt;button&gt;</code>, or <code>false</code> when it resolves to a non-button host."
     },
     "onDelete": {
       "description": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown."
