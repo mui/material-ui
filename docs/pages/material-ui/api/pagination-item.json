@@ -19,7 +19,7 @@
       "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "nativeButton": { "type": { "name": "bool" }, "default": "component === 'button'" },
+    "nativeButton": { "type": { "name": "bool" } },
     "page": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" }, "default": "false" },
     "shape": {

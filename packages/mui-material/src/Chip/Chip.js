@@ -448,6 +448,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     component === ButtonBase
       ? {
           component: ComponentProp || 'div',
+          defaultNativeButton: false,
           focusVisibleClassName: classes.focusVisible,
           ...(onDelete && { disableRipple: true }),
           ...(nativeButton !== undefined && { nativeButton }),
@@ -608,10 +609,10 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   label: PropTypes.node,
   /**
-   * If `true`, the component is expected to resolve to a native `<button>` element
-   * when the chip is interactive (clickable or deletable).
-   * Only relevant when `component` is a custom component and the chip renders through `ButtonBase`.
-   * @default component === 'button'
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * When omitted, custom components inherit the default button semantics of the current wrapper.
+   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
+   * when it resolves to a non-button host.
    */
   nativeButton: PropTypes.bool,
   /**

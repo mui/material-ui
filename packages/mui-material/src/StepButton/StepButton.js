@@ -84,6 +84,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
 
   return (
     <StepButtonRoot
+      defaultNativeButton
       focusRipple
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}

@@ -156,40 +156,6 @@ export default function useButtonBase(
     }
   });
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      const root = rootRef.current;
-
-      if (root == null) {
-        return;
-      }
-
-      const tagName = root.tagName.toLowerCase();
-      const resolvesToNativeButton = tagName === 'button';
-
-      if (nativeButton && !resolvesToNativeButton) {
-        console.error(
-          [
-            'MUI: A component that acts as a button expected a native <button> because `nativeButton={true}`,',
-            `but the resolved root is <${tagName}>.`,
-            'Remove `nativeButton` or make the component render a <button> element.',
-          ].join(' '),
-        );
-      }
-
-      if (!nativeButton && resolvesToNativeButton) {
-        console.error(
-          [
-            'MUI: A component that acts as a button expected a non-button host because `nativeButton={false}`,',
-            'but the resolved root is <button>.',
-            'Set `nativeButton` to true or make the component render a non-button element.',
-          ].join(' '),
-        );
-      }
-    });
-  }
-
   const buttonProps: ButtonBaseButtonProps = { tabIndex: disabled ? -1 : tabIndex };
   if (nativeButton) {
     buttonProps.type = type === undefined && !hasFormAction ? 'button' : type;

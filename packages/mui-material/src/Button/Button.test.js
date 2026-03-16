@@ -70,9 +70,22 @@ describe('<Button />', () => {
     render(<Button component={StyledSpan}>Hello World</Button>);
 
     const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-    expect(screen.getByRole('button')).to.have.tagName('SPAN');
+    expect(screen.getByText('Hello World')).to.have.tagName('SPAN');
     expect(allArgs.length).to.be.greaterThanOrEqual(1);
     expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(true);
+    errorSpy.mockRestore();
+  });
+
+  it('does not warn for custom button components when nativeButton is omitted', () => {
+    const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+      return <button ref={ref} {...props} />;
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(<Button component={CustomButton}>Hello World</Button>);
+
+    expect(screen.getByRole('button')).to.have.tagName('BUTTON');
+    expect(errorSpy.mock.calls.length).to.equal(0);
     errorSpy.mockRestore();
   });
 

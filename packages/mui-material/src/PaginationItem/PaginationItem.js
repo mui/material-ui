@@ -398,6 +398,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       component={component}
+      defaultNativeButton
       disabled={disabled}
       className={clsx(classes.root, className)}
       {...other}
@@ -464,8 +465,9 @@ PaginationItem.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the component is expected to resolve to a native `<button>` element.
-   * This enables native button semantics even when `component` is a custom component.
-   * @default component === 'button'
+   * When omitted, custom components inherit the default button semantics of the current wrapper.
+   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
+   * when it resolves to a non-button host.
    */
   nativeButton: PropTypes.bool,
   /**

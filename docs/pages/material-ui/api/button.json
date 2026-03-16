@@ -29,7 +29,7 @@
       },
       "default": "'center'"
     },
-    "nativeButton": { "type": { "name": "bool" }, "default": "component === 'button'" },
+    "nativeButton": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",

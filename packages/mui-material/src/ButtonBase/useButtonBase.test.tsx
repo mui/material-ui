@@ -277,36 +277,4 @@ describe('useButtonBase', () => {
       expect(el).to.have.attribute('tabindex', '-1');
     });
   });
-
-  describe('dev warnings', () => {
-    it('warns when nativeButton=true but the resolved host is not a button', () => {
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(<TestButton component="div" disabled={false} nativeButton />);
-
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.length).to.be.greaterThanOrEqual(1);
-      expect(
-        allArgs.some((msg) =>
-          msg.includes('A component that acts as a button expected a native <button>'),
-        ),
-      ).to.equal(true);
-      errorSpy.mockRestore();
-    });
-
-    it('warns when nativeButton=false but the resolved host is a button', () => {
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(<TestButton component="button" disabled={false} nativeButton={false} />);
-
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.length).to.be.greaterThanOrEqual(1);
-      expect(
-        allArgs.some((msg) =>
-          msg.includes('A component that acts as a button expected a non-button host'),
-        ),
-      ).to.equal(true);
-      errorSpy.mockRestore();
-    });
-  });
 });

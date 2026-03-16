@@ -86,6 +86,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    // eslint-disable-next-line react/prop-types
+    defaultNativeButton: defaultNativeButtonProp, // private prop
     LinkComponent = 'a',
     nativeButton: nativeButtonProp,
     onBlur,
@@ -117,7 +119,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ComponentProp = LinkComponent;
   }
 
-  const nativeButton = nativeButtonProp ?? ComponentProp === 'button';
+  const defaultNativeButton =
+    typeof ComponentProp === 'string'
+      ? ComponentProp === 'button'
+      : (defaultNativeButtonProp ?? false);
+  const nativeButton = nativeButtonProp ?? defaultNativeButton;
   const ripple = useLazyRipple();
   const handleRippleRef = useForkRef(ripple.ref, touchRippleRef);
   const [focusVisible, setFocusVisible] = React.useState(false);
@@ -163,24 +169,56 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       if (root == null) {
         return;
       }
-      if (typeof ComponentProp === 'string') {
-        return;
-      }
-      if (isLink) {
-        return;
-      }
 
-      if (nativeButtonProp === undefined) {
-        const tagName = root.tagName.toLowerCase();
-        if (tagName !== 'button') {
+      const tagName = root.tagName.toLowerCase();
+      const resolvesToNativeButton = tagName === 'button';
+
+      if (nativeButtonProp !== undefined) {
+        if (nativeButtonProp && !resolvesToNativeButton) {
           console.error(
             [
-              'MUI: A component that acts as a button resolved to a non-button host,',
-              `but \`nativeButton={false}\` was not specified and the resolved root is <${tagName}>.`,
-              'When using a custom `component`, set `nativeButton={false}` explicitly or render a <button> element.',
+              'MUI: A component that acts as a button expected a native <button> because `nativeButton={true}`,',
+              `but the resolved root is <${tagName}>.`,
+              'Remove `nativeButton` or make the component render a <button> element.',
             ].join(' '),
           );
         }
+
+        if (!nativeButtonProp && resolvesToNativeButton) {
+          console.error(
+            [
+              'MUI: A component that acts as a button expected a non-button host because `nativeButton={false}`,',
+              'but the resolved root is <button>.',
+              'Set `nativeButton` to true or make the component render a non-button element.',
+            ].join(' '),
+          );
+        }
+
+        return;
+      }
+
+      if (typeof ComponentProp === 'string' || isLink) {
+        return;
+      }
+
+      if (defaultNativeButton && !resolvesToNativeButton) {
+        console.error(
+          [
+            'MUI: A component that acts as a button resolved to a non-button host,',
+            `but \`nativeButton={false}\` was not specified and the resolved root is <${tagName}>.`,
+            'When using a custom `component`, set `nativeButton={false}` explicitly or render a <button> element.',
+          ].join(' '),
+        );
+      }
+
+      if (!defaultNativeButton && resolvesToNativeButton) {
+        console.error(
+          [
+            'MUI: A component that acts as a button resolved to a native <button> host,',
+            'but `nativeButton={true}` was not specified.',
+            'When using a custom `component`, set `nativeButton={true}` explicitly or render a non-button element.',
+          ].join(' '),
+        );
       }
     });
   }
@@ -408,8 +446,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   LinkComponent: PropTypes.elementType,
   /**
    * If `true`, the component is expected to resolve to a native `<button>` element.
-   * This enables native button semantics even when `component` is a custom component.
-   * @default component === 'button'
+   * When omitted, custom components inherit the default button semantics of the current wrapper.
+   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
+   * when it resolves to a non-button host. For direct `ButtonBase` usage, the default is
+   * `component === 'button'`.
    */
   nativeButton: PropTypes.bool,
   /**

@@ -93,6 +93,7 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     additionalProps: {
+      defaultNativeButton: true,
       focusVisibleClassName: clsx(focusVisibleClassName, classes.focusVisible),
     },
   });
