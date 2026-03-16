@@ -536,3 +536,26 @@ Use the `slots` and `slotProps` props instead:
 +  slotProps={{ transition: { unmountOnExit: true } }}
  >
 ```
+
+#### AvatarGroup deprecated props removed
+
+Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
+```
+
+The deprecated `AvatarGroup` props have been removed.
+Use the `slotProps` prop instead. The `additionalAvatar` key has been renamed to `surplus`:
+
+```diff
+-<AvatarGroup componentsProps={{ additionalAvatar: { className: 'my-class' } }}>
++<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
+```
+
+If you were already using the `surplus` key via `componentsProps`, move it to `slotProps`:
+
+```diff
+-<AvatarGroup componentsProps={{ surplus: { className: 'my-class' } }}>
++<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
+```
