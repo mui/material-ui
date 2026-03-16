@@ -539,7 +539,14 @@ Use the `slots` and `slotProps` props instead:
 
 #### AvatarGroup deprecated props removed
 
-The `componentsProps` prop has been removed. Use `slotProps` instead. The `additionalAvatar` key has been renamed to `surplus`:
+Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
+```
+
+The deprecated `AvatarGroup` props have been removed.
+Use the `slotProps` prop instead. The `additionalAvatar` key has been renamed to `surplus`:
 
 ```diff
 -<AvatarGroup componentsProps={{ additionalAvatar: { className: 'my-class' } }}>
