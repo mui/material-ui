@@ -75,9 +75,7 @@ export default function SpringModal() {
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
-          backdrop: {
-            TransitionComponent: Fade,
-          },
+          backdrop: { slots: { transition: Fade } },
         }}
       >
         <Fade in={open}>
