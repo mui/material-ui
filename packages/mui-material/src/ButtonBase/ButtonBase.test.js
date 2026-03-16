@@ -825,20 +825,6 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.attribute('aria-disabled');
     });
 
-    it('should not call onClick on disabled non-native buttons', () => {
-      const onClickSpy = spy();
-
-      render(
-        <ButtonBase component="span" disabled onClick={onClickSpy}>
-          Hello
-        </ButtonBase>,
-      );
-
-      fireEvent.click(screen.getByRole('button'));
-
-      expect(onClickSpy.callCount).to.equal(0);
-    });
-
     it('should not propagate click events when Space is released on a disabled non-native button', async () => {
       const parentClickSpy = spy();
       const buttonClickSpy = spy();

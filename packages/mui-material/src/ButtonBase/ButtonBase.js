@@ -256,17 +256,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   });
 
-  const handleClick = useEventCallback((event) => {
-    if (disabled) {
-      event.preventDefault();
-      return;
-    }
-
-    if (onClick) {
-      onClick(event);
-    }
-  });
-
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && (other.href || other.to)) {
@@ -311,7 +300,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       onBlur={handleBlur}
-      onClick={handleClick}
+      onClick={onClick}
       onContextMenu={handleContextMenu}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
