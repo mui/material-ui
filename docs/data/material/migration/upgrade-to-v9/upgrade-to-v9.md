@@ -618,7 +618,7 @@ Use the `slots` and `slotProps` props instead:
 
 ```diff
  <Badge
--  components={{ root: CustomRoot, badge: CustomBadge }}
+-  components={{ Root: CustomRoot, Badge: CustomBadge }}
 -  componentsProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
 +  slots={{ root: CustomRoot, badge: CustomBadge }}
 +  slotProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
