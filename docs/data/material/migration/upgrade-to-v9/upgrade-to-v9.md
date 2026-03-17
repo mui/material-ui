@@ -537,6 +537,24 @@ Use the `slots` and `slotProps` props instead:
  >
 ```
 
+#### AccordionSummary deprecated CSS classes removed
+
+Use the [accordion-summary-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
+The deprecated `AccordionSummary` CSS class `contentGutters` has been removed.
+Use the combination of `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes instead:
+
+```diff
+-.MuiAccordionSummary-contentGutters {
++.MuiAccordionSummary-gutters .MuiAccordionSummary-content {
+   margin: 20px 0;
+ }
+```
+
 #### AvatarGroup deprecated props removed
 
 Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following section:
