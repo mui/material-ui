@@ -683,18 +683,18 @@ The following deprecated `Button` CSS classes have been removed:
 - `containedError` → use `.MuiButton-contained.MuiButton-colorError`
 - `containedInfo` → use `.MuiButton-contained.MuiButton-colorInfo`
 - `containedWarning` → use `.MuiButton-contained.MuiButton-colorWarning`
-- `textSizeSmall` → use `.MuiButton-sizeSmall.MuiButton-text`
-- `textSizeMedium` → use `.MuiButton-sizeMedium.MuiButton-text`
-- `textSizeLarge` → use `.MuiButton-sizeLarge.MuiButton-text`
-- `outlinedSizeSmall` → use `.MuiButton-sizeSmall.MuiButton-outlined`
-- `outlinedSizeMedium` → use `.MuiButton-sizeMedium.MuiButton-outlined`
-- `outlinedSizeLarge` → use `.MuiButton-sizeLarge.MuiButton-outlined`
-- `containedSizeSmall` → use `.MuiButton-sizeSmall.MuiButton-contained`
-- `containedSizeMedium` → use `.MuiButton-sizeMedium.MuiButton-contained`
-- `containedSizeLarge` → use `.MuiButton-sizeLarge.MuiButton-contained`
-- `iconSizeSmall` → use `.MuiButton-icon.MuiButton-sizeSmall`
-- `iconSizeMedium` → use `.MuiButton-icon.MuiButton-sizeMedium`
-- `iconSizeLarge` → use `.MuiButton-icon.MuiButton-sizeLarge`
+- `textSizeSmall` → use `.MuiButton-text.MuiButton-sizeSmall`
+- `textSizeMedium` → use `.MuiButton-text.MuiButton-sizeMedium`
+- `textSizeLarge` → use `.MuiButton-text.MuiButton-sizeLarge`
+- `outlinedSizeSmall` → use `.MuiButton-outlined.MuiButton-sizeSmall`
+- `outlinedSizeMedium` → use `.MuiButton-outlined.MuiButton-sizeMedium`
+- `outlinedSizeLarge` → use `.MuiButton-outlined.MuiButton-sizeLarge`
+- `containedSizeSmall` → use `.MuiButton-contained.MuiButton-sizeSmall`
+- `containedSizeMedium` → use `.MuiButton-contained.MuiButton-sizeMedium`
+- `containedSizeLarge` → use `.MuiButton-contained.MuiButton-sizeLarge`
+- `iconSizeSmall` → use `.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon`
+- `iconSizeMedium` → use `.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon`
+- `iconSizeLarge` → use `.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon`
 
 #### Slider deprecated props removed
 
