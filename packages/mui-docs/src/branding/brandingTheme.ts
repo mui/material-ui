@@ -430,9 +430,9 @@ export function getThemedComponents(): ThemeOptions {
             paddingTop: 10,
             paddingBottom: 0,
           },
-          standardWarning: ({ theme }) => [
+          colorWarning: ({ theme }) => ({
             // same styles from the MarkdownElement callout
-            {
+            '&.MuiAlert-standard': {
               backgroundColor: alpha(theme.palette.warning[50], 0.5),
               color: (theme.vars || theme).palette.grey[900],
               border: '1px solid',
@@ -448,25 +448,25 @@ export function getThemedComponents(): ThemeOptions {
                   textDecorationColor: `${(theme.vars || theme).palette.warning[900]} !important`,
                 },
               },
-            },
-            theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.warning[700], 0.12),
-              color: (theme.vars || theme).palette.warning[50],
-              '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.warning[400],
-              },
-              '& * a': {
-                color: `${(theme.vars || theme).palette.warning[100]} !important`,
-                textDecorationColor: `${alpha(theme.palette.warning[600], 0.4)} !important`,
-                '&:hover': {
-                  textDecorationColor: `${(theme.vars || theme).palette.warning[600]} !important`,
+              ...theme.applyDarkStyles({
+                backgroundColor: alpha(theme.palette.warning[700], 0.12),
+                color: (theme.vars || theme).palette.warning[50],
+                '& .MuiAlert-icon': {
+                  color: (theme.vars || theme).palette.warning[400],
                 },
-              },
-            }),
-          ],
-          standardSuccess: ({ theme }) => [
+                '& * a': {
+                  color: `${(theme.vars || theme).palette.warning[100]} !important`,
+                  textDecorationColor: `${alpha(theme.palette.warning[600], 0.4)} !important`,
+                  '&:hover': {
+                    textDecorationColor: `${(theme.vars || theme).palette.warning[600]} !important`,
+                  },
+                },
+              }),
+            },
+          }),
+          colorSuccess: ({ theme }) => ({
             // same styles from the MarkdownElement callout
-            {
+            '&.MuiAlert-standard': {
               backgroundColor: alpha(theme.palette.success[50], 0.5),
               color: (theme.vars || theme).palette.success[900],
               border: `1px solid ${(theme.vars || theme).palette.success[100]}`,
@@ -481,23 +481,23 @@ export function getThemedComponents(): ThemeOptions {
                   textDecorationColor: `${(theme.vars || theme).palette.success[900]} !important`,
                 },
               },
-            },
-            theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.success[700], 0.12),
-              color: (theme.vars || theme).palette.success[50],
-              borderColor: alpha(theme.palette.success[400], 0.1),
-              '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.success[500],
-              },
-              '& * a': {
-                color: `${(theme.vars || theme).palette.success[100]} !important`,
-                textDecorationColor: `${alpha(theme.palette.success[600], 0.4)} !important`,
-                '&:hover': {
-                  textDecorationColor: `${(theme.vars || theme).palette.success[600]} !important`,
+              ...theme.applyDarkStyles({
+                backgroundColor: alpha(theme.palette.success[700], 0.12),
+                color: (theme.vars || theme).palette.success[50],
+                borderColor: alpha(theme.palette.success[400], 0.1),
+                '& .MuiAlert-icon': {
+                  color: (theme.vars || theme).palette.success[500],
                 },
-              },
-            }),
-          ],
+                '& * a': {
+                  color: `${(theme.vars || theme).palette.success[100]} !important`,
+                  textDecorationColor: `${alpha(theme.palette.success[600], 0.4)} !important`,
+                  '&:hover': {
+                    textDecorationColor: `${(theme.vars || theme).palette.success[600]} !important`,
+                  },
+                },
+              }),
+            },
+          }),
         },
       },
       MuiButtonBase: {
