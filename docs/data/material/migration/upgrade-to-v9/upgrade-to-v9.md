@@ -567,8 +567,9 @@ Use the [avatar-props codemod](https://github.com/mui/material-ui/tree/HEAD/pack
 npx @mui/codemod@latest deprecations/avatar-props <path>
 ```
 
-The deprecated `Avatar` props have been removed.
-Use the `slotProps` prop instead:
+The following deprecated props have been removed from the `Avatar` component:
+
+- `imgProps` → use `slotProps.img`
 
 ```diff
 -<Avatar imgProps={{ crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' }} />
