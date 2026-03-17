@@ -262,6 +262,10 @@ Use the `slots`, `slotProps`, and `renderValue` props instead:
 -    return <Box {...other} />;
 -  }}
 -  renderTags={(value, getTagProps, ownerState) =>
+-    value.map((option, index) => (
+-      <Chip label={option.label} {...getTagProps({ index })} />
+-    ))
+-  }
 +  slots={{
 +    listbox: CustomListbox,
 +    paper: CustomPaper,
@@ -279,11 +283,10 @@ Use the `slots`, `slotProps`, and `renderValue` props instead:
 +    popupIndicator: { size: 'large' },
 +  }}
 +  renderValue={(value, getItemProps, ownerState) =>
-     value.map((option, index) => (
--      <Chip label={option.label} {...getTagProps({ index })} />
++    value.map((option, index) => (
 +      <Chip label={option.label} {...getItemProps({ index })} />
-     ))
-   }
++    ))
++  }
  />
 ```
 
