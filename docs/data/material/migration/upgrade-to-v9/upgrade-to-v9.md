@@ -613,8 +613,10 @@ Use the [badge-props codemod](https://github.com/mui/material-ui/tree/HEAD/packa
 npx @mui/codemod@latest deprecations/badge-props <path>
 ```
 
-The deprecated `Badge` props have been removed.
-Use the `slots` and `slotProps` props instead:
+The following deprecated props have been removed from the `Badge` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
 
 ```diff
  <Badge
