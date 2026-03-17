@@ -666,7 +666,7 @@ npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
 The deprecated `Divider` prop have been removed.
-Use the `sx` prop instead:
+Use `sx={{ opacity : "0.6" }}` (or any opacity):
 
 ```diff
  <Divider
