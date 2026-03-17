@@ -9,17 +9,17 @@ import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
-import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
-import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
+import PropertiesSection from '@mui/docs/ApiPage/sections/PropertiesSection';
+import ClassesSection from '@mui/docs/ApiPage/sections/ClassesSection';
+import SlotsSection from '@mui/docs/ApiPage/sections/SlotsSection';
+import { getPropsApiDefinitions } from '@mui/docs/ApiPage/definitions/properties';
+import { getClassApiDefinitions } from '@mui/docs/ApiPage/definitions/classes';
 import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
-import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
+} from '@mui/docs/ApiPage/sections/ToggleDisplayOption';
+import { getSlotsApiDefinitions } from '@mui/docs/ApiPage/definitions/slots';
+import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

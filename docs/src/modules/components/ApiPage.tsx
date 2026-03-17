@@ -14,25 +14,25 @@ import { BrandingProvider, BrandingCssVarsProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
+import PropertiesSection from '@mui/docs/ApiPage/sections/PropertiesSection';
+import ClassesSection from '@mui/docs/ApiPage/sections/ClassesSection';
+import SlotsSection from '@mui/docs/ApiPage/sections/SlotsSection';
 import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+} from '@mui/docs/ApiPage/sections/ToggleDisplayOption';
 import {
   getPropsApiDefinitions,
   getPropertiesToc,
-} from 'docs/src/modules/components/ApiPage/definitions/properties';
+} from '@mui/docs/ApiPage/definitions/properties';
 import {
   getClassApiDefinitions,
   getClassesToc,
-} from 'docs/src/modules/components/ApiPage/definitions/classes';
+} from '@mui/docs/ApiPage/definitions/classes';
 import {
   getSlotsApiDefinitions,
   getSlotsToc,
-} from 'docs/src/modules/components/ApiPage/definitions/slots';
+} from '@mui/docs/ApiPage/definitions/slots';
 import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';
 
 export type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';
