@@ -453,8 +453,13 @@ Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/
 npx @mui/codemod@latest deprecations/text-field-props <path>
 ```
 
-The deprecated `TextField` props have been removed.
-Use the `slotProps` prop instead:
+The following deprecated props have been removed from the `TextField` component:
+
+- `InputProps` → use `slotProps.input`
+- `inputProps` → use `slotProps.htmlInput`
+- `SelectProps` → use `slotProps.select`
+- `InputLabelProps` → use `slotProps.inputLabel`
+- `FormHelperTextProps` → use `slotProps.formHelperText`
 
 ```diff
  <TextField
@@ -508,8 +513,10 @@ Use the [alert-props codemod](https://github.com/mui/material-ui/tree/HEAD/packa
 npx @mui/codemod@latest deprecations/alert-props <path>
 ```
 
-The deprecated `Alert` props have been removed.
-Use the `slots` and `slotProps` props instead:
+The following deprecated props have been removed from the `Alert` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
 
 ```diff
  <Alert
@@ -529,8 +536,10 @@ Use the [accordion-props codemod](https://github.com/mui/material-ui/tree/HEAD/p
 npx @mui/codemod@latest deprecations/accordion-props <path>
 ```
 
-The deprecated `Accordion` props have been removed.
-Use the `slots` and `slotProps` props instead:
+The following deprecated props have been removed from the `Accordion` component:
+
+- `TransitionComponent` → use `slots.transition`
+- `TransitionProps` → use `slotProps.transition`
 
 ```diff
  <Accordion
@@ -567,8 +576,9 @@ Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEA
 npx @mui/codemod@latest deprecations/avatar-group-props <path>
 ```
 
-The deprecated `AvatarGroup` props have been removed.
-Use the `slotProps` prop instead. The `additionalAvatar` key has been renamed to `surplus`:
+The following deprecated props have been removed from the `AvatarGroup` component:
+
+- `componentsProps` → use `slotProps` (the `additionalAvatar` key has been renamed to `surplus`)
 
 ```diff
 -<AvatarGroup componentsProps={{ additionalAvatar: { className: 'my-class' } }}>
@@ -604,8 +614,9 @@ Use the [typography-props codemod](https://github.com/mui/material-ui/tree/HEAD/
 npx @mui/codemod@latest deprecations/typography-props <path>
 ```
 
-The deprecated `paragraph` prop has been removed.
-Use `sx` prop to add the margin bottom instead:
+The following deprecated props have been removed from the `Typography` component:
+
+- `paragraph` → use the `sx` prop to add the margin bottom instead
 
 ```diff
 -<Typography paragraph />
