@@ -143,12 +143,6 @@
       "className": "MuiAlert-standard",
       "description": "Styles applied to the root element if `variant=\"standard\"`.",
       "isGlobal": false
-    },
-    {
-      "key": "standardWarning",
-      "className": "MuiAlert-standardWarning",
-      "description": "Styles applied to the root element if `variant=\"standard\"` and `color=\"warning\"`.",
-      "isGlobal": false
     }
   ],
   "spread": true,
