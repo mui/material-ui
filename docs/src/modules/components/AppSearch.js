@@ -24,7 +24,9 @@ import { Link } from '@mui/docs/Link';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from '@mui/docs/useLazyCSS';
 import PageContext from '@mui/docs/PageContext';
+import { convertProductIdToName } from '@mui/docs/AppLayoutDocs';
 import SearchButton from './SearchButton';
+
 
 function NewStartScreen() {
   const startScreenOptions = [
@@ -140,8 +142,6 @@ function NewStartScreen() {
     </div>
   );
 }
-
-import { convertProductIdToName } from '@mui/docs/AppLayoutDocs';
 export { convertProductIdToName };
 
 function getDisplayTag(hit) {

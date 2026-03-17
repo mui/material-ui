@@ -1,5 +1,5 @@
-import { useTranslate } from '../../i18n';
 import { styled, alpha } from '@mui/material/styles';
+import { useTranslate } from '../../i18n';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,

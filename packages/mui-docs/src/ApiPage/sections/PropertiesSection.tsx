@@ -1,6 +1,12 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import {
+  ComponentApiContent,
+  PropsTableItem,
+  PropsTranslations,
+} from '@mui-internal/api-docs-builder';
+import { kebabCase } from 'es-toolkit/string';
 import { Translate, useTranslate } from '../../i18n';
 import { SectionTitle, SectionTitleProps } from '../../SectionTitle';
 import ToggleDisplayOption, {
@@ -14,12 +20,6 @@ import {
   getPropsApiDefinitions,
 } from '../definitions/properties';
 import { LayoutStorageKeys } from '../types';
-import {
-  ComponentApiContent,
-  PropsTableItem,
-  PropsTranslations,
-} from '@mui-internal/api-docs-builder';
-import { kebabCase } from 'es-toolkit/string';
 
 interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
   componentProps: ComponentApiContent['props'];

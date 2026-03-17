@@ -1,6 +1,6 @@
 import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
-import { Translate } from '../../i18n';
 import { kebabCase } from 'es-toolkit/string';
+import { Translate } from '../../i18n';
 import type { TableOfContentsParams } from '../types';
 
 export interface ClassDefinition {

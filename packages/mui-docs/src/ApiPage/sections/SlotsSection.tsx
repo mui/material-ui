@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { useTranslate } from '../../i18n';
 import { SectionTitle } from '../../SectionTitle';
-import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
   useApiPageOption,

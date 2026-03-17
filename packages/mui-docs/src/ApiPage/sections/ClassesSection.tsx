@@ -1,8 +1,10 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
+import Box from '@mui/material/Box';
+import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
+import { kebabCase } from 'es-toolkit/string';
 import { Translate, useTranslate } from '../../i18n';
 import { SectionTitle } from '../../SectionTitle';
-import Box from '@mui/material/Box';
 import ToggleDisplayOption, {
   ApiDisplayOptions,
   useApiPageOption,
@@ -13,8 +15,6 @@ import {
   ClassDefinition,
   getClassApiDefinitions,
 } from '../definitions/classes';
-import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
-import { kebabCase } from 'es-toolkit/string';
 
 export type GetCssToCParams = {
   componentName: string;
