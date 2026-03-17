@@ -12,6 +12,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
 
@@ -48,6 +49,10 @@ const useUtilityClasses = (ownerState) => {
 const ChipRoot = styled('div', {
   name: 'MuiChip',
   slot: 'Root',
+  shouldForwardProp: (prop) =>
+    rootShouldForwardProp(prop) &&
+    prop !== 'focusableWhenDisabled' &&
+    prop !== 'skipFocusWhenDisabled',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     const { color, iconColor, clickable, onDelete, size, variant } = ownerState;

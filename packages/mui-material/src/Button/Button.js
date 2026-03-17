@@ -714,11 +714,8 @@ Button.propTypes /* remove-proptypes */ = {
    */
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
-   * If `true`, the component is expected to resolve to a native `<button>` element.
-   * When omitted, custom components inherit the default button semantics of the current wrapper.
-   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
-   * when it resolves to a non-button host. For direct `ButtonBase` usage, the default is
-   * `component === 'button'`.
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React componentwith the `component` or `slots` prop.
    */
   nativeButton: PropTypes.bool,
   /**

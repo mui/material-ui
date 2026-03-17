@@ -82,6 +82,31 @@ describe('<Chip />', () => {
   });
 
   describe('clickable chip', () => {
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @returns {string[]}
+     */
+    function getWarningMessages(errorSpy) {
+      return errorSpy.mock.calls.map((call) =>
+        String(call[0]).replace(/\s+/g, ' ').trim().toLowerCase(),
+      );
+    }
+
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @param {string[]} fragments
+     */
+    function expectWarningWithFragments(errorSpy, fragments) {
+      const messages = getWarningMessages(errorSpy);
+
+      expect(messages.length).to.be.greaterThanOrEqual(1);
+      expect(
+        messages.some((message) =>
+          fragments.every((fragment) => message.includes(fragment.toLowerCase())),
+        ),
+      ).to.equal(true);
+    }
+
     it('renders as a button in taborder with the label as the accessible name', () => {
       render(<Chip label="My Chip" onClick={() => {}} />);
 
@@ -107,14 +132,35 @@ describe('<Chip />', () => {
       expect(container.firstChild).not.to.have.attribute('nativebutton');
     });
 
+    it('does not leak disabled-focus props from slotProps.root to the DOM when not interactive', () => {
+      const { container } = render(
+        <Chip
+          label="My Chip"
+          slotProps={{ root: { focusableWhenDisabled: true, skipFocusWhenDisabled: true } }}
+        />,
+      );
+
+      expect(container.firstChild).to.have.tagName('DIV');
+      expect(container.firstChild).not.to.have.attribute('focusablewhendisabled');
+      expect(container.firstChild).not.to.have.attribute('skipfocuswhendisabled');
+    });
+
+    it('does not forward focusableWhenDisabled to ButtonBase', () => {
+      render(<Chip label="My Chip" disabled onClick={() => {}} focusableWhenDisabled />);
+
+      const chip = screen.getByRole('button');
+      expect(chip).to.have.attribute('aria-disabled', 'true');
+      expect(chip).to.have.attribute('tabindex', '-1');
+    });
+
     it('does not warn when nativeButton is omitted and a custom non-button component is used', () => {
       const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       render(<Chip label="My Chip" onClick={() => {}} component={CustomSpan} />);
 
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
+      const messages = getWarningMessages(errorSpy);
+      expect(messages.some((message) => message.includes('nativebutton={false}'))).to.equal(false);
       expect(screen.getByRole('button')).to.have.tagName('SPAN');
       errorSpy.mockRestore();
     });
@@ -125,10 +171,7 @@ describe('<Chip />', () => {
 
       render(<Chip label="My Chip" onClick={() => {}} component={CustomButton} />);
 
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.some((msg) => msg.includes('resolved to a native <button> host'))).to.equal(
-        true,
-      );
+      expectWarningWithFragments(errorSpy, ['nativebutton={true}', 'native <button>']);
       errorSpy.mockRestore();
     });
 
@@ -140,8 +183,8 @@ describe('<Chip />', () => {
         <Chip label="My Chip" onClick={() => {}} component={CustomSpan} nativeButton={false} />,
       );
 
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
+      const messages = getWarningMessages(errorSpy);
+      expect(messages.some((message) => message.includes('nativebutton={false}'))).to.equal(false);
       expect(screen.getByRole('button')).to.have.tagName('SPAN');
       errorSpy.mockRestore();
     });

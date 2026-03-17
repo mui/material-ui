@@ -1414,6 +1414,31 @@ describe('<ButtonBase />', () => {
   });
 
   describe('warnings', () => {
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @returns {string[]}
+     */
+    function getWarningMessages(errorSpy) {
+      return errorSpy.mock.calls.map((call) =>
+        String(call[0]).replace(/\s+/g, ' ').trim().toLowerCase(),
+      );
+    }
+
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @param {string[]} fragments
+     */
+    function expectWarningWithFragments(errorSpy, fragments) {
+      const messages = getWarningMessages(errorSpy);
+
+      expect(messages.length).to.be.greaterThanOrEqual(1);
+      expect(
+        messages.some((message) =>
+          fragments.every((fragment) => message.includes(fragment.toLowerCase())),
+        ),
+      ).to.equal(true);
+    }
+
     beforeEach(() => {
       PropTypes.resetWarningCache();
     });
@@ -1424,81 +1449,7 @@ describe('<ButtonBase />', () => {
 
       render(<ButtonBase component={CustomButton}>Hello</ButtonBase>);
 
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.length).to.be.greaterThanOrEqual(1);
-      expect(allArgs.some((msg) => msg.includes('resolved to a native <button> host'))).to.equal(
-        true,
-      );
-      errorSpy.mockRestore();
-    });
-
-    it('warns when nativeButton=true but the resolved host is not a button', () => {
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(
-        <ButtonBase component="div" nativeButton>
-          Hello
-        </ButtonBase>,
-      );
-
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.length).to.be.greaterThanOrEqual(1);
-      expect(
-        allArgs.some((msg) =>
-          msg.includes('A component that acts as a button expected a native <button>'),
-        ),
-      ).to.equal(true);
-      errorSpy.mockRestore();
-    });
-
-    it('warns when nativeButton=false but the resolved host is a button', () => {
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(<ButtonBase nativeButton={false}>Hello</ButtonBase>);
-
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.length).to.be.greaterThanOrEqual(1);
-      expect(
-        allArgs.some((msg) =>
-          msg.includes('A component that acts as a button expected a non-button host'),
-        ),
-      ).to.equal(true);
-      errorSpy.mockRestore();
-    });
-
-    it('does not warn when nativeButton is omitted and a custom component resolves to a non-button', () => {
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      const CustomDiv = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
-
-      render(<ButtonBase component={CustomDiv}>Hello</ButtonBase>);
-
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
-      errorSpy.mockRestore();
-    });
-
-    it('does not warn when nativeButton={false} is explicitly set on a custom component', () => {
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      const CustomDiv = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
-
-      render(
-        <ButtonBase component={CustomDiv} nativeButton={false}>
-          Hello
-        </ButtonBase>,
-      );
-
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
-      errorSpy.mockRestore();
-    });
-
-    it('does not warn for string component="div" when nativeButton is omitted', () => {
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
-      render(<ButtonBase component="div">Hello</ButtonBase>);
-
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
+      expectWarningWithFragments(errorSpy, ['nativebutton={true}', 'native <button>']);
       errorSpy.mockRestore();
     });
 
@@ -1507,8 +1458,8 @@ describe('<ButtonBase />', () => {
 
       render(<ButtonBase href="/test">Hello</ButtonBase>);
 
-      const allArgs = errorSpy.mock.calls.map((call) => call[0]);
-      expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(false);
+      const messages = getWarningMessages(errorSpy);
+      expect(messages.some((message) => message.includes('nativebutton={false}'))).to.equal(false);
       errorSpy.mockRestore();
     });
 

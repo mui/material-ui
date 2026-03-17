@@ -159,11 +159,7 @@ describe('<StepButton />', () => {
 
       // Proves nativeButton={false} was forwarded — without it, ButtonBase
       // would warn about a non-button host with nativeButton omitted.
-      expect(
-        errorSpy.mock.calls.some((call) =>
-          String(call[0]).includes('resolved to a non-button host'),
-        ),
-      ).to.equal(false);
+      expect(errorSpy.mock.calls.length).to.equal(0);
       errorSpy.mockRestore();
     });
   });

@@ -17,6 +17,31 @@ import * as ripple from '../../test/ripple';
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
 
+  /**
+   * @param {{ mock: { calls: unknown[][] } }} errorSpy
+   * @returns {string[]}
+   */
+  function getWarningMessages(errorSpy) {
+    return errorSpy.mock.calls.map((call) =>
+      String(call[0]).replace(/\s+/g, ' ').trim().toLowerCase(),
+    );
+  }
+
+  /**
+   * @param {{ mock: { calls: unknown[][] } }} errorSpy
+   * @param {string[]} fragments
+   */
+  function expectWarningWithFragments(errorSpy, fragments) {
+    const messages = getWarningMessages(errorSpy);
+
+    expect(messages.length).to.be.greaterThanOrEqual(1);
+    expect(
+      messages.some((message) =>
+        fragments.every((fragment) => message.includes(fragment.toLowerCase())),
+      ),
+    ).to.equal(true);
+  }
+
   describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
@@ -69,10 +94,8 @@ describe('<Button />', () => {
 
     render(<Button component={StyledSpan}>Hello World</Button>);
 
-    const allArgs = errorSpy.mock.calls.map((call) => call[0]);
     expect(screen.getByText('Hello World')).to.have.tagName('SPAN');
-    expect(allArgs.length).to.be.greaterThanOrEqual(1);
-    expect(allArgs.some((msg) => msg.includes('resolved to a non-button host'))).to.equal(true);
+    expectWarningWithFragments(errorSpy, ['nativebutton={false}', 'non-<button>']);
     errorSpy.mockRestore();
   });
 
@@ -104,6 +127,18 @@ describe('<Button />', () => {
     expect(screen.getByRole('button')).to.have.tagName('SPAN');
     expect(errorSpy.mock.calls.length).to.equal(0);
     errorSpy.mockRestore();
+  });
+
+  it('does not forward focusableWhenDisabled to ButtonBase', () => {
+    render(
+      <Button disabled focusableWhenDisabled>
+        Hello World
+      </Button>,
+    );
+
+    const button = screen.getByRole('button');
+    expect(button).to.have.attribute('disabled');
+    expect(button).not.to.have.attribute('aria-disabled');
   });
 
   it('startIcon and endIcon should have icon class', () => {

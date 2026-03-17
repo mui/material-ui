@@ -1,25 +1,78 @@
 import * as React from 'react';
-import { expect } from 'chai';
-import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import useButtonBase, { UseButtonBaseParameters } from './useButtonBase';
 
-interface TestButtonProps extends UseButtonBaseParameters {
-  component?: React.ElementType;
-  id?: string;
+interface ButtonProps extends Omit<UseButtonBaseParameters, 'nativeButton' | 'disabled'> {
+  id?: string | undefined;
+  nativeButton?: boolean | undefined;
+  disabled?: boolean | undefined;
+  onClick?: React.MouseEventHandler<any> | undefined;
+  onKeyDown?: React.KeyboardEventHandler<any> | undefined;
+  onKeyUp?: React.KeyboardEventHandler<any> | undefined;
 }
 
-function TestButton(props: TestButtonProps) {
-  const { component = 'div', id, ...params } = props;
-  const { eventHandlers, buttonProps, rootRef } = useButtonBase(params);
-  const Component = component;
+function useFixtureButtonBase(props: ButtonProps, defaultNativeButtonValue: boolean) {
+  const {
+    id,
+    nativeButton: nativeButtonOverride,
+    nativeButtonProp,
+    defaultNativeButton: defaultNativeButtonProp = defaultNativeButtonValue,
+    allowInferredHostMismatch,
+    disabled = false,
+    type,
+    hasFormAction,
+    tabIndex,
+    focusableWhenDisabled,
+    stopEventPropagation,
+    onBeforeKeyDown,
+    onBeforeKeyUp,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+  } = props;
+  const nativeButton = nativeButtonOverride ?? nativeButtonProp ?? defaultNativeButtonProp;
+  const { getButtonProps, rootRef } = useButtonBase({
+    nativeButton,
+    nativeButtonProp,
+    defaultNativeButton: defaultNativeButtonProp,
+    allowInferredHostMismatch,
+    disabled,
+    type,
+    hasFormAction,
+    tabIndex,
+    focusableWhenDisabled,
+    stopEventPropagation,
+    onBeforeKeyDown,
+    onBeforeKeyUp,
+  });
+
+  return {
+    id,
+    rootProps: getButtonProps({
+      onClick,
+      onKeyDown,
+      onKeyUp,
+    }),
+    rootRef,
+  };
+}
+
+function NonNativeButton(props: ButtonProps) {
+  const { id, rootProps, rootRef } = useFixtureButtonBase(props, false);
 
   return (
-    <Component
+    <div data-testid={id ?? 'root'} ref={rootRef as React.Ref<HTMLDivElement>} {...rootProps} />
+  );
+}
+
+function NativeButton(props: ButtonProps) {
+  const { id, rootProps, rootRef } = useFixtureButtonBase(props, true);
+
+  return (
+    <button
       data-testid={id ?? 'root'}
-      ref={rootRef as any}
-      {...buttonProps}
-      {...eventHandlers}
+      ref={rootRef as React.Ref<HTMLButtonElement>}
+      {...(rootProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     />
   );
 }
@@ -28,253 +81,464 @@ describe('useButtonBase', () => {
   const { render } = createRenderer();
 
   describe('onClick composition', () => {
-    it('calls onClick when not disabled', () => {
-      const handleClick = spy();
+    it('calls onClick when not disabled', async () => {
+      const handleClick = vi.fn();
+      const { user } = render(<NonNativeButton onClick={handleClick} />);
 
-      render(<TestButton disabled={false} nativeButton={false} onClick={handleClick} />);
+      await user.click(screen.getByTestId('root'));
 
-      fireEvent.click(screen.getByTestId('root'));
-
-      expect(handleClick.callCount).to.equal(1);
+      expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
-    it('does not call onClick when disabled', () => {
-      const handleClick = spy();
+    it('does not call onClick when disabled', async () => {
+      const handleClick = vi.fn();
+      const { user } = render(<NonNativeButton disabled onClick={handleClick} />);
 
-      render(<TestButton disabled nativeButton={false} onClick={handleClick} />);
+      await user.click(screen.getByTestId('root'));
 
-      fireEvent.click(screen.getByTestId('root'));
-
-      expect(handleClick.callCount).to.equal(0);
+      expect(handleClick).not.toHaveBeenCalled();
     });
 
-    it('stopEventPropagation stops propagation even when disabled', () => {
-      const handleParentClick = spy();
-      const handleClick = spy();
+    it('stopEventPropagation stops propagation even when disabled', async () => {
+      const handleParentClick = vi.fn();
+      const handleClick = vi.fn();
 
-      render(
+      const { user } = render(
         <div onClick={handleParentClick}>
-          <TestButton disabled nativeButton={false} onClick={handleClick} stopEventPropagation />
+          <NonNativeButton disabled onClick={handleClick} stopEventPropagation />
         </div>,
       );
 
-      fireEvent.click(screen.getByTestId('root'));
+      await user.click(screen.getByTestId('root'));
 
-      expect(handleParentClick.callCount).to.equal(0);
-      expect(handleClick.callCount).to.equal(0);
+      expect(handleParentClick).not.toHaveBeenCalled();
+      expect(handleClick).not.toHaveBeenCalled();
     });
   });
 
   describe('keyboard activation', () => {
-    it('runs onBeforeKeyDown before onKeyDown', () => {
-      const order: string[] = [];
+    describe('non-native button', () => {
+      it('runs onBeforeKeyDown before onKeyDown', () => {
+        const handleBeforeKeyDown = vi.fn();
+        const handleKeyDown = vi.fn();
 
-      render(
-        <TestButton
-          disabled={false}
-          nativeButton={false}
-          onBeforeKeyDown={() => {
-            order.push('before');
-          }}
-          onKeyDown={() => {
-            order.push('user');
-          }}
-        />,
-      );
+        render(<NonNativeButton onBeforeKeyDown={handleBeforeKeyDown} onKeyDown={handleKeyDown} />);
 
-      const el = screen.getByTestId('root');
-      act(() => {
-        el.focus();
-      });
+        const el = screen.getByTestId('root');
+        act(() => {
+          el.focus();
+        });
 
-      fireEvent.keyDown(el, { key: 'Enter' });
+        fireEvent.keyDown(el, { key: 'Enter' });
 
-      expect(order).to.deep.equal(['before', 'user']);
-    });
-
-    it('Enter on keyDown activates click for pseudo-buttons', () => {
-      const handleClick = spy();
-
-      render(<TestButton disabled={false} nativeButton={false} onClick={handleClick} />);
-
-      const el = screen.getByTestId('root');
-      act(() => {
-        el.focus();
-      });
-      fireEvent.keyDown(el, { key: 'Enter' });
-
-      expect(handleClick.callCount).to.equal(1);
-    });
-
-    it('Space on keyDown prevents default and keyUp activates click for pseudo-buttons', () => {
-      const handleClick = spy();
-      const handleKeyDown = spy();
-
-      render(
-        <TestButton
-          disabled={false}
-          nativeButton={false}
-          onClick={handleClick}
-          onKeyDown={handleKeyDown}
-        />,
-      );
-
-      const el = screen.getByTestId('root');
-      act(() => {
-        el.focus();
-      });
-
-      fireEvent.keyDown(el, { key: ' ' });
-      expect(handleKeyDown.callCount).to.equal(1);
-      expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
-      expect(handleClick.callCount).to.equal(0);
-
-      fireEvent.keyUp(el, { key: ' ' });
-      expect(handleClick.callCount).to.equal(1);
-    });
-
-    it('does not fire when the event comes from a child element', () => {
-      const handleClick = spy();
-
-      function TestWithChild(props: UseButtonBaseParameters) {
-        const { eventHandlers, rootRef } = useButtonBase(props);
-
-        return (
-          <div data-testid="root" ref={rootRef as React.Ref<HTMLDivElement>} {...eventHandlers}>
-            <button type="button" data-testid="child">
-              child
-            </button>
-          </div>
+        expect(handleBeforeKeyDown).toHaveBeenCalledTimes(1);
+        expect(handleKeyDown).toHaveBeenCalledTimes(1);
+        expect(handleBeforeKeyDown.mock.invocationCallOrder[0]).toBeLessThan(
+          handleKeyDown.mock.invocationCallOrder[0],
         );
-      }
-
-      render(<TestWithChild disabled={false} nativeButton={false} onClick={handleClick} />);
-
-      const child = screen.getByTestId('child');
-      act(() => {
-        child.focus();
       });
 
-      fireEvent.keyDown(child, { key: 'Enter' });
-      fireEvent.keyUp(child, { key: ' ' });
+      it('Enter on keyDown activates click', () => {
+        const handleClick = vi.fn();
 
-      expect(handleClick.callCount).to.equal(0);
+        render(<NonNativeButton onClick={handleClick} />);
+
+        const el = screen.getByTestId('root');
+        act(() => {
+          el.focus();
+        });
+        fireEvent.keyDown(el, { key: 'Enter' });
+
+        expect(handleClick).toHaveBeenCalledTimes(1);
+      });
+
+      it('Space on keyDown prevents default and keyUp activates click', () => {
+        const handleClick = vi.fn();
+        const handleKeyDown = vi.fn();
+
+        render(<NonNativeButton onClick={handleClick} onKeyDown={handleKeyDown} />);
+
+        const el = screen.getByTestId('root');
+        act(() => {
+          el.focus();
+        });
+
+        fireEvent.keyDown(el, { key: ' ' });
+        expect(handleKeyDown).toHaveBeenCalledTimes(1);
+        expect(handleKeyDown.mock.calls[0][0].defaultPrevented).toBe(true);
+        expect(handleClick).not.toHaveBeenCalled();
+
+        fireEvent.keyUp(el, { key: ' ' });
+        expect(handleClick).toHaveBeenCalledTimes(1);
+      });
+
+      it('does not fire when the event comes from a child element', () => {
+        const handleClick = vi.fn();
+
+        function TestWithChild(
+          props: UseButtonBaseParameters & {
+            onClick?: React.MouseEventHandler<any> | undefined;
+          },
+        ) {
+          const { onClick, ...params } = props;
+          const { getButtonProps, rootRef } = useButtonBase(params);
+
+          return (
+            <div
+              data-testid="root"
+              ref={rootRef as React.Ref<HTMLDivElement>}
+              {...getButtonProps({ onClick })}
+            >
+              <button type="button" data-testid="child">
+                child
+              </button>
+            </div>
+          );
+        }
+
+        render(<TestWithChild disabled={false} nativeButton={false} onClick={handleClick} />);
+
+        const child = screen.getByTestId('child');
+        act(() => {
+          child.focus();
+        });
+
+        fireEvent.keyDown(child, { key: 'Enter' });
+        fireEvent.keyUp(child, { key: ' ' });
+
+        expect(handleClick).not.toHaveBeenCalled();
+      });
+
+      it('does not call key handlers or fire when disabled', () => {
+        const handleClick = vi.fn();
+        const handleKeyDown = vi.fn();
+        const handleKeyUp = vi.fn();
+
+        render(
+          <NonNativeButton
+            disabled
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
+          />,
+        );
+
+        const el = screen.getByTestId('root');
+        act(() => {
+          el.focus();
+        });
+
+        fireEvent.keyDown(el, { key: 'Enter' });
+        fireEvent.keyUp(el, { key: ' ' });
+
+        expect(handleKeyDown).not.toHaveBeenCalled();
+        expect(handleKeyUp).not.toHaveBeenCalled();
+        expect(handleClick).not.toHaveBeenCalled();
+      });
     });
 
-    it('does not fire when disabled', () => {
-      const handleClick = spy();
+    describe('native button', () => {
+      it('does not synthesize clicks', () => {
+        const handleClick = vi.fn();
 
-      render(<TestButton disabled nativeButton={false} onClick={handleClick} />);
+        render(<NativeButton onClick={handleClick} />);
 
-      const el = screen.getByTestId('root');
-      act(() => {
-        el.focus();
+        const el = screen.getByTestId('root');
+        act(() => {
+          el.focus();
+        });
+
+        fireEvent.keyDown(el, { key: 'Enter' });
+        fireEvent.keyUp(el, { key: ' ' });
+
+        expect(handleClick).not.toHaveBeenCalled();
       });
 
-      fireEvent.keyDown(el, { key: 'Enter' });
-      fireEvent.keyUp(el, { key: ' ' });
+      it('resolves keyboard behavior from the resolved host', () => {
+        const handleClick = vi.fn();
+        const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      expect(handleClick.callCount).to.equal(0);
-    });
+        render(<NativeButton nativeButton={false} onClick={handleClick} />);
 
-    it('does not synthesize clicks for native buttons', () => {
-      const handleClick = spy();
+        const el = screen.getByTestId('root');
+        act(() => {
+          el.focus();
+        });
 
-      render(<TestButton component="button" disabled={false} nativeButton onClick={handleClick} />);
+        fireEvent.keyDown(el, { key: 'Enter' });
 
-      const el = screen.getByTestId('root');
-      act(() => {
-        el.focus();
+        expect(handleClick).not.toHaveBeenCalled();
+        errorSpy.mockRestore();
       });
 
-      fireEvent.keyDown(el, { key: 'Enter' });
-      fireEvent.keyUp(el, { key: ' ' });
+      it('does not call key handlers for disabled focusable buttons', () => {
+        const handleKeyDown = vi.fn();
+        const handleKeyUp = vi.fn();
 
-      expect(handleClick.callCount).to.equal(0);
-    });
+        render(
+          <NativeButton
+            disabled
+            focusableWhenDisabled
+            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
+          />,
+        );
 
-    it('resolves keyboard behavior from the resolved host', () => {
-      const handleClick = spy();
-      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+        const el = screen.getByTestId('root');
+        act(() => {
+          el.focus();
+        });
 
-      render(
-        <TestButton
-          component="button"
-          disabled={false}
-          nativeButton={false}
-          onClick={handleClick}
-        />,
-      );
+        fireEvent.keyDown(el, { key: 'Enter' });
+        fireEvent.keyUp(el, { key: ' ' });
 
-      const el = screen.getByTestId('root');
-      act(() => {
-        el.focus();
+        expect(handleKeyDown).not.toHaveBeenCalled();
+        expect(handleKeyUp).not.toHaveBeenCalled();
       });
-
-      fireEvent.keyDown(el, { key: 'Enter' });
-
-      expect(handleClick.callCount).to.equal(0);
-      errorSpy.mockRestore();
     });
   });
 
-  describe('buttonProps', () => {
-    it('returns type="button" and disabled for native buttons', () => {
-      render(<TestButton component="button" disabled={false} nativeButton />);
+  describe('param: focusableWhenDisabled', () => {
+    it('allows disabled native buttons to receive focus', async () => {
+      const { user } = render(<NativeButton disabled focusableWhenDisabled />);
 
-      const el = screen.getByTestId('root');
-      expect(el).to.have.attribute('type', 'button');
-      expect(el).to.not.have.attribute('role');
-      expect(el).to.have.property('disabled', false);
+      const button = screen.getByRole('button');
+
+      expect(button).not.toHaveFocus();
+      await user.tab();
+      expect(button).toHaveFocus();
     });
 
-    it('returns disabled=true for disabled native buttons', () => {
-      render(<TestButton component="button" disabled nativeButton />);
+    it('only calls focus and blur for disabled focusable non-native buttons', async () => {
+      const handleClick = vi.fn();
+      const handleKeyDown = vi.fn();
+      const handleKeyUp = vi.fn();
+      const handleFocus = vi.fn();
+      const handleBlur = vi.fn();
 
-      const el = screen.getByTestId('root');
-      expect(el).to.have.attribute('type', 'button');
-      expect(el).to.have.property('disabled', true);
-      expect(el).to.have.attribute('tabindex', '-1');
+      function FocusableNonNativeButton(
+        props: UseButtonBaseParameters & {
+          onClick?: React.MouseEventHandler<any> | undefined;
+          onKeyDown?: React.KeyboardEventHandler<any> | undefined;
+          onKeyUp?: React.KeyboardEventHandler<any> | undefined;
+          onFocus?: React.FocusEventHandler<HTMLDivElement> | undefined;
+          onBlur?: React.FocusEventHandler<HTMLDivElement> | undefined;
+        },
+      ) {
+        const { onClick, onKeyDown, onKeyUp, onFocus, onBlur, ...params } = props;
+        const { getButtonProps, rootRef } = useButtonBase(params);
+
+        return (
+          <div
+            data-testid="root"
+            ref={rootRef as React.Ref<HTMLDivElement>}
+            {...getButtonProps({ onBlur, onClick, onFocus, onKeyDown, onKeyUp })}
+          />
+        );
+      }
+
+      const { user } = render(
+        <FocusableNonNativeButton
+          disabled
+          nativeButton={false}
+          focusableWhenDisabled
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />,
+      );
+
+      const button = screen.getByRole('button');
+
+      expect(button).not.toHaveFocus();
+      expect(handleFocus).not.toHaveBeenCalled();
+
+      await user.tab();
+      expect(button).toHaveFocus();
+      expect(handleFocus).toHaveBeenCalledTimes(1);
+      handleKeyDown.mockClear();
+      handleKeyUp.mockClear();
+
+      fireEvent.keyDown(button, { key: 'Enter' });
+      expect(handleKeyDown).not.toHaveBeenCalled();
+      expect(handleClick).not.toHaveBeenCalled();
+
+      fireEvent.keyDown(button, { key: ' ' });
+      expect(handleKeyDown).not.toHaveBeenCalled();
+
+      fireEvent.keyUp(button, { key: ' ' });
+      expect(handleKeyUp).not.toHaveBeenCalled();
+      expect(handleClick).not.toHaveBeenCalled();
+
+      await user.click(button);
+      expect(handleClick).not.toHaveBeenCalled();
+
+      expect(handleBlur).not.toHaveBeenCalled();
+      await user.tab();
+      expect(handleBlur).toHaveBeenCalledTimes(1);
+      expect(button).not.toHaveFocus();
+    });
+  });
+
+  describe('getButtonProps', () => {
+    describe('native button', () => {
+      it('returns type="button" and disabled', () => {
+        render(<NativeButton />);
+
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('type')).toBe('button');
+        expect(el.getAttribute('role')).toBeNull();
+        expect((el as HTMLButtonElement).disabled).toBe(false);
+      });
+
+      it('returns disabled=true when disabled', () => {
+        render(<NativeButton disabled />);
+
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('type')).toBe('button');
+        expect((el as HTMLButtonElement).disabled).toBe(true);
+        expect(el.getAttribute('tabindex')).toBe('-1');
+      });
+
+      it('does not default type when hasFormAction is true', () => {
+        render(<NativeButton hasFormAction />);
+
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('type')).toBeNull();
+      });
+
+      it('returns aria-disabled instead of disabled for focusable disabled buttons', () => {
+        render(<NativeButton disabled focusableWhenDisabled />);
+
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('type')).toBe('button');
+        expect(el.hasAttribute('disabled')).toBe(false);
+        expect(el.getAttribute('aria-disabled')).toBe('true');
+        expect(el.getAttribute('tabindex')).toBe('0');
+      });
     });
 
-    it('does not default type when hasFormAction is true', () => {
-      render(<TestButton component="button" disabled={false} nativeButton hasFormAction />);
+    describe('non-native button', () => {
+      it('returns role="button" and aria-disabled', () => {
+        render(<NonNativeButton disabled />);
 
-      const el = screen.getByTestId('root');
-      expect(el).to.not.have.attribute('type');
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('role')).toBe('button');
+        expect(el.getAttribute('aria-disabled')).toBe('true');
+        expect(el.getAttribute('type')).toBeNull();
+        expect(el.getAttribute('tabindex')).toBe('-1');
+      });
+
+      it('returns tabIndex=0 when enabled', () => {
+        render(<NonNativeButton />);
+
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('role')).toBe('button');
+        expect(el.getAttribute('aria-disabled')).toBeNull();
+        expect(el.getAttribute('tabindex')).toBe('0');
+      });
+
+      it('respects custom tabIndex', () => {
+        render(<NonNativeButton tabIndex={5} />);
+
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('tabindex')).toBe('5');
+      });
+
+      it('overrides custom tabIndex to -1 when disabled', () => {
+        render(<NonNativeButton disabled tabIndex={5} />);
+
+        const el = screen.getByTestId('root');
+        expect(el.getAttribute('tabindex')).toBe('-1');
+      });
+    });
+  });
+
+  describe('warnings', () => {
+    function getWarningMessages(errorSpy: ReturnType<typeof vi.spyOn>) {
+      return errorSpy.mock.calls.map((call: [unknown, ...unknown[]]) =>
+        String(call[0]).replace(/\s+/g, ' ').trim().toLowerCase(),
+      );
+    }
+
+    function expectWarningWithFragments(
+      errorSpy: ReturnType<typeof vi.spyOn>,
+      fragments: string[],
+    ) {
+      const messages = getWarningMessages(errorSpy);
+
+      expect(messages.length).toBeGreaterThanOrEqual(1);
+      expect(
+        messages.some((message: string) =>
+          fragments.every((fragment: string) => message.includes(fragment.toLowerCase())),
+        ),
+      ).toBe(true);
+    }
+
+    it('warns when nativeButton is omitted and a custom component resolves to a button host', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<NativeButton defaultNativeButton={false} />);
+
+      expectWarningWithFragments(errorSpy, ['nativebutton={true}', 'native <button>']);
+      errorSpy.mockRestore();
     });
 
-    it('returns role="button" and aria-disabled for pseudo-buttons', () => {
-      render(<TestButton disabled nativeButton={false} />);
+    it('warns when nativeButton is omitted and a custom component resolves to a non-button host', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      const el = screen.getByTestId('root');
-      expect(el).to.have.attribute('role', 'button');
-      expect(el).to.have.attribute('aria-disabled', 'true');
-      expect(el).to.not.have.attribute('type');
-      expect(el).to.have.attribute('tabindex', '-1');
+      render(<NonNativeButton defaultNativeButton />);
+
+      expectWarningWithFragments(errorSpy, ['nativebutton={false}', 'non-<button>']);
+      errorSpy.mockRestore();
     });
 
-    it('returns tabIndex=0 for enabled pseudo-buttons', () => {
-      render(<TestButton disabled={false} nativeButton={false} />);
+    it('warns when nativeButton=true but the resolved host is not a button', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      const el = screen.getByTestId('root');
-      expect(el).to.have.attribute('role', 'button');
-      expect(el).to.not.have.attribute('aria-disabled');
-      expect(el).to.have.attribute('tabindex', '0');
+      render(<NonNativeButton nativeButtonProp />);
+
+      expectWarningWithFragments(errorSpy, ['nativebutton', 'true', 'native <button>']);
+      errorSpy.mockRestore();
     });
 
-    it('respects custom tabIndex', () => {
-      render(<TestButton disabled={false} nativeButton={false} tabIndex={5} />);
+    it('warns when nativeButton=false but the resolved host is a button', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      const el = screen.getByTestId('root');
-      expect(el).to.have.attribute('tabindex', '5');
+      render(<NativeButton nativeButtonProp={false} />);
+
+      expectWarningWithFragments(errorSpy, ['nativebutton', 'false', 'non-<button>']);
+      errorSpy.mockRestore();
     });
 
-    it('overrides custom tabIndex to -1 when disabled', () => {
-      render(<TestButton disabled nativeButton={false} tabIndex={5} />);
+    it('does not warn when the inferred host matches the resolved host', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      const el = screen.getByTestId('root');
-      expect(el).to.have.attribute('tabindex', '-1');
+      render(<NativeButton />);
+      render(<NonNativeButton defaultNativeButton={false} id="non-native" />);
+
+      expect(errorSpy.mock.calls.length).toBe(0);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn when nativeButton={false} matches the resolved host', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<NonNativeButton nativeButtonProp={false} />);
+
+      expect(errorSpy.mock.calls.length).toBe(0);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn when inferred host mismatches are allowed', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<NativeButton defaultNativeButton={false} allowInferredHostMismatch />);
+
+      expect(errorSpy.mock.calls.length).toBe(0);
+      errorSpy.mockRestore();
     });
   });
 });

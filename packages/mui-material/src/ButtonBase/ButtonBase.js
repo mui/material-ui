@@ -86,18 +86,22 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
-    // eslint-disable-next-line react/prop-types
-    defaultNativeButton: defaultNativeButtonProp, // private prop
+    /* eslint-disable react/prop-types */
+    // replaces internal handling in Chip, other components can opt-in individually to use this in the future
+    focusableWhenDisabled,
+    // private prop to allow native vs non-native button props to be resolved before mount
+    defaultNativeButton: defaultNativeButtonProp,
+    /* eslint-enable react/prop-types */
     LinkComponent = 'a',
     nativeButton: nativeButtonProp,
     onBlur,
-    onClick,
+    onClick: onClickProp,
     onContextMenu,
     onDragLeave,
     onFocus,
     onFocusVisible,
-    onKeyDown,
-    onKeyUp,
+    onKeyDown: onKeyDownProp,
+    onKeyUp: onKeyUpProp,
     onMouseDown,
     onMouseLeave,
     onMouseUp,
@@ -111,10 +115,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ...other
   } = props;
 
+  const isLink = Boolean(other.href || other.to);
+  const hasFormAction = Boolean(other.formAction);
+
   let ComponentProp = component;
-
-  const isLink = !!(other.href || other.to);
-
   if (ComponentProp === 'button' && isLink) {
     ComponentProp = LinkComponent;
   }
@@ -126,19 +130,20 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const nativeButton = nativeButtonProp ?? defaultNativeButton;
   const ripple = useLazyRipple();
   const handleRippleRef = useForkRef(ripple.ref, touchRippleRef);
+
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  const {
-    eventHandlers,
-    buttonProps,
-    rootRef: buttonRef,
-  } = useButtonBase({
+
+  const { getButtonProps, rootRef: buttonRef } = useButtonBase({
     nativeButton,
+    nativeButtonProp,
+    defaultNativeButton,
+    allowInferredHostMismatch: isLink || typeof ComponentProp === 'string',
     disabled,
     type,
-    hasFormAction: !!other.formAction,
+    hasFormAction,
     tabIndex,
     onBeforeKeyDown: (event) => {
       // Check if key is already down to avoid repeats being counted as multiple activations
@@ -157,71 +162,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
         });
       }
     },
-    onClick,
-    onKeyDown,
-    onKeyUp,
   });
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      const root = buttonRef.current;
-      if (root == null) {
-        return;
-      }
-
-      const tagName = root.tagName.toLowerCase();
-      const resolvesToNativeButton = tagName === 'button';
-
-      if (nativeButtonProp !== undefined) {
-        if (nativeButtonProp && !resolvesToNativeButton) {
-          console.error(
-            [
-              'MUI: A component that acts as a button expected a native <button> because `nativeButton={true}`,',
-              `but the resolved root is <${tagName}>.`,
-              'Remove `nativeButton` or make the component render a <button> element.',
-            ].join(' '),
-          );
-        }
-
-        if (!nativeButtonProp && resolvesToNativeButton) {
-          console.error(
-            [
-              'MUI: A component that acts as a button expected a non-button host because `nativeButton={false}`,',
-              'but the resolved root is <button>.',
-              'Set `nativeButton` to true or make the component render a non-button element.',
-            ].join(' '),
-          );
-        }
-
-        return;
-      }
-
-      if (typeof ComponentProp === 'string' || isLink) {
-        return;
-      }
-
-      if (defaultNativeButton && !resolvesToNativeButton) {
-        console.error(
-          [
-            'MUI: A component that acts as a button resolved to a non-button host,',
-            `but \`nativeButton={false}\` was not specified and the resolved root is <${tagName}>.`,
-            'When using a custom `component`, set `nativeButton={false}` explicitly or render a <button> element.',
-          ].join(' '),
-        );
-      }
-
-      if (!defaultNativeButton && resolvesToNativeButton) {
-        console.error(
-          [
-            'MUI: A component that acts as a button resolved to a native <button> host,',
-            'but `nativeButton={true}` was not specified.',
-            'When using a custom `component`, set `nativeButton={true}` explicitly or render a non-button element.',
-          ].join(' '),
-        );
-      }
-    });
-  }
+  const { onClick, onKeyDown, onKeyUp, ...buttonProps } = getButtonProps({
+    onClick: onClickProp,
+    onKeyDown: onKeyDownProp,
+    onKeyUp: onKeyUpProp,
+  });
 
   React.useImperativeHandle(
     action,
@@ -296,7 +243,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   });
 
-  // Link-mode props are owned by ButtonBase, not the hook
   const linkProps = {};
   if (isLink) {
     linkProps.tabIndex = disabled ? -1 : tabIndex;
@@ -327,11 +273,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       onBlur={handleBlur}
-      onClick={eventHandlers.onClick}
+      onClick={onClick}
       onContextMenu={handleContextMenu}
       onFocus={handleFocus}
-      onKeyDown={eventHandlers.onKeyDown}
-      onKeyUp={eventHandlers.onKeyUp}
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
@@ -445,11 +391,8 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   LinkComponent: PropTypes.elementType,
   /**
-   * If `true`, the component is expected to resolve to a native `<button>` element.
-   * When omitted, custom components inherit the default button semantics of the current wrapper.
-   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
-   * when it resolves to a non-button host. For direct `ButtonBase` usage, the default is
-   * `component === 'button'`.
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React componentwith the `component` or `slots` prop.
    */
   nativeButton: PropTypes.bool,
   /**
