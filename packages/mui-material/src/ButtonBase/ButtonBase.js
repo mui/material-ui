@@ -205,6 +205,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   };
 
   const handleKeyDown = useEventCallback((event) => {
+    if (disabled) {
+      return;
+    }
+
     // Check if key is already down to avoid repeats being counted as multiple activations
     if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
       ripple.stop(event, () => {
@@ -233,6 +237,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   });
 
   const handleKeyUp = useEventCallback((event) => {
+    if (disabled) {
+      return;
+    }
+
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
     if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
