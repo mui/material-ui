@@ -330,10 +330,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.startIcon,
-      ownerState.loading && styles.startIconLoadingStart,
-    ];
+    return [styles.startIcon, ownerState.loading && styles.startIconLoadingStart];
   },
 })(({ theme }) => ({
   display: 'inherit',
@@ -371,10 +368,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.endIcon,
-      ownerState.loading && styles.endIconLoadingEnd,
-    ];
+    return [styles.endIcon, ownerState.loading && styles.endIconLoadingEnd];
   },
 })(({ theme }) => ({
   display: 'inherit',
