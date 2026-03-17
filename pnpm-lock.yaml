@@ -909,7 +909,7 @@ importers:
         version: 3.2.3
       es-toolkit:
         specifier: ^1.44.0
-        version: 1.44.0
+        version: 1.45.1
       fg-loadcss:
         specifier: ^3.1.0
         version: 3.1.0
