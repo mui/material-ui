@@ -9,8 +9,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { absolute, children, classes, flexItem, orientation, textAlign, variant } =
-    ownerState;
+  const { absolute, children, classes, flexItem, orientation, textAlign, variant } = ownerState;
 
   const slots = {
     root: [
