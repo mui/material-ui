@@ -568,8 +568,11 @@ Use the [backdrop-props codemod](https://github.com/mui/material-ui/tree/HEAD/pa
 npx @mui/codemod@latest deprecations/backdrop-props <path>
 ```
 
-The deprecated `Backdrop` props have been removed.
-Use the `slots` and `slotProps` props instead:
+The following deprecated `Backdrop` props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+- `TransitionComponent` — use `slots.transition` instead
 
 ```diff
  <Backdrop
