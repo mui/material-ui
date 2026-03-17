@@ -1899,8 +1899,10 @@ Use the [card-header-props codemod](https://github.com/mui/material-ui/tree/HEAD
 npx @mui/codemod@latest deprecations/card-header-props <path>
 ```
 
-The deprecated `CardHeader` props have been removed.
-Use the `slotProps` prop instead:
+The following deprecated props have been removed from the `CardHeader` component:
+
+- `titleTypographyProps` → use `slotProps.title`
+- `subheaderTypographyProps` → use `slotProps.subheader`
 
 ```diff
  <CardHeader
