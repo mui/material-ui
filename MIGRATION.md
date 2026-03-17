@@ -589,21 +589,21 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 
 ### Phase 3: ApiPage Tables
 
-- [ ] 3.1 `table/PropertiesTable.tsx` — `git commit -m "[docs-infra] Migrate PropertiesTable to @mui/docs (3.1)"`
-- [ ] 3.2 `table/ClassesTable.tsx` — `git commit -m "[docs-infra] Migrate ClassesTable to @mui/docs (3.2)"`
-- [ ] 3.3 `table/SlotsTable.tsx` — `git commit -m "[docs-infra] Migrate SlotsTable to @mui/docs (3.3)"`
+- [x] 3.1 `table/PropertiesTable.tsx` — `git commit -m "[docs-infra] Migrate PropertiesTable to @mui/docs (3.1)"`
+- [x] 3.2 `table/ClassesTable.tsx` — `git commit -m "[docs-infra] Migrate ClassesTable to @mui/docs (3.2)"`
+- [x] 3.3 `table/SlotsTable.tsx` — `git commit -m "[docs-infra] Migrate SlotsTable to @mui/docs (3.3)"`
 
 ### Phase 4: ApiPage Lists
 
-- [ ] 4.1 `list/PropertiesList.tsx` — `git commit -m "[docs-infra] Migrate PropertiesList to @mui/docs (4.1)"`
-- [ ] 4.2 `list/ClassesList.tsx` — `git commit -m "[docs-infra] Migrate ClassesList to @mui/docs (4.2)"`
-- [ ] 4.3 `list/SlotsList.tsx` — `git commit -m "[docs-infra] Migrate SlotsList to @mui/docs (4.3)"`
+- [x] 4.1 `list/PropertiesList.tsx` — `git commit -m "[docs-infra] Migrate PropertiesList to @mui/docs (4.1)"`
+- [x] 4.2 `list/ClassesList.tsx` — `git commit -m "[docs-infra] Migrate ClassesList to @mui/docs (4.2)"`
+- [x] 4.3 `list/SlotsList.tsx` — `git commit -m "[docs-infra] Migrate SlotsList to @mui/docs (4.3)"`
 
 ### Phase 5: ApiPage Sections
 
-- [ ] 5.1 `sections/PropertiesSection.tsx` — `git commit -m "[docs-infra] Migrate PropertiesSection to @mui/docs (5.1)"`
-- [ ] 5.2 `sections/ClassesSection.tsx` — `git commit -m "[docs-infra] Migrate ClassesSection to @mui/docs (5.2)"`
-- [ ] 5.3 `sections/SlotsSection.tsx` — `git commit -m "[docs-infra] Migrate SlotsSection to @mui/docs (5.3)"`
+- [x] 5.1 `sections/PropertiesSection.tsx` — `git commit -m "[docs-infra] Migrate PropertiesSection to @mui/docs (5.1)"`
+- [x] 5.2 `sections/ClassesSection.tsx` — `git commit -m "[docs-infra] Migrate ClassesSection to @mui/docs (5.2)"`
+- [x] 5.3 `sections/SlotsSection.tsx` — `git commit -m "[docs-infra] Migrate SlotsSection to @mui/docs (5.3)"`
 
 ### Phase 6: AppLayoutDocs Leaves
 
