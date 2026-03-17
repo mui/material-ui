@@ -656,3 +656,20 @@ Use `sx` prop to add the margin bottom instead:
 -<Typography paragraph />
 +<Typography sx={{ marginBottom: '16px' }} />
 ```
+#### Divider deprecated props removed
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+The deprecated `Divider` prop have been removed.
+Use the `sx` prop instead:
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity: 0.6 }}
+ />
+```

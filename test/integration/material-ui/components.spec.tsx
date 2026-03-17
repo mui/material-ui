@@ -399,7 +399,6 @@ function DividerTest() {
   return (
     <div>
       <Divider />
-      <Divider light />
     </div>
   );
 }
