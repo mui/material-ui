@@ -6988,8 +6988,8 @@ packages:
     resolution: {integrity: sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
 
-  css-tree@3.1.0:
-    resolution: {integrity: sha512-0eW44TGN5SQXU1mWSkKwFstI/22X2bG1nYzZTYMAWjylYURhse752YgbE4Cx46AC+bAvI+/dYTPRk1LqSUnu6w==}
+  css-tree@3.2.1:
+    resolution: {integrity: sha512-X7sjQzceUhu1u7Y/ylrRZFU2FS6LRiFVp6rKLPg23y3x3c3DOKAwuXGDp+PAGjh6CSnCjYeAul8pcT8bAl+lSA==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
   css-vendor@2.0.8:
@@ -9442,8 +9442,8 @@ packages:
   mdn-data@2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}
 
-  mdn-data@2.12.2:
-    resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
+  mdn-data@2.27.1:
+    resolution: {integrity: sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ==}
 
   mdurl@2.0.0:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
@@ -12660,7 +12660,7 @@ snapshots:
     dependencies:
       '@asamuzakjp/nwsapi': 2.3.9
       bidi-js: 1.0.3
-      css-tree: 3.1.0
+      css-tree: 3.2.1
       is-potential-custom-element-name: 1.0.1
       lru-cache: 11.2.7
 
@@ -14041,7 +14041,7 @@ snapshots:
 
   '@bramus/specificity@2.4.2':
     dependencies:
-      css-tree: 3.1.0
+      css-tree: 3.2.1
 
   '@bundled-es-modules/cookie@2.0.1':
     dependencies:
@@ -14110,9 +14110,9 @@ snapshots:
     dependencies:
       '@csstools/css-tokenizer': 4.0.0
 
-  '@csstools/css-syntax-patches-for-csstree@1.1.1(css-tree@3.1.0)':
+  '@csstools/css-syntax-patches-for-csstree@1.1.1(css-tree@3.2.1)':
     optionalDependencies:
-      css-tree: 3.1.0
+      css-tree: 3.2.1
 
   '@csstools/css-tokenizer@3.0.4': {}
 
@@ -18657,9 +18657,9 @@ snapshots:
       mdn-data: 2.0.28
       source-map-js: 1.2.1
 
-  css-tree@3.1.0:
+  css-tree@3.2.1:
     dependencies:
-      mdn-data: 2.12.2
+      mdn-data: 2.27.1
       source-map-js: 1.2.1
 
   css-vendor@2.0.8:
@@ -18685,8 +18685,8 @@ snapshots:
   cssstyle@6.2.0:
     dependencies:
       '@asamuzakjp/css-color': 5.0.1
-      '@csstools/css-syntax-patches-for-csstree': 1.1.1(css-tree@3.1.0)
-      css-tree: 3.1.0
+      '@csstools/css-syntax-patches-for-csstree': 1.1.1(css-tree@3.2.1)
+      css-tree: 3.2.1
       lru-cache: 11.2.7
 
   csstype@2.6.21: {}
@@ -21497,7 +21497,7 @@ snapshots:
 
   mdn-data@2.0.28: {}
 
-  mdn-data@2.12.2: {}
+  mdn-data@2.27.1: {}
 
   mdurl@2.0.0: {}
 
@@ -23973,7 +23973,7 @@ snapshots:
     dependencies:
       '@csstools/css-calc': 3.1.1(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
-      '@csstools/css-syntax-patches-for-csstree': 1.1.1(css-tree@3.1.0)
+      '@csstools/css-syntax-patches-for-csstree': 1.1.1(css-tree@3.2.1)
       '@csstools/css-tokenizer': 4.0.0
       '@csstools/media-query-list-parser': 5.0.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/selector-resolve-nested': 4.0.0(postcss-selector-parser@7.1.1)
@@ -23982,7 +23982,7 @@ snapshots:
       colord: 2.9.3
       cosmiconfig: 9.0.0(typescript@5.9.3)
       css-functions-list: 3.2.3
-      css-tree: 3.1.0
+      css-tree: 3.2.1
       debug: 4.4.3
       fast-glob: 3.3.3
       fastest-levenshtein: 1.0.16
@@ -24066,7 +24066,7 @@ snapshots:
     dependencies:
       commander: 11.1.0
       css-select: 5.2.2
-      css-tree: 3.1.0
+      css-tree: 3.2.1
       css-what: 6.2.2
       csso: 5.0.5
       picocolors: 1.1.1
