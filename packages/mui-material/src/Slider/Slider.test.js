@@ -9,6 +9,7 @@ import {
   screen,
   supportsTouch,
   isJsdom,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
@@ -324,7 +325,7 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(document.activeElement).to.have.attribute('data-index', '0');
     });
 
-    it('should focus the slider when dragging', () => {
+    it('should focus the slider when dragging', async () => {
       const { container } = render(
         <Slider
           componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
@@ -346,7 +347,9 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
         clientX: 1,
       });
 
-      expect(slider).toHaveFocus();
+      await waitFor(() => {
+        expect(slider).toHaveFocus();
+      });
     });
 
     it('should support touch events', () => {

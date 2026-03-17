@@ -118,6 +118,31 @@ This also fixes an issue where props like `color` were consumed by the Grid inst
 </Grid>
 ```
 
+### GridLegacy
+
+The `GridLegacy` component is **removed**, use the `Grid` component instead.
+
+The main API differences are:
+
+- The `item` prop is no longer needed.
+- The `xs`, `sm`, `md`, `lg`, `xl` props are replaced by the `size` prop.
+
+```diff
+-import Grid from '@mui/material/GridLegacy';
++import Grid from '@mui/material/Grid';
+
+ <Grid container spacing={2}>
+-  <Grid item xs={12} sm={6}>
++  <Grid size={{ xs: 12, sm: 6 }}>
+     ...
+   </Grid>
+ </Grid>
+```
+
+See the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/) for more details.
+
+`MuiGridLegacy` has also been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
+
 ### TablePagination numbers are formatted by default
 
 Pagination numbers in `TablePagination` are now formatted using `Intl.NumberFormat` according to the locale.
@@ -380,5 +405,68 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
        }}
      />
    )}
+```
+
+#### Alert deprecated props removed
+
+Use the [alert-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+The deprecated `Alert` props have been removed.
+Use the `slots` and `slotProps` props instead:
+
+```diff
+ <Alert
+   onClose={handleClose}
+-  components={{ CloseIcon: MyCloseIcon, CloseButton: MyCloseButton }}
+-  componentsProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
++  slots={{ closeIcon: MyCloseIcon, closeButton: MyCloseButton }}
++  slotProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
  />
+```
+
+#### Accordion deprecated props removed
+
+Use the [accordion-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+The deprecated `Accordion` props have been removed.
+Use the `slots` and `slotProps` props instead:
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ >
+```
+
+#### AvatarGroup deprecated props removed
+
+Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
+```
+
+The deprecated `AvatarGroup` props have been removed.
+Use the `slotProps` prop instead. The `additionalAvatar` key has been renamed to `surplus`:
+
+```diff
+-<AvatarGroup componentsProps={{ additionalAvatar: { className: 'my-class' } }}>
++<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
+```
+
+If you were already using the `surplus` key via `componentsProps`, move it to `slotProps`:
+
+```diff
+-<AvatarGroup componentsProps={{ surplus: { className: 'my-class' } }}>
++<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
 ```
