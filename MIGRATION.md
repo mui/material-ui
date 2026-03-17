@@ -657,7 +657,8 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 - [ ] 13.1 `src/ApiPage/index.ts` — `git commit -m "[docs-infra] Add ApiPage public entry point (13.1)"`
 - [ ] 13.2 `src/AppLayoutDocs/index.ts` — `git commit -m "[docs-infra] Add AppLayoutDocs public entry point (13.2)"`
 
-### Phase 14: Update Consumers
+### Phase 14: Update Consumers (ApiPage sub-component consumers already updated — shims removed)
+> **Note:** Steps 14.2, 14.3, 14.4 for ApiPage sub-component imports were done early as part of shim removal. The remaining steps below cover `ApiPage` itself and `AppLayoutDocs` consumers.
 
 - [ ] 14.1 `docs/pages/material-ui/api/*.js` (~279 files) — `git commit -m "[docs-infra] Update API page consumers to @mui/docs/ApiPage (14.1)"`
 - [ ] 14.2 `ComponentsApiContent.tsx` — `git commit -m "[docs-infra] Update ComponentsApiContent imports (14.2)"`
