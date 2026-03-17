@@ -63,6 +63,10 @@ the click event now bubbles to their ancestors.
 Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
 in the ButtonBase keyboard handlers. This is actually the expected behavior.
 
+#### Event handlers on disabled non-native buttons
+
+When ButtonBase renders a non-native element like a `<span>`, keyboard event handlers will no longer run when the component is disabled.
+
 ### Autocomplete
 
 #### Listbox toggle on right click
