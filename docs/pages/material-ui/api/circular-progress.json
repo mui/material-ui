@@ -41,24 +41,10 @@
       "isGlobal": false
     },
     {
-      "key": "circleDeterminate",
-      "className": "MuiCircularProgress-circleDeterminate",
-      "description": "Styles applied to the `circle` svg path if `variant=\"determinate\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
       "key": "circleDisableShrink",
       "className": "MuiCircularProgress-circleDisableShrink",
       "description": "Styles applied to the `circle` svg path if `disableShrink={true}`.",
       "isGlobal": false
-    },
-    {
-      "key": "circleIndeterminate",
-      "className": "MuiCircularProgress-circleIndeterminate",
-      "description": "Styles applied to the `circle` svg path if `variant=\"indeterminate\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
     },
     {
       "key": "colorPrimary",
