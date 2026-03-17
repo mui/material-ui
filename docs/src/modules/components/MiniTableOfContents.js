@@ -30,7 +30,8 @@ function getBarWidth(text, level) {
 }
 
 const Bar = styled('a', {
-  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'barWidth' && prop !== 'level',
+  shouldForwardProp: (prop) =>
+    prop !== 'active' && prop !== 'barWidth' && prop !== 'level' && prop !== 'highlighted',
 })(({ theme, barWidth }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
@@ -89,6 +90,36 @@ const Bar = styled('a', {
         },
       }),
     },
+    {
+      props: { highlighted: true, active: true },
+      style: [
+        {
+          '&::after': {
+            backgroundColor: (theme.vars || theme).palette.primary[600],
+          },
+        },
+        theme.applyDarkStyles({
+          '&::after': {
+            backgroundColor: (theme.vars || theme).palette.primary[400],
+          },
+        }),
+      ],
+    },
+    {
+      props: { highlighted: true, active: false },
+      style: [
+        {
+          '&::after': {
+            backgroundColor: (theme.vars || theme).palette.grey[500],
+          },
+        },
+        theme.applyDarkStyles({
+          '&::after': {
+            backgroundColor: (theme.vars || theme).palette.grey[500],
+          },
+        }),
+      ],
+    },
   ],
 }));
 
@@ -99,6 +130,14 @@ export default function MiniTableOfContents(props) {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
   const items = React.useMemo(() => flatten(toc), [toc]);
+
+  const hashToIndex = React.useMemo(() => {
+    const map = new Map();
+    items.forEach((item, index) => {
+      map.set(item.hash, index);
+    });
+    return map;
+  }, [items]);
 
   const getWidthIncrease = (index) => {
     if (hoveredIndex === null) {
@@ -154,11 +193,17 @@ export default function MiniTableOfContents(props) {
 
   const popperItemLink = (item, level) => {
     const element = itemLink(item, level, handleClose);
-    if (hoveredHash !== item.hash) {
-      return element;
+    const isHovered = hoveredHash === item.hash;
+    const hoverHandlers = {
+      onMouseEnter: () => setHoveredIndex(hashToIndex.get(item.hash) ?? null),
+      onMouseLeave: () => setHoveredIndex(null),
+    };
+    if (!isHovered) {
+      return React.cloneElement(element, hoverHandlers);
     }
     const isActive = activeState === item.hash;
     return React.cloneElement(element, {
+      ...hoverHandlers,
       sx: (theme) => ({
         borderLeftColor: isActive
           ? (theme.vars || theme).palette.primary[600]
@@ -211,6 +256,7 @@ export default function MiniTableOfContents(props) {
             href={`#${item.hash}`}
             aria-label={item.text.replace(/<[^>]*>/g, '')}
             active={activeState === item.hash}
+            highlighted={hoveredIndex === index}
             barWidth={getBarWidth(item.text, item.level) + getWidthIncrease(index)}
             level={item.level}
             onMouseEnter={() => setHoveredIndex(index)}
