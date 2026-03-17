@@ -26,15 +26,7 @@ export function getAccordionSummaryUtilityClass(slot: string): string {
 
 const accordionSummaryClasses: AccordionSummaryClasses = generateUtilityClasses(
   'MuiAccordionSummary',
-  [
-    'root',
-    'expanded',
-    'focusVisible',
-    'disabled',
-    'gutters',
-    'content',
-    'expandIconWrapper',
-  ],
+  ['root', 'expanded', 'focusVisible', 'disabled', 'gutters', 'content', 'expandIconWrapper'],
 );
 
 export default accordionSummaryClasses;
