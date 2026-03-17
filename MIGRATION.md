@@ -607,16 +607,16 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 
 ### Phase 6: AppLayoutDocs Leaves
 
-- [ ] 6.1 `icons/RootSvg.tsx` — `git commit -m "[docs-infra] Migrate RootSvg to @mui/docs (6.1)"`
-- [ ] 6.2 `AppContainer.js` → `.tsx` — `git commit -m "[docs-infra] Migrate AppContainer to @mui/docs (6.2)"`
-- [ ] 6.3 `BackToTop.tsx` — `git commit -m "[docs-infra] Migrate BackToTop to @mui/docs (6.3)"`
-- [ ] 6.4 `SearchButton.tsx` — `git commit -m "[docs-infra] Migrate SearchButton to @mui/docs (6.4)"`
-- [ ] 6.5 `AppSettingsDrawer.js` → `.tsx` — `git commit -m "[docs-infra] Migrate AppSettingsDrawer to @mui/docs (6.5)"`
-- [ ] 6.6 `Notifications.tsx` — `git commit -m "[docs-infra] Migrate Notifications to @mui/docs (6.6)"`
-- [ ] 6.7 `AppNavDrawerItem.tsx` — `git commit -m "[docs-infra] Migrate AppNavDrawerItem to @mui/docs (6.7)"`
-- [ ] 6.8 `EditPage.js` → `.tsx` — `git commit -m "[docs-infra] Migrate EditPage to @mui/docs (6.8)"`
-- [ ] 6.9 `TableOfContentsBanner.tsx` — `git commit -m "[docs-infra] Migrate TableOfContentsBanner to @mui/docs (6.9)"`
-- [ ] 6.10 `SponsorCard.tsx` — `git commit -m "[docs-infra] Migrate SponsorCard to @mui/docs (6.10)"`
+- [x] 6.1 `icons/RootSvg.tsx` — `git commit -m "[docs-infra] Migrate RootSvg to @mui/docs (6.1)"`
+- [x] 6.2 `AppContainer.js` → `.tsx` — `git commit -m "[docs-infra] Migrate AppContainer to @mui/docs (6.2)"`
+- [x] 6.3 `BackToTop.tsx` — `git commit -m "[docs-infra] Migrate BackToTop to @mui/docs (6.3)"`
+- [x] 6.4 `SearchButton.tsx` — `git commit -m "[docs-infra] Migrate SearchButton to @mui/docs (6.4)"`
+- [x] 6.5 `AppSettingsDrawer.js` → `.tsx` — `git commit -m "[docs-infra] Migrate AppSettingsDrawer to @mui/docs (6.5)"`
+- [x] 6.6 `Notifications.tsx` — `git commit -m "[docs-infra] Migrate Notifications to @mui/docs (6.6)"`
+- [x] 6.7 `AppNavDrawerItem.tsx` (+`AppNavIcons.ts`) — `git commit -m "[docs-infra] Migrate AppNavDrawerItem to @mui/docs (6.7)"`
+- [x] 6.8 `EditPage.js` → `.tsx` — `git commit -m "[docs-infra] Migrate EditPage to @mui/docs (6.8)"`
+- [x] 6.9 `TableOfContentsBanner.tsx` — `git commit -m "[docs-infra] Migrate TableOfContentsBanner to @mui/docs (6.9)"`
+- [x] 6.10 `SponsorCard.tsx` — `git commit -m "[docs-infra] Migrate SponsorCard to @mui/docs (6.10)"`
 
 ### Phase 7: AppLayoutDocs Level 2
 
