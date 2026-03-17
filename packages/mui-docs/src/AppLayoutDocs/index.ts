@@ -1,4 +1,4 @@
-export { default as convertProductIdToName } from './convertProductIdToName';
+export { convertProductIdToName } from './convertProductIdToName';
 export { default as AppContainer } from './AppContainer';
 export { default as BackToTop } from './BackToTop';
 export { default as SearchButton } from './SearchButton';

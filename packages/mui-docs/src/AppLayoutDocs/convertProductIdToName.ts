@@ -12,7 +12,7 @@ const productNameProductId: Record<string, string> = {
   'docs-infra': 'Docs Infra',
 };
 
-export default function convertProductIdToName(
+export function convertProductIdToName(
   productInfo: Pick<MuiPageContext, 'productId' | 'productCategoryId'>,
 ): string | undefined {
   return (

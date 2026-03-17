@@ -54,7 +54,7 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
   }),
 }));
 
-// eslint-disable-next-line import/prefer-default-export
+ 
 export function SkipLink() {
   const t = useTranslate();
 
