@@ -652,6 +652,50 @@ The following deprecated props have been removed:
  />
 ```
 
+#### Button deprecated CSS classes removed
+
+Use the [button-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
+The following deprecated `Button` CSS classes have been removed:
+
+- `textInherit` → use `.MuiButton-text.MuiButton-colorInherit`
+- `textPrimary` → use `.MuiButton-text.MuiButton-colorPrimary`
+- `textSecondary` → use `.MuiButton-text.MuiButton-colorSecondary`
+- `textSuccess` → use `.MuiButton-text.MuiButton-colorSuccess`
+- `textError` → use `.MuiButton-text.MuiButton-colorError`
+- `textInfo` → use `.MuiButton-text.MuiButton-colorInfo`
+- `textWarning` → use `.MuiButton-text.MuiButton-colorWarning`
+- `outlinedInherit` → use `.MuiButton-outlined.MuiButton-colorInherit`
+- `outlinedPrimary` → use `.MuiButton-outlined.MuiButton-colorPrimary`
+- `outlinedSecondary` → use `.MuiButton-outlined.MuiButton-colorSecondary`
+- `outlinedSuccess` → use `.MuiButton-outlined.MuiButton-colorSuccess`
+- `outlinedError` → use `.MuiButton-outlined.MuiButton-colorError`
+- `outlinedInfo` → use `.MuiButton-outlined.MuiButton-colorInfo`
+- `outlinedWarning` → use `.MuiButton-outlined.MuiButton-colorWarning`
+- `containedInherit` → use `.MuiButton-contained.MuiButton-colorInherit`
+- `containedPrimary` → use `.MuiButton-contained.MuiButton-colorPrimary`
+- `containedSecondary` → use `.MuiButton-contained.MuiButton-colorSecondary`
+- `containedSuccess` → use `.MuiButton-contained.MuiButton-colorSuccess`
+- `containedError` → use `.MuiButton-contained.MuiButton-colorError`
+- `containedInfo` → use `.MuiButton-contained.MuiButton-colorInfo`
+- `containedWarning` → use `.MuiButton-contained.MuiButton-colorWarning`
+- `textSizeSmall` → use `.MuiButton-sizeSmall.MuiButton-text`
+- `textSizeMedium` → use `.MuiButton-sizeMedium.MuiButton-text`
+- `textSizeLarge` → use `.MuiButton-sizeLarge.MuiButton-text`
+- `outlinedSizeSmall` → use `.MuiButton-sizeSmall.MuiButton-outlined`
+- `outlinedSizeMedium` → use `.MuiButton-sizeMedium.MuiButton-outlined`
+- `outlinedSizeLarge` → use `.MuiButton-sizeLarge.MuiButton-outlined`
+- `containedSizeSmall` → use `.MuiButton-sizeSmall.MuiButton-contained`
+- `containedSizeMedium` → use `.MuiButton-sizeMedium.MuiButton-contained`
+- `containedSizeLarge` → use `.MuiButton-sizeLarge.MuiButton-contained`
+- `iconSizeSmall` → use `.MuiButton-icon.MuiButton-sizeSmall`
+- `iconSizeMedium` → use `.MuiButton-icon.MuiButton-sizeMedium`
+- `iconSizeLarge` → use `.MuiButton-icon.MuiButton-sizeLarge`
+
 #### Slider deprecated props removed
 
 Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following section:
