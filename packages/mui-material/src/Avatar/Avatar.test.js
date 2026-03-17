@@ -34,6 +34,7 @@ describe('<Avatar />', () => {
   describeConformance(<Avatar src="/fake.png" />, () => ({
     classes,
     render,
+    refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAvatar',
     slots: {
       img: {
