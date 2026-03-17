@@ -616,7 +616,7 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 The following deprecated props have been removed from the `Typography` component:
 
-- `paragraph` → use the `sx` prop to add the margin bottom instead
+- `paragraph` → use the `sx` prop to add a margin bottom instead
 
 ```diff
 -<Typography paragraph />
