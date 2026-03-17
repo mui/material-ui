@@ -563,3 +563,33 @@ If you were already using the `surplus` key via `componentsProps`, move it to `s
 -<AvatarGroup componentsProps={{ surplus: { className: 'my-class' } }}>
 +<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
 ```
+
+#### Typography deprecated CSS classes removed
+
+The deprecated `paragraph` CSS class has been removed.
+Use CSS `.MuiTypography-root:where(p)` to apply custom styles for the paragraph element instead:
+
+```diff
+-.MuiTypography-paragraph {
+-  margin-bottom: 16px;
+-}
++.MuiTypography-root:where(p) {
++  margin-bottom: 16px;
++}
+```
+
+#### Typography deprecated props removed
+
+Use the [typography-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+The deprecated `paragraph` prop has been removed.
+Use `sx` prop to add the margin bottom instead:
+
+```diff
+-<Typography paragraph />
++<Typography sx={{ marginBottom: '16px' }} />
+```
