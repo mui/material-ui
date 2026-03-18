@@ -7,9 +7,8 @@ import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
-import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import { ApiWarningAlert } from '@mui/docs/ApiPage';
+import { ApiWarningAlert, type PropertyDefinition } from '@mui/docs/ApiPage';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

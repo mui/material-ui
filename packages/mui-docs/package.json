@@ -32,12 +32,14 @@
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
+    "es-toolkit": "^1.45.1",
     "fg-loadcss": "^3.1.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1",
     "stylis": "catalog:docs"
   },
   "devDependencies": {
+    "@mui-internal/api-docs-builder": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/chai": "5.2.3",

@@ -4,13 +4,15 @@ import Box from '@mui/material/Box';
 import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import { ComponentApiContent } from '@mui-internal/api-docs-builder';
-import { ToggleDisplayOption, type ApiDisplayLayout, useApiPageOption } from '@mui/docs/ApiPage';
+import {
+  ToggleDisplayOption,
+  type ApiDisplayLayout,
+  useApiPageOption,
+  type SlotDefinition,
+  getSlotsApiDefinitions,
+} from '@mui/docs/ApiPage';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
-import {
-  SlotDefinition,
-  getSlotsApiDefinitions,
-} from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 export type SlotsSectionProps = (
   | {

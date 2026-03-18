@@ -904,6 +904,9 @@ importers:
       csstype:
         specifier: ^3.1.3
         version: 3.2.3
+      es-toolkit:
+        specifier: ^1.45.1
+        version: 1.45.1
       fg-loadcss:
         specifier: ^3.1.0
         version: 3.1.0
@@ -920,6 +923,9 @@ importers:
         specifier: catalog:docs
         version: 4.2.0
     devDependencies:
+      '@mui-internal/api-docs-builder':
+        specifier: workspace:*
+        version: link:../api-docs-builder
       '@mui/icons-material':
         specifier: workspace:*
         version: link:../mui-icons-material/build

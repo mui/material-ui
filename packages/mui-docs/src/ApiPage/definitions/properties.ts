@@ -1,51 +1,12 @@
-import {
+import type {
   PropsTableItem,
   PropsTranslations,
   HookApiContent,
   HooksTranslations,
 } from '@mui-internal/api-docs-builder';
-import { Translate } from '@mui/docs/i18n';
 import { kebabCase } from 'es-toolkit/string';
 import type { TableOfContentsParams } from '@mui/docs/ApiPage';
-
-export interface PropertyDefinition {
-  additionalInfo?: string[];
-  hash: string;
-  deprecationInfo?: string;
-  description?: string;
-  isDeprecated?: boolean;
-  isOptional?: boolean;
-  isRequired?: boolean;
-  propDefault?: string;
-  propName: string;
-  requiresRef?: boolean;
-  seeMoreDescription?: string;
-  signature?: string;
-  signatureArgs?: {
-    argName: string;
-    argDescription?: string;
-    argType?: string;
-    argTypeDescription?: string;
-  }[];
-  signatureReturnDescription?: string;
-  typeName: string;
-  /**
-   * Used by MUI X interface documentation
-   */
-  isProPlan?: boolean;
-  /**
-   * Used by MUI X interface documentation
-   */
-  isPremiumPlan?: boolean;
-}
-
-export type GetCssToCParams = {
-  properties: PropertyDefinition[];
-  inheritance?: boolean;
-  themeDefaultProps?: boolean;
-  t: Translate;
-  hash: string;
-};
+import type { BaseCssTOCParams, PropertyDefinition } from './types';
 
 export const getPropertiesToc = ({
   properties,
@@ -53,9 +14,11 @@ export const getPropertiesToc = ({
   themeDefaultProps,
   t,
   hash,
-}: GetCssToCParams): TableOfContentsParams => ({
+}: BaseCssTOCParams & {
+  properties: PropertyDefinition[];
+}): TableOfContentsParams => ({
   text: t('api-docs.props'),
-  hash,
+  hash: hash ?? '',
   children: [
     ...properties.map(({ propName, hash: propertyHash }) => ({
       text: propName,

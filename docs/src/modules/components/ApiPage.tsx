@@ -18,19 +18,16 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from '@mui/docs/ApiPage';
 import {
+  ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
   getPropsApiDefinitions,
   getPropertiesToc,
-} from 'docs/src/modules/components/ApiPage/definitions/properties';
-import {
   getClassApiDefinitions,
   getClassesToc,
-} from 'docs/src/modules/components/ApiPage/definitions/classes';
-import {
   getSlotsApiDefinitions,
   getSlotsToc,
-} from 'docs/src/modules/components/ApiPage/definitions/slots';
+} from '@mui/docs/ApiPage';
 
 type ApiHeaderKeys =
   | 'demos'

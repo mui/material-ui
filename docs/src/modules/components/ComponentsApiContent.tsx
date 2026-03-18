@@ -13,10 +13,13 @@ import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-b
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
-import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from '@mui/docs/ApiPage';
-import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
+import {
+  ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+  getPropsApiDefinitions,
+  getClassApiDefinitions,
+  getSlotsApiDefinitions,
+} from '@mui/docs/ApiPage';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

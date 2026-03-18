@@ -8,13 +8,11 @@ import {
   type ApiDisplayLayout,
   useApiPageOption,
   LayoutStorageKeys,
+  type PropertyDefinition,
+  getPropsApiDefinitions,
 } from '@mui/docs/ApiPage';
 import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
-import {
-  PropertyDefinition,
-  getPropsApiDefinitions,
-} from 'docs/src/modules/components/ApiPage/definitions/properties';
 import {
   ComponentApiContent,
   PropsTableItem,

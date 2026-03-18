@@ -3,13 +3,15 @@ import * as React from 'react';
 import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import Box from '@mui/material/Box';
-import { ToggleDisplayOption, type ApiDisplayLayout, useApiPageOption } from '@mui/docs/ApiPage';
+import {
+  ToggleDisplayOption,
+  type ApiDisplayLayout,
+  useApiPageOption,
+  getClassApiDefinitions,
+  type ClassDefinition,
+} from '@mui/docs/ApiPage';
 import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
-import {
-  ClassDefinition,
-  getClassApiDefinitions,
-} from 'docs/src/modules/components/ApiPage/definitions/classes';
 import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 
