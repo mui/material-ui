@@ -195,7 +195,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   return (
     <ToggleButtonRoot
       className={clsx(contextProps.className, classes.root, className, positionClassName)}
-      defaultNativeButton
+      internalNativeButton
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}

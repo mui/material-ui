@@ -156,7 +156,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     additionalProps: {
       focusRipple: false,
       disableRipple: true,
-      defaultNativeButton: true,
+      internalNativeButton: true,
       disabled,
       'aria-expanded': expanded,
       focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),

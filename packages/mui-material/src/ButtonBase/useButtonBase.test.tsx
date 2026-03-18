@@ -11,12 +11,12 @@ interface ButtonProps extends Omit<UseButtonBaseParameters, 'nativeButton' | 'di
   onKeyUp?: React.KeyboardEventHandler<any> | undefined;
 }
 
-function useFixtureButtonBase(props: ButtonProps, defaultNativeButtonValue: boolean) {
+function useFixtureButtonBase(props: ButtonProps, internalNativeButtonValue: boolean) {
   const {
     id,
     nativeButton: nativeButtonOverride,
     nativeButtonProp,
-    defaultNativeButton: defaultNativeButtonProp = defaultNativeButtonValue,
+    internalNativeButton: internalNativeButtonProp = internalNativeButtonValue,
     allowInferredHostMismatch,
     disabled = false,
     type,
@@ -30,11 +30,11 @@ function useFixtureButtonBase(props: ButtonProps, defaultNativeButtonValue: bool
     onKeyDown,
     onKeyUp,
   } = props;
-  const nativeButton = nativeButtonOverride ?? nativeButtonProp ?? defaultNativeButtonProp;
+  const nativeButton = nativeButtonOverride ?? nativeButtonProp ?? internalNativeButtonProp;
   const { getButtonProps, rootRef } = useButtonBase({
     nativeButton,
     nativeButtonProp,
-    defaultNativeButton: defaultNativeButtonProp,
+    internalNativeButton: internalNativeButtonProp,
     allowInferredHostMismatch,
     disabled,
     type,
@@ -480,7 +480,7 @@ describe('useButtonBase', () => {
     it('warns when nativeButton is omitted and a custom component resolves to a button host', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      render(<NativeButton defaultNativeButton={false} />);
+      render(<NativeButton internalNativeButton={false} />);
 
       expectWarningWithFragments(errorSpy, ['nativebutton={true}', 'native <button>']);
       errorSpy.mockRestore();
@@ -489,7 +489,7 @@ describe('useButtonBase', () => {
     it('warns when nativeButton is omitted and a custom component resolves to a non-button host', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      render(<NonNativeButton defaultNativeButton />);
+      render(<NonNativeButton internalNativeButton />);
 
       expectWarningWithFragments(errorSpy, ['nativebutton={false}', 'non-<button>']);
       errorSpy.mockRestore();
@@ -517,7 +517,7 @@ describe('useButtonBase', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       render(<NativeButton />);
-      render(<NonNativeButton defaultNativeButton={false} id="non-native" />);
+      render(<NonNativeButton internalNativeButton={false} id="non-native" />);
 
       expect(errorSpy.mock.calls.length).toBe(0);
       errorSpy.mockRestore();
@@ -535,7 +535,7 @@ describe('useButtonBase', () => {
     it('does not warn when inferred host mismatches are allowed', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      render(<NativeButton defaultNativeButton={false} allowInferredHostMismatch />);
+      render(<NativeButton internalNativeButton={false} allowInferredHostMismatch />);
 
       expect(errorSpy.mock.calls.length).toBe(0);
       errorSpy.mockRestore();

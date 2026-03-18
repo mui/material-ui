@@ -90,7 +90,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     // replaces internal handling in Chip, other components can opt-in individually to use this in the future
     focusableWhenDisabled,
     // private prop to allow native vs non-native button props to be resolved before mount
-    defaultNativeButton: defaultNativeButtonProp,
+    internalNativeButton: internalNativeButtonProp,
     /* eslint-enable react/prop-types */
     LinkComponent = 'a',
     nativeButton: nativeButtonProp,
@@ -123,11 +123,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ComponentProp = LinkComponent;
   }
 
-  const defaultNativeButton =
+  const internalNativeButton =
     typeof ComponentProp === 'string'
       ? ComponentProp === 'button'
-      : (defaultNativeButtonProp ?? false);
-  const nativeButton = nativeButtonProp ?? defaultNativeButton;
+      : (internalNativeButtonProp ?? false);
+  const nativeButton = nativeButtonProp ?? internalNativeButton;
   const ripple = useLazyRipple();
   const handleRippleRef = useForkRef(ripple.ref, touchRippleRef);
 
@@ -139,7 +139,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const { getButtonProps, rootRef: buttonRef } = useButtonBase({
     nativeButton,
     nativeButtonProp,
-    defaultNativeButton,
+    internalNativeButton,
     allowInferredHostMismatch: isLink || typeof ComponentProp === 'string',
     disabled,
     type,

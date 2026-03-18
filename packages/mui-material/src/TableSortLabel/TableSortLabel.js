@@ -135,7 +135,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     className: clsx(classes.root, className),
     ref,
     additionalProps: {
-      defaultNativeButton: false,
+      internalNativeButton: false,
     },
   });
 

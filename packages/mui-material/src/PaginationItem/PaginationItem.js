@@ -398,7 +398,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       component={component}
-      defaultNativeButton
+      internalNativeButton
       disabled={disabled}
       className={clsx(classes.root, className)}
       {...other}

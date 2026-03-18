@@ -453,7 +453,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     component === ButtonBase
       ? {
           component: ComponentProp || 'div',
-          defaultNativeButton: false,
+          internalNativeButton: false,
           focusVisibleClassName: classes.focusVisible,
           ...(onDelete && { disableRipple: true }),
           ...(nativeButton !== undefined && { nativeButton }),

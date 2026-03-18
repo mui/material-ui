@@ -12,10 +12,11 @@ export interface UseButtonBaseParameters {
    */
   nativeButtonProp?: boolean | undefined;
   /**
-   * The inferred native-button expectation when `nativeButton` was not explicitly provided.
+   * Whether the default rendered element is expected to be a native button when
+   * `nativeButton` was not explicitly provided.
    * @default nativeButton
    */
-  defaultNativeButton?: boolean | undefined;
+  internalNativeButton?: boolean | undefined;
   /**
    * Whether to perform additional checks in dev mode on whether the resolved element
    * matches the default native or non-native button expectaion.
@@ -107,7 +108,7 @@ export default function useButtonBase(
   const {
     nativeButton,
     nativeButtonProp,
-    defaultNativeButton = nativeButton,
+    internalNativeButton = nativeButton,
     allowInferredHostMismatch = false,
     disabled,
     type,
@@ -166,7 +167,7 @@ export default function useButtonBase(
       }
 
       // warn when expecting a native <button> element but a non-string `component` prop resolved to a non-button element
-      if (defaultNativeButton && !isButtonTag) {
+      if (internalNativeButton && !isButtonTag) {
         const message =
           'MUI: A component rendering a native <button> resolved to a non-<button> element, ' +
           'but `nativeButton={false}` was not specified and the resolved root is a non-<button>. ' +
@@ -175,14 +176,14 @@ export default function useButtonBase(
       }
 
       // warn when expecting a non-button but a non-string `component` prop resolved to a native <button> element
-      if (!defaultNativeButton && isButtonTag) {
+      if (!internalNativeButton && isButtonTag) {
         const message =
           'MUI: A component that acts as a non-native button resolved to a native <button> element,' +
           'but `nativeButton={true}` was not specified.' +
           'When rendering a custom component, set `nativeButton={true}` explicitly or render a non-<button> element.';
         console.error(message);
       }
-    }, [allowInferredHostMismatch, defaultNativeButton, nativeButtonProp]);
+    }, [allowInferredHostMismatch, internalNativeButton, nativeButtonProp]);
   }
 
   // A helper for event handlers to determine whether to use browser-defined keyboard activation

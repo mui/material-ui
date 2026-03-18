@@ -134,7 +134,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ref,
     className: clsx(classes.root, className),
     additionalProps: {
-      defaultNativeButton: true,
+      internalNativeButton: true,
       focusRipple: true,
     },
     getSlotProps: (handlers) => ({
