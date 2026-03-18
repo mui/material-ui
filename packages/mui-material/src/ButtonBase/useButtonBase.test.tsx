@@ -118,18 +118,20 @@ describe('useButtonBase', () => {
 
   describe('keyboard activation', () => {
     describe('non-native button', () => {
-      it('runs onBeforeKeyDown before onKeyDown', () => {
+      it('runs onBeforeKeyDown before onKeyDown', async () => {
         const handleBeforeKeyDown = vi.fn();
         const handleKeyDown = vi.fn();
 
-        render(<NonNativeButton onBeforeKeyDown={handleBeforeKeyDown} onKeyDown={handleKeyDown} />);
+        const { user } = render(
+          <NonNativeButton onBeforeKeyDown={handleBeforeKeyDown} onKeyDown={handleKeyDown} />,
+        );
 
         const el = screen.getByTestId('root');
         act(() => {
           el.focus();
         });
 
-        fireEvent.keyDown(el, { key: 'Enter' });
+        await user.keyboard('{Enter}');
 
         expect(handleBeforeKeyDown).toHaveBeenCalledTimes(1);
         expect(handleKeyDown).toHaveBeenCalledTimes(1);
@@ -138,16 +140,16 @@ describe('useButtonBase', () => {
         );
       });
 
-      it('Enter on keyDown activates click', () => {
+      it('Enter on keyDown activates click', async () => {
         const handleClick = vi.fn();
 
-        render(<NonNativeButton onClick={handleClick} />);
+        const { user } = render(<NonNativeButton onClick={handleClick} />);
 
         const el = screen.getByTestId('root');
         act(() => {
           el.focus();
         });
-        fireEvent.keyDown(el, { key: 'Enter' });
+        await user.keyboard('{Enter}');
 
         expect(handleClick).toHaveBeenCalledTimes(1);
       });
@@ -209,12 +211,12 @@ describe('useButtonBase', () => {
         expect(handleClick).not.toHaveBeenCalled();
       });
 
-      it('does not call key handlers or fire when disabled', () => {
+      it('does not call key handlers or fire when disabled', async () => {
         const handleClick = vi.fn();
         const handleKeyDown = vi.fn();
         const handleKeyUp = vi.fn();
 
-        render(
+        const { user } = render(
           <NonNativeButton
             disabled
             onClick={handleClick}
@@ -228,8 +230,8 @@ describe('useButtonBase', () => {
           el.focus();
         });
 
-        fireEvent.keyDown(el, { key: 'Enter' });
-        fireEvent.keyUp(el, { key: ' ' });
+        await user.keyboard('{Enter}');
+        await user.keyboard(' ');
 
         expect(handleKeyDown).not.toHaveBeenCalled();
         expect(handleKeyUp).not.toHaveBeenCalled();
@@ -361,14 +363,12 @@ describe('useButtonBase', () => {
       handleKeyDown.mockClear();
       handleKeyUp.mockClear();
 
-      fireEvent.keyDown(button, { key: 'Enter' });
+      await user.keyboard('{Enter}');
       expect(handleKeyDown).not.toHaveBeenCalled();
       expect(handleClick).not.toHaveBeenCalled();
 
-      fireEvent.keyDown(button, { key: ' ' });
+      await user.keyboard(' ');
       expect(handleKeyDown).not.toHaveBeenCalled();
-
-      fireEvent.keyUp(button, { key: ' ' });
       expect(handleKeyUp).not.toHaveBeenCalled();
       expect(handleClick).not.toHaveBeenCalled();
 
