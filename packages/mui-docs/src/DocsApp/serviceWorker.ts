@@ -52,7 +52,6 @@ function forcePageReload(registration: ServiceWorkerRegistration) {
   registration.addEventListener('updatefound', listenInstalledStateChange);
 }
 
- 
 export async function registerServiceWorker(swPath: string): Promise<void> {
   if (
     'serviceWorker' in navigator &&

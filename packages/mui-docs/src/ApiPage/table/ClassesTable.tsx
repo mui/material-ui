@@ -2,10 +2,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { useTranslate } from '../../i18n';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '../../branding';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
 import { ClassDefinition } from '../definitions/classes';
 import StyledTableContainer from './StyledTableContainer';
 import ApiWarningAlert from '../ApiWarningAlert';

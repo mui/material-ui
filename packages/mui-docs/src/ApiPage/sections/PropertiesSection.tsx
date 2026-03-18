@@ -9,16 +9,10 @@ import {
 import { kebabCase } from 'es-toolkit/string';
 import { Translate, useTranslate } from '../../i18n';
 import { SectionTitle, SectionTitleProps } from '../../SectionTitle';
-import ToggleDisplayOption, {
-  ApiDisplayOptions,
-  useApiPageOption,
-} from './ToggleDisplayOption';
+import ToggleDisplayOption, { ApiDisplayOptions, useApiPageOption } from './ToggleDisplayOption';
 import PropertiesList from '../list/PropertiesList';
 import PropertiesTable from '../table/PropertiesTable';
-import {
-  PropertyDefinition,
-  getPropsApiDefinitions,
-} from '../definitions/properties';
+import { PropertyDefinition, getPropsApiDefinitions } from '../definitions/properties';
 import { LayoutStorageKeys } from '../types';
 
 interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {

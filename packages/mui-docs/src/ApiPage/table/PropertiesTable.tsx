@@ -3,10 +3,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import { useTranslate } from '../../i18n';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '../../branding';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
 import { PropertyDefinition } from '../definitions/properties';
 import StyledTableContainer from './StyledTableContainer';
 import ApiWarningAlert from '../ApiWarningAlert';

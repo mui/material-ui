@@ -5,16 +5,10 @@ import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-d
 import { kebabCase } from 'es-toolkit/string';
 import { Translate, useTranslate } from '../../i18n';
 import { SectionTitle } from '../../SectionTitle';
-import ToggleDisplayOption, {
-  ApiDisplayOptions,
-  useApiPageOption,
-} from './ToggleDisplayOption';
+import ToggleDisplayOption, { ApiDisplayOptions, useApiPageOption } from './ToggleDisplayOption';
 import ClassesList from '../list/ClassesList';
 import ClassesTable from '../table/ClassesTable';
-import {
-  ClassDefinition,
-  getClassApiDefinitions,
-} from '../definitions/classes';
+import { ClassDefinition, getClassApiDefinitions } from '../definitions/classes';
 
 export type GetCssToCParams = {
   componentName: string;

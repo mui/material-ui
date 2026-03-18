@@ -21,18 +21,9 @@ import {
   ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from '@mui/docs/ApiPage/sections/ToggleDisplayOption';
-import {
-  getPropsApiDefinitions,
-  getPropertiesToc,
-} from '@mui/docs/ApiPage/definitions/properties';
-import {
-  getClassApiDefinitions,
-  getClassesToc,
-} from '@mui/docs/ApiPage/definitions/classes';
-import {
-  getSlotsApiDefinitions,
-  getSlotsToc,
-} from '@mui/docs/ApiPage/definitions/slots';
+import { getPropsApiDefinitions, getPropertiesToc } from '@mui/docs/ApiPage/definitions/properties';
+import { getClassApiDefinitions, getClassesToc } from '@mui/docs/ApiPage/definitions/classes';
+import { getSlotsApiDefinitions, getSlotsToc } from '@mui/docs/ApiPage/definitions/slots';
 import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';
 
 export type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';

@@ -13,7 +13,6 @@ function nProgressDone() {
   NProgress.done();
 }
 
- 
 export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {

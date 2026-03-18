@@ -4,16 +4,10 @@ import Box from '@mui/material/Box';
 import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { useTranslate } from '../../i18n';
 import { SectionTitle } from '../../SectionTitle';
-import ToggleDisplayOption, {
-  ApiDisplayOptions,
-  useApiPageOption,
-} from './ToggleDisplayOption';
+import ToggleDisplayOption, { ApiDisplayOptions, useApiPageOption } from './ToggleDisplayOption';
 import SlotsList from '../list/SlotsList';
 import SlotsTable from '../table/SlotsTable';
-import {
-  SlotDefinition,
-  getSlotsApiDefinitions,
-} from '../definitions/slots';
+import { SlotDefinition, getSlotsApiDefinitions } from '../definitions/slots';
 
 export type SlotsSectionProps = (
   | {

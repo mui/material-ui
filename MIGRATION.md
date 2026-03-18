@@ -620,12 +620,9 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 
 ### Phase 7: AppLayoutDocs Level 2
 
-- [ ] 7.1 `SvgHamburgerMenu.tsx` — `git commit -m "[docs-infra] Migrate SvgHamburgerMenu to @mui/docs (7.1)"`
-- [ ] 7.2 `SvgMuiLogotype.tsx` — `git commit -m "[docs-infra] Migrate SvgMuiLogotype to @mui/docs (7.2)"`
-- [ ] 7.3 `SvgMuiLogomark.tsx` — `git commit -m "[docs-infra] Migrate SvgMuiLogomark to @mui/docs (7.3)"`
-- [ ] 7.4 `SvgBaseUiLogo.tsx` — `git commit -m "[docs-infra] Migrate SvgBaseUiLogo to @mui/docs (7.4)"`
-- [ ] 7.5 `LogoWithCopyMenu.tsx` — `git commit -m "[docs-infra] Migrate LogoWithCopyMenu to @mui/docs (7.5)"`
-- [ ] 7.6 `DiamondSponsors.js` → `.tsx` — `git commit -m "[docs-infra] Migrate DiamondSponsors to @mui/docs (7.6)"`
+- [x] 7.1-7.4 `SvgHamburgerMenu`, `SvgMuiLogotype`, `SvgMuiLogomark`, `SvgBaseUiLogo` — batched in one commit
+- [x] 7.5 `LogoWithCopyMenu.tsx` — `git commit -m "[docs-infra] Migrate LogoWithCopyMenu to @mui/docs (7.5)"`
+- [x] 7.6 `DiamondSponsors.js` → `.tsx` — `git commit -m "[docs-infra] Migrate DiamondSponsors to @mui/docs (7.6)"`
 
 ### Phase 8: AppLayoutDocs Config-Dependent
 
@@ -658,6 +655,7 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 - [ ] 13.2 `src/AppLayoutDocs/index.ts` — `git commit -m "[docs-infra] Add AppLayoutDocs public entry point (13.2)"`
 
 ### Phase 14: Update Consumers (ApiPage sub-component consumers already updated — shims removed)
+
 > **Note:** Steps 14.2, 14.3, 14.4 for ApiPage sub-component imports were done early as part of shim removal. The remaining steps below cover `ApiPage` itself and `AppLayoutDocs` consumers.
 
 - [ ] 14.1 `docs/pages/material-ui/api/*.js` (~279 files) — `git commit -m "[docs-infra] Update API page consumers to @mui/docs/ApiPage (14.1)"`

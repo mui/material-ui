@@ -1,9 +1,6 @@
 import { styled, alpha } from '@mui/material/styles';
 import { useTranslate } from '../../i18n';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '../../branding';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
 import StyledTableContainer from './StyledTableContainer';
 import { SlotDefinition } from '../definitions/slots';
 

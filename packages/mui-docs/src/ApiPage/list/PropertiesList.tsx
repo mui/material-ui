@@ -3,13 +3,8 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import { useTranslate } from '../../i18n';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '../../branding';
-import ExpandableApiItem, {
-  ApiItemContainer,
-} from './ExpandableApiItem';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import ExpandableApiItem, { ApiItemContainer } from './ExpandableApiItem';
 import ApiWarningAlert from '../ApiWarningAlert';
 import { PropertyDefinition } from '../definitions/properties';
 

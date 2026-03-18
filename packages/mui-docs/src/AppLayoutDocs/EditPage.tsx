@@ -30,10 +30,9 @@ export default function EditPage(props: { sourceLocation: string }) {
       href={
         userLanguage === 'en'
           ? `${process.env.SOURCE_CODE_REPO}/edit/${process.env.SOURCE_GITHUB_BRANCH}${sourceLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env.SOURCE_CODE_ROOT_URL!.replace(
-              'https://github.com/mui/',
-              '',
-            ).replace('/blob/', '%20%2F%20')}${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env
+              .SOURCE_CODE_ROOT_URL!.replace('https://github.com/mui/', '')
+              .replace('/blob/', '%20%2F%20')}${crowdInPath}`
       }
       target="_blank"
       rel="noopener nofollow"

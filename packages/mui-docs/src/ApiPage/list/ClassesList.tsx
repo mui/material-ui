@@ -2,14 +2,9 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from '../../i18n';
-import ExpandableApiItem, {
-  ApiItemContainer,
-} from './ExpandableApiItem';
+import ExpandableApiItem, { ApiItemContainer } from './ExpandableApiItem';
 import { ClassDefinition } from '../definitions/classes';
-import {
-  brandingLightTheme as lightTheme,
-  brandingDarkTheme as darkTheme,
-} from '../../branding';
+import { brandingLightTheme as lightTheme, brandingDarkTheme as darkTheme } from '../../branding';
 import ApiWarningAlert from '../ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(

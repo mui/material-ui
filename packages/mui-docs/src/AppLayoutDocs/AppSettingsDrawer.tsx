@@ -92,7 +92,10 @@ function ToggleVarTheme(props: {
 }) {
   const { setMode } = useColorScheme();
 
-  const handleChangeThemeMode = (event: React.MouseEvent<HTMLElement>, paletteMode: string | null) => {
+  const handleChangeThemeMode = (
+    event: React.MouseEvent<HTMLElement>,
+    paletteMode: string | null,
+  ) => {
     if (paletteMode === null) {
       return;
     }
@@ -122,14 +125,20 @@ export default function AppSettingsDrawer(props: AppSettingsDrawerProps) {
   // TODO replace with useColorScheme once all pages support css vars
   const { mode, setMode } = useColorSchemeShim();
 
-  const handleChangeThemeMode = (_event: React.MouseEvent<HTMLElement>, paletteMode: string | null) => {
+  const handleChangeThemeMode = (
+    _event: React.MouseEvent<HTMLElement>,
+    paletteMode: string | null,
+  ) => {
     if (paletteMode === null) {
       return;
     }
     setMode(paletteMode as 'light' | 'dark' | 'system');
   };
 
-  const handleChangeDirection = (_event: React.MouseEvent<HTMLElement>, direction: string | null) => {
+  const handleChangeDirection = (
+    _event: React.MouseEvent<HTMLElement>,
+    direction: string | null,
+  ) => {
     if (direction === null) {
       direction = upperTheme.direction;
     }
@@ -174,9 +183,15 @@ export default function AppSettingsDrawer(props: AppSettingsDrawerProps) {
           {t('settings.mode')}
         </Heading>
         {upperTheme.vars ? (
-          <ToggleVarTheme value={mode as 'light' | 'system' | 'dark'} onChange={handleChangeThemeMode} />
+          <ToggleVarTheme
+            value={mode as 'light' | 'system' | 'dark'}
+            onChange={handleChangeThemeMode}
+          />
         ) : (
-          <ToggleTheme value={mode as 'light' | 'system' | 'dark'} onChange={handleChangeThemeMode} />
+          <ToggleTheme
+            value={mode as 'light' | 'system' | 'dark'}
+            onChange={handleChangeThemeMode}
+          />
         )}
         <Heading gutterBottom id="settings-direction">
           {t('settings.direction')}

@@ -2,7 +2,6 @@ import { loadCSS } from 'fg-loadcss';
 
 let dependenciesLoaded = false;
 
- 
 export function loadDependencies(): void {
   if (dependenciesLoaded) {
     return;

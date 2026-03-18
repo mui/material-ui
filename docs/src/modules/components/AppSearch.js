@@ -27,7 +27,6 @@ import PageContext from '@mui/docs/PageContext';
 import { convertProductIdToName } from '@mui/docs/AppLayoutDocs';
 import SearchButton from './SearchButton';
 
-
 function NewStartScreen() {
   const startScreenOptions = [
     {

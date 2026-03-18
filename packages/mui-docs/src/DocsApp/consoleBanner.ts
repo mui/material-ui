@@ -6,7 +6,6 @@ interface WindowWithTheme extends Window {
 
 declare const window: WindowWithTheme;
 
- 
 export function printConsoleBanner(): void {
   if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
     window.theme = getTheme('ltr');
