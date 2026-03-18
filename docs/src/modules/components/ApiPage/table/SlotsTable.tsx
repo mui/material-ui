@@ -5,7 +5,7 @@ import {
   brandingLightTheme as lightTheme,
 } from '@mui/docs/branding';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import { type SlotDefinition } from '@mui/docs/ApiPage';
+import { type SlotDefinition } from '@mui/docs/ApiPage/private';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

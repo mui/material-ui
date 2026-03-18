@@ -10,7 +10,7 @@ import {
   useApiPageOption,
   type SlotDefinition,
   getSlotsApiDefinitions,
-} from '@mui/docs/ApiPage';
+} from '@mui/docs/ApiPage/private';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
 

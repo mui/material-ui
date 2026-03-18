@@ -19,7 +19,7 @@ import {
   getPropsApiDefinitions,
   getClassApiDefinitions,
   getSlotsApiDefinitions,
-} from '@mui/docs/ApiPage';
+} from '@mui/docs/ApiPage/private';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

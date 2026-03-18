@@ -7,10 +7,9 @@ import {
   ToggleDisplayOption,
   type ApiDisplayLayout,
   useApiPageOption,
-  LayoutStorageKeys,
   type PropertyDefinition,
   getPropsApiDefinitions,
-} from '@mui/docs/ApiPage';
+} from '@mui/docs/ApiPage/private';
 import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 import {
@@ -19,6 +18,7 @@ import {
   PropsTranslations,
 } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
+import { LayoutStorageKeys } from '@mui/docs/ApiPage';
 
 interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
   componentProps: ComponentApiContent['props'];

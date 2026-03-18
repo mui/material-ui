@@ -27,7 +27,7 @@ import {
   getClassesToc,
   getSlotsApiDefinitions,
   getSlotsToc,
-} from '@mui/docs/ApiPage';
+} from '@mui/docs/ApiPage/private';
 
 type ApiHeaderKeys =
   | 'demos'

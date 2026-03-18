@@ -9,7 +9,7 @@ import {
   useApiPageOption,
   getClassApiDefinitions,
   type ClassDefinition,
-} from '@mui/docs/ApiPage';
+} from '@mui/docs/ApiPage/private';
 import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
 import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';

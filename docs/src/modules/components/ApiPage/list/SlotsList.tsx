@@ -1,4 +1,8 @@
-import { ApiItemContainer, ExpandableApiItem, SlotDefinition } from '@mui/docs/ApiPage';
+import {
+  ApiItemContainer,
+  ExpandableApiItem,
+  type SlotDefinition,
+} from '@mui/docs/ApiPage/private';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
