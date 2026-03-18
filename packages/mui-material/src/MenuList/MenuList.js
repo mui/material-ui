@@ -182,7 +182,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       newChildProps.tabIndex = rovingTabIndexItemProps.tabIndex;
     }
 
-    if (index === activeItemIndex && autoFocusItem && child.props.autoFocus === undefined) {
+    if (index === activeItemIndex && autoFocusItem) {
       newChildProps.autoFocus = true;
     }
 

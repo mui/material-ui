@@ -71,17 +71,6 @@ describe('<MenuList />', () => {
 
       expect(screen.getByRole('separator')).not.to.have.attribute('tabIndex');
     });
-
-    it(`should not add autoFocus if it's already set on a MenuItem`, () => {
-      render(
-        <MenuList autoFocusItem>
-          <MenuItem autoFocus={false}>one</MenuItem>
-          <MenuItem>two</MenuItem>
-        </MenuList>,
-      );
-
-      expect(screen.getByRole('menuitem', { name: 'one' })).not.toHaveFocus();
-    });
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
