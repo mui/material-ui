@@ -10,7 +10,7 @@ import {
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Button, { buttonClasses } from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Tabs from '@mui/material/Tabs';
 import Menu from '@mui/material/Menu';
@@ -228,6 +228,15 @@ export function buildTheme(): ThemeOptions {
             fontSize: '0.875rem',
             lineHeight: 24 / 16,
             textTransform: 'none',
+            [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
+              fontSize: '0.875rem',
+            },
+            [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
+              fontSize: '0.875rem',
+            },
+            [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
+              fontSize: '1rem',
+            },
           },
           sizeSmall: ({ theme }) => ({
             padding: theme.spacing(0.5, 1),
@@ -264,21 +273,6 @@ export function buildTheme(): ThemeOptions {
               borderColor: alpha(theme.palette.primary[300], 0.5),
             }),
           }),
-          iconSizeSmall: {
-            '& > *:nth-of-type(1)': {
-              fontSize: '0.875rem',
-            },
-          },
-          iconSizeMedium: {
-            '& > *:nth-of-type(1)': {
-              fontSize: '0.875rem',
-            },
-          },
-          iconSizeLarge: {
-            '& > *:nth-of-type(1)': {
-              fontSize: '1rem',
-            },
-          },
         },
       },
       MuiAlert: {
