@@ -66,7 +66,7 @@ export interface ButtonBaseOwnProps {
   LinkComponent?: React.ElementType | undefined;
   /**
    * Whether the custom component should render a native `<button>` element when
-   * rendering a React componentwith the `component` or `slots` prop.
+   * rendering a React component with the `component` or `slots` prop.
    */
   nativeButton?: boolean | undefined;
   /**

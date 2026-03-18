@@ -33,9 +33,6 @@
     "loadingPosition": {
       "description": "The loading indicator can be positioned on the start, end, or the center of the button."
     },
-    "nativeButton": {
-      "description": "Whether the custom component should render a native <code>&lt;button&gt;</code> element when rendering a React componentwith the <code>component</code> or <code>slots</code> prop."
-    },
     "size": {
       "description": "The size of the component. <code>small</code> is equivalent to the dense button styling."
     },

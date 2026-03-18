@@ -121,10 +121,8 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    */
   disabled?: boolean | undefined;
   /**
-   * If `true`, the component is expected to resolve to a native `<button>` element.
-   * When omitted, custom components inherit the default button semantics of the current wrapper.
-   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
-   * when it resolves to a non-button host.
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React component with the `component` or `slots` prop.
    */
   nativeButton?: boolean | undefined;
   /**
