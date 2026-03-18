@@ -63,10 +63,9 @@ const InputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.formControl,
           style: {
-            [`label + &, .${inputLabelClasses.root} + &`]:
-              {
-                marginTop: 16,
-              },
+            [`label + &, .${inputLabelClasses.root} + &`]: {
+              marginTop: 16,
+            },
           },
         },
         {
