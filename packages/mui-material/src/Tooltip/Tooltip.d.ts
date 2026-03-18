@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { MUIStyledCommonProps, SxProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { PopperProps } from '../Popper';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { TransitionProps } from '../transitions/transition';
 import { TooltipClasses } from './tooltipClasses';
-
-export interface TooltipComponentsPropsOverrides {}
 
 export interface TooltipPopperSlotPropsOverrides {}
 
@@ -88,45 +86,6 @@ export interface TooltipProps
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TooltipClasses> | undefined;
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components?:
-    | {
-        Popper?: React.ElementType<PopperProps> | undefined;
-        Transition?: React.ElementType | undefined;
-        Tooltip?: React.ElementType | undefined;
-        Arrow?: React.ElementType | undefined;
-      }
-    | undefined;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps?:
-    | {
-        popper?: (Partial<PopperProps> & TooltipComponentsPropsOverrides) | undefined;
-        transition?: (TransitionProps & TooltipComponentsPropsOverrides) | undefined;
-        tooltip?:
-          | (React.HTMLProps<HTMLDivElement> &
-              MUIStyledCommonProps &
-              TooltipComponentsPropsOverrides)
-          | undefined;
-        arrow?:
-          | (React.HTMLProps<HTMLSpanElement> &
-              MUIStyledCommonProps &
-              TooltipComponentsPropsOverrides)
-          | undefined;
-      }
-    | undefined;
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -213,17 +172,6 @@ export interface TooltipProps
    */
   placement?: PopperProps['placement'] | undefined;
   /**
-   * The component used for the popper.
-   * @deprecated use the `slots.popper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  PopperComponent?: React.JSXElementConstructor<PopperProps> | undefined;
-  /**
-   * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
-   * @deprecated use the `slotProps.popper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  PopperProps?: Partial<PopperProps> | undefined;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
@@ -231,21 +179,6 @@ export interface TooltipProps
    * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
   title: React.ReactNode;
-  /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated use the `slots.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TransitionComponent?:
-    | React.JSXElementConstructor<TransitionProps & { children: React.ReactElement<unknown, any> }>
-    | undefined;
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  TransitionProps?: TransitionProps | undefined;
 }
 
 export interface TooltipOwnerState extends TooltipProps {}

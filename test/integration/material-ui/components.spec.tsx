@@ -399,7 +399,6 @@ function DividerTest() {
   return (
     <div>
       <Divider />
-      <Divider light />
     </div>
   );
 }
@@ -767,12 +766,11 @@ function SnackbarTest() {
         open
         autoHideDuration={6000}
         onClose={(event) => log(event)}
-        ContentProps={
-          {
-            // 'aria-describedby': 'message-id',
-            // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
-          }
-        }
+        slotProps={{
+          content: {
+            'aria-describedby': 'message-id',
+          },
+        }}
         message={<span id="message-id">Note archived</span>}
         action={[
           <Button key="undo" color="secondary" size="small" onClick={(event) => log(event)}>
