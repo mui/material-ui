@@ -34,7 +34,6 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  GridLegacy,
   ImageList,
   ImageListItem,
   Grow,
@@ -400,7 +399,6 @@ function DividerTest() {
   return (
     <div>
       <Divider />
-      <Divider light />
     </div>
   );
 }
@@ -527,25 +525,6 @@ function AccordionTest() {
         </AccordionActions>
       </Accordion>
     </div>
-  );
-}
-
-function GridLegacyTest() {
-  return (
-    <GridLegacy component={Paper} container>
-      <GridLegacy item xs={12}>
-        ...
-      </GridLegacy>
-      <GridLegacy item sm={12}>
-        ...
-      </GridLegacy>
-      <GridLegacy item xl>
-        ...
-      </GridLegacy>
-      <GridLegacy item style={{ color: 'red' }}>
-        ...
-      </GridLegacy>
-    </GridLegacy>
   );
 }
 
@@ -787,12 +766,11 @@ function SnackbarTest() {
         open
         autoHideDuration={6000}
         onClose={(event) => log(event)}
-        ContentProps={
-          {
-            // 'aria-describedby': 'message-id',
-            // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
-          }
-        }
+        slotProps={{
+          content: {
+            'aria-describedby': 'message-id',
+          },
+        }}
         message={<span id="message-id">Note archived</span>}
         action={[
           <Button key="undo" color="secondary" size="small" onClick={(event) => log(event)}>
@@ -890,16 +868,23 @@ function TextFieldTest() {
         value="Alice"
         onChange={(event) => log({ name: event.currentTarget.value })}
       />
-      <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
+      <TextField
+        id="name"
+        label="Name"
+        value="Alice"
+        slotProps={{ input: { classes: { root: 'foo' } } }}
+      />
       <TextField
         type="number"
-        inputProps={{
-          min: '0',
-          max: '10',
-          step: '1',
-          style: {
-            // just a long CSS property to test autocompletion
-            WebkitAnimationIterationCount: 0,
+        slotProps={{
+          htmlInput: {
+            min: '0',
+            max: '10',
+            step: '1',
+            style: {
+              // just a long CSS property to test autocompletion
+              WebkitAnimationIterationCount: 0,
+            },
           },
         }}
       />

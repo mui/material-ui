@@ -16,58 +16,10 @@ import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
-import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-import getActiveElement from '../utils/getActiveElement';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
-
-const nextItem = (list, item) => {
-  if (list === item) {
-    return list.firstChild;
-  }
-  if (item && item.nextElementSibling) {
-    return item.nextElementSibling;
-  }
-  return list.firstChild;
-};
-
-const previousItem = (list, item) => {
-  if (list === item) {
-    return list.lastChild;
-  }
-  if (item && item.previousElementSibling) {
-    return item.previousElementSibling;
-  }
-  return list.lastChild;
-};
-
-const moveFocus = (list, currentFocus, traversalFunction) => {
-  let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus);
-
-  while (nextFocus) {
-    // Prevent infinite loop.
-    if (nextFocus === list.firstChild) {
-      if (wrappedOnce) {
-        return;
-      }
-      wrappedOnce = true;
-    }
-
-    // Same logic as useAutocomplete.js
-    const nextFocusDisabled =
-      nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
-
-    if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
-      // Move to the next element.
-      nextFocus = traversalFunction(list, nextFocus);
-    } else {
-      nextFocus.focus();
-      return;
-    }
-  }
-};
+import { ownerDocument, useForkRef, getActiveElement, useRovingTabIndex } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -302,13 +254,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     indicatorColor = 'primary',
     onChange,
     orientation = 'horizontal',
-    ScrollButtonComponent, // TODO: remove in v7 (deprecated in v6)
     scrollButtons = 'auto',
     selectionFollowsFocus,
     slots = {},
     slotProps = {},
-    TabIndicatorProps = {}, // TODO: remove in v7 (deprecated in v6)
-    TabScrollButtonProps = {}, // TODO: remove in v7 (deprecated in v6)
     textColor = 'primary',
     value,
     variant = 'standard',
@@ -346,13 +295,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const startScrollButtonIconProps = useSlotProps({
-    elementType: slots.StartScrollButtonIcon,
+    elementType: slots.startScrollButtonIcon,
     externalSlotProps: slotProps.startScrollButtonIcon,
     ownerState,
   });
 
   const endScrollButtonIconProps = useSlotProps({
-    elementType: slots.EndScrollButtonIcon,
+    elementType: slots.endScrollButtonIcon,
     externalSlotProps: slotProps.endScrollButtonIcon,
     ownerState,
   });
@@ -383,11 +332,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      indicator: TabIndicatorProps,
-      scrollButtons: TabScrollButtonProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   const getTabsMeta = () => {
@@ -574,15 +519,15 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   );
 
   const [ScrollButtonsSlot, scrollButtonSlotProps] = useSlot('scrollButtons', {
-    className: clsx(classes.scrollButtons, TabScrollButtonProps.className),
+    className: classes.scrollButtons,
     elementType: TabScrollButton,
     externalForwardedProps,
     ownerState,
     additionalProps: {
       orientation,
       slots: {
-        StartScrollButtonIcon: slots.startScrollButtonIcon || slots.StartScrollButtonIcon,
-        EndScrollButtonIcon: slots.endScrollButtonIcon || slots.EndScrollButtonIcon,
+        StartScrollButtonIcon: slots.startScrollButtonIcon,
+        EndScrollButtonIcon: slots.endScrollButtonIcon,
       },
       slotProps: {
         startScrollButtonIcon: startScrollButtonIconProps,
@@ -770,7 +715,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   );
 
   const [IndicatorSlot, indicatorSlotProps] = useSlot('indicator', {
-    className: clsx(classes.indicator, TabIndicatorProps.className),
+    className: classes.indicator,
     elementType: TabsIndicator,
     externalForwardedProps,
     ownerState,
@@ -781,28 +726,41 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const indicator = <IndicatorSlot {...indicatorSlotProps} />;
 
-  let childIndex = 0;
-  const children = React.Children.map(childrenProp, (child) => {
-    if (!React.isValidElement(child)) {
-      return null;
-    }
+  const validChildren = React.Children.toArray(childrenProp)
+    .filter(React.isValidElement)
+    .map((child, index) => {
+      const childValue = child.props.value === undefined ? index : child.props.value;
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (isFragment(child)) {
-        console.error(
-          [
-            "MUI: The Tabs component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
+      if (process.env.NODE_ENV !== 'production') {
+        if (isFragment(child)) {
+          console.error(
+            [
+              "MUI: The Tabs component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+        }
       }
-    }
 
-    const childValue = child.props.value === undefined ? childIndex : child.props.value;
-    valueToIndex.set(childValue, childIndex);
+      valueToIndex.set(childValue, index);
+
+      return { child, index, childValue };
+    });
+
+  const focusableIndex = valueToIndex.get(value);
+
+  const { getContainerProps, getItemProps } = useRovingTabIndex({
+    focusableIndex,
+    orientation,
+    isRtl,
+  });
+  const rovingTabIndexContainerProps = getContainerProps();
+
+  const children = validChildren.map(({ child, index, childValue }) => {
     const selected = childValue === value;
 
-    childIndex += 1;
+    const rovingTabIndexItemProps = getItemProps(index, child.ref);
+
     return React.cloneElement(child, {
       fullWidth: variant === 'fullWidth',
       indicator: selected && !mounted && indicator,
@@ -811,55 +769,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       onChange,
       textColor,
       value: childValue,
-      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : {}),
+      ref: rovingTabIndexItemProps.ref,
+      tabIndex: child.props.tabIndex ?? rovingTabIndexItemProps.tabIndex,
     });
   });
-
-  const handleKeyDown = (event) => {
-    // Check if a modifier key (Alt, Shift, Ctrl, Meta) is pressed
-    if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
-      return;
-    }
-
-    const list = tabListRef.current;
-    const currentFocus = getActiveElement(ownerDocument(list));
-    // Keyboard navigation assumes that [role="tab"] are siblings
-    // though we might warn in the future about nested, interactive elements
-    // as a a11y violation
-    const role = currentFocus?.getAttribute('role');
-    if (role !== 'tab') {
-      return;
-    }
-
-    let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
-    let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
-    if (orientation === 'horizontal' && isRtl) {
-      // swap previousItemKey with nextItemKey
-      previousItemKey = 'ArrowRight';
-      nextItemKey = 'ArrowLeft';
-    }
-
-    switch (event.key) {
-      case previousItemKey:
-        event.preventDefault();
-        moveFocus(list, currentFocus, previousItem);
-        break;
-      case nextItemKey:
-        event.preventDefault();
-        moveFocus(list, currentFocus, nextItem);
-        break;
-      case 'Home':
-        event.preventDefault();
-        moveFocus(list, null, nextItem);
-        break;
-      case 'End':
-        event.preventDefault();
-        moveFocus(list, null, previousItem);
-        break;
-      default:
-        break;
-    }
-  };
 
   const conditionalElements = getConditionalElements();
 
@@ -891,8 +804,24 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     },
   });
 
+  const mergedRef = useForkRef(rovingTabIndexContainerProps.ref, tabListRef);
+
+  const handleKeyDown = (event) => {
+    const list = tabListRef.current;
+    const currentFocus = getActiveElement(ownerDocument(list));
+    // Keyboard navigation assumes that [role="tab"] are siblings
+    // though we might warn in the future about nested, interactive elements
+    // as a a11y violation
+    const role = currentFocus?.getAttribute('role');
+    if (role !== 'tab') {
+      return;
+    }
+
+    rovingTabIndexContainerProps.onKeyDown(event);
+  };
+
   const [ListSlot, listSlotProps] = useSlot('list', {
-    ref: tabListRef,
+    ref: mergedRef,
     className: clsx(classes.list, classes.flexContainer),
     elementType: List,
     externalForwardedProps,
@@ -902,6 +831,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       onKeyDown: (event) => {
         handleKeyDown(event);
         handlers.onKeyDown?.(event);
+      },
+      onFocus: (event) => {
+        rovingTabIndexContainerProps.onFocus(event);
+        handlers.onFocus?.(event);
       },
     }),
   });
@@ -1000,12 +933,6 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The component used to render the scroll buttons.
-   * @deprecated use the `slots.scrollButtons` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default TabScrollButton
-   */
-  ScrollButtonComponent: PropTypes.elementType,
-  /**
    * Determine behavior of scroll buttons when tabs are set to scroll:
    *
    * - `auto` will only present them when not all the items are visible.
@@ -1042,7 +969,6 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     endScrollButtonIcon: PropTypes.elementType,
-    EndScrollButtonIcon: PropTypes.elementType,
     indicator: PropTypes.elementType,
     list: PropTypes.elementType,
     root: PropTypes.elementType,
@@ -1050,7 +976,6 @@ Tabs.propTypes /* remove-proptypes */ = {
     scrollButtons: PropTypes.elementType,
     scroller: PropTypes.elementType,
     startScrollButtonIcon: PropTypes.elementType,
-    StartScrollButtonIcon: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -1060,18 +985,6 @@ Tabs.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * Props applied to the tab indicator element.
-   * @deprecated use the `slotProps.indicator` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default  {}
-   */
-  TabIndicatorProps: PropTypes.object,
-  /**
-   * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
-   * @deprecated use the `slotProps.scrollButtons` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  TabScrollButtonProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
    * @default 'primary'

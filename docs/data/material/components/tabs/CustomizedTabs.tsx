@@ -56,7 +56,9 @@ interface StyledTabsProps {
 const StyledTabs = styled((props: StyledTabsProps) => (
   <Tabs
     {...props}
-    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+    slotProps={{
+      indicator: { children: <span className="MuiTabs-indicatorSpan" /> },
+    }}
   />
 ))({
   '& .MuiTabs-indicator': {

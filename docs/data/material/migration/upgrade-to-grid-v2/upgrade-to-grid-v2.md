@@ -16,7 +16,7 @@ Grid provides the following improvements over GridLegacy:
 - All grids are considered items without specifying the `item` prop.
 - The [offset feature](/material-ui/react-grid/#offset) gives you more flexibility for positioning.
 - [Nested grids](/material-ui/react-grid/#nested-grid) now have no depth limitation.
-- Its implementation doesn't use negative margins so it doesn't [overflow like GridLegacy](/material-ui/react-grid-legacy/#negative-margin).
+- Its implementation doesn't use negative margins so it doesn't overflow.
 
 ## How to upgrade
 
@@ -163,7 +163,7 @@ function Demo() {
 
 ### Column direction
 
-Using `direction="column"` or `direction="column-reverse"` is not supported on [GridLegacy](/material-ui/react-grid-legacy/#direction-column-column-reverse) nor on [the updated Grid](/material-ui/react-grid/#column-direction).
+Using `direction="column"` or `direction="column-reverse"` is not supported.
 If your layout used GridLegacy with these values, it might break when you switch to the updated Grid.
 If you need a vertical layout, follow the instructions in the [Grid documentation](/material-ui/react-grid/#column-direction).
 
@@ -202,6 +202,3 @@ You'll need to manually update these components.
 - Grid:
   - [Documentation](/material-ui/react-grid/)
   - [API](/material-ui/api/grid/)
-- GridLegacy:
-  - [Documentation](/material-ui/react-grid-legacy/)
-  - [API](/material-ui/api/grid-legacy/)

@@ -278,6 +278,11 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -  PopperComponent={CustomPopper}
 -  ListboxComponent={CustomListbox}
 -  ListboxProps={{ height: 12 }}
+-  renderTags={(value, getTagProps, ownerState) =>
+-    value.map((option, index) => (
+-      <Chip label={option.label} {...getTagProps({ index })} />
+-    ))
+-  }
 -  componentsProps={{
 -    clearIndicator: { width: 10 },
 -    paper: { width: 12 },
@@ -299,6 +304,11 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +    popper: { width: 14 },
 +    popupIndicator: { width: 16 },
 +  }}
++  renderValue={(value, getItemProps, ownerState) =>
++    value.map((option, index) => (
++      <Chip label={option.label} {...getItemProps({ index })} />
++    ))
++  }
  />
 ```
 
@@ -310,6 +320,10 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -    PopperComponent: CustomPopper,
 -    ListboxComponent: CustomListbox,
 -    ListboxProps: { height: 12 },
+-    renderTags: (value, getTagProps, ownerState) =>
+-      value.map((option, index) => (
+-        <Chip label={option.label} {...getTagProps({ index })} />
+-      )),
 -    componentsProps: {
 -       clearIndicator: { width: 10 },
 -       paper: { width: 12 },
@@ -331,8 +345,50 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +      popper: { width: 14 },
 +      popupIndicator: { width: 16 },
 +    },
++    renderValue: (value, getItemProps, ownerState) =>
++      value.map((option, index) => (
++        <Chip label={option.label} {...getItemProps({ index })} />
++      )),
    },
  },
+```
+
+```diff
+ <Autocomplete
+  renderInput={(params) => (
+    <TextField
+      {...params}
+-      InputProps={{
+-        ...params.InputProps,
+-        endAdornment: (
+-          <React.Fragment>
+-            {params.InputProps.endAdornment}
+-          </React.Fragment>
+-        ),
+-      }}
++      slotProps={{
++        ...params.slotProps,
++        input: {
++          ...params.slotProps.input,
++          endAdornment: (
++            <React.Fragment>
++              {params.slotProps.input.endAdornment}
++            </React.Fragment>
++          ),
++        },
++      }}
+    />
+  )}
+ />
+```
+
+```diff
+ const {
+-  getTagProps,
+-  focusedTag,
++  getItemProps,
++  focusedItem,
+ } = useAutocomplete(props);
 ```
 
 ```bash
@@ -812,6 +868,36 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@next deprecations/button-group-classes <path>
+```
+
+#### `card-header-props`
+
+```diff
+ <CardHeader
+-  titleTypographyProps={{ variant: 'h6' }}
+-  subheaderTypographyProps={{ variant: 'body2' }}
++  slotProps={{
++    title: { variant: 'h6' },
++    subheader: { variant: 'body2' }
++  }}
+ />
+```
+
+```diff
+ MuiCardHeader: {
+   defaultProps: {
+-    titleTypographyProps: { variant: 'h6' },
+-    subheaderTypographyProps: { variant: 'body2' },
++    slotProps: {
++      title: { variant: 'h6' },
++      subheader: { variant: 'body2' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/card-header-props <path>
 ```
 
 #### `chip-classes`
@@ -1868,19 +1954,21 @@ npx @mui/codemod@next deprecations/slider-classes <path>
 
 ```diff
  <Tooltip
--  components={{ Arrow: CustomArrow }}
--  componentsProps={{ arrow: { testid: 'test-id' } }}
+-  components={{ Arrow: CustomArrow, Tooltip: CustomTooltip }}
+-  componentsProps={{ arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }}
 -  PopperComponent={CustomPopperComponent}
 -  TransitionComponent={CustomTransitionComponent}
 -  PopperProps={CustomPopperProps}
 -  TransitionProps={CustomTransitionProps}
 +  slots={{
 +    arrow: CustomArrow,
++    tooltip: CustomTooltip,
 +    popper: CustomPopperComponent,
 +    transition: CustomTransitionComponent,
 +  }}
 +  slotProps={{
 +    arrow: { testid: 'test-id' },
++    tooltip: { className: 'custom' },
 +    popper: CustomPopperProps,
 +    transition: CustomTransitionProps,
 +  }}
@@ -1894,15 +1982,17 @@ npx @mui/codemod@next deprecations/slider-classes <path>
 -    TransitionComponent: CustomTransitionComponent,
 -    PopperProps: CustomPopperProps,
 -    TransitionProps: CustomTransitionProps,
--    components: { Arrow: CustomArrow }
+-    components: { Arrow: CustomArrow, Tooltip: CustomTooltip }
 +    slots: {
 +      arrow: CustomArrow,
++      tooltip: CustomTooltip,
 +      popper: CustomPopperComponent,
 +      transition: CustomTransitionComponent,
 +    },
--    componentsProps: { arrow: { testid: 'test-id' }}
+-    componentsProps: { arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }
 +    slotProps: {
 +      arrow: { testid: 'test-id' },
++      tooltip: { className: 'custom' },
 +      popper: CustomPopperProps,
 +      transition: CustomTransitionProps,
 +    },

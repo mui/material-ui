@@ -438,12 +438,6 @@ export interface UseAutocompleteReturnValue<
    */
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
-   * @deprecated Use `getItemProps` instead
-   *
-   * A tag props getter.
-   */
-  getTagProps: AutocompleteGetTagProps;
-  /**
    * Resolver for the listbox component's props.
    * @returns props that should be spread on the listbox component
    */
@@ -497,12 +491,6 @@ export interface UseAutocompleteReturnValue<
    * Index of the focused item for the component.
    */
   focusedItem: number;
-  /**
-   * @deprecated Use `focusedItem` instead
-   *
-   * Index of the focused tag for the component.
-   */
-  focusedTag: number;
   /**
    * The options to render.
    * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.

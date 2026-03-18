@@ -3,7 +3,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/material/components/table/table.md?muiMarkdown';
 
 export default function Page() {
-  return <MarkdownDocs {...pageProps} />;
+  return <MarkdownDocs {...pageProps} wideLayout />;
 }
 
 Page.getLayout = (page) => {

@@ -15,15 +15,14 @@ import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
-const TOC_WIDTH = 242;
-
 const Main = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'disableToc',
+  shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'wideLayout',
 })(({ theme }) => ({
   minHeight: '100vh',
   display: 'grid',
@@ -35,15 +34,29 @@ const Main = styled('main', {
     {
       props: ({ disableToc }) => disableToc,
       style: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('lg')]: {
           marginRight: TOC_WIDTH / 2,
         },
       },
     },
     {
-      props: ({ disableToc }) => !disableToc,
+      props: ({ disableToc, wideLayout }) => !disableToc && !wideLayout,
       style: {
+        [theme.breakpoints.up('sm')]: {
+          gridTemplateColumns: '1fr auto',
+        },
         [theme.breakpoints.up('md')]: {
+          gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
+        },
+      },
+    },
+    {
+      props: ({ disableToc, wideLayout }) => !disableToc && wideLayout,
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          gridTemplateColumns: '1fr auto',
+        },
+        [`@media (min-width:${theme.breakpoints.values.xl + TOC_WIDTH}px)`]: {
           gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
         },
       },
@@ -52,7 +65,8 @@ const Main = styled('main', {
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc',
+  shouldForwardProp: (prop) =>
+    prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc' && prop !== 'wideLayout',
 })(({ theme }) => {
   return {
     position: 'relative',
@@ -65,19 +79,28 @@ const StyledAppContainer = styled(AppContainer, {
     },
     variants: [
       {
-        props: ({ disableToc }) => disableToc,
+        props: ({ disableToc, wideLayout }) => disableToc && !wideLayout,
         style: {
           // 105ch ≈ 930px
           maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
         },
       },
       {
-        props: ({ disableToc }) => !disableToc,
+        props: ({ disableToc, wideLayout }) => !disableToc && !wideLayout,
         style: {
           // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
           fontFamily: 'Arial',
           // 105ch ≈ 930px
           maxWidth: '105ch',
+        },
+      },
+      {
+        props: ({ disableToc, wideLayout }) => !disableToc && wideLayout,
+        style: {
+          maxWidth: theme.breakpoints.values.xl,
+          '& p, & li': {
+            maxWidth: '105ch',
+          },
         },
       },
       {
@@ -127,6 +150,7 @@ export default function AppLayoutDocs(props) {
     // improves the UX. It's faster to transition, and you don't lose UI states, like scroll.
     disableLayout = false,
     disableToc = false,
+    wideLayout = false,
     hasTabs = false,
     location,
     title,
@@ -161,16 +185,21 @@ export default function AppLayoutDocs(props) {
           description={description}
           card={card}
         />
-        <Main disableToc={disableToc}>
+        <Main disableToc={disableToc} wideLayout={wideLayout}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
+          <StyledAppContainer
+            disableAd={disableAd}
+            hasTabs={hasTabs}
+            disableToc={disableToc}
+            wideLayout={wideLayout}
+          >
             {children}
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
+          {disableToc ? null : <AppTableOfContents toc={toc} wideLayout={wideLayout} />}
           <BackToTop />
         </Main>
       </AdManager>
@@ -185,6 +214,7 @@ AppLayoutDocs.propTypes = {
     title: PropTypes.string,
   }),
   children: PropTypes.node.isRequired,
+  wideLayout: PropTypes.bool,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableLayout: PropTypes.bool,

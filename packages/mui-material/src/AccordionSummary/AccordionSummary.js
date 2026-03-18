@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: ['root', expanded && 'expanded', disabled && 'disabled', !disableGutters && 'gutters'],
     focusVisible: ['focusVisible'],
-    content: ['content', expanded && 'expanded', !disableGutters && 'contentGutters'],
+    content: ['content', expanded && 'expanded'],
     expandIconWrapper: ['expandIconWrapper', expanded && 'expanded'],
   };
 

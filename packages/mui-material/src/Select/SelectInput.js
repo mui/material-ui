@@ -16,6 +16,8 @@ import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
+import { areEqualValues, isEmpty, getOpenInteractionType } from './utils';
+import { SelectFocusSourceProvider } from './utils/SelectFocusSourceContext';
 
 const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
@@ -67,19 +69,6 @@ const SelectNativeInput = styled('input', {
   width: '100%',
   boxSizing: 'border-box',
 });
-
-function areEqualValues(a, b) {
-  if (typeof b === 'object' && b !== null) {
-    return a === b;
-  }
-
-  // The value could be a number, the DOM will stringify it anyway.
-  return String(a) === String(b);
-}
-
-function isEmpty(display) {
-  return display == null || (typeof display === 'string' && !display.trim());
-}
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, disabled, multiple, open, error } = ownerState;
@@ -153,7 +142,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
-
+  const [openInteractionType, setOpenInteractionType] = React.useState(null);
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -238,11 +227,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const update = (openParam, event) => {
     if (openParam) {
+      setOpenInteractionType(getOpenInteractionType(event));
+
       if (onOpen) {
         onOpen(event);
       }
-    } else if (onClose) {
-      onClose(event);
+    } else {
+      setOpenInteractionType(null);
+
+      if (onClose) {
+        onClose(event);
+      }
     }
 
     if (!isOpenControlled) {
@@ -577,41 +572,43 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ownerState={ownerState}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
-      <Menu
-        id={`menu-${name || ''}`}
-        anchorEl={anchorElement}
-        open={open}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        {...MenuProps}
-        slotProps={{
-          ...MenuProps.slotProps,
-          list: {
-            'aria-labelledby': labelId,
-            role: 'listbox',
-            'aria-multiselectable': multiple ? 'true' : undefined,
-            disableListWrap: true,
-            id: listboxId,
-            ...listProps,
-          },
-          paper: {
-            ...paperProps,
-            style: {
-              minWidth: menuMinWidth,
-              ...(paperProps != null ? paperProps.style : null),
+      <SelectFocusSourceProvider value={openInteractionType}>
+        <Menu
+          id={`menu-${name || ''}`}
+          anchorEl={anchorElement}
+          open={open}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          {...MenuProps}
+          slotProps={{
+            ...MenuProps.slotProps,
+            list: {
+              'aria-labelledby': labelId,
+              role: 'listbox',
+              'aria-multiselectable': multiple ? 'true' : undefined,
+              disableListWrap: true,
+              id: listboxId,
+              ...listProps,
             },
-          },
-        }}
-      >
-        {items}
-      </Menu>
+            paper: {
+              ...paperProps,
+              style: {
+                minWidth: menuMinWidth,
+                ...(paperProps != null ? paperProps.style : null),
+              },
+            },
+          }}
+        >
+          {items}
+        </Menu>
+      </SelectFocusSourceProvider>
     </React.Fragment>
   );
 });

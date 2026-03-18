@@ -23,16 +23,6 @@ const layoutComponents = [
     noGuidelines: true,
   },
   {
-    name: 'GridLegacy',
-    srcLight: '/static/material-ui/react-components/grid-light.png',
-    srcDark: '/static/material-ui/react-components/grid-dark.png',
-    link: '/material-ui/react-grid-legacy/',
-    md1: false,
-    md2: false,
-    md3: false,
-    noGuidelines: true,
-  },
-  {
     name: 'Grid',
     srcLight: '/static/material-ui/react-components/grid-v2-light.png',
     srcDark: '/static/material-ui/react-components/grid-v2-dark.png',

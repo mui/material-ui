@@ -7,7 +7,7 @@ import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepConnectorUtilityClass } from './stepConnectorClasses';
 
@@ -103,7 +103,7 @@ const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepConnector' });
   const { className, ...other } = props;
 
-  const { alternativeLabel, orientation = 'horizontal' } = React.useContext(StepperContext);
+  const { alternativeLabel, orientation = 'horizontal' } = useStepperContext();
   const { active, disabled, completed } = React.useContext(StepContext);
 
   const ownerState = { ...props, alternativeLabel, orientation, active, completed, disabled };
