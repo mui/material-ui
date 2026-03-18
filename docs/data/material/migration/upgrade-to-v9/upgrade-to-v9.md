@@ -720,6 +720,26 @@ The following deprecated `CircularProgress` CSS classes have been removed:
 - `circleDeterminate` → use `.MuiCircularProgress-determinate .MuiCircularProgress-circle`
 - `circleIndeterminate` → use `.MuiCircularProgress-indeterminate .MuiCircularProgress-circle`
 
+If you were using these deprecated class names as `styleOverrides` keys in your theme, move the styles into the `root` override using compound selectors with `circularProgressClasses`:
+
+```diff
++import { circularProgressClasses } from '@mui/material/CircularProgress';
+
+ const theme = createTheme({
+   components: {
+     MuiCircularProgress: {
+       styleOverrides: {
+-        circleDeterminate: { strokeDashoffset: '10px' },
+-        circleIndeterminate: { animationDuration: '1.4s' },
++        root: {
++          [`&.${circularProgressClasses.determinate} .${circularProgressClasses.circle}`]: { strokeDashoffset: '10px' },
++          [`&.${circularProgressClasses.indeterminate} .${circularProgressClasses.circle}`]: { animationDuration: '1.4s' },
++        },
+       },
+     },
+   },
+ });
+```
 
 #### Divider deprecated props removed
 
@@ -771,14 +791,13 @@ The following deprecated props have been removed:
 - `components` — use `slots` instead
 - `componentsProps` — use `slotProps` instead
 
-```diff
+````diff
  <Popper
 -  components={{ Root: CustomRoot }}
 -  componentsProps={{ root: { className: 'custom' } }}
 +  slots={{ root: CustomRoot }}
 +  slotProps={{ root: { className: 'custom' } }}
  />
-```
 
 #### Slider deprecated props removed
 
@@ -786,7 +805,7 @@ Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/pack
 
 ```bash
 npx @mui/codemod@latest deprecations/slider-props <path>
-```
+````
 
 The following deprecated props have been removed from the `Slider` component:
 
