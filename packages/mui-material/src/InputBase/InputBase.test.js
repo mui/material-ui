@@ -674,14 +674,16 @@ describe('<InputBase />', () => {
         <TextField
           value=""
           name="text"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Select value="" name="suffix" />
-              </InputAdornment>
-            ),
-          }}
           variant="standard"
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Select value="" name="suffix" />
+                </InputAdornment>
+              ),
+            },
+          }}
         />,
       );
     });

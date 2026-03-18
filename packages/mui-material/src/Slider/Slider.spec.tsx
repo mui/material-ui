@@ -22,18 +22,9 @@ function testOnChange() {
 <Slider color="info" />;
 <Slider color="warning" />;
 
-// slotProps and componentsProps as objects
+// slotProps as objects
 <Slider
   slotProps={{
-    root: { onMouseDown: () => 'onMouseDown event triggered' },
-    input: { disabled: true },
-    mark: { onClick: () => 'clicked' },
-    markLabel: { className: 'markLabel' },
-    rail: { className: 'rail' },
-    thumb: { className: 'thumb' },
-    valueLabel: { valueLabelDisplay: 'auto' },
-  }}
-  componentsProps={{
     root: { onMouseDown: () => 'onMouseDown event triggered' },
     input: { disabled: true },
     mark: { onClick: () => 'clicked' },
@@ -44,21 +35,9 @@ function testOnChange() {
   }}
 />;
 
-// slotProps and componentsProps as functions
+// slotProps as functions
 <Slider
   slotProps={{
-    root: ({ color }) => ({ className: color === 'primary' ? 'root_primary' : 'root_secondary' }),
-    input: ({ size }) => ({ disabled: size === 'medium' }),
-    mark: ({ marked }) => ({
-      className: marked ? 'marked' : '',
-    }),
-    markLabel: ({ max }) => ({ className: max === 99 ? 'red' : 'normal' }),
-    rail: ({ dragging }) => ({
-      className: dragging ? 'rail' : '',
-    }),
-    thumb: ({ orientation }) => ({ className: orientation === 'vertical' ? 'thumb_vertical' : '' }),
-  }}
-  componentsProps={{
     root: ({ color }) => ({ className: color === 'primary' ? 'root_primary' : 'root_secondary' }),
     input: ({ size }) => ({ disabled: size === 'medium' }),
     mark: ({ marked }) => ({

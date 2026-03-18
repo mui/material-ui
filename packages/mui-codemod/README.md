@@ -870,6 +870,36 @@ CSS transforms:
 npx @mui/codemod@next deprecations/button-group-classes <path>
 ```
 
+#### `card-header-props`
+
+```diff
+ <CardHeader
+-  titleTypographyProps={{ variant: 'h6' }}
+-  subheaderTypographyProps={{ variant: 'body2' }}
++  slotProps={{
++    title: { variant: 'h6' },
++    subheader: { variant: 'body2' }
++  }}
+ />
+```
+
+```diff
+ MuiCardHeader: {
+   defaultProps: {
+-    titleTypographyProps: { variant: 'h6' },
+-    subheaderTypographyProps: { variant: 'body2' },
++    slotProps: {
++      title: { variant: 'h6' },
++      subheader: { variant: 'body2' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/card-header-props <path>
+```
+
 #### `chip-classes`
 
 JS transforms:
@@ -1924,19 +1954,21 @@ npx @mui/codemod@next deprecations/slider-classes <path>
 
 ```diff
  <Tooltip
--  components={{ Arrow: CustomArrow }}
--  componentsProps={{ arrow: { testid: 'test-id' } }}
+-  components={{ Arrow: CustomArrow, Tooltip: CustomTooltip }}
+-  componentsProps={{ arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }}
 -  PopperComponent={CustomPopperComponent}
 -  TransitionComponent={CustomTransitionComponent}
 -  PopperProps={CustomPopperProps}
 -  TransitionProps={CustomTransitionProps}
 +  slots={{
 +    arrow: CustomArrow,
++    tooltip: CustomTooltip,
 +    popper: CustomPopperComponent,
 +    transition: CustomTransitionComponent,
 +  }}
 +  slotProps={{
 +    arrow: { testid: 'test-id' },
++    tooltip: { className: 'custom' },
 +    popper: CustomPopperProps,
 +    transition: CustomTransitionProps,
 +  }}
@@ -1950,15 +1982,17 @@ npx @mui/codemod@next deprecations/slider-classes <path>
 -    TransitionComponent: CustomTransitionComponent,
 -    PopperProps: CustomPopperProps,
 -    TransitionProps: CustomTransitionProps,
--    components: { Arrow: CustomArrow }
+-    components: { Arrow: CustomArrow, Tooltip: CustomTooltip }
 +    slots: {
 +      arrow: CustomArrow,
++      tooltip: CustomTooltip,
 +      popper: CustomPopperComponent,
 +      transition: CustomTransitionComponent,
 +    },
--    componentsProps: { arrow: { testid: 'test-id' }}
+-    componentsProps: { arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }
 +    slotProps: {
 +      arrow: { testid: 'test-id' },
++      tooltip: { className: 'custom' },
 +      popper: CustomPopperProps,
 +      transition: CustomTransitionProps,
 +    },

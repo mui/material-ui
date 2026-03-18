@@ -61,7 +61,7 @@ Make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG2
 
 ### Transitions
 
-You can use the `TransitionComponent` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
+You can use the `slots.transition` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
 
 {{"demo": "TransitionsSnackbar.js"}}
 

@@ -63,6 +63,10 @@ the click event now bubbles to their ancestors.
 Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
 in the ButtonBase keyboard handlers. This is actually the expected behavior.
 
+#### Event handlers on disabled non-native buttons
+
+When ButtonBase renders a non-native element like a `<span>`, keyboard event handlers will no longer run when the component is disabled.
+
 ### Autocomplete
 
 #### Listbox toggle on right click
@@ -117,6 +121,31 @@ This also fixes an issue where props like `color` were consumed by the Grid inst
   hello
 </Grid>
 ```
+
+### GridLegacy
+
+The `GridLegacy` component is **removed**, use the `Grid` component instead.
+
+The main API differences are:
+
+- The `item` prop is no longer needed.
+- The `xs`, `sm`, `md`, `lg`, `xl` props are replaced by the `size` prop.
+
+```diff
+-import Grid from '@mui/material/GridLegacy';
++import Grid from '@mui/material/Grid';
+
+ <Grid container spacing={2}>
+-  <Grid item xs={12} sm={6}>
++  <Grid size={{ xs: 12, sm: 6 }}>
+     ...
+   </Grid>
+ </Grid>
+```
+
+See the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/) for more details.
+
+`MuiGridLegacy` has also been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
 
 ### TablePagination numbers are formatted by default
 
@@ -249,128 +278,46 @@ The following deprecated props have been removed from the `Autocomplete` compone
 - `PopperComponent` → use `slots.popper`
 - `renderTags` → use `renderValue`
 
-##### ChipProps prop
-
-The deprecated `ChipProps` prop has been removed. Use `slotProps.chip` instead.
-
 ```diff
  <Autocomplete
    multiple
    options={options}
--  ChipProps={{ size: 'small' }}
-+  slotProps={{ chip: { size: 'small' } }}
- />
-```
-
-##### componentsProps prop
-
-The deprecated `componentsProps` prop has been removed. Use `slotProps` instead.
-
-```diff
- <Autocomplete
-   options={options}
    renderInput={(params) => <TextField {...params} />}
+-  ChipProps={{ size: 'small' }}
 -  componentsProps={{
 -    clearIndicator: { size: 'large' },
 -    paper: { elevation: 2 },
 -    popper: { placement: 'bottom-end' },
 -    popupIndicator: { size: 'large' },
 -  }}
-+  slotProps={{
-+    clearIndicator: { size: 'large' },
-+    paper: { elevation: 2 },
-+    popper: { placement: 'bottom-end' },
-+    popupIndicator: { size: 'large' },
-+  }}
- />
-```
-
-##### ListboxComponent and ListboxProps props
-
-The deprecated `ListboxComponent` and `ListboxProps` props have been removed.
-
-Use `slots.listbox` instead of `ListboxComponent`:
-
-```diff
- <Autocomplete
-   options={options}
-   renderInput={(params) => <TextField {...params} />}
 -  ListboxComponent={CustomListbox}
-+  slots={{ listbox: CustomListbox }}
- />
-```
-
-Use `slotProps.listbox` instead of `ListboxProps`:
-
-```diff
- <Autocomplete
-   options={options}
-   renderInput={(params) => <TextField {...params} />}
--  ListboxProps={{ style: { maxHeight: 200 } }}
-+  slotProps={{ listbox: { style: { maxHeight: 200 } } }}
- />
-```
-
-If you were passing a `ref` via `ListboxProps`, move it to `slotProps.listbox.ref`:
-
-```diff
- <Autocomplete
-   options={options}
-   renderInput={(params) => <TextField {...params} />}
--  ListboxProps={{ ref }}
-+  slotProps={{ listbox: { ref } }}
- />
-```
-
-##### PaperComponent and PopperComponent props
-
-The deprecated `PaperComponent` and `PopperComponent` props have been removed. Use `slots.paper` and `slots.popper` instead.
-
-```diff
- <Autocomplete
-   options={options}
-   renderInput={(params) => <TextField {...params} />}
+-  ListboxProps={{ style: { maxHeight: 200 }, ref }}
 -  PaperComponent={CustomPaper}
--  PopperComponent={CustomPopper}
-+  slots={{
-+    paper: CustomPaper,
-+    popper: CustomPopper,
-+  }}
- />
-```
-
-If you were providing an inline component:
-
-```diff
- <Autocomplete
-   options={options}
-   renderInput={(params) => <TextField {...params} />}
 -  PopperComponent={(props) => {
 -    const { disablePortal, anchorEl, open, ...other } = props;
 -    return <Box {...other} />;
 -  }}
-+  slots={{
-+    popper: (props) => {
-+      const { disablePortal, anchorEl, open, ...other } = props;
-+      return <Box {...other} />;
-+    },
-+  }}
- />
-```
-
-##### renderTags prop
-
-The deprecated `renderTags` prop has been removed. Use `renderValue` instead.
-
-```diff
- <Autocomplete
-   multiple
-   options={options}
 -  renderTags={(value, getTagProps, ownerState) =>
 -    value.map((option, index) => (
 -      <Chip label={option.label} {...getTagProps({ index })} />
 -    ))
 -  }
++  slots={{
++    listbox: CustomListbox,
++    paper: CustomPaper,
++    popper: (props) => {
++      const { disablePortal, anchorEl, open, ...other } = props;
++      return <Box {...other} />;
++    },
++  }}
++  slotProps={{
++    chip: { size: 'small' },
++    clearIndicator: { size: 'large' },
++    listbox: { style: { maxHeight: 200 }, ref },
++    paper: { elevation: 2 },
++    popper: { placement: 'bottom-end' },
++    popupIndicator: { size: 'large' },
++  }}
 +  renderValue={(value, getItemProps, ownerState) =>
 +    value.map((option, index) => (
 +      <Chip label={option.label} {...getItemProps({ index })} />
@@ -424,8 +371,13 @@ Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/
 npx @mui/codemod@latest deprecations/text-field-props <path>
 ```
 
-The deprecated `TextField` props have been removed.
-Use the `slotProps` prop instead:
+The following deprecated props have been removed from the `TextField` component:
+
+- `InputProps` → use `slotProps.input`
+- `inputProps` → use `slotProps.htmlInput`
+- `SelectProps` → use `slotProps.select`
+- `InputLabelProps` → use `slotProps.inputLabel`
+- `FormHelperTextProps` → use `slotProps.formHelperText`
 
 ```diff
  <TextField
@@ -469,5 +421,290 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
        }}
      />
    )}
+```
+
+#### Tooltip deprecated props removed
+
+Use the [tooltip-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/tooltip-props <path>
+```
+
+The following deprecated props have been removed from the `Tooltip` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
+- `PopperComponent` → use `slots.popper`
+- `PopperProps` → use `slotProps.popper`
+- `TransitionComponent` → use `slots.transition`
+- `TransitionProps` → use `slotProps.transition`
+
+```diff
+ <Tooltip
+   title="Hello World"
+-  components={{ Popper: CustomPopper, Tooltip: CustomTooltip, Transition: CustomTransition, Arrow: CustomArrow }}
+-  componentsProps={{ popper: { placement: 'top' }, tooltip: { className: 'custom' }, arrow: { className: 'arrow' } }}
+-  PopperComponent={CustomPopper}
+-  PopperProps={{ disablePortal: true }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ popper: CustomPopper, tooltip: CustomTooltip, transition: CustomTransition, arrow: CustomArrow }}
++  slotProps={{
++    popper: { placement: 'top', disablePortal: true },
++    tooltip: { className: 'custom' },
++    transition: { timeout: 500 },
++    arrow: { className: 'arrow' },
++  }}
+ />
+```
+
+#### Alert deprecated props removed
+
+Use the [alert-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+The following deprecated props have been removed from the `Alert` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
+
+```diff
+ <Alert
+   onClose={handleClose}
+-  components={{ CloseIcon: MyCloseIcon, CloseButton: MyCloseButton }}
+-  componentsProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
++  slots={{ closeIcon: MyCloseIcon, closeButton: MyCloseButton }}
++  slotProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
+ />
+```
+
+#### Accordion deprecated props removed
+
+Use the [accordion-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+The following deprecated props have been removed from the `Accordion` component:
+
+- `TransitionComponent` → use `slots.transition`
+- `TransitionProps` → use `slotProps.transition`
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ >
+```
+
+#### AccordionSummary deprecated CSS classes removed
+
+Use the [accordion-summary-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
+The deprecated `AccordionSummary` CSS class `contentGutters` has been removed.
+Use the combination of `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes instead:
+
+```diff
+-.MuiAccordionSummary-contentGutters {
++.MuiAccordionSummary-gutters .MuiAccordionSummary-content {
+   margin: 20px 0;
+ }
+```
+
+#### Avatar deprecated props removed
+
+Use the [avatar-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
+```
+
+The following deprecated props have been removed from the `Avatar` component:
+
+- `imgProps` → use `slotProps.img`
+
+```diff
+-<Avatar imgProps={{ crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' }} />
++<Avatar slotProps={{ img: { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' } }} />
+```
+
+#### AvatarGroup deprecated props removed
+
+Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-group-props <path>
+```
+
+The following deprecated props have been removed from the `AvatarGroup` component:
+
+- `componentsProps` → use `slotProps` (the `additionalAvatar` key has been renamed to `surplus`)
+
+```diff
+-<AvatarGroup componentsProps={{ additionalAvatar: { className: 'my-class' } }}>
++<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
+```
+
+If you were already using the `surplus` key via `componentsProps`, move it to `slotProps`:
+
+```diff
+-<AvatarGroup componentsProps={{ surplus: { className: 'my-class' } }}>
++<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
+```
+
+#### Backdrop deprecated props removed
+
+Use the [backdrop-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/backdrop-props <path>
+```
+
+The following deprecated `Backdrop` props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+- `TransitionComponent` — use `slots.transition` instead
+
+```diff
+ <Backdrop
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'my-class' } }}
+-  TransitionComponent={CustomTransition}
++  slots={{ root: CustomRoot, transition: CustomTransition }}
++  slotProps={{ root: { className: 'my-class' } }}
+```
+
+#### Badge deprecated props removed
+
+Use the [badge-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
+The following deprecated props have been removed from the `Badge` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
+
+```diff
+ <Badge
+-  components={{ Root: CustomRoot, Badge: CustomBadge }}
+-  componentsProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
++  slots={{ root: CustomRoot, badge: CustomBadge }}
++  slotProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
+ />
+```
+
+#### Slider deprecated props removed
+
+Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
+The following deprecated props have been removed from the `Slider` component:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <Slider
+-  components={{ Track: CustomTrack }}
+-  componentsProps={{ track: { testid: 'test-id' } }}
++  slots={{ track: CustomTrack }}
++  slotProps={{ track: { testid: 'test-id' } }}
+ />
+```
+
+#### Snackbar deprecated props removed
+
+Use the [snackbar-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#snackbar-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/snackbar-props <path>
+```
+
+The following deprecated `Snackbar` props have been removed:
+
+- `ClickAwayListenerProps` — use `slotProps.clickAwayListener` instead
+- `ContentProps` — use `slotProps.content` instead
+- `TransitionComponent` — use `slots.transition` instead
+- `TransitionProps` — use `slotProps.transition` instead
+
+```diff
+ <Snackbar
+-  ClickAwayListenerProps={CustomClickAwayListenerProps}
+-  ContentProps={CustomContentProps}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={CustomTransitionProps}
++  slots={{ transition: CustomTransition }}
++  slotProps={{
++    clickAwayListener: CustomClickAwayListenerProps,
++    content: CustomContentProps,
++    transition: CustomTransitionProps,
++  }}
+ />
+```
+
+#### Typography deprecated CSS classes removed
+
+The deprecated `paragraph` CSS class has been removed.
+Use CSS `.MuiTypography-root:where(p)` to apply custom styles for the paragraph element instead:
+
+```diff
+-.MuiTypography-paragraph {
+-  margin-bottom: 16px;
+-}
++.MuiTypography-root:where(p) {
++  margin-bottom: 16px;
++}
+```
+
+#### Typography deprecated props removed
+
+Use the [typography-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+The following deprecated props have been removed from the `Typography` component:
+
+- `paragraph` → use the `sx` prop to add a margin bottom instead
+
+```diff
+-<Typography paragraph />
++<Typography sx={{ marginBottom: '16px' }} />
+```
+
+#### Divider deprecated props removed
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+The deprecated `Divider` prop have been removed.
+Use `sx={{ opacity : "0.6" }}` (or any opacity):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity: 0.6 }}
  />
 ```

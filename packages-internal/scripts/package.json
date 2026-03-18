@@ -35,7 +35,7 @@
     "@babel/types": "^7.29.0",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.44.0",
+    "es-toolkit": "^1.45.1",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "@types/babel__core": "7.20.5",
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
-    "@types/node": "20.19.35",
+    "@types/node": "20.19.37",
     "@types/react": "19.2.14",
     "@types/uuid": "10.0.0",
     "chai": "6.2.2",

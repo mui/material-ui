@@ -25,7 +25,7 @@ const v6Colors = {
 const extendSxProp = internal_createExtendSxProp();
 
 const useUtilityClasses = (ownerState) => {
-  const { align, gutterBottom, noWrap, paragraph, variant, classes } = ownerState;
+  const { align, gutterBottom, noWrap, variant, classes } = ownerState;
 
   const slots = {
     root: [
@@ -34,7 +34,6 @@ const useUtilityClasses = (ownerState) => {
       ownerState.align !== 'inherit' && `align${capitalize(align)}`,
       gutterBottom && 'gutterBottom',
       noWrap && 'noWrap',
-      paragraph && 'paragraph',
     ],
   };
 
@@ -53,7 +52,6 @@ export const TypographyRoot = styled('span', {
       ownerState.align !== 'inherit' && styles[`align${capitalize(ownerState.align)}`],
       ownerState.noWrap && styles.noWrap,
       ownerState.gutterBottom && styles.gutterBottom,
-      ownerState.paragraph && styles.paragraph,
     ];
   },
 })(
@@ -113,12 +111,6 @@ export const TypographyRoot = styled('span', {
           marginBottom: '0.35em',
         },
       },
-      {
-        props: ({ ownerState }) => ownerState.paragraph,
-        style: {
-          marginBottom: 16,
-        },
-      },
     ],
   })),
 );
@@ -152,7 +144,6 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     component,
     gutterBottom = false,
     noWrap = false,
-    paragraph = false,
     variant = 'body1',
     variantMapping = defaultVariantMapping,
     ...other
@@ -166,15 +157,12 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     component,
     gutterBottom,
     noWrap,
-    paragraph,
     variant,
     variantMapping,
   };
 
   const Component =
-    component ||
-    (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
-    'span';
+    component || variantMapping[variant] || defaultVariantMapping[variant] || 'span';
 
   const classes = useUtilityClasses(ownerState);
 
@@ -252,12 +240,6 @@ Typography.propTypes /* remove-proptypes */ = {
    * @default false
    */
   noWrap: PropTypes.bool,
-  /**
-   * If `true`, the element will be a paragraph element.
-   * @default false
-   * @deprecated Use the `component` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  paragraph: PropTypes.bool,
   /**
    * @ignore
    */

@@ -127,17 +127,34 @@ function focusThumb({
   sliderRef,
   activeIndex,
   setActive,
+  focusVisible,
 }: {
   sliderRef: React.RefObject<any>;
   activeIndex: number;
   setActive?: ((num: number) => void) | undefined;
+  focusVisible?: boolean | undefined;
 }) {
   const doc = ownerDocument(sliderRef.current);
   if (
     !sliderRef.current?.contains(doc.activeElement) ||
     Number(doc?.activeElement?.getAttribute('data-index')) !== activeIndex
   ) {
-    sliderRef.current?.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
+    const input = sliderRef.current?.querySelector(
+      `[type="range"][data-index="${activeIndex}"]`,
+    ) as HTMLInputElement | null;
+    if (input != null) {
+      if (focusVisible === undefined) {
+        input.focus({ preventScroll: true });
+      } else {
+        input.focus({
+          preventScroll: true,
+          // Prevent pointer-driven focus rings in browsers that support this option.
+          // Chrome 144+ supports `focusVisible` in `HTMLElement.focus()` options.
+          // @ts-ignore - `focusVisible` is not yet in TypeScript's lib.dom FocusOptions.
+          focusVisible,
+        });
+      }
+    }
   }
 
   if (setActive) {
@@ -220,6 +237,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   } = parameters;
 
   const touchId = React.useRef<number>(undefined);
+  const focusFrame = React.useRef<number | null>(null);
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
   // - The active state isn't transferred when inversing a range slider.
@@ -227,6 +245,12 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const [open, setOpen] = React.useState(-1);
   const [dragging, setDragging] = React.useState(false);
   const moveCount = React.useRef(0);
+  const cancelFocusFrame = useEventCallback(() => {
+    if (focusFrame.current != null) {
+      cancelAnimationFrame(focusFrame.current);
+      focusFrame.current = null;
+    }
+  });
   // lastChangedValue is updated whenever onChange is triggered.
   const lastChangedValue = React.useRef<number | number[] | null>(null);
 
@@ -551,7 +575,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       move: true,
     });
 
-    focusThumb({ sliderRef, activeIndex, setActive });
+    focusThumb({ sliderRef, activeIndex, setActive, focusVisible: false });
     setValueState(newValue);
 
     if (!dragging && moveCount.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
@@ -605,7 +629,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const finger = trackFinger(nativeEvent, touchId);
     if (finger !== false) {
       const { newValue, activeIndex } = getFingerNewValue({ finger });
-      focusThumb({ sliderRef, activeIndex, setActive });
+      focusThumb({ sliderRef, activeIndex, setActive, focusVisible: false });
 
       setValueState(newValue);
 
@@ -637,15 +661,17 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     return () => {
       slider!.removeEventListener('touchstart', handleTouchStart);
 
+      cancelFocusFrame();
       stopListening();
     };
-  }, [stopListening, handleTouchStart]);
+  }, [stopListening, handleTouchStart, cancelFocusFrame]);
 
   React.useEffect(() => {
     if (disabled) {
       stopListening();
+      cancelFocusFrame();
     }
-  }, [disabled, stopListening]);
+  }, [disabled, stopListening, cancelFocusFrame]);
 
   const createHandleMouseDown =
     (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLSpanElement>) => {
@@ -663,12 +689,26 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         return;
       }
 
-      // Avoid text selection
-      event.preventDefault();
       const finger = trackFinger(event, touchId);
       if (finger !== false) {
         const { newValue, activeIndex } = getFingerNewValue({ finger });
-        focusThumb({ sliderRef, activeIndex, setActive });
+        const doc = ownerDocument(sliderRef.current);
+        const activeElement = doc.activeElement;
+        const pressedOnFocusedThumb =
+          sliderRef.current?.contains(activeElement) &&
+          Number(activeElement?.getAttribute('data-index')) === activeIndex;
+
+        setActive(activeIndex);
+
+        if (pressedOnFocusedThumb) {
+          event.preventDefault();
+        } else {
+          cancelFocusFrame();
+          focusFrame.current = requestAnimationFrame(() => {
+            focusFrame.current = null;
+            focusThumb({ sliderRef, activeIndex, focusVisible: false });
+          });
+        }
 
         setValueState(newValue);
 
