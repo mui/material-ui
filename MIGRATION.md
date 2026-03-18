@@ -634,8 +634,8 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 
 ### Phase 9: AppLayoutDocs Level 3
 
-- [ ] 9.1 `AppNavDrawer.tsx` — `git commit -m "[docs-infra] Migrate AppNavDrawer to @mui/docs (9.1)"`
-- [ ] 9.2 `AppLayoutDocsFooter.js` → `.tsx` — `git commit -m "[docs-infra] Migrate AppLayoutDocsFooter to @mui/docs (9.2)"`
+- [x] 9.1 `AppNavDrawer.tsx` (added `routes` prop, threaded through `ProductIdentifier` → `ProductDrawerButton` → `MuiProductSelector`)
+- [x] 9.2 `AppLayoutDocsFooter.js` kept as `.js`
 
 ### Phase 10: AppLayoutDocs Level 4
 
