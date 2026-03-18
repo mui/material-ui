@@ -391,8 +391,8 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    */
   LinkComponent: PropTypes.elementType,
   /**
-   * Whether the custom component should render a native `<button>` element when
-   * rendering a React component with the `component` or `slots` prop.
+   * Whether the custom component is expected to render a native `<button>` element
+   * when passing a React component to the `component` or `slots` prop.
    */
   nativeButton: PropTypes.bool,
   /**

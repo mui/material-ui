@@ -69,7 +69,9 @@ When ButtonBase renders a non-native element like a `<span>`, keyboard and click
 
 #### Replacing native button elements with non-interactive elements
 
-The `nativeButton` prop is available on `<ButtonBase>` and all button-like components to ensure that they are rendered with the correct HTML attributes before hydration, for example during server-side rendering. This should be specified when when passing a React component to the `component` prop of a button-like component. This should be specified if the custom component either replaces the default rendered element:
+The `nativeButton` prop is available on `<ButtonBase>` and all button-like components to ensure that they are rendered with the correct HTML attributes before hydration, for example during server-side rendering.
+
+This should be specified when passing a React component to the `component` prop of a button-like component that either replaces the default rendered element:
 
 - From a native `<button>` to a non-interactive element like a `<div>`, or
 - From a non-button like a `<div>` to a native `<button>`
