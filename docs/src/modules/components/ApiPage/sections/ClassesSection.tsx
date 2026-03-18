@@ -3,10 +3,7 @@ import * as React from 'react';
 import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import Box from '@mui/material/Box';
-import ToggleDisplayOption, {
-  ApiDisplayOptions,
-  useApiPageOption,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { ToggleDisplayOption, type ApiDisplayLayout, useApiPageOption } from '@mui/docs/ApiPage';
 import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
 import {
@@ -71,7 +68,7 @@ export type ClassesSectionProps = (
    * @default 'h2'
    */
   level?: 'h2' | 'h3' | 'h4';
-  defaultLayout: ApiDisplayOptions;
+  defaultLayout: ApiDisplayLayout;
   layoutStorageKey: string;
   displayClassKeys?: boolean;
   styleOverridesLink?: string;

@@ -15,10 +15,7 @@ import ClassesSection from 'docs/src/modules/components/ApiPage/sections/Classes
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import {
-  ApiDisplayOptions,
-  DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from '@mui/docs/ApiPage';
 import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
@@ -56,7 +53,7 @@ type ComponentsApiContentProps = {
     };
   };
   pageContents: { [component: string]: ComponentApiContent };
-  defaultLayout?: ApiDisplayOptions;
+  defaultLayout?: ApiDisplayLayout;
   layoutStorageKey?: LayoutStorageKeys;
 };
 

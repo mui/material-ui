@@ -7,9 +7,9 @@ import CheckIcon from '@mui/icons-material/Check';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 
-export type ApiDisplayOptions = 'collapsed' | 'expanded' | 'table';
+export type ApiDisplayLayout = 'collapsed' | 'expanded' | 'table';
 
-const options: ApiDisplayOptions[] = ['collapsed', 'expanded', 'table'];
+const options: ApiDisplayLayout[] = ['collapsed', 'expanded', 'table'];
 
 export const DEFAULT_API_LAYOUT_STORAGE_KEYS = {
   slots: 'apiPage_slots',
@@ -19,15 +19,15 @@ export const DEFAULT_API_LAYOUT_STORAGE_KEYS = {
 
 let neverHydrated = true;
 
-function getOption(storageKey: string, defaultValue: ApiDisplayOptions): ApiDisplayOptions {
+function getOption(storageKey: string, defaultValue: ApiDisplayLayout): ApiDisplayLayout {
   if (neverHydrated) {
     return defaultValue;
   }
   try {
     const savedOption = localStorage.getItem(storageKey);
 
-    if (savedOption !== null && options.includes(savedOption as ApiDisplayOptions)) {
-      return savedOption as ApiDisplayOptions;
+    if (savedOption !== null && options.includes(savedOption as ApiDisplayLayout)) {
+      return savedOption as ApiDisplayLayout;
     }
   } catch (error) {
     return defaultValue;
@@ -37,8 +37,8 @@ function getOption(storageKey: string, defaultValue: ApiDisplayOptions): ApiDisp
 
 export function useApiPageOption(
   storageKey: string,
-  defaultValue: ApiDisplayOptions,
-): [ApiDisplayOptions, (newOption: ApiDisplayOptions) => void] {
+  defaultValue: ApiDisplayLayout,
+): [ApiDisplayLayout, (newOption: ApiDisplayLayout) => void] {
   const [option, setOption] = React.useState(getOption(storageKey, defaultValue));
 
   useEnhancedEffect(() => {
@@ -58,7 +58,7 @@ export function useApiPageOption(
   }, [option, defaultValue]);
 
   const updateOption = React.useCallback(
-    (newOption: ApiDisplayOptions) => {
+    (newOption: ApiDisplayLayout) => {
       try {
         localStorage.setItem(storageKey, newOption);
       } catch (error) {
@@ -73,15 +73,15 @@ export function useApiPageOption(
 }
 
 interface ToggleDisplayOptionProps {
-  displayOption: ApiDisplayOptions;
-  setDisplayOption: (newValue: ApiDisplayOptions) => void;
+  displayOption: ApiDisplayLayout;
+  setDisplayOption: (newValue: ApiDisplayLayout) => void;
   /**
    * The type of section. This value is used to send correct event to Google Analytics.
    */
   sectionType: 'classes' | 'props' | 'slots';
 }
 
-export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
+export function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
   const { displayOption, setDisplayOption, sectionType } = props;
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -97,7 +97,7 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
     setOpen(false);
   };
 
-  const handleMenuItemClick = (newDisplayOption: ApiDisplayOptions) => {
+  const handleMenuItemClick = (newDisplayOption: ApiDisplayLayout) => {
     setDisplayOption(newDisplayOption);
     handleClose();
   };

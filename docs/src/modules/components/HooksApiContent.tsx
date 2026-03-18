@@ -11,10 +11,7 @@ import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/Prop
 import { getHookApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import {
-  ApiDisplayOptions,
-  DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from '@mui/docs/ApiPage';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {
@@ -48,7 +45,7 @@ type HooksApiContentProps = {
     };
   };
   pagesContents: { [component: string]: HookApiContent };
-  defaultLayout?: ApiDisplayOptions;
+  defaultLayout?: ApiDisplayLayout;
   layoutStorageKey?: LayoutStorageKeys;
 };
 

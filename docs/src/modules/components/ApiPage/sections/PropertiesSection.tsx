@@ -3,17 +3,18 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
-import ToggleDisplayOption, {
-  ApiDisplayOptions,
+import {
+  ToggleDisplayOption,
+  type ApiDisplayLayout,
   useApiPageOption,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+  LayoutStorageKeys,
+} from '@mui/docs/ApiPage';
 import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 import {
   PropertyDefinition,
   getPropsApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
-import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
 import {
   ComponentApiContent,
   PropsTableItem,
@@ -82,7 +83,7 @@ type PropertiesSectionProps = (
     }
 ) & {
   spreadHint?: string;
-  defaultLayout: ApiDisplayOptions;
+  defaultLayout: ApiDisplayLayout;
   layoutStorageKey: LayoutStorageKeys['props'];
   /**
    * The translation key of the section title.

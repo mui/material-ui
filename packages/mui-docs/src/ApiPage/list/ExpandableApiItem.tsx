@@ -178,7 +178,7 @@ type ExpandableApiItemProps = {
   type?: DescriptionType;
 };
 
-export default function ExpandableApiItem(props: ExpandableApiItemProps) {
+export function ExpandableApiItem(props: ExpandableApiItemProps) {
   const {
     children,
     className,

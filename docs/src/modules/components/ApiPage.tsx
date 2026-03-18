@@ -18,10 +18,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import {
-  ApiDisplayOptions,
-  DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from '@mui/docs/ApiPage';
 import {
   getPropsApiDefinitions,
   getPropertiesToc,
@@ -91,7 +88,7 @@ interface ApiPageProps {
   };
   disableAd?: boolean;
   pageContent: ComponentApiContent;
-  defaultLayout?: ApiDisplayOptions;
+  defaultLayout?: ApiDisplayLayout;
   /**
    * The localStorage key used to save the user layout for each section.
    * It's useful to dave different preferences on different pages.
