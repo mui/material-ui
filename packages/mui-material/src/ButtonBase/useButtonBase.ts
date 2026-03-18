@@ -187,7 +187,8 @@ export default function useButtonBase(
 
   // A helper for event handlers to determine whether to use browser-defined keyboard activation
   // for native elements like <button> and <a href>, or synthesize Enter/Space clicks for non-native
-  // elements like `<div role="button">`
+  // elements like `<div role="button">`.
+  // This is UNSAFE TO USE outside of event handers, e.g. in render.
   const hasNativeKeyboardActivation = React.useCallback(() => {
     const root = rootRef.current;
 

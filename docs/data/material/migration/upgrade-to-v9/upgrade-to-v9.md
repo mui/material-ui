@@ -65,7 +65,29 @@ in the ButtonBase keyboard handlers. This is actually the expected behavior.
 
 #### Event handlers on disabled non-native buttons
 
-When ButtonBase renders a non-native element like a `<span>`, keyboard event handlers will no longer run when the component is disabled.
+When ButtonBase renders a non-native element like a `<span>`, keyboard and click event handlers will no longer run when the component is disabled.
+
+#### Replacing native button elements with non-interactive elements
+
+The `nativeButton` prop is available on `<ButtonBase>` and all button-like components to ensure that they are rendered with the correct HTML attributes before hydration, for example during server-side rendering. This should be specified when when passing a React component to the `component` prop of a button-like component. This should be specified if the custom component either replaces the default rendered element:
+
+- From a native `<button>` to a non-interactive element like a `<div>`, or
+- From a non-button like a `<div>` to a native `<button>`
+
+```jsx
+const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+  return <div ref={ref} {...props} />;
+})
+
+<Button component={CustomButton} nativeButton={false}>
+  OK
+</Button>
+```
+
+A warning will be shown in development mode if the `nativeButton` prop is incorrectly omitted, or if the resolved element
+does not match the value of the prop.
+
+The prop can be used for: `<ButtonBase>`, `<Button>`, `<Fab>`, `<IconButton>`, `<ListItemButton>`, `<MenuItem>`, `<StepButton>`, `<Tab>`, `<ToggleButton>`, `<AccordionSummary>`, `<BottomNavigationAction>`, `<CardActionArea>`, `<TableSortLabel>` and `<PaginationItem>`.
 
 ### Autocomplete
 
