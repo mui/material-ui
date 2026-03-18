@@ -696,6 +696,89 @@ The following deprecated `Button` CSS classes have been removed:
 - `iconSizeMedium` → use `.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon`
 - `iconSizeLarge` → use `.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon`
 
+If you were using these deprecated class names as `styleOverrides` keys in your theme, move the styles into the `root` override using compound selectors with `buttonClasses`:
+
+```diff
++import { buttonClasses } from '@mui/material/Button';
+
+ const theme = createTheme({
+   components: {
+     MuiButton: {
+       styleOverrides: {
+-        textInherit: { color: 'inherit' },
+-        textPrimary: { color: 'blue' },
+-        textSecondary: { color: 'purple' },
+-        textSuccess: { color: 'green' },
+-        textError: { color: 'red' },
+-        textInfo: { color: 'cyan' },
+-        textWarning: { color: 'orange' },
+-        outlinedInherit: { borderColor: 'inherit' },
+-        outlinedPrimary: { borderColor: 'blue' },
+-        outlinedSecondary: { borderColor: 'purple' },
+-        outlinedSuccess: { borderColor: 'green' },
+-        outlinedError: { borderColor: 'red' },
+-        outlinedInfo: { borderColor: 'cyan' },
+-        outlinedWarning: { borderColor: 'orange' },
+-        containedInherit: { backgroundColor: 'inherit' },
+-        containedPrimary: { backgroundColor: 'blue' },
+-        containedSecondary: { backgroundColor: 'purple' },
+-        containedSuccess: { backgroundColor: 'green' },
+-        containedError: { backgroundColor: 'red' },
+-        containedInfo: { backgroundColor: 'cyan' },
+-        containedWarning: { backgroundColor: 'orange' },
+-        textSizeSmall: { fontSize: '0.75rem' },
+-        textSizeMedium: { fontSize: '0.875rem' },
+-        textSizeLarge: { fontSize: '1rem' },
+-        outlinedSizeSmall: { fontSize: '0.75rem' },
+-        outlinedSizeMedium: { fontSize: '0.875rem' },
+-        outlinedSizeLarge: { fontSize: '1rem' },
+-        containedSizeSmall: { fontSize: '0.75rem' },
+-        containedSizeMedium: { fontSize: '0.875rem' },
+-        containedSizeLarge: { fontSize: '1rem' },
+-        iconSizeSmall: { fontSize: '18px' },
+-        iconSizeMedium: { fontSize: '20px' },
+-        iconSizeLarge: { fontSize: '22px' },
++        root: {
++          [`&.${buttonClasses.text}.${buttonClasses.colorInherit}`]: { color: 'inherit' },
++          [`&.${buttonClasses.text}.${buttonClasses.colorPrimary}`]: { color: 'blue' },
++          [`&.${buttonClasses.text}.${buttonClasses.colorSecondary}`]: { color: 'purple' },
++          [`&.${buttonClasses.text}.${buttonClasses.colorSuccess}`]: { color: 'green' },
++          [`&.${buttonClasses.text}.${buttonClasses.colorError}`]: { color: 'red' },
++          [`&.${buttonClasses.text}.${buttonClasses.colorInfo}`]: { color: 'cyan' },
++          [`&.${buttonClasses.text}.${buttonClasses.colorWarning}`]: { color: 'orange' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.colorInherit}`]: { borderColor: 'inherit' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: { borderColor: 'blue' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.colorSecondary}`]: { borderColor: 'purple' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.colorSuccess}`]: { borderColor: 'green' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.colorError}`]: { borderColor: 'red' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.colorInfo}`]: { borderColor: 'cyan' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.colorWarning}`]: { borderColor: 'orange' },
++          [`&.${buttonClasses.contained}.${buttonClasses.colorInherit}`]: { backgroundColor: 'inherit' },
++          [`&.${buttonClasses.contained}.${buttonClasses.colorPrimary}`]: { backgroundColor: 'blue' },
++          [`&.${buttonClasses.contained}.${buttonClasses.colorSecondary}`]: { backgroundColor: 'purple' },
++          [`&.${buttonClasses.contained}.${buttonClasses.colorSuccess}`]: { backgroundColor: 'green' },
++          [`&.${buttonClasses.contained}.${buttonClasses.colorError}`]: { backgroundColor: 'red' },
++          [`&.${buttonClasses.contained}.${buttonClasses.colorInfo}`]: { backgroundColor: 'cyan' },
++          [`&.${buttonClasses.contained}.${buttonClasses.colorWarning}`]: { backgroundColor: 'orange' },
++          [`&.${buttonClasses.text}.${buttonClasses.sizeSmall}`]: { fontSize: '0.75rem' },
++          [`&.${buttonClasses.text}.${buttonClasses.sizeMedium}`]: { fontSize: '0.875rem' },
++          [`&.${buttonClasses.text}.${buttonClasses.sizeLarge}`]: { fontSize: '1rem' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.sizeSmall}`]: { fontSize: '0.75rem' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.sizeMedium}`]: { fontSize: '0.875rem' },
++          [`&.${buttonClasses.outlined}.${buttonClasses.sizeLarge}`]: { fontSize: '1rem' },
++          [`&.${buttonClasses.contained}.${buttonClasses.sizeSmall}`]: { fontSize: '0.75rem' },
++          [`&.${buttonClasses.contained}.${buttonClasses.sizeMedium}`]: { fontSize: '0.875rem' },
++          [`&.${buttonClasses.contained}.${buttonClasses.sizeLarge}`]: { fontSize: '1rem' },
++          [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: { fontSize: '18px' },
++          [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: { fontSize: '20px' },
++          [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: { fontSize: '22px' },
++        },
+       },
+     },
+   },
+ });
+```
+
 #### Slider deprecated props removed
 
 Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following section:
