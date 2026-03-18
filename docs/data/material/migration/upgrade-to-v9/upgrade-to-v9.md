@@ -187,6 +187,10 @@ const theme = createTheme(
 );
 ```
 
+### TextField
+
+When using the `select` prop to render a `<Select>` with `<TextField>`, the underlying `<InputLabel>` renders a `<div>` instead of a native `<label>` element. This does not affect `<InputLabel>` on its own.
+
 ### Theme
 
 `MuiTouchRipple` has been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
