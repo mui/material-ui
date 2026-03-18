@@ -717,8 +717,8 @@ npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 
 The following deprecated `CircularProgress` CSS classes have been removed:
 
-- `circleDeterminate` → use `.MuiCircularProgress-determinate > .MuiCircularProgress-circle`
-- `circleIndeterminate` → use `.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle`
+- `circleDeterminate` → use `.MuiCircularProgress-determinate .MuiCircularProgress-circle`
+- `circleIndeterminate` → use `.MuiCircularProgress-indeterminate .MuiCircularProgress-circle`
 
 
 #### Divider deprecated props removed
