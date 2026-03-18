@@ -268,8 +268,15 @@ Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEA
 npx @mui/codemod@latest deprecations/autocomplete-props <path>
 ```
 
-The deprecated `Autocomplete` props have been removed.
-Use the `slots`, `slotProps`, and `renderValue` props instead:
+The following deprecated props have been removed from the `Autocomplete` component:
+
+- `ChipProps` → use `slotProps.chip`
+- `componentsProps` → use `slotProps`
+- `ListboxComponent` → use `slots.listbox`
+- `ListboxProps` → use `slotProps.listbox`
+- `PaperComponent` → use `slots.paper`
+- `PopperComponent` → use `slots.popper`
+- `renderTags` → use `renderValue`
 
 ```diff
  <Autocomplete
