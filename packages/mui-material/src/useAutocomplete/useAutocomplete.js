@@ -238,12 +238,7 @@ function useAutocomplete(props) {
       return null;
     }
 
-    const valueSet = new Set();
-    selectedValues.forEach((value2) => {
-      if (value2 != null) {
-        valueSet.add(value2);
-      }
-    });
+    return new Set(selectedValues);
     return valueSet;
   }, [isOptionEqualToValue, selectedValues]);
   const isOptionSelected = React.useCallback(
