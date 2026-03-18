@@ -239,7 +239,6 @@ function useAutocomplete(props) {
     }
 
     return new Set(selectedValues);
-    return valueSet;
   }, [isOptionEqualToValue, selectedValues]);
   const isOptionSelected = React.useCallback(
     (option) => {
