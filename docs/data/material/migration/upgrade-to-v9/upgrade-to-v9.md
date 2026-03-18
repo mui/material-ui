@@ -390,31 +390,45 @@ The following deprecated `Alert` CSS classes have been removed:
 - `filledWarning` → use `.MuiAlert-filled.MuiAlert-colorWarning`
 - `filledError` → use `.MuiAlert-filled.MuiAlert-colorError`
 
+If you were using these deprecated class names as `styleOverrides` keys in your theme, move the styles into the `root` override using compound selectors with `alertClasses`:
+
 ```diff
--.MuiAlert-standardSuccess
-+.MuiAlert-standard.MuiAlert-colorSuccess
--.MuiAlert-standardInfo
-+.MuiAlert-standard.MuiAlert-colorInfo
--.MuiAlert-standardWarning
-+.MuiAlert-standard.MuiAlert-colorWarning
--.MuiAlert-standardError
-+.MuiAlert-standard.MuiAlert-colorError
--.MuiAlert-outlinedSuccess
-+.MuiAlert-outlined.MuiAlert-colorSuccess
--.MuiAlert-outlinedInfo
-+.MuiAlert-outlined.MuiAlert-colorInfo
--.MuiAlert-outlinedWarning
-+.MuiAlert-outlined.MuiAlert-colorWarning
--.MuiAlert-outlinedError
-+.MuiAlert-outlined.MuiAlert-colorError
--.MuiAlert-filledSuccess
-+.MuiAlert-filled.MuiAlert-colorSuccess
--.MuiAlert-filledInfo
-+.MuiAlert-filled.MuiAlert-colorInfo
--.MuiAlert-filledWarning
-+.MuiAlert-filled.MuiAlert-colorWarning
--.MuiAlert-filledError
-+.MuiAlert-filled.MuiAlert-colorError
++import { alertClasses } from '@mui/material/Alert';
+
+ const theme = createTheme({
+   components: {
+     MuiAlert: {
+       styleOverrides: {
+-        standardSuccess: { color: 'green' },
+-        standardInfo: { color: 'blue' },
+-        standardWarning: { color: 'orange' },
+-        standardError: { color: 'red' },
+-        outlinedSuccess: { borderColor: 'green' },
+-        outlinedInfo: { borderColor: 'blue' },
+-        outlinedWarning: { borderColor: 'orange' },
+-        outlinedError: { borderColor: 'red' },
+-        filledSuccess: { backgroundColor: 'green' },
+-        filledInfo: { backgroundColor: 'blue' },
+-        filledWarning: { backgroundColor: 'orange' },
+-        filledError: { backgroundColor: 'red' },
++        root: {
++          [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: { color: 'green' },
++          [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: { color: 'blue' },
++          [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: { color: 'orange' },
++          [`&.${alertClasses.standard}.${alertClasses.colorError}`]: { color: 'red' },
++          [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: { borderColor: 'green' },
++          [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: { borderColor: 'blue' },
++          [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: { borderColor: 'orange' },
++          [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: { borderColor: 'red' },
++          [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: { backgroundColor: 'green' },
++          [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: { backgroundColor: 'blue' },
++          [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: { backgroundColor: 'orange' },
++          [`&.${alertClasses.filled}.${alertClasses.colorError}`]: { backgroundColor: 'red' },
++        },
+       },
+     },
+   },
+ });
 ```
 
 #### Alert deprecated props removed
