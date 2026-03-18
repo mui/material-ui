@@ -3,7 +3,6 @@
 // See https://github.com/GoogleChromeLabs/web-vitals-report to use this data
 const disableWebVitalsReporting = Math.random() > 0.0001;
 
-// eslint-disable-next-line import/prefer-default-export
 export function reportWebVitals({
   id,
   name,

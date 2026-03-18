@@ -13,7 +13,6 @@ function nProgressDone() {
   NProgress.done();
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
