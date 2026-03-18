@@ -825,6 +825,31 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.attribute('aria-disabled');
     });
 
+    it('should not call key handlers on a disabled non-native button', async () => {
+      const onKeyDownSpy = spy();
+      const onKeyUpSpy = spy();
+
+      const { user } = render(
+        <ButtonBase component="span" disabled onKeyDown={onKeyDownSpy} onKeyUp={onKeyUpSpy}>
+          Hello
+        </ButtonBase>,
+      );
+
+      const button = screen.getByRole('button');
+
+      await act(async () => {
+        button.focus();
+      });
+
+      expect(button).toHaveFocus();
+
+      await user.keyboard('{Enter}');
+      await user.keyboard('{Space}');
+
+      expect(onKeyDownSpy.callCount).to.equal(0);
+      expect(onKeyUpSpy.callCount).to.equal(0);
+    });
+
     it('should not propagate click events when Space is released on a disabled non-native button', async () => {
       const parentClickSpy = spy();
       const buttonClickSpy = spy();

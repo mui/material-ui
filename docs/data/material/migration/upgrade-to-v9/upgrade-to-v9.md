@@ -63,6 +63,10 @@ the click event now bubbles to their ancestors.
 Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
 in the ButtonBase keyboard handlers. This is actually the expected behavior.
 
+#### Event handlers on disabled non-native buttons
+
+When ButtonBase renders a non-native element like a `<span>`, keyboard event handlers will no longer run when the component is disabled.
+
 ### Autocomplete
 
 #### Listbox toggle on right click
@@ -448,6 +452,24 @@ Use the `slots` and `slotProps` props instead:
  >
 ```
 
+#### AccordionSummary deprecated CSS classes removed
+
+Use the [accordion-summary-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-summary-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-summary-classes <path>
+```
+
+The deprecated `AccordionSummary` CSS class `contentGutters` has been removed.
+Use the combination of `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-content` classes instead:
+
+```diff
+-.MuiAccordionSummary-contentGutters {
++.MuiAccordionSummary-gutters .MuiAccordionSummary-content {
+   margin: 20px 0;
+ }
+```
+
 #### AvatarGroup deprecated props removed
 
 Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following section:
@@ -469,4 +491,79 @@ If you were already using the `surplus` key via `componentsProps`, move it to `s
 ```diff
 -<AvatarGroup componentsProps={{ surplus: { className: 'my-class' } }}>
 +<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
+```
+
+#### Backdrop deprecated props removed
+
+Use the [backdrop-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/backdrop-props <path>
+```
+
+The following deprecated `Backdrop` props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+- `TransitionComponent` — use `slots.transition` instead
+
+```diff
+ <Backdrop
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'my-class' } }}
+-  TransitionComponent={CustomTransition}
++  slots={{ root: CustomRoot, transition: CustomTransition }}
++  slotProps={{ root: { className: 'my-class' } }}
+```
+
+#### Badge deprecated props removed
+
+Use the [badge-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#badge-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/badge-props <path>
+```
+
+The following deprecated props have been removed from the `Badge` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
+
+```diff
+ <Badge
+-  components={{ Root: CustomRoot, Badge: CustomBadge }}
+-  componentsProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
++  slots={{ root: CustomRoot, badge: CustomBadge }}
++  slotProps={{ root: { className: 'my-root' }, badge: { className: 'my-badge' } }}
+ />
+```
+
+#### Typography deprecated CSS classes removed
+
+The deprecated `paragraph` CSS class has been removed.
+Use CSS `.MuiTypography-root:where(p)` to apply custom styles for the paragraph element instead:
+
+```diff
+-.MuiTypography-paragraph {
+-  margin-bottom: 16px;
+-}
++.MuiTypography-root:where(p) {
++  margin-bottom: 16px;
++}
+```
+
+#### Typography deprecated props removed
+
+Use the [typography-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+The deprecated `paragraph` prop has been removed.
+Use `sx` prop to add the margin bottom instead:
+
+```diff
+-<Typography paragraph />
++<Typography sx={{ marginBottom: '16px' }} />
 ```
