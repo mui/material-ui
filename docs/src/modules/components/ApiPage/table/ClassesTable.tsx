@@ -8,7 +8,7 @@ import {
 } from '@mui/docs/branding';
 import { ClassDefinition } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import { ApiWarningAlert } from '@mui/docs/ApiPage';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

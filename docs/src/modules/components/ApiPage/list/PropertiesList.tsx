@@ -10,7 +10,7 @@ import {
 import ExpandableApiItem, {
   ApiItemContainer,
 } from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import { ApiWarningAlert } from '@mui/docs/ApiPage';
 import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
 
 const StyledApiItem = styled(ExpandableApiItem)(

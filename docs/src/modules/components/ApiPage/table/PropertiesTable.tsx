@@ -9,7 +9,7 @@ import {
 } from '@mui/docs/branding';
 import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import { ApiWarningAlert } from '@mui/docs/ApiPage';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

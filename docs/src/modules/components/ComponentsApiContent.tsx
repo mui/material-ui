@@ -8,6 +8,7 @@ import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
 import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
@@ -19,7 +20,6 @@ import {
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
-import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

@@ -5,8 +5,8 @@ import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-b
 import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import { TableOfContentsEntry } from '@mui/internal-markdown';
 import { Ad, AdGuest } from '@mui/docs/Ad';
+import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
@@ -34,13 +34,6 @@ import {
   getSlotsApiDefinitions,
   getSlotsToc,
 } from 'docs/src/modules/components/ApiPage/definitions/slots';
-
-// TODO Move this type definition to the AppLayoutDocs file when moved to TS
-export interface TableOfContentsParams {
-  children: (TableOfContentsParams | TableOfContentsEntry)[];
-  hash: string;
-  text: string;
-}
 
 type ApiHeaderKeys =
   | 'demos'
@@ -88,12 +81,6 @@ Heading.propTypes = {
   hash: PropTypes.string.isRequired,
   level: PropTypes.string,
 };
-
-export interface LayoutStorageKeys {
-  slots: string;
-  props: string;
-  classes: string;
-}
 
 interface ApiPageProps {
   descriptions: {
