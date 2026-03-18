@@ -10,15 +10,15 @@ import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
 import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
-import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import {
   ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
   getPropsApiDefinitions,
   getClassApiDefinitions,
   getSlotsApiDefinitions,
+  PropertiesSection,
+  SlotsSection,
+  ClassesSection,
 } from '@mui/docs/ApiPage/private';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {

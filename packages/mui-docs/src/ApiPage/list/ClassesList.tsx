@@ -1,16 +1,10 @@
 import * as React from 'react';
-import {
-  ApiItemContainer,
-  type ClassDefinition,
-  ExpandableApiItem,
-} from '@mui/docs/ApiPage/private';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '@mui/docs/branding';
-import { useTranslate } from '@mui/docs/i18n';
 import { styled } from '@mui/material/styles';
-import { ApiWarningAlert } from '@mui/docs/ApiPage';
+import { useTranslate } from '../../i18n';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import { ApiItemContainer, ExpandableApiItem } from './ExpandableApiItem';
+import { ClassDefinition } from '../definitions/types';
+import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({

@@ -5,8 +5,8 @@ import type {
   HooksTranslations,
 } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
-import type { TableOfContentsParams } from '@mui/docs/ApiPage';
 import type { BaseCssTOCParams, PropertyDefinition } from './types';
+import type { TableOfContentsParams } from '../types';
 
 export const getPropertiesToc = ({
   properties,

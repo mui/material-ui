@@ -1,6 +1,6 @@
 import type { Translate } from '../../i18n';
 
-export interface ClassDefinition {
+export type ClassDefinition = {
   className: string;
   key: string;
   hash: string;
@@ -8,9 +8,9 @@ export interface ClassDefinition {
   isGlobal?: boolean;
   isDeprecated?: boolean;
   deprecationInfo?: string;
-}
+};
 
-export interface PropertyDefinition {
+export type PropertyDefinition = {
   additionalInfo?: string[];
   hash: string;
   deprecationInfo?: string;
@@ -39,7 +39,7 @@ export interface PropertyDefinition {
    * Used by MUI X interface documentation
    */
   isPremiumPlan?: boolean;
-}
+};
 
 export type SlotDefinition = {
   className: string | null;

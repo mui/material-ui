@@ -15,9 +15,6 @@ import { BrandingProvider, BrandingCssVarsProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import {
   ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
@@ -27,6 +24,9 @@ import {
   getClassesToc,
   getSlotsApiDefinitions,
   getSlotsToc,
+  PropertiesSection,
+  SlotsSection,
+  ClassesSection,
 } from '@mui/docs/ApiPage/private';
 
 type ApiHeaderKeys =

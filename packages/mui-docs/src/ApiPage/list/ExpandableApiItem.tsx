@@ -5,10 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '@mui/docs/branding';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
 
 type DescriptionType = 'props' | 'classes' | 'CSS' | 'slots';
 

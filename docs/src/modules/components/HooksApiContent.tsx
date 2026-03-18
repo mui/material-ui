@@ -11,10 +11,10 @@ import {
   ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
   getHookApiDefinitions,
+  PropertiesSection,
 } from '@mui/docs/ApiPage/private';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import PropertiesSection from './ApiPage/sections/PropertiesSection';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

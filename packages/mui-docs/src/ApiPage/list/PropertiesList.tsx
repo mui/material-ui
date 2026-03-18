@@ -1,18 +1,12 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import {
-  ApiItemContainer,
-  ExpandableApiItem,
-  type PropertyDefinition,
-} from '@mui/docs/ApiPage/private';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '@mui/docs/branding';
-import { useTranslate } from '@mui/docs/i18n';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import { ApiWarningAlert } from '@mui/docs/ApiPage';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import { useTranslate } from '../../i18n';
+import { ApiItemContainer, ExpandableApiItem } from './ExpandableApiItem';
+import { PropertyDefinition } from '../definitions';
+import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({

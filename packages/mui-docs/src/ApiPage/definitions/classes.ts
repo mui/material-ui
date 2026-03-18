@@ -1,13 +1,17 @@
 import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
-import type { TableOfContentsParams } from '@mui/docs/ApiPage';
 import type { ClassDefinition, BaseCssTOCParams } from './types';
+import type { TableOfContentsParams } from '../types';
 
 export const getClassesToc = ({
   classes,
   t,
   hash,
-}: BaseCssTOCParams & { classes: ClassDefinition[] }): TableOfContentsParams[] =>
+  componentName,
+}: BaseCssTOCParams & {
+  classes: ClassDefinition[];
+  componentName?: string;
+}): TableOfContentsParams[] =>
   !classes || classes.length === 0
     ? []
     : [
@@ -17,7 +21,7 @@ export const getClassesToc = ({
           children: [
             ...classes.map(({ key, hash: classHash }) => ({
               text: key,
-              hash: classHash,
+              hash: componentName ? `${kebabCase(componentName)}-classes-${key}` : classHash,
               children: [],
             })),
           ],

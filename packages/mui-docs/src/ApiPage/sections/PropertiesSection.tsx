@@ -1,24 +1,24 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Translate, useTranslate } from '@mui/docs/i18n';
-import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
-import {
-  ToggleDisplayOption,
-  type ApiDisplayLayout,
-  useApiPageOption,
-  type PropertyDefinition,
-  getPropsApiDefinitions,
-} from '@mui/docs/ApiPage/private';
-import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
-import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
 import {
   ComponentApiContent,
   PropsTableItem,
   PropsTranslations,
 } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
-import { LayoutStorageKeys } from '@mui/docs/ApiPage';
+import { Translate, useTranslate } from '../../i18n';
+import {
+  ToggleDisplayOption,
+  useApiPageOption,
+  type ApiDisplayLayout,
+} from './ToggleDisplayOption';
+import { SectionTitle, type SectionTitleProps } from '../../SectionTitle';
+import PropertiesTable from '../table/PropertiesTable';
+import PropertiesList from '../list/PropertiesList';
+import { getPropsApiDefinitions } from '../definitions/properties';
+import { LayoutStorageKeys } from '../types';
+import { PropertyDefinition } from '../definitions';
 
 interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
   componentProps: ComponentApiContent['props'];
@@ -100,7 +100,7 @@ type PropertiesSectionProps = (
   level?: SectionTitleProps['level'];
 };
 
-export default function PropertiesSection(props: PropertiesSectionProps) {
+export function PropertiesSection(props: PropertiesSectionProps) {
   const {
     properties,
     propertiesDescriptions,

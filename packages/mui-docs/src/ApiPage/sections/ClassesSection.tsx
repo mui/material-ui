@@ -1,46 +1,14 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { Translate, useTranslate } from '@mui/docs/i18n';
-import { SectionTitle } from '@mui/docs/SectionTitle';
 import Box from '@mui/material/Box';
-import {
-  ToggleDisplayOption,
-  type ApiDisplayLayout,
-  useApiPageOption,
-  getClassApiDefinitions,
-  type ClassDefinition,
-} from '@mui/docs/ApiPage/private';
-import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
-import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
 import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
-import { kebabCase } from 'es-toolkit/string';
-
-export type GetCssToCParams = {
-  componentName: string;
-  componentClasses: ComponentClassDefinition[];
-  t: Translate;
-  hash?: string;
-};
-
-/**
- * @deprecated Use the function from ApiPage/definitions
- */
-export const getClassesToc = ({ componentName, componentClasses, t, hash }: GetCssToCParams) =>
-  !componentClasses || componentClasses.length === 0
-    ? []
-    : [
-        {
-          text: t('api-docs.classes'),
-          hash: hash ?? 'classes',
-          children: [
-            ...componentClasses.map((styles) => ({
-              text: styles.key,
-              hash: `${kebabCase(componentName)}-classes-${styles.key}`,
-              children: [],
-            })),
-          ],
-        },
-      ];
+import { SectionTitle } from '../../SectionTitle';
+import { useTranslate } from '../../i18n';
+import type { ClassDefinition } from '../definitions/types';
+import { ApiDisplayLayout, ToggleDisplayOption, useApiPageOption } from './ToggleDisplayOption';
+import { getClassApiDefinitions } from '../definitions/classes';
+import ClassesTable from '../table/ClassesTable';
+import ClassesList from '../list/ClassesList';
 
 export type ClassesSectionProps = (
   | {
@@ -76,7 +44,7 @@ export type ClassesSectionProps = (
   styleOverridesLink?: string;
 };
 
-export default function ClassesSection(props: ClassesSectionProps) {
+export function ClassesSection(props: ClassesSectionProps) {
   const {
     classes,
     componentClasses,

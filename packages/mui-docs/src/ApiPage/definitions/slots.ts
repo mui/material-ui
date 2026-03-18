@@ -1,6 +1,6 @@
 import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
-import type { TableOfContentsParams } from '@mui/docs/ApiPage';
 import type { BaseCssTOCParams, SlotDefinition } from './types';
+import type { TableOfContentsParams } from '../types';
 
 export interface GetSlotsApiDefinitionsParams {
   componentSlots: ComponentApiContent['slots'];
