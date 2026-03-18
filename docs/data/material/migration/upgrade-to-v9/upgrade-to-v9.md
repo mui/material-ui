@@ -592,3 +592,32 @@ Use `sx={{ opacity : "0.6" }}` (or any opacity):
 +  sx={{ opacity: 0.6 }}
  />
 ```
+
+#### Tabs deprecated props removed
+
+Use the [tabs-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/tabs-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `ScrollButtonComponent` — use `slots.scrollButtons` instead
+- `TabIndicatorProps` — use `slotProps.indicator` instead
+- `TabScrollButtonProps` — use `slotProps.scrollButtons` instead
+- `slots.StartScrollButtonIcon` — use `slots.startScrollButtonIcon` instead
+- `slots.EndScrollButtonIcon` — use `slots.endScrollButtonIcon` instead
+
+```diff
+ <Tabs
+-  ScrollButtonComponent={CustomScrollButton}
+-  TabIndicatorProps={{ style: { backgroundColor: 'green' } }}
+-  TabScrollButtonProps={{ disableRipple: true }}
++  slots={{ scrollButtons: CustomScrollButton }}
++  slotProps={{
++    indicator: { style: { backgroundColor: 'green' } },
++    scrollButtons: { disableRipple: true },
++  }}
+ />
+```

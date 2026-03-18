@@ -661,13 +661,13 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
-    it('should append className from TabScrollButtonProps', () => {
+    it('should append className from slotProps.scrollButtons', () => {
       const { container } = render(
         <Tabs
           value={0}
           variant="scrollable"
           scrollButtons
-          TabScrollButtonProps={{ className: 'foo' }}
+          slotProps={{ scrollButtons: { className: 'foo' } }}
         >
           <Tab />
           <Tab />
@@ -880,10 +880,10 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('prop: TabIndicatorProps', () => {
+  describe('slotProps: indicator', () => {
     it('should merge the style', () => {
       const { container } = render(
-        <Tabs value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
+        <Tabs value={0} slotProps={{ indicator: { style: { backgroundColor: 'green' } } }}>
           <Tab />
         </Tabs>,
       );
