@@ -1,4 +1,4 @@
-import { drawerClasses } from '@mui/material/Drawer';
+import { drawerClasses } from '@mui/material-v7/Drawer';
 
 ("& .MuiDrawer-paperAnchorBottom");
 ("& .MuiDrawer-paperAnchorLeft");

@@ -1,4 +1,4 @@
-import StepLabel from '@mui/material/StepLabel';
+import StepLabel from '@mui/material-v7/StepLabel';
 
 <StepLabel slotProps={{ label: componentsLabelProps }} />;
 <StepLabel

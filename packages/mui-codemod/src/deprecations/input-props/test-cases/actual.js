@@ -1,4 +1,4 @@
-import Input from '@mui/material/Input';
+import Input from '@mui/material-v7/Input';
 
 <Input
   components={{ Input: ComponentsInput }}

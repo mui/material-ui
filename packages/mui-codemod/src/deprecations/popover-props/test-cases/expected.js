@@ -1,5 +1,5 @@
-import Popover from '@mui/material/Popover';
-import { Popover as MyPopover } from '@mui/material';
+import Popover from '@mui/material-v7/Popover';
+import { Popover as MyPopover } from '@mui/material-v7';
 
 <Popover
   slots={{

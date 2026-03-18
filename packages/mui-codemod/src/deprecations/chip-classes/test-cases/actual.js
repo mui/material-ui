@@ -1,4 +1,4 @@
-import { chipClasses } from '@mui/material/Chip';
+import { chipClasses } from '@mui/material-v7/Chip';
 
 ('&.MuiChip-clickableColorPrimary');
 ('&.MuiChip-clickableColorSecondary');

@@ -1,4 +1,4 @@
-import { linearProgressClasses } from '@mui/material/LinearProgress';
+import { linearProgressClasses } from '@mui/material-v7/LinearProgress';
 
 ('&.MuiLinearProgress-buffer > .MuiLinearProgress-bar1');
 ('&.MuiLinearProgress-determinate > .MuiLinearProgress-bar1');

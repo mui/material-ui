@@ -1,4 +1,4 @@
-import Popper from '@mui/material/Popper';
+import Popper from '@mui/material-v7/Popper';
 
 <Popper
   slots={{

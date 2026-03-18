@@ -1,4 +1,4 @@
-import Alert from '@mui/material/Alert';
+import Alert from '@mui/material-v7/Alert';
 
 <Alert
   components={{ CloseButton: ComponentsButton }}

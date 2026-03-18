@@ -1,4 +1,4 @@
-import FilledInput from '@mui/material/FilledInput';
+import FilledInput from '@mui/material-v7/FilledInput';
 
 <FilledInput
   components={{ Input: ComponentsInput }}

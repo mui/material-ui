@@ -1,4 +1,4 @@
-import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+import { accordionSummaryClasses } from '@mui/material-v7/AccordionSummary';
 
 fn({
   MuiAccordionSummary: {

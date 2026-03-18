@@ -1,4 +1,4 @@
-import ListItemText from '@mui/material/ListItemText';
+import ListItemText from '@mui/material-v7/ListItemText';
 
 <ListItemText slotProps={{
   secondary: secondaryTypographyProps

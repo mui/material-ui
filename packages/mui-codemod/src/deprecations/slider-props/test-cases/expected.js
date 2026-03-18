@@ -1,4 +1,4 @@
-import Slider from '@mui/material/Slider';
+import Slider from '@mui/material-v7/Slider';
 
 <Slider
   slots={{

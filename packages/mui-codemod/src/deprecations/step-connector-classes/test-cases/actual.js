@@ -1,4 +1,4 @@
-import { stepConnectorClasses } from '@mui/material/StepConnector';
+import { stepConnectorClasses } from '@mui/material-v7/StepConnector';
 
 ('& .MuiStepConnector-lineHorizontal');
 ('& .MuiStepConnector-lineVertical');

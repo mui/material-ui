@@ -1,4 +1,4 @@
-import InputBase from '@mui/material/InputBase';
+import InputBase from '@mui/material-v7/InputBase';
 
 <InputBase
   slots={{

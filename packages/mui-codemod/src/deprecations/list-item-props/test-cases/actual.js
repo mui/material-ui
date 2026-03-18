@@ -1,4 +1,4 @@
-import ListItem from '@mui/material/ListItem';
+import ListItem from '@mui/material-v7/ListItem';
 
 <ListItem
   components={{ Root: ComponentsRoot }}

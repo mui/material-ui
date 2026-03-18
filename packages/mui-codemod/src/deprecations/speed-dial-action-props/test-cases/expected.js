@@ -1,5 +1,5 @@
-import SpeedDialAction from '@mui/material/SpeedDialAction';
-import { SpeedDialAction as MySpeedDialAction } from '@mui/material';
+import SpeedDialAction from '@mui/material-v7/SpeedDialAction';
+import { SpeedDialAction as MySpeedDialAction } from '@mui/material-v7';
 
 <SpeedDialAction slotProps={{
   tooltip: {

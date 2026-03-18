@@ -1,5 +1,5 @@
-import Snackbar from '@mui/material/Snackbar';
-import { Snackbar as MySnackbar } from '@mui/material';
+import Snackbar from '@mui/material-v7/Snackbar';
+import { Snackbar as MySnackbar } from '@mui/material-v7';
 
 <Snackbar
   slots={{

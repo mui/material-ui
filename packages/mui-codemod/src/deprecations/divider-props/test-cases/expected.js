@@ -1,5 +1,5 @@
-import Divider from '@mui/material/Divider';
-import { Divider as MyDivider } from '@mui/material';
+import Divider from '@mui/material-v7/Divider';
+import { Divider as MyDivider } from '@mui/material-v7';
 
 <Divider className="test" sx={{
   opacity: "0.6"

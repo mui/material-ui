@@ -1,4 +1,4 @@
-import { tableSortLabelClasses } from '@mui/material/TableSortLabel';
+import { tableSortLabelClasses } from '@mui/material-v7/TableSortLabel';
 
 ('& .MuiTableSortLabel-iconDirectionDesc');
 ('& .MuiTableSortLabel-iconDirectionAsc');

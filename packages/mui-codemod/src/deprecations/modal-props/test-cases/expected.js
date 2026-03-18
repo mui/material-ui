@@ -1,4 +1,4 @@
-import Modal from '@mui/material/Modal';
+import Modal from '@mui/material-v7/Modal';
 
 <Modal
   slots={{

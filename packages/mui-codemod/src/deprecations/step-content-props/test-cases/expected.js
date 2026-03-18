@@ -1,5 +1,5 @@
-import StepContent from '@mui/material/StepContent';
-import { StepContent as MyStepContent } from '@mui/material';
+import StepContent from '@mui/material-v7/StepContent';
+import { StepContent as MyStepContent } from '@mui/material-v7';
 
 <StepContent slots={{
   transition: CustomTransition

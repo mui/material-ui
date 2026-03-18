@@ -1,4 +1,4 @@
-import { Badge } from '@mui/material';
+import { Badge } from '@mui/material-v7';
 
 <Badge components={{ root: ComponentsRoot }} componentsProps={{ root: componentsRootProps }} />;
 
