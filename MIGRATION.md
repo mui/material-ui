@@ -626,11 +626,11 @@ Use this checklist to track completion across sessions. Mark steps with `[x]` as
 
 ### Phase 8: AppLayoutDocs Config-Dependent
 
-- [ ] 8.1 `AppFrameBanner.tsx` (decouple `featureToggle`) — `git commit -m "[docs-infra] Migrate AppFrameBanner to @mui/docs (8.1)"`
-- [ ] 8.2 `MuiProductSelector.tsx` (decouple `route.ts`) — `git commit -m "[docs-infra] Migrate MuiProductSelector to @mui/docs (8.2)"`
-- [ ] 8.3 `AppTableOfContents.js` → `.tsx` (decouple `featureToggle`) — `git commit -m "[docs-infra] Migrate AppTableOfContents to @mui/docs (8.3)"`
-- [ ] 8.4 `Head.tsx` (decouple `docs/config.ts`) — `git commit -m "[docs-infra] Migrate Head to @mui/docs (8.4)"`
-- [ ] 8.5 `theming.tsx` → `DemoPageThemeProvider.tsx` — `git commit -m "[docs-infra] Migrate DemoPageThemeProvider to @mui/docs (8.5)"`
+- [x] 8.1 `AppFrameBanner.tsx` (decouple `featureToggle` → `enableBanner` prop)
+- [x] 8.2 `MuiProductSelector.tsx` (decouple `route.ts` → `routes` prop with `MuiProductSelectorRoutes` interface)
+- [x] 8.3 `AppTableOfContents.js` kept as `.js` (decouple `featureToggle` → `showJobAd` prop)
+- [x] 8.4 `Head.tsx` (decouple `docs/config.ts` → `languagesSSR` prop)
+- [x] 8.5 `theming.tsx` → `DemoPageThemeProvider.tsx`
 
 ### Phase 9: AppLayoutDocs Level 3
 
