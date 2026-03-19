@@ -774,7 +774,7 @@ The following deprecated prop has been removed:
 
 ```diff
  <FormControlLabel
--  componentsProps={{ typography: typographyProps }}
-+  slotProps={{ typography: typographyProps }}
+-  componentsProps={{ typography: { fontWeight: 'bold' } }}
++  slotProps={{ typography: { fontWeight: 'bold' } }}
  />
 ```
