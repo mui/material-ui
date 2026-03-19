@@ -797,7 +797,7 @@ The following deprecated props have been removed:
 - `components` — use `slots` instead
 - `componentsProps` — use `slotProps` instead
 
-````diff
+```diff
  <Popper
 -  components={{ Root: CustomRoot }}
 -  componentsProps={{ root: { className: 'custom' } }}
@@ -812,7 +812,7 @@ Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/pack
 
 ```bash
 npx @mui/codemod@latest deprecations/slider-props <path>
-````
+```
 
 The following deprecated props have been removed from the `Slider` component:
 
