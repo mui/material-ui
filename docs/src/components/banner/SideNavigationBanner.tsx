@@ -3,16 +3,13 @@ import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 import { Link } from '@mui/docs/Link';
 
-export default function TableOfContentsBanner() {
+export default function SideNavigationBanner() {
   return (
     <Link
       href="https://u24.gov.ua/about/"
       target="_blank"
       sx={[
         (theme) => ({
-          mt: 2,
-          mx: 0.5,
-          mb: 2,
           p: 1,
           pl: '10px',
           display: 'flex',

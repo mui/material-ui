@@ -612,6 +612,46 @@ The following deprecated props have been removed from the `Badge` component:
  />
 ```
 
+#### Divider deprecated props removed
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+The deprecated `Divider` prop have been removed.
+Use `sx={{ opacity : "0.6" }}` (or any opacity):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity: 0.6 }}
+ />
+```
+
+#### Popper deprecated props removed
+
+Use the [popper-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/popper-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'custom' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { className: 'custom' } }}
+ />
+```
+
 #### Slider deprecated props removed
 
 Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following section:
@@ -664,6 +704,92 @@ The following deprecated `Snackbar` props have been removed:
  />
 ```
 
+#### SpeedDial deprecated props removed
+
+The deprecated `SpeedDial` props have been removed.
+Use the `slots` and `slotProps` props instead:
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { timeout: 500 } }}
+ >
+```
+
+#### SpeedDialAction deprecated props removed
+
+The deprecated `SpeedDialAction` props have been removed.
+Use the `slotProps` prop instead:
+
+```diff
+ <SpeedDialAction
+-  FabProps={{ size: 'large' }}
+-  tooltipTitle="Add"
+-  tooltipPlacement="right"
+-  tooltipOpen
+-  TooltipClasses={{ tooltip: 'custom' }}
++  slotProps={{
++    fab: { size: 'large' },
++    tooltip: {
++      title: 'Add',
++      placement: 'right',
++      open: true,
++      classes: { tooltip: 'custom' },
++    },
++  }}
+ />
+```
+
+#### Tabs deprecated props removed
+
+Use the [tabs-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/tabs-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `ScrollButtonComponent` — use `slots.scrollButtons` instead
+- `TabIndicatorProps` — use `slotProps.indicator` instead
+- `TabScrollButtonProps` — use `slotProps.scrollButtons` instead
+- `slots.StartScrollButtonIcon` — use `slots.startScrollButtonIcon` instead
+- `slots.EndScrollButtonIcon` — use `slots.endScrollButtonIcon` instead
+
+```diff
+ <Tabs
+-  ScrollButtonComponent={CustomScrollButton}
+-  TabIndicatorProps={{ style: { backgroundColor: 'green' } }}
+-  TabScrollButtonProps={{ disableRipple: true }}
++  slots={{ scrollButtons: CustomScrollButton }}
++  slotProps={{
++    indicator: { style: { backgroundColor: 'green' } },
++    scrollButtons: { disableRipple: true },
++  }}
+ />
+```
+
+#### FormControlLabel deprecated props removed
+
+Use the [form-control-label-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/form-control-label-props <path>
+```
+
+The following deprecated prop has been removed:
+
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: { fontWeight: 'bold' } }}
++  slotProps={{ typography: { fontWeight: 'bold' } }}
+ />
+```
+
 #### Typography deprecated CSS classes removed
 
 The deprecated `paragraph` CSS class has been removed.
@@ -693,22 +819,4 @@ The following deprecated props have been removed from the `Typography` component
 ```diff
 -<Typography paragraph />
 +<Typography sx={{ marginBottom: '16px' }} />
-```
-
-#### Divider deprecated props removed
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/divider-props <path>
-```
-
-The deprecated `Divider` prop have been removed.
-Use `sx={{ opacity : "0.6" }}` (or any opacity):
-
-```diff
- <Divider
--  light
-+  sx={{ opacity: 0.6 }}
- />
 ```

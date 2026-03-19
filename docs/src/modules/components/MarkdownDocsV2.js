@@ -43,6 +43,7 @@ export default function MarkdownDocsV2(props) {
   const {
     disableAd = false,
     disableToc = false,
+    wideLayout,
     demos = {},
     docs,
     demoComponents,
@@ -220,6 +221,7 @@ export default function MarkdownDocsV2(props) {
       description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
+      wideLayout={wideLayout}
       location={localizedDoc.location}
       title={localizedDoc.title}
       toc={activeToc}
@@ -274,6 +276,7 @@ export default function MarkdownDocsV2(props) {
 MarkdownDocsV2.propTypes = {
   componentsApiDescriptions: PropTypes.object,
   componentsApiPageContents: PropTypes.object,
+  wideLayout: PropTypes.bool,
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,

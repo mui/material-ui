@@ -242,4 +242,40 @@ describe('e2e', () => {
       await errorSelector.waitFor();
     });
   });
+
+  describe('<Select />', () => {
+    it('should not show focus-visible on menu item when opened by mouse', async () => {
+      await renderFixture('Select/SelectFocusVisible');
+
+      const trigger = page.getByRole('combobox');
+      await trigger.click();
+
+      await page.waitForSelector('[role="listbox"]');
+
+      const selectedItem = page.locator('[role="option"][aria-selected="true"]');
+      await expect(selectedItem).toBeFocused();
+      const hasVisible = await selectedItem.evaluate((el) =>
+        el.classList.contains('Mui-focusVisible'),
+      );
+      expect(hasVisible).toEqual(false);
+    });
+
+    it('should show focus-visible on menu item when opened by keyboard', async () => {
+      await renderFixture('Select/SelectFocusVisible');
+
+      await page.keyboard.press('Tab');
+      const trigger = page.getByRole('combobox');
+      await expect(trigger).toBeFocused();
+
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('[role="listbox"]');
+
+      const selectedItem = page.locator('[role="option"][aria-selected="true"]');
+      await expect(selectedItem).toBeFocused();
+      const hasVisible = await selectedItem.evaluate((el) =>
+        el.classList.contains('Mui-focusVisible'),
+      );
+      expect(hasVisible).toEqual(true);
+    });
+  });
 });
