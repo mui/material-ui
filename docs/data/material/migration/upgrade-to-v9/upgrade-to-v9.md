@@ -189,7 +189,7 @@ const theme = createTheme(
 
 ### TextField
 
-When using the `select` prop to render a `<Select>` with `<TextField>`, the underlying `<InputLabel>` renders a `<div>` instead of a native `<label>` element. This does not affect `<InputLabel>` on its own.
+When specifying `<TextField select />` to render a `<Select>`, the underlying `<InputLabel>` renders a `<div>` instead of a native `<label>` element. This does not affect `<InputLabel>` on its own.
 
 ### Theme
 
