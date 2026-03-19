@@ -27,6 +27,7 @@ function getSurveyMessage() {
       <Link
         href="https://tally.so/r/3jOKG1?source=website"
         target="_blank"
+        rel="noopener"
         underline="always"
         sx={linkStyleOverrides}
       >
