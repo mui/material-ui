@@ -187,6 +187,10 @@ const theme = createTheme(
 );
 ```
 
+### TextField
+
+When specifying `<TextField select />` to render a `<Select>`, the underlying `<InputLabel>` renders a `<div>` instead of a native `<label>` element. This does not affect `<InputLabel>` on its own.
+
 ### Theme
 
 `MuiTouchRipple` has been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
@@ -363,100 +367,68 @@ The following deprecated members have been removed from the `useAutocomplete` ho
  } = useAutocomplete(props);
 ```
 
-#### TextField deprecated props removed
+#### Alert deprecated CSS classes removed
 
-Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following section:
-
-```bash
-npx @mui/codemod@latest deprecations/text-field-props <path>
-```
-
-The following deprecated props have been removed from the `TextField` component:
-
-- `InputProps` → use `slotProps.input`
-- `inputProps` → use `slotProps.htmlInput`
-- `SelectProps` → use `slotProps.select`
-- `InputLabelProps` → use `slotProps.inputLabel`
-- `FormHelperTextProps` → use `slotProps.formHelperText`
-
-```diff
- <TextField
--  InputProps={CustomInputProps}
--  inputProps={CustomHtmlInputProps}
--  SelectProps={CustomSelectProps}
--  InputLabelProps={CustomInputLabelProps}
--  FormHelperTextProps={CustomFormHelperTextProps}
-+  slotProps={{
-+    input: CustomInputProps,
-+    htmlInput: CustomHtmlInputProps,
-+    select: CustomSelectProps,
-+    inputLabel: CustomInputLabelProps,
-+    formHelperText: CustomFormHelperTextProps,
-+  }}
- />
-```
-
-Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+Use the [alert-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-classes) below to migrate the code as described in the following section:
 
 ```bash
-npx @mui/codemod@latest deprecations/autocomplete-props <path>
+npx @mui/codemod@latest deprecations/alert-classes <path>
 ```
 
-If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
+The following deprecated `Alert` CSS classes have been removed:
+
+- `standardSuccess` → use `.MuiAlert-standard.MuiAlert-colorSuccess`
+- `standardInfo` → use `.MuiAlert-standard.MuiAlert-colorInfo`
+- `standardWarning` → use `.MuiAlert-standard.MuiAlert-colorWarning`
+- `standardError` → use `.MuiAlert-standard.MuiAlert-colorError`
+- `outlinedSuccess` → use `.MuiAlert-outlined.MuiAlert-colorSuccess`
+- `outlinedInfo` → use `.MuiAlert-outlined.MuiAlert-colorInfo`
+- `outlinedWarning` → use `.MuiAlert-outlined.MuiAlert-colorWarning`
+- `outlinedError` → use `.MuiAlert-outlined.MuiAlert-colorError`
+- `filledSuccess` → use `.MuiAlert-filled.MuiAlert-colorSuccess`
+- `filledInfo` → use `.MuiAlert-filled.MuiAlert-colorInfo`
+- `filledWarning` → use `.MuiAlert-filled.MuiAlert-colorWarning`
+- `filledError` → use `.MuiAlert-filled.MuiAlert-colorError`
+
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `root` override instead:
 
 ```diff
- <Autocomplete
-   renderInput={(params) => (
-     <TextField
-       {...params}
--      inputProps={{
--        ...params.inputProps,
--        autoComplete: 'new-password',
-+      slotProps={{
-+        ...params.slotProps,
-+        htmlInput: {
-+          ...params.slotProps.htmlInput,
-+          autoComplete: 'new-password',
+ const theme = createTheme({
+   components: {
+     MuiAlert: {
+       styleOverrides: {
+-        standardSuccess: { color: 'green' },
+-        standardInfo: { color: 'blue' },
+-        standardWarning: { color: 'orange' },
+-        standardError: { color: 'red' },
+-        outlinedSuccess: { borderColor: 'green' },
+-        outlinedInfo: { borderColor: 'blue' },
+-        outlinedWarning: { borderColor: 'orange' },
+-        outlinedError: { borderColor: 'red' },
+-        filledSuccess: { backgroundColor: 'green' },
+-        filledInfo: { backgroundColor: 'blue' },
+-        filledWarning: { backgroundColor: 'orange' },
+-        filledError: { backgroundColor: 'red' },
++        root: {
++          variants: [
++            { props: { variant: 'standard', color: 'success' }, style: { color: 'green' } },
++            { props: { variant: 'standard', color: 'info' }, style: { color: 'blue' } },
++            { props: { variant: 'standard', color: 'warning' }, style: { color: 'orange' } },
++            { props: { variant: 'standard', color: 'error' }, style: { color: 'red' } },
++            { props: { variant: 'outlined', color: 'success' }, style: { borderColor: 'green' } },
++            { props: { variant: 'outlined', color: 'info' }, style: { borderColor: 'blue' } },
++            { props: { variant: 'outlined', color: 'warning' }, style: { borderColor: 'orange' } },
++            { props: { variant: 'outlined', color: 'error' }, style: { borderColor: 'red' } },
++            { props: { variant: 'filled', color: 'success' }, style: { backgroundColor: 'green' } },
++            { props: { variant: 'filled', color: 'info' }, style: { backgroundColor: 'blue' } },
++            { props: { variant: 'filled', color: 'warning' }, style: { backgroundColor: 'orange' } },
++            { props: { variant: 'filled', color: 'error' }, style: { backgroundColor: 'red' } },
++          ],
 +        },
-       }}
-     />
-   )}
-```
-
-#### Tooltip deprecated props removed
-
-Use the [tooltip-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following section:
-
-```bash
-npx @mui/codemod@latest deprecations/tooltip-props <path>
-```
-
-The following deprecated props have been removed from the `Tooltip` component:
-
-- `components` → use `slots`
-- `componentsProps` → use `slotProps`
-- `PopperComponent` → use `slots.popper`
-- `PopperProps` → use `slotProps.popper`
-- `TransitionComponent` → use `slots.transition`
-- `TransitionProps` → use `slotProps.transition`
-
-```diff
- <Tooltip
-   title="Hello World"
--  components={{ Popper: CustomPopper, Tooltip: CustomTooltip, Transition: CustomTransition, Arrow: CustomArrow }}
--  componentsProps={{ popper: { placement: 'top' }, tooltip: { className: 'custom' }, arrow: { className: 'arrow' } }}
--  PopperComponent={CustomPopper}
--  PopperProps={{ disablePortal: true }}
--  TransitionComponent={CustomTransition}
--  TransitionProps={{ timeout: 500 }}
-+  slots={{ popper: CustomPopper, tooltip: CustomTooltip, transition: CustomTransition, arrow: CustomArrow }}
-+  slotProps={{
-+    popper: { placement: 'top', disablePortal: true },
-+    tooltip: { className: 'custom' },
-+    transition: { timeout: 500 },
-+    arrow: { className: 'arrow' },
-+  }}
- />
+       },
+     },
+   },
+ });
 ```
 
 #### Alert deprecated props removed
@@ -608,6 +580,192 @@ The following deprecated props have been removed from the `Badge` component:
  />
 ```
 
+#### Button deprecated CSS classes removed
+
+Use the [button-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
+The following deprecated `Button` CSS classes have been removed:
+
+- `textInherit` → use `.MuiButton-text.MuiButton-colorInherit`
+- `textPrimary` → use `.MuiButton-text.MuiButton-colorPrimary`
+- `textSecondary` → use `.MuiButton-text.MuiButton-colorSecondary`
+- `textSuccess` → use `.MuiButton-text.MuiButton-colorSuccess`
+- `textError` → use `.MuiButton-text.MuiButton-colorError`
+- `textInfo` → use `.MuiButton-text.MuiButton-colorInfo`
+- `textWarning` → use `.MuiButton-text.MuiButton-colorWarning`
+- `outlinedInherit` → use `.MuiButton-outlined.MuiButton-colorInherit`
+- `outlinedPrimary` → use `.MuiButton-outlined.MuiButton-colorPrimary`
+- `outlinedSecondary` → use `.MuiButton-outlined.MuiButton-colorSecondary`
+- `outlinedSuccess` → use `.MuiButton-outlined.MuiButton-colorSuccess`
+- `outlinedError` → use `.MuiButton-outlined.MuiButton-colorError`
+- `outlinedInfo` → use `.MuiButton-outlined.MuiButton-colorInfo`
+- `outlinedWarning` → use `.MuiButton-outlined.MuiButton-colorWarning`
+- `containedInherit` → use `.MuiButton-contained.MuiButton-colorInherit`
+- `containedPrimary` → use `.MuiButton-contained.MuiButton-colorPrimary`
+- `containedSecondary` → use `.MuiButton-contained.MuiButton-colorSecondary`
+- `containedSuccess` → use `.MuiButton-contained.MuiButton-colorSuccess`
+- `containedError` → use `.MuiButton-contained.MuiButton-colorError`
+- `containedInfo` → use `.MuiButton-contained.MuiButton-colorInfo`
+- `containedWarning` → use `.MuiButton-contained.MuiButton-colorWarning`
+- `textSizeSmall` → use `.MuiButton-text.MuiButton-sizeSmall`
+- `textSizeMedium` → use `.MuiButton-text.MuiButton-sizeMedium`
+- `textSizeLarge` → use `.MuiButton-text.MuiButton-sizeLarge`
+- `outlinedSizeSmall` → use `.MuiButton-outlined.MuiButton-sizeSmall`
+- `outlinedSizeMedium` → use `.MuiButton-outlined.MuiButton-sizeMedium`
+- `outlinedSizeLarge` → use `.MuiButton-outlined.MuiButton-sizeLarge`
+- `containedSizeSmall` → use `.MuiButton-contained.MuiButton-sizeSmall`
+- `containedSizeMedium` → use `.MuiButton-contained.MuiButton-sizeMedium`
+- `containedSizeLarge` → use `.MuiButton-contained.MuiButton-sizeLarge`
+- `iconSizeSmall` → use `.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon`
+- `iconSizeMedium` → use `.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon`
+- `iconSizeLarge` → use `.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon`
+
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `root` override instead:
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiButton: {
+       styleOverrides: {
+-        textInherit: { color: 'inherit' },
+-        textPrimary: { color: 'blue' },
+-        textSecondary: { color: 'purple' },
+-        textSuccess: { color: 'green' },
+-        textError: { color: 'red' },
+-        textInfo: { color: 'cyan' },
+-        textWarning: { color: 'orange' },
+-        outlinedInherit: { borderColor: 'inherit' },
+-        outlinedPrimary: { borderColor: 'blue' },
+-        outlinedSecondary: { borderColor: 'purple' },
+-        outlinedSuccess: { borderColor: 'green' },
+-        outlinedError: { borderColor: 'red' },
+-        outlinedInfo: { borderColor: 'cyan' },
+-        outlinedWarning: { borderColor: 'orange' },
+-        containedInherit: { backgroundColor: 'inherit' },
+-        containedPrimary: { backgroundColor: 'blue' },
+-        containedSecondary: { backgroundColor: 'purple' },
+-        containedSuccess: { backgroundColor: 'green' },
+-        containedError: { backgroundColor: 'red' },
+-        containedInfo: { backgroundColor: 'cyan' },
+-        containedWarning: { backgroundColor: 'orange' },
+-        textSizeSmall: { fontSize: '0.75rem' },
+-        textSizeMedium: { fontSize: '0.875rem' },
+-        textSizeLarge: { fontSize: '1rem' },
+-        outlinedSizeSmall: { fontSize: '0.75rem' },
+-        outlinedSizeMedium: { fontSize: '0.875rem' },
+-        outlinedSizeLarge: { fontSize: '1rem' },
+-        containedSizeSmall: { fontSize: '0.75rem' },
+-        containedSizeMedium: { fontSize: '0.875rem' },
+-        containedSizeLarge: { fontSize: '1rem' },
+-        iconSizeSmall: { fontSize: '18px' },
+-        iconSizeMedium: { fontSize: '20px' },
+-        iconSizeLarge: { fontSize: '22px' },
++        root: {
++          variants: [
++            { props: { variant: 'text', color: 'inherit' }, style: { color: 'inherit' } },
++            { props: { variant: 'text', color: 'primary' }, style: { color: 'blue' } },
++            { props: { variant: 'text', color: 'secondary' }, style: { color: 'purple' } },
++            { props: { variant: 'text', color: 'success' }, style: { color: 'green' } },
++            { props: { variant: 'text', color: 'error' }, style: { color: 'red' } },
++            { props: { variant: 'text', color: 'info' }, style: { color: 'cyan' } },
++            { props: { variant: 'text', color: 'warning' }, style: { color: 'orange' } },
++            { props: { variant: 'outlined', color: 'inherit' }, style: { borderColor: 'inherit' } },
++            { props: { variant: 'outlined', color: 'primary' }, style: { borderColor: 'blue' } },
++            { props: { variant: 'outlined', color: 'secondary' }, style: { borderColor: 'purple' } },
++            { props: { variant: 'outlined', color: 'success' }, style: { borderColor: 'green' } },
++            { props: { variant: 'outlined', color: 'error' }, style: { borderColor: 'red' } },
++            { props: { variant: 'outlined', color: 'info' }, style: { borderColor: 'cyan' } },
++            { props: { variant: 'outlined', color: 'warning' }, style: { borderColor: 'orange' } },
++            { props: { variant: 'contained', color: 'inherit' }, style: { backgroundColor: 'inherit' } },
++            { props: { variant: 'contained', color: 'primary' }, style: { backgroundColor: 'blue' } },
++            { props: { variant: 'contained', color: 'secondary' }, style: { backgroundColor: 'purple' } },
++            { props: { variant: 'contained', color: 'success' }, style: { backgroundColor: 'green' } },
++            { props: { variant: 'contained', color: 'error' }, style: { backgroundColor: 'red' } },
++            { props: { variant: 'contained', color: 'info' }, style: { backgroundColor: 'cyan' } },
++            { props: { variant: 'contained', color: 'warning' }, style: { backgroundColor: 'orange' } },
++            { props: { variant: 'text', size: 'small' }, style: { fontSize: '0.75rem' } },
++            { props: { variant: 'text', size: 'medium' }, style: { fontSize: '0.875rem' } },
++            { props: { variant: 'text', size: 'large' }, style: { fontSize: '1rem' } },
++            { props: { variant: 'outlined', size: 'small' }, style: { fontSize: '0.75rem' } },
++            { props: { variant: 'outlined', size: 'medium' }, style: { fontSize: '0.875rem' } },
++            { props: { variant: 'outlined', size: 'large' }, style: { fontSize: '1rem' } },
++            { props: { variant: 'contained', size: 'small' }, style: { fontSize: '0.75rem' } },
++            { props: { variant: 'contained', size: 'medium' }, style: { fontSize: '0.875rem' } },
++            { props: { variant: 'contained', size: 'large' }, style: { fontSize: '1rem' } },
++            { props: { size: 'small' }, style: { '& .MuiButton-icon': { fontSize: '18px' } } },
++            { props: { size: 'medium' }, style: { '& .MuiButton-icon': { fontSize: '20px' } } },
++            { props: { size: 'large' }, style: { '& .MuiButton-icon': { fontSize: '22px' } } },
++          ],
++        },
+       },
+     },
+   },
+ });
+```
+
+#### Divider deprecated props removed
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+The deprecated `Divider` prop have been removed.
+Use `sx={{ opacity : "0.6" }}` (or any opacity):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity: 0.6 }}
+ />
+```
+
+#### FormControlLabel deprecated props removed
+
+Use the [form-control-label-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/form-control-label-props <path>
+```
+
+The following deprecated prop has been removed:
+
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: { fontWeight: 'bold' } }}
++  slotProps={{ typography: { fontWeight: 'bold' } }}
+ />
+```
+
+#### Popper deprecated props removed
+
+Use the [popper-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/popper-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'custom' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { className: 'custom' } }}
+ />
+```
+
 #### Slider deprecated props removed
 
 Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following section:
@@ -660,52 +818,103 @@ The following deprecated `Snackbar` props have been removed:
  />
 ```
 
-#### Typography deprecated CSS classes removed
+#### SpeedDial deprecated props removed
 
-The deprecated `paragraph` CSS class has been removed.
-Use CSS `.MuiTypography-root:where(p)` to apply custom styles for the paragraph element instead:
-
-```diff
--.MuiTypography-paragraph {
--  margin-bottom: 16px;
--}
-+.MuiTypography-root:where(p) {
-+  margin-bottom: 16px;
-+}
-```
-
-#### Typography deprecated props removed
-
-Use the [typography-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following section:
-
-```bash
-npx @mui/codemod@latest deprecations/typography-props <path>
-```
-
-The following deprecated props have been removed from the `Typography` component:
-
-- `paragraph` → use the `sx` prop to add a margin bottom instead
+The deprecated `SpeedDial` props have been removed.
+Use the `slots` and `slotProps` props instead:
 
 ```diff
--<Typography paragraph />
-+<Typography sx={{ marginBottom: '16px' }} />
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { timeout: 500 } }}
+ >
 ```
 
-#### Divider deprecated props removed
+#### SpeedDialAction deprecated props removed
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/divider-props <path>
-```
-
-The deprecated `Divider` prop have been removed.
-Use `sx={{ opacity : "0.6" }}` (or any opacity):
+The deprecated `SpeedDialAction` props have been removed.
+Use the `slotProps` prop instead:
 
 ```diff
- <Divider
--  light
-+  sx={{ opacity: 0.6 }}
+ <SpeedDialAction
+-  FabProps={{ size: 'large' }}
+-  tooltipTitle="Add"
+-  tooltipPlacement="right"
+-  tooltipOpen
+-  TooltipClasses={{ tooltip: 'custom' }}
++  slotProps={{
++    fab: { size: 'large' },
++    tooltip: {
++      title: 'Add',
++      placement: 'right',
++      open: true,
++      classes: { tooltip: 'custom' },
++    },
+```
+
+#### Menu deprecated props removed
+
+The following deprecated props have been removed:
+
+- `MenuListProps` — use `slotProps.list` instead
+- `PaperProps` — use `slotProps.paper` instead
+- `TransitionProps` — use `slotProps.transition` instead
+
+```diff
+ <Menu
+-  MenuListProps={{ disablePadding: true }}
+-  PaperProps={{ elevation: 12 }}
+-  TransitionProps={{ timeout: 500 }}
++  slotProps={{
++    list: { disablePadding: true },
++    paper: { elevation: 12 },
++    transition: { timeout: 500 },
++  }}
+ />
+```
+
+If you pass these props via `Select`'s `MenuProps`, update them the same way:
+
+```diff
+ <Select
+   MenuProps={{
+-    PaperProps: { style: { maxHeight: 200 } },
+-    MenuListProps: { disablePadding: true },
+-    TransitionProps: { timeout: 500 },
++    slotProps: {
++      paper: { style: { maxHeight: 200 } },
++      list: { disablePadding: true },
++      transition: { timeout: 500 },
++    },
+   }}
+ />
+```
+
+#### Popover deprecated props removed
+
+The following deprecated props have been removed:
+
+- `BackdropComponent` — use `slots.backdrop` instead
+- `BackdropProps` — use `slotProps.backdrop` instead
+- `PaperProps` — use `slotProps.paper` instead
+- `TransitionComponent` — use `slots.transition` instead
+- `TransitionProps` — use `slotProps.transition` instead
+
+```diff
+ <Popover
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ invisible: true }}
+-  PaperProps={{ elevation: 12 }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ backdrop: CustomBackdrop, transition: CustomTransition }}
++  slotProps={{
++    backdrop: { invisible: true },
++    paper: { elevation: 12 },
++    transition: { timeout: 500 },
++  }}
  />
 ```
 
@@ -736,4 +945,138 @@ The following deprecated props have been removed:
 +    scrollButtons: { disableRipple: true },
 +  }}
  />
+```
+
+```diff
+ <Tabs
+-  slots={{ StartScrollButtonIcon: CustomIcon, EndScrollButtonIcon: CustomIcon2 }}
++  slots={{ startScrollButtonIcon: CustomIcon, endScrollButtonIcon: CustomIcon2 }}
+ />
+```
+
+#### TextField deprecated props removed
+
+Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/text-field-props <path>
+```
+
+The following deprecated props have been removed from the `TextField` component:
+
+- `InputProps` → use `slotProps.input`
+- `inputProps` → use `slotProps.htmlInput`
+- `SelectProps` → use `slotProps.select`
+- `InputLabelProps` → use `slotProps.inputLabel`
+- `FormHelperTextProps` → use `slotProps.formHelperText`
+
+```diff
+ <TextField
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
++  slotProps={{
++    input: CustomInputProps,
++    htmlInput: CustomHtmlInputProps,
++    select: CustomSelectProps,
++    inputLabel: CustomInputLabelProps,
++    formHelperText: CustomFormHelperTextProps,
++  }}
+ />
+```
+
+Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
+
+If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
+
+```diff
+ <Autocomplete
+   renderInput={(params) => (
+     <TextField
+       {...params}
+-      inputProps={{
+-        ...params.inputProps,
+-        autoComplete: 'new-password',
++      slotProps={{
++        ...params.slotProps,
++        htmlInput: {
++          ...params.slotProps.htmlInput,
++          autoComplete: 'new-password',
++        },
+       }}
+     />
+   )}
+```
+
+#### Tooltip deprecated props removed
+
+Use the [tooltip-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/tooltip-props <path>
+```
+
+The following deprecated props have been removed from the `Tooltip` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
+- `PopperComponent` → use `slots.popper`
+- `PopperProps` → use `slotProps.popper`
+- `TransitionComponent` → use `slots.transition`
+- `TransitionProps` → use `slotProps.transition`
+
+```diff
+ <Tooltip
+   title="Hello World"
+-  components={{ Popper: CustomPopper, Tooltip: CustomTooltip, Transition: CustomTransition, Arrow: CustomArrow }}
+-  componentsProps={{ popper: { placement: 'top' }, tooltip: { className: 'custom' }, arrow: { className: 'arrow' } }}
+-  PopperComponent={CustomPopper}
+-  PopperProps={{ disablePortal: true }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ popper: CustomPopper, tooltip: CustomTooltip, transition: CustomTransition, arrow: CustomArrow }}
++  slotProps={{
++    popper: { placement: 'top', disablePortal: true },
++    tooltip: { className: 'custom' },
++    transition: { timeout: 500 },
++    arrow: { className: 'arrow' },
++  }}
+ />
+```
+
+#### Typography deprecated CSS classes removed
+
+The deprecated `paragraph` CSS class has been removed.
+Use CSS `.MuiTypography-root:where(p)` to apply custom styles for the paragraph element instead:
+
+```diff
+-.MuiTypography-paragraph {
+-  margin-bottom: 16px;
+-}
++.MuiTypography-root:where(p) {
++  margin-bottom: 16px;
++}
+```
+
+#### Typography deprecated props removed
+
+Use the [typography-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#typography-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+The following deprecated props have been removed from the `Typography` component:
+
+- `paragraph` → use the `sx` prop to add a margin bottom instead
+
+```diff
+-<Typography paragraph />
++<Typography sx={{ marginBottom: '16px' }} />
 ```

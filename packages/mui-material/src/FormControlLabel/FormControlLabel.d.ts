@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
-import Typography, { TypographyProps } from '../Typography';
+import Typography from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -34,21 +34,6 @@ export interface FormControlLabelProps
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<FormControlLabelClasses> | undefined;
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps?:
-    | {
-        /**
-         * Props applied to the Typography wrapper of the passed label.
-         * This is unused if disableTypography is true.
-         * @default {}
-         */
-        typography?: TypographyProps | undefined;
-      }
-    | undefined;
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */

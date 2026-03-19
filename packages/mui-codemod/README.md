@@ -1950,6 +1950,49 @@ CSS transforms:
 npx @mui/codemod@next deprecations/slider-classes <path>
 ```
 
+#### `tabs-props`
+
+```diff
+ <Tabs
+-  ScrollButtonComponent={CustomScrollButton}
+-  TabIndicatorProps={{ className: 'indicator' }}
+-  TabScrollButtonProps={{ disableRipple: true }}
++  slots={{ scrollButtons: CustomScrollButton }}
++  slotProps={{
++    indicator: { className: 'indicator' },
++    scrollButtons: { disableRipple: true },
++  }}
+ />
+```
+
+```diff
+ <Tabs
+-  slots={{ StartScrollButtonIcon: CustomIcon, EndScrollButtonIcon: CustomIcon2 }}
++  slots={{ startScrollButtonIcon: CustomIcon, endScrollButtonIcon: CustomIcon2 }}
+ />
+```
+
+```diff
+ MuiTabs: {
+   defaultProps: {
+-    ScrollButtonComponent: CustomScrollButton,
+-    TabScrollButtonProps: { disableRipple: true },
+-    TabIndicatorProps: { className: 'indicator' },
++    slots: {
++      scrollButtons: CustomScrollButton,
++    },
++    slotProps: {
++      scrollButtons: { disableRipple: true },
++      indicator: { className: 'indicator' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/tabs-props <path>
+```
+
 #### `tooltip-props`
 
 ```diff

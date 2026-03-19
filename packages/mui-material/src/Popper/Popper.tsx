@@ -18,25 +18,6 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
    */
   component?: React.ElementType | undefined;
   /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  components?:
-    | {
-        Root?: React.ElementType | undefined;
-      }
-    | undefined;
-  /**
-   * The props used for each slot inside the Popper.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  componentsProps?: BasePopperProps['slotProps'] | undefined;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
@@ -72,8 +53,6 @@ const Popper = React.forwardRef(function Popper(
   const {
     anchorEl,
     component,
-    components,
-    componentsProps,
     container,
     disablePortal,
     keepMounted,
@@ -88,7 +67,6 @@ const Popper = React.forwardRef(function Popper(
     ...other
   } = props;
 
-  const RootComponent = slots?.root ?? components?.Root;
   const otherProps = {
     anchorEl,
     container,
@@ -106,8 +84,8 @@ const Popper = React.forwardRef(function Popper(
     <PopperRoot
       as={component}
       direction={isRtl ? 'rtl' : 'ltr'}
-      slots={{ root: RootComponent }}
-      slotProps={slotProps ?? componentsProps}
+      slots={slots}
+      slotProps={slotProps}
       {...otherProps}
       ref={ref}
     />
@@ -142,25 +120,6 @@ Popper.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Popper.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.

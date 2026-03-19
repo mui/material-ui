@@ -85,9 +85,11 @@ describe('<Menu />', () => {
           <Menu
             anchorEl={defaultAnchorEl}
             open
-            TransitionProps={{
-              onEnter: handleEnter,
-              onEntering: handleEntering,
+            slotProps={{
+              transition: {
+                onEnter: handleEnter,
+                onEntering: handleEntering,
+              },
             }}
           />,
         );
@@ -109,9 +111,11 @@ describe('<Menu />', () => {
 
         const { setProps } = render(
           <Menu
-            TransitionProps={{
-              onExit: handleExit,
-              onExiting: handleExiting,
+            slotProps={{
+              transition: {
+                onExit: handleExit,
+                onExiting: handleExiting,
+              },
             }}
             anchorEl={defaultAnchorEl}
             open
@@ -131,7 +135,9 @@ describe('<Menu />', () => {
   });
 
   it('should pass `classes.paper` to the Paper', () => {
-    render(<Menu anchorEl={defaultAnchorEl} open PaperProps={{ 'data-testid': 'paper' }} />);
+    render(
+      <Menu anchorEl={defaultAnchorEl} open slotProps={{ paper: { 'data-testid': 'paper' } }} />,
+    );
 
     expect(screen.getByTestId('paper')).to.have.class(classes.paper);
   });
@@ -142,7 +148,7 @@ describe('<Menu />', () => {
         <Menu
           anchorEl={defaultAnchorEl}
           open
-          PaperProps={{ 'data-testid': 'paper' }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
           PopoverClasses={{ paper: 'bar' }}
         />,
       );
@@ -164,7 +170,7 @@ describe('<Menu />', () => {
     });
   });
 
-  describe('prop: PaperProps', () => {
+  describe('slotProps: paper', () => {
     it('should be passed to the paper component', () => {
       const customElevation = 12;
       const customClasses = { rounded: 'custom-rounded' };
@@ -173,10 +179,12 @@ describe('<Menu />', () => {
         <Menu
           anchorEl={defaultAnchorEl}
           open
-          PaperProps={{
-            'data-testid': 'paper',
-            elevation: customElevation,
-            classes: customClasses,
+          slotProps={{
+            paper: {
+              'data-testid': 'paper',
+              elevation: customElevation,
+              classes: customClasses,
+            },
           }}
         />,
       );
@@ -272,32 +280,6 @@ describe('<Menu />', () => {
     expect(onEnteringSpy.callCount).to.equal(1);
   });
 
-  // TODO: remove in v7
-  describe('legacy TransitionProps', () => {
-    it('should call TransitionProps.onEntering', () => {
-      const onEnteringSpy = spy();
-      render(
-        <Menu anchorEl={defaultAnchorEl} open TransitionProps={{ onEntering: onEnteringSpy }} />,
-      );
-
-      expect(onEnteringSpy.callCount).to.equal(1);
-    });
-
-    it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
-      const onEnteringSpy = spy();
-      render(
-        <Menu
-          anchorEl={defaultAnchorEl}
-          disableAutoFocusItem
-          open
-          TransitionProps={{ onEntering: onEnteringSpy }}
-        />,
-      );
-
-      expect(onEnteringSpy.callCount).to.equal(1);
-    });
-  });
-
   it('should call onClose on tab', () => {
     function MenuItem(props) {
       const { autoFocus, children } = props;
@@ -382,9 +364,7 @@ describe('<Menu />', () => {
             <Menu
               anchorEl={defaultAnchorEl}
               open
-              PaperProps={{
-                'data-testid': 'paper',
-              }}
+              slotProps={{ paper: { 'data-testid': 'paper' } }}
             />
           </ThemeProvider>,
         );
@@ -415,9 +395,7 @@ describe('<Menu />', () => {
             <Menu
               anchorEl={defaultAnchorEl}
               open
-              PaperProps={{
-                'data-testid': 'paper',
-              }}
+              slotProps={{ paper: { 'data-testid': 'paper' } }}
             />
           </ThemeProvider>,
         );
