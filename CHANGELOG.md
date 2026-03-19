@@ -10,36 +10,120 @@ A big thanks to the 11 contributors who made this release possible.
 
 ### `@mui/material@9.0.0-alpha.4`
 
-- [textfield] Remove deprecated props (#47878) @ZeeshanTamboli
+#### Breaking Changes
+
 - [accordion] Remove deprecated props (#47963) @silviuaavram
-- [accordionsummary] Remove deprecated props (#48006) @silviuaavram
-- [alert] Remove deprecated classes (#48011) @silviuaavram
+  - `TransitionComponent`
+  - `TransitionProps`
+- [accordionsummary] Remove deprecated CSS class (#48006) @silviuaavram
+  - `contentGutters`
+- [alert] Remove deprecated CSS classes (#48011) @silviuaavram
+  - `standardSuccess`
+  - `standardInfo`
+  - `standardWarning`
+  - `standardError`
+  - `outlinedSuccess`
+  - `outlinedInfo`
+  - `outlinedWarning`
+  - `outlinedError`
+  - `filledSuccess`
+  - `filledInfo`
+  - `filledWarning`
+  - `filledError`
 - [alert] Remove deprecated props (#47965) @silviuaavram
-- [autocomplete] Optimize selected option lookup (#47953) @anchmelev
+  - `components`
+  - `componentsProps`
 - [autocomplete] Remove deprecated props (#47864) @ZeeshanTamboli
+  - `ChipProps`
+  - `componentsProps`
+  - `ListboxComponent`
+  - `ListboxProps`
+  - `PaperComponent`
+  - `PopperComponent`
+  - `renderTags`
 - [avatar] Remove deprecated props (#47966) @silviuaavram
+  - `imgProps`
 - [avatargroup] Remove deprecated props (#47968) @silviuaavram
+  - `componentsProps`
 - [backdrop] Remove deprecated props (#47991) @silviuaavram
+  - `components`
+  - `componentsProps`
+  - `TransitionComponent`
 - [badge] Remove deprecated props (#47993) @silviuaavram
-- [button] Remove deprecated classes (#48012) @silviuaavram
-- [buttonbase] Key handlers should not run on a disabled non-native button (#48003) @mj12albert
-- [buttonbase] Fix native button detection (#47985) @mj12albert
-- [divider] Removed deprecated props and classes (#48013) @atharva3333
+  - `components`
+  - `componentsProps`
+- [button] Remove deprecated CSS classes (#48012) @silviuaavram
+  - Color variant classes: `textInherit`, `outlinedPrimary`, `containedSecondary`, etc.
+  - Size classes: `textSizeSmall`, `iconSizeMedium`, etc.
+- [divider] Remove deprecated prop (#48013) @atharva3333
+  - `light`
 - [formcontrollabel] Remove deprecated props (#48032) @atharva3333
-- [inputbase] Fix test using removed InputProps on TextField (#48000) @siriwatknp
-- [menu][popover][select] Remove deprecated props (#48021) @siriwatknp
-- [popper] Add missing classes export (#48031) @mj12albert
+  - `componentsProps`
+- [menu] Remove deprecated props (#48021) @siriwatknp
+  - `MenuListProps`
+  - `PaperProps`
+  - `TransitionProps`
+- [popover] Remove deprecated props (#48021) @siriwatknp
+  - `BackdropComponent`
+  - `BackdropProps`
+  - `PaperProps`
+  - `TransitionComponent`
+  - `TransitionProps`
 - [popper] Remove deprecated props (#48020) @siriwatknp
-- [select] Fix focus visible always set on menu item (#47912) @silviuaavram
+  - `components`
+  - `componentsProps`
+- [select] Remove deprecated props passed via `MenuProps` (#48021) @siriwatknp
+  - `MenuListProps`
+  - `PaperProps`
+  - `TransitionProps`
 - [slider] Remove deprecated props (#47996) @siriwatknp
+  - `components`
+  - `componentsProps`
+- [speeddial] Remove deprecated props (#47998) @siriwatknp
+  - `TransitionComponent`
+  - `TransitionProps`
+- [speeddialaction] Remove deprecated props (#47998) @siriwatknp
+  - `FabProps`
+  - `tooltipTitle`
+  - `tooltipPlacement`
+  - `tooltipOpen`
+  - `TooltipClasses`
+- [tabs] Remove deprecated props (#48017) @siriwatknp
+  - `ScrollButtonComponent`
+  - `TabIndicatorProps`
+  - `TabScrollButtonProps`
+  - `slots.StartScrollButtonIcon`
+  - `slots.EndScrollButtonIcon`
+- [textfield] Remove deprecated props (#47878) @ZeeshanTamboli
+  - `InputProps`
+  - `inputProps`
+  - `SelectProps`
+  - `InputLabelProps`
+  - `FormHelperTextProps`
+- [tooltip] Remove deprecated props (#47988) @siriwatknp
+  - `components`
+  - `componentsProps`
+  - `PopperComponent`
+  - `PopperProps`
+  - `TransitionComponent`
+  - `TransitionProps`
+- [typography] Remove deprecated prop (#47986) @siriwatknp
+  - `paragraph`
+- [buttonbase] Key handlers should not run on a disabled non-native button (#48003) @mj12albert
+- [tablepagination] Format pagination numbers according to locale (#47803) @siriwatknp
+- [textfield] Use non-native label for `<TextField select/>` (#47958) @mj12albert
+
+Check out the [v9 upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v9/).
+
+#### Changes
+
+- [autocomplete] Optimize selected option lookup (#47953) @anchmelev
+- [buttonbase] Fix native button detection (#47985) @mj12albert
+- [inputbase] Fix test using removed InputProps on TextField (#48000) @siriwatknp
+- [popper] Add missing classes export (#48031) @mj12albert
+- [select] Fix focus visible always set on menu item (#47912) @silviuaavram
 - [slider] Fix focus visible styles incorrectly applied by pointer (#47894) @mj12albert
 - [slider] Accept readonly array for the value prop (#47936) @pcorpet
-- [speeddial] Remove deprecated props (#47998) @siriwatknp
-- [tablepagination] Format pagination numbers according to locale (#47803) @siriwatknp
-- [tabs] Remove deprecated props (#48017) @siriwatknp
-- [textfield] Use non-native label for `<TextField select/>` (#47958) @mj12albert
-- [tooltip] Remove deprecated props (#47988) @siriwatknp
-- [typography] Remove deprecated props (#47986) @siriwatknp
 
 ### `@mui/codemod@9.0.0-alpha.4`
 
