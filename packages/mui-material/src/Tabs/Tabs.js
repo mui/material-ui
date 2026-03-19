@@ -254,13 +254,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     indicatorColor = 'primary',
     onChange,
     orientation = 'horizontal',
-    ScrollButtonComponent, // TODO: remove in v7 (deprecated in v6)
     scrollButtons = 'auto',
     selectionFollowsFocus,
     slots = {},
     slotProps = {},
-    TabIndicatorProps = {}, // TODO: remove in v7 (deprecated in v6)
-    TabScrollButtonProps = {}, // TODO: remove in v7 (deprecated in v6)
     textColor = 'primary',
     value,
     variant = 'standard',
@@ -298,13 +295,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const startScrollButtonIconProps = useSlotProps({
-    elementType: slots.StartScrollButtonIcon,
+    elementType: slots.startScrollButtonIcon,
     externalSlotProps: slotProps.startScrollButtonIcon,
     ownerState,
   });
 
   const endScrollButtonIconProps = useSlotProps({
-    elementType: slots.EndScrollButtonIcon,
+    elementType: slots.endScrollButtonIcon,
     externalSlotProps: slotProps.endScrollButtonIcon,
     ownerState,
   });
@@ -335,11 +332,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      indicator: TabIndicatorProps,
-      scrollButtons: TabScrollButtonProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   const getTabsMeta = () => {
@@ -526,15 +519,15 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   );
 
   const [ScrollButtonsSlot, scrollButtonSlotProps] = useSlot('scrollButtons', {
-    className: clsx(classes.scrollButtons, TabScrollButtonProps.className),
+    className: classes.scrollButtons,
     elementType: TabScrollButton,
     externalForwardedProps,
     ownerState,
     additionalProps: {
       orientation,
       slots: {
-        StartScrollButtonIcon: slots.startScrollButtonIcon || slots.StartScrollButtonIcon,
-        EndScrollButtonIcon: slots.endScrollButtonIcon || slots.EndScrollButtonIcon,
+        StartScrollButtonIcon: slots.startScrollButtonIcon,
+        EndScrollButtonIcon: slots.endScrollButtonIcon,
       },
       slotProps: {
         startScrollButtonIcon: startScrollButtonIconProps,
@@ -722,7 +715,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   );
 
   const [IndicatorSlot, indicatorSlotProps] = useSlot('indicator', {
-    className: clsx(classes.indicator, TabIndicatorProps.className),
+    className: classes.indicator,
     elementType: TabsIndicator,
     externalForwardedProps,
     ownerState,
@@ -940,12 +933,6 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The component used to render the scroll buttons.
-   * @deprecated use the `slots.scrollButtons` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default TabScrollButton
-   */
-  ScrollButtonComponent: PropTypes.elementType,
-  /**
    * Determine behavior of scroll buttons when tabs are set to scroll:
    *
    * - `auto` will only present them when not all the items are visible.
@@ -982,7 +969,6 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     endScrollButtonIcon: PropTypes.elementType,
-    EndScrollButtonIcon: PropTypes.elementType,
     indicator: PropTypes.elementType,
     list: PropTypes.elementType,
     root: PropTypes.elementType,
@@ -990,7 +976,6 @@ Tabs.propTypes /* remove-proptypes */ = {
     scrollButtons: PropTypes.elementType,
     scroller: PropTypes.elementType,
     startScrollButtonIcon: PropTypes.elementType,
-    StartScrollButtonIcon: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -1000,18 +985,6 @@ Tabs.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * Props applied to the tab indicator element.
-   * @deprecated use the `slotProps.indicator` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default  {}
-   */
-  TabIndicatorProps: PropTypes.object,
-  /**
-   * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
-   * @deprecated use the `slotProps.scrollButtons` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  TabScrollButtonProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
    * @default 'primary'

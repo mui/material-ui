@@ -15,6 +15,25 @@ import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
+import { useSelectFocusSource } from '../Select';
+
+/**
+ * If autoFocus is an object, it will attempt to call `element.focus()` with the options argument.
+ * If the browser doesn't support the options argument, it will fall back to a simple `element.focus()` call.
+ */
+function focusWithVisible(element, focusSource) {
+  if (focusSource == null) {
+    element.focus();
+    return;
+  }
+
+  try {
+    element.focus({ focusVisible: focusSource === 'keyboard' });
+  } catch (error) {
+    // If the browser doesn't support the focus options argument, fall back to a simple focus call.
+    element.focus();
+  }
+}
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -176,6 +195,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...other
   } = props;
 
+  const focusSource = useSelectFocusSource();
   const context = React.useContext(ListContext);
   const childContext = React.useMemo(
     () => ({
@@ -189,13 +209,14 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   useEnhancedEffect(() => {
     if (autoFocus) {
       if (menuItemRef.current) {
-        menuItemRef.current.focus();
+        focusWithVisible(menuItemRef.current, focusSource);
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
           'MUI: Unable to set focus to a MenuItem whose component has not been rendered.',
         );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoFocus]);
 
   const ownerState = {

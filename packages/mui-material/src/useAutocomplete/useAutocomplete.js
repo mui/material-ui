@@ -66,6 +66,8 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
+const defaultIsOptionEqualToValue = (option, value) => option === value;
+
 const MULTIPLE_DEFAULT_VALUE = [];
 
 function getInputValue(value, multiple, getOptionLabel, renderValue) {
@@ -106,7 +108,7 @@ function useAutocomplete(props) {
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
-    isOptionEqualToValue = (option, value) => option === value,
+    isOptionEqualToValue = defaultIsOptionEqualToValue,
     multiple = false,
     onChange,
     onClose,
@@ -219,16 +221,42 @@ function useAutocomplete(props) {
     !multiple && value != null && inputValue === getOptionLabel(value);
 
   const popupOpen = open && !readOnly;
+  const selectedValues = React.useMemo(() => {
+    if (multiple) {
+      return value;
+    }
+
+    if (value != null) {
+      return [value];
+    }
+
+    return [];
+  }, [multiple, value]);
+  const selectedValuesSet = React.useMemo(() => {
+    // Fast path for the default strict equality comparator to avoid O(n^2) option checks.
+    if (isOptionEqualToValue !== defaultIsOptionEqualToValue || selectedValues.length === 0) {
+      return null;
+    }
+
+    return new Set(selectedValues);
+  }, [isOptionEqualToValue, selectedValues]);
+  const isOptionSelected = React.useCallback(
+    (option) => {
+      if (selectedValuesSet) {
+        return selectedValuesSet.has(option);
+      }
+
+      return selectedValues.some(
+        (value2) => value2 != null && isOptionEqualToValue(option, value2),
+      );
+    },
+    [isOptionEqualToValue, selectedValues, selectedValuesSet],
+  );
 
   const filteredOptions = popupOpen
     ? filterOptions(
         options.filter((option) => {
-          if (
-            filterSelectedOptions &&
-            (multiple ? value : [value]).some(
-              (value2) => value2 !== null && isOptionEqualToValue(option, value2),
-            )
-          ) {
+          if (filterSelectedOptions && isOptionSelected(option)) {
             return false;
           }
           return true;
@@ -1261,9 +1289,7 @@ function useAutocomplete(props) {
       },
     }),
     getOptionProps: ({ index, option }) => {
-      const selected = (multiple ? value : [value]).some(
-        (value2) => value2 != null && isOptionEqualToValue(option, value2),
-      );
+      const selected = isOptionSelected(option);
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
