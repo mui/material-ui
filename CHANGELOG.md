@@ -41,11 +41,14 @@ A big thanks to the 11 contributors who made this release possible.
 - [tooltip] Remove deprecated props (#47988) @siriwatknp
 - [typography] Remove deprecated props (#47986) @siriwatknp
 
+### `@mui/codemod@9.0.0-alpha.4`
+
+- [codemod] Add slot key rename to `tabs-props` codemod and add to README (#48035) @siriwatknp
+- [codemod] Add card-header-props migration guide (#48005) @siriwatknp
+
 ### Docs
 
 - [blog] Lowercase 2026-MUI-X-price-changes blog post URL (#47871) @Janpot
-- [codemod] Add slot key rename to `tabs-props` codemod and add to README (#48035) @siriwatknp
-- [codemod] Add card-header-props migration guide (#48005) @siriwatknp
 - [docs] Wide docs layout (#47950) @noraleonte
 - [docs] Mention the list of props removed in upgrade guide (#48010) @silviuaavram
 - [docs] Update Autocomplete deprecated props removal migration guide docs (#47990) @ZeeshanTamboli
