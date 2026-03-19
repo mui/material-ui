@@ -228,15 +228,20 @@ export function buildTheme(): ThemeOptions {
             fontSize: '0.875rem',
             lineHeight: 24 / 16,
             textTransform: 'none',
-            [`&.${buttonClasses.sizeSmall} > .${buttonClasses.icon}`]: {
-              fontSize: '0.875rem',
-            },
-            [`&.${buttonClasses.sizeMedium} > .${buttonClasses.icon}`]: {
-              fontSize: '0.875rem',
-            },
-            [`&.${buttonClasses.sizeLarge} > .${buttonClasses.icon}`]: {
-              fontSize: '1rem',
-            },
+            variants: [
+              {
+                props: { size: 'small' },
+                style: { [`& .${buttonClasses.icon}`]: { fontSize: '0.875rem' } },
+              },
+              {
+                props: { size: 'medium' },
+                style: { [`& .${buttonClasses.icon}`]: { fontSize: '0.875rem' } },
+              },
+              {
+                props: { size: 'large' },
+                style: { [`& .${buttonClasses.icon}`]: { fontSize: '1rem' } },
+              },
+            ],
           },
           sizeSmall: ({ theme }) => ({
             padding: theme.spacing(0.5, 1),
