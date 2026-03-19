@@ -3572,6 +3572,40 @@ describe('<Autocomplete />', () => {
       const renderedOption = screen.getByTestId('optionLi');
       expect(renderedOption).to.have.text('Max');
     });
+
+    it('should defer renderOption until the custom listbox renders an option', () => {
+      const renderOption = spy((props, option) => <li {...props}>{option}</li>);
+      const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
+        const { children, ...other } = props;
+        const firstChild = Array.isArray(children) ? children[0] : children;
+
+        return (
+          <div ref={ref} {...other}>
+            {firstChild}
+          </div>
+        );
+      });
+
+      render(
+        <Autocomplete
+          disablePortal
+          open
+          options={Array.from({ length: 100 }, (_, index) => `option-${index}`)}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={renderOption}
+          slotProps={{
+            listbox: {
+              component: VirtualizedListbox,
+              virtualized: true,
+            },
+          }}
+        />,
+      );
+
+      expect(renderOption.callCount).to.be.lessThan(10);
+      expect(screen.getAllByRole('option')).to.have.length(1);
+      expect(screen.getByRole('option')).to.have.text('option-0');
+    });
   });
 
   // https://github.com/mui/material-ui/issues/36212

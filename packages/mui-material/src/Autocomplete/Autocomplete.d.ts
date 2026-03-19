@@ -23,6 +23,14 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AutocompletePaperSlotPropsOverrides {}
 export interface AutocompletePopperSlotPropsOverrides {}
+export interface AutocompleteListboxSlotPropsOverrides {
+  /**
+   * If `true`, option rendering is deferred until the custom listbox renders the child.
+   * This is useful for virtualized listbox implementations.
+   * @default false
+   */
+  virtualized?: boolean | undefined;
+}
 
 export {
   AutocompleteChangeDetails,
@@ -182,7 +190,7 @@ export type AutocompleteSlotsAndSlotProps<
           ref?: React.Ref<Element> | undefined;
         }
       >,
-      {},
+      AutocompleteListboxSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     paper: SlotProps<

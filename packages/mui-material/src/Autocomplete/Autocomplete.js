@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -64,6 +65,39 @@ const useUtilityClasses = (ownerState) => {
 
   return composeClasses(slots, getAutocompleteUtilityClass, classes);
 };
+
+function AutocompleteOptionRenderer(props) {
+  const {
+    getOptionProps,
+    renderOption,
+    option,
+    index,
+    inputValue,
+    ownerState,
+    optionClassName,
+    optionKey,
+    ...other
+  } = props;
+
+  const optionProps = getOptionProps({ option, index });
+  const className = [optionClassName, other.className].filter(Boolean).join(' ');
+
+  return renderOption(
+    {
+      ...optionProps,
+      ...other,
+      className,
+      key: optionKey,
+    },
+    option,
+    {
+      selected: optionProps['aria-selected'],
+      index,
+      inputValue,
+    },
+    ownerState,
+  );
+}
 
 const AutocompleteRoot = styled('div', {
   name: 'MuiAutocomplete',
@@ -528,6 +562,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     slots,
     slotProps,
   };
+  const resolvedListboxSlotProps = resolveComponentProps(
+    externalForwardedProps.slotProps.listbox,
+    ownerState,
+  );
+  const { virtualized: virtualizedListbox = false, ...listboxSlotProps } =
+    resolvedListboxSlotProps || {};
 
   const [RootSlot, rootProps] = useSlot('root', {
     ref,
@@ -543,7 +583,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const [ListboxSlot, listboxProps] = useSlot('listbox', {
     elementType: AutocompleteListbox,
-    externalForwardedProps,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      slotProps: {
+        ...externalForwardedProps.slotProps,
+        listbox: listboxSlotProps,
+      },
+    },
     ownerState,
     className: classes.listbox,
     additionalProps: otherListboxProps,
@@ -669,17 +715,35 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const renderOption = renderOptionProp || defaultRenderOption;
 
   const renderListOption = (option, index) => {
-    const optionProps = getOptionProps({ option, index });
+    if (!virtualizedListbox) {
+      const optionProps = getOptionProps({ option, index });
 
-    return renderOption(
-      { ...optionProps, className: classes.option },
-      option,
-      {
-        selected: optionProps['aria-selected'],
-        index,
-        inputValue,
-      },
-      ownerState,
+      return renderOption(
+        { ...optionProps, className: classes.option },
+        option,
+        {
+          selected: optionProps['aria-selected'],
+          index,
+          inputValue,
+        },
+        ownerState,
+      );
+    }
+
+    const optionKey = getOptionKey?.(option) ?? getOptionLabel(option);
+
+    return (
+      <AutocompleteOptionRenderer
+        key={optionKey}
+        optionKey={optionKey}
+        option={option}
+        index={index}
+        renderOption={renderOption}
+        getOptionProps={getOptionProps}
+        inputValue={inputValue}
+        ownerState={ownerState}
+        optionClassName={classes.option}
+      />
     );
   };
 

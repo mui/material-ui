@@ -26,13 +26,9 @@ function RowComponent({ index, itemData, style }) {
     );
   }
 
-  const { key, ...optionProps } = dataSet[0];
-
-  return (
-    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
-      {`#${dataSet[2] + 1} - ${dataSet[1]}`}
-    </Typography>
-  );
+  return React.cloneElement(dataSet, {
+    style: inlineStyle,
+  });
 }
 
 // Adapter for react-window v2
@@ -41,12 +37,9 @@ RowComponent.propTypes = {
   index: PropTypes.number.isRequired,
   itemData: PropTypes.arrayOf(
     PropTypes.oneOfType([
-      PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string])
-          .isRequired,
-      ),
+      PropTypes.element,
       PropTypes.shape({
-        children: PropTypes.node,
+        children: PropTypes.arrayOf(PropTypes.element),
         group: PropTypes.string.isRequired,
         key: PropTypes.number.isRequired,
       }),
@@ -60,7 +53,11 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemData = [];
   const optionIndexMap = React.useMemo(() => new Map(), []);
 
-  children.forEach((item) => {
+  const childItems = (Array.isArray(children) ? children : [children]).filter(
+    Boolean,
+  );
+
+  childItems.forEach((item) => {
     itemData.push(item);
     if ('children' in item && Array.isArray(item.children)) {
       itemData.push(...item.children);
@@ -69,8 +66,8 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 
   // Map option values to their indices in the flattened array
   itemData.forEach((item, index) => {
-    if (Array.isArray(item) && item[1]) {
-      optionIndexMap.set(item[1], index);
+    if (React.isValidElement(item)) {
+      optionIndexMap.set(item.props.option, index);
     }
   });
 
@@ -193,7 +190,11 @@ export default function Virtualize() {
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option, state) => [props, option, state.index]}
+      renderOption={(props, option, state) => (
+        <Typography component="li" {...props} noWrap>
+          {`#${state.index + 1} - ${option}`}
+        </Typography>
+      )}
       renderGroup={(params) => params}
       onHighlightChange={handleHighlightChange}
       slots={{
@@ -202,6 +203,7 @@ export default function Virtualize() {
       slotProps={{
         listbox: {
           component: ListboxComponent,
+          virtualized: true,
           internalListRef,
           onItemsBuilt: handleItemsBuilt,
         },
