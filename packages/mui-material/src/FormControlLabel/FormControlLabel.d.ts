@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
-import Typography from '../Typography';
+import { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -18,7 +18,7 @@ export interface FormControlLabelSlots {
 export type FormControlLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   FormControlLabelSlots,
   {
-    typography: SlotProps<typeof Typography, {}, FormControlLabelProps>;
+    typography: SlotProps<React.ElementType<TypographyProps>, {}, FormControlLabelProps>;
   }
 >;
 
