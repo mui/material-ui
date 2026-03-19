@@ -784,6 +784,8 @@ The following deprecated prop has been removed:
 -  componentsProps={{ typography: { fontWeight: 'bold' } }}
 +  slotProps={{ typography: { fontWeight: 'bold' } }}
  />
+```
+
 #### Typography deprecated CSS classes removed
 
 The deprecated `paragraph` CSS class has been removed.
