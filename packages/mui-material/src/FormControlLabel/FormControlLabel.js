@@ -114,7 +114,6 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const {
     checked,
     className,
-    componentsProps = {},
     control,
     disabled: disabledProp,
     disableTypography,
@@ -164,10 +163,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      ...componentsProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   const [TypographySlot, typographySlotProps] = useSlot('typography', {
@@ -228,14 +224,6 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps: PropTypes.shape({
-    typography: PropTypes.object,
-  }),
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
