@@ -35,21 +35,6 @@ export interface FormControlLabelProps
    */
   classes?: Partial<FormControlLabelClasses> | undefined;
   /**
-   * The props used for each slot inside.
-   * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps?:
-    | {
-        /**
-         * Props applied to the Typography wrapper of the passed label.
-         * This is unused if disableTypography is true.
-         * @default {}
-         */
-        typography?: TypographyProps | undefined;
-      }
-    | undefined;
-  /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
   control: React.ReactElement<unknown, any>;
