@@ -8,7 +8,7 @@ import {
   CssVarsProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
-import Alert, { alertClasses } from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
@@ -292,27 +292,34 @@ export function buildTheme(): ThemeOptions {
               '& .MuiAlert-icon': {
                 color: (theme.vars || theme).palette.primaryDark[800],
               },
-              [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
-                backgroundColor: (theme.vars || theme).palette.primary[50],
-                color: (theme.vars || theme).palette.primary[600],
-                border: '1px solid',
-                borderColor: alpha(theme.palette.primaryDark[100], 0.5),
-                '& .MuiAlert-icon': {
-                  color: (theme.vars || theme).palette.primary[500],
+              variants: [
+                {
+                  props: { variant: 'standard', color: 'info' },
+                  style: [
+                    {
+                      backgroundColor: (theme.vars || theme).palette.primary[50],
+                      color: (theme.vars || theme).palette.primary[600],
+                      border: '1px solid',
+                      borderColor: alpha(theme.palette.primaryDark[100], 0.5),
+                      '& .MuiAlert-icon': {
+                        color: (theme.vars || theme).palette.primary[500],
+                      },
+                    },
+                    theme.applyDarkStyles({
+                      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                      color: (theme.vars || theme).palette.primaryDark[50],
+                      borderColor: alpha(theme.palette.primaryDark[500], 0.2),
+                      '& .MuiAlert-icon': {
+                        color: (theme.vars || theme).palette.primaryDark[50],
+                      },
+                    }),
+                  ],
                 },
-              },
+              ],
             },
             theme.applyDarkStyles({
               '& .MuiAlert-icon': {
                 color: (theme.vars || theme).palette.primaryDark[100],
-              },
-              [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: {
-                backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
-                color: (theme.vars || theme).palette.primaryDark[50],
-                borderColor: alpha(theme.palette.primaryDark[500], 0.2),
-                '& .MuiAlert-icon': {
-                  color: (theme.vars || theme).palette.primaryDark[50],
-                },
               },
             }),
           ],

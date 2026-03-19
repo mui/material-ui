@@ -390,11 +390,9 @@ The following deprecated `Alert` CSS classes have been removed:
 - `filledWarning` → use `.MuiAlert-filled.MuiAlert-colorWarning`
 - `filledError` → use `.MuiAlert-filled.MuiAlert-colorError`
 
-If you were using these deprecated class names as `styleOverrides` keys in your theme, move the styles into the `root` override using compound selectors with `alertClasses`:
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `root` override instead:
 
 ```diff
-+import { alertClasses } from '@mui/material/Alert';
-
  const theme = createTheme({
    components: {
      MuiAlert: {
@@ -412,18 +410,20 @@ If you were using these deprecated class names as `styleOverrides` keys in your 
 -        filledWarning: { backgroundColor: 'orange' },
 -        filledError: { backgroundColor: 'red' },
 +        root: {
-+          [`&.${alertClasses.standard}.${alertClasses.colorSuccess}`]: { color: 'green' },
-+          [`&.${alertClasses.standard}.${alertClasses.colorInfo}`]: { color: 'blue' },
-+          [`&.${alertClasses.standard}.${alertClasses.colorWarning}`]: { color: 'orange' },
-+          [`&.${alertClasses.standard}.${alertClasses.colorError}`]: { color: 'red' },
-+          [`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`]: { borderColor: 'green' },
-+          [`&.${alertClasses.outlined}.${alertClasses.colorInfo}`]: { borderColor: 'blue' },
-+          [`&.${alertClasses.outlined}.${alertClasses.colorWarning}`]: { borderColor: 'orange' },
-+          [`&.${alertClasses.outlined}.${alertClasses.colorError}`]: { borderColor: 'red' },
-+          [`&.${alertClasses.filled}.${alertClasses.colorSuccess}`]: { backgroundColor: 'green' },
-+          [`&.${alertClasses.filled}.${alertClasses.colorInfo}`]: { backgroundColor: 'blue' },
-+          [`&.${alertClasses.filled}.${alertClasses.colorWarning}`]: { backgroundColor: 'orange' },
-+          [`&.${alertClasses.filled}.${alertClasses.colorError}`]: { backgroundColor: 'red' },
++          variants: [
++            { props: { variant: 'standard', color: 'success' }, style: { color: 'green' } },
++            { props: { variant: 'standard', color: 'info' }, style: { color: 'blue' } },
++            { props: { variant: 'standard', color: 'warning' }, style: { color: 'orange' } },
++            { props: { variant: 'standard', color: 'error' }, style: { color: 'red' } },
++            { props: { variant: 'outlined', color: 'success' }, style: { borderColor: 'green' } },
++            { props: { variant: 'outlined', color: 'info' }, style: { borderColor: 'blue' } },
++            { props: { variant: 'outlined', color: 'warning' }, style: { borderColor: 'orange' } },
++            { props: { variant: 'outlined', color: 'error' }, style: { borderColor: 'red' } },
++            { props: { variant: 'filled', color: 'success' }, style: { backgroundColor: 'green' } },
++            { props: { variant: 'filled', color: 'info' }, style: { backgroundColor: 'blue' } },
++            { props: { variant: 'filled', color: 'warning' }, style: { backgroundColor: 'orange' } },
++            { props: { variant: 'filled', color: 'error' }, style: { backgroundColor: 'red' } },
++          ],
 +        },
        },
      },
