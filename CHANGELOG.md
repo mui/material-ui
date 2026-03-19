@@ -10,7 +10,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 ### `@mui/material@9.0.0-alpha.4`
 
-- [text field] Remove deprecated props (#47878) @ZeeshanTamboli
+- [textfield] Remove deprecated props (#47878) @ZeeshanTamboli
 - [accordion] Remove deprecated props (#47963) @silviuaavram
 - [accordionsummary] Remove deprecated props (#48006) @silviuaavram
 - [alert] Remove deprecated classes (#48011) @silviuaavram
