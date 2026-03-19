@@ -612,46 +612,6 @@ The following deprecated props have been removed from the `Badge` component:
  />
 ```
 
-#### Divider deprecated props removed
-
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
-
-```bash
-npx @mui/codemod@latest deprecations/divider-props <path>
-```
-
-The deprecated `Divider` prop have been removed.
-Use `sx={{ opacity : "0.6" }}` (or any opacity):
-
-```diff
- <Divider
--  light
-+  sx={{ opacity: 0.6 }}
- />
-```
-
-#### Popper deprecated props removed
-
-Use the [popper-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following section:
-
-```bash
-npx @mui/codemod@latest deprecations/popper-props <path>
-```
-
-The following deprecated props have been removed:
-
-- `components` — use `slots` instead
-- `componentsProps` — use `slotProps` instead
-
-```diff
- <Popper
--  components={{ Root: CustomRoot }}
--  componentsProps={{ root: { className: 'custom' } }}
-+  slots={{ root: CustomRoot }}
-+  slotProps={{ root: { className: 'custom' } }}
- />
-```
-
 #### Button deprecated CSS classes removed
 
 Use the [button-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#button-classes) below to migrate the code as described in the following section:
@@ -777,6 +737,46 @@ If you were using these deprecated class names as `styleOverrides` keys in your 
      },
    },
  });
+```
+
+#### Divider deprecated props removed
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#divider-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/divider-props <path>
+```
+
+The deprecated `Divider` prop have been removed.
+Use `sx={{ opacity : "0.6" }}` (or any opacity):
+
+```diff
+ <Divider
+-  light
++  sx={{ opacity: 0.6 }}
+ />
+```
+
+#### Popper deprecated props removed
+
+Use the [popper-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/popper-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'custom' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { className: 'custom' } }}
+ />
 ```
 
 #### Slider deprecated props removed
