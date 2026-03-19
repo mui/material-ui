@@ -265,6 +265,34 @@ export default defineConfig(
       ],
     },
   },
+  {
+    files: [`packages/mui-icons-material/src/**/*${EXTENSION_TS}`],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            {
+              name: '@mui/utils',
+              message: OneLevelImportMessage,
+            },
+            {
+              name: '@mui/material/styles',
+              importNames: ['createStyles'],
+              message: forbidCreateStylesMessage,
+            },
+            {
+              name: '@mui/material/utils',
+              message:
+                'Avoid the `@mui/material/utils` barrel in `@mui/icons-material` hot paths. ' +
+                'Use a local helper or a direct one-level Material import instead.',
+            },
+          ],
+        },
+      ],
+    },
+  },
   baseSpecRules,
   {
     files: ['packages-internal/scripts/typescript-to-proptypes/src/**/*.ts'],
