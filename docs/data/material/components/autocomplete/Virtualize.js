@@ -37,11 +37,29 @@ RowComponent.propTypes = {
   index: PropTypes.number.isRequired,
   itemData: PropTypes.arrayOf(
     PropTypes.oneOfType([
-      PropTypes.element,
       PropTypes.shape({
-        children: PropTypes.arrayOf(PropTypes.element),
+        children: PropTypes.arrayOf(
+          PropTypes.shape({
+            key: PropTypes.string,
+            props: PropTypes.shape({
+              index: PropTypes.number.isRequired,
+              option: PropTypes.string.isRequired,
+              style: PropTypes.object,
+            }).isRequired,
+            type: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+          }),
+        ).isRequired,
         group: PropTypes.string.isRequired,
         key: PropTypes.number.isRequired,
+      }),
+      PropTypes.shape({
+        key: PropTypes.string,
+        props: PropTypes.shape({
+          index: PropTypes.number.isRequired,
+          option: PropTypes.string.isRequired,
+          style: PropTypes.object,
+        }).isRequired,
+        type: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
       }),
     ]).isRequired,
   ).isRequired,
