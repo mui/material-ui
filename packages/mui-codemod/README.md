@@ -1092,11 +1092,11 @@ JS transforms:
    styleOverrides: {
      root: {
 -      [`& .${circularProgressClasses.circleDeterminate}`]: {
-+      [`& .${circularProgressClasses.determinate} .${circularProgressClasses.circle}`]: {
++      [`&.${circularProgressClasses.determinate} .${circularProgressClasses.circle}`]: {
          color: 'red',
        },
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
-+      [`& .${circularProgressClasses.indeterminate} .${circularProgressClasses.circle}`]: {
++      [`&.${circularProgressClasses.indeterminate} .${circularProgressClasses.circle}`]: {
          color: 'red',
        },
      },
