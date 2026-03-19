@@ -720,20 +720,26 @@ The following deprecated `CircularProgress` CSS classes have been removed:
 - `circleDeterminate` → use `.MuiCircularProgress-determinate .MuiCircularProgress-circle`
 - `circleIndeterminate` → use `.MuiCircularProgress-indeterminate .MuiCircularProgress-circle`
 
-If you were using these deprecated class names as `styleOverrides` keys in your theme, move the styles into the `root` override using compound selectors with `circularProgressClasses`:
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `circle` override instead:
 
 ```diff
-+import { circularProgressClasses } from '@mui/material/CircularProgress';
-
  const theme = createTheme({
    components: {
      MuiCircularProgress: {
        styleOverrides: {
 -        circleDeterminate: { strokeDashoffset: '10px' },
 -        circleIndeterminate: { animationDuration: '1.4s' },
-+        root: {
-+          [`&.${circularProgressClasses.determinate} .${circularProgressClasses.circle}`]: { strokeDashoffset: '10px' },
-+          [`&.${circularProgressClasses.indeterminate} .${circularProgressClasses.circle}`]: { animationDuration: '1.4s' },
++        circle: {
++          variants: [
++            {
++              props: { variant: 'determinate' },
++              style: { strokeDashoffset: '10px' },
++            },
++            {
++              props: { variant: 'indeterminate' },
++              style: { animationDuration: '1.4s' },
++            },
++          ],
 +        },
        },
      },
