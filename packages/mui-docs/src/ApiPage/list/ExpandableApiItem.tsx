@@ -65,7 +65,7 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       letterSpacing: '.1rem',
       textTransform: 'uppercase',
     },
-    '& .MuiApi-expend-button': {},
+    '& .MuiApi-expand-button': {},
     '& hr': {
       margin: 0,
     },
@@ -221,7 +221,7 @@ export function ExpandableApiItem(props: ExpandableApiItemProps) {
         {isExtendable && (
           <IconButton
             onClick={() => setIsExtended((prev) => !prev)}
-            className="MuiApi-expend-button"
+            className="MuiApi-expand-button"
             aria-label={isExtended ? 'Collapse' : 'Expand'}
             size="small"
             sx={{ p: 0, ml: 'auto', borderRadius: '6px' }}

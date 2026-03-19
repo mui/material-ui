@@ -8,31 +8,50 @@ import { kebabCase } from 'es-toolkit/string';
 import type { BaseCssTOCParams, PropertyDefinition } from './types';
 import type { TableOfContentsParams } from '../types';
 
+type GetPropertiesTocParams = BaseCssTOCParams &
+  (
+    | {
+        properties: Array<Pick<PropertyDefinition, 'propName' | 'hash'>>;
+        componentProps?: never;
+        componentName?: never;
+      }
+    | { componentProps: Record<string, unknown>; componentName: string; properties?: never }
+  );
+
 export const getPropertiesToc = ({
   properties,
+  componentProps,
+  componentName,
   inheritance,
   themeDefaultProps,
   t,
   hash,
-}: BaseCssTOCParams & {
-  properties: PropertyDefinition[];
-}): TableOfContentsParams => ({
-  text: t('api-docs.props'),
-  hash: hash ?? '',
-  children: [
-    ...properties.map(({ propName, hash: propertyHash }) => ({
-      text: propName,
-      hash: propertyHash,
-      children: [],
-    })),
-    ...(inheritance
-      ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-      : []),
-    ...(themeDefaultProps
-      ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-      : []),
-  ],
-});
+}: GetPropertiesTocParams): TableOfContentsParams => {
+  const resolvedProperties =
+    properties ??
+    Object.keys(componentProps).map((propName) => ({
+      propName,
+      hash: `${kebabCase(componentName)}-prop-${propName}`,
+    }));
+
+  return {
+    text: t('api-docs.props'),
+    hash: hash ?? '',
+    children: [
+      ...resolvedProperties.map(({ propName, hash: propertyHash }) => ({
+        text: propName,
+        hash: propertyHash,
+        children: [],
+      })),
+      ...(inheritance
+        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+        : []),
+      ...(themeDefaultProps
+        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+        : []),
+    ],
+  };
+};
 
 interface GetPropsApiDefinitionsParams {
   componentName: string;
@@ -115,12 +134,6 @@ export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): Pr
     };
   });
 }
-
-// interface InterfaceApiProcessorParams {}
-
-// export function InterfaceApiProcessor(params: InterfaceApiProcessorParams): PropertyDefinition[] {
-//   return [];
-// }
 
 interface HookCommonApiParams {
   hookName: string;

@@ -1,13 +1,8 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {
-  ComponentApiContent,
-  PropsTableItem,
-  PropsTranslations,
-} from '@mui-internal/api-docs-builder';
-import { kebabCase } from 'es-toolkit/string';
-import { Translate, useTranslate } from '../../i18n';
+import { PropsTableItem, PropsTranslations } from '@mui-internal/api-docs-builder';
+import { useTranslate } from '../../i18n';
 import {
   ToggleDisplayOption,
   useApiPageOption,
@@ -19,46 +14,6 @@ import PropertiesList from '../list/PropertiesList';
 import { getPropsApiDefinitions } from '../definitions/properties';
 import { LayoutStorageKeys } from '../types';
 import { PropertyDefinition } from '../definitions';
-
-interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
-  componentProps: ComponentApiContent['props'];
-  componentName: ComponentApiContent['name'];
-  t: Translate;
-  /**
-   * @default 'props'
-   */
-  hash?: string;
-}
-
-/**
- * @deprecated Use the one from ApiPage/definitions
- */
-export function getPropsToC({
-  componentName,
-  componentProps,
-  inheritance,
-  themeDefaultProps,
-  t,
-  hash = 'props',
-}: GetPropsToCParams) {
-  return {
-    text: t('api-docs.props'),
-    hash,
-    children: [
-      ...Object.entries(componentProps).map(([propName]) => ({
-        text: propName,
-        hash: `${kebabCase(componentName)}-prop-${propName}`,
-        children: [],
-      })),
-      ...(inheritance
-        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-        : []),
-      ...(themeDefaultProps
-        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-        : []),
-    ],
-  };
-}
 
 type PropertiesSectionProps = (
   | {
