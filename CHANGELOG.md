@@ -1,5 +1,67 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-alpha.4
+
+<!-- generated comparing v9.0.0-alpha.3..master -->
+
+_Mar 19, 2026_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@9.0.0-alpha.4`
+
+- [text field] Remove deprecated props (#47878) @ZeeshanTamboli
+- [accordion] Remove deprecated props (#47963) @silviuaavram
+- [accordionsummary] Remove deprecated props (#48006) @silviuaavram
+- [alert] Remove deprecated classes (#48011) @silviuaavram
+- [alert] Remove deprecated props (#47965) @silviuaavram
+- [autocomplete] Optimize selected option lookup (#47953) @anchmelev
+- [autocomplete] Remove deprecated props (#47864) @ZeeshanTamboli
+- [avatar] Remove deprecated props (#47966) @silviuaavram
+- [avatargroup] Remove deprecated props (#47968) @silviuaavram
+- [backdrop] Remove deprecated props (#47991) @silviuaavram
+- [badge] Remove deprecated props (#47993) @silviuaavram
+- [button] Remove deprecated classes (#48012) @silviuaavram
+- [buttonbase] Key handlers should not run on a disabled non-native button (#48003) @mj12albert
+- [buttonbase] Fix native button detection (#47985) @mj12albert
+- [divider] Removed deprecated props and classes (#48013) @atharva3333
+- [formcontrollabel] Remove deprecated props (#48032) @atharva3333
+- [inputbase] Fix test using removed InputProps on TextField (#48000) @siriwatknp
+- [menu][popover][select] Remove deprecated props (#48021) @siriwatknp
+- [popper] Add missing classes export (#48031) @mj12albert
+- [popper] Remove deprecated props (#48020) @siriwatknp
+- [select] Fix focus visible always set on menu item (#47912) @silviuaavram
+- [slider] Remove deprecated props (#47996) @siriwatknp
+- [slider] Fix focus visible styles incorrectly applied by pointer (#47894) @mj12albert
+- [slider] Accept readonly array for the value prop (#47936) @pcorpet
+- [speeddial] Remove deprecated props (#47998) @siriwatknp
+- [tablepagination] Format pagination numbers according to locale (#47803) @siriwatknp
+- [tabs] Remove deprecated props (#48017) @siriwatknp
+- [textfield] Use non-native label for `<TextField select/>` (#47958) @mj12albert
+- [tooltip] Remove deprecated props (#47988) @siriwatknp
+- [typography] Remove deprecated props (#47986) @siriwatknp
+
+### Docs
+
+- [blog] Lowercase 2026-MUI-X-price-changes blog post URL (#47871) @Janpot
+- [codemod] Add slot key rename to `tabs-props` codemod and add to README (#48035) @siriwatknp
+- [codemod] Add card-header-props migration guide (#48005) @siriwatknp
+- [docs] Wide docs layout (#47950) @noraleonte
+- [docs] Mention the list of props removed in upgrade guide (#48010) @silviuaavram
+- [docs] Update Autocomplete deprecated props removal migration guide docs (#47990) @ZeeshanTamboli
+- [docs-infra] Extract shared App component from \_app into @mui/docs (#47933) @brijeshb42
+- [docs-infra] Expose global theme object (#47964) @Janpot
+- [docs][system] Update `styled` API docs for easier understanding (#47957) @olivier-lxo
+
+### Core
+
+- [core] Migrate to ESLint 10 (#47872) @brijeshb42
+- [code-infra] Add pkg-pr-new as dev dependency (#47992) @Janpot
+- [code-infra] Remove CI coverage collection and upload to Codecov (#47930) @Janpot
+- [core] Remove GridLegacy component (#47956) @siriwatknp
+
+All contributors of this release in alphabetical order: @anchmelev, @atharva3333, @brijeshb42, @Janpot, @mj12albert, @noraleonte, @olivier-lxo, @pcorpet, @silviuaavram, @siriwatknp, @ZeeshanTamboli
+
 ## 9.0.0-alpha.3
 
 <!-- generated comparing v9.0.0-alpha.2..master -->
