@@ -9,6 +9,7 @@ const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
 const SRC_DIR = path.resolve(currentDirectory, '../lib/');
 const TARGET_DIR = path.resolve(currentDirectory, '../build');
+const SRC_TYPINGS_DIR = path.resolve(currentDirectory, '../src');
 
 function normalizeFileName(file) {
   return path.parse(file).name;
@@ -57,6 +58,27 @@ ${files.map((file) => `export const ${normalizeFileName(file)}: SvgIconComponent
   await fs.writeFile(path.resolve(targetDir, `index.${extension}`), contents, 'utf8');
 }
 
+async function createInternalTypings(targetDir) {
+  const createSvgIconDeclaration = await fs.readFile(
+    path.resolve(SRC_TYPINGS_DIR, 'utils/createSvgIcon.d.ts'),
+    'utf8',
+  );
+
+  await fs.mkdir(path.resolve(targetDir, 'utils'), { recursive: true });
+  await Promise.all([
+    fs.writeFile(
+      path.resolve(targetDir, 'utils/createSvgIcon.d.ts'),
+      createSvgIconDeclaration,
+      'utf8',
+    ),
+    fs.writeFile(
+      path.resolve(targetDir, 'utils/createSvgIcon.d.mts'),
+      createSvgIconDeclaration,
+      'utf8',
+    ),
+  ]);
+}
+
 // Generate TypeScript.
 async function run() {
   await Promise.all([fs.mkdir(TARGET_DIR, { recursive: true })]);
@@ -67,6 +89,7 @@ async function run() {
     createIndexTyping(TARGET_DIR, files),
     createIconTypings(TARGET_DIR, files, 'd.mts'),
     createIndexTyping(TARGET_DIR, files, 'd.mts'),
+    createInternalTypings(TARGET_DIR),
   ]);
   console.log(`\u{1F5C4}  Written typings to ${chalk.dim(TARGET_DIR)}.`);
 }
