@@ -804,6 +804,7 @@ The following deprecated props have been removed:
 +  slots={{ root: CustomRoot }}
 +  slotProps={{ root: { className: 'custom' } }}
  />
+```
 
 #### Slider deprecated props removed
 
