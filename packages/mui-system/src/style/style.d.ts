@@ -15,13 +15,13 @@ export type TransformFunction = (
 ) => number | string | React.CSSProperties | CSSObject;
 
 export interface StyleOptions<PropKey> {
-  cssProperty?: PropKey | keyof React.CSSProperties | false;
+  cssProperty?: PropKey | keyof React.CSSProperties | false | undefined;
   prop: PropKey;
   /**
    * dot access in `Theme`
    */
-  themeKey?: string;
-  transform?: TransformFunction;
+  themeKey?: string | undefined;
+  transform?: TransformFunction | undefined;
 }
 
 export function getPath<T>(obj: T, path: string | undefined, checkVars?: boolean): null | unknown;
@@ -34,4 +34,6 @@ export function getStyleValue(
 
 export default function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,
-): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }> & { filterProps: string[] };
+): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme | undefined }> & {
+  filterProps: string[];
+};

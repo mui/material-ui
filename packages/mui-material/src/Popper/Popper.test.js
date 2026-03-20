@@ -10,8 +10,11 @@ import describeConformance from '../../test/describeConformance';
 describe('<Popper />', () => {
   let rtlTheme;
   const { clock, render } = createRenderer({ clock: 'fake' });
+
+  let defaultAnchorElm = null;
+
   const defaultProps = {
-    anchorEl: () => document.createElement('svg'),
+    anchorEl: () => defaultAnchorElm,
     children: <span>Hello World</span>,
     open: true,
   };
@@ -20,6 +23,12 @@ describe('<Popper />', () => {
     rtlTheme = createTheme({
       direction: 'rtl',
     });
+    defaultAnchorElm = document.createElement('div');
+    document.body.appendChild(defaultAnchorElm);
+  });
+
+  afterAll(() => {
+    document.body.removeChild(defaultAnchorElm);
   });
 
   describeConformance(<Popper {...defaultProps} />, () => ({
@@ -27,7 +36,6 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLDivElement,
-    testLegacyComponentsProp: true,
     slots: {
       root: {},
     },

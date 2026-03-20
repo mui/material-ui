@@ -28,9 +28,6 @@
     "disableEnforceFocus": {
       "description": "If <code>true</code>, the modal will not prevent focus from leaving the modal while open.<br>Generally this should never be set to <code>true</code> as it makes the modal less accessible to assistive technologies, like screen readers."
     },
-    "disableEscapeKeyDown": {
-      "description": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback."
-    },
     "disablePortal": {
       "description": "The <code>children</code> will be under the DOM hierarchy of the parent component."
     },

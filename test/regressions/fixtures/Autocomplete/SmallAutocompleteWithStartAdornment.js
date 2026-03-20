@@ -21,8 +21,9 @@ export default function SmallAutocompleteWithStartAdornment() {
           {...params}
           label="Autocomplete"
           slotProps={{
+            ...params.slotProps,
             input: {
-              ...params.InputProps,
+              ...params.slotProps.input,
               startAdornment: (
                 <SvgIcon>
                   <svg

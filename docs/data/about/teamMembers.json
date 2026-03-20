@@ -201,6 +201,7 @@
     "name": "Vadym Raksha",
     "title": "Software Engineer — Services",
     "location": "Prague, Czechia",
+    "locationCountry": "cz",
     "about": "Product experience geek 🛋, Mediterranean vibes 🍊.",
     "twitter": "vadym_raksha",
     "github": "hasdfa"
@@ -266,15 +267,6 @@
     "github": "KenanYusuf"
   },
   {
-    "name": "Alejandra Thomas",
-    "title": "DevEx Lead",
-    "location": "New York, US",
-    "locationCountry": "us",
-    "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛.",
-    "twitter": "pikacodes",
-    "github": "alelthomas"
-  },
-  {
     "name": "Armin Mehinović",
     "title": "Software Engineer — xGrid",
     "location": "Amsterdam, Netherlands",
@@ -322,7 +314,7 @@
     "title": "Technical Recruiter — People",
     "location": "Alicante, Spain",
     "locationCountry": "es",
-    "about": "Big fan of sports and learning! Definitely a lifelong generalist 🙃",
+    "about": "Big fan of sports and learning! Definitely a lifelong generalist 🙃.",
     "github": "MiguelFollana4"
   },
   {
@@ -338,7 +330,7 @@
     "title": "Software Engineer — Material UI",
     "location": "București, Romania",
     "locationCountry": "ro",
-    "about": "Coding, Traveling and Experimenting Hobbies",
+    "about": "Coding, Traveling and Experimenting Hobbies.",
     "twitter": "silviuaavram",
     "github": "silviuaavram"
   }

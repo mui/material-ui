@@ -8,9 +8,6 @@
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
-    "components": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
-    },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "page": { "description": "The current page number." },
     "selected": { "description": "If <code>true</code> the pagination item is selected." },

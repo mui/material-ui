@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -83,11 +83,7 @@ const StepLabelLabel = styled('span', {
     transition: theme.transitions.create('color', {
       duration: theme.transitions.duration.shortest,
     }),
-    [`&.${stepLabelClasses.active}`]: {
-      color: (theme.vars || theme).palette.text.primary,
-      fontWeight: 500,
-    },
-    [`&.${stepLabelClasses.completed}`]: {
+    [`&.${stepLabelClasses.active}, &.${stepLabelClasses.completed}`]: {
       color: (theme.vars || theme).palette.text.primary,
       fontWeight: 500,
     },
@@ -141,7 +137,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     ...other
   } = props;
 
-  const { alternativeLabel, orientation } = React.useContext(StepperContext);
+  const { alternativeLabel, orientation } = useStepperContext();
   const { active, disabled, completed, icon: iconContext } = React.useContext(StepContext);
   const icon = iconProp || iconContext;
 

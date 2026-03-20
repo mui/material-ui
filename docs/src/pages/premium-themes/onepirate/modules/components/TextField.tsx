@@ -6,6 +6,8 @@ import MuiTextField, {
 } from '@mui/material/TextField';
 import { selectClasses } from '@mui/material/Select';
 import { inputLabelClasses } from '@mui/material/InputLabel';
+import { FilledInputProps } from '@mui/material/FilledInput';
+import { InputProps as StandardInputProps } from '@mui/material/Input';
 
 const inputStyleMappingClasses = {
   small: 'OnePirateTextField-inputSizeSmall',
@@ -75,50 +77,55 @@ const styles = ({ theme }: { theme: Theme }) => ({
 
 export interface OnePirateTextFieldProps extends Omit<
   FilledTextFieldProps | StandardTextFieldProps,
-  'size'
+  'size' | 'slotProps'
 > {
   noBorder?: boolean;
   size?: 'small' | 'medium' | 'large' | 'xlarge';
+  slotProps?: OnePirateTextFieldSlotProps;
+}
+
+interface OnePirateTextFieldSlotProps {
+  formHelperText?: object;
+  htmlInput?: object;
+  input?: FilledInputProps | StandardInputProps;
+  inputLabel?: object;
+  root?: object;
+  select?: object;
 }
 
 function TextField(props: OnePirateTextFieldProps) {
-  const {
-    InputProps = {},
-    InputLabelProps,
-    noBorder,
-    size = 'medium',
-    SelectProps,
-    ...other
-  } = props;
+  const { slotProps = {}, noBorder, size = 'medium', ...other } = props;
 
   const {
     classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
     ...InputPropsOther
-  } = InputProps;
+  } = (slotProps.input ?? {}) as FilledInputProps | StandardInputProps;
 
   return (
     <MuiTextField
-      InputProps={{
-        classes: {
-          root: classes.root,
-          input: clsx(
-            classes.input,
-            inputStyleMappingClasses[size],
-            {
-              [classes.inputBorder]: !noBorder,
-            },
-            InputPropsClassesInput,
-          ),
-          ...InputPropsClassesOther,
+      slotProps={{
+        ...slotProps,
+        input: {
+          classes: {
+            root: classes.root,
+            input: clsx(
+              classes.input,
+              inputStyleMappingClasses[size],
+              {
+                [classes.inputBorder]: !noBorder,
+              },
+              InputPropsClassesInput,
+            ),
+            ...InputPropsClassesOther,
+          },
+          disableUnderline: true,
+          ...InputPropsOther,
         },
-        disableUnderline: true,
-        ...InputPropsOther,
+        inputLabel: {
+          ...slotProps.inputLabel,
+          shrink: true,
+        },
       }}
-      InputLabelProps={{
-        ...InputLabelProps,
-        shrink: true,
-      }}
-      SelectProps={SelectProps}
       {...other}
     />
   );

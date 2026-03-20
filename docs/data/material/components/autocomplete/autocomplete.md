@@ -265,7 +265,9 @@ In the event that you need to lock certain tags so that they can't be removed, y
 
 {{"demo": "FixedTags.js"}}
 
-### Checkboxes
+### Selection indicators
+
+This example demonstrates how icons are used to indicate the selection state of each item in the listbox.
 
 {{"demo": "CheckboxesTags.js"}}
 
@@ -418,9 +420,12 @@ In the event you want the avoid autofill, you can try the following:
   ```jsx
   <TextField
     {...params}
-    inputProps={{
-      ...params.inputProps,
-      autoComplete: 'new-password',
+    slotProps={{
+      ...params.slotProps,
+      htmlInput: {
+        ...params.slotProps.htmlInput,
+        autoComplete: 'new-password',
+      },
     }}
   />
   ```

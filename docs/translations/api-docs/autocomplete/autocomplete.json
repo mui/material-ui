@@ -13,9 +13,6 @@
     "blurOnSelect": {
       "description": "<p>Control if the input should be blurred when an option is selected:</p>\n<ul>\n<li><code>false</code> the input is not blurred.</li>\n<li><code>true</code> the input is always blurred.</li>\n<li><code>touch</code> the input is blurred after a touch event.</li>\n<li><code>mouse</code> the input is blurred after a mouse event.</li>\n</ul>\n"
     },
-    "ChipProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/chip/\"><code>Chip</code></a> element."
-    },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "clearIcon": { "description": "The icon to display in place of the default clear icon." },
     "clearOnBlur": {
@@ -30,7 +27,6 @@
     "closeText": {
       "description": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
-    "componentsProps": { "description": "The props used for each slot inside." },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
     },
@@ -117,8 +113,6 @@
     "limitTags": {
       "description": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit."
     },
-    "ListboxComponent": { "description": "The component used to render the listbox." },
-    "ListboxProps": { "description": "Props applied to the Listbox element." },
     "loading": {
       "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, for example <code>options</code> are empty)."
     },
@@ -186,8 +180,6 @@
       "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "options": { "description": "A list of options that will be shown in the Autocomplete." },
-    "PaperComponent": { "description": "The component used to render the body of the popup." },
-    "PopperComponent": { "description": "The component used to position the popup." },
     "popupIcon": { "description": "The icon to display in place of the default popup icon." },
     "readOnly": {
       "description": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted."
@@ -205,20 +197,6 @@
         "props": { "name": "props", "description": "The props to apply on the li element." },
         "option": { "name": "option", "description": "The option to render." },
         "state": { "name": "state", "description": "The state of each option." },
-        "ownerState": {
-          "name": "ownerState",
-          "description": "The state of the Autocomplete component."
-        }
-      }
-    },
-    "renderTags": {
-      "description": "Render the selected value when doing multiple selections.",
-      "typeDescriptions": {
-        "value": {
-          "name": "value",
-          "description": "The <code>value</code> provided to the component."
-        },
-        "getTagProps": { "name": "getTagProps", "description": "A tag props getter." },
         "ownerState": {
           "name": "ownerState",
           "description": "The state of the Autocomplete component."
@@ -253,10 +231,6 @@
     }
   },
   "classDescriptions": {
-    "clearIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the clear indicator"
-    },
     "endAdornment": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the endAdornment element"
@@ -318,16 +292,11 @@
       "nodeName": "the popper element",
       "conditions": "<code>disablePortal={true}</code>"
     },
-    "popupIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popup indicator"
-    },
     "popupIndicatorOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the popup indicator",
       "conditions": "the popup is open"
     },
-    "root": { "description": "Styles applied to the root element." },
     "tag": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
@@ -345,8 +314,11 @@
     }
   },
   "slotDescriptions": {
+    "clearIndicator": "The component used to render the clear indicator element.",
     "listbox": "The component used to render the listbox.",
     "paper": "The component used to render the body of the popup.",
-    "popper": "The component used to position the popup."
+    "popper": "The component used to position the popup.",
+    "popupIndicator": "The component used to render the popup indicator element.",
+    "root": "The component that renders the root."
   }
 }

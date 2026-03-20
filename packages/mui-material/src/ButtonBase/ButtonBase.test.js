@@ -247,6 +247,46 @@ describe('<ButtonBase />', () => {
       fireEvent.mouseLeave(button);
       expect(onMouseLeave.callCount).to.equal(1);
     });
+
+    it('should propagate click events when Enter is pressed on non-native button', async () => {
+      const parentClickSpy = spy();
+      const buttonClickSpy = spy();
+
+      const { user } = render(
+        <div onClick={parentClickSpy}>
+          <ButtonBase onClick={buttonClickSpy} component="div">
+            Hello
+          </ButtonBase>
+        </div>,
+      );
+
+      // moves focus to the button
+      await user.tab();
+      await user.keyboard('{Enter}');
+
+      expect(buttonClickSpy.callCount).to.equal(1);
+      expect(parentClickSpy.callCount).to.equal(1);
+    });
+
+    it('should propagate click events when Space is released on non-native button', async () => {
+      const parentClickSpy = spy();
+      const buttonClickSpy = spy();
+
+      const { user } = render(
+        <div onClick={parentClickSpy}>
+          <ButtonBase onClick={buttonClickSpy} component="div">
+            Hello
+          </ButtonBase>
+        </div>,
+      );
+
+      // moves focus to the button
+      await user.tab();
+      await user.keyboard(' ');
+
+      expect(buttonClickSpy.callCount).to.equal(1);
+      expect(parentClickSpy.callCount).to.equal(1);
+    });
   });
 
   describe.skipIf(isJsdom())('ripple', () => {
@@ -784,6 +824,57 @@ describe('<ButtonBase />', () => {
       setProps({ disabled: false });
       expect(button).not.to.have.attribute('aria-disabled');
     });
+
+    it('should not call key handlers on a disabled non-native button', async () => {
+      const onKeyDownSpy = spy();
+      const onKeyUpSpy = spy();
+
+      const { user } = render(
+        <ButtonBase component="span" disabled onKeyDown={onKeyDownSpy} onKeyUp={onKeyUpSpy}>
+          Hello
+        </ButtonBase>,
+      );
+
+      const button = screen.getByRole('button');
+
+      await act(async () => {
+        button.focus();
+      });
+
+      expect(button).toHaveFocus();
+
+      await user.keyboard('{Enter}');
+      await user.keyboard('{Space}');
+
+      expect(onKeyDownSpy.callCount).to.equal(0);
+      expect(onKeyUpSpy.callCount).to.equal(0);
+    });
+
+    it('should not propagate click events when Space is released on a disabled non-native button', async () => {
+      const parentClickSpy = spy();
+      const buttonClickSpy = spy();
+
+      const { user } = render(
+        <div onClick={parentClickSpy}>
+          <ButtonBase component="span" disabled onClick={buttonClickSpy}>
+            Hello
+          </ButtonBase>
+        </div>,
+      );
+
+      const button = screen.getByRole('button');
+
+      // We don't use `user.tab()` because normal tab focus won't land on a disabled
+      // ButtonBase, only programmatic focus can happen
+      await act(async () => {
+        button.focus();
+      });
+
+      await user.keyboard(' ');
+
+      expect(buttonClickSpy.callCount).to.equal(0);
+      expect(parentClickSpy.callCount).to.equal(0);
+    });
   });
 
   describe('prop: component', () => {
@@ -1070,27 +1161,42 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('calls onClick when Enter is pressed on the element', async () => {
+      it('calls onKeyDown and onClick when Enter is pressed on the element', async () => {
         const onClickSpy = spy();
+        const onKeyDownSpy = spy();
 
-        render(
-          <ButtonBase onClick={onClickSpy} component="div">
+        const { user } = render(
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
             Hello
           </ButtonBase>,
         );
 
-        const button = screen.getByRole('button');
+        await user.tab();
+        await user.keyboard('{Enter}');
 
-        await act(async () => {
-          button.focus();
-        });
-
-        fireEvent.keyDown(button, {
-          key: 'Enter',
-        });
-
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
+
+      it('calls onKeyDown and onClick when Spacebar is pressed on the element', async () => {
+        const onClickSpy = spy();
+        const onKeyDownSpy = spy();
+
+        const { user } = render(
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
+            Hello
+          </ButtonBase>,
+        );
+
+        await user.tab();
+        await user.keyboard(' ');
+
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.calledOnce).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
 
       it('does not call onClick if Enter was pressed on a child', () => {
@@ -1127,25 +1233,73 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('prevents default with an anchor and empty href', async () => {
+      it('should preserve native button keyboard behavior when a custom component renders a native button', async () => {
         const onClickSpy = spy();
+        const onKeyDownSpy = spy();
 
-        render(
-          <ButtonBase component="a" onClick={onClickSpy}>
+        /** @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>} */
+        const MyButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+
+        const { user } = render(
+          <ButtonBase component={MyButton} onClick={onClickSpy} onKeyDown={onKeyDownSpy}>
             Hello
           </ButtonBase>,
         );
 
-        const button = screen.getByRole('button');
+        await user.tab();
 
-        await act(async () => {
-          button.focus();
-        });
+        await user.keyboard('{Enter}');
 
-        fireEvent.keyDown(button, { key: 'Enter' });
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(1);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
 
+        onClickSpy.resetHistory();
+        onKeyDownSpy.resetHistory();
+
+        await user.keyboard(' ');
+
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(1);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
+
+      it('prevents default on Enter with an anchor and empty href', async () => {
+        const onClickSpy = spy();
+        const onKeyDownSpy = spy();
+
+        const { user } = render(
+          <ButtonBase component="a" onKeyDown={onKeyDownSpy} onClick={onClickSpy}>
+            Hello
+          </ButtonBase>,
+        );
+
+        await user.tab();
+        await user.keyboard('{Enter}');
+
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
         expect(onClickSpy.calledOnce).to.equal(true);
-        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
+
+      it('prevents default on Spacebar with an anchor and empty href', async () => {
+        const onClickSpy = spy();
+        const onKeyDownSpy = spy();
+
+        const { user } = render(
+          <ButtonBase component="a" onKeyDown={onKeyDownSpy} onClick={onClickSpy}>
+            Hello
+          </ButtonBase>,
+        );
+
+        await user.tab();
+        await user.keyboard(' ');
+
+        expect(onKeyDownSpy.calledOnce).to.equal(true);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
+        expect(onClickSpy.calledOnce).to.equal(true);
+        expect(onClickSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
 
       it('should ignore anchors with href', async () => {

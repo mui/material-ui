@@ -20,7 +20,6 @@ describe('<PaginationItem />', () => {
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
-    testLegacyComponentsProp: true,
     slots: {
       first: {},
       last: {},
@@ -28,13 +27,15 @@ describe('<PaginationItem />', () => {
       next: {},
     },
     skip: [
-      'componentProp',
       'componentsProp',
-      // uses non-standard camel-case fields in `components`
+      // Icon slots (first, last, previous, next) only render when `type` matches
+      // (e.g. type="first" for the first slot). The conformance test renders
+      // <PaginationItem /> which defaults to type="page", so icon slots are absent.
+      // Manual slot tests below cover this instead.
       'slotsProp',
       'slotPropsProp',
-      'slotPropsCallback', // not supported yet
-      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
+      'slotPropsCallback',
+      'slotPropsCallbackWithPropsAsOwnerState',
     ],
   }));
 
@@ -173,69 +174,6 @@ describe('<PaginationItem />', () => {
         render(<PaginationItem page={1} slotProps={slotProps} slots={slots} type={slot} />);
 
         expect(screen.getByTestId(`slot-${slot}`)).not.to.equal(null);
-      });
-    });
-
-    it('icons passed in slots should override icons passed in components prop', () => {
-      const slots = {
-        previous: CustomPreviousIcon,
-        next: CustomNextIcon,
-        first: CustomFirstIcon,
-        last: CustomLastIcon,
-      };
-
-      const slotProps = {
-        previous: { 'data-testid': 'slot-previous' },
-        next: { 'data-testid': 'slot-next' },
-        first: { 'data-testid': 'slot-first' },
-        last: { 'data-testid': 'slot-last' },
-      };
-
-      const components = {
-        previous: CustomPreviousIcon,
-        next: CustomNextIcon,
-        first: CustomFirstIcon,
-        last: CustomLastIcon,
-      };
-
-      ['first', 'previous', 'next', 'last'].forEach((slot) => {
-        render(
-          <PaginationItem
-            page={1}
-            slotProps={slotProps}
-            components={components}
-            slots={slots}
-            type={slot}
-          />,
-        );
-
-        expect(screen.getByTestId(`slot-${slot}`)).not.to.equal(null);
-        expect(screen.queryByTestId(`custom-${slot}`)).to.equal(null);
-      });
-    });
-
-    it('should apply slotProps to icons passed in slots prop', () => {
-      const slotProps = {
-        previous: { 'data-testid': 'component-previous' },
-        next: { 'data-testid': 'component-next' },
-        first: { 'data-testid': 'component-first' },
-        last: { 'data-testid': 'component-last' },
-      };
-
-      const components = {
-        previous: CustomPreviousIcon,
-        next: CustomNextIcon,
-        first: CustomFirstIcon,
-        last: CustomLastIcon,
-      };
-
-      ['first', 'previous', 'next', 'last'].forEach((slot) => {
-        render(
-          <PaginationItem page={1} slotProps={slotProps} components={components} type={slot} />,
-        );
-
-        expect(screen.getByTestId(`component-${slot}`)).not.to.equal(null);
-        expect(screen.queryByTestId(`custom-${slot}`)).to.equal(null);
       });
     });
 

@@ -65,9 +65,9 @@ describe('<SpeedDial />', () => {
   it('should render with a null child', () => {
     render(
       <SpeedDial {...defaultProps}>
-        <SpeedDialAction icon={icon} tooltipTitle="One" />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'One' } }} />
         {null}
-        <SpeedDialAction icon={icon} tooltipTitle="Three" />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'Three' } }} />
       </SpeedDial>,
     );
 
@@ -80,8 +80,16 @@ describe('<SpeedDial />', () => {
 
     render(
       <SpeedDial {...defaultProps}>
-        <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction1" />
-        <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction2" />
+        <SpeedDialAction
+          classes={actionClasses}
+          icon={icon}
+          slotProps={{ tooltip: { title: 'SpeedDialAction1' } }}
+        />
+        <SpeedDialAction
+          classes={actionClasses}
+          icon={icon}
+          slotProps={{ tooltip: { title: 'SpeedDialAction2' } }}
+        />
       </SpeedDial>,
     );
 
@@ -93,8 +101,8 @@ describe('<SpeedDial />', () => {
   it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
     render(
       <SpeedDial icon={icon} ariaLabel="mySpeedDial">
-        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction1" />
-        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction2" />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'SpeedDialAction1' } }} />
+        <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'SpeedDialAction2' } }} />
       </SpeedDial>,
     );
 
@@ -156,8 +164,8 @@ describe('<SpeedDial />', () => {
       it(`should place actions in the correct position when direction=${direction}`, () => {
         render(
           <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
-            <SpeedDialAction icon={icon} tooltipTitle="action1" />
-            <SpeedDialAction icon={icon} tooltipTitle="action2" />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action1' } }} />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action2' } }} />
           </SpeedDial>,
         );
 
@@ -174,8 +182,8 @@ describe('<SpeedDial />', () => {
       it(`should place the tooltip in the correct position when direction=${direction}`, () => {
         render(
           <SpeedDial {...defaultProps} open direction={direction.toLowerCase()}>
-            <SpeedDialAction icon={icon} tooltipTitle="action1" />
-            <SpeedDialAction icon={icon} tooltipTitle="action2" />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action1' } }} />
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action2' } }} />
           </SpeedDial>,
         );
 
@@ -193,8 +201,8 @@ describe('<SpeedDial />', () => {
 
       render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
-          <SpeedDialAction tooltipTitle="action1" />
-          <SpeedDialAction tooltipTitle="action2" />
+          <SpeedDialAction slotProps={{ tooltip: { title: 'action1' } }} />
+          <SpeedDialAction slotProps={{ tooltip: { title: 'action2' } }} />
         </SpeedDial>,
       );
 
@@ -222,8 +230,8 @@ describe('<SpeedDial />', () => {
 
         render(
           <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
-            <SpeedDialAction tooltipTitle="action1" />
-            <SpeedDialAction tooltipTitle="action2" />
+            <SpeedDialAction slotProps={{ tooltip: { title: 'action1' } }} />
+            <SpeedDialAction slotProps={{ tooltip: { title: 'action2' } }} />
           </SpeedDial>,
         );
 
@@ -254,6 +262,8 @@ describe('<SpeedDial />', () => {
         expect(screen.queryByRole('tooltip')).to.equal(null);
         expect(fab).to.have.attribute('aria-expanded', 'false');
         expect(fab).toHaveFocus();
+
+        await flushEffects();
       },
     );
   });
@@ -285,18 +295,20 @@ describe('<SpeedDial />', () => {
           }}
           open
           direction={direction}
-          TransitionComponent={NoTransition}
+          slots={{ transition: NoTransition }}
         >
           {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction
               key={index}
-              FabProps={{
-                ref: (element) => {
-                  actionButtons[index] = element;
+              slotProps={{
+                fab: {
+                  ref: (element) => {
+                    actionButtons[index] = element;
+                  },
                 },
+                tooltip: { title: `action${index}` },
               }}
               icon={icon}
-              tooltipTitle={`action${index}`}
             />
           ))}
         </SpeedDial>,
@@ -474,7 +486,7 @@ describe('<SpeedDial />', () => {
           }}
           open
           direction={direction}
-          TransitionComponent={NoTransition}
+          slots={{ transition: NoTransition }}
         >
           {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction
@@ -485,9 +497,9 @@ describe('<SpeedDial />', () => {
                     actionButtons[index] = element;
                   },
                 },
+                tooltip: { title: `action${index}` },
               }}
               icon={icon}
-              tooltipTitle={`action${index}`}
             />
           ))}
         </SpeedDial>,

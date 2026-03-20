@@ -52,11 +52,11 @@ export type SystemProps<Theme extends object = {}> = {
 
 export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemProps<Theme> {
   children?: React.ReactNode;
-  ref?: React.Ref<unknown>;
+  ref?: React.Ref<unknown> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface BoxTypeMap<
@@ -72,8 +72,8 @@ export interface BoxTypeMap<
  *
  * Demos:
  *
- * - [Box (Joy UI)](https://mui.com/joy-ui/react-box/)
  * - [Box (Material UI)](https://mui.com/material-ui/react-box/)
+ * - [Menubar (Material UI)](https://mui.com/material-ui/react-menubar/)
  * - [Box (MUI System)](https://mui.com/system/react-box/)
  *
  * API:
@@ -86,7 +86,7 @@ export type BoxProps<
   RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Box;

@@ -1,18 +1,18 @@
 import * as React from 'react';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import CustomersHero from 'docs/src/components/customers/CustomersHero';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Head from 'docs/src/modules/components/Head';
 import Box from '@mui/material/Box';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Divider from '@mui/material/Divider';
 import CustomersSpotlight from 'docs/src/components/customers/CustomersSpotlight';
 import CustomersLogoSlider from 'docs/src/components/customers/CustomersLogoSlider';
 import { getCaseStudies } from 'docs/lib/sourcing';
 import { InferGetStaticPropsType } from 'next';
 import CustomersTestimonials from 'docs/src/components/customers/CustomersTestimonials';
+import CustomersHeroEnd from 'docs/src/components/customers/CustomersHeroEnd';
 
 export const getStaticProps = () => {
   const customers = getCaseStudies();
@@ -46,7 +46,7 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
         </Box>
         <CustomersTestimonials />
         <Divider />
-        <HeroEnd />
+        <CustomersHeroEnd />
         <Divider />
       </main>
       <AppFooter />

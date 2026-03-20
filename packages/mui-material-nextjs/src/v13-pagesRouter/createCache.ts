@@ -6,7 +6,7 @@ const isBrowser = typeof document !== 'undefined';
 // This assures that MUI styles are loaded first.
 // It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
 export default function createEmotionCache(
-  options?: { enableCssLayer?: boolean } & Parameters<typeof createCache>[0],
+  options?: { enableCssLayer?: boolean | undefined } & Parameters<typeof createCache>[0],
 ) {
   let insertionPoint;
 

@@ -9,7 +9,7 @@
    git remote add upstream https://github.com/mui/material-ui.git
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
-2. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`.
+2. Generate a GitHub Token at https://github.com/settings/personal-access-tokens/new and add it to your shell rc script (either `.bashrc` or `.zshrc`) as `GITHUB_TOKEN`. If using a Classic token, add `repo:public` to the token's scope.
 
 ### Releasing a minor version
 
@@ -19,19 +19,19 @@ A minor release goes like this:
 
 The following steps must be proposed as a pull request.
 
-1. Generate the changelog with `pnpm release:changelog`
-   The output must be prepended to the top level `CHANGELOG.md`
-   `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
-
-2. Clean the generated changelog:
+1. Fetch the upstream tags: `git fetch upstream --tags`.
+2. Update the root `/package.json`'s version.
+3. Generate the changelog with `pnpm release:changelog`:
+   - The output must be prepended to the top level `CHANGELOG.md`
+   - `pnpm release:changelog --help` for more information. If your GitHub token is not in your env, pass it as `--githubToken <my-token>` to the above command.
+4. Clean the generated changelog:
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable
-3. Update the root `/package.json`'s version
-4. Run `pnpm release:version`. Keep in mind:
+5. Run `pnpm release:version`. Keep in mind:
    1. Only packages that have changes since the last release should have their version bumped.
    2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
-5. Open PR with changes and wait for review and green CI.
-6. Merge PR once CI is green and it has been approved.
+6. Open PR with changes and wait for review and green CI.
+7. Merge PR once CI is green and it has been approved.
 
 #### Release
 

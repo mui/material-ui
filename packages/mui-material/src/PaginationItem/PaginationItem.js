@@ -301,7 +301,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
-    components = {},
     disabled = false,
     page,
     selected = false,
@@ -329,12 +328,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
-    slots: {
-      previous: slots.previous ?? components.previous,
-      next: slots.next ?? components.next,
-      first: slots.first ?? components.first,
-      last: slots.last ?? components.last,
-    },
+    slots,
     slotProps,
   };
 
@@ -442,21 +436,6 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  components: PropTypes.shape({
-    first: PropTypes.elementType,
-    last: PropTypes.elementType,
-    next: PropTypes.elementType,
-    previous: PropTypes.elementType,
-  }),
   /**
    * If `true`, the component is disabled.
    * @default false

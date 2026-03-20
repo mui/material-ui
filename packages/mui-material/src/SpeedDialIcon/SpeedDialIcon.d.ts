@@ -11,7 +11,7 @@ export interface SpeedDialIconProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<SpeedDialIconClasses>;
+  classes?: Partial<SpeedDialIconClasses> | undefined;
   /**
    * The icon to display.
    */
@@ -24,22 +24,22 @@ export interface SpeedDialIconProps extends StandardProps<
    * @ignore
    * If `true`, the component is shown.
    */
-  open?: boolean;
+  open?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://next.mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDialIcon API](https://mui.com/material-ui/api/speed-dial-icon/)
+ * - [SpeedDialIcon API](https://next.mui.com/material-ui/api/speed-dial-icon/)
  */
 declare const SpeedDialIcon: ((props: SpeedDialIconProps) => React.JSX.Element) & {
   muiName: string;

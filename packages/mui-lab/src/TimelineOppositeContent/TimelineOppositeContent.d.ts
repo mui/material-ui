@@ -13,23 +13,23 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineOppositeContentClasses>;
+  classes?: Partial<TimelineOppositeContentClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineOppositeContent API](https://mui.com/material-ui/api/timeline-opposite-content/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [TimelineOppositeContent API](https://next.mui.com/material-ui/api/timeline-opposite-content/)
+ * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
  */
 declare const TimelineOppositeContent: ((
   props: TimelineOppositeContentProps,

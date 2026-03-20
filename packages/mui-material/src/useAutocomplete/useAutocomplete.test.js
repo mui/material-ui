@@ -404,6 +404,46 @@ describe('useAutocomplete', () => {
     }).not.to.throw();
   });
 
+  describe('prop: isOptionEqualToValue', () => {
+    it('should respect custom equality even when option is referentially equal to value', () => {
+      const option = { id: 1, label: 'foo' };
+
+      function Test() {
+        const { groupedOptions, getInputProps, getListboxProps, getOptionProps } = useAutocomplete({
+          options: [option],
+          open: true,
+          multiple: true,
+          value: [option],
+          filterSelectedOptions: true,
+          getOptionLabel: (optionParam) => optionParam.label,
+          isOptionEqualToValue: () => false,
+        });
+
+        return (
+          <div>
+            <input {...getInputProps()} />
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((optionParam, index) => {
+                const { key, ...optionProps } = getOptionProps({ option: optionParam, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {optionParam.label}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      }
+
+      render(<Test />);
+
+      const renderedOption = screen.getByRole('option');
+      expect(renderedOption).to.have.text('foo');
+      expect(renderedOption).to.have.attribute('aria-selected', 'false');
+    });
+  });
+
   describe('prop: defaultValue', () => {
     it('should not trigger onInputChange when defaultValue is provided', () => {
       const onInputChange = spy();
@@ -442,6 +482,53 @@ describe('useAutocomplete', () => {
 
       render(<Test />);
       expect(onInputChange.callCount).to.equal(0);
+    });
+  });
+
+  describe('prop: multiple', () => {
+    it('should set aria-multiselectable on the listbox when multiple prop is true', () => {
+      function Test(props) {
+        const { options } = props;
+        const { getListboxProps, getInputProps } = useAutocomplete({
+          options,
+          open: true,
+          multiple: true,
+        });
+        return (
+          <div>
+            <input {...getInputProps()} />
+            <ul {...getListboxProps()} />;
+          </div>
+        );
+      }
+
+      render(<Test options={['foo', 'bar']} />);
+
+      const listbox = screen.getByRole('listbox');
+
+      expect(listbox).to.have.attribute('aria-multiselectable', 'true');
+    });
+
+    it('should not set aria-multiselectable on the listbox when multiple prop is false', () => {
+      function Test(props) {
+        const { options } = props;
+        const { getListboxProps, getInputProps } = useAutocomplete({
+          options,
+          open: true,
+          multiple: false,
+        });
+        return (
+          <div>
+            <input {...getInputProps()} />
+            <ul {...getListboxProps()} />;
+          </div>
+        );
+      }
+
+      render(<Test options={['foo', 'bar']} />);
+      const listbox = screen.getByRole('listbox');
+
+      expect(listbox).to.not.have.attribute('aria-multiselectable');
     });
   });
 });

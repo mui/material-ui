@@ -377,21 +377,25 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 ### Running multiple applications on one page
 
-If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
+If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use the [`splitChunks`](https://webpack.js.org/plugins/split-chunks-plugin/) configuration to create a shared [vendor chunk](https://webpack.js.org/plugins/split-chunks-plugin/#split-chunks-example-2) that will contain the @mui/styles module:
 
 ```diff
   module.exports = {
     entry: {
-+     vendor: ['@mui/styles'],
       app1: './src/app.1.js',
       app2: './src/app.2.js',
     },
-    plugins: [
-+     new webpack.optimize.CommonsChunkPlugin({
-+       name: 'vendor',
-+       minChunks: Infinity,
-+     }),
-    ]
++   optimization: {
++     splitChunks: {
++       cacheGroups: {
++         vendor: {
++           test: /[\\/]node_modules[\\/]@mui[\\/]styles[\\/]/,
++           name: 'vendor',
++           chunks: 'all',
++         },
++       },
++     },
++   },
   }
 ```
 

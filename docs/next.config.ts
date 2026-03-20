@@ -101,9 +101,9 @@ export default withDocsInfra({
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
           '@mui/icons-material$': path.resolve(
             workspaceRoot,
-            'packages/mui-icons-material/lib/esm/index.js',
+            'packages/mui-icons-material/lib/index.mjs',
           ),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
           '@mui/system/package.json': path.resolve(
@@ -114,13 +114,14 @@ export default withDocsInfra({
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
-          '@mui/joy/package.json': path.resolve(workspaceRoot, 'packages/mui-joy/package.json'),
-          '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
         extensions: [
+          '.mjs',
           '.tsx',
           // @ts-ignore
-          ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
+          ...config.resolve.extensions.filter(
+            (extension: string) => extension !== '.tsx' && extension !== '.mjs',
+          ),
         ],
       },
       module: {
@@ -146,10 +147,6 @@ export default withDocsInfra({
                             path.join(workspaceRoot, 'packages/mui-lab/src'),
                             path.join(workspaceRoot, 'packages/mui-material/src'),
                           ],
-                        },
-                        {
-                          productId: 'joy-ui',
-                          paths: [path.join(workspaceRoot, 'packages/mui-joy/src')],
                         },
                       ],
                       env: {
@@ -256,15 +253,6 @@ export default withDocsInfra({
 
     return map;
   },
-  redirects: async () => {
-    return [
-      {
-        source: '/base-ui/',
-        destination: 'https://base-ui.com',
-        permanent: true,
-      },
-    ];
-  },
   // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
@@ -278,6 +266,15 @@ export default withDocsInfra({
             // Make sure to include the trailing slash if `trailingSlash` option is set
             { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
             { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
+          ];
+        },
+        redirects: async () => {
+          return [
+            {
+              source: '/base-ui/',
+              destination: 'https://base-ui.com',
+              permanent: true,
+            },
           ];
         },
       }),
