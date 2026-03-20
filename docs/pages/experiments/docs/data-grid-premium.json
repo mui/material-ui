@@ -798,7 +798,7 @@
     {
       "class": null,
       "name": "columnMenuPinIcon",
-      "description": "Icon displayed in column menu for pinning/unpinning columns. This icon toggles based on the current pin state (unpinned -> pin left, pin left -> pin right, pin right -> unpinned).",
+      "description": "Icon used in the column menu for pinning and unpinning. When the column is unpinned, the menu shows Pin left and Pin right; when pinned, it shows Unpin and the pin action for the opposite side.",
       "default": "GridPushPinIcon"
     },
     {
@@ -1002,25 +1002,25 @@
     {
       "class": null,
       "name": "paginationFirstIcon",
-      "description": "Icon displayed on the first page button in pagination.",
+      "description": "Icon displayed in the grid footer pagination component for the first page button.",
       "default": "FirstPageIcon"
     },
     {
       "class": null,
       "name": "paginationPreviousIcon",
-      "description": "Icon displayed on the previous page button in pagination.",
+      "description": "Icon displayed in the grid footer pagination component for the previous page button.",
       "default": "NavigateBeforeIcon"
     },
     {
       "class": null,
       "name": "paginationNextIcon",
-      "description": "Icon displayed on the next page button in pagination.",
+      "description": "Icon displayed in the grid footer pagination component for the next page button.",
       "default": "NavigateNextIcon"
     },
     {
       "class": null,
       "name": "paginationLastIcon",
-      "description": "Icon displayed on the last page button in pagination.",
+      "description": "Icon displayed in the grid footer pagination component for the last page button.",
       "default": "LastPageIcon"
     },
     {
