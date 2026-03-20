@@ -756,7 +756,7 @@
     {
       "class": null,
       "name": "columnMenuGroupIcon",
-      "description": "Icon displayed in column menu for grouping. This icon toggles to columnMenuUngroupIcon when the column is already grouped.",
+      "description": "Icon displayed in column menu for grouping",
       "default": "GridGroupWorkIcon"
     },
     {
@@ -774,10 +774,8 @@
     {
       "class": null,
       "name": "columnMenuManageColumnsIcon",
-      "description": "Icon displayed in column menu for showing all columns. Deprecated: Use columnSelectorIcon instead for unified configuration.",
-      "default": "GridViewColumnIcon",
-      "deprecated": true,
-      "deprecationInfo": "Use the <code>columnSelectorIcon</code> slot instead for unified configuration."
+      "description": "Icon displayed in column menu for showing all columns",
+      "default": "GridViewColumnIcon"
     },
     {
       "class": null,
@@ -816,7 +814,7 @@
     {
       "class": null,
       "name": "columnMenuUngroupIcon",
-      "description": "Icon displayed in column menu for ungrouping. This icon is shown when the column is already grouped, replacing columnMenuGroupIcon.",
+      "description": "Icon displayed in column menu for ungrouping",
       "default": "GridWorkspacesIcon"
     },
     {
@@ -834,7 +832,7 @@
     {
       "class": null,
       "name": "columnSelectorIcon",
-      "description": "Icon displayed on the column menu selector tab and in the column menu for showing all columns. This is the unified icon for column selection functionality.",
+      "description": "Icon displayed on the column menu selector tab.",
       "default": "GridColumnIcon"
     },
     {
@@ -917,7 +915,7 @@
     },
     {
       "class": null,
-      "name": "filterPanelDeleteAllIcon",
+      "name": "filterPanelRemoveAllIcon",
       "description": "Icon displayed for deleting all the active filters from filter panel.",
       "default": "GridDeleteForeverIcon"
     },
