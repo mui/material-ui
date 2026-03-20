@@ -16,7 +16,7 @@ import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -42,7 +42,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
+    const { color, clickable, onDelete, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
