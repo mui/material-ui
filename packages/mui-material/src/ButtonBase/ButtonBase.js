@@ -249,6 +249,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     if (disabled) {
       linkProps['aria-disabled'] = disabled;
     }
+    linkProps.type = type;
   }
 
   const handleRef = useForkRef(ref, buttonRef);
@@ -286,7 +287,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStart}
       ref={handleRef}
-      type={type}
       {...(isLink ? linkProps : buttonProps)}
       {...other}
     >
