@@ -55,6 +55,9 @@ A big thanks to the 11 contributors who made this release possible.
 - [button] Remove deprecated CSS classes (#48012) @silviuaavram
   - Color variant classes: `textInherit`, `outlinedPrimary`, `containedSecondary`, etc.
   - Size classes: `textSizeSmall`, `iconSizeMedium`, etc.
+- [circularprogress] Remove deprecated CSS classes (#48014) @silviuaavram
+  - `circleDeterminate`
+  - `circleIndeterminate`
 - [divider] Remove deprecated prop (#48013) @atharva3333
   - `light`
 - [formcontrollabel] Remove deprecated props (#48032) @atharva3333
@@ -63,6 +66,8 @@ A big thanks to the 11 contributors who made this release possible.
   - `MenuListProps`
   - `PaperProps`
   - `TransitionProps`
+- [mobilestepper] Remove deprecated props (#48041) @siriwatknp
+  - `LinearProgressProps`
 - [popover] Remove deprecated props (#48021) @siriwatknp
   - `BackdropComponent`
   - `BackdropProps`
@@ -142,9 +147,9 @@ Check out the [v9 upgrade guide](https://mui.com/material-ui/migration/upgrade-t
 
 ### Core
 
-- [core] Migrate to ESLint 10 (#47872) @brijeshb42
 - [code-infra] Add pkg-pr-new as dev dependency (#47992) @Janpot
 - [code-infra] Remove CI coverage collection and upload to Codecov (#47930) @Janpot
+- [core] Migrate to ESLint 10 (#47872) @brijeshb42
 - [core] Remove GridLegacy component (#47956) @siriwatknp
 
 All contributors of this release in alphabetical order: @anchmelev, @atharva3333, @brijeshb42, @Janpot, @mj12albert, @noraleonte, @olivier-lxo, @pcorpet, @silviuaavram, @siriwatknp, @ZeeshanTamboli
