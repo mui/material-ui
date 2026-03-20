@@ -759,6 +759,80 @@ If you were using these deprecated class names as `styleOverrides` keys in your 
  });
 ```
 
+#### Chip deprecated CSS classes removed
+
+Use the [chip-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#chip-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/chip-classes <path>
+```
+
+The following deprecated `Chip` CSS classes have been removed:
+
+- `clickableColorPrimary` → use `.MuiChip-clickable.MuiChip-colorPrimary`
+- `clickableColorSecondary` → use `.MuiChip-clickable.MuiChip-colorSecondary`
+- `deletableColorPrimary` → use `.MuiChip-deletable.MuiChip-colorPrimary`
+- `deletableColorSecondary` → use `.MuiChip-deletable.MuiChip-colorSecondary`
+- `outlinedPrimary` → use `.MuiChip-outlined.MuiChip-colorPrimary`
+- `outlinedSecondary` → use `.MuiChip-outlined.MuiChip-colorSecondary`
+- `filledPrimary` → use `.MuiChip-filled.MuiChip-colorPrimary`
+- `filledSecondary` → use `.MuiChip-filled.MuiChip-colorSecondary`
+- `avatarSmall` → use `.MuiChip-sizeSmall > .MuiChip-avatar`
+- `avatarMedium` → use `.MuiChip-sizeMedium > .MuiChip-avatar`
+- `avatarColorPrimary` → use `.MuiChip-colorPrimary > .MuiChip-avatar`
+- `avatarColorSecondary` → use `.MuiChip-colorSecondary > .MuiChip-avatar`
+- `iconSmall` → use `.MuiChip-sizeSmall > .MuiChip-icon`
+- `iconMedium` → use `.MuiChip-sizeMedium > .MuiChip-icon`
+- `iconColorPrimary` → use `.MuiChip-colorPrimary > .MuiChip-icon`
+- `iconColorSecondary` → use `.MuiChip-colorSecondary > .MuiChip-icon`
+- `labelSmall` → use `.MuiChip-sizeSmall > .MuiChip-label`
+- `labelMedium` → use `.MuiChip-sizeMedium > .MuiChip-label`
+- `deleteIconSmall` → use `.MuiChip-sizeSmall > .MuiChip-deleteIcon`
+- `deleteIconMedium` → use `.MuiChip-sizeMedium > .MuiChip-deleteIcon`
+- `deleteIconColorPrimary` → use `.MuiChip-colorPrimary > .MuiChip-deleteIcon`
+- `deleteIconColorSecondary` → use `.MuiChip-colorSecondary > .MuiChip-deleteIcon`
+- `deleteIconOutlinedColorPrimary` → use `.MuiChip-outlined.MuiChip-colorPrimary > .MuiChip-deleteIcon`
+- `deleteIconOutlinedColorSecondary` → use `.MuiChip-outlined.MuiChip-colorSecondary > .MuiChip-deleteIcon`
+- `deleteIconFilledColorPrimary` → use `.MuiChip-filled.MuiChip-colorPrimary > .MuiChip-deleteIcon`
+- `deleteIconFilledColorSecondary` → use `.MuiChip-filled.MuiChip-colorSecondary > .MuiChip-deleteIcon`
+
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `root` override instead.
+For classes that targeted child elements (`avatar`, `icon`, `deleteIcon`), use CSS child selectors inside the `root` variants since those are not standalone styled slots.
+The `label` slot is a proper styled component and can use `variants` directly in `styleOverrides.label`:
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiChip: {
+       styleOverrides: {
+-        clickableColorPrimary: { boxShadow: 'none' },
+-        outlinedPrimary: { borderWidth: 2 },
+-        filledSecondary: { opacity: 0.9 },
+-        avatarColorPrimary: { color: 'white' },
+-        iconSmall: { fontSize: 14 },
+-        deleteIconColorPrimary: { color: 'red' },
+-        labelSmall: { padding: '0 6px' },
++        root: {
++          variants: [
++            { props: { clickable: true, color: 'primary' }, style: { boxShadow: 'none' } },
++            { props: { variant: 'outlined', color: 'primary' }, style: { borderWidth: 2 } },
++            { props: { variant: 'filled', color: 'secondary' }, style: { opacity: 0.9 } },
++            { props: { color: 'primary' }, style: { '& .MuiChip-avatar': { color: 'white' } } },
++            { props: { size: 'small' }, style: { '& .MuiChip-icon': { fontSize: 14 } } },
++            { props: { color: 'primary' }, style: { '& .MuiChip-deleteIcon': { color: 'red' } } },
++          ],
++        },
++        label: {
++          variants: [
++            { props: { size: 'small' }, style: { padding: '0 6px' } },
++          ],
++        },
+       },
+     },
+   },
+ });
+```
+
 #### CircularProgress deprecated CSS classes removed
 
 Use the [circular-progress-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#circular-progress-classes) below to migrate the code as described in the following section:
