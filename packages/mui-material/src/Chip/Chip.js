@@ -461,7 +461,11 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <CancelIcon className={classes.deleteIcon} onClick={handleDeleteIconClick} />
+        <CancelIcon
+          className={classes.deleteIcon}
+          onClick={handleDeleteIconClick}
+          data-testid="chip-delete-icon"
+        />
       );
   }
 

@@ -210,6 +210,9 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     externalForwardedProps,
     shouldForwardComponentProp: true,
     ownerState,
+    additionalProps: {
+      'data-testid': 'avatar-fallback-icon',
+    },
   });
 
   if (hasImgNotFailing) {

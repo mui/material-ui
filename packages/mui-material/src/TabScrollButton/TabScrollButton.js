@@ -101,6 +101,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
       role={null}
       ownerState={ownerState}
       tabIndex={null}
+      data-testid={`TabScrollButton-${direction}`}
       {...other}
       style={{
         ...other.style,

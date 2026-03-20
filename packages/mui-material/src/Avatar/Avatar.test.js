@@ -147,7 +147,7 @@ describe('<Avatar />', () => {
     it('should render a div containing an svg icon', () => {
       const container = render(
         <Avatar>
-          <CancelIcon />
+          <CancelIcon data-testid="CancelIcon" />
         </Avatar>,
       ).container;
       const avatar = container.firstChild;
@@ -245,14 +245,14 @@ describe('<Avatar />', () => {
       const container = render(<Avatar>{''}</Avatar>).container;
       const avatar = container.firstChild;
 
-      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'avatar-fallback-icon');
     });
 
     it('should fallback if children is false', () => {
       const container = render(<Avatar>{false}</Avatar>).container;
       const avatar = container.firstChild;
 
-      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'avatar-fallback-icon');
     });
   });
 

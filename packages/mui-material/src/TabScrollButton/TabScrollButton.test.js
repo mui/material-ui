@@ -40,15 +40,31 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: direction', () => {
     it('should render with the left icon', () => {
-      render(<TabScrollButton {...defaultProps} {...defaultProps} direction="left" disabled />);
+      render(
+        <TabScrollButton
+          {...defaultProps}
+          {...defaultProps}
+          direction="left"
+          disabled
+          slotProps={{ startScrollButtonIcon: { 'data-testid': 'start-icon' } }}
+        />,
+      );
 
-      expect(screen.getAllByTestId('KeyboardArrowLeftIcon').length).to.equal(1);
+      expect(screen.getAllByTestId('start-icon').length).to.equal(1);
     });
 
     it('should render with the right icon', () => {
-      render(<TabScrollButton {...defaultProps} {...defaultProps} direction="right" disabled />);
+      render(
+        <TabScrollButton
+          {...defaultProps}
+          {...defaultProps}
+          direction="right"
+          disabled
+          slotProps={{ endScrollButtonIcon: { 'data-testid': 'end-icon' } }}
+        />,
+      );
 
-      expect(screen.getAllByTestId('KeyboardArrowRightIcon').length).to.equal(1);
+      expect(screen.getAllByTestId('end-icon').length).to.equal(1);
     });
   });
 
@@ -61,10 +77,11 @@ describe('<TabScrollButton />', () => {
         slots={{
           StartScrollButtonIcon: ArrowBackIcon,
         }}
+        slotProps={{ startScrollButtonIcon: { 'data-testid': 'start-icon' } }}
       />,
     );
 
-    expect(screen.getAllByTestId('ArrowBackIcon')).to.have.lengthOf(1);
+    expect(screen.getAllByTestId('start-icon')).to.have.lengthOf(1);
   });
 
   it('should render with the custom end icon', () => {
@@ -76,9 +93,10 @@ describe('<TabScrollButton />', () => {
         slots={{
           EndScrollButtonIcon: ArrowForwardIcon,
         }}
+        slotProps={{ endScrollButtonIcon: { 'data-testid': 'end-icon' } }}
       />,
     );
 
-    expect(screen.getAllByTestId('ArrowForwardIcon')).to.have.lengthOf(1);
+    expect(screen.getAllByTestId('end-icon')).to.have.lengthOf(1);
   });
 });

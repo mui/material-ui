@@ -61,8 +61,14 @@ function RadioButtonIcon(props) {
         fontSize={fontSize}
         className={classes.background}
         ownerState={ownerState}
+        data-testid="radio-background-icon"
       />
-      <RadioButtonIconDot fontSize={fontSize} className={classes.dot} ownerState={ownerState} />
+      <RadioButtonIconDot
+        fontSize={fontSize}
+        className={classes.dot}
+        ownerState={ownerState}
+        data-testid="radio-dot-icon"
+      />
     </RadioButtonIconRoot>
   );
 }

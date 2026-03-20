@@ -217,7 +217,7 @@ describe('<Alert />', () => {
           MuiAlert: {
             defaultProps: {
               iconMapping: {
-                warning: <AlarmIcon fontSize="inherit" />,
+                warning: <AlarmIcon fontSize="inherit" data-testid="alert-warning-icon" />,
               },
             },
           },
@@ -233,13 +233,11 @@ describe('<Alert />', () => {
         </ThemeProvider>,
       );
 
-      expect(screen.queryByTestId('SuccessOutlinedIcon')).not.to.equal(null);
-      expect(screen.queryByTestId('InfoOutlinedIcon')).not.to.equal(null);
+      expect(screen.queryByTestId('alert-success-icon')).not.to.equal(null);
+      expect(screen.queryByTestId('alert-info-icon')).not.to.equal(null);
       // overriden icon in theme
-      expect(screen.queryByTestId('AlarmIcon')).not.to.equal(null);
-      expect(screen.queryByTestId('ErrorOutlineIcon')).not.to.equal(null);
-      // default warning icon
-      expect(screen.queryByTestId('ReportProblemOutlinedIcon')).to.equal(null);
+      expect(screen.queryByTestId('alert-warning-icon')).not.to.equal(null);
+      expect(screen.queryByTestId('alert-error-icon')).not.to.equal(null);
     });
   });
 

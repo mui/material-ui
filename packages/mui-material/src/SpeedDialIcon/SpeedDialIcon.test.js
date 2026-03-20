@@ -20,7 +20,7 @@ describe('<SpeedDialIcon />', () => {
 
   it('should render the Add icon by default', () => {
     render(<SpeedDialIcon />);
-    expect(screen.getAllByTestId('AddIcon').length).to.equal(1);
+    expect(screen.getAllByTestId('speed-dial-icon').length).to.equal(1);
   });
 
   it('should render an Icon', () => {

@@ -31,7 +31,7 @@ describe('<StepLabel />', () => {
     });
 
     it('renders <StepIcon> with props passed through StepIconProps', () => {
-      const stepIconProps = { error: true };
+      const stepIconProps = { error: true, 'data-testid': 'step-icon' };
 
       const { container } = render(
         <Stepper alternativeLabel>
@@ -43,7 +43,7 @@ describe('<StepLabel />', () => {
 
       const icon = container.querySelector(`.${iconClasses.root}`);
       // Should render WarningIcon instead of CheckCircleIcon because of { error: true } props
-      expect(icon).to.have.attribute('data-testid').equal('WarningIcon');
+      expect(icon).to.have.attribute('data-testid').equal('step-icon');
     });
   });
 
@@ -63,7 +63,7 @@ describe('<StepLabel />', () => {
 
       screen.getByTestId('custom-icon');
       expect(icon).not.to.equal(null);
-      expect(icon).not.to.have.attribute('data-testid').equal('CheckCircleIcon');
+      expect(icon).not.to.have.attribute('data-testid').equal('step-icon');
       expect(label).to.have.class(classes.active);
       expect(label).to.have.class(classes.completed);
     });

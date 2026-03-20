@@ -14,12 +14,12 @@ describe('<MobileStepper />', () => {
     nextButton: (
       <Button aria-label="next">
         Next
-        <KeyboardArrowRight />
+        <KeyboardArrowRight data-testid="next-icon" />
       </Button>
     ),
     backButton: (
       <Button aria-label="back">
-        <KeyboardArrowLeft />
+        <KeyboardArrowLeft data-testid="back-icon" />
         Back
       </Button>
     ),
@@ -105,14 +105,14 @@ describe('<MobileStepper />', () => {
     render(<MobileStepper {...defaultProps} />);
     const backButton = screen.getByRole('button', { name: 'back' });
     expect(backButton).not.to.equal(null);
-    expect(screen.queryByTestId('KeyboardArrowLeftIcon')).not.to.equal(null);
+    expect(screen.queryByTestId('back-icon')).not.to.equal(null);
   });
 
   it('should render next button', () => {
     render(<MobileStepper {...defaultProps} />);
     const nextButton = screen.getByRole('button', { name: 'next' });
     expect(nextButton).not.to.equal(null);
-    expect(screen.queryByTestId('KeyboardArrowRightIcon')).not.to.equal(null);
+    expect(screen.queryByTestId('next-icon')).not.to.equal(null);
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {

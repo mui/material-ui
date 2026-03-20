@@ -91,7 +91,23 @@ describe('<Checkbox />', () => {
 
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
-      render(<Checkbox indeterminate />);
+      render(<Checkbox indeterminate />, {
+        wrapper: ({ children }) => (
+          <ThemeProvider
+            theme={createTheme({
+              components: {
+                MuiSvgIcon: {
+                  defaultProps: {
+                    legacyTestId: true,
+                  },
+                },
+              },
+            })}
+          >
+            {children}
+          </ThemeProvider>
+        ),
+      });
       expect(screen.getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
     });
   });

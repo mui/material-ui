@@ -55,9 +55,9 @@ describe('<Breadcrumbs />', () => {
 
     expect(listitems).to.have.length(3);
     expect(screen.getByRole('list')).to.have.text('first//ninth');
-    expect(screen.getByRole('button').querySelector('[data-testid="MoreHorizIcon"]')).not.to.equal(
-      null,
-    );
+    expect(
+      screen.getByRole('button').querySelector('[data-testid="breadcrumb-collapsed-icon"]'),
+    ).not.to.equal(null);
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
@@ -117,7 +117,7 @@ describe('<Breadcrumbs />', () => {
         </Breadcrumbs>,
       );
 
-      screen.getByTestId('FirstPageIcon');
+      screen.getByTestId('breadcrumb-collapsed-icon');
     });
 
     it('should apply slotProps to collapsed icon', () => {

@@ -675,12 +675,18 @@ describe('<TablePagination />', () => {
                     actions: {
                       firstButtonIcon: {
                         fontSize: 'small',
+                        'data-testid': 'first-page-icon',
                       },
                       lastButtonIcon: {
                         fontSize: 'large',
+                        'data-testid': 'last-page-icon',
                       },
                       previousButtonIcon: {
                         fontSize: 'inherit',
+                        'data-testid': 'previous-page-icon',
+                      },
+                      nextButtonIcon: {
+                        'data-testid': 'next-page-icon',
                       },
                     },
                   }}
@@ -690,14 +696,12 @@ describe('<TablePagination />', () => {
           </table>,
         );
 
-        expect(screen.getByTestId('FirstPageIcon')).to.have.class(svgIconClasses.fontSizeSmall);
-        expect(screen.getByTestId('LastPageIcon')).to.have.class(svgIconClasses.fontSizeLarge);
-        expect(screen.getByTestId('KeyboardArrowLeftIcon')).to.have.class(
+        expect(screen.getByTestId('first-page-icon')).to.have.class(svgIconClasses.fontSizeSmall);
+        expect(screen.getByTestId('last-page-icon')).to.have.class(svgIconClasses.fontSizeLarge);
+        expect(screen.getByTestId('previous-page-icon')).to.have.class(
           svgIconClasses.fontSizeInherit,
         );
-        expect(screen.getByTestId('KeyboardArrowRightIcon')).to.have.class(
-          svgIconClasses.fontSizeMedium,
-        );
+        expect(screen.getByTestId('next-page-icon')).to.have.class(svgIconClasses.fontSizeMedium);
       });
     });
 
@@ -800,16 +804,24 @@ describe('<TablePagination />', () => {
                     nextButtonIcon: ArrowForwardIcon,
                   },
                 }}
+                slotProps={{
+                  actions: {
+                    firstButtonIcon: { 'data-testid': 'first-button-icon' },
+                    lastButtonIcon: { 'data-testid': 'last-button-icon' },
+                    previousButtonIcon: { 'data-testid': 'previous-button-icon' },
+                    nextButtonIcon: { 'data-testid': 'next-button-icon' },
+                  },
+                }}
               />
             </TableRow>
           </TableFooter>
         </table>,
       );
 
-      expect(screen.getByTestId('KeyboardDoubleArrowLeftRoundedIcon')).not.to.equal(null);
-      expect(screen.getByTestId('KeyboardDoubleArrowRightRoundedIcon')).not.to.equal(null);
-      expect(screen.getByTestId('ArrowBackIcon')).not.to.equal(null);
-      expect(screen.getByTestId('ArrowForwardIcon')).not.to.equal(null);
+      expect(screen.getByTestId('first-button-icon')).not.to.equal(null);
+      expect(screen.getByTestId('last-button-icon')).not.to.equal(null);
+      expect(screen.getByTestId('previous-button-icon')).not.to.equal(null);
+      expect(screen.getByTestId('next-button-icon')).not.to.equal(null);
     });
   });
 

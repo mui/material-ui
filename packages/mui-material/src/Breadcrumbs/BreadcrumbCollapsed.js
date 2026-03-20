@@ -49,6 +49,7 @@ function BreadcrumbCollapsed(props) {
         <BreadcrumbCollapsedIcon
           as={slots.CollapsedIcon}
           ownerState={ownerState}
+          data-testid="breadcrumb-collapsed-icon"
           {...slotProps.collapsedIcon}
         />
       </BreadcrumbCollapsedButton>

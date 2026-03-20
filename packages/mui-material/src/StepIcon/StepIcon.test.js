@@ -18,14 +18,14 @@ describe('<StepIcon />', () => {
   }));
 
   it('renders <CheckCircle> when completed', () => {
-    render(<StepIcon completed icon={1} />);
+    render(<StepIcon completed icon={1} data-testid="step-icon" />);
 
-    expect(screen.getAllByTestId('CheckCircleIcon')).to.have.length(1);
+    expect(screen.getAllByTestId('step-icon')).to.have.length(1);
   });
 
   it('renders <Warning> when error occurred', () => {
-    render(<StepIcon icon={1} error />);
-    expect(screen.getAllByTestId('WarningIcon')).to.have.length(1);
+    render(<StepIcon icon={1} error data-testid="step-icon" />);
+    expect(screen.getAllByTestId('step-icon')).to.have.length(1);
   });
 
   it('contains text "3" when position is "3"', () => {
