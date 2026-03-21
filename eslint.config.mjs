@@ -282,12 +282,6 @@ export default defineConfig(
               importNames: ['createStyles'],
               message: forbidCreateStylesMessage,
             },
-            {
-              name: '@mui/material/utils',
-              message:
-                'Avoid the `@mui/material/utils` barrel in `@mui/icons-material` hot paths. ' +
-                'Use a local helper or a direct one-level Material import instead.',
-            },
           ],
         },
       ],
