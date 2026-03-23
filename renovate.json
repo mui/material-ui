@@ -59,6 +59,12 @@
       "schedule": "* * 1 1,7 *"
     },
     {
+      "description": "Prevent major version updates in bundling fixtures",
+      "matchFileNames": ["test/bundling/fixtures/**/package.json"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "groupName": "examples",
       "matchFileNames": ["examples/**/package.json"],
       "enabled": false
