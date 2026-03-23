@@ -114,10 +114,7 @@ export type CardHeaderSlotsAndSlotProps<
   }
 >;
 
-export interface CardHeaderOwnProps<
-  TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span',
-> {
+export interface CardHeaderOwnProps {
   /**
    * The action to display in the card header.
    */
@@ -143,19 +140,6 @@ export interface CardHeaderOwnProps<
    */
   subheader?: React.ReactNode;
   /**
-   * These props will be forwarded to the subheader
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.subheader` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  subheaderTypographyProps?:
-    | TypographyProps<
-        SubheaderTypographyComponent,
-        {
-          component?: SubheaderTypographyComponent | undefined;
-        }
-      >
-    | undefined;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
@@ -163,19 +147,6 @@ export interface CardHeaderOwnProps<
    * The content of the component.
    */
   title?: React.ReactNode;
-  /**
-   * These props will be forwarded to the title
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  titleTypographyProps?:
-    | TypographyProps<
-        TitleTypographyComponent,
-        {
-          component?: TitleTypographyComponent | undefined;
-        }
-      >
-    | undefined;
 }
 
 export interface CardHeaderOwnerState extends CardHeaderOwnProps {}
@@ -187,7 +158,7 @@ export interface CardHeaderTypeMap<
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
   props: AdditionalProps &
-    CardHeaderOwnProps<TitleTypographyComponent, SubheaderTypographyComponent> &
+    CardHeaderOwnProps &
     CardHeaderSlotsAndSlotProps<TitleTypographyComponent, SubheaderTypographyComponent>;
   defaultComponent: RootComponent;
 }
