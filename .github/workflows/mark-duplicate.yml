@@ -9,6 +9,7 @@ permissions: {}
 jobs:
   mark-duplicate:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.issue.pull_request }}
     permissions:
       contents: read
       issues: write
