@@ -201,7 +201,7 @@ describe('<Select />', () => {
 
     render(
       <Select
-        MenuProps={{ BackdropProps: { 'data-testid': 'backdrop' } }}
+        MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}
         onClose={handleClose}
         open
         value=""
