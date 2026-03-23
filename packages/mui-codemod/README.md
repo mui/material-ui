@@ -1277,6 +1277,46 @@ CSS transforms:
 npx @mui/codemod@next deprecations/drawer-classes <path>
 ```
 
+#### `drawer-props`
+
+```diff
+ <Drawer
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ transitionDuration: 300 }}
+-  PaperProps={{ elevation: 20 }}
+-  SlideProps={{ direction: 'right' }}
++  slots={{ backdrop: CustomBackdrop }}
++  slotProps={{
++    backdrop: { transitionDuration: 300 },
++    paper: { elevation: 20 },
++    transition: { direction: 'right' },
++  }}
+ />
+```
+
+The same applies to `SwipeableDrawer`.
+
+```diff
+ MuiDrawer: {
+   defaultProps: {
+-    BackdropComponent: CustomBackdrop,
+-    BackdropProps: { transitionDuration: 300 },
+-    PaperProps: { elevation: 20 },
+-    SlideProps: { direction: 'right' },
++    slots: { backdrop: CustomBackdrop },
++    slotProps: {
++      backdrop: { transitionDuration: 300 },
++      paper: { elevation: 20 },
++      transition: { direction: 'right' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/drawer-props <path>
+```
+
 #### `filled-input-props`
 
 ```diff
@@ -1640,6 +1680,40 @@ npx @mui/codemod@next deprecations/modal-props <path>
 npx @mui/codemod@next deprecations/mobile-stepper-props <path>
 ```
 
+#### `menu-props`
+
+```diff
+ <Menu
+-  TransitionComponent={CustomTransition}
+-  MenuListProps={{ disablePadding: true }}
+-  TransitionProps={{ timeout: 200 }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{
++    list: { disablePadding: true },
++    transition: { timeout: 200 },
++  }}
+ />
+```
+
+```diff
+ MuiMenu: {
+   defaultProps: {
+-    TransitionComponent: CustomTransition,
+-    MenuListProps: { disablePadding: true },
+-    TransitionProps: { timeout: 200 },
++    slots: { transition: CustomTransition },
++    slotProps: {
++      list: { disablePadding: true },
++      transition: { timeout: 200 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/menu-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
@@ -1724,6 +1798,46 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 
 ```bash
 npx @mui/codemod@next deprecations/pagination-item-props <path>
+```
+
+#### `popover-props`
+
+```diff
+ <Popover
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ timeout: 200 }}
+-  PaperProps={{ elevation: 4 }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 200 }}
++  slots={{ backdrop: CustomBackdrop, transition: CustomTransition }}
++  slotProps={{
++    backdrop: { timeout: 200 },
++    paper: { elevation: 4 },
++    transition: { timeout: 200 },
++  }}
+ />
+```
+
+```diff
+ MuiPopover: {
+   defaultProps: {
+-    BackdropComponent: 'div',
+-    BackdropProps: { timeout: 200 },
+-    PaperProps: { elevation: 8 },
+-    TransitionComponent: 'em',
+-    TransitionProps: { timeout: 200 },
++    slots: { backdrop: 'div', transition: 'em' },
++    slotProps: {
++      backdrop: { timeout: 200 },
++      paper: { elevation: 8 },
++      transition: { timeout: 200 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/popover-props <path>
 ```
 
 #### `popper-props`
@@ -1904,6 +2018,78 @@ npx @mui/codemod@next deprecations/slider-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/snackbar-props <path>
+```
+
+#### `speed-dial-props`
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={CustomTransitionProps}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: CustomTransitionProps }}
+ />
+```
+
+```diff
+ MuiSpeedDial: {
+   defaultProps: {
+-    TransitionComponent: CustomTransition,
+-    TransitionProps: CustomTransitionProps,
++    slots: { transition: CustomTransition },
++    slotProps: { transition: CustomTransitionProps },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-props <path>
+```
+
+#### `speed-dial-action-props`
+
+```diff
+ <SpeedDialAction
+-  FabProps={FabProps}
+-  TooltipClasses={TooltipClasses}
+-  tooltipOpen={true}
+-  tooltipPlacement="top"
+-  tooltipTitle="test"
++  slotProps={{
++    fab: FabProps,
++    tooltip: {
++      classes: TooltipClasses,
++      open: true,
++      placement: 'top',
++      title: 'test',
++    },
++  }}
+ />
+```
+
+```diff
+ MuiSpeedDialAction: {
+   defaultProps: {
+-    FabProps: { id: 'test' },
+-    TooltipClasses: classes,
+-    tooltipOpen: true,
+-    tooltipPlacement: 'top',
+-    tooltipTitle: 'test',
++    slotProps: {
++      fab: { id: 'test' },
++      tooltip: {
++        classes: classes,
++        open: true,
++        placement: 'top',
++        title: 'test',
++      },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-action-props <path>
 ```
 
 #### `slider-classes`
