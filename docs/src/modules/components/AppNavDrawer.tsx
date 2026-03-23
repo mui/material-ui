@@ -536,8 +536,10 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
             ModalProps={{
               keepMounted: true,
             }}
-            PaperProps={{
-              component: AppNavPaperComponent,
+            slotProps={{
+              paper: {
+                component: AppNavPaperComponent,
+              },
             }}
           >
             {drawer}
@@ -545,8 +547,10 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
         ) : (
           <StyledDrawer
             variant="permanent"
-            PaperProps={{
-              component: AppNavPaperComponent,
+            slotProps={{
+              paper: {
+                component: AppNavPaperComponent,
+              },
             }}
             open
           >

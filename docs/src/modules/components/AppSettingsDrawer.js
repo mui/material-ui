@@ -128,13 +128,15 @@ export default function AppSettingsDrawer(props) {
       anchor="right"
       onClose={onClose}
       open={open}
-      PaperProps={{
-        elevation: 0,
-        sx: {
-          width: { xs: 310, sm: 360 },
-          borderRadius: '10px 0px 0px 10px',
-          border: '1px solid',
-          borderColor: 'divider',
+      slotProps={{
+        paper: {
+          elevation: 0,
+          sx: {
+            width: { xs: 310, sm: 360 },
+            borderRadius: '10px 0px 0px 10px',
+            border: '1px solid',
+            borderColor: 'divider',
+          },
         },
       }}
       {...other}
