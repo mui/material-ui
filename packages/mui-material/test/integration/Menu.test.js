@@ -49,7 +49,7 @@ function ButtonMenu(props) {
         open={open}
         onClose={handleClose}
         transitionDuration={0}
-        BackdropProps={{ 'data-testid': 'Backdrop' }}
+        slotProps={{ backdrop: { 'data-testid': 'Backdrop' } }}
         {...other}
       >
         {options.map((option, index) => (
