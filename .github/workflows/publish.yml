@@ -32,11 +32,14 @@ permissions: {}
 
 jobs:
   publish-internal:
-    if: (github.event_name == 'workflow_dispatch' && inputs.internal-packages == true) || (github.event_name == 'push' && github.event.head_commit.author.name != 'renovate[bot]')
+    # Keeping it manual trigger only for now. Will update to also include ` || (github.event_name == 'push' && github.event.head_commit.author.name != 'renovate[bot]')` once we are ready to publish internal packages on push as well.
+    if: (github.event_name == 'workflow_dispatch' && inputs.internal-packages == true)
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required for pushing tags and creating releases
       id-token: write # Required for provenance
+    environment:
+      name: npm-publish-internal
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -49,7 +52,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pnpm code-infra publish-canary --package @mui/internal-markdown @mui/docs @mui/internal-scripts @mui-internal/api-docs-builder @mui/internal-docs-utils
+          pnpm code-infra publish-canary --filter "@mui/internal-*" --filter "@mui-internal/*" --filter "@mui/docs"
   publish:
     if: github.event_name == 'workflow_dispatch' && inputs.internal-packages != true
     runs-on: ubuntu-latest
@@ -82,4 +85,4 @@ jobs:
             ARGS="$ARGS --tag ${{ inputs.dist-tag }}"
           fi
 
-          pnpm code-infra publish --ci $ARGS
+          pnpm code-infra publish --ci $ARGS --filter "!@mui/internal-*" --filter "!@mui-internal/*" --filter "!@mui/docs"
