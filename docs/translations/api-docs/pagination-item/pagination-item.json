@@ -8,9 +8,6 @@
     "component": {
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
-    "components": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead."
-    },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
     "nativeButton": {
       "description": "Whether the custom component should render a native <code>&lt;button&gt;</code> element when rendering a React component with the <code>component</code> or <code>slots</code> prop."

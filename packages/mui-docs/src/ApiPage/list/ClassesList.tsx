@@ -1,16 +1,10 @@
-/* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { useTranslate } from '@mui/docs/i18n';
-import ExpandableApiItem, {
-  ApiItemContainer,
-} from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import { ClassDefinition } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import {
-  brandingLightTheme as lightTheme,
-  brandingDarkTheme as darkTheme,
-} from '@mui/docs/branding';
-import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import { useTranslate } from '../../i18n';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import { ApiItemContainer, ExpandableApiItem } from './ExpandableApiItem';
+import { ClassDefinition } from '../definitions/types';
+import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({
@@ -84,6 +78,7 @@ export default function ClassesList(props: ClassesListProps) {
             isExtendable={!!description}
             className={isDeprecated ? 'classes-list-deprecated-item' : ''}
           >
+            {/* eslint-disable-next-line react/no-danger */}
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
             {displayClassKeys && !isGlobal && (
               <p className="prop-list-class">
@@ -98,6 +93,7 @@ export default function ClassesList(props: ClassesListProps) {
                   <React.Fragment>
                     {'－'}
                     <span
+                      /* eslint-disable-next-line react/no-danger */
                       dangerouslySetInnerHTML={{
                         __html: deprecationInfo,
                       }}

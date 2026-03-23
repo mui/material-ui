@@ -1,25 +1,17 @@
-import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
-import { Translate } from '@mui/docs/i18n';
+import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
-import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
+import type { ClassDefinition, BaseCssTOCParams } from './types';
+import type { TableOfContentsParams } from '../types';
 
-export interface ClassDefinition {
-  className: string;
-  key: string;
-  hash: string;
-  description?: string;
-  isGlobal?: boolean;
-  isDeprecated?: boolean;
-  deprecationInfo?: string;
-}
-
-export type GetCssToCParams = {
+export const getClassesToc = ({
+  classes,
+  t,
+  hash,
+  componentName,
+}: BaseCssTOCParams & {
   classes: ClassDefinition[];
-  t: Translate;
-  hash?: string;
-};
-
-export const getClassesToc = ({ classes, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
+  componentName?: string;
+}): TableOfContentsParams[] =>
   !classes || classes.length === 0
     ? []
     : [
@@ -29,7 +21,7 @@ export const getClassesToc = ({ classes, t, hash }: GetCssToCParams): TableOfCon
           children: [
             ...classes.map(({ key, hash: classHash }) => ({
               text: key,
-              hash: classHash,
+              hash: componentName ? `${kebabCase(componentName)}-classes-${key}` : classHash,
               children: [],
             })),
           ],

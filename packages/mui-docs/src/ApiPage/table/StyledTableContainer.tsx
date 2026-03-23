@@ -1,7 +1,7 @@
 import { styled, alpha } from '@mui/material/styles';
-import { brandingDarkTheme as darkTheme } from '@mui/docs/branding';
+import { brandingDarkTheme as darkTheme } from '../../branding';
 
-const StyledTableContainer = styled('div')(
+export const StyledTableContainer = styled('div')(
   ({ theme }) => ({
     borderRadius: 12,
     overflowX: 'auto',
@@ -50,4 +50,3 @@ const StyledTableContainer = styled('div')(
     },
   }),
 );
-export default StyledTableContainer;

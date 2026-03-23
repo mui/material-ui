@@ -64,7 +64,7 @@ const useUtilityClasses = (ownerState) => {
     root: ['root', variant, `color${capitalize(color)}`],
     svg: ['svg'],
     track: ['track'],
-    circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
+    circle: ['circle', disableShrink && 'circleDisableShrink'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
@@ -127,11 +127,7 @@ const CircularProgressCircle = styled('circle', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.circle,
-      styles[`circle${capitalize(ownerState.variant)}`],
-      ownerState.disableShrink && styles.circleDisableShrink,
-    ];
+    return [styles.circle, ownerState.disableShrink && styles.circleDisableShrink];
   },
 })(
   memoTheme(({ theme }) => ({

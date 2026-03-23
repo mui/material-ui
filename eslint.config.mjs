@@ -315,8 +315,9 @@ export default defineConfig(
   {
     files: [
       `packages/api-docs-builder/**/*${EXTENSION_TS}`,
-      // Allow named exports for locales: https://github.com/mui/material-ui/pull/46933
+      // Allow named exports for locales and mui-docs: https://github.com/mui/material-ui/pull/46933
       `packages/mui-material/src/locale/*${EXTENSION_TS}`,
+      `packages/mui-docs/src/**/*${EXTENSION_TS}`,
     ],
     rules: {
       'import/prefer-default-export': 'off',

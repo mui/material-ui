@@ -1,75 +1,57 @@
-import {
+import type {
   PropsTableItem,
   PropsTranslations,
   HookApiContent,
   HooksTranslations,
 } from '@mui-internal/api-docs-builder';
-import { Translate } from '@mui/docs/i18n';
 import { kebabCase } from 'es-toolkit/string';
-import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
+import type { BaseCssTOCParams, PropertyDefinition } from './types';
+import type { TableOfContentsParams } from '../types';
 
-export interface PropertyDefinition {
-  additionalInfo?: string[];
-  hash: string;
-  deprecationInfo?: string;
-  description?: string;
-  isDeprecated?: boolean;
-  isOptional?: boolean;
-  isRequired?: boolean;
-  propDefault?: string;
-  propName: string;
-  requiresRef?: boolean;
-  seeMoreDescription?: string;
-  signature?: string;
-  signatureArgs?: {
-    argName: string;
-    argDescription?: string;
-    argType?: string;
-    argTypeDescription?: string;
-  }[];
-  signatureReturnDescription?: string;
-  typeName: string;
-  /**
-   * Used by MUI X interface documentation
-   */
-  isProPlan?: boolean;
-  /**
-   * Used by MUI X interface documentation
-   */
-  isPremiumPlan?: boolean;
-}
-
-export type GetCssToCParams = {
-  properties: PropertyDefinition[];
-  inheritance?: boolean;
-  themeDefaultProps?: boolean;
-  t: Translate;
-  hash: string;
-};
+type GetPropertiesTocParams = BaseCssTOCParams &
+  (
+    | {
+        properties: Array<Pick<PropertyDefinition, 'propName' | 'hash'>>;
+        componentProps?: never;
+        componentName?: never;
+      }
+    | { componentProps: Record<string, unknown>; componentName: string; properties?: never }
+  );
 
 export const getPropertiesToc = ({
   properties,
+  componentProps,
+  componentName,
   inheritance,
   themeDefaultProps,
   t,
   hash,
-}: GetCssToCParams): TableOfContentsParams => ({
-  text: t('api-docs.props'),
-  hash,
-  children: [
-    ...properties.map(({ propName, hash: propertyHash }) => ({
-      text: propName,
-      hash: propertyHash,
-      children: [],
-    })),
-    ...(inheritance
-      ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-      : []),
-    ...(themeDefaultProps
-      ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-      : []),
-  ],
-});
+}: GetPropertiesTocParams): TableOfContentsParams => {
+  const resolvedProperties =
+    properties ??
+    Object.keys(componentProps).map((propName) => ({
+      propName,
+      hash: `${kebabCase(componentName)}-prop-${propName}`,
+    }));
+
+  return {
+    text: t('api-docs.props'),
+    hash: hash ?? '',
+    children: [
+      ...resolvedProperties.map(({ propName, hash: propertyHash }) => ({
+        text: propName,
+        hash: propertyHash,
+        children: [],
+      })),
+      ...(inheritance
+        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+        : []),
+      ...(themeDefaultProps
+        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+        : []),
+    ],
+  };
+};
 
 interface GetPropsApiDefinitionsParams {
   componentName: string;
@@ -152,12 +134,6 @@ export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): Pr
     };
   });
 }
-
-// interface InterfaceApiProcessorParams {}
-
-// export function InterfaceApiProcessor(params: InterfaceApiProcessorParams): PropertyDefinition[] {
-//   return [];
-// }
 
 interface HookCommonApiParams {
   hookName: string;

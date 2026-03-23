@@ -2,14 +2,11 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import { useTranslate } from '@mui/docs/i18n';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '@mui/docs/branding';
-import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
-import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import { useTranslate } from '../../i18n';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import type { PropertyDefinition } from '../definitions/types';
+import { StyledTableContainer } from './StyledTableContainer';
+import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

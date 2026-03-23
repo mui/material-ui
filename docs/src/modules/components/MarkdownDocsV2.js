@@ -12,8 +12,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
-import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import { getClassesToc } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import { getPropertiesToc, getClassesToc } from '@mui/docs/ApiPage/private';
 
 function getHookTranslatedHeader(t, header) {
   const translations = {
@@ -140,7 +139,7 @@ export default function MarkdownDocsV2(props) {
       const componentApiToc = [
         createComponentTocEntry(componentNameKebabCase, 'import'),
         ...componentDescriptionToc,
-        getPropsToC({
+        getPropertiesToc({
           t,
           componentName: componentNameKebabCase,
           componentProps,
@@ -152,7 +151,7 @@ export default function MarkdownDocsV2(props) {
         ...getClassesToc({
           t,
           componentName: componentNameKebabCase,
-          componentClasses: classes,
+          classes,
           hash: `${componentNameKebabCase}-classes`,
         }),
       ].filter(Boolean);

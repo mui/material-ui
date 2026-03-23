@@ -1,19 +1,18 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { useTranslate } from '@mui/docs/i18n';
-import { SectionTitle } from '@mui/docs/SectionTitle';
 import { ComponentApiContent } from '@mui-internal/api-docs-builder';
-import ToggleDisplayOption, {
-  ApiDisplayOptions,
-  useApiPageOption,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
-import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
+import { useTranslate } from '../../i18n';
+import { SectionTitle } from '../../SectionTitle';
+import SlotsList from '../list/SlotsList';
+import SlotsTable from '../table/SlotsTable';
+import { SlotDefinition } from '../definitions/types';
 import {
-  SlotDefinition,
-  getSlotsApiDefinitions,
-} from 'docs/src/modules/components/ApiPage/definitions/slots';
+  type ApiDisplayLayout,
+  ToggleDisplayOption,
+  useApiPageOption,
+} from './ToggleDisplayOption';
+import { getSlotsApiDefinitions } from '../definitions/slots';
 
 export type SlotsSectionProps = (
   | {
@@ -32,12 +31,12 @@ export type SlotsSectionProps = (
   title?: string;
   titleHash?: string;
   level?: 'h2' | 'h3' | 'h4';
-  defaultLayout: ApiDisplayOptions;
+  defaultLayout: ApiDisplayLayout;
   layoutStorageKey: string;
   spreadHint?: string;
 };
 
-export default function SlotsSection(props: SlotsSectionProps) {
+export function SlotsSection(props: SlotsSectionProps) {
   const {
     slots,
     componentSlots,

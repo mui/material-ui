@@ -1,6 +1,6 @@
 import MuiLink from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '../i18n';
 
 const StyledLink = styled(MuiLink)(({ theme }) => ({
   position: 'fixed',
@@ -54,7 +54,6 @@ const StyledLink = styled(MuiLink)(({ theme }) => ({
   }),
 }));
 
-// eslint-disable-next-line import/prefer-default-export
 export function SkipLink() {
   const t = useTranslate();
 

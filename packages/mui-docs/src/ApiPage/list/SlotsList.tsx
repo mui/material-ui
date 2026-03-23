@@ -1,13 +1,8 @@
-import { styled, alpha } from '@mui/material/styles';
-import {
-  brandingLightTheme as lightTheme,
-  brandingDarkTheme as darkTheme,
-} from '@mui/docs/branding';
-import { useTranslate } from '@mui/docs/i18n';
-import ExpandableApiItem, {
-  ApiItemContainer,
-} from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import { SlotDefinition } from 'docs/src/modules/components/ApiPage/definitions/slots';
+import { alpha, styled } from '@mui/material/styles';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import { useTranslate } from '../../i18n';
+import { SlotDefinition } from '../definitions';
+import { ApiItemContainer, ExpandableApiItem } from './ExpandableApiItem';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({

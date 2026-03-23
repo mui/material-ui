@@ -1,14 +1,11 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useTranslate } from '@mui/docs/i18n';
 import { styled, alpha } from '@mui/material/styles';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '@mui/docs/branding';
-import { ClassDefinition } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import StyledTableContainer from 'docs/src/modules/components/ApiPage/table/StyledTableContainer';
-import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import { useTranslate } from '../../i18n';
+import { StyledTableContainer } from './StyledTableContainer';
+import { ClassDefinition } from '../definitions/types';
+import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledTable = styled('table')(
   ({ theme }) => ({

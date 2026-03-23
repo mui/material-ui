@@ -52,7 +52,6 @@ function forcePageReload(registration: ServiceWorkerRegistration) {
   registration.addEventListener('updatefound', listenInstalledStateChange);
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export async function registerServiceWorker(swPath: string): Promise<void> {
   if (
     'serviceWorker' in navigator &&

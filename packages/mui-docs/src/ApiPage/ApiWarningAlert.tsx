@@ -7,7 +7,7 @@ interface ApiWarningAlertProps {
   className?: string;
 }
 
-export default function ApiWarningAlert({ children, className }: ApiWarningAlertProps) {
+export function ApiWarningAlert({ children, className }: ApiWarningAlertProps) {
   return (
     <Alert
       severity="warning"

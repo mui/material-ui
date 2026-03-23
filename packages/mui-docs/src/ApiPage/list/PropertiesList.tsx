@@ -2,16 +2,11 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import { useTranslate } from '@mui/docs/i18n';
-import {
-  brandingDarkTheme as darkTheme,
-  brandingLightTheme as lightTheme,
-} from '@mui/docs/branding';
-import ExpandableApiItem, {
-  ApiItemContainer,
-} from 'docs/src/modules/components/ApiPage/list/ExpandableApiItem';
-import ApiWarningAlert from 'docs/src/modules/components/ApiPage/ApiWarningAlert';
-import { PropertyDefinition } from 'docs/src/modules/components/ApiPage/definitions/properties';
+import { brandingDarkTheme as darkTheme, brandingLightTheme as lightTheme } from '../../branding';
+import { useTranslate } from '../../i18n';
+import { ApiItemContainer, ExpandableApiItem } from './ExpandableApiItem';
+import { PropertyDefinition } from '../definitions';
+import { ApiWarningAlert } from '../ApiWarningAlert';
 
 const StyledApiItem = styled(ExpandableApiItem)(
   ({ theme }) => ({

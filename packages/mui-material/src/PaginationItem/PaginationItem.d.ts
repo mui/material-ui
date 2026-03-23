@@ -99,23 +99,6 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
       >
     | undefined;
   /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  components?:
-    | {
-        first?: React.ElementType | undefined;
-        last?: React.ElementType | undefined;
-        next?: React.ElementType | undefined;
-        previous?: React.ElementType | undefined;
-      }
-    | undefined;
-  /**
    * If `true`, the component is disabled.
    * @default false
    */

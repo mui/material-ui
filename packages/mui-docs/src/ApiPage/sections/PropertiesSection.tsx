@@ -1,65 +1,19 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Translate, useTranslate } from '@mui/docs/i18n';
-import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
-import ToggleDisplayOption, {
-  ApiDisplayOptions,
+import { PropsTableItem, PropsTranslations } from '@mui-internal/api-docs-builder';
+import { useTranslate } from '../../i18n';
+import {
+  ToggleDisplayOption,
   useApiPageOption,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
-import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
-import {
-  PropertyDefinition,
-  getPropsApiDefinitions,
-} from 'docs/src/modules/components/ApiPage/definitions/properties';
-import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
-import {
-  ComponentApiContent,
-  PropsTableItem,
-  PropsTranslations,
-} from '@mui-internal/api-docs-builder';
-import { kebabCase } from 'es-toolkit/string';
-
-interface GetPropsToCParams extends Pick<ComponentApiContent, 'inheritance' | 'themeDefaultProps'> {
-  componentProps: ComponentApiContent['props'];
-  componentName: ComponentApiContent['name'];
-  t: Translate;
-  /**
-   * @default 'props'
-   */
-  hash?: string;
-}
-
-/**
- * @deprecated Use the one from ApiPage/definitions
- */
-export function getPropsToC({
-  componentName,
-  componentProps,
-  inheritance,
-  themeDefaultProps,
-  t,
-  hash = 'props',
-}: GetPropsToCParams) {
-  return {
-    text: t('api-docs.props'),
-    hash,
-    children: [
-      ...Object.entries(componentProps).map(([propName]) => ({
-        text: propName,
-        hash: `${kebabCase(componentName)}-prop-${propName}`,
-        children: [],
-      })),
-      ...(inheritance
-        ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-        : []),
-      ...(themeDefaultProps
-        ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-        : []),
-    ],
-  };
-}
+  type ApiDisplayLayout,
+} from './ToggleDisplayOption';
+import { SectionTitle, type SectionTitleProps } from '../../SectionTitle';
+import PropertiesTable from '../table/PropertiesTable';
+import PropertiesList from '../list/PropertiesList';
+import { getPropsApiDefinitions } from '../definitions/properties';
+import { LayoutStorageKeys } from '../types';
+import { PropertyDefinition } from '../definitions';
 
 type PropertiesSectionProps = (
   | {
@@ -82,7 +36,7 @@ type PropertiesSectionProps = (
     }
 ) & {
   spreadHint?: string;
-  defaultLayout: ApiDisplayOptions;
+  defaultLayout: ApiDisplayLayout;
   layoutStorageKey: LayoutStorageKeys['props'];
   /**
    * The translation key of the section title.
@@ -101,7 +55,7 @@ type PropertiesSectionProps = (
   level?: SectionTitleProps['level'];
 };
 
-export default function PropertiesSection(props: PropertiesSectionProps) {
+export function PropertiesSection(props: PropertiesSectionProps) {
   const {
     properties,
     propertiesDescriptions,

@@ -3,8 +3,8 @@ import Script from 'next/script';
 import { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import { getMetaThemeColor } from '@mui/docs/branding';
-import { fontClasses } from '@mui/docs/nextFonts';
+import { getMetaThemeColor } from '../branding';
+import { fontClasses } from '../nextFonts';
 
 export type DocumentProps = {
   canonicalAsServer: string;

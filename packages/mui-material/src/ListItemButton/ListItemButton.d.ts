@@ -22,8 +22,7 @@ export interface ListItemButtonBaseProps {
    */
   autoFocus?: boolean | undefined;
   /**
-   * The content of the component if a `ListItemSecondaryAction` is used it must
-   * be the last child.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**

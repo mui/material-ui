@@ -1,14 +1,6 @@
-import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
-import { Translate } from '@mui/docs/i18n';
-import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
-
-export type SlotDefinition = {
-  className: string | null;
-  hash: string;
-  description?: string;
-  name: string;
-  defaultValue?: string;
-};
+import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
+import type { BaseCssTOCParams, SlotDefinition } from './types';
+import type { TableOfContentsParams } from '../types';
 
 export interface GetSlotsApiDefinitionsParams {
   componentSlots: ComponentApiContent['slots'];
@@ -33,13 +25,13 @@ export function getSlotsApiDefinitions(params: GetSlotsApiDefinitionsParams): Sl
   });
 }
 
-export type GetCssToCParams = {
+export const getSlotsToc = ({
+  slots,
+  t,
+  hash,
+}: BaseCssTOCParams & {
   slots: SlotDefinition[];
-  t: Translate;
-  hash?: string;
-};
-
-export const getSlotsToc = ({ slots, t, hash }: GetCssToCParams): TableOfContentsParams[] =>
+}): TableOfContentsParams[] =>
   !slots || slots.length === 0
     ? []
     : [
