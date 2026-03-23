@@ -22,7 +22,7 @@ on:
         required: false
         type: string
         default: 'latest'
-      internal-packages-only:
+      internal-packages:
         description: 'Whether to publish only the internal packages'
         required: false
         type: boolean
@@ -32,7 +32,7 @@ permissions: {}
 
 jobs:
   publish-internal:
-    if: (github.event_name == 'workflow_dispatch' && inputs.internal-packages-only == true) || (github.event_name == 'push' && github.event.head_commit.author.name != 'renovate[bot]')
+    if: (github.event_name == 'workflow_dispatch' && inputs.internal-packages == true) || (github.event_name == 'push' && github.event.head_commit.author.name != 'renovate[bot]')
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required for pushing tags and creating releases
@@ -51,7 +51,7 @@ jobs:
         run: |
           pnpm code-infra publish-canary --package @mui/internal-markdown @mui/docs @mui/internal-scripts @mui-internal/api-docs-builder @mui/internal-docs-utils
   publish:
-    if: github.event_name == 'workflow_dispatch' && inputs.internal-packages-only != true
+    if: github.event_name == 'workflow_dispatch' && inputs.internal-packages != true
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required for pushing tags and creating releases
