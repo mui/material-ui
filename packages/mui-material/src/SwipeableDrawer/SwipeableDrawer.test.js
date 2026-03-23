@@ -880,24 +880,6 @@ describe('<SwipeableDrawer />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('warns if a component for the Paper is used that cant hold a ref', () => {
-      expect(() => {
-        checkPropTypes(
-          SwipeableDrawer.propTypes,
-          {
-            onOpen: () => {},
-            onClose: () => {},
-            open: false,
-            PaperProps: { component: () => <div />, elevation: 4 },
-          },
-          'prop',
-          'MockedSwipeableDrawer',
-        );
-      }).toErrorDev(
-        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedSwipeableDrawer`. Expected an element type that can hold a ref.',
-      );
-    });
-
     it('warns if a component for the Backdrop is used that cant hold a ref', () => {
       expect(() => {
         checkPropTypes(

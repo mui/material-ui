@@ -20,12 +20,6 @@
       }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
-    "PaperProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element."
-    },
-    "SlideProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/slide/\"><code>Slide</code></a> element."
-    },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {

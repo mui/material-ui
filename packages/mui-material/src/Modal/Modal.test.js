@@ -220,7 +220,7 @@ describe('<Modal />', () => {
         <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          BackdropProps={{ 'data-testid': 'backdrop' }}
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
         >
           <div />
         </ModalWithDisabledBackdropClick>,
@@ -814,10 +814,13 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('prop: BackdropProps', () => {
+  describe('prop: slotProps.backdrop', () => {
     it('should handle custom className', () => {
       render(
-        <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
+        <Modal
+          open
+          slotProps={{ backdrop: { className: 'custom-backdrop', 'data-testid': 'backdrop' } }}
+        >
           <div />
         </Modal>,
       );

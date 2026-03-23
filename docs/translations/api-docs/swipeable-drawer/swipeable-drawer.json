@@ -35,9 +35,6 @@
     "open": { "description": "If <code>true</code>, the component is shown." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
-    "SwipeAreaProps": {
-      "description": "The element is used to intercept the touch events on the edge."
-    },
     "swipeAreaWidth": {
       "description": "The width of the left most (or right most) area in <code>px</code> that the drawer can be swiped open from."
     },

@@ -2,10 +2,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
-import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
@@ -152,12 +150,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     hysteresis = 0.52,
     allowSwipeInChildren = false,
     minFlingVelocity = 450,
-    ModalProps: { BackdropProps, ...ModalPropsProp } = {},
+    ModalProps: ModalPropsProp = {},
     onClose,
     onOpen,
     open = false,
-    PaperProps = {},
-    SwipeAreaProps,
     swipeAreaWidth = 20,
     transitionDuration = transitionDurationDefault,
     variant = 'temporary', // Mobile first.
@@ -174,8 +170,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
   const paperRef = React.useRef();
-
-  const handleRef = useForkRef(PaperProps.ref, paperRef);
 
   const touchDetected = React.useRef(false);
 
@@ -594,10 +588,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     ownerState: props,
     externalForwardedProps: {
       slots,
-      slotProps: {
-        swipeArea: SwipeAreaProps,
-        ...slotProps,
-      },
+      slotProps,
     },
     additionalProps: {
       width: swipeAreaWidth,
@@ -611,10 +602,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         open={variant === 'temporary' && maybeSwiping ? true : open}
         variant={variant}
         ModalProps={{
-          BackdropProps: {
-            ...BackdropProps,
-            ref: backdropRef,
-          },
           // Ensures that paperRef.current will be defined inside the touch start event handler
           // See https://github.com/mui/material-ui/issues/30414 for more information
           ...(variant === 'temporary' && {
@@ -630,15 +617,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         slots={slots}
         slotProps={{
           ...slotProps,
-          backdrop: mergeSlotProps(slotProps.backdrop ?? BackdropProps, {
+          backdrop: mergeSlotProps(slotProps.backdrop, {
             ref: backdropRef,
           }),
-          paper: mergeSlotProps(slotProps.paper ?? PaperProps, {
+          paper: mergeSlotProps(slotProps.paper, {
             style: {
               pointerEvents:
                 variant === 'temporary' && !open && !allowSwipeInChildren ? 'none' : '',
             },
-            ref: handleRef,
+            ref: paperRef,
           }),
         }}
         {...other}
@@ -716,11 +703,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  ModalProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    BackdropProps: PropTypes.shape({
-      component: elementTypeAcceptingRef,
-    }),
-  }),
+  ModalProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({}),
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -738,13 +721,6 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    * @default false
    */
   open: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    component: elementTypeAcceptingRef,
-    style: PropTypes.object,
-  }),
   /**
    * The props used for each slot inside.
    * @default {}
@@ -769,11 +745,6 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
     swipeArea: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
-  /**
-   * The element is used to intercept the touch events on the edge.
-   * @deprecated use the `slotProps.swipeArea` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  SwipeAreaProps: PropTypes.object,
   /**
    * The width of the left most (or right most) area in `px` that
    * the drawer can be swiped open from.
