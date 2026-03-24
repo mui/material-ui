@@ -265,28 +265,6 @@ export default defineConfig(
       ],
     },
   },
-  {
-    files: [`packages/mui-icons-material/src/**/*${EXTENSION_TS}`],
-    rules: {
-      'no-restricted-imports': [
-        'error',
-        {
-          paths: [
-            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
-            {
-              name: '@mui/utils',
-              message: OneLevelImportMessage,
-            },
-            {
-              name: '@mui/material/styles',
-              importNames: ['createStyles'],
-              message: forbidCreateStylesMessage,
-            },
-          ],
-        },
-      ],
-    },
-  },
   baseSpecRules,
   {
     files: ['packages-internal/scripts/typescript-to-proptypes/src/**/*.ts'],
