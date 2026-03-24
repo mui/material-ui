@@ -14,6 +14,18 @@ In the `package.json` file, change the package version from `latest` to `next`.
 Using `next` ensures your project always uses the latest v9 pre-releases.
 Alternatively, you can also target and fix it to a specific version, for example, `9.0.0-alpha.0`.
 
+## Supported browsers and versions
+
+The default bundle targets have changed in v9.
+
+<!-- #stable-snapshot -->
+
+- Chrome 117 (up from 109)
+- Edge 117 (up from 121)
+- Firefox 121 (up from 115)
+- Safari 17.0 in both macOS and iOS (up from 15.4)
+- and more (see [.browserslistrc `stable` entry](https://github.com/mui/material-ui/blob/master/.browserslistrc#L9))
+
 ## Breaking changes
 
 Since v9 is a new major release, it contains some changes that affect the public API.
