@@ -315,7 +315,7 @@ importers:
         version: link:../packages-internal/core-docs/build
       '@mui/internal-markdown':
         specifier: workspace:^
-        version: link:../packages/markdown
+        version: link:../packages-internal/markdown
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
@@ -631,7 +631,7 @@ importers:
         version: 5.0.0-beta.70(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@mui/internal-markdown':
         specifier: workspace:^
-        version: link:../../packages/markdown
+        version: link:../markdown
       '@mui/material-nextjs':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.14(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
@@ -725,6 +725,28 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  packages-internal/markdown:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.29.2
+        version: 7.29.2
+      es-toolkit:
+        specifier: ^1.45.1
+        version: 1.45.1
+      marked:
+        specifier: ^17.0.5
+        version: 17.0.5
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
+    devDependencies:
+      '@types/chai':
+        specifier: 5.2.3
+        version: 5.2.3
+      chai:
+        specifier: 6.2.2
+        version: 6.2.2
+
   packages-internal/scripts:
     dependencies:
       '@babel/core':
@@ -808,7 +830,7 @@ importers:
         version: link:../../packages-internal/docs-utils
       '@mui/internal-markdown':
         specifier: workspace:^
-        version: link:../markdown
+        version: link:../../packages-internal/markdown
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
@@ -872,7 +894,7 @@ importers:
         version: link:../api-docs-builder
       '@mui/internal-markdown':
         specifier: workspace:^
-        version: link:../markdown
+        version: link:../../packages-internal/markdown
       docs:
         specifier: workspace:^
         version: link:../../docs
@@ -898,28 +920,6 @@ importers:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
-
-  packages/markdown:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.29.2
-        version: 7.29.2
-      es-toolkit:
-        specifier: ^1.45.1
-        version: 1.45.1
-      marked:
-        specifier: ^17.0.5
-        version: 17.0.5
-      prismjs:
-        specifier: ^1.30.0
-        version: 1.30.0
-    devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
 
   packages/mui-codemod:
     dependencies:

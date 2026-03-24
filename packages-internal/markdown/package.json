@@ -18,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
-    "directory": "packages/markdown"
+    "directory": "packages-internal/markdown"
   },
   "scripts": {
     "release:publish": "pnpm publish --tag latest",
