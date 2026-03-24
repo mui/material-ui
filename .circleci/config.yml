@@ -71,6 +71,16 @@ commands:
           ignore-workspace: << parameters.ignore-workspace >>
 
 jobs:
+  debug_oidc_token:
+    <<: *default-job
+    steps:
+      - run:
+          name: Print CircleCI OIDC token claims
+          command: |
+            echo "CIRCLE_OIDC_TOKEN_V2 set: $([ -n "$CIRCLE_OIDC_TOKEN_V2" ] && echo yes || echo no)"
+            if [ -n "$CIRCLE_OIDC_TOKEN_V2" ]; then
+              echo "$CIRCLE_OIDC_TOKEN_V2" | cut -d. -f2 | python3 -c "import sys,base64,json; b=sys.stdin.read().strip(); b+='='*(-len(b)%4); print(json.dumps(json.loads(base64.urlsafe_b64decode(b)),indent=2))"
+            fi
   test_unit:
     <<: *default-job
     steps:
@@ -507,6 +517,8 @@ workflows:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
+      - debug_oidc_token:
+          <<: *default-context
       - test_unit:
           <<: *default-context
       - test_lint:
