@@ -84,15 +84,6 @@ const ImageListItemBarRoot = styled('div', {
 const ImageListItemBarTitleWrap = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'TitleWrap',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.titleWrap,
-      styles[`titleWrap${capitalize(ownerState.position)}`],
-      ownerState.actionIcon && styles[`titleWrapActionPos${capitalize(ownerState.actionPosition)}`],
-    ];
-  },
 })(
   memoTheme(({ theme }) => {
     return {
@@ -160,14 +151,6 @@ const ImageListItemBarSubtitle = styled('div', {
 const ImageListItemBarActionIcon = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'ActionIcon',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.actionIcon,
-      styles[`actionIconActionPos${capitalize(ownerState.actionPosition)}`],
-    ];
-  },
 })({
   variants: [
     {
