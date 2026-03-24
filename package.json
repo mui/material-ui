@@ -96,7 +96,7 @@
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.24",
-    "@mui/internal-bundle-size-checker": "1.0.9-canary.67",
+    "@mui/internal-bundle-size-checker": "1.0.9-canary.68",
     "@mui/internal-code-infra": "0.0.4-canary.9",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.2",
