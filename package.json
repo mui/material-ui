@@ -83,7 +83,7 @@
   "dependencies": {
     "@netlify/functions": "^5.1.5",
     "@slack/bolt": "^4.6.0",
-    "@vitest/eslint-plugin": "^1.6.11",
+    "@vitest/eslint-plugin": "^1.6.12",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.1"
   },
@@ -92,7 +92,7 @@
     "@babel/core": "7.29.0",
     "@babel/node": "7.29.0",
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
-    "@eslint/compat": "2.0.2",
+    "@eslint/compat": "2.0.3",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.24",
@@ -128,7 +128,7 @@
     "danger": "13.0.7",
     "dotenv": "17.3.1",
     "es-toolkit": "1.45.1",
-    "eslint": "10.0.3",
+    "eslint": "10.1.0",
     "eslint-import-resolver-webpack": "0.13.10",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
