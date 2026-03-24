@@ -118,7 +118,6 @@ describe('<Tab />', () => {
     it('should add a classname when passed together with label', () => {
       render(<Tab icon={<div className="test-icon" />} label="foo" />);
       const wrapper = screen.getByRole('tab').children[0];
-      expect(wrapper).to.have.class(classes.iconWrapper);
       expect(wrapper).to.have.class(classes.icon);
       expect(wrapper).to.have.class('test-icon');
     });
@@ -160,31 +159,6 @@ describe('<Tab />', () => {
     });
   });
 
-  it.skipIf(isJsdom())('should apply iconWrapper styles from theme', function test() {
-    const theme = createTheme({
-      components: {
-        MuiTab: {
-          styleOverrides: {
-            iconWrapper: {
-              backgroundColor: 'rgb(0, 0, 255)',
-            },
-          },
-        },
-      },
-    });
-
-    render(
-      <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
-      </ThemeProvider>,
-    );
-
-    const icon = screen.getByRole('tab').querySelector(`.${classes.iconWrapper}`);
-    expect(icon).toHaveComputedStyle({
-      backgroundColor: 'rgb(0, 0, 255)',
-    });
-  });
-
   it.skipIf(isJsdom())('should apply icon styles from theme', function test() {
     const theme = createTheme({
       components: {
@@ -209,39 +183,4 @@ describe('<Tab />', () => {
       backgroundColor: 'rgb(0, 0, 255)',
     });
   });
-
-  it.skipIf(isJsdom())(
-    'icon styles should override iconWrapper styles from theme',
-    function test() {
-      const theme = createTheme({
-        components: {
-          MuiTab: {
-            styleOverrides: {
-              iconWrapper: {
-                backgroundColor: 'rgb(255, 0, 0)',
-              },
-              icon: {
-                backgroundColor: 'rgb(0, 0, 255)',
-              },
-            },
-          },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
-          <Tab icon={<div>hello</div>} label="icon" />
-        </ThemeProvider>,
-      );
-
-      const icon = screen.getByRole('tab').querySelector(`.${classes.icon}`);
-      const iconWrapper = screen.getByRole('tab').querySelector(`.${classes.iconWrapper}`);
-      expect(iconWrapper).toHaveComputedStyle({
-        backgroundColor: 'rgb(0, 0, 255)',
-      });
-      expect(icon).toHaveComputedStyle({
-        backgroundColor: 'rgb(0, 0, 255)',
-      });
-    },
-  );
 });

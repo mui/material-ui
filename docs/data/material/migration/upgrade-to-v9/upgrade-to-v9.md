@@ -1043,6 +1043,17 @@ Use `sx={{ opacity : "0.6" }}` (or any opacity):
  />
 ```
 
+#### Divider deprecated classes removed
+
+The following deprecated class has been removed:
+
+- `withChildrenVertical` — combine the `.MuiDivider-withChildren` and `.MuiDivider-vertical` classes instead
+
+```diff
+-.MuiDivider-withChildrenVertical
++.MuiDivider-withChildren.MuiDivider-vertical
+```
+
 #### ImageListItemBar deprecated CSS classes removed
 
 Use the [image-list-item-bar-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#image-list-item-bar-classes) below to migrate the code as described in the following section:
@@ -1809,6 +1820,38 @@ The following deprecated props have been removed:
 -  slots={{ StartScrollButtonIcon: CustomIcon, EndScrollButtonIcon: CustomIcon2 }}
 +  slots={{ startScrollButtonIcon: CustomIcon, endScrollButtonIcon: CustomIcon2 }}
  />
+```
+
+#### Tab deprecated classes removed
+
+Use the [tab-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tab-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/tab-classes <path>
+```
+
+The following deprecated class has been removed:
+
+- `iconWrapper` — use the `icon` class instead
+
+```diff
+-.MuiTab-iconWrapper
++.MuiTab-icon
+```
+
+#### Tabs deprecated classes removed
+
+The following deprecated classes have been removed:
+
+- `flexContainer` — use the `list` class instead
+- `flexContainerVertical` — combine the `list` and `vertical` classes instead
+
+```diff
+-.MuiTabs-flexContainer
++.MuiTabs-list
+
+-.MuiTabs-flexContainerVertical
++.MuiTabs-list.MuiTabs-vertical
 ```
 
 #### ToggleButtonGroup deprecated CSS classes removed

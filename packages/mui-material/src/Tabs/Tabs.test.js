@@ -211,7 +211,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const selector = `.${classes.flexContainer}.${classes.centered}`;
+      const selector = `.${classes.list}.${classes.centered}`;
       expect(container.querySelector(selector).nodeName).to.equal('DIV');
     });
   });

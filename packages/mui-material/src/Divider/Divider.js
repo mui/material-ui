@@ -19,7 +19,6 @@ const useUtilityClasses = (ownerState) => {
       orientation === 'vertical' && 'vertical',
       flexItem && 'flexItem',
       children && 'withChildren',
-      children && orientation === 'vertical' && 'withChildrenVertical',
       textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
       textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft',
     ],
@@ -42,7 +41,6 @@ const DividerRoot = styled('div', {
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.flexItem && styles.flexItem,
       ownerState.children && styles.withChildren,
-      ownerState.children && ownerState.orientation === 'vertical' && styles.withChildrenVertical,
       ownerState.textAlign === 'right' &&
         ownerState.orientation !== 'vertical' &&
         styles.textAlignRight,
