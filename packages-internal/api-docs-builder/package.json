@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
-    "directory": "packages/api-docs-builder"
+    "directory": "packages-internal/api-docs-builder"
   },
   "dependencies": {
     "@babel/core": "^7.29.0",

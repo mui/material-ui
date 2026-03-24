@@ -78,7 +78,7 @@ importers:
         version: 2.0.3(eslint@10.1.0(jiti@2.6.1))
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
-        version: link:packages/api-docs-builder
+        version: link:packages-internal/api-docs-builder
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
@@ -535,7 +535,7 @@ importers:
         version: 7.28.5(@babel/core@7.29.0)
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
-        version: link:../packages/api-docs-builder
+        version: link:../packages-internal/api-docs-builder
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../packages-internal/docs-utils
@@ -612,6 +612,82 @@ importers:
         specifier: 18.0.0
         version: 18.0.0
 
+  packages-internal/api-docs-builder:
+    dependencies:
+      '@babel/core':
+        specifier: 7.29.0
+        version: 7.29.0
+      '@babel/preset-typescript':
+        specifier: ^7.28.5
+        version: 7.28.5(@babel/core@7.29.0)
+      '@babel/traverse':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@babel/types':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@mui/internal-docs-utils':
+        specifier: workspace:^
+        version: link:../docs-utils
+      '@mui/internal-markdown':
+        specifier: workspace:^
+        version: link:../markdown
+      doctrine:
+        specifier: ^3.0.0
+        version: 3.0.0
+      es-toolkit:
+        specifier: ^1.45.1
+        version: 1.45.1
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
+      prettier:
+        specifier: ^3.8.1
+        version: 3.8.1
+      react-docgen:
+        specifier: ^8.0.3
+        version: 8.0.3
+      recast:
+        specifier: ^0.23.11
+        version: 0.23.11
+      remark:
+        specifier: ^15.0.1
+        version: 15.0.1
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      unist-util-visit:
+        specifier: ^5.1.0
+        version: 5.1.0
+    devDependencies:
+      '@types/babel__core':
+        specifier: 7.20.5
+        version: 7.20.5
+      '@types/babel__traverse':
+        specifier: 7.28.0
+        version: 7.28.0
+      '@types/chai':
+        specifier: 5.2.3
+        version: 5.2.3
+      '@types/doctrine':
+        specifier: 0.0.9
+        version: 0.0.9
+      '@types/mdast':
+        specifier: 4.0.4
+        version: 4.0.4
+      '@types/node':
+        specifier: 20.19.37
+        version: 20.19.37
+      '@types/sinon':
+        specifier: 17.0.4
+        version: 17.0.4
+      chai:
+        specifier: 6.2.2
+        version: 6.2.2
+      sinon:
+        specifier: 21.0.3
+        version: 21.0.3
+
   packages-internal/core-docs:
     dependencies:
       '@babel/runtime':
@@ -680,7 +756,7 @@ importers:
     devDependencies:
       '@mui-internal/api-docs-builder':
         specifier: workspace:*
-        version: link:../../packages/api-docs-builder
+        version: link:../api-docs-builder
       '@mui/icons-material':
         specifier: workspace:*
         version: link:../../packages/mui-icons-material/build
@@ -813,87 +889,11 @@ importers:
 
   packages-internal/waterfall: {}
 
-  packages/api-docs-builder:
-    dependencies:
-      '@babel/core':
-        specifier: 7.29.0
-        version: 7.29.0
-      '@babel/preset-typescript':
-        specifier: ^7.28.5
-        version: 7.28.5(@babel/core@7.29.0)
-      '@babel/traverse':
-        specifier: ^7.29.0
-        version: 7.29.0
-      '@babel/types':
-        specifier: ^7.29.0
-        version: 7.29.0
-      '@mui/internal-docs-utils':
-        specifier: workspace:^
-        version: link:../../packages-internal/docs-utils
-      '@mui/internal-markdown':
-        specifier: workspace:^
-        version: link:../../packages-internal/markdown
-      doctrine:
-        specifier: ^3.0.0
-        version: 3.0.0
-      es-toolkit:
-        specifier: ^1.45.1
-        version: 1.45.1
-      fast-glob:
-        specifier: ^3.3.3
-        version: 3.3.3
-      prettier:
-        specifier: ^3.8.1
-        version: 3.8.1
-      react-docgen:
-        specifier: ^8.0.3
-        version: 8.0.3
-      recast:
-        specifier: ^0.23.11
-        version: 0.23.11
-      remark:
-        specifier: ^15.0.1
-        version: 15.0.1
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      unist-util-visit:
-        specifier: ^5.1.0
-        version: 5.1.0
-    devDependencies:
-      '@types/babel__core':
-        specifier: 7.20.5
-        version: 7.20.5
-      '@types/babel__traverse':
-        specifier: 7.28.0
-        version: 7.28.0
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      '@types/doctrine':
-        specifier: 0.0.9
-        version: 0.0.9
-      '@types/mdast':
-        specifier: 4.0.4
-        version: 4.0.4
-      '@types/node':
-        specifier: 20.19.37
-        version: 20.19.37
-      '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
-      sinon:
-        specifier: 21.0.3
-        version: 21.0.3
-
   packages/api-docs-builder-core:
     dependencies:
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
-        version: link:../api-docs-builder
+        version: link:../../packages-internal/api-docs-builder
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../../packages-internal/markdown

@@ -119,7 +119,7 @@ export default defineConfig(
   {
     files: [
       `packages-internal/**/*${EXTENSION_TS}`,
-      `packages/api-docs-builder/**/*${EXTENSION_TS}`,
+      `packages-internal/api-docs-builder/**/*${EXTENSION_TS}`,
       `packages/api-docs-builder-core/**/*${EXTENSION_TS}`,
     ],
     rules: {
@@ -311,10 +311,10 @@ export default defineConfig(
       'import/extensions': 'off',
     },
   },
-  // Migrated config from packages/api-docs-builder/.eslintrc.js
+  // Migrated config from packages-internal/api-docs-builder/.eslintrc.js
   {
     files: [
-      `packages/api-docs-builder/**/*${EXTENSION_TS}`,
+      `packages-internal/api-docs-builder/**/*${EXTENSION_TS}`,
       // Allow named exports for locales and mui-internal-core-docs: https://github.com/mui/material-ui/pull/46933
       `packages/mui-material/src/locale/*${EXTENSION_TS}`,
       `packages-internal/core-docs/src/**/*${EXTENSION_TS}`,
