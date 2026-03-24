@@ -11,7 +11,7 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 
 | Edge   | Firefox | Chrome | Safari (macOS) | Safari (iOS) |
 | :----- | :------ | :----- | :------------- | :----------- |
-| >= 117 | >= 121  | >= 117 | >= 17.0        | >= 17.0      |
+| >= 121 | >= 121  | >= 117 | >= 17.0        | >= 17.0      |
 
 <!-- #target-branch-reference -->
 
