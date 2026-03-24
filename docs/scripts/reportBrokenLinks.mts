@@ -39,6 +39,7 @@ async function main() {
       '[id^="demo-"] a[href^="#outlined-buttons"]',
       '[id^="demo-"] a[href^="#foo"]',
     ],
+    htmlValidate: true,
     ignores: [
       {
         // The links checker uses standard github slugger to check if the anchor exists. But the MUI docs use
