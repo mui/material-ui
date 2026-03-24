@@ -87,6 +87,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./*": "./src/*/index.ts"
+    "./*": "./src/*/index.ts",
+    "./ApiPage/private": "./src/ApiPage/private.ts"
   }
 }
