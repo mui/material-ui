@@ -1,5 +1,3 @@
-<ThemeProvider theme={theme}>
-  <Div color="white" bgcolor="palevioletred" p={1}>
-    Styled components
-  </Div>
-</ThemeProvider>
+<Div color="white" bgcolor="palevioletred" p={1}>
+  Styled components
+</Div>
