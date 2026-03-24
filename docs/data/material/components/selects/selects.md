@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Select
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic select
 

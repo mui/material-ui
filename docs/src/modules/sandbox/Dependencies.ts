@@ -1,5 +1,5 @@
-import { CODE_VARIANTS } from '@mui/docs/constants';
-import type { SandboxConfig } from '@mui/docs/DemoContext';
+import { CODE_VARIANTS } from '@mui/internal-core-docs/constants';
+import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
 import { DemoData } from './types';
 
 const packagesWithBundledTypes = [

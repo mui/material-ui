@@ -22,7 +22,7 @@ import WarningRounded from '@mui/icons-material/WarningRounded';
 import ShoppingCartRounded from '@mui/icons-material/ShoppingCartRounded';
 import InfoRounded from '@mui/icons-material/InfoRounded';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -30,7 +30,7 @@ import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
 import ROUTES from 'docs/src/route';
 

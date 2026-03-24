@@ -12,7 +12,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import { styled, SxProps, useTheme, Theme } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;

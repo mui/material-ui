@@ -6,10 +6,10 @@ import Head from 'docs/src/modules/components/Head';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import { Link } from '@mui/docs/Link';
-import { useTranslate } from '@mui/docs/i18n';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 const StyledDiv = styled('div')(({ theme }) => ({
   flex: '1 0 100%',

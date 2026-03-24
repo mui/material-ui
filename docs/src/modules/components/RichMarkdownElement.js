@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { HighlightedCodeWithTabs } from '@mui/docs/HighlightedCodeWithTabs';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import { HighlightedCodeWithTabs } from '@mui/internal-core-docs/HighlightedCodeWithTabs';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
 import Demo from 'docs/src/modules/components/Demo';
 
 function noComponent(moduleID) {

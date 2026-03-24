@@ -1,6 +1,6 @@
 import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import CoreHero from 'docs/src/components/productCore/CoreHero';
 import CoreProducts from 'docs/src/components/productCore/CoreProducts';

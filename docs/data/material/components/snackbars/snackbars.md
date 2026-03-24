@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Snackbar
 
 <p class="description">Snackbars (also known as toasts) are used for brief notifications of processes that have been or will be performed.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

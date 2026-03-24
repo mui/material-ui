@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import { ThemeOptionsContext, highDensity } from '@mui/docs/ThemeContext';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
+import { ThemeOptionsContext, highDensity } from '@mui/internal-core-docs/ThemeContext';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 
 const defaultTheme = createTheme({
   colorSchemes: { light: true, dark: true },

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha, styled } from '@mui/material/styles';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 const SearchButtonStyled = styled('button')(({ theme }) => [
   {

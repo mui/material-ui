@@ -13,7 +13,7 @@ import RssFeedIcon from '@mui/icons-material/RssFeed';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 interface AppFooterProps {

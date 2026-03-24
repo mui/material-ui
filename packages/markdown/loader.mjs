@@ -660,7 +660,7 @@ export default async function demoLoader() {
   );
 
   componentNames.forEach((componentName) => {
-    const moduleID = componentName.startsWith('@mui/docs/')
+    const moduleID = componentName.startsWith('@mui/internal-core-docs/')
       ? componentName
       : path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
 

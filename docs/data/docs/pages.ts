@@ -1,4 +1,4 @@
-import type { MuiPage } from '@mui/docs/MuiPage';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 
 const pages: readonly MuiPage[] = [

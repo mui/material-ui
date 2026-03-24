@@ -4,8 +4,8 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import PageContext from '@mui/docs/PageContext';
-import { useDemoContext } from '@mui/docs/DemoContext';
+import PageContext from '@mui/internal-core-docs/PageContext';
+import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
 import { createMuiChat } from '../sandbox/MuiChat';
 import { DemoData } from '../sandbox/types';
 

@@ -28,7 +28,7 @@ export default function getBabelConfig(api) {
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
-    '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
+    '@mui/internal-core-docs': resolveAliasPath('./packages-internal/core-docs/src'),
     '@mui/icons-material': resolveAliasPath(`./packages/mui-icons-material/lib`),
     '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
     '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),

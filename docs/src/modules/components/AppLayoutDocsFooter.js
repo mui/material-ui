@@ -25,12 +25,12 @@ import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 // Other imports
-import { Link } from '@mui/docs/Link';
-import PageContext from '@mui/docs/PageContext';
+import { Link } from '@mui/internal-core-docs/Link';
+import PageContext from '@mui/internal-core-docs/PageContext';
 import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
 import EditPage from 'docs/src/modules/components/EditPage';
-import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { pageToTitleI18n } from '@mui/docs/helpers';
+import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
+import { pageToTitleI18n } from '@mui/internal-core-docs/helpers';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const FooterLink = styled(Link)(({ theme }) => {
@@ -51,8 +51,8 @@ const FooterLink = styled(Link)(({ theme }) => {
 });
 
 /**
- * @typedef {import('@mui/docs/MuiPage').MuiPage} MuiPage
- * @typedef {import('@mui/docs/MuiPage').OrderedMuiPage} OrderedMuiPage
+ * @typedef {import('@mui/internal-core-docs/MuiPage').MuiPage} MuiPage
+ * @typedef {import('@mui/internal-core-docs/MuiPage').OrderedMuiPage} OrderedMuiPage
  */
 
 /**

@@ -1,4 +1,4 @@
-import type { SandboxConfig } from '@mui/docs/DemoContext';
+import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
 import { DemoData } from 'docs/src/modules/sandbox/types';
 
 export const getHtml = ({

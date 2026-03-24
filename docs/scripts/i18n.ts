@@ -1,10 +1,10 @@
 // @ts-check
 import path from 'path';
 import fs from 'node:fs/promises';
-import { pageToTitle } from '@mui/docs/helpers';
+import { pageToTitle } from '@mui/internal-core-docs/helpers';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import { MuiPage } from '@mui/docs/MuiPage';
+import { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-', '/toolpad'];
 
@@ -18,7 +18,7 @@ async function run() {
   output.pages = {};
 
   /**
-   * @param {readonly import('@mui/docs/MuiPage').MuiPage[]} pages
+   * @param {readonly import('@mui/internal-core-docs/MuiPage').MuiPage[]} pages
    */
   const traverse = (pages: MuiPage[]) => {
     pages.forEach((page) => {

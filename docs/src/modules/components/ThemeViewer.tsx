@@ -6,7 +6,7 @@ import ChevronDownIcon from '@mui/icons-material/ExpandMoreRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRightRounded';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import { blue, blueDark } from '@mui/docs/branding';
+import { blue, blueDark } from '@mui/internal-core-docs/branding';
 
 function getType(value: any) {
   if (Array.isArray(value)) {

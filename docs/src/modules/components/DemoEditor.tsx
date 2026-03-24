@@ -5,10 +5,10 @@ import { NoSsr } from '@mui/base/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
 import prism from '@mui/internal-markdown/prism';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import { CodeCopyButton, useCodeCopy } from '@mui/docs/CodeCopy';
-import { useTranslate } from '@mui/docs/i18n';
-import { blueDark } from '@mui/docs/branding';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
+import { CodeCopyButton, useCodeCopy } from '@mui/internal-core-docs/CodeCopy';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
+import { blueDark } from '@mui/internal-core-docs/branding';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {

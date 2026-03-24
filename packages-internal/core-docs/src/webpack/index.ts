@@ -1,7 +1,7 @@
 /**
  * Type declarations for webpack's require.context() API.
  *
- * Usage: import '@mui/docs/webpack' in a .d.ts or at the top of a file,
+ * Usage: import '@mui/internal-core-docs/webpack' in a .d.ts or at the top of a file,
  * or add to tsconfig "types".
  */
 

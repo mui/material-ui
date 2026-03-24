@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const showSurveyMessage = true;

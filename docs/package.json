@@ -29,7 +29,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.6",
     "@mui/base": "5.0.0-beta.70",
-    "@mui/docs": "workspace:*",
+    "@mui/internal-core-docs": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/internal-markdown": "workspace:^",
     "@mui/lab": "workspace:*",

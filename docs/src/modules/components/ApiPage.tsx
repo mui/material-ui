@@ -5,15 +5,15 @@ import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-b
 import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import { Ad, AdGuest } from '@mui/docs/Ad';
-import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';
+import { Ad, AdGuest } from '@mui/internal-core-docs/Ad';
+import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { BrandingProvider, BrandingCssVarsProvider } from '@mui/docs/branding';
-import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
+import { BrandingProvider, BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
+import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import {
   ApiDisplayLayout,
@@ -27,7 +27,7 @@ import {
   PropertiesSection,
   SlotsSection,
   ClassesSection,
-} from '@mui/docs/ApiPage/private';
+} from '@mui/internal-core-docs/ApiPage/private';
 
 type ApiHeaderKeys =
   | 'demos'

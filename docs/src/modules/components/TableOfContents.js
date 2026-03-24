@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
-import { Link } from '@mui/docs/Link';
-import { useTranslate } from '@mui/docs/i18n';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import featureToggle from 'docs/src/featureToggle';
 
 export const TOC_WIDTH = 242;

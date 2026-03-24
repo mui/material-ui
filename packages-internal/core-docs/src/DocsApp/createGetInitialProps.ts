@@ -12,7 +12,7 @@ interface AppContext {
 
 /**
  * Factory to create MyApp.getInitialProps.
- * Follows the same pattern as `@mui/docs/Document`'s `createGetInitialProps`.
+ * Follows the same pattern as `@mui/internal-core-docs/Document`'s `createGetInitialProps`.
  *
  * @param options.translationsContext - A webpack require.context pointing at translation JSON files.
  *   e.g. `require.context('docs/translations', false, /\.\/translations.*\.json$/)`

@@ -8,9 +8,9 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
 import { createRender } from '@mui/internal-markdown';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import Section from 'docs/src/layouts/Section';
 
 const Accordion = styled(MuiAccordion)(({ theme }) => ({

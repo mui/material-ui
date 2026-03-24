@@ -2,8 +2,8 @@ import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import { LANGUAGES_SSR } from 'docs/config';
-import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { pathnameToLanguage } from '@mui/docs/helpers';
+import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
+import { pathnameToLanguage } from '@mui/internal-core-docs/helpers';
 
 // #host-reference
 const HOST = process.env.PULL_REQUEST_ID

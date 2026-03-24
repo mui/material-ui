@@ -1,4 +1,4 @@
-# @mui/docs
+# @mui/internal-core-docs
 
 This package hosts the documentation building blocks.
 
@@ -9,7 +9,7 @@ Install the package in your project directory with:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/docs@next
+npm install @mui/internal-core-docs@next
 ```
 
 The docs has a peer dependency on the core components.
