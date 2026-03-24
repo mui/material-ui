@@ -195,7 +195,9 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(resolvedAnchorElement, tooltipRef.current!, {
+    const tooltipNode = tooltipRef.current;
+
+    const popper = createPopper(resolvedAnchorElement, tooltipNode!, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
@@ -206,6 +208,12 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
     return () => {
       popper.destroy();
       handlePopperRefRef.current!(null);
+      if (tooltipNode) {
+        // Restore the fixed positioning to prevent scroll jump before next Popper creation
+        tooltipNode.style.position = 'fixed';
+        tooltipNode.style.top = '0';
+        tooltipNode.style.left = '0';
+      }
     };
   }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
 

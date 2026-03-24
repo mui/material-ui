@@ -157,6 +157,22 @@ describe('<Popper />', () => {
 
       expect(popperRef.current.state.placement).to.equal('bottom');
     });
+
+    it('should not completely lose position when popperOptions change', () => {
+      const { setProps } = render(<Popper {...defaultProps} placement="top" open />);
+
+      const tooltip = document.querySelector('[role="tooltip"]');
+
+      // Simulate popperOptions reference change
+      setProps({
+        popperOptions: {},
+      });
+
+      // The popper instance might have recreated.
+      // Assert it doesn't revert to static or lose positioning entirely.
+      expect(tooltip.style.position).not.to.equal('');
+      expect(tooltip.style.position).not.to.equal('static');
+    });
   });
 
   describe('prop: keepMounted', () => {
