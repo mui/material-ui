@@ -232,14 +232,6 @@ export const SliderTrack = styled('span', {
 export const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    return [
-      styles.thumb,
-      styles[`thumbColor${capitalize(ownerState.color)}`],
-      ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
-    ];
-  },
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
@@ -535,12 +527,7 @@ const useUtilityClasses = (ownerState) => {
     markLabel: ['markLabel'],
     markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
-    thumb: [
-      'thumb',
-      disabled && 'disabled',
-      size && `thumbSize${capitalize(size)}`,
-      color && `thumbColor${capitalize(color)}`,
-    ],
+    thumb: ['thumb', disabled && 'disabled'],
     active: ['active'],
     disabled: ['disabled'],
     focusVisible: ['focusVisible'],

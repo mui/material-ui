@@ -31,7 +31,7 @@
     "attw": "attw --pack ./build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "cssjanus": "^2.3.0"
   },
   "devDependencies": {

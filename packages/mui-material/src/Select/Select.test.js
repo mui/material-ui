@@ -201,7 +201,7 @@ describe('<Select />', () => {
 
     render(
       <Select
-        MenuProps={{ BackdropProps: { 'data-testid': 'backdrop' } }}
+        MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}
         onClose={handleClose}
         open
         value=""
@@ -1839,21 +1839,18 @@ describe('<Select />', () => {
     expect(screen.getByRole('combobox')).not.toHaveFocus();
   });
 
-  it('outlined icon should be selected from below css selectors', () => {
+  it('outlined icon should be selectable with sibling selector', () => {
     const { container } = render(<Select value="" />);
-    expect(container.querySelector('.MuiSelect-iconOutlined')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.to.equal(null);
   });
 
-  it('standard icon should be selected from below css selectors', () => {
+  it('standard icon should be selectable with sibling selector', () => {
     const { container } = render(<Select value="" variant="standard" />);
-    expect(container.querySelector('.MuiSelect-iconStandard')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-standard ~ .MuiSelect-icon')).not.to.equal(null);
   });
 
-  it('filled icon should be selected from below css selectors', () => {
+  it('filled icon should be selectable with sibling selector', () => {
     const { container } = render(<Select value="" variant="filled" />);
-    expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
 

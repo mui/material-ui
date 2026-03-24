@@ -98,13 +98,6 @@
       "isGlobal": false
     },
     {
-      "key": "withChildrenVertical",
-      "className": "MuiDivider-withChildrenVertical",
-      "description": "Styles applied to the root element if divider have text and `orientation=\"vertical\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
       "key": "wrapper",
       "className": "MuiDivider-wrapper",
       "description": "Styles applied to the span children element if `orientation=\"horizontal\"`.",

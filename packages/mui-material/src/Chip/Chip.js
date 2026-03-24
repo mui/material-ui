@@ -324,9 +324,6 @@ const ChipRoot = styled('div', {
 const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
-  overridesResolver: (_props, styles) => {
-    return [styles.label];
-  },
 })({
   overflow: 'hidden',
   textOverflow: 'ellipsis',

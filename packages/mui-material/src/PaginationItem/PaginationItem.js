@@ -24,8 +24,6 @@ const overridesResolver = (props, styles) => {
     styles.root,
     styles[ownerState.variant],
     styles[`size${capitalize(ownerState.size)}`],
-    ownerState.variant === 'text' && styles[`text${capitalize(ownerState.color)}`],
-    ownerState.variant === 'outlined' && styles[`outlined${capitalize(ownerState.color)}`],
     ownerState.shape === 'rounded' && styles.rounded,
     ownerState.type === 'page' && styles.page,
     (ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis') && styles.ellipsis,
@@ -44,7 +42,6 @@ const useUtilityClasses = (ownerState) => {
       variant,
       shape,
       color !== 'standard' && `color${capitalize(color)}`,
-      color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
       {

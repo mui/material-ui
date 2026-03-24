@@ -114,8 +114,8 @@ function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
+            slotProps={{
+              input: { 'aria-label': 'select all desserts' },
             }}
           />
         </TableCell>
@@ -314,8 +314,8 @@ export default function EnhancedTable() {
                       <Checkbox
                         color="primary"
                         checked={isItemSelected}
-                        inputProps={{
-                          'aria-labelledby': labelId,
+                        slotProps={{
+                          input: { 'aria-labelledby': labelId },
                         }}
                       />
                     </TableCell>

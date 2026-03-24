@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.29.0",
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@babel/traverse": "^7.29.0",
     "@mui/material-v5": "npm:@mui/material@5.18.0",
     "jscodeshift": "^17.1.2",

@@ -141,20 +141,6 @@
       "isGlobal": false
     },
     {
-      "key": "outlinedPrimary",
-      "className": "MuiPaginationItem-outlinedPrimary",
-      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"primary\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
-      "key": "outlinedSecondary",
-      "className": "MuiPaginationItem-outlinedSecondary",
-      "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"secondary\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
       "key": "page",
       "className": "MuiPaginationItem-page",
       "description": "Styles applied to the root element if `type=\"page\"`.",
@@ -201,20 +187,6 @@
       "className": "MuiPaginationItem-text",
       "description": "Styles applied to the root element if `variant=\"text\"`.",
       "isGlobal": false
-    },
-    {
-      "key": "textPrimary",
-      "className": "MuiPaginationItem-textPrimary",
-      "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"primary\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
-      "key": "textSecondary",
-      "className": "MuiPaginationItem-textSecondary",
-      "description": "Styles applied to the root element if `variant=\"text\"` and `color=\"secondary\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
     }
   ],
   "spread": true,

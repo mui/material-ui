@@ -7,7 +7,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
-import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
 import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
@@ -48,11 +47,7 @@ const SelectIcon = styled(StyledSelectIcon, {
   slot: 'Icon',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [
-      styles.icon,
-      ownerState.variant && styles[`icon${capitalize(ownerState.variant)}`],
-      ownerState.open && styles.iconOpen,
-    ];
+    return [styles.icon, ownerState.open && styles.iconOpen];
   },
 })({});
 
@@ -75,7 +70,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
-    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
+    icon: ['icon', open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
 

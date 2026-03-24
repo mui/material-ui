@@ -118,7 +118,7 @@ A big thanks to the 11 contributors who made this release possible.
 - [tablepagination] Format pagination numbers according to locale (#47803) @siriwatknp
 - [textfield] Use non-native label for `<TextField select/>` (#47958) @mj12albert
 
-Check out the [v9 upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v9/).
+Check out the [v9 upgrade guide](https://next.mui.com/material-ui/migration/upgrade-to-v9/).
 
 #### Changes
 

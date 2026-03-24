@@ -42,13 +42,7 @@ const useUtilityClasses = (ownerState) => {
       scrollableX && 'scrollableX',
       scrollableY && 'scrollableY',
     ],
-    list: [
-      'list',
-      'flexContainer',
-      vertical && 'flexContainerVertical',
-      vertical && 'vertical',
-      centered && 'centered',
-    ],
+    list: ['list', vertical && 'vertical', centered && 'centered'],
     indicator: ['indicator'],
     scrollButtons: ['scrollButtons', scrollButtonsHideMobile && 'scrollButtonsHideMobile'],
     scrollableX: [scrollableX && 'scrollableX'],
@@ -160,12 +154,7 @@ const List = styled('div', {
   slot: 'List',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [
-      styles.list,
-      styles.flexContainer,
-      ownerState.vertical && styles.flexContainerVertical,
-      ownerState.centered && styles.centered,
-    ];
+    return [styles.list, ownerState.centered && styles.centered];
   },
 })({
   display: 'flex',
@@ -822,7 +811,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const [ListSlot, listSlotProps] = useSlot('list', {
     ref: mergedRef,
-    className: clsx(classes.list, classes.flexContainer),
+    className: classes.list,
     elementType: List,
     externalForwardedProps,
     ownerState,

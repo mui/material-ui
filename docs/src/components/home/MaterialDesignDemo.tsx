@@ -67,7 +67,7 @@ export default function MaterialDesignDemo(props: CardProps) {
           </Stack3>
         </Stack2>
         <Switch
-          inputProps={{ 'aria-label': active ? 'Active' : 'Inactive' }}
+          slotProps={{ input: { 'aria-label': active ? 'Active' : 'Inactive' } }}
           checked={active}
           onChange={(event) => setActive(event.target.checked)}
           sx={{ ml: 'auto' }}

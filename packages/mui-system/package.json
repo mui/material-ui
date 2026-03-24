@@ -32,7 +32,7 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"Box\" \"styled\" \"useTheme\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@mui/private-theming": "workspace:*",
     "@mui/styled-engine": "workspace:*",
     "@mui/types": "workspace:^",
@@ -53,8 +53,8 @@
     "es-toolkit": "1.45.1",
     "fast-glob": "3.3.3",
     "react": "19.2.4",
-    "sinon": "21.0.2",
-    "styled-components": "6.3.11"
+    "sinon": "21.0.3",
+    "styled-components": "6.3.12"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

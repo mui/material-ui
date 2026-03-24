@@ -61,18 +61,6 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "outlinedPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-outlined\">.MuiPaginationItem-outlined</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorPrimary\">.MuiPaginationItem-colorPrimary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
-    "outlinedSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-outlined\">.MuiPaginationItem-outlined</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorSecondary\">.MuiPaginationItem-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
     "page": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -108,18 +96,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code>"
-    },
-    "textPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-text\">.MuiPaginationItem-text</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorPrimary\">.MuiPaginationItem-colorPrimary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
-    "textSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-text\">.MuiPaginationItem-text</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-MuiPaginationItem-colorSecondary\">.MuiPaginationItem-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     }
   },
   "slotDescriptions": {
