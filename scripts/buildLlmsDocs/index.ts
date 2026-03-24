@@ -38,11 +38,11 @@
  *
  * ```bash
  * # Process all Material UI components
- * pnpm tsx scripts/buildLlmsDocs/index.ts --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts
+ * pnpm tsx scripts/buildLlmsDocs/index.ts --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts
  *
  * # Process specific components with non-component docs
  * pnpm tsx scripts/buildLlmsDocs/index.ts \
- *   --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts \
+ *   --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts \
  *   --nonComponentFolders system material/customization \
  *   --grep "Button|borders"
  * ```

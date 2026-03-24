@@ -120,7 +120,7 @@ export default defineConfig(
     files: [
       `packages-internal/**/*${EXTENSION_TS}`,
       `packages-internal/api-docs-builder/**/*${EXTENSION_TS}`,
-      `packages/api-docs-builder-core/**/*${EXTENSION_TS}`,
+      `packages-internal/api-docs-builder-core/**/*${EXTENSION_TS}`,
     ],
     rules: {
       // Only applies to our public packages
@@ -323,9 +323,9 @@ export default defineConfig(
       'import/prefer-default-export': 'off',
     },
   },
-  // Migrated config from packages/api-docs-builder-core/.eslintrc.js
+  // Migrated config from packages-internal/api-docs-builder-core/.eslintrc.js
   {
-    files: [`packages/api-docs-builder-core/**/*${EXTENSION_TS}`],
+    files: [`packages-internal/api-docs-builder-core/**/*${EXTENSION_TS}`],
     rules: {
       'import/no-default-export': 'error',
       'import/prefer-default-export': 'off',

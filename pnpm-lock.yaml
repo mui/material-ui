@@ -81,7 +81,7 @@ importers:
         version: link:packages-internal/api-docs-builder
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
-        version: link:packages/api-docs-builder-core
+        version: link:packages-internal/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
         specifier: 2.0.8-canary.24
         version: 2.0.8-canary.24(@babel/core@7.29.0)
@@ -688,6 +688,40 @@ importers:
         specifier: 21.0.3
         version: 21.0.3
 
+  packages-internal/api-docs-builder-core:
+    dependencies:
+      '@mui-internal/api-docs-builder':
+        specifier: workspace:^
+        version: link:../api-docs-builder
+      '@mui/internal-markdown':
+        specifier: workspace:^
+        version: link:../markdown
+      docs:
+        specifier: workspace:^
+        version: link:../../docs
+      es-toolkit:
+        specifier: ^1.45.1
+        version: 1.45.1
+    devDependencies:
+      '@types/chai':
+        specifier: 5.2.3
+        version: 5.2.3
+      '@types/node':
+        specifier: 20.19.37
+        version: 20.19.37
+      '@types/sinon':
+        specifier: 17.0.4
+        version: 17.0.4
+      chai:
+        specifier: 6.2.2
+        version: 6.2.2
+      sinon:
+        specifier: 21.0.3
+        version: 21.0.3
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
   packages-internal/core-docs:
     dependencies:
       '@babel/runtime':
@@ -888,40 +922,6 @@ importers:
         version: 6.1.3
 
   packages-internal/waterfall: {}
-
-  packages/api-docs-builder-core:
-    dependencies:
-      '@mui-internal/api-docs-builder':
-        specifier: workspace:^
-        version: link:../../packages-internal/api-docs-builder
-      '@mui/internal-markdown':
-        specifier: workspace:^
-        version: link:../../packages-internal/markdown
-      docs:
-        specifier: workspace:^
-        version: link:../../docs
-      es-toolkit:
-        specifier: ^1.45.1
-        version: 1.45.1
-    devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      '@types/node':
-        specifier: 20.19.37
-        version: 20.19.37
-      '@types/sinon':
-        specifier: 17.0.4
-        version: 17.0.4
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
-      sinon:
-        specifier: 21.0.3
-        version: 21.0.3
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
 
   packages/mui-codemod:
     dependencies:
