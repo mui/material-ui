@@ -52,7 +52,7 @@ function RowComponent({
   }
 
   return React.cloneElement(dataSet, {
-    style: inlineStyle,
+    style: { ...dataSet.props.style, ...inlineStyle },
   });
 }
 

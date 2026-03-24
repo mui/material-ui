@@ -27,7 +27,7 @@ function RowComponent({ index, itemData, style }) {
   }
 
   return React.cloneElement(dataSet, {
-    style: inlineStyle,
+    style: { ...dataSet.props.style, ...inlineStyle },
   });
 }
 
