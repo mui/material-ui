@@ -90,11 +90,16 @@ describe('<TextField />', () => {
     });
 
     it('should forward the multiline prop to Input', () => {
-      render(<TextField variant="standard" multiline />);
-
-      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(
-        inputBaseClasses.inputMultiline,
+      render(
+        <TextField
+          variant="standard"
+          multiline
+          slotProps={{ input: { 'data-testid': 'mui-input-base-root' } }}
+        />,
       );
+
+      expect(screen.getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.multiline);
+      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(inputBaseClasses.input);
     });
 
     it('should forward the fullWidth prop to Input', () => {

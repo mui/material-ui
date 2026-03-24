@@ -86,8 +86,8 @@ importers:
         specifier: 2.0.8-canary.24
         version: 2.0.8-canary.24(@babel/core@7.29.0)
       '@mui/internal-bundle-size-checker':
-        specifier: 1.0.9-canary.67
-        version: 1.0.9-canary.67(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.9)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+        specifier: 1.0.9-canary.68
+        version: 1.0.9-canary.68(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.9)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       '@mui/internal-code-infra':
         specifier: 0.0.4-canary.9
         version: 0.0.4-canary.9(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@10.1.0(jiti@2.6.1))(postcss@8.5.8)(prettier@3.8.1)(stylelint@17.3.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
@@ -3615,8 +3615,8 @@ packages:
     peerDependencies:
       '@babel/core': 7.29.0
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.67':
-    resolution: {integrity: sha512-Bzbfs5OpTekYs66QJDgn8/s8AqcRvr9o9qdGsNElUY21SYup30DV0buKV8ILrZ073AHvqxhHc5Fgtxsb7eo1ng==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.68':
+    resolution: {integrity: sha512-3ljQiXhzq4jAJShAXBfM4oTRP/VsXnD/YTnMeKxbe8EjymsZsnnffbyuLaeye+KV2RCYnXgYeUJ1So2T5U9GTQ==}
     hasBin: true
 
   '@mui/internal-code-infra@0.0.4-canary.9':
@@ -14696,7 +14696,7 @@ snapshots:
       '@babel/core': 7.29.0
       resolve: 1.22.11
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.67(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.9)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.68(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.9)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)':
     dependencies:
       '@aws-sdk/client-s3': 3.1010.0
       '@aws-sdk/credential-providers': 3.1010.0

@@ -170,9 +170,6 @@ const LinearProgressRoot = styled('span', {
 const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Dashed',
-  overridesResolver: (props, styles) => {
-    return [styles.dashed];
-  },
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',

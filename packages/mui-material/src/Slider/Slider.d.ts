@@ -114,11 +114,6 @@ export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-/**
- * @deprecated Use `SliderRootSlotPropsOverrides` instead.
- */
-export interface SliderComponentsPropsOverrides {}
-
 export interface SliderOwnerState extends SliderProps {
   dragging: boolean;
   marked: boolean;

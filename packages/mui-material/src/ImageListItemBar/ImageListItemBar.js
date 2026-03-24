@@ -80,9 +80,6 @@ const ImageListItemBarRoot = styled('div', {
 const ImageListItemBarTitleWrap = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'TitleWrap',
-  overridesResolver: (props, styles) => {
-    return [styles.titleWrap];
-  },
 })(
   memoTheme(({ theme }) => {
     return {
@@ -150,9 +147,6 @@ const ImageListItemBarSubtitle = styled('div', {
 const ImageListItemBarActionIcon = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'ActionIcon',
-  overridesResolver: (props, styles) => {
-    return [styles.actionIcon];
-  },
 })({
   variants: [
     {
