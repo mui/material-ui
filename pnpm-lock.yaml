@@ -25,10 +25,10 @@ catalogs:
 overrides:
   '@babel/core': 7.29.0
   '@babel/plugin-transform-runtime': ^7.29.0
-  '@babel/preset-env': ^7.29.0
+  '@babel/preset-env': ^7.29.2
   '@babel/preset-react': ^7.28.5
   '@babel/preset-typescript': ^7.28.5
-  '@babel/runtime': ^7.28.6
+  '@babel/runtime': ^7.29.2
   '@types/node': 20.19.37
   cross-fetch: ^4.1.0
   '@pigment-css/react': 0.0.30
@@ -275,7 +275,7 @@ importers:
         specifier: 7.29.0
         version: 7.29.0
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@base-ui/react':
         specifier: ^1.2.0
@@ -792,7 +792,7 @@ importers:
   packages/markdown:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       es-toolkit:
         specifier: ^1.45.1
@@ -817,7 +817,7 @@ importers:
         specifier: 7.29.0
         version: 7.29.0
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@babel/traverse':
         specifier: ^7.29.0
@@ -827,10 +827,10 @@ importers:
         version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)'
       jscodeshift:
         specifier: ^17.1.2
-        version: 17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0))
+        version: 17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0))
       jscodeshift-add-imports:
         specifier: ^1.0.11
-        version: 1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0)))
+        version: 1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0)))
       postcss:
         specifier: ^8.5.8
         version: 8.5.8
@@ -860,7 +860,7 @@ importers:
   packages/mui-docs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@emotion/cache':
         specifier: catalog:docs
@@ -1006,7 +1006,7 @@ importers:
   packages/mui-icons-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
     devDependencies:
       '@mui/icons-material':
@@ -1062,7 +1062,7 @@ importers:
   packages/mui-lab:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@emotion/react':
         specifier: ^11.5.0
@@ -1124,7 +1124,7 @@ importers:
   packages/mui-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@emotion/react':
         specifier: ^11.5.0
@@ -1213,7 +1213,7 @@ importers:
   packages/mui-material-nextjs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
     devDependencies:
       '@emotion/cache':
@@ -1239,7 +1239,7 @@ importers:
   packages/mui-material-pigment-css:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@mui/system':
         specifier: workspace:*
@@ -1256,7 +1256,7 @@ importers:
   packages/mui-private-theming:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@mui/utils':
         specifier: workspace:*
@@ -1285,7 +1285,7 @@ importers:
   packages/mui-styled-engine:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@emotion/cache':
         specifier: ^11.14.0
@@ -1329,7 +1329,7 @@ importers:
   packages/mui-styled-engine-sc:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@types/hoist-non-react-statics':
         specifier: ^3.3.7
@@ -1364,7 +1364,7 @@ importers:
   packages/mui-stylis-plugin-rtl:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       cssjanus:
         specifier: ^2.3.0
@@ -1390,7 +1390,7 @@ importers:
   packages/mui-system:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@mui/private-theming':
         specifier: workspace:*
@@ -1458,7 +1458,7 @@ importers:
   packages/mui-types:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
     devDependencies:
       '@mui/types':
@@ -1472,7 +1472,7 @@ importers:
   packages/mui-utils:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@mui/types':
         specifier: workspace:^
@@ -1531,7 +1531,7 @@ importers:
         version: 10.0.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@babel/runtime':
-        specifier: ^7.28.6
+        specifier: ^7.29.2
         version: 7.29.2
       '@emotion/cache':
         specifier: 11.14.0
@@ -2525,8 +2525,8 @@ packages:
     peerDependencies:
       '@babel/core': 7.29.0
 
-  '@babel/preset-env@7.29.0':
-    resolution: {integrity: sha512-fNEdfc0yi16lt6IZo2Qxk3knHVdfMYX33czNb4v8yWhemoBhibCpQK/uYHtSKIiO+p/zd3+8fYVXhQdOVV608w==}
+  '@babel/preset-env@7.29.2':
+    resolution: {integrity: sha512-DYD23veRYGvBFhcTY1iUvJnDNpuqNd/BzBwCvzOTKUnJjKg5kpUBh3/u9585Agdkgj+QuygG7jLfOPWMa2KVNw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': 7.29.0
@@ -8770,7 +8770,7 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
-      '@babel/preset-env': ^7.29.0
+      '@babel/preset-env': ^7.29.2
     peerDependenciesMeta:
       '@babel/preset-env':
         optional: true
@@ -13751,7 +13751,7 @@ snapshots:
       '@babel/helper-create-regexp-features-plugin': 7.28.5(@babel/core@7.29.0)
       '@babel/helper-plugin-utils': 7.28.6
 
-  '@babel/preset-env@7.29.0(@babel/core@7.29.0)':
+  '@babel/preset-env@7.29.2(@babel/core@7.29.0)':
     dependencies:
       '@babel/compat-data': 7.29.0
       '@babel/core': 7.29.0
@@ -14890,7 +14890,7 @@ snapshots:
       '@babel/plugin-syntax-jsx': 7.28.6(@babel/core@7.29.0)
       '@babel/plugin-syntax-typescript': 7.28.6(@babel/core@7.29.0)
       '@babel/plugin-transform-runtime': 7.29.0(@babel/core@7.29.0)
-      '@babel/preset-env': 7.29.0(@babel/core@7.29.0)
+      '@babel/preset-env': 7.29.2(@babel/core@7.29.0)
       '@babel/preset-react': 7.28.5(@babel/core@7.29.0)
       '@babel/preset-typescript': 7.28.5(@babel/core@7.29.0)
       '@eslint/compat': 2.0.3(eslint@10.0.3(jiti@2.6.1))
@@ -20523,19 +20523,19 @@ snapshots:
 
   jsbn@1.1.0: {}
 
-  jscodeshift-add-imports@1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0))):
+  jscodeshift-add-imports@1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0))):
     dependencies:
       '@babel/traverse': 7.29.0
-      jscodeshift: 17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0))
-      jscodeshift-find-imports: 2.0.4(jscodeshift@17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0)))
+      jscodeshift: 17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0))
+      jscodeshift-find-imports: 2.0.4(jscodeshift@17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0)))
     transitivePeerDependencies:
       - supports-color
 
-  jscodeshift-find-imports@2.0.4(jscodeshift@17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0))):
+  jscodeshift-find-imports@2.0.4(jscodeshift@17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0))):
     dependencies:
-      jscodeshift: 17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0))
+      jscodeshift: 17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0))
 
-  jscodeshift@17.1.2(@babel/preset-env@7.29.0(@babel/core@7.29.0)):
+  jscodeshift@17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0)):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/parser': 7.29.0
@@ -20556,7 +20556,7 @@ snapshots:
       tmp: 0.2.5
       write-file-atomic: 5.0.1
     optionalDependencies:
-      '@babel/preset-env': 7.29.0(@babel/core@7.29.0)
+      '@babel/preset-env': 7.29.2(@babel/core@7.29.0)
     transitivePeerDependencies:
       - supports-color
 

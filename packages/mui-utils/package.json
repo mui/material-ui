@@ -31,7 +31,7 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"deepmerge\" \"useId\" \"composeClasses\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",

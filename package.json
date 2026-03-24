@@ -166,10 +166,10 @@
   "resolutions": {
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@types/node": "20.19.37",
     "cross-fetch": "^4.1.0",
     "@pigment-css/react": "0.0.30",

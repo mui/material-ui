@@ -32,7 +32,7 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"Box\" \"styled\" \"useTheme\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@mui/private-theming": "workspace:*",
     "@mui/styled-engine": "workspace:*",
     "@mui/types": "workspace:^",

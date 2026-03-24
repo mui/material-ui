@@ -30,7 +30,7 @@
     "attw": "attw --pack ./build --entrypoints \"v13-pagesRouter\" \"v16-appRouter\" \"v15-appRouter\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6"
+    "@babel/runtime": "^7.29.2"
   },
   "devDependencies": {
     "@emotion/cache": "11.14.0",
