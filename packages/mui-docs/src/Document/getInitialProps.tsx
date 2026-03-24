@@ -1,16 +1,15 @@
 import * as React from 'react';
 import type { DocumentContext } from 'next/document';
 import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
-import createEmotionCache from '../createEmotionCache';
+import createEmotionCache from '../DocsApp/createEmotionCache';
 import { pathnameToLanguage } from '../helpers/helpers';
 
-// eslint-disable-next-line import/prefer-default-export
 export function createGetInitialProps({
   setupStyledComponents = false,
 }: {
   setupStyledComponents: boolean;
 }) {
-  async function getInitialProps(ctx: DocumentContext) {
+  async function getInitialPropsDocument(ctx: DocumentContext) {
     const styledComponentsSheet = setupStyledComponents
       ? new (await import('styled-components')).ServerStyleSheet()
       : null;
@@ -71,5 +70,5 @@ export function createGetInitialProps({
     }
   }
 
-  return getInitialProps;
+  return getInitialPropsDocument;
 }

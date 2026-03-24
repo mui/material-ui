@@ -7,6 +7,7 @@ import {
   EXTENSION_TEST_FILE,
   EXTENSION_DTS,
 } from '@mui/internal-code-infra/eslint';
+import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
@@ -67,6 +68,9 @@ export default defineConfig(
         typescript: {
           project: ['tsconfig.json'],
         },
+      },
+      next: {
+        rootDir: 'docs',
       },
     },
     rules: {
@@ -205,7 +209,7 @@ export default defineConfig(
       'docs/data/**/{css,system,tailwind}/*',
     ],
     plugins: {
-      'consistent-default-export-name': eslintPluginConsistentName,
+      'consistent-default-export-name': fixupPluginRules(eslintPluginConsistentName),
     },
     rules: {
       'consistent-default-export-name/default-export-match-filename': ['error'],
@@ -311,8 +315,9 @@ export default defineConfig(
   {
     files: [
       `packages/api-docs-builder/**/*${EXTENSION_TS}`,
-      // Allow named exports for locales: https://github.com/mui/material-ui/pull/46933
+      // Allow named exports for locales and mui-docs: https://github.com/mui/material-ui/pull/46933
       `packages/mui-material/src/locale/*${EXTENSION_TS}`,
+      `packages/mui-docs/src/**/*${EXTENSION_TS}`,
     ],
     rules: {
       'import/prefer-default-export': 'off',

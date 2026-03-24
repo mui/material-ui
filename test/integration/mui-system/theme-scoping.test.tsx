@@ -90,6 +90,7 @@ describe('Multiple nested theme providers', () => {
       </LibThemeProvider>,
     );
 
-    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
+    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.outlined);
+    expect(screen.getByText('Material')).to.have.class(material.buttonClasses.colorPrimary);
   });
 });

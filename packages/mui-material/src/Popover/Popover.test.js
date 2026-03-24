@@ -222,7 +222,11 @@ describe('<Popover />', () => {
     it('appears on mount', () => {
       const handleEnter = spy();
       render(
-        <Popover anchorEl={defaultAnchorEl} open TransitionProps={{ onEnter: handleEnter }}>
+        <Popover
+          anchorEl={defaultAnchorEl}
+          open
+          slotProps={{ transition: { onEnter: handleEnter } }}
+        >
           <div />
         </Popover>,
       );
@@ -246,13 +250,15 @@ describe('<Popover />', () => {
           anchorEl={defaultAnchorEl}
           open
           transitionDuration={0}
-          TransitionProps={{
-            onEnter: handleEnter,
-            onEntering: handleEntering,
-            onEntered: handleEntered,
-            onExit: handleExit,
-            onExiting: handleExiting,
-            onExited: handleExited,
+          slotProps={{
+            transition: {
+              onEnter: handleEnter,
+              onEntering: handleEntering,
+              onEntered: handleEntered,
+              onExit: handleExit,
+              onExiting: handleExiting,
+              onExited: handleExited,
+            },
           }}
         >
           <div />
@@ -338,7 +344,7 @@ describe('<Popover />', () => {
   describe('paper', () => {
     it('should have the paper class', () => {
       render(
-        <Popover anchorEl={defaultAnchorEl} open PaperProps={{ 'data-testid': 'paper' }}>
+        <Popover anchorEl={defaultAnchorEl} open slotProps={{ paper: { 'data-testid': 'paper' } }}>
           <div />
         </Popover>,
       );
@@ -348,7 +354,7 @@ describe('<Popover />', () => {
 
     it('should have a elevation prop passed down', () => {
       const { setProps } = render(
-        <Popover anchorEl={defaultAnchorEl} open PaperProps={{ 'data-testid': 'paper' }}>
+        <Popover anchorEl={defaultAnchorEl} open slotProps={{ paper: { 'data-testid': 'paper' } }}>
           <div />
         </Popover>,
       );
@@ -361,7 +367,7 @@ describe('<Popover />', () => {
     });
   });
 
-  describe('prop: PaperProps', () => {
+  describe('prop: slotProps.paper', () => {
     describe('ref', () => {
       it('should position popover correctly', () => {
         const handleEntering = spy();
@@ -369,8 +375,10 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={defaultAnchorEl}
             open
-            PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
-            TransitionProps={{ onEntering: handleEntering }}
+            slotProps={{
+              paper: { 'data-testid': 'Popover', ref: () => null },
+              transition: { onEntering: handleEntering },
+            }}
           >
             <div />
           </Popover>,
@@ -386,7 +394,7 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={defaultAnchorEl}
             open
-            PaperProps={{ 'data-testid': 'paper', className }}
+            slotProps={{ paper: { 'data-testid': 'paper', className } }}
           >
             <div />
           </Popover>,
@@ -405,7 +413,7 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={defaultAnchorEl}
             open={false}
-            TransitionProps={{ onEntering: handleEntering }}
+            slotProps={{ transition: { onEntering: handleEntering } }}
           >
             <div />
           </Popover>,
@@ -429,8 +437,8 @@ describe('<Popover />', () => {
         const { setProps } = render(
           <Popover
             anchorEl={defaultAnchorEl}
-            TransitionProps={{
-              onEntering: onEnteringSpy,
+            slotProps={{
+              transition: { onEntering: onEnteringSpy },
             }}
             open={false}
           >
@@ -503,7 +511,7 @@ describe('<Popover />', () => {
           anchorOrigin={anchorOrigin}
           open
           transitionDuration={0}
-          PaperProps={{ 'data-testid': 'paper' }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
         >
           <div />
         </Popover>,
@@ -614,24 +622,6 @@ describe('<Popover />', () => {
         );
       }).toErrorDev('It should be an Element or PopoverVirtualElement instance');
     });
-
-    it('warns if a component for the Paper is used that cant hold a ref', () => {
-      expect(() => {
-        PropTypes.checkPropTypes(
-          Popover.propTypes,
-          {
-            anchorEl: defaultAnchorEl,
-            classes: {},
-            open: false,
-            PaperProps: { component: () => <div />, elevation: 4 },
-          },
-          'prop',
-          'MockedPopover',
-        );
-      }).toErrorDev(
-        'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedPopover`. Expected an element type that can hold a ref.',
-      );
-    });
   });
 
   describe('prop anchorReference="anchorPosition"', () => {
@@ -646,7 +636,7 @@ describe('<Popover />', () => {
           anchorOrigin={anchorOrigin}
           open
           transitionDuration={0}
-          PaperProps={{ 'data-testid': 'paper' }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
         >
           <div />
         </Popover>,
@@ -681,11 +671,13 @@ describe('<Popover />', () => {
           anchorReference="none"
           open
           transitionDuration={0}
-          PaperProps={{
-            'data-testid': 'paper',
-            style: {
-              top: 11,
-              left: 12,
+          slotProps={{
+            paper: {
+              'data-testid': 'paper',
+              style: {
+                top: 11,
+                left: 12,
+              },
             },
           }}
         >
@@ -723,9 +715,11 @@ describe('<Popover />', () => {
         <Popover
           anchorEl={anchorEl}
           open
-          TransitionProps={{
-            onEntering: (node) => {
-              element = node;
+          slotProps={{
+            transition: {
+              onEntering: (node) => {
+                element = node;
+              },
             },
           }}
           transitionDuration={0}
@@ -763,9 +757,11 @@ describe('<Popover />', () => {
         <Popover
           anchorEl={mockedAnchor}
           open
-          TransitionProps={{
-            onEntering: (node) => {
-              element = node;
+          slotProps={{
+            transition: {
+              onEntering: (node) => {
+                element = node;
+              },
             },
           }}
           transitionDuration={0}
@@ -804,9 +800,11 @@ describe('<Popover />', () => {
         <Popover
           anchorEl={mockedAnchor}
           open
-          TransitionProps={{
-            onEntering: (node) => {
-              element = node;
+          slotProps={{
+            transition: {
+              onEntering: (node) => {
+                element = node;
+              },
             },
           }}
           transitionDuration={0}
@@ -852,13 +850,15 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={anchorEl}
             open
-            TransitionProps={{
-              onEntering: (node) => {
-                style = node.style;
-              },
-            }}
             marginThreshold={marginThreshold}
-            slotProps={{ paper: { component: FakePaper } }}
+            slotProps={{
+              transition: {
+                onEntering: (node) => {
+                  style = node.style;
+                },
+              },
+              paper: { component: FakePaper },
+            }}
           >
             <div />
           </Popover>,
@@ -977,13 +977,15 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={mockedAnchor}
             open
-            TransitionProps={{
-              onEntering: (node) => {
-                style = node.style;
-              },
-            }}
             marginThreshold={null}
-            slotProps={{ paper: { component: FakePaper } }}
+            slotProps={{
+              transition: {
+                onEntering: (node) => {
+                  style = node.style;
+                },
+              },
+              paper: { component: FakePaper },
+            }}
           >
             <div />
           </Popover>,
@@ -1003,7 +1005,7 @@ describe('<Popover />', () => {
       ));
       TransitionComponent.muiSupportAuto = true;
       render(
-        <Popover anchorEl={defaultAnchorEl} open TransitionComponent={TransitionComponent}>
+        <Popover anchorEl={defaultAnchorEl} open slots={{ transition: TransitionComponent }}>
           <div />
         </Popover>,
       );
@@ -1015,7 +1017,7 @@ describe('<Popover />', () => {
         <div data-testid="transition" data-timeout={props.timeout} ref={ref} tabIndex={-1} />
       ));
       render(
-        <Popover anchorEl={defaultAnchorEl} open TransitionComponent={TransitionComponent}>
+        <Popover anchorEl={defaultAnchorEl} open slots={{ transition: TransitionComponent }}>
           <div />
         </Popover>,
       );
@@ -1049,27 +1051,6 @@ describe('<Popover />', () => {
 
   describe('prop: slotProps', () => {
     describe('paper', () => {
-      it('should override PaperProps', () => {
-        const slotPropsElevation = 12;
-        const paperPropsElevation = 14;
-
-        render(
-          <Popover
-            anchorEl={defaultAnchorEl}
-            open
-            PaperProps={{ elevation: paperPropsElevation }}
-            slotProps={{ paper: { elevation: slotPropsElevation, 'data-testid': 'paper' } }}
-          >
-            <div />
-          </Popover>,
-        );
-
-        expect(slotPropsElevation).not.to.equal(paperPropsElevation);
-        expect(screen.getByTestId('paper')).to.have.class(
-          `${paperClasses[`elevation${slotPropsElevation}`]}`,
-        );
-      });
-
       it('should position popover correctly when ref is provided', () => {
         const handleEntering = spy();
         const paperRef = { current: null };
@@ -1077,8 +1058,7 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={defaultAnchorEl}
             open
-            slotProps={{ paper: { ref: paperRef } }}
-            TransitionProps={{ onEntering: handleEntering }}
+            slotProps={{ paper: { ref: paperRef }, transition: { onEntering: handleEntering } }}
           >
             <div />
           </Popover>,

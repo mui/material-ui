@@ -100,15 +100,17 @@ export interface AutocompleteRenderInputParams {
   disabled: boolean;
   fullWidth: boolean;
   size: 'small' | undefined;
-  InputLabelProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputLabelProps']>;
-  InputProps: {
-    ref: React.Ref<any>;
-    className: string;
-    startAdornment: React.ReactNode;
-    endAdornment: React.ReactNode;
-    onMouseDown: React.MouseEventHandler;
+  slotProps: {
+    inputLabel: ReturnType<ReturnType<typeof useAutocomplete>['getInputLabelProps']>;
+    input: {
+      ref: React.Ref<any>;
+      className: string;
+      startAdornment: React.ReactNode;
+      endAdornment: React.ReactNode;
+      onMouseDown: React.MouseEventHandler;
+    };
+    htmlInput: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
   };
-  inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
 
 export interface AutocompletePropsSizeOverrides {}
@@ -213,11 +215,6 @@ export interface AutocompleteProps<
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'>,
     AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
-   * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
-   * @deprecated Use `slotProps.chip` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ChipProps?: ChipProps<ChipComponent> | undefined;
-  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<AutocompleteClasses> | undefined;
@@ -240,18 +237,6 @@ export interface AutocompleteProps<
    * @default 'Close'
    */
   closeText?: string | undefined;
-  /**
-   * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps?:
-    | {
-        clearIndicator?: Partial<IconButtonProps> | undefined;
-        paper?: PaperProps | undefined;
-        popper?: Partial<PopperProps> | undefined;
-        popupIndicator?: Partial<IconButtonProps> | undefined;
-      }
-    | undefined;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -280,22 +265,6 @@ export interface AutocompleteProps<
    * @default (more) => `+${more}`
    */
   getLimitTagsText?: ((more: number) => React.ReactNode) | undefined;
-  /**
-   * The component used to render the listbox.
-   * @default 'ul'
-   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>> | undefined;
-  /**
-   * Props applied to the Listbox element.
-   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ListboxProps?:
-    | (ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
-        sx?: SxProps<Theme> | undefined;
-        ref?: React.Ref<Element> | undefined;
-      })
-    | undefined;
   /**
    * If `true`, the component is in a loading state.
    * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, for example `options` are empty).
@@ -334,18 +303,6 @@ export interface AutocompleteProps<
    * @default 'Open'
    */
   openText?: string | undefined;
-  /**
-   * The component used to render the body of the popup.
-   * @default Paper
-   * @deprecated Use `slots.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>> | undefined;
-  /**
-   * The component used to position the popup.
-   * @default Popper
-   * @deprecated Use `slots.popper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  PopperComponent?: React.JSXElementConstructor<PopperProps> | undefined;
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
@@ -391,29 +348,6 @@ export interface AutocompleteProps<
         props: React.HTMLAttributes<HTMLLIElement> & { key: React.Key },
         option: Value,
         state: AutocompleteRenderOptionState,
-        ownerState: AutocompleteOwnerState<
-          Value,
-          Multiple,
-          DisableClearable,
-          FreeSolo,
-          ChipComponent
-        >,
-      ) => React.ReactNode)
-    | undefined;
-  /**
-   * Render the selected value when doing multiple selections.
-   *
-   * @deprecated Use `renderValue` prop instead
-   *
-   * @param {Value[]} value The `value` provided to the component.
-   * @param {function} getTagProps A tag props getter.
-   * @param {object} ownerState The state of the Autocomplete component.
-   * @returns {ReactNode}
-   */
-  renderTags?:
-    | ((
-        value: Value[],
-        getTagProps: AutocompleteRenderGetTagProps,
         ownerState: AutocompleteOwnerState<
           Value,
           Multiple,

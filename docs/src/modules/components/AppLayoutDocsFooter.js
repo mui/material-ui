@@ -51,8 +51,8 @@ const FooterLink = styled(Link)(({ theme }) => {
 });
 
 /**
- * @typedef {import('docs/src/pages').MuiPage} MuiPage
- * @typedef {import('docs/src/pages').OrderedMuiPage} OrderedMuiPage
+ * @typedef {import('@mui/docs/MuiPage').MuiPage} MuiPage
+ * @typedef {import('@mui/docs/MuiPage').OrderedMuiPage} OrderedMuiPage
  */
 
 /**
@@ -405,10 +405,12 @@ export default function AppLayoutDocsFooter(props) {
                   rows={2}
                   value={comment}
                   onChange={handleChangeTextfield}
-                  inputProps={{
-                    'aria-label': t('feedbackCommentLabel'),
-                    'aria-describedby': 'feedback-description',
-                    ref: inputRef,
+                  slotProps={{
+                    htmlInput: {
+                      'aria-label': t('feedbackCommentLabel'),
+                      'aria-describedby': 'feedback-description',
+                      ref: inputRef,
+                    },
                   }}
                 />
                 {rating !== 1 && typeof window !== 'undefined' && (

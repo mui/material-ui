@@ -5,7 +5,6 @@ import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
-import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
 import { DrawerClasses } from './drawerClasses';
@@ -132,17 +131,6 @@ export interface DrawerProps
    * @default false
    */
   open?: boolean | undefined;
-  /**
-   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
-   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  PaperProps?: Partial<PaperProps<React.ElementType>> | undefined;
-  /**
-   * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  SlideProps?: Partial<SlideProps> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

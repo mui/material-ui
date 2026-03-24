@@ -72,16 +72,6 @@ export interface AvatarOwnProps {
    */
   classes?: Partial<AvatarClasses> | undefined;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#attributes) applied to the `img` element if the component is used to display an image.
-   * It can be used to listen for the loading error event.
-   * @deprecated Use `slotProps.img` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  imgProps?:
-    | (React.ImgHTMLAttributes<HTMLImageElement> & {
-        sx?: SxProps<Theme> | undefined;
-      })
-    | undefined;
-  /**
    * The `sizes` attribute for the `img` element.
    */
   sizes?: string | undefined;

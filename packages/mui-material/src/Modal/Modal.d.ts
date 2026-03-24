@@ -4,7 +4,7 @@ import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils/types';
 import { PortalProps } from '../Portal';
 import { Theme } from '../styles';
-import Backdrop, { BackdropProps } from '../Backdrop';
+import Backdrop from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
 import { ModalClasses } from './modalClasses';
 
@@ -28,23 +28,6 @@ export interface ModalSlots {
 
 export interface ModalOwnProps {
   /**
-   * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
-   * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
-   * @default styled(Backdrop, {
-   *   name: 'MuiModal',
-   *   slot: 'Backdrop',
-   * })({
-   *   zIndex: -1,
-   * })
-   */
-  BackdropComponent?: React.ElementType<BackdropProps> | undefined;
-  /**
-   * Props applied to the [`Backdrop`](https://mui.com/material-ui/api/backdrop/) element.
-   * @deprecated Use `slotProps.backdrop` instead.
-   */
-  BackdropProps?: Partial<BackdropProps> | undefined;
-  /**
    * A single child content element.
    */
   children: React.ReactElement<unknown>;
@@ -61,37 +44,6 @@ export interface ModalOwnProps {
    * @default false
    */
   closeAfterTransition?: boolean | undefined;
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components?:
-    | {
-        Root?: React.ElementType | undefined;
-        Backdrop?: React.ElementType | undefined;
-      }
-    | undefined;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps?:
-    | {
-        root?:
-          | SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>
-          | undefined;
-        backdrop?:
-          | SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>
-          | undefined;
-      }
-    | undefined;
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.

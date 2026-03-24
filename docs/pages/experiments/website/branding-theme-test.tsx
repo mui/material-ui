@@ -22,7 +22,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };
 
 export default function BrandingThemeTest() {
   const [age, setAge] = React.useState('');

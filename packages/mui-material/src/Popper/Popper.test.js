@@ -36,7 +36,6 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLDivElement,
-    testLegacyComponentsProp: true,
     slots: {
       root: {},
     },

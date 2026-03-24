@@ -7,7 +7,6 @@ import {
   TablePaginationActionsSlots,
 } from '../TablePaginationActions';
 import { TableCellProps } from '../TableCell';
-import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 import { TablePaginationClasses } from './tablePaginationClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -161,13 +160,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   ActionsComponent?: React.ElementType<TablePaginationActionsProps> | undefined;
   /**
-   * Props applied to the back arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) component.
-   *
-   * This prop is an alias for `slotProps.actions.previousButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.actions.previousButton` instead.
-   */
-  backIconButtonProps?: Partial<IconButtonProps> | undefined;
-  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TablePaginationClasses> | undefined;
@@ -200,7 +192,7 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    *
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }) {
-   *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   *   return `${formatNumber(from)}–${formatNumber(to)} of ${count !== -1 ? formatNumber(count) : `more than ${formatNumber(to)}`}`;
    * }
    */
   labelDisplayedRows?: ((paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode) | undefined;
@@ -211,13 +203,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * @default 'Rows per page:'
    */
   labelRowsPerPage?: React.ReactNode;
-  /**
-   * Props applied to the next arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) element.
-   *
-   * This prop is an alias for `slotProps.actions.nextButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.actions.nextButton` instead.
-   */
-  nextIconButtonProps?: Partial<IconButtonProps> | undefined;
   /**
    * Callback fired when the page is changed.
    *
@@ -250,15 +235,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * @default [10, 25, 50, 100]
    */
   rowsPerPageOptions?: ReadonlyArray<number | { value: number; label: string }> | undefined;
-  /**
-   * Props applied to the rows per page [`Select`](https://mui.com/material-ui/api/select/) element.
-   *
-   * This prop is an alias for `slotProps.select` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.select` instead.
-   *
-   * @default {}
-   */
-  SelectProps?: Partial<SelectProps> | undefined;
   /**
    * If `true`, show the first-page button.
    * @default false

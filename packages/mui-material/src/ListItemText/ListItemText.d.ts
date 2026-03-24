@@ -24,7 +24,10 @@ export interface ListItemTextSlots {
   secondary?: React.ElementType | undefined;
 }
 
-export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
+export type ListItemTextSlotsAndSlotProps<
+  PrimaryTypographyComponent extends React.ElementType = React.ElementType<TypographyProps<'span'>>,
+  SecondaryTypographyComponent extends React.ElementType = React.ElementType<TypographyProps<'p'>>,
+> = CreateSlotsAndSlotProps<
   ListItemTextSlots,
   {
     /**
@@ -36,12 +39,32 @@ export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the primary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
      */
-    primary: SlotProps<React.ElementType<TypographyProps>, {}, ListItemTextOwnerState>;
+    primary:
+      | TypographyProps<
+          PrimaryTypographyComponent,
+          { component?: PrimaryTypographyComponent | undefined }
+        >
+      | ((
+          ownerState: ListItemTextOwnerState,
+        ) => TypographyProps<
+          PrimaryTypographyComponent,
+          { component?: PrimaryTypographyComponent | undefined }
+        >);
     /**
      * Props forwarded to the secondary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
      */
-    secondary: SlotProps<React.ElementType<TypographyProps>, {}, ListItemTextOwnerState>;
+    secondary:
+      | TypographyProps<
+          SecondaryTypographyComponent,
+          { component?: SecondaryTypographyComponent | undefined }
+        >
+      | ((
+          ownerState: ListItemTextOwnerState,
+        ) => TypographyProps<
+          SecondaryTypographyComponent,
+          { component?: SecondaryTypographyComponent | undefined }
+        >);
   }
 >;
 
@@ -51,7 +74,9 @@ export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',
 >
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, ListItemTextSlotsAndSlotProps {
+  extends
+    StandardProps<React.HTMLAttributes<HTMLDivElement>>,
+    ListItemTextSlotsAndSlotProps<PrimaryTypographyComponent, SecondaryTypographyComponent> {
   /**
    * Alias for the `primary` prop.
    */
@@ -79,31 +104,9 @@ export interface ListItemTextProps<
    */
   primary?: React.ReactNode;
   /**
-   * These props will be forwarded to the primary typography component
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.primary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  primaryTypographyProps?:
-    | TypographyProps<
-        PrimaryTypographyComponent,
-        { component?: PrimaryTypographyComponent | undefined }
-      >
-    | undefined;
-  /**
    * The secondary content element.
    */
   secondary?: React.ReactNode;
-  /**
-   * These props will be forwarded to the secondary typography component
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  secondaryTypographyProps?:
-    | TypographyProps<
-        SecondaryTypographyComponent,
-        { component?: SecondaryTypographyComponent | undefined }
-      >
-    | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

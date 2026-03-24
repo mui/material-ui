@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/91b038cb6c568b63684a7be0146dd12747e76060/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/f48e4f01775b1bbf779f2933fbe76940c248bf4c/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
@@ -79,7 +79,7 @@ jobs:
           react-version: << parameters.react-version >>
       - run:
           name: Tests fake browser
-          command: pnpm test:node --no-isolate --no-file-parallelism --coverage
+          command: pnpm test:node --no-isolate --no-file-parallelism
       - run:
           name: internal-scripts
           command: |
@@ -95,8 +95,6 @@ jobs:
             else
               echo "no changes"
             fi
-      - code-infra/upload-coverage:
-          key: '<< parameters.react-version >>-jsdom'
       - store_test_results:
           path: test-results
 
@@ -224,7 +222,7 @@ jobs:
           react-version: << parameters.react-version >>
       - run:
           name: Tests chromium
-          command: pnpm test:browser --no-isolate --no-file-parallelism --coverage
+          command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
           name: Tests webkit
           environment:
@@ -235,15 +233,6 @@ jobs:
           environment:
             VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
-      - run:
-          name: Check coverage generated
-          command: |
-            if ! [[ -s coverage/lcov.info ]]
-            then
-              exit 1
-            fi
-      - code-infra/upload-coverage:
-          key: '<< parameters.react-version >>-browser'
       - store_test_results:
           path: test-results
   test_e2e:

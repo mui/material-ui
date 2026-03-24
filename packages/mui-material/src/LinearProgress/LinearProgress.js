@@ -90,23 +90,9 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root', `color${capitalize(color)}`, variant],
-    dashed: ['dashed', `dashedColor${capitalize(color)}`],
-    bar1: [
-      'bar',
-      'bar1',
-      `barColor${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
-      variant === 'determinate' && 'bar1Determinate',
-      variant === 'buffer' && 'bar1Buffer',
-    ],
-    bar2: [
-      'bar',
-      'bar2',
-      variant !== 'buffer' && `barColor${capitalize(color)}`,
-      variant === 'buffer' && `color${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
-      variant === 'buffer' && 'bar2Buffer',
-    ],
+    dashed: ['dashed'],
+    bar1: ['bar', 'bar1'],
+    bar2: ['bar', 'bar2', variant === 'buffer' && `color${capitalize(color)}`],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
@@ -185,9 +171,7 @@ const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Dashed',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
+    return [styles.dashed];
   },
 })(
   memoTheme(({ theme }) => ({
@@ -228,17 +212,7 @@ const LinearProgressBar1 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar1',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles.bar1,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar1Indeterminate,
-      ownerState.variant === 'determinate' && styles.bar1Determinate,
-      ownerState.variant === 'buffer' && styles.bar1Buffer,
-    ];
+    return [styles.bar, styles.bar1];
   },
 })(
   memoTheme(({ theme }) => ({
@@ -305,16 +279,7 @@ const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar2',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles.bar2,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar2Indeterminate,
-      ownerState.variant === 'buffer' && styles.bar2Buffer,
-    ];
+    return [styles.bar, styles.bar2];
   },
 })(
   memoTheme(({ theme }) => ({

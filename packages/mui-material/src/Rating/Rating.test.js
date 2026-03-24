@@ -263,6 +263,14 @@ describe('<Rating />', () => {
     }
   });
 
+  it('should not spread the `value` prop on the icon slot DOM element', () => {
+    const { container } = render(<Rating name="rating-test" value={2} />);
+
+    container.querySelectorAll(`.${classes.icon}`).forEach((icon) => {
+      expect(icon).not.to.have.attribute('value');
+    });
+  });
+
   it('should be able to replace the icon', () => {
     function Icon(props) {
       return <i data-testid="custom" {...props} />;

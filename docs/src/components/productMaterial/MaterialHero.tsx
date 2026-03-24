@@ -61,7 +61,7 @@ import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 function Checkboxes() {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };
   return (
     <React.Fragment>
       <Checkbox {...label} defaultChecked />
@@ -159,7 +159,7 @@ function BadgeVisibilityDemo() {
   );
 }
 function SwitchToggleDemo() {
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+  const label = { slotProps: { input: { 'aria-label': 'Switch demo' } } };
   return (
     <Box
       sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}

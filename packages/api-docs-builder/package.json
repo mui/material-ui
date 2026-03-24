@@ -20,10 +20,10 @@
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.44.0",
+    "es-toolkit": "^1.45.1",
     "fast-glob": "^3.3.3",
     "prettier": "^3.8.1",
-    "react-docgen": "^8.0.2",
+    "react-docgen": "^8.0.3",
     "recast": "^0.23.11",
     "remark": "^15.0.1",
     "typescript": "^5.9.3",
@@ -35,9 +35,9 @@
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/node": "20.19.35",
+    "@types/node": "20.19.37",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "sinon": "21.0.1"
+    "sinon": "21.0.3"
   }
 }

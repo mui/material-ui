@@ -114,15 +114,6 @@ export interface RatingOwnProps extends RatingSlotsAndSlotProps {
    */
   icon?: React.ReactNode;
   /**
-   * The component containing the icon.
-   * @deprecated Use `slotProps.icon.component` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default function IconContainer(props) {
-   *   const { value, ...other } = props;
-   *   return <span {...other} />;
-   * }
-   */
-  IconContainerComponent?: React.ElementType<IconContainerProps> | undefined;
-  /**
    * Maximum rating.
    * @default 5
    */

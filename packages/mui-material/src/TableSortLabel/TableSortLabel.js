@@ -17,7 +17,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root', active && 'active', `direction${capitalize(direction)}`],
-    icon: ['icon', `iconDirection${capitalize(direction)}`],
+    icon: ['icon'],
   };
 
   return composeClasses(slots, getTableSortLabelUtilityClass, classes);
@@ -60,11 +60,7 @@ const TableSortLabelRoot = styled(ButtonBase, {
 const TableSortLabelIcon = styled('span', {
   name: 'MuiTableSortLabel',
   slot: 'Icon',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.icon, styles[`iconDirection${capitalize(ownerState.direction)}`]];
-  },
+  overridesResolver: (props, styles) => styles.icon,
 })(
   memoTheme(({ theme }) => ({
     fontSize: 18,

@@ -16,7 +16,7 @@ import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -26,20 +26,12 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       `color${capitalize(color)}`,
       clickable && 'clickable',
-      clickable && `clickableColor${capitalize(color)}`,
       onDelete && 'deletable',
-      onDelete && `deletableColor${capitalize(color)}`,
-      `${variant}${capitalize(color)}`,
     ],
-    label: ['label', `label${capitalize(size)}`],
-    avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor)}`],
-    deleteIcon: [
-      'deleteIcon',
-      `deleteIcon${capitalize(size)}`,
-      `deleteIconColor${capitalize(color)}`,
-      `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
-    ],
+    label: ['label'],
+    avatar: ['avatar'],
+    icon: ['icon'],
+    deleteIcon: ['deleteIcon'],
   };
 
   return composeClasses(slots, getChipUtilityClass, classes);
@@ -50,31 +42,18 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
+    const { color, clickable, onDelete, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
-      { [`& .${chipClasses.avatar}`]: styles[`avatar${capitalize(size)}`] },
-      { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
       { [`& .${chipClasses.icon}`]: styles.icon },
-      { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(iconColor)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
-      {
-        [`& .${chipClasses.deleteIcon}`]:
-          styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
-      },
       styles.root,
       styles[`size${capitalize(size)}`],
       styles[`color${capitalize(color)}`],
       clickable && styles.clickable,
-      clickable && color !== 'default' && styles[`clickableColor${capitalize(color)}`],
       onDelete && styles.deletable,
-      onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`],
       styles[variant],
-      styles[`${variant}${capitalize(color)}`],
     ];
   },
 })(
@@ -116,21 +95,6 @@ const ChipRoot = styled('div', {
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
-      [`& .${chipClasses.avatarColorPrimary}`]: {
-        color: (theme.vars || theme).palette.primary.contrastText,
-        backgroundColor: (theme.vars || theme).palette.primary.dark,
-      },
-      [`& .${chipClasses.avatarColorSecondary}`]: {
-        color: (theme.vars || theme).palette.secondary.contrastText,
-        backgroundColor: (theme.vars || theme).palette.secondary.dark,
-      },
-      [`& .${chipClasses.avatarSmall}`]: {
-        marginLeft: 4,
-        marginRight: -4,
-        width: 18,
-        height: 18,
-        fontSize: theme.typography.pxToRem(10),
-      },
       [`& .${chipClasses.icon}`]: {
         marginLeft: 5,
         marginRight: -6,
@@ -147,9 +111,38 @@ const ChipRoot = styled('div', {
       },
       variants: [
         {
+          props: {
+            color: 'primary',
+          },
+          style: {
+            [`& .${chipClasses.avatar}`]: {
+              color: (theme.vars || theme).palette.primary.contrastText,
+              backgroundColor: (theme.vars || theme).palette.primary.dark,
+            },
+          },
+        },
+        {
+          props: {
+            color: 'secondary',
+          },
+          style: {
+            [`& .${chipClasses.avatar}`]: {
+              color: (theme.vars || theme).palette.secondary.contrastText,
+              backgroundColor: (theme.vars || theme).palette.secondary.dark,
+            },
+          },
+        },
+        {
           props: { size: 'small' },
           style: {
             height: 24,
+            [`& .${chipClasses.avatar}`]: {
+              marginLeft: 4,
+              marginRight: -4,
+              width: 18,
+              height: 18,
+              fontSize: theme.typography.pxToRem(10),
+            },
             [`& .${chipClasses.icon}`]: {
               fontSize: 18,
               marginLeft: 4,
@@ -269,19 +262,24 @@ const ChipRoot = styled('div', {
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
             },
-            [`& .${chipClasses.avatarSmall}`]: {
-              marginLeft: 2,
-            },
             [`& .${chipClasses.icon}`]: {
               marginLeft: 4,
-            },
-            [`& .${chipClasses.iconSmall}`]: {
-              marginLeft: 2,
             },
             [`& .${chipClasses.deleteIcon}`]: {
               marginRight: 5,
             },
-            [`& .${chipClasses.deleteIconSmall}`]: {
+          },
+        },
+        {
+          props: { size: 'small', variant: 'outlined' },
+          style: {
+            [`& .${chipClasses.avatar}`]: {
+              marginLeft: 2,
+            },
+            [`& .${chipClasses.icon}`]: {
+              marginLeft: 2,
+            },
+            [`& .${chipClasses.deleteIcon}`]: {
               marginRight: 3,
             },
           },
@@ -321,11 +319,8 @@ const ChipRoot = styled('div', {
 const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    const { size } = ownerState;
-
-    return [styles.label, styles[`label${capitalize(size)}`]];
+  overridesResolver: (_props, styles) => {
+    return [styles.label];
   },
 })({
   overflow: 'hidden',

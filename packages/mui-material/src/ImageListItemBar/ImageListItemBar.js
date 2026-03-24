@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, position, actionIcon, actionPosition } = ownerState;
+  const { classes, position, actionPosition } = ownerState;
 
   const slots = {
     root: [
@@ -18,14 +18,10 @@ const useUtilityClasses = (ownerState) => {
       `position${capitalize(position)}`,
       `actionPosition${capitalize(actionPosition)}`,
     ],
-    titleWrap: [
-      'titleWrap',
-      `titleWrap${capitalize(position)}`,
-      actionIcon && `titleWrapActionPos${capitalize(actionPosition)}`,
-    ],
+    titleWrap: ['titleWrap'],
     title: ['title'],
     subtitle: ['subtitle'],
-    actionIcon: ['actionIcon', `actionIconActionPos${capitalize(actionPosition)}`],
+    actionIcon: ['actionIcon'],
   };
 
   return composeClasses(slots, getImageListItemBarUtilityClass, classes);
@@ -85,13 +81,7 @@ const ImageListItemBarTitleWrap = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'TitleWrap',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.titleWrap,
-      styles[`titleWrap${capitalize(ownerState.position)}`],
-      ownerState.actionIcon && styles[`titleWrapActionPos${capitalize(ownerState.actionPosition)}`],
-    ];
+    return [styles.titleWrap];
   },
 })(
   memoTheme(({ theme }) => {
@@ -161,12 +151,7 @@ const ImageListItemBarActionIcon = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'ActionIcon',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.actionIcon,
-      styles[`actionIconActionPos${capitalize(ownerState.actionPosition)}`],
-    ];
+    return [styles.actionIcon];
   },
 })({
   variants: [

@@ -381,16 +381,14 @@ describe('<TablePagination />', () => {
     });
   });
 
-  describe('prop: backIconButtonProps', () => {
+  describe('slotProps: actions.previousButton', () => {
     it('should apply props to the back button', () => {
-      const backIconButtonPropsDisabled = true;
-
       render(
         <table>
           <TableFooter>
             <TableRow>
               <TablePagination
-                backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
+                slotProps={{ actions: { previousButton: { disabled: true } } }}
                 count={1}
                 page={0}
                 onPageChange={noop}
@@ -403,20 +401,18 @@ describe('<TablePagination />', () => {
       );
 
       const backButton = screen.getByRole('button', { name: 'Go to previous page' });
-      expect(backButton).to.have.property('disabled', backIconButtonPropsDisabled);
+      expect(backButton).to.have.property('disabled', true);
     });
   });
 
-  describe('prop: nextIconButtonProps', () => {
+  describe('slotProps: actions.nextButton', () => {
     it('should apply props to the next button', () => {
-      const nextIconButtonPropsDisabled = true;
-
       render(
         <table>
           <TableFooter>
             <TableRow>
               <TablePagination
-                nextIconButtonProps={{ disabled: nextIconButtonPropsDisabled }}
+                slotProps={{ actions: { nextButton: { disabled: true } } }}
                 count={1}
                 page={0}
                 onPageChange={noop}
@@ -429,7 +425,7 @@ describe('<TablePagination />', () => {
       );
 
       const nextButton = screen.getByRole('button', { name: 'Go to next page' });
-      expect(nextButton).to.have.property('disabled', nextIconButtonPropsDisabled);
+      expect(nextButton).to.have.property('disabled', true);
     });
   });
 
@@ -513,7 +509,7 @@ describe('<TablePagination />', () => {
     });
   });
 
-  describe('prop: SelectProps', () => {
+  describe('slotProps: select', () => {
     it('does allow manual label ids', () => {
       render(
         <table>
@@ -525,7 +521,7 @@ describe('<TablePagination />', () => {
                 onPageChange={noop}
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
-                SelectProps={{ id: 'foo', labelId: 'bar' }}
+                slotProps={{ select: { id: 'foo', labelId: 'bar' } }}
               />
             </TableRow>
           </TableFooter>
@@ -548,7 +544,7 @@ describe('<TablePagination />', () => {
                   onPageChange={noop}
                   onRowsPerPageChange={noop}
                   rowsPerPage={10}
-                  SelectProps={{ variant }}
+                  slotProps={{ select: { variant } }}
                 />
               </TableRow>
             </TableFooter>
@@ -595,19 +591,15 @@ describe('<TablePagination />', () => {
   describe('prop: slotProps', () => {
     describe('actions', () => {
       describe('previousButton', () => {
-        it('should override backIconButtonProps', () => {
-          const slotPropsDisabled = false;
-          const backIconButtonPropsDisabled = true;
-
+        it('should apply slotProps to previous button', () => {
           render(
             <table>
               <TableFooter>
                 <TableRow>
                   <TablePagination
-                    backIconButtonProps={{ disabled: backIconButtonPropsDisabled }}
                     slotProps={{
                       actions: {
-                        previousButton: { disabled: slotPropsDisabled },
+                        previousButton: { disabled: true },
                       },
                     }}
                     count={1}
@@ -622,24 +614,19 @@ describe('<TablePagination />', () => {
           );
 
           const backButton = screen.getByRole('button', { name: 'Go to previous page' });
-          expect(slotPropsDisabled).not.to.equal(backIconButtonPropsDisabled);
-          expect(backButton).to.have.property('disabled', slotPropsDisabled);
+          expect(backButton).to.have.property('disabled', true);
         });
       });
 
       describe('nextButton', () => {
-        it('should override nextIconButtonProps', () => {
-          const slotPropsDisabled = false;
-          const nextIconButtonPropsDisabled = true;
-
+        it('should apply slotProps to next button', () => {
           render(
             <table>
               <TableFooter>
                 <TableRow>
                   <TablePagination
-                    nextIconButtonProps={{ disabled: nextIconButtonPropsDisabled }}
                     slotProps={{
-                      actions: { nextButton: { disabled: slotPropsDisabled } },
+                      actions: { nextButton: { disabled: true } },
                     }}
                     count={1}
                     page={0}
@@ -653,8 +640,7 @@ describe('<TablePagination />', () => {
           );
 
           const nextButton = screen.getByRole('button', { name: 'Go to next page' });
-          expect(slotPropsDisabled).not.to.equal(nextIconButtonPropsDisabled);
-          expect(nextButton).to.have.property('disabled', slotPropsDisabled);
+          expect(nextButton).to.have.property('disabled', true);
         });
       });
 
@@ -702,17 +688,13 @@ describe('<TablePagination />', () => {
     });
 
     describe('select', () => {
-      it('should override SelectProps', () => {
-        const slotPropsDisabled = false;
-        const SelectPropsDisabled = true;
-
+      it('should apply slotProps to select', () => {
         render(
           <table>
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  SelectProps={{ disabled: SelectPropsDisabled }}
-                  slotProps={{ select: { disabled: slotPropsDisabled } }}
+                  slotProps={{ select: { disabled: true } }}
                   count={1}
                   page={0}
                   onPageChange={noop}
@@ -725,8 +707,7 @@ describe('<TablePagination />', () => {
         );
 
         const combobox = screen.getByRole('combobox');
-        expect(slotPropsDisabled).not.to.equal(SelectPropsDisabled);
-        expect(combobox.parentElement).not.to.have.class(inputClasses.disabled);
+        expect(combobox.parentElement).to.have.class(inputClasses.disabled);
       });
     });
   });
@@ -825,9 +806,11 @@ describe('<TablePagination />', () => {
                 rowsPerPage={10}
                 page={0}
                 onPageChange={noop}
-                SelectProps={{
-                  inputProps: { 'aria-label': 'rows per page' },
-                  native: true,
+                slotProps={{
+                  select: {
+                    inputProps: { 'aria-label': 'rows per page' },
+                    native: true,
+                  },
                 }}
               />
             </TableRow>

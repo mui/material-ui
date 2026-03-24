@@ -278,6 +278,11 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -  PopperComponent={CustomPopper}
 -  ListboxComponent={CustomListbox}
 -  ListboxProps={{ height: 12 }}
+-  renderTags={(value, getTagProps, ownerState) =>
+-    value.map((option, index) => (
+-      <Chip label={option.label} {...getTagProps({ index })} />
+-    ))
+-  }
 -  componentsProps={{
 -    clearIndicator: { width: 10 },
 -    paper: { width: 12 },
@@ -299,6 +304,11 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +    popper: { width: 14 },
 +    popupIndicator: { width: 16 },
 +  }}
++  renderValue={(value, getItemProps, ownerState) =>
++    value.map((option, index) => (
++      <Chip label={option.label} {...getItemProps({ index })} />
++    ))
++  }
  />
 ```
 
@@ -310,6 +320,10 @@ npx @mui/codemod@next deprecations/alert-props <path>
 -    PopperComponent: CustomPopper,
 -    ListboxComponent: CustomListbox,
 -    ListboxProps: { height: 12 },
+-    renderTags: (value, getTagProps, ownerState) =>
+-      value.map((option, index) => (
+-        <Chip label={option.label} {...getTagProps({ index })} />
+-      )),
 -    componentsProps: {
 -       clearIndicator: { width: 10 },
 -       paper: { width: 12 },
@@ -331,8 +345,50 @@ npx @mui/codemod@next deprecations/alert-props <path>
 +      popper: { width: 14 },
 +      popupIndicator: { width: 16 },
 +    },
++    renderValue: (value, getItemProps, ownerState) =>
++      value.map((option, index) => (
++        <Chip label={option.label} {...getItemProps({ index })} />
++      )),
    },
  },
+```
+
+```diff
+ <Autocomplete
+  renderInput={(params) => (
+    <TextField
+      {...params}
+-      InputProps={{
+-        ...params.InputProps,
+-        endAdornment: (
+-          <React.Fragment>
+-            {params.InputProps.endAdornment}
+-          </React.Fragment>
+-        ),
+-      }}
++      slotProps={{
++        ...params.slotProps,
++        input: {
++          ...params.slotProps.input,
++          endAdornment: (
++            <React.Fragment>
++              {params.slotProps.input.endAdornment}
++            </React.Fragment>
++          ),
++        },
++      }}
+    />
+  )}
+ />
+```
+
+```diff
+ const {
+-  getTagProps,
+-  focusedTag,
++  getItemProps,
++  focusedItem,
+ } = useAutocomplete(props);
 ```
 
 ```bash
@@ -814,6 +870,50 @@ CSS transforms:
 npx @mui/codemod@next deprecations/button-group-classes <path>
 ```
 
+#### `card-header-props`
+
+```diff
+ <CardHeader
+-  titleTypographyProps={{ variant: 'h6' }}
+-  subheaderTypographyProps={{ variant: 'body2' }}
++  slotProps={{
++    title: { variant: 'h6' },
++    subheader: { variant: 'body2' }
++  }}
+ />
+```
+
+```diff
+ MuiCardHeader: {
+   defaultProps: {
+-    titleTypographyProps: { variant: 'h6' },
+-    subheaderTypographyProps: { variant: 'body2' },
++    slotProps: {
++      title: { variant: 'h6' },
++      subheader: { variant: 'body2' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/card-header-props <path>
+```
+
+#### `checkbox-props`
+
+```diff
+ <Checkbox
+-  inputProps={{ 'aria-label': 'Checkbox' }}
+-  inputRef={ref}
++  slotProps={{ input: { 'aria-label': 'Checkbox', ref } }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/checkbox-props <path>
+```
+
 #### `chip-classes`
 
 JS transforms:
@@ -1006,11 +1106,11 @@ JS transforms:
    styleOverrides: {
      root: {
 -      [`& .${circularProgressClasses.circleDeterminate}`]: {
-+      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
++      [`&.${circularProgressClasses.determinate} .${circularProgressClasses.circle}`]: {
          color: 'red',
        },
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
-+      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
++      [`&.${circularProgressClasses.indeterminate} .${circularProgressClasses.circle}`]: {
          color: 'red',
        },
      },
@@ -1022,12 +1122,12 @@ CSS transforms:
 
 ```diff
 -.MuiCircularProgress-circleDeterminate
-+.MuiCircularProgress-determinate > .MuiCircularProgress-circle
++.MuiCircularProgress-determinate .MuiCircularProgress-circle
 ```
 
 ```diff
 -.MuiCircularProgress-circleIndeterminate
-+.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
++.MuiCircularProgress-indeterminate .MuiCircularProgress-circle
 ```
 
 ```bash
@@ -1175,6 +1275,46 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@next deprecations/drawer-classes <path>
+```
+
+#### `drawer-props`
+
+```diff
+ <Drawer
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ transitionDuration: 300 }}
+-  PaperProps={{ elevation: 20 }}
+-  SlideProps={{ direction: 'right' }}
++  slots={{ backdrop: CustomBackdrop }}
++  slotProps={{
++    backdrop: { transitionDuration: 300 },
++    paper: { elevation: 20 },
++    transition: { direction: 'right' },
++  }}
+ />
+```
+
+The same applies to `SwipeableDrawer`.
+
+```diff
+ MuiDrawer: {
+   defaultProps: {
+-    BackdropComponent: CustomBackdrop,
+-    BackdropProps: { transitionDuration: 300 },
+-    PaperProps: { elevation: 20 },
+-    SlideProps: { direction: 'right' },
++    slots: { backdrop: CustomBackdrop },
++    slotProps: {
++      backdrop: { transitionDuration: 300 },
++      paper: { elevation: 20 },
++      transition: { direction: 'right' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/drawer-props <path>
 ```
 
 #### `filled-input-props`
@@ -1540,6 +1680,40 @@ npx @mui/codemod@next deprecations/modal-props <path>
 npx @mui/codemod@next deprecations/mobile-stepper-props <path>
 ```
 
+#### `menu-props`
+
+```diff
+ <Menu
+-  TransitionComponent={CustomTransition}
+-  MenuListProps={{ disablePadding: true }}
+-  TransitionProps={{ timeout: 200 }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{
++    list: { disablePadding: true },
++    transition: { timeout: 200 },
++  }}
+ />
+```
+
+```diff
+ MuiMenu: {
+   defaultProps: {
+-    TransitionComponent: CustomTransition,
+-    MenuListProps: { disablePadding: true },
+-    TransitionProps: { timeout: 200 },
++    slots: { transition: CustomTransition },
++    slotProps: {
++      list: { disablePadding: true },
++      transition: { timeout: 200 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/menu-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
@@ -1626,6 +1800,46 @@ npx @mui/codemod@next deprecations/pagination-item-classes <path>
 npx @mui/codemod@next deprecations/pagination-item-props <path>
 ```
 
+#### `popover-props`
+
+```diff
+ <Popover
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ timeout: 200 }}
+-  PaperProps={{ elevation: 4 }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 200 }}
++  slots={{ backdrop: CustomBackdrop, transition: CustomTransition }}
++  slotProps={{
++    backdrop: { timeout: 200 },
++    paper: { elevation: 4 },
++    transition: { timeout: 200 },
++  }}
+ />
+```
+
+```diff
+ MuiPopover: {
+   defaultProps: {
+-    BackdropComponent: 'div',
+-    BackdropProps: { timeout: 200 },
+-    PaperProps: { elevation: 8 },
+-    TransitionComponent: 'em',
+-    TransitionProps: { timeout: 200 },
++    slots: { backdrop: 'div', transition: 'em' },
++    slotProps: {
++      backdrop: { timeout: 200 },
++      paper: { elevation: 8 },
++      transition: { timeout: 200 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/popover-props <path>
+```
+
 #### `popper-props`
 
 ```diff
@@ -1693,6 +1907,20 @@ npx @mui/codemod@next deprecations/outlined-input-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/rating-props <path>
+```
+
+#### `radio-props`
+
+```diff
+ <Radio
+-  inputProps={{ 'aria-label': 'Radio' }}
+-  inputRef={ref}
++  slotProps={{ input: { 'aria-label': 'Radio', ref } }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/radio-props <path>
 ```
 
 #### `select-classes`
@@ -1792,6 +2020,78 @@ npx @mui/codemod@next deprecations/slider-props <path>
 npx @mui/codemod@next deprecations/snackbar-props <path>
 ```
 
+#### `speed-dial-props`
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={CustomTransitionProps}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: CustomTransitionProps }}
+ />
+```
+
+```diff
+ MuiSpeedDial: {
+   defaultProps: {
+-    TransitionComponent: CustomTransition,
+-    TransitionProps: CustomTransitionProps,
++    slots: { transition: CustomTransition },
++    slotProps: { transition: CustomTransitionProps },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-props <path>
+```
+
+#### `speed-dial-action-props`
+
+```diff
+ <SpeedDialAction
+-  FabProps={FabProps}
+-  TooltipClasses={TooltipClasses}
+-  tooltipOpen={true}
+-  tooltipPlacement="top"
+-  tooltipTitle="test"
++  slotProps={{
++    fab: FabProps,
++    tooltip: {
++      classes: TooltipClasses,
++      open: true,
++      placement: 'top',
++      title: 'test',
++    },
++  }}
+ />
+```
+
+```diff
+ MuiSpeedDialAction: {
+   defaultProps: {
+-    FabProps: { id: 'test' },
+-    TooltipClasses: classes,
+-    tooltipOpen: true,
+-    tooltipPlacement: 'top',
+-    tooltipTitle: 'test',
++    slotProps: {
++      fab: { id: 'test' },
++      tooltip: {
++        classes: classes,
++        open: true,
++        placement: 'top',
++        title: 'test',
++      },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/speed-dial-action-props <path>
+```
+
 #### `slider-classes`
 
 JS transforms:
@@ -1864,23 +2164,68 @@ CSS transforms:
 npx @mui/codemod@next deprecations/slider-classes <path>
 ```
 
+#### `tabs-props`
+
+```diff
+ <Tabs
+-  ScrollButtonComponent={CustomScrollButton}
+-  TabIndicatorProps={{ className: 'indicator' }}
+-  TabScrollButtonProps={{ disableRipple: true }}
++  slots={{ scrollButtons: CustomScrollButton }}
++  slotProps={{
++    indicator: { className: 'indicator' },
++    scrollButtons: { disableRipple: true },
++  }}
+ />
+```
+
+```diff
+ <Tabs
+-  slots={{ StartScrollButtonIcon: CustomIcon, EndScrollButtonIcon: CustomIcon2 }}
++  slots={{ startScrollButtonIcon: CustomIcon, endScrollButtonIcon: CustomIcon2 }}
+ />
+```
+
+```diff
+ MuiTabs: {
+   defaultProps: {
+-    ScrollButtonComponent: CustomScrollButton,
+-    TabScrollButtonProps: { disableRipple: true },
+-    TabIndicatorProps: { className: 'indicator' },
++    slots: {
++      scrollButtons: CustomScrollButton,
++    },
++    slotProps: {
++      scrollButtons: { disableRipple: true },
++      indicator: { className: 'indicator' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@next deprecations/tabs-props <path>
+```
+
 #### `tooltip-props`
 
 ```diff
  <Tooltip
--  components={{ Arrow: CustomArrow }}
--  componentsProps={{ arrow: { testid: 'test-id' } }}
+-  components={{ Arrow: CustomArrow, Tooltip: CustomTooltip }}
+-  componentsProps={{ arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }}
 -  PopperComponent={CustomPopperComponent}
 -  TransitionComponent={CustomTransitionComponent}
 -  PopperProps={CustomPopperProps}
 -  TransitionProps={CustomTransitionProps}
 +  slots={{
 +    arrow: CustomArrow,
++    tooltip: CustomTooltip,
 +    popper: CustomPopperComponent,
 +    transition: CustomTransitionComponent,
 +  }}
 +  slotProps={{
 +    arrow: { testid: 'test-id' },
++    tooltip: { className: 'custom' },
 +    popper: CustomPopperProps,
 +    transition: CustomTransitionProps,
 +  }}
@@ -1894,15 +2239,17 @@ npx @mui/codemod@next deprecations/slider-classes <path>
 -    TransitionComponent: CustomTransitionComponent,
 -    PopperProps: CustomPopperProps,
 -    TransitionProps: CustomTransitionProps,
--    components: { Arrow: CustomArrow }
+-    components: { Arrow: CustomArrow, Tooltip: CustomTooltip }
 +    slots: {
 +      arrow: CustomArrow,
++      tooltip: CustomTooltip,
 +      popper: CustomPopperComponent,
 +      transition: CustomTransitionComponent,
 +    },
--    componentsProps: { arrow: { testid: 'test-id' }}
+-    componentsProps: { arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }
 +    slotProps: {
 +      arrow: { testid: 'test-id' },
++      tooltip: { className: 'custom' },
 +      popper: CustomPopperProps,
 +      transition: CustomTransitionProps,
 +    },
@@ -1998,6 +2345,20 @@ npx @mui/codemod@next deprecations/step-content-props <path>
 
 ```bash
 npx @mui/codemod@next deprecations/step-label-props <path>
+```
+
+#### `switch-props`
+
+```diff
+ <Switch
+-  inputProps={{ 'aria-label': 'Switch' }}
+-  inputRef={ref}
++  slotProps={{ input: { 'aria-label': 'Switch', ref } }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/switch-props <path>
 ```
 
 #### `text-field-props`
