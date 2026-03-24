@@ -199,7 +199,7 @@ const container = [''];
 
 function style(props, keys) {
   const theme = props.theme ?? EMPTY_THEME;
-  const transformer = theme?.internal_cache?.unarySpacing ?? createUnarySpacing(theme); // eslint-disable-line
+  const transformer = theme?.internal_cache?.unarySpacing ?? createUnarySpacing(theme);
 
   const result = {};
   for (const prop in props) {
