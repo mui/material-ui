@@ -5,7 +5,7 @@
 import { convertLength } from '@mui/material/styles/cssUtils';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { LineChart } from '@mui/x-charts';
+import { axisClasses, LineChart } from '@mui/x-charts';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -90,16 +90,16 @@ export default function ResponsiveFontSizesChart() {
         colors={colors}
         margin={{ left: 70 }}
         sx={{
-          [`.MuiChartsAxis-left .MuiChartsAxis-label`]: {
+          [`& .${axisClasses.left} .${axisClasses.label}`]: {
             transform: 'translateX(-5px)',
           },
-          [`.MuiChartsAxis-bottom .MuiChartsAxis-label`]: {
+          [`& .${axisClasses.bottom} .${axisClasses.label}`]: {
             transform: 'translateY(5px)',
           },
-          [`.MuiChartsAxis-root text`]: {
+          [`& .${axisClasses.root} text`]: {
             fill: '#808080',
           },
-          [`.MuiChartsAxis-root line`]: {
+          [`& .${axisClasses.root} line`]: {
             stroke: '#808080',
           },
         }}
