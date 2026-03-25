@@ -167,11 +167,16 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 
 ### `@mui/material@9.0.0-alpha.3`
 
+#### Breaking Changes
+
+- [stepper][menulist][tabs] Improve accessibility (#47687) @silviuaavram
+
+#### Changes
+
 - [autocomplete] Add `root` slot (#47852) @GerardasB
 - [autocomplete] Fix popup reopening on window focus regain with openOnFocus (#47790) @aman44444
 - [autocomplete] Support full slots for clearIndicator and popupIndicator (#47891) @silviuaavram
 - [material-ui] Partially revert "[material-ui] Clean up duplicated CSS rules (#47838)" (#47927) @sai6855
-- [stepper][menulist][tabs] Improve accessibility (#47687) @silviuaavram
 
 ### Docs
 
@@ -229,15 +234,20 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ### @mui/material@9.0.0-alpha.1
 
+#### Breaking Changes
+
 - [Autocomplete] Prevents Autocomplete menu from opening on right click (#47797) @silviuaavram
 - [Backdrop] Remove aria-hidden by default (#47798) @silviuaavram
 - [ButtonBase] Ensure that onClick propagates when non-native button is clicked (#47800) @silviuaavram
 - [Dialog][Modal] Remove `disableEscapeKeyDown` prop (#47695) @silviuaavram
 - [Grid] Remove system props support (#47846) @siriwatknp
-- [TableCell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47762) @ZeeshanTamboli
 - [theme] Remove MuiTouchRipple from theme component types (#47849) @siriwatknp
-- [Tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47684) @ZeeshanTamboli
 - [useAutocomplete] Improve isOptionEqualToValue value argument type (#47801) @silviuaavram
+
+#### Changes
+
+- [TableCell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47762) @ZeeshanTamboli
+- [Tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47684) @ZeeshanTamboli
 
 ### Docs
 
