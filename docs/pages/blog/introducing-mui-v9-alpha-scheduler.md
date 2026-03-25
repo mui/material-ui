@@ -8,10 +8,21 @@ manualCard: false
 ---
 
 The **Scheduler** is a new advanced component in MUI X, focused on complex, time‑based workflows.
-In the **v9 alpha cycle**, we’re sharing an **alpha / not yet published** preview so you can see how it’s shaping up and start planning how it might fit into your product.
+Scheduler is available as **Alpha / not yet published**, so you can explore the product surface and plan how it might fit into your roadmap.
 
-This post covers the **product surface of the Scheduler**, the current **v9 alpha documentation prep work**, and a short set of **engineering notes** about how it fits into the broader MUI X architecture.
-For the complete v9 story across Material UI and MUI X, see the [v9 shared major version overview](/blog/mui-v9-major-version-cycle/).
+This post covers the **product surface of the Scheduler**, the **docs prep work** we’re doing for early adoption, and a short set of **engineering notes** about how it fits into the broader MUI X architecture.
+For the complete v9 story across Material UI and MUI X, see the [v9 shared major version overview](/blog/introducing-mui-v9/).
+
+## Table of contents
+
+- [Alpha status](#alpha-status-not-published-yet)
+- [Scheduling events](#scheduling-events)
+- [Recurring events](#recurring-events)
+- [Drag interactions](#drag-interactions)
+- [Timezone support](#timezone-support)
+- [Event Calendar views and Timeline](#event-calendar-views-and-timeline)
+- [Docs and onboarding items](#docs-and-onboarding-items)
+- [Engineering notes](#engineering-notes-alpha)
 
 ## Alpha status: not published yet
 
@@ -24,6 +35,8 @@ The Scheduler is currently in **Alpha**:
 If you’re familiar with how we’ve iterated on other advanced components (like Data Grid and Charts), the Scheduler will follow a similar trajectory: **alpha**, then **beta**, then **stable**, with migration guidance along the way.
 
 ## Product surface: events, recurrence, drag interactions, and timezones
+
+<!-- feature-media:img Scheduler event timeline -->
 
 The Scheduler is designed to help teams build **event‑centric applications** without starting from scratch.
 
@@ -105,9 +118,9 @@ Timeline views focus on **time along one axis and resources along another**, ide
 
 The goal is to make it possible to **move between Event Calendar and Timeline views** without changing your data model—only the visualization.
 
-## v9.0.0-alpha.0 release‑note items
+## Docs and onboarding items
 
-The Scheduler has a couple of v9.0.0‑alpha.0 release‑note items specifically for docs and onboarding:
+The Scheduler has docs and onboarding items that cover the initial alpha surface:
 
 - **“Prepare Scheduler doc for alpha”** – initial documentation structure and content, so early adopters can see the surface area and usage patterns.
 - **“Create quickstart page”** – a dedicated quickstart that shows how to:
@@ -146,12 +159,12 @@ The Scheduler is part of the broader **v9 push toward workflow‑centric compone
 
 To see how these pieces connect:
 
-- Start with the [v9 shared major version overview](/blog/mui-v9-major-version-cycle/).
+- Start with the [v9 shared major version overview](/blog/introducing-mui-v9/).
 - Explore related posts:
-  - [Material UI v9 (primitives and platform updates)](/blog/material-ui-v9/)
-  - [Data Grid v9 highlights](/blog/mui-x-v9-data-grid/)
-  - [Charts v9 highlights](/blog/mui-x-v9-charts/)
-  - [Chatbox foundations in v9 alpha](/blog/mui-x-v9-alpha-chatbox/)
+  - [Material UI v9 primitives](/blog/introducing-mui-v9-primitives/)
+  - [Data Grid v9 highlights](/blog/introducing-mui-v9-data-grid/)
+  - [Charts v9 highlights](/blog/introducing-mui-v9-charts/)
+  - [Chatbox foundations](/blog/introducing-mui-v9-alpha-chatbox/)
 
 And to follow Scheduler as it evolves toward beta and stable, keep an eye on the **Scheduler docs**:
 

@@ -38,6 +38,9 @@ async function main() {
       '[id^="demo-"] a[href^="#contained-buttons"]',
       '[id^="demo-"] a[href^="#outlined-buttons"]',
       '[id^="demo-"] a[href^="#foo"]',
+      // Header navigation fragment that the link checker can't reliably validate.
+      'a[href="#tours"]',
+      'a[href="/#tours"]',
     ],
     ignores: [
       {

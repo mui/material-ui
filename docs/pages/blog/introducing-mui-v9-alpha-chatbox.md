@@ -1,27 +1,36 @@
 ---
 title: Chatbox foundations in MUI X v9 – building AI‑ready conversations
-description: Introducing early Chatbox foundations in the MUI X v9 alpha cycle, powered by the new @mui/x-chat package family and a streaming-first, AI-ready architecture.
+description: Introducing Chatbox foundations in MUI X v9, powered by the `@mui/x-chat` package family and a streaming-first, AI-ready architecture.
 date: 2026-03-16T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
-As part of the **v9 alpha cycle**, we’re laying the groundwork for **AI‑native conversational experiences**.
+In v9, we’re laying the groundwork for **AI‑native conversational experiences**.
 The new **Chatbox foundations**, delivered through the `@mui/x-chat` package family, are **early‑stage (draft PR / foundations)** work—but they define the architecture we’ll build on for the long term.
 
 This post introduces:
 
 - The **three‑layer architecture** of `@mui/x-chat`.
-- The **Phase 0 foundations** we’re shipping in v9 alpha.
+- The **Phase 0 foundations** we’re shipping in v9.
 - How Chatbox is **AI‑ready by design**, including message parts and streaming.
 - A **phased roadmap** and how this fits into the broader v9, AI‑native direction.
 
-For the full picture of the v9 major version across Material UI and MUI X, see the [v9 shared major version overview](/blog/mui-v9-major-version-cycle/).
+For the full picture of the v9 major version across Material UI and MUI X, see the [v9 shared major version overview](/blog/introducing-mui-v9/).
+
+## Table of contents
+
+- [Early-stage status](#early-stage-status)
+- [The @mui/x-chat package family](#the-mui-x-chat-package-family-three-layers)
+- [Phase 0 foundations](#phase-0-foundations)
+- [AI-ready message parts and streaming-first design](#ai-ready-message-parts-and-streaming-first-design)
+- [Phased roadmap](#phased-roadmap-and-how-chatbox-fits-the-ai-native-direction)
+- [Where to go next](#where-to-go-next)
 
 ## Early‑stage status
 
-The Chatbox work in v9 alpha is deliberately **early‑stage**:
+The Chatbox work is deliberately **early‑stage**:
 
 - The core architecture is being implemented in a **draft PR**.
 - APIs and implementation details are expected to **evolve as we gather feedback**.
@@ -30,6 +39,8 @@ The Chatbox work in v9 alpha is deliberately **early‑stage**:
 If you’re exploring how to bring **AI chat, tools, and agents** into your product, this is the layer where we want to collaborate and iterate.
 
 ## The @mui/x-chat package family: three layers
+
+<!-- feature-media:img Chatbox layers -->
 
 To keep chat experiences both flexible and ergonomic, we’re shipping `@mui/x-chat` as a **three‑layer architecture**:
 
@@ -59,7 +70,7 @@ This layered approach mirrors patterns like **Base UI vs themed components** ac
 
 ## Phase 0 foundations
 
-The initial v9 alpha work focuses on **Phase 0 foundations**—the internal building blocks that will support more advanced features later.
+The v9 foundations focus on **Phase 0**—the internal building blocks that will support more advanced features later.
 
 ### Entity types and normalized store
 
@@ -171,7 +182,7 @@ This matters especially when Chatbox is used to orchestrate **long‑running ope
 The Chatbox foundations are just **Phase 0**.
 Looking ahead, we envision several phases:
 
-1. **Phase 0 – Foundations (v9 alpha)**
+1. **Phase 0 – Foundations (v9)**
    - Core entity types, normalized store, selectors, stream processor.
    - `useChatInstance` hook and basic integrations.
    - `@mui/x-chat-headless`, `@mui/x-chat-unstyled`, and initial `@mui/x-chat` building blocks.
@@ -193,16 +204,16 @@ Looking ahead, we envision several phases:
    - Templates that combine **Chatbox + advanced components + Material UI primitives** into full experiences.
    - Deeper integrations with **Console** and licensing where relevant.
 
-All of this supports the **AI‑native direction** described in the [v9 shared major version overview](/blog/mui-v9-major-version-cycle/): components that expose **clear intents and state**, with reusable UI building blocks for AI‑driven workflows.
+All of this supports the **AI‑native direction** described in the [v9 shared major version overview](/blog/introducing-mui-v9/): components that expose **clear intents and state**, with reusable UI building blocks for AI‑driven workflows.
 
 ## Where to go next
 
-- Read the [v9 shared major version overview](/blog/mui-v9-major-version-cycle/) for the big‑picture story across Material UI and MUI X.
-- Explore how Chatbox relates to other v9 alpha work:
-  - [Material UI v9 (primitives and platform updates)](/blog/material-ui-v9/)
-  - [Data Grid v9 highlights](/blog/mui-x-v9-data-grid/)
-  - [Charts v9 highlights](/blog/mui-x-v9-charts/)
-  - [Scheduler alpha overview](/blog/mui-x-v9-alpha-scheduler/)
+- Read the [v9 shared major version overview](/blog/introducing-mui-v9/) for the big‑picture story across Material UI and MUI X.
+- Explore how Chatbox relates to other v9 work:
+  - [Material UI v9 primitives](/blog/introducing-mui-v9-primitives/)
+  - [Data Grid v9 highlights](/blog/introducing-mui-v9-data-grid/)
+  - [Charts v9 highlights](/blog/introducing-mui-v9-charts/)
+  - [Scheduler alpha overview](/blog/introducing-mui-v9-alpha-scheduler/)
 - To follow along as Chatbox matures, keep an eye on the **Chatbox docs**:
   - [Chatbox overview](/x/react-chat/)
 

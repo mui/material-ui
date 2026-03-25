@@ -1,23 +1,34 @@
 ---
-title: v9 is the shared major version for Material UI and MUI X
-description: We’re unifying Material UI and MUI X under a single v9 major version and laying the groundwork for AI‑native workflows across the ecosystem.
+title: Introducing Material UI and MUI X v9
+description: Introducing Material UI + MUI X v9: unified major version, new primitives, advanced components, and AI-native workflows.
 date: 2026-03-16T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['Material UI', 'MUI X', 'Product']
 manualCard: true
 ---
 
-Material UI and MUI X are entering the **v9 major‑version cycle** together.
-Across the first v9 prereleases, we’re aligning the foundations, expanding the advanced components portfolio, and preparing the ecosystem for AI‑native workflows.
+Material UI and MUI X ship on the same **v9 major version** together.
+In the v9 cycle, we’re aligning the foundations, expanding the advanced components portfolio, and preparing the ecosystem for AI‑native workflows.
 
 This post is the **aggregator** for v9.
 It introduces the shared version story, our long‑term direction, and links to dedicated deep dives:
 
-- [Material UI v9 (primitives and platform updates)](/blog/material-ui-v9/)
-- [Data Grid v9 highlights](/blog/mui-x-v9-data-grid/)
-- [Charts v9 highlights](/blog/mui-x-v9-charts/)
-- [Scheduler (alpha)](/blog/mui-x-v9-alpha-scheduler/)
-- [Chatbox (alpha foundations)](/blog/mui-x-v9-alpha-chatbox/)
+- [Material UI v9 primitives](/blog/introducing-mui-v9-primitives/)
+- [Data Grid v9 highlights](/blog/introducing-mui-v9-data-grid/)
+- [Charts v9 highlights](/blog/introducing-mui-v9-charts/)
+- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [Chatbox (alpha foundations)](/blog/introducing-mui-v9-alpha-chatbox/)
+
+<!-- feature-media:img v9 ecosystem overview -->
+
+## Table of contents
+
+- [One version for the whole ecosystem](#one-version-for-the-whole-ecosystem-material-ui-mui-x-are-both-v9)
+- [v9 cycle highlights](#v9-cycle-highlights)
+- [What’s next: AI-native workflows](#whats-next-ai-native-workflows)
+- [New Console application for licenses and services](#new-console-application-for-licenses-and-services)
+- [New advanced components: Scheduler + Chatbox](#new-advanced-components-expanding-the-portfolio-scheduler-chatbox)
+- [Material as a comprehensive ecosystem](#material-as-a-comprehensive-ecosystem-and-design-updates-next)
 
 ## One version for the whole ecosystem: Material UI + MUI X are both v9
 
@@ -35,10 +46,10 @@ Having a **single shared version number** makes it easier to:
 
 Throughout the v9 cycle, you’ll see us increasingly talk about **“Material as a complete ecosystem”** rather than isolated packages.
 
-## v9 prerelease highlights so far
+## v9 cycle highlights
 
-Across the first four v9 prereleases (`v9.0.0-alpha.0`–`v9.0.0-alpha.3`), we’ve focused on **stability, accessibility, and new building blocks**.
-You’ll find full details in the deep dives, but here are a few highlights:
+We’ve focused on **stability, accessibility, and new building blocks** across the v9 cycle.
+You’ll find full details in the deep dives, but these highlights capture the direction:
 
 - **Material UI**: safer defaults for accessibility, smarter CSS variable handling (including `color-mix()`), and clean‑up work to prepare the library for v9.
 - **Data Grid**: multiple rounds of fixes and ergonomics improvements to filtering, lazy loading, dynamic data, selection, and header rendering.
@@ -48,11 +59,11 @@ You’ll find full details in the deep dives, but here are a few highlights:
 
 If you’re primarily interested in a specific area, jump straight into the dedicated posts:
 
-- [Material UI v9 (primitives and platform updates)](/blog/material-ui-v9/)
-- [Data Grid v9 highlights](/blog/mui-x-v9-data-grid/)
-- [Charts v9 highlights](/blog/mui-x-v9-charts/)
-- [Scheduler (alpha) overview](/blog/mui-x-v9-alpha-scheduler/)
-- [Chatbox (alpha foundations)](/blog/mui-x-v9-alpha-chatbox/)
+- [Material UI v9 (primitives and platform updates)](/blog/introducing-mui-v9-primitives/)
+- [Data Grid v9 highlights](/blog/introducing-mui-v9-data-grid/)
+- [Charts v9 highlights](/blog/introducing-mui-v9-charts/)
+- [Scheduler (alpha) overview](/blog/introducing-mui-v9-alpha-scheduler/)
+- [Chatbox (alpha foundations)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 ## What’s next: AI‑native workflows
 
@@ -82,7 +93,7 @@ Looking ahead, we’re orienting the ecosystem around **agentic, AI‑driven int
 - A **consistent mental model** for “what the AI is allowed to do” and “how users can see and override it”.
 - A **streaming‑first approach** for long‑running operations, so users get feedback as soon as the system has partial answers.
 
-The **Chatbox foundations** in `@mui/x-chat` (see the [Chatbox deep dive](/blog/mui-x-v9-alpha-chatbox/)) are designed explicitly for this AI‑native world, with message parts for tool calls, tool results, sources, and reasoning.
+The **Chatbox foundations** in `@mui/x-chat` (see the [Chatbox deep dive](/blog/introducing-mui-v9-alpha-chatbox/)) are designed explicitly for this AI‑native world, with message parts for tool calls, tool results, sources, and reasoning.
 
 ## New Console application for licenses and services
 
@@ -100,7 +111,7 @@ Over time, the Console will also become the home for **usage‑aware recommendat
 
 v9 is also where we **expand the MUI X portfolio** into new problem spaces.
 
-### Scheduler (alpha)
+### Scheduler (Alpha)
 
 The **Scheduler** component is our answer to complex, time‑based workflows:
 
@@ -109,9 +120,9 @@ The **Scheduler** component is our answer to complex, time‑based workflows:
 - **Drag interactions** for resizing, moving, and reassigning events.
 - Multiple **Event Calendar and Timeline views** so users can switch between “calendar” and “timeline” mental models.
 
-It’s currently in **alpha / not yet published as a stable product**, but you can already explore its surface in the [Scheduler alpha post](/blog/mui-x-v9-alpha-scheduler/).
+Scheduler is available as **Alpha / not yet published as a stable product**, but you can already explore its surface in the [Scheduler post](/blog/introducing-mui-v9-alpha-scheduler/).
 
-### Chatbox (alpha foundations)
+### Chatbox (foundations)
 
 The new **Chatbox foundations**, shipped as the `@mui/x-chat` family, aim to make **AI‑ready chat UIs** a first‑class part of the ecosystem:
 
@@ -119,7 +130,7 @@ The new **Chatbox foundations**, shipped as the `@mui/x-chat` family, aim to mak
 - A **normalized store and adapter contract** so you can plug in your own backends, message formats, and AI providers.
 - A **streaming‑first design** with explicit message parts for tool calls, results, sources, and reasoning.
 
-Learn more in the [Chatbox deep dive](/blog/mui-x-v9-alpha-chatbox/).
+Learn more in the [Chatbox deep dive](/blog/introducing-mui-v9-alpha-chatbox/).
 
 ## Material as a comprehensive ecosystem, and design updates next
 
@@ -139,9 +150,9 @@ As we continue the v9 cycle, you can expect more updates on **design evolution**
 
 For details by area, continue with the deep dives:
 
-- [Material UI v9 (primitives and platform updates)](/blog/material-ui-v9/)
-- [Data Grid v9 highlights](/blog/mui-x-v9-data-grid/)
-- [Charts v9 highlights](/blog/mui-x-v9-charts/)
-- [Scheduler (alpha) overview](/blog/mui-x-v9-alpha-scheduler/)
-- [Chatbox (alpha foundations)](/blog/mui-x-v9-alpha-chatbox/)
+- [Material UI v9 (primitives and platform updates)](/blog/introducing-mui-v9-primitives/)
+- [Data Grid v9 highlights](/blog/introducing-mui-v9-data-grid/)
+- [Charts v9 highlights](/blog/introducing-mui-v9-charts/)
+- [Scheduler (alpha) overview](/blog/introducing-mui-v9-alpha-scheduler/)
+- [Chatbox (alpha foundations)](/blog/introducing-mui-v9-alpha-chatbox/)
 
