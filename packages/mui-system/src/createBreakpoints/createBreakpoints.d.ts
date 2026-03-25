@@ -70,7 +70,7 @@ export interface Breakpoints {
    * Media query keys
    * @ignore - Do not document.
    */
-  internal_mediaKeys: { [key: string]: number };
+  internal_mediaKeys: string[];
 }
 
 export interface BreakpointsOptions extends Partial<Breakpoints> {

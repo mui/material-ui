@@ -312,6 +312,23 @@ describe('styleFunctionSx', () => {
         '@container (min-width:1280px)': { margin: '20px' },
       });
     });
+
+    it('resolves container query shorthands for non-system CSS properties', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          opacity: {
+            '@xs': 0.1,
+            '@sm': 0.2,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { opacity: 0.1 },
+        '@container (min-width:600px)': { opacity: 0.2 },
+      });
+    });
   });
 
   describe('theme callback', () => {

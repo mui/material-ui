@@ -235,6 +235,12 @@ export function hasBreakpoint(breakpoints, value) {
         return true;
       }
     }
+    const valueKeys = Object.keys(value);
+    for (let i = 0; i < valueKeys.length; i += 1) {
+      if (isCqShorthand(breakpoints.keys, valueKeys[i])) {
+        return true;
+      }
+    }
   }
   return false;
 }
