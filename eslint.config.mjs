@@ -48,7 +48,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       '@pigment-css/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      '!@mui/internal-core-docs/**', // @mui/internal-core-docs should be @mui/internal-docs
+      '!@mui/internal-core-docs/**',
     ],
     message: OneLevelImportMessage,
   },

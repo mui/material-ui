@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
+import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';

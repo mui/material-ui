@@ -13,7 +13,7 @@
     "moduleResolution": "nodenext",
     "strict": true,
     "paths": {
-      "@mui/internal-docs-utils": ["../../packages-internal/docs-utils/src"]
+      "@mui/internal-docs-utils": ["../docs-utils/src/index.ts"]
     }
   },
   "include": ["./**/*.ts", "./**/*.js"],
