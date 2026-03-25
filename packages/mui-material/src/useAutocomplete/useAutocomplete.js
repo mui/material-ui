@@ -491,10 +491,8 @@ function useAutocomplete(props) {
     }
   });
 
-  // Always-current refs used by the potentially-stale syncHighlightedIndex callback
-  // to correctly detect whether filtered options actually changed since the last render.
-  // previousFilteredOptionsRef is the single source of truth for the previous render's
-  // filtered options, replacing previousProps.filteredOptions.
+  // Saving the current filtered options in a ref to
+  // make sure that we always have access to the latest filtered options
   const currentFilteredOptionsRef = React.useRef(filteredOptions);
   currentFilteredOptionsRef.current = filteredOptions;
   const previousFilteredOptionsRef = React.useRef(filteredOptions);
@@ -677,8 +675,7 @@ function useAutocomplete(props) {
 
   // Keep previousFilteredOptionsRef in sync after every render.
   // This effect is intentionally placed AFTER the sync effect so that during the
-  // next render's sync phase, previousFilteredOptionsRef.current still holds the
-  // previous render's filtered options (matching the usePreviousProps pattern).
+  // next render's sync phase
   React.useEffect(() => {
     previousFilteredOptionsRef.current = filteredOptions;
   });
