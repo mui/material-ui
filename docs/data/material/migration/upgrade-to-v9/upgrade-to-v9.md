@@ -21,7 +21,7 @@ The default bundle targets have changed in v9.
 <!-- #stable-snapshot -->
 
 - Chrome 117 (up from 109)
-- Edge 117 (up from 121)
+- Edge 121
 - Firefox 121 (up from 115)
 - Safari 17.0 in both macOS and iOS (up from 15.4)
 - and more (see [.browserslistrc `stable` entry](https://github.com/mui/material-ui/blob/master/.browserslistrc#L9))
