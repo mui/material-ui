@@ -105,8 +105,8 @@ describe('<Typography />', () => {
     });
   });
 
-  it('combines system properties with the sx prop', () => {
-    const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
+  it('applies system properties via the sx prop', () => {
+    const { container } = render(<Typography sx={{ mt: 2, marginRight: 5, mb: 2 }} />);
 
     // @ts-ignore issue with typings on `toHaveComputedStyle`
     expect(container.firstChild).toHaveComputedStyle({

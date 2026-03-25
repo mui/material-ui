@@ -94,7 +94,7 @@ function AppBarTest() {
         <IconButton color="inherit" aria-label="menu">
           <FakeIcon />
         </IconButton>
-        <Typography variant="h6" color="inherit">
+        <Typography variant="h6" sx={{ color: 'inherit' }}>
           Title
         </Typography>
         <Button color="inherit">Login</Button>

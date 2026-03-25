@@ -35,7 +35,7 @@ describe('<Box />', () => {
 
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <Box color="primary.main" />
+        <Box sx={{ color: 'primary.main' }} />
       </ThemeProvider>,
     );
 

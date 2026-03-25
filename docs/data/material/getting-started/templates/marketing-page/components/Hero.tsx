@@ -134,8 +134,7 @@ export default function Hero() {
           </Stack>
           <Typography
             variant="caption"
-            color="text.secondary"
-            sx={{ textAlign: 'center' }}
+            sx={{ color: 'text.secondary', textAlign: 'center' }}
           >
             By clicking &quot;Start now&quot; you agree to our&nbsp;
             <Link href="#" color="primary">
