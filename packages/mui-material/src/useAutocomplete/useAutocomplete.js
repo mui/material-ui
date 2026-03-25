@@ -557,9 +557,6 @@ function useAutocomplete(props) {
 
     // The popup is empty, reset
     if (currentFilteredOptions.length === 0 || valueItem == null) {
-      // If the filtered options haven't actually changed since the previous render
-      // (detected via always-current refs, safe even in a stale closure) and the
-      // current highlight is still within bounds, preserve it instead of resetting.
       if (
         currentFilteredOptions.length > 0 &&
         highlightedIndexRef.current >= 0 &&
@@ -570,6 +567,8 @@ function useAutocomplete(props) {
           parser: getOptionLabel,
         })
       ) {
+        // If the filtered options haven't actually changed since the previous render
+        // we can keep the currently highlighted index
         setHighlightedIndex({ index: highlightedIndexRef.current });
         return;
       }
