@@ -1,5 +1,62 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0-beta.0
+
+<!-- generated comparing v9.0.0-alpha.4..master -->
+
+_Mar 25, 2026_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@9.0.0-beta.0`
+
+#### Breaking Changes
+
+- [linear-progress] Remove deprecated CSS classes (#48068) @mj12albert
+- [list-item, list-item-text] Remove deprecated props (#48042) @siriwatknp
+- [button-group] Remove deprecated classes (#48043) @siriwatknp
+- [card] Remove deprecated CardHeader props (#47995) @silviuaavram
+- [checkbox][radio][switch] Remove deprecated inputProps and inputRef (#48059) @siriwatknp
+- [chip] Remove deprecated classes (#48046) @silviuaavram
+- [dialog][modal][drawer][swipeabledrawer] Remove deprecated props and classes (#48039) @silviuaavram
+- [divider] Remove deprecated CSS classes (#48075) @siriwatknp
+- [drawer] Remove deprecated CSS classes (#48077) @siriwatknp
+- [image-list-item-bar] Remove deprecated CSS classes (#48064) @siriwatknp
+- [inputs] Remove deprecated props & classes (#48071) @mj12albert
+- [material-ui] Remove unnecessary overridesResolvers from styled components (#48082) @ZeeshanTamboli
+- [material-ui][system] Remove deprecated system props from Box, Stack, Typography (#48072) @siriwatknp
+- [pagination-item] Remove deprecated CSS classes (#48076) @siriwatknp
+- [pagination-item] Remove deprecated props (#48038) @siriwatknp
+- [rating] Remove deprecated IconContainerComponent (#48019) @siriwatknp
+- [select] Remove deprecated CSS classes (#48065) @mj12albert
+- [slider] Remove deprecated CSS classes (#48074) @siriwatknp
+- [step-connector][step-content][step-label] Remove deprecated props and classes (#48058) @siriwatknp
+- [tabs][tab] Remove deprecated CSS classes (#48078) @siriwatknp
+- [table-pagination][table-sort-label] Remove deprecated props and classes (#48060) @siriwatknp
+- [toggle-button-group] Remove deprecated classes (#48061) @siriwatknp
+
+#### Changes
+
+- [system] Improve performance when using sx prop (#44254) @romgrk
+
+### `@mui/codemod@9.0.0-beta.0`
+
+- [codemod] Add missing codemod links in upgrade guide (#48069) @silviuaavram
+
+### Docs
+
+- Mention all breaking changes in changelog (#48091) @silviuaavram
+- Fix link to upgrade-to-v9 docs in release CHANGELOG (#48081) @ZeeshanTamboli
+
+### Core
+
+- Update browserslistrc (#48085) @silviuaavram
+- [code-infra] Prevent major version updates of bundler/framework packages in bundling fixtures (#48062) @Copilot
+- [code-infra][icons-material] Avoid material utils barrel in createSvgIcon (#48029) @anchmelev
+- [docs-infra] Migrate more leaf components to mui-docs (#48018) @brijeshb42
+
+All contributors of this release in alphabetical order: @anchmelev, @brijeshb42, @Copilot, @mj12albert, @romgrk, @silviuaavram, @siriwatknp, @ZeeshanTamboli
+
 ## 9.0.0-alpha.4
 
 <!-- generated comparing v9.0.0-alpha.3..master -->
@@ -167,11 +224,16 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 
 ### `@mui/material@9.0.0-alpha.3`
 
+#### Breaking Changes
+
+- [stepper][menulist][tabs] Improve accessibility (#47687) @silviuaavram
+
+#### Changes
+
 - [autocomplete] Add `root` slot (#47852) @GerardasB
 - [autocomplete] Fix popup reopening on window focus regain with openOnFocus (#47790) @aman44444
 - [autocomplete] Support full slots for clearIndicator and popupIndicator (#47891) @silviuaavram
 - [material-ui] Partially revert "[material-ui] Clean up duplicated CSS rules (#47838)" (#47927) @sai6855
-- [stepper][menulist][tabs] Improve accessibility (#47687) @silviuaavram
 
 ### Docs
 
@@ -229,15 +291,20 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ### @mui/material@9.0.0-alpha.1
 
+#### Breaking Changes
+
 - [Autocomplete] Prevents Autocomplete menu from opening on right click (#47797) @silviuaavram
 - [Backdrop] Remove aria-hidden by default (#47798) @silviuaavram
 - [ButtonBase] Ensure that onClick propagates when non-native button is clicked (#47800) @silviuaavram
 - [Dialog][Modal] Remove `disableEscapeKeyDown` prop (#47695) @silviuaavram
 - [Grid] Remove system props support (#47846) @siriwatknp
-- [TableCell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47762) @ZeeshanTamboli
 - [theme] Remove MuiTouchRipple from theme component types (#47849) @siriwatknp
-- [Tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47684) @ZeeshanTamboli
 - [useAutocomplete] Improve isOptionEqualToValue value argument type (#47801) @silviuaavram
+
+#### Changes
+
+- [TableCell][theme] Apply `alpha` before color mixing to border bottom color when nativeColor + cssVariables is used (#47762) @ZeeshanTamboli
+- [Tooltip] Fix error is thrown when wrapping an input which is disabled while focused (#47684) @ZeeshanTamboli
 
 ### Docs
 

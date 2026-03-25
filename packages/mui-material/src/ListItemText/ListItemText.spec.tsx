@@ -29,7 +29,7 @@ function typographyPropsTest() {
     slotProps={{
       primary: {
         color: 'primary',
-        display: 'block',
+        sx: { display: 'block' },
         gutterBottom: true,
         noWrap: true,
         variantMapping: { h1: 'h1' },
@@ -62,7 +62,7 @@ function secondaryTypographyPropsTest() {
     slotProps={{
       secondary: {
         color: 'primary',
-        display: 'block',
+        sx: { display: 'block' },
         gutterBottom: true,
         noWrap: true,
         variantMapping: { h1: 'h1' },

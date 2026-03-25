@@ -33,9 +33,11 @@ describe('<Box />', () => {
     const elementRef = React.createRef();
     render(
       <Box
-        color="primary.main"
-        fontFamily="Comic Sans"
-        fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+        sx={{
+          color: 'primary.main',
+          fontFamily: 'Comic Sans',
+          fontSize: { xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' },
+        }}
         ref={elementRef}
       />,
     );
@@ -59,7 +61,7 @@ describe('<Box />', () => {
 
   it.skipIf(isJsdom())('respect properties order when generating the CSS', function test() {
     const { container: testCaseBorderColorWins } = render(
-      <Box border={1} borderColor="rgb(0, 0, 255)" />,
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
     );
 
     expect(testCaseBorderColorWins.firstChild).toHaveComputedStyle({
@@ -78,7 +80,7 @@ describe('<Box />', () => {
     });
 
     const { container: testCaseBorderWins } = render(
-      <Box borderColor={'rgb(0, 0, 255)'} border={1} />,
+      <Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />,
     );
 
     expect(testCaseBorderWins.firstChild).toHaveComputedStyle({
@@ -102,14 +104,16 @@ describe('<Box />', () => {
     function test() {
       const { container: testCaseBorderPositionColorWins } = render(
         <Box
-          borderTop={1}
-          borderTopColor="rgb(0, 0, 25)"
-          borderRight={2}
-          borderRightColor="rgb(0, 0, 50)"
-          borderBottom={3}
-          borderBottomColor="rgb(0, 0, 75)"
-          borderLeft={4}
-          borderLeftColor="rgb(0, 0, 100)"
+          sx={{
+            borderTop: 1,
+            borderTopColor: 'rgb(0, 0, 25)',
+            borderRight: 2,
+            borderRightColor: 'rgb(0, 0, 50)',
+            borderBottom: 3,
+            borderBottomColor: 'rgb(0, 0, 75)',
+            borderLeft: 4,
+            borderLeftColor: 'rgb(0, 0, 100)',
+          }}
         />,
       );
 
@@ -130,14 +134,16 @@ describe('<Box />', () => {
 
       const { container: testCaseBorderPositionWins } = render(
         <Box
-          borderTopColor="rgb(0, 0, 25)"
-          borderTop={1}
-          borderRightColor="rgb(0, 0, 50)"
-          borderRight={2}
-          borderBottomColor="rgb(0, 0, 75)"
-          borderBottom={3}
-          borderLeftColor="rgb(0, 0, 100)"
-          borderLeft={4}
+          sx={{
+            borderTopColor: 'rgb(0, 0, 25)',
+            borderTop: 1,
+            borderRightColor: 'rgb(0, 0, 50)',
+            borderRight: 2,
+            borderBottomColor: 'rgb(0, 0, 75)',
+            borderBottom: 3,
+            borderLeftColor: 'rgb(0, 0, 100)',
+            borderLeft: 4,
+          }}
         />,
       );
 
@@ -261,16 +267,6 @@ describe('<Box />', () => {
     },
   );
 
-  it('combines system properties with the sx prop', () => {
-    const { container } = render(<Box mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
-
-    expect(container.firstChild).toHaveComputedStyle({
-      marginTop: '16px',
-      marginRight: '40px',
-      marginBottom: '16px',
-    });
-  });
-
   it('adds the utility mui class', () => {
     render(<Box data-testid="regular-box" />);
 
@@ -290,7 +286,7 @@ describe('<Box />', () => {
 
       const { container } = render(
         <ThemeProvider theme={theme}>
-          <Box maxWidth="xs" />,
+          <Box sx={{ maxWidth: 'xs' }} />,
         </ThemeProvider>,
       );
 

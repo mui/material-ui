@@ -130,14 +130,14 @@ export function CookieConsentDialog() {
                   <Typography
                     variant="subtitle2"
                     id="cookie-consent-dialog-title"
-                    textAlign={{ xs: 'center', sm: 'start' }}
+                    sx={{ textAlign: { xs: 'center', sm: 'start' } }}
                   >
                     Cookie Preferences
                   </Typography>
                   <Typography
                     id="cookie-consent-dialog-description"
                     variant="body2"
-                    textAlign={{ xs: 'center', sm: 'start' }}
+                    sx={{ textAlign: { xs: 'center', sm: 'start' } }}
                   >
                     We use cookies to understand site usage and improve our content. This includes
                     third-party analytics.

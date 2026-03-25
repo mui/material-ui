@@ -22,14 +22,14 @@ import { FormHelperTextProps } from '@mui/material/FormHelperText';
     <TextField
       variant="standard"
       slotProps={{
-        input: { classes: { inputAdornedStart: 'search-input', inputAdornedEnd: 'search-input' } },
+        input: { classes: { adornedStart: 'search-input', adornedEnd: 'search-input' } },
       }}
     />
   );
   const DefaultInputAdorned = (
     <TextField
       slotProps={{
-        input: { classes: { inputAdornedStart: 'search-input', inputAdornedEnd: 'search-input' } },
+        input: { classes: { adornedStart: 'search-input', adornedEnd: 'search-input' } },
       }}
     />
   );
@@ -62,7 +62,7 @@ import { FormHelperTextProps } from '@mui/material/FormHelperText';
   const filled = (
     <TextField
       variant="filled"
-      slotProps={{ input: { classes: { inputAdornedStart: 'adorned-start' } } }}
+      slotProps={{ input: { classes: { adornedStart: 'adorned-start' } } }}
       onChange={(event) => {
         // type inference for event still works?
         const value = event.target.value;

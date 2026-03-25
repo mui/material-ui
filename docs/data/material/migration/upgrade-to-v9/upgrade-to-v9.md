@@ -14,6 +14,18 @@ In the `package.json` file, change the package version from `latest` to `next`.
 Using `next` ensures your project always uses the latest v9 pre-releases.
 Alternatively, you can also target and fix it to a specific version, for example, `9.0.0-alpha.0`.
 
+## Supported browsers and versions
+
+The default bundle targets have changed in v9.
+
+<!-- #stable-snapshot -->
+
+- Chrome 117 (up from 109)
+- Edge 121
+- Firefox 121 (up from 115)
+- Safari 17.0 in both macOS and iOS (up from 15.4)
+- and more (see [.browserslistrc `stable` entry](https://github.com/mui/material-ui/blob/master/.browserslistrc#L9))
+
 ## Breaking changes
 
 Since v9 is a new major release, it contains some changes that affect the public API.
@@ -125,25 +137,6 @@ type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true
 type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
   ? Value | string
   : Value;
-```
-
-### Grid
-
-The Grid component no longer supports [system props](/material-ui/customization/how-to-customize/#the-sx-prop).
-Use the `sx` prop instead:
-
-```diff
--<Grid mt={2} mr={1} />
-+<Grid sx={{ mt: 2, mr: 1 }} />
-```
-
-This also fixes an issue where props like `color` were consumed by the Grid instead of being forwarded to the component rendered via the `component` prop:
-
-```jsx
-// `color` is now correctly forwarded to Button
-<Grid component={Button} color="secondary" variant="contained">
-  hello
-</Grid>
 ```
 
 ### GridLegacy
@@ -1112,6 +1105,115 @@ The following deprecated prop has been removed:
  />
 ```
 
+#### FilledInput deprecated props removed
+
+Use the [filled-input-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#filled-input-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/filled-input-props <path>
+```
+
+The following deprecated `FilledInput` props have been removed:
+
+- `components` → use `slots` instead
+- `componentsProps` → use `slotProps` instead
+
+```diff
+ <FilledInput
+-  components={{ Root: CustomRoot, Input: CustomInput }}
+-  componentsProps={{ root: { id: 'root' }, input: { id: 'input' } }}
++  slots={{ root: CustomRoot, input: CustomInput }}
++  slotProps={{ root: { id: 'root' }, input: { id: 'input' } }}
+ />
+```
+
+#### Input deprecated props removed
+
+Use the [input-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/input-props <path>
+```
+
+The following deprecated `Input` props have been removed:
+
+- `components` → use `slots` instead
+- `componentsProps` → use `slotProps` instead
+
+```diff
+ <Input
+-  components={{ Root: CustomRoot, Input: CustomInput }}
+-  componentsProps={{ root: { id: 'root' }, input: { id: 'input' } }}
++  slots={{ root: CustomRoot, input: CustomInput }}
++  slotProps={{ root: { id: 'root' }, input: { id: 'input' } }}
+ />
+```
+
+#### InputBase deprecated CSS classes removed
+
+Use the [input-base-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-classes <path>
+```
+
+The following deprecated `InputBase` CSS classes have been removed:
+
+- `inputSizeSmall` → use `.MuiInputBase-sizeSmall > .MuiInputBase-input`
+- `inputMultiline` → use `.MuiInputBase-multiline > .MuiInputBase-input`
+- `inputAdornedStart` → use `.MuiInputBase-adornedStart > .MuiInputBase-input`
+- `inputAdornedEnd` → use `.MuiInputBase-adornedEnd > .MuiInputBase-input`
+- `inputHiddenLabel` → use `.MuiInputBase-hiddenLabel > .MuiInputBase-input`
+
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `root` slot with combined class selectors instead:
+
+```diff
+ import { inputBaseClasses } from '@mui/material/InputBase';
+
+ const theme = createTheme({
+   components: {
+     MuiInputBase: {
+       styleOverrides: {
+-        inputSizeSmall: { padding: 1 },
+-        inputMultiline: { resize: 'none' },
+-        inputAdornedStart: { paddingLeft: 0 },
+-        inputAdornedEnd: { paddingRight: 0 },
+-        inputHiddenLabel: { paddingTop: 8 },
++        root: {
++          [`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`]: { padding: 1 },
++          [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: { resize: 'none' },
++          [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: { paddingLeft: 0 },
++          [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: { paddingRight: 0 },
++          [`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`]: { paddingTop: 8 },
++        },
+       },
+     },
+   },
+ });
+```
+
+#### InputBase deprecated props removed
+
+Use the [input-base-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-props <path>
+```
+
+The following deprecated `InputBase` props have been removed:
+
+- `components` → use `slots` instead
+- `componentsProps` → use `slotProps` instead
+
+```diff
+ <InputBase
+-  components={{ Root: CustomRoot, Input: CustomInput }}
+-  componentsProps={{ root: { id: 'root' }, input: { id: 'input' } }}
++  slots={{ root: CustomRoot, input: CustomInput }}
++  slotProps={{ root: { id: 'root' }, input: { id: 'input' } }}
+ />
+```
+
 #### LinearProgress deprecated CSS classes removed
 
 Use the [linear-progress-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#linear-progress-classes) below to migrate the code as described in the following section:
@@ -1233,6 +1335,28 @@ The following deprecated props have been removed:
 +    primary: { variant: 'h6' },
 +    secondary: { color: 'textSecondary' },
 +  }}
+ />
+```
+
+#### OutlinedInput deprecated props removed
+
+Use the [outlined-input-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#outlined-input-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/outlined-input-props <path>
+```
+
+The following deprecated `OutlinedInput` props have been removed:
+
+- `components` → use `slots` instead
+- `componentsProps` → use `slotProps` instead
+
+```diff
+ <OutlinedInput
+-  components={{ Root: CustomRoot, Input: CustomInput }}
+-  componentsProps={{ root: { id: 'root' }, input: { id: 'input' } }}
++  slots={{ root: CustomRoot, input: CustomInput }}
++  slotProps={{ root: { id: 'root' }, input: { id: 'input' } }}
  />
 ```
 
@@ -2087,4 +2211,58 @@ The following deprecated props have been removed from the `Typography` component
 ```diff
 -<Typography paragraph />
 +<Typography sx={{ marginBottom: '16px' }} />
+```
+
+#### System props removed
+
+Use the [system-props codemod](/material-ui/migration/migrating-from-deprecated-apis/#system-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest v9.0.0/system-props <path/to/folder>
+```
+
+The deprecated system props have been removed from the following components:
+
+- `Box`
+- `DialogContentText`
+- `Grid`
+- `Link`
+- `Stack`
+- `Typography`
+- `TimelineContent`
+- `TimelineOppositeContent`
+
+```diff
+-<Box mt={2} color="primary.main" />
++<Box sx={{ mt: 2, color: 'primary.main' }} />
+
+-<DialogContentText mt={2} color="text.secondary" />
++<DialogContentText sx={{ mt: 2, color: 'text.secondary' }} />
+
+-<Grid mt={2} mr={1} />
++<Grid sx={{ mt: 2, mr: 1 }} />
+
+-<Link mt={2} color="text.secondary" />
++<Link sx={{ mt: 2, color: 'text.secondary' }} />
+
+-<Stack mt={2} alignItems="center" />
++<Stack sx={{ mt: 2, alignItems: 'center' }} />
+
+-<Typography mt={2} fontWeight="bold" />
++<Typography sx={{ mt: 2, fontWeight: 'bold' }} />
+
+-<TimelineContent mt={2} color="text.secondary" />
++<TimelineContent sx={{ mt: 2, color: 'text.secondary' }} />
+
+-<TimelineOppositeContent mt={2} color="text.secondary" />
++<TimelineOppositeContent sx={{ mt: 2, color: 'text.secondary' }} />
+```
+
+This also fixes an issue where props like `color` were consumed by the component instead of being forwarded to the element rendered via the `component` prop:
+
+```jsx
+// `color` is now correctly forwarded to Button
+<Grid component={Button} color="secondary" variant="contained">
+  hello
+</Grid>
 ```

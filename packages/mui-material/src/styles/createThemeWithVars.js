@@ -984,6 +984,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       theme: this,
     });
   };
+  theme.internal_cache = {};
   theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
 
   return theme;

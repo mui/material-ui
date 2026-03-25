@@ -52,7 +52,13 @@ function ColorDemo(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography component="div" variant="h6" color="inherit">
+            <Typography
+              component="div"
+              variant="h6"
+              sx={{
+                color: 'inherit',
+              }}
+            >
               Color
             </Typography>
           </Toolbar>

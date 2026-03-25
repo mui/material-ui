@@ -69,9 +69,7 @@ export default function CustomizedList() {
                 primary="Firebash"
                 slotProps={{
                   primary: {
-                    fontSize: 20,
-                    fontWeight: 'medium',
-                    letterSpacing: 0,
+                    sx: { fontSize: 20, fontWeight: 'medium', letterSpacing: 0 },
                   },
                 }}
               />
@@ -87,7 +85,7 @@ export default function CustomizedList() {
                   slotProps={{
                     primary: {
                       color: 'primary',
-                      fontWeight: 'medium',
+                      sx: { fontWeight: 'medium' },
                       variant: 'body2',
                     },
                   }}
@@ -184,16 +182,20 @@ export default function CustomizedList() {
                   secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
                   slotProps={{
                     primary: {
-                      fontSize: 15,
-                      fontWeight: 'medium',
-                      lineHeight: '20px',
-                      mb: '2px',
+                      sx: {
+                        fontSize: 15,
+                        fontWeight: 'medium',
+                        lineHeight: '20px',
+                        mb: '2px',
+                      },
                     },
                     secondary: {
                       noWrap: true,
-                      fontSize: 12,
-                      lineHeight: '16px',
-                      color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
+                      sx: {
+                        fontSize: 12,
+                        lineHeight: '16px',
+                        color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
+                      },
                     },
                   }}
                   sx={{ my: 0 }}
@@ -226,7 +228,9 @@ export default function CustomizedList() {
                     </ListItemIcon>
                     <ListItemText
                       primary={item.label}
-                      slotProps={{ primary: { fontSize: 14, fontWeight: 'medium' } }}
+                      slotProps={{
+                        primary: { sx: { fontSize: 14, fontWeight: 'medium' } },
+                      }}
                     />
                   </ListItemButton>
                 ))}
