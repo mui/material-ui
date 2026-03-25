@@ -96,8 +96,8 @@ importers:
         specifier: 1.0.9-canary.75
         version: 1.0.9-canary.75(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.12)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@757540c
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@757540c(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.8)(prettier@3.8.1)(stylelint@17.6.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
+        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8d7f40e
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8d7f40e(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.8)(prettier@3.8.1)(stylelint@17.6.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -3421,8 +3421,8 @@ packages:
   '@mui/core-downloads-tracker@5.18.0':
     resolution: {integrity: sha512-jbhwoQ1AY200PSSOrNXmrFCaSDSJWP7qk6urkTmIirvRXDROkqe+QwcLlUiw/PrREwsIF/vm3/dAXvjlMHF0RA==}
 
-  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@757540c18cfdcb553c2a7dfa7934f8e40bf06c21':
-    resolution: {integrity: sha512-qFIhmWOMSOTcDrZc+pxTaP+Dq7ggmDOjCEIHE+wiVKyFXLqraS1dto4PxKFH+i8uzTCJncA4wbit3bYjdrwJhw==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@757540c18cfdcb553c2a7dfa7934f8e40bf06c21}
+  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@8d7f40e53ecf43ad4c65ca9db9e98626368892f0':
+    resolution: {integrity: sha512-qFIhmWOMSOTcDrZc+pxTaP+Dq7ggmDOjCEIHE+wiVKyFXLqraS1dto4PxKFH+i8uzTCJncA4wbit3bYjdrwJhw==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@8d7f40e53ecf43ad4c65ca9db9e98626368892f0}
     version: 1.0.2
     peerDependencies:
       '@babel/core': 7.29.0
@@ -3434,15 +3434,15 @@ packages:
     peerDependencies:
       '@babel/core': 7.29.0
 
-  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@757540c18cfdcb553c2a7dfa7934f8e40bf06c21':
-    resolution: {integrity: sha512-GHyE7v6a0Vrc1hbzYLb23N7n3ArjP304NxHbHxYiuJciMhKJds/fmesclKjMwvRRfBM8Wv/ci25OVhAz8r7JLQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@757540c18cfdcb553c2a7dfa7934f8e40bf06c21}
+  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@8d7f40e53ecf43ad4c65ca9db9e98626368892f0':
+    resolution: {integrity: sha512-GHyE7v6a0Vrc1hbzYLb23N7n3ArjP304NxHbHxYiuJciMhKJds/fmesclKjMwvRRfBM8Wv/ci25OVhAz8r7JLQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@8d7f40e53ecf43ad4c65ca9db9e98626368892f0}
     version: 2.0.6
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@babel/core': 7.29.0
 
-  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@757540c18cfdcb553c2a7dfa7934f8e40bf06c21':
-    resolution: {integrity: sha512-cnLU8XunE3WKuongT+UehNJGXrs+vLPyJGjbn9K1dhRBvwayy0jDxu+lyEzjFc92/VRxAweeyIdwozpY6pUiVQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@757540c18cfdcb553c2a7dfa7934f8e40bf06c21}
+  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@8d7f40e53ecf43ad4c65ca9db9e98626368892f0':
+    resolution: {integrity: sha512-cnLU8XunE3WKuongT+UehNJGXrs+vLPyJGjbn9K1dhRBvwayy0jDxu+lyEzjFc92/VRxAweeyIdwozpY6pUiVQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@8d7f40e53ecf43ad4c65ca9db9e98626368892f0}
     version: 2.0.5
     peerDependencies:
       '@babel/core': 7.29.0
@@ -3451,8 +3451,8 @@ packages:
     resolution: {integrity: sha512-UC9d7+pq/5hOWbwMq1E6Znw7vI/Ji+JCk5a+9Sbdj6oXIs77hgyjfMkyyJmSsD1fvWeuRlVXr4T/D89qM02jHQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@757540c':
-    resolution: {integrity: sha512-vTvo1MIXIm8ddSOG/M9RGHFVrMLmGT6yMvK8xPtH72If2Vf8hl+wsDkJHcHovW4Y395kABMswPse29s2H/HaTA==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@757540c}
+  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8d7f40e':
+    resolution: {integrity: sha512-EfR/CA9CUB7MHo/Cw0N0DngZLzWe2vr5MavRArZ28TjC05t0KAD3hNP5MzZu2ijkk1jsm9hMtJPd8NcTeNrNPQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8d7f40e}
     version: 0.0.3
     hasBin: true
     peerDependencies:
@@ -13511,7 +13511,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.18.0': {}
 
-  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@757540c18cfdcb553c2a7dfa7934f8e40bf06c21(@babel/core@7.29.0)(@babel/preset-react@7.28.5(@babel/core@7.29.0))':
+  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@8d7f40e53ecf43ad4c65ca9db9e98626368892f0(@babel/core@7.29.0)(@babel/preset-react@7.28.5(@babel/core@7.29.0))':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/helper-module-imports': 7.28.6
@@ -13528,7 +13528,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@757540c18cfdcb553c2a7dfa7934f8e40bf06c21(@babel/core@7.29.0)':
+  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@8d7f40e53ecf43ad4c65ca9db9e98626368892f0(@babel/core@7.29.0)':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/helper-module-imports': 7.28.6
@@ -13536,7 +13536,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@757540c18cfdcb553c2a7dfa7934f8e40bf06c21(@babel/core@7.29.0)':
+  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@8d7f40e53ecf43ad4c65ca9db9e98626368892f0(@babel/core@7.29.0)':
     dependencies:
       '@babel/core': 7.29.0
       resolve: 1.22.11
@@ -13570,7 +13570,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@757540c(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.8)(prettier@3.8.1)(stylelint@17.6.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
+  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8d7f40e(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.8)(prettier@3.8.1)(stylelint@17.6.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
     dependencies:
       '@argos-ci/core': 5.2.0
       '@babel/cli': 7.28.6(@babel/core@7.29.0)
@@ -13586,9 +13586,9 @@ snapshots:
       '@eslint/json': 1.1.0
       '@inquirer/confirm': 6.0.10(@types/node@20.19.37)
       '@inquirer/select': 5.1.2(@types/node@20.19.37)
-      '@mui/internal-babel-plugin-display-name': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@757540c18cfdcb553c2a7dfa7934f8e40bf06c21(@babel/core@7.29.0)(@babel/preset-react@7.28.5(@babel/core@7.29.0))
-      '@mui/internal-babel-plugin-minify-errors': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@757540c18cfdcb553c2a7dfa7934f8e40bf06c21(@babel/core@7.29.0)
-      '@mui/internal-babel-plugin-resolve-imports': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@757540c18cfdcb553c2a7dfa7934f8e40bf06c21(@babel/core@7.29.0)
+      '@mui/internal-babel-plugin-display-name': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@8d7f40e53ecf43ad4c65ca9db9e98626368892f0(@babel/core@7.29.0)(@babel/preset-react@7.28.5(@babel/core@7.29.0))
+      '@mui/internal-babel-plugin-minify-errors': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@8d7f40e53ecf43ad4c65ca9db9e98626368892f0(@babel/core@7.29.0)
+      '@mui/internal-babel-plugin-resolve-imports': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@8d7f40e53ecf43ad4c65ca9db9e98626368892f0(@babel/core@7.29.0)
       '@napi-rs/keyring': 1.2.0
       '@next/eslint-plugin-next': 15.5.14
       '@octokit/auth-action': 6.0.2
