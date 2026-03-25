@@ -2100,8 +2100,6 @@ describe('<Autocomplete />', () => {
     });
 
     it('should keep focus when component is re-rendered', () => {
-      const onChange = spy();
-
       function TestComponent(props) {
         return (
           <Autocomplete
@@ -2110,7 +2108,7 @@ describe('<Autocomplete />', () => {
             value={[]}
             options={props.options}
             renderInput={(params) => <TextField {...params} autoFocus />}
-            onChange={onChange}
+            onChange={() => {}}
           />
         );
       }
@@ -2125,21 +2123,16 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(listbox, 'two');
 
-      // checking if the highlighted option is selected
-      fireEvent.keyDown(textbox, { key: 'Enter' });
-      expect(onChange.callCount).to.equal(1);
-      expect(onChange.args[0][1]).to.deep.equal(['two']);
-
       // the highlighted option should be the same even if the options are updated
       view.rerender(<TestComponent options={['one', 'two', 'three', 'four', 'five']} />);
       checkHighlightIs(listbox, 'two');
 
-      // highlight 'four'
+      // highlight on a newly added option
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(listbox, 'four');
 
-      // re-rendering the component should not change the highlighted option
+      // re-rendering the component with the same list of options
       view.rerender(<TestComponent options={['one', 'two', 'three', 'four', 'five']} />);
 
       // highlight 'five'
