@@ -19,7 +19,7 @@ export interface UseButtonBaseParameters {
   internalNativeButton?: boolean | undefined;
   /**
    * Whether to perform additional checks in dev mode on whether the resolved element
-   * matches the default native or non-native button expectaion.
+   * matches the default native or non-native button expectation.
    * Set to `true` to allow hook callers bypass this check, e.g. when the `component`
    * prop is a string.
    * @default false
@@ -61,7 +61,7 @@ export interface UseButtonBaseParameters {
    */
   onBeforeKeyDown?: React.KeyboardEventHandler<any> | undefined;
   /**
-   * An additional function that will run before the user's `onKeyDown`, e.g.
+   * An additional function that will run before the user's `onKeyUp`, e.g.
    * to control the ripple effect in `<ButtonBase>`.
    */
   onBeforeKeyUp?: React.KeyboardEventHandler<any> | undefined;
@@ -178,8 +178,8 @@ export default function useButtonBase(
       // warn when expecting a non-button but a non-string `component` prop resolved to a native <button> element
       if (!internalNativeButton && isButtonTag) {
         const message =
-          'MUI: A component that acts as a non-native button resolved to a native <button> element,' +
-          'but `nativeButton={true}` was not specified.' +
+          'MUI: A component that acts as a non-native button resolved to a native <button> element, ' +
+          'but `nativeButton={true}` was not specified. ' +
           'When rendering a custom component, set `nativeButton={true}` explicitly or render a non-<button> element.';
         console.error(message);
       }
@@ -287,7 +287,7 @@ export default function useButtonBase(
           return;
         }
 
-        if (event.key === 'Enter' && !disabled) {
+        if (event.key === 'Enter') {
           event.preventDefault();
           event.currentTarget.click();
         }
@@ -305,7 +305,6 @@ export default function useButtonBase(
           event.target === event.currentTarget &&
           !hasNativeKeyboardActivation() &&
           event.key === ' ' &&
-          !disabled &&
           !event.defaultPrevented
         ) {
           event.currentTarget.click();

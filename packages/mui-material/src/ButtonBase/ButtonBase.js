@@ -136,6 +136,25 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     setFocusVisible(false);
   }
 
+  const handleBeforeKeyDown = useEventCallback((event) => {
+    // Check if key is already down to avoid repeats being counted as multiple activations
+    if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
+      ripple.stop(event, () => {
+        ripple.start(event);
+      });
+    }
+  });
+
+  const handleBeforeKeyUp = useEventCallback((event) => {
+    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
+    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
+    if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
+      ripple.stop(event, () => {
+        ripple.pulsate(event);
+      });
+    }
+  });
+
   const { getButtonProps, rootRef: buttonRef } = useButtonBase({
     nativeButton,
     nativeButtonProp,
@@ -145,23 +164,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     type,
     hasFormAction,
     tabIndex,
-    onBeforeKeyDown: (event) => {
-      // Check if key is already down to avoid repeats being counted as multiple activations
-      if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
-        ripple.stop(event, () => {
-          ripple.start(event);
-        });
-      }
-    },
-    onBeforeKeyUp: (event) => {
-      // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-      // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
-      if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
-        ripple.stop(event, () => {
-          ripple.pulsate(event);
-        });
-      }
-    },
+    onBeforeKeyDown: handleBeforeKeyDown,
+    onBeforeKeyUp: handleBeforeKeyUp,
   });
 
   const { onClick, onKeyDown, onKeyUp, ...buttonProps } = getButtonProps({
