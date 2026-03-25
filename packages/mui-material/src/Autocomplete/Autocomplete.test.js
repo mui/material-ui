@@ -2099,6 +2099,54 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'three');
     });
 
+    it('should keep focus when component is re-rendered', () => {
+      const onChange = spy();
+
+      function TestComponent(props) {
+        return (
+          <Autocomplete
+            open
+            multiple
+            value={[]}
+            options={props.options}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+            onChange={onChange}
+          />
+        );
+      }
+
+      const view = render(<TestComponent options={['one', 'two']} />);
+
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
+
+      // highlight 'two'
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(listbox, 'two');
+
+      // checking if the highlighted option is selected
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][1]).to.deep.equal(['two']);
+
+      // the highlighted option should be the same even if the options are updated
+      view.rerender(<TestComponent options={['one', 'two', 'three', 'four', 'five']} />);
+      checkHighlightIs(listbox, 'two');
+
+      // highlight 'four'
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(listbox, 'four');
+
+      // re-rendering the component should not change the highlighted option
+      view.rerender(<TestComponent options={['one', 'two', 'three', 'four', 'five']} />);
+
+      // highlight 'five'
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(listbox, 'five');
+    });
+
     it('should keep focus when multiple options are selected by not resetting to the top option when options are updated and when options are provided as objects', () => {
       const view = render(
         <Autocomplete

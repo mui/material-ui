@@ -271,7 +271,6 @@ function useAutocomplete(props) {
     : [];
 
   const previousProps = usePreviousProps({
-    filteredOptions,
     value,
     inputValue,
   });
@@ -492,13 +491,24 @@ function useAutocomplete(props) {
     }
   });
 
+  // Always-current refs used by the potentially-stale syncHighlightedIndex callback
+  // to correctly detect whether filtered options actually changed since the last render.
+  // previousFilteredOptionsRef is the single source of truth for the previous render's
+  // filtered options, replacing previousProps.filteredOptions.
+  const currentFilteredOptionsRef = React.useRef(filteredOptions);
+  currentFilteredOptionsRef.current = filteredOptions;
+  const previousFilteredOptionsRef = React.useRef(filteredOptions);
+
   const filteredOptionsChanged = !areArraysSame({
-    array1: previousProps.filteredOptions,
+    array1: previousFilteredOptionsRef.current,
     array2: filteredOptions,
     parser: getOptionLabel,
   });
 
   const getPreviousHighlightedOptionIndex = () => {
+    const currentFilteredOptions = currentFilteredOptionsRef.current;
+    const previousFilteredOptions = previousFilteredOptionsRef.current;
+
     const isSameValue = (value1, value2) => {
       const label1 = value1 ? getOptionLabel(value1) : '';
       const label2 = value2 ? getOptionLabel(value2) : '';
@@ -508,8 +518,8 @@ function useAutocomplete(props) {
     if (
       highlightedIndexRef.current !== -1 &&
       !areArraysSame({
-        array1: previousProps.filteredOptions,
-        array2: filteredOptions,
+        array1: previousFilteredOptions,
+        array2: currentFilteredOptions,
         parser: getOptionLabel,
       }) &&
       previousProps.inputValue === inputValue &&
@@ -518,10 +528,10 @@ function useAutocomplete(props) {
           previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
         : isSameValue(previousProps.value, value))
     ) {
-      const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
+      const previousHighlightedOption = previousFilteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
-        return filteredOptions.findIndex((option) => {
+        return currentFilteredOptions.findIndex((option) => {
           return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
         });
       }
@@ -544,8 +554,27 @@ function useAutocomplete(props) {
 
     const valueItem = multiple ? value[0] : value;
 
+    const currentFilteredOptions = currentFilteredOptionsRef.current;
+    const previousFilteredOptions = previousFilteredOptionsRef.current;
+
     // The popup is empty, reset
-    if (filteredOptions.length === 0 || valueItem == null) {
+    if (currentFilteredOptions.length === 0 || valueItem == null) {
+      // If the filtered options haven't actually changed since the previous render
+      // (detected via always-current refs, safe even in a stale closure) and the
+      // current highlight is still within bounds, preserve it instead of resetting.
+      if (
+        currentFilteredOptions.length > 0 &&
+        highlightedIndexRef.current >= 0 &&
+        highlightedIndexRef.current < currentFilteredOptions.length &&
+        areArraysSame({
+          array1: previousFilteredOptions,
+          array2: currentFilteredOptions,
+          parser: getOptionLabel,
+        })
+      ) {
+        setHighlightedIndex({ index: highlightedIndexRef.current });
+        return;
+      }
       changeHighlightedIndex({ diff: 'reset' });
       return;
     }
@@ -556,7 +585,7 @@ function useAutocomplete(props) {
 
     // Synchronize the value with the highlighted index
     if (valueItem != null) {
-      const currentOption = filteredOptions[highlightedIndexRef.current];
+      const currentOption = currentFilteredOptions[highlightedIndexRef.current];
 
       // Keep the current highlighted index if possible
       if (
@@ -567,7 +596,7 @@ function useAutocomplete(props) {
         return;
       }
 
-      const itemIndex = filteredOptions.findIndex((optionItem) =>
+      const itemIndex = currentFilteredOptions.findIndex((optionItem) =>
         isOptionEqualToValue(optionItem, valueItem),
       );
       if (itemIndex === -1) {
@@ -579,8 +608,8 @@ function useAutocomplete(props) {
     }
 
     // Prevent the highlighted index to leak outside the boundaries.
-    if (highlightedIndexRef.current >= filteredOptions.length - 1) {
-      setHighlightedIndex({ index: filteredOptions.length - 1 });
+    if (highlightedIndexRef.current >= currentFilteredOptions.length - 1) {
+      setHighlightedIndex({ index: currentFilteredOptions.length - 1 });
       return;
     }
 
@@ -645,6 +674,14 @@ function useAutocomplete(props) {
       syncHighlightedIndex();
     }
   }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
+
+  // Keep previousFilteredOptionsRef in sync after every render.
+  // This effect is intentionally placed AFTER the sync effect so that during the
+  // next render's sync phase, previousFilteredOptionsRef.current still holds the
+  // previous render's filtered options (matching the usePreviousProps pattern).
+  React.useEffect(() => {
+    previousFilteredOptionsRef.current = filteredOptions;
+  });
 
   // Listen for browser window blur to detect when the user switches tabs or windows.
   // This helps prevent the popup from reopening automatically when the window regains focus.
