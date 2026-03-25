@@ -174,21 +174,21 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   const { allBlogPosts } = props;
 
   // On the `/blog` index we:
-  // - show the v9 aggregator card
-  // - optionally show one additional (non-hidden) recent card
-  // - hide the v9 deep-dive posts (introducing-mui-v9-*)
-  // All posts remain fully discoverable by direct URL.
+  // - show the v9 aggregator card (see FEATURED_BLOG_SLUG)
+  // - optionally show one additional recent card
+  // - omit posts with `hideFromHomeList: true` in frontmatter (deep dives, etc.)
+  // All posts remain fully discoverable by direct URL and RSS.
   const FEATURED_BLOG_SLUG = 'introducing-mui-v9';
   const featuredPosts = allBlogPosts.filter((post) => post.slug === FEATURED_BLOG_SLUG);
 
-  // Hide only the v9 deep-dive posts on the blog index.
-  const HIDDEN_DEEP_DIVE_PREFIX = `${FEATURED_BLOG_SLUG}-`;
   const visibleNonFeaturedPosts = allBlogPosts.filter((post) => {
     if (post.slug === FEATURED_BLOG_SLUG) {
       return false;
     }
-
-    return !post.slug.startsWith(HIDDEN_DEEP_DIVE_PREFIX);
+    if (post.hideFromHomeList === 'true') {
+      return false;
+    }
+    return true;
   });
 
   const topPosts = [...featuredPosts, ...visibleNonFeaturedPosts.slice(0, 1)];

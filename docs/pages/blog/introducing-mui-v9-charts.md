@@ -1,16 +1,17 @@
 ---
-title: MUI X v9 – Charts highlights and composition
+title: MUI X v9 Charts
 description: A tour of the Charts changes in v9, from tooltip control and keyboard navigation to composition and Sankey stabilization.
-date: 2026-03-16T08:00:00.000Z
+date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
+hideFromHomeList: true
 ---
 
 Charts are a key part of the MUI X advanced components.
 In v9, we’re expanding capabilities, tightening keyboard navigation and accessibility, and continuing the work on composition patterns.
 
-For the full v9 story across Material UI, Data Grid, Scheduler, and Chatbox, see the [v9 shared major version overview](/blog/introducing-mui-v9/).
+For the full v9 story across Material UI, Data Grid, Scheduler, and Chatbox, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
 
 ## Table of contents
 
@@ -26,7 +27,7 @@ For the full v9 story across Material UI, Data Grid, Scheduler, and Chatbox, se
 
 ### Interaction upgrades across all tiers
 
-**Charts (MIT)** (alpha.0)
+Charts (MIT) (alpha.0)
 
 - Legend actions (alpha.0)
 - `axesGap` (alpha.0)
@@ -38,14 +39,14 @@ For the full v9 story across Material UI, Data Grid, Scheduler, and Chatbox, se
 - Major renames/deprecations including `ChartContainer` → `ChartsContainer` and `getSVGPoint` → `getChartPoint` (alpha.0)
 - Standardization work around `seriesId` vs `id` (alpha.0)
 
-**Charts Pro** (alpha.0)
+Charts Pro (alpha.0)
 
 - Heatmap border radius (alpha.0)
 - Keyboard navigation for funnel/heatmap/sankey (alpha.0)
 - Export/crash fixes (alpha.0)
 - Sankey composition support (alpha.0)
 
-**Charts Premium** (alpha.0)
+Charts Premium (alpha.0)
 
 - WebGL renderer for Heatmap (alpha.0)
 - `ChartContainerPremium` (alpha.0)
@@ -55,7 +56,7 @@ For the full v9 story across Material UI, Data Grid, Scheduler, and Chatbox, se
 
 ### Axis tooltip sorting and control
 
-**Release‑level highlight: axis tooltip sorting/control improvements** (alpha.1)
+Release‑level highlight: axis tooltip sorting/control improvements (alpha.1)
 
 Other changes include:
 
@@ -68,7 +69,7 @@ Other changes include:
 
 ### Sankey stabilization and naming
 
-**Release‑level highlight: stabilize Sankey chart** (alpha.2)
+Release‑level highlight: stabilize Sankey chart (alpha.2)
 
 - `ChartsLayerContainer` (alpha.2)
 - Codemods for renames (alpha.2)
@@ -80,7 +81,7 @@ Other changes include:
 
 ### Keyboard navigation by default
 
-**Charts** (alpha.3)
+Charts (alpha.3)
 
 - Enable keyboard navigation by default (alpha.3)
 - Tooltip fixes (alpha.3)
@@ -88,7 +89,7 @@ Other changes include:
 - Simplify highlight hooks return types (alpha.3)
 - Generic type standardization (alpha.3)
 
-**Charts Pro** (alpha.3)
+Charts Pro (alpha.3)
 
 - Heatmap style override fix (alpha.3)
 - Export fix (alpha.3)
@@ -105,10 +106,11 @@ Migration and composition notes for v9:
 
 ## Where to go next
 
-- [v9 shared major version overview](/blog/introducing-mui-v9/)
-- [Data Grid v9 highlights](/blog/introducing-mui-v9-data-grid/)
-- [Scheduler (alpha) overview](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chatbox (alpha foundations)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
+- [Material UI primitives](/blog/introducing-mui-v9-primitives/)
+- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
+- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [Chatbox (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 Docs:
 

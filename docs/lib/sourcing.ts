@@ -23,6 +23,8 @@ export interface BlogPost {
   authors?: Array<string>;
   date?: string;
   rank?: string;
+  /** When `'true'`, the post is omitted from the /blog index card grid (direct URLs still work). */
+  hideFromHomeList?: string;
 }
 
 export function getBlogPost(filePath: string): BlogPost {
