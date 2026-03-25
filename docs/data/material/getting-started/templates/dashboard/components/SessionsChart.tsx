@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { LineChart } from '@mui/x-charts/LineChart';
+import { LineChart, lineClasses } from '@mui/x-charts/LineChart';
 
 function AreaGradient({ color, id }: { color: string; id: string }) {
   return (
@@ -125,13 +125,13 @@ export default function SessionsChart() {
           margin={{ left: 0, right: 20, top: 20, bottom: 0 }}
           grid={{ horizontal: true }}
           sx={{
-            '& .MuiAreaElement-series-organic': {
+            [`& .${lineClasses.area}[data-series=organic]`]: {
               fill: "url('#organic')",
             },
-            '& .MuiAreaElement-series-referral': {
+            [`& .${lineClasses.area}[data-series=referral]`]: {
               fill: "url('#referral')",
             },
-            '& .MuiAreaElement-series-direct': {
+            [`& .${lineClasses.area}[data-series=direct]`]: {
               fill: "url('#direct')",
             },
           }}
