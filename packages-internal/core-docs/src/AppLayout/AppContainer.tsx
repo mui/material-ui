@@ -15,6 +15,6 @@ const StyledAppContainer = styled(Container)(({ theme }) => {
   };
 });
 
-export default function AppContainer(props) {
+export function AppContainer(props: React.ComponentProps<typeof Container>) {
   return <StyledAppContainer id="main-content" maxWidth={false} {...props} />;
 }

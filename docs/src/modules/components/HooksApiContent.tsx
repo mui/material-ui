@@ -6,7 +6,7 @@ import exactProp from '@mui/utils/exactProp';
 import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
 import type { LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
-import { HookApiContent, HooksTranslations } from '@mui-internal/api-docs-builder';
+import type { HookApiContent, HooksTranslations } from '@mui-internal/api-docs-builder';
 import {
   ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,

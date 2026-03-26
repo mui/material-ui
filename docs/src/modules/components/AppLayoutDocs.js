@@ -13,7 +13,7 @@ import {
 } from '@mui/internal-core-docs/Ad';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppContainer from 'docs/src/modules/components/AppContainer';
+import { AppContainer } from '@mui/internal-core-docs/AppLayout';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';

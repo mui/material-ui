@@ -8,7 +8,7 @@ import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import AppContainer from 'docs/src/modules/components/AppContainer';
+import { AppContainer } from '@mui/internal-core-docs/AppLayout';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';

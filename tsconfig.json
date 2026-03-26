@@ -49,7 +49,8 @@
       ],
       "@mui/stylis-plugin-rtl": ["./packages/mui-stylis-plugin-rtl/src"],
       "@mui/stylis-plugin-rtl/*": ["./packages/mui-stylis-plugin-rtl/src/*"],
-      "docs/*": ["./docs/*"]
+      "docs/*": ["./docs/*"],
+      "@mui-internal/api-docs-builder": ["./packages-internal/api-docs-builder/index.ts"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react", "vitest/globals"]
