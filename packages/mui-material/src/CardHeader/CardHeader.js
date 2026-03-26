@@ -124,6 +124,8 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     externalForwardedProps,
     ownerState,
     additionalProps: {
+      // could also point to the read more button with aria-describedby, but that's not guaranteed to be present.
+      'aria-description': 'read more',
       color: 'textPrimary',
       href,
       // underline: 'none', this does not seem to work.
@@ -152,6 +154,8 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     externalForwardedProps,
     ownerState,
     additionalProps: {
+      // could also point to the read more button with aria-describedby, but that's not guaranteed to be present.
+      'aria-description': 'read more',
       color: 'textPrimary',
       onClick,
       sx: {
