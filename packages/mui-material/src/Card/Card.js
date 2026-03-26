@@ -44,7 +44,6 @@ const CardRoot = styled(Paper, {
   }),
 }));
 
-
 const Card = React.forwardRef(function Card(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,

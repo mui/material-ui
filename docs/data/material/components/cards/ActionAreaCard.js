@@ -4,6 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
+import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
 
 export default function ActionAreaCard() {
   return (
@@ -22,8 +26,19 @@ export default function ActionAreaCard() {
             species, ranging across all continents except Antarctica
           </Typography>
         </CardContent>
+        <CardActions>
+          <IconButton
+            aria-label="add to favorites"
+            onClick={() => alert('Favorite clicked')}
+          >
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share" onClick={() => alert('Share clicked')}>
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
       </Card>
-      <Card onClick={() => {}} sx={{ maxWidth: 345 }}>
+      <Card onClick={() => alert('Card clicked')} sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"
           height="140"
@@ -37,6 +52,17 @@ export default function ActionAreaCard() {
             species, ranging across all continents except Antarctica
           </Typography>
         </CardContent>
+        <CardActions>
+          <IconButton
+            aria-label="add to favorites"
+            onClick={() => alert('Favorite clicked')}
+          >
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share" onClick={() => alert('Share clicked')}>
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
       </Card>
     </React.Fragment>
   );
