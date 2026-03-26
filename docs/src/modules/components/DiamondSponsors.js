@@ -17,7 +17,7 @@ const NativeLink = styled('a')(({ theme }) => ({
   borderColor: (theme.vars || theme).palette.divider,
   transition: theme.transitions.create(['background-color']),
   '&:first-of-type': {
-    borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
   },
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.grey[50],
@@ -42,7 +42,7 @@ export default function DiamondSponsors() {
   return (
     <Stack direction="column">
       <Stack
-        direction="row"
+        direction="column"
         sx={(theme) => ({
           borderLeft: '1px solid',
           borderRight: '1px solid',
