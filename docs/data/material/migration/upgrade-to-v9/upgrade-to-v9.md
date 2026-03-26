@@ -14,6 +14,18 @@ In the `package.json` file, change the package version from `latest` to `next`.
 Using `next` ensures your project always uses the latest v9 pre-releases.
 Alternatively, you can also target and fix it to a specific version, for example, `9.0.0-alpha.0`.
 
+## Supported browsers and versions
+
+The default bundle targets have changed in v9.
+
+<!-- #stable-snapshot -->
+
+- Chrome 117 (up from 109)
+- Edge 121
+- Firefox 121 (up from 115)
+- Safari 17.0 in both macOS and iOS (up from 15.4)
+- and more (see [.browserslistrc `stable` entry](https://github.com/mui/material-ui/blob/master/.browserslistrc#L9))
+
 ## Breaking changes
 
 Since v9 is a new major release, it contains some changes that affect the public API.
@@ -101,25 +113,6 @@ type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true
 type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
   ? Value | string
   : Value;
-```
-
-### Grid
-
-The Grid component no longer supports [system props](/material-ui/customization/how-to-customize/#the-sx-prop).
-Use the `sx` prop instead:
-
-```diff
--<Grid mt={2} mr={1} />
-+<Grid sx={{ mt: 2, mr: 1 }} />
-```
-
-This also fixes an issue where props like `color` were consumed by the Grid instead of being forwarded to the component rendered via the `component` prop:
-
-```jsx
-// `color` is now correctly forwarded to Button
-<Grid component={Button} color="secondary" variant="contained">
-  hello
-</Grid>
 ```
 
 ### GridLegacy
@@ -2194,4 +2187,58 @@ The following deprecated props have been removed from the `Typography` component
 ```diff
 -<Typography paragraph />
 +<Typography sx={{ marginBottom: '16px' }} />
+```
+
+#### System props removed
+
+Use the [system-props codemod](/material-ui/migration/migrating-from-deprecated-apis/#system-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest v9.0.0/system-props <path/to/folder>
+```
+
+The deprecated system props have been removed from the following components:
+
+- `Box`
+- `DialogContentText`
+- `Grid`
+- `Link`
+- `Stack`
+- `Typography`
+- `TimelineContent`
+- `TimelineOppositeContent`
+
+```diff
+-<Box mt={2} color="primary.main" />
++<Box sx={{ mt: 2, color: 'primary.main' }} />
+
+-<DialogContentText mt={2} color="text.secondary" />
++<DialogContentText sx={{ mt: 2, color: 'text.secondary' }} />
+
+-<Grid mt={2} mr={1} />
++<Grid sx={{ mt: 2, mr: 1 }} />
+
+-<Link mt={2} color="text.secondary" />
++<Link sx={{ mt: 2, color: 'text.secondary' }} />
+
+-<Stack mt={2} alignItems="center" />
++<Stack sx={{ mt: 2, alignItems: 'center' }} />
+
+-<Typography mt={2} fontWeight="bold" />
++<Typography sx={{ mt: 2, fontWeight: 'bold' }} />
+
+-<TimelineContent mt={2} color="text.secondary" />
++<TimelineContent sx={{ mt: 2, color: 'text.secondary' }} />
+
+-<TimelineOppositeContent mt={2} color="text.secondary" />
++<TimelineOppositeContent sx={{ mt: 2, color: 'text.secondary' }} />
+```
+
+This also fixes an issue where props like `color` were consumed by the component instead of being forwarded to the element rendered via the `component` prop:
+
+```jsx
+// `color` is now correctly forwarded to Button
+<Grid component={Button} color="secondary" variant="contained">
+  hello
+</Grid>
 ```

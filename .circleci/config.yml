@@ -453,12 +453,12 @@ jobs:
       - checkout
       - install-deps
       - run:
-          name: prepare danger on PRs
+          name: Prepare danger on PRs
           command: pnpm danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
-          name: build @mui packages
+          name: Build @mui packages
           command: pnpm release:build
       - aws-cli/setup:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
@@ -466,7 +466,7 @@ jobs:
           region: ${AWS_REGION_ARTIFACTS}
       # @TODO: Not using code-infra/upload-size-snapshot since it doesn't support setting concurrency yet
       - run:
-          name: create and upload a size snapshot
+          name: Create and upload a size snapshot
           command: |
             export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
             export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
@@ -492,7 +492,7 @@ jobs:
 
       # Keep the artifact storage as a CircleCI artifact
       - store_artifacts:
-          name: persist size snapshot as pipeline artifact
+          name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
 

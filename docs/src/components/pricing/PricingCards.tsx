@@ -539,7 +539,7 @@ function PricingCardWrapper({ plan, highlighted = false }: PricingCardWrapperPro
         <PlanPrice plan={plan} multiApp={multiApp} />
       </Box>
       {plan !== 'community' && plan !== 'enterprise' && <MultiAppSwitch />}
-      <Box textAlign="left" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 2 }}>
         {plan !== 'community' && (
           <Typography variant="body2" sx={{ fontWeight: 'medium', color: 'text.primary' }}>
             Everything in {getPreviousPlanName(plan)} plan and...

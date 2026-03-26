@@ -19,7 +19,7 @@ export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'>
    * The color of the link.
    * @default 'primary'
    */
-  color?: TypographyOwnProps['color'] | undefined;
+  color?: TypographyOwnProps['color'] | 'inherit' | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

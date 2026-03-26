@@ -50,7 +50,7 @@ export type SystemProps<Theme extends object = {}> = {
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
 };
 
-export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemProps<Theme> {
+export interface BoxOwnProps<Theme extends object = SystemTheme> {
   children?: React.ReactNode;
   ref?: React.Ref<unknown> | undefined;
   /**

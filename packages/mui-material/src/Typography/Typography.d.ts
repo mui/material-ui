@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
-import { SxProps, SystemProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { Theme, TypeText } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { TypographyVariant } from '../styles/createTypography';
@@ -10,7 +10,7 @@ export interface TypographyPropsVariantOverrides {}
 
 export interface TypographyPropsColorOverrides {}
 
-export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
+export interface TypographyOwnProps {
   /**
    * Set the text-align on the component.
    * @default 'inherit'
@@ -41,7 +41,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
         TypographyPropsColorOverrides
       >
     | (string & {})
-    | undefined; // to work with v5 color prop type which allows any string
+    | undefined;
   /**
    * If `true`, the text will have a bottom margin.
    * @default false

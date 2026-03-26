@@ -878,16 +878,16 @@ importers:
         specifier: workspace:^
         version: link:../markdown
       '@mui/material-nextjs':
-        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.14(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@mui/stylis-plugin-rtl':
-        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 7.3.8(stylis@4.2.0)
       '@mui/system':
-        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 6.4.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@mui/utils':
-        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 7.3.6(@types/react@19.2.14)(react@19.2.4)
       '@types/stylis':
         specifier: ^4.2.7
