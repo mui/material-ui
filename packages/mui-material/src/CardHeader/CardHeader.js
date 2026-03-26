@@ -7,6 +7,9 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 import useSlot from '../utils/useSlot';
+import { useCardContext } from '../Card/CardContext';
+import Link from '../Link';
+import ButtonBase from '../ButtonBase';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -36,7 +39,7 @@ const CardHeaderRoot = styled('div', {
 })({
   display: 'flex',
   alignItems: 'center',
-  padding: 16,
+  margin: 16,
 });
 
 const CardHeaderAvatar = styled('div', {
@@ -93,6 +96,8 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     disableTypography,
   };
 
+  const { href, onClick } = useCardContext();
+
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
@@ -111,8 +116,73 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
       component: 'span',
     },
   });
+  const [LinkSlot, linkSlotProps] = useSlot('link', {
+    elementType: Link,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      color: 'textPrimary',
+      href,
+      // underline: 'none', this does not seem to work.
+      sx: {
+        textDecoration: 'none',
+        outline: 'none',
+        '&:focus-visible': {
+          '&::before': {
+            outline: 'auto',
+          },
+        },
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 1,
+        },
+      },
+    },
+  });
+  const [ButtonSlot, buttonSlotProps] = useSlot('button', {
+    elementType: ButtonBase,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      color: 'textPrimary',
+      onClick,
+      sx: {
+        font: 'inherit',
+        position: 'static',
+        '&:focus-visible': {
+          outline: 'none',
+          '&::before': {
+            outline: 'auto',
+          },
+        },
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 1,
+        },
+      },
+    },
+  });
+
   if (title != null && title.type !== Typography && !disableTypography) {
-    title = <TitleSlot {...titleSlotProps}>{title}</TitleSlot>;
+    let titleContent = title;
+
+    if (href) {
+      titleContent = <LinkSlot {...linkSlotProps}>{title}</LinkSlot>;
+    } else if (onClick) {
+      titleContent = <ButtonSlot {...buttonSlotProps}>{title}</ButtonSlot>;
+    }
+
+    title = <TitleSlot {...titleSlotProps}>{titleContent}</TitleSlot>;
   }
 
   let subheader = subheaderProp;
