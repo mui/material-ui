@@ -55,7 +55,7 @@ The following steps must be proposed as a pull request.
 1. Force push to the `v8` and `latest` branches of `material-ui-docs`.
 2. Merge the `v8` branch into the `v7` branch.
 
-> **Note:** The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
+> **Note:** The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
 
 #### Publish GitHub release
 
@@ -126,7 +126,7 @@ git push material-ui-docs HEAD:v7
 git checkout -
 ```
 
-> **Note:** The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
+> **Note:** The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
 
 #### Publish GitHub release
 
@@ -147,7 +147,7 @@ deploying all the changes that have been merged into the main branch
 since the previous release (for example publishing a blog post or releasing
 urgent docs updates).
 
-**Note:** The instructions below are for deploying to the `v8` and `latest` branches of the `material-ui-docs` repository, which points to `https://mui.com/`. After pushing, the `v8` branch should be merged into `v7`. The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
+**Note:** The instructions below are for deploying to the `v8` and `latest` branches of the `material-ui-docs` repository, which points to `https://mui.com/`. After pushing, the `v8` branch should be merged into `v7`. The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
 
 To do so, follow these steps:
 
