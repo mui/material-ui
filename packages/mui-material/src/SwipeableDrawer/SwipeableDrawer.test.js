@@ -115,6 +115,49 @@ describe('<SwipeableDrawer />', () => {
   describe('swipe to open', () => {
     const bodyWidth = document.body.offsetWidth;
     const windowHeight = window.innerHeight;
+
+    it('should keep the internal paper ref when an external paper ref is provided', () => {
+      const handleClose = spy();
+      const externalPaperRef = React.createRef();
+
+      render(
+        <SwipeableDrawer
+          anchor="left"
+          onOpen={() => {}}
+          onClose={handleClose}
+          open
+          slotProps={{
+            paper: { component: FakePaper, ref: externalPaperRef },
+          }}
+        >
+          <div data-testid="drawer">SwipeableDrawer</div>
+        </SwipeableDrawer>,
+      );
+
+      const drawer = screen.getByTestId('drawer');
+      const closeTouches = [
+        { pageX: 200, clientY: 0 },
+        { pageX: 180, clientY: 0 },
+        { pageX: 10, clientY: 0 },
+      ];
+
+      fireEvent.touchStart(drawer, {
+        touches: [new Touch({ identifier: 0, target: drawer, ...closeTouches[0] })],
+      });
+      fireEvent.touchMove(drawer, {
+        touches: [new Touch({ identifier: 0, target: drawer, ...closeTouches[1] })],
+      });
+      fireEvent.touchMove(drawer, {
+        touches: [new Touch({ identifier: 0, target: drawer, ...closeTouches[2] })],
+      });
+      fireEvent.touchEnd(drawer, {
+        changedTouches: [new Touch({ identifier: 0, target: drawer, ...closeTouches[2] })],
+      });
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(externalPaperRef.current).not.to.equal(null);
+    });
+
     const tests = [
       {
         anchor: 'left',

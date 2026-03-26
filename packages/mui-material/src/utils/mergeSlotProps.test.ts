@@ -83,6 +83,29 @@ describe('utils/index.js', () => {
       });
     });
 
+    it('merges refs', () => {
+      const defaultRef = React.createRef<HTMLDivElement>();
+      const externalRef = React.createRef<HTMLDivElement>();
+
+      const merged = mergeSlotProps<{ ref?: React.Ref<HTMLDivElement> }>(
+        { ref: externalRef },
+        { ref: defaultRef },
+      );
+
+      expect(merged.ref).to.be.a('function');
+
+      const instance = document.createElement('div');
+      const cleanup = (merged.ref as React.RefCallback<HTMLDivElement>)(instance);
+
+      expect(defaultRef.current).to.equal(instance);
+      expect(externalRef.current).to.equal(instance);
+
+      cleanup?.();
+
+      expect(defaultRef.current).to.equal(null);
+      expect(externalRef.current).to.equal(null);
+    });
+
     it('external slot props is a function', () => {
       expect(
         mergeSlotProps<(ownerState: OwnerState) => OwnerState, OwnerState>(
@@ -109,6 +132,48 @@ describe('utils/index.js', () => {
         className: 'base default external',
         'aria-label': 'foo',
       });
+    });
+
+    it('merges callback refs for slot prop callbacks', () => {
+      let defaultRefValue: HTMLDivElement | null = null;
+      let externalRefValue: HTMLDivElement | null = null;
+
+      const merged = mergeSlotProps<
+        (ownerState: OwnerState) => { ref: React.Ref<HTMLDivElement> },
+        (ownerState: OwnerState) => { ref: React.Ref<HTMLDivElement> }
+      >(
+        () => ({
+          ref: (instance) => {
+            externalRefValue = instance;
+
+            return () => {
+              externalRefValue = null;
+            };
+          },
+        }),
+        () => ({
+          ref: (instance) => {
+            defaultRefValue = instance;
+
+            return () => {
+              defaultRefValue = null;
+            };
+          },
+        }),
+      )({ className: '' });
+
+      expect(merged.ref).to.be.a('function');
+
+      const instance = document.createElement('div');
+      const cleanup = (merged.ref as React.RefCallback<HTMLDivElement>)(instance);
+
+      expect(defaultRefValue).to.equal(instance);
+      expect(externalRefValue).to.equal(instance);
+
+      cleanup?.();
+
+      expect(defaultRefValue).to.equal(null);
+      expect(externalRefValue).to.equal(null);
     });
 
     it('both slot props are functions', () => {

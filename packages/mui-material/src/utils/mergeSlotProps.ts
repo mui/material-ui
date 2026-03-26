@@ -15,6 +15,47 @@ function isEventHandler(key: string, value: unknown) {
   );
 }
 
+function mergeRefs<Instance>(
+  defaultRef: React.Ref<Instance> | undefined,
+  externalRef: React.Ref<Instance> | undefined,
+) {
+  if (defaultRef == null) {
+    return externalRef;
+  }
+
+  if (externalRef == null) {
+    return defaultRef;
+  }
+
+  return (instance: Instance | null) => {
+    const cleanups = [defaultRef, externalRef].map((ref) => {
+      if (ref == null) {
+        return null;
+      }
+
+      if (typeof ref === 'function') {
+        const refCleanup = ref(instance);
+
+        return typeof refCleanup === 'function'
+          ? refCleanup
+          : () => {
+              ref(null);
+            };
+      }
+
+      ref.current = instance;
+
+      return () => {
+        ref.current = null;
+      };
+    });
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup?.());
+    };
+  };
+}
+
 export default function mergeSlotProps<
   T extends SlotComponentProps<React.ElementType, {}, {}>,
   K = T,
@@ -59,12 +100,14 @@ export default function mergeSlotProps<
         externalSlotPropsValue?.className,
       );
       const handlers = extractHandlers(externalSlotPropsValue, defaultSlotPropsValue);
+      const ref = mergeRefs(defaultSlotPropsValue?.ref, externalSlotPropsValue?.ref);
 
       return {
         ...defaultSlotPropsValue,
         ...externalSlotPropsValue,
         ...handlers,
         ...(!!className && { className }),
+        ...(!!ref && { ref }),
         ...(defaultSlotPropsValue?.style &&
           externalSlotPropsValue?.style && {
             style: { ...defaultSlotPropsValue.style, ...externalSlotPropsValue.style },
@@ -86,11 +129,13 @@ export default function mergeSlotProps<
   const typedDefaultSlotProps = defaultSlotProps as Record<string, any>;
   const handlers = extractHandlers(externalSlotProps, typedDefaultSlotProps);
   const className = clsx(typedDefaultSlotProps?.className, externalSlotProps?.className);
+  const ref = mergeRefs(typedDefaultSlotProps?.ref, externalSlotProps?.ref);
   return {
     ...defaultSlotProps,
     ...externalSlotProps,
     ...handlers,
     ...(!!className && { className }),
+    ...(!!ref && { ref }),
     ...(typedDefaultSlotProps?.style &&
       externalSlotProps?.style && {
         style: { ...typedDefaultSlotProps.style, ...externalSlotProps.style },
