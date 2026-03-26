@@ -57,7 +57,11 @@ function ProductItem({
         </Box>
         <span>
           <Box component="span" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography component="span" variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: 'text.primary', fontWeight: 'semiBold' }}
+            >
               {name}
             </Typography>
             {chip}
