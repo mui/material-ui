@@ -122,7 +122,7 @@ export default function useButtonBase(
 
   const rootRef = React.useRef<HTMLElement | null>(null);
   const focusableWhenDisabled = focusableWhenDisabledParam === true;
-  const { props: focusableWhenDisabledProps } = useFocusableWhenDisabled({
+  const focusableWhenDisabledProps = useFocusableWhenDisabled({
     focusableWhenDisabled,
     disabled,
     isNativeButton: nativeButton,

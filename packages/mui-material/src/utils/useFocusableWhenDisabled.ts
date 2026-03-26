@@ -30,13 +30,9 @@ interface FocusableWhenDisabledProps {
   tabIndex?: number | undefined;
 }
 
-export interface UseFocusableWhenDisabledReturnValue {
-  props: FocusableWhenDisabledProps;
-}
-
 export default function useFocusableWhenDisabled(
   parameters: UseFocusableWhenDisabledParameters,
-): UseFocusableWhenDisabledReturnValue {
+): FocusableWhenDisabledProps {
   const {
     focusableWhenDisabled,
     disabled,
@@ -90,5 +86,5 @@ export default function useFocusableWhenDisabled(
     tabIndexProp,
   ]);
 
-  return { props };
+  return props;
 }

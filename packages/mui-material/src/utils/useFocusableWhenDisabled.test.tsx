@@ -14,8 +14,8 @@ describe('useFocusableWhenDisabled', () => {
       }),
     );
 
-    expect(result.current.props).not.to.have.property('tabIndex');
-    expect(result.current.props['aria-disabled']).to.equal(true);
+    expect(result.current).not.to.have.property('tabIndex');
+    expect(result.current['aria-disabled']).to.equal(true);
   });
 
   it('sets disabled for non-focusable composite native buttons', () => {
@@ -28,9 +28,9 @@ describe('useFocusableWhenDisabled', () => {
       }),
     );
 
-    expect(result.current.props).not.to.have.property('tabIndex');
-    expect(result.current.props).not.to.have.property('aria-disabled');
-    expect(result.current.props.disabled).to.equal(true);
+    expect(result.current).not.to.have.property('tabIndex');
+    expect(result.current).not.to.have.property('aria-disabled');
+    expect(result.current.disabled).to.equal(true);
   });
 
   it('prevents non-Tab keys for focusable disabled items', () => {
@@ -43,7 +43,7 @@ describe('useFocusableWhenDisabled', () => {
     );
     const preventDefault = spy();
 
-    result.current.props.onKeyDown({
+    result.current.onKeyDown({
       key: 'Enter',
       preventDefault,
     } as unknown as React.KeyboardEvent);
@@ -61,7 +61,7 @@ describe('useFocusableWhenDisabled', () => {
     );
     const preventDefault = spy();
 
-    result.current.props.onKeyDown({
+    result.current.onKeyDown({
       key: 'Tab',
       preventDefault,
     } as unknown as React.KeyboardEvent);
