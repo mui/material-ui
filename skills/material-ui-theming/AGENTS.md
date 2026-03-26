@@ -1,15 +1,29 @@
----
-name: material-ui-theming
-description: Guides Material UI theming and design tokens—createTheme, ThemeProvider, palette and color schemes, typography, spacing, shape, CSS theme variables, dark mode, and TypeScript augmentation. Use when building or extending a theme, toggling light/dark, using theme.vars, or aligning tokens across an app.
----
-
 # Material UI theming and design tokens
 
-> **Audience:** Agents and humans implementing brand/design systems with Material UI. Grounded in `docs/data/material/customization/` (theming, palette, dark-mode, css-theme-variables, typography, spacing, shape).
+**Version 1.0.0**
+
+> **Note:** This document is for agents and LLMs implementing themes and design tokens with Material UI. Grounded in `docs/data/material/customization/` (theming, palette, dark-mode, css-theme-variables, typography, spacing, shape).
+
+---
 
 ## Abstract
 
 A Material UI **theme** is a single object of **design tokens** (palette, typography, spacing, shape, breakpoints, etc.) plus optional **per-component defaults** (`theme.components`). Apps typically call **`createTheme`** once (or in composed steps), pass the result to **`ThemeProvider`** near the root, and read values with **`useTheme`**, **`sx`**, or **`styled`**. For **system-driven light/dark**, prefer **`colorSchemes`** and related APIs over a static `palette.mode`-only setup when you need toggling, tab sync, and SSR-friendly behavior; enable **`cssVariables`** when you want **`theme.vars`**, fewer theme nests for dark regions, and clearer debugging via `--mui-*` CSS variables.
+
+---
+
+## Table of contents
+
+1. [Core setup](#core-setup)
+2. [Where tokens live (design token map)](#where-tokens-live-design-token-map)
+3. [Palette quick facts](#palette-quick-facts)
+4. [Color schemes vs palette-only dark](#color-schemes-vs-palette-only-dark)
+5. [CSS theme variables (`cssVariables: true`)](#css-theme-variables-cssvariables-true)
+6. [Typography and spacing](#typography-and-spacing)
+7. [Composing and merging themes](#composing-and-merging-themes)
+8. [Nesting `ThemeProvider`](#nesting-themeprovider)
+9. [Custom tokens (brand-specific design keys)](#custom-tokens-brand-specific-design-keys)
+10. [Further reading](#further-reading)
 
 ---
 
@@ -105,4 +119,4 @@ Add keys on the theme (e.g. `status.danger`) inside **`createTheme`**, then augm
 | Color tool / brand hues | [Color](https://mui.com/material-ui/customization/color/) |
 | TypeScript theme customization | [TypeScript — customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) |
 
-TypeScript **snippet templates** for common augmentations: [reference.md](reference.md).
+TypeScript snippet templates: [reference.md](reference.md).

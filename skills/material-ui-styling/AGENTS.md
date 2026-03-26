@@ -1,15 +1,27 @@
----
-name: material-ui-styling
-description: Chooses the right Material UI styling approach (sx, styled, theme overrides, global CSS) from official MUI guidance. Use when styling @mui/material components, customizing themes, overriding slots, or comparing sx vs styled.
----
-
 # Material UI styling
 
-> **Audience:** Agents and humans maintaining or generating Material UI code. Guidance follows [How to customize](https://mui.com/material-ui/customization/how-to-customize/) and related docs in this repo (`docs/data/material/customization/`, `docs/data/system/`).
+**Version 1.0.0**
+
+> **Note:** This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize/) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
+
+---
 
 ## Abstract
 
 Material UI stacks four strategies from **narrowest to broadest** scope. Pick the **smallest scope that solves the problem** to avoid scattering global rules. The `sx` prop is the default for one-off tweaks; `styled()` is for reusable wrappers; the theme’s `components` API is for app-wide consistency; `GlobalStyles` / `CssBaseline` is for baseline HTML or cross-cutting globals.
+
+---
+
+## Table of contents
+
+1. [Quick decision (use in order)](#quick-decision-use-in-order)
+2. [One-off: `sx` prop](#1-one-off-sx-prop)
+3. [Reusable: `styled()`](#2-reusable-styled)
+4. [Global theme: `createTheme({ components })`](#3-global-theme-createtheme-components)
+5. [Global CSS: `GlobalStyles` / `CssBaseline`](#4-global-css-globalstyles--cssbaseline)
+6. [`sx` vs `styled()`](#sx-vs-styled--agents-must-know-the-differences)
+7. [Imports and consistency](#imports-and-consistency)
+8. [Further reading](#further-reading-repo--site)
 
 ---
 
