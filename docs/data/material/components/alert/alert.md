@@ -74,6 +74,36 @@ Use the `color` prop to override the default color for the specified [`severity`
 
 {{"demo": "ColorAlerts.js"}}
 
+### Theme tokens
+
+When [CSS theme variables](/material-ui/customization/css-theme-variables/overview/) are enabled, Alert exposes component-specific tokens on `theme.vars.palette.Alert`.
+Use these tokens in `sx` or theme overrides when you need to match the computed Alert colors:
+
+```jsx
+import Alert from '@mui/material/Alert';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({ cssVariables: true });
+
+<ThemeProvider theme={theme}>
+  <Alert
+    severity="success"
+    sx={(theme) => ({
+      bgcolor: theme.vars.palette.Alert.successStandardBg,
+      color: theme.vars.palette.Alert.successColor,
+      '& .MuiAlert-icon': {
+        color: theme.vars.palette.Alert.successIconColor,
+      },
+    })}
+  >
+    This Alert uses the generated theme tokens.
+  </Alert>
+</ThemeProvider>;
+```
+
+For example, the default variant uses tokens such as `successStandardBg` and `successIconColor`, while the filled variant uses `successFilledBg` and `successFilledColor`.
+These values are generated specifically for Alert, so they are not available on `theme.palette.success`.
+
 ### Actions
 
 Add an action to your Alert with the `action` prop.
