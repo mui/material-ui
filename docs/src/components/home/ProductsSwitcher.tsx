@@ -62,7 +62,13 @@ function ProductItem({
             </Typography>
             {chip}
           </Box>
-          <Typography component="span" color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5, display: 'block' }}>
+          <Typography
+            component="span"
+            color="text.secondary"
+            variant="body2"
+            fontWeight="regular"
+            sx={{ my: 0.5, display: 'block' }}
+          >
             {description}
           </Typography>
         </span>
