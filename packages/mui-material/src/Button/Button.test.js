@@ -121,6 +121,23 @@ describe('<Button />', () => {
     errorSpy.mockRestore();
   });
 
+  it('warns when nativeButton={false} is used with a custom component that renders a button', () => {
+    const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+      return <button ref={ref} {...props} />;
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <Button component={CustomButton} nativeButton={false}>
+        Hello World
+      </Button>,
+    );
+
+    expect(screen.getByRole('button')).to.have.tagName('BUTTON');
+    expectWarningWithFragments(errorSpy, ['nativebutton', 'false', 'non-<button>']);
+    errorSpy.mockRestore();
+  });
+
   it('does not forward focusableWhenDisabled to ButtonBase', () => {
     render(
       <Button disabled focusableWhenDisabled>
