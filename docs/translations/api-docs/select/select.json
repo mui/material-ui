@@ -1,5 +1,5 @@
 {
-  "componentDescription": "",
+  "componentDescription": "The Select component does not support the `placeholder` prop.\n\nTo display a placeholder, use the [placeholder pattern](/material-ui/react-select/#placeholder)\nwith the `displayEmpty` and `renderValue` props.",
   "propDescriptions": {
     "autoWidth": {
       "description": "If <code>true</code>, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input."

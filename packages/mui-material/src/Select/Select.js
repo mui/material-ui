@@ -43,6 +43,12 @@ const StyledOutlinedInput = styled(OutlinedInput, styledRootConfig)('');
 
 const StyledFilledInput = styled(FilledInput, styledRootConfig)('');
 
+/**
+ * The Select component does not support the `placeholder` prop.
+ *
+ * To display a placeholder, use the [placeholder pattern](/material-ui/react-select/#placeholder)
+ * with the `displayEmpty` and `renderValue` props.
+ */
 const Select = React.forwardRef(function Select(inProps, ref) {
   const props = useDefaultProps({ name: 'MuiSelect', props: inProps });
   const {
