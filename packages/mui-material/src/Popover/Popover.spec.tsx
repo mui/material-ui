@@ -13,7 +13,7 @@ function Test() {
   return (
     <React.Fragment>
       <Popover open />;
-      <Popover open PaperProps={paperProps} />
+      <Popover open slotProps={{ paper: paperProps }} />
     </React.Fragment>
   );
 }

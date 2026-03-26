@@ -10,7 +10,7 @@ import {
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Button, { buttonClasses } from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Tabs from '@mui/material/Tabs';
 import Menu from '@mui/material/Menu';
@@ -228,6 +228,20 @@ export function buildTheme(): ThemeOptions {
             fontSize: '0.875rem',
             lineHeight: 24 / 16,
             textTransform: 'none',
+            variants: [
+              {
+                props: { size: 'small' },
+                style: { [`& .${buttonClasses.icon}`]: { fontSize: '0.875rem' } },
+              },
+              {
+                props: { size: 'medium' },
+                style: { [`& .${buttonClasses.icon}`]: { fontSize: '0.875rem' } },
+              },
+              {
+                props: { size: 'large' },
+                style: { [`& .${buttonClasses.icon}`]: { fontSize: '1rem' } },
+              },
+            ],
           },
           sizeSmall: ({ theme }) => ({
             padding: theme.spacing(0.5, 1),
@@ -264,21 +278,6 @@ export function buildTheme(): ThemeOptions {
               borderColor: alpha(theme.palette.primary[300], 0.5),
             }),
           }),
-          iconSizeSmall: {
-            '& > *:nth-of-type(1)': {
-              fontSize: '0.875rem',
-            },
-          },
-          iconSizeMedium: {
-            '& > *:nth-of-type(1)': {
-              fontSize: '0.875rem',
-            },
-          },
-          iconSizeLarge: {
-            '& > *:nth-of-type(1)': {
-              fontSize: '1rem',
-            },
-          },
         },
       },
       MuiAlert: {
@@ -292,6 +291,30 @@ export function buildTheme(): ThemeOptions {
               '& .MuiAlert-icon': {
                 color: (theme.vars || theme).palette.primaryDark[800],
               },
+              variants: [
+                {
+                  props: { variant: 'standard', color: 'info' },
+                  style: [
+                    {
+                      backgroundColor: (theme.vars || theme).palette.primary[50],
+                      color: (theme.vars || theme).palette.primary[600],
+                      border: '1px solid',
+                      borderColor: alpha(theme.palette.primaryDark[100], 0.5),
+                      '& .MuiAlert-icon': {
+                        color: (theme.vars || theme).palette.primary[500],
+                      },
+                    },
+                    theme.applyDarkStyles({
+                      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                      color: (theme.vars || theme).palette.primaryDark[50],
+                      borderColor: alpha(theme.palette.primaryDark[500], 0.2),
+                      '& .MuiAlert-icon': {
+                        color: (theme.vars || theme).palette.primaryDark[50],
+                      },
+                    }),
+                  ],
+                },
+              ],
             },
             theme.applyDarkStyles({
               '& .MuiAlert-icon': {
@@ -331,25 +354,6 @@ export function buildTheme(): ThemeOptions {
             padding: 0,
             fontWeight: 500,
           },
-          standardInfo: ({ theme }) => [
-            {
-              backgroundColor: (theme.vars || theme).palette.primary[50],
-              color: (theme.vars || theme).palette.primary[600],
-              border: '1px solid',
-              borderColor: alpha(theme.palette.primaryDark[100], 0.5),
-              '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.primary[500],
-              },
-            },
-            theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
-              color: (theme.vars || theme).palette.primaryDark[50],
-              borderColor: alpha(theme.palette.primaryDark[500], 0.2),
-              '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.primaryDark[50],
-              },
-            }),
-          ],
           icon: {
             paddingTop: 1,
             paddingBottom: 0,
@@ -598,7 +602,7 @@ export default function MaterialDesignComponents() {
                 open={Boolean(anchor)}
                 anchorEl={anchor}
                 onClose={() => setAnchor(null)}
-                PaperProps={{ variant: 'outlined', elevation: 0 }}
+                slotProps={{ paper: { variant: 'outlined', elevation: 0 } }}
               >
                 <MenuItem>
                   <ListItemIcon>

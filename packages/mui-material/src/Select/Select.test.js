@@ -863,7 +863,10 @@ describe('<Select />', () => {
       const onEntered = spy();
 
       render(
-        <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
+        <Select
+          MenuProps={{ slotProps: { transition: { onEntered } }, transitionDuration: 100 }}
+          value="10"
+        >
           <MenuItem value="10">Ten</MenuItem>
         </Select>,
       );
@@ -878,10 +881,12 @@ describe('<Select />', () => {
       expect(onEntered.callCount).to.equal(1);
     });
 
-    it('should be able to override PaperProps minWidth', () => {
+    it('should be able to override slotProps.paper minWidth', () => {
       render(
         <Select
-          MenuProps={{ PaperProps: { 'data-testid': 'paper', style: { minWidth: 12 } } }}
+          MenuProps={{
+            slotProps: { paper: { 'data-testid': 'paper', style: { minWidth: 12 } } },
+          }}
           open
           value="10"
         >
@@ -1117,7 +1122,7 @@ describe('<Select />', () => {
   describe('prop: autoWidth', () => {
     it('should take the trigger parent element width into account by default', () => {
       const { container } = render(
-        <Select MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
+        <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
@@ -1131,7 +1136,7 @@ describe('<Select />', () => {
 
     it('should not take the trigger parent element width into account when autoWidth is true', () => {
       const { container } = render(
-        <Select autoWidth MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
+        <Select autoWidth MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
