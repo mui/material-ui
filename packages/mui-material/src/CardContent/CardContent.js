@@ -25,6 +25,9 @@ const CardContentRoot = styled('div', {
   '&:last-child': {
     marginBottom: 24,
   },
+  '& > *': {
+    zIndex: 2,
+  },
 });
 
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {

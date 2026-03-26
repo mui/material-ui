@@ -91,7 +91,7 @@ Card.propTypes /* remove-proptypes */ = {
    */
   href: PropTypes.string,
   /**
-   * @ignore
+   * If provided, the card will call this function when clicked.
    */
   onClick: PropTypes.func,
   /**

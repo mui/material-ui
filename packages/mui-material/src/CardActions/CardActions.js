@@ -64,14 +64,20 @@ const ReadMore = styled('span')(
   })),
 );
 
-
 const CardActions = React.forwardRef(function CardActions(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiCardActions',
   });
 
-  const { disableSpacing = false, className, children, slots = {}, slotProps = {}, ...other } = props;
+  const {
+    disableSpacing = false,
+    className,
+    children,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = { ...props, children, disableSpacing };
 
@@ -99,7 +105,6 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
       ref={ref}
       {...other}
     >
-
       {children}
       {clickable && <ReadMoreSlot {...readMoreSlotProps}>{'Read more'}</ReadMoreSlot>}
     </CardActionsRoot>
@@ -124,18 +129,10 @@ CardActions.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The label for the "Read more" visual cue rendered when the card is clickable.
-   * @default 'Read more'
+   * If `true`, the actions do not have additional margin.
+   * @default false
    */
-  readMoreLabel: PropTypes.string,
-  /**
-   * The components used for each slot inside.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    readMore: PropTypes.elementType,
-    root: PropTypes.elementType,
-  }),
+  disableSpacing: PropTypes.bool,
   /**
    * The props used for each slot inside.
    * @default {}
@@ -145,10 +142,12 @@ CardActions.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * If `true`, the actions do not have additional margin.
-   * @default false
+   * The components used for each slot inside.
+   * @default {}
    */
-  disableSpacing: PropTypes.bool,
+  slots: PropTypes.shape({
+    readMore: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

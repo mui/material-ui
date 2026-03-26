@@ -40,6 +40,9 @@ const CardHeaderRoot = styled('div', {
   display: 'flex',
   alignItems: 'center',
   margin: 16,
+  '& > *': {
+    zIndex: 2,
+  },
 });
 
 const CardHeaderAvatar = styled('div', {
