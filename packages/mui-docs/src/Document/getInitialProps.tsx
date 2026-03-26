@@ -4,7 +4,6 @@ import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
 import createEmotionCache from '../DocsApp/createEmotionCache';
 import { pathnameToLanguage } from '../helpers/helpers';
 
-// eslint-disable-next-line import/prefer-default-export
 export function createGetInitialProps({
   setupStyledComponents = false,
 }: {

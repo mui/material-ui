@@ -41,4 +41,23 @@ describe('<CardActionArea />', () => {
 
     expect(ref.current).not.equal(focusHighlight);
   });
+
+  it('forwards nativeButton={false} through useSlot to ButtonBase', () => {
+    const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { container } = render(
+      <CardActionArea component={CustomSpan} nativeButton={false}>
+        Content
+      </CardActionArea>,
+    );
+
+    expect(container.firstChild).to.have.tagName('SPAN');
+    expect(container.firstChild).to.have.attribute('role', 'button');
+    expect(container.firstChild).not.to.have.attribute('type');
+
+    // Proves nativeButton={false} was forwarded — without it, ButtonBase
+    // would warn about a non-button host with nativeButton omitted.
+    expect(errorSpy.mock.calls.length).to.equal(0);
+    errorSpy.mockRestore();
+  });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "9.0.0-alpha.0",
+  "version": "9.0.0-beta.0",
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
   "main": "./index.js",
@@ -27,7 +27,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6"
+    "@babel/runtime": "^7.29.2"
   },
   "peerDependencies": {
     "@mui/material": "workspace:*",

@@ -76,8 +76,8 @@ export default function TransferList() {
                   checked={checked.includes(value)}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{
-                    'aria-labelledby': labelId,
+                  slotProps={{
+                    input: { 'aria-labelledby': labelId },
                   }}
                 />
               </ListItemIcon>

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent, supportsTouch } from '@mui/internal-test-utils';
@@ -134,6 +135,33 @@ describe('<StepButton />', () => {
         expect(handleTouchStart).to.have.property('callCount', 2);
       },
     );
+  });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} and preserves role="tab" over pseudo-button role', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Stepper>
+          <Step>
+            <StepButton component={CustomSpan} nativeButton={false}>
+              Step One
+            </StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepButton = screen.getByRole('tab', { name: 'Step One' });
+      expect(stepButton).to.have.tagName('SPAN');
+      expect(stepButton).to.have.attribute('role', 'tab');
+      expect(stepButton).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
   });
 
   it('can be used as a child of `Step`', () => {

@@ -24,7 +24,7 @@
     "@types/node": "20.19.37",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "sinon": "21.0.2",
+    "sinon": "21.0.3",
     "typescript": "5.9.3"
   }
 }

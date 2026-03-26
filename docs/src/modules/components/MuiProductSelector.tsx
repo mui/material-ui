@@ -115,14 +115,12 @@ function ProductItem({
       </Box>
       <div>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
             {name}
           </Typography>
           {chip}
         </Box>
-        <Typography color="text.secondary" fontSize=".813rem">
-          {description}
-        </Typography>
+        <Typography sx={{ color: 'text.secondary', fontSize: '.813rem' }}>{description}</Typography>
       </div>
     </MenuItem>
   );

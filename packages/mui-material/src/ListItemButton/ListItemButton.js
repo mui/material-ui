@@ -201,6 +201,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         href={other.href || other.to}
         // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
         component={(other.href || other.to) && component === 'div' ? 'button' : component}
+        internalNativeButton={false}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
@@ -230,8 +231,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * The content of the component if a `ListItemSecondaryAction` is used it must
-   * be the last child.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

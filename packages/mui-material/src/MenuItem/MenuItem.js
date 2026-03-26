@@ -242,6 +242,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         role={role}
         tabIndex={tabIndex}
         component={component}
+        internalNativeButton={false}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         className={clsx(classes.root, className)}
         {...other}

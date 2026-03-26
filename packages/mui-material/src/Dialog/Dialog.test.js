@@ -86,7 +86,6 @@ describe('<Dialog />', () => {
     );
 
     expect(document.querySelector(`.${classes.scrollBody} > .${classes.paper}`)).not.to.equal(null);
-    expect(classes.paperScrollBody).not.to.equal(null);
   });
 
   it('should work correctly when using css selectors for scroll="paper"', () => {
@@ -99,14 +98,13 @@ describe('<Dialog />', () => {
     expect(document.querySelector(`.${classes.scrollPaper} > .${classes.paper}`)).not.to.equal(
       null,
     );
-    expect(classes.paperScrollPaper).not.to.equal(null);
   });
 
-  it('should render with a TransitionComponent', () => {
+  it('should render with slots.transition', () => {
     const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);
 
     render(
-      <Dialog open TransitionComponent={Transition}>
+      <Dialog open slots={{ transition: Transition }}>
         foo
       </Dialog>,
     );
@@ -235,7 +233,11 @@ describe('<Dialog />', () => {
   describe('prop: classes', () => {
     it('should add the class on the Paper element', () => {
       render(
-        <Dialog open classes={{ paper: 'my-paperclass' }} PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog
+          open
+          classes={{ paper: 'my-paperclass' }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
+        >
           foo
         </Dialog>,
       );
@@ -247,7 +249,7 @@ describe('<Dialog />', () => {
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
       render(
-        <Dialog open maxWidth="xs" PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog open maxWidth="xs" slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
@@ -257,7 +259,7 @@ describe('<Dialog />', () => {
 
     it('should use the right className when maxWidth={false}', () => {
       render(
-        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog open maxWidth={false} slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
@@ -266,7 +268,7 @@ describe('<Dialog />', () => {
 
     it('should apply the correct max-width styles when maxWidth={false}', () => {
       render(
-        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog open maxWidth={false} slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
@@ -280,7 +282,7 @@ describe('<Dialog />', () => {
   describe('prop: fullWidth', () => {
     it('should set `fullWidth` class if specified', () => {
       render(
-        <Dialog open fullWidth PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog open fullWidth slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
@@ -290,7 +292,7 @@ describe('<Dialog />', () => {
 
     it('should not set `fullWidth` class if not specified', () => {
       render(
-        <Dialog open PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog open slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
@@ -302,7 +304,7 @@ describe('<Dialog />', () => {
   describe('prop: fullScreen', () => {
     it('can render fullScreen if true', () => {
       render(
-        <Dialog open fullScreen PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog open fullScreen slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
@@ -312,7 +314,7 @@ describe('<Dialog />', () => {
 
     it('does not render fullScreen by default', () => {
       render(
-        <Dialog open PaperProps={{ 'data-testid': 'paper' }}>
+        <Dialog open slotProps={{ paper: { 'data-testid': 'paper' } }}>
           foo
         </Dialog>,
       );
@@ -328,7 +330,7 @@ describe('<Dialog />', () => {
         <Dialog
           open
           fullScreen
-          PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
+          slotProps={{ paper: { 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } } }}
         >
           {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
             <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
@@ -347,10 +349,13 @@ describe('<Dialog />', () => {
     });
   });
 
-  describe('prop: PaperProps.className', () => {
+  describe('prop: slotProps.paper.className', () => {
     it('should merge the className', () => {
       render(
-        <Dialog open PaperProps={{ className: 'custom-paper-class', 'data-testid': 'paper' }}>
+        <Dialog
+          open
+          slotProps={{ paper: { className: 'custom-paper-class', 'data-testid': 'paper' } }}
+        >
           foo
         </Dialog>,
       );

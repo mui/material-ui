@@ -33,22 +33,19 @@ const code = `
     sx={{    width: { xs: '100%', sm: 100 },
     }}
   />
-  <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
+  <Stack direction="column" sx={{ alignItems: 'center' }} spacing={1} useFlexGap>
     <div>
-      <Typography color="text.primary" fontWeight="semiBold">
+      <Typography sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
         Contemplative Reptile
       </Typography>
       <Typography
         variant="caption"
-        color="text.secondary"
-        fontWeight="medium"
-        textAlign="center"
-        sx={{ width: '100%' }}
+        sx={{ color: 'text.secondary', fontWeight: 'medium', textAlign: 'center', width: '100%' }}
       >
         Sounds of Nature
       </Typography>
     </div>
-    <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
+    <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1} useFlexGap>
       <IconButton aria-label="Shuffle" disabled size="small">
         <ShuffleRoundedIcon fontSize="small" />
       </IconButton>

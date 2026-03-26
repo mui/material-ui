@@ -40,7 +40,7 @@ jobs:
           ref: ${{ inputs.sha }}
           fetch-depth: 0 # Fetch full history for proper git operations
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@f544b55fdbbb922b7293365705cf62895b4f5186
+        uses: mui/mui-public/.github/actions/publish-prepare@1eedf1bb22170479a7e6d236667e018c28ac9dd1
       - name: Publish packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

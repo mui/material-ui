@@ -130,4 +130,27 @@ describe('<AccordionSummary />', () => {
 
     expect(handleFocusVisible.callCount).to.equal(1);
   });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} through useSlot to ButtonBase', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Accordion>
+          <AccordionSummary component={CustomSpan} nativeButton={false} />
+        </Accordion>,
+      );
+
+      const summary = screen.getByRole('button');
+      expect(summary).to.have.tagName('SPAN');
+      expect(summary).to.have.attribute('aria-expanded', 'false');
+      expect(summary).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
+  });
 });

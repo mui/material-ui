@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "9.0.0-alpha.3",
+  "version": "9.0.0-beta.0",
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
   "main": "./src/index.js",
@@ -41,7 +41,7 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"ZoomOutTwoTone\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6"
+    "@babel/runtime": "^7.29.2"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",

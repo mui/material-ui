@@ -139,7 +139,7 @@ describe('<Drawer />', () => {
           <Drawer
             open={false}
             transitionDuration={transitionDuration}
-            SlideProps={{ onEntered: handleEntered }}
+            slotProps={{ transition: { onEntered: handleEntered } }}
           >
             <div />
           </Drawer>,
@@ -265,7 +265,7 @@ describe('<Drawer />', () => {
         <Drawer
           open={false}
           transitionDuration={transitionDuration}
-          SlideProps={{ onEntered: handleEntered }}
+          slotProps={{ transition: { onEntered: handleEntered } }}
           variant="persistent"
         >
           <div />
@@ -300,10 +300,10 @@ describe('<Drawer />', () => {
     });
   });
 
-  describe('prop: PaperProps', () => {
+  describe('prop: slotProps.paper', () => {
     it('should merge class names', () => {
       const { container } = render(
-        <Drawer PaperProps={{ className: 'my-class' }} variant="permanent">
+        <Drawer slotProps={{ paper: { className: 'my-class' } }} variant="permanent">
           <div />
         </Drawer>,
       );
@@ -328,7 +328,7 @@ describe('<Drawer />', () => {
       });
 
       const { setProps } = render(
-        <Drawer open TransitionComponent={MockedSlide}>
+        <Drawer open slots={{ transition: MockedSlide }}>
           <div />
         </Drawer>,
       );
@@ -367,7 +367,7 @@ describe('<Drawer />', () => {
       });
       const view = render(
         <ThemeProvider theme={theme}>
-          <Drawer open anchor="left" TransitionComponent={MockedSlide}>
+          <Drawer open anchor="left" slots={{ transition: MockedSlide }}>
             <div />
           </Drawer>
         </ThemeProvider>,
@@ -377,7 +377,7 @@ describe('<Drawer />', () => {
 
       view.rerender(
         <ThemeProvider theme={theme}>
-          <Drawer open anchor="right" TransitionComponent={MockedSlide}>
+          <Drawer open anchor="right" slots={{ transition: MockedSlide }}>
             <div />
           </Drawer>
         </ThemeProvider>,

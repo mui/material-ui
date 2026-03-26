@@ -17,7 +17,7 @@ interface AppContext {
  * @param options.translationsContext - A webpack require.context pointing at translation JSON files.
  *   e.g. `require.context('docs/translations', false, /\.\/translations.*\.json$/)`
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export function createGetInitialProps(options: { translationsContext: RequireContext }) {
   async function getInitialPropsApp({ ctx, Component }: AppContext) {
     let pageProps: Record<string, unknown> = {};

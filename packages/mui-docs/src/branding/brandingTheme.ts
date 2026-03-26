@@ -1265,10 +1265,10 @@ export function getThemedComponents(): ThemeOptions {
           IconComponent: ArrowDropDownRounded,
         },
         styleOverrides: {
-          iconFilled: {
-            top: 'calc(50% - .25em)',
-          },
           root: ({ theme }) => ({
+            '& .MuiSelect-filled ~ .MuiSelect-icon': {
+              top: 'calc(50% - .25em)',
+            },
             variants: [
               {
                 props: { variant: 'outlined' },

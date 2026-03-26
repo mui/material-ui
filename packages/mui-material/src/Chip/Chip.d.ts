@@ -106,6 +106,13 @@ export interface ChipOwnProps {
    */
   size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides> | undefined;
   /**
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * When omitted, custom components inherit the default button semantics of the current wrapper.
+   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
+   * when it resolves to a non-button host.
+   */
+  nativeButton?: boolean | undefined;
+  /**
    * If `true`, allows the disabled chip to escape focus.
    * If `false`, allows the disabled chip to receive focus.
    * @default false

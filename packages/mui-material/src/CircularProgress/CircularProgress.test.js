@@ -52,10 +52,11 @@ describe('<CircularProgress />', () => {
     const circularProgress = container.firstChild;
     expect(circularProgress).to.have.class(classes.root);
     const svg = circularProgress.firstChild;
-    expect(svg.firstChild).to.have.class(
-      classes.circleIndeterminate,
-      'should have the circleIndeterminate class',
+    expect(circularProgress).to.have.class(
+      classes.indeterminate,
+      'should have the indeterminate class',
     );
+    expect(svg.firstChild).to.have.class(classes.circle, 'should have the circle class');
   });
 
   it('should render with a different size', () => {

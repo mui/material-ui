@@ -5,7 +5,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "7.28.6",
+    "@babel/runtime": "7.29.2",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@mui/base": "5.0.0-beta.70",
@@ -31,8 +31,8 @@
     "react-is": "19.2.4",
     "react-router": "7.13.1",
     "react-window": "2.2.7",
-    "sinon": "21.0.2",
-    "styled-components": "6.3.11",
+    "sinon": "21.0.3",
+    "styled-components": "6.3.12",
     "stylis": "4.3.6",
     "webfontloader": "1.6.28",
     "webpack": "5.105.4",

@@ -2,7 +2,6 @@ import { loadCSS } from 'fg-loadcss';
 
 let dependenciesLoaded = false;
 
-// eslint-disable-next-line import/prefer-default-export
 export function loadDependencies(): void {
   if (dependenciesLoaded) {
     return;

@@ -59,6 +59,13 @@
       "schedule": "* * 1 1,7 *"
     },
     {
+      "description": "Prevent major version updates of bundler/framework packages in bundling fixtures",
+      "matchFileNames": ["test/bundling/fixtures/**/package.json"],
+      "matchPackageNames": ["esbuild", "gatsby", "next", "rollup", "snowpack", "vite", "webpack"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "groupName": "examples",
       "matchFileNames": ["examples/**/package.json"],
       "enabled": false

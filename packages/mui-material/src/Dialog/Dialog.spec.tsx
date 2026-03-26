@@ -14,7 +14,7 @@ function Test() {
   return (
     <React.Fragment>
       <Dialog open />;
-      <Dialog open PaperProps={paperProps} />;
+      <Dialog open slotProps={{ paper: paperProps }} />;
     </React.Fragment>
   );
 }
