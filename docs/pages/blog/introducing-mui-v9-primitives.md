@@ -16,16 +16,24 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
 ## Table of contents
 
 - [NumberField](#numberfield)
-- [Menubar](#menubar)
+- [Menubar and submenus](#menubar-and-submenus)
 - [Theme and CSS variables](#theme-and-css-variables)
+  - [Derived colors with `color-mix()`](#derived-colors-with-color-mix)
+  - [Tooltip docs clarity and `nativeColor` fixes](#tooltip-docs-clarity-and-nativecolor-fixes)
 - [Interaction and accessibility fixes](#interaction-and-accessibility-fixes)
+  - [Autocomplete, Backdrop, Tooltip](#autocomplete-backdrop-tooltip)
 - [Platform cleanup](#platform-cleanup)
 - [Keyboard navigation](#keyboard-navigation)
+  - [Roving TabIndex across menus and navigation](#roving-tabindex-across-menus-and-navigation)
+  - [Autocomplete](#autocomplete)
+  - [CSS rule cleanup (partial revert)](#css-rule-cleanup-partial-revert)
+  - [Repository note](#repository-note)
 - [Migration and breaking changes](#migration-and-breaking-changes)
+- [Where to go next](#where-to-go-next)
 
 ## NumberField
 
-[Base UI](https://base-ui.com/) adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. **`NumberField`** is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
+[Base UI](https://base-ui.com/) adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
   <!-- feature-media:video NumberField -->
@@ -37,7 +45,7 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
     width="992"
     height="562"
     controls
-    style="border: 0; width: 100%; max-width: 992px; height: auto"
+    style="border: 0; width: 100%; max-width: 496px; height: auto"
   >
     <source
       src="/static/blog/introducing-mui-v9/introducing-mui-v9-primitives/NumberField.mov"
@@ -47,9 +55,9 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
   <figcaption>NumberField, implemented on Base UI primitives.</figcaption>
 </figure>
 
-## Menubar
+## Menubar and submenus
 
-**`Menubar`** is the other new Base UI–backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in [Base UI](https://base-ui.com/). We also shipped a dedicated Menubar documentation page, integrated with those primitives (alpha.3).
+`Menubar` is the other new Base UI–backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in [Base UI](https://base-ui.com/). On this stack we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
   <!-- feature-media:video Menubar -->
@@ -61,23 +69,23 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
     width="1462"
     height="998"
     controls
-    style="border: 0; width: 100%; max-width: 1462px; height: auto"
+    style="border: 0; width: 100%; max-width: 731px; height: auto"
   >
     <source
       src="/static/blog/introducing-mui-v9/introducing-mui-v9-primitives/Menubar.mov"
       type="video/quicktime"
     />
   </video>
-  <figcaption>Menubar: horizontal menus and roving keyboard focus.</figcaption>
+  <figcaption>Menubar with submenus and keyboard-friendly navigation.</figcaption>
 </figure>
 
-Together, NumberField and Menubar embody the v9 push toward roving TabIndex and predictable keyboard interactions across complex controls.
+Together, NumberField and Menubar show where we’re headed in v9: wider Base UI adoption in Material UI, and interactions, including keyboard support, that stay clear and consistent even in dense UIs.
 
 ## Theme and CSS variables
 
 ### Derived colors with `color-mix()`
 
-Theme in v9 extends the CSS variables system to generate `color-mix()` values on top of the default Material UI theme variables (alpha.0).
+Theme in v9 extends the CSS variables system to generate `color-mix()` values on top of the default Material UI theme variables.
 This gives you:
 
 - More precise control over derived colors.
@@ -86,7 +94,7 @@ This gives you:
 
 ### Tooltip docs clarity and `nativeColor` fixes
 
-- Tooltip documentation now describes the visible text triggers more explicitly, clarifying which interactions and DOM structures are supported (alpha.0).
+- Tooltip documentation now describes the visible text triggers more explicitly, clarifying which interactions and DOM structures are supported.
 - We also fixed the `nativeColor` docs to better reflect how it behaves alongside the CSS variables system.
 
 Internal: preparing libraries for the v9 cycle
@@ -98,101 +106,101 @@ Behind the scenes, we invested in internal prep work so the codebase could handl
 
 ## Interaction and accessibility fixes
 
-These updates focus on small but important behavior changes, especially around accessibility and event handling (alpha.1).
+These updates focus on small but important behavior changes, especially around accessibility and event handling.
 
 ### Autocomplete, Backdrop, Tooltip
 
 Autocomplete
 
-- Prevent menu opening on right‑click so context‑menu interactions don’t unexpectedly toggle the options list (alpha.1).
+- Prevent menu opening on right‑click so context‑menu interactions don’t unexpectedly toggle the options list.
 
 Backdrop
 
-- Remove `aria-hidden` by default so the backdrop is no longer aggressively hiding content from assistive technologies (a11y improvements; @Silviu Alexandru Avram can add more details) (alpha.1).
+- Remove `aria-hidden` by default so the backdrop is no longer aggressively hiding content from assistive technologies (a11y improvements).
 
 ButtonBase
 
-- Ensure `onClick` events propagate correctly when a non‑native button element is clicked (alpha.1).
+- Ensure `onClick` events propagate correctly when a non‑native button element is clicked.
 
 Dialog and Modal
 
-- Remove the `disableEscapeKeyDown` prop (alpha.1).
+- Remove the `disableEscapeKeyDown` prop.
 
 Grid
 
-- Remove system props support from the Grid component (alpha.1).
+- Remove system props support from the Grid component.
 
 Migration impact: if you rely on system props directly on Grid, plan to migrate those concerns into `sx` or dedicated layout primitives as you move to v9.
 
 TableCell and theme – color mixing for borders
 
-- Apply alpha before color mixing for the `border-bottom` color when `nativeColor` and `cssVariables` are used together (alpha.1).
+- Apply alpha before color mixing for the `border-bottom` color when `nativeColor` and `cssVariables` are used together.
 
 Theme typing
 
-- Remove `MuiTouchRipple` from theme component types (alpha.1).
+- Remove `MuiTouchRipple` from theme component types.
 
 Tooltip
 
-- Fix an error when wrapping a disabled input that is focused (alpha.1).
+- Fix an error when wrapping a disabled input that is focused.
 
 `useAutocomplete` typing
 
-- Improve TypeScript typing for `useAutocomplete` (alpha.1).
+- Improve TypeScript typing for `useAutocomplete`.
 
 ## Platform cleanup
 
-Platform cleanup and docs infrastructure in v9 focus on cleanup, maintainability, and more efficient developer workflows (alpha.2).
+Platform cleanup and docs infrastructure in v9 focus on cleanup, maintainability, and more efficient developer workflows.
 
 Material UI
 
-- Clean up duplicated CSS rules to reduce redundancy and keep output styles more predictable (alpha.2).
+- Clean up duplicated CSS rules to reduce redundancy and keep output styles more predictable.
 
-- Bundle size improvements credited to @Siriwat Kunaporn (alpha.2).
+- Bundle size improvements.
 
-- `sx` prop performance improvements (details in PR https://github.com/mui/material-ui/pull/44254) (alpha.2).
+- `sx` prop performance improvements (details in PR https://github.com/mui/material-ui/pull/44254).
 
 System
 
-- Refactor the container query sorting regex used in the system layer (alpha.2).
+- Refactor the container query sorting regex used in the system layer.
 
 Docs infra
 
-- Move shared docs components to `@mui/docs`, consolidating reusable pieces of the documentation system (alpha.2).
+- Move shared docs components to `@mui/docs`, consolidating reusable pieces of the documentation system.
 
 ## Keyboard navigation
 
-Keyboard navigation and accessibility improvements keep moving the ecosystem forward (alpha.3).
+Keyboard navigation and accessibility improvements keep moving the ecosystem forward.
 
 ### Roving TabIndex across menus and navigation
 
-- Improved Roving TabIndex keyboard navigation for Stepper, Tabs, and MenuList (alpha.3).
-- Additional accessibility improvements for Stepper, MenuList, and Tabs (alpha.3).
+- Improved Roving TabIndex keyboard navigation for Stepper, Tabs, and MenuList.
+- Additional accessibility improvements for Stepper, MenuList, and Tabs.
 
 Improved roving TabIndex focus is a key v9 highlight for keyboard-first components like Menu, Stepper, and Tabs.
 
 ### Autocomplete
 
-- Add a `root` slot (alpha.3).
-- Support full slots for `clearIndicator` and `popupIndicator` (alpha.3).
-- Fix the popup reopening when the window regains focus with `openOnFocus` (alpha.3).
+- Add a `root` slot.
+- Support full slots for `clearIndicator` and `popupIndicator`.
+- Fix the popup reopening when the window regains focus with `openOnFocus`.
 
 ### CSS rule cleanup (partial revert)
 
-- Partially revert duplicated CSS rules cleanup where it proved too aggressive (alpha.3).
+- Partially revert duplicated CSS rules cleanup where it proved too aggressive.
 
 ### Repository note
 
-- As part of ongoing repository maintenance, we removed Joy UI code and docs from this repo (alpha.3).
+- As part of ongoing repository maintenance, we removed Joy UI code and docs from this repo.
 
 ## Migration and breaking changes
 
 In v9, we removed deprecated props and shipped fixes that sometimes require breaking changes, especially where those fixes unlock consistent accessibility and improved keyboard navigation through stronger Roving TabIndex behavior.
 Several changes already have migration impact worth planning for:
 
-- **Grid system props removal:** audit your usage of system props on Grid and migrate layout concerns into `sx` or dedicated layout primitives.
-- **Dialog/Modal escape key behavior:** if you relied on `disableEscapeKeyDown`, plan to keep your escape‑handling logic in one place.
-- **Theme typing clean‑ups:** if you depend on strongly typed theme extensions, keep an eye on updated type definitions as we continue to refine v9.
+- Grid system props removal: audit your usage of system props on Grid and migrate layout concerns into `sx` or dedicated layout primitives.
+- Dialog/Modal escape key behavior: if you relied on `disableEscapeKeyDown`, plan to keep your escape‑handling logic in one place.
+- Theme typing clean‑ups: if you depend on strongly typed theme extensions, keep an eye on updated type definitions as we continue to refine v9.
 
 As the v9 cycle progresses, we’ll publish a dedicated v9 migration guide similar to the ones for [v6](/material-ui/migration/upgrade-to-v6/) and [v7](/material-ui/migration/upgrade-to-v7/).
 
@@ -201,6 +209,15 @@ As the v9 cycle progresses, we’ll publish a dedicated v9 migration guide simil
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
 - [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chatbox (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
+Docs:
+
+- [NumberField](/material-ui/react-number-field/)
+- [Menubar](/material-ui/react-menubar/)
+- [Upgrade to v9](/material-ui/migration/upgrade-to-v9/)
+- [Tooltip](/material-ui/react-tooltip/)
+
+To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.

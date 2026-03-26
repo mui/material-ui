@@ -1,6 +1,6 @@
 ---
 title: MUI X v9 Charts
-description: A tour of the Charts changes in v9, from tooltip control and keyboard navigation to composition and Sankey stabilization.
+description: MUI X Charts v9: keyboard-first interaction, clearer composition with Charts* APIs, and continued Pro and Premium work across heatmap, Sankey, exports, and more.
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
@@ -8,112 +8,61 @@ manualCard: false
 hideFromHomeList: true
 ---
 
-Charts are a key part of the MUI X advanced components.
-In v9, we’re expanding capabilities, tightening keyboard navigation and accessibility, and continuing the work on composition patterns.
+Charts are a core part of the MUI X advanced stack.
+In v9 we’re continuing the same story you saw accelerate in v8: interaction and accessibility by default, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
 
-For the full v9 story across Material UI, Data Grid, Scheduler, and Chatbox, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+This post groups those directions so you can scan the major without reading a release notes dump.
+For the full v9 picture, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+For every rename and fix, use the [MUI X releases](https://github.com/mui/mui-x/releases) timeline and the published codemods.
 
 ## Table of contents
 
-- [Interaction upgrades across all tiers](#interaction-upgrades-across-all-tiers)
-- [Axis tooltip sorting and control](#axis-tooltip-sorting-and-control)
-- [Sankey stabilization and naming](#sankey-stabilization-and-naming)
-- [Keyboard navigation by default](#keyboard-navigation-by-default)
-- [Migration and composition notes](#migration-and-composition-notes)
-
-## Charts highlights
+- [Interaction and accessibility](#interaction-and-accessibility)
+- [Composition, naming, and breaking cleanup](#composition-naming-and-breaking-cleanup)
+- [Pro and Premium](#pro-and-premium)
+- [Planning an upgrade](#planning-an-upgrade)
+- [Where to go next](#where-to-go-next)
 
 <!-- feature-media:img Charts highlights -->
 
-### Interaction upgrades across all tiers
+## Interaction and accessibility
 
-Charts (MIT) (alpha.0)
+Keyboard navigation is on by default in v9, with follow‑through work on focus, tooltips, radar, and tier‑appropriate behaviors (for example funnel, heatmap, and Sankey on Pro, range‑bar on Premium).
+Across MIT, Pro, and Premium we’ve kept tightening legend and axis ergonomics: clearer hooks for layout and ticks, better control over axis tooltips and ordering, and refinements to how series identity and highlighting behave so custom themes don’t fight the internals.
 
-- Legend actions (alpha.0)
-- `axesGap` (alpha.0)
-- `initialHiddenItems` (alpha.0)
-- `useXAxisCoordinates` / `useYAxisCoordinates` (alpha.0)
-- Axis slots and ticks hooks (alpha.0)
-- Tooltip control (alpha.0)
-- Radar keyboard navigation (alpha.0)
-- Major renames/deprecations including `ChartContainer` → `ChartsContainer` and `getSVGPoint` → `getChartPoint` (alpha.0)
-- Standardization work around `seriesId` vs `id` (alpha.0)
+The headline is a charting stack that feels reachable from the keyboard and easier to tune without diving into copy‑paste workarounds.
 
-Charts Pro (alpha.0)
+## Composition, naming, and breaking cleanup
 
-- Heatmap border radius (alpha.0)
-- Keyboard navigation for funnel/heatmap/sankey (alpha.0)
-- Export/crash fixes (alpha.0)
-- Sankey composition support (alpha.0)
+v9 is the release where the long migration from legacy entry points toward `Charts*`-prefixed APIs and `ChartsLayerContainer` / `ChartsDataProvider` patterns really lands: old containers, providers, voronoi/hover props, and a long tail of obsolete classes and exports are removed in favor of consistent `data-series` attributes, `hitAreaRadius` / `disableHitArea`, and codemoddable renames (including WebGL spelling and zoom slider naming).
 
-Charts Premium (alpha.0)
+Line charts adopt `preferStrictDomainInLineCharts` as the default; if you relied on the previous auto‑domain behavior, confirm axis ranges after upgrading.
+Tooltips align with the layer container model (including portaling through `ChartsLayerContainer`), and shared primitives accept `className` more predictably so bar, line, radar, and shared wrappers theme the same way.
 
-- WebGL renderer for Heatmap (alpha.0)
-- `ChartContainerPremium` (alpha.0)
-- `HeatmapPremium` (alpha.0)
-- Keyboard navigation for range‑bar (alpha.0)
-- Related fixes (alpha.0)
+## Pro and Premium
 
-### Axis tooltip sorting and control
+On Pro, expect continued polish on heatmap, Sankey composition, exports, brush interactivity (finer pointer and modifier‑key behavior), and navigation for funnel/heatmap/sankey.
+Premium pushes WebGL heatmap, premium container entry points, candlestick and related analytical series, and ongoing fixes in dense rendering and export paths.
 
-Release‑level highlight: axis tooltip sorting/control improvements (alpha.1)
+You don’t need to memorize each minor here; treat Pro and Premium as receiving parity fixes plus tier‑specific depth as v9 matures.
 
-Other changes include:
+## Planning an upgrade
 
-- Sort props for axis tooltip (alpha.1)
-- Control axis tooltip (alpha.1)
-- Overlay refactor (alpha.1)
-- Require unique series IDs (alpha.1)
-- `showMark` false by default (alpha.1)
-- Keyboard focus util usage (alpha.1)
-
-### Sankey stabilization and naming
-
-Release‑level highlight: stabilize Sankey chart (alpha.2)
-
-- `ChartsLayerContainer` (alpha.2)
-- Codemods for renames (alpha.2)
-- Deprecate `ChartDataProvider` → `ChartsDataProvider` (alpha.2)
-- Deprecate highlighted/faded classes (alpha.2)
-- Rename standardization (WebGl → WebGL, ChartZoomSlider → ChartsZoomSlider, etc.) (alpha.2)
-- Controlled tooltip warning/fix (alpha.2)
-- Restore focus on last focused item (alpha.2)
-
-### Keyboard navigation by default
-
-Charts (alpha.3)
-
-- Enable keyboard navigation by default (alpha.3)
-- Tooltip fixes (alpha.3)
-- Refactor class structure (bar/line/scatter/pie) (alpha.3)
-- Simplify highlight hooks return types (alpha.3)
-- Generic type standardization (alpha.3)
-
-Charts Pro (alpha.3)
-
-- Heatmap style override fix (alpha.3)
-- Export fix (alpha.3)
-- Speed‑up cell search (alpha.3)
-- Fix highlight issues (alpha.3)
-
-## Migration and composition notes
-
-Migration and composition notes for v9:
-
-- Running the codemods for key renames (`ChartDataProvider` → `ChartsDataProvider`, `ChartZoomSlider` → `ChartsZoomSlider`, and so on).
-- Reviewing tooltip and legend usage, especially if you depend on custom ordering or controlled tooltip state.
-- Validating keyboard navigation flows across your charts.
+Plan time to run codemods, revisit tooltips and legends if you customized ordering or controlled state, walk keyboard flows across your chart types, and recheck line chart domains after the stricter default.
+If you embed charts in the Data Grid, coordinate with the [Data Grid highlights](/blog/introducing-mui-v9-data-grid/) post on the stable in‑grid path.
 
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
 - [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
+- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chatbox (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 Docs:
 
 - [Charts overview](/x/react-charts/)
 - [Charts composition](/x/react-charts/composition/)
 
+To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.

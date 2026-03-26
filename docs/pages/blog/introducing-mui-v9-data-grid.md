@@ -1,6 +1,6 @@
 ---
 title: MUI X v9 Data Grid
-description: What’s new in the Data Grid in v9, including filtering, lazy loading, selection, and the AI Assistant direction.
+description: Data Grid in MUI X v9: stronger dynamic data and lazy loading, stable Charts in the grid, and AI Assistant with Console and bring your own key.
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
@@ -9,103 +9,65 @@ hideFromHomeList: true
 ---
 
 The Data Grid is one of the main pillars of MUI X.
-In v9, we’re refining core behaviors, improving dynamic data handling, and evolving toward AI‑native workflows built directly into the grid.
+In v9 we’re tightening how the grid works with live and server‑backed data, making tabular‑plus‑visual dashboards first‑class, and continuing to treat AI assistance as part of the product, not a side demo.
 
-This post highlights the Data Grid feature updates and explains how the Data Grid AI Assistant fits the v9 direction.
-For the shared ecosystem view, start with the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+This post orients you around those themes.
+For the shared ecosystem story, start with the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) and the Data Grid migration material in the docs.
 
 ## Table of contents
 
-- [Filtering, locales, and demos](#filtering-locales-and-demos)
-- [Dynamic data and editing ergonomics](#dynamic-data-and-editing-ergonomics)
-- [Selection, pagination, and performance](#selection-pagination-and-performance)
-- [Robustness and header structure](#robustness-and-header-structure)
+- [Dynamic data, editing, and everyday UX](#dynamic-data-editing-and-everyday-ux)
+- [Charts inside the grid](#charts-inside-the-grid)
 - [AI Assistant](#ai-assistant)
-- [Migration notes](#migration-notes)
-
-## Data Grid highlights
+- [Planning an upgrade](#planning-an-upgrade)
+- [Where to go next](#where-to-go-next)
 
 <!-- feature-media:img DataGrid highlights -->
 
-### Filtering, locales, and demos
+## Dynamic data, editing, and everyday UX
 
-- Update the default `logicOperator` behavior in the filtering docs (alpha.0).
-- Add the `thTH` locale (alpha.0).
-- Fix the initial filter value state in the `CustomMultiValueOperator` demo (alpha.0).
-- **DataGridPro:** cleanup outdated rows on `dataSource` reference update (alpha.0).
+Much of the v9 grid work is incremental but important: lazy loading and data source behavior (caching, invalidation, and tree or nested server data) got attention so large datasets feel predictable when rows stream in or edit state changes.
+Alongside that, we kept polishing filtering and locales (including broader locale coverage in line with Pickers), selection and pagination (keyboard flow, fewer unnecessary rerenders, clearer defaults), and small header and robustness fixes so Pro features like detail panels and resizable regions stay solid when props update in quick succession.
 
-### Dynamic data and editing ergonomics
+Rather than walk every commit here, think of v9 as a cycle where dynamic data paths and editing ergonomics move together, with housekeeping to stay aligned with Material UI v9 internals underneath.
 
-Release‑level highlight: improved dynamic data support and cache invalidation in lazy loading (DataGridPro) (alpha.1).
+## Charts inside the grid
 
-- **DataGridPro:** improve dynamic data support and cache invalidation in lazy loading (alpha.1).
-- Forward rest props in `GridFilterInputMultipleValue` (alpha.1).
-- Preserve key input during row edit when using `rowModesModel` (alpha.1).
-- Remove double RTL inversion logic for columns pinning (alpha.1).
-- **DataGridPro:** fix number input visibility in header filters (alpha.1).
+Charts inside the grid is stable in v9: you can ship dashboards that mix tables and visuals without treating the integration as experimental.
+We also kept the implementation in step with Material UI v9 so the grid and charts don’t drift as both packages evolve.
 
-### Selection, pagination, and performance
-
-- Fix keyboard nav with single‑row checkbox selection (alpha.2).
-- Add `checkboxColDef` prop to customize the selection column (alpha.2).
-- Format pagination numbers by default (alpha.2).
-- Prevent unnecessary row selection checkbox rerendering (alpha.2).
-- Make GridScrollArea overrides resolver dynamic (alpha.2).
-- **DataGridPro:** use `getRowId` prop to calculate tree data row update (alpha.2).
-
-### Robustness and header structure
-
-- Fix crash when `rows` and `rowModesModel` are updated simultaneously (alpha.3).
-- Add missing `resizablePanelHandle` classes to `gridClasses` (alpha.3).
-- Refactor `headerAlign` style calls (alpha.3).
-- **DataGridPro:** add `role="presentation"` to detail panel toggle header content (alpha.3).
-- **DataGridPro:** fix sorting not reflected in nested server-side data (alpha.3).
+If you already combine the two, plan a quick pass on your dashboards after upgrading; the stable path is documented with the rest of the grid surface.
 
 ## AI Assistant
 
 <!-- feature-media:img DataGrid AI Assistant -->
 
-The v9 Data Grid is built for AI‑native workflows, with the Data Grid AI Assistant as a key example.
+The Data Grid AI Assistant remains a flagship example of AI‑native design in MUI X: users describe what they want in natural language, and the grid applies structured changes (filters, sorting, grouping, aggregations, pivoting) that stay visible and editable in the UI.
 
-### How it works conceptually
+Turning that on in production is not only a front‑end story.
+Console brings licensing, service API keys, and billing into one place so teams can create and rotate keys without routing every request through support; see [New Console application](/blog/introducing-mui-v9/#new-console-application) in the v9 overview.
+Where governance matters, bring your own key lets you supply your own provider credentials so traffic and policies stay under your control while the same assistant flows apply to the grid.
 
-The AI Assistant is designed as a first‑class part of the Data Grid, not an external chatbot:
+Conceptually we keep a simple chain: question → interpretation → grid API calls → inspectable configuration.
+That matches how we want other advanced components to behave: clear intents, observable state, and purpose‑built UI for history and applied changes, not a generic chat bolt‑on.
+For the current API and integration patterns, use the [AI Assistant](/x/react-data-grid/ai-assistant/) docs.
 
-- Users ask questions in natural language.
-- The assistant translates them into structured grid changes (filters, sorting, grouping, aggregations, pivoting).
-- Those changes are visible, inspectable, and editable in the UI.
+## Planning an upgrade
 
-Conceptually:
+When you move to v9, prioritize lazy loading and data source patterns (cache behavior after reference changes), selection and row editing flows, and server‑side tree or nested setups if you use them.
+If you render Charts inside the grid, validate those screens once on the stable integration path.
 
-```text
-User question → semantic interpretation → grid API calls → visible configuration changes
-```
-
-To explore the current surface area, see the [AI Assistant docs](/x/react-data-grid/ai-assistant/).
-
-### Why it matters for v9
-
-This pattern is central to how we think about AI‑native component design:
-
-- Components expose clear intents and actions an agent can call.
-- Component state is observable and reversible.
-- The UI includes purpose‑built surfaces (history, diffs, applied changes), not a generic chat window.
-
-## Migration notes
-
-Migration notes for Data Grid in v9:
-
-- Lazy loading + data source patterns (cache behavior and invalidation).
-- Selection + editing flows (`rowModesModel`, selection column customization).
-- Server-side data with tree or nested structures.
+Deeper step‑by‑step guidance lives in the Data Grid migration and [server‑side data](/x/react-data-grid/server-side-data/) documentation.
 
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
 - [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chatbox (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 Docs:
 
@@ -113,3 +75,4 @@ Docs:
 - [Server‑side data](/x/react-data-grid/server-side-data/)
 - [AI Assistant](/x/react-data-grid/ai-assistant/)
 
+To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.
