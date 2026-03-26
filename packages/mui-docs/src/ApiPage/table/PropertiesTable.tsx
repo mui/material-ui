@@ -229,7 +229,7 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                   ))}
                   {requiresRef && (
                     <ApiWarningAlert className="prop-table-alert">
-                      <span
+                      <div
                         dangerouslySetInnerHTML={{
                           __html: t('api-docs.requires-ref'),
                         }}

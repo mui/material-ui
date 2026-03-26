@@ -98,7 +98,7 @@ export function ClassesSection(props: ClassesSectionProps) {
         <React.Fragment>
           <br />
           <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-          <span
+          <div
             dangerouslySetInnerHTML={{
               __html: t('api-docs.overrideStylesStyledComponent').replace(
                 /{{styleOverridesLink}}/,

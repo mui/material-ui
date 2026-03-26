@@ -167,7 +167,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
           <br />
           {cssComponent && (
             <React.Fragment>
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
                 }}
@@ -192,7 +192,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
                 hash={`${componentNameKebabCase}-inheritance`}
                 level="h3"
               />
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.inheritanceDescription')
                     .replace(/{{component}}/, inheritance.component)
@@ -210,7 +210,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
                 hash={`${componentName}-theme-default-props`}
                 level="h4"
               />
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.themeDefaultPropsDescription')
                     .replace(/{{muiName}}/, pageContent.muiName)

@@ -98,7 +98,7 @@ const iconWidth = 35;
 
 const SVG_ICON_CLASS = 'svg-icon';
 
-const StyledIcon = styled('span')(({ theme }) => ({
+const StyledIcon = styled('div')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   color: (theme.vars ?? theme).palette.text.secondary,

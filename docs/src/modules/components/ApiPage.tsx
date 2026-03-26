@@ -220,7 +220,7 @@ export default function ApiPage(props: ApiPageProps) {
               icon={<WarningRoundedIcon fontSize="small" />}
               sx={{ mt: 1.5, mb: 3 }}
             >
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: deprecationInfo || t('api-docs.defaultDeprecationMessage'),
                 }}
@@ -239,7 +239,7 @@ export default function ApiPage(props: ApiPageProps) {
           </Typography>
           <Heading hash="demos" />
           <Alert severity="success" icon={<VerifiedRoundedIcon fontSize="small" />}>
-            <span
+            <div
               dangerouslySetInnerHTML={{
                 __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
               ${demos}`,
@@ -260,7 +260,7 @@ export default function ApiPage(props: ApiPageProps) {
             <React.Fragment>
               <br />
               <br />
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: componentDescription,
                 }}
@@ -275,7 +275,7 @@ export default function ApiPage(props: ApiPageProps) {
           />
           {cssComponent && (
             <React.Fragment>
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
                 }}

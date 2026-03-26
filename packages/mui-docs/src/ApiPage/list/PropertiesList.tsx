@@ -173,7 +173,7 @@ export default function PropertiesList(props: PropertiesListProps) {
             {seeMoreDescription && <p dangerouslySetInnerHTML={{ __html: seeMoreDescription }} />}
             {requiresRef && (
               <ApiWarningAlert className="MuiApi-collapsible prop-list-alert">
-                <span
+                <div
                   dangerouslySetInnerHTML={{
                     __html: t('api-docs.requires-ref'),
                   }}

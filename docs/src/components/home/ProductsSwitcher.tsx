@@ -33,6 +33,7 @@ function ProductItem({
       }}
     >
       <Box
+        component="span"
         sx={{
           p: 2,
           display: 'flex',
@@ -42,6 +43,7 @@ function ProductItem({
         }}
       >
         <Box
+          component="span"
           sx={{
             height: 32,
             width: 32,
@@ -54,13 +56,13 @@ function ProductItem({
           {icon}
         </Box>
         <span>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+          <Box component="span" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography component="span" color="text.primary" variant="body2" fontWeight="semiBold">
               {name}
             </Typography>
             {chip}
           </Box>
-          <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
+          <Typography component="span" color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5, display: 'block' }}>
             {description}
           </Typography>
         </span>
