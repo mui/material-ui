@@ -19,7 +19,7 @@ Material UI stacks four strategies from **narrowest to broadest** scope. Pick th
 3. [Reusable: `styled()`](#2-reusable-styled)
 4. [Global theme: `createTheme({ components })`](#3-global-theme-createtheme-components)
 5. [Global CSS: `GlobalStyles` / `CssBaseline`](#4-global-css-globalstyles--cssbaseline)
-6. [`sx` vs `styled()`](#sx-vs-styled--agents-must-know-the-differences)
+6. [`sx` vs `styled()`](#sx-vs-styled-differences-agents-should-know)
 7. [Imports and consistency](#imports-and-consistency)
 8. [Further reading](#further-reading-repo--site)
 
@@ -43,7 +43,7 @@ Material UI stacks four strategies from **narrowest to broadest** scope. Pick th
 - All Material UI components support `sx`.
 - Supports theme shortcuts (`palette`, `spacing`, breakpoints, etc.), pseudo-selectors, nested selectors, and responsive objects.
 
-**Nested parts (slots):** Target internal slots with global class fragments, e.g. `'& .MuiSlider-thumb'`. Discover the slot name in DevTools; the pattern is `Mui[Component]-[slot]`. **Do not** rely on the full hashed class string—only the stable `Mui*` part.
+**Nested parts (slots):** Target internal slots with global class fragments, e.g. `'& .MuiSlider-thumb'`. Discover the slot name in DevTools; the pattern is `Mui[Component]-[slot]`. **Do not** rely on the full hashed class string. Use only the stable `Mui*` fragment.
 
 **State styles:** MUI uses global state classes (`.Mui-disabled`, `.Mui-selected`, etc.) with specificity comparable to pseudo-classes. Override with **increased specificity** (e.g. combine with your class or the component root), never bare global state selectors alone.
 
@@ -55,7 +55,7 @@ Material UI stacks four strategies from **narrowest to broadest** scope. Pick th
 .MuiOutlinedInput-root.Mui-error { color: red; }
 ```
 
-See [How to customize — state classes](https://mui.com/material-ui/customization/how-to-customize/#state-classes).
+See [How to customize—State classes](https://mui.com/material-ui/customization/how-to-customize/#state-classes).
 
 **`className`:** Use when integrating with external CSS or CSS Modules; combine with the same slot/state rules as above.
 
@@ -101,15 +101,15 @@ Full API: [Themed components](https://mui.com/material-ui/customization/theme-co
 
 ---
 
-## `sx` vs `styled()` — agents must know the differences
+## `sx` vs `styled()`: differences agents should know
 
 | Topic | `sx` | `styled()` style object |
 |--------|------|-------------------------|
-| Theme spacing shorthand (`m`, `p`, `gap`, …) | Yes | **No** — use `theme.spacing()` in a function or plain CSS values |
+| Theme spacing shorthand (`m`, `p`, `gap`, …) | Yes | **No.** Use `theme.spacing()` in a function or plain CSS values. |
 | Meaning of numeric padding like `1` | Theme spacing unit | **Pixels**, not `theme.spacing(1)` |
 | Theme palette strings (`'primary.main'`) | Yes | Use `theme` in a function |
 
-To reuse **`sx` logic inside `styled()`**, use theme’s `unstable_sx` (see [styled — Difference with the `sx` prop](https://mui.com/system/styled/#difference-with-the-sx-prop)).
+To reuse **`sx` logic inside `styled()`**, use theme’s `unstable_sx` (see [styled()—Difference with the sx prop](https://mui.com/system/styled/#difference-with-the-sx-prop)).
 
 ---
 
@@ -129,6 +129,6 @@ To reuse **`sx` logic inside `styled()`**, use theme’s `unstable_sx` (see [sty
 | `styled()` API | [styled()](https://mui.com/system/styled/) |
 | Theme per component | [Themed components](https://mui.com/material-ui/customization/theme-components/) |
 | System property mapping | [System properties](https://mui.com/system/properties/) |
-| State / class naming | [Class names](https://mui.com/system/styles/advanced/#class-names) (advanced) |
+| State / class naming | [Advanced—Class names](https://mui.com/system/styles/advanced/#class-names) (system styles) |
 
 For **MUI-specific class and state tables**, see [reference.md](reference.md).
