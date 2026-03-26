@@ -59,12 +59,12 @@ export interface UseButtonBaseParameters {
    * An additional function that will run before the user's `onKeyDown`, e.g.
    * to trigger the ripple effect in `<ButtonBase>`.
    */
-  onBeforeKeyDown?: React.KeyboardEventHandler<any> | undefined;
+  onBeforeKeyDown?: React.KeyboardEventHandler<HTMLElement> | undefined;
   /**
    * An additional function that will run before the user's `onKeyUp`, e.g.
    * to control the ripple effect in `<ButtonBase>`.
    */
-  onBeforeKeyUp?: React.KeyboardEventHandler<any> | undefined;
+  onBeforeKeyUp?: React.KeyboardEventHandler<HTMLElement> | undefined;
 }
 
 export interface ButtonBaseButtonProps {
@@ -82,9 +82,9 @@ export interface ButtonBaseExternalProps extends React.HTMLAttributes<any> {
 }
 
 export interface ButtonBaseEventHandlers {
-  onClick: React.MouseEventHandler<any>;
-  onKeyDown: React.KeyboardEventHandler<any>;
-  onKeyUp: React.KeyboardEventHandler<any>;
+  onClick: React.MouseEventHandler<HTMLElement>;
+  onKeyDown: React.KeyboardEventHandler<HTMLElement>;
+  onKeyUp: React.KeyboardEventHandler<HTMLElement>;
 }
 
 export interface UseButtonBaseReturnValue {
@@ -253,7 +253,7 @@ export default function useButtonBase(
         ...otherExternalProps
       } = externalProps;
 
-      const handleClick: React.MouseEventHandler<any> = (event) => {
+      const handleClick: React.MouseEventHandler<HTMLElement> = (event) => {
         if (stopEventPropagation) {
           event.stopPropagation();
         }
@@ -266,7 +266,7 @@ export default function useButtonBase(
         externalOnClick?.(event);
       };
 
-      const handleKeyDown: React.KeyboardEventHandler<any> = (event) => {
+      const handleKeyDown: React.KeyboardEventHandler<HTMLElement> = (event) => {
         if (focusableWhenDisabled) {
           focusableWhenDisabledProps.onKeyDown(event);
         }
@@ -293,7 +293,7 @@ export default function useButtonBase(
         }
       };
 
-      const handleKeyUp: React.KeyboardEventHandler<any> = (event) => {
+      const handleKeyUp: React.KeyboardEventHandler<HTMLElement> = (event) => {
         if (disabled) {
           return;
         }

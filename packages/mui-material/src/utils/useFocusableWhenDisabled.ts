@@ -20,9 +20,6 @@ export interface UseFocusableWhenDisabledParameters {
    * @default 0
    */
   tabIndex?: number | undefined;
-  /**
-   * @default true
-   */
   isNativeButton: boolean;
 }
 
@@ -30,7 +27,7 @@ interface FocusableWhenDisabledProps {
   'aria-disabled'?: boolean | undefined;
   disabled?: boolean | undefined;
   onKeyDown: (event: React.KeyboardEvent) => void;
-  tabIndex: number;
+  tabIndex?: number | undefined;
 }
 
 export interface UseFocusableWhenDisabledReturnValue {
@@ -54,14 +51,14 @@ export default function useFocusableWhenDisabled(
   // we can't explicitly assign `undefined` to any of these props because it
   // would otherwise prevent subsequently merged props from setting them
   const props = React.useMemo(() => {
-    const additionalProps = {
+    const additionalProps: FocusableWhenDisabledProps = {
       // allow Tabbing away from focusableWhenDisabled elements
       onKeyDown(event: React.KeyboardEvent) {
         if (disabled && focusableWhenDisabled && event.key !== 'Tab') {
           event.preventDefault();
         }
       },
-    } as FocusableWhenDisabledProps;
+    };
 
     if (!composite) {
       additionalProps.tabIndex = tabIndexProp;
