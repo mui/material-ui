@@ -397,7 +397,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Markdown
               copyButtonHidden
               onClick={handleClick(2)}
-              code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
+              code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${getCorrectImportName(selectedIcon.importName)}';`}
               language="js"
             />
           </Tooltip>
@@ -521,6 +521,24 @@ const Input = styled(InputBase)({
 const searchIndex = new FlexSearchIndex({
   tokenize: 'full',
 });
+
+/**
+ * Maps legacy icon names to their correct import names.
+ * Some icons have both "Outline" (legacy) and "Outlined" (correct) variants.
+ * We should use the "Outlined" variant for imports.
+ */
+function getCorrectImportName(importName) {
+  // Map legacy "Outline" suffix to "Outlined" if the icon ends with "Outline"
+  // but not "Outlined" (e.g., "InfoOutline" -> "InfoOutlined")
+  if (
+    importName.endsWith('Outline') &&
+    !importName.endsWith('Outlined') &&
+    `${importName}d` in mui
+  ) {
+    return `${importName}d`;
+  }
+  return importName;
+}
 
 const allIconsMap = {};
 const allIcons = Object.keys(mui)
