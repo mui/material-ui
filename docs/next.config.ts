@@ -185,6 +185,7 @@ export default withDocsInfra({
   env: {
     // docs-infra
     LIB_VERSION: pkg.version,
+    SEARCH_INDEX: `material-ui-v8`, // material-ui v7.x branch uses the v7 index
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
