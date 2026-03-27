@@ -167,3 +167,5 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
+
+When the Dialog is used as an Alert Dialog, like in the [Alert](#alerts) and [Transitions](#transitions) examples, use the `role="alertdialog"` to override the default `role="dialog"`.

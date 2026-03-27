@@ -41,6 +41,7 @@ export default function AlertDialogSlide() {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        role="alertdialog"
       >
         <DialogTitle>{"Use Google's location service?"}</DialogTitle>
         <DialogContent>
