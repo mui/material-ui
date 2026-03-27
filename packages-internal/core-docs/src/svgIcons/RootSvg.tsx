@@ -6,8 +6,6 @@ export type RootSvgProps<P = unknown> = Omit<React.SVGProps<SVGSVGElement>, 'ref
   ref?: React.Ref<SVGSVGElement>;
 } & P;
 
-const Svg = styled('svg')({
+export const RootSvg = styled('svg')({
   verticalAlign: 'bottom',
 });
-
-export default Svg;

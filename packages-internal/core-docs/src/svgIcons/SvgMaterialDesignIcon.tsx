@@ -1,6 +1,6 @@
-import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
+import { RootSvg, RootSvgProps } from './RootSvg';
 
-function SvgMaterialDesign(props: RootSvgProps) {
+export function SvgMaterialDesignIcon(props: RootSvgProps) {
   return (
     <RootSvg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function SvgMaterialDesign(props: RootSvgProps) {
     </RootSvg>
   );
 }
-
-export default SvgMaterialDesign;

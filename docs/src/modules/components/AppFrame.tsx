@@ -9,7 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import { HamburgerMenuIcon } from '@mui/internal-core-docs/svgIcons';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -156,7 +156,7 @@ export default function AppFrame(props: AppFrameProps) {
               onClick={() => setMobileOpen(true)}
               sx={{ ml: '1px' }}
             >
-              <SvgHamburgerMenu />
+              <HamburgerMenuIcon />
             </NavIconButton>
             <Box sx={{ display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
               <LogoWithCopyMenu

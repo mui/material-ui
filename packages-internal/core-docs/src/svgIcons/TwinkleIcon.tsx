@@ -1,6 +1,6 @@
-import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
+import { RootSvg, RootSvgProps } from './RootSvg';
 
-function SvgTwinkle(props: RootSvgProps) {
+export function TwinkleIcon(props: RootSvgProps) {
   return (
     <RootSvg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,5 +17,3 @@ function SvgTwinkle(props: RootSvgProps) {
     </RootSvg>
   );
 }
-
-export default SvgTwinkle;

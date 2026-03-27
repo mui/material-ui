@@ -8,8 +8,7 @@ import MenuList, { MenuListProps } from '@mui/material/MenuList';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
 import PageContext from '@mui/internal-core-docs/PageContext';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
+import { MuiLogomarkIcon, BaseUiLogoIcon } from '@mui/internal-core-docs/svgIcons';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
@@ -132,14 +131,14 @@ const coreProducts = [
     id: 'material-ui',
     name: 'Material UI',
     description: 'Comprehensive foundational components.',
-    icon: <SvgMuiLogomark width={14} height={14} sx={logoColor} />,
+    icon: <MuiLogomarkIcon width={14} height={14} sx={logoColor} />,
     href: ROUTES.materialDocs,
   },
   {
     id: 'base-ui',
     name: 'Base UI',
     description: 'Unstyled components for accessible UIs.',
-    icon: <SvgBaseUiLogo width={14} height={16} sx={logoColor} />,
+    icon: <BaseUiLogoIcon width={14} height={16} sx={logoColor} />,
     href: ROUTES.baseDocs,
   },
   {

@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import FormatShapesRoundedIcon from '@mui/icons-material/FormatShapesRounded';
-import SvgStorybook from 'docs/src/icons/SvgStorybook';
+import { StorybookIcon } from '@mui/internal-core-docs/svgIcons';
 import ImagesearchRollerRoundedIcon from '@mui/icons-material/ImagesearchRollerRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
@@ -68,7 +68,7 @@ export default function ConnectFeatures() {
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<SvgStorybook />}
+                icon={<StorybookIcon />}
                 title="Preview your changes on Storybook"
                 description="Quickly visualize all the changes you run through Sync on a built-in Storybook preview instance."
               />

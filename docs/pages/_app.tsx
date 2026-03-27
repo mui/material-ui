@@ -24,10 +24,11 @@ import docsInfraPages from 'docs/data/docs-infra/pages';
 import generalDocsPages from 'docs/data/docs/pages';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import SvgMuiLogomark, {
+import {
+  MuiLogomarkIcon,
   muiSvgLogoString,
   muiSvgWordmarkString,
-} from 'docs/src/icons/SvgMuiLogomark';
+} from '@mui/internal-core-docs/svgIcons';
 
 import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
@@ -73,7 +74,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'Material UI',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -106,7 +107,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'MUI System',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -128,7 +129,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'MUI Core',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -145,7 +146,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'Docs-infra',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -161,7 +162,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'Home docs',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [

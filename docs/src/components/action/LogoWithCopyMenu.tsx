@@ -9,11 +9,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Slide from '@mui/material/Slide';
 import TextFieldsRoundedIcon from '@mui/icons-material/TextFieldsRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import { RootSvgProps } from 'docs/src/icons/RootSvg';
-import SvgMuiLogomark, {
+import {
+  type RootSvgProps,
+  MuiLogomarkIcon,
   muiSvgLogoString,
   muiSvgWordmarkString,
-} from 'docs/src/icons/SvgMuiLogomark';
+} from '@mui/internal-core-docs/svgIcons';
 
 interface LogoWithCopyMenuProps {
   logo?: React.ComponentType<RootSvgProps>;
@@ -23,7 +24,7 @@ interface LogoWithCopyMenuProps {
 }
 
 export default function LogoWithCopyMenu({
-  logo: LogoSvg = SvgMuiLogomark,
+  logo: LogoSvg = MuiLogomarkIcon,
   logoSvgString = muiSvgLogoString,
   wordmarkSvgString = muiSvgWordmarkString,
   marginLeft,

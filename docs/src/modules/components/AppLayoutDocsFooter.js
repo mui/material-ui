@@ -27,7 +27,7 @@ import RssFeedIcon from '@mui/icons-material/RssFeed';
 // Other imports
 import { Link } from '@mui/internal-core-docs/Link';
 import PageContext from '@mui/internal-core-docs/PageContext';
-import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
+import { MuiLogotypeIcon } from '@mui/internal-core-docs/svgIcons';
 import EditPage from 'docs/src/modules/components/EditPage';
 import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
 import { pageToTitleI18n } from '@mui/internal-core-docs/helpers';
@@ -488,7 +488,7 @@ export default function AppLayoutDocsFooter(props) {
         >
           <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center', flexGrow: 1 }}>
             <Link href="https://mui.com/" aria-label="Go to homepage">
-              <SvgMuiLogotype height={28} width={64} />
+              <MuiLogotypeIcon height={28} width={64} />
             </Link>
             <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
             <FooterLink href="https://mui.com/blog/" target="_blank" rel="noopener">

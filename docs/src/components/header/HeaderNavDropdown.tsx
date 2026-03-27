@@ -6,7 +6,7 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import { HamburgerMenuIcon } from '@mui/internal-core-docs/svgIcons';
 import { Link } from '@mui/internal-core-docs/Link';
 import ROUTES from 'docs/src/route';
 
@@ -133,7 +133,7 @@ export default function HeaderNavDropdown() {
           }),
         }}
       >
-        <SvgHamburgerMenu />
+        <HamburgerMenuIcon />
       </IconButton>
       <ClickAwayListener
         onClickAway={(event) => {
