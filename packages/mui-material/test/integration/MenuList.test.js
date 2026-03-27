@@ -445,6 +445,61 @@ describe('<MenuList> integration', () => {
     expect(menu).toHaveFocus();
   });
 
+  it('should not infinite loop on keyboard navigation when there are no children', () => {
+    render(<MenuList autoFocus />);
+
+    const menu = screen.getByRole('menu');
+
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'Home' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'End' });
+    expect(menu).toHaveFocus();
+  });
+
+  it('should not infinite loop on keyboard navigation when children are removed', () => {
+    function DynamicMenuList() {
+      const [items, setItems] = React.useState(['Item 1', 'Item 2']);
+
+      return (
+        <React.Fragment>
+          <button data-testid="clear" onClick={() => setItems([])}>
+            Clear
+          </button>
+          <MenuList autoFocus>
+            {items.map((item) => (
+              <MenuItem key={item}>{item}</MenuItem>
+            ))}
+          </MenuList>
+        </React.Fragment>
+      );
+    }
+
+    render(<DynamicMenuList />);
+
+    const menu = screen.getByRole('menu');
+    const menuitems = screen.getAllByRole('menuitem');
+
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    expect(menuitems[0]).toHaveFocus();
+
+    // Remove all children
+    fireEvent.click(screen.getByTestId('clear'));
+
+    act(() => {
+      menu.focus();
+    });
+
+    // Should not hang
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    expect(menu).toHaveFocus();
+  });
+
   it('should allow focus on disabled items when disabledItemsFocusable=true', () => {
     render(
       <MenuList autoFocus disabledItemsFocusable>
