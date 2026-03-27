@@ -31,6 +31,13 @@ describe('<DialogTitle />', () => {
     screen.getByText('Hello');
   });
 
+  it('should render the title as an h2 by default', () => {
+    render(<DialogTitle>foo</DialogTitle>);
+
+    const title = screen.getByRole('heading', { name: 'foo', level: 2 });
+    expect(title.tagName).to.equal('H2');
+  });
+
   describe('prop: id', () => {
     it('should apply the id attribute provided to the Dialog title', () => {
       render(

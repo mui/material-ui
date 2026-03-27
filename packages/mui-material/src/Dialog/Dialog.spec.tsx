@@ -19,6 +19,10 @@ function Test() {
   );
 }
 
+function DialogWithAlertRole() {
+  return <Dialog open role="alertdialog" />;
+}
+
 function Custom(props: DialogProps) {
   const { slotProps, ...other } = props;
   return (
