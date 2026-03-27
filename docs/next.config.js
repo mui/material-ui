@@ -1,4 +1,5 @@
 const path = require('path');
+const semver = require('semver');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
@@ -164,6 +165,7 @@ module.exports = withDocsInfra({
     };
   },
   env: {
+    SEARCH_INDEX: `material-ui-v${semver.major(pkg.version)}`,
     GITHUB_AUTH: process.env.GITHUB_AUTH
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : null,
