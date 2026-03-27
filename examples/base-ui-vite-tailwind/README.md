@@ -1,6 +1,6 @@
 # MUI Base - Vite.js example with Tailwind CSS
 
-[MUI Base](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
+[MUI Base](https://v6.mui.com/base-ui/getting-started/) is a library of unstyled React UI components and hooks.
 
 [Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command
 
