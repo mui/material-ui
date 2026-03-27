@@ -50,12 +50,8 @@ The following steps must be proposed as a pull request.
 
 #### Documentation
 
-`pnpm docs:deploy` to deploy the documentation with the latest changes. This will:
-
-1. Force push to the `v8` and `latest` branches of `material-ui-docs`.
-2. Merge the `v8` branch into the `v7` branch.
-
-> **Note:** The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
+`pnpm docs:deploy` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
+Force push if necessary.
 
 #### Publish GitHub release
 
@@ -115,18 +111,8 @@ The following steps must be proposed as a pull request to `release/<PATCH_VERSIO
 
 #### Documentation
 
-Deploy the documentation by force pushing to the `v8` and `latest` branches, then merging `v8` into `v7`:
-
-```bash
-git push -f material-ui-docs HEAD:v8 HEAD:latest
-git fetch material-ui-docs v7 v8
-git switch --detach material-ui-docs/v7
-git merge material-ui-docs/v8 --no-edit
-git push material-ui-docs HEAD:v7
-git checkout -
-```
-
-> **Note:** The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
+Run `git push -f material-ui-docs HEAD:latest` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
+Force push if necessary.
 
 #### Publish GitHub release
 
@@ -147,7 +133,11 @@ deploying all the changes that have been merged into the main branch
 since the previous release (for example publishing a blog post or releasing
 urgent docs updates).
 
-**Note:** The instructions below are for deploying to the `v8` and `latest` branches of the `material-ui-docs` repository, which points to `https://mui.com/`. After pushing, the `v8` branch should be merged into `v7`. The `v7` branch only differs from `v8` in that it proxies to MUI X v7 and uses a search index that includes MUI X v7.
+**Note:** The instructions below are for deploying to the `latest` branch of the `material-ui-docs` repository, which points to `https://mui.com/`. If you need to deploy to a different subdomain, replace `latest` with the appropriate branch name:
+
+- `latest`: `https://mui.com/`
+- `next`: `https://next.mui.com/`
+- `v*.x`: `https://v*.mui.com/`
 
 To do so, follow these steps:
 
@@ -160,13 +150,13 @@ To do so, follow these steps:
 2. Fetch the latest changes from the `material-ui-docs` remote:
 
    ```bash
-   git fetch material-ui-docs v8
+   git fetch material-ui-docs latest
    ```
 
-3. Switch to the `v8` branch from `material-ui-docs` remote:
+3. Switch to the `latest` branch from `material-ui-docs` remote:
 
    ```bash
-   git switch --detach material-ui-docs/v8
+   git switch --detach material-ui-docs/latest
    ```
 
 4. Cherry-pick the commit(s) that you want to include in the new deployment:
@@ -183,22 +173,13 @@ To do so, follow these steps:
    The commit might have been created on a remote branch, probably when merging into `master` or `v*.x`.
    In this case, you'll have to fetch the latest changes of the corresponding remote branch and then try again.
 
-5. Push the changes to the `material-ui-docs` remote (`v8` and `latest`):
+5. Push the changes to the `material-ui-docs` remote:
 
    ```bash
-   git push -f material-ui-docs HEAD:v8 HEAD:latest
+   git push material-ui-docs HEAD:latest
    ```
 
-6. Merge `v8` into `v7` and push:
-
-   ```bash
-   git fetch material-ui-docs v7 v8
-   git switch --detach material-ui-docs/v7
-   git merge material-ui-docs/v8 --no-edit
-   git push material-ui-docs HEAD:v7
-   ```
-
-7. Switch from detached `HEAD` back to your last checked out branch:
+6. Switch from detached `HEAD` back to your last checked out branch:
 
    ```bash
    git checkout -
