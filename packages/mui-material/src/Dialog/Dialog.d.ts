@@ -143,7 +143,7 @@ export interface DialogProps
   /**
    * The ARIA role for the dialog element.
    * The main dialog role is `dialog`, but `alertdialog` can be used if the content of the dialog requires immediate attention.
-   * See https://www.w3.org/TR/wai-aria-1.2/#dialog for more details.
+   * See https://www.w3.org/TR/wai-aria-1.2/#dialog and https://www.w3.org/TR/wai-aria-1.2/#alertdialog for more details.
    * @default 'dialog'
    */
   role?: 'dialog' | 'alertdialog' | undefined;
