@@ -206,8 +206,8 @@ export default function createGrid(
     component: PropTypes.elementType,
     container: PropTypes.bool,
     direction: PropTypes.oneOfType([
-      PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
-      PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+      PropTypes.oneOf(['row-reverse', 'row']),
+      PropTypes.arrayOf(PropTypes.oneOf(['row-reverse', 'row'])),
       PropTypes.object,
     ]),
     offset: PropTypes.oneOfType([
