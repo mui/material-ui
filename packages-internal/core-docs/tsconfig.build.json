@@ -9,11 +9,16 @@
     "emitDeclarationOnly": true,
     "outDir": "build",
     "rootDir": "./src",
-    "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo"
+    "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo",
+    "paths": {
+      "@mui/internal-markdown": ["../markdown/index.d.mts"],
+      "@mui/internal-markdown/prism": ["../markdown/prism.d.mts"]
+    }
   },
   "include": ["./types.d.ts", "src/**/*.ts*", "src/**/*.json"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
+    { "path": "../docs-utils/tsconfig.build.json" },
     { "path": "../../packages/mui-material/tsconfig.build.json" },
     { "path": "../../packages/mui-material-nextjs/tsconfig.build.json" },
     { "path": "../../packages/mui-system/tsconfig.build.json" },

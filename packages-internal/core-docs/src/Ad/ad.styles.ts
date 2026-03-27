@@ -1,6 +1,8 @@
 import { alpha, Theme } from '@mui/material/styles';
 
-export const adBodyImageStyles = (theme: Theme) => ({
+export type AdBodyStyles = Record<string, Record<string, unknown>>;
+
+export const adBodyImageStyles = (theme: Theme): AdBodyStyles => ({
   root: {
     display: 'block',
     overflow: 'hidden',
@@ -45,8 +47,8 @@ export const adBodyImageStyles = (theme: Theme) => ({
   },
 });
 
-export const adBodyInlineStyles = (theme: Theme) => {
-  const baseline = adBodyImageStyles(theme);
+export const adBodyInlineStyles = (theme: Theme): AdBodyStyles => {
+  const baseline: AdBodyStyles = adBodyImageStyles(theme);
 
   return {
     ...baseline,
