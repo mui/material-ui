@@ -214,6 +214,10 @@ function focusNext(
   wrap: boolean,
   shouldFocus: (element: HTMLElement | null) => boolean,
 ): number {
+  if (elementsRef.current.length === 0) {
+    return -1;
+  }
+
   const lastIndex = elementsRef.current.length - 1;
   let wrappedOnce = false;
   let nextIndex = getNextIndex(currentIndex, lastIndex, direction, wrap);
