@@ -452,7 +452,7 @@ export default function AppSearch(props) {
             initialQuery={initialQuery}
             appId="TZGZ85B9TB"
             apiKey="8177dfb3e2be72b241ffb8c5abafa899"
-            indexName="material-ui-v5"
+            indexName={process.env.SEARCH_INDEX}
             searchParameters={{
               facetFilters: [facetFilterLanguage],
               optionalFilters,
