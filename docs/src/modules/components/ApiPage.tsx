@@ -5,40 +5,29 @@ import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-b
 import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import { TableOfContentsEntry } from '@mui/internal-markdown';
 import { Ad, AdGuest } from '@mui/docs/Ad';
+import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { BrandingProvider } from '@mui/docs/branding';
+import { BrandingProvider, BrandingCssVarsProvider } from '@mui/docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import {
-  ApiDisplayOptions,
+  ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import {
-  getPropertiesToC,
   getPropsApiDefinitions,
-} from 'docs/src/modules/components/ApiPage/definitions/properties';
-import {
+  getPropertiesToc,
   getClassApiDefinitions,
-  getClassesToC,
-} from 'docs/src/modules/components/ApiPage/definitions/classes';
-import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
-
-// TODO Move this type definition to the AppLayoutDocs file when moved to TS
-export interface TableOfContentsParams {
-  children: (TableOfContentsParams | TableOfContentsEntry)[];
-  hash: string;
-  text: string;
-}
+  getClassesToc,
+  getSlotsApiDefinitions,
+  getSlotsToc,
+  PropertiesSection,
+  SlotsSection,
+  ClassesSection,
+} from '@mui/docs/ApiPage/private';
 
 type ApiHeaderKeys =
   | 'demos'
@@ -87,12 +76,6 @@ Heading.propTypes = {
   level: PropTypes.string,
 };
 
-export interface LayoutStorageKeys {
-  slots: string;
-  props: string;
-  classes: string;
-}
-
 interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
@@ -102,7 +85,7 @@ interface ApiPageProps {
   };
   disableAd?: boolean;
   pageContent: ComponentApiContent;
-  defaultLayout?: ApiDisplayOptions;
+  defaultLayout?: ApiDisplayLayout;
   /**
    * The localStorage key used to save the user layout for each section.
    * It's useful to dave different preferences on different pages.
@@ -138,17 +121,8 @@ export default function ApiPage(props: ApiPageProps) {
     ? [...classes].sort((c1, c2) => c1.className.localeCompare(c2.className))
     : [];
 
-  const isJoyComponent = filename.includes('mui-joy');
-  const defaultPropsLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#theme-default-props'
-    : '/material-ui/customization/theme-components/#theme-default-props';
-  const styleOverridesLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#theme-style-overrides'
-    : '/material-ui/customization/theme-components/#theme-style-overrides';
-  let slotGuideLink = '';
-  if (isJoyComponent) {
-    slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-  }
+  const defaultPropsLink = '/material-ui/customization/theme-components/#theme-default-props';
+  const styleOverridesLink = '/material-ui/customization/theme-components/#theme-style-overrides';
 
   const {
     componentDescription,
@@ -199,9 +173,9 @@ export default function ApiPage(props: ApiPageProps) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    getPropertiesToC({ properties: propertiesDef, hash: 'props', t }),
-    ...(componentSlots?.length > 0 ? [createTocEntry('slots')] : []),
-    ...getClassesToC({ classes: classesDef, t }),
+    getPropertiesToc({ properties: propertiesDef, hash: 'props', t }),
+    ...getSlotsToc({ slots: slotsDef, t }),
+    ...getClassesToc({ classes: classesDef, t }),
     pageContent.filename ? createTocEntry('source-code') : null,
   ].filter((item): item is TableOfContentsParams => Boolean(item));
 
@@ -345,12 +319,10 @@ export default function ApiPage(props: ApiPageProps) {
               />
             </React.Fragment>
           )}
+          {/* Fallback anchor for #classes link when there's no classes section */}
+          {classesDef.length === 0 && <span id="classes" />}
           <SlotsSection
             slots={slotsDef}
-            spreadHint={
-              slotGuideLink &&
-              t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
-            }
             defaultLayout={defaultLayout}
             layoutStorageKey={layoutStorageKey.slots}
           />

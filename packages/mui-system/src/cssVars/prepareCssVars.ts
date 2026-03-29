@@ -2,27 +2,33 @@ import deepmerge from '@mui/utils/deepmerge';
 import cssVarsParser from './cssVarsParser';
 
 export interface DefaultCssVarsTheme {
-  colorSchemes?: Record<string, any>;
-  defaultColorScheme?: string;
+  colorSchemes?: Record<string, any> | undefined;
+  defaultColorScheme?: string | undefined;
 }
 
 function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<string, any>>(
   theme: T,
   parserConfig: {
-    prefix?: string;
-    colorSchemeSelector?: 'media' | 'class' | 'data' | string;
-    disableCssColorScheme?: boolean;
-    shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
-    getSelector?: (
-      colorScheme: keyof T['colorSchemes'] | undefined,
-      css: Record<string, any>,
-    ) => string | Record<string, any>;
+    prefix?: string | undefined;
+    colorSchemeSelector?: 'media' | 'class' | 'data' | string | undefined;
+    disableCssColorScheme?: boolean | undefined;
+    enableContrastVars?: boolean | undefined;
+    shouldSkipGeneratingVar?:
+      | ((objectPathKeys: Array<string>, value: string | number) => boolean)
+      | undefined;
+    getSelector?:
+      | ((
+          colorScheme: keyof T['colorSchemes'] | undefined,
+          css: Record<string, any>,
+        ) => string | Record<string, any>)
+      | undefined;
   } = {},
 ) {
   const {
     getSelector = defaultGetSelector,
     disableCssColorScheme,
     colorSchemeSelector: selector,
+    enableContrastVars,
   } = parserConfig;
   // @ts-ignore - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
@@ -127,6 +133,17 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
           : { ...css };
       insertStyleSheet(getSelector(key as keyof T['colorSchemes'], { ...finalCss }), finalCss);
     });
+
+    if (enableContrastVars) {
+      stylesheets.push({
+        ':root': {
+          // use double underscore to indicate that these are private variables
+          '--__l-threshold': '0.7',
+          '--__l': 'clamp(0, (l / var(--__l-threshold) - 1) * -infinity, 1)',
+          '--__a': 'clamp(0.87, (l / var(--__l-threshold) - 1) * -infinity, 1)', // 0.87 is the default alpha value for black text.
+        },
+      });
+    }
 
     return stylesheets;
   };

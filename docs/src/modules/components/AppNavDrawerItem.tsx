@@ -5,9 +5,8 @@ import { alpha, styled, SxProps, Theme } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
-import { Link, LinkProps } from '@mui/docs/Link';
-import { MuiPageIcon } from 'docs/src/MuiPage';
+import { samePageLinkNavigation, Link, type LinkProps } from '@mui/docs/Link';
+import { MuiPageIcon } from '@mui/docs/MuiPage';
 import standardNavIcons from './AppNavIcons';
 
 interface ItemBaseProps {
@@ -221,7 +220,7 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
 })<{ open: boolean }>({
   fontSize: '1rem',
   '&&:last-child': {
-    // overrrides https://github.com/mui/material-ui/blob/ca7c5c63e64b6a7f55255981f1836a565927b56c/docs/src/modules/brandingTheme.ts#L757-L759
+    // overrides https://github.com/mui/material-ui/blob/ca7c5c63e64b6a7f55255981f1836a565927b56c/docs/src/modules/brandingTheme.ts#L757-L759
     marginLeft: 0,
   },
   variants: [

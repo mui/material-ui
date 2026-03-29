@@ -92,7 +92,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ClassNameMap<ClassKey>>;
+  classes?: Partial<ClassNameMap<ClassKey>> | undefined;
 }
 
 /**
@@ -107,9 +107,11 @@ export type StandardProps<
   Removals extends keyof ComponentProps = never,
 > = DistributiveOmit<ComponentProps, 'classes' | Removals> &
   StyledComponentProps<ClassKey> & {
-    className?: string;
-    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
-    style?: React.CSSProperties;
+    className?: string | undefined;
+    ref?:
+      | (ComponentProps extends { ref?: infer RefType | undefined } ? RefType : React.Ref<unknown>)
+      | undefined;
+    style?: React.CSSProperties | undefined;
   };
 
 export namespace PropTypes {
@@ -158,6 +160,8 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
   ColorSystemOptions,
+  Shape,
+  ShapeOptions,
 } from './createThemeWithVars';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';

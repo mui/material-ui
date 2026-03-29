@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "7.2.0",
+  "version": "9.0.0-beta.0",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
@@ -23,34 +23,29 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
-    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material-nextjs/**/*.test.?(c|m)[jt]s?(x)'",
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-nextjs\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
+    "attw": "attw --pack ./build --entrypoints \"v13-pagesRouter\" \"v16-appRouter\" \"v15-appRouter\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6"
+    "@babel/runtime": "^7.29.2"
   },
   "devDependencies": {
-    "@emotion/cache": "^11.14.0",
-    "@emotion/react": "^11.14.0",
-    "@emotion/server": "^11.11.0",
-    "@types/react": "^19.1.8",
-    "next": "^15.4.4",
-    "react": "^19.1.0"
+    "@emotion/cache": "11.14.0",
+    "@emotion/react": "11.14.0",
+    "@emotion/server": "11.11.0",
+    "@types/react": "19.2.14",
+    "next": "15.5.14",
+    "react": "19.2.4"
   },
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "next": "^13.0.0 || ^14.0.0 || ^15.0.0",
+    "next": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
@@ -73,12 +68,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    ".": null,
-    "./*": {
-      "mui-src": "./src/*/index.ts"
-    },
-    "./v13-pagesRouter": {
-      "mui-src": "./src/v13-pagesRouter/index.ts"
-    }
+    "./v13-pagesRouter": "./src/v13-pagesRouter/index.ts",
+    "./*": "./src/*/index.ts"
   }
 }

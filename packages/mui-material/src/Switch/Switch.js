@@ -3,9 +3,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import SwitchBase from '../internal/SwitchBase';
@@ -142,9 +140,10 @@ const SwitchSwitchBase = styled(SwitchBase, {
   })),
   memoTheme(({ theme }) => ({
     '&:hover': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-        : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.action.active,
+        (theme.vars || theme).palette.action.hoverOpacity,
+      ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -159,9 +158,10 @@ const SwitchSwitchBase = styled(SwitchBase, {
             [`&.${switchClasses.checked}`]: {
               color: (theme.vars || theme).palette[color].main,
               '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
                 '@media (hover: none)': {
                   backgroundColor: 'transparent',
                 },
@@ -171,8 +171,8 @@ const SwitchSwitchBase = styled(SwitchBase, {
                   ? theme.vars.palette.Switch[`${color}DisabledColor`]
                   : `${
                       theme.palette.mode === 'light'
-                        ? lighten(theme.palette[color].main, 0.62)
-                        : darken(theme.palette[color].main, 0.55)
+                        ? theme.lighten(theme.palette[color].main, 0.62)
+                        : theme.darken(theme.palette[color].main, 0.55)
                     }`,
               },
             },
@@ -370,16 +370,6 @@ Switch.propTypes /* remove-proptypes */ = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputRef: refType,
   /**
    * Callback fired when the state is changed.
    *

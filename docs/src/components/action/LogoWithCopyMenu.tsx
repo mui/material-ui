@@ -110,7 +110,7 @@ export default function LogoWithCopyMenu({
           open={copied}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          TransitionComponent={Slide}
+          slots={{ transition: Slide }}
           message={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <CheckCircleRoundedIcon sx={{ fontSize: '18px', color: 'success.main' }} />

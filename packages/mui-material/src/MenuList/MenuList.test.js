@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -36,9 +36,20 @@ describe('<MenuList />', () => {
     ],
   }));
 
+  it('should render a list with role menu and tabIndex -1', () => {
+    render(
+      <MenuList>
+        <div role="menuitem">one</div>
+        <div role="menuitem">two</div>
+      </MenuList>,
+    );
+
+    expect(screen.getByRole('menu')).to.have.attribute('tabIndex', '-1');
+  });
+
   describe('prop: children', () => {
     it('should support null children', () => {
-      const { getAllByRole } = render(
+      render(
         <MenuList>
           <div role="menuitem">one</div>
           <div role="menuitem">two</div>
@@ -46,19 +57,19 @@ describe('<MenuList />', () => {
         </MenuList>,
       );
 
-      expect(getAllByRole('menuitem')).to.have.length(2);
+      expect(screen.getAllByRole('menuitem')).to.have.length(2);
     });
 
     it('should not add tabIndex to presentation elements like Divider when all Menu Items are disabled', () => {
-      const { getByRole } = render(
+      render(
         <MenuList>
-          <MenuItem disabled>one</MenuItem>
+          <MenuItem>one</MenuItem>
           <Divider />
-          <MenuItem disabled>two</MenuItem>
+          <MenuItem>two</MenuItem>
         </MenuList>,
       );
 
-      expect(getByRole('separator')).not.to.have.attribute('tabIndex');
+      expect(screen.getByRole('separator')).not.to.have.attribute('tabIndex');
     });
   });
 
@@ -149,6 +160,66 @@ describe('<MenuList />', () => {
       expect(list.style).to.have.property('paddingRight', '');
       expect(list.style).to.have.property('paddingLeft', '');
       expect(list.style).to.have.property('width', '10px');
+    });
+  });
+
+  describe('keyboard navigation', () => {
+    it('should move focus to the next item when pressing the right arrow key', async () => {
+      const { user } = render(
+        <MenuList>
+          <MenuItem>one</MenuItem>
+          <Divider />
+          <MenuItem disabled>two</MenuItem>
+          <MenuItem>three</MenuItem>
+        </MenuList>,
+      );
+
+      const itemElements = screen.getAllByRole('menuitem');
+
+      await user.tab();
+      expect(itemElements[0]).toHaveFocus();
+      expect(itemElements[0]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowDown}');
+      expect(itemElements[2]).toHaveFocus();
+      expect(itemElements[2]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowDown}');
+      expect(itemElements[0]).toHaveFocus();
+      expect(itemElements[0]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowUp}');
+      expect(itemElements[2]).toHaveFocus();
+      expect(itemElements[2]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowUp}');
+      expect(itemElements[0]).toHaveFocus();
+      expect(itemElements[0]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should add tabindex="0" to the focused item', async () => {
+      const { user } = render(
+        <MenuList>
+          <MenuItem>one</MenuItem>
+          <Divider />
+          <MenuItem>two</MenuItem>
+        </MenuList>,
+      );
+
+      const tabElements = screen.getAllByRole('menuitem');
+
+      fireEvent.focus(tabElements[1]);
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.click(tabElements[0]);
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
     });
   });
 });

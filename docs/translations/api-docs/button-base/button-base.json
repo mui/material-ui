@@ -29,6 +29,9 @@
     "LinkComponent": {
       "description": "The component used to render a link when the <code>href</code> prop is provided."
     },
+    "nativeButton": {
+      "description": "Whether the custom component is expected to render a native <code>&lt;button&gt;</code> element when passing a React component to the <code>component</code> or <code>slots</code> prop."
+    },
     "onFocusVisible": {
       "description": "Callback fired when the component is focused with a keyboard. We trigger a <code>onFocus</code> callback too."
     },

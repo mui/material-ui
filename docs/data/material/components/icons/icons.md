@@ -30,15 +30,15 @@ Run one of the following commands to install it and save it to your `package.jso
 
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/icons-material
+npm install @mui/icons-material@next
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material
+pnpm add @mui/icons-material@next
 ```
 
 ```bash yarn
-yarn add @mui/icons-material
+yarn add @mui/icons-material@next
 ```
 
 </codeblock>
@@ -138,7 +138,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an `<svg>` element or an SVG path which is passed as a child to the [`SvgIcon`](#svgicon) component.
+The `createSvgIcon` utility component is used to create the [Material Icons](#material-svg-icons). It can be used to wrap an `<svg>` element or an SVG path which is passed as a child to the [`SvgIcon`](#svgicon) component.
 
 ```jsx
 const HomeIcon = createSvgIcon(

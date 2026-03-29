@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { __unsafe_useEmotionCache } from '@emotion/react';
 import { StyledEngineProvider, GlobalStyles } from '@mui/styled-engine';
 import { createRenderer } from '@mui/internal-test-utils';
@@ -10,13 +9,13 @@ describe('[Emotion] StyledEngineProvider', () => {
 
   let rule;
 
-  before(() => {
+  beforeAll(() => {
     TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
       rule = args[0];
     };
   });
 
-  after(() => {
+  afterAll(() => {
     delete TEST_INTERNALS_DO_NOT_USE.insert;
   });
 

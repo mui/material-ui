@@ -2,7 +2,7 @@
 productId: material-ui
 title: Transfer list React component
 components: List, ListItem, Checkbox, Switch
-githubLabel: 'component: transfer list'
+githubLabel: 'scope: transfer list'
 ---
 
 # Transfer List

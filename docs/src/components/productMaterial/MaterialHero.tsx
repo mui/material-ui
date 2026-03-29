@@ -52,7 +52,7 @@ import Badge from '@mui/material/Badge';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import IconImage from 'docs/src/components/icon/IconImage';
+import IconImage from '@mui/docs/IconImage';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -61,7 +61,7 @@ import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 
 function Checkboxes() {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };
   return (
     <React.Fragment>
       <Checkbox {...label} defaultChecked />
@@ -159,7 +159,7 @@ function BadgeVisibilityDemo() {
   );
 }
 function SwitchToggleDemo() {
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+  const label = { slotProps: { input: { 'aria-label': 'Switch demo' } } };
   return (
     <Box
       sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}

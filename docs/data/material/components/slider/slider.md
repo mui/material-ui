@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Slider component
 components: Slider
-githubLabel: 'component: slider'
+githubLabel: 'scope: slider'
 materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 githubSource: packages/mui-material/src/Slider

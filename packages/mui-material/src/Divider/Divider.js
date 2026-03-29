@@ -3,26 +3,22 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
-    ownerState;
+  const { absolute, children, classes, flexItem, orientation, textAlign, variant } = ownerState;
 
   const slots = {
     root: [
       'root',
       absolute && 'absolute',
       variant,
-      light && 'light',
       orientation === 'vertical' && 'vertical',
       flexItem && 'flexItem',
       children && 'withChildren',
-      children && orientation === 'vertical' && 'withChildrenVertical',
       textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
       textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft',
     ],
@@ -42,11 +38,9 @@ const DividerRoot = styled('div', {
       styles.root,
       ownerState.absolute && styles.absolute,
       styles[ownerState.variant],
-      ownerState.light && styles.light,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.flexItem && styles.flexItem,
       ownerState.children && styles.withChildren,
-      ownerState.children && ownerState.orientation === 'vertical' && styles.withChildrenVertical,
       ownerState.textAlign === 'right' &&
         ownerState.orientation !== 'vertical' &&
         styles.textAlignRight,
@@ -73,16 +67,6 @@ const DividerRoot = styled('div', {
           bottom: 0,
           left: 0,
           width: '100%',
-        },
-      },
-      {
-        props: {
-          light: true,
-        },
-        style: {
-          borderColor: theme.vars
-            ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-            : alpha(theme.palette.divider, 0.08),
         },
       },
       {
@@ -232,7 +216,6 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     orientation = 'horizontal',
     component = children || orientation === 'vertical' ? 'div' : 'hr',
     flexItem = false,
-    light = false,
     role = component !== 'hr' ? 'separator' : undefined,
     textAlign = 'center',
     variant = 'fullWidth',
@@ -244,7 +227,6 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     absolute,
     component,
     flexItem,
-    light,
     orientation,
     role,
     textAlign,
@@ -318,12 +300,6 @@ Divider.propTypes /* remove-proptypes */ = {
    */
   flexItem: PropTypes.bool,
   /**
-   * If `true`, the divider will have a lighter color.
-   * @default false
-   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  light: PropTypes.bool,
-  /**
    * The component orientation.
    * @default 'horizontal'
    */
@@ -331,7 +307,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

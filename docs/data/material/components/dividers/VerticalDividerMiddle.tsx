@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import Divider, { dividerClasses } from '@mui/material/Divider';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';

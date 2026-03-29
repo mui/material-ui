@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Chip component
 components: Chip
-githubLabel: 'component: chip'
+githubLabel: 'scope: chip'
 materialDesign: https://m2.material.io/components/chips
 githubSource: packages/mui-material/src/Chip
 ---

@@ -1,0 +1,10 @@
+<CircularProgress enableTrackSlot size="30px" />
+<CircularProgress enableTrackSlot size={40} />
+<CircularProgress enableTrackSlot size="3rem" />
+<CircularProgress enableTrackSlot variant="determinate" value={70} />
+<CircularProgress
+  enableTrackSlot
+  variant="determinate"
+  color="secondary"
+  value={progress}
+/>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import { InfoCard } from '@mui/docs/InfoCard';
 import HighlightAltRoundedIcon from '@mui/icons-material/HighlightAltRounded';

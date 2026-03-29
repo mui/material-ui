@@ -120,8 +120,13 @@ const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
   },
 }));
 
-function ObjectEntry(props: { itemId: string; objectKey: string; objectValue: any }) {
-  const { itemId, objectKey, objectValue } = props;
+function ObjectEntry(props: {
+  itemId: string;
+  objectKey: string;
+  objectValue: any;
+  depth: number;
+}) {
+  const { itemId, objectKey, objectValue, depth } = props;
   const keyPrefix = itemId;
   let children = null;
 
@@ -138,6 +143,7 @@ function ObjectEntry(props: { itemId: string; objectKey: string; objectValue: an
                 key={key}
                 itemId={`${keyPrefix}.${key}`}
                 objectKey={key}
+                depth={depth + 1}
                 objectValue={objectValue[key]}
               />
             );
@@ -146,6 +152,9 @@ function ObjectEntry(props: { itemId: string; objectKey: string; objectValue: an
 
   return (
     <TreeItem
+      sx={{
+        paddingLeft: depth,
+      }}
       itemId={itemId}
       label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
     >
@@ -222,6 +231,7 @@ export default function ThemeViewer({
             itemId={`${keyPrefix}.${objectKey}`}
             objectKey={objectKey}
             objectValue={data[objectKey]}
+            depth={0}
           />
         );
       })}

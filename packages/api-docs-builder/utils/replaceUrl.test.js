@@ -205,8 +205,8 @@ describe('replaceUrl', () => {
       `/material-ui/about-the-lab/`,
     );
 
-    expect(replaceComponentLinks(`/components/data-grid/demo/`)).to.equal(
-      `/x/react-data-grid/demo/`,
+    expect(replaceComponentLinks(`/components/data-grid/features/`)).to.equal(
+      `/x/react-data-grid/features/`,
     );
   });
 
@@ -240,7 +240,9 @@ describe('replaceUrl', () => {
     expect(replaceComponentLinks(`/material-ui/react-button-group/`)).to.equal(
       `/material-ui/react-button-group/`,
     );
-    expect(replaceComponentLinks(`/x/react-data-grid/demo/`)).to.equal(`/x/react-data-grid/demo/`);
+    expect(replaceComponentLinks(`/x/react-data-grid/features/`)).to.equal(
+      `/x/react-data-grid/features/`,
+    );
   });
 
   it('should do nothing if the APIs have updated', () => {

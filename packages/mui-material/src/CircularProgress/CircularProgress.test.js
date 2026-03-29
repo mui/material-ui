@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import CircularProgress, {
@@ -53,10 +52,11 @@ describe('<CircularProgress />', () => {
     const circularProgress = container.firstChild;
     expect(circularProgress).to.have.class(classes.root);
     const svg = circularProgress.firstChild;
-    expect(svg.firstChild).to.have.class(
-      classes.circleIndeterminate,
-      'should have the circleIndeterminate class',
+    expect(circularProgress).to.have.class(
+      classes.indeterminate,
+      'should have the indeterminate class',
     );
+    expect(svg.firstChild).to.have.class(classes.circle, 'should have the circle class');
   });
 
   it('should render with a different size', () => {
@@ -104,7 +104,7 @@ describe('<CircularProgress />', () => {
     });
   });
 
-  describe('prop: disableShrink ', () => {
+  describe('prop: disableShrink', () => {
     it('should default to false', () => {
       const { container } = render(<CircularProgress variant="indeterminate" />);
       const circularProgress = container.firstChild;
@@ -135,6 +135,39 @@ describe('<CircularProgress />', () => {
       const circle = svg.firstChild;
       expect(circle).to.have.tagName('circle');
       expect(circle).to.have.class(classes.circleDisableShrink);
+    });
+  });
+
+  describe('prop: enableTrackSlot', () => {
+    it('does not render track by default', () => {
+      const { container } = render(<CircularProgress />);
+      const circles = container.querySelectorAll('svg circle');
+      expect(circles.length).to.equal(1);
+    });
+
+    it('renders track when enableTrackSlot is true', () => {
+      const { container } = render(<CircularProgress enableTrackSlot />);
+      const circles = container.querySelectorAll('svg circle');
+      expect(circles.length).to.equal(2);
+      expect(circles[0]).to.have.class(classes.track);
+      expect(circles[0]).to.have.attribute('aria-hidden', 'true');
+    });
+
+    it('track and circle share geometry (r, strokeWidth)', () => {
+      const thickness = 5;
+      const { container } = render(<CircularProgress enableTrackSlot thickness={thickness} />);
+      const [trackEl, circleEl] = container.querySelectorAll('svg circle');
+      expect(trackEl.getAttribute('r')).to.equal(circleEl.getAttribute('r'));
+      expect(trackEl.getAttribute('stroke-width')).to.equal(String(thickness));
+    });
+
+    it('track has no dash styles in determinate', () => {
+      const { container } = render(
+        <CircularProgress enableTrackSlot variant="determinate" value={70} />,
+      );
+      const [trackEl] = container.querySelectorAll('svg circle');
+      expect(trackEl.style.strokeDasharray).to.equal('');
+      expect(trackEl.style.strokeDashoffset).to.equal('');
     });
   });
 });

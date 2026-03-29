@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Speed Dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
-githubLabel: 'component: speed dial'
+githubLabel: 'scope: speed dial'
 materialDesign: https://m2.material.io/components/buttons-floating-action-button#types-of-transitions
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 githubSource: packages/mui-material/src/SpeedDial

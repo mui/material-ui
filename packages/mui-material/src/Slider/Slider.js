@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
-import useSlotProps from '@mui/utils/useSlotProps';
+import isHostComponent from '@mui/utils/isHostComponent';
 import { useSlider, valueToPercent } from './useSlider';
-import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import useSlot from '../utils/useSlot';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
-import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import BaseSliderValueLabel from './SliderValueLabel';
@@ -215,13 +213,13 @@ export const SliderTrack = styled('span', {
                     borderColor: theme.vars.palette.Slider[`${color}Track`],
                   }
                 : {
-                    backgroundColor: lighten(theme.palette[color].main, 0.62),
-                    borderColor: lighten(theme.palette[color].main, 0.62),
+                    backgroundColor: theme.lighten(theme.palette[color].main, 0.62),
+                    borderColor: theme.lighten(theme.palette[color].main, 0.62),
                     ...theme.applyStyles('dark', {
-                      backgroundColor: darken(theme.palette[color].main, 0.5),
+                      backgroundColor: theme.darken(theme.palette[color].main, 0.5),
                     }),
                     ...theme.applyStyles('dark', {
-                      borderColor: darken(theme.palette[color].main, 0.5),
+                      borderColor: theme.darken(theme.palette[color].main, 0.5),
                     }),
                   }),
             },
@@ -234,14 +232,6 @@ export const SliderTrack = styled('span', {
 export const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    return [
-      styles.thumb,
-      styles[`thumbColor${capitalize(ownerState.color)}`],
-      ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
-    ];
-  },
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
@@ -312,25 +302,13 @@ export const SliderThumb = styled('span', {
           props: { color },
           style: {
             [`&:hover, &.${sliderClasses.focusVisible}`]: {
-              ...(theme.vars
-                ? {
-                    boxShadow: `0px 0px 0px 8px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
-                  }
-                : {
-                    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[color].main, 0.16)}`,
-                  }),
+              boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
               '@media (hover: none)': {
                 boxShadow: 'none',
               },
             },
             [`&.${sliderClasses.active}`]: {
-              ...(theme.vars
-                ? {
-                    boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
-                  }
-                : {
-                    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[color].main, 0.16)}`,
-                  }),
+              boxShadow: `0px 0px 0px 14px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
             },
           },
         })),
@@ -549,12 +527,7 @@ const useUtilityClasses = (ownerState) => {
     markLabel: ['markLabel'],
     markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
-    thumb: [
-      'thumb',
-      disabled && 'disabled',
-      size && `thumbSize${capitalize(size)}`,
-      color && `thumbColor${capitalize(color)}`,
-    ],
+    thumb: ['thumb', disabled && 'disabled'],
     active: ['active'],
     disabled: ['disabled'],
     focusVisible: ['focusVisible'],
@@ -565,8 +538,8 @@ const useUtilityClasses = (ownerState) => {
 
 const Forward = ({ children }) => children;
 
-const Slider = React.forwardRef(function Slider(inputProps, ref) {
-  const props = useDefaultProps({ props: inputProps, name: 'MuiSlider' });
+const Slider = React.forwardRef(function Slider(inProps, ref) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiSlider' });
 
   const isRtl = useRtl();
 
@@ -574,10 +547,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
     'aria-labelledby': ariaLabelledby,
-    // eslint-disable-next-line react/prop-types
-    component = 'span',
-    components = {},
-    componentsProps = {},
     color = 'primary',
     classes: classesProp,
     className,
@@ -596,8 +565,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     size = 'medium',
     step = 1,
     scale = Identity,
-    slotProps,
-    slots,
+    slotProps = {},
+    slots = {},
     tabIndex,
     track = 'normal',
     value: valueProp,
@@ -650,104 +619,75 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // support both `slots` and `components` for backward compatibility
-  const RootSlot = slots?.root ?? components.Root ?? SliderRoot;
-  const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
-  const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
-  const ThumbSlot = slots?.thumb ?? components.Thumb ?? SliderThumb;
-  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? SliderValueLabel;
-  const MarkSlot = slots?.mark ?? components.Mark ?? SliderMark;
-  const MarkLabelSlot = slots?.markLabel ?? components.MarkLabel ?? SliderMarkLabel;
-  const InputSlot = slots?.input ?? components.Input ?? 'input';
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
 
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const railSlotProps = slotProps?.rail ?? componentsProps.rail;
-  const trackSlotProps = slotProps?.track ?? componentsProps.track;
-  const thumbSlotProps = slotProps?.thumb ?? componentsProps.thumb;
-  const valueLabelSlotProps = slotProps?.valueLabel ?? componentsProps.valueLabel;
-  const markSlotProps = slotProps?.mark ?? componentsProps.mark;
-  const markLabelSlotProps = slotProps?.markLabel ?? componentsProps.markLabel;
-  const inputSlotProps = slotProps?.input ?? componentsProps.input;
-
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: SliderRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      ...(shouldSpreadAdditionalProps(RootSlot) && {
-        as: component,
-      }),
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
     },
-    ownerState: {
-      ...ownerState,
-      ...rootSlotProps?.ownerState,
-    },
+    ownerState,
     className: [classes.root, className],
   });
 
-  const railProps = useSlotProps({
-    elementType: RailSlot,
-    externalSlotProps: railSlotProps,
+  const [RailSlot, railProps] = useSlot('rail', {
+    elementType: SliderRail,
+    externalForwardedProps,
     ownerState,
     className: classes.rail,
   });
 
-  const trackProps = useSlotProps({
-    elementType: TrackSlot,
-    externalSlotProps: trackSlotProps,
+  const [TrackSlot, trackProps] = useSlot('track', {
+    elementType: SliderTrack,
+    externalForwardedProps,
     additionalProps: {
       style: {
         ...axisProps[axis].offset(trackOffset),
         ...axisProps[axis].leap(trackLeap),
       },
     },
-    ownerState: {
-      ...ownerState,
-      ...trackSlotProps?.ownerState,
-    },
+    ownerState,
     className: classes.track,
   });
 
-  const thumbProps = useSlotProps({
-    elementType: ThumbSlot,
+  const [ThumbSlot, thumbProps] = useSlot('thumb', {
+    elementType: SliderThumb,
     getSlotProps: getThumbProps,
-    externalSlotProps: thumbSlotProps,
-    ownerState: {
-      ...ownerState,
-      ...thumbSlotProps?.ownerState,
-    },
+    externalForwardedProps,
+    ownerState,
     className: classes.thumb,
   });
 
-  const valueLabelProps = useSlotProps({
-    elementType: ValueLabelSlot,
-    externalSlotProps: valueLabelSlotProps,
-    ownerState: {
-      ...ownerState,
-      ...valueLabelSlotProps?.ownerState,
-    },
+  const [ValueLabelSlot, valueLabelProps] = useSlot('valueLabel', {
+    elementType: SliderValueLabel,
+    externalForwardedProps,
+    ownerState,
     className: classes.valueLabel,
   });
 
-  const markProps = useSlotProps({
-    elementType: MarkSlot,
-    externalSlotProps: markSlotProps,
+  const [MarkSlot, markProps] = useSlot('mark', {
+    elementType: SliderMark,
+    externalForwardedProps,
     ownerState,
     className: classes.mark,
   });
 
-  const markLabelProps = useSlotProps({
-    elementType: MarkLabelSlot,
-    externalSlotProps: markLabelSlotProps,
+  const [MarkLabelSlot, markLabelProps] = useSlot('markLabel', {
+    elementType: SliderMarkLabel,
+    externalForwardedProps,
     ownerState,
     className: classes.markLabel,
   });
 
-  const inputSliderProps = useSlotProps({
-    elementType: InputSlot,
+  const [InputSliderSlot, inputSliderProps] = useSlot('input', {
+    elementType: 'input',
     getSlotProps: getHiddenInputProps,
-    externalSlotProps: inputSlotProps,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -844,7 +784,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
                 ...thumbProps.style,
               }}
             >
-              <InputSlot
+              <InputSliderSlot
                 data-index={index}
                 aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                 aria-valuenow={scale(value)}
@@ -922,51 +862,6 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Mark: PropTypes.elementType,
-    MarkLabel: PropTypes.elementType,
-    Rail: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Thumb: PropTypes.elementType,
-    Track: PropTypes.elementType,
-    ValueLabel: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.node,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -1072,7 +967,7 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the Slider.
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -1096,8 +991,7 @@ Slider.propTypes /* remove-proptypes */ = {
     ]),
   }),
   /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({

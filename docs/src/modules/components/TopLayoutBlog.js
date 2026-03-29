@@ -8,14 +8,14 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { BrandingCssVarsProvider } from '@mui/docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
 
@@ -154,6 +154,21 @@ export const authors = {
     name: 'Jan Potoms',
     avatar: 'https://avatars.githubusercontent.com/u/2109932',
     github: 'Janpot',
+  },
+  nadjakovacev: {
+    name: 'Nadja Kovacev',
+    avatar: 'https://avatars.githubusercontent.com/u/159806370',
+    github: 'nadjakovacev',
+  },
+  raffaellaluzi: {
+    name: 'Raffaella Luzi',
+    avatar: 'https://avatars.githubusercontent.com/u/136349774',
+    github: 'rluzists1',
+  },
+  bernardobelchior: {
+    name: 'Bernardo Belchior',
+    avatar: 'https://avatars.githubusercontent.com/u/12778398',
+    github: 'bernardobelchior',
   },
 };
 
@@ -422,7 +437,7 @@ export default function TopLayoutBlog(props) {
               {/*
                 Depending on the timezone, the display date can change from one day to another.
                 e.g. Sunday vs. Monday
-                TODO: Move the date formating to the server.
+                TODO: Move the date formatting to the server.
               */}
               <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {

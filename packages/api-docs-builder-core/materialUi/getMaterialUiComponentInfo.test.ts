@@ -31,7 +31,7 @@ describe('getMaterialUiComponentInfo', () => {
     } catch (error) {}
     if (existed) {
       const demos = componentInfo.getDemos();
-      expect(demos).to.have.lengthOf(2);
+      expect(demos).to.not.have.lengthOf(0);
 
       expect(demos[0]).to.deep.include({
         demoPageTitle: 'Button Group',

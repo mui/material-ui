@@ -9,6 +9,7 @@
       "default": "'primary'"
     },
     "disableShrink": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
+    "enableTrackSlot": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "40"
@@ -40,24 +41,10 @@
       "isGlobal": false
     },
     {
-      "key": "circleDeterminate",
-      "className": "MuiCircularProgress-circleDeterminate",
-      "description": "Styles applied to the `circle` svg path if `variant=\"determinate\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
       "key": "circleDisableShrink",
       "className": "MuiCircularProgress-circleDisableShrink",
       "description": "Styles applied to the `circle` svg path if `disableShrink={true}`.",
       "isGlobal": false
-    },
-    {
-      "key": "circleIndeterminate",
-      "className": "MuiCircularProgress-circleIndeterminate",
-      "description": "Styles applied to the `circle` svg path if `variant=\"indeterminate\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
     },
     {
       "key": "colorPrimary",
@@ -93,6 +80,12 @@
       "key": "svg",
       "className": "MuiCircularProgress-svg",
       "description": "Styles applied to the svg element.",
+      "isGlobal": false
+    },
+    {
+      "key": "track",
+      "className": "MuiCircularProgress-track",
+      "description": "Styles applied to the track slot if `enableTrackSlot={true}`.",
       "isGlobal": false
     }
   ],

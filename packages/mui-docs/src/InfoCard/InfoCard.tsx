@@ -90,18 +90,23 @@ export function InfoCard(props: InfoCardProps) {
       {svg && svg}
       {icon && <GlowingIconContainer icon={icon} />}
       <Typography
-        fontWeight="semiBold"
         component="h3"
-        color="text.primary"
         variant="body2"
-        mt={icon ? 2 : 0}
-        mb={description ? 0.5 : 0}
         className={classNameTitle}
         {...titleProps}
+        sx={[
+          {
+            fontWeight: 'semiBold',
+            color: 'text.primary',
+            mt: icon ? 2 : 0,
+            mb: description ? 0.5 : 0,
+          },
+          ...(Array.isArray(titleProps?.sx) ? titleProps.sx : [titleProps?.sx]),
+        ]}
       >
         {title}
       </Typography>
-      <Typography variant="body2" color="text.secondary" className={classNameDescription}>
+      <Typography variant="body2" sx={{ color: 'text.secondary' }} className={classNameDescription}>
         {description}
       </Typography>
     </Paper>

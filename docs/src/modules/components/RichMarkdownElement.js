@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCodeWithTabs } from '@mui/docs/HighlightedCodeWithTabs';

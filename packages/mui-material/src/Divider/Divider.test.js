@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
@@ -24,11 +23,6 @@ describe('<Divider />', () => {
     expect(container.firstChild).to.have.class(classes.absolute);
   });
 
-  it('should set the light class', () => {
-    const { container } = render(<Divider light />);
-    expect(container.firstChild).to.have.class(classes.light);
-  });
-
   it('should set the flexItem class', () => {
     const { container } = render(<Divider flexItem />);
     expect(container.firstChild).to.have.class(classes.flexItem);
@@ -50,7 +44,8 @@ describe('<Divider />', () => {
     describe('prop: orientation', () => {
       it('should set the textVertical class', () => {
         const { container } = render(<Divider orientation="vertical">content</Divider>);
-        expect(container.querySelectorAll(`.${classes.withChildrenVertical}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.withChildren}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.vertical}`).length).to.equal(1);
         expect(container.querySelectorAll(`.${classes.wrapperVertical}`).length).to.equal(1);
       });
     });
@@ -85,13 +80,7 @@ describe('<Divider />', () => {
       });
     });
 
-    describe('custom border style', function test() {
-      before(function beforeHook() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
-      });
-
+    describe.skipIf(isJsdom())('custom border style', function test() {
       const StyledDivider = styled(Divider)(() => ({
         borderStyle: 'dashed',
       }));
@@ -127,14 +116,14 @@ describe('<Divider />', () => {
       expect(container.firstChild).not.to.have.class(classes.middle);
     });
 
-    describe('prop: variant="fullWidth" ', () => {
+    describe('prop: variant="fullWidth"', () => {
       it('should render with the root and default class', () => {
         const { container } = render(<Divider />);
         expect(container.firstChild).to.have.class(classes.root);
       });
     });
 
-    describe('prop: variant="inset" ', () => {
+    describe('prop: variant="inset"', () => {
       it('should set the inset class', () => {
         const { container } = render(<Divider variant="inset" />);
         expect(container.firstChild).to.have.class(classes.inset);

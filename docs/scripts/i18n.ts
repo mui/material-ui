@@ -1,17 +1,16 @@
 // @ts-check
 import path from 'path';
-import fse from 'fs-extra';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import fs from 'node:fs/promises';
+import { pageToTitle } from '@mui/docs/helpers';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import joyPages from 'docs/data/joy/pages';
-import { MuiPage } from 'docs/src/MuiPage';
+import { MuiPage } from '@mui/docs/MuiPage';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-', '/toolpad'];
 
 async function run() {
   const translationsFilename = path.join(__dirname, '../translations/translations.json');
-  const translationsFile = await fse.readFile(translationsFilename, 'utf8');
+  const translationsFile = await fs.readFile(translationsFilename, 'utf8');
   /**
    * @type {{ pages: Record<String, string> }}
    */
@@ -19,7 +18,7 @@ async function run() {
   output.pages = {};
 
   /**
-   * @param {readonly import('docs/src/MuiPage').MuiPage[]} pages
+   * @param {readonly import('@mui/docs/MuiPage').MuiPage[]} pages
    */
   const traverse = (pages: MuiPage[]) => {
     pages.forEach((page) => {
@@ -41,9 +40,9 @@ async function run() {
     });
   };
 
-  traverse([...systemPages, ...materialPages, ...joyPages]);
+  traverse([...systemPages, ...materialPages]);
 
-  await fse.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
+  await fs.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
 }
 
 run().catch((error) => {

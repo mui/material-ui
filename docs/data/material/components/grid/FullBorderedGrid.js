@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
@@ -22,13 +21,13 @@ export default function FullBorderedGrid() {
         {[...Array(6)].map((_, index) => (
           <Grid
             key={index}
-            minHeight={160}
             size={{
               xs: 12,
               sm: 6,
               md: 4,
               lg: 3,
             }}
+            sx={{ minHeight: 160 }}
           />
         ))}
       </Grid>

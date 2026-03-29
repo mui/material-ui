@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -6,6 +5,7 @@ import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { svgIconClasses } from '@mui/material/SvgIcon';
+import AlarmIcon from '@mui/icons-material/Alarm';
 import describeConformance from '../../test/describeConformance';
 import capitalize from '../utils/capitalize';
 
@@ -20,7 +20,6 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
-    testLegacyComponentsProp: ['closeButton', 'closeIcon'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -96,14 +95,14 @@ describe('<Alert />', () => {
     });
   });
 
-  describe('prop: components', () => {
+  describe('slots.closeButton and slots.closeIcon', () => {
     it('should override the default icon used in the close action', () => {
       function MyCloseIcon() {
         return <div data-testid="closeIcon">X</div>;
       }
 
       render(
-        <Alert onClose={() => {}} components={{ CloseIcon: MyCloseIcon }}>
+        <Alert onClose={() => {}} slots={{ closeIcon: MyCloseIcon }}>
           Hello World
         </Alert>,
       );
@@ -117,7 +116,7 @@ describe('<Alert />', () => {
       }
 
       render(
-        <Alert onClose={() => {}} components={{ CloseButton: MyCloseButton }}>
+        <Alert onClose={() => {}} slots={{ closeButton: MyCloseButton }}>
           Hello World
         </Alert>,
       );
@@ -126,12 +125,12 @@ describe('<Alert />', () => {
     });
   });
 
-  describe('prop: componentsProps', () => {
+  describe('slotProps.closeButton and slotProps.closeIcon', () => {
     it('should apply the props on the close IconButton component', () => {
       render(
         <Alert
           onClose={() => {}}
-          componentsProps={{
+          slotProps={{
             closeButton: {
               'data-testid': 'closeButton',
               size: 'large',
@@ -152,7 +151,7 @@ describe('<Alert />', () => {
       render(
         <Alert
           onClose={() => {}}
-          componentsProps={{
+          slotProps={{
             closeIcon: {
               'data-testid': 'closeIcon',
               fontSize: 'large',
@@ -209,6 +208,38 @@ describe('<Alert />', () => {
 
         expect(screen.getByTestId(`${severity}-icon`)).toBeVisible();
       });
+    });
+
+    // https://github.com/mui/material-ui/pull/47460#issuecomment-3744629811
+    it('should apply the default icons to the different severity alerts if overriding one of the severity icon in theme', () => {
+      const theme = createTheme({
+        components: {
+          MuiAlert: {
+            defaultProps: {
+              iconMapping: {
+                warning: <AlarmIcon fontSize="inherit" />,
+              },
+            },
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Alert severity="success">This is a success Alert.</Alert>
+          <Alert severity="info">This is an info Alert.</Alert>
+          <Alert severity="warning">This is a warning Alert.</Alert>
+          <Alert severity="error">This is an error Alert.</Alert>
+        </ThemeProvider>,
+      );
+
+      expect(screen.queryByTestId('SuccessOutlinedIcon')).not.to.equal(null);
+      expect(screen.queryByTestId('InfoOutlinedIcon')).not.to.equal(null);
+      // overriden icon in theme
+      expect(screen.queryByTestId('AlarmIcon')).not.to.equal(null);
+      expect(screen.queryByTestId('ErrorOutlineIcon')).not.to.equal(null);
+      // default warning icon
+      expect(screen.queryByTestId('ReportProblemOutlinedIcon')).to.equal(null);
     });
   });
 

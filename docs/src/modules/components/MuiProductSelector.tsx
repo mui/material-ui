@@ -3,15 +3,13 @@ import NextLink from 'next/link';
 import { styled, alpha, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import MenuList, { MenuListProps } from '@mui/material/MenuList';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
-import SvgToolpadCoreLogo from 'docs/src/icons/SvgToolpadCoreLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
@@ -117,14 +115,12 @@ function ProductItem({
       </Box>
       <div>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
             {name}
           </Typography>
           {chip}
         </Box>
-        <Typography color="text.secondary" fontSize=".813rem">
-          {description}
-        </Typography>
+        <Typography sx={{ color: 'text.secondary', fontSize: '.813rem' }}>{description}</Typography>
       </div>
     </MenuItem>
   );
@@ -140,9 +136,9 @@ const coreProducts = [
   },
   {
     id: 'base-ui',
-    name: 'MUI Base',
-    description: 'Unstyled components and hooks.',
-    icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
+    name: 'Base UI',
+    description: 'Unstyled components for accessible UIs.',
+    icon: <SvgBaseUiLogo width={14} height={16} sx={logoColor} />,
     href: ROUTES.baseDocs,
   },
   {
@@ -189,34 +185,6 @@ const advancedProducts = [
     description: 'Hierarchical list components.',
     icon: <AccountTreeRoundedIcon sx={iconStyles} />,
     href: ROUTES.treeViewOverview,
-  },
-];
-
-const toolpadProducts = [
-  {
-    id: 'toolpad-core',
-    name: 'Toolpad Core',
-    chip: (
-      <Chip
-        label="Beta"
-        size="small"
-        color="primary"
-        variant="outlined"
-        sx={{
-          fontSize: '.625rem',
-          fontWeight: 'semiBold',
-          textTransform: 'uppercase',
-          letterSpacing: '.04rem',
-          height: '16px',
-          '& .MuiChip-label': {
-            px: '4px',
-          },
-        }}
-      />
-    ),
-    description: 'Components for building dashboards.',
-    icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
-    href: ROUTES.toolpadCoreDocs,
   },
 ];
 
@@ -280,32 +248,6 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           icon={product.icon}
           href={product.href}
           active={pageContext.productId === product.id}
-        />
-      ))}
-      <Divider
-        sx={{
-          mx: -1,
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      />
-      {toolpadProducts.map((product) => (
-        <ProductItem
-          key={product.name}
-          name={product.name}
-          chip={product.chip}
-          description={product.description}
-          icon={product.icon}
-          href={product.href}
-          active={pageContext.productId === product.id}
-          sx={{
-            gridColumn: {
-              xs: '1 / span 1', // For extra small screens, it will take one column
-              sm: '1 / span 2', // For small and larger screens, it will take both columns
-            },
-          }}
         />
       ))}
     </MenuList>

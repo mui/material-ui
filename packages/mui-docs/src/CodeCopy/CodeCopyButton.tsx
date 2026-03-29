@@ -1,4 +1,3 @@
-import * as React from 'react';
 import useClipboardCopy from './useClipboardCopy';
 
 export interface CodeCopyButtonProps {

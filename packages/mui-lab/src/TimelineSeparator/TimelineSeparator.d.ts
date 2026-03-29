@@ -4,8 +4,9 @@ import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineSeparatorClasses } from './timelineSeparatorClasses';
 
-export interface TimelineSeparatorProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface TimelineSeparatorProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>
+> {
   /**
    * The content of the component.
    */
@@ -13,21 +14,21 @@ export interface TimelineSeparatorProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineSeparatorClasses>;
+  classes?: Partial<TimelineSeparatorClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineSeparator API](https://mui.com/material-ui/api/timeline-separator/)
+ * - [TimelineSeparator API](https://next.mui.com/material-ui/api/timeline-separator/)
  */
 export default function TimelineSeparator(props: TimelineSeparatorProps): React.JSX.Element;

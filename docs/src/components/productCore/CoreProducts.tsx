@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Section from 'docs/src/layouts/Section';
 import { InfoCard } from '@mui/docs/InfoCard';

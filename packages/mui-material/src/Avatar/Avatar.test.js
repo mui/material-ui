@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
@@ -31,6 +30,20 @@ describe('<Avatar />', () => {
     skip: ['componentsProp'],
   }));
 
+  // img slot only renders when src is provided
+  describeConformance(<Avatar src="/fake.png" />, () => ({
+    classes,
+    render,
+    refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiAvatar',
+    slots: {
+      img: {
+        expectedClassName: classes.img,
+      },
+    },
+    only: ['slotsProp', 'slotPropsProp'],
+  }));
+
   describe('image avatar', () => {
     it('should render a div containing an img', () => {
       const { container } = render(
@@ -54,15 +67,6 @@ describe('<Avatar />', () => {
       expect(img).to.have.attribute('src', '/fake.png');
     });
 
-    it('should be able to add more props to the image', () => {
-      // TODO: remove this test in v7
-      const onError = spy();
-      const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
-      const img = container.querySelector('img');
-      fireEvent.error(img);
-      expect(onError.callCount).to.equal(1);
-    });
-
     it('should be able to add more props to the img slot', () => {
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
@@ -72,9 +76,9 @@ describe('<Avatar />', () => {
     });
 
     it('should pass slots.img to `useLoaded` hook', () => {
-      const originalImage = global.Image;
+      const originalImage = globalThis.Image;
       const image = {};
-      global.Image = function Image() {
+      globalThis.Image = function Image() {
         return image;
       };
 
@@ -82,7 +86,7 @@ describe('<Avatar />', () => {
 
       expect(image.crossOrigin).to.equal('anonymous');
 
-      global.Image = originalImage;
+      globalThis.Image = originalImage;
     });
   });
 
@@ -93,23 +97,6 @@ describe('<Avatar />', () => {
       const imgs = container.querySelectorAll('img');
       expect(imgs.length).to.equal(1);
       expect(avatar).to.have.text('');
-    });
-
-    it('should be able to add more props to the image', () => {
-      // TODO: remove this test in v7
-      const onError = spy();
-      const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
-      const img = container.querySelector('img');
-      fireEvent.error(img);
-      expect(onError.callCount).to.equal(1);
-    });
-
-    it('should be able to add more props to the img slot', () => {
-      const onError = spy();
-      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
-      const img = container.querySelector('img');
-      fireEvent.error(img);
-      expect(onError.callCount).to.equal(1);
     });
   });
 

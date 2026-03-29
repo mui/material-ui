@@ -56,7 +56,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       '@media (hover: none)': {
         [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
           borderColor: theme.vars
-            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
             : borderColor,
         },
       },
@@ -75,7 +75,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             },
           })),
         {
-          props: {}, // to overide the above style
+          props: {}, // to override the above style
           style: {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
@@ -123,7 +123,7 @@ const NotchedOutlineRoot = styled(NotchedOutline, {
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return {
       borderColor: theme.vars
-        ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+        ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
         : borderColor,
     };
   }),
@@ -190,7 +190,6 @@ const OutlinedInputInput = styled(InputBaseInput, {
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
-    components = {},
     fullWidth = false,
     inputComponent = 'input',
     label,
@@ -225,8 +224,8 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     type,
   };
 
-  const RootSlot = slots.root ?? components.Root ?? OutlinedInputRoot;
-  const InputSlot = slots.input ?? components.Input ?? OutlinedInputInput;
+  const RootSlot = slots.root ?? OutlinedInputRoot;
+  const InputSlot = slots.input ?? OutlinedInputInput;
 
   const [NotchedSlot, notchedProps] = useSlot('notchedOutline', {
     elementType: NotchedOutlineRoot,
@@ -307,17 +306,6 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */

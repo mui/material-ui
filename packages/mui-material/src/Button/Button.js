@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
@@ -27,16 +26,14 @@ const useUtilityClasses = (ownerState) => {
       'root',
       loading && 'loading',
       variant,
-      `${variant}${capitalize(color)}`,
       `size${capitalize(size)}`,
-      `${variant}Size${capitalize(size)}`,
       `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
       loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
-    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
-    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
+    startIcon: ['icon', 'startIcon'],
+    endIcon: ['icon', 'endIcon'],
     loadingIndicator: ['loadingIndicator'],
     loadingWrapper: ['loadingWrapper'],
   };
@@ -86,9 +83,7 @@ const ButtonRoot = styled(ButtonBase, {
     return [
       styles.root,
       styles[ownerState.variant],
-      styles[`${ownerState.variant}${capitalize(ownerState.color)}`],
       styles[`size${capitalize(ownerState.size)}`],
-      styles[`${ownerState.variant}Size${capitalize(ownerState.size)}`],
       ownerState.color === 'inherit' && styles.colorInherit,
       ownerState.disableElevation && styles.disableElevation,
       ownerState.fullWidth && styles.fullWidth,
@@ -175,21 +170,24 @@ const ButtonRoot = styled(ButtonBase, {
             style: {
               '--variant-textColor': (theme.vars || theme).palette[color].main,
               '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedBorder': theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                : alpha(theme.palette[color].main, 0.5),
+              '--variant-outlinedBorder': theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                0.5,
+              ),
               '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
               '--variant-containedBg': (theme.vars || theme).palette[color].main,
               '@media (hover: hover)': {
                 '&:hover': {
                   '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                  '--variant-textBg': theme.vars
-                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                    : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                  '--variant-textBg': theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.hoverOpacity,
+                  ),
                   '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                  '--variant-outlinedBg': theme.vars
-                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                    : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                  '--variant-outlinedBg': theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.hoverOpacity,
+                  ),
                 },
               },
             },
@@ -209,12 +207,14 @@ const ButtonRoot = styled(ButtonBase, {
                 '--variant-containedBg': theme.vars
                   ? theme.vars.palette.Button.inheritContainedHoverBg
                   : inheritContainedHoverBackgroundColor,
-                '--variant-textBg': theme.vars
-                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-                '--variant-outlinedBg': theme.vars
-                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+                '--variant-textBg': theme.alpha(
+                  (theme.vars || theme).palette.text.primary,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
+                '--variant-outlinedBg': theme.alpha(
+                  (theme.vars || theme).palette.text.primary,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
               },
             },
           },
@@ -330,11 +330,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.startIcon,
-      ownerState.loading && styles.startIconLoadingStart,
-      styles[`iconSize${capitalize(ownerState.size)}`],
-    ];
+    return [styles.startIcon, ownerState.loading && styles.startIconLoadingStart];
   },
 })(({ theme }) => ({
   display: 'inherit',
@@ -372,11 +368,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.endIcon,
-      ownerState.loading && styles.endIconLoadingEnd,
-      styles[`iconSize${capitalize(ownerState.size)}`],
-    ];
+    return [styles.endIcon, ownerState.loading && styles.endIconLoadingEnd];
   },
 })(({ theme }) => ({
   display: 'inherit',
@@ -597,6 +589,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
+      internalNativeButton
       type={type}
       id={loading ? loadingId : idProp}
       {...other}

@@ -10,7 +10,6 @@ import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import IntegrationInstructionsRoundedIcon from '@mui/icons-material/IntegrationInstructionsRounded';
-import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
 import CopyrightRoundedIcon from '@mui/icons-material/CopyrightRounded';
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded';
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
@@ -19,12 +18,12 @@ import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha } from '@mui/material/styles';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import { Link } from '@mui/docs/Link';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import PageContext from 'docs/src/modules/components/PageContext';
+import useLazyCSS from '@mui/docs/useLazyCSS';
+import PageContext from '@mui/docs/PageContext';
 import SearchButton from './SearchButton';
 
 function NewStartScreen() {
@@ -75,28 +74,6 @@ function NewStartScreen() {
           name: 'What is new in MUI X',
           href: '/x/whats-new/',
           icon: <NewspaperRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-      ],
-    },
-    {
-      category: {
-        name: 'Joy UI',
-      },
-      items: [
-        {
-          name: 'Installation',
-          href: '/joy-ui/getting-started/installation/',
-          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Templates',
-          href: '/joy-ui/getting-started/templates/',
-          icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Customization',
-          href: '/joy-ui/customization/approaches/',
-          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -228,6 +205,8 @@ DocSearchHit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
+const standaloneProducts = ['base-ui', 'joy-ui'];
+
 export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
@@ -323,6 +302,18 @@ export default function AppSearch(props) {
     optionalFilters.push(`productCategoryId:${pageContext.productCategoryId}`);
   }
 
+  // Filter out stand-alone products unless we're on their subsections
+  let filters = undefined;
+  if (standaloneProducts.length > 0) {
+    const filtersPredicates = [];
+    for (let i = 0; i < standaloneProducts.length; i += 1) {
+      if (pageContext.productId !== standaloneProducts[i]) {
+        filtersPredicates.push(`NOT productId:${standaloneProducts[i]}`);
+      }
+    }
+    filters = filtersPredicates.join(' AND ');
+  }
+
   return (
     <React.Fragment>
       <SearchButton onRef={searchButtonRef} onClick={onOpen} {...props} />
@@ -332,9 +323,10 @@ export default function AppSearch(props) {
             initialQuery={initialQuery}
             appId="TZGZ85B9TB"
             apiKey="8177dfb3e2be72b241ffb8c5abafa899"
-            indexName="material-ui"
+            indexName={process.env.SEARCH_INDEX}
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
+              filters,
               optionalFilters,
               attributesToRetrieve: [
                 // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231

@@ -1,4 +1,4 @@
-import type { MuiPage } from 'docs/src/MuiPage';
+import type { MuiPage } from '@mui/docs/MuiPage';
 
 const pages: readonly MuiPage[] = [
   {
@@ -96,7 +96,7 @@ const pages: readonly MuiPage[] = [
     title: 'Test: Data Grid e2e',
     children: [
       { pathname: '/x/react-data-grid', title: 'Overview' },
-      { pathname: '/x/react-data-grid/demo' },
+      { pathname: '/x/react-data-grid/features' },
       { pathname: '/x/react-data-grid/getting-started' },
       { pathname: '/x/react-data-grid/layout' },
       {

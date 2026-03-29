@@ -10,6 +10,7 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
+import useButtonBase from './useButtonBase';
 import useLazyRipple from '../useLazyRipple';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
@@ -85,15 +86,22 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    /* eslint-disable react/prop-types */
+    // replaces internal handling in Chip, other components can opt-in individually to use this in the future
+    focusableWhenDisabled,
+    // private prop to allow native vs non-native button props to be resolved before mount
+    internalNativeButton: internalNativeButtonProp,
+    /* eslint-enable react/prop-types */
     LinkComponent = 'a',
+    nativeButton: nativeButtonProp,
     onBlur,
-    onClick,
+    onClick: onClickProp,
     onContextMenu,
     onDragLeave,
     onFocus,
     onFocusVisible,
-    onKeyDown,
-    onKeyUp,
+    onKeyDown: onKeyDownProp,
+    onKeyUp: onKeyUpProp,
     onMouseDown,
     onMouseLeave,
     onMouseUp,
@@ -107,8 +115,19 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ...other
   } = props;
 
-  const buttonRef = React.useRef(null);
+  const isLink = Boolean(other.href || other.to);
+  const hasFormAction = Boolean(other.formAction);
 
+  let ComponentProp = component;
+  if (ComponentProp === 'button' && isLink) {
+    ComponentProp = LinkComponent;
+  }
+
+  const internalNativeButton =
+    typeof ComponentProp === 'string'
+      ? ComponentProp === 'button'
+      : (internalNativeButtonProp ?? false);
+  const nativeButton = nativeButtonProp ?? internalNativeButton;
   const ripple = useLazyRipple();
   const handleRippleRef = useForkRef(ripple.ref, touchRippleRef);
 
@@ -116,6 +135,44 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
+
+  const handleBeforeKeyDown = useEventCallback((event) => {
+    // Check if key is already down to avoid repeats being counted as multiple activations
+    if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
+      ripple.stop(event, () => {
+        ripple.start(event);
+      });
+    }
+  });
+
+  const handleBeforeKeyUp = useEventCallback((event) => {
+    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
+    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
+    if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
+      ripple.stop(event, () => {
+        ripple.pulsate(event);
+      });
+    }
+  });
+
+  const { getButtonProps, rootRef: buttonRef } = useButtonBase({
+    nativeButton,
+    nativeButtonProp,
+    internalNativeButton,
+    allowInferredHostMismatch: isLink || typeof ComponentProp === 'string',
+    disabled,
+    type,
+    hasFormAction,
+    tabIndex,
+    onBeforeKeyDown: handleBeforeKeyDown,
+    onBeforeKeyUp: handleBeforeKeyUp,
+  });
+
+  const { onClick, onKeyDown, onKeyUp, ...buttonProps } = getButtonProps({
+    onClick: onClickProp,
+    onKeyDown: onKeyDownProp,
+    onKeyUp: onKeyUpProp,
+  });
 
   React.useImperativeHandle(
     action,
@@ -125,7 +182,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
         buttonRef.current.focus();
       },
     }),
-    [],
+    [buttonRef],
   );
 
   const enableTouchRipple = ripple.shouldMount && !disableRipple && !disabled;
@@ -190,82 +247,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   });
 
-  const isNonNativeButton = () => {
-    const button = buttonRef.current;
-    return component && component !== 'button' && !(button.tagName === 'A' && button.href);
-  };
-
-  const handleKeyDown = useEventCallback((event) => {
-    // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !event.repeat && focusVisible && event.key === ' ') {
-      ripple.stop(event, () => {
-        ripple.start(event);
-      });
-    }
-
-    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
-      event.preventDefault();
-    }
-
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      isNonNativeButton() &&
-      event.key === 'Enter' &&
-      !disabled
-    ) {
-      event.preventDefault();
-      if (onClick) {
-        onClick(event);
-      }
-    }
-  });
-
-  const handleKeyUp = useEventCallback((event) => {
-    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/p/sandbox/button-keyup-preventdefault-dn7f0
-    if (focusRipple && event.key === ' ' && focusVisible && !event.defaultPrevented) {
-      ripple.stop(event, () => {
-        ripple.pulsate(event);
-      });
-    }
-    if (onKeyUp) {
-      onKeyUp(event);
-    }
-
-    // Keyboard accessibility for non interactive elements
-    if (
-      onClick &&
-      event.target === event.currentTarget &&
-      isNonNativeButton() &&
-      event.key === ' ' &&
-      !event.defaultPrevented
-    ) {
-      onClick(event);
-    }
-  });
-
-  let ComponentProp = component;
-
-  if (ComponentProp === 'button' && (other.href || other.to)) {
-    ComponentProp = LinkComponent;
-  }
-
-  const buttonProps = {};
-  if (ComponentProp === 'button') {
-    buttonProps.type = type === undefined ? 'button' : type;
-    buttonProps.disabled = disabled;
-  } else {
-    if (!other.href && !other.to) {
-      buttonProps.role = 'button';
-    }
+  const linkProps = {};
+  if (isLink) {
+    linkProps.tabIndex = disabled ? -1 : tabIndex;
     if (disabled) {
-      buttonProps['aria-disabled'] = disabled;
+      linkProps['aria-disabled'] = disabled;
     }
+    linkProps.type = type;
   }
 
   const handleRef = useForkRef(ref, buttonRef);
@@ -293,8 +281,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       onClick={onClick}
       onContextMenu={handleContextMenu}
       onFocus={handleFocus}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
@@ -303,9 +291,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStart}
       ref={handleRef}
-      tabIndex={disabled ? -1 : tabIndex}
-      type={type}
-      {...buttonProps}
+      {...(isLink ? linkProps : buttonProps)}
       {...other}
     >
       {children}
@@ -398,12 +384,21 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  formAction: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  /**
+   * @ignore
+   */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * The component used to render a link when the `href` prop is provided.
    * @default 'a'
    */
   LinkComponent: PropTypes.elementType,
+  /**
+   * Whether the custom component is expected to render a native `<button>` element
+   * when passing a React component to the `component` or `slots` prop.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * @ignore
    */

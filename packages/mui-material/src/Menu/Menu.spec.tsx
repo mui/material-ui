@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Menu, { MenuProps } from '@mui/material/Menu';
 
 <Menu

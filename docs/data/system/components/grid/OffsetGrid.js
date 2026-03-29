@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/system/Grid';
 import styled from '@mui/system/styled';
 

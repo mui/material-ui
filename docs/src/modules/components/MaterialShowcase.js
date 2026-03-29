@@ -83,7 +83,7 @@ const appList = [
     title: 'BARKS',
     description: 'Japan Music Network. 🇯🇵',
     image: 'barks.jpg',
-    link: 'https://www.barks.jp/',
+    link: 'https://barks.jp/',
     similarWebVisits: 3000,
     dateAdded: '2019-01-01',
   },

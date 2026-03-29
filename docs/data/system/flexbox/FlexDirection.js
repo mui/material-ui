@@ -1,6 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 
 function Item(props) {
   const { sx, ...other } = props;

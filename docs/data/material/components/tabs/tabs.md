@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
-githubLabel: 'component: tabs'
+githubLabel: 'scope: tabs'
 materialDesign: https://m2.material.io/components/tabs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 githubSource: packages/mui-material/src/Tabs

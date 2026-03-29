@@ -170,8 +170,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     openIcon,
     slots = {},
     slotProps = {},
-    TransitionComponent: TransitionComponentProp,
-    TransitionProps: TransitionPropsProp,
     transitionDuration = defaultTransitionDuration,
     ...other
   } = props;
@@ -220,13 +218,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
    * Is called before the original ref callback for Button that was set in buttonProps
    *
    * @param dialActionIndex {number}
-   * @param origButtonRef {React.RefObject?}
+   * @param fabSlotOrigButtonRef {React.RefObject?}
    */
-  const createHandleSpeedDialActionButtonRef = (dialActionIndex, origButtonRef) => {
+  const createHandleSpeedDialActionButtonRef = (dialActionIndex, fabSlotOrigButtonRef) => {
     return (buttonRef) => {
       actions.current[dialActionIndex + 1] = buttonRef;
-      if (origButtonRef) {
-        origButtonRef(buttonRef);
+      if (fabSlotOrigButtonRef) {
+        fabSlotOrigButtonRef(buttonRef);
       }
     };
   };
@@ -367,31 +365,37 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   });
 
   const children = allItems.map((child, index) => {
-    const {
-      FabProps: { ref: origButtonRef, ...ChildFabProps } = {},
-      tooltipPlacement: tooltipPlacementProp,
-    } = child.props;
+    const { slotProps: childSlotProps = {} } = child.props;
 
-    const tooltipPlacement =
-      tooltipPlacementProp || (getOrientation(direction) === 'vertical' ? 'left' : 'top');
+    const { fab: { ref: fabSlotOrigButtonRef, ...fabSlotProps } = {}, ...restOfSlotProps } =
+      childSlotProps;
+
+    const defaultPlacement = getOrientation(direction) === 'vertical' ? 'left' : 'top';
 
     return React.cloneElement(child, {
-      FabProps: {
-        ...ChildFabProps,
-        ref: createHandleSpeedDialActionButtonRef(index, origButtonRef),
+      slotProps: {
+        ...restOfSlotProps,
+        fab: {
+          ...fabSlotProps,
+          ref: createHandleSpeedDialActionButtonRef(index, fabSlotOrigButtonRef),
+        },
+        tooltip:
+          typeof restOfSlotProps.tooltip === 'function'
+            ? (state) => ({
+                placement: defaultPlacement,
+                ...restOfSlotProps.tooltip(state),
+              })
+            : { placement: defaultPlacement, ...restOfSlotProps.tooltip },
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,
-      tooltipPlacement,
       id: `${id}-action-${index}`,
     });
   });
 
-  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
-  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
   const externalForwardedProps = {
-    slots: backwardCompatibleSlots,
-    slotProps: backwardCompatibleSlotProps,
+    slots,
+    slotProps,
   };
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
@@ -579,13 +583,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Zoom
-   * * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-   */
-  TransitionComponent: PropTypes.elementType,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
@@ -601,12 +598,6 @@ SpeedDial.propTypes /* remove-proptypes */ = {
       exit: PropTypes.number,
     }),
   ]),
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
-   */
-  TransitionProps: PropTypes.object,
 };
 
 export default SpeedDial;

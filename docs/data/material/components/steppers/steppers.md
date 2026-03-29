@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
-githubLabel: 'component: stepper'
+githubLabel: 'scope: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
 githubSource: packages/mui-material/src/Stepper
 ---
@@ -72,6 +72,8 @@ The use of the `StepButton` here demonstrates clickable step labels, as well as 
 flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to
 determine when all steps are completed (or even if they need to be completed).
 
+Actionable steps mean that they control the content update of a section. From an accessibility standpoint, this means that each `StepButton` requires an `aria-controls` attribute pointing at the content section element.
+
 {{"demo": "HorizontalNonLinearStepper.js"}}
 
 ### Alternative label
@@ -103,7 +105,7 @@ The content of a step is unmounted when closed.
 If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
 
 ```jsx
-<StepContent TransitionProps={{ unmountOnExit: false }} />
+<StepContent slotProps={{ transition: { unmountOnExit: false } }} />
 ```
 
 ## Mobile stepper

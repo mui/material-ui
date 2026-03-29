@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { green, pink } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';

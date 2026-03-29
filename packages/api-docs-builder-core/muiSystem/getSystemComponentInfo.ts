@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase';
+import { kebabCase } from 'es-toolkit/string';
 import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
   ComponentInfo,
@@ -100,9 +100,6 @@ function pathToSystemTitle(page: PageMarkdown) {
   }
   if (page.pathname.startsWith('/system')) {
     return `${defaultTitle} (MUI System)`;
-  }
-  if (page.pathname.startsWith('/joy')) {
-    return `${defaultTitle} (Joy UI)`;
   }
   return defaultTitle;
 }

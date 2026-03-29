@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import path from 'path';
+import fs from 'node:fs';
 import fetch from 'cross-fetch';
-import fse from 'fs-extra';
 import * as mui from '@mui/icons-material';
 import synonyms from 'docs/data/material/components/material-icons/synonyms';
 // eslint-disable-next-line import/no-relative-packages
@@ -81,7 +81,7 @@ async function run() {
     });
     newSynonyms += '};\n\nexport default synonyms;\n';
 
-    fse.writeFile(
+    fs.writeFileSync(
       path.join(__dirname, `../../docs/data/material/components/material-icons/synonyms.js`),
       newSynonyms,
     );

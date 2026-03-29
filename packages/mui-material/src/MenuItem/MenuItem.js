@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -16,6 +15,25 @@ import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
+import { useSelectFocusSource } from '../Select';
+
+/**
+ * If autoFocus is an object, it will attempt to call `element.focus()` with the options argument.
+ * If the browser doesn't support the options argument, it will fall back to a simple `element.focus()` call.
+ */
+function focusWithVisible(element, focusSource) {
+  if (focusSource == null) {
+    element.focus();
+    return;
+  }
+
+  try {
+    element.focus({ focusVisible: focusSource === 'keyboard' });
+  } catch (error) {
+    // If the browser doesn't support the focus options argument, fall back to a simple focus call.
+    element.focus();
+  }
+}
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -76,30 +94,28 @@ const MenuItemRoot = styled(ButtonBase, {
       },
     },
     [`&.${menuItemClasses.selected}`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        (theme.vars || theme).palette.action.selectedOpacity,
+      ),
       [`&.${menuItemClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+        ),
       },
     },
     [`&.${menuItemClasses.selected}:hover`]: {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
+      backgroundColor: theme.alpha(
+        (theme.vars || theme).palette.primary.main,
+        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+      ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.primary.main,
+          (theme.vars || theme).palette.action.selectedOpacity,
+        ),
       },
     },
     [`&.${menuItemClasses.focusVisible}`]: {
@@ -179,6 +195,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...other
   } = props;
 
+  const focusSource = useSelectFocusSource();
   const context = React.useContext(ListContext);
   const childContext = React.useMemo(
     () => ({
@@ -192,13 +209,14 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   useEnhancedEffect(() => {
     if (autoFocus) {
       if (menuItemRef.current) {
-        menuItemRef.current.focus();
+        focusWithVisible(menuItemRef.current, focusSource);
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
           'MUI: Unable to set focus to a MenuItem whose component has not been rendered.',
         );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoFocus]);
 
   const ownerState = {
@@ -224,6 +242,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         role={role}
         tabIndex={tabIndex}
         component={component}
+        internalNativeButton={false}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         className={clsx(classes.root, className)}
         {...other}
@@ -294,7 +313,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  role: PropTypes.string,
   /**
    * If `true`, the component is selected.
    * @default false

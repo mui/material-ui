@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import ComponentShowcaseCard from 'docs/src/components/action/ComponentShowcaseCard';
 
@@ -18,16 +17,6 @@ const layoutComponents = [
     srcLight: '/static/material-ui/react-components/container-light.png',
     srcDark: '/static/material-ui/react-components/container-dark.png',
     link: '/material-ui/react-container/',
-    md1: false,
-    md2: false,
-    md3: false,
-    noGuidelines: true,
-  },
-  {
-    name: 'GridLegacy',
-    srcLight: '/static/material-ui/react-components/grid-light.png',
-    srcDark: '/static/material-ui/react-components/grid-dark.png',
-    link: '/material-ui/react-grid-legacy/',
     md1: false,
     md2: false,
     md3: false,
