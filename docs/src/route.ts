@@ -56,7 +56,7 @@ const ROUTES = {
   toolpadStudioWhy: '/toolpad/studio/getting-started/why-toolpad/',
   // External pages
   rssFeed: '/feed/blog/rss.xml',
-  handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
+  handbook: 'https://mui-org.notion.site',
   privacyPolicy: 'https://mui.com/legal/privacy/',
   store: 'https://mui.com/store/',
 };
