@@ -515,7 +515,7 @@ importers:
         specifier: ^7.7.4
         version: 7.7.4
       styled-components:
-        specifier: ^6.3.11
+        specifier: ^6.3.12
         version: 6.3.12(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       stylis:
         specifier: catalog:docs
