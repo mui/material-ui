@@ -101,7 +101,7 @@
     "styled-components": "^6.3.11",
     "stylis": "catalog:docs",
     "use-count-up": "^3.0.1",
-    "webpack-bundle-analyzer": "^5.2.0"
+    "webpack-bundle-analyzer": "^5.3.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
