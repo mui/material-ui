@@ -588,7 +588,7 @@ importers:
         specifier: 4.4.12
         version: 4.4.12(@types/react@19.2.14)
       '@types/semver':
-        specifier: ^7.7.1
+        specifier: 7.7.1
         version: 7.7.1
       '@types/stylis':
         specifier: 4.2.7

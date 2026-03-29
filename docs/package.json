@@ -124,7 +124,7 @@
     "@types/react-dom": "19.2.3",
     "@types/react-swipeable-views": "0.13.6",
     "@types/react-transition-group": "4.4.12",
-    "@types/semver": "^7.7.1",
+    "@types/semver": "7.7.1",
     "@types/stylis": "4.2.7",
     "chai": "6.2.2",
     "cross-fetch": "4.1.0",
