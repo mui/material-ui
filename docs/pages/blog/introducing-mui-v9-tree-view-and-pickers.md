@@ -32,6 +32,8 @@ API and styling hygiene matter too: older model and ref hooks are replaced by th
 
 If you maintain custom themes or imperative code against trees, budget time to revisit refs, virtualization assumptions, and selectors that depended on the old classes.
 
+Full API and migration notes live in the [Tree View](/x/react-tree-view/) documentation.
+
 ## Date and Time Pickers
 
 <!-- feature-media:img Date Pickers highlights -->
@@ -48,14 +50,9 @@ The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration no
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
-- [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [Charts](/blog/introducing-mui-v9-charts/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
-
-Docs:
-
-- [Tree View overview](/x/react-tree-view/)
-- [Date and Time Pickers overview](/x/react-date-pickers/)
 
 To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.

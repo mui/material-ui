@@ -34,8 +34,8 @@ This post is the aggregator for v9.
 It introduces the shared version story, our long‑term direction, and links to dedicated deep dives:
 
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
-- [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [Charts](/blog/introducing-mui-v9-charts/)
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
@@ -45,10 +45,9 @@ It introduces the shared version story, our long‑term direction, and links to 
 ## Table of contents
 
 - [One major version, one ecosystem](#one-major-version-one-ecosystem)
-  - [Refreshing the Material Design layer](#refreshing-the-material-design-layer)
-- [Highlights](#Highlights)
-- [From MUI Chat to Recipes](#from-mui-chat-to-recipes)
+- [Components highlights](#components-highlights)
 - [New Console application](#new-console-application)
+- [Renaming MUI Chat to MUI Recipes](#renaming-mui-chat-to-mui-recipes)
 - [What’s next](#whats-next)
   - [Component portfolio expansion](#component-portfolio-expansion)
   - [v10 styling layer and modern theme layering](#v10-styling-layer-and-modern-theme-layering)
@@ -63,7 +62,7 @@ When we shipped MUI X v6 in 2023, [we decoupled MUI X’s major version from M
 The goal was to give advanced components a faster, predictable release rhythm without tying every breaking change to Material UI’s schedule.
 We also assumed that, over time, breaking-change pressure might push the two major lines further apart.
 
-In practice, that divergence never really showed up the way we expected, while keeping independent major numbers still made upgrades, peer dependencies, and communication across the stack heavier than we liked.
+In practice, that divergence never really increased the way we expected, while keeping independent major numbers still made upgrades, peer dependencies, and communication across the stack heavier than we liked.
 So for v9 we’re realigning: Material UI moves from v7 straight to v9 (there is no Material UI v8), in step with MUI X v9, restoring a single shared major for the suite for the first time since that split.
 
 With v9, we’re synchronizing the major version across the stack:
@@ -77,35 +76,25 @@ A single shared version number makes it easier to:
 - Communicate compatibility, for example, “MUI X v9 is designed to pair with Material UI v9”.
 - Stage cross‑cutting improvements, such as accessibility and keyboard navigation upgrades, across both layers at once.
 
-## Highlights
+## Components highlights
 
 We’ve focused on stability, accessibility, and new building blocks across the v9 cycle.
 The deep dives cover each area in full; these bullets summarize the direction:
 
-- **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library. Go deeper in the [Material UI primitives](/blog/introducing-mui-v9-primitives/) post and the [Material UI documentation](/material-ui/getting-started/).
-- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals; refactors that align with Material UI v9 internals. See [Data Grid highlights](/blog/introducing-mui-v9-data-grid/) and the [Data Grid documentation](/x/react-data-grid/).
-- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; composition tweaks (for example tooltips portaling through `ChartsLayerContainer`). See [Charts highlights](/blog/introducing-mui-v9-charts/) and the [Charts documentation](/x/react-charts/).
+- **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library. See the [Material UI primitives](/blog/introducing-mui-v9-primitives/) post.
+- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals; refactors that align with Material UI v9 internals. See [Data Grid](/blog/introducing-mui-v9-data-grid/).
+- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; composition tweaks (for example tooltips portaling through `ChartsLayerContainer`). See [Charts](/blog/introducing-mui-v9-charts/).
 - **Tree View:** Rich Tree View Pro gets virtualization on by default (with opt‑out), flatter event lists, and `treeItemClasses` / hook cleanups when you theme trees or call imperative APIs ([Tree View section](/blog/introducing-mui-v9-tree-view-and-pickers/#tree-view)).
 - **Date and Time Pickers:** keyboard calendar navigation, stable `fieldRef` with `clearValue`, better click‑away focus behavior, and locale/adapter work (`thTH`, `AdapterDayjsBuddhist`) ([Date and Time Pickers section](/blog/introducing-mui-v9-tree-view-and-pickers/#date-and-time-pickers)).
 - **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and ChatBox for conversational UI with adapters and streaming. Both are debuting at alpha; product detail, tiers, and onboarding live in the [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/) and [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/) posts.
 
 Use the links at the top of this post when you’re ready to go deeper on a specific area.
 
-## From MUI Chat to Recipes
-
-MUI Chat is our generative UI tool in the same vein as products like v0 and Lovable: you describe what you want, and we help you land working Material UI and MUI X usage faster than writing from a blank file.
-
-In practice we use it mostly to deliver custom recipes and customization grounded in what you already see in the docs: variations on our examples, tuned layouts, and branded panels that stay aligned with the same APIs and patterns we document.
-
-v9 introduces something different: MUI X Chat, a real chat component (`@mui/x-chat`) meant to ship inside your product. Keeping the builder under the name “Chat” would collide with that surface and confuse two very different offerings.
-
-So MUI Chat is being renamed to Recipes, a name that matches what the tool is optimized for today: recipe-style outputs and tailored UIs built from our component set, not an embeddable chat runtime.
-
 ## New Console application
 
 Last year we began offering [AI assistance for the Data Grid](/blog/introducing-mui-v9-data-grid/#ai-assistant): users describe what they want in natural language, and the grid applies structured changes while keeping state visible and editable. Until now, turning that on in production meant extra friction, teams had to request API keys through our support channel instead of generating and managing them next to licenses and the rest of their commercial setup.
 
-Console is the application we’re rolling out to remove that friction. It gathers license keys, service API keys (including for assistant and add‑on experiences), billing, and usage in one place: an operational hub for MUI’s commercial offerings rather than scattered tickets and dashboards.
+[Console](https://console.mui.com) is the application we’re rolling out to remove that friction. It gathers license keys, service API keys (including for assistant and add‑on experiences), billing, and usage in one place: an operational hub for MUI’s commercial offerings rather than scattered tickets and dashboards.
 
 With Console, teams can:
 
@@ -114,6 +103,16 @@ With Console, teams can:
 - Create, view, and rotate API keys for commercial services without relying on a support round‑trip for routine access.
 
 Over time, Console will also surface usage‑aware guidance, based on how your organization already uses the suite.
+
+## Renaming MUI Chat to MUI Recipes
+
+[MUI Chat](https://chat.mui.com) is our generative UI tool in the same vein as products like v0 and Lovable: you describe what you want, and we help you land working Material UI and MUI X usage faster than writing from a blank file.
+
+In practice we use it mostly to deliver custom recipes and customization grounded in what you already see in the docs: variations on our examples, tuned layouts, and branded panels that stay aligned with the same APIs and patterns we document.
+
+v9 introduces something different: MUI X Chat, a real chat component (`@mui/x-chat`) meant to ship inside your product. Keeping the builder under the name “Chat” would collide with that surface and confuse two very different offerings.
+
+So MUI Chat is being renamed to [MUI Recipes](https://recipes.mui.com), a name that matches what the tool is optimized for today: recipe-style outputs and tailored UIs built from our component set, not an embeddable chat runtime.
 
 ## What’s next
 
@@ -145,11 +144,11 @@ We believe thoughtfully integrated AI workflows can materially improve everyday 
 
 ## Deep dives
 
-Each area below has a dedicated post with highlights, migration notes where relevant, and links into the docs:
+Each area below has a dedicated post with more detail, migration notes where relevant, and doc links in context:
 
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
-- [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [Charts](/blog/introducing-mui-v9-charts/)
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)

@@ -33,7 +33,7 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
 
 ## NumberField
 
-[Base UI](https://base-ui.com/) adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
+Base UI adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
   <!-- feature-media:video NumberField -->
@@ -55,9 +55,11 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
   <figcaption>NumberField, implemented on Base UI primitives.</figcaption>
 </figure>
 
+See the [NumberField](/material-ui/react-number-field/) documentation for API detail and examples.
+
 ## Menubar and submenus
 
-`Menubar` is the other new Base UI–backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in [Base UI](https://base-ui.com/). On this stack we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
+`Menubar` is the other new Base UI–backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in Base UI. On this stack we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
   <!-- feature-media:video Menubar -->
@@ -81,6 +83,8 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
 
 Together, NumberField and Menubar show where we’re headed in v9: wider Base UI adoption in Material UI, and interactions, including keyboard support, that stay clear and consistent even in dense UIs.
 
+See the [Menubar](/material-ui/react-menubar/) documentation for API detail and examples.
+
 ## Theme and CSS variables
 
 ### Derived colors with `color-mix()`
@@ -96,6 +100,8 @@ This gives you:
 
 - Tooltip documentation now describes the visible text triggers more explicitly, clarifying which interactions and DOM structures are supported.
 - We also fixed the `nativeColor` docs to better reflect how it behaves alongside the CSS variables system.
+
+Current behavior and props are documented on the [Tooltip](/material-ui/react-tooltip/) page.
 
 Internal: preparing libraries for the v9 cycle
 
@@ -202,22 +208,16 @@ Several changes already have migration impact worth planning for:
 - Dialog/Modal escape key behavior: if you relied on `disableEscapeKeyDown`, plan to keep your escape‑handling logic in one place.
 - Theme typing clean‑ups: if you depend on strongly typed theme extensions, keep an eye on updated type definitions as we continue to refine v9.
 
-As the v9 cycle progresses, we’ll publish a dedicated v9 migration guide similar to the ones for [v6](/material-ui/migration/upgrade-to-v6/) and [v7](/material-ui/migration/upgrade-to-v7/).
+For a consolidated upgrade path from Material UI v7, follow [Upgrade to v9](/material-ui/migration/upgrade-to-v9/).
+Earlier majors are covered in the [v6](/material-ui/migration/upgrade-to-v6/) and [v7](/material-ui/migration/upgrade-to-v7/) upgrade guides.
 
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
-- [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [Charts](/blog/introducing-mui-v9-charts/)
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
-
-Docs:
-
-- [NumberField](/material-ui/react-number-field/)
-- [Menubar](/material-ui/react-menubar/)
-- [Upgrade to v9](/material-ui/migration/upgrade-to-v9/)
-- [Tooltip](/material-ui/react-tooltip/)
 
 To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.

@@ -1,6 +1,6 @@
 ---
 title: MUI X v9 Charts
-description: MUI X Charts v9: keyboard-first interaction, clearer composition with Charts* APIs, and continued Pro and Premium work across heatmap, Sankey, exports, and more.
+description: MUI X Charts v9, keyboard-first by default, composition and codemods, Pro and Premium updates (heatmap, Sankey, export, WebGL).
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
@@ -17,13 +17,27 @@ For every rename and fix, use the [MUI X releases](https://github.com/mui/mui-x
 
 ## Table of contents
 
+- [Candlestick](#candlestick)
+- [Range bar charts](#range-bar-charts)
 - [Interaction and accessibility](#interaction-and-accessibility)
 - [Composition, naming, and breaking cleanup](#composition-naming-and-breaking-cleanup)
-- [Pro and Premium](#pro-and-premium)
-- [Planning an upgrade](#planning-an-upgrade)
+- [What’s next](#whats-next)
+- [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
-<!-- feature-media:img Charts highlights -->
+<!-- feature-media:img Charts -->
+
+## Candlestick
+
+[Candlestick charts](/x/react-charts/candlestick/) visualize OHLC (open, high, low, close) series over time, the familiar shape for equities, FX, and other interval‑based price data.
+
+The feature is still in preview: visuals, APIs, and defaults may move in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
+
+## Range bar charts
+
+[Range bar charts](/x/react-charts/range-bar/) show the span between a minimum and a maximum for each category: weather bands, phase lengths on a roadmap, SLA windows, or any “from–to” reading where a single stacked bar does not tell the whole story.
+
+They sit on the Premium side of the line‑up and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
 
 ## Interaction and accessibility
 
@@ -32,37 +46,37 @@ Across MIT, Pro, and Premium we’ve kept tightening legend and axis ergonomics:
 
 The headline is a charting stack that feels reachable from the keyboard and easier to tune without diving into copy‑paste workarounds.
 
+See the [Charts](/x/react-charts/) overview for APIs and examples.
+
 ## Composition, naming, and breaking cleanup
 
-v9 is the release where the long migration from legacy entry points toward `Charts*`-prefixed APIs and `ChartsLayerContainer` / `ChartsDataProvider` patterns really lands: old containers, providers, voronoi/hover props, and a long tail of obsolete classes and exports are removed in favor of consistent `data-series` attributes, `hitAreaRadius` / `disableHitArea`, and codemoddable renames (including WebGL spelling and zoom slider naming).
+v9 is the release where the long migration from legacy entry points toward `Charts*`-prefixed APIs and `ChartsLayerContainer` / `ChartsDataProvider` patterns really lands: old containers, providers, props, and a long tail of obsolete classes and exports are removed in favor of consistent `data-series` attributes.
 
 Line charts adopt `preferStrictDomainInLineCharts` as the default; if you relied on the previous auto‑domain behavior, confirm axis ranges after upgrading.
 Tooltips align with the layer container model (including portaling through `ChartsLayerContainer`), and shared primitives accept `className` more predictably so bar, line, radar, and shared wrappers theme the same way.
 
-## Pro and Premium
+For composition patterns and layering, see [Charts composition](/x/react-charts/composition/).
 
-On Pro, expect continued polish on heatmap, Sankey composition, exports, brush interactivity (finer pointer and modifier‑key behavior), and navigation for funnel/heatmap/sankey.
-Premium pushes WebGL heatmap, premium container entry points, candlestick and related analytical series, and ongoing fixes in dense rendering and export paths.
+## What’s next
 
-You don’t need to memorize each minor here; treat Pro and Premium as receiving parity fixes plus tier‑specific depth as v9 matures.
+On the Pro plan, expect continued polish on heatmap, Sankey, exports, brush interactivity (finer pointer and modifier‑key behavior), and navigation for funnel/heatmap/sankey.
+Premium keeps pushing WebGL‑backed chart types where you need to render very large point counts without sacrificing responsiveness.
 
-## Planning an upgrade
+We also want Charts to ride the same Base UI wave as Material UI: clearer composition, slots you can lean on for serious layout changes, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
 
-Plan time to run codemods, revisit tooltips and legends if you customized ordering or controlled state, walk keyboard flows across your chart types, and recheck line chart domains after the stricter default.
-If you embed charts in the Data Grid, coordinate with the [Data Grid highlights](/blog/introducing-mui-v9-data-grid/) post on the stable in‑grid path.
+Plans, licensing, and the full component list stay in the [Charts](/x/react-charts/) documentation.
+
+## Upgrading from v8
+
+Breaking changes, codemods, and checklist items for moving to v9 are centralized in [Migration from v8 to v9 (Charts)](/x/migration/migration-charts-v8/).
 
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
+- [Data Grid](/blog/introducing-mui-v9-data-grid/)
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
-
-Docs:
-
-- [Charts overview](/x/react-charts/)
-- [Charts composition](/x/react-charts/composition/)
 
 To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.

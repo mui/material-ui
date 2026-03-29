@@ -42,6 +42,8 @@ Themed `@mui/x-chat` is the fastest “drop in `ChatBox`, wire an adapter” pat
 
 That mirrors how we think about Base UI vs themed Material UI elsewhere, tuned for long conversations and tool‑heavy flows.
 
+Installation, `ChatBox`, examples, headless and unstyled guides, customization, and API reference are on [MUI X Chat](/x/react-chat/).
+
 ## State, adapters, and streaming
 
 Phase‑0 work centers on entity types and a normalized store so conversations, threads, messages, participants, tool calls, and results don’t turn into duplicated, fragile state as histories grow.
@@ -74,13 +76,9 @@ Timings will follow adoption and release cadence; watch [MUI X releases](https:
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
-- [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [Charts](/blog/introducing-mui-v9-charts/)
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-
-Docs:
-
-- [MUI X Chat](/x/react-chat/) for installation, `ChatBox`, examples, headless and unstyled guides, customization, and API reference.
 
 To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.

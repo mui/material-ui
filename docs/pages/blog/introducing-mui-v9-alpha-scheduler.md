@@ -64,6 +64,7 @@ Most teams can prove UX on Community and move up when recurrence or massive even
 ## Docs and feedback
 
 We’re lining up quickstart, installation, and deeper guides the same way we’ve onboarded other advanced components: start with a minimal working schedule, then layer customization.
+Start from the [Scheduler overview](/x/react-scheduler/) and [Quickstart](/x/react-scheduler/quickstart/) pages.
 
 If something is missing or confusing in the alpha docs, treat that as signal; we iterate quickly while the API contracts settle.
 
@@ -78,14 +79,9 @@ Together they’re the workflow‑heavy side of the stack we’re pushing in v9.
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid highlights](/blog/introducing-mui-v9-data-grid/)
-- [Charts highlights](/blog/introducing-mui-v9-charts/)
+- [Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [Charts](/blog/introducing-mui-v9-charts/)
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
-
-Docs:
-
-- [Scheduler overview](/x/react-scheduler/)
-- [Scheduler quickstart](/x/react-scheduler/quickstart/)
 
 To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.
