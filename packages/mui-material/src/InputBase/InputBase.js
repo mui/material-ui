@@ -187,6 +187,11 @@ export const InputBaseInput = styled('input', {
         // Remove the padding when type=search.
         WebkitAppearance: 'none',
       },
+      // Fix text cutoff in High Contrast mode
+      '@media (forced-colors: active)': {
+        height: 'auto',
+        minHeight: '1.4375em',
+      },
       // Show and hide the placeholder logic
       [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
         '&::-webkit-input-placeholder': placeholderHidden,
