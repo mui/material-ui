@@ -550,7 +550,6 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
 
-    // Do not create channel tokens when nativeColor is used.
     if (!nativeColor) {
       setColorChannel(palette.background, 'default');
 
