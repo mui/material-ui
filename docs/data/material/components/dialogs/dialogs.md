@@ -42,6 +42,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
 
+Use `role="alertdialog"` when creating an Alert Dialog. This provides assistive technologies the correct purpose of the Dialog.
+
 Most alerts don't need titles.
 They summarize a decision in a sentence or two by either:
 
@@ -167,5 +169,3 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
-
-When the Dialog is used as an Alert Dialog, like in the [Alert](#alerts) and [Transitions](#transitions) examples, use the `role="alertdialog"` to override the default `role="dialog"`.
