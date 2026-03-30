@@ -45,7 +45,9 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Disagree
+          </Button>
           <Button onClick={handleClose}>Agree</Button>
         </DialogActions>
       </Dialog>

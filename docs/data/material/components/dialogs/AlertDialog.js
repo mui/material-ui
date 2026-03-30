@@ -39,10 +39,10 @@ export default function AlertDialog() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
-            Agree
+            Disagree
           </Button>
+          <Button onClick={handleClose}>Agree</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
