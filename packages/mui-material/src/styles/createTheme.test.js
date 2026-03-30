@@ -783,6 +783,21 @@ describe('createTheme', () => {
         'color-mix(in oklch, hsl(0 0% 100%), #000 20%)',
       );
     });
+
+    it('should not warn about channel token if nativeColor is used and custom palette colors are provided', () => {
+      expect(() =>
+        createTheme({
+          cssVariables: { nativeColor: true },
+          palette: {
+            divider: 'var(--mui-palette-divider)',
+            background: {
+              default: 'var(--mui-palette-background-default)',
+              paper: 'var(--mui-palette-background-paper)',
+            },
+          },
+        }),
+      ).not.toWarnDev();
+    });
   });
 
   // Skip WebKit and firefox because they have a slightly different value
