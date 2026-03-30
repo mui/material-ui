@@ -125,7 +125,9 @@ Material UI is an MIT-licensed open-source project. It's an independent project
 - [Become a backer or sponsor on Open Collective](https://opencollective.com/mui-org).
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 
-![Our gold sponsors](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
+![Our gold sponsors](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)
+
+<p class="blog-description">Our gold sponsors</p>
 
 - GitHub: https://github.com/mui/material-ui ⭐
 - X: https://x.com/MUI_hq
