@@ -87,4 +87,20 @@ describe('<BottomNavigationAction />', () => {
       expect(handleClick.callCount).to.equal(1);
     });
   });
+
+  it('forwards nativeButton={false} through useSlot to ButtonBase', () => {
+    const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(<BottomNavigationAction component={CustomSpan} nativeButton={false} />);
+
+    const action = screen.getByRole('button');
+    expect(action).to.have.tagName('SPAN');
+    expect(action).not.to.have.attribute('type');
+
+    // Proves nativeButton={false} was forwarded — without it, ButtonBase
+    // would warn about a non-button host with nativeButton omitted.
+    expect(errorSpy.mock.calls.length).to.equal(0);
+    errorSpy.mockRestore();
+  });
 });

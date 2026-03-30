@@ -66,6 +66,8 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
+const defaultIsOptionEqualToValue = (option, value) => option === value;
+
 const MULTIPLE_DEFAULT_VALUE = [];
 
 function getInputValue(value, multiple, getOptionLabel, renderValue) {
@@ -106,7 +108,7 @@ function useAutocomplete(props) {
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
-    isOptionEqualToValue = (option, value) => option === value,
+    isOptionEqualToValue = defaultIsOptionEqualToValue,
     multiple = false,
     onChange,
     onClose,
@@ -147,6 +149,7 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedItem, setFocusedItem] = React.useState(-1);
@@ -218,16 +221,42 @@ function useAutocomplete(props) {
     !multiple && value != null && inputValue === getOptionLabel(value);
 
   const popupOpen = open && !readOnly;
+  const selectedValues = React.useMemo(() => {
+    if (multiple) {
+      return value;
+    }
+
+    if (value != null) {
+      return [value];
+    }
+
+    return [];
+  }, [multiple, value]);
+  const selectedValuesSet = React.useMemo(() => {
+    // Fast path for the default strict equality comparator to avoid O(n^2) option checks.
+    if (isOptionEqualToValue !== defaultIsOptionEqualToValue || selectedValues.length === 0) {
+      return null;
+    }
+
+    return new Set(selectedValues);
+  }, [isOptionEqualToValue, selectedValues]);
+  const isOptionSelected = React.useCallback(
+    (option) => {
+      if (selectedValuesSet) {
+        return selectedValuesSet.has(option);
+      }
+
+      return selectedValues.some(
+        (value2) => value2 != null && isOptionEqualToValue(option, value2),
+      );
+    },
+    [isOptionEqualToValue, selectedValues, selectedValuesSet],
+  );
 
   const filteredOptions = popupOpen
     ? filterOptions(
         options.filter((option) => {
-          if (
-            filterSelectedOptions &&
-            (multiple ? value : [value]).some(
-              (value2) => value2 !== null && isOptionEqualToValue(option, value2),
-            )
-          ) {
+          if (filterSelectedOptions && isOptionSelected(option)) {
             return false;
           }
           return true;
@@ -268,9 +297,7 @@ function useAutocomplete(props) {
     if (itemToFocus === -1) {
       inputRef.current.focus();
     } else {
-      // Using `data-tag-index` for deprecated `renderTags`. Remove when `renderTags` is gone.
-      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
-      anchorEl.querySelector(`[${indexType}="${itemToFocus}"]`).focus();
+      anchorEl.querySelector(`[data-item-index="${itemToFocus}"]`).focus();
     }
   });
 
@@ -619,6 +646,24 @@ function useAutocomplete(props) {
     }
   }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
 
+  // Listen for browser window blur to detect when the user switches tabs or windows.
+  // This helps prevent the popup from reopening automatically when the window regains focus.
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const handleWindowBlur = () => {
+      windowLostFocus.current = true;
+    };
+
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, []);
+
   const handleOpen = (event) => {
     if (open) {
       return;
@@ -724,9 +769,7 @@ function useAutocomplete(props) {
         return -1;
       }
 
-      // Using `data-tag-index` for deprecated `renderTags`. Remove when `renderTags` is removed.
-      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
-      const option = anchorEl.querySelector(`[${indexType}="${nextFocus}"]`);
+      const option = anchorEl.querySelector(`[data-item-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       if (
@@ -995,6 +1038,14 @@ function useAutocomplete(props) {
       focusItem(-1);
     }
 
+    // If the window previously lost focus while the popup was open,
+    // ignore this focus event to prevent unintended reopening.
+    // Reset the flag so normal focus behavior resumes.
+    if (windowLostFocus.current) {
+      windowLostFocus.current = false;
+      return;
+    }
+
     if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
@@ -1125,7 +1176,12 @@ function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (!disabledProp && (inputValue === '' || !open)) {
+    if (
+      !disabledProp &&
+      (inputValue === '' || !open) &&
+      // Only handle event when the main button is pressed (left click).
+      event.button === 0
+    ) {
       handlePopupIndicator(event);
     }
   };
@@ -1212,7 +1268,7 @@ function useAutocomplete(props) {
     }),
     getItemProps: ({ index = 0 } = {}) => ({
       ...(multiple && { key: index }),
-      ...(renderValue ? { 'data-item-index': index } : { 'data-tag-index': index }),
+      'data-item-index': index,
       tabIndex: -1,
       ...(!readOnly && { onDelete: multiple ? handleItemDelete(index) : handleSingleItemDelete }),
     }),
@@ -1220,13 +1276,6 @@ function useAutocomplete(props) {
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
-    }),
-    // deprecated
-    getTagProps: ({ index }) => ({
-      key: index,
-      'data-tag-index': index,
-      tabIndex: -1,
-      ...(!readOnly && { onDelete: handleItemDelete(index) }),
     }),
     getListboxProps: () => ({
       role: 'listbox',
@@ -1240,9 +1289,7 @@ function useAutocomplete(props) {
       },
     }),
     getOptionProps: ({ index, option }) => {
-      const selected = (multiple ? value : [value]).some(
-        (value2) => value2 != null && isOptionEqualToValue(option, value2),
-      );
+      const selected = isOptionSelected(option);
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
@@ -1268,8 +1315,6 @@ function useAutocomplete(props) {
     anchorEl,
     setAnchorEl,
     focusedItem,
-    // deprecated
-    focusedTag: focusedItem,
     groupedOptions,
   };
 }

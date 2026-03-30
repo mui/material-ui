@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import MenuList, { MenuListProps } from '@mui/material/MenuList';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
@@ -115,14 +115,12 @@ function ProductItem({
       </Box>
       <div>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+          <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
             {name}
           </Typography>
           {chip}
         </Box>
-        <Typography color="text.secondary" fontSize=".813rem">
-          {description}
-        </Typography>
+        <Typography sx={{ color: 'text.secondary', fontSize: '.813rem' }}>{description}</Typography>
       </div>
     </MenuItem>
   );

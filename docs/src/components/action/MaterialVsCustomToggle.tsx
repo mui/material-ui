@@ -31,7 +31,7 @@ export default function MaterialVsCustomToggle({
           padding: '1px 8px',
           fontSize: theme.typography.pxToRem(12),
         },
-        '& .MuiButton-outlinedPrimary': {
+        [`& .${buttonClasses.outlined}.${buttonClasses.colorPrimary}`]: {
           backgroundColor: alpha(theme.palette.primary[900], 0.5),
         },
       })}

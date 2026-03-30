@@ -107,13 +107,13 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
-  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `slotProps.input` property.
 
 ```jsx
 <Radio
   value="radioA"
-  inputProps={{
-    'aria-label': 'Radio A',
+  slotProps={{
+    input: { 'aria-label': 'Radio A' },
   }}
 />
 ```

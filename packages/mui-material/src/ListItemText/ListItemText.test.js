@@ -171,9 +171,8 @@ describe('<ListItemText />', () => {
     render(
       <ListItemText
         primary="This is the primary text"
-        primaryTypographyProps={{ variant: 'h3' }}
+        slotProps={{ primary: { variant: 'h3' }, secondary: { variant: 'h4' } }}
         secondary="This is the secondary text"
-        secondaryTypographyProps={{ variant: 'h4' }}
       />,
     );
 
@@ -190,22 +189,22 @@ describe('<ListItemText />', () => {
     expect(screen.getByText('This is the secondary text')).to.have.tagName('p');
   });
 
-  it('should pass primaryTypographyProps to primary Typography component', () => {
+  it('should pass slotProps.primary to primary Typography component', () => {
     const { container } = render(
       <ListItemText
         primary="This is the primary text"
-        primaryTypographyProps={{ 'data-test': 'foo' }}
+        slotProps={{ primary: { 'data-test': 'foo' } }}
       />,
     );
     expect(container.querySelector('span')).to.have.attribute('data-test');
   });
 
-  it('should pass secondaryTypographyProps to secondary Typography component', () => {
+  it('should pass slotProps.secondary to secondary Typography component', () => {
     const { container } = render(
       <ListItemText
         primary="This is the primary text"
         secondary="This is the secondary text"
-        secondaryTypographyProps={{ 'data-test': 'foo' }}
+        slotProps={{ secondary: { 'data-test': 'foo' } }}
       />,
     );
     expect(container.querySelector('p')).to.have.attribute('data-test');

@@ -99,17 +99,14 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## System props
+## Customization
 
-:::info
-System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
+Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Stack instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.
+Below is an example of how to apply center align items using this prop:
 
-```diff
-- <Stack mt={2} />
-+ <Stack sx={{ mt: 2 }} />
+```jsx
+<Stack sx={{ alignItems: 'center' }} />
 ```
-
-:::
 
 ## Limitations
 

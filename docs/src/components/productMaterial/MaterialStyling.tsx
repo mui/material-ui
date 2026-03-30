@@ -8,7 +8,7 @@ import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
@@ -34,10 +34,10 @@ const code = `
     }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
-    <Typography variant="body2" color="text.secondary" fontWeight="regular">
+    <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 'regular' }}>
       123 Main St, Phoenix, AZ, USA
     </Typography>
-    <Typography fontWeight="bold" noWrap gutterBottom>
+    <Typography sx={{ fontWeight: 'bold' }} noWrap gutterBottom>
       $280k - $310k
     </Typography>
     <Chip

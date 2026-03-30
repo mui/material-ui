@@ -101,8 +101,5 @@ function pathToSystemTitle(page: PageMarkdown) {
   if (page.pathname.startsWith('/system')) {
     return `${defaultTitle} (MUI System)`;
   }
-  if (page.pathname.startsWith('/joy')) {
-    return `${defaultTitle} (Joy UI)`;
-  }
   return defaultTitle;
 }

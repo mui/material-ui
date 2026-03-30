@@ -1,9 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
-import NProgress from 'nprogress';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
@@ -11,56 +9,16 @@ import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import NProgressBar from '@mui/docs/NProgressBar';
-import { debounce } from '@mui/material/utils';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext from '@mui/docs/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import SearchButton from './SearchButton';
-
-const nProgressStart = debounce(() => {
-  NProgress.start();
-}, 200);
-
-function nProgressDone() {
-  nProgressStart.clear();
-  NProgress.done();
-}
-
-export function NextNProgressBar() {
-  const router = useRouter();
-  React.useEffect(() => {
-    const handleRouteChangeStart = (url: string, { shallow }: { shallow: boolean }) => {
-      if (!shallow) {
-        nProgressStart();
-      }
-    };
-
-    const handleRouteChangeDone = (url: string, { shallow }: { shallow: boolean }) => {
-      if (!shallow) {
-        nProgressDone();
-      }
-    };
-
-    router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeDone);
-    router.events.on('routeChangeError', handleRouteChangeDone);
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeDone);
-      router.events.off('routeChangeError', handleRouteChangeDone);
-    };
-  }, [router]);
-
-  return <NProgressBar />;
-}
 
 const sx = { minWidth: { sm: 160 } };
 
@@ -164,8 +122,6 @@ export interface AppFrameProps {
 export default function AppFrame(props: AppFrameProps) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
@@ -176,10 +132,8 @@ export default function AppFrame(props: AppFrameProps) {
   const { activePage, productIdentifier } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
-  const isJoy = canonicalAs.startsWith('/joy-ui/');
-
   return (
-    <DemoPageThemeProvider hasJoy={isJoy}>
+    <DemoPageThemeProvider>
       <RootDiv className={className}>
         <StyledAppBar
           disablePermanent={disablePermanent}

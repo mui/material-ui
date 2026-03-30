@@ -19,18 +19,6 @@ const overridesResolver = (props, styles) => {
   return [
     { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
     {
-      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.orientation)}`],
-    },
-    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.variant)}`] },
-    {
-      [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.orientation)}`],
-    },
-    {
-      [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
-    },
-    {
       [`& .${buttonGroupClasses.firstButton}`]: styles.firstButton,
     },
     {
@@ -60,14 +48,7 @@ const useUtilityClasses = (ownerState) => {
       disableElevation && 'disableElevation',
       `color${capitalize(color)}`,
     ],
-    grouped: [
-      'grouped',
-      `grouped${capitalize(orientation)}`,
-      `grouped${capitalize(variant)}`,
-      `grouped${capitalize(variant)}${capitalize(orientation)}`,
-      `grouped${capitalize(variant)}${capitalize(color)}`,
-      disabled && 'disabled',
-    ],
+    grouped: ['grouped', disabled && 'disabled'],
     firstButton: ['firstButton'],
     lastButton: ['lastButton'],
     middleButton: ['middleButton'],

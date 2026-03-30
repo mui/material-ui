@@ -7,6 +7,7 @@ import {
   EXTENSION_TEST_FILE,
   EXTENSION_DTS,
 } from '@mui/internal-code-infra/eslint';
+import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
@@ -67,6 +68,9 @@ export default defineConfig(
         typescript: {
           project: ['tsconfig.json'],
         },
+      },
+      next: {
+        rootDir: 'docs',
       },
     },
     rules: {
@@ -202,11 +206,10 @@ export default defineConfig(
       // filenames/match-exported sees filename as 'file-name.d'
       // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
       '**/*.d.ts',
-      'docs/data/joy/getting-started/templates/**/*',
       'docs/data/**/{css,system,tailwind}/*',
     ],
     plugins: {
-      'consistent-default-export-name': eslintPluginConsistentName,
+      'consistent-default-export-name': fixupPluginRules(eslintPluginConsistentName),
     },
     rules: {
       'consistent-default-export-name/default-export-match-filename': ['error'],
@@ -220,12 +223,22 @@ export default defineConfig(
     },
   },
   {
-    files: [`packages/*/src/*/*${EXTENSION_TS}`],
+    files: [`packages/*/src/**/*${EXTENSION_TS}`, `packages/*/src/**/*${EXTENSION_DTS}`],
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
+      // used internally, not used on app router yet
+      '**/mui-docs/**/*',
+    ],
+    rules: {
+      'mui/add-undef-to-optional': 'error',
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
+    ignores: [
+      '**/*.spec.*',
+      '**/*.test.*',
       // used internally, not used on app router yet
       '**/mui-docs/**/*',
     ],
@@ -266,7 +279,19 @@ export default defineConfig(
   },
   {
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
-    ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
+    ignores: ['**/*.spec.*', '**/*.test.*', '**/mui-lab/**'],
+    rules: {
+      'mui/require-dev-wrapper': [
+        'error',
+        {
+          functionNames: ['warnOnce', 'warn', 'checkSlot', 'isLayoutSupported'],
+        },
+      ],
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
+    ignores: ['**/*.d.ts', '**/*.spec.*'],
     rules: {
       'mui/material-ui-name-matches-component-name': 'error',
     },
@@ -290,8 +315,9 @@ export default defineConfig(
   {
     files: [
       `packages/api-docs-builder/**/*${EXTENSION_TS}`,
-      // Allow named exports for locales: https://github.com/mui/material-ui/pull/46933
+      // Allow named exports for locales and mui-docs: https://github.com/mui/material-ui/pull/46933
       `packages/mui-material/src/locale/*${EXTENSION_TS}`,
+      `packages/mui-docs/src/**/*${EXTENSION_TS}`,
     ],
     rules: {
       'import/prefer-default-export': 'off',

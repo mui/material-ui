@@ -5,16 +5,16 @@ import { kebabCase } from 'es-toolkit/string';
 import exactProp from '@mui/utils/exactProp';
 import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
+import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
 import { HookApiContent, HooksTranslations } from '@mui-internal/api-docs-builder';
-import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import { getHookApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
+import {
+  ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+  getHookApiDefinitions,
+  PropertiesSection,
+} from '@mui/docs/ApiPage/private';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import {
-  ApiDisplayOptions,
-  DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { LayoutStorageKeys } from 'docs/src/modules/components//ApiPage';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {
@@ -48,7 +48,7 @@ type HooksApiContentProps = {
     };
   };
   pagesContents: { [component: string]: HookApiContent };
-  defaultLayout?: ApiDisplayOptions;
+  defaultLayout?: ApiDisplayLayout;
   layoutStorageKey?: LayoutStorageKeys;
 };
 

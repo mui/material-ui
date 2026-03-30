@@ -8,7 +8,7 @@ export interface TimelineProps extends StandardProps<React.ComponentProps<'ul'>>
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
+  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse' | undefined;
   /**
    * The content of the component.
    */
@@ -16,13 +16,13 @@ export interface TimelineProps extends StandardProps<React.ComponentProps<'ul'>>
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineClasses>;
+  classes?: Partial<TimelineClasses> | undefined;
   /**
    * className applied to the root element.
    */
-  className?: string;
+  className?: string | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }

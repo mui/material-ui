@@ -26,16 +26,14 @@ const useUtilityClasses = (ownerState) => {
       'root',
       loading && 'loading',
       variant,
-      `${variant}${capitalize(color)}`,
       `size${capitalize(size)}`,
-      `${variant}Size${capitalize(size)}`,
       `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
       loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
-    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
-    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
+    startIcon: ['icon', 'startIcon'],
+    endIcon: ['icon', 'endIcon'],
     loadingIndicator: ['loadingIndicator'],
     loadingWrapper: ['loadingWrapper'],
   };
@@ -85,9 +83,7 @@ const ButtonRoot = styled(ButtonBase, {
     return [
       styles.root,
       styles[ownerState.variant],
-      styles[`${ownerState.variant}${capitalize(ownerState.color)}`],
       styles[`size${capitalize(ownerState.size)}`],
-      styles[`${ownerState.variant}Size${capitalize(ownerState.size)}`],
       ownerState.color === 'inherit' && styles.colorInherit,
       ownerState.disableElevation && styles.disableElevation,
       ownerState.fullWidth && styles.fullWidth,
@@ -334,11 +330,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.startIcon,
-      ownerState.loading && styles.startIconLoadingStart,
-      styles[`iconSize${capitalize(ownerState.size)}`],
-    ];
+    return [styles.startIcon, ownerState.loading && styles.startIconLoadingStart];
   },
 })(({ theme }) => ({
   display: 'inherit',
@@ -376,11 +368,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.endIcon,
-      ownerState.loading && styles.endIconLoadingEnd,
-      styles[`iconSize${capitalize(ownerState.size)}`],
-    ];
+    return [styles.endIcon, ownerState.loading && styles.endIconLoadingEnd];
   },
 })(({ theme }) => ({
   display: 'inherit',
@@ -601,6 +589,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
+      internalNativeButton
       type={type}
       id={loading ? loadingId : idProp}
       {...other}

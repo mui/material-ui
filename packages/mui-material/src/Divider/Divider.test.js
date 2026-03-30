@@ -23,11 +23,6 @@ describe('<Divider />', () => {
     expect(container.firstChild).to.have.class(classes.absolute);
   });
 
-  it('should set the light class', () => {
-    const { container } = render(<Divider light />);
-    expect(container.firstChild).to.have.class(classes.light);
-  });
-
   it('should set the flexItem class', () => {
     const { container } = render(<Divider flexItem />);
     expect(container.firstChild).to.have.class(classes.flexItem);
@@ -49,7 +44,8 @@ describe('<Divider />', () => {
     describe('prop: orientation', () => {
       it('should set the textVertical class', () => {
         const { container } = render(<Divider orientation="vertical">content</Divider>);
-        expect(container.querySelectorAll(`.${classes.withChildrenVertical}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.withChildren}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.vertical}`).length).to.equal(1);
         expect(container.querySelectorAll(`.${classes.wrapperVertical}`).length).to.equal(1);
       });
     });

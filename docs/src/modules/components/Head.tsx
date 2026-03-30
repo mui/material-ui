@@ -3,12 +3,12 @@ import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import { LANGUAGES_SSR } from 'docs/config';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from '@mui/docs/helpers';
 
 // #host-reference
 const HOST = process.env.PULL_REQUEST_ID
   ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
-  : 'https://mui.com';
+  : 'https://next.mui.com';
 
 interface HeadProps {
   card?: string;
@@ -64,7 +64,7 @@ export default function Head(props: HeadProps) {
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://mui.com${
+              href={`https://next.mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
               }${canonicalAs}`}
               hrefLang={userLanguage2}

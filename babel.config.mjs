@@ -25,14 +25,11 @@ function resolveAliasPath(relativeToBabelConf) {
 /** @type {babel.ConfigFunction} */
 export default function getBabelConfig(api) {
   const baseConfig = getBaseConfig(api);
-  const useESModules = api.env(['regressions', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
     '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
-    '@mui/icons-material': resolveAliasPath(
-      `./packages/mui-icons-material/lib${useESModules ? '/esm' : ''}`,
-    ),
+    '@mui/icons-material': resolveAliasPath(`./packages/mui-icons-material/lib`),
     '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
     '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
@@ -40,7 +37,6 @@ export default function getBabelConfig(api) {
     '@mui/system': resolveAliasPath('./packages/mui-system/src'),
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
-    '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
@@ -54,6 +50,7 @@ export default function getBabelConfig(api) {
         missingError: 'annotate',
         errorCodesPath,
         runtimeModule: '@mui/utils/formatMuiErrorMessage',
+        outExtension: process.env.MUI_OUT_FILE_EXTENSION ?? undefined,
       },
     ],
   ];

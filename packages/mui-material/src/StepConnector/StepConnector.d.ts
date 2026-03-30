@@ -13,11 +13,11 @@ export interface StepConnectorProps extends StandardProps<
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepConnectorClasses>;
+  classes?: Partial<StepConnectorClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classes']>;
@@ -26,10 +26,10 @@ export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classe
  *
  * Demos:
  *
- * - [Stepper](https://mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepConnector API](https://mui.com/material-ui/api/step-connector/)
+ * - [StepConnector API](https://next.mui.com/material-ui/api/step-connector/)
  */
 export default function StepConnector(props: StepConnectorProps): React.JSX.Element;

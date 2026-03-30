@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "7.3.8",
+  "version": "9.0.0-beta.0",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
@@ -23,22 +23,22 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-nextjs\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
+    "attw": "attw --pack ./build --entrypoints \"v13-pagesRouter\" \"v16-appRouter\" \"v15-appRouter\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6"
+    "@babel/runtime": "^7.29.2"
   },
   "devDependencies": {
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
-    "@types/react": "19.2.9",
-    "next": "15.5.11",
-    "react": "19.2.3"
+    "@types/react": "19.2.14",
+    "next": "15.5.14",
+    "react": "19.2.4"
   },
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",
@@ -69,8 +69,6 @@
   },
   "exports": {
     "./v13-pagesRouter": "./src/v13-pagesRouter/index.ts",
-    "./*": {
-      "mui-src": "./src/*/index.ts"
-    }
+    "./*": "./src/*/index.ts"
   }
 }

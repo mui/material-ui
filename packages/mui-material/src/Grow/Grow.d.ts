@@ -7,7 +7,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * Set this to `false` to disable this behavior.
    * @default true
    */
-  appear?: boolean;
+  appear?: boolean | undefined;
   /**
    * A single child content element.
    */
@@ -16,12 +16,12 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
    */
-  easing?: TransitionProps['easing'];
+  easing?: TransitionProps['easing'] | undefined;
   /**
    * If `true`, the component will transition in.
    */
-  in?: boolean;
-  ref?: React.Ref<unknown>;
+  in?: boolean | undefined;
+  ref?: React.Ref<unknown> | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -29,22 +29,22 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * Set to 'auto' to automatically calculate transition time based on height.
    * @default 'auto'
    */
-  timeout?: TransitionProps['timeout'] | 'auto';
+  timeout?: TransitionProps['timeout'] | 'auto' | undefined;
 }
 
 /**
- * The Grow transition is used by the [Tooltip](https://mui.com/material-ui/react-tooltip/) and
- * [Popover](https://mui.com/material-ui/react-popover/) components.
+ * The Grow transition is used by the [Tooltip](https://next.mui.com/material-ui/react-tooltip/) and
+ * [Popover](https://next.mui.com/material-ui/react-popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *
- * - [Popover](https://mui.com/material-ui/react-popover/)
- * - [Transitions](https://mui.com/material-ui/transitions/)
+ * - [Popover](https://next.mui.com/material-ui/react-popover/)
+ * - [Transitions](https://next.mui.com/material-ui/transitions/)
  *
  * API:
  *
- * - [Grow API](https://mui.com/material-ui/api/grow/)
+ * - [Grow API](https://next.mui.com/material-ui/api/grow/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Grow(props: GrowProps): React.JSX.Element;

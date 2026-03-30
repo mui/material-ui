@@ -225,4 +225,26 @@ describe('<IconButton />', () => {
       expect(screen.getByRole('button')).to.have.text('loading…Test');
     });
   });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} to ButtonBase with a custom component', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <IconButton component={CustomSpan} nativeButton={false}>
+          icon
+        </IconButton>,
+      );
+
+      const button = screen.getByRole('button');
+      expect(button).to.have.tagName('SPAN');
+      expect(button).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
+  });
 });

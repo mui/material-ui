@@ -70,12 +70,6 @@ describe('<Typography />', () => {
       expect(screen.getByText(/hello/i).tagName).to.equal('SPAN');
     });
 
-    it('should render a p with a paragraph', () => {
-      render(<Typography paragraph>Hello</Typography>);
-
-      expect(screen.getByText(/hello/i).tagName).to.equal('P');
-    });
-
     it('should render the mapped headline', () => {
       render(<Typography variant="h6">Hello</Typography>);
 
@@ -111,8 +105,8 @@ describe('<Typography />', () => {
     });
   });
 
-  it('combines system properties with the sx prop', () => {
-    const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
+  it('applies system properties via the sx prop', () => {
+    const { container } = render(<Typography sx={{ mt: 2, marginRight: 5, mb: 2 }} />);
 
     // @ts-ignore issue with typings on `toHaveComputedStyle`
     expect(container.firstChild).toHaveComputedStyle({

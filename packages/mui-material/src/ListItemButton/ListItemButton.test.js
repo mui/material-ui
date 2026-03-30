@@ -247,4 +247,15 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.attribute('href', href);
     });
   });
+
+  describe('prop: nativeButton', () => {
+    it('uses link mode (not native-button) when href is present', () => {
+      render(<ListItemButton href="https://example.com" />);
+
+      const link = screen.getByRole('link');
+      expect(link).to.have.tagName('A');
+      expect(link).not.to.have.attribute('type', 'button');
+      expect(link).not.to.have.attribute('role', 'button');
+    });
+  });
 });

@@ -14,7 +14,7 @@ function Test() {
   return (
     <React.Fragment>
       <Drawer open />;
-      <Drawer open PaperProps={paperProps} />;
+      <Drawer open slotProps={{ paper: paperProps }} />;
     </React.Fragment>
   );
 }

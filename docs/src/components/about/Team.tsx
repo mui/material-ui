@@ -16,7 +16,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
 // The teamMembers.json file should be synced with `pnpm docs:sync-team`.
@@ -67,26 +67,30 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
           title={props.location || false}
           placement="right-end"
           describeChild
-          PopperProps={{
-            popperOptions: {
-              modifiers: [
-                {
-                  name: 'offset',
-                  options: {
-                    offset: [3, 2],
+          slotProps={{
+            popper: {
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'offset',
+                    options: {
+                      offset: [3, 2],
+                    },
                   },
-                },
-              ],
+                ],
+              },
             },
           }}
         >
           <Box sx={{ position: 'relative', display: 'inline-block' }}>
             <Avatar
               variant="rounded"
-              imgProps={{
-                width: '70',
-                height: '70',
-                loading: 'lazy',
+              slotProps={{
+                img: {
+                  width: '70',
+                  height: '70',
+                  loading: 'lazy',
+                },
               }}
               src={props.src}
               alt={props.name}
@@ -394,7 +398,7 @@ export default function Team() {
             Special members of the community deserve a shout-out for their ever-lasting impact on
             MUI&apos;s open-source projects.
           </Typography>
-          <Grid container spacing={2} mt={2}>
+          <Grid container spacing={2} sx={{ mt: 2 }}>
             {contributors.map((profile) => (
               <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
@@ -413,7 +417,7 @@ export default function Team() {
             We honor some no-longer-active core team members who have made valuable contributions in
             the past. They advise us from time to time.
           </Typography>
-          <Grid container spacing={2} mt={2}>
+          <Grid container spacing={2} sx={{ mt: 2 }}>
             {emeriti.map((profile) => (
               <Grid key={profile.name} size={{ xs: 12, sm: 6, md: 3 }}>
                 <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />

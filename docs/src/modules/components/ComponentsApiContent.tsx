@@ -8,18 +8,18 @@ import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
 import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
-import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
-import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
-import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
 import {
-  ApiDisplayOptions,
+  ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
-} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
-import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
-import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
+  getPropsApiDefinitions,
+  getClassApiDefinitions,
+  getSlotsApiDefinitions,
+  PropertiesSection,
+  SlotsSection,
+  ClassesSection,
+} from '@mui/docs/ApiPage/private';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {
@@ -56,7 +56,7 @@ type ComponentsApiContentProps = {
     };
   };
   pageContents: { [component: string]: ComponentApiContent };
-  defaultLayout?: ApiDisplayOptions;
+  defaultLayout?: ApiDisplayLayout;
   layoutStorageKey?: LayoutStorageKeys;
 };
 
@@ -94,7 +94,6 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
     const pageContent = pageContents[key];
     const {
       cssComponent,
-      filename,
       forwardsRefTo,
       inheritance,
       name: componentName,
@@ -112,14 +111,8 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
     const { classDescriptions, propDescriptions, slotDescriptions } =
       descriptions[key][userLanguage];
 
-    const isJoyComponent = filename.includes('mui-joy');
-    const defaultPropsLink = isJoyComponent
-      ? '/joy-ui/customization/themed-components/#theme-default-props'
-      : '/material-ui/customization/theme-components/#theme-default-props';
-    let slotGuideLink = '';
-    if (isJoyComponent) {
-      slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-    }
+    const defaultPropsLink = '/material-ui/customization/theme-components/#theme-default-props';
+    const slotGuideLink = '';
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');

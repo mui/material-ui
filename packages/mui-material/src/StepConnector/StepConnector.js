@@ -3,11 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepConnectorUtilityClass } from './stepConnectorClasses';
 
@@ -23,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
       completed && 'completed',
       disabled && 'disabled',
     ],
-    line: ['line', `line${capitalize(orientation)}`],
+    line: ['line'],
   };
 
   return composeClasses(slots, getStepConnectorUtilityClass, classes);
@@ -66,11 +65,7 @@ const StepConnectorRoot = styled('div', {
 const StepConnectorLine = styled('span', {
   name: 'MuiStepConnector',
   slot: 'Line',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.line, styles[`line${capitalize(ownerState.orientation)}`]];
-  },
+  overridesResolver: (props, styles) => styles.line,
 })(
   memoTheme(({ theme }) => {
     const borderColor =
@@ -103,7 +98,7 @@ const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepConnector' });
   const { className, ...other } = props;
 
-  const { alternativeLabel, orientation = 'horizontal' } = React.useContext(StepperContext);
+  const { alternativeLabel, orientation = 'horizontal' } = useStepperContext();
   const { active, disabled, completed } = React.useContext(StepContext);
 
   const ownerState = { ...props, alternativeLabel, orientation, active, completed, disabled };

@@ -7,6 +7,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { ChipTypeMap } from '@mui/material/Chip';
+import { AutocompleteValueOrFreeSoloValueMapping } from '../useAutocomplete';
 
 interface MyAutocompleteProps<
   T,
@@ -31,7 +32,7 @@ function MyAutocomplete<
 // Test for ChipComponent generic type
 <MyAutocomplete<string, false, false, false, 'span'>
   options={['1', '2', '3']}
-  renderTags={(value, getTagProps, ownerState) => {
+  renderValue={(value, getItemProps, ownerState) => {
     expectType<AutocompleteOwnerState<string, false, false, false, 'span'>, typeof ownerState>(
       ownerState,
     );
@@ -62,7 +63,7 @@ function MyAutocomplete<
 // Tests presence of sx prop in ListboxProps
 <Autocomplete
   options={['1', '2', '3']}
-  ListboxProps={{ sx: { height: '10px' } }}
+  slotProps={{ listbox: { sx: { height: '10px' } } }}
   renderInput={() => null}
 />;
 
@@ -70,8 +71,8 @@ function MyAutocomplete<
 <Autocomplete
   options={['1', '2', '3']}
   renderInput={(params) => {
-    expectType<React.MouseEventHandler, typeof params.InputProps.onMouseDown>(
-      params.InputProps.onMouseDown,
+    expectType<React.MouseEventHandler, typeof params.slotProps.input.onMouseDown>(
+      params.slotProps.input.onMouseDown,
     );
     return <TextField {...params} />;
   }}
@@ -98,7 +99,7 @@ function MyAutocomplete<
 // Test for getInputProps return type
 <MyAutocomplete
   options={[{ label: '1' }, { label: '2' }]}
-  renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+  renderInput={(params) => <TextField {...params} value={params.slotProps.htmlInput.value} />}
 />;
 
 // Test for focusVisible class
@@ -148,7 +149,7 @@ function AutocompleteComponentsProps() {
     <Autocomplete
       options={['one', 'two', 'three']}
       renderInput={(params) => <TextField {...params} />}
-      componentsProps={{
+      slotProps={{
         clearIndicator: { size: 'large' },
         paper: { elevation: 2 },
         popper: { placement: 'bottom-end' },
@@ -164,7 +165,7 @@ function CustomListboxRef() {
     <Autocomplete
       renderInput={(params) => <TextField {...params} />}
       options={['one', 'two', 'three']}
-      ListboxProps={{ ref }}
+      slotProps={{ listbox: { ref } }}
     />
   );
 }
@@ -180,5 +181,44 @@ function CustomListboxRef() {
       },
       typeof event
     >(event);
+  }}
+/>;
+
+// freeSolo prop adds string to the getOptionLabel and isOptionEqualToValue value argument type
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={() => null}
+  freeSolo
+  getOptionLabel={(option) => {
+    expectType<AutocompleteValueOrFreeSoloValueMapping<{ label: string }, true>, typeof option>(
+      option,
+    );
+
+    return typeof option === 'string' ? option : option.label;
+  }}
+  isOptionEqualToValue={(option, value) => {
+    expectType<AutocompleteValueOrFreeSoloValueMapping<{ label: string }, true>, typeof value>(
+      value,
+    );
+    expectType<{ label: string }, typeof option>(option);
+
+    return typeof value === 'string' ? option.label === value : option.label === value.label;
+  }}
+/>;
+
+// getOptionLabel and isOptionEqualToValue value argument type should not include string when freeSolo is false
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={() => null}
+  getOptionLabel={(option) => {
+    expectType<{ label: string }, typeof option>(option);
+
+    return option.label;
+  }}
+  isOptionEqualToValue={(option, value) => {
+    expectType<{ label: string }, typeof value>(value);
+    expectType<{ label: string }, typeof option>(option);
+
+    return option.label === value.label;
   }}
 />;

@@ -11,11 +11,11 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 
 | Edge   | Firefox | Chrome | Safari (macOS) | Safari (iOS) |
 | :----- | :------ | :----- | :------------- | :----------- |
-| >= 121 | >= 115  | >= 109 | >= 15.4        | >= 15.4      |
+| >= 121 | >= 121  | >= 117 | >= 17.0        | >= 17.0      |
 
 <!-- #target-branch-reference -->
 
-An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/-/.browserslistrc#L12-L27) (check the `stable` entry).
+An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/-/.browserslistrc#L9-L188) (check the `stable` entry).
 
 Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material UI supports it.
 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html).

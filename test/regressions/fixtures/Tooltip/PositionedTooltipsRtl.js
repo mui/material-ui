@@ -24,7 +24,7 @@ export default function PositionedTooltipsRtl() {
       <CacheProvider value={cacheRtl}>
         <ThemeProvider theme={theme}>
           <Box sx={{ width: 500, margin: 10 }} dir="rtl">
-            <Grid container justifyContent="center">
+            <Grid container sx={{ justifyContent: 'center' }}>
               <Grid>
                 <Tooltip title="Add" arrow open placement="top-start">
                   <Button>top-start</Button>
@@ -37,7 +37,7 @@ export default function PositionedTooltipsRtl() {
                 </Tooltip>
               </Grid>
             </Grid>
-            <Grid container justifyContent="center">
+            <Grid container sx={{ justifyContent: 'center' }}>
               <Grid size={6}>
                 <Tooltip title="Add" arrow open placement="left-start">
                   <Button>left-start</Button>
@@ -51,7 +51,7 @@ export default function PositionedTooltipsRtl() {
                   <Button>left-end</Button>
                 </Tooltip>
               </Grid>
-              <Grid container alignItems="flex-end" direction="column" size={6}>
+              <Grid container direction="column" size={6} sx={{ alignItems: 'flex-end' }}>
                 <Grid>
                   <Tooltip title="Add" arrow open placement="right-start">
                     <Button>right-start</Button>
@@ -69,7 +69,7 @@ export default function PositionedTooltipsRtl() {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid container justifyContent="center">
+            <Grid container sx={{ justifyContent: 'center' }}>
               <Grid>
                 <Tooltip title="Add" arrow open placement="bottom-start">
                   <Button>bottom-start</Button>

@@ -10,6 +10,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -62,7 +63,7 @@ const InputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.formControl,
           style: {
-            'label + &': {
+            [`label + &, .${inputLabelClasses.root} + &`]: {
               marginTop: 16,
             },
           },
@@ -142,8 +143,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline = false,
-    components = {},
-    componentsProps: componentsPropsProp,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
@@ -158,13 +157,12 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const ownerState = { disableUnderline };
   const inputComponentsProps = { root: { ownerState } };
 
-  const componentsProps =
-    (slotProps ?? componentsPropsProp)
-      ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
-      : inputComponentsProps;
+  const componentsProps = slotProps
+    ? deepmerge(slotProps, inputComponentsProps)
+    : inputComponentsProps;
 
-  const RootSlot = slots.root ?? components.Root ?? InputRoot;
-  const InputSlot = slots.input ?? components.Input ?? InputInput;
+  const RootSlot = slots.root ?? InputRoot;
+  const InputSlot = slots.input ?? InputInput;
 
   return (
     <InputBase
@@ -210,29 +208,6 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -332,8 +307,6 @@ Input.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -342,8 +315,6 @@ Input.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */

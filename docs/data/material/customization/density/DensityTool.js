@@ -8,12 +8,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import IncreaseIcon from '@mui/icons-material/AddCircleOutline';
 import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
-import {
-  DispatchContext,
-  ThemeOptionsContext,
-} from 'docs/src/modules/components/ThemeContext';
+import { DispatchContext, ThemeOptionsContext } from '@mui/docs/ThemeContext';
 import { useTranslate } from '@mui/docs/i18n';
-import { setDocsSpacing, resetDocsSpacing } from 'docs/src/BrandingCssVarsProvider';
+import { setDocsSpacing, resetDocsSpacing } from '@mui/docs/branding';
 
 const minSpacing = 0;
 const maxSpacing = 20;
