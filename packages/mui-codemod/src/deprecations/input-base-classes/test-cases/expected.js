@@ -1,4 +1,4 @@
-import { inputBaseClasses } from '@mui/material/InputBase';
+import { inputBaseClasses } from '@mui/material-v7/InputBase';
 
 ("&.MuiInputBase-hiddenLabel > .MuiInputBase-input");
 ("&.MuiInputBase-multiline > .MuiInputBase-input");

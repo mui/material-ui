@@ -1,5 +1,5 @@
-import TextField from '@mui/material/TextField';
-import { TextField as MyTextField } from '@mui/material';
+import TextField from '@mui/material-v7/TextField';
+import { TextField as MyTextField } from '@mui/material-v7';
 
 <TextField
   InputProps={CustomInputProps}

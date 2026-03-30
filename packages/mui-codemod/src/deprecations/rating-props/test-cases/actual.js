@@ -1,5 +1,5 @@
-import Rating from '@mui/material/Rating';
-import { Rating as MyRating } from '@mui/material';
+import Rating from '@mui/material-v7/Rating';
+import { Rating as MyRating } from '@mui/material-v7';
 
 <Rating IconContainerComponent={CustomIconContainer} />;
 <MyRating IconContainerComponent={CustomIconContainer} />;

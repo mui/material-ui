@@ -1,5 +1,5 @@
-import SpeedDial from '@mui/material/SpeedDial';
-import { SpeedDial as MySpeedDial } from '@mui/material';
+import SpeedDial from '@mui/material-v7/SpeedDial';
+import { SpeedDial as MySpeedDial } from '@mui/material-v7';
 
 <SpeedDial slots={{
   transition: CustomTransition

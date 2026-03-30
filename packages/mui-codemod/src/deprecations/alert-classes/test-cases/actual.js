@@ -1,4 +1,4 @@
-import { alertClasses } from '@mui/material/Alert';
+import { alertClasses } from '@mui/material-v7/Alert';
 
 ('&.MuiAlert-standardSuccess');
 ('&.MuiAlert-standardInfo');

@@ -1,7 +1,7 @@
-import Autocomplete from '@mui/material/Autocomplete';
-import {Autocomplete as MyAutocomplete} from '@mui/material';
-import Chip from '@mui/material/Chip';
-import useAutocomplete from '@mui/material/useAutocomplete';
+import Autocomplete from '@mui/material-v7/Autocomplete';
+import {Autocomplete as MyAutocomplete} from '@mui/material-v7';
+import Chip from '@mui/material-v7/Chip';
+import useAutocomplete from '@mui/material-v7/useAutocomplete';
 
 <Autocomplete
   slots={{

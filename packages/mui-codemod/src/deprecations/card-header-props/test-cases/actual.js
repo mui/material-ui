@@ -1,5 +1,5 @@
-import CardHeader from '@mui/material/CardHeader';
-import { CardHeader as MyCardHeader } from '@mui/material';
+import CardHeader from '@mui/material-v7/CardHeader';
+import { CardHeader as MyCardHeader } from '@mui/material-v7';
 
 <CardHeader
   titleTypographyProps={{ variant: 'h6' }}

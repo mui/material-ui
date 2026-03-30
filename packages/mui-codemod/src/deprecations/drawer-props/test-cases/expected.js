@@ -1,6 +1,6 @@
-import Drawer from '@mui/material/Drawer';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/material';
+import Drawer from '@mui/material-v7/Drawer';
+import SwipeableDrawer from '@mui/material-v7/SwipeableDrawer';
+import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/material-v7';
 
 <Drawer slots={{
   backdrop: Backdrop

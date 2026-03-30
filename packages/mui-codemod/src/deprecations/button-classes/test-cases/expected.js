@@ -1,4 +1,4 @@
-import { buttonClasses } from '@mui/material/Button';
+import { buttonClasses } from '@mui/material-v7/Button';
 
 ("&.MuiButton-text.MuiButton-colorInherit");
 ("&.MuiButton-text.MuiButton-colorPrimary");

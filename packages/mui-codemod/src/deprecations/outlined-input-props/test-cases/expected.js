@@ -1,4 +1,4 @@
-import OutlinedInput from '@mui/material/OutlinedInput';
+import OutlinedInput from '@mui/material-v7/OutlinedInput';
 
 <OutlinedInput
   slots={{

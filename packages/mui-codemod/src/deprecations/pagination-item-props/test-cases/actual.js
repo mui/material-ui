@@ -1,4 +1,4 @@
-import PaginationItem from '@mui/material/PaginationItem';
+import PaginationItem from '@mui/material-v7/PaginationItem';
 
 <PaginationItem components={{ first: first, last: last, next: next, previous: previous }} />;
 <PaginationItem

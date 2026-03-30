@@ -1,5 +1,5 @@
-import Dialog from '@mui/material/Dialog';
-import { Dialog as MyDialog } from '@mui/material';
+import Dialog from '@mui/material-v7/Dialog';
+import { Dialog as MyDialog } from '@mui/material-v7';
 
 <Dialog
   BackdropComponent={CustomBackdrop}

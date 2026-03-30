@@ -1,5 +1,5 @@
-import Avatar from '@mui/material/Avatar';
-import { Avatar as MyAvatar } from '@mui/material';
+import Avatar from '@mui/material-v7/Avatar';
+import { Avatar as MyAvatar } from '@mui/material-v7';
 
 <Avatar
   imgProps={{

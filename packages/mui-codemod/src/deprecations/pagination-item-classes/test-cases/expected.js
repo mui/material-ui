@@ -1,4 +1,4 @@
-import { paginationItemClasses } from '@mui/material/PaginationItem';
+import { paginationItemClasses } from '@mui/material-v7/PaginationItem';
 
 fn({
   MuiPaginationItem: {

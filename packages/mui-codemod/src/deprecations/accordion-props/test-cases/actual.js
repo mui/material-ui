@@ -1,5 +1,5 @@
-import Accordion from '@mui/material/Accordion';
-import { Accordion as MyAccordion } from '@mui/material';
+import Accordion from '@mui/material-v7/Accordion';
+import { Accordion as MyAccordion } from '@mui/material-v7';
 
 <Accordion TransitionComponent={CustomTransition} TransitionProps={{ unmountOnExit: true }} />;
 <MyAccordion TransitionComponent={CustomTransition} TransitionProps={transitionVars} />;

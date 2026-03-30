@@ -1,4 +1,4 @@
-import { buttonGroupClasses } from '@mui/material/ButtonGroup';
+import { buttonGroupClasses } from '@mui/material-v7/ButtonGroup';
 
 ("&.MuiButtonGroup-horizontal > .MuiButtonGroup-grouped");
 ("&.MuiButtonGroup-vertical > .MuiButtonGroup-grouped");

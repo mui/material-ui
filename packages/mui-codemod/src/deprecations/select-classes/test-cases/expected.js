@@ -1,4 +1,4 @@
-import { selectClasses } from '@mui/material/Select';
+import { selectClasses } from '@mui/material-v7/Select';
 
 ("& .MuiSelect-filled ~ .MuiSelect-icon");
 ("& .MuiSelect-outlined ~ .MuiSelect-icon");

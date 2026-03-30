@@ -1,5 +1,5 @@
-import AvatarGroup from '@mui/material/AvatarGroup';
-import { AvatarGroup as MyAvatarGroup } from '@mui/material';
+import AvatarGroup from '@mui/material-v7/AvatarGroup';
+import { AvatarGroup as MyAvatarGroup } from '@mui/material-v7';
 
 <AvatarGroup
   componentsProps={{

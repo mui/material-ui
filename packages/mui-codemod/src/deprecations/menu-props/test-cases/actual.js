@@ -1,5 +1,5 @@
-import Menu from '@mui/material/Menu';
-import { Menu as MyMenu } from '@mui/material';
+import Menu from '@mui/material-v7/Menu';
+import { Menu as MyMenu } from '@mui/material-v7';
 
 <Menu
   TransitionComponent={CustomTransition}

@@ -1,4 +1,4 @@
-import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControlLabel from '@mui/material-v7/FormControlLabel';
 
 <FormControlLabel slotProps={{ typography: componentsTypographyProps }} />;
 <FormControlLabel

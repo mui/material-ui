@@ -1,5 +1,5 @@
-import Tabs from '@mui/material/Tabs';
-import { Tabs as MyTabs } from '@mui/material';
+import Tabs from '@mui/material-v7/Tabs';
+import { Tabs as MyTabs } from '@mui/material-v7';
 
 <Tabs
   ScrollButtonComponent={CustomScrollButton}

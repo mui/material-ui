@@ -1,4 +1,4 @@
-import { dialogClasses } from '@mui/material/Dialog';
+import { dialogClasses } from '@mui/material-v7/Dialog';
 
 ('& .MuiDialog-paperScrollBody');
 ('& .MuiDialog-paperScrollPaper');

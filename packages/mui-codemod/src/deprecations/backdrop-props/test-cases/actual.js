@@ -1,5 +1,5 @@
-import Backdrop from '@mui/material/Backdrop';
-import { Backdrop as MyBackdrop } from '@mui/material';
+import Backdrop from '@mui/material-v7/Backdrop';
+import { Backdrop as MyBackdrop } from '@mui/material-v7';
 
 <Backdrop TransitionComponent={CustomTransition} />;
 <MyBackdrop TransitionComponent={CustomTransition} />;

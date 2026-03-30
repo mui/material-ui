@@ -1,5 +1,5 @@
-import TablePagination from '@mui/material/TablePagination';
-import { TablePagination as MyTablePagination } from '@mui/material';
+import TablePagination from '@mui/material-v7/TablePagination';
+import { TablePagination as MyTablePagination } from '@mui/material-v7';
 
 <TablePagination ActionsComponent="div" SelectProps={{ native: true }} />;
 <TablePagination

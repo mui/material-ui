@@ -1,4 +1,4 @@
-import { sliderClasses } from '@mui/material/Slider';
+import { sliderClasses } from '@mui/material-v7/Slider';
 
 ('& .MuiSlider-thumbSizeSmall');
 ('& .MuiSlider-thumbSizeMedium');

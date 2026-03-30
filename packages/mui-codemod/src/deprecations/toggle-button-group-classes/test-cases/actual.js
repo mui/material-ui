@@ -1,4 +1,4 @@
-import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+import { toggleButtonGroupClasses } from '@mui/material-v7/ToggleButtonGroup';
 
 ('& .MuiToggleButtonGroup-groupedHorizontal');
 ('& .MuiToggleButtonGroup-groupedVertical');

@@ -1,5 +1,5 @@
-import Typography from '@mui/material/Typography';
-import { Typography as MyTypography } from '@mui/material';
+import Typography from '@mui/material-v7/Typography';
+import { Typography as MyTypography } from '@mui/material-v7';
 
 <Typography />;
 <MyTypography />;

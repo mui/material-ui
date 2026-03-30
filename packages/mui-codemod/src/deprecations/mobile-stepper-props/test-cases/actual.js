@@ -1,5 +1,5 @@
-import MobileStepper from '@mui/material/MobileStepper';
-import { MobileStepper as MyMobileStepper } from '@mui/material';
+import MobileStepper from '@mui/material-v7/MobileStepper';
+import { MobileStepper as MyMobileStepper } from '@mui/material-v7';
 
 <MobileStepper variant="progress" LinearProgressProps={{ variant: 'determinate' }} />;
 <MyMobileStepper

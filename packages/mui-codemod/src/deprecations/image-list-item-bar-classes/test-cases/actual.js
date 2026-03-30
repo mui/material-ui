@@ -1,4 +1,4 @@
-import { imageListItemBarClasses } from '@mui/material/ImageListItemBar';
+import { imageListItemBarClasses } from '@mui/material-v7/ImageListItemBar';
 
 ('& .MuiImageListItemBar-titleWrapBelow');
 ('& .MuiImageListItemBar-titleWrapActionPosLeft');
