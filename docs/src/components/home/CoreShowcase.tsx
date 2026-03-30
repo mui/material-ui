@@ -4,8 +4,8 @@ import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
-import MaterialVsCustomToggle from 'docs/src/components/action/MaterialVsCustomToggle';
+import { MoreInfoBox, MaterialVsCustomToggle } from '@mui/internal-core-docs/AppLayout';
+
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import ROUTES from 'docs/src/route';
 

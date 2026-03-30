@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation, Link, type LinkProps } from '@mui/internal-core-docs/Link';
 import { MuiPageIcon } from '@mui/internal-core-docs/MuiPage';
-import standardNavIcons from './AppNavIcons';
+import { standardNavIcons } from '@mui/internal-core-docs/AppLayout';
 
 interface ItemBaseProps {
   component?: React.ElementType;

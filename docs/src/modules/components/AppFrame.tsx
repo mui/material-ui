@@ -15,7 +15,7 @@ import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import PageContext from '@mui/internal-core-docs/PageContext';
 import { useTranslate } from '@mui/internal-core-docs/i18n';
-import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
+import { LogoWithCopyMenu } from '@mui/internal-core-docs/AppLayout';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
 import SearchButton from './SearchButton';

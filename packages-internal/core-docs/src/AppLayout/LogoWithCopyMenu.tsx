@@ -23,7 +23,7 @@ interface LogoWithCopyMenuProps {
   marginLeft?: boolean;
 }
 
-export default function LogoWithCopyMenu({
+export function LogoWithCopyMenu({
   logo: LogoSvg = MuiLogomarkIcon,
   logoSvgString = muiSvgLogoString,
   wordmarkSvgString = muiSvgWordmarkString,

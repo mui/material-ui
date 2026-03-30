@@ -6,7 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconImage from '@mui/internal-core-docs/IconImage';
-import Highlighter from 'docs/src/components/action/Highlighter';
+import { Highlighter } from '@mui/internal-core-docs/AppLayout';
 import { MuiLogomarkIcon } from '@mui/internal-core-docs/svgIcons';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });

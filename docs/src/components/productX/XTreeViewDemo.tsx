@@ -4,7 +4,7 @@ import { animated, useSpring } from '@react-spring/web';
 import { styled } from '@mui/material/styles';
 import { TransitionProps } from '@mui/material/transitions';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import Frame from 'docs/src/components/action/Frame';
+import { Frame } from '@mui/internal-core-docs/AppLayout';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';

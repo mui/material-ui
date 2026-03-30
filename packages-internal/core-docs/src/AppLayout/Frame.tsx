@@ -79,4 +79,4 @@ const Frame = React.forwardRef<HTMLDivElement, BoxProps>(function Frame(
 Frame.Demo = FrameDemo;
 Frame.Info = FrameInfo;
 
-export default Frame;
+export { Frame };

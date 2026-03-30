@@ -18,7 +18,7 @@ import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
+import { LogoWithCopyMenu } from '@mui/internal-core-docs/AppLayout';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from '@mui/internal-core-docs/helpers';
 import PageContext, { ProductVersion } from '@mui/internal-core-docs/PageContext';

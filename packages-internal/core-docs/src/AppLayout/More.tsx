@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
-export default (function More(props: ButtonBaseProps) {
+export const More = function More(props: ButtonBaseProps) {
   const ref = React.useRef<HTMLButtonElement>(null);
   return (
     <ButtonBase
@@ -78,4 +78,4 @@ export default (function More(props: ButtonBaseProps) {
       </Typography>
     </ButtonBase>
   );
-} as typeof ButtonBase);
+} as typeof ButtonBase;

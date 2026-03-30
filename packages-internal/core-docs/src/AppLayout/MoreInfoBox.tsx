@@ -61,7 +61,7 @@ export function AppearingInfoBox({
   );
 }
 
-export default function MoreInfoBox({
+export function MoreInfoBox({
   primaryBtnLabel,
   primaryBtnHref,
   secondaryBtnLabel,

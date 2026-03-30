@@ -2,7 +2,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
-export default function ArrowButton({
+export function ArrowButton({
   direction,
   ...props
 }: { direction: 'left' | 'right' } & IconButtonProps) {

@@ -62,7 +62,7 @@ const Button = styled('button')(({ theme }) => ({
   },
 }));
 
-export default function NpmCopyButton(
+export function NpmCopyButton(
   props: React.HTMLAttributes<HTMLButtonElement> & { installation: string; sx?: SxProps<Theme> },
 ) {
   const { installation, onClick, sx, ...other } = props;

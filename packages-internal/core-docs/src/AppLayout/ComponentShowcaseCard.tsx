@@ -19,7 +19,7 @@ interface ComponentShowcaseCardProps {
   srcLight: string;
 }
 
-export default function ComponentShowcaseCard(props: ComponentShowcaseCardProps) {
+export function ComponentShowcaseCard(props: ComponentShowcaseCardProps) {
   const { link, srcLight, srcDark, name, md1, md2, md3, noGuidelines, imgLoading = 'lazy' } = props;
   // Fix overloading with prefetch={false}, only prefetch on hover.
   return (

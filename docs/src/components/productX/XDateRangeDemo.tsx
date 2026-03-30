@@ -16,7 +16,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import dayjs, { Dayjs } from 'dayjs';
-import Frame from 'docs/src/components/action/Frame';
+import { Frame } from '@mui/internal-core-docs/AppLayout';
 
 const startDate = dayjs();
 startDate.date(10);

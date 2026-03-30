@@ -7,10 +7,9 @@ import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter';
+import { Item, Group, Highlighter, Frame } from '@mui/internal-core-docs/AppLayout';
 import { SvgMaterialDesignIcon } from '@mui/internal-core-docs/svgIcons';
-import Frame from 'docs/src/components/action/Frame';
+
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
 
 const code = `

@@ -71,7 +71,7 @@ export function Group({
   );
 }
 
-export default function Item({
+export function Item({
   description,
   icon,
   title,

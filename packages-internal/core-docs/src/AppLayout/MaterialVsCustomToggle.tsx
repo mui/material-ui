@@ -8,10 +8,7 @@ interface MaterialVsCustomToggleProps {
   setCustomized: React.Dispatch<boolean>;
 }
 
-export default function MaterialVsCustomToggle({
-  customized,
-  setCustomized,
-}: MaterialVsCustomToggleProps) {
+export function MaterialVsCustomToggle({ customized, setCustomized }: MaterialVsCustomToggleProps) {
   return (
     <Box
       sx={(theme) => ({

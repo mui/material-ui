@@ -9,7 +9,7 @@ import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import { visuallyHidden } from '@mui/utils';
-import Highlighter from 'docs/src/components/action/Highlighter';
+import { Highlighter } from '@mui/internal-core-docs/AppLayout';
 import { Link } from '@mui/internal-core-docs/Link';
 import ROUTES from 'docs/src/route';
 
