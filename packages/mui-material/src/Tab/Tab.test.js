@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, simulatePointerDevice, screen, isJsdom } from '@mui/internal-test-utils';
@@ -17,7 +18,7 @@ describe('<Tab />', () => {
     muiName: 'MuiTab',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should have a ripple', async () => {
@@ -181,6 +182,25 @@ describe('<Tab />', () => {
     const icon = screen.getByRole('tab').querySelector(`.${classes.icon}`);
     expect(icon).toHaveComputedStyle({
       backgroundColor: 'rgb(0, 0, 255)',
+    });
+  });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} and preserves role="tab" over pseudo-button role', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<Tab component={CustomSpan} nativeButton={false} />);
+
+      const tab = screen.getByRole('tab');
+      expect(tab).to.have.tagName('SPAN');
+      expect(tab).to.have.attribute('role', 'tab');
+      expect(tab).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
     });
   });
 });

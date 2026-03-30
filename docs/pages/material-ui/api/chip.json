@@ -16,6 +16,7 @@
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "element" } },
     "label": { "type": { "name": "node" } },
+    "nativeButton": { "type": { "name": "bool" } },
     "onDelete": { "type": { "name": "func" } },
     "size": {
       "type": {

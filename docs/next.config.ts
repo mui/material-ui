@@ -2,6 +2,7 @@
 import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
+import * as semver from 'semver';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
@@ -182,6 +183,7 @@ export default withDocsInfra({
   env: {
     // docs-infra
     LIB_VERSION: pkg.version,
+    SEARCH_INDEX: `material-ui-v${semver.major(pkg.version)}`,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',

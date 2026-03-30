@@ -53,7 +53,6 @@ describe('<Accordion />', () => {
         testWithElement: 'div',
       },
     },
-    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render and not be controlled', () => {

@@ -63,7 +63,7 @@ describe('<Autocomplete />', () => {
         paper: { expectedClassName: classes.paper },
         popper: { expectedClassName: classes.popper, testWithElement: null },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 

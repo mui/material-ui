@@ -14,7 +14,7 @@ describe('<CardActions />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiCardActions',
     testVariantProps: { disableSpacing: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it.skipIf(isJsdom())('should apply margin to all children but the first one', function test() {

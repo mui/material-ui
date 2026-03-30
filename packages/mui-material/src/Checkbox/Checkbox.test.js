@@ -33,7 +33,7 @@ describe('<Checkbox />', () => {
         expectedClassName: classes.input,
       },
     },
-    skip: ['componentProp', 'componentsProp', 'rootClass'],
+    skip: ['componentProp', 'rootClass'],
   }));
 
   it('should have the classes required for Checkbox', () => {

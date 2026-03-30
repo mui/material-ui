@@ -29,7 +29,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-is": "19.2.4",
-    "react-router": "7.13.1",
+    "react-router": "7.13.2",
     "react-window": "2.2.7",
     "sinon": "21.0.3",
     "styled-components": "6.3.12",

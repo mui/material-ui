@@ -18,7 +18,6 @@ describe('<MenuItem />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiMenuItem',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
   }));
 
   it('should render a focusable menuitem', () => {
@@ -142,6 +141,23 @@ describe('<MenuItem />', () => {
     view.rerender(<MenuItem disableGutters />);
 
     expect(menuitem).not.to.have.class(classes.gutters);
+  });
+
+  describe('prop: nativeButton', () => {
+    it('preserves role="menuitem" over pseudo-button role', () => {
+      render(<MenuItem />);
+
+      const menuitem = screen.getByRole('menuitem');
+      expect(menuitem).to.have.tagName('LI');
+      expect(menuitem).not.to.have.attribute('role', 'button');
+    });
+
+    it('preserves custom tabIndex over pseudo-button tabIndex', () => {
+      render(<MenuItem />);
+
+      const menuitem = screen.getByRole('menuitem');
+      expect(menuitem).to.have.property('tabIndex', -1);
+    });
   });
 
   describe('context: dense', () => {

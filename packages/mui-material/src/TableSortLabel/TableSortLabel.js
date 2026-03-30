@@ -130,6 +130,9 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
     ownerState,
     className: clsx(classes.root, className),
     ref,
+    additionalProps: {
+      internalNativeButton: false,
+    },
   });
 
   const [IconSlot, iconProps] = useSlot('icon', {

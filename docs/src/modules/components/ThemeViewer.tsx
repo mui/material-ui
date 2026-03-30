@@ -187,8 +187,6 @@ export function useItemIdsLazy(object: Record<string, any>) {
   return allItemIds;
 }
 
-const keyPrefix = '$ROOT';
-
 export default function ThemeViewer({
   data,
   expandPaths = [],
@@ -197,12 +195,13 @@ export default function ThemeViewer({
   data: Record<string, any>;
   expandPaths: Array<string> | null;
 }) {
+  const keyPrefix = React.useId();
   const defaultExpanded = React.useMemo(
     () =>
       Array.isArray(expandPaths)
         ? expandPaths.map((expandPath) => `${keyPrefix}.${expandPath}`)
         : [],
-    [expandPaths],
+    [expandPaths, keyPrefix],
   );
   // for default*  to take effect we need to remount
   const key = React.useMemo(() => defaultExpanded.join(''), [defaultExpanded]);

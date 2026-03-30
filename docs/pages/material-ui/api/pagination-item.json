@@ -10,6 +10,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "nativeButton": { "type": { "name": "bool" } },
     "page": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" }, "default": "false" },
     "shape": {

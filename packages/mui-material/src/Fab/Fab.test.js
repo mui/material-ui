@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
@@ -17,7 +18,6 @@ describe('<Fab />', () => {
     testVariantProps: { variant: 'extended' },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentsProp'],
   }));
 
   it('should render with the root class but no others', () => {
@@ -155,6 +155,28 @@ describe('<Fab />', () => {
 
     expect(renderedIconChild).not.to.equal(null);
     expect(renderedIconChild).to.have.class(childClassName);
+  });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} to ButtonBase with a custom component', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Fab component={CustomSpan} nativeButton={false}>
+          Fab
+        </Fab>,
+      );
+
+      const fab = screen.getByRole('button');
+      expect(fab).to.have.tagName('SPAN');
+      expect(fab).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
   });
 
   describe.skipIf(!isJsdom())('server-side', () => {

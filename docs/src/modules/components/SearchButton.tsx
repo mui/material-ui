@@ -96,17 +96,18 @@ function useShortcut() {
 export default function SearchButton({ onClick, onRef, ...props }: SearchButtonProps) {
   const t = useTranslate();
   const shortcut = useShortcut();
+  const labelId = React.useId();
 
   return (
     <SearchButtonStyled
       ref={onRef}
       onClick={onClick}
       disabled={!onClick}
-      aria-labelledby="app-search-label"
+      aria-labelledby={labelId}
       {...props}
     >
       <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
-      <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
+      <SearchLabel id={labelId}>{t('searchButton')}</SearchLabel>
       {shortcut && <Shortcut aria-hidden="true">{shortcut}</Shortcut>}
     </SearchButtonStyled>
   );

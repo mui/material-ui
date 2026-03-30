@@ -17,6 +17,31 @@ import * as ripple from '../../test/ripple';
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
 
+  /**
+   * @param {{ mock: { calls: unknown[][] } }} errorSpy
+   * @returns {string[]}
+   */
+  function getWarningMessages(errorSpy) {
+    return errorSpy.mock.calls.map((call) =>
+      String(call[0]).replace(/\s+/g, ' ').trim().toLowerCase(),
+    );
+  }
+
+  /**
+   * @param {{ mock: { calls: unknown[][] } }} errorSpy
+   * @param {string[]} fragments
+   */
+  function expectWarningWithFragments(errorSpy, fragments) {
+    const messages = getWarningMessages(errorSpy);
+
+    expect(messages.length).to.be.greaterThanOrEqual(1);
+    expect(
+      messages.some((message) =>
+        fragments.every((fragment) => message.includes(fragment.toLowerCase())),
+      ),
+    ).to.equal(true);
+  }
+
   describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
@@ -26,7 +51,6 @@ describe('<Button />', () => {
     testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text, and colorPrimary classes but no others', () => {
@@ -41,6 +65,88 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.sizeSmall);
     expect(button).not.to.have.class(classes.sizeLarge);
+  });
+
+  it('does not warn for intrinsic non-button components when nativeButton is omitted', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(<Button component="span">Hello World</Button>);
+
+    expect(screen.getByRole('button')).to.have.tagName('SPAN');
+    expect(errorSpy.mock.calls.length).to.equal(0);
+    errorSpy.mockRestore();
+  });
+
+  it('warns for custom non-button components when nativeButton is omitted', () => {
+    const StyledSpan = React.forwardRef(function StyledSpan(props, ref) {
+      return <span ref={ref} {...props} />;
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(<Button component={StyledSpan}>Hello World</Button>);
+
+    expect(screen.getByText('Hello World')).to.have.tagName('SPAN');
+    expectWarningWithFragments(errorSpy, ['nativebutton={false}', 'non-<button>']);
+    errorSpy.mockRestore();
+  });
+
+  it('does not warn for custom button components when nativeButton is omitted', () => {
+    const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+      return <button ref={ref} {...props} />;
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(<Button component={CustomButton}>Hello World</Button>);
+
+    expect(screen.getByRole('button')).to.have.tagName('BUTTON');
+    expect(errorSpy.mock.calls.length).to.equal(0);
+    errorSpy.mockRestore();
+  });
+
+  it('does not warn for custom non-button components when nativeButton={false}', () => {
+    const StyledSpan = React.forwardRef(function StyledSpan(props, ref) {
+      return <span ref={ref} {...props} />;
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <Button component={StyledSpan} nativeButton={false}>
+        Hello World
+      </Button>,
+    );
+
+    expect(screen.getByRole('button')).to.have.tagName('SPAN');
+    expect(errorSpy.mock.calls.length).to.equal(0);
+    errorSpy.mockRestore();
+  });
+
+  it('warns when nativeButton={false} is used with a custom component that renders a button', () => {
+    const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+      return <button ref={ref} {...props} />;
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <Button component={CustomButton} nativeButton={false}>
+        Hello World
+      </Button>,
+    );
+
+    expect(screen.getByRole('button')).to.have.tagName('BUTTON');
+    expectWarningWithFragments(errorSpy, ['nativebutton', 'false', 'non-<button>']);
+    errorSpy.mockRestore();
+  });
+
+  it('does not forward focusableWhenDisabled to ButtonBase', () => {
+    render(
+      <Button disabled focusableWhenDisabled>
+        Hello World
+      </Button>,
+    );
+
+    const button = screen.getByRole('button');
+    expect(button).to.have.attribute('disabled');
+    expect(button).not.to.have.attribute('aria-disabled');
   });
 
   it('startIcon and endIcon should have icon class', () => {

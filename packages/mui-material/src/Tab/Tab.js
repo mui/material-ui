@@ -253,6 +253,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   return (
     <TabRoot
+      internalNativeButton
       focusRipple={!disableFocusRipple}
       className={clsx(classes.root, className)}
       ref={ref}

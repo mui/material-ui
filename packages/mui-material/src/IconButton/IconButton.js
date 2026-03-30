@@ -210,6 +210,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       id={loading ? loadingId : idProp}
       className={clsx(classes.root, className)}
       centerRipple
+      internalNativeButton
       focusRipple={!disableFocusRipple}
       disabled={disabled || loading}
       ref={ref}

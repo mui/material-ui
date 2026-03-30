@@ -25,7 +25,6 @@ describe('<Rating />', () => {
         expectedClassName: classes.label,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   describeConformance(<Rating max={1} />, () => ({

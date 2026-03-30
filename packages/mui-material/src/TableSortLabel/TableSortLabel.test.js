@@ -18,7 +18,7 @@ describe('<TableSortLabel />', () => {
     testVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'icon', slotClassName: classes.icon },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
     slots: {
       icon: {
         expectedClassName: classes.icon,
@@ -84,6 +84,15 @@ describe('<TableSortLabel />', () => {
       const { container } = render(<TableSortLabel active hideSortIcon />);
       const iconChildren = container.querySelectorAll(`.${classes.icon}`);
       expect(iconChildren.length).to.equal(1);
+    });
+  });
+
+  describe('prop: nativeButton', () => {
+    it('renders as a span with pseudo-button semantics by default', () => {
+      render(<TableSortLabel />);
+
+      const label = screen.getByRole('button');
+      expect(label).to.have.tagName('SPAN');
     });
   });
 });
