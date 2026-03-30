@@ -552,7 +552,6 @@ export default function createThemeWithVars(options = {}, ...args) {
 
     // Do not create channel tokens when nativeColor is used.
     if (!nativeColor) {
-      // MUI X - DataGrid needs this token.
       setColorChannel(palette.background, 'default');
 
       // added for consistency with the `background.default` token
