@@ -650,7 +650,7 @@ export function getPropTypesFromFile({
   const sigilIds: Map<ts.Symbol | ts.Type, number> = new Map();
   /**
    *
-   * @param sigil - Prefer ts.Type if available since these are re-used in the type checker. Symbols (especially those for literals) are oftentimes re-created on every usage.
+   * @param sigil - Prefer ts.Type if available since these are reused in the type checker. Symbols (especially those for literals) are oftentimes re-created on every usage.
    */
   function createPropTypeId(sigil: ts.Symbol | ts.Type) {
     if (!sigilIds.has(sigil)) {
