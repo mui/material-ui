@@ -74,7 +74,7 @@ describe('<Dialog />', () => {
           testWithElement: null,
         },
       },
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 

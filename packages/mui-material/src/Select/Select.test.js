@@ -33,7 +33,7 @@ describe('<Select />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSelect',
-    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   describe('prop: inputProps', () => {

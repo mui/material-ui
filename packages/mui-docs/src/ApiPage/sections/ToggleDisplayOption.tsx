@@ -84,6 +84,9 @@ interface ToggleDisplayOptionProps {
 export function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
   const { displayOption, setDisplayOption, sectionType } = props;
 
+  const id = React.useId();
+  const buttonId = `${id}-view-switching-button`;
+  const menuId = `${id}-view-options-menu`;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const [open, setOpen] = React.useState(false);
 
@@ -108,8 +111,8 @@ export function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         size="small"
         variant="outlined"
         color="secondary"
-        id="view-switching-button"
-        aria-controls={open ? 'view-switching-button' : undefined}
+        id={buttonId}
+        aria-controls={open ? menuId : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleMenuClick}
@@ -122,7 +125,7 @@ export function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         {displayOption}
       </Button>
       <Menu
-        id="view-options-menu"
+        id={menuId}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

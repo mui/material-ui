@@ -15,7 +15,7 @@ describe('<ListItemSecondaryAction />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiListItemSecondaryAction',
-    skip: ['componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
   }));
 
   it('should render without classes that disable gutters', () => {

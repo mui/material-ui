@@ -16,7 +16,7 @@ describe('<ImageListItemBar />', () => {
     muiName: 'MuiImageListItemBar',
     testDeepOverrides: { slotName: 'titleWrap', slotClassName: classes.titleWrap },
     testVariantProps: { position: 'top', actionPosition: 'left' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   const itemData = {

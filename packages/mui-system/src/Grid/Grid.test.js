@@ -20,7 +20,7 @@ describe('System <Grid />', () => {
     refInstanceof: window.HTMLElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['classesRoot'],
   }));
 
   describe('prop: container', () => {

@@ -20,7 +20,6 @@ describe('<CardActionArea />', () => {
     testDeepOverrides: { slotName: 'focusHighlight', slotClassName: classes.focusHighlight },
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp', 'componentsProp'],
     slots: {
       root: {
         expectedClassName: classes.root,

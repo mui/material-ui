@@ -94,7 +94,6 @@ describe('<Popover />', () => {
     skip: [
       'rootClass', // portal, can't determine the root
       'componentProp',
-      'componentsProp',
       'themeDefaultProps', // portal, can't determine the root
       'themeStyleOverrides', // portal, can't determine the root
       'themeVariants',

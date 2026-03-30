@@ -76,7 +76,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         expectedClassName: classes.indicator,
       },
     },
-    skip: ['componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
   }));
 
   it('can be named via `aria-label`', () => {

@@ -15,7 +15,6 @@ describe('<Divider />', () => {
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical', flexItem: true, textAlign: 'left' },
-    skip: ['componentsProp'],
   }));
 
   it('should set the absolute class', () => {

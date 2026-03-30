@@ -27,7 +27,7 @@ describe('<SpeedDialAction />', () => {
       refInstanceof: window.HTMLButtonElement,
       muiName: 'MuiSpeedDialAction',
       testRootOverrides: { slotName: 'fab' },
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
       slots: {
         fab: {
           expectedClassName: classes.fab,

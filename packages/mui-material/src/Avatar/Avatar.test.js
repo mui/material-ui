@@ -27,7 +27,6 @@ describe('<Avatar />', () => {
         expectedClassName: classes.fallback,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   // img slot only renders when src is provided

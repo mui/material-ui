@@ -13,7 +13,7 @@ describe('<StepConnector />', () => {
     render,
     muiName: 'MuiStepConnector',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 
   describe('rendering', () => {

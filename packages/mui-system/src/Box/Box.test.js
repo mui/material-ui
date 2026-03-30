@@ -14,7 +14,6 @@ describe('<Box />', () => {
     inheritComponent: 'div',
     skip: [
       'componentProp',
-      'componentsProp',
       'rootClass',
       'themeVariants',
       'themeStyleOverrides',

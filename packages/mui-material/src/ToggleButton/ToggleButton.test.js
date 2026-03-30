@@ -18,7 +18,7 @@ describe('<ToggleButton />', () => {
     testStateOverrides: { prop: 'size', value: 'large', styleKey: 'sizeLarge' },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('adds the `selected` class to the root element if selected={true}', () => {

@@ -71,7 +71,6 @@ describe('<Menu />', () => {
     skip: [
       'rootClass', // portal, can't determine the root
       'componentProp',
-      'componentsProp',
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));

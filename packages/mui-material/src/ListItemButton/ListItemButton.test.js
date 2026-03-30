@@ -18,7 +18,6 @@ describe('<ListItemButton />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
   }));
 
   it('should render with gutters classes', () => {

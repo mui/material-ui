@@ -19,7 +19,7 @@ describe('<StepButton />', () => {
       muiName: 'MuiStepButton',
       refInstanceof: window.HTMLButtonElement,
       render,
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }));
 
     it('should receive the correct aria attributes', () => {

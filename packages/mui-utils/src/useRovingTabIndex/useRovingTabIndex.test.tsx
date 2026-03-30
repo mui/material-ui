@@ -154,6 +154,71 @@ describe('useRovingTabIndex', () => {
     expect(screen.getByTestId('container').getAttribute('tabindex')).to.equal('-1');
   });
 
+  test('should not infinite loop when focusNext is called with no children', () => {
+    let focusNextResult: number | undefined;
+
+    function EmptyContainer() {
+      const { getContainerProps, focusNext: focusNextFn } = useRovingTabIndex({
+        orientation: 'horizontal',
+      });
+
+      focusNext = focusNextFn;
+
+      return <div data-testid="container" tabIndex={-1} {...getContainerProps()} />;
+    }
+
+    render(<EmptyContainer />);
+
+    act(() => {
+      focusNextResult = focusNext();
+    });
+
+    expect(focusNextResult).to.equal(-1);
+  });
+
+  test('should not infinite loop on arrow key navigation with no children', async () => {
+    function EmptyContainer() {
+      const { getContainerProps } = useRovingTabIndex({
+        orientation: 'horizontal',
+      });
+
+      return <div data-testid="container" tabIndex={-1} {...getContainerProps()} />;
+    }
+
+    const { user } = render(<EmptyContainer />);
+
+    const container = screen.getByTestId('container');
+    container.focus();
+
+    // These would hang if the bug is present
+    await user.keyboard('{ArrowRight}');
+    await user.keyboard('{ArrowLeft}');
+    await user.keyboard('{Home}');
+    await user.keyboard('{End}');
+
+    expect(container).toHaveFocus();
+  });
+
+  test('should not infinite loop on arrow key navigation with no children (vertical)', async () => {
+    function EmptyContainer() {
+      const { getContainerProps } = useRovingTabIndex({
+        orientation: 'vertical',
+      });
+
+      return <div data-testid="container" tabIndex={-1} {...getContainerProps()} />;
+    }
+
+    const { user } = render(<EmptyContainer />);
+
+    const container = screen.getByTestId('container');
+    container.focus();
+
+    await user.keyboard('{ArrowDown}');
+    await user.keyboard('{ArrowUp}');
+
+    expect(container).toHaveFocus();
+  });
+
   test('should make the controlled prop take precedence over internal state', async () => {
     const focusableIndex = 1;
 

@@ -72,13 +72,7 @@ describe('<SwipeableDrawer />', () => {
     classes: {},
     inheritComponent: Drawer,
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-      'componentsProp',
-    ],
+    skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
 
   it('should render a Drawer and a SwipeArea', () => {
