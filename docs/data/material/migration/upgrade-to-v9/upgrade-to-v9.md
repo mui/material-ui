@@ -284,7 +284,7 @@ Selecting a `MenuItem` will update the focus and `tabindex` as before.
 
 The `autoFocus` prop in `MenuList` does not set `tabindex="0"` on the `List` component anymore. It will always stay as `-1`.
 
-## Deprecated APIs removed
+## Breaking changes (deprecated APIs removed)
 
 APIs that were deprecated earlier have been removed in v9.
 
