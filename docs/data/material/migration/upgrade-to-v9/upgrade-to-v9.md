@@ -164,6 +164,10 @@ See the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/) fo
 
 `MuiGridLegacy` has also been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
 
+### List
+
+`ListItemIcon` uses theme spacing values for `min-width` instead of a hardcoded number.
+
 ### TablePagination numbers are formatted by default
 
 Pagination numbers in `TablePagination` are now formatted using `Intl.NumberFormat` according to the locale.
