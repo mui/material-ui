@@ -12,7 +12,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import { MuiLogotypeIcon, StackOverflowIcon } from '@mui/internal-core-docs/svgIcons';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import { Link } from '@mui/internal-core-docs/Link';
 
 interface AppFooterProps {

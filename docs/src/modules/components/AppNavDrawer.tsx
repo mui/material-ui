@@ -18,11 +18,14 @@ import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import { AppNavDrawerItem, LogoWithCopyMenu } from '@mui/internal-core-docs/AppLayout';
+import {
+  AppNavDrawerItem,
+  LogoWithCopyMenu,
+  MuiProductSelector,
+} from '@mui/internal-core-docs/AppLayout';
 import { pageToTitleI18n } from '@mui/internal-core-docs/helpers';
 import PageContext, { ProductVersion } from '@mui/internal-core-docs/PageContext';
 import { useTranslate } from '@mui/internal-core-docs/i18n';
-import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 import { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.

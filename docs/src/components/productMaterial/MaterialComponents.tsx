@@ -35,7 +35,7 @@ import {
 import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const DEMOS = ['Button', 'Text Field', 'Table', 'Alert', 'Tooltip'] as const;
 

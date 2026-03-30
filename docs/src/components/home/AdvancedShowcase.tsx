@@ -13,7 +13,7 @@ import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const columns: Array<GridColDef> = [
   {

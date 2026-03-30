@@ -26,7 +26,7 @@ import FlashCode from 'docs/src/components/animation/FlashCode';
 import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
 

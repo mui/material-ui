@@ -19,7 +19,7 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from '@mui/internal-core-docs/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import dayjs from 'dayjs';
 
 const startDate = dayjs();

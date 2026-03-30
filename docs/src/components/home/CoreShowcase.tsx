@@ -7,7 +7,7 @@ import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer'
 import { MoreInfoBox, MaterialVsCustomToggle } from '@mui/internal-core-docs/AppLayout';
 
 import FlashCode from 'docs/src/components/animation/FlashCode';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const lineMapping: Record<string, number | number[]> = {
   card: [0, 20],

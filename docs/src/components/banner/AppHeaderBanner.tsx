@@ -2,7 +2,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material/styles';
 import { Link } from '@mui/internal-core-docs/Link';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const linkStyleOverrides = (theme: Theme) => ({

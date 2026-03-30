@@ -6,9 +6,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import MenuList, { MenuListProps } from '@mui/material/MenuList';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
-import ROUTES from 'docs/src/route';
-import PageContext from '@mui/internal-core-docs/PageContext';
-import { MuiLogomarkIcon, BaseUiLogoIcon } from '@mui/internal-core-docs/svgIcons';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
@@ -16,6 +13,9 @@ import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
+import { ROUTES } from '../constants';
+import { MuiLogomarkIcon, BaseUiLogoIcon } from '../svgIcons';
+import PageContext from '../PageContext';
 
 const iconStyles = (theme: Theme) => ({
   fontSize: '.875rem',
@@ -195,7 +195,7 @@ const advancedProducts = [
   },
 ];
 
-const MuiProductSelector = React.forwardRef(function MuiProductSelector(
+export const MuiProductSelector = React.forwardRef(function MuiProductSelector(
   props: MenuListProps<'div'>,
   forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -260,5 +260,3 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
     </MenuList>
   );
 });
-
-export default MuiProductSelector;

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import { Link } from '@mui/internal-core-docs/Link';
 import { Portal } from '@mui/base/Portal';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
@@ -9,12 +8,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Slide from '@mui/material/Slide';
 import TextFieldsRoundedIcon from '@mui/icons-material/TextFieldsRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import { Link } from '../Link';
 import {
   type RootSvgProps,
   MuiLogomarkIcon,
   muiSvgLogoString,
   muiSvgWordmarkString,
-} from '@mui/internal-core-docs/svgIcons';
+} from '../svgIcons';
 
 interface LogoWithCopyMenuProps {
   logo?: React.ComponentType<RootSvgProps>;

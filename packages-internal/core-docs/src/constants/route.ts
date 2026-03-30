@@ -1,4 +1,4 @@
-const ROUTES = {
+export const ROUTES = {
   // Marketing pages
   productCore: '/core/',
   productMaterial: '/material-ui/',
@@ -62,5 +62,3 @@ const ROUTES = {
   privacyPolicy: 'https://mui.com/legal/privacy/',
   store: 'https://mui.com/store/',
 };
-
-export default ROUTES;

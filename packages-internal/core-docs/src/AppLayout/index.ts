@@ -10,5 +10,6 @@ export * from './LogoWithCopyMenu';
 export * from './MaterialVsCustomToggle';
 export * from './More';
 export * from './MoreInfoBox';
+export * from './MuiProductSelector';
 export * from './navIcons';
 export * from './NpmCopyButton';
