@@ -39,7 +39,15 @@ async function main() {
       '[id^="demo-"] a[href^="#outlined-buttons"]',
       '[id^="demo-"] a[href^="#foo"]',
     ],
-    htmlValidate: true,
+    htmlValidate: {
+      extends: ['mui:recommended'],
+      rules: {
+        // Prism.js outputs raw ">" in syntax-highlighted code blocks.
+        // https://github.com/PrismJS/prism/issues/2516
+        // https://gitlab.com/html-validate/html-validate/-/work_items/348
+        'no-raw-characters': 'off',
+      },
+    },
     ignores: [
       {
         // The links checker uses standard github slugger to check if the anchor exists. But the MUI docs use
