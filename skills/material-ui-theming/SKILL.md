@@ -9,7 +9,7 @@ metadata:
 
 # Material UI theming and design tokens
 
-Agent skill for **theme creation**, **design tokens**, **light/dark**, and **CSS theme variables**. Same layout as [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills): **SKILL.md** is the entry; **AGENTS.md** is the full guide.
+Agent skill for **theme creation**, **design tokens**, **light/dark**, and **CSS theme variables**. **SKILL.md** is the entry; **AGENTS.md** is the full guide.
 
 ## When to apply
 

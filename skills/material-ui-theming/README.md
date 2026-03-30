@@ -2,7 +2,7 @@
 
 **Theming** and **design tokens** for Material UI: `createTheme`, `ThemeProvider`, palette, typography, spacing, **`colorSchemes`**, **`cssVariables`** / **`theme.vars`**, and TypeScript customization.
 
-## Layout (Vercel-style)
+## Files in this folder
 
 | File | Purpose |
 |------|---------|
@@ -10,8 +10,6 @@
 | **SKILL.md** | Cursor skill entry (frontmatter + index) |
 | **metadata.json** | Version, abstract, references |
 | **reference.md** | TypeScript augmentation snippets |
-
-Same pattern as [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills).
 
 ## Cursor
 

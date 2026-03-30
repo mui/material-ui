@@ -9,7 +9,7 @@ metadata:
 
 # Material UI styling
 
-Agent skill for picking the correct styling layer in Material UI (narrowest scope first). Structured like [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills): **SKILL.md** is the entry + index; **AGENTS.md** is the full guide.
+Agent skill for picking the correct styling layer in Material UI (narrowest scope first). **SKILL.md** is the entry and index; **AGENTS.md** is the full guide.
 
 ## When to apply
 

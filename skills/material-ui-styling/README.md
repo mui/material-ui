@@ -2,7 +2,7 @@
 
 Material UI-specific guidance for **which styling mechanism to use** (`sx`, `styled()`, theme overrides, global CSS), aligned with the official docs in this monorepo.
 
-## Layout (Vercel-style)
+## Files in this folder
 
 | File | Purpose |
 |------|---------|
@@ -10,8 +10,6 @@ Material UI-specific guidance for **which styling mechanism to use** (`sx`, `sty
 | **SKILL.md** | Cursor skill entry: frontmatter + index + pointer to AGENTS.md |
 | **metadata.json** | Version, abstract, references |
 | **reference.md** | State classes and slot naming tables |
-
-This mirrors the structure used in [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) (`skills/<name>/AGENTS.md` + `SKILL.md` + `metadata.json`).
 
 ## Cursor
 

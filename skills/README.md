@@ -1,6 +1,6 @@
 # Material UI agent skills
 
-Packaged guidance for AI agents and humans, using the same **per-skill folder layout** as [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills):
+Packaged guidance for AI agents and humans. Each skill is a directory under **`skills/`** with this layout:
 
 ```text
 skills/
