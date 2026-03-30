@@ -255,7 +255,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-export const sxChip = (color: 'warning' | 'success' | 'grey' | 'primary'): SxProps<Theme> => [
+const sxChip = (color: 'warning' | 'success' | 'grey' | 'primary'): SxProps<Theme> => [
   (theme) => ({
     ml: 1,
     fontSize: theme.typography.pxToRem(10),
@@ -318,7 +318,7 @@ export interface AppNavDrawerItemProps {
   plan?: 'community' | 'pro' | 'premium';
 }
 
-export default function AppNavDrawerItem(props: AppNavDrawerItemProps) {
+export function AppNavDrawerItem(props: AppNavDrawerItemProps) {
   const {
     beta,
     children,

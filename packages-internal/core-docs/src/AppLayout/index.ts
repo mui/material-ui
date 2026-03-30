@@ -1,5 +1,6 @@
 export * from './AppContainer';
 export * from './AppLayoutHead';
+export * from './AppNavDrawerItem';
 export * from './ArrowButton';
 export * from './ComponentShowcaseCard';
 export * from './Frame';
