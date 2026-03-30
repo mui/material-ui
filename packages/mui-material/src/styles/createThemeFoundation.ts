@@ -274,7 +274,7 @@ export interface CssVarsPalette {
   Button: PaletteButton;
   Chip: PaletteChip;
   FilledInput: PaletteFilledInput;
-  Input: Partial<PaletteInput>;
+  Input: PaletteInput;
   LinearProgress: PaletteLinearProgress;
   Skeleton: PaletteSkeleton;
   Slider: PaletteSlider;
