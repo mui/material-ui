@@ -20,7 +20,7 @@ describe('<IconButton />', () => {
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiIconButton',
     testVariantProps: { edge: 'end', disabled: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render Icon children with right classes', () => {

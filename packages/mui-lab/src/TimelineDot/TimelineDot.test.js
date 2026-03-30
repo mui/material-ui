@@ -14,7 +14,7 @@ describe('<TimelineDot />', () => {
     muiName: 'MuiTimelineDot',
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { color: 'secondary', variant: 'outlined' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render with color inherit', () => {

@@ -21,7 +21,7 @@ describe('<StepLabel />', () => {
       label: { expectedClassName: classes.label },
       root: { expectedClassName: classes.root },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describe('label content', () => {

@@ -24,7 +24,6 @@ describe('<AccordionSummary />', () => {
     muiName: 'MuiAccordionSummary',
     testVariantProps: { disabled: true },
     testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
-    skip: ['componentProp', 'componentsProp'],
     slots: {
       root: {
         expectedClassName: classes.root,
