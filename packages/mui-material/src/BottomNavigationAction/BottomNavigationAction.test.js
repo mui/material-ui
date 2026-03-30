@@ -23,7 +23,7 @@ describe('<BottomNavigationAction />', () => {
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { showLabel: true },
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
     slots: {
       root: {
         expectedClassName: classes.root,

@@ -18,7 +18,7 @@ describe('<TableSortLabel />', () => {
     testVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'icon', slotClassName: classes.icon },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
     slots: {
       icon: {
         expectedClassName: classes.icon,

@@ -45,7 +45,6 @@ describe('<ButtonBase />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiButtonBase',
     testVariantProps: { disabled: true },
-    skip: ['componentsProp'],
   }));
 
   describe('root node', () => {

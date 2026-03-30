@@ -18,7 +18,7 @@ describe('<LinearProgress />', () => {
     testDeepOverrides: { slotName: 'bar', slotClassName: classes.bar },
     testVariantProps: { variant: 'determinate', value: 25 },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render indeterminate variant by default', () => {

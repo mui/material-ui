@@ -51,7 +51,6 @@ describe('<Button />', () => {
     testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text, and colorPrimary classes but no others', () => {

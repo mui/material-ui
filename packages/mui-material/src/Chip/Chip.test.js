@@ -31,7 +31,6 @@ describe('<Chip />', () => {
     testStatOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: ['componentsProp'],
     slots: {
       root: {
         expectedClassName: classes.root,

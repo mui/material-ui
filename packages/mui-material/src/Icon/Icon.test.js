@@ -13,7 +13,7 @@ describe('<Icon />', () => {
     muiName: 'MuiIcon',
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
-    skip: ['themeVariants', 'componentsProp'],
+    skip: ['themeVariants'],
   }));
 
   it('renders children by default', () => {

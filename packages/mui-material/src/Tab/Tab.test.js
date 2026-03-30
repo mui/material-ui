@@ -18,7 +18,7 @@ describe('<Tab />', () => {
     muiName: 'MuiTab',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should have a ripple', async () => {

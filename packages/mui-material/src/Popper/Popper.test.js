@@ -41,7 +41,6 @@ describe('<Popper />', () => {
     },
     skip: [
       'componentProp',
-      'componentsProp',
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',

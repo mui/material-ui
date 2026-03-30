@@ -18,7 +18,6 @@ describe('<MenuItem />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiMenuItem',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
   }));
 
   it('should render a focusable menuitem', () => {

@@ -82,7 +82,7 @@ describe('<Tooltip />', () => {
         },
         arrow: { expectedClassName: classes.arrow },
       },
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 

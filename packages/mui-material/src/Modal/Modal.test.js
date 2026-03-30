@@ -39,7 +39,6 @@ describe('<Modal />', () => {
       },
       skip: [
         'rootClass', // portal, can't determine the root
-        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
       ],

@@ -26,7 +26,7 @@ describe('<ListItemText />', () => {
         expectedClassName: classes.root,
       },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render with inset class', () => {
