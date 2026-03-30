@@ -22,7 +22,6 @@ describe('<ButtonGroup />', () => {
       testComponentPropWith: 'span',
       muiName: 'MuiButtonGroup',
       testVariantProps: { variant: 'contained' },
-      skip: ['componentsProp'],
     }),
   );
 

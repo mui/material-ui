@@ -15,7 +15,6 @@ describe('<DialogTitle />', () => {
     muiName: 'MuiDialogTitle',
     refInstanceof: window.HTMLHeadingElement,
     testVariantProps: { 'data-color': 'red' },
-    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render JSX children', () => {

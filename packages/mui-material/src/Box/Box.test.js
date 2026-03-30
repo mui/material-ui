@@ -13,14 +13,7 @@ describe('<Box />', () => {
   describeConformance(<Box />, () => ({
     render,
     inheritComponent: 'div',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'rootClass',
-      'themeVariants',
-      'themeStyleOverrides',
-      'themeDefaultProps',
-    ],
+    skip: ['rootClass', 'themeVariants', 'themeStyleOverrides', 'themeDefaultProps'],
     refInstanceof: window.HTMLDivElement,
   }));
 

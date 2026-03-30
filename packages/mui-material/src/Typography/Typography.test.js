@@ -14,7 +14,6 @@ describe('<Typography />', () => {
     muiName: 'MuiTypography',
     testVariantProps: { variant: 'dot' },
     testStateOverrides: { prop: 'variant', value: 'h2', styleKey: 'h2' },
-    skip: ['componentsProp'],
   }));
 
   it('should render the text', () => {

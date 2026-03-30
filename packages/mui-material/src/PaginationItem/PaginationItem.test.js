@@ -28,7 +28,6 @@ describe('<PaginationItem />', () => {
       next: {},
     },
     skip: [
-      'componentsProp',
       // Icon slots (first, last, previous, next) only render when `type` matches
       // (e.g. type="first" for the first slot). The conformance test renders
       // <PaginationItem /> which defaults to type="page", so icon slots are absent.

@@ -18,7 +18,6 @@ describe('<Fab />', () => {
     testVariantProps: { variant: 'extended' },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentsProp'],
   }));
 
   it('should render with the root class but no others', () => {

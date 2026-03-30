@@ -23,7 +23,6 @@ describe('<Input />', () => {
     },
     skip: [
       'componentProp',
-      'componentsProp',
       'slotPropsCallback', // not supported yet
       'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],

@@ -11,7 +11,7 @@ describe('<CardContent />', () => {
     render,
     muiName: 'MuiCardContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
     testComponentPropWith: 'span',
   }));
 });
