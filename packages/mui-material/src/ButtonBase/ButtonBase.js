@@ -491,9 +491,10 @@ ButtonBase.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
-   * @ignore
+   * The [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type) attribute applied to the `button` element.
+   * @default 'button'
    */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
+  type: PropTypes.string,
 };
 
 export default ButtonBase;

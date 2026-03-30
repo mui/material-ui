@@ -723,7 +723,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
+  type: PropTypes.string,
   /**
    * The variant to use.
    * @default 'text'

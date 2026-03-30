@@ -90,6 +90,11 @@ export interface ButtonBaseOwnProps {
    * A ref that points to the `TouchRipple` element.
    */
   touchRippleRef?: React.Ref<TouchRippleActions> | undefined;
+  /**
+   * The [type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type) attribute applied to the `button` element.
+   * @default 'button'
+   */
+  type?: string | undefined;
 }
 
 export interface ButtonBaseTypeMap<
