@@ -166,7 +166,7 @@ See the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/) fo
 
 ### List
 
-`ListItemIcon` uses theme spacing values for `min-width` instead of a hardcoded number.
+`ListItemIcon` default min-width changes to `36px` (was `56px`) to be consistent with the menu item and uses `theme.spacing` instead of a hardcoded number.
 
 ### TablePagination numbers are formatted by default
 
