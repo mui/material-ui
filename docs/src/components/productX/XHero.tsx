@@ -240,6 +240,9 @@ export default function XHero() {
                       '& .MuiDataGrid-pinnedRows': {
                         backgroundColor: alpha(theme.palette.primaryDark[800], 1),
                         backgroundImage: 'none',
+                        '& .MuiDataGrid-footerCell': {
+                          color: 'primary.light',
+                        },
                       },
                     },
                   }),
