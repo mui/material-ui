@@ -409,6 +409,11 @@ function createRender(context) {
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
     };
+    renderer.tablecell = function tablecell({ text, header, align }) {
+      const tag = header ? 'th' : 'td';
+      const style = align ? ` style="text-align:${align}"` : '';
+      return `<${tag}${style}>${text}</${tag}>\n`;
+    };
     renderer.code = ({ lang, text, escaped }) => {
       // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
       const langString = (lang || '').match(/\S*/)[0];
