@@ -3,7 +3,7 @@ title: 'MUI X v9 Chat (alpha)'
 description: 'MUI X Chat in v9 (alpha): ChatBox, adapters and streaming, and how it fits AI-native workflows across the stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---

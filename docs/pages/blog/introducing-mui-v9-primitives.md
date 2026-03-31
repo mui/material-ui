@@ -3,7 +3,7 @@ title: 'Material UI v9 primitives'
 description: 'Material UI v9 primitives for developers: theming, accessibility, keyboard navigation, performance, and new Base UI-powered additions.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['Material UI', 'Product']
+tags: ['Material UI', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---

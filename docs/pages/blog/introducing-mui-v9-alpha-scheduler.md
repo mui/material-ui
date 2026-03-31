@@ -3,7 +3,7 @@ title: 'MUI X v9 Scheduler (alpha)'
 description: 'An early look at Scheduler in MUI X v9: event and resource planning, calendar and timeline views, Community vs Premium, and how it fits the advanced stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---

@@ -3,7 +3,7 @@ title: 'Introducing Material UI and MUI X v9'
 description: 'Introducing Material UI + MUI X v9: unified major version, new primitives, advanced components, and AI-native workflows.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['Material UI', 'MUI X', 'Product']
+tags: ['Material UI', 'MUI X', 'Product']
 manualCard: true
 ---
 

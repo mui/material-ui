@@ -3,7 +3,7 @@ title: 'MUI X v9 Charts'
 description: 'MUI X Charts v9, keyboard-first by default, composition and codemods, Pro and Premium updates (heatmap, Sankey, export, WebGL).'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---
