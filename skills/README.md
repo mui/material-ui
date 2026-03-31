@@ -11,7 +11,13 @@ skills/
 │   ├── README.md
 │   ├── metadata.json
 │   └── reference.md
-└── material-ui-theming/         # createTheme, tokens, dark mode, CSS variables
+├── material-ui-theming/         # createTheme, tokens, dark mode, CSS variables
+│   ├── AGENTS.md
+│   ├── SKILL.md
+│   ├── README.md
+│   ├── metadata.json
+│   └── reference.md
+└── material-ui-nextjs/          # Next.js App/Pages Router, cache, fonts, Link
     ├── AGENTS.md
     ├── SKILL.md
     ├── README.md
@@ -39,3 +45,4 @@ For links to a **section** of a docs page (URL includes `#`), use **`[Page title
 |--------|--------|
 | [material-ui-styling](./material-ui-styling/) | Choosing styling scope: `sx`, `styled()`, theme overrides, global CSS; slots and state |
 | [material-ui-theming](./material-ui-theming/) | Theme object, design tokens, `colorSchemes`, `cssVariables` / `theme.vars`, composition, TS augmentation |
+| [material-ui-nextjs](./material-ui-nextjs/) | `@mui/material-nextjs`, App/Pages Router, Emotion cache, `next/font`, CSS layers, Next `Link` + MUI |
