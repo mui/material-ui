@@ -1,9 +1,9 @@
 ---
-title: MUI X v9 Data Grid
-description: Data Grid in MUI X v9: stronger dynamic data and lazy loading, stable Charts in the grid, and AI Assistant with Console and bring your own key.
+title: 'MUI X v9 Data Grid'
+description: 'Data Grid in MUI X v9: stronger dynamic data and lazy loading, stable Charts in the grid, and AI Assistant with Console and bring your own key.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---

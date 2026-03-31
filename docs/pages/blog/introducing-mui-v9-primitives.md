@@ -1,17 +1,17 @@
 ---
-title: Material UI v9 primitives
-description: Material UI v9 primitives for developers: theming, accessibility, keyboard navigation, performance, and new Base UI–powered additions.
+title: 'Material UI v9 primitives'
+description: 'Material UI v9 primitives for developers: theming, accessibility, keyboard navigation, performance, and new Base UI-powered additions.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['Material UI', 'Product']
+tags: ['Material UI', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---
 
-Material UI v9 is here.
+Material UI v9 is here.
 This release focuses on what developers feel immediately: better accessibility defaults, more reliable keyboard navigation, and theming primitives that make CSS integration smoother.
 
-For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
 
 ## Table of contents
 
@@ -33,7 +33,7 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
 
 ## NumberField
 
-Base UI adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
+Base UI adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
   <video
@@ -51,14 +51,14 @@ Base UI adoption is expanding across Material UI: for now through component reci
       type="video/quicktime"
     />
   </video>
-  <figcaption>NumberField, implemented on Base UI primitives.</figcaption>
+  <figcaption>NumberField, implemented on Base UI primitives.</figcaption>
 </figure>
 
 See the [NumberField](/material-ui/react-number-field/) documentation for API detail and examples.
 
 ## Menubar and submenus
 
-`Menubar` is the other new Base UI–backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in Base UI. On this stack we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
+`Menubar` is the other new Base UI-backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in Base UI. On this stack we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
   <video
@@ -79,7 +79,7 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
   <figcaption>Menubar with submenus and keyboard-friendly navigation.</figcaption>
 </figure>
 
-Together, NumberField and Menubar show where we're headed in v9: wider Base UI adoption in Material UI, and interactions, including keyboard support, that stay clear and consistent even in dense UIs.
+Together, NumberField and Menubar show where we're headed in v9: wider Base UI adoption in Material UI, and interactions, including keyboard support, that stay clear and consistent even in dense UIs.
 
 See the [Menubar](/material-ui/react-menubar/) documentation for API detail and examples.
 
@@ -87,7 +87,7 @@ See the [Menubar](/material-ui/react-menubar/) documentation for API detail and 
 
 ### Derived colors with `color-mix()`
 
-Theme in v9 extends the CSS variables system to generate `color-mix()` values on top of the default Material UI theme variables.
+Theme in v9 extends the CSS variables system to generate `color-mix()` values on top of the default Material UI theme variables.
 This gives you:
 
 - More precise control over derived colors.

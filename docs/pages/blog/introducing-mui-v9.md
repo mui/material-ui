@@ -1,9 +1,9 @@
 ---
-title: Introducing Material UI and MUI X v9
-description: Introducing Material UI + MUI X v9: unified major version, new primitives, advanced components, and AI-native workflows.
+title: 'Introducing Material UI and MUI X v9'
+description: 'Introducing Material UI + MUI X v9: unified major version, new primitives, advanced components, and AI-native workflows.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['Material UI', 'MUI X', 'Product']
+tags: ['Material UI', 'MUI X', 'Product']
 manualCard: true
 ---
 
@@ -82,7 +82,7 @@ A single major version number makes it easier to:
     loading="lazy"
     style="border: 0; width: 100%; height: auto;"
   />
-  <figcaption>Material UI and MUI X v9 ecosystem overview.</figcaption>
+  <figcaption>Material UI and MUI X v9 ecosystem overview.</figcaption>
 </figure>
 
 ## Components highlights
@@ -115,7 +115,7 @@ Over time, Console will also surface usage‑aware guidance, based on how your o
 
 ## Renaming MUI Chat to MUI Recipes
 
-[MUI Chat](https://chat.mui.com) is our generative UI tool in the same vein as products like v0 and Lovable: you describe what you want, and we help you land working Material UI and MUI X usage faster than writing from a blank file.
+MUI Chat is our generative UI tool in the same vein as products like v0 and Lovable: you describe what you want, and we help you land working Material UI and MUI X usage faster than writing from a blank file.
 
 In practice we use it mostly to deliver custom recipes and customization grounded in what you already see in the docs: variations on our examples, tuned layouts, and branded panels that stay aligned with the same APIs and patterns we document.
 
@@ -133,7 +133,7 @@ Advanced components keep getting more complete surfaces: workflow‑driven data 
 
 - Data Grid continues to evolve advanced workflow surfaces, including AI workflows where they enhance the user's job.
 - NumberField and Menubar will ship as components in the npm package, not only as documentation recipes you copy from the docs. We'll keep growing the Material UI portfolio as Base UI releases new primitives.
-- Scheduler will keep iterating on Event Calendar and Timeline so teams can move from classic appointment views to dense resource planning in one package, and we will keep shipping additional Base UI-powered components as they are ready.
+- Scheduler will keep iterating on Event Calendar and Timeline so teams can move from classic appointment views to dense resource planning in one package, and we will keep shipping additional Base UI-powered components as they are ready.
 
 These updates are designed for full product workflows, not just side‑by‑side experiments.
 They help developers ship UIs that stay transparent and controllable, with state that users can understand and that apps can integrate with cleanly.

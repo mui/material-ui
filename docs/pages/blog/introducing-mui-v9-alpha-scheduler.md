@@ -1,9 +1,9 @@
 ---
-title: MUI X v9 Scheduler (alpha)
-description: An early look at Scheduler in MUI X v9: event and resource planning, calendar and timeline views, Community vs Premium, and how it fits the advanced stack.
+title: 'MUI X v9 Scheduler (alpha)'
+description: 'An early look at Scheduler in MUI X v9: event and resource planning, calendar and timeline views, Community vs Premium, and how it fits the advanced stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---
@@ -29,7 +29,7 @@ For the broader v9 context, read the [Material UI and MUI X v9 overview](/blog
 
 ## Quick start
 
-Install the package and render the Scheduler in minutes: start from [MUI X Scheduler](/x/react-scheduler/) and follow [Quickstart](/x/react-scheduler/quickstart/) for the first working calendar.
+Install the package and render the Scheduler in minutes: start from [MUI X Scheduler](/x/react-scheduler/) and follow [Quickstart](/x/react-scheduler/quickstart/) for the first working calendar.
 Then layer your event model and resources on top, and switch to Timeline when your use case needs dense resource planning.
 
 ## What alpha means
@@ -50,13 +50,13 @@ Keeping Scheduler in alpha right now is intentional, because it gives us the roo
 <figure>
   <img
     src="/static/blog/introducing-mui-v9/introducing-mui-v9-alpha-scheduler/stub_scheduler-showcase.png"
-    alt="Scheduler event planning in MUI X."
+    alt="Scheduler event planning in MUI X."
     width="1600"
     height="900"
     loading="lazy"
     style="border: 0; width: 100%; height: auto;"
   />
-  <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
+  <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
 </figure>
 
 At the center is an event model with start and end times, titles and metadata, and links back to your domain (tickets, customers, orders, and so on).
@@ -91,7 +91,7 @@ This is the best default when your users already understand calendar metaphors a
       type="video/quicktime"
     />
   </video>
-  <figcaption>Event Calendar in MUI X Scheduler.</figcaption>
+  <figcaption>Event Calendar in MUI X Scheduler.</figcaption>
 </figure>
 
 ## Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
@@ -117,7 +117,7 @@ The point is one underlying schedule that can be re-visualized without rewriting
       type="video/quicktime"
     />
   </video>
-  <figcaption>Timeline in MUI X Scheduler (Premium).</figcaption>
+  <figcaption>Timeline in MUI X Scheduler (Premium).</figcaption>
 </figure>
 
 ## Community and Premium

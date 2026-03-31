@@ -1,9 +1,9 @@
 ---
-title: MUI X v9 Charts
-description: MUI X Charts v9, keyboard-first by default, composition and codemods, Pro and Premium updates (heatmap, Sankey, export, WebGL).
+title: 'MUI X v9 Charts'
+description: 'MUI X Charts v9, keyboard-first by default, composition and codemods, Pro and Premium updates (heatmap, Sankey, export, WebGL).'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---
@@ -47,7 +47,7 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
       type="video/quicktime"
     />
   </video>
-  <figcaption>Candlestick preview in MUI X Charts.</figcaption>
+  <figcaption>Candlestick preview in MUI X Charts.</figcaption>
 </figure>
 
 ## Range bar charts [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
@@ -72,7 +72,7 @@ They sit on the Premium side of the line‑up and follow the same `Charts*` comp
       type="video/quicktime"
     />
   </video>
-  <figcaption>Range bar charts preview in MUI X Charts.</figcaption>
+  <figcaption>Range bar charts preview in MUI X Charts.</figcaption>
 </figure>
 
 ## Interaction and accessibility

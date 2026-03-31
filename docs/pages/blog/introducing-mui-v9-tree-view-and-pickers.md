@@ -1,9 +1,9 @@
 ---
-title: MUI X v9 Tree View and Date and Time Pickers
-description: Tree View and Date and Time Pickers in MUI X v9: virtualization-by-default trees, picker field and focus ergonomics, locales, and migration-oriented cleanups.
+title: 'MUI X v9 Tree View and Date and Time Pickers'
+description: 'Tree View and Date and Time Pickers in MUI X v9: virtualization-by-default trees, picker field and focus ergonomics, locales, and migration-oriented cleanups.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---

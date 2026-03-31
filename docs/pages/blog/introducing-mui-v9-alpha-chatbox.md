@@ -1,15 +1,15 @@
 ---
-title: MUI X v9 Chat (alpha)
-description: MUI X Chat in v9 (alpha): ChatBox, adapters and streaming, and how it fits AI-native workflows across the stack.
+title: 'MUI X v9 Chat (alpha)'
+description: 'MUI X Chat in v9 (alpha): ChatBox, adapters and streaming, and how it fits AI-native workflows across the stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
-tags: ['MUI X', 'Product']
+tags: ['MUI X', 'Product']
 manualCard: false
 hideFromHomeList: true
 ---
 
 In v9 we're laying the groundwork for AI-native conversational experiences in MUI X.
-MUI X Chat (documented as [MUI X Chat](/x/react-chat/)) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
+MUI X Chat (documented as [MUI X Chat](/x/react-chat/)) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
 
 This post is an orientation, not an API reference: how the layers stack, why adapters and streams sit at the center, and how early work connects to Data Grid, Scheduler, and the v9 overview.
 For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
@@ -27,7 +27,7 @@ For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introduci
 
 ## Quick start
 
-Install the package and render your first chat surface in minutes: start from [MUI X Chat](/x/react-chat/) and follow Quickstart for the first working `ChatBox`.
+Install the package and render your first chat surface in minutes: start from [MUI X Chat](/x/react-chat/) and follow Quickstart for the first working `ChatBox`.
 Then wire your adapter and streaming path so users see tokens and tool output progressively as responses arrive.
 
 ## What alpha means
@@ -62,7 +62,7 @@ Keeping Chat in alpha is intentional, because this is the phase where we can sti
       type="video/quicktime"
     />
   </video>
-  <figcaption>ChatBox showcase in MUI X v9 alpha.</figcaption>
+  <figcaption>ChatBox showcase in MUI X v9 alpha.</figcaption>
 </figure>
 
 ## State, adapters, and streaming
