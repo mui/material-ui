@@ -23,18 +23,6 @@ For the full v9 narrative, see the [Material UI and MUI X v9 overview](/blog/i
 
 ## Tree View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-<figure>
-  <img
-    src="/static/blog/introducing-mui-v9/introducing-mui-v9-tree-view-and-pickers/stub_tree-view-highlights.png"
-    alt="Tree View v9 highlights."
-    width="1600"
-    height="900"
-    loading="lazy"
-    style="border: 0; width: 100%; height: auto;"
-  />
-  <figcaption>Tree View v9 highlights.</figcaption>
-</figure>
-
 Rich Tree View Pro in v9 ships virtualization on by default, with an explicit opt‑out when you need a non‑virtualized layout.
 That shift comes with practical defaults (for example row height, set `itemHeight` when content differs) and a flatter events surface on Pro so focus and performance stay easier to reason about on big trees.
 
@@ -45,18 +33,6 @@ If you maintain custom themes or imperative code against trees, budget time to r
 Full API and migration notes live in the [Tree View](/x/react-tree-view/) documentation.
 
 ## Date and Time Pickers
-
-<figure>
-  <img
-    src="/static/blog/introducing-mui-v9/introducing-mui-v9-tree-view-and-pickers/stub_date-pickers-highlights.png"
-    alt="Date and Time Pickers v9 highlights."
-    width="1600"
-    height="900"
-    loading="lazy"
-    style="border: 0; width: 100%; height: auto;"
-  />
-  <figcaption>Date and Time Pickers v9 highlights.</figcaption>
-</figure>
 
 Pickers in v9 continue the keyboard‑first calendar work: move through day, month, and year without treating pointer interaction as mandatory.
 `fieldRef` stabilizes with `clearValue`, which matters in long forms, filters, and anywhere "reset this field" must be reliable.

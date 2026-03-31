@@ -16,25 +16,33 @@ For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introduci
 
 ## Table of contents
 
-- [Early but usable](#early-but-usable)
 - [Quick start](#quick-start)
+- [What alpha means](#what-alpha-means)
+- [When to expect the stable](#when-to-expect-the-stable)
 - [Chat showcase](#chat-showcase)
 - [State, adapters, and streaming](#state-adapters-and-streaming)
 - [Message parts beyond plain text](#message-parts-beyond-plain-text)
 - [Roadmap](#roadmap)
 - [Where to go next](#where-to-go-next)
 
-## Early but usable
+## Quick start
+
+Install the package and render your first chat surface in minutes: start from [MUI X Chat](/x/react-chat/) and follow Quickstart for the first working `ChatBox`.
+Then wire your adapter and streaming path so users see tokens and tool output progressively as responses arrive.
+
+## What alpha means
 
 MUI X Chat is deliberately early: install from the docs, follow Quickstart and examples, and expect hooks and slot props to evolve while we harden contracts.
 The goal is a foundation you can theme, swap providers on, and extend, not a frozen UI kit on day one.
 
 If you're experimenting with tools, agents, or assistant UX beside your product surface, this is the layer where we want feedback and real integrations.
 
-## Quick start
+## When to expect the stable
 
-Install and run your first chat surface from [MUI X Chat](/x/react-chat/) and its Quickstart.
-The fastest path is simple: mount `ChatBox`, wire an adapter, and return a streaming response so users see tokens and tool output progressively.
+We're targeting a stable Chat release in early June, based on the feedback and adoption patterns we see during alpha.
+That target is expectation-setting, not a quality trade-off: we ship stable only when the product is ready.
+
+Keeping Chat in alpha is intentional, because this is the phase where we can still make breaking changes before the next major while the API surface is being stress-tested.
 
 ## Chat showcase
 

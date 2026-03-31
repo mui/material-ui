@@ -10,22 +10,27 @@ hideFromHomeList: true
 
 The Scheduler is a new advanced component in MUI X aimed at time‑ and resource‑centric applications: not just a decorative calendar, but events bound to people, rooms, equipment, and projects, with interactions that match how real products work.
 
-It is alpha / not yet a stable published product: useful for prototypes and roadmap planning, but APIs may change until the stable, and we're hoping to get your feedback so we can move through this phase quickly.
+It is first shipped as alpha: useful for prototypes and roadmap planning, but APIs may change until the stable based on your feedback, and we're hoping to get your feedback so we can move through this phase quickly.
 
 This post explains what we're building, how Community and Premium differ, and where it sits next to Data Grid, Charts, and Chat.
 For the broader v9 context, read the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
 
 ## Table of contents
 
-- [What alpha means](#what-alpha-means)
 - [Quick start](#quick-start)
+- [What alpha means](#what-alpha-means)
+- [When to expect the stable](#when-to-expect-the-stable)
 - [What you can build](#what-you-can-build)
 - [Event Calendar](#event-calendar)
 - [Timeline](#timeline) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Community and Premium](#community-and-premium)
-- [Docs and feedback](#docs-and-feedback)
 - [Fit with the rest of MUI X](#fit-with-the-rest-of-mui-x)
 - [Where to go next](#where-to-go-next)
+
+## Quick start
+
+Install the package and render the Scheduler in minutes: start from [MUI X Scheduler](/x/react-scheduler/) and follow [Quickstart](/x/react-scheduler/quickstart/) for the first working calendar.
+Then layer your event model and resources on top, and switch to Timeline when your use case needs dense resource planning.
 
 ## What alpha means
 
@@ -33,10 +38,12 @@ We expect the same arc as past advanced components: alpha, then beta, then stabl
 Today that means you should prototype and send feedback, not assume frozen imports or unchanged slot APIs.
 If you've shipped on Data Grid or Charts through early majors, the expectations will feel familiar.
 
-## Quick start
+## When to expect the stable
 
-Install the package and render the Scheduler in minutes: start from [MUI X Scheduler](/x/react-scheduler/) and follow [Quickstart](/x/react-scheduler/quickstart/) for the first working calendar.
-Then layer your event model and resources on top, and switch to Timeline when your use case needs dense resource planning.
+We're targeting a stable Scheduler release in early June, based on the feedback and usage signals we collect during alpha.
+The date is an expectation, not a hard promise: we ship when quality is there.
+
+Keeping Scheduler in alpha right now is intentional, because it gives us the room to make necessary breaking changes before the next major, while APIs are still being validated in real projects.
 
 ## What you can build
 
@@ -115,20 +122,13 @@ The point is one underlying schedule that can be re-visualized without rewriting
 
 ## Community and Premium
 
-As with other MUI X products, Scheduler ships with Community and commercial tiers (see [MUI X Scheduler](/x/react-scheduler/)).
+As with other MUI X products, Scheduler ships with Community and commercial tiers (see [MUI X pricing](/pricing/)).
 
 Community (MIT) targets the core interactive calendar: resource‑aware layouts, multiple views, drag to move and resize, and a fast path to a credible scheduling UI without hand‑rolling hit targets and DnD.
 
 Premium (commercial) adds what enterprises usually need next: recurrence, lazy loading, virtualization for huge grids of events, and richer timeline experiences for dense schedules.
 
 Most teams can prove UX on Community and move up when recurrence or massive event counts demand it.
-
-## Docs and feedback
-
-We're lining up quickstart, installation, and deeper guides the same way we've onboarded other advanced components: start with a minimal working schedule, then layer customization.
-Start from the [Scheduler overview](/x/react-scheduler/) and [Quickstart](/x/react-scheduler/quickstart/) pages.
-
-If something is missing or confusing in the alpha docs, treat that as signal; we iterate quickly while the API contracts settle.
 
 ## Fit with the rest of MUI X
 

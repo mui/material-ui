@@ -24,18 +24,6 @@ For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui
 - [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
-<figure>
-  <img
-    src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_datagrid-overview.png"
-    alt="Data Grid v9 highlights."
-    width="1600"
-    height="900"
-    loading="lazy"
-    style="border: 0; width: 100%; height: auto;"
-  />
-  <figcaption>Data Grid v9 highlights.</figcaption>
-</figure>
-
 ## Charts inside the grid
 
 Charts inside the grid is stable in v9: you can ship dashboards that mix tables and visuals without treating the integration as experimental.

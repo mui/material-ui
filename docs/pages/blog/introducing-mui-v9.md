@@ -73,7 +73,6 @@ A single major version number makes it easier to:
 - Communicate compatibility, for example, "MUI X v9 is designed to pair with Material UI v9".
 - Stage cross‑cutting improvements, such as accessibility and keyboard navigation upgrades, across both layers at once.
 
-
 <figure>
   <img
     src="/static/blog/introducing-mui-v9/stub_v9-ecosystem-overview.png"

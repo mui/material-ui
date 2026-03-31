@@ -25,18 +25,6 @@ For every rename and fix, use the [MUI X releases](https://github.com/mui/mui-x
 - [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
-<figure>
-  <img
-    src="/static/blog/introducing-mui-v9/introducing-mui-v9-charts/stub_charts-overview.png"
-    alt="Charts v9 overview."
-    width="1600"
-    height="900"
-    loading="lazy"
-    style="border: 0; width: 100%; height: auto;"
-  />
-  <figcaption>Charts v9 overview.</figcaption>
-</figure>
-
 ## Candlestick [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 [Candlestick charts](/x/react-charts/candlestick/) visualize OHLC (open, high, low, close) series over time, the familiar shape for equities, FX, and other interval‑based price data.
