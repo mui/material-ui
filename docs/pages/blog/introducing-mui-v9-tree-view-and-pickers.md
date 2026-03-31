@@ -17,15 +17,25 @@ For the full v9 narrative, see the [Material UI and MUI X v9 overview](/blog/i
 
 ## Table of contents
 
-- [Tree View](#tree-view)
+- [Tree View](#tree-view) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Date and Time Pickers](#date-and-time-pickers)
 - [Where to go next](#where-to-go-next)
 
-## Tree View
+## Tree View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-<!-- feature-media:img Tree View highlights -->
+<figure>
+  <img
+    src="/static/blog/introducing-mui-v9/introducing-mui-v9-tree-view-and-pickers/stub_tree-view-highlights.png"
+    alt="Tree View v9 highlights."
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
+  <figcaption>Tree View v9 highlights.</figcaption>
+</figure>
 
-Rich Tree View Pro in v9 pushes virtualization on by default, with an explicit opt‑out when you need a non‑virtualized layout.
+Rich Tree View Pro in v9 ships virtualization on by default, with an explicit opt‑out when you need a non‑virtualized layout.
 That shift comes with practical defaults (for example row height, set `itemHeight` when content differs) and a flatter events surface on Pro so focus and performance stay easier to reason about on big trees.
 
 API and styling hygiene matter too: older model and ref hooks are replaced by the richer variants (`useRichTreeViewApiRef`, `useSimpleTreeViewApiRef`, `useRichTreeViewProApiRef`), `TreeViewBaseItem` is removed in favor of documented model shapes, and state tokens on `treeItemClasses` that encoded expanded/selected styling are dropped in favor of `data-*` attributes you can target in CSS.
@@ -36,7 +46,17 @@ Full API and migration notes live in the [Tree View](/x/react-tree-view/) docume
 
 ## Date and Time Pickers
 
-<!-- feature-media:img Date Pickers highlights -->
+<figure>
+  <img
+    src="/static/blog/introducing-mui-v9/introducing-mui-v9-tree-view-and-pickers/stub_date-pickers-highlights.png"
+    alt="Date and Time Pickers v9 highlights."
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
+  <figcaption>Date and Time Pickers v9 highlights.</figcaption>
+</figure>
 
 Pickers in v9 continue the keyboard‑first calendar work: move through day, month, and year without treating pointer interaction as mandatory.
 `fieldRef` stabilizes with `clearValue`, which matters in long forms, filters, and anywhere “reset this field” must be reliable.

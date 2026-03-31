@@ -17,27 +17,75 @@ For every rename and fix, use the [MUI X releases](https://github.com/mui/mui-x
 
 ## Table of contents
 
-- [Candlestick](#candlestick)
-- [Range bar charts](#range-bar-charts)
+- [Candlestick](#candlestick) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Range bar charts](#range-bar-charts) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Interaction and accessibility](#interaction-and-accessibility)
 - [Composition, naming, and breaking cleanup](#composition-naming-and-breaking-cleanup)
 - [What’s next](#whats-next)
 - [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
-<!-- feature-media:img Charts -->
+<figure>
+  <img
+    src="/static/blog/introducing-mui-v9/introducing-mui-v9-charts/stub_charts-overview.png"
+    alt="Charts v9 overview."
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
+  <figcaption>Charts v9 overview.</figcaption>
+</figure>
 
-## Candlestick
+## Candlestick [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 [Candlestick charts](/x/react-charts/candlestick/) visualize OHLC (open, high, low, close) series over time, the familiar shape for equities, FX, and other interval‑based price data.
 
 The feature is still in preview: visuals, APIs, and defaults may move in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
 
-## Range bar charts
+<figure>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    width="1600"
+    height="900"
+    controls
+    style="border: 0; width: 100%; max-width: 800px; height: auto"
+  >
+    <source
+      src="/static/blog/introducing-mui-v9/introducing-mui-v9-charts/stub_ghost_cansdlestick.mov"
+      type="video/quicktime"
+    />
+  </video>
+  <figcaption>Candlestick preview in MUI X Charts.</figcaption>
+</figure>
+
+## Range bar charts [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 [Range bar charts](/x/react-charts/range-bar/) show the span between a minimum and a maximum for each category: weather bands, phase lengths on a roadmap, SLA windows, or any “from–to” reading where a single stacked bar does not tell the whole story.
 
 They sit on the Premium side of the line‑up and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
+
+<figure>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    width="1600"
+    height="900"
+    controls
+    style="border: 0; width: 100%; max-width: 800px; height: auto"
+  >
+    <source
+      src="/static/blog/introducing-mui-v9/introducing-mui-v9-charts/stub_ghost_rangebar.mov"
+      type="video/quicktime"
+    />
+  </video>
+  <figcaption>Range bar charts preview in MUI X Charts.</figcaption>
+</figure>
 
 ## Interaction and accessibility
 
@@ -59,12 +107,11 @@ For composition patterns and layering, see [Charts composition](/x/react-charts/
 
 ## What’s next
 
-On the Pro plan, expect continued polish on heatmap, Sankey, exports, brush interactivity (finer pointer and modifier‑key behavior), and navigation for funnel/heatmap/sankey.
-Premium keeps pushing WebGL‑backed chart types where you need to render very large point counts without sacrificing responsiveness.
+On the commercial plan, expect continued polish on candlestick and other advanced charts. We'll keep pushing to deliver WebGL‑backed chart types where you need to render very large point counts without sacrificing responsiveness.
 
 We also want Charts to ride the same Base UI wave as Material UI: clearer composition, slots you can lean on for serious layout changes, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
 
-Plans, licensing, and the full component list stay in the [Charts](/x/react-charts/) documentation.
+Follow all updates in the [Charts](/x/react-charts/) documentation.
 
 ## Upgrading from v8
 

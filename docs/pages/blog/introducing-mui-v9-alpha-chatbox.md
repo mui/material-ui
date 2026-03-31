@@ -1,6 +1,6 @@
 ---
 title: MUI X v9 Chat (alpha)
-description: MUI X Chat in v9 (alpha): headless, unstyled, and themed packages, adapters and streaming, and how it fits AI-native workflows across the stack.
+description: MUI X Chat in v9 (alpha): ChatBox, adapters and streaming, and how it fits AI-native workflows across the stack.
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
@@ -9,7 +9,7 @@ hideFromHomeList: true
 ---
 
 In v9 we’re laying the groundwork for AI‑native conversational experiences in MUI X.
-The `@mui/x-chat` family (documented as [MUI X Chat](/x/react-chat/)) starts from headless hooks and state, adds structural unstyled primitives, and tops out in a Material UI‑styled `ChatBox` that picks up `palette`, typography, spacing, and shape from your theme.
+MUI X Chat (documented as [MUI X Chat](/x/react-chat/)) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
 
 This post is an orientation, not an API reference: how the layers stack, why adapters and streams sit at the center, and how early work connects to Data Grid, Scheduler, and the v9 overview.
 For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
@@ -17,10 +17,11 @@ For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introduci
 ## Table of contents
 
 - [Early but usable](#early-but-usable)
-- [Package layers](#package-layers)
+- [Quick start](#quick-start)
+- [Chat showcase](#chat-showcase)
 - [State, adapters, and streaming](#state-adapters-and-streaming)
 - [Message parts beyond plain text](#message-parts-beyond-plain-text)
-- [Roadmap sketch](#roadmap-sketch)
+- [Roadmap](#roadmap)
 - [Where to go next](#where-to-go-next)
 
 ## Early but usable
@@ -30,19 +31,31 @@ The goal is a foundation you can theme, swap providers on, and extend, not a fro
 
 If you’re experimenting with tools, agents, or assistant UX beside your product surface, this is the layer where we want feedback and real integrations.
 
-## Package layers
+## Quick start
 
-<!-- feature-media:img Chatbox layers -->
+Install and run your first chat surface from [MUI X Chat](/x/react-chat/) and its Quickstart.
+The fastest path is simple: mount `ChatBox`, wire an adapter, and return a streaming response so users see tokens and tool output progressively.
 
-Dependencies flow downhill: `@mui/x-chat` (themed) builds on `@mui/x-chat/unstyled` (slots and DOM structure, no Material `styled()` output), which builds on `@mui/x-chat/headless` (store, streaming, adapters, hooks).
+## Chat showcase
 
-Headless is for teams that already own layout and styling.
-Unstyled fits Tailwind and non‑Material systems.
-Themed `@mui/x-chat` is the fastest “drop in `ChatBox`, wire an adapter” path, including examples where `sendMessage` returns a streaming body such as `ReadableStream<ChatMessageChunk>`.
-
-That mirrors how we think about Base UI vs themed Material UI elsewhere, tuned for long conversations and tool‑heavy flows.
-
-Installation, `ChatBox`, examples, headless and unstyled guides, customization, and API reference are on [MUI X Chat](/x/react-chat/).
+<figure>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    width="1600"
+    height="900"
+    controls
+    style="border: 0; width: 100%; max-width: 800px; height: auto"
+  >
+    <source
+      src="/static/blog/introducing-mui-v9/introducing-mui-v9-alpha-chatbox/stub_ghost_chat-showcase.mov"
+      type="video/quicktime"
+    />
+  </video>
+  <figcaption>ChatBox showcase in MUI X v9 alpha.</figcaption>
+</figure>
 
 ## State, adapters, and streaming
 
@@ -52,7 +65,7 @@ An adapter sits between that state and your backend: same UI whether you call Op
 
 A stream processor coordinates token streams, partial parts, tool starts, and tool results so the UI can stay streaming‑first: partial text, progress, and mid‑stream tool UI without ad‑hoc race handling in every app.
 
-Headless hooks wire store, processor, and adapter together; tests lock those flows so we can iterate without regressing send/stream/tool behavior across tiers.
+Core chat hooks wire store, processor, and adapter together; tests lock those flows so we can iterate without regressing send/stream/tool behavior across tiers.
 
 ## Message parts beyond plain text
 
@@ -60,17 +73,15 @@ Modeling messages as parts (tool calls, tool results, sources, optional reasonin
 
 Streaming treats responses as sequences of parts and tokens, not one immutable blob, which matters when Chat works alongside Data Grid transforms, Scheduler mutations, or other multi‑step automations where results arrive gradually.
 
-## Roadmap sketch
+## Roadmap
 
-Phase 0 (v9) ships the foundation: packages, headless hooks, themed `ChatBox`, docs and examples, and the adapter contract that makes provider swaps realistic.
+Phase 0-1 (v9) is delivered as one milestone: package APIs, core hooks, themed `ChatBox`, docs and examples, opinionated layouts (conversation surface, input, history, threads), and first-class wiring to other MUI X components.
 
-Phase 1 moves toward opinionated layouts (conversation surface, input, history, threads) and starter wiring toward other MUI X components.
+Phase 2 expands workflow patterns ("chat with your data", "chat with your schedule", mixed chart and grid flows), with production-ready docs that help teams ship without reinventing glue code.
 
-Phase 2 pushes workflow patterns (“chat with your data”, “chat with your schedule”, mixed chart and grid flows) with docs that show how to build agentic experiences without reinventing glue code.
+Phase 3 ships templates and tighter ecosystem combinations (advanced components + Material UI primitives + Console where licensing applies), aligned with the v9 direction of clear intents and reversible state.
 
-Phase 3 looks at templates and ecosystem combinations (advanced components + Material UI primitives + Console where licensing applies), always aligned with the v9 idea that components expose clear intents and reversible state.
-
-Timings will follow adoption and release cadence; watch [MUI X releases](https://github.com/mui/mui-x/releases) for packaged changes.
+We will roll these milestones through the v9 cycle in regular releases; follow [MUI X releases](https://github.com/mui/mui-x/releases) for packaged updates.
 
 ## Where to go next
 

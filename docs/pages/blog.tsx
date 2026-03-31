@@ -37,6 +37,23 @@ export const getStaticProps = () => {
   };
 };
 
+const blogDateFormatter = new Intl.DateTimeFormat('en-US', {
+  weekday: 'short',
+  year: 'numeric',
+  month: 'short',
+  day: '2-digit',
+  timeZone: 'UTC',
+});
+
+function formatBlogDate(dateString: string) {
+  // Frontmatter dates can be plain YYYY-MM-DD; pin to UTC to avoid timezone drift.
+  const normalizedDate = /^\d{4}-\d{2}-\d{2}$/.test(dateString)
+    ? `${dateString}T00:00:00.000Z`
+    : dateString;
+
+  return blogDateFormatter.format(new Date(normalizedDate));
+}
+
 function PostPreview(props: BlogPost) {
   return (
     <React.Fragment>
@@ -144,7 +161,7 @@ function PostPreview(props: BlogPost) {
           )}
           {props.date && (
             <Typography variant="caption" sx={{ fontWeight: 'regular', color: 'text.tertiary' }}>
-              {new Date(props.date).toDateString()}
+              {formatBlogDate(props.date)}
             </Typography>
           )}
         </Box>

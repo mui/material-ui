@@ -36,7 +36,6 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Materi
 Base UI adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
-  <!-- feature-media:video NumberField -->
   <video
     autoplay
     muted
@@ -62,7 +61,6 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
 `Menubar` is the other new Base UI–backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in Base UI. On this stack we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
-  <!-- feature-media:video Menubar -->
   <video
     autoplay
     muted
@@ -105,10 +103,7 @@ Current behavior and props are documented on the [Tooltip](/material-ui/react-to
 
 Internal: preparing libraries for the v9 cycle
 
-Behind the scenes, we invested in internal prep work so the codebase could handle the v9 cycle smoothly:
-
-- Versioning and build changes needed for the v9 cycle.
-- Internal adjustments that reduce friction for future breaking‑change work.
+Behind the scenes, we invested in internal prep work so the codebase could handle the v9 cycle smoothly, including versioning and build changes for the v9 cycle, plus internal adjustments that reduce friction for future breaking‑change work.
 
 ## Interaction and accessibility fixes
 

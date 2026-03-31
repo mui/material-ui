@@ -24,7 +24,17 @@ For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui
 - [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
-<!-- feature-media:img DataGrid -->
+<figure>
+  <img
+    src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_datagrid-overview.png"
+    alt="Data Grid v9 highlights."
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
+  <figcaption>Data Grid v9 highlights.</figcaption>
+</figure>
 
 ## Charts inside the grid
 
@@ -45,7 +55,17 @@ The [Server‑side data](/x/react-data-grid/server-side-data/) guide covers lazy
 
 ## AI Assistant
 
-<!-- feature-media:img DataGrid AI Assistant -->
+<figure>
+  <img
+    src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_datagrid-ai-assistant.png"
+    alt="Data Grid AI Assistant in action."
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
+  <figcaption>Data Grid AI Assistant in action.</figcaption>
+</figure>
 
 The Data Grid AI Assistant remains a flagship example of AI‑native design in MUI X: users describe what they want in natural language, and the grid applies structured changes (filters, sorting, grouping, aggregations, pivoting) that stay visible and editable in the UI.
 

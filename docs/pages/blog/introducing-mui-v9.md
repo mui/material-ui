@@ -40,7 +40,17 @@ It introduces the shared version story, our long‑term direction, and links to 
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
-<!-- feature-media:img v9 ecosystem overview -->
+<figure>
+  <img
+    src="/static/blog/introducing-mui-v9/stub_v9-ecosystem-overview.png"
+    alt="MUI v9 ecosystem overview."
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
+  <figcaption>Material UI and MUI X v9 ecosystem overview.</figcaption>
+</figure>
 
 ## Table of contents
 
@@ -70,7 +80,7 @@ With v9, we’re synchronizing the major version across the stack:
 - **Material UI v9:** the design‑system primitives and layout foundations.
 - **MUI X v9:** the advanced components built on top: Data Grid, Charts, Tree View, Date and Time Pickers, Scheduler, Chat, and more.
 
-A single shared version number makes it easier to:
+A single major version number makes it easier to:
 
 - Align upgrade windows and migration guides across packages.
 - Communicate compatibility, for example, “MUI X v9 is designed to pair with Material UI v9”.
@@ -116,7 +126,7 @@ So MUI Chat is being renamed to [MUI Recipes](https://recipes.mui.com), a name
 
 ## What’s next
 
-The next phase keeps building developer workflows, with a stronger focus on design‑system updates, continued component portfolio expansion, and AI‑native experiences.
+The next phase keeps iterating on developer experience, with a stronger focus on design‑system updates, continued component portfolio expansion, and exploring new AI‑native workflows.
 
 ### Component portfolio expansion
 
@@ -124,6 +134,7 @@ Advanced components keep getting more complete surfaces: workflow‑driven data 
 
 - Data Grid continues to evolve advanced workflow surfaces, including AI workflows where they enhance the user’s job.
 - NumberField and Menubar will ship as components in the npm package, not only as documentation recipes you copy from the docs. We’ll keep growing the Material UI portfolio as Base UI releases new primitives.
+- Scheduler will keep iterating on Event Calendar and Timeline so teams can move from classic appointment views to dense resource planning in one package, and we will keep shipping additional Base UI-powered components as they are ready.
 
 These updates are designed for full product workflows, not just side‑by‑side experiments.
 They help developers ship UIs that stay transparent and controllable, with state that users can understand and that apps can integrate with cleanly.
@@ -133,14 +144,14 @@ They help developers ship UIs that stay transparent and controllable, with state
 For v10, we’re reworking the styling layer and theme layering model to better support modern design‑system workflows:
 
 - Peel back the Material Design styling layer and introduce a more flexible, modern theme layering model.
-- Use current Material (MD3) styling, adopt your own brand, or mix both, without having to override every class.
+- Use current Material, MD3, or have a separate theme with your own brand, without having to override every class.
 - Target independence from Emotion and better integration paths for teams using Tailwind.
 
 ### AI-native workflows
 
 The [Data Grid AI Assistant](/blog/introducing-mui-v9-data-grid/#ai-assistant) is the first large piece of that story in production. Together with [Console](#new-console-application), where you can handle licenses and service keys in one flow, it forms a clearer path from trying assistive features to rolling them out, without stitching together separate tools for assistants and account management.
 
-We believe thoughtfully integrated AI workflows can materially improve everyday UX when they speed up repetitive data and configuration work without hiding the underlying model from the user. Throughout the v9 cycle, expect broader feature coverage for assistant-style experiences, tighter polish on the flows we have today, and deeper integration with the advanced components where automation genuinely helps teams ship.
+We believe that integrated AI workflows can materially improve everyday UX, pun intended. They speed up repetitive data and configuration work that would usually require multiple menus, without hiding the underlying model from the user. Throughout the v9 cycle, expect broader feature coverage for assistant-style experiences, tighter polish on the flows we have today, and deeper integration with the advanced components where automation genuinely helps teams ship.
 
 ## Deep dives
 
