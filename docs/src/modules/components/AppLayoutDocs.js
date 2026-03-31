@@ -32,14 +32,6 @@ const Main = styled('main', {
   },
   variants: [
     {
-      props: ({ disableToc }) => disableToc,
-      style: {
-        [theme.breakpoints.up('lg')]: {
-          marginRight: TOC_WIDTH / 2,
-        },
-      },
-    },
-    {
       props: ({ disableToc, wideLayout }) => !disableToc && !wideLayout,
       style: {
         [theme.breakpoints.up('sm')]: {
@@ -82,7 +74,16 @@ const StyledAppContainer = styled(AppContainer, {
         props: ({ disableToc, wideLayout }) => disableToc && !wideLayout,
         style: {
           // 105ch ≈ 930px
-          maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
+          maxWidth: '105ch',
+        },
+      },
+      {
+        props: ({ disableToc, wideLayout }) => disableToc && wideLayout,
+        style: {
+          maxWidth: theme.breakpoints.values.xl,
+          '& p, & li': {
+            maxWidth: '105ch',
+          },
         },
       },
       {
