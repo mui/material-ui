@@ -133,32 +133,28 @@ export default function SelectAllTransferList() {
       sx={{ justifyContent: 'center', alignItems: 'center' }}
     >
       <Grid>{customList('Choices', left)}</Grid>
-      <Grid>
-        <Grid container sx={{ alignItems: 'center' }}>
-          <Stack>
-            <Button
-              sx={{ my: 0.5 }}
-              variant="outlined"
-              size="small"
-              onClick={handleCheckedRight}
-              disabled={leftChecked.length === 0}
-              aria-label="move selected right"
-            >
-              &gt;
-            </Button>
-            <Button
-              sx={{ my: 0.5 }}
-              variant="outlined"
-              size="small"
-              onClick={handleCheckedLeft}
-              disabled={rightChecked.length === 0}
-              aria-label="move selected left"
-            >
-              &lt;
-            </Button>
-          </Stack>
-        </Grid>
-      </Grid>
+      <Stack>
+        <Button
+          sx={{ my: 0.5 }}
+          variant="outlined"
+          size="small"
+          onClick={handleCheckedRight}
+          disabled={leftChecked.length === 0}
+          aria-label="move selected right"
+        >
+          &gt;
+        </Button>
+        <Button
+          sx={{ my: 0.5 }}
+          variant="outlined"
+          size="small"
+          onClick={handleCheckedLeft}
+          disabled={rightChecked.length === 0}
+          aria-label="move selected left"
+        >
+          &lt;
+        </Button>
+      </Stack>
       <Grid>{customList('Chosen', right)}</Grid>
     </Grid>
   );
