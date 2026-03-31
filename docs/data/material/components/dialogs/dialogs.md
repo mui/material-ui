@@ -42,6 +42,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
 
+Use `role="alertdialog"` to create an Alert Dialog. This provides assistive technologies the correct purpose of the Dialog.
+
 Most alerts don't need titles.
 They summarize a decision in a sentence or two by either:
 
