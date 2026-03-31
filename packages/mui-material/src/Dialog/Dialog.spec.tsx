@@ -14,7 +14,15 @@ function Test() {
   return (
     <React.Fragment>
       <Dialog open />;
-      <Dialog open PaperProps={paperProps} />;
+      <Dialog open slotProps={{ paper: paperProps }} />;
+      <Dialog
+        open
+        slotProps={{
+          // @ts-expect-error — unknown props should be rejected
+          transition: { randomInvalidProp: 'test' },
+        }}
+      />
+      ;
     </React.Fragment>
   );
 }

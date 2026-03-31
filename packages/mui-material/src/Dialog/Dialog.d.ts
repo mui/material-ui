@@ -68,7 +68,7 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
     transition: SlotComponentProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & DialogTransitionSlotPropsOverrides,
       DialogOwnerState
     >;
