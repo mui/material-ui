@@ -9,7 +9,7 @@ hideFromHomeList: true
 ---
 
 The Data Grid is one of the main pillars of MUI X.
-In v9 we’re tightening how the grid works with live and server‑backed data, making tabular‑plus‑visual dashboards first‑class, and continuing to treat AI assistance as part of the product, not a side demo.
+In v9 we're tightening how the grid works with live and server-backed data, making tabular-plus-visual dashboards first-class, and continuing to treat AI assistance as part of the product, not a side demo.
 
 This post orients you around those themes.
 For the shared ecosystem story, start with the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
@@ -20,7 +20,7 @@ For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui
 - [Charts inside the grid](#charts-inside-the-grid)
 - [Dynamic data, editing, and everyday UX](#dynamic-data-editing-and-everyday-ux)
 - [AI Assistant](#ai-assistant)
-- [What’s next](#whats-next)
+- [What's next](#whats-next)
 - [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
@@ -39,7 +39,7 @@ For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui
 ## Charts inside the grid
 
 Charts inside the grid is stable in v9: you can ship dashboards that mix tables and visuals without treating the integration as experimental.
-We also kept the implementation in step with Material UI v9 so the grid and charts don’t drift as both packages evolve.
+We also kept the implementation in step with Material UI v9 so the grid and charts don't drift as both packages evolve.
 
 If you already combine the two, plan a quick pass on your dashboards after upgrading.
 For usage and API detail, see the [Data Grid](/x/react-data-grid/) documentation.
@@ -80,11 +80,11 @@ That matches how we want other advanced components to behave: clear intents, obs
 
 See the [AI Assistant](/x/react-data-grid/ai-assistant/) documentation for integration and API detail.
 
-## What’s next
+## What's next
 
-Looking past the v9.0 line, we’re investing in several directions on the Data Grid:
+Looking past the v9.0 line, we're investing in several directions on the Data Grid:
 
-- **Base UI:** We’re exploring how it can improve advanced visual customization for the grid: composition and styling that stay approachable for dense, highly tailored surfaces, aligned with the broader Material UI move toward Base UI.
+- **Base UI:** We're exploring how it can improve advanced visual customization for the grid: composition and styling that stay approachable for dense, highly tailored surfaces, aligned with the broader Material UI move toward Base UI.
 - **Excel‑style formulas:** We intend to broaden formula and formula‑like behaviors so spreadsheet‑minded workflows feel more at home in the grid.
 - **Data Grid AI Assistant:** Expect broader coverage of grid operations, tighter polish, and continued pairing with Console and documentation so adoption stays straightforward.
 

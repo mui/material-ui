@@ -12,7 +12,7 @@ The Scheduler is a new advanced component in MUI X aimed at time‑ and resourc
 
 It is alpha / not yet a stable published product: useful for prototypes and roadmap planning, but APIs may change until the stable, and we're hoping to get your feedback so we can move through this phase quickly.
 
-This post explains what we’re building, how Community and Premium differ, and where it sits next to Data Grid, Charts, and Chat.
+This post explains what we're building, how Community and Premium differ, and where it sits next to Data Grid, Charts, and Chat.
 For the broader v9 context, read the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
 
 ## Table of contents
@@ -31,7 +31,7 @@ For the broader v9 context, read the [Material UI and MUI X v9 overview](/blog
 
 We expect the same arc as past advanced components: alpha, then beta, then stable, with migration notes as the surface hardens.
 Today that means you should prototype and send feedback, not assume frozen imports or unchanged slot APIs.
-If you’ve shipped on Data Grid or Charts through early majors, the expectations will feel familiar.
+If you've shipped on Data Grid or Charts through early majors, the expectations will feel familiar.
 
 ## Quick start
 
@@ -57,13 +57,13 @@ You can place those events on resources (people, rooms, assets) or looser groupi
 
 Recurring events target real calendars: daily/weekly/monthly and custom rules, editable as a series or as one‑off exceptions, with locale‑aware behavior as the recurrence layer matures.
 
-Drag and drop is first‑class: create, move, and resize on the canvas with snapping, business constraints, and keyboard paths so accessibility isn’t an afterthought.
+Drag and drop is first-class: create, move, and resize on the canvas with snapping, business constraints, and keyboard paths so accessibility isn't an afterthought.
 
-Timezones are modeled so you can store canonically (for example UTC), render in the user’s zone, and lean on the stack for DST and regional rules instead of reinventing offsets in every app.
+Timezones are modeled so you can store canonically (for example UTC), render in the user's zone, and lean on the stack for DST and regional rules instead of reinventing offsets in every app.
 
 ## Event Calendar
 
-Event Calendar views read like classic planners: day, week, month, filtered slices such as “this project only” or “my meetings”.
+Event Calendar views read like classic planners: day, week, month, filtered slices such as "this project only" or "my meetings".
 They suit appointment booking, service desks, team coordination, and smaller‑scale capacity questions where users think in calendar blocks first.
 
 This is the best default when your users already understand calendar metaphors and need fast navigation across dates with lightweight resource context.
@@ -125,7 +125,7 @@ Most teams can prove UX on Community and move up when recurrence or massive even
 
 ## Docs and feedback
 
-We’re lining up quickstart, installation, and deeper guides the same way we’ve onboarded other advanced components: start with a minimal working schedule, then layer customization.
+We're lining up quickstart, installation, and deeper guides the same way we've onboarded other advanced components: start with a minimal working schedule, then layer customization.
 Start from the [Scheduler overview](/x/react-scheduler/) and [Quickstart](/x/react-scheduler/quickstart/) pages.
 
 If something is missing or confusing in the alpha docs, treat that as signal; we iterate quickly while the API contracts settle.
@@ -135,7 +135,7 @@ If something is missing or confusing in the alpha docs, treat that as signal; we
 Technically, Scheduler follows the v9 peer and theme story: align versions with Material UI and sibling MUI X packages, use shared theme augmentation and `sx` like the rest of the line, and keep Premium features packaged so you opt in explicitly.
 
 Conceptually it closes a gap: Data Grid for tabular workflows, Charts for visual analytics, Scheduler for resource management and capacity, and Chat for conversational assistance.
-Together they’re the workflow‑heavy side of the stack we’re shipping in v9.
+Together they're the workflow-heavy side of the stack we're shipping in v9.
 
 ## Where to go next
 

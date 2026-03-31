@@ -9,7 +9,7 @@ hideFromHomeList: true
 ---
 
 Charts are a core part of the MUI X advanced stack.
-In v9 we’re continuing the same story you saw accelerate in v8: interaction and accessibility by default, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
+In v9 we're continuing the same story you saw accelerate in v8: interaction and accessibility by default, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
 
 This post groups those directions so you can scan the major without reading a release notes dump.
 For the full v9 picture, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
@@ -21,7 +21,7 @@ For every rename and fix, use the [MUI X releases](https://github.com/mui/mui-x
 - [Range bar charts](#range-bar-charts) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Interaction and accessibility](#interaction-and-accessibility)
 - [Composition, naming, and breaking cleanup](#composition-naming-and-breaking-cleanup)
-- [What’s next](#whats-next)
+- [What's next](#whats-next)
 - [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
@@ -64,7 +64,7 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
 
 ## Range bar charts [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-[Range bar charts](/x/react-charts/range-bar/) show the span between a minimum and a maximum for each category: weather bands, phase lengths on a roadmap, SLA windows, or any “from–to” reading where a single stacked bar does not tell the whole story.
+[Range bar charts](/x/react-charts/range-bar/) show the span between a minimum and a maximum for each category: weather bands, phase lengths on a roadmap, SLA windows, or any "from-to" reading where a single stacked bar does not tell the whole story.
 
 They sit on the Premium side of the line‑up and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
 
@@ -90,7 +90,7 @@ They sit on the Premium side of the line‑up and follow the same `Charts*` comp
 ## Interaction and accessibility
 
 Keyboard navigation is on by default in v9, with follow‑through work on focus, tooltips, radar, and tier‑appropriate behaviors (for example funnel, heatmap, and Sankey on Pro, range‑bar on Premium).
-Across MIT, Pro, and Premium we’ve kept tightening legend and axis ergonomics: clearer hooks for layout and ticks, better control over axis tooltips and ordering, and refinements to how series identity and highlighting behave so custom themes don’t fight the internals.
+Across MIT, Pro, and Premium we've kept tightening legend and axis ergonomics: clearer hooks for layout and ticks, better control over axis tooltips and ordering, and refinements to how series identity and highlighting behave so custom themes don't fight the internals.
 
 The headline is a charting stack that feels reachable from the keyboard and easier to tune without diving into copy‑paste workarounds.
 
@@ -105,7 +105,7 @@ Tooltips align with the layer container model (including portaling through `Char
 
 For composition patterns and layering, see [Charts composition](/x/react-charts/composition/).
 
-## What’s next
+## What's next
 
 On the commercial plan, expect continued polish on candlestick and other advanced charts. We'll keep pushing to deliver WebGL‑backed chart types where you need to render very large point counts without sacrificing responsiveness.
 

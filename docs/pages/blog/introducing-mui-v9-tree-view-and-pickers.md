@@ -11,7 +11,7 @@ hideFromHomeList: true
 Tree View and Date and Time Pickers are the everyday workhorses of MUI X: hierarchies everywhere, dates in almost every form.
 Their v9 slice of the cycle is deliberately focused: large trees that stay fast and predictable, and pickers that behave well on keyboard, in forms, and next to other controls, with locale and adapter coverage that stays aligned with the Data Grid and the rest of the suite.
 
-This single post covers both because they share that “foundational UX” role compared with heavier hitters like Data Grid or Charts in this major.
+This single post covers both because they share that "foundational UX" role compared with heavier hitters like Data Grid or Charts in this major.
 
 For the full v9 narrative, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
 
@@ -59,7 +59,7 @@ Full API and migration notes live in the [Tree View](/x/react-tree-view/) docume
 </figure>
 
 Pickers in v9 continue the keyboard‑first calendar work: move through day, month, and year without treating pointer interaction as mandatory.
-`fieldRef` stabilizes with `clearValue`, which matters in long forms, filters, and anywhere “reset this field” must be reliable.
+`fieldRef` stabilizes with `clearValue`, which matters in long forms, filters, and anywhere "reset this field" must be reliable.
 
 We also smoothed focus when dismissing the popover so click‑away is less likely to strand focus on the wrong control, especially near dialogs, drawers, and embedded grid filters.
 Locales and adapters expand (for example `thTH` in step with the Data Grid, and `AdapterDayjsBuddhist` for non‑Gregorian cases); if you use range pickers across zones, re‑validate edge cases after upgrading.

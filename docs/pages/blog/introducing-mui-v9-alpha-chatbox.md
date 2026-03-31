@@ -8,7 +8,7 @@ manualCard: false
 hideFromHomeList: true
 ---
 
-In v9 we’re laying the groundwork for AI‑native conversational experiences in MUI X.
+In v9 we're laying the groundwork for AI-native conversational experiences in MUI X.
 MUI X Chat (documented as [MUI X Chat](/x/react-chat/)) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
 
 This post is an orientation, not an API reference: how the layers stack, why adapters and streams sit at the center, and how early work connects to Data Grid, Scheduler, and the v9 overview.
@@ -29,7 +29,7 @@ For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introduci
 MUI X Chat is deliberately early: install from the docs, follow Quickstart and examples, and expect hooks and slot props to evolve while we harden contracts.
 The goal is a foundation you can theme, swap providers on, and extend, not a frozen UI kit on day one.
 
-If you’re experimenting with tools, agents, or assistant UX beside your product surface, this is the layer where we want feedback and real integrations.
+If you're experimenting with tools, agents, or assistant UX beside your product surface, this is the layer where we want feedback and real integrations.
 
 ## Quick start
 
@@ -59,7 +59,7 @@ The fastest path is simple: mount `ChatBox`, wire an adapter, and return a strea
 
 ## State, adapters, and streaming
 
-ChatBox work centers on entity types and a normalized store so conversations, threads, messages, participants, tool calls, and results don’t turn into duplicated, fragile state as histories grow.
+ChatBox work centers on entity types and a normalized store so conversations, threads, messages, participants, tool calls, and results don't turn into duplicated, fragile state as histories grow.
 
 An adapter sits between that state and your backend: same UI whether you call OpenAI, an in‑house model, HTTP, WebSockets, or SSE, and the same boundary when orchestration lives outside React.
 

@@ -79,7 +79,7 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
   <figcaption>Menubar with submenus and keyboard-friendly navigation.</figcaption>
 </figure>
 
-Together, NumberField and Menubar show where we’re headed in v9: wider Base UI adoption in Material UI, and interactions, including keyboard support, that stay clear and consistent even in dense UIs.
+Together, NumberField and Menubar show where we're headed in v9: wider Base UI adoption in Material UI, and interactions, including keyboard support, that stay clear and consistent even in dense UIs.
 
 See the [Menubar](/material-ui/react-menubar/) documentation for API detail and examples.
 
@@ -113,7 +113,7 @@ These updates focus on small but important behavior changes, especially around a
 
 Autocomplete
 
-- Prevent menu opening on right‑click so context‑menu interactions don’t unexpectedly toggle the options list.
+- Prevent menu opening on right-click so context-menu interactions don't unexpectedly toggle the options list.
 
 Backdrop
 
