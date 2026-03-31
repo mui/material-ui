@@ -52,7 +52,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pnpm code-infra publish-canary --filter "@mui/internal-*" --filter "@mui-internal/*"
+          pnpm code-infra publish-canary --filter "./packages-internal/*"
   publish:
     if: github.event_name == 'workflow_dispatch' && inputs.internal-packages != true
     runs-on: ubuntu-latest
@@ -85,4 +85,4 @@ jobs:
             ARGS="$ARGS --tag ${{ inputs.dist-tag }}"
           fi
 
-          pnpm code-infra publish --ci $ARGS --filter "!@mui/internal-*" --filter "!@mui-internal/*"
+          pnpm code-infra publish --ci $ARGS --filter "./packages/*"
