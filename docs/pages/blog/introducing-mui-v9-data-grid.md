@@ -29,6 +29,25 @@ For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui
 Charts inside the grid is stable in v9: you can ship dashboards that mix tables and visuals without treating the integration as experimental.
 We also kept the implementation in step with Material UI v9 so the grid and charts don't drift as both packages evolve.
 
+<figure>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    width="1600"
+    height="900"
+    controls
+    style="border: 0; width: 100%; max-width: 800px; height: auto"
+  >
+    <source
+      src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_ghost_datagrid-charts-integration.mov"
+      type="video/quicktime"
+    />
+  </video>
+  <figcaption>Charts integration inside the Data Grid.</figcaption>
+</figure>
+
 If you already combine the two, plan a quick pass on your dashboards after upgrading.
 For usage and API detail, see the [Data Grid](/x/react-data-grid/) documentation.
 
@@ -44,15 +63,22 @@ The [Server‑side data](/x/react-data-grid/server-side-data/) guide covers lazy
 ## AI Assistant
 
 <figure>
-  <img
-    src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_datagrid-ai-assistant.png"
-    alt="Data Grid AI Assistant in action."
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
     width="1600"
     height="900"
-    loading="lazy"
-    style="border: 0; width: 100%; height: auto;"
-  />
-  <figcaption>Data Grid AI Assistant in action.</figcaption>
+    controls
+    style="border: 0; width: 100%; max-width: 800px; height: auto"
+  >
+    <source
+      src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_ghost_datagrid-ai-assistant.mov"
+      type="video/quicktime"
+    />
+  </video>
+  <figcaption>Data Grid AI Assistant workflow.</figcaption>
 </figure>
 
 The Data Grid AI Assistant remains a flagship example of AI‑native design in MUI X: users describe what they want in natural language, and the grid applies structured changes (filters, sorting, grouping, aggregations, pivoting) that stay visible and editable in the UI.
