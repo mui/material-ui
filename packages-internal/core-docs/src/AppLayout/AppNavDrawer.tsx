@@ -18,15 +18,13 @@ import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import {
-  AppNavDrawerItem,
-  LogoWithCopyMenu,
-  MuiProductSelector,
-} from '@mui/internal-core-docs/AppLayout';
-import { pageToTitleI18n } from '@mui/internal-core-docs/helpers';
-import PageContext, { ProductVersion } from '@mui/internal-core-docs/PageContext';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
-import { MuiPage } from '@mui/internal-core-docs/MuiPage';
+import { AppNavDrawerItem } from './AppNavDrawerItem';
+import { LogoWithCopyMenu } from './LogoWithCopyMenu';
+import { MuiProductSelector } from './MuiProductSelector';
+import { pageToTitleI18n } from '../helpers';
+import PageContext, { ProductVersion } from '../PageContext';
+import { useTranslate } from '../i18n';
+import { MuiPage } from '../MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme: Theme) {
@@ -380,7 +378,7 @@ export interface AppNavDrawerProps {
   onOpen: () => void;
 }
 
-export default function AppNavDrawer(props: AppNavDrawerProps) {
+export function AppNavDrawer(props: AppNavDrawerProps) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePageParents, pages, productIdentifier } = React.useContext(PageContext);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);

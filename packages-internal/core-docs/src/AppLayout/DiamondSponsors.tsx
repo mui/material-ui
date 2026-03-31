@@ -36,7 +36,7 @@ const NativeLink = styled('a')(({ theme }) => ({
   }),
 }));
 
-export default function DiamondSponsors() {
+export function DiamondSponsors() {
   const t = useTranslate();
 
   return (

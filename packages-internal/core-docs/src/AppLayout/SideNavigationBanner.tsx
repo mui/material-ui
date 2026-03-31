@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 import { Link } from '@mui/internal-core-docs/Link';
 
-export default function SideNavigationBanner() {
+export function SideNavigationBanner() {
   return (
     <Link
       href="https://u24.gov.ua/about/"

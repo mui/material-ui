@@ -17,10 +17,10 @@ import { ROUTES } from '../constants';
 import { MuiLogomarkIcon, BaseUiLogoIcon } from '../svgIcons';
 import PageContext from '../PageContext';
 
-const iconStyles = (theme: Theme) => ({
+const iconStyles = {
   fontSize: '.875rem',
-  color: (theme.vars || theme).palette.primary.main,
-});
+  color: 'primary.main',
+} as const;
 
 const logoColor = (theme: Theme) => ({
   '& path': {
