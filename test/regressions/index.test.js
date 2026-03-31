@@ -163,12 +163,15 @@ async function main() {
     describe('TextField', () => {
       it('should render standard variant correctly in forced-colors mode', async () => {
         await page.emulateMedia({ forcedColors: 'active' });
-        const testcase = await renderFixture('/regression-TextField/StandardTextField');
-        await takeScreenshot({
-          testcase,
-          route: '/regression-TextField/StandardTextFieldForcedColors',
-        });
-        await page.emulateMedia({ forcedColors: 'none' });
+        try {
+          const testcase = await renderFixture('/regression-TextField/StandardTextField');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-TextField/StandardTextFieldForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
       });
     });
 
