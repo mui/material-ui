@@ -409,7 +409,7 @@ describe('<Dialog />', () => {
     it('should override the role if provided', function test() {
       render(<Dialog role="alertdialog" open />);
 
-      screen.getByRole('alertdialog');
+      expect(screen.getByRole('alertdialog')).not.to.equal(null);
     });
   });
 
