@@ -4,4 +4,3 @@ import { docs } from './introducing-mui-v9-primitives.md?muiMarkdown';
 export default function Page() {
   return <TopLayoutBlog docs={docs} />;
 }
-

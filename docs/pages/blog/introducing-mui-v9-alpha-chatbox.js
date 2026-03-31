@@ -4,4 +4,3 @@ import { docs } from './introducing-mui-v9-alpha-chatbox.md?muiMarkdown';
 export default function Page() {
   return <TopLayoutBlog docs={docs} />;
 }
-
