@@ -215,4 +215,4 @@ Earlier majors are covered in the [v6](/material-ui/migration/upgrade-to-v6/) an
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
-To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.
+To share feedback or report issues, visit [mui/material-ui on GitHub](https://github.com/mui/material-ui).

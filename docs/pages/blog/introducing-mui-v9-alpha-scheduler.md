@@ -146,4 +146,4 @@ Together they’re the workflow‑heavy side of the stack we’re shipping in v9
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
-To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.
+To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

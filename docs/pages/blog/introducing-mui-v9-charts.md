@@ -126,4 +126,4 @@ Breaking changes, codemods, and checklist items for moving to v9 are centralized
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
-To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.
+To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

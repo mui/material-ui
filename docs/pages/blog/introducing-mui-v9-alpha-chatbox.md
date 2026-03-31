@@ -59,7 +59,7 @@ The fastest path is simple: mount `ChatBox`, wire an adapter, and return a strea
 
 ## State, adapters, and streaming
 
-Phase‑0 work centers on entity types and a normalized store so conversations, threads, messages, participants, tool calls, and results don’t turn into duplicated, fragile state as histories grow.
+ChatBox work centers on entity types and a normalized store so conversations, threads, messages, participants, tool calls, and results don’t turn into duplicated, fragile state as histories grow.
 
 An adapter sits between that state and your backend: same UI whether you call OpenAI, an in‑house model, HTTP, WebSockets, or SSE, and the same boundary when orchestration lives outside React.
 
@@ -92,4 +92,4 @@ We will roll these milestones through the v9 cycle in regular releases; follow [
 - [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 
-To share feedback or report issues, use [How to get involved](/blog/introducing-mui-v9/#how-to-get-involved) on the v9 overview.
+To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

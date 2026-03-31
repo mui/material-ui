@@ -63,8 +63,7 @@ It introduces the shared version story, our long‑term direction, and links to 
   - [v10 styling layer and modern theme layering](#v10-styling-layer-and-modern-theme-layering)
   - [AI-native workflows](#ai-native-workflows)
 - [Deep dives](#deep-dives)
-- [Documentation](#documentation)
-- [How to get involved](#how-to-get-involved)
+- [We want your feedback](#we-want-your-feedback)
 
 ## One major version, one ecosystem
 
