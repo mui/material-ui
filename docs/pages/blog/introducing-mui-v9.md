@@ -40,7 +40,7 @@ It introduces the shared version story, our long‑term direction, and links to 
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
-<figure>
+<!-- <figure>
   <img
     src="/static/blog/introducing-mui-v9/stub_v9-ecosystem-overview.png"
     alt="MUI v9 ecosystem overview."
@@ -50,7 +50,7 @@ It introduces the shared version story, our long‑term direction, and links to 
     style="border: 0; width: 100%; height: auto;"
   />
   <figcaption>Material UI and MUI X v9 ecosystem overview.</figcaption>
-</figure>
+</figure> --> 
 
 ## Table of contents
 
