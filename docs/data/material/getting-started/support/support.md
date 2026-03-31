@@ -74,6 +74,7 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 | Material UI version | Release    | Supported                                                          |
 | ------------------: | :--------- | :----------------------------------------------------------------- |
+|              ^9.0.0 | March 2026 | 🚧 Pre release (Continuous support)                                |
 |              ^7.0.0 | 2025-03-26 | ✅ Stable major (Continuous support)                               |
 |              ^6.0.0 | 2024-08-26 | ⚠️ Long-term support (Support for security issues and regressions) |
 |              ^5.0.0 | 2021-09-16 | ❌                                                                 |
@@ -89,17 +90,6 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 The Material UI community is active on both [X/Twitter](https://x.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
-
-### Discord
-
-We have a [Discord Server](https://mui.com/r/discord/) to bring the Material UI community together.
-Our tools are used by thousands of developers and teams all around the world, many of whom actively engage with the community.
-
-You can join Discord to engage in lively discussions, share your projects, and interact with developers just like you from all around the world. We'd love for you to join us!
-
-:::warning
-How-to questions are not accepted on Discord, they should be asked on [Stack Overflow](#stack-overflow).
-:::
 
 ## Custom work
 

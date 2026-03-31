@@ -29,7 +29,6 @@ describe('<InputBase />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
     testVariantProps: { size: 'small' },
-    testLegacyComponentsProp: true,
     slots: {
       // can't test with DOM element as InputBase places an ownerState prop on it unconditionally.
       root: { expectedClassName: classes.root, testWithElement: null },
@@ -355,38 +354,41 @@ describe('<InputBase />', () => {
     });
 
     describe('size', () => {
-      it('should have the inputSizeSmall class in a dense context', () => {
-        const { container } = render(
+      it('should have the sizeSmall class in a dense context', () => {
+        render(
           <FormControl size="small">
-            <InputBase />
+            <InputBase data-testid="root" />
           </FormControl>,
         );
-        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
+        expect(screen.getByTestId('root')).to.have.class(classes.sizeSmall);
+        expect(screen.getByRole('textbox')).to.have.class(classes.input);
       });
 
       it('should be overridden by props', () => {
         function InputBaseInFormWithMargin(props) {
           return (
             <FormControl size="medium">
-              <InputBase {...props} />
+              <InputBase data-testid="root" {...props} />
             </FormControl>
           );
         }
-        const { container, setProps } = render(<InputBaseInFormWithMargin />);
-        expect(container.querySelector('input')).not.to.have.class(classes.inputSizeSmall);
+        const { setProps } = render(<InputBaseInFormWithMargin />);
+        expect(screen.getByTestId('root')).not.to.have.class(classes.sizeSmall);
 
         setProps({ size: 'small' });
-        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
+        expect(screen.getByTestId('root')).to.have.class(classes.sizeSmall);
+        expect(screen.getByRole('textbox')).to.have.class(classes.input);
       });
 
-      it('has an inputHiddenLabel class to further reduce margin', () => {
+      it('has a hiddenLabel class to further reduce margin', () => {
         render(
           <FormControl hiddenLabel margin="dense">
-            <InputBase />
+            <InputBase data-testid="root" />
           </FormControl>,
         );
 
-        expect(screen.getByRole('textbox')).to.have.class(classes.inputHiddenLabel);
+        expect(screen.getByTestId('root')).to.have.class(classes.hiddenLabel);
+        expect(screen.getByRole('textbox')).to.have.class(classes.input);
       });
     });
 
@@ -674,14 +676,16 @@ describe('<InputBase />', () => {
         <TextField
           value=""
           name="text"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Select value="" name="suffix" />
-              </InputAdornment>
-            ),
-          }}
           variant="standard"
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Select value="" name="suffix" />
+                </InputAdornment>
+              ),
+            },
+          }}
         />,
       );
     });

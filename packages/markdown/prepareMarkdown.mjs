@@ -41,6 +41,9 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   if (productId === 'x-data-grid') {
     return `/x/api/data-grid/${kebabCase(component)}/`;
   }
+  if (productId === 'x-scheduler') {
+    return `/x/api/scheduler/${kebabCase(component)}/`;
+  }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.includes(component)) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }

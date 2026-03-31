@@ -47,7 +47,7 @@ describe('<Snackbar />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -132,7 +132,7 @@ describe('<Snackbar />', () => {
           <Snackbar
             open={open}
             onClose={handleClose}
-            TransitionProps={{ onExited: handleExited }}
+            slotProps={{ transition: { onExited: handleExited } }}
             message="message"
             autoHideDuration={duration}
             transitionDuration={duration / 2}
@@ -542,7 +542,7 @@ describe('<Snackbar />', () => {
     });
   });
 
-  describe('prop: TransitionComponent', () => {
+  describe('prop: slots.transition', () => {
     it('should use a Grow by default', () => {
       const childRef = React.createRef();
       render(
@@ -558,7 +558,7 @@ describe('<Snackbar />', () => {
       function Transition() {
         return <div className="cloned-element-class" ref={transitionRef} />;
       }
-      const { container } = render(<Snackbar open TransitionComponent={Transition} />);
+      const { container } = render(<Snackbar open slots={{ transition: Transition }} />);
       expect(container).to.contain(transitionRef.current);
     });
   });

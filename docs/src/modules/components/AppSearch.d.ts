@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/material/styles';
-import { MuiPageContext } from './PageContext';
+import { MuiPageContext } from '@mui/docs/PageContext';
 
 export function convertProductIdToName(productInfo: MuiPageContext): string | undefined;
 

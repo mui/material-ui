@@ -16,7 +16,6 @@ describe('<Container />', () => {
     render,
     refInstanceof: window.HTMLElement,
     muiName: 'MuiContainer',
-    skip: ['componentsProp'],
     testVariantProps: { fixed: true },
   }));
 

@@ -18,8 +18,6 @@ import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/material/Autocomplete';
-import { paperClasses } from '@mui/material/Paper';
-import { iconButtonClasses } from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
@@ -60,11 +58,12 @@ describe('<Autocomplete />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
       slots: {
+        root: { expectedClassName: classes.root },
         listbox: { expectedClassName: classes.listbox },
         paper: { expectedClassName: classes.paper },
         popper: { expectedClassName: classes.popper, testWithElement: null },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 
@@ -83,7 +82,12 @@ describe('<Autocomplete />', () => {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         popupIndicator: { expectedClassName: classes.popupIndicator },
       },
-      only: ['slotPropsProp'],
+      only: [
+        'slotsProp',
+        'slotPropsProp',
+        'slotPropsCallback',
+        'slotPropsCallbackWithPropsAsOwnerState',
+      ],
     }),
   );
 
@@ -158,6 +162,21 @@ describe('<Autocomplete />', () => {
   });
 
   describe('combobox', () => {
+    it('should not open popup on right click', async () => {
+      const { user } = render(
+        <Autocomplete
+          disablePortal
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      await user.pointer({ keys: '[MouseRight]', target: screen.getByRole('combobox') });
+
+      const listbox = screen.queryByRole('listbox');
+      expect(listbox).to.equal(null);
+    });
+
     it('should clear the input when blur', () => {
       render(<Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />);
       const input = screen.getByRole('combobox');
@@ -301,10 +320,12 @@ describe('<Autocomplete />', () => {
             open
             options={['one', 'two', 'three', 'four', 'five']}
             renderInput={(params) => <TextField {...params} />}
-            ListboxProps={{ style: { padding: 0, maxHeight: '100px' } }}
-            PopperComponent={(props) => {
-              const { disablePortal, anchorEl, open, ...other } = props;
-              return <Box {...other} />;
+            slotProps={{ listbox: { style: { padding: 0, maxHeight: '100px' } } }}
+            slots={{
+              popper: (props) => {
+                const { disablePortal, anchorEl, open, ...other } = props;
+                return <Box {...other} />;
+              },
             }}
           />,
         );
@@ -1307,7 +1328,10 @@ describe('<Autocomplete />', () => {
           onOpen={handleOpen}
           options={['one']}
           renderInput={(params) => (
-            <TextField {...params} InputProps={{ ...params.InputProps, ref }} />
+            <TextField
+              {...params}
+              slotProps={{ ...params.slotProps, input: { ...params.slotProps.input, ref } }}
+            />
           )}
         />,
       );
@@ -1568,6 +1592,36 @@ describe('<Autocomplete />', () => {
       fireEvent.click(textbox);
       expect(textbox).to.have.attribute('aria-expanded', 'false');
     });
+
+    it('does not reopen when window focus is regained', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          openOnFocus
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
+
+      act(() => {
+        document.activeElement.blur();
+      });
+      fireEvent.blur(window);
+
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+
+      fireEvent.focus(textbox);
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+
+      act(() => {
+        document.activeElement.blur();
+      });
+
+      fireEvent.focus(textbox);
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
+    });
   });
 
   describe('listbox wrapping behavior', () => {
@@ -1746,9 +1800,9 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => (
             <TextField
               {...params}
-              InputProps={{
-                ...params.InputProps,
-                'data-testid': 'test-input-root',
+              slotProps={{
+                ...params.slotProps,
+                input: { ...params.slotProps.input, 'data-testid': 'test-input-root' },
               }}
             />
           )}
@@ -2373,15 +2427,18 @@ describe('<Autocomplete />', () => {
             return (
               <TextField
                 {...params}
-                InputProps={{
-                  ...params.InputProps,
-                  startAdornment: (
-                    <InputAdornment position="end">
-                      <Tooltip title="tooltip" open>
-                        <div>ICON</div>
-                      </Tooltip>
-                    </InputAdornment>
-                  ),
+                slotProps={{
+                  ...params.slotProps,
+                  input: {
+                    ...params.slotProps.input,
+                    startAdornment: (
+                      <InputAdornment position="end">
+                        <Tooltip title="tooltip" open>
+                          <div>ICON</div>
+                        </Tooltip>
+                      </InputAdornment>
+                    ),
+                  },
                 }}
               />
             );
@@ -3019,16 +3076,35 @@ describe('<Autocomplete />', () => {
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const view = render(
+      const renderInput = spy((params) => <TextField {...params} />);
+      const { container, rerender } = render(
+        <Autocomplete fullWidth options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
+
+      rerender(
         <Autocomplete
-          fullWidth
+          fullWidth={false}
           options={[0, 10, 20]}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={renderInput}
           value={null}
         />,
       );
 
-      expect(view.container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(false);
+    });
+
+    it('should pass fullWidth as true to renderInput if not provided', () => {
+      const renderInput = spy((params) => <TextField {...params} />);
+      const view = render(
+        <Autocomplete options={[0, 10, 20]} renderInput={renderInput} value={null} />,
+      );
+
+      expect(view.container.querySelector(`.${classes.root}`)).not.to.have.class(classes.fullWidth);
+      expect(renderInput.lastCall.args[0].fullWidth).to.equal(true);
     });
   });
 
@@ -3227,91 +3303,14 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(1);
   });
 
-  describe('prop: componentsProps', () => {
-    it('should apply the props on the AutocompleteClearIndicator component', () => {
-      render(
-        <Autocomplete
-          open
-          options={['one', 'two']}
-          value="one"
-          renderInput={(params) => <TextField {...params} />}
-          componentsProps={{
-            clearIndicator: {
-              'data-testid': 'clearIndicator',
-              size: 'large',
-              className: 'my-class',
-            },
-          }}
-        />,
-      );
-
-      const clearIndicator = screen.getByTestId('clearIndicator');
-      expect(clearIndicator).to.have.class(iconButtonClasses.sizeLarge);
-      expect(clearIndicator).to.have.class('my-class');
-    });
-
-    it('should apply the props on the Paper component', () => {
-      render(
-        <Autocomplete
-          open
-          options={['one', 'two']}
-          renderInput={(params) => <TextField {...params} />}
-          componentsProps={{
-            paper: { 'data-testid': 'paperRoot', elevation: 2, className: 'my-class' },
-          }}
-        />,
-      );
-
-      const paperRoot = screen.getByTestId('paperRoot');
-      expect(paperRoot).to.have.class(paperClasses.elevation2);
-      expect(paperRoot).to.have.class('my-class');
-    });
-
-    it('should apply the props on the Popper component', () => {
-      render(
-        <Autocomplete
-          open
-          options={['one', 'two']}
-          renderInput={(params) => <TextField {...params} />}
-          componentsProps={{
-            popper: { 'data-testid': 'popperRoot', placement: 'bottom-end', className: 'my-class' },
-          }}
-        />,
-      );
-
-      const popperRoot = screen.getByTestId('popperRoot');
-      expect(popperRoot).to.have.attribute('data-popper-placement', 'bottom-end');
-      expect(popperRoot).to.have.class('my-class');
-    });
-
-    it('should apply the props on the AutocompletePopupIndicator component', () => {
-      render(
-        <Autocomplete
-          open
-          options={['one', 'two']}
-          renderInput={(params) => <TextField {...params} />}
-          componentsProps={{
-            popupIndicator: {
-              'data-testid': 'popupIndicator',
-              size: 'large',
-              className: 'my-class',
-            },
-          }}
-        />,
-      );
-
-      const popupIndicator = screen.getByTestId('popupIndicator');
-      expect(popupIndicator).to.have.class(iconButtonClasses.sizeLarge);
-      expect(popupIndicator).to.have.class('my-class');
-    });
-
+  describe('prop: slotProps', () => {
     it('should keep AutocompletePopper mounted if keepMounted is true in popper props', () => {
       // Autocomplete is not opened
       render(
         <Autocomplete
           options={['one', 'two']}
           renderInput={(params) => <TextField {...params} />}
-          componentsProps={{
+          slotProps={{
             popper: { 'data-testid': 'popperRoot', keepMounted: true },
           }}
         />,
@@ -3590,7 +3589,7 @@ describe('<Autocomplete />', () => {
           open
           options={getOptions(5)}
           renderInput={(params) => <TextField {...params} />}
-          ListboxProps={{ style: { maxHeight: '100px' } }}
+          slotProps={{ listbox: { style: { maxHeight: '100px' } } }}
         />,
       );
       const listbox = screen.getByRole('listbox');
@@ -3908,7 +3907,10 @@ describe('<Autocomplete />', () => {
           <TextField
             {...params}
             label="Fixed tag"
-            slotProps={{ inputLabel: { 'data-testid': 'label' } }}
+            slotProps={{
+              ...params.slotProps,
+              inputLabel: { ...params.slotProps.inputLabel, 'data-testid': 'label' },
+            }}
           />
         )}
       />,
@@ -3916,4 +3918,39 @@ describe('<Autocomplete />', () => {
 
     expect(screen.getByTestId('label')).to.have.attribute('data-shrink', 'false');
   });
+
+  // https://github.com/mui/material-ui/issues/47203
+  it.skipIf(isJsdom())(
+    'should not scroll the listbox to the top when listbox is scrolled down and one of the end option is clicked',
+    () => {
+      render(
+        <Autocomplete
+          multiple
+          disableCloseOnSelect
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { style: { padding: 0, maxHeight: '100px' } } }}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      // open listbox
+      fireEvent.mouseDown(textbox);
+
+      // close listbox
+      fireEvent.mouseDown(textbox);
+
+      // re-open listbox
+      fireEvent.mouseDown(textbox);
+
+      const listbox = screen.getByRole('listbox');
+      const options = screen.getAllByRole('option');
+
+      listbox.scrollBy(0, 180);
+
+      fireEvent.click(options[4]);
+
+      expect(listbox).not.to.have.property('scrollTop', 0);
+    },
+  );
 });

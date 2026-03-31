@@ -49,7 +49,7 @@ function ButtonMenu(props) {
         open={open}
         onClose={handleClose}
         transitionDuration={0}
-        BackdropProps={{ 'data-testid': 'Backdrop' }}
+        slotProps={{ backdrop: { 'data-testid': 'Backdrop' } }}
         {...other}
       >
         {options.map((option, index) => (
@@ -271,7 +271,11 @@ describe('<Menu /> integration', () => {
     // means "developer: I take care of focus don't steal it from me"
     it('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', () => {
       render(
-        <OpenMenu autoFocus={false} variant="selectedMenu" PaperProps={{ 'data-testid': 'Paper' }}>
+        <OpenMenu
+          autoFocus={false}
+          variant="selectedMenu"
+          slotProps={{ paper: { 'data-testid': 'Paper' } }}
+        >
           <MenuItem />
           <MenuItem selected />
           <MenuItem />

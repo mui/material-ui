@@ -8,45 +8,47 @@ export default function PositionedTooltips() {
     <Box sx={{ width: 500 }}>
       <Grid container sx={{ justifyContent: 'center' }}>
         <Grid>
-          <Tooltip title="Add" placement="top-start">
+          <Tooltip describeChild title="Add" placement="top-start">
             <Button>top-start</Button>
           </Tooltip>
-          <Tooltip title="Add" placement="top">
+          <Tooltip describeChild title="Add" placement="top">
             <Button>top</Button>
           </Tooltip>
-          <Tooltip title="Add" placement="top-end">
+          <Tooltip describeChild title="Add" placement="top-end">
             <Button>top-end</Button>
           </Tooltip>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>
         <Grid size={6}>
-          <Tooltip title="Add" placement="left-start">
+          <Tooltip describeChild title="Add" placement="left-start">
             <Button>left-start</Button>
           </Tooltip>
           <br />
-          <Tooltip title="Add" placement="left">
+          <Tooltip describeChild title="Add" placement="left">
             <Button>left</Button>
           </Tooltip>
           <br />
-          <Tooltip title="Add" placement="left-end">
+          <Tooltip describeChild title="Add" placement="left-end">
             <Button>left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid container sx={{ justifyContent: 'flex-end' }} size={6}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'end' }}>
-            <Tooltip title="Add" placement="right-start">
+        <Grid container direction="column" sx={{ alignItems: 'flex-end' }} size={6}>
+          <Grid>
+            <Tooltip describeChild title="Add" placement="right-start">
               <Button>right-start</Button>
             </Tooltip>
-
-            <Tooltip title="Add" placement="right">
+          </Grid>
+          <Grid>
+            <Tooltip describeChild title="Add" placement="right">
               <Button>right</Button>
             </Tooltip>
-
-            <Tooltip title="Add" placement="right-end">
+          </Grid>
+          <Grid>
+            <Tooltip describeChild title="Add" placement="right-end">
               <Button>right-end</Button>
             </Tooltip>
-          </Box>
+          </Grid>
         </Grid>
       </Grid>
       <Grid container sx={{ justifyContent: 'center' }}>

@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
-import { resetDocsColor, setDocsColors } from 'docs/src/BrandingCssVarsProvider';
+import { resetDocsColor, setDocsColors } from '@mui/docs/branding';
 import ColorDemo from './ColorDemo';
 
 const defaults = {
@@ -239,7 +239,7 @@ function ColorTool() {
             onChange={handleChangeShade(intent)}
             aria-labelledby={`${intent}ShadeSliderLabel`}
           />
-          <Typography minWidth={40}>{shades[intentShade]}</Typography>
+          <Typography sx={{ minWidth: 40 }}>{shades[intentShade]}</Typography>
         </Box>
         <Box sx={{ width: 192 }}>
           {hues.map((hue) => {

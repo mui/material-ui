@@ -16,7 +16,6 @@ describe('<Input />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    testLegacyComponentsProp: true,
     slots: {
       // can't test with DOM element as Input places an ownerState prop on it unconditionally.
       root: { expectedClassName: classes.root, testWithElement: null },
@@ -24,7 +23,6 @@ describe('<Input />', () => {
     },
     skip: [
       'componentProp',
-      'componentsProp',
       'slotPropsCallback', // not supported yet
       'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
@@ -35,8 +33,8 @@ describe('<Input />', () => {
     expect(document.querySelector('.error')).not.to.equal(null);
   });
 
-  it('should respects the componentsProps if passed', () => {
-    render(<Input componentsProps={{ root: { 'data-test': 'test' } }} />);
+  it('should respect the slotProps if passed', () => {
+    render(<Input slotProps={{ root: { 'data-test': 'test' } }} />);
     expect(document.querySelector('[data-test=test]')).not.to.equal(null);
   });
 

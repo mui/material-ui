@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, simulatePointerDevice, screen, isJsdom } from '@mui/internal-test-utils';
@@ -17,7 +18,7 @@ describe('<Tab />', () => {
     muiName: 'MuiTab',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should have a ripple', async () => {
@@ -118,7 +119,6 @@ describe('<Tab />', () => {
     it('should add a classname when passed together with label', () => {
       render(<Tab icon={<div className="test-icon" />} label="foo" />);
       const wrapper = screen.getByRole('tab').children[0];
-      expect(wrapper).to.have.class(classes.iconWrapper);
       expect(wrapper).to.have.class(classes.icon);
       expect(wrapper).to.have.class('test-icon');
     });
@@ -160,31 +160,6 @@ describe('<Tab />', () => {
     });
   });
 
-  it.skipIf(isJsdom())('should apply iconWrapper styles from theme', function test() {
-    const theme = createTheme({
-      components: {
-        MuiTab: {
-          styleOverrides: {
-            iconWrapper: {
-              backgroundColor: 'rgb(0, 0, 255)',
-            },
-          },
-        },
-      },
-    });
-
-    render(
-      <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
-      </ThemeProvider>,
-    );
-
-    const icon = screen.getByRole('tab').querySelector(`.${classes.iconWrapper}`);
-    expect(icon).toHaveComputedStyle({
-      backgroundColor: 'rgb(0, 0, 255)',
-    });
-  });
-
   it.skipIf(isJsdom())('should apply icon styles from theme', function test() {
     const theme = createTheme({
       components: {
@@ -210,38 +185,22 @@ describe('<Tab />', () => {
     });
   });
 
-  it.skipIf(isJsdom())(
-    'icon styles should override iconWrapper styles from theme',
-    function test() {
-      const theme = createTheme({
-        components: {
-          MuiTab: {
-            styleOverrides: {
-              iconWrapper: {
-                backgroundColor: 'rgb(255, 0, 0)',
-              },
-              icon: {
-                backgroundColor: 'rgb(0, 0, 255)',
-              },
-            },
-          },
-        },
-      });
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} and preserves role="tab" over pseudo-button role', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      render(
-        <ThemeProvider theme={theme}>
-          <Tab icon={<div>hello</div>} label="icon" />
-        </ThemeProvider>,
-      );
+      render(<Tab component={CustomSpan} nativeButton={false} />);
 
-      const icon = screen.getByRole('tab').querySelector(`.${classes.icon}`);
-      const iconWrapper = screen.getByRole('tab').querySelector(`.${classes.iconWrapper}`);
-      expect(iconWrapper).toHaveComputedStyle({
-        backgroundColor: 'rgb(0, 0, 255)',
-      });
-      expect(icon).toHaveComputedStyle({
-        backgroundColor: 'rgb(0, 0, 255)',
-      });
-    },
-  );
+      const tab = screen.getByRole('tab');
+      expect(tab).to.have.tagName('SPAN');
+      expect(tab).to.have.attribute('role', 'tab');
+      expect(tab).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
+  });
 });

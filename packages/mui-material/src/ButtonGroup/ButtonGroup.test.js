@@ -22,7 +22,6 @@ describe('<ButtonGroup />', () => {
       testComponentPropWith: 'span',
       muiName: 'MuiButtonGroup',
       testVariantProps: { variant: 'contained' },
-      skip: ['componentsProp'],
     }),
   );
 
@@ -68,11 +67,10 @@ describe('<ButtonGroup />', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.class('MuiButton-outlined');
+    expect(button).to.have.class(buttonClasses.outlined);
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedOutlined);
-    expect(button).to.have.class(classes.groupedOutlinedPrimary);
-    expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
+    expect(button).to.have.class(buttonClasses.colorPrimary);
+    expect(button).not.to.have.class(buttonClasses.colorSecondary);
   });
 
   it('can render an outlined primary button', () => {
@@ -83,11 +81,10 @@ describe('<ButtonGroup />', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedPrimary');
+    expect(button).to.have.class(buttonClasses.outlined);
+    expect(button).to.have.class(buttonClasses.colorPrimary);
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedOutlined);
-    expect(button).to.have.class(classes.groupedOutlinedPrimary);
-    expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
+    expect(button).not.to.have.class(buttonClasses.colorSecondary);
   });
 
   it('can render a contained button', () => {
@@ -98,11 +95,10 @@ describe('<ButtonGroup />', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.class('MuiButton-contained');
+    expect(button).to.have.class(buttonClasses.contained);
     expect(button).to.have.class(classes.grouped);
-    expect(button).to.have.class(classes.groupedContained);
-    expect(button).to.have.class(classes.groupedContainedPrimary);
-    expect(button).not.to.have.class(classes.groupedContainedSecondary);
+    expect(button).to.have.class(buttonClasses.colorPrimary);
+    expect(button).not.to.have.class(buttonClasses.colorSecondary);
   });
 
   it('can render a small button', () => {
@@ -113,7 +109,8 @@ describe('<ButtonGroup />', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedSizeSmall');
+    expect(button).to.have.class(buttonClasses.outlined);
+    expect(button).to.have.class(buttonClasses.sizeSmall);
   });
 
   it('can render a large button', () => {
@@ -124,7 +121,8 @@ describe('<ButtonGroup />', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.class('MuiButton-outlinedSizeLarge');
+    expect(button).to.have.class(buttonClasses.outlined);
+    expect(button).to.have.class(buttonClasses.sizeLarge);
   });
 
   it('should have a ripple', async () => {
@@ -145,7 +143,7 @@ describe('<ButtonGroup />', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.class('MuiButton-disableElevation');
+    expect(button).to.have.class(buttonClasses.disableElevation);
   });
 
   it('can disable the ripple', async () => {
@@ -237,7 +235,7 @@ describe('<ButtonGroup />', () => {
 
       expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
       expect(screen.getByRole('button')).to.have.class(buttonClasses.sizeSmall);
-      expect(screen.getByRole('button')).to.have.class(buttonClasses.outlinedSecondary);
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.colorSecondary);
     });
   });
 

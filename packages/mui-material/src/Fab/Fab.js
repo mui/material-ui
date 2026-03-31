@@ -194,6 +194,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
     <FabRoot
       className={clsx(classes.root, className)}
       component={component}
+      internalNativeButton
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}

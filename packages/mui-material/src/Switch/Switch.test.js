@@ -40,7 +40,6 @@ describe('<Switch />', () => {
     refInstanceof: window.HTMLSpanElement,
     skip: [
       'componentProp',
-      'componentsProp',
       'themeDefaultProps',
       'themeVariants',
       // Props are spread to the root's child but className is added to the root

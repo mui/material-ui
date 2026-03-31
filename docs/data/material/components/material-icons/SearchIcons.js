@@ -615,9 +615,7 @@ export default function SearchIcons() {
         }}
       >
         <Form>
-          <Typography fontWeight={500} sx={{ mb: 1 }}>
-            Filter the style
-          </Typography>
+          <Typography sx={{ fontWeight: 500, mb: 1 }}>Filter the style</Typography>
           <RadioGroup
             value={theme}
             onChange={(event) => setTheme(event.target.value)}

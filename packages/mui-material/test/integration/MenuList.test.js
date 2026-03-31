@@ -32,7 +32,7 @@ describe('<MenuList> integration', () => {
     it('the specified item should be in tab order while the rest is focusable', () => {
       render(
         <MenuList>
-          <MenuItem tabIndex={0}>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -70,9 +70,9 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' });
 
       expect(menuitems[2]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
 
     it('should select the second item when pressing down if the first item is selected', () => {
@@ -88,8 +88,8 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
 
       expect(menuitems[1]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
-      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
@@ -160,7 +160,7 @@ describe('<MenuList> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('down arrow can go to all items while not changing tabIndex', () => {
+    it('down arrow can go to all items while changing tabIndex', () => {
       render(
         <MenuList autoFocusItem>
           <MenuItem selected>Menu Item 1</MenuItem>
@@ -174,16 +174,16 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
 
       expect(menuitems[1]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
-      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
 
       fireEvent.keyDown(menuitems[1], { key: 'ArrowDown' });
 
       expect(menuitems[2]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
 
     describe('when a modifier key is pressed', () => {
@@ -236,7 +236,7 @@ describe('<MenuList> integration', () => {
       render(
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem autoFocus selected tabIndex={0}>
+          <MenuItem autoFocus selected>
             Menu Item 2
           </MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
@@ -255,7 +255,7 @@ describe('<MenuList> integration', () => {
       render(
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem autoFocus selected tabIndex={0}>
+          <MenuItem autoFocus selected>
             Menu Item 2
           </MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
@@ -268,8 +268,8 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
 
@@ -287,8 +287,8 @@ describe('<MenuList> integration', () => {
       fireEvent.keyDown(screen.getByRole('menu'), { key: 'ArrowDown' });
 
       expect(menuitems[0]).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
@@ -296,9 +296,7 @@ describe('<MenuList> integration', () => {
       render(
         <MenuList autoFocus>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem selected tabIndex={0}>
-            Menu Item 2
-          </MenuItem>
+          <MenuItem selected>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
       );
@@ -308,8 +306,8 @@ describe('<MenuList> integration', () => {
 
       expect(menuitems[2]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', 0);
     });
   });
 
@@ -442,6 +440,61 @@ describe('<MenuList> integration', () => {
     fireEvent.keyDown(menu, { key: 'ArrowDown' });
     expect(menu).toHaveFocus();
     fireEvent.keyDown(menu, { key: 'End' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    expect(menu).toHaveFocus();
+  });
+
+  it('should not infinite loop on keyboard navigation when there are no children', () => {
+    render(<MenuList autoFocus />);
+
+    const menu = screen.getByRole('menu');
+
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'Home' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'End' });
+    expect(menu).toHaveFocus();
+  });
+
+  it('should not infinite loop on keyboard navigation when children are removed', () => {
+    function DynamicMenuList() {
+      const [items, setItems] = React.useState(['Item 1', 'Item 2']);
+
+      return (
+        <React.Fragment>
+          <button data-testid="clear" onClick={() => setItems([])}>
+            Clear
+          </button>
+          <MenuList autoFocus>
+            {items.map((item) => (
+              <MenuItem key={item}>{item}</MenuItem>
+            ))}
+          </MenuList>
+        </React.Fragment>
+      );
+    }
+
+    render(<DynamicMenuList />);
+
+    const menu = screen.getByRole('menu');
+    const menuitems = screen.getAllByRole('menuitem');
+
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    expect(menuitems[0]).toHaveFocus();
+
+    // Remove all children
+    fireEvent.click(screen.getByTestId('clear'));
+
+    act(() => {
+      menu.focus();
+    });
+
+    // Should not hang
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
     expect(menu).toHaveFocus();
     fireEvent.keyDown(menu, { key: 'ArrowUp' });
     expect(menu).toHaveFocus();

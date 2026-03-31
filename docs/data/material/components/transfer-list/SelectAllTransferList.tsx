@@ -79,8 +79,8 @@ export default function SelectAllTransferList() {
               numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0
             }
             disabled={items.length === 0}
-            inputProps={{
-              'aria-label': 'all items selected',
+            slotProps={{
+              input: { 'aria-label': 'all items selected' },
             }}
           />
         }
@@ -113,8 +113,8 @@ export default function SelectAllTransferList() {
                   checked={checked.includes(value)}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{
-                    'aria-labelledby': labelId,
+                  slotProps={{
+                    input: { 'aria-labelledby': labelId },
                   }}
                 />
               </ListItemIcon>

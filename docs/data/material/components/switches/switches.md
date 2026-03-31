@@ -73,8 +73,8 @@ You can change the placement of the label:
 
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
-  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.
+  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `slotProps.input` prop.
 
 ```jsx
-<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
+<Switch value="checkedA" slotProps={{ input: { 'aria-label': 'Switch A' } }} />
 ```

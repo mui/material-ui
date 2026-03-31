@@ -76,7 +76,7 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          // Compensation for the `Input.inputSizeSmall` style.
+          // Compensation for the `Input` small size style.
           transform: 'translate(0, 17px) scale(1)',
         },
       },

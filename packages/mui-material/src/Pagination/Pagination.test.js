@@ -18,7 +18,7 @@ describe('<Pagination />', () => {
     testDeepOverrides: { slotName: 'ul', slotClassName: classes.ul },
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render', () => {

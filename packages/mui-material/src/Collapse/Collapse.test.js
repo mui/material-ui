@@ -41,7 +41,6 @@ describe('<Collapse />', () => {
         testWithElement: CustomWrapperInner,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   it('should render a container around the wrapper', () => {
