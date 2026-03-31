@@ -40,18 +40,6 @@ It introduces the shared version story, our long‑term direction, and links to 
 - [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 - [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
-<!-- <figure>
-  <img
-    src="/static/blog/introducing-mui-v9/stub_v9-ecosystem-overview.png"
-    alt="MUI v9 ecosystem overview."
-    width="1600"
-    height="900"
-    loading="lazy"
-    style="border: 0; width: 100%; height: auto;"
-  />
-  <figcaption>Material UI and MUI X v9 ecosystem overview.</figcaption>
-</figure> --> 
-
 ## Table of contents
 
 - [One major version, one ecosystem](#one-major-version-one-ecosystem)
@@ -84,6 +72,19 @@ A single major version number makes it easier to:
 - Align upgrade windows and migration guides across packages.
 - Communicate compatibility, for example, "MUI X v9 is designed to pair with Material UI v9".
 - Stage cross‑cutting improvements, such as accessibility and keyboard navigation upgrades, across both layers at once.
+
+
+<figure>
+  <img
+    src="/static/blog/introducing-mui-v9/stub_v9-ecosystem-overview.png"
+    alt="MUI v9 ecosystem overview."
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
+  <figcaption>Material UI and MUI X v9 ecosystem overview.</figcaption>
+</figure>
 
 ## Components highlights
 
