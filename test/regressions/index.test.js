@@ -114,6 +114,16 @@ async function main() {
         }
 
         const testcase = await renderFixture(route);
+
+        switch (route) {
+          case '/docs-components-table/ReactVirtualizedTable': {
+            await page.waitForSelector('[data-index="1"]');
+            break;
+          }
+          default:
+            break;
+        }
+
         await takeScreenshot({ testcase, route });
       });
     });
