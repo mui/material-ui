@@ -230,6 +230,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     onClose,
     open,
     PaperComponent = Paper,
+    PaperProps = {},
     role = 'dialog',
     scroll = 'paper',
     slots = {},
