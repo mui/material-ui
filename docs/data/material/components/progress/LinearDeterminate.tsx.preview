@@ -1,1 +1,5 @@
-<LinearProgress variant="determinate" value={progress} />
+<LinearProgress
+  variant="determinate"
+  value={progress}
+  aria-label="Export data"
+/>
