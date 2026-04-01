@@ -4,6 +4,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
+import RtlProvider from '@mui/system/RtlProvider';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 import describeConformance from '../../test/describeConformance';
 
@@ -83,6 +84,17 @@ describe('<LinearProgress />', () => {
     expect(progressbar.children[0]).to.have.nested.property('style.transform', 'translateX(-23%)');
   });
 
+  it('should set opposite width of bar1 on determinate variant in RTL', () => {
+    render(
+      <RtlProvider>
+        <LinearProgress variant="determinate" value={77} />,
+      </RtlProvider>,
+    );
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.nested.property('style.transform', 'translateX(23%)');
+  });
+
   it('should render with buffer classes for the primary color by default', () => {
     render(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
     const progressbar = screen.getByRole('progressbar');
@@ -132,6 +144,7 @@ describe('<LinearProgress />', () => {
 
   it('should render with query classes', () => {
     render(<LinearProgress variant="query" />);
+
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.class(classes.query);
@@ -166,6 +179,93 @@ describe('<LinearProgress />', () => {
         'MUI: You need to provide a valueBuffer prop',
         !strictModeDoubleLoggingSuppressed && 'MUI: You need to provide a value prop',
         !strictModeDoubleLoggingSuppressed && 'MUI: You need to provide a valueBuffer prop',
+      ]);
+    });
+  });
+
+  describe('prop: minValue & maxValue', () => {
+    it('should be able to use custom min and max values', () => {
+      render(<LinearProgress variant="determinate" value={5} minValue={0} maxValue={10} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '0');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10');
+    });
+
+    it('min and max values should be used to calculate the width of the bar', () => {
+      render(<LinearProgress variant="determinate" value={15} minValue={10} maxValue={30} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar.children[0]).to.have.nested.property(
+        'style.transform',
+        'translateX(-75%)',
+      );
+    });
+
+    it('min and max values should be used to calculate the width of the buffer bar', () => {
+      render(
+        <LinearProgress variant="buffer" value={15} valueBuffer={25} minValue={10} maxValue={30} />,
+      );
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar.querySelector(`.${classes.bar1}`)).to.have.nested.property(
+        'style.transform',
+        'translateX(-75%)',
+      );
+      expect(progressbar.querySelector(`.${classes.bar2}`)).to.have.nested.property(
+        'style.transform',
+        'translateX(-25%)',
+      );
+    });
+
+    it('should warn if the value is out of range', () => {
+      expect(() => {
+        render(<LinearProgress variant="determinate" value={-1} minValue={0} maxValue={10} />);
+      }).toErrorDev([
+        `MUI: The value provided to the LinearProgress component is out of range (value: -1, min: 0, max: 10).`,
+        !strictModeDoubleLoggingSuppressed &&
+          `MUI: The value provided to the LinearProgress component is out of range (value: -1, min: 0, max: 10).`,
+      ]);
+
+      expect(() => {
+        render(<LinearProgress variant="determinate" value={11} minValue={0} maxValue={10} />);
+      }).toErrorDev([
+        `MUI: The value provided to the LinearProgress component is out of range (value: 11, min: 0, max: 10).`,
+        !strictModeDoubleLoggingSuppressed &&
+          `MUI: The value provided to the LinearProgress component is out of range (value: 11, min: 0, max: 10).`,
+      ]);
+    });
+
+    it('should warn if the valueBuffer is out of range or less than the value prop', () => {
+      expect(() => {
+        render(
+          <LinearProgress variant="buffer" value={5} valueBuffer={4} minValue={0} maxValue={10} />,
+        );
+      }).toErrorDev([
+        `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: 4, value: 5, min: 0, max: 10).`,
+        !strictModeDoubleLoggingSuppressed &&
+          `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: 4, value: 5, min: 0, max: 10).`,
+      ]);
+
+      expect(() => {
+        render(
+          <LinearProgress variant="buffer" value={5} valueBuffer={11} minValue={0} maxValue={10} />,
+        );
+      }).toErrorDev([
+        `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: 11, value: 5, min: 0, max: 10).`,
+        !strictModeDoubleLoggingSuppressed &&
+          `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: 11, value: 5, min: 0, max: 10).`,
+      ]);
+
+      expect(() => {
+        render(
+          <LinearProgress variant="buffer" value={5} valueBuffer={-1} minValue={0} maxValue={10} />,
+        );
+      }).toErrorDev([
+        `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: -1, value: 5, min: 0, max: 10).`,
+        !strictModeDoubleLoggingSuppressed &&
+          `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: -1, value: 5, min: 0, max: 10).`,
       ]);
     });
   });

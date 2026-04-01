@@ -357,6 +357,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     className,
     color = 'primary',
+    maxValue = 100,
+    minValue = 0,
     value,
     valueBuffer,
     variant = 'indeterminate',
@@ -377,27 +379,40 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
-      rootProps['aria-valuemin'] = 0;
-      rootProps['aria-valuemax'] = 100;
-      let transform = value - 100;
+      rootProps['aria-valuemin'] = minValue;
+      rootProps['aria-valuemax'] = maxValue;
+      let transform = ((value - minValue) / (maxValue - minValue)) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
+      if ((value < minValue || value > maxValue) && process.env.NODE_ENV !== 'production') {
+        console.error(
+          `MUI: The value provided to the LinearProgress component is out of range (value: ${value}, min: ${minValue}, max: ${maxValue}).`,
+        );
+      }
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a value prop ' +
-          'when using the determinate or buffer variant of LinearProgress .',
+          'when using the determinate or buffer variant of LinearProgress.',
       );
     }
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      let transform = (valueBuffer || 0) - 100;
+      let transform = ((valueBuffer - minValue) / (maxValue - minValue)) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar2.transform = `translateX(${transform}%)`;
+      if (
+        (valueBuffer < minValue || valueBuffer > maxValue || valueBuffer < value) &&
+        process.env.NODE_ENV !== 'production'
+      ) {
+        console.error(
+          `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: ${valueBuffer}, value: ${value}, min: ${minValue}, max: ${maxValue}).`,
+        );
+      }
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a valueBuffer prop ' +
@@ -458,6 +473,16 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The maximum value of progress in determinate and buffer variants.
+   * @default 100
+   */
+  maxValue: PropTypes.number,
+  /**
+   * The minimum value of progress in determinate and buffer variants.
+   * @default 0
+   */
+  minValue: PropTypes.number,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -467,12 +492,12 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
+   * Value between minValue and maxValue.
    */
   value: PropTypes.number,
   /**
    * The value for the buffer variant.
-   * Value between 0 and 100.
+   * Value between minValue and maxValue.
    */
   valueBuffer: PropTypes.number,
   /**
