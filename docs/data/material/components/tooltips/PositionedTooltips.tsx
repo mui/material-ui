@@ -18,7 +18,7 @@ export default function PositionedTooltips() {
         </Tooltip>
       </Stack>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Stack direction="column">
+        <Stack direction="column" sx={{ alignItems: 'flex-start' }}>
           <Tooltip describeChild title="Add" placement="left-start">
             <Button>left-start</Button>
           </Tooltip>

@@ -44,7 +44,7 @@ export default function PositionedPopper() {
         <Button onClick={handleClick('top-end')}>top-end</Button>
       </Stack>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Stack direction="column">
+        <Stack direction="column" sx={{ alignItems: 'flex-start' }}>
           <Button onClick={handleClick('left-start')}>left-start</Button>
           <Button onClick={handleClick('left')}>left</Button>
           <Button onClick={handleClick('left-end')}>left-end</Button>
