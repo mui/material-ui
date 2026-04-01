@@ -4,7 +4,7 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
+import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Section from 'docs/src/layouts/Section';

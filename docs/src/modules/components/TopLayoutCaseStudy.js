@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
+
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import { AppContainer } from '@mui/internal-core-docs/AppLayout';
+import { AppContainer, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';

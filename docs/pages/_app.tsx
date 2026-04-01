@@ -215,6 +215,9 @@ const docsConfig: DocsConfig = {
     fetchNotifications: (): Promise<NotificationMessage[]> =>
       import('../notifications.json').then((mod) => mod.default),
   }),
+  hostUrl: process.env.PULL_REQUEST_ID
+    ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+    : 'https://next.mui.com',
 };
 
 function useDemoDisplayName() {

@@ -11,11 +11,11 @@ import {
   AD_HEIGHT_MOBILE,
   AD_MARGIN_BOTTOM,
 } from '@mui/internal-core-docs/Ad';
-import Head from 'docs/src/modules/components/Head';
 import {
   AppFrame,
   AppContainer,
   AppLayoutDocsFooter,
+  AppLayoutHead as Head,
   BackToTop,
 } from '@mui/internal-core-docs/AppLayout';
 import { convertProductIdToName, getProductInfoFromUrl } from '@mui/internal-core-docs/utils';

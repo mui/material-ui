@@ -24,6 +24,7 @@ export interface DocsConfig {
   LANGUAGES_IN_PROGRESS: string[];
   LANGUAGES_IGNORE_PAGES: (pathname: string) => boolean;
   fetchNotifications?: () => Promise<NotificationMessage[]>;
+  hostUrl?: string;
 }
 
 export const DEFAULT_DOCS_CONFIG: DocsConfig = {
@@ -31,6 +32,7 @@ export const DEFAULT_DOCS_CONFIG: DocsConfig = {
   LANGUAGES_SSR,
   LANGUAGES_IN_PROGRESS,
   LANGUAGES_IGNORE_PAGES,
+  fetchNotifications: defaultFetchNotifications,
 };
 
 const DocsConfigContext = React.createContext<DocsConfig>(DEFAULT_DOCS_CONFIG);

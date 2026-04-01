@@ -13,8 +13,11 @@ export interface AppLayoutHeadProps {
   largeCard?: boolean;
   title: string;
   type?: string;
-  hostUrl: string;
 }
+
+const DEFAULT_HOST_URL = process.env.PULL_REQUEST_ID
+  ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+  : 'https://next.mui.com';
 
 export function AppLayoutHead(props: AppLayoutHeadProps) {
   const t = useTranslate();
@@ -26,13 +29,12 @@ export function AppLayoutHead(props: AppLayoutHeadProps) {
     largeCard = true,
     title = t('headTitle'),
     type = 'website',
-    hostUrl,
   } = props;
   const userLanguage = useUserLanguage();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const { LANGUAGES_SSR, hostUrl = DEFAULT_HOST_URL } = useDocsConfig();
   const preview = card.startsWith('http') ? card : `${hostUrl}${card}`;
-  const { LANGUAGES_SSR } = useDocsConfig();
 
   return (
     <NextHead>
