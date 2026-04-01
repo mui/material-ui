@@ -6,7 +6,7 @@ import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import Fade from '@mui/material/Fade';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
+import { samePageLinkNavigation } from '@mui/internal-core-docs/Link';
 import TableOfContents, { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 
 function flatten(headings) {

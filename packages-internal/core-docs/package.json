@@ -93,7 +93,6 @@
   },
   "exports": {
     "./*": "./src/*/index.ts",
-    "./ApiPage/private": "./src/ApiPage/private.ts",
-    "./AppLayout/AppSearch": "./src/AppLayout/components/AppSearch.tsx"
+    "./ApiPage/private": "./src/ApiPage/private.ts"
   }
 }

@@ -5,6 +5,7 @@ import type {} from '../branding/brandingTheme';
 // layout
 export * from './layout/AppContainer';
 export * from './layout/AppLayoutHead';
+export * from './layout/AppFrame';
 export * from './layout/AppSettingsDrawer';
 export * from './layout/Notifications';
 
