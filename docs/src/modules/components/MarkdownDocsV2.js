@@ -10,7 +10,7 @@ import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/mo
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
-import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
+import { HEIGHT as AppFrameHeight } from '@mui/internal-core-docs/AppLayout';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropertiesToc, getClassesToc } from '@mui/internal-core-docs/ApiPage/private';
 

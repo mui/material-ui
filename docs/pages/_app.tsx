@@ -3,13 +3,15 @@ import 'docs/src/modules/components/bootstrap';
 import * as React from 'react';
 import { AdConfig } from '@mui/internal-core-docs/Ad';
 import { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
-import type { DocsAppProps } from '@mui/internal-core-docs/DocsApp';
 import {
   DocsApp,
   createGetInitialProps,
   printConsoleBanner,
   reportWebVitals,
+  type DocsAppProps,
 } from '@mui/internal-core-docs/DocsApp';
+import { DEFAULT_DOCS_CONFIG, type DocsConfig } from '@mui/internal-core-docs/DocsProvider';
+import type { NotificationMessage } from '@mui/internal-core-docs/AppLayout';
 import findActivePage from '@mui/internal-core-docs/findActivePage';
 import { getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
 import type { Translations } from '@mui/internal-core-docs/i18n';
@@ -207,6 +209,14 @@ const CSB_CONFIG: SandboxConfig = {
 
 const GA_AD_CONFIG: AdConfig = { GADisplayRatio: 0.1 };
 
+const docsConfig: DocsConfig = {
+  ...DEFAULT_DOCS_CONFIG,
+  ...(process.env.NODE_ENV !== 'production' && {
+    fetchNotifications: (): Promise<NotificationMessage[]> =>
+      import('../notifications.json').then((mod) => mod.default),
+  }),
+};
+
 function useDemoDisplayName() {
   const router = useRouter();
   const { productId } = React.useMemo(() => getProductInfoFromUrl(router.asPath), [router.asPath]);
@@ -250,6 +260,7 @@ export default function MyApp(
       productCategoryId={productCategoryId}
       demoDisplayName={demoDisplayName}
       csbConfig={CSB_CONFIG}
+      docsConfig={docsConfig}
     />
   );
 }

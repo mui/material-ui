@@ -12,8 +12,7 @@ import {
   AD_MARGIN_BOTTOM,
 } from '@mui/internal-core-docs/Ad';
 import Head from 'docs/src/modules/components/Head';
-import AppFrame from 'docs/src/modules/components/AppFrame';
-import { AppContainer, AppLayoutDocsFooter } from '@mui/internal-core-docs/AppLayout';
+import { AppFrame, AppContainer, AppLayoutDocsFooter } from '@mui/internal-core-docs/AppLayout';
 import { convertProductIdToName, getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';

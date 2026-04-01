@@ -14,6 +14,7 @@ import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
 import { getCookie } from '../../helpers';
+import { useFetchNotifications } from '../../DocsProvider';
 import { useUserLanguage, useTranslate } from '../../i18n';
 
 export interface NotificationMessage {
@@ -56,16 +57,8 @@ interface NotificationsState {
   messages: NotificationMessage[] | undefined;
 }
 
-export interface NotificationsProps {
-  /**
-   * A function that returns a promise resolving to an array of notification messages.
-   * Called once on mount to fetch the notifications to display.
-   */
-  fetchNotifications: () => Promise<NotificationMessage[]>;
-}
-
-export function Notifications(props: NotificationsProps) {
-  const { fetchNotifications } = props;
+export function Notifications() {
+  const fetchNotifications = useFetchNotifications();
   const [open, setOpen] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);

@@ -13,7 +13,7 @@ import { AppNavDrawer } from '../navigation/AppNavDrawer';
 import { AppSettingsDrawer } from './AppSettingsDrawer';
 import { LogoWithCopyMenu } from '../components/LogoWithCopyMenu';
 import { Notifications } from './Notifications';
-import type { NotificationMessage } from './Notifications';
+import { AppFrameBanner } from '../components/AppFrameBanner';
 import { SearchButton } from '../components/SearchButton';
 import PageContext from '../../PageContext';
 import { useTranslate } from '../../i18n';
@@ -120,11 +120,10 @@ export interface AppFrameProps {
   children: React.ReactNode;
   className?: string;
   disableDrawer?: boolean;
-  fetchNotifications: () => Promise<NotificationMessage[]>;
 }
 
 export function AppFrame(props: AppFrameProps) {
-  const { children, disableDrawer = false, className, BannerComponent, fetchNotifications } = props;
+  const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -185,7 +184,7 @@ export function AppFrame(props: AppFrameProps) {
                   <GitHubIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-              <Notifications fetchNotifications={fetchNotifications} />
+              <Notifications />
               <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
                 <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
                   <SettingsIcon fontSize="small" />

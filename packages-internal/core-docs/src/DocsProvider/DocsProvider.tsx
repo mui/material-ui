@@ -7,12 +7,23 @@ import {
   LANGUAGES_IN_PROGRESS,
   LANGUAGES_SSR,
 } from '../constants';
+import type { NotificationMessage } from '../AppLayout/layout/Notifications';
+
+// #target-branch-reference
+const NOTIFICATIONS_URL =
+  'https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json';
+
+async function defaultFetchNotifications(): Promise<NotificationMessage[]> {
+  const response = await fetch(NOTIFICATIONS_URL);
+  return response.json();
+}
 
 export interface DocsConfig {
   LANGUAGES: string[];
   LANGUAGES_SSR: string[];
   LANGUAGES_IN_PROGRESS: string[];
   LANGUAGES_IGNORE_PAGES: (pathname: string) => boolean;
+  fetchNotifications?: () => Promise<NotificationMessage[]>;
 }
 
 export const DEFAULT_DOCS_CONFIG: DocsConfig = {
@@ -56,4 +67,9 @@ export function useDocsConfig() {
     return DEFAULT_DOCS_CONFIG;
   }
   return config;
+}
+
+export function useFetchNotifications(): () => Promise<NotificationMessage[]> {
+  const config = useDocsConfig();
+  return config.fetchNotifications ?? defaultFetchNotifications;
 }
