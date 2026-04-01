@@ -1,7 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
-// Components
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Collapse from '@mui/material/Collapse';
@@ -14,7 +12,6 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
-// Icons
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -24,14 +21,14 @@ import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-// Other imports
-import { Link } from '@mui/internal-core-docs/Link';
-import PageContext from '@mui/internal-core-docs/PageContext';
-import { MuiLogotypeIcon } from '@mui/internal-core-docs/svgIcons';
-import EditPage from 'docs/src/modules/components/EditPage';
-import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
-import { pageToTitleI18n } from '@mui/internal-core-docs/helpers';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
+import { Link } from '../../Link';
+import PageContext from '../../PageContext';
+import { MuiLogotypeIcon } from '../../svgIcons';
+import { EditPage } from '../components/EditPage';
+import { useUserLanguage, useTranslate } from '../../i18n';
+import { pageToTitleI18n } from '../../helpers';
+import type { MuiPage, OrderedMuiPage } from '../../MuiPage';
 
 const FooterLink = styled(Link)(({ theme }) => {
   return {
@@ -50,25 +47,13 @@ const FooterLink = styled(Link)(({ theme }) => {
   };
 });
 
-/**
- * @typedef {import('@mui/internal-core-docs/MuiPage').MuiPage} MuiPage
- * @typedef {import('@mui/internal-core-docs/MuiPage').OrderedMuiPage} OrderedMuiPage
- */
-
-/**
- * This function is flattening the pages tree and extracts all the leaves that are internal pages.
- * To extract the leaves, it skips all the nodes that have at least one child.
- * @param {MuiPage[]} pages
- * @param {MuiPage[]} [current]
- * @returns {OrderedMuiPage[]}
- */
-function orderedPages(pages, current = []) {
+function orderedPages(pages: MuiPage[], current: OrderedMuiPage[] = []): OrderedMuiPage[] {
   return pages
-    .reduce((items, item) => {
+    .reduce<OrderedMuiPage[]>((items, item) => {
       if (item.children && item.children.length > 0) {
         items = orderedPages(item.children, items);
       } else {
-        items.push(item);
+        items.push(item as OrderedMuiPage);
       }
       return items;
     }, current)
@@ -81,7 +66,14 @@ function orderedPages(pages, current = []) {
     });
 }
 
-async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
+async function submitFeedback(
+  page: string,
+  rating: number | null,
+  comment: string,
+  language: string,
+  commentedSection: { hash: string; text: string },
+  productId: string,
+) {
   const sentData = {
     callback_id: 'send_feedback',
     rating,
@@ -111,57 +103,15 @@ async function submitFeedback(page, rating, comment, language, commentedSection,
     console.error(error);
     return null;
   }
-
-  /**
-   Not used because I ignore how to encode that with:
-      'content-type': 'application/x-www-form-urlencoded'
-
-   const complexSlackMessage = {
-     blocks: [
-       {
-         type: 'header',
-         text: {
-           type: 'plain_text',
-           text: `New comment ${rating > 0 ? '👍' : '👎'}`,
-           emoji: true,
-         },
-       },
-       {
-         type: 'section',
-         text: {
-           type: 'plain_text',
-           text: comment,
-           emoji: true,
-         },
-       },
-       {
-         type: 'section',
-         text: {
-           type: 'mrkdwn',
-           text: `v: ${version}, lang: ${language}`,
-         },
-         accessory: {
-           type: 'button',
-           text: {
-             type: 'plain_text',
-             text: 'Go to the page',
-             emoji: true,
-           },
-           url: window.location.host,
-         },
-       },
-     ],
-   };
-  */
 }
 
-/**
- * @returns { { prevPage: OrderedMuiPage | null; nextPage: OrderedMuiPage | null } }
- */
-function usePageNeighbours() {
+function usePageNeighbours(): {
+  prevPage: OrderedMuiPage | null;
+  nextPage: OrderedMuiPage | null;
+} {
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = orderedPages(pages);
-  const currentPageNum = pageList.indexOf(activePage);
+  const currentPageNum = pageList.indexOf(activePage as OrderedMuiPage);
 
   if (currentPageNum === -1) {
     return { prevPage: null, nextPage: null };
@@ -181,7 +131,18 @@ const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API 
 
 const iconColor = 'grey.500';
 
-export default function AppLayoutDocsFooter(props) {
+interface TableOfContentsEntry {
+  hash: string;
+  text: string;
+  children: { hash: string; text: string }[];
+}
+
+export interface AppLayoutDocsFooterProps {
+  tableOfContents?: TableOfContentsEntry[];
+  location: string;
+}
+
+export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
   const { tableOfContents = [], location } = props;
 
   const theme = useTheme();
@@ -192,8 +153,8 @@ export default function AppLayoutDocsFooter(props) {
   const [comment, setComment] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [snackbarMessage, setSnackbarMessage] = React.useState(false);
-  const inputRef = React.useRef();
+  const [snackbarMessage, setSnackbarMessage] = React.useState<string | false>(false);
+  const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const [commentOpen, setCommentOpen] = React.useState(false);
   const [commentedSection, setCommentedSection] = React.useState(EMPTY_SECTION);
 
@@ -222,7 +183,7 @@ export default function AppLayoutDocsFooter(props) {
       }
 
       const result = await submitFeedback(
-        activePage.pathname,
+        activePage!.pathname,
         rating,
         comment,
         userLanguage,
@@ -241,9 +202,9 @@ export default function AppLayoutDocsFooter(props) {
     }
   }
 
-  const handleClickThumb = (vote) => async () => {
+  const handleClickThumb = (vote: number) => async () => {
     if (vote !== rating) {
-      setRating(vote);
+      setRating(String(vote));
       setCommentOpen(true);
     }
 
@@ -254,16 +215,12 @@ export default function AppLayoutDocsFooter(props) {
     }
   };
 
-  const handleChangeTextfield = (event) => {
+  const handleChangeTextfield = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(event.target.value);
   };
 
-  const handleSubmitComment = (event) => {
+  const handleSubmitComment = (event: React.FormEvent) => {
     event.preventDefault();
-    // Block more than one submission.
-    // Technically, setState() is async in React, so a ninja user could still
-    // manage to trigger a double form submission. Still, let's wait and see
-    // before adding the overhead of a React ref to solve this.
     if (!commentOpen) {
       return;
     }
@@ -271,13 +228,12 @@ export default function AppLayoutDocsFooter(props) {
     processFeedback();
   };
 
-  // See https://github.com/mui/toolpad/issues/1164 for context.
-  const handleKeyDownForm = (event) => {
+  const handleKeyDownForm = (event: React.KeyboardEvent<HTMLFormElement>) => {
     const modifierKey = (event.metaKey || event.ctrlKey) && !event.shiftKey;
 
     if (event.key === 'Enter' && modifierKey) {
-      const submitButton = event.currentTarget.querySelector('[type="submit"]');
-      submitButton.click();
+      const submitButton = event.currentTarget.querySelector<HTMLButtonElement>('[type="submit"]');
+      submitButton?.click();
     }
   };
 
@@ -287,7 +243,7 @@ export default function AppLayoutDocsFooter(props) {
   };
 
   const handleEntered = () => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   const handleCloseSnackbar = () => {
@@ -295,8 +251,8 @@ export default function AppLayoutDocsFooter(props) {
   };
 
   React.useEffect(() => {
-    const eventListener = (event) => {
-      const feedbackHash = event.target.getAttribute('data-feedback-hash');
+    const eventListener = (event: MouseEvent) => {
+      const feedbackHash = (event.target as HTMLElement).getAttribute('data-feedback-hash');
       if (feedbackHash) {
         const section =
           [...sectionOptions, ...SPEACIAL_FEEDBACK_HASH].find(
@@ -305,8 +261,6 @@ export default function AppLayoutDocsFooter(props) {
         setCommentOpen(true);
         setCommentedSection(section);
 
-        // Manually move focus if comment is already open.
-        // If the comment is closed, onEntered will call focus itself;
         if (inputRef.current) {
           inputRef.current.focus();
         }
@@ -318,7 +272,7 @@ export default function AppLayoutDocsFooter(props) {
     };
   }, [sectionOptions]);
 
-  const hidePagePagination = activePage === null || activePage.ordered === false;
+  const hidePagePagination = activePage === null || !(activePage as OrderedMuiPage).ordered;
 
   return (
     <React.Fragment>
@@ -542,8 +496,3 @@ export default function AppLayoutDocsFooter(props) {
     </React.Fragment>
   );
 }
-
-AppLayoutDocsFooter.propTypes = {
-  location: PropTypes.string.isRequired,
-  tableOfContents: PropTypes.array,
-};

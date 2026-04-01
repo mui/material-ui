@@ -1,11 +1,14 @@
-import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
+import { useUserLanguage, useTranslate } from '../../i18n';
 
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
+const LOCALES: Record<string, string> = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 
-export default function EditPage(props) {
+export interface EditPageProps {
+  sourceLocation: string;
+}
+
+export function EditPage(props: EditPageProps) {
   const { sourceLocation } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
@@ -29,10 +32,9 @@ export default function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${process.env.SOURCE_CODE_REPO}/edit/${process.env.SOURCE_GITHUB_BRANCH}${sourceLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env.SOURCE_CODE_ROOT_URL.replace(
-              'https://github.com/mui/',
-              '',
-            ).replace('/blob/', '%20%2F%20')}${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env
+              .SOURCE_CODE_ROOT_URL!.replace('https://github.com/mui/', '')
+              .replace('/blob/', '%20%2F%20')}${crowdInPath}`
       }
       target="_blank"
       rel="noopener nofollow"
@@ -44,7 +46,3 @@ export default function EditPage(props) {
     </Button>
   );
 }
-
-EditPage.propTypes = {
-  sourceLocation: PropTypes.string.isRequired,
-};
