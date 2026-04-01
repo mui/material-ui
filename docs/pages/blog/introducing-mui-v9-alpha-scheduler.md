@@ -126,7 +126,7 @@ As with other MUI X products, Scheduler ships with Community and commercial tie
 
 Community (MIT) targets the core interactive calendar: resource‑aware layouts, multiple views, drag to move and resize, and a fast path to a credible scheduling UI without hand‑rolling hit targets and DnD.
 
-Premium (commercial) adds what enterprises usually need next: recurrence, lazy loading, virtualization for huge grids of events, and richer timeline experiences for dense schedules.
+Premium (commercial) adds what enterprises usually need next: recurrence, lazy loading, and richer timeline experiences for dense schedules, with virtualization for huge event grids planned for the stable release.
 
 Most teams can prove UX on Community and move up when recurrence or massive event counts demand it.
 
