@@ -16,3 +16,9 @@ export const LANGUAGES_LABEL = [
     text: 'English',
   },
 ];
+
+export const stylingSolutionMapping = {
+  [CODE_STYLING.TAILWIND]: 'tailwind',
+  [CODE_STYLING.CSS]: 'css',
+  [CODE_STYLING.SYSTEM]: 'system',
+};
