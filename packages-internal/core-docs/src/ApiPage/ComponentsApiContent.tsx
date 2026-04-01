@@ -1,25 +1,20 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import { useRouter } from 'next/router';
-import exactProp from '@mui/utils/exactProp';
-import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
-import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
-import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
-import type { LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
-import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
-import {
-  ApiDisplayLayout,
-  DEFAULT_API_LAYOUT_STORAGE_KEYS,
-  getPropsApiDefinitions,
-  getClassApiDefinitions,
-  getSlotsApiDefinitions,
-  PropertiesSection,
-  SlotsSection,
-  ClassesSection,
-} from '@mui/internal-core-docs/ApiPage/private';
+import { Translate, useTranslate, useUserLanguage } from '../i18n';
+import { SectionTitle, SectionTitleProps } from '../SectionTitle';
+import { HighlightedCode } from '../HighlightedCode';
+import { MarkdownElement } from '../MarkdownElement';
+import type { LayoutStorageKeys } from './types';
+import { getPropsApiDefinitions } from './definitions/properties';
+import { getClassApiDefinitions } from './definitions/classes';
+import { getSlotsApiDefinitions } from './definitions/slots';
+import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import { PropertiesSection } from './sections/PropertiesSection';
+import { SlotsSection } from './sections/SlotsSection';
+import { ClassesSection } from './sections/ClassesSection';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {
@@ -43,13 +38,7 @@ function Heading(props: SectionTitleProps) {
   return <SectionTitle title={getTranslatedHeader(t, hash, title)} hash={hash} level={level} />;
 }
 
-Heading.propTypes = {
-  hash: PropTypes.string.isRequired,
-  level: PropTypes.string,
-  title: PropTypes.string,
-};
-
-type ComponentsApiContentProps = {
+export type ComponentsApiContentProps = {
   descriptions: {
     [component: string]: {
       [lang: string]: PropsTranslations;
@@ -60,7 +49,7 @@ type ComponentsApiContentProps = {
   layoutStorageKey?: LayoutStorageKeys;
 };
 
-export default function ComponentsApiContent(props: ComponentsApiContentProps) {
+export function ComponentsApiContent(props: ComponentsApiContentProps) {
   const {
     descriptions,
     pageContents,
@@ -254,18 +243,5 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
         </svg>
       </React.Fragment>
     );
-  });
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  ComponentsApiContent.propTypes = exactProp({
-    defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
-    descriptions: PropTypes.object.isRequired,
-    layoutStorageKey: PropTypes.shape({
-      classes: PropTypes.string,
-      props: PropTypes.string,
-      slots: PropTypes.string,
-    }),
-    pageContents: PropTypes.object.isRequired,
   });
 }

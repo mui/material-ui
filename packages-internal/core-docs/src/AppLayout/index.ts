@@ -3,26 +3,26 @@
 import type {} from '../branding/brandingTheme';
 
 // layout
-export * from './layout/AppContainer';
-export * from './layout/AppLayoutHead';
-export * from './layout/AppFrame';
-export * from './layout/AppLayoutDocs';
-export * from './layout/Notifications';
+export { AppContainer } from './layout/AppContainer';
+export { AppLayoutHead } from './layout/AppLayoutHead';
+export { AppFrame, DeferredAppSearch, HEIGHT } from './layout/AppFrame';
+export { AppLayoutDocs } from './layout/AppLayoutDocs';
+export { type NotificationMessage } from './layout/Notifications';
 
 // navigation
-export * from './navigation/MuiProductSelector';
+export { MuiProductSelector } from './navigation/MuiProductSelector';
 
 // components
-export * from './components/ComponentShowcaseCard';
-export * from './components/Frame';
-export * from './components/Highlighter';
-export * from './components/Item';
-export * from './components/LogoWithCopyMenu';
-export * from './components/MaterialVsCustomToggle';
-export * from './components/More';
-export * from './components/MoreInfoBox';
-export * from './components/NpmCopyButton';
-export * from './components/AppHeaderBanner';
+export { ComponentShowcaseCard } from './components/ComponentShowcaseCard';
+export { Frame } from './components/Frame';
+export { Highlighter } from './components/Highlighter';
+export { Group, Item } from './components/Item';
+export { LogoWithCopyMenu } from './components/LogoWithCopyMenu';
+export { MaterialVsCustomToggle } from './components/MaterialVsCustomToggle';
+export { More } from './components/More';
+export { AppearingInfoBox, MoreInfoBox } from './components/MoreInfoBox';
+export { NpmCopyButton } from './components/NpmCopyButton';
+export { AppHeaderBanner } from './components/AppHeaderBanner';
 
 // icons
-export * from './icons/navIcons';
+export { standardNavIcons } from './icons/navIcons';

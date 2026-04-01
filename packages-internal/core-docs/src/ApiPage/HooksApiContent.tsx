@@ -1,20 +1,15 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { kebabCase } from 'es-toolkit/string';
-import exactProp from '@mui/utils/exactProp';
-import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
-import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
-import type { LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
 import type { HookApiContent, HooksTranslations } from '@mui-internal/api-docs-builder';
-import {
-  ApiDisplayLayout,
-  DEFAULT_API_LAYOUT_STORAGE_KEYS,
-  getHookApiDefinitions,
-  PropertiesSection,
-} from '@mui/internal-core-docs/ApiPage/private';
-import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
+import { kebabCase } from 'es-toolkit/string';
+import { Translate, useTranslate, useUserLanguage } from '../i18n';
+import { SectionTitle, SectionTitleProps } from '../SectionTitle';
+import type { LayoutStorageKeys } from './types';
+import { getHookApiDefinitions } from './definitions/properties';
+import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import { PropertiesSection } from './sections/PropertiesSection';
+import { HighlightedCode } from '../HighlightedCode';
+import { MarkdownElement } from '../MarkdownElement';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {
@@ -35,13 +30,7 @@ function Heading(props: SectionTitleProps) {
   return <SectionTitle title={getTranslatedHeader(t, hash, title)} hash={hash} level={level} />;
 }
 
-Heading.propTypes = {
-  hash: PropTypes.string.isRequired,
-  level: PropTypes.string,
-  title: PropTypes.string,
-};
-
-type HooksApiContentProps = {
+export type HooksApiContentProps = {
   descriptions: {
     [hookName: string]: {
       [lang: string]: HooksTranslations;
@@ -52,7 +41,7 @@ type HooksApiContentProps = {
   layoutStorageKey?: LayoutStorageKeys;
 };
 
-export default function HooksApiContent(props: HooksApiContentProps) {
+export function HooksApiContent(props: HooksApiContentProps) {
   const {
     descriptions,
     pagesContents,
@@ -124,14 +113,5 @@ export default function HooksApiContent(props: HooksApiContentProps) {
         </svg>
       </React.Fragment>
     );
-  });
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  HooksApiContent.propTypes = exactProp({
-    defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
-    descriptions: PropTypes.object.isRequired,
-    layoutStorageKey: PropTypes.string,
-    pagesContents: PropTypes.object.isRequired,
   });
 }

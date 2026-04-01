@@ -1,33 +1,25 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
-import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import { Ad, AdGuest } from '@mui/internal-core-docs/Ad';
-import type { TocItem, LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
-import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import { BrandingProvider, BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
-import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
-import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
-import { AppLayoutDocs } from '@mui/internal-core-docs/AppLayout';
-import {
-  ApiDisplayLayout,
-  DEFAULT_API_LAYOUT_STORAGE_KEYS,
-  getPropsApiDefinitions,
-  getPropertiesToc,
-  getClassApiDefinitions,
-  getClassesToc,
-  getSlotsApiDefinitions,
-  getSlotsToc,
-  PropertiesSection,
-  SlotsSection,
-  ClassesSection,
-} from '@mui/internal-core-docs/ApiPage/private';
+import { Ad, AdGuest } from '../Ad';
+import type { TocItem, LayoutStorageKeys } from './types';
+import { Translate, useTranslate, useUserLanguage } from '../i18n';
+import { HighlightedCode } from '../HighlightedCode';
+import { BrandingProvider, BrandingCssVarsProvider } from '../branding';
+import { SectionTitle, SectionTitleProps } from '../SectionTitle';
+import { MarkdownElement } from '../MarkdownElement';
+import { AppLayoutDocs } from '../AppLayout';
+import { getPropertiesToc, getPropsApiDefinitions } from './definitions/properties';
+import { getClassesToc, getClassApiDefinitions } from './definitions/classes';
+import { getSlotsApiDefinitions, getSlotsToc } from './definitions/slots';
+import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import { PropertiesSection } from './sections/PropertiesSection';
+import { SlotsSection } from './sections/SlotsSection';
+import { ClassesSection } from './sections/ClassesSection';
 
 type ApiHeaderKeys =
   | 'demos'
@@ -71,12 +63,7 @@ function Heading(props: Pick<SectionTitleProps<ApiHeaderKeys>, 'hash' | 'level'>
   return <SectionTitle title={getTranslatedHeader(t, hash)} hash={hash} level={level} />;
 }
 
-Heading.propTypes = {
-  hash: PropTypes.string.isRequired,
-  level: PropTypes.string,
-};
-
-interface ApiPageProps {
+export interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
       // Table of Content added by the mapApiPageTranslations function
@@ -88,12 +75,13 @@ interface ApiPageProps {
   defaultLayout?: ApiDisplayLayout;
   /**
    * The localStorage key used to save the user layout for each section.
-   * It's useful to dave different preferences on different pages.
-   * For example, the data grid has a different key that the core.
+   * It's useful to save different preferences on different pages.
+   * For example, the data grid has a different key than the core.
    */
   layoutStorageKey?: LayoutStorageKeys;
 }
-export default function ApiPage(props: ApiPageProps) {
+
+export function ApiPage(props: ApiPageProps) {
   const {
     descriptions,
     disableAd = false,
@@ -353,18 +341,4 @@ export default function ApiPage(props: ApiPageProps) {
       </AppLayoutDocs>
     </BrandingCssVarsProvider>
   );
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  ApiPage.propTypes = exactProp({
-    defaultLayout: PropTypes.oneOf(['collapsed', 'expanded', 'table']),
-    descriptions: PropTypes.object.isRequired,
-    disableAd: PropTypes.bool,
-    layoutStorageKey: PropTypes.shape({
-      classes: PropTypes.string,
-      props: PropTypes.string,
-      slots: PropTypes.string,
-    }),
-    pageContent: PropTypes.object.isRequired,
-  });
 }
