@@ -23,6 +23,7 @@ export * from './components/More';
 export * from './components/MoreInfoBox';
 export * from './components/NpmCopyButton';
 export * from './components/ArrowButton';
+export * from './components/SearchButton';
 
 // icons
 export * from './icons/navIcons';

@@ -24,7 +24,7 @@ import { Link } from '@mui/internal-core-docs/Link';
 import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
 import useLazyCSS from '@mui/internal-core-docs/useLazyCSS';
 import PageContext from '@mui/internal-core-docs/PageContext';
-import SearchButton from './SearchButton';
+import { SearchButton } from '@mui/internal-core-docs/AppLayout';
 
 function NewStartScreen() {
   const startScreenOptions = [

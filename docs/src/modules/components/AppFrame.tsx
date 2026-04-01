@@ -15,13 +15,13 @@ import {
   AppSettingsDrawer,
   LogoWithCopyMenu,
   Notifications,
+  SearchButton,
 } from '@mui/internal-core-docs/AppLayout';
 import type { NotificationMessage } from '@mui/internal-core-docs/AppLayout';
 import PageContext from '@mui/internal-core-docs/PageContext';
 import { useTranslate } from '@mui/internal-core-docs/i18n';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
-import SearchButton from './SearchButton';
 
 async function fetchNotifications(): Promise<NotificationMessage[]> {
   if (process.env.NODE_ENV !== 'production') {

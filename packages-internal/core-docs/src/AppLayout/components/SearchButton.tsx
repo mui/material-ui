@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha, styled } from '@mui/material/styles';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
+import { useTranslate } from '../../i18n';
 
 const SearchButtonStyled = styled('button')(({ theme }) => [
   {
@@ -93,7 +93,7 @@ function useShortcut() {
   return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
 
-export default function SearchButton({ onClick, onRef, ...props }: SearchButtonProps) {
+export function SearchButton({ onClick, onRef, ...props }: SearchButtonProps) {
   const t = useTranslate();
   const shortcut = useShortcut();
   const labelId = React.useId();
