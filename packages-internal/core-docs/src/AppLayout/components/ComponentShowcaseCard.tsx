@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
-import { Link } from '../Link';
+import { Link } from '../../Link';
 
 interface ComponentShowcaseCardProps {
   imgLoading?: 'eager';

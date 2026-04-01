@@ -13,9 +13,9 @@ import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
-import { ROUTES } from '../constants';
-import { MuiLogomarkIcon, BaseUiLogoIcon } from '../svgIcons';
-import PageContext from '../PageContext';
+import { ROUTES } from '../../constants';
+import { MuiLogomarkIcon, BaseUiLogoIcon } from '../../svgIcons';
+import PageContext from '../../PageContext';
 
 const iconStyles = {
   fontSize: '.875rem',

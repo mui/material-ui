@@ -1,9 +1,9 @@
 import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
-import { useUserLanguage, useTranslate } from '../i18n';
-import { pathnameToLanguage } from '../helpers';
-import { useDocsConfig } from '../DocsProvider';
+import { useUserLanguage, useTranslate } from '../../i18n';
+import { pathnameToLanguage } from '../../helpers';
+import { useDocsConfig } from '../../DocsProvider';
 
 export interface AppLayoutHeadProps {
   card?: string;

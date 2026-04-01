@@ -13,19 +13,15 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
-import { getCookie } from '@mui/internal-core-docs/helpers';
-import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
+import { getCookie } from '../../helpers';
+import { useUserLanguage, useTranslate } from '../../i18n';
 
-async function fetchNotifications() {
-  if (process.env.NODE_ENV !== 'production') {
-    const items = (await import('../../../notifications.json')).default;
-    return items;
-  }
-  // #target-branch-reference
-  const response = await fetch(
-    'https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json',
-  );
-  return response.json();
+export interface NotificationMessage {
+  id: number;
+  title?: string;
+  text: string;
+  date?: string;
+  userLanguage?: string;
 }
 
 const Paper = styled(MuiPaper)({
@@ -57,18 +53,19 @@ const Divider = styled(MuiDivider)(({ theme }) => ({
 
 interface NotificationsState {
   lastSeen: number;
-  messages:
-    | {
-        id: number;
-        title?: string;
-        text: string;
-        date?: string;
-        userLanguage?: string;
-      }[]
-    | undefined;
+  messages: NotificationMessage[] | undefined;
 }
 
-export default function Notifications() {
+export interface NotificationsProps {
+  /**
+   * A function that returns a promise resolving to an array of notification messages.
+   * Called once on mount to fetch the notifications to display.
+   */
+  fetchNotifications: () => Promise<NotificationMessage[]>;
+}
+
+export function Notifications(props: NotificationsProps) {
+  const { fetchNotifications } = props;
   const [open, setOpen] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -131,12 +128,12 @@ export default function Notifications() {
     const timeout = setTimeout(async () => {
       const notifications = await fetchNotifications().catch(() => {
         // Swallow the exceptions, for example rate limit
-        return [];
+        return [] as NotificationMessage[];
       });
 
       if (active) {
         // Permanent notifications
-        const filteredNotifications = [
+        const filteredNotifications: NotificationMessage[] = [
           /* {
             id: 0,
             title: "Let's translate!",
@@ -164,7 +161,7 @@ export default function Notifications() {
       clearTimeout(timeout);
       active = false;
     };
-  }, [messages]);
+  }, [messages, fetchNotifications]);
 
   return (
     <React.Fragment>

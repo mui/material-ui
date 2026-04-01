@@ -5,9 +5,9 @@ import { alpha, styled, SxProps, Theme } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { samePageLinkNavigation, Link, type LinkProps } from '../Link';
-import { MuiPageIcon } from '../MuiPage';
-import { standardNavIcons } from './navIcons';
+import { samePageLinkNavigation, Link, type LinkProps } from '../../Link';
+import { MuiPageIcon } from '../../MuiPage';
+import { standardNavIcons } from '../icons/navIcons';
 
 interface ItemBaseProps {
   component?: React.ElementType;

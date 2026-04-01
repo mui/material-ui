@@ -14,13 +14,26 @@ import {
   AppNavDrawer,
   AppSettingsDrawer,
   LogoWithCopyMenu,
+  Notifications,
 } from '@mui/internal-core-docs/AppLayout';
-import Notifications from 'docs/src/modules/components/Notifications';
+import type { NotificationMessage } from '@mui/internal-core-docs/AppLayout';
 import PageContext from '@mui/internal-core-docs/PageContext';
 import { useTranslate } from '@mui/internal-core-docs/i18n';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
 import SearchButton from './SearchButton';
+
+async function fetchNotifications(): Promise<NotificationMessage[]> {
+  if (process.env.NODE_ENV !== 'production') {
+    const items = (await import('../../../notifications.json')).default;
+    return items;
+  }
+  // #target-branch-reference
+  const response = await fetch(
+    'https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json',
+  );
+  return response.json();
+}
 
 const sx = { minWidth: { sm: 160 } };
 
@@ -183,7 +196,7 @@ export default function AppFrame(props: AppFrameProps) {
                   <GitHubIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-              <Notifications />
+              <Notifications fetchNotifications={fetchNotifications} />
               <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
                 <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
                   <SettingsIcon fontSize="small" />
