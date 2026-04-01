@@ -77,7 +77,7 @@ const faqData = [
 
   For those who choose to join as employees:
 
-  - people in France are hired as full-time employees under the French [legal entity](https://www.infogreffe.fr/entreprise-societe/852357748-material-ui-750119B189960000.html).
+  - people in France are hired as full-time employees under the French [legal entity](https://www.infogreffe.fr/entreprise-societe/852357748-material-ui-750119B189960000).
   - people outside of France are hired through an Employer of Record (EOR) such as [Deel](https://www.deel.com/).
 `,
   },
