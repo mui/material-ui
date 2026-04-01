@@ -10,8 +10,11 @@ import Box from '@mui/material/Box';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { HamburgerMenuIcon } from '@mui/internal-core-docs/svgIcons';
-import { AppNavDrawer, LogoWithCopyMenu } from '@mui/internal-core-docs/AppLayout';
-import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
+import {
+  AppNavDrawer,
+  AppSettingsDrawer,
+  LogoWithCopyMenu,
+} from '@mui/internal-core-docs/AppLayout';
 import Notifications from 'docs/src/modules/components/Notifications';
 import PageContext from '@mui/internal-core-docs/PageContext';
 import { useTranslate } from '@mui/internal-core-docs/i18n';

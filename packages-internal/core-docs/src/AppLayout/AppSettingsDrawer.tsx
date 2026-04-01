@@ -1,6 +1,7 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme, useColorScheme } from '@mui/material/styles';
-import Drawer from '@mui/material/Drawer';
+import Drawer, { DrawerProps } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -14,8 +15,8 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
-import { useColorSchemeShim, useChangeTheme } from '@mui/internal-core-docs/ThemeContext';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
+import { useColorSchemeShim, useChangeTheme } from '../ThemeContext';
+import { useTranslate } from '../i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '16px 0 8px',
@@ -35,7 +36,14 @@ const IconToggleButton = styled(ToggleButton)({
   },
 });
 
-function ToggleTheme(props) {
+type PaletteMode = 'light' | 'system' | 'dark';
+
+interface ToggleThemeProps {
+  value: PaletteMode | undefined;
+  onChange: (event: React.MouseEvent<HTMLElement>, value: PaletteMode | null) => void;
+}
+
+function ToggleTheme(props: ToggleThemeProps) {
   const { value, onChange } = props;
   const t = useTranslate();
   return (
@@ -77,15 +85,19 @@ function ToggleTheme(props) {
     </ToggleButtonGroup>
   );
 }
+
 ToggleTheme.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOf(['light', 'system', 'dark']),
 };
 
-function ToggleVarTheme(props) {
+function ToggleVarTheme(props: ToggleThemeProps) {
   const { setMode } = useColorScheme();
 
-  const handleChangeThemeMode = (event, paletteMode) => {
+  const handleChangeThemeMode = (
+    event: React.MouseEvent<HTMLElement>,
+    paletteMode: PaletteMode | null,
+  ) => {
     if (paletteMode === null) {
       return;
     }
@@ -100,7 +112,12 @@ ToggleVarTheme.propTypes = {
   value: PropTypes.oneOf(['light', 'system', 'dark']),
 };
 
-export default function AppSettingsDrawer(props) {
+export interface AppSettingsDrawerProps extends Omit<DrawerProps, 'onClose'> {
+  onClose: () => void;
+  open?: boolean;
+}
+
+export function AppSettingsDrawer(props: AppSettingsDrawerProps) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();
   const upperTheme = useTheme();
@@ -109,14 +126,20 @@ export default function AppSettingsDrawer(props) {
   // TODO replace with useColorScheme once all pages support css vars
   const { mode, setMode } = useColorSchemeShim();
 
-  const handleChangeThemeMode = (event, paletteMode) => {
+  const handleChangeThemeMode = (
+    _event: React.MouseEvent<HTMLElement>,
+    paletteMode: PaletteMode | null,
+  ) => {
     if (paletteMode === null) {
       return;
     }
     setMode(paletteMode);
   };
 
-  const handleChangeDirection = (event, direction) => {
+  const handleChangeDirection = (
+    _event: React.MouseEvent<HTMLElement>,
+    direction: 'ltr' | 'rtl' | null,
+  ) => {
     if (direction === null) {
       direction = upperTheme.direction;
     }
@@ -163,9 +186,9 @@ export default function AppSettingsDrawer(props) {
           {t('settings.mode')}
         </Heading>
         {upperTheme.vars ? (
-          <ToggleVarTheme value={mode} onChange={handleChangeThemeMode} />
+          <ToggleVarTheme value={mode as PaletteMode} onChange={handleChangeThemeMode} />
         ) : (
-          <ToggleTheme value={mode} onChange={handleChangeThemeMode} />
+          <ToggleTheme value={mode as PaletteMode} onChange={handleChangeThemeMode} />
         )}
         <Heading gutterBottom id="settings-direction">
           {t('settings.direction')}
