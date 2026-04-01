@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
@@ -8,7 +7,7 @@ import Button from '@mui/material/Button';
  * Based on https://github.com/sindresorhus/new-github-issue-url/blob/061fa0ddb7d51f3b96d3a0f6a6bebb196f105a7b/index.js
  * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
  */
-function newGitHubIssueUrl(options) {
+function newGitHubIssueUrl(options: Record<string, string>): string {
   const url = `${process.env.SOURCE_CODE_REPO}/issues/new`;
 
   const query = Object.keys(options)
@@ -21,12 +20,29 @@ function newGitHubIssueUrl(options) {
   return `${url}?${query}`;
 }
 
-export default class DemoErrorBoundary extends React.Component {
-  state = {
+export interface DemoErrorBoundaryProps {
+  children: React.ReactNode;
+  name: string;
+  onResetDemoClick: () => void;
+  /**
+   * translate function from redux store
+   */
+  t: (key: string) => string;
+}
+
+interface DemoErrorBoundaryState {
+  error: Error | null;
+}
+
+export class DemoErrorBoundary extends React.Component<
+  DemoErrorBoundaryProps,
+  DemoErrorBoundaryState
+> {
+  state: DemoErrorBoundaryState = {
     error: null,
   };
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error): DemoErrorBoundaryState {
     return { error };
   }
 
@@ -88,13 +104,3 @@ The "report this error" link prefills the issue description with valuable inform
     return children;
   }
 }
-
-DemoErrorBoundary.propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
-  /**
-   * translate function from redux store
-   */
-  t: PropTypes.func.isRequired,
-};

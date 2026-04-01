@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
@@ -7,35 +6,33 @@ import { Tabs } from '@mui/base/Tabs';
 import { TabPanel } from '@mui/base/TabPanel';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
+import type { ButtonBaseActions } from '@mui/material/ButtonBase';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import { CodeTab, CodeTabList } from '@mui/internal-core-docs/HighlightedCodeWithTabs';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
-import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
-import ReactRunner from 'docs/src/modules/components/ReactRunner';
-import DemoEditor from 'docs/src/modules/components/DemoEditor';
-import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
-import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
-import { useCodeVariant } from '@mui/internal-core-docs/codeVariant';
-import { CODE_VARIANTS, stylingSolutionMapping } from '@mui/internal-core-docs/constants';
-import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
-import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
-import { AdCarbonInline } from '@mui/internal-core-docs/Ad';
-import DemoAiSuggestionHero from 'docs/src/modules/components/DemoAiSuggestionHero';
+import { HighlightedCode } from '../HighlightedCode';
+import { CodeTab, CodeTabList } from '../HighlightedCodeWithTabs';
+import { DemoSandbox } from './DemoSandbox';
+import { DemoToolbarRoot } from './DemoToolbarRoot';
+import { DemoAiSuggestionHero } from './DemoAiSuggestionHero';
+import { DemoEditor } from './DemoEditor';
+import { DemoEditorError } from './DemoEditorError';
+import { ReactRunner } from './ReactRunner';
+import { useDemoContext } from '../DemoContext/DemoContext';
+import { useCodeVariant } from '../codeVariant/codeVariant';
+import { CODE_VARIANTS, stylingSolutionMapping } from '../constants/constants';
+import { useUserLanguage, useTranslate } from '../i18n';
+import { AdCarbonInline } from '../Ad/AdCarbon';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
  * to be able to replace the existing code with the incoming dynamic code
- * @param {string} input
  */
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '');
 }
-
-const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 
 function DemoToolbarFallback() {
   const t = useTranslate();
@@ -44,18 +41,45 @@ function DemoToolbarFallback() {
   return <Box sx={{ height: 42 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
-function getDemoName(location) {
+function getDemoName(location: string) {
   return location.endsWith('.js') || location.endsWith('.tsx')
     ? location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
     : // the demos with multiple styling solution point to directory
-      location.split('/').pop();
+      location.split('/').pop()!;
 }
 
-function useDemoData(codeVariant, demo, githubLocation, productDisplayName) {
+interface DemoData {
+  scope: any;
+  jsxPreview: string | undefined;
+  codeVariant: string;
+  githubLocation: string;
+  raw: string;
+  module: string | undefined;
+  Component: React.ComponentType | null;
+  sourceLanguage: string;
+  relativeModules?: Array<{ module: string; raw: string }>;
+  title: string;
+  language: string;
+}
+
+function useDemoData(
+  codeVariant: string,
+  demo: DemoProps['demo'],
+  githubLocation: string,
+  productDisplayName: string,
+): DemoData {
   const userLanguage = useUserLanguage();
 
   return React.useMemo(() => {
-    let codeOptions = {};
+    let codeOptions: {
+      codeVariant: string;
+      githubLocation: string;
+      raw: string;
+      module: string | undefined;
+      Component: React.ComponentType | null;
+      sourceLanguage: string;
+      relativeModules?: Array<{ module: string; raw: string }>;
+    };
 
     if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
       codeOptions = {
@@ -93,7 +117,19 @@ function useDemoData(codeVariant, demo, githubLocation, productDisplayName) {
   }, [codeVariant, demo, githubLocation, productDisplayName, userLanguage]);
 }
 
-function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
+interface UseDemoElementParams {
+  demoData: DemoData;
+  editorCode: { value: string; isPreview: boolean; initialEditorCode: string };
+  setDebouncedError: React.Dispatch<React.SetStateAction<string | null>>;
+  liveDemoActive: boolean;
+}
+
+function useDemoElement({
+  demoData,
+  editorCode,
+  setDebouncedError,
+  liveDemoActive,
+}: UseDemoElementParams) {
   const debouncedSetError = React.useMemo(
     () => debounce(setDebouncedError, 300),
     [setDebouncedError],
@@ -107,12 +143,15 @@ function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActiv
 
   // Memoize to avoid rendering the demo more than it needs to be.
   // For example, avoid a render when the demo is hovered.
-  const BundledComponent = React.useMemo(() => <demoData.Component />, [demoData]);
+  const BundledComponent = React.useMemo(
+    () => (demoData.Component ? <demoData.Component /> : (null as unknown as React.ReactElement)),
+    [demoData],
+  );
   const LiveComponent = React.useMemo(
     () => (
       <ReactRunner
         scope={demoData.scope}
-        onError={debouncedSetError}
+        onError={debouncedSetError as any}
         code={
           editorCode.isPreview
             ? trimLeadingSpaces(demoData.raw).replace(
@@ -145,14 +184,14 @@ const Root = styled('div')(({ theme }) => ({
 const DemoRoot = styled('div', {
   shouldForwardProp: (prop) =>
     prop !== 'hideToolbar' && prop !== 'bg' && prop !== 'hasAiSuggestion',
-})(({ theme }) => ({
+})<{ hideToolbar?: boolean; bg?: string | boolean; hasAiSuggestion?: boolean }>(({ theme }) => ({
   position: 'relative',
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
   variants: [
     {
-      props: ({ hideToolbar }) => hideToolbar,
+      props: ({ hideToolbar }) => !!hideToolbar,
       style: {
         [theme.breakpoints.up('sm')]: {
           borderRadius: 12,
@@ -286,7 +325,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   pointerEvents: 'none',
 }));
 
-const selectionOverride = (theme) => ({
+const selectionOverride = (theme: any) => ({
   cursor: 'pointer',
   '&.base--selected': {
     color: (theme.vars || theme).palette.primary[700],
@@ -300,8 +339,74 @@ const selectionOverride = (theme) => ({
   },
 });
 
-export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation } = props;
+export interface DemoToolbarProps {
+  codeOpen: boolean;
+  codeVariant: string;
+  copyButtonOnClick: () => void;
+  copyIcon: React.ReactNode;
+  hasNonSystemDemos: boolean;
+  demo: DemoProps['demo'];
+  demoData: DemoData;
+  demoId: string;
+  demoName: string;
+  demoOptions: DemoProps['demoOptions'];
+  demoSourceId: string;
+  initialFocusRef: React.RefObject<ButtonBaseActions | null>;
+  onCodeOpenChange: () => void;
+  onResetDemoClick: () => void;
+  openDemoSource: boolean;
+  showPreview: boolean;
+}
+
+export interface DemoProps {
+  demo: {
+    raw: string;
+    js: React.ComponentType;
+    scope?: any;
+    jsxPreview?: string;
+    tailwindJsxPreview?: string;
+    cssJsxPreview?: string;
+    rawTS?: string;
+    module: string;
+    moduleTS?: string;
+    tsx?: React.ComponentType | null;
+    rawTailwind?: string;
+    rawTailwindTS?: string;
+    jsTailwind?: React.ComponentType | null;
+    tsxTailwind?: React.ComponentType | null;
+    rawCSS?: string;
+    rawCSSTS?: string;
+    jsCSS?: React.ComponentType | null;
+    tsxCSS?: React.ComponentType | null;
+    gaLabel?: string;
+    relativeModules?: Record<string, Array<{ module: string; raw: string }>>;
+  };
+  demoOptions: {
+    demo: string;
+    hideToolbar?: boolean;
+    defaultCodeOpen?: boolean;
+    disableAd?: boolean;
+    bg?: string | boolean;
+    iframe?: boolean;
+    isolated?: boolean;
+    maxWidth?: number;
+    height?: number;
+    disableLiveEdit?: boolean;
+    aiSuggestion?: string;
+    hideEditButton?: boolean;
+  };
+  disableAd: boolean;
+  githubLocation: string;
+  /**
+   * A lazy-loaded toolbar component to render inside the demo.
+   * This allows docs-specific toolbar implementations (e.g., with sandbox links)
+   * to be injected without coupling core-docs to docs-specific dependencies.
+   */
+  demoToolbarSlot?: React.ComponentType<DemoToolbarProps>;
+}
+
+export function Demo(props: DemoProps) {
+  const { demo, demoOptions, disableAd, githubLocation, demoToolbarSlot: DemoToolbar } = props;
 
   if (process.env.NODE_ENV !== 'production') {
     if (demoOptions.hideToolbar === false) {
@@ -355,7 +460,12 @@ export default function Demo(props) {
 
   const demoData = useDemoData(codeVariant, demo, githubLocation, productDisplayName);
 
-  const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
+  const hasNonSystemDemos = !!(
+    demo.rawTailwind ||
+    demo.rawTailwindTS ||
+    demo.rawCSS ||
+    demo.rawCSSTS
+  );
 
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
@@ -392,13 +502,13 @@ export default function Demo(props) {
     demoOptions.defaultCodeOpen !== false &&
     Boolean(demoData.jsxPreview);
 
-  const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0);
+  const [demoKey, setDemoKey] = React.useReducer((key: number) => key + 1, 0);
 
   const demoId = `demo-${useId()}`;
   const demoSourceId = `demoSource-${useId()}`;
   const openDemoSource = codeOpen || showPreview;
 
-  const initialFocusRef = React.useRef(null);
+  const initialFocusRef = React.useRef<ButtonBaseActions>(null);
 
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
@@ -406,7 +516,7 @@ export default function Demo(props) {
   const isPreview = !codeOpen && showPreview;
 
   const initialEditorCode = isPreview
-    ? demoData.jsxPreview
+    ? (demoData.jsxPreview ?? '')
     : // Prettier remove all the leading lines except for the last one, remove it as we don't
       // need it in the live edit view.
       demoData.raw.replace(/\n$/, '');
@@ -436,7 +546,7 @@ export default function Demo(props) {
     });
   }, [initialEditorCode, isPreview]);
 
-  const [debouncedError, setDebouncedError] = React.useState(null);
+  const [debouncedError, setDebouncedError] = React.useState<string | null>(null);
 
   const [liveDemoActive, setLiveDemoActive] = React.useState(false);
 
@@ -448,8 +558,11 @@ export default function Demo(props) {
   });
 
   const [activeTab, setActiveTab] = React.useState(0);
-  const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue);
+  const handleTabChange = (
+    _event: React.SyntheticEvent | null,
+    newValue: string | number | null,
+  ) => {
+    setActiveTab(newValue as number);
   };
   const ownerState = { mounted: true, contained: true };
 
@@ -460,7 +573,7 @@ export default function Demo(props) {
     let demoModule = demoData.module;
     if (codeVariant === CODE_VARIANTS.TS && demo.moduleTS) {
       demoModule =
-        demo.moduleTS === demo.module ? demoData.module.replace(/\.js$/, '.tsx') : demo.moduleTS;
+        demo.moduleTS === demo.module ? demoData.module!.replace(/\.js$/, '.tsx') : demo.moduleTS;
     }
 
     return [{ module: demoModule, raw: demoData.raw }, ...demoData.relativeModules];
@@ -514,40 +627,48 @@ export default function Demo(props) {
         <React.Fragment>
           {Object.keys(stylingSolutionMapping).map((key) => (
             <React.Fragment key={key}>
-              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
-              <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
+              <AnchorLink
+                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.js`}
+              />
+              <AnchorLink
+                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.tsx`}
+              />
             </React.Fragment>
           ))}
           <AnchorLink id={`${demoName}.js`} />
           <AnchorLink id={`${demoName}.tsx`} />
           <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
-            <NoSsr fallback={<DemoToolbarFallback />}>
-              <React.Suspense fallback={<DemoToolbarFallback />}>
-                <DemoToolbar
-                  codeOpen={codeOpen}
-                  codeVariant={codeVariant}
-                  copyIcon={
-                    copiedContent ? <LibraryAddCheckRoundedIcon /> : <ContentCopyRoundedIcon />
-                  }
-                  copyButtonOnClick={handleCopyClick}
-                  hasNonSystemDemos={hasNonSystemDemos}
-                  demo={demo}
-                  demoData={demoData}
-                  demoId={demoId}
-                  demoName={demoName}
-                  demoOptions={demoOptions}
-                  demoSourceId={demoSourceId}
-                  initialFocusRef={initialFocusRef}
-                  onCodeOpenChange={() => {
-                    setCodeOpen((open) => !open);
-                    setShowAd(true);
-                  }}
-                  onResetDemoClick={resetDemo}
-                  openDemoSource={openDemoSource}
-                  showPreview={showPreview}
-                />
-              </React.Suspense>
-            </NoSsr>
+            {DemoToolbar ? (
+              <NoSsr fallback={<DemoToolbarFallback />}>
+                <React.Suspense fallback={<DemoToolbarFallback />}>
+                  <DemoToolbar
+                    codeOpen={codeOpen}
+                    codeVariant={codeVariant}
+                    copyIcon={
+                      copiedContent ? <LibraryAddCheckRoundedIcon /> : <ContentCopyRoundedIcon />
+                    }
+                    copyButtonOnClick={handleCopyClick}
+                    hasNonSystemDemos={hasNonSystemDemos}
+                    demo={demo}
+                    demoData={demoData}
+                    demoId={demoId}
+                    demoName={demoName}
+                    demoOptions={demoOptions}
+                    demoSourceId={demoSourceId}
+                    initialFocusRef={initialFocusRef}
+                    onCodeOpenChange={() => {
+                      setCodeOpen((open) => !open);
+                      setShowAd(true);
+                    }}
+                    onResetDemoClick={resetDemo}
+                    openDemoSource={openDemoSource}
+                    showPreview={showPreview}
+                  />
+                </React.Suspense>
+              </NoSsr>
+            ) : (
+              <DemoToolbarFallback />
+            )}
           </DemoToolbarRoot>
           <Tabs value={activeTab} onChange={handleTabChange}>
             {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
@@ -568,18 +689,19 @@ export default function Demo(props) {
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
               {tabs.map((tab, index) => (
-                <TabPanel value={index} index={index} key={index}>
+                <TabPanel value={index} key={index}>
                   {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}
                       code={tab.raw}
-                      id={demoSourceId}
                       language={demoData.sourceLanguage}
-                      copyButtonProps={{
-                        'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                        'data-ga-event-label': demo.gaLabel,
-                        'data-ga-event-action': 'copy-click',
-                      }}
+                      copyButtonProps={
+                        {
+                          'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                          'data-ga-event-label': demo.gaLabel,
+                          'data-ga-event-action': 'copy-click',
+                        } as any
+                      }
                       sx={{
                         '& .MuiCode-copy': {
                           display: 'none',
@@ -593,30 +715,36 @@ export default function Demo(props) {
                   ) : (
                     <DemoEditor
                       // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                      key={editorCode.isPreview}
+                      key={String(editorCode.isPreview)}
                       value={editorCode.value}
-                      onChange={(value) => {
-                        setEditorCode({
-                          ...editorCode,
-                          value,
-                        });
-                      }}
+                      onChange={
+                        ((value: string) => {
+                          setEditorCode({
+                            ...editorCode,
+                            value,
+                          });
+                        }) as any
+                      }
                       onFocus={() => {
                         setLiveDemoActive(true);
                       }}
                       id={demoSourceId}
                       language={demoData.sourceLanguage}
-                      copyButtonProps={{
-                        'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                        'data-ga-event-label': demo.gaLabel,
-                        'data-ga-event-action': 'copy-click',
-                      }}
-                      sx={{
-                        '& .scrollContainer': {
-                          borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
-                          borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
-                        },
-                      }}
+                      copyButtonProps={
+                        {
+                          'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                          'data-ga-event-label': demo.gaLabel,
+                          'data-ga-event-action': 'copy-click',
+                        } as any
+                      }
+                      sx={
+                        {
+                          '& .scrollContainer': {
+                            borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
+                            borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
+                          },
+                        } as any
+                      }
                     >
                       <DemoEditorError>{debouncedError}</DemoEditorError>
                     </DemoEditor>
@@ -635,8 +763,8 @@ export default function Demo(props) {
                 initialMessage: demoOptions.aiSuggestion,
                 files: [
                   {
-                    path: demo.moduleTS,
-                    content: demo.rawTS,
+                    path: demo.moduleTS!,
+                    content: demo.rawTS!,
                     isEntry: true,
                   },
                   ...(demo.relativeModules?.TS ?? []).map((module) => ({
@@ -653,13 +781,3 @@ export default function Demo(props) {
     </Root>
   );
 }
-
-Demo.propTypes = {
-  demo: PropTypes.object.isRequired,
-  /**
-   * The options provided with: {{"demo": "Name.js", …demoOptions}}
-   */
-  demoOptions: PropTypes.object.isRequired,
-  disableAd: PropTypes.bool.isRequired,
-  githubLocation: PropTypes.string.isRequired,
-};

@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
 import { HighlightedCodeWithTabs } from '@mui/internal-core-docs/HighlightedCodeWithTabs';
 import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
-import Demo from 'docs/src/modules/components/Demo';
+import { Demo } from '@mui/internal-core-docs/Demo';
+import DemoToolbar from 'docs/src/modules/components/DemoToolbar';
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -113,6 +114,7 @@ export default function RichMarkdownElement(props) {
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}
       githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
+      demoToolbarSlot={DemoToolbar}
     />
   );
 }

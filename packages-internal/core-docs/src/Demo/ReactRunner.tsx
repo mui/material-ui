@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRunner } from 'react-runner';
 
-interface ReactRunnerProps {
+export interface ReactRunnerProps {
   code: string;
   scope: {
     process: {};
@@ -11,7 +11,7 @@ interface ReactRunnerProps {
 }
 
 // The docs https://github.com/nihgwu/react-runner
-export default function ReactRunner(props: ReactRunnerProps) {
+export function ReactRunner(props: ReactRunnerProps) {
   const { code, scope: scopeProp, onError } = props;
 
   let scope = scopeProp;

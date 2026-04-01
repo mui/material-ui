@@ -5,10 +5,10 @@ import { NoSsr } from '@mui/base/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
 import prism from '@mui/internal-markdown/prism';
-import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
-import { CodeCopyButton, useCodeCopy } from '@mui/internal-core-docs/CodeCopy';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
-import { blueDark } from '@mui/internal-core-docs/branding';
+import { MarkdownElement } from '../MarkdownElement';
+import { CodeCopyButton, useCodeCopy } from '../CodeCopy';
+import { useTranslate } from '../i18n';
+import { blueDark } from '../branding';
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {
@@ -63,7 +63,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   },
 }));
 
-interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   copyButtonProps: {};
   id: string;
@@ -73,7 +73,7 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   sx?: React.CSSProperties;
 }
 
-export default function DemoEditor(props: DemoEditorProps) {
+export function DemoEditor(props: DemoEditorProps) {
   const { language, value, onChange, copyButtonProps, children, id, sx, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();

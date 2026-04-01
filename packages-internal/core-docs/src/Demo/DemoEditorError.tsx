@@ -1,6 +1,8 @@
 import Alert, { AlertProps } from '@mui/material/Alert';
 
-export default function DemoEditorError(props: AlertProps) {
+export type DemoEditorErrorProps = AlertProps;
+
+export function DemoEditorError(props: DemoEditorErrorProps) {
   if (!props.children) {
     return null;
   }

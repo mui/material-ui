@@ -1,11 +1,11 @@
 import { styled, alpha } from '@mui/material/styles';
 
-interface DemoToolbarRootProps {
+export interface DemoToolbarRootProps {
   demoOptions: any;
   openDemoSource: any;
 }
 
-const DemoToolbarRoot = styled('div', {
+export const DemoToolbarRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'demoOptions' && prop !== 'openDemoSource',
 })<DemoToolbarRootProps>(({ theme }) => [
   {
@@ -54,5 +54,3 @@ const DemoToolbarRoot = styled('div', {
     },
   }),
 ]);
-
-export default DemoToolbarRoot;

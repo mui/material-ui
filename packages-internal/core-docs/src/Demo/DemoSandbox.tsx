@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import { prefixer } from 'stylis';
 import rtlPlugin from '@mui/stylis-plugin-rtl';
 import createCache from '@emotion/cache';
@@ -9,12 +8,12 @@ import { StyleSheetManager } from 'styled-components';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { createTheme, useTheme, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import { DemoInstanceThemeProvider } from '@mui/internal-core-docs/Demo';
-import { ThemeOptionsContext } from '@mui/internal-core-docs/ThemeContext';
-import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
+import { useTranslate } from '../i18n';
+import { ThemeOptionsContext } from '../ThemeContext/ThemeContext';
+import { useDemoContext } from '../DemoContext/DemoContext';
+import { DemoErrorBoundary } from './DemoErrorBoundary';
+import { DemoInstanceThemeProvider } from './DemoThemeProviders';
 
 const SRC_DOC = `<!DOCTYPE html>
 <html>
@@ -25,13 +24,18 @@ const SRC_DOC = `<!DOCTYPE html>
   <body></body>
 </html>`;
 
-let globalInjectThemeCache;
+let globalInjectThemeCache: (() => Record<string, unknown>) | undefined;
+
+interface MaterialIframeWrapperProps {
+  children: React.ReactElement;
+  isolated?: boolean;
+}
 
 /**
  * Default iframe wrapper for Material UI demos.
  * Creates a Material theme and injects its CSS variables.
  */
-function MaterialIframeWrapper({ children, isolated }) {
+function MaterialIframeWrapper({ children, isolated }: MaterialIframeWrapperProps) {
   // This theme only used for generating CSS variables, NOT with the React context (ThemeProvider).
   const iframeTheme = React.useMemo(() => {
     if (isolated) {
@@ -52,12 +56,14 @@ function MaterialIframeWrapper({ children, isolated }) {
     </React.Fragment>
   );
 }
-MaterialIframeWrapper.propTypes = {
-  children: PropTypes.node.isRequired,
-  isolated: PropTypes.bool,
-};
 
-function FramedDemo(props) {
+interface FramedDemoProps {
+  children: React.ReactElement;
+  document: Document;
+  isolated?: boolean;
+}
+
+function FramedDemo(props: FramedDemoProps) {
   const { children, document, isolated } = props;
   const themeOptions = React.useContext(ThemeOptionsContext);
   const { IframeWrapper } = useDemoContext();
@@ -86,7 +92,8 @@ function FramedDemo(props) {
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
   // Clone children with window prop first
-  const clonedChildren = React.cloneElement(children, { window: getWindow });
+  const clonedChildren = React.cloneElement(children, { window: getWindow } as Partial<unknown> &
+    React.Attributes);
 
   // Use custom wrapper from context, or default to MaterialIframeWrapper
   // Pass `null` explicitly via context to disable wrapper entirely
@@ -109,11 +116,6 @@ function FramedDemo(props) {
     </StyleSheetManager>
   );
 }
-FramedDemo.propTypes = {
-  children: PropTypes.node,
-  document: PropTypes.object.isRequired,
-  isolated: PropTypes.bool,
-};
 
 const Iframe = styled('iframe')(({ theme }) => ({
   backgroundColor: (theme.vars || theme).palette.background.default,
@@ -123,19 +125,23 @@ const Iframe = styled('iframe')(({ theme }) => ({
   boxShadow: (theme.vars || theme)?.shadows?.[1],
 }));
 
-function DemoIframe(props) {
+interface DemoIframeProps {
+  children: React.ReactElement;
+  name: string;
+  isolated?: boolean;
+  [key: string]: unknown;
+}
+
+function DemoIframe(props: DemoIframeProps) {
   const { children, name, isolated, ...other } = props;
-  /**
-   * @type {import('react').Ref<HTMLIFrameElement>}
-   */
-  const frameRef = React.useRef(null);
+  const frameRef = React.useRef<HTMLIFrameElement>(null);
 
   // If we portal content into the iframe before the load event then that content
   // is dropped in firefox.
   const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
 
   React.useEffect(() => {
-    const document = frameRef.current.contentDocument;
+    const document = frameRef.current!.contentDocument;
     // When we hydrate the iframe then the load event is already dispatched
     // once the iframe markup is parsed (maybe later but the important part is
     // that it happens before React can attach event listeners).
@@ -152,7 +158,7 @@ function DemoIframe(props) {
   return (
     <React.Fragment>
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} srcDoc={SRC_DOC} />
-      {iframeLoaded !== false
+      {iframeLoaded !== false && document
         ? ReactDOM.createPortal(
             <FramedDemo document={document} isolated={isolated}>
               {children}
@@ -164,13 +170,25 @@ function DemoIframe(props) {
   );
 }
 
-DemoIframe.propTypes = {
-  children: PropTypes.node.isRequired,
-  isolated: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-};
+interface IsolatedDemoProps {
+  children: React.ReactElement;
+  /**
+   * The CSS variables prefix will be the name of the demo to avoid clashing with other demos
+   * because the generated CSS variables are global (always contain `:root`).
+   */
+  cssVarPrefix?: string;
+  /**
+   * The node to attach the selector. Ignored if `window` is provided.
+   */
+  colorSchemeNode?: Element | null;
+  /**
+   * Provided by `DemoIframe`.
+   * If `window` is provided, the `colorSchemeNode` will be set to the html tag of the iframe.
+   */
+  window?: () => Window;
+}
 
-function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }) {
+function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }: IsolatedDemoProps) {
   return React.cloneElement(children, {
     window,
     cssVarPrefix,
@@ -179,35 +197,29 @@ function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }) {
     documentNode: window ? window().document : undefined,
     disableNestedContext: true,
     storageManager: null,
-  });
+  } as Partial<unknown> & React.Attributes);
 }
 
-IsolatedDemo.propTypes = {
-  children: PropTypes.node.isRequired,
-  /**
-   * The node to attach the selector. Ignored if `window` is provided.
-   */
-  colorSchemeNode: PropTypes.object,
-  /**
-   * The CSS variables prefix will be the name of the demo to avoid clashing with other demos
-   * because the generated CSS variables are global (always contain `:root`).
-   */
-  cssVarPrefix: PropTypes.string,
-  /**
-   * Provided by `DemoIframe`.
-   * If `window` is provided, the `colorSchemeNode` will be set to the html tag of the iframe.
-   */
-  window: PropTypes.func,
-};
+export interface DemoSandboxProps {
+  children: React.ReactElement;
+  id: string;
+  iframe?: boolean;
+  isolated?: boolean;
+  name: string;
+  onResetDemoClick: () => void;
+  [key: string]: unknown;
+}
 
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
  */
-function DemoSandbox(props) {
+function DemoSandboxInner(props: DemoSandboxProps) {
   const { children, iframe = false, id, name, onResetDemoClick, isolated, ...other } = props;
-  const [injectTheme, setInjectTheme] = React.useState();
-  const [root, setRoot] = React.useState();
+  const [injectTheme, setInjectTheme] = React.useState<
+    (() => Record<string, unknown>) | undefined
+  >();
+  const [root, setRoot] = React.useState<HTMLElement | null>(null);
 
   React.useEffect(() => {
     setRoot(document.getElementById(id));
@@ -217,12 +229,17 @@ function DemoSandbox(props) {
 
   useEnhancedEffect(() => {
     async function setupMaterialUITheme() {
-      if (typeof window.getInjectTheme === 'function') {
+      if (
+        typeof (window as unknown as { getInjectTheme?: () => () => Record<string, unknown> })
+          .getInjectTheme === 'function'
+      ) {
         if (!globalInjectThemeCache) {
-          window.React = React;
+          (window as unknown as { React?: typeof React }).React = React;
           const jsx = await import('react/jsx-runtime');
-          window.jsx = jsx;
-          globalInjectThemeCache = window.getInjectTheme();
+          (window as unknown as { jsx?: typeof jsx }).jsx = jsx;
+          globalInjectThemeCache = (
+            window as unknown as { getInjectTheme: () => () => Record<string, unknown> }
+          ).getInjectTheme();
         }
         setInjectTheme(globalInjectThemeCache);
       }
@@ -237,8 +254,8 @@ function DemoSandbox(props) {
         // The demo will need to handle the ThemeProvider itself.
         <SystemThemeProvider
           theme={(upperTheme) => ({
-            direction: upperTheme.direction, // required for internal ThemeProvider
-            vars: upperTheme.vars, // required for styling Iframe
+            direction: (upperTheme as { direction: 'ltr' | 'rtl' }).direction, // required for internal ThemeProvider
+            vars: (upperTheme as { vars?: Record<string, unknown> }).vars, // required for styling Iframe
           })}
         >
           {iframe ? (
@@ -269,13 +286,4 @@ function DemoSandbox(props) {
   );
 }
 
-DemoSandbox.propTypes = {
-  children: PropTypes.node.isRequired,
-  id: PropTypes.string.isRequired,
-  iframe: PropTypes.bool,
-  isolated: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
-};
-
-export default React.memo(DemoSandbox);
+export const DemoSandbox = React.memo(DemoSandboxInner);
