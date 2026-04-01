@@ -1,2 +1,2 @@
 export * from './ApiWarningAlert';
-export type { LayoutStorageKeys, TableOfContentsParams } from './types';
+export type { LayoutStorageKeys, TocItem } from './types';

@@ -1,29 +1,25 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
-import { exactProp } from '@mui/utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import {
-  AdManager,
-  AD_MARGIN_TOP,
-  AD_HEIGHT,
-  AD_HEIGHT_MOBILE,
-  AD_MARGIN_BOTTOM,
-} from '@mui/internal-core-docs/Ad';
-import {
-  AppFrame,
-  AppContainer,
-  AppLayoutDocsFooter,
-  AppLayoutHead as Head,
-  BackToTop,
-} from '@mui/internal-core-docs/AppLayout';
-import { convertProductIdToName, getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
-import { TOC_WIDTH, AppTableOfContents } from '@mui/internal-core-docs/TableOfContents';
+import { AdManager, AD_MARGIN_TOP, AD_HEIGHT, AD_HEIGHT_MOBILE, AD_MARGIN_BOTTOM } from '../../Ad';
+import { AppFrame } from './AppFrame';
+import { AppContainer } from './AppContainer';
+import { AppLayoutDocsFooter } from './AppLayoutDocsFooter';
+import { AppLayoutHead as Head } from './AppLayoutHead';
+import { BackToTop } from '../components/BackToTop';
+import { convertProductIdToName } from '../../utils/convertProductIdToName';
+import getProductInfoFromUrl from '../../utils/getProductInfoFromUrl';
+import { TOC_WIDTH, type TocItem, AppTableOfContents } from '../../TableOfContents';
+
+interface MainProps {
+  disableToc: boolean;
+  wideLayout: boolean;
+}
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'wideLayout',
-})(({ theme }) => ({
+})<MainProps>(({ theme }) => ({
   minHeight: '100vh',
   display: 'grid',
   width: '100%',
@@ -56,10 +52,17 @@ const Main = styled('main', {
   ],
 }));
 
+interface StyledAppContainerProps {
+  disableAd: boolean;
+  hasTabs: boolean;
+  disableToc: boolean;
+  wideLayout: boolean;
+}
+
 const StyledAppContainer = styled(AppContainer, {
   shouldForwardProp: (prop) =>
     prop !== 'disableAd' && prop !== 'hasTabs' && prop !== 'disableToc' && prop !== 'wideLayout',
-})(({ theme }) => {
+})<StyledAppContainerProps>(({ theme }) => {
   return {
     position: 'relative',
     // By default, a grid item cannot be smaller than the size of its content.
@@ -139,7 +142,25 @@ const StyledAppContainer = styled(AppContainer, {
   };
 });
 
-export default function AppLayoutDocs(props) {
+export interface AppLayoutDocsProps {
+  BannerComponent?: React.ElementType;
+  cardOptions?: {
+    description?: string;
+    title?: string;
+  };
+  children: React.ReactNode;
+  description: string;
+  disableAd: boolean;
+  disableLayout?: boolean;
+  disableToc: boolean;
+  hasTabs?: boolean;
+  location: string;
+  title: string;
+  toc: TocItem[];
+  wideLayout?: boolean;
+}
+
+export function AppLayoutDocs(props: AppLayoutDocsProps) {
   const router = useRouter();
   const {
     BannerComponent,
@@ -206,26 +227,4 @@ export default function AppLayoutDocs(props) {
       </AdManager>
     </Layout>
   );
-}
-
-AppLayoutDocs.propTypes = {
-  BannerComponent: PropTypes.elementType,
-  cardOptions: PropTypes.shape({
-    description: PropTypes.string,
-    title: PropTypes.string,
-  }),
-  children: PropTypes.node.isRequired,
-  wideLayout: PropTypes.bool,
-  description: PropTypes.string.isRequired,
-  disableAd: PropTypes.bool.isRequired,
-  disableLayout: PropTypes.bool,
-  disableToc: PropTypes.bool.isRequired,
-  hasTabs: PropTypes.bool,
-  location: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  toc: PropTypes.array.isRequired,
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  AppLayoutDocs.propTypes = exactProp(AppLayoutDocs.propTypes);
 }

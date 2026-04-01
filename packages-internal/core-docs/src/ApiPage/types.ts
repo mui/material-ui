@@ -1,11 +1,4 @@
-import type { TableOfContentsEntry } from '@mui/internal-markdown';
-
-// TODO Move this type definition to the AppLayoutDocs file when moved to TS
-export interface TableOfContentsParams {
-  children: (TableOfContentsParams | TableOfContentsEntry)[];
-  hash: string;
-  text: string;
-}
+export type { TocItem } from '../TableOfContents';
 
 export interface LayoutStorageKeys {
   slots: string;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import { Ad, AdGuest } from '@mui/internal-core-docs/Ad';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import { AppLayoutDocs } from '@mui/internal-core-docs/AppLayout';
 import { useUserLanguage } from '@mui/internal-core-docs/i18n';
 
 export default function MarkdownDocs(props) {

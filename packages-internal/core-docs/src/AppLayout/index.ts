@@ -6,12 +6,10 @@ import type {} from '../branding/brandingTheme';
 export * from './layout/AppContainer';
 export * from './layout/AppLayoutHead';
 export * from './layout/AppFrame';
-export * from './layout/AppLayoutDocsFooter';
-export * from './layout/AppSettingsDrawer';
+export * from './layout/AppLayoutDocs';
 export * from './layout/Notifications';
 
 // navigation
-export * from './navigation/AppNavDrawer';
 export * from './navigation/MuiProductSelector';
 
 // components
@@ -24,12 +22,7 @@ export * from './components/MaterialVsCustomToggle';
 export * from './components/More';
 export * from './components/MoreInfoBox';
 export * from './components/NpmCopyButton';
-export * from './components/ArrowButton';
-export * from './components/BackToTop';
-export * from './components/SearchButton';
-export * from './components/AppFrameBanner';
 export * from './components/AppHeaderBanner';
-export * from './components/EditPage';
 
 // icons
 export * from './icons/navIcons';

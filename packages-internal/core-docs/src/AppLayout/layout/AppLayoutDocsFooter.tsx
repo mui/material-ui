@@ -29,6 +29,7 @@ import { EditPage } from '../components/EditPage';
 import { useUserLanguage, useTranslate } from '../../i18n';
 import { pageToTitleI18n } from '../../helpers';
 import type { MuiPage, OrderedMuiPage } from '../../MuiPage';
+import type { TocItem } from '../../TableOfContents';
 
 const FooterLink = styled(Link)(({ theme }) => {
   return {
@@ -131,14 +132,8 @@ const SPEACIAL_FEEDBACK_HASH = [{ hash: 'new-docs-api-feedback', text: 'New API 
 
 const iconColor = 'grey.500';
 
-interface TableOfContentsEntry {
-  hash: string;
-  text: string;
-  children: { hash: string; text: string }[];
-}
-
 export interface AppLayoutDocsFooterProps {
-  tableOfContents?: TableOfContentsEntry[];
+  tableOfContents?: TocItem[];
   location: string;
 }
 

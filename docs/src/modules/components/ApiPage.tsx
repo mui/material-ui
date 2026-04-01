@@ -6,7 +6,7 @@ import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import { Ad, AdGuest } from '@mui/internal-core-docs/Ad';
-import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
+import type { TocItem, LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
@@ -14,7 +14,7 @@ import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import { BrandingProvider, BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
 import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
-import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import { AppLayoutDocs } from '@mui/internal-core-docs/AppLayout';
 import {
   ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
@@ -80,7 +80,7 @@ interface ApiPageProps {
   descriptions: {
     [lang: string]: PropsTranslations & {
       // Table of Content added by the mapApiPageTranslations function
-      componentDescriptionToc: TableOfContentsParams[];
+      componentDescriptionToc: TocItem[];
     };
   };
   disableAd?: boolean;
@@ -154,22 +154,22 @@ export default function ApiPage(props: ApiPageProps) {
     slotDescriptions,
   });
 
-  function createTocEntry(sectionName: ApiHeaderKeys): TableOfContentsParams {
+  function createTocEntry(sectionName: ApiHeaderKeys): TocItem {
     return {
       text: getTranslatedHeader(t, sectionName),
       hash: sectionName,
       children: [
         ...(sectionName === 'props' && inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-          : ([] as TableOfContentsParams[])),
+          : ([] as TocItem[])),
         ...(sectionName === 'props' && pageContent.themeDefaultProps
           ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
-          : ([] as TableOfContentsParams[])),
+          : ([] as TocItem[])),
       ],
     };
   }
 
-  const toc: TableOfContentsParams[] = [
+  const toc: TocItem[] = [
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
@@ -177,7 +177,7 @@ export default function ApiPage(props: ApiPageProps) {
     ...getSlotsToc({ slots: slotsDef, t }),
     ...getClassesToc({ classes: classesDef, t }),
     pageContent.filename ? createTocEntry('source-code') : null,
-  ].filter((item): item is TableOfContentsParams => Boolean(item));
+  ].filter((item): item is TocItem => Boolean(item));
 
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');
