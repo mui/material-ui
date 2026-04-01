@@ -6,9 +6,9 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Fade from '@mui/material/Fade';
 import { Theme } from '@mui/material/styles';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
+import { useTranslate } from '../../i18n';
 
-export default function BackToTop() {
+export function BackToTop() {
   const t = useTranslate();
   const [open, setOpen] = React.useState(false);
 

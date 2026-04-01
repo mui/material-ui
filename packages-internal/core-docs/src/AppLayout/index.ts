@@ -25,6 +25,7 @@ export * from './components/More';
 export * from './components/MoreInfoBox';
 export * from './components/NpmCopyButton';
 export * from './components/ArrowButton';
+export * from './components/BackToTop';
 export * from './components/SearchButton';
 export * from './components/AppFrameBanner';
 export * from './components/AppHeaderBanner';

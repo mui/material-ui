@@ -12,11 +12,15 @@ import {
   AD_MARGIN_BOTTOM,
 } from '@mui/internal-core-docs/Ad';
 import Head from 'docs/src/modules/components/Head';
-import { AppFrame, AppContainer, AppLayoutDocsFooter } from '@mui/internal-core-docs/AppLayout';
+import {
+  AppFrame,
+  AppContainer,
+  AppLayoutDocsFooter,
+  BackToTop,
+} from '@mui/internal-core-docs/AppLayout';
 import { convertProductIdToName, getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
-import BackToTop from 'docs/src/modules/components/BackToTop';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'wideLayout',
