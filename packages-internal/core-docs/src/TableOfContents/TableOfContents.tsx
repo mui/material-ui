@@ -1,11 +1,10 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
-import { Link } from '@mui/internal-core-docs/Link';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
-import { FEATURE_TOGGLE as featureToggle } from '@mui/internal-core-docs/constants';
+import { Link } from '../Link';
+import { useTranslate } from '../i18n';
+import { FEATURE_TOGGLE as featureToggle } from '../constants/featureToggle';
 
 export const TOC_WIDTH = 242;
 
@@ -18,7 +17,7 @@ const NavLabel = styled(Typography)(({ theme }) => ({
   color: (theme.vars || theme).palette.text.tertiary,
 }));
 
-const NavList = styled(Typography)({
+const NavList = styled('ul')({
   padding: 0,
   margin: 0,
   listStyle: 'none',
@@ -26,7 +25,7 @@ const NavList = styled(Typography)({
 
 export const NavItem = styled(Link, {
   shouldForwardProp: (prop) => prop !== 'active' && prop !== 'level',
-})(({ theme }) => {
+})<{ active?: boolean; level?: number }>(({ theme }) => {
   const activeStyles = {
     borderLeftColor: (theme.vars || theme).palette.primary[200],
     color: (theme.vars || theme).palette.primary[600],
@@ -46,7 +45,7 @@ export const NavItem = styled(Link, {
 
   return [
     {
-      boxSizing: 'border-box',
+      boxSizing: 'border-box' as const,
       padding: '6px 0 6px 12px',
       borderLeft: `1px solid transparent`,
       display: 'block',
@@ -61,11 +60,11 @@ export const NavItem = styled(Link, {
       // TODO: We probably want `aria-current="location"` instead.
       variants: [
         {
-          props: ({ active }) => !!active,
+          props: ({ active }: { active?: boolean }) => !!active,
           style: [activeStyles, theme.applyDarkStyles(activeDarkStyles)],
         },
         {
-          props: ({ active }) => !active,
+          props: ({ active }: { active?: boolean }) => !active,
           style: [
             {
               color: (theme.vars || theme).palette.text.primary,
@@ -76,13 +75,13 @@ export const NavItem = styled(Link, {
           ],
         },
         {
-          props: ({ level }) => level === 2,
+          props: ({ level }: { level?: number }) => level === 2,
           style: {
             padding: `6px 0 6px ${theme.spacing(3)}`,
           },
         },
         {
-          props: ({ level }) => level === 3,
+          props: ({ level }: { level?: number }) => level === 3,
           style: {
             padding: `6px 0 6px ${theme.spacing(4.5)}`,
           },
@@ -112,7 +111,19 @@ function shouldShowJobAd() {
 
 const showJobAd = featureToggle.enable_job_banner && shouldShowJobAd();
 
-export default function TableOfContents({ toc, itemLink, onLinkClick }) {
+export interface TocItem {
+  text: string;
+  hash: string;
+  children: TocItem[];
+}
+
+export interface TableOfContentsProps {
+  toc: TocItem[];
+  itemLink: (item: TocItem, level: number, onLinkClick?: () => void) => React.ReactNode;
+  onLinkClick?: () => void;
+}
+
+export function TableOfContents({ toc, itemLink, onLinkClick }: TableOfContentsProps) {
   const t = useTranslate();
 
   return (
@@ -170,17 +181,17 @@ export default function TableOfContents({ toc, itemLink, onLinkClick }) {
       {toc.length > 0 ? (
         <React.Fragment>
           <NavLabel>{t('tableOfContents')}</NavLabel>
-          <NavList component="ul">
+          <NavList>
             {toc.map((item) => (
               <li key={item.text}>
                 {itemLink(item, 1, onLinkClick)}
                 {item.children.length > 0 ? (
-                  <NavList as="ul">
+                  <NavList>
                     {item.children.map((subitem) => (
                       <li key={subitem.text}>
                         {itemLink(subitem, 2, onLinkClick)}
                         {subitem.children?.length > 0 ? (
-                          <NavList as="ul">
+                          <NavList>
                             {subitem.children.map((nestedSubItem) => (
                               <li key={nestedSubItem.text}>
                                 {itemLink(nestedSubItem, 3, onLinkClick)}
@@ -200,9 +211,3 @@ export default function TableOfContents({ toc, itemLink, onLinkClick }) {
     </React.Fragment>
   );
 }
-
-TableOfContents.propTypes = {
-  itemLink: PropTypes.func.isRequired,
-  onLinkClick: PropTypes.func,
-  toc: PropTypes.array.isRequired,
-};

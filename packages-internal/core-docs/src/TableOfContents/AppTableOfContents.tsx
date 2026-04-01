@@ -1,19 +1,19 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { throttle } from 'es-toolkit/function';
-import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
-import TableOfContents, { NavItem, TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
-import MiniTableOfContents from 'docs/src/modules/components/MiniTableOfContents';
-import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
-import SideNavigationBanner from 'docs/src/components/banner/SideNavigationBanner';
-import { samePageLinkNavigation } from '@mui/internal-core-docs/Link';
+import { styled } from '@mui/material/styles';
+import { throttle } from 'es-toolkit/function';
+
+import { DiamondSponsors } from '../AppLayout/navigation/DiamondSponsors';
+import { SideNavigationBanner } from '../AppLayout/navigation/SideNavigationBanner';
+import { useTranslate } from '../i18n';
+import { samePageLinkNavigation } from '../Link';
+import { MiniTableOfContents } from './MiniTableOfContents';
+import { NavItem, TableOfContents, TOC_WIDTH, type TocItem } from './TableOfContents';
 
 const Nav = styled('nav', {
   shouldForwardProp: (prop) => prop !== 'wideLayout',
-})(({ theme }) => ({
+})<{ wideLayout?: boolean }>(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
   marginTop: 'var(--MuiDocs-header-height)',
   paddingLeft: 6, // Fix truncated focus outline style
@@ -43,16 +43,14 @@ const Nav = styled('nav', {
   ],
 }));
 
-const noop = () => {};
-
-function useThrottledOnScroll(callback, delay) {
+function useThrottledOnScroll(callback: (() => void) | null, delay: number) {
   const throttledCallback = React.useMemo(
-    () => (callback ? throttle(callback, delay) : noop),
+    () => (callback ? throttle(callback, delay) : null),
     [callback, delay],
   );
 
   React.useEffect(() => {
-    if (throttledCallback === noop) {
+    if (throttledCallback === null) {
       return undefined;
     }
 
@@ -64,8 +62,8 @@ function useThrottledOnScroll(callback, delay) {
   }, [throttledCallback]);
 }
 
-function flatten(headings) {
-  const itemsWithNode = [];
+function flatten(headings: TocItem[]): TocItem[] {
+  const itemsWithNode: TocItem[] = [];
 
   headings.forEach((item) => {
     itemsWithNode.push(item);
@@ -79,14 +77,19 @@ function flatten(headings) {
   return itemsWithNode;
 }
 
-export default function AppTableOfContents(props) {
+export interface AppTableOfContentsProps {
+  toc: TocItem[];
+  wideLayout?: boolean;
+}
+
+export function AppTableOfContents(props: AppTableOfContentsProps) {
   const { toc, wideLayout } = props;
   const t = useTranslate();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
-  const [activeState, setActiveState] = React.useState(null);
+  const [activeState, setActiveState] = React.useState<string | null>(null);
   const clickedRef = React.useRef(false);
-  const unsetClickedRef = React.useRef(null);
+  const unsetClickedRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const findActiveIndex = React.useCallback(() => {
     // Don't set the active index based on scroll if a link was just clicked
@@ -94,7 +97,7 @@ export default function AppTableOfContents(props) {
       return;
     }
 
-    let active;
+    let active: TocItem | { hash: null } | undefined;
 
     // No hash if we're near the top of the page
     if (document.documentElement.scrollTop < 200) {
@@ -136,9 +139,9 @@ export default function AppTableOfContents(props) {
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
 
-  const handleClick = (hash) => (event) => {
+  const handleClick = (hash: string) => (event: React.MouseEvent) => {
     // Ignore click events meant for native link handling, for example open in new tab
-    if (samePageLinkNavigation(event)) {
+    if (samePageLinkNavigation(event.nativeEvent)) {
       return;
     }
 
@@ -155,17 +158,18 @@ export default function AppTableOfContents(props) {
 
   React.useEffect(
     () => () => {
-      clearTimeout(unsetClickedRef.current);
+      if (unsetClickedRef.current) {
+        clearTimeout(unsetClickedRef.current);
+      }
     },
     [],
   );
 
-  const itemLink = (item, level, onLinkClick) => (
+  const itemLink = (item: TocItem, level: number, onLinkClick?: () => void) => (
     <NavItem
-      display="block"
       href={`#${item.hash}`}
       underline="none"
-      onClick={(event) => {
+      onClick={(event: React.MouseEvent) => {
         handleClick(item.hash)(event);
         if (onLinkClick) {
           onLinkClick();
@@ -197,8 +201,3 @@ export default function AppTableOfContents(props) {
     </React.Fragment>
   );
 }
-
-AppTableOfContents.propTypes = {
-  toc: PropTypes.array.isRequired,
-  wideLayout: PropTypes.bool,
-};

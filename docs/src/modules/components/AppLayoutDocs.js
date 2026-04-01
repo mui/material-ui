@@ -19,8 +19,7 @@ import {
   BackToTop,
 } from '@mui/internal-core-docs/AppLayout';
 import { convertProductIdToName, getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
-import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
+import { TOC_WIDTH, AppTableOfContents } from '@mui/internal-core-docs/TableOfContents';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'wideLayout',

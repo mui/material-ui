@@ -1,16 +1,20 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, type Theme } from '@mui/material/styles';
+import type { SxProps } from '@mui/system';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import Fade from '@mui/material/Fade';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import { samePageLinkNavigation } from '@mui/internal-core-docs/Link';
-import TableOfContents, { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
+import { samePageLinkNavigation } from '../Link';
+import { TableOfContents, TOC_WIDTH, type TocItem } from './TableOfContents';
 
-function flatten(headings) {
-  const items = [];
+interface FlatTocItem extends TocItem {
+  level: number;
+}
+
+function flatten(headings: TocItem[]): FlatTocItem[] {
+  const items: FlatTocItem[] = [];
   headings.forEach((item) => {
     items.push({ ...item, level: 1 });
     if (item.children.length > 0) {
@@ -22,7 +26,7 @@ function flatten(headings) {
   return items;
 }
 
-function getBarWidth(text, level) {
+function getBarWidth(text: string, level: number) {
   const length = text.replace(/<[^>]*>/g, '').length;
   const base = level === 2 ? 8 : 10;
   const width = Math.min(base + length * 0.5, 24);
@@ -32,114 +36,134 @@ function getBarWidth(text, level) {
 const Bar = styled('a', {
   shouldForwardProp: (prop) =>
     prop !== 'active' && prop !== 'barWidth' && prop !== 'level' && prop !== 'highlighted',
-})(({ theme, barWidth }) => ({
-  display: 'flex',
-  justifyContent: 'flex-end',
-  padding: '6px 0',
-  cursor: 'pointer',
-  '&::after': {
-    content: '""',
-    display: 'block',
-    height: 3,
-    width: barWidth,
-    borderRadius: 2,
-    backgroundColor: (theme.vars || theme).palette.grey[300],
-    transition: 'background-color 0.15s ease, width 0.15s ease',
-  },
-  '&:hover::after': {
-    backgroundColor: (theme.vars || theme).palette.grey[500],
-  },
-  '&:focus-visible': {
-    outline: 'none',
-  },
-  '&:focus-visible::after': {
-    outline: '2px solid',
-    outlineColor: (theme.vars || theme).palette.grey[500],
-    outlineOffset: '2px',
-  },
-  variants: [
-    {
-      props: { active: true },
-      style: [
-        {
+})<{ active?: boolean; barWidth?: number; level?: number; highlighted?: boolean }>(
+  ({ theme, barWidth }) => ({
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: '6px 0',
+    cursor: 'pointer',
+    '&::after': {
+      content: '""',
+      display: 'block',
+      height: 3,
+      width: barWidth,
+      borderRadius: 2,
+      backgroundColor: (theme.vars || theme).palette.grey[300],
+      transition: 'background-color 0.15s ease, width 0.15s ease',
+    },
+    '&:hover::after': {
+      backgroundColor: (theme.vars || theme).palette.grey[500],
+    },
+    '&:focus-visible': {
+      outline: 'none',
+    },
+    '&:focus-visible::after': {
+      outline: '2px solid',
+      outlineColor: (theme.vars || theme).palette.grey[500],
+      outlineOffset: '2px',
+    },
+    variants: [
+      {
+        props: { active: true },
+        style: [
+          {
+            '&::after': {
+              backgroundColor: (theme.vars || theme).palette.primary[400],
+            },
+            '&:hover::after': {
+              backgroundColor: (theme.vars || theme).palette.primary[600],
+            },
+          },
+          theme.applyDarkStyles({
+            '&::after': {
+              backgroundColor: (theme.vars || theme).palette.primary[500],
+            },
+            '&:hover::after': {
+              backgroundColor: (theme.vars || theme).palette.primary[400],
+            },
+          }),
+        ],
+      },
+      {
+        props: { active: false },
+        style: theme.applyDarkStyles({
           '&::after': {
-            backgroundColor: (theme.vars || theme).palette.primary[400],
+            backgroundColor: (theme.vars || theme).palette.grey[700],
           },
           '&:hover::after': {
-            backgroundColor: (theme.vars || theme).palette.primary[600],
-          },
-        },
-        theme.applyDarkStyles({
-          '&::after': {
-            backgroundColor: (theme.vars || theme).palette.primary[500],
-          },
-          '&:hover::after': {
-            backgroundColor: (theme.vars || theme).palette.primary[400],
-          },
-        }),
-      ],
-    },
-    {
-      props: { active: false },
-      style: theme.applyDarkStyles({
-        '&::after': {
-          backgroundColor: (theme.vars || theme).palette.grey[700],
-        },
-        '&:hover::after': {
-          backgroundColor: (theme.vars || theme).palette.grey[500],
-        },
-      }),
-    },
-    {
-      props: { highlighted: true, active: true },
-      style: [
-        {
-          '&::after': {
-            backgroundColor: (theme.vars || theme).palette.primary[600],
-          },
-        },
-        theme.applyDarkStyles({
-          '&::after': {
-            backgroundColor: (theme.vars || theme).palette.primary[400],
-          },
-        }),
-      ],
-    },
-    {
-      props: { highlighted: true, active: false },
-      style: [
-        {
-          '&::after': {
-            backgroundColor: (theme.vars || theme).palette.grey[500],
-          },
-        },
-        theme.applyDarkStyles({
-          '&::after': {
             backgroundColor: (theme.vars || theme).palette.grey[500],
           },
         }),
-      ],
-    },
-  ],
-}));
+      },
+      {
+        props: { highlighted: true, active: true },
+        style: [
+          {
+            '&::after': {
+              backgroundColor: (theme.vars || theme).palette.primary[600],
+            },
+          },
+          theme.applyDarkStyles({
+            '&::after': {
+              backgroundColor: (theme.vars || theme).palette.primary[400],
+            },
+          }),
+        ],
+      },
+      {
+        props: { highlighted: true, active: false },
+        style: [
+          {
+            '&::after': {
+              backgroundColor: (theme.vars || theme).palette.grey[500],
+            },
+          },
+          theme.applyDarkStyles({
+            '&::after': {
+              backgroundColor: (theme.vars || theme).palette.grey[500],
+            },
+          }),
+        ],
+      },
+    ],
+  }),
+);
 
-export default function MiniTableOfContents(props) {
+interface NavItemElementProps {
+  sx?: SxProps<Theme>;
+  onMouseEnter?: React.MouseEventHandler;
+  onMouseLeave?: React.MouseEventHandler;
+}
+
+export interface MiniTableOfContentsProps {
+  toc: TocItem[];
+  activeState: string | null;
+  itemLink: (
+    item: TocItem,
+    level: number,
+    onLinkClick?: () => void,
+  ) => React.ReactElement<NavItemElementProps>;
+  onItemClick: (hash: string) => (event: React.MouseEvent) => void;
+  wideLayout?: boolean;
+}
+
+export function MiniTableOfContents(props: MiniTableOfContentsProps) {
   const { toc, activeState, itemLink, onItemClick, wideLayout } = props;
-  const containerRef = React.useRef(null);
+  const containerRef = React.useRef<HTMLElement>(null);
   const [popperOpen, setPopperOpen] = React.useState(false);
-  const [hoveredIndex, setHoveredIndex] = React.useState(null);
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
 
   const items = React.useMemo(() => flatten(toc), [toc]);
 
   const hashToIndex = React.useMemo(() => {
-    const map = new Map();
+    const map = new Map<string, number>();
     items.forEach((item, index) => {
       map.set(item.hash, index);
     });
     return map;
   }, [items]);
 
-  const getWidthIncrease = (index) => {
+  const getWidthIncrease = (index: number) => {
     if (hoveredIndex === null) {
       return 0;
     }
@@ -165,19 +189,19 @@ export default function MiniTableOfContents(props) {
     setHoveredIndex(null);
   };
 
-  const handleBarFocus = (index) => {
+  const handleBarFocus = (index: number) => {
     setPopperOpen(true);
     setHoveredIndex(index);
   };
 
-  const handleContainerBlur = (event) => {
-    if (!containerRef.current?.contains(event.relatedTarget)) {
+  const handleContainerBlur = (event: React.FocusEvent) => {
+    if (!containerRef.current?.contains(event.relatedTarget as Node)) {
       handleClose();
     }
   };
 
-  const handleBarClick = (event, hash) => {
-    if (samePageLinkNavigation(event)) {
+  const handleBarClick = (event: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    if (samePageLinkNavigation(event as unknown as MouseEvent)) {
       return;
     }
     event.preventDefault();
@@ -191,7 +215,7 @@ export default function MiniTableOfContents(props) {
 
   const hoveredHash = hoveredIndex !== null ? items[hoveredIndex]?.hash : null;
 
-  const popperItemLink = (item, level) => {
+  const popperItemLink = (item: TocItem, level: number) => {
     const element = itemLink(item, level, handleClose);
     const isHovered = hoveredHash === item.hash;
     const hoverHandlers = {
@@ -204,7 +228,7 @@ export default function MiniTableOfContents(props) {
     const isActive = activeState === item.hash;
     return React.cloneElement(element, {
       ...hoverHandlers,
-      sx: (theme) => ({
+      sx: ((theme: Theme) => ({
         borderLeftColor: isActive
           ? (theme.vars || theme).palette.primary[600]
           : (theme.vars || theme).palette.grey[400],
@@ -219,7 +243,7 @@ export default function MiniTableOfContents(props) {
             ? (theme.vars || theme).palette.primary[400]
             : (theme.vars || theme).palette.grey[200],
         }),
-      }),
+      })) satisfies SxProps<Theme>,
     });
   };
 
@@ -303,12 +327,3 @@ export default function MiniTableOfContents(props) {
     </ClickAwayListener>
   );
 }
-
-MiniTableOfContents.propTypes = {
-  activeState: PropTypes.string,
-  itemLink: PropTypes.func.isRequired,
-  onItemClick: PropTypes.func.isRequired,
-  sx: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  toc: PropTypes.array.isRequired,
-  wideLayout: PropTypes.bool,
-};
