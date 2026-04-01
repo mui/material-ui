@@ -17,7 +17,7 @@ export default defineConfig(async () => {
       { id: '@mui/lab', expand: true },
       '@mui/private-theming',
       { id: '@mui/system', expand: true },
-      { id: '@mui/utils', expand: false },
+      { id: '@mui/utils', expand: true },
     ],
     upload: !!process.env.CI,
     comment: false,
