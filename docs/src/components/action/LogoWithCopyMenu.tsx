@@ -1,7 +1,6 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
 import { Link } from '@mui/internal-core-docs/Link';
-import { Portal } from '@mui/base/Portal';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import Menu from '@mui/material/Menu';
@@ -105,20 +104,18 @@ export default function LogoWithCopyMenu({
           Copy wordmark as SVG
         </MenuItem>
       </Menu>
-      <Portal container={() => document.body}>
-        <Snackbar
-          open={copied}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          slots={{ transition: Slide }}
-          message={
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <CheckCircleRoundedIcon sx={{ fontSize: '18px', color: 'success.main' }} />
-              Logo SVG copied to clipboard!
-            </Box>
-          }
-        />
-      </Portal>
+      <Snackbar
+        open={copied}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        slots={{ transition: Slide }}
+        message={
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <CheckCircleRoundedIcon sx={{ fontSize: '18px', color: 'success.main' }} />
+            Logo SVG copied to clipboard!
+          </Box>
+        }
+      />
     </React.Fragment>
   );
 }

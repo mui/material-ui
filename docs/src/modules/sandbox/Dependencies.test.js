@@ -19,7 +19,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import { SliderUnstyled } from '@mui/base/SliderUnstyled';
+import { Slider } from '@base-ui/react/slider';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
@@ -42,7 +42,7 @@ const styles = theme => ({
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
       '@mui/material': 'next',
-      '@mui/base': 'latest',
+      '@base-ui/react': 'latest',
       'prop-types': 'latest',
     });
   });
@@ -152,7 +152,7 @@ import 'exceljs';
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
       '@mui/material': 'next',
-      '@mui/base': 'latest',
+      '@base-ui/react': 'latest',
       typescript: 'latest',
     });
 
@@ -235,7 +235,7 @@ import lab from '@mui/lab';
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
 import * as Material from '@mui/material';
-import * as Base from '@mui/base';
+import * as Base from '@base-ui/react';
 import * as IconsMaterial from '@mui/icons-material';
 import * as Lab from '@mui/lab';
 import * as System from '@mui/system';
@@ -265,8 +265,7 @@ import * as Utils from '@mui/utils';
         'https://pkg.pr.new/mui/material-ui/@mui/system@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
       '@mui/utils':
         'https://pkg.pr.new/mui/material-ui/@mui/utils@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
-      '@mui/base':
-        'https://pkg.pr.new/mui/material-ui/@mui/base@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      '@base-ui/react': 'latest',
     });
   });
 

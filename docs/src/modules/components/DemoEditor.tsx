@@ -1,7 +1,6 @@
 import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
-import { NoSsr } from '@mui/base/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
 import prism from '@mui/internal-markdown/prism';
@@ -112,9 +111,7 @@ export default function DemoEditor(props: DemoEditorProps) {
     >
       <div className="MuiCode-root" {...handlers}>
         <div className="scrollContainer">
-          <NoSsr>
-            <CodeCopyButton {...copyButtonProps} code={value} />
-          </NoSsr>
+          <CodeCopyButton {...copyButtonProps} code={value} />
           <label htmlFor={`${id}-textarea`} style={visuallyHidden}>
             Edit code
           </label>

@@ -180,7 +180,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { Autocomplete } from '@base-ui/react/autocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.

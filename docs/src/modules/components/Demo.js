@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
-import { Tabs } from '@mui/base/Tabs';
-import { TabPanel } from '@mui/base/TabPanel';
+import { Tabs } from '@base-ui/react/tabs';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
@@ -569,7 +568,7 @@ export default function Demo(props) {
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
               {tabs.map((tab, index) => (
-                <TabPanel value={index} index={index} key={index}>
+                <Tabs.Panel value={index} index={index} key={index}>
                   {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}
@@ -622,7 +621,7 @@ export default function Demo(props) {
                       <DemoEditorError>{debouncedError}</DemoEditorError>
                     </DemoEditor>
                   )}
-                </TabPanel>
+                </Tabs.Panel>
               ))}
             </Collapse>
           </Tabs>
