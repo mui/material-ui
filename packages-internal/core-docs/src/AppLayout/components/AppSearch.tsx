@@ -1,10 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
-import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
+import {
+  DocSearchModal,
+  useDocSearchKeyboardEvents,
+  type InternalDocSearchHit,
+  type StoredDocSearchHit,
+} from '@docsearch/react';
 import Chip from '@mui/material/Chip';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
@@ -17,20 +21,32 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { alpha } from '@mui/material/styles';
-import { pathnameToLanguage } from '@mui/internal-core-docs/helpers';
-import { LANGUAGES_SSR } from 'docs/config';
-import { Link } from '@mui/internal-core-docs/Link';
-import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
-import useLazyCSS from '@mui/internal-core-docs/useLazyCSS';
-import PageContext from '@mui/internal-core-docs/PageContext';
-import { SearchButton } from '@mui/internal-core-docs/AppLayout';
+import { alpha, SxProps } from '@mui/material/styles';
+import { pathnameToLanguage } from '../../helpers';
+import { Link } from '../../Link';
+import { useTranslate, useUserLanguage } from '../../i18n';
+import useLazyCSS from '../../useLazyCSS';
+import PageContext from '../../PageContext';
+import { useDocsConfig } from '../../DocsProvider';
+import { SearchButton } from './SearchButton';
+import { convertProductIdToName } from '../../utils/convertProductIdToName';
+
+interface StartScreenItem {
+  name: string;
+  href: string;
+  icon: React.ReactNode;
+}
+
+interface StartScreenCategory {
+  category: { name: string };
+  items: StartScreenItem[];
+}
 
 function NewStartScreen() {
-  const startScreenOptions = [
+  const startScreenOptions: StartScreenCategory[] = [
     {
       category: {
-        name: 'Material UI',
+        name: 'Material UI',
       },
       items: [
         {
@@ -57,7 +73,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI X',
+        name: 'MUI X',
       },
       items: [
         {
@@ -101,7 +117,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'MUI System',
+        name: 'MUI System',
       },
       items: [
         {
@@ -141,33 +157,23 @@ function NewStartScreen() {
   );
 }
 
-const productNameProductId = {
-  'material-ui': 'Material UI',
-  'joy-ui': 'Joy UI',
-  'base-ui': 'MUI Base',
-  x: 'MUI X',
-  system: 'MUI System',
-  toolpad: 'Toolpad',
-  'toolpad-studio': 'Toolpad Studio',
-  'toolpad-core': 'Toolpad Core',
-  'docs-infra': 'Docs Infra',
-};
-
-export function convertProductIdToName(productInfo) {
-  return (
-    productNameProductId[productInfo.productId] ||
-    productNameProductId[productInfo.productCategoryId]
-  );
+interface CustomDocSearchHit {
+  pathname?: string;
+  as?: string;
+  userLanguage?: string;
+  productId?: string;
+  productCategoryId?: string;
+  url: string;
 }
 
-function getDisplayTag(hit) {
+function getDisplayTag(hit: CustomDocSearchHit) {
   if (hit.productId === undefined || hit.productCategoryId === undefined) {
     return null;
   }
 
   const productName = convertProductIdToName({
-    productId: hit.productId,
-    productCategoryId: hit.productCategoryId,
+    productId: hit.productId!,
+    productCategoryId: hit.productCategoryId!,
   });
 
   if (!productName) {
@@ -179,7 +185,12 @@ function getDisplayTag(hit) {
   return <Chip label={productName} size="small" variant="outlined" sx={{ mr: 1 }} />;
 }
 
-function DocSearchHit(props) {
+interface DocSearchHitComponentProps {
+  children: React.ReactNode;
+  hit: (InternalDocSearchHit | StoredDocSearchHit) & CustomDocSearchHit;
+}
+
+function DocSearchHit(props: DocSearchHitComponentProps) {
   const { children, hit } = props;
 
   if (hit.pathname) {
@@ -200,14 +211,13 @@ function DocSearchHit(props) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
-DocSearchHit.propTypes = {
-  children: PropTypes.node,
-  hit: PropTypes.object.isRequired,
-};
-
 const standaloneProducts = ['base-ui', 'joy-ui'];
 
-export default function AppSearch(props) {
+export interface AppSearchProps {
+  sx?: SxProps;
+}
+
+export function AppSearch(props: AppSearchProps) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
@@ -216,9 +226,10 @@ export default function AppSearch(props) {
   const FADE_DURATION = 120; // ms
   const t = useTranslate();
   const userLanguage = useUserLanguage();
-  const searchButtonRef = React.useRef(null);
+  const { LANGUAGES_SSR } = useDocsConfig();
+  const searchButtonRef = React.useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [initialQuery, setInitialQuery] = React.useState(undefined);
+  const [initialQuery, setInitialQuery] = React.useState<string | undefined>(undefined);
   const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage)
     ? `language:${userLanguage}`
     : `language:en`;
@@ -229,23 +240,23 @@ export default function AppSearch(props) {
   const pageContext = React.useContext(PageContext);
 
   const keyboardNavigator = {
-    navigate({ item }) {
+    navigate({ item }: { item: CustomDocSearchHit }) {
       const as = item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as;
-      router.push(item.pathname, as);
+      router.push(item.pathname!, as);
     },
   };
 
   const onClose = React.useCallback(() => {
-    const modal = document.querySelector('.DocSearch-Container');
+    const modal = document.querySelector<HTMLElement>('.DocSearch-Container');
     if (modal) {
       // fade out transition
-      modal.style.opacity = 0;
+      modal.style.opacity = '0';
     }
     setIsOpen(false); // DO NOT call setIsOpen inside a timeout (it causes scroll issue).
   }, [setIsOpen]);
 
   const onInput = React.useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       setIsOpen(true);
       setInitialQuery(event.key);
     },
@@ -273,17 +284,18 @@ export default function AppSearch(props) {
     };
     // add transition to Modal
     if (isOpen) {
-      const modal = document.querySelector('.DocSearch-Container');
-      const searchInput = document.querySelector('.DocSearch-Input');
+      const modal = document.querySelector<HTMLElement>('.DocSearch-Container');
+      const searchInput = document.querySelector<HTMLInputElement>('.DocSearch-Input');
       if (modal) {
-        modal.style.opacity = 1;
+        modal.style.opacity = '1';
         addStartScreen();
       }
       if (searchInput) {
-        const handleInput = (event) => {
-          const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
+        const handleInput = (event: Event) => {
+          const newStartScreen = document.querySelector<HTMLElement>('.DocSearch-NewStartScreen');
           if (newStartScreen) {
-            newStartScreen.style.display = event.target.value !== '' ? 'none' : 'grid';
+            newStartScreen.style.display =
+              (event.target as HTMLInputElement).value !== '' ? 'none' : 'grid';
           }
         };
         searchInput.addEventListener('input', handleInput);
@@ -295,7 +307,7 @@ export default function AppSearch(props) {
     return () => {};
   }, [isOpen]);
 
-  const optionalFilters = [];
+  const optionalFilters: string[] = [];
   if (pageContext.productId !== 'null') {
     optionalFilters.push(`productId:${pageContext.productId}`);
   } else if (pageContext.productCategoryId !== 'null') {
@@ -303,9 +315,9 @@ export default function AppSearch(props) {
   }
 
   // Filter out stand-alone products unless we're on their subsections
-  let filters = undefined;
+  let filters: string | undefined;
   if (standaloneProducts.length > 0) {
-    const filtersPredicates = [];
+    const filtersPredicates: string[] = [];
     for (let i = 0; i < standaloneProducts.length; i += 1) {
       if (pageContext.productId !== standaloneProducts[i]) {
         filtersPredicates.push(`NOT productId:${standaloneProducts[i]}`);
@@ -323,7 +335,7 @@ export default function AppSearch(props) {
             initialQuery={initialQuery}
             appId="TZGZ85B9TB"
             apiKey="8177dfb3e2be72b241ffb8c5abafa899"
-            indexName={process.env.SEARCH_INDEX}
+            indexName={process.env.SEARCH_INDEX!}
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
               filters,
@@ -367,7 +379,7 @@ export default function AppSearch(props) {
               });
             }}
             hitComponent={DocSearchHit}
-            initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
+            initialScrollY={typeof window !== 'undefined' ? window.scrollY : 0}
             onClose={onClose}
             navigator={keyboardNavigator}
           />,

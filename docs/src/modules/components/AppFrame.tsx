@@ -37,7 +37,11 @@ async function fetchNotifications(): Promise<NotificationMessage[]> {
 
 const sx = { minWidth: { sm: 160 } };
 
-const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+const AppSearch = React.lazy(() =>
+  import('@mui/internal-core-docs/AppLayout/AppSearch').then((mod) => ({
+    default: mod.AppSearch,
+  })),
+);
 
 export function DeferredAppSearch() {
   return (

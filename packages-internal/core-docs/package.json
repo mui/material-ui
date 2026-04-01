@@ -49,10 +49,11 @@
     "@types/nprogress": "0.2.3",
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.14",
-    "next": "15.5.14",
-    "react": "19.2.4"
+    "@types/react-dom": "19.2.3",
+    "next": "15.5.14"
   },
   "peerDependencies": {
+    "@docsearch/react": "catalog:docs",
     "@emotion/cache": "catalog:docs",
     "@emotion/react": "catalog:docs",
     "@emotion/styled": "catalog:docs",
@@ -69,9 +70,13 @@
     "csstype": "^3.1.3",
     "next": "^13.5.1 || ^14 || ^15.0.0 || ^16.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "styled-components": "^5.3.0 || ^6.0.0"
   },
   "peerDependenciesMeta": {
+    "@docsearch/react": {
+      "optional": true
+    },
     "@types/react": {
       "optional": true
     },
@@ -88,6 +93,7 @@
   },
   "exports": {
     "./*": "./src/*/index.ts",
-    "./ApiPage/private": "./src/ApiPage/private.ts"
+    "./ApiPage/private": "./src/ApiPage/private.ts",
+    "./AppLayout/AppSearch": "./src/AppLayout/components/AppSearch.tsx"
   }
 }

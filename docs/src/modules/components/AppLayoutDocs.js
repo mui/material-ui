@@ -14,12 +14,12 @@ import {
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import { AppContainer } from '@mui/internal-core-docs/AppLayout';
+import { convertProductIdToName } from '@mui/internal-core-docs/utils';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import { TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 import getProductInfoFromUrl from '@mui/internal-core-docs/getProductInfoFromUrl';
-import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc' && prop !== 'wideLayout',

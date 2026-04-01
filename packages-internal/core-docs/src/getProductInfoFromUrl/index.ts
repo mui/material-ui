@@ -1,2 +1,2 @@
-export { default } from './getProductInfoFromUrl';
-export type { MuiProductId } from './getProductInfoFromUrl';
+export { default } from '../utils/getProductInfoFromUrl';
+export type { MuiProductId } from '../utils/getProductInfoFromUrl';
