@@ -1,19 +1,18 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
-import { TabsList as TabsListBase } from '@mui/base/TabsList';
-import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
-import { Tab as TabBase } from '@mui/base/Tab';
+import { Tabs } from '@base-ui/react/tabs';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 import { HighlightedCode } from '../HighlightedCode';
+
+interface TabOwnerState {
+  ownerState: { mounted: boolean; contained?: boolean };
+}
 
 const PACKAGE_MANAGER_ORDER = new Map(
   ['npm', 'pnpm', 'yarn'].map((manager, index) => [manager, index]),
 );
 
-export const CodeTabList = styled(TabsListBase)<{
-  ownerState: { mounted: boolean; contained?: boolean };
-}>(({ theme }) => ({
+export const CodeTabList = styled(Tabs.List)<TabOwnerState>(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(0.5),
   borderLeft: '1px solid',
@@ -24,85 +23,85 @@ export const CodeTabList = styled(TabsListBase)<{
   }),
   variants: [
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
       style: {
         padding: theme.spacing(1.5, 1),
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         padding: theme.spacing(1),
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
       style: {
         borderTop: 'none',
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         borderTop: '1px solid',
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
       style: {
         borderBottom: 'none',
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         borderBottom: '1px solid',
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
       style: {
         borderTopLeftRadius: 0,
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
       style: {
         borderTopRightRadius: 0,
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
       style: {
         borderColor: (theme.vars || theme).palette.divider,
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         borderColor: (theme.vars || theme).palette.primaryDark[700],
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
       style: {
         backgroundColor: alpha(theme.palette.grey[50], 0.2),
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         backgroundColor: (theme.vars || theme).palette.primaryDark[900],
       },
@@ -110,9 +109,7 @@ export const CodeTabList = styled(TabsListBase)<{
   ],
 }));
 
-export const CodeTabPanel = styled(TabPanelBase)<{
-  ownerState: { mounted: boolean; contained?: boolean };
-}>({
+export const CodeTabPanel = styled(Tabs.Panel)<TabOwnerState>(() => ({
   '& pre': {
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
@@ -120,19 +117,19 @@ export const CodeTabPanel = styled(TabPanelBase)<{
   },
   variants: [
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !!ownerState?.contained,
       style: {
         marginTop: -1,
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         marginTop: 0,
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !!ownerState?.contained,
       style: {
         '& pre': {
           marginTop: 0,
@@ -140,7 +137,7 @@ export const CodeTabPanel = styled(TabPanelBase)<{
       },
     },
     {
-      props: ({ ownerState }) => !ownerState?.contained,
+      props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
       style: {
         '& pre': {
           marginTop: -1,
@@ -148,7 +145,7 @@ export const CodeTabPanel = styled(TabPanelBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState.mounted,
+      props: ({ ownerState }: TabOwnerState) => ownerState.mounted,
       style: {
         '& pre': {
           '& code': {
@@ -158,7 +155,7 @@ export const CodeTabPanel = styled(TabPanelBase)<{
       },
     },
     {
-      props: ({ ownerState }) => !ownerState.mounted,
+      props: ({ ownerState }: TabOwnerState) => !ownerState.mounted,
       style: {
         '& pre': {
           '& code': {
@@ -168,75 +165,75 @@ export const CodeTabPanel = styled(TabPanelBase)<{
       },
     },
   ],
-});
+}));
 
-export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
+export const CodeTab = styled(Tabs.Tab)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
   ({ theme }) => ({
     variants: [
       {
-        props: ({ ownerState }) => ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
         style: {
           border: '1px solid transparent',
           fontSize: theme.typography.pxToRem(13),
         },
       },
       {
-        props: ({ ownerState }) => !ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
         style: {
           border: 'none',
           fontSize: theme.typography.pxToRem(12),
         },
       },
       {
-        props: ({ ownerState }) => ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
         style: {
           color: (theme.vars || theme).palette.text.tertiary,
         },
       },
       {
-        props: ({ ownerState }) => !ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
         style: {
           color: (theme.vars || theme).palette.grey[500],
         },
       },
       {
-        props: ({ ownerState }) => ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
         style: {
           fontFamily: theme.typography.fontFamily,
         },
       },
       {
-        props: ({ ownerState }) => !ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
         style: {
           fontFamily: theme.typography.fontFamilyCode,
         },
       },
       {
-        props: ({ ownerState }) => ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
         style: {
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
       {
-        props: ({ ownerState }) => !ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
         style: {
           fontWeight: theme.typography.fontWeightBold,
         },
       },
       {
-        props: ({ ownerState }) => ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => ownerState?.contained,
         style: {
           transition: 'background, color, 100ms ease',
         },
       },
       {
-        props: ({ ownerState }) => !ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
         style: {
           transition: 'unset',
         },
       },
       {
-        props: ({ ownerState }) => !ownerState?.contained,
+        props: ({ ownerState }: TabOwnerState) => !ownerState?.contained,
         style: {
           '&:hover': {
             backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
@@ -245,7 +242,7 @@ export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contain
         },
       },
       {
-        props: ({ ownerState }) => !ownerState?.contained && ownerState.mounted,
+        props: ({ ownerState }: TabOwnerState) => !ownerState?.contained && ownerState.mounted,
         style: {
           '&.base--selected': {
             color: '#FFF',
@@ -318,14 +315,15 @@ export function HighlightedCodeWithTabs(
     setMounted(true);
   }, []);
 
-  const handleChange: TabsOwnProps['onChange'] = (event, newValue) => {
+  const handleChange = (newValue: any) => {
     setActiveTab(newValue as string);
   };
 
   const ownerState = { mounted };
   return (
-    <Tabs selectionFollowsFocus value={defaultizedActiveTab} onChange={handleChange}>
-      <CodeTabList ownerState={ownerState}>
+    <Tabs.Root value={defaultizedActiveTab} onValueChange={handleChange}>
+      {/* selectionFollowsFocus was moved to the List and renamed to activateOnFocus */}
+      <CodeTabList ownerState={ownerState} activateOnFocus>
         {tabs.map(({ tab }) => (
           <CodeTab ownerState={ownerState} key={tab} value={tab}>
             {tab}
@@ -340,6 +338,6 @@ export function HighlightedCodeWithTabs(
           />
         </CodeTabPanel>
       ))}
-    </Tabs>
+    </Tabs.Root>
   );
 }

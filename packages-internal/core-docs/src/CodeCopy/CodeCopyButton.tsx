@@ -8,7 +8,8 @@ export function CodeCopyButton(props: CodeCopyButtonProps) {
   const { code, ...other } = props;
   const { copy, isCopied } = useClipboardCopy();
   // This component is designed to be wrapped in NoSsr
-  const macOS = window.navigator.platform.toUpperCase().includes('MAC');
+  const macOS =
+    typeof window !== 'undefined' && window.navigator.platform.toUpperCase().includes('MAC');
   const key = macOS ? '⌘' : 'Ctrl + ';
 
   return (

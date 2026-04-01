@@ -549,7 +549,7 @@ export default function Demo(props) {
               </React.Suspense>
             </NoSsr>
           </DemoToolbarRoot>
-          <Tabs value={activeTab} onChange={handleTabChange}>
+          <Tabs.Root value={activeTab} onValueChange={handleTabChange}>
             {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
               <CodeTabList ownerState={ownerState}>
                 {tabs.map((tab, index) => (
@@ -624,7 +624,7 @@ export default function Demo(props) {
                 </Tabs.Panel>
               ))}
             </Collapse>
-          </Tabs>
+          </Tabs.Root>
           {/* AI Suggestion Hero UI */}
           {demoOptions.aiSuggestion ? (
             <DemoAiSuggestionHero
