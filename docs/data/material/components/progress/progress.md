@@ -56,6 +56,10 @@ The animations of the components rely on CSS as much as possible to work even be
 
 {{"demo": "LinearIndeterminate.js"}}
 
+### Linear query
+
+{{"demo": "LinearQuery.js"}}
+
 ### Linear color
 
 {{"demo": "LinearColor.js"}}
