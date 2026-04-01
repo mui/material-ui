@@ -17,14 +17,14 @@ For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui
 
 ## Table of contents
 
-- [Charts inside the grid](#charts-inside-the-grid)
+- [Charts integrated with Data Grid](#charts-integrated-with-data-grid)
 - [Dynamic data, editing, and everyday UX](#dynamic-data-editing-and-everyday-ux)
 - [AI Assistant](#ai-assistant)
 - [What's next](#whats-next)
 - [Upgrading from v8](#upgrading-from-v8)
 - [Where to go next](#where-to-go-next)
 
-## Charts inside the grid
+## Charts integrated with Data Grid
 
 Charts inside the grid is stable in v9: you can ship dashboards that mix tables and visuals without treating the integration as experimental.
 We also kept the implementation in step with Material UI v9 so the grid and charts don't drift as both packages evolve.
