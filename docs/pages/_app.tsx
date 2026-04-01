@@ -11,7 +11,7 @@ import {
   reportWebVitals,
 } from '@mui/internal-core-docs/DocsApp';
 import findActivePage from '@mui/internal-core-docs/findActivePage';
-import getProductInfoFromUrl from '@mui/internal-core-docs/getProductInfoFromUrl';
+import { getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
 import type { Translations } from '@mui/internal-core-docs/i18n';
 import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 import materialPkgJson from '@mui/material/package.json';
@@ -30,7 +30,6 @@ import {
   muiSvgWordmarkString,
 } from '@mui/internal-core-docs/svgIcons';
 
-import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
 
@@ -241,7 +240,6 @@ export default function MyApp(
       {...props}
       Component={Component}
       pageProps={pageProps}
-      docsConfig={config}
       serviceWorkerPath="/sw.js"
       adConfig={GA_AD_CONFIG}
       activePage={activePage}
