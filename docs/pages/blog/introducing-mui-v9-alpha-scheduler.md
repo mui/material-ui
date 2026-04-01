@@ -64,7 +64,7 @@ You can place those events on resources (people, rooms, assets) or looser groupi
 
 Recurring events target real calendars: daily/weekly/monthly and custom rules, editable as a series or as one‑off exceptions, with timezone‑aware evaluation so a daily 09:00 meeting stays at 09:00 local time even across DST changes.
 
-Drag and drop is first-class: move, and resize on the canvas with snapping, business constraints, and keyboard paths so accessibility isn't an afterthought.
+Drag and drop is first-class: move, and resize on the canvas with snapping, and keyboard paths so accessibility isn't an afterthought.
 
 Timezones are modeled so you can store canonically (for example UTC), render in the user's zone, and lean on the stack for DST and regional rules instead of reinventing offsets in every app.
 
