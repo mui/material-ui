@@ -35,7 +35,6 @@
     "es-toolkit": "^1.45.1",
     "fg-loadcss": "^3.1.0",
     "nprogress": "^0.2.0",
-    "prop-types": "^15.8.1",
     "stylis": "catalog:docs"
   },
   "devDependencies": {

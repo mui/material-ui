@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { createTheme as createMdTheme } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -179,10 +178,6 @@ export function ThemeProvider(props: React.PropsWithChildren) {
     </ThemeOptionsContext.Provider>
   );
 }
-
-ThemeProvider.propTypes = {
-  children: PropTypes.node,
-};
 
 /**
  * @returns {(nextOptions: Partial<typeof themeInitialOptions>) => void}

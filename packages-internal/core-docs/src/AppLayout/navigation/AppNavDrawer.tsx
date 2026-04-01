@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { styled, alpha, ThemeProvider, Theme } from '@mui/material/styles';
@@ -139,10 +138,6 @@ function ProductDrawerButton(props: ProductDrawerButtonProps) {
   );
 }
 
-ProductDrawerButton.propTypes = {
-  productName: PropTypes.string,
-};
-
 interface ProductIdentifierProps {
   name: string;
   metadata: string;
@@ -172,12 +167,6 @@ function ProductIdentifier(props: ProductIdentifierProps) {
     </Box>
   );
 }
-
-ProductIdentifier.propTypes = {
-  metadata: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  versionSelector: PropTypes.element.isRequired,
-};
 
 // To match scrollMarginBottom
 const browserUrlPreviewMarge = 120;
@@ -217,12 +206,6 @@ function PersistScroll(props: PersistScrollProps) {
 
   return <div ref={rootRef}>{children}</div>;
 }
-
-PersistScroll.propTypes = {
-  children: PropTypes.node.isRequired,
-  enabled: PropTypes.bool.isRequired,
-  slot: PropTypes.string.isRequired,
-};
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.5),
@@ -545,11 +528,3 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
     </ThemeProvider>
   );
 }
-
-AppNavDrawer.propTypes = {
-  className: PropTypes.string,
-  disablePermanent: PropTypes.bool.isRequired,
-  mobileOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onOpen: PropTypes.func.isRequired,
-};

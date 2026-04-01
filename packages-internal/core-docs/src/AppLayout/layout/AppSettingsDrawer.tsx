@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled, useTheme, useColorScheme } from '@mui/material/styles';
 import Drawer, { DrawerProps } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -86,11 +85,6 @@ function ToggleTheme(props: ToggleThemeProps) {
   );
 }
 
-ToggleTheme.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOf(['light', 'system', 'dark']),
-};
-
 function ToggleVarTheme(props: ToggleThemeProps) {
   const { setMode } = useColorScheme();
 
@@ -106,11 +100,6 @@ function ToggleVarTheme(props: ToggleThemeProps) {
   };
   return <ToggleTheme value={props.value} onChange={handleChangeThemeMode} />;
 }
-
-ToggleVarTheme.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOf(['light', 'system', 'dark']),
-};
 
 export interface AppSettingsDrawerProps extends Omit<DrawerProps, 'onClose'> {
   onClose: () => void;
@@ -236,8 +225,3 @@ export function AppSettingsDrawer(props: AppSettingsDrawerProps) {
     </Drawer>
   );
 }
-
-AppSettingsDrawer.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool,
-};

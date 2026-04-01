@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { alpha, styled, SxProps, Theme } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
@@ -290,13 +289,6 @@ function DeadLink(props: LinkProps & React.HTMLProps<HTMLDivElement>) {
   return <div {...other} />;
 }
 
-DeadLink.propTypes = {
-  activeClassName: PropTypes.any,
-  href: PropTypes.any,
-  noLinkStyle: PropTypes.any,
-  prefetch: PropTypes.any,
-};
-
 export interface AppNavDrawerItemProps {
   beta?: boolean;
   children?: React.ReactNode;
@@ -418,24 +410,3 @@ export function AppNavDrawerItem(props: AppNavDrawerItemProps) {
     </StyledLi>
   );
 }
-
-AppNavDrawerItem.propTypes = {
-  beta: PropTypes.bool,
-  children: PropTypes.node,
-  deprecated: PropTypes.bool,
-  depth: PropTypes.number.isRequired,
-  expandable: PropTypes.bool,
-  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  icon: PropTypes.elementType,
-  initiallyExpanded: PropTypes.bool,
-  legacy: PropTypes.bool,
-  linkProps: PropTypes.object,
-  newFeature: PropTypes.bool,
-  onClick: PropTypes.func,
-  plan: PropTypes.oneOf(['community', 'pro', 'premium']),
-  planned: PropTypes.bool,
-  subheader: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  topLevel: PropTypes.bool,
-  unstable: PropTypes.bool,
-};

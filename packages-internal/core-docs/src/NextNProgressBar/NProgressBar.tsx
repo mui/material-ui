@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import NProgress from 'nprogress';
 import { NoSsr } from '@mui/base/NoSsr';
-import exactProp from '@mui/utils/exactProp';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { keyframes } from '@mui/material/styles';
 
@@ -29,11 +28,15 @@ const muiNProgressPulse = keyframes`
   }
 `;
 
+export interface NProgressBarProps {
+  children?: React.ReactNode;
+}
+
 /**
  * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
  * The implementation is highly inspired by the YouTube one.
  */
-function NProgressBar(props) {
+function NProgressBar(props: NProgressBarProps) {
   return (
     <NoSsr>
       {props.children}
@@ -85,14 +88,6 @@ function NProgressBar(props) {
       />
     </NoSsr>
   );
-}
-
-NProgressBar.propTypes = {
-  children: PropTypes.node,
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  NProgressBar.propTypes = exactProp(NProgressBar.propTypes);
 }
 
 export default NProgressBar;

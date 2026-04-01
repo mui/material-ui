@@ -788,9 +788,6 @@ importers:
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
       react:
         specifier: ^17.0.0 || ^18.0.0 || ^19.0.0
         version: 19.2.4
