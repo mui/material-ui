@@ -25,6 +25,8 @@ export * from './components/MoreInfoBox';
 export * from './components/NpmCopyButton';
 export * from './components/ArrowButton';
 export * from './components/SearchButton';
+export * from './components/AppFrameBanner';
+export * from './components/AppHeaderBanner';
 
 // icons
 export * from './icons/navIcons';

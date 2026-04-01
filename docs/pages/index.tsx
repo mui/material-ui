@@ -13,7 +13,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import NewsletterToast from 'docs/src/components/home/NewsletterToast';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 
 export default function Home() {
   return (

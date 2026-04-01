@@ -17,6 +17,7 @@ import type { NotificationMessage } from './Notifications';
 import { SearchButton } from '../components/SearchButton';
 import PageContext from '../../PageContext';
 import { useTranslate } from '../../i18n';
+import { DemoPageThemeProvider } from '../../Demo';
 
 const sx = { minWidth: { sm: 160 } };
 
@@ -136,70 +137,72 @@ export function AppFrame(props: AppFrameProps) {
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
   return (
-    <RootDiv className={className}>
-      <StyledAppBar
-        disablePermanent={disablePermanent}
-        sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
-      >
-        <GlobalStyles
-          styles={{
-            ':root': {
-              '--MuiDocs-header-height': `${HEIGHT}px`,
-            },
-          }}
-        />
-        <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
-          <NavIconButton
-            edge="start"
-            color="primary"
-            size="small"
-            aria-label={t('appFrame.openDrawer')}
-            disablePermanent={disablePermanent}
-            onClick={() => setMobileOpen(true)}
-            sx={{ ml: '1px' }}
-          >
-            <HamburgerMenuIcon />
-          </NavIconButton>
-          <Box sx={{ display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
-            <LogoWithCopyMenu
-              logo={productIdentifier.logo}
-              logoSvgString={productIdentifier.logoSvg}
-              wordmarkSvgString={productIdentifier.wordmarkSvg}
-              marginLeft
-            />
-          </Box>
-          <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
-            {BannerComponent ? <BannerComponent /> : null}
-            <DeferredAppSearch />
-            <Tooltip title={t('appFrame.github')} enterDelay={300}>
-              <IconButton
-                component="a"
-                color="primary"
-                size="small"
-                href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Notifications fetchNotifications={fetchNotifications} />
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
+    <DemoPageThemeProvider>
+      <RootDiv className={className}>
+        <StyledAppBar
+          disablePermanent={disablePermanent}
+          sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
+        >
+          <GlobalStyles
+            styles={{
+              ':root': {
+                '--MuiDocs-header-height': `${HEIGHT}px`,
+              },
+            }}
+          />
+          <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
+            <NavIconButton
+              edge="start"
+              color="primary"
+              size="small"
+              aria-label={t('appFrame.openDrawer')}
+              disablePermanent={disablePermanent}
+              onClick={() => setMobileOpen(true)}
+              sx={{ ml: '1px' }}
+            >
+              <HamburgerMenuIcon />
+            </NavIconButton>
+            <Box sx={{ display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
+              <LogoWithCopyMenu
+                logo={productIdentifier.logo}
+                logoSvgString={productIdentifier.logoSvg}
+                wordmarkSvgString={productIdentifier.wordmarkSvg}
+                marginLeft
+              />
+            </Box>
+            <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
+              {BannerComponent ? <BannerComponent /> : null}
+              <DeferredAppSearch />
+              <Tooltip title={t('appFrame.github')} enterDelay={300}>
+                <IconButton
+                  component="a"
+                  color="primary"
+                  size="small"
+                  href={process.env.SOURCE_CODE_REPO}
+                  data-ga-event-category="header"
+                  data-ga-event-action="github"
+                >
+                  <GitHubIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Notifications fetchNotifications={fetchNotifications} />
+              <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+                <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
+                  <SettingsIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </Stack>
           </Stack>
-        </Stack>
-      </StyledAppBar>
-      <StyledAppNavDrawer
-        disablePermanent={disablePermanent}
-        onClose={closeDrawer}
-        onOpen={openDrawer}
-        mobileOpen={mobileOpen}
-      />
-      {children}
-      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
-    </RootDiv>
+        </StyledAppBar>
+        <StyledAppNavDrawer
+          disablePermanent={disablePermanent}
+          onClose={closeDrawer}
+          onOpen={openDrawer}
+          mobileOpen={mobileOpen}
+        />
+        {children}
+        <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+      </RootDiv>
+    </DemoPageThemeProvider>
   );
 }

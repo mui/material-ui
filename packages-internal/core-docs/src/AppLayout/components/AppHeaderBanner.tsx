@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material/styles';
-import { Link } from '@mui/internal-core-docs/Link';
-import { ROUTES } from '@mui/internal-core-docs/constants';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { Link } from '../../Link';
+import { ROUTES, FEATURE_TOGGLE } from '../../constants';
 
 const linkStyleOverrides = (theme: Theme) => ({
   color: 'inherit',
@@ -54,7 +53,7 @@ function getDefaultHiringMessage() {
   );
 }
 
-export default function AppHeaderBanner() {
+export function AppHeaderBanner() {
   const showSurveyMessage = true;
   const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
 

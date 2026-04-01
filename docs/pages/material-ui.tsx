@@ -11,7 +11,7 @@ import MaterialDesignKits from 'docs/src/components/productMaterial/MaterialDesi
 import MaterialEnd from 'docs/src/components/productMaterial/MaterialEnd';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 
 export default function MaterialUI() {
   return (

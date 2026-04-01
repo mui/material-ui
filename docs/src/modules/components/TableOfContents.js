@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import { Link } from '@mui/internal-core-docs/Link';
 import { useTranslate } from '@mui/internal-core-docs/i18n';
-import featureToggle from 'docs/src/featureToggle';
+import { FEATURE_TOGGLE as featureToggle } from '@mui/internal-core-docs/constants';
 
 export const TOC_WIDTH = 242;
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 import CustomersHero from 'docs/src/components/customers/CustomersHero';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Head from 'docs/src/modules/components/Head';

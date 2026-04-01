@@ -11,7 +11,7 @@ import PricingFAQ from 'docs/src/components/pricing/PricingFAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 import { MultiAppProvider } from 'docs/src/components/pricing/MultiAppContext';
 import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
 import PricingCards from 'docs/src/components/pricing/PricingCards';

@@ -16,7 +16,7 @@ import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import Head from 'docs/src/modules/components/Head';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 
 const openRolesData = [
   {

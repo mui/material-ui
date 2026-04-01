@@ -5,7 +5,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import CoreHero from 'docs/src/components/productCore/CoreHero';
 import CoreProducts from 'docs/src/components/productCore/CoreProducts';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 import Testimonials from 'docs/src/components/home/Testimonials';
 
 export default function Core() {

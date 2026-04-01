@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import { Link } from '@mui/internal-core-docs/Link';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { Link } from '../../Link';
+import { FEATURE_TOGGLE } from '../../constants';
 
 const showSurveyMessage = true;
 
@@ -14,7 +14,7 @@ function isBlackFriday() {
 
 let hadHydrated = false;
 
-export default function AppFrameBanner() {
+export function AppFrameBanner() {
   if (!FEATURE_TOGGLE.enable_docsnav_banner) {
     return null;
   }

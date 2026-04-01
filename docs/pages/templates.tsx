@@ -9,7 +9,7 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import References, { TEMPLATES_CUSTOMERS } from 'docs/src/components/home/References';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 
 export default function Templates() {
   return (

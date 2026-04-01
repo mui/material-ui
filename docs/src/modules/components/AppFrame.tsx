@@ -1,13 +1,12 @@
 import * as React from 'react';
 import {
   AppFrame as AppFrameBase,
+  AppFrameBanner,
   DeferredAppSearch,
   HEIGHT,
   type AppFrameProps as AppFrameBaseProps,
   type NotificationMessage,
 } from '@mui/internal-core-docs/AppLayout';
-import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
-import { DemoPageThemeProvider } from 'docs/src/theming';
 
 export { DeferredAppSearch, HEIGHT };
 export type { NotificationMessage };
@@ -29,12 +28,10 @@ export interface AppFrameProps extends Omit<AppFrameBaseProps, 'fetchNotificatio
 export default function AppFrame(props: AppFrameProps) {
   const { BannerComponent = AppFrameBanner, ...other } = props;
   return (
-    <DemoPageThemeProvider>
-      <AppFrameBase
-        BannerComponent={BannerComponent}
-        fetchNotifications={fetchNotifications}
-        {...other}
-      />
-    </DemoPageThemeProvider>
+    <AppFrameBase
+      BannerComponent={BannerComponent}
+      fetchNotifications={fetchNotifications}
+      {...other}
+    />
   );
 }

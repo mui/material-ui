@@ -8,7 +8,7 @@ import HowToSupport from 'docs/src/components/about/HowToSupport';
 import AboutEnd from 'docs/src/components/about/AboutEnd';
 import Head from 'docs/src/modules/components/Head';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 
 export default function About() {
   return (

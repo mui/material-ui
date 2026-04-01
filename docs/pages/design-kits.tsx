@@ -9,7 +9,7 @@ import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
 import MaterialEnd from 'docs/src/components/productMaterial/MaterialEnd';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner } from '@mui/internal-core-docs/AppLayout';
 
 export default function DesignKits() {
   return (
