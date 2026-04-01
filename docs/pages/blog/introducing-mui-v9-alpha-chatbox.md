@@ -9,7 +9,7 @@ hideFromHomeList: true
 ---
 
 In v9 we're laying the groundwork for AI-native conversational experiences in MUI X.
-MUI X Chat (documented as [MUI X Chat](/x/react-chat/)) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
+[MUI X Chat](/x/react-chat/) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
 
 This post is an orientation, not an API reference: how the layers stack, why adapters and streams sit at the center, and how early work connects to Data Grid, Scheduler, and the v9 overview.
 For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
@@ -27,12 +27,12 @@ For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introduci
 
 ## Quick start
 
-Install the package and render your first chat surface in minutes: start from [MUI X Chat](/x/react-chat/) and follow Quickstart for the first working `ChatBox`.
+Install the package and render your first chat surface in minutes: follow [the quickstart guide](/x/react-chat/) for your first working `ChatBox`.
 Then wire your adapter and streaming path so users see tokens and tool output progressively as responses arrive.
 
 ## What alpha means
 
-MUI X Chat is deliberately early: install from the docs, follow Quickstart and examples, and expect hooks and slot props to evolve while we harden contracts.
+MUI X Chat is deliberately early: the docs are minimal for now, and you should expect breaking changes along the way as we receive feedback from users.
 The goal is a foundation you can theme, swap providers on, and extend, not a frozen UI kit on day one.
 
 If you're experimenting with tools, agents, or assistant UX beside your product surface, this is the layer where we want feedback and real integrations.
@@ -77,7 +77,7 @@ Core chat hooks wire store, processor, and adapter together; tests lock those fl
 
 ## Message parts beyond plain text
 
-Modeling messages as parts (tool calls, tool results, sources, optional reasoning traces, file attachments) keeps assistant UX inspectable: users and developers can see what ran, on what data, and in what order.
+Modeling messages as parts (such as tool calls and results, sources, and file attachments) keeps assistant UX inspectable: users and developers can see what ran, on what data, and in what order.
 
 Streaming treats responses as sequences of parts and tokens, not one immutable blob, which matters when Chat works alongside Data Grid transforms, Scheduler mutations, or other multi‑step automations where results arrive gradually.
 
@@ -85,7 +85,7 @@ Streaming treats responses as sequences of parts and tokens, not one immutable b
 
 Phase 0-1 (v9) is delivered as one milestone: package APIs, core hooks, themed `ChatBox`, docs and examples, opinionated layouts (conversation surface, input, history, threads), and first-class wiring to other MUI X components.
 
-Phase 2 expands workflow patterns ("chat with your data", "chat with your schedule", mixed chart and grid flows), with production-ready docs that help teams ship without reinventing glue code.
+Phase 2 expands workflow patterns ("chat with your data," "chat with your schedule," mixed chart and grid flows), with production-ready docs that help teams ship without reinventing glue code.
 
 Phase 3 ships templates and tighter ecosystem combinations (advanced components + Material UI primitives + Console where licensing applies), aligned with the v9 direction of clear intents and reversible state.
 

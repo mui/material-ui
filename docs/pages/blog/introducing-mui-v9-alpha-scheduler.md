@@ -10,7 +10,7 @@ hideFromHomeList: true
 
 The Scheduler is a new advanced component in MUI X aimed at time‑ and resource‑centric applications: not just a decorative calendar, but events bound to people, rooms, equipment, and projects, with interactions that match how real products work.
 
-It is first shipped as alpha: useful for prototypes and roadmap planning, but APIs may change until the stable based on your feedback, and we're hoping to get your feedback so we can move through this phase quickly.
+We're shipping it in alpha: useful for prototypes and roadmap planning, but the APIs are subject to change until the stable release—and we're hoping to get your feedback so we can move through this phase quickly.
 
 This post explains what we're building, how Community and Premium differ, and where it sits next to Data Grid, Charts, and Chat.
 For the broader v9 context, read the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
@@ -29,14 +29,14 @@ For the broader v9 context, read the [Material UI and MUI X v9 overview](/blog
 
 ## Quick start
 
-Install the package and render the Scheduler in minutes: start from [MUI X Scheduler](/x/react-scheduler/) and follow [Quickstart](/x/react-scheduler/quickstart/) for the first working calendar.
+Install the package and render the Scheduler in minutes: start in the [MUI X Scheduler docs](/x/react-scheduler/) and follow [the quickstart guide](/x/react-scheduler/quickstart/) for your first working calendar.
 Then layer your event model and resources on top, and switch to Timeline when your use case needs dense resource planning.
 
 ## What alpha means
 
-We expect the same arc as past advanced components: alpha, then beta, then stable, with migration notes as the surface hardens.
-Today that means you should prototype and send feedback, not assume frozen imports or unchanged slot APIs.
-If you've shipped on Data Grid or Charts through early majors, the expectations will feel familiar.
+We expect the same release arc that we've followed for other advanced components: alpha, then beta, then stable, with migration notes as the surface hardens.
+Today that means you should prototype and send feedback—don't assume imports are frozen or that slot APIs can't be changed.
+If you've shipped on Data Grid or Charts through early majors, the process should feel familiar.
 
 ## When to expect the stable
 
