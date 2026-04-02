@@ -7,7 +7,12 @@ import Box from '@mui/material/Box';
 function LinearProgressWithLabelAndValue(props) {
   return (
     <div>
-      <Typography id="upload-progress-label" variant="body2" color="text.secondary" sx={{ mr: 1 }}>
+      <Typography
+        id="upload-progress-label"
+        variant="body2"
+        color="text.secondary"
+        sx={{ mr: 1 }}
+      >
         Uploading photos…
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>

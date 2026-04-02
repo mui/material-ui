@@ -3,7 +3,9 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-function LinearProgressWithLabelAndValue(props: LinearProgressProps & { value: number }) {
+function LinearProgressWithLabelAndValue(
+  props: LinearProgressProps & { value: number },
+) {
   return (
     <div>
       <Typography
