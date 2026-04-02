@@ -86,8 +86,8 @@ importers:
         specifier: 2.0.8-canary.24
         version: 2.0.8-canary.24(@babel/core@7.29.0)
       '@mui/internal-bundle-size-checker':
-        specifier: 1.0.9-canary.69
-        version: 1.0.9-canary.69(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.12)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+        specifier: 1.0.9-canary.70
+        version: 1.0.9-canary.70(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.12)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       '@mui/internal-code-infra':
         specifier: 0.0.4-canary.11
         version: 0.0.4-canary.11(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@10.1.0(jiti@2.6.1))(postcss@8.5.8)(prettier@3.8.1)(stylelint@17.5.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
@@ -95,8 +95,8 @@ importers:
         specifier: workspace:^
         version: link:packages-internal/docs-utils
       '@mui/internal-netlify-cache':
-        specifier: 0.0.3-canary.2
-        version: 0.0.3-canary.2
+        specifier: 0.0.3-canary.3
+        version: 0.0.3-canary.3
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:packages-internal/scripts
@@ -3617,8 +3617,8 @@ packages:
     peerDependencies:
       '@babel/core': 7.29.0
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.69':
-    resolution: {integrity: sha512-af8lafDZxrPMZ9SvP3ER6WKx/lRkxDyWPM+1R3jTaLobEMQwSjQjTxx2Fm82BqVrc2Rr7SfeRXiYYuthFCJHzg==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.70':
+    resolution: {integrity: sha512-T0iKZnalOnDBL0LKl0cGhkA0R9qMZbx9ZuCbClUVQ3+UikKOVjECKPPdZZwR6Afgwlq9D17N0OurkEdToeGOpQ==}
     hasBin: true
 
   '@mui/internal-code-infra@0.0.4-canary.11':
@@ -3636,8 +3636,8 @@ packages:
       typescript:
         optional: true
 
-  '@mui/internal-netlify-cache@0.0.3-canary.2':
-    resolution: {integrity: sha512-RpHfVoqsIRqQ44UL/q9gSNOiHqZpri25SlnfWGmuvIUTSBWx+A1G7zhTKmasGel5bNBSnMEgBG5/MkW0mkrMRw==}
+  '@mui/internal-netlify-cache@0.0.3-canary.3':
+    resolution: {integrity: sha512-5aHrdXc0kA/VGvWyXwiJ4OuQh+6O+AYTYderUI2028vonKo113RQ8nz6TxhCRZBL5qGU3gb6MUaKbuQkujBlUA==}
 
   '@mui/internal-test-utils@2.0.18-canary.18':
     resolution: {integrity: sha512-AvfnApoz0gEIH88OzdYoVHWsk3XZdpHJaU+X+6tBzDZiXLu4/sQM05ju0S8SQSMuCYc8sG7kxYhMQZPJ3fmfwg==}
@@ -14700,7 +14700,7 @@ snapshots:
       '@babel/core': 7.29.0
       resolve: 1.22.11
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.69(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.12)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.70(@types/node@20.19.37)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.12)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)':
     dependencies:
       '@aws-sdk/client-s3': 3.1010.0
       '@aws-sdk/credential-providers': 3.1010.0
@@ -14818,7 +14818,7 @@ snapshots:
       - supports-color
       - vitest
 
-  '@mui/internal-netlify-cache@0.0.3-canary.2': {}
+  '@mui/internal-netlify-cache@0.0.3-canary.3': {}
 
   '@mui/internal-test-utils@2.0.18-canary.18(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@playwright/test@1.58.2)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(@vitest/utils@4.0.15)(chai@6.2.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vite@7.3.1(@types/node@20.19.37)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))(vitest@4.0.13)':
     dependencies:
