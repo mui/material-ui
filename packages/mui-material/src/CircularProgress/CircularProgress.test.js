@@ -1,5 +1,9 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  strictModeDoubleLoggingSuppressed,
+  screen,
+} from '@mui/internal-test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,
 } from '@mui/material/CircularProgress';
@@ -168,6 +172,42 @@ describe('<CircularProgress />', () => {
       const [trackEl] = container.querySelectorAll('svg circle');
       expect(trackEl.style.strokeDasharray).to.equal('');
       expect(trackEl.style.strokeDashoffset).to.equal('');
+    });
+  });
+
+  describe('prop: minValue & maxValue', () => {
+    it('should be able to use custom min and max values', () => {
+      render(<CircularProgress variant="determinate" value={5} minValue={0} maxValue={10} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '0');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10');
+    });
+
+    it('min and max values should be used to calculate the circumference of the circle', () => {
+      render(<CircularProgress variant="determinate" value={15} minValue={10} maxValue={30} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.nested.property('style.transform', 'rotate(-90deg)');
+    });
+
+    it('should warn if the value is out of range', () => {
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={-1} minValue={0} maxValue={10} />);
+      }).toErrorDev([
+        `MUI: The value provided to the CircularProgress component is out of range (value: -1, min: 0, max: 10).`,
+        !strictModeDoubleLoggingSuppressed &&
+          `MUI: The value provided to the CircularProgress component is out of range (value: -1, min: 0, max: 10).`,
+      ]);
+
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={11} minValue={0} maxValue={10} />);
+      }).toErrorDev([
+        `MUI: The value provided to the CircularProgress component is out of range (value: 11, min: 0, max: 10).`,
+        !strictModeDoubleLoggingSuppressed &&
+          `MUI: The value provided to the CircularProgress component is out of range (value: 11, min: 0, max: 10).`,
+      ]);
     });
   });
 });

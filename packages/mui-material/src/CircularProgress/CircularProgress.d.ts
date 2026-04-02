@@ -41,6 +41,16 @@ export interface CircularProgressProps extends StandardProps<
    */
   enableTrackSlot?: boolean | undefined;
   /**
+   * The value of the progress indicator for the determinate and buffer variants.
+   * @default 100
+   */
+  maxValue?: number | undefined;
+  /**
+   * The minimum value of progress in determinate and buffer variants.
+   * @default 0
+   */
+  minValue?: number | undefined;
+  /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, for example '3rem'.
@@ -58,7 +68,7 @@ export interface CircularProgressProps extends StandardProps<
   thickness?: number | undefined;
   /**
    * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
+   * Value between `minValue` and `maxValue`.
    * @default 0
    */
   value?: number | undefined;

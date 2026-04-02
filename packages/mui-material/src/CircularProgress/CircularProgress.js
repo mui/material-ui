@@ -155,7 +155,7 @@ const CircularProgressCircle = styled('circle', {
         props: ({ ownerState }) =>
           ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
         style: dashAnimation || {
-          // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+          // At runtime for Pigment CSS, `dashAnimation` will be null and the generated keyframe will be used.
           animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
         },
       },
@@ -187,6 +187,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     color = 'primary',
     disableShrink = false,
     enableTrackSlot = false,
+    minValue = 0,
+    maxValue = 100,
     size = 40,
     style,
     thickness = 3.6,
@@ -213,11 +215,28 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const rootProps = {};
 
   if (variant === 'determinate') {
-    const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
-    circleStyle.strokeDasharray = circumference.toFixed(3);
-    rootProps['aria-valuenow'] = Math.round(value);
-    circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
-    rootStyle.transform = 'rotate(-90deg)';
+    if (value !== undefined) {
+      const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
+
+      circleStyle.strokeDasharray = circumference.toFixed(3);
+      circleStyle.strokeDashoffset = `${(((maxValue - value) / (maxValue - minValue)) * circumference).toFixed(3)}px`;
+      rootStyle.transform = 'rotate(-90deg)';
+
+      rootProps['aria-valuenow'] = Math.round(value);
+      rootProps['aria-valuemin'] = minValue;
+      rootProps['aria-valuemax'] = maxValue;
+
+      if (value < minValue || value > maxValue) {
+        console.error(
+          `MUI: The value provided to the CircularProgress component is out of range (value: ${value}, min: ${minValue}, max: ${maxValue}).`,
+        );
+      }
+    } else if (process.env.NODE_ENV !== 'production') {
+      console.error(
+        'MUI: You need to provide a value prop ' +
+          'when using the determinate variant of CircularProgress.',
+      );
+    }
   }
 
   return (
@@ -307,6 +326,16 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    */
   enableTrackSlot: PropTypes.bool,
   /**
+   * The value of the progress indicator for the determinate and buffer variants.
+   * @default 100
+   */
+  maxValue: PropTypes.number,
+  /**
+   * The minimum value of progress in determinate and buffer variants.
+   * @default 0
+   */
+  minValue: PropTypes.number,
+  /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, for example '3rem'.
@@ -332,7 +361,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   thickness: PropTypes.number,
   /**
    * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
+   * Value between `minValue` and `maxValue`.
    * @default 0
    */
   value: PropTypes.number,
