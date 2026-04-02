@@ -15,6 +15,7 @@ function Test() {
     <React.Fragment>
       <Drawer open />;
       <Drawer open slotProps={{ paper: paperProps }} />;
+      <Drawer open slotProps={{ transition: { direction: 'left' } }} />;
       <Drawer
         open
         slotProps={{
@@ -42,6 +43,8 @@ function Test() {
       'aria-hidden': true,
     },
     transition: {
+      container: document.body,
+      direction: 'left',
       timeout: 500,
     },
   }}

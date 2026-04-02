@@ -14,9 +14,7 @@ export interface StepContentSlots {
    * @default Collapse
    */
   transition?:
-    | React.JSXElementConstructor<
-        TransitionProps & { children?: React.ReactElement<unknown, any> | undefined }
-      >
+    | React.JSXElementConstructor<TransitionProps & { children: React.ReactElement<unknown, any> }>
     | undefined;
 }
 
