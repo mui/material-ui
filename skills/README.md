@@ -35,10 +35,6 @@ skills/
 
 Symlinks under `.cursor/skills/<skill-name>` point at `skills/<skill-name>` so Cursor loads `SKILL.md` while the canonical content stays in `skills/`.
 
-## MUI documentation links
-
-For links to a section of a docs page (URL includes `#`), use `[Page title—Section heading](url)`: an em dash with no spaces between the docs page title and the section heading, for example `[Theming—Custom variables](https://mui.com/material-ui/customization/theming/#custom-variables)`.
-
 ## Adding a skill
 
 1. Create `skills/<kebab-case-name>/` with `AGENTS.md`, `SKILL.md`, `README.md`, `metadata.json` (optional: `reference.md` or a `rules/` subtree later).

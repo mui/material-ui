@@ -170,7 +170,7 @@ Then, replace the Next.js Link with the wrapper component:
 When client components use Next.js App Router hooks that read the URL—for example `useSearchParams()` from `next/navigation` for filters, tabs, or pagination—Next.js expects a `<Suspense>` boundary around that part of the React tree.
 Without it, you may see build failures or runtime messages about a missing Suspense boundary (behavior depends on your Next.js version and static vs dynamic rendering).
 
-This pattern is common with Material UI: `DataGrid`, `Table`, `Tabs`, and other controls are often implemented as client components that sync to the query string.
+This pattern is common with Material UI: `Table`, `Tabs`, `TextField`, and other controls are often implemented as client components that sync to the query string.
 
 Recommended structure: keep `page.tsx` as a server component when possible, and wrap only the client subtree that calls `useSearchParams` in `<Suspense>`:
 

@@ -55,7 +55,7 @@ Dashboards and internal tools often combine MUI client components with URL-drive
 
 Next.js expects a `<Suspense>` boundary around the part of the tree that uses `useSearchParams` (and similar patterns that opt the route into client-side rendering), otherwise you can get build failures or runtime errors about a missing Suspense boundary.
 
-Practical pattern: keep `app/.../page.tsx` as a server component when possible; render a client subtree that uses components such as `DataGrid`, `Table`, or `Tabs` and is tied to the query string inside `<Suspense fallback={…}>` from that server page.
+Practical pattern: keep `app/.../page.tsx` as a server component when possible; render a client subtree that uses components such as `Table`, `Tabs`, or `TextField` and is tied to the query string inside `<Suspense fallback={…}>` from that server page.
 
 Official reference: [Next.js—`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params) (see static rendering and Suspense notes for your major version). See also [Next.js integration—URL-driven UI and the Suspense boundary](https://mui.com/material-ui/integrations/nextjs/#url-driven-ui-and-the-suspense-boundary).
 
