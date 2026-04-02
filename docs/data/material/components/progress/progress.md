@@ -84,7 +84,7 @@ By default, progress values are expected in the 0–100 range. You can customize
 
 ### Linear with custom value text
 
-By default, the progress value is read by assistive technology as percentages. Use `aria-valuetext` when you the progress value does not involve percentages.
+By default, the progress value is read by assistive technology as percentages. Use `aria-valuetext` when the progress value does not involve percentages.
 
 {{"demo": "LinearWithAriaValueText.js"}}
 
