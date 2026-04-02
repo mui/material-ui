@@ -38,6 +38,12 @@ The animations of the components rely on CSS as much as possible to work even be
 
 {{"demo": "CircularDeterminate.js"}}
 
+### Circular custom scale
+
+You can change the default 0 -> 100 scale by using the `minValue` and `maxValue` props.
+
+{{"demo": "CircularCustomScale.js"}}
+
 ### Circular track
 
 {{"demo": "CircularEnableTrack.js"}}

@@ -1,0 +1,7 @@
+<CircularProgress
+  variant="determinate"
+  minValue={0}
+  maxValue={20}
+  value={progress}
+  aria-label="Loading"
+/>
