@@ -1,6 +1,6 @@
 ---
 name: material-ui-nextjs
-description: Integrates Material UI with Next.js App and Pages routers using @mui/material-nextjs, Emotion cache providers, next/font, CSS layers with Tailwind/CSS Modules, Link component prop patterns, CSS theme variables SSR notes, App Router useSearchParams + Suspense, and nested-app monorepo notes. Use when setting up or debugging MUI in a Next.js app.
+description: Integrates Material UI with Next.js App and Pages routers using @mui/material-nextjs, Emotion cache providers, next/font, CSS layers with Tailwind/CSS Modules, Link component prop patterns, CSS theme variables SSR notes, and App Router useSearchParams + Suspense. Use when setting up or debugging MUI in a Next.js app.
 license: MIT
 metadata:
   author: mui
@@ -17,21 +17,19 @@ Agent skill for Next.js + Material UI wiring (SSR/streaming, cache providers, fo
 - Styles missing, wrong order, or in `body` instead of `head`
 - `next/font` + `ThemeProvider` / `createTheme`
 - Tailwind or CSS Modules + MUI (`enableCssLayer`)
-- `Button component={Link}` or Next.js v16 client boundary errors
+- `Button` + `component={Link}` or Next.js v16 client boundary errors
 - `useSearchParams` / URL-driven MUI views and Suspense boundaries
-- Nested Next app inside a parent pnpm monorepo (wrong Turbopack root, lockfile warnings)
 
 ## Sections in AGENTS.md
 
-| Area             | Topics                                                                                  |
-| ---------------- | --------------------------------------------------------------------------------------- |
-| App Router       | `AppRouterCacheProvider`, `@emotion/cache`, `options`, `useSearchParams` + `<Suspense>` |
-| Pages Router     | `_document`, `_app`, `DocumentHeadTags`, `AppCacheProvider`                             |
-| Fonts            | `'use client'` theme, `next/font`, CSS variables on `html`                              |
-| CSS variables    | `cssVariables`, SSR flicker docs                                                        |
-| CSS layers       | `enableCssLayer`, Tailwind / other CSS                                                  |
-| Link             | Client wrapper, routing guide, examples repo                                            |
-| Monorepo hygiene | Nested app folder, `turbopack.root`, stray `pnpm-workspace.yaml`                        |
+| Area          | Topics                                                                                  |
+| ------------- | --------------------------------------------------------------------------------------- |
+| App Router    | `AppRouterCacheProvider`, `@emotion/cache`, `options`, `useSearchParams` + `<Suspense>` |
+| Pages Router  | `_document`, `_app`, `DocumentHeadTags`, `AppCacheProvider`                             |
+| Fonts         | `'use client'` theme, `next/font`, CSS variables on `html`                             |
+| CSS variables | `cssVariables`, SSR flicker docs                                                       |
+| CSS layers    | `enableCssLayer`, Tailwind / other CSS                                                 |
+| Link          | Client wrapper, routing guide, examples repo                                            |
 
 ## Full guide
 

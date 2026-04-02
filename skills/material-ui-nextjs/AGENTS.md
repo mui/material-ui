@@ -20,8 +20,7 @@ Material UI uses Emotion for styles. On Next.js you must wire an Emotion cache s
 4. [CSS theme variables and SSR](#css-theme-variables-and-ssr)
 5. [Other styling stacks (CSS layers)](#other-styling-stacks-css-layers)
 6. [Next.js Link and `component` prop](#nextjs-link-and-component-prop)
-7. [Nested app in a parent workspace](#nested-app-in-a-parent-workspace)
-8. [Further reading](#further-reading)
+7. [Further reading](#further-reading)
 
 ---
 
@@ -56,7 +55,7 @@ Dashboards and internal tools often combine MUI client components with URL-drive
 
 Next.js expects a `<Suspense>` boundary around the part of the tree that uses `useSearchParams` (and similar patterns that opt the route into client-side rendering), otherwise you can get build failures or runtime errors about a missing Suspense boundary.
 
-Practical pattern: keep `app/.../page.tsx` as a server component when possible; render a client subtree (DataGrid, Table, Tabs tied to the query string) inside `<Suspense fallback={…}>` from that server page.
+Practical pattern: keep `app/.../page.tsx` as a server component when possible; render a client subtree that uses components such as `DataGrid`, `Table`, or `Tabs` and is tied to the query string inside `<Suspense fallback={…}>` from that server page.
 
 Official reference: [Next.js—`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params) (see static rendering and Suspense notes for your major version). See also [Next.js integration—URL-driven UI and the Suspense boundary](https://mui.com/material-ui/integrations/nextjs/#url-driven-ui-and-the-suspense-boundary).
 
@@ -130,32 +129,6 @@ export default Link;
 Import that wrapper and use `component={Link}` on `Button` and similar. See [Next.js integration—Next.js v16 Client Component restriction](https://mui.com/material-ui/integrations/nextjs/#nextjs-v16-client-component-restriction).
 
 Pages Router and theme-wide patterns: see [Routing libraries—Next.js Pages Router](https://mui.com/material-ui/integrations/routing/#nextjs-pages-router) and the [material-ui-nextjs-pages-router-ts example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router-ts).
-
----
-
-## Nested app in a parent workspace
-
-A Next app in a subfolder of a larger pnpm repo (for example a demo app under `material-ui/`) can trigger wrong workspace root detection: Next (including Turbopack) may warn about multiple lockfiles or resolve paths from the parent.
-
-- Avoid an accidental `pnpm-workspace.yaml` inside the nested app unless that folder is intentionally a workspace root; stray files can confuse tooling.
-- If warnings persist, set an explicit app root for Turbopack, for example in `next.config.ts`:
-
-```ts
-import type { NextConfig } from 'next';
-import path from 'path';
-
-const nextConfig: NextConfig = {
-  turbopack: {
-    root: path.join(__dirname),
-  },
-};
-
-export default nextConfig;
-```
-
-(Use the pattern that matches your config module format; `import.meta.dirname` is appropriate for ESM-only configs.)
-
-This is not MUI-specific, but it surfaces often when agents add a greenfield Next + MUI app inside a monorepo.
 
 ---
 
