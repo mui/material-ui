@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -48,22 +47,6 @@ function LinearProgressWithLabelAndValue({
     </div>
   );
 }
-
-LinearProgressWithLabelAndValue.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
-   */
-  value: PropTypes.number.isRequired,
-  /**
-   * The minimum value of the progress indicator.
-   */
-  minValue: PropTypes.number.isRequired,
-  /**
-   * The maximum value of the progress indicator.
-   */
-  maxValue: PropTypes.number.isRequired,
-};
 
 export default function LinearWithAriaValueText() {
   const [progress, setProgress] = React.useState(0);
