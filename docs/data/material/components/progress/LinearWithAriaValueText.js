@@ -40,18 +40,19 @@ function LinearProgressWithLabelAndValue({ maxValue, minValue, value, ...rest })
 
 LinearProgressWithLabelAndValue.propTypes = {
   /**
-   * The value of the progress indicator for the determinate and buffer variants.
+   * The maximum value for the progress indicator for the determinate and buffer variants.
    * @default 100
    */
   maxValue: PropTypes.number.isRequired,
   /**
-   * The minimum value of progress in determinate and buffer variants.
+   * The minimum value for the progress indicator for the determinate and buffer variants.
    * @default 0
    */
   minValue: PropTypes.number.isRequired,
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
+   * Value between `minValue` and `maxValue`.
+   * @default 0
    */
   value: PropTypes.number.isRequired,
 };
