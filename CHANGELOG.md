@@ -21,18 +21,18 @@ A big thanks to the 11 contributors who made this release possible.
 - [all components] Fix `slotProps.transition` types (#48153) @mj12albert
 - [alert][dialog] Accessibility improvements (#48113) @silviuaavram
 - [autocomplete] Fix helper text focusing input when clicked (#48156) @mj12albert
-- [button-base] Add `nativeButton` prop (#47989) @mj12albert
+- [buttonbase] Add `nativeButton` prop (#47989) @mj12albert
 - [input] Fix high contrast cutoff on first character (#48150) @silviuaavram
 - [menu] Fix empty roving focus container (#48114) @mj12albert
 - [utils] Explicitly register roving tab items with parent (#48122) @mj12albert
 
 ### Docs
 
-- Fix HTML validation errors (#48107) @Janpot
-- Fix duplicate IDs and HTML validation issues (#48095) @Janpot
-- Fix the dark mode footer row shadow for the Data Grid on the advanced components page (#48149) @arminmeh
-- Improve jsdom section (#48098) @oliviertassinari
-- Update "Deprecated APIs removed" section to h2 in "Upgrade to v9" docs (#48115) @ZeeshanTamboli
+- [docs] Fix HTML validation errors (#48107) @Janpot
+- [docs] Fix duplicate IDs and HTML validation issues (#48095) @Janpot
+- [docs] Fix the dark mode footer row shadow for the Data Grid on the advanced components page (#48149) @arminmeh
+- [docs] Improve jsdom section (#48098) @oliviertassinari
+- [docs] Update "Deprecated APIs removed" section to h2 in "Upgrade to v9" docs (#48115) @ZeeshanTamboli
 - [docs][progress] Label all demo components (#48143) @mj12albert
 - [docs-infra] Add x-scheduler to component API URL resolver (#48097) @rita-codes
 - [docs-infra] Resolve some redirects (#48165) @Janpot
