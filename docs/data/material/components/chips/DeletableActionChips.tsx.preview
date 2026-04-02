@@ -1,0 +1,10 @@
+<Chip
+  label="Music"
+  endAdornment={<ChipDelete />}
+  action={<ChipButton onClick={() => {}} />}
+/>
+<Chip
+  label="Movies"
+  endAdornment={<ChipDelete />}
+  action={<ChipLink href="#" />}
+/>

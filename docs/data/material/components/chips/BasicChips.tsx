@@ -4,8 +4,8 @@ import Stack from '@mui/material/Stack';
 export default function BasicChips() {
   return (
     <Stack direction="row" spacing={1}>
-      <Chip label="Chip Filled" />
-      <Chip label="Chip Outlined" variant="outlined" />
+      <Chip label="Filled" />
+      <Chip label="Outlined" variant="outlined" />
     </Stack>
   );
 }

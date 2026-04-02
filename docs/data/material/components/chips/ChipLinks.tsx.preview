@@ -1,0 +1,10 @@
+<Chip
+  label="Alex Chen"
+  startAdornment={<Avatar alt="Alex Chen">A</Avatar>}
+  action={<ChipLink href="#" />}
+/>
+<Chip
+  label="Documentation"
+  endAdornment={<OpenInNewIcon />}
+  action={<ChipLink href="#" />}
+/>

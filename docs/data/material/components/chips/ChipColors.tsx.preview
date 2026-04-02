@@ -1,0 +1,8 @@
+<Stack direction="row" spacing={1}>
+  <Chip label="Success" color="success" />
+  <Chip label="Warning" color="warning" />
+</Stack>
+<Stack direction="row" spacing={1}>
+  <Chip label="Primary" color="primary" variant="outlined" />
+  <Chip label="Secondary" color="secondary" variant="outlined" />
+</Stack>

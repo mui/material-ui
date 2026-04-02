@@ -42,6 +42,12 @@ export interface ChipClasses {
   deleteIcon: string;
   /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
+  /** Styles applied to the startAdornment wrapper element. */
+  startAdornment: string;
+  /** Styles applied to the endAdornment wrapper element. */
+  endAdornment: string;
+  /** Styles applied to the root element when `action` is provided. */
+  actionable: string;
 }
 
 export type ChipClassKey = keyof ChipClasses;
@@ -71,6 +77,9 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'label',
   'deleteIcon',
   'focusVisible',
+  'startAdornment',
+  'endAdornment',
+  'actionable',
 ]);
 
 export default chipClasses;

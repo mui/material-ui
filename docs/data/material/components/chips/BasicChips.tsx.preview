@@ -1,2 +1,2 @@
-<Chip label="Chip Filled" />
-<Chip label="Chip Outlined" variant="outlined" />
+<Chip label="Filled" />
+<Chip label="Outlined" variant="outlined" />

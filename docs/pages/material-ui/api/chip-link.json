@@ -1,0 +1,33 @@
+{
+  "props": {
+    "href": { "type": { "name": "string" }, "required": true },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ChipLink",
+  "imports": [
+    "import ChipLink from '@mui/material/ChipLink';",
+    "import { ChipLink } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiChipLink-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiChipLink",
+  "filename": "/packages/mui-material/src/ChipLink/ChipLink.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-chip/\">Chip</a></li></ul>",
+  "cssComponent": false
+}

@@ -88,6 +88,15 @@ export * from './Checkbox';
 export { default as Chip } from './Chip';
 export * from './Chip';
 
+export { default as ChipButton } from './ChipButton';
+export * from './ChipButton';
+
+export { default as ChipLink } from './ChipLink';
+export * from './ChipLink';
+
+export { default as ChipDelete } from './ChipDelete';
+export * from './ChipDelete';
+
 export { default as CircularProgress } from './CircularProgress';
 export * from './CircularProgress';
 

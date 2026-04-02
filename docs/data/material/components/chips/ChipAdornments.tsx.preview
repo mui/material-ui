@@ -1,0 +1,12 @@
+<Chip
+  label="Maya Johnson"
+  color="primary"
+  startAdornment={<Avatar>M</Avatar>}
+/>
+<Chip
+  label="In progress"
+  variant="outlined"
+  color="secondary"
+  startAdornment={<ScheduleIcon />}
+/>
+<Chip label="Completed" color="success" endAdornment={<DoneIcon />} />

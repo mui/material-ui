@@ -1,0 +1,12 @@
+<Chip
+  label="Focusable"
+  disabled
+  endAdornment={<ChipDelete />}
+  action={<ChipButton onClick={() => {}} />}
+/>
+<Chip
+  label="Not focusable"
+  disabled
+  endAdornment={<ChipDelete focusableWhenDisabled={false} />}
+  action={<ChipButton onClick={() => {}} focusableWhenDisabled={false} />}
+/>

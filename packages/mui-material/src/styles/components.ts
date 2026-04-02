@@ -162,6 +162,27 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiChip'] | undefined;
       }
     | undefined;
+  MuiChipButton?:
+    | {
+        defaultProps?: ComponentsProps['MuiChipButton'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiChipButton'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiChipButton'] | undefined;
+      }
+    | undefined;
+  MuiChipLink?:
+    | {
+        defaultProps?: ComponentsProps['MuiChipLink'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiChipLink'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiChipLink'] | undefined;
+      }
+    | undefined;
+  MuiChipDelete?:
+    | {
+        defaultProps?: ComponentsProps['MuiChipDelete'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiChipDelete'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiChipDelete'] | undefined;
+      }
+    | undefined;
   MuiCircularProgress?:
     | {
         defaultProps?: ComponentsProps['MuiCircularProgress'] | undefined;

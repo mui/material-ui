@@ -1,0 +1,11 @@
+{
+  "componentDescription": "An action overlay for the `Chip` component with link semantics.\n\nMust be used as the `action` prop of a `Chip`:\n\n```jsx\n<Chip label=\"Visit\" action={<ChipLink href=\"/page\" />} />\n```\n\nIntentionally ignores the parent Chip's `disabled` state because links should\nalways remain navigable. When used with a disabled Chip, the link stays enabled\nand the Chip root suppresses disabled styling.",
+  "propDescriptions": {
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "href": { "description": "The URL to link to." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    }
+  },
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+}

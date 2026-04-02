@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Chip component
-components: Chip
+components: Chip, ChipButton, ChipLink, ChipDelete
 githubLabel: 'scope: chip'
 materialDesign: https://m2.material.io/components/chips
 githubSource: packages/mui-material/src/Chip
@@ -19,85 +19,60 @@ not shown in context.
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
-## Basic chip
+## Basic chips
 
-The `Chip` component supports outlined and filled styling.
+The `Chip` component supports `'outlined'` and `'filled'` variants.
 
 {{"demo": "BasicChips.js"}}
 
-## Chip actions
+### Colors
 
-You can use the following actions.
+Use the `color` prop to assign a color from the theme palette.
 
-- Chips with the `onClick` prop defined change appearance on focus, hover, and click.
-- Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
+{{"demo": "ChipColors.js"}}
 
-### Clickable
+### Sizes
 
-{{"demo": "ClickableChips.js"}}
+Use the `size` prop to control the size.
 
-### Deletable
+{{"demo": "ChipSizes.js"}}
+
+## Adornments
+
+You can add ornaments like icons or `<Avatar>` to the beginning or end of the component using the `startAdornment` and `endAdornment` props:
+
+{{"demo": "ChipAdornments.js"}}
+
+### Delete button
+
+Use `<ChipDelete>` as an adornment to add an accessible delete button. A `onDelete` callback is provided that runs when `<ChipDelete>` is clicked, and additionally when the `Backspace` or `Delete` keys are pressed while focused.
 
 {{"demo": "DeletableChips.js"}}
 
-### Clickable and deletable
+## Actions
 
-{{"demo": "ClickableAndDeletableChips.js"}}
+Pass `<ChipButton>` or `<ChipLink>` to the `action` prop to create interactive chips.
 
-### Clickable link
+### ChipButton
 
-{{"demo": "ClickableLinkChips.js"}}
+Use `<ChipButton>` for triggering actions:
 
-### Custom delete icon
+{{"demo": "ChipButtons.js"}}
 
-{{"demo": "CustomDeleteIconChips.js"}}
+### ChipLink
 
-## Chip adornments
+Use `<ChipLink>` to navigate to a URL:
 
-You can add ornaments to the beginning of the component.
+{{"demo": "ChipLinks.js"}}
 
-Use the `avatar` prop to add an avatar or use the `icon` prop to add an icon.
+### ChipDelete
 
-### Avatar chip
+`<ChipDelete>` cam be used to make interactive chips deletable. Both the `action` component and the delete button are discrete tab stops.
 
-{{"demo": "AvatarChips.js"}}
+{{"demo": "DeletableActionChips.js"}}
 
-### Icon chip
+### Disabled state
 
-{{"demo": "IconChips.js"}}
+Both `<ChipButton>` and `<ChipDelete>` can receive focus normally when disabled to remain discoverable to assistive technology, which typically ignores disabled elements. Only `focus` and `blur` events will run. This can be individually disabled by with `focusableWhenDisabled={false}`.
 
-## Color chip
-
-You can use the `color` prop to define a color from theme palette.
-
-{{"demo": "ColorChips.js"}}
-
-## Sizes chip
-
-You can use the `size` prop to define a small Chip.
-
-{{"demo": "SizesChips.js"}}
-
-## Multiline chip
-
-By default, Chips displays labels only in a single line.
-To have them support multiline content, use the `sx` prop to add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles.
-
-{{"demo": "MultilineChips.js"}}
-
-## Chip array
-
-An example of rendering multiple chips from an array of values.
-Deleting a chip removes it from the array. Note that since no
-`onClick` prop is defined, the `Chip` can be focused, but does not
-gain depth while clicked or touched.
-
-{{"demo": "ChipsArray.js"}}
-
-## Chip playground
-
-{{"demo": "ChipsPlayground.js", "hideToolbar": true}}
-
-## Accessibility
-
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (for example when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+{{"demo": "DisabledChips.js"}}

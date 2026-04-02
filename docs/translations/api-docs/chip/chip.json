@@ -1,6 +1,9 @@
 {
   "componentDescription": "Chips represent complex entities in small blocks, such as a contact.",
   "propDescriptions": {
+    "action": {
+      "description": "The action element to render inside the chip. Should be a <code>&lt;ChipButton&gt;</code> or <code>&lt;ChipLink&gt;</code> element. When provided, the chip root becomes a non-interactive shell and the action element handles all interactivity."
+    },
     "avatar": { "description": "The Avatar element to display." },
     "children": {
       "description": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure."
@@ -19,6 +22,9 @@
       "description": "Override the default delete icon element. Shown only if <code>onDelete</code> is set."
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "endAdornment": {
+      "description": "Content to render after the label. Typically a <code>&lt;ChipDelete&gt;</code> element. When provided, <code>onDelete</code> and <code>deleteIcon</code> are ignored."
+    },
     "icon": { "description": "Icon element." },
     "label": { "description": "The content of the component." },
     "nativeButton": {
@@ -33,12 +39,20 @@
     },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
+    "startAdornment": {
+      "description": "Content to render before the label. Typically an icon or avatar element. When provided, <code>avatar</code> and <code>icon</code> are ignored."
+    },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
+    "actionable": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>action</code> is provided"
+    },
     "avatar": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the avatar element"
@@ -125,7 +139,9 @@
     }
   },
   "slotDescriptions": {
+    "endAdornment": "The component that renders the end adornment wrapper.",
     "label": "The component that renders the label.",
-    "root": "The component that renders the root."
+    "root": "The component that renders the root.",
+    "startAdornment": "The component that renders the start adornment wrapper."
   }
 }

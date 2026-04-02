@@ -1,9 +1,18 @@
 {
   "props": {
-    "avatar": { "type": { "name": "element" } },
+    "action": { "type": { "name": "element" } },
+    "avatar": {
+      "type": { "name": "element" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>startAdornment</code> instead. Ignored when <code>startAdornment</code> or <code>action</code> are used."
+    },
     "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "clickable": { "type": { "name": "bool" } },
+    "clickable": {
+      "type": { "name": "bool" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>action={&lt;ChipButton onClick={...} /&gt;}</code> instead. Ignored when <code>action</code> is present."
+    },
     "color": {
       "type": {
         "name": "union",
@@ -12,12 +21,25 @@
       "default": "'default'"
     },
     "component": { "type": { "name": "elementType" } },
-    "deleteIcon": { "type": { "name": "element" } },
+    "deleteIcon": {
+      "type": { "name": "element" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>endAdornment={&lt;ChipDelete /&gt;}</code> instead. Ignored when <code>endAdornment</code> or <code>action</code> are used."
+    },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "icon": { "type": { "name": "element" } },
+    "endAdornment": { "type": { "name": "node" } },
+    "icon": {
+      "type": { "name": "element" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>startAdornment</code> instead. Ignored when <code>startAdornment</code> or <code>action</code> are used."
+    },
     "label": { "type": { "name": "node" } },
     "nativeButton": { "type": { "name": "bool" } },
-    "onDelete": { "type": { "name": "func" } },
+    "onDelete": {
+      "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>endAdornment={&lt;ChipDelete onClick={...} /&gt;}</code> instead. Ignored when <code>endAdornment</code> or <code>action</code> are used."
+    },
     "size": {
       "type": {
         "name": "union",
@@ -25,18 +47,27 @@
       },
       "default": "'medium'"
     },
-    "skipFocusWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "skipFocusWhenDisabled": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>focusableWhenDisabled</code> on the action element instead."
+    },
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ endAdornment?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startAdornment?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ label?: elementType, root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ endAdornment?: elementType, label?: elementType, root?: elementType, startAdornment?: elementType }"
+      },
       "default": "{}"
     },
+    "startAdornment": { "type": { "name": "node" } },
     "sx": {
       "type": {
         "name": "union",
@@ -66,9 +97,27 @@
       "description": "The component that renders the label.",
       "default": "span",
       "class": "MuiChip-label"
+    },
+    {
+      "name": "startAdornment",
+      "description": "The component that renders the start adornment wrapper.",
+      "default": "span",
+      "class": "MuiChip-startAdornment"
+    },
+    {
+      "name": "endAdornment",
+      "description": "The component that renders the end adornment wrapper.",
+      "default": "span",
+      "class": "MuiChip-endAdornment"
     }
   ],
   "classes": [
+    {
+      "key": "actionable",
+      "className": "MuiChip-actionable",
+      "description": "Styles applied to the root element when `action` is provided.",
+      "isGlobal": false
+    },
     {
       "key": "avatar",
       "className": "MuiChip-avatar",
