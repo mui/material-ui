@@ -1,14 +1,14 @@
 # Material UI styling
 
-**Version 1.0.0**
+Version 1.0.0
 
-> **Note:** This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize/) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
+> Note: This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize/) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
 
 ---
 
 ## Abstract
 
-Material UI stacks four strategies from **narrowest to broadest** scope. Pick the **smallest scope that solves the problem** to avoid scattering global rules. The `sx` prop is the default for one-off tweaks; `styled()` is for reusable wrappers; the theme’s `components` API is for app-wide consistency; `GlobalStyles` / `CssBaseline` is for baseline HTML or cross-cutting globals.
+Material UI stacks four strategies from narrowest to broadest scope. Pick the smallest scope that solves the problem to avoid scattering global rules. The `sx` prop is the default for one-off tweaks; `styled()` is for reusable wrappers; the theme’s `components` API is for app-wide consistency; `GlobalStyles` / `CssBaseline` is for baseline HTML or cross-cutting globals.
 
 ---
 
@@ -27,65 +27,69 @@ Material UI stacks four strategies from **narrowest to broadest** scope. Pick th
 
 ## Quick decision (use in order)
 
-1. **Single instance or local layout?** → [`sx`](https://mui.com/system/getting-started/the-sx-prop/)
-2. **Same override in many places?** → [`styled()`](https://mui.com/system/styled/) around the MUI component (or a thin wrapper component)
-3. **All instances of a component should look different by default?** → [`theme.components`](https://mui.com/material-ui/customization/theme-components/) (`styleOverrides`, `variants`, `defaultProps`)
-4. **Global element baselines (e.g. all `h1`) or non-component CSS?** → [`GlobalStyles`](https://mui.com/material-ui/api/global-styles/) or [`CssBaseline`](https://mui.com/material-ui/react-css-baseline/) overrides
+1. Single instance or local layout? → [`sx`](https://mui.com/system/getting-started/the-sx-prop/)
+2. Same override in many places? → [`styled()`](https://mui.com/system/styled/) around the MUI component (or a thin wrapper component)
+3. All instances of a component should look different by default? → [`theme.components`](https://mui.com/material-ui/customization/theme-components/) (`styleOverrides`, `variants`, `defaultProps`)
+4. Global element baselines (e.g. all `h1`) or non-component CSS? → [`GlobalStyles`](https://mui.com/material-ui/api/global-styles/) or [`CssBaseline`](https://mui.com/material-ui/react-css-baseline/) overrides
 
-**Do not** jump to global theme overrides for a one-off screen; **do not** use `sx` for large repeated systems if a themed variant or `styled()` wrapper is clearer.
+Do not jump to global theme overrides for a one-off screen; do not use `sx` for large repeated systems if a themed variant or `styled()` wrapper is clearer.
 
 ---
 
 ## 1. One-off: `sx` prop
 
-**Use when:** Changing one instance (or a small inline case) with access to the theme.
+Use when: changing one instance (or a small inline case) with access to the theme.
 
 - All Material UI components support `sx`.
 - Supports theme shortcuts (`palette`, `spacing`, breakpoints, etc.), pseudo-selectors, nested selectors, and responsive objects.
 
-**Nested parts (slots):** Target internal slots with global class fragments, e.g. `'& .MuiSlider-thumb'`. Discover the slot name in DevTools; the pattern is `Mui[Component]-[slot]`. **Do not** rely on the full hashed class string. Use only the stable `Mui*` fragment.
+Nested parts (slots): target internal slots with global class fragments, e.g. `'& .MuiSlider-thumb'`. Discover the slot name in DevTools; the pattern is `Mui[Component]-[slot]`. Do not rely on the full hashed class string. Use only the stable `Mui*` fragment.
 
-**State styles:** MUI uses global state classes (`.Mui-disabled`, `.Mui-selected`, etc.) with specificity comparable to pseudo-classes. Override with **increased specificity** (e.g. combine with your class or the component root), never bare global state selectors alone.
+State styles: MUI uses global state classes (`.Mui-disabled`, `.Mui-selected`, etc.) with specificity comparable to pseudo-classes. Override with increased specificity (e.g. combine with your class or the component root), never bare global state selectors alone.
 
 ```css
 /* Bad: affects every component using .Mui-error */
-.Mui-error { color: red; }
+.Mui-error {
+  color: red;
+}
 
 /* Good: scoped to OutlinedInput root */
-.MuiOutlinedInput-root.Mui-error { color: red; }
+.MuiOutlinedInput-root.Mui-error {
+  color: red;
+}
 ```
 
 See [How to customize—State classes](https://mui.com/material-ui/customization/how-to-customize/#state-classes).
 
-**`className`:** Use when integrating with external CSS or CSS Modules; combine with the same slot/state rules as above.
+`className`: use when integrating with external CSS or CSS Modules; combine with the same slot/state rules as above.
 
 ---
 
 ## 2. Reusable: `styled()`
 
-**Use when:** The same customized component appears in multiple places and deserves a named component.
+Use when: the same customized component appears in multiple places and deserves a named component.
 
 ```ts
 import { styled } from '@mui/material/styles';
 ```
 
-- Prefer **`@mui/material/styles`** when using Material UI so the default theme matches the rest of the app.
+- Prefer `@mui/material/styles` when using Material UI so the default theme matches the rest of the app.
 - `styled()` adds theme integration, optional `name` / `slot` for theme overrides, and `sx` on the result (unless disabled).
-- For custom props, use **`shouldForwardProp`** so DOM/React does not receive invalid attributes. Extend the component’s prop types in TypeScript.
+- For custom props, use `shouldForwardProp` so DOM/React does not receive invalid attributes. Extend the component’s prop types in TypeScript.
 
-**Dynamic styling:** Prefer **CSS variables** or conditional style objects in the style callback; avoid per-field functions inside the style object for readability (see [styled() docs](https://mui.com/system/styled/)).
+Dynamic styling: prefer CSS variables or conditional style objects in the style callback; avoid per-field functions inside the style object for readability (see [styled() docs](https://mui.com/system/styled/)).
 
 ---
 
 ## 3. Global theme: `createTheme({ components })`
 
-**Use when:** Default look of `Button`, `TextField`, etc. should change **everywhere**.
+Use when: default look of `Button`, `TextField`, etc. should change everywhere.
 
-- **`defaultProps`:** Change defaults (e.g. `disableRipple` on `MuiButtonBase`).
-- **`styleOverrides`:** Target **slots** (`root`, `input`, …) with plain CSS-in-JS objects; nested selectors allowed.
-- **`variants`:** Map **props** to extra styles (built-in props like `variant: 'outlined'` or custom values you document for your design system).
+- `defaultProps`: change defaults (e.g. `disableRipple` on `MuiButtonBase`).
+- `styleOverrides`: target slots (`root`, `input`, …) with plain CSS-in-JS objects; nested selectors allowed.
+- `variants`: map props to extra styles (built-in props like `variant: 'outlined'` or custom values you document for your design system).
 
-**Caveat:** The theme is **not tree-shakable**. For heavy one-off customizations, a **new component** is often better than bloating the theme.
+Caveat: the theme is not tree-shakable. For heavy one-off customizations, a new component is often better than bloating the theme.
 
 Full API: [Themed components](https://mui.com/material-ui/customization/theme-components/).
 
@@ -93,42 +97,42 @@ Full API: [Themed components](https://mui.com/material-ui/customization/theme-co
 
 ## 4. Global CSS: `GlobalStyles` / `CssBaseline`
 
-**Use when:** Styling raw HTML elements or app-wide snippets that are not tied to a single MUI component instance.
+Use when: styling raw HTML elements or app-wide snippets that are not tied to a single MUI component instance.
 
-- Prefer **hoisting** `<GlobalStyles />` to a module-level constant so the style tag does not churn on re-renders.
+- Prefer hoisting `<GlobalStyles />` to a module-level constant so the style tag does not churn on re-renders.
 - `styles` can be a callback for theme access.
-- Can extend **`MuiCssBaseline`** `styleOverrides` if the app already uses `CssBaseline`.
+- Can extend `MuiCssBaseline` `styleOverrides` if the app already uses `CssBaseline`.
 
 ---
 
 ## `sx` vs `styled()`: differences agents should know
 
-| Topic | `sx` | `styled()` style object |
-|--------|------|-------------------------|
-| Theme spacing shorthand (`m`, `p`, `gap`, …) | Yes | **No.** Use `theme.spacing()` in a function or plain CSS values. |
-| Meaning of numeric padding like `1` | Theme spacing unit | **Pixels**, not `theme.spacing(1)` |
-| Theme palette strings (`'primary.main'`) | Yes | Use `theme` in a function |
+| Topic                                        | `sx`               | `styled()` style object                                      |
+| -------------------------------------------- | ------------------ | ------------------------------------------------------------ |
+| Theme spacing shorthand (`m`, `p`, `gap`, …) | Yes                | No. Use `theme.spacing()` in a function or plain CSS values. |
+| Meaning of numeric padding like `1`          | Theme spacing unit | Pixels, not `theme.spacing(1)`                               |
+| Theme palette strings (`'primary.main'`)     | Yes                | Use `theme` in a function                                    |
 
-To reuse **`sx` logic inside `styled()`**, use theme’s `unstable_sx` (see [styled()—Difference with the sx prop](https://mui.com/system/styled/#difference-with-the-sx-prop)).
+To reuse `sx` logic inside `styled()`, use theme’s `unstable_sx` (see [styled()—Difference with the sx prop](https://mui.com/system/styled/#difference-with-the-sx-prop)).
 
 ---
 
 ## Imports and consistency
 
-- In application code, **prefer one-level imports** from packages (e.g. `@mui/material/Button`) to avoid pulling the entire barrel.
-- **`Box` / `Stack` / `Typography` / `Grid`:** System layout props apply directly on these; other components use **`sx`** for system shortcuts, not arbitrary CSS prop shortcuts on the component itself.
+- In application code, prefer one-level imports from packages (e.g. `@mui/material/Button`) to avoid pulling the entire barrel.
+- `Box` / `Stack` / `Typography` / `Grid`: system layout props apply directly on these; other components use `sx` for system shortcuts, not arbitrary CSS prop shortcuts on the component itself.
 
 ---
 
 ## Further reading (repo / site)
 
-| Topic | Doc |
-|--------|-----|
-| Choosing strategy | [How to customize](https://mui.com/material-ui/customization/how-to-customize/) |
-| `sx` reference | [The sx prop](https://mui.com/system/getting-started/the-sx-prop/) |
-| `styled()` API | [styled()](https://mui.com/system/styled/) |
-| Theme per component | [Themed components](https://mui.com/material-ui/customization/theme-components/) |
-| System property mapping | [System properties](https://mui.com/system/properties/) |
-| State / class naming | [Advanced—Class names](https://mui.com/system/styles/advanced/#class-names) (system styles) |
+| Topic                   | Doc                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------- |
+| Choosing strategy       | [How to customize](https://mui.com/material-ui/customization/how-to-customize/)             |
+| `sx` reference          | [The sx prop](https://mui.com/system/getting-started/the-sx-prop/)                          |
+| `styled()` API          | [styled()](https://mui.com/system/styled/)                                                  |
+| Theme per component     | [Themed components](https://mui.com/material-ui/customization/theme-components/)            |
+| System property mapping | [System properties](https://mui.com/system/properties/)                                     |
+| State / class naming    | [Advanced—Class names](https://mui.com/system/styles/advanced/#class-names) (system styles) |
 
-For **MUI-specific class and state tables**, see [reference.md](reference.md).
+For MUI-specific class and state tables, see [reference.md](reference.md).

@@ -165,6 +165,31 @@ Then, replace the Next.js Link with the wrapper component:
   </Button>
 ```
 
+### URL-driven UI and the Suspense boundary
+
+When client components use Next.js App Router hooks that read the URL—for example `useSearchParams()` from `next/navigation` for filters, tabs, or pagination—Next.js expects a `<Suspense>` boundary around that part of the React tree. Without it, you may see build failures or runtime messages about a missing Suspense boundary (behavior depends on your Next.js version and static vs dynamic rendering).
+
+This pattern is common with Material UI: DataGrid, Table, Tabs, and other controls are often implemented as client components that sync to the query string.
+
+Recommended structure: keep `page.tsx` as a server component when possible, and wrap only the client subtree that calls `useSearchParams` in `<Suspense>`:
+
+```tsx title="app/orders/page.tsx"
+import { Suspense } from 'react';
+import OrdersToolbar from './OrdersToolbar';
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <OrdersToolbar />
+    </Suspense>
+  );
+}
+```
+
+`OrdersToolbar` would be a file marked with `'use client'` that calls `useSearchParams()` and renders Material UI components.
+
+For details and version-specific notes, see the Next.js documentation for [`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params).
+
 ## Pages Router
 
 This section walks through the Material UI integration with the Next.js [Pages Router](https://nextjs.org/docs/pages/building-your-application), for both [Server-side Rendering](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering) (SSR) and [Static Site Generation](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation) (SSG).
@@ -429,3 +454,46 @@ To use [CSS theme variables](/material-ui/customization/css-theme-variables/over
 ```
 
 Learn more about [the advantages of CSS theme variables](/material-ui/customization/css-theme-variables/overview/#advantages) and how to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering).
+
+## Nested app in a parent workspace
+
+If the Next.js application lives in a subfolder of a larger pnpm repository (for example a sample app, product demo, or internal tool next to other packages), tooling may infer the wrong workspace root. Next.js with Turbopack can warn about multiple lockfiles or resolve paths from a parent directory instead of the app folder.
+
+- Avoid placing an extra `pnpm-workspace.yaml` inside the nested app unless that folder is intentionally a workspace root; a stray file can confuse both pnpm and Next.js.
+- To pin the Turbopack root to your app directory, set `turbopack.root` in `next.config.ts` (or `next.config.mjs`) as in the Next.js [Turbopack configuration](https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory):
+
+```ts title="next.config.ts"
+import type { NextConfig } from 'next';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.join(__dirname),
+  },
+};
+
+export default nextConfig;
+```
+
+If you use CommonJS config (`next.config.js`), `__dirname` is available directly:
+
+```js title="next.config.js"
+const path = require('path');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  turbopack: {
+    root: path.join(__dirname),
+  },
+};
+
+module.exports = nextConfig;
+```
+
+:::info
+Turbopack and workspace layout are Next.js concerns, not Material UI requirements. This section is included because nested apps are a frequent source of confusion when using Material UI inside a monorepo.
+:::

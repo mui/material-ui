@@ -1,14 +1,14 @@
 # Material UI and Next.js
 
-**Version 1.0.0**
+Version 1.0.0
 
-> **Note:** This document is for agents and LLMs integrating Material UI with Next.js. Source: `docs/data/material/integrations/nextjs/nextjs.md` and related integration docs in this repository.
+> Note: This document is for agents and LLMs integrating Material UI with Next.js. Source: `docs/data/material/integrations/nextjs/nextjs.md` and related integration docs in this repository.
 
 ---
 
 ## Abstract
 
-Material UI uses **Emotion** for styles. On Next.js you must wire an **Emotion cache** so SSR and streaming produce correct CSS (prefer **head** injection over **body**-only styles). The **`@mui/material-nextjs`** package supplies **`AppRouterCacheProvider`** (App Router) and **`AppCacheProvider`** / **`DocumentHeadTags`** (Pages Router). Material UI components ship as **Client Components** (`"use client"`); they still **SSR** but are not React Server Components. Match the package **import suffix** (for example `v15-appRouter`) to your **Next.js major** version.
+Material UI uses Emotion for styles. On Next.js you must wire an Emotion cache so SSR and streaming produce correct CSS (prefer injecting styles into `head` instead of only `body`). The `@mui/material-nextjs` package supplies `AppRouterCacheProvider` (App Router) and `AppCacheProvider` / `DocumentHeadTags` (Pages Router). Material UI components ship as client components (`"use client"`); they still SSR but are not React Server Components. Match the package import suffix (for example `v15-appRouter`) to your Next.js major version.
 
 ---
 
@@ -20,7 +20,8 @@ Material UI uses **Emotion** for styles. On Next.js you must wire an **Emotion c
 4. [CSS theme variables and SSR](#css-theme-variables-and-ssr)
 5. [Other styling stacks (CSS layers)](#other-styling-stacks-css-layers)
 6. [Next.js Link and `component` prop](#nextjs-link-and-component-prop)
-7. [Further reading](#further-reading)
+7. [Nested app in a parent workspace](#nested-app-in-a-parent-workspace)
+8. [Further reading](#further-reading)
 
 ---
 
@@ -28,26 +29,36 @@ Material UI uses **Emotion** for styles. On Next.js you must wire an **Emotion c
 
 ### Dependencies
 
-Have **`@mui/material`** and **`next`** installed, then add:
+Have `@mui/material` and `next` installed, then add:
 
-- **`@mui/material-nextjs`**
-- **`@emotion/cache`**
+- `@mui/material-nextjs`
+- `@emotion/cache`
 
 Example: `pnpm add @mui/material-nextjs @emotion/cache`
 
 ### Root layout
 
-In **`app/layout.tsx`**, wrap everything under **`<body>`** with **`AppRouterCacheProvider`** from the entry that matches your Next major, for example:
+In `app/layout.tsx`, wrap everything under `<body>` with `AppRouterCacheProvider` from the entry that matches your Next major, for example:
 
 `import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';`
 
-(Use the **`v1X-appRouter`** path that matches your Next.js version if not on v15.)
+(Use the `v1X-appRouter` path that matches your Next.js version if not on v15.)
 
-**Why:** collects CSS from MUI System during **server** rendering and streaming so styles attach predictably; **recommended** so styles go to **`<head>`** instead of only the **`<body>`**. See [Next.js integration—Configuration](https://mui.com/material-ui/integrations/nextjs/#configuration).
+Why: it collects CSS from MUI System during server rendering and streaming so styles attach predictably; it is recommended so styles go to `<head>` instead of only `<body>`. See [Next.js integration—Configuration](https://mui.com/material-ui/integrations/nextjs/#configuration).
 
 ### Optional cache `options`
 
-Pass **`options`** to **`AppRouterCacheProvider`** to override [Emotion cache options](https://emotion.sh/docs/@emotion/cache#options), for example **`key: 'css'`** (default MUI key is **`mui`**). See [Next.js integration—Custom cache (optional)](https://mui.com/material-ui/integrations/nextjs/#custom-cache-optional).
+Pass `options` to `AppRouterCacheProvider` to override [Emotion cache options](https://emotion.sh/docs/@emotion/cache#options), for example `key: 'css'` (the default MUI key is `mui`). See [Next.js integration—Custom cache (optional)](https://mui.com/material-ui/integrations/nextjs/#custom-cache-optional).
+
+### URL hooks and Suspense
+
+Dashboards and internal tools often combine MUI client components with URL-driven UI (filters, tabs, pagination) using `useSearchParams()` from `next/navigation`.
+
+Next.js expects a `<Suspense>` boundary around the part of the tree that uses `useSearchParams` (and similar patterns that opt the route into client-side rendering), otherwise you can get build failures or runtime errors about a missing Suspense boundary.
+
+Practical pattern: keep `app/.../page.tsx` as a server component when possible; render a client subtree (DataGrid, Table, Tabs tied to the query string) inside `<Suspense fallback={…}>` from that server page.
+
+Official reference: [Next.js—`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params) (see static rendering and Suspense notes for your major version). See also [Next.js integration—URL-driven UI and the Suspense boundary](https://mui.com/material-ui/integrations/nextjs/#url-driven-ui-and-the-suspense-boundary).
 
 ---
 
@@ -55,36 +66,36 @@ Pass **`options`** to **`AppRouterCacheProvider`** to override [Emotion cache op
 
 ### Dependencies
 
-Add **`@mui/material-nextjs`**, **`@emotion/cache`**, and **`@emotion/server`**.
+Add `@mui/material-nextjs`, `@emotion/cache`, and `@emotion/server`.
 
 Example: `pnpm add @mui/material-nextjs @emotion/cache @emotion/server`
 
 ### `_document.tsx`
 
-- Import **`DocumentHeadTags`** and **`documentGetInitialProps`** from the **`v15-pagesRouter`** (or matching **`v1X-pagesRouter`**) entry.
-- Render **`<DocumentHeadTags {...props} />`** inside **`<Head>`**.
-- Assign **`getInitialProps`** to call **`documentGetInitialProps`**.
+- Import `DocumentHeadTags` and `documentGetInitialProps` from the `v15-pagesRouter` (or matching `v1X-pagesRouter`) entry.
+- Render `<DocumentHeadTags {...props} />` inside `<Head>`.
+- Assign `getInitialProps` to call `documentGetInitialProps`.
 
 ### `_app.tsx`
 
-Wrap the app with **`AppCacheProvider`** from the same major entry (for example **`v15-pagesRouter`**).
+Wrap the app with `AppCacheProvider` from the same major entry (for example `v15-pagesRouter`).
 
 ### Optional: custom cache and cascade layers
 
-- Pass a custom **`emotionCache`** into **`documentGetInitialProps`** options when needed.
-- For **`@layer`**, use **`createEmotionCache({ enableCssLayer: true })`** from **`@mui/material-nextjs`**, pass it from **`_document`** and align **`_app`** with the same cache pattern. See [Next.js integration—Cascade layers (optional)](https://mui.com/material-ui/integrations/nextjs/#cascade-layers-optional).
+- Pass a custom `emotionCache` into `documentGetInitialProps` options when needed.
+- For `@layer`, use `createEmotionCache({ enableCssLayer: true })` from `@mui/material-nextjs`, pass it from `_document` and align `_app` with the same cache pattern. See [Next.js integration—Cascade layers (optional)](https://mui.com/material-ui/integrations/nextjs/#cascade-layers-optional).
 
 ### TypeScript
 
-Extend **`Document`** props with **`DocumentHeadTagsProps`** from the same import path. See [Next.js integration—TypeScript](https://mui.com/material-ui/integrations/nextjs/#typescript).
+Extend `Document` props with `DocumentHeadTagsProps` from the same import path. See [Next.js integration—TypeScript](https://mui.com/material-ui/integrations/nextjs/#typescript).
 
 ---
 
 ## Fonts (`next/font`)
 
-**App Router:** Theme modules that call **`createTheme`** need **`'use client'`** when they are consumed from Server Components. Use **`next/font/google`** (or local fonts), set **`variable: '--font-…'`**, put **`className={font.variable}`** on **`<html>`** (or as in docs), and set **`typography.fontFamily`** to **`'var(--font-…)'`**. Wrap with **`ThemeProvider`** inside **`AppRouterCacheProvider`** as needed.
+App Router: theme modules that call `createTheme` need `'use client'` when they are consumed from server components. Use `next/font/google` (or local fonts), set `variable: '--font-…'`, put `className={font.variable}` on `<html>` (or as in docs), and set `typography.fontFamily` to `'var(--font-…)'`. Wrap with `ThemeProvider` inside `AppRouterCacheProvider` as needed.
 
-**Pages Router:** Similar pattern in **`pages/_app.tsx`** with **`AppCacheProvider`** and **`ThemeProvider`**.
+Pages Router: similar pattern in `pages/_app.tsx` with `AppCacheProvider` and `ThemeProvider`.
 
 Details: [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs/#font-optimization) (App) and [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs/#font-optimization-1) (Pages).
 
@@ -92,23 +103,23 @@ Details: [Next.js integration—Font optimization](https://mui.com/material-ui/i
 
 ## CSS theme variables and SSR
 
-Enable **`cssVariables: true`** in **`createTheme`** when using [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview/). For SSR flicker and **`InitColorSchemeScript`**, follow [CSS theme variables—Preventing SSR flickering](https://mui.com/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering) and [CSS theme variables overview—Advantages](https://mui.com/material-ui/customization/css-theme-variables/overview/#advantages).
+Enable `cssVariables: true` in `createTheme` when using [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview/). For SSR flicker and `InitColorSchemeScript`, follow [CSS theme variables—Preventing SSR flickering](https://mui.com/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering) and [CSS theme variables overview—Advantages](https://mui.com/material-ui/customization/css-theme-variables/overview/#advantages).
 
 ---
 
 ## Other styling stacks (CSS layers)
 
-If you combine MUI with **Tailwind CSS**, **CSS Modules**, or other global CSS, set **`enableCssLayer: true`** on **`AppRouterCacheProvider`**:
+If you combine MUI with Tailwind CSS, CSS Modules, or other global CSS, set `enableCssLayer: true` on `AppRouterCacheProvider`:
 
 `<AppRouterCacheProvider options={{ enableCssLayer: true }}>`
 
-That wraps MUI output in **`@layer mui`** so anonymous layers can override as intended. See [Next.js integration—Using other styling solutions](https://mui.com/material-ui/integrations/nextjs/#using-other-styling-solutions) and [MDN—@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer).
+That wraps MUI output in `@layer mui` so anonymous layers can override as intended. See [Next.js integration—Using other styling solutions](https://mui.com/material-ui/integrations/nextjs/#using-other-styling-solutions) and [MDN—@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer).
 
 ---
 
 ## Next.js Link and `component` prop
 
-**Next.js v16:** Passing **`next/link`** directly into **`component`** can trigger **“Functions cannot be passed directly to Client Components”**. Fix: a small **client** re-export:
+Next.js v16: passing `next/link` directly into `component` can trigger “Functions cannot be passed directly to Client Components”. Fix: a small client re-export:
 
 ```tsx
 'use client';
@@ -116,19 +127,45 @@ import Link, { LinkProps } from 'next/link';
 export default Link;
 ```
 
-Import that wrapper and use **`component={Link}`** on **`Button`** and similar. See [Next.js integration—Next.js v16 Client Component restriction](https://mui.com/material-ui/integrations/nextjs/#nextjs-v16-client-component-restriction).
+Import that wrapper and use `component={Link}` on `Button` and similar. See [Next.js integration—Next.js v16 Client Component restriction](https://mui.com/material-ui/integrations/nextjs/#nextjs-v16-client-component-restriction).
 
-**Pages Router** and theme-wide patterns: see [Routing libraries—Next.js Pages Router](https://mui.com/material-ui/integrations/routing/#nextjs-pages-router) and the [material-ui-nextjs-pages-router-ts example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router-ts).
+Pages Router and theme-wide patterns: see [Routing libraries—Next.js Pages Router](https://mui.com/material-ui/integrations/routing/#nextjs-pages-router) and the [material-ui-nextjs-pages-router-ts example](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-pages-router-ts).
+
+---
+
+## Nested app in a parent workspace
+
+A Next app in a subfolder of a larger pnpm repo (for example a demo app under `material-ui/`) can trigger wrong workspace root detection: Next (including Turbopack) may warn about multiple lockfiles or resolve paths from the parent.
+
+- Avoid an accidental `pnpm-workspace.yaml` inside the nested app unless that folder is intentionally a workspace root; stray files can confuse tooling.
+- If warnings persist, set an explicit app root for Turbopack, for example in `next.config.ts`:
+
+```ts
+import type { NextConfig } from 'next';
+import path from 'path';
+
+const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.join(__dirname),
+  },
+};
+
+export default nextConfig;
+```
+
+(Use the pattern that matches your config module format; `import.meta.dirname` is appropriate for ESM-only configs.)
+
+This is not MUI-specific, but it surfaces often when agents add a greenfield Next + MUI app inside a monorepo.
 
 ---
 
 ## Further reading
 
-| Topic | Link |
-|--------|------|
-| Full integration guide | [Next.js integration](https://mui.com/material-ui/integrations/nextjs/) |
+| Topic                            | Link                                                                                                   |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Full integration guide           | [Next.js integration](https://mui.com/material-ui/integrations/nextjs/)                                |
 | Example (App Router, TypeScript) | [material-ui-nextjs-ts](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts) |
-| Routing + Link adapters | [Routing libraries](https://mui.com/material-ui/integrations/routing/) |
-| RSC vs SSR (terminology) | [React WG discussion](https://github.com/reactwg/server-components/discussions/4) |
+| Routing + Link adapters          | [Routing libraries](https://mui.com/material-ui/integrations/routing/)                                 |
+| RSC vs SSR (terminology)         | [React WG discussion](https://github.com/reactwg/server-components/discussions/4)                      |
 
 Import path cheat sheet: [reference.md](reference.md).

@@ -7,7 +7,7 @@
 @import 'tailwindcss';
 ```
 
-**Pages Router + GlobalStyles** (first child of **`AppCacheProvider`**):
+Pages Router + GlobalStyles (first child of `AppCacheProvider`):
 
 ```jsx
 <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
@@ -17,9 +17,7 @@
 
 ```json
 {
-  "tailwindCSS.experimental.classRegex": [
-    ["className\\s*:\\s*['\"]([^'\"]*)['\"]"]
-  ]
+  "tailwindCSS.experimental.classRegex": [["className\\s*:\\s*['\"]([^'\"]*)['\"]"]]
 }
 ```
 
@@ -41,5 +39,5 @@ See [Interoperability—Tailwind CSS v3](https://mui.com/material-ui/integration
 
 ## Related skills
 
-- **material-ui-nextjs:** **`AppRouterCacheProvider`**, **`enableCssLayer`**, Pages **`emotionCache`**
-- **material-ui-theming:** **`cssVariables: true`** for **`--mui-*`** token bridging
+- material-ui-nextjs: `AppRouterCacheProvider`, `enableCssLayer`, Pages `emotionCache`
+- material-ui-theming: `cssVariables: true` for `--mui-*` token bridging
