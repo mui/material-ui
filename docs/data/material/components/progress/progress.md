@@ -72,7 +72,7 @@ The animations of the components rely on CSS as much as possible to work even be
 
 {{"demo": "LinearBuffer.js"}}
 
-### Linear with label
+### Linear with label and value label
 
 {{"demo": "LinearWithValueLabel.js"}}
 
